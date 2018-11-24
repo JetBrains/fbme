@@ -79,10 +79,19 @@
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
     </language>
+    <language id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions">
+      <concept id="767145758118872830" name="jetbrains.mps.lang.actions.structure.NF_Link_SetNewChildOperation" flags="nn" index="2DeJnY" />
+    </language>
     <language id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel">
       <concept id="1179409122411" name="jetbrains.mps.lang.smodel.structure.Node_ConceptMethodCall" flags="nn" index="2qgKlT" />
       <concept id="7453996997717780434" name="jetbrains.mps.lang.smodel.structure.Node_GetSConceptOperation" flags="nn" index="2yIwOk" />
       <concept id="1172008320231" name="jetbrains.mps.lang.smodel.structure.Node_IsNotNullOperation" flags="nn" index="3x8VRR" />
+      <concept id="6407023681583036853" name="jetbrains.mps.lang.smodel.structure.NodeAttributeQualifier" flags="ng" index="3CFYIy">
+        <reference id="6407023681583036854" name="attributeConcept" index="3CFYIx" />
+      </concept>
+      <concept id="6407023681583031218" name="jetbrains.mps.lang.smodel.structure.AttributeAccess" flags="nn" index="3CFZ6_">
+        <child id="6407023681583036852" name="qualifier" index="3CFYIz" />
+      </concept>
       <concept id="1138056022639" name="jetbrains.mps.lang.smodel.structure.SPropertyAccess" flags="nn" index="3TrcHB">
         <reference id="1138056395725" name="property" index="3TsBF5" />
       </concept>
@@ -663,6 +672,27 @@
     </node>
     <node concept="13hLZK" id="61urdBygFxa" role="13h7CW">
       <node concept="3clFbS" id="61urdBygFxb" role="2VODD2" />
+    </node>
+  </node>
+  <node concept="13h7C7" id="7t6qmPMAFg9">
+    <property role="3GE5qa" value="basic" />
+    <ref role="13h7C2" to="xiqq:3HBlKeoZ0Un" resolve="StateDeclaration" />
+    <node concept="13hLZK" id="7t6qmPMAFga" role="13h7CW">
+      <node concept="3clFbS" id="7t6qmPMAFgb" role="2VODD2">
+        <node concept="3clFbF" id="7t6qmPMAFgY" role="3cqZAp">
+          <node concept="2OqwBi" id="7t6qmPMAG5d" role="3clFbG">
+            <node concept="2OqwBi" id="7t6qmPMAFo$" role="2Oq$k0">
+              <node concept="13iPFW" id="7t6qmPMAFgW" role="2Oq$k0" />
+              <node concept="3CFZ6_" id="7t6qmPMAFzU" role="2OqNvi">
+                <node concept="3CFYIy" id="7t6qmPMAFBI" role="3CFYIz">
+                  <ref role="3CFYIx" to="xiqq:7UH$k724uxl" resolve="StateActionsEnabler" />
+                </node>
+              </node>
+            </node>
+            <node concept="2DeJnY" id="7t6qmPMAGlM" role="2OqNvi" />
+          </node>
+        </node>
+      </node>
     </node>
   </node>
 </model>
