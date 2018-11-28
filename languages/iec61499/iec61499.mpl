@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language namespace="iec61499" uuid="6594f340-4d73-4027-b7d3-c6ca2e70a53b" generatorOutputPath="/Users/radimir.sorokin/workspace/iec61499/languages/iec64199/source_gen" languageVersion="0" moduleVersion="0">
+<language namespace="iec61499" uuid="6594f340-4d73-4027-b7d3-c6ca2e70a53b" generatorOutputPath="${module}/generator/source_gen" languageVersion="0" moduleVersion="0">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
@@ -7,7 +7,7 @@
   </models>
   <accessoryModels />
   <generators>
-    <generator alias="main" namespace="iec61499#4280485643801969762" uuid="e6474e26-f6d9-4046-9342-1ef045999378" generate-templates="true" generatorOutputPath="${mps_home}/bin/C:/Users/Radimir.Sorokin/MPSProjects/IEC64199_IDE/languages/iec64199/generator/source_gen">
+    <generator alias="main" namespace="iec61499#4280485643801969762" uuid="e6474e26-f6d9-4046-9342-1ef045999378" generate-templates="true" generatorOutputPath="${module}/languages/iec61499/generator/source_gen">
       <models>
         <modelRoot contentPath="${module}/generator/template" type="default">
           <sourceRoot location="." />
