@@ -3,80 +3,149 @@
   <property name="build.dir" location="build" />
   <property name="build.tmp" location="${build.dir}/tmp/iec61499Distribution" />
   <property name="build.layout" location="${build.dir}/artifacts/iec61499Distribution" />
-  <property name="mps_home" location="" />
+  <property name="mps_home" location="${basedir}/lib/mps" />
+  <property name="path.selector" value="iec61499-${iec61499.ide-version}" />
   <property name="artifacts.iec61499" location="${build.dir}/artifacts/iec61499" />
   <property file="${artifacts.iec61499}/build.properties" prefix="import.iec61499" />
   <property name="iec61499.date" value="${import.iec61499.iec61499.date}" />
   <property name="iec61499.build.number" value="${import.iec61499.iec61499.build.number}" />
   <property name="iec61499.ide-version" value="${import.iec61499.iec61499.ide-version}" />
-  <property name="mpsBootstrapCore.version" value="${import.iec61499.mpsBootstrapCore.version}" />
-  <property name="com.mbeddr.platform.major.version" value="${import.iec61499.com.mbeddr.platform.major.version}" />
-  <property name="com.mbeddr.platform.minor.version" value="${import.iec61499.com.mbeddr.platform.minor.version}" />
-  <property name="com.mbeddr.platform.build" value="${import.iec61499.com.mbeddr.platform.build}" />
-  <property name="com.mbeddr.platform.mbeddr.version" value="${import.iec61499.com.mbeddr.platform.mbeddr.version}" />
   <property name="mps.build.number" value="${import.iec61499.mps.build.number}" />
   <property name="mps.date" value="${import.iec61499.mps.date}" />
   <property name="mps.build.vcs.number" value="${import.iec61499.mps.build.vcs.number}" />
   <property name="mps.teamcity.buildConfName" value="${import.iec61499.mps.teamcity.buildConfName}" />
   <property name="mps.idea.platform.build.number" value="${import.iec61499.mps.idea.platform.build.number}" />
   <property name="mps.mps.build.counter" value="${import.iec61499.mps.mps.build.counter}" />
+  <property name="mpsBootstrapCore.version" value="${import.iec61499.mpsBootstrapCore.version}" />
+  <property name="com.mbeddr.platform.major.version" value="${import.iec61499.com.mbeddr.platform.major.version}" />
+  <property name="com.mbeddr.platform.minor.version" value="${import.iec61499.com.mbeddr.platform.minor.version}" />
+  <property name="com.mbeddr.platform.build" value="${import.iec61499.com.mbeddr.platform.build}" />
+  <property name="com.mbeddr.platform.mbeddr.version" value="${import.iec61499.com.mbeddr.platform.mbeddr.version}" />
   <property name="mps-sl-all.versionNumber" value="${import.iec61499.mps-sl-all.versionNumber}" />
   
   <target name="assemble" depends="fetchDependencies">
     <mkdir dir="${build.layout}" />
-    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip" />
-    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${mpsBootstrapCore.version}.app" />
-    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${mpsBootstrapCore.version}.app/Contents" />
-    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755" />
-    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755">
-      <fileset file="${mps_home}/bin/mac/Contents/MacOS/mps" />
-      <globmapper from="*" to="iec61499" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz/iec61499 ${iec61499.ide-version}" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz/iec61499 ${iec61499.ide-version}/bin" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz/iec61499 ${iec61499.ide-version}/bin">
+      <fileset file="${mps_home}/bin/mps.vmoptions" />
+      <filterchain>
+        <fixcrlf eol="lf" eof="remove" />
+      </filterchain>
     </copy>
-    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${mpsBootstrapCore.version}.app/Contents">
-      <fileset file="${basedir}/solutions/iec61499.build/source_gen/iec61499/build/Info.plist.xml" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz/iec61499 ${iec61499.ide-version}/bin">
+      <fileset file="${mps_home}/bin/mps64.vmoptions" />
+      <filterchain>
+        <fixcrlf eol="lf" eof="remove" />
+      </filterchain>
+    </copy>
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz_f755" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz_f755">
+      <fileset file="${mps_home}/bin/mps.sh" />
+      <filterchain>
+        <fixcrlf eol="lf" eof="remove" />
+      </filterchain>
+    </copy>
+    <tar destfile="${build.layout}/${iec61499.build.number}-linux.tar.gz" compression="gzip" longfile="gnu">
+      <tarfileset dir="${artifacts.iec61499}" prefix="iec61499 ${iec61499.ide-version}" />
+      <tarfileset dir="${mps_home}/bin/linux" prefix="iec61499 ${iec61499.ide-version}/bin">
+        <exclude name="**/fsnotifier" />
+        <exclude name="**/fsnotifier64" />
+      </tarfileset>
+      <tarfileset file="${mps_home}/bin/linux/fsnotifier" prefix="iec61499 ${iec61499.ide-version}/bin" filemode="755" />
+      <tarfileset file="${mps_home}/bin/linux/fsnotifier64" prefix="iec61499 ${iec61499.ide-version}/bin" filemode="755" />
+      <tarfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz_f755" filemode="755" prefix="iec61499 ${iec61499.ide-version}" />
+      <tarfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-linux.tar.gz" />
+    </tar>
+    <zip destfile="${build.layout}/${iec61499.build.number}.zip">
+      <zipfileset dir="${artifacts.iec61499}" prefix="iec61499 ${iec61499.ide-version}" />
+      <zipfileset file="${mps_home}/bin/mps.vmoptions" prefix="iec61499 ${iec61499.ide-version}/bin" />
+      <zipfileset file="${mps_home}/bin/mps.exe.vmoptions" prefix="iec61499 ${iec61499.ide-version}/bin" />
+      <zipfileset file="${mps_home}/bin/mps64.vmoptions" prefix="iec61499 ${iec61499.ide-version}/bin" />
+      <zipfileset file="${mps_home}/bin/mps64.exe.vmoptions" prefix="iec61499 ${iec61499.ide-version}/bin" />
+      <zipfileset dir="${mps_home}/bin/win" prefix="iec61499 ${iec61499.ide-version}/bin/win">
+        <exclude name="**/*.exe" />
+      </zipfileset>
+      <zipfileset dir="${mps_home}/bin/win" prefix="iec61499 ${iec61499.ide-version}/bin/win" filemode="755">
+        <include name="**/*.exe" />
+      </zipfileset>
+      <zipfileset dir="${mps_home}/bin/linux" prefix="iec61499 ${iec61499.ide-version}/bin/linux">
+        <exclude name="**/fsnotifier" />
+        <exclude name="**/fsnotifier64" />
+      </zipfileset>
+      <zipfileset file="${mps_home}/bin/linux/fsnotifier" prefix="iec61499 ${iec61499.ide-version}/bin/linux" filemode="755" />
+      <zipfileset file="${mps_home}/bin/linux/fsnotifier64" prefix="iec61499 ${iec61499.ide-version}/bin/linux" filemode="755" />
+      <zipfileset dir="${mps_home}/bin/linux" prefix="iec61499 ${iec61499.ide-version}/bin/nix" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/restarter" prefix="iec61499 ${iec61499.ide-version}/bin/mac" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/fsnotifier" prefix="iec61499 ${iec61499.ide-version}/bin/mac" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/printenv.py" prefix="iec61499 ${iec61499.ide-version}/bin/mac" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/Contents/Info.plist" prefix="iec61499 ${iec61499.ide-version}/bin/mac/Contents" />
+      <zipfileset file="${mps_home}/bin/mac/Contents/Resources/mps.icns" prefix="iec61499 ${iec61499.ide-version}/bin/mac/Contents/Resources" />
+      <zipfileset file="${mps_home}/bin/mac/Contents/MacOS/mps" prefix="iec61499 ${iec61499.ide-version}/bin/mac/Contents/MacOS" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mps.sh" prefix="iec61499 ${iec61499.ide-version}" filemode="755" />
+    </zip>
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app/Contents" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app/Contents">
+      <fileset file="${mps_home}/bin/mac/Contents/Info.plist" />
       <filterchain>
         <tokenfilter>
-          <replaceregex pattern="\$version\$" replace="${mpsBootstrapCore.version}" flags="" />
+          <replaceregex pattern="JetBrains MPS" replace="IEC 61499" flags="g" />
+        </tokenfilter>
+        <tokenfilter>
+          <replaceregex pattern="\$version\$" replace="${iec61499.ide-version}" flags="" />
         </tokenfilter>
         <tokenfilter>
           <replaceregex pattern="\$build\$" replace="${iec61499.build.number}" flags="" />
         </tokenfilter>
+        <tokenfilter>
+          <replaceregex pattern="string&gt;MPS&lt;/string" replace="string&gt;IEC 61499&lt;/string" flags="" />
+        </tokenfilter>
+        <tokenfilter>
+          <replaceregex pattern="string&gt;MPS\d+&lt;/string" replace="string&gt;${path.selector}&lt;/string" flags="" />
+        </tokenfilter>
+      </filterchain>
+    </copy>
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app/Contents/bin" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app/Contents/bin">
+      <fileset file="${mps_home}/bin/mps.vmoptions" />
+      <filterchain>
         <fixcrlf eol="lf" eof="remove" />
       </filterchain>
-      <globmapper from="*" to="Info.plist" />
     </copy>
-    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${mpsBootstrapCore.version}.app/Contents/bin" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${iec61499.ide-version}.app/Contents/bin">
+      <fileset file="${mps_home}/bin/mps64.vmoptions" />
+      <filterchain>
+        <fixcrlf eol="lf" eof="remove" />
+      </filterchain>
+    </copy>
     <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f7551" />
     <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f7551">
-      <fileset dir="${mps_home}/bin/mac">
-        <include name="**/*.py" />
-      </fileset>
+      <fileset file="${mps_home}/bin/mac/printenv.py" />
       <filterchain>
         <fixcrlf eol="lf" eof="remove" />
       </filterchain>
     </copy>
-    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip/iec61499 ${mpsBootstrapCore.version}.app/Contents/bin">
-      <fileset file="${basedir}/solutions/iec61499.build/source_gen/iec61499/build/iec61499Sripts64.vmoptions" />
+    <mkdir dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755" />
+    <copy todir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755">
+      <fileset file="${mps_home}/bin/mps.sh" />
       <filterchain>
         <fixcrlf eol="lf" eof="remove" />
       </filterchain>
-      <regexpmapper from="iec61499Sripts64.vmoptions" to="iec61499Sripts.vmoptions" />
     </copy>
     <zip destfile="${build.layout}/${iec61499.build.number}-macos.zip">
-      <zipfileset dir="${artifacts.iec61499}" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents" />
-      <zipfileset file="${mps_home}/Resources/mps.icns" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents/Resources" />
-      <zipfileset dir="${mps_home}/bin/mac" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents/bin" filemode="755">
-        <exclude name="**/*.dylib" />
-        <exclude name="**/*.py" />
-      </zipfileset>
-      <zipfileset dir="${mps_home}/bin/mac" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents/bin">
-        <include name="**/*.dylib" />
-      </zipfileset>
-      <zipfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755" filemode="755" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents/MacOS" />
-      <zipfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f7551" filemode="755" prefix="iec61499 ${mpsBootstrapCore.version}.app/Contents/bin" />
+      <zipfileset dir="${artifacts.iec61499}" prefix="iec61499 ${iec61499.ide-version}.app/Contents" />
+      <zipfileset file="${mps_home}/bin/mac/Contents/Resources/mps.icns" prefix="iec61499 ${iec61499.ide-version}.app/Contents/Resources" />
+      <zipfileset file="${mps_home}/bin/mac/Contents/MacOS/mps" prefix="iec61499 ${iec61499.ide-version}.app/Contents/MacOS" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/restarter" prefix="iec61499 ${iec61499.ide-version}.app/Contents/bin" filemode="755" />
+      <zipfileset file="${mps_home}/bin/mac/fsnotifier" prefix="iec61499 ${iec61499.ide-version}.app/Contents/bin" filemode="755" />
+      <zipfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f755" filemode="755" prefix="iec61499 ${iec61499.ide-version}.app/Contents" />
+      <zipfileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip_f7551" filemode="755" prefix="iec61499 ${iec61499.ide-version}.app/Contents/bin" />
       <fileset dir="${build.tmp}/default/_dl__lbrace_build.number_rbrace_-macos.zip" />
     </zip>
-    <echo file="${build.layout}/build.properties">iec61499.date=${iec61499.date}${line.separator}iec61499.build.number=${iec61499.build.number}${line.separator}iec61499.ide-version=${iec61499.ide-version}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}com.mbeddr.platform.major.version=${com.mbeddr.platform.major.version}${line.separator}com.mbeddr.platform.minor.version=${com.mbeddr.platform.minor.version}${line.separator}com.mbeddr.platform.build=${com.mbeddr.platform.build}${line.separator}com.mbeddr.platform.mbeddr.version=${com.mbeddr.platform.mbeddr.version}${line.separator}mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mps-sl-all.versionNumber=${mps-sl-all.versionNumber}</echo>
+    <echo file="${build.layout}/build.properties">iec61499Distribution.path.selector=${path.selector}${line.separator}iec61499.date=${iec61499.date}${line.separator}iec61499.build.number=${iec61499.build.number}${line.separator}iec61499.ide-version=${iec61499.ide-version}${line.separator}mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}com.mbeddr.platform.major.version=${com.mbeddr.platform.major.version}${line.separator}com.mbeddr.platform.minor.version=${com.mbeddr.platform.minor.version}${line.separator}com.mbeddr.platform.build=${com.mbeddr.platform.build}${line.separator}com.mbeddr.platform.mbeddr.version=${com.mbeddr.platform.mbeddr.version}${line.separator}mps-sl-all.versionNumber=${mps-sl-all.versionNumber}</echo>
   </target>
   
   <target name="buildDependents">
