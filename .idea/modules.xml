@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/languages/iec61499/iec61499.iml" filepath="$PROJECT_DIR$/languages/iec61499/iec61499.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solutions/iec61499.ide/iec61499.ide.iml" filepath="$PROJECT_DIR$/solutions/iec61499.ide/iec61499.ide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/languages/iec61499.meta.diagram/iec61499.meta.diagram.iml" filepath="$PROJECT_DIR$/languages/iec61499.meta.diagram/iec61499.meta.diagram.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="editor-querylist">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist.runtime-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist.runtime.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
