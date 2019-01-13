@@ -1,0 +1,90 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'LibraryElement.dtd'>
+<FBType Name="FLASHER4">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="MODE" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="MODE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF">
+        <With Var="LED3" />
+        <With Var="LED2" />
+        <With Var="LED1" />
+        <With Var="LED0" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MODE" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LED3" Type="BOOL" />
+      <VarDeclaration Name="LED2" Type="BOOL" />
+      <VarDeclaration Name="LED1" Type="BOOL" />
+      <VarDeclaration Name="LED0" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="OFLO" Type="BOOL" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="WAIT"></ECState>
+      <ECState Name="INIT">
+        <ECAction Algorithm="INIT" Output="CNF" />
+      </ECState>
+      <ECState Name="FLASH_ALL">
+        <ECAction Algorithm="FLASH_ALL" Output="CNF" />
+      </ECState>
+      <ECState Name="COUNT_UP">
+        <ECAction Algorithm="COUNT_UP" Output="CNF" />
+      </ECState>
+      <ECState Name="COUNT_DOWN">
+        <ECAction Algorithm="COUNT_DOWN" Output="CNF" />
+      </ECState>
+      <ECState Name="CHASE_UP">
+        <ECAction Algorithm="CHASE_UP" Output="CNF" />
+      </ECState>
+      <ECState Name="CHASE_DOWN">
+        <ECAction Algorithm="CHASE_DOWN" Output="CNF" />
+      </ECState>
+      <ECState Name="START"></ECState>
+      <ECTransition Source="WAIT" Target="INIT" Condition="INIT" />
+      <ECTransition Source="WAIT" Target="FLASH_ALL" Condition="REQ" />
+      <ECTransition Source="WAIT" Target="COUNT_UP" Condition="REQ" />
+      <ECTransition Source="WAIT" Target="COUNT_DOWN" Condition="REQ" />
+      <ECTransition Source="WAIT" Target="CHASE_UP" Condition="REQ" />
+      <ECTransition Source="WAIT" Target="CHASE_DOWN" Condition="REQ" />
+      <ECTransition Source="INIT" Target="WAIT" Condition="1" />
+      <ECTransition Source="FLASH_ALL" Target="WAIT" Condition="1" />
+      <ECTransition Source="COUNT_UP" Target="WAIT" Condition="1" />
+      <ECTransition Source="COUNT_DOWN" Target="WAIT" Condition="1" />
+      <ECTransition Source="CHASE_UP" Target="WAIT" Condition="1" />
+      <ECTransition Source="CHASE_DOWN" Target="WAIT" Condition="1" />
+      <ECTransition Source="START" Target="WAIT" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST />
+    </Algorithm>
+    <Algorithm Name="COUNT_UP">
+      <ST />
+    </Algorithm>
+    <Algorithm Name="COUNT_DOWN">
+      <ST />
+    </Algorithm>
+    <Algorithm Name="FLASH_ALL">
+      <ST />
+    </Algorithm>
+    <Algorithm Name="CHASE_UP">
+      <ST />
+    </Algorithm>
+    <Algorithm Name="CHASE_DOWN">
+      <ST />
+    </Algorithm>
+  </BasicFB>
+</FBType>
