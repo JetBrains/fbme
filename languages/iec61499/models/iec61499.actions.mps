@@ -73,7 +73,7 @@
     <property role="TrG5h" value="NF_" />
     <node concept="37WvkG" id="5abAOk8l7Cd" role="37WGs$">
       <property role="3mWdv0" value="Setup START state" />
-      <ref role="37XkoT" to="xiqq:3HBlKeoYsj1" resolve="BasicFunctionBlockDeclaration" />
+      <ref role="37XkoT" to="xiqq:3HBlKeoYsj1" resolve="BasicFBTypeDeclaration" />
       <node concept="37Y9Zx" id="5abAOk8l7Ce" role="37ZfLb">
         <node concept="3clFbS" id="5abAOk8l7Cf" role="2VODD2">
           <node concept="3clFbF" id="5abAOk8l8rQ" role="3cqZAp">
