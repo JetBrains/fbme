@@ -100,7 +100,7 @@
     <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.jar" duplicate="preserve">
       <fileset dir="${build.tmp}/java/out/iec61499" />
       <fileset dir="${basedir}/languages/iec61499" includes="icons/**, resources/**" />
-      <fileset dir="${basedir}/languages/iec61499/generator/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
+      <fileset dir="${basedir}/languages/iec61499/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
       <fileset dir="${build.tmp}/default/iec61499.jar" />
     </jar>
     <mkdir dir="${build.tmp}/default/iec61499-generator.jar" />
@@ -142,7 +142,7 @@
         <exclude name="**/checkpoints" />
         <exclude name="**/*.mps" />
       </fileset>
-      <fileset dir="${basedir}/languages/iec61499/languages/iec61499/generator/source_gen">
+      <fileset dir="${basedir}/languages/iec61499/source_gen">
         <exclude name="**/trace.info" />
         <exclude name="**/exports" />
         <exclude name="**/checkpoints" />
@@ -406,12 +406,12 @@
   <target name="makeDependents" />
   
   <target name="java.compile.iec61499" depends="fetchDependencies">
-    <mkdir dir="${basedir}/languages/iec61499/generator/source_gen" />
+    <mkdir dir="${basedir}/languages/iec61499/source_gen" />
     <mkdir dir="${build.tmp}/java/out/iec61499" />
     <javac destdir="${build.tmp}/java/out/iec61499" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/languages/iec61499/generator/source_gen" />
+        <path location="${basedir}/languages/iec61499/source_gen" />
       </src>
       <classpath>
         <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
@@ -469,12 +469,12 @@
   </target>
   
   <target name="java.compile.iec61499#4280485643801969762" depends="java.compile.iec61499, fetchDependencies">
-    <mkdir dir="${basedir}/languages/iec61499/languages/iec61499/generator/source_gen" />
+    <mkdir dir="${basedir}/languages/iec61499/generator/source_gen" />
     <mkdir dir="${build.tmp}/java/out/iec61499#4280485643801969762" />
     <javac destdir="${build.tmp}/java/out/iec61499#4280485643801969762" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/languages/iec61499/languages/iec61499/generator/source_gen" />
+        <path location="${basedir}/languages/iec61499/generator/source_gen" />
       </src>
       <classpath>
         <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
@@ -681,8 +681,8 @@
   <target name="cleanSources">
     <delete dir="${basedir}/languages/iec61499.meta.diagram/source_gen" />
     <delete dir="${basedir}/languages/iec61499.meta.diagram/generator/source_gen" />
+    <delete dir="${basedir}/languages/iec61499/source_gen" />
     <delete dir="${basedir}/languages/iec61499/generator/source_gen" />
-    <delete dir="${basedir}/languages/iec61499/languages/iec61499/generator/source_gen" />
     <delete dir="${basedir}/solutions/iec61499.ide/source_gen" />
   </target>
 </project>
