@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="editor-conditionalEditor">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.runtime-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.runtime.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.runtime-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.hints.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor/de.slisson.mps.conditionalEditor-src.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

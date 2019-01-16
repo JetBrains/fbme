@@ -1,28 +1,27 @@
 <component name="libraryTable">
   <library name="editor-diagrams">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.slisson.mps.structurecheck.runtime.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.runtime.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.slisson.mps.structurecheck-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.slisson.mps.structurecheck.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.slisson.mps.structurecheck-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.runtime-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.shapes-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.shapes.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram-generator.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.slisson.mps.structurecheck.runtime-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout-src.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/lib/jgraphx.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mps/plugins/de.itemis.mps.editor.diagram/lib/klay-emf_2014-05.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.shapes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram-generator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib/jgraphx.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.layout-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.runtime-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.shapes-src.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram/de.itemis.mps.editor.diagram.styles-src.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" recursive="false" type="SOURCES" />
   </library>
 </component>

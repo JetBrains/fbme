@@ -5,6 +5,8 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/source_gen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/generator/source_gen" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/classes_gen" />
+      <excludeFolder url="file://$MODULE_DIR$/generator/classes_gen" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
