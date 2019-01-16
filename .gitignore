@@ -1,3 +1,9 @@
+.DS_Store
+
+.gradle
+!gradle-wrapper.jar
+.gradletasknamecache
+
 **/.mps/workspace.xml
 **/.mps/shelf
 

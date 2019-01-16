@@ -1,0 +1,60 @@
+ext.mpsMajor = "2018.3"
+ext.mpsMinor = "2"
+ext.mbeddrBuildNumber = "1.1.+"
+
+buildscript {
+    repositories {
+        maven { url 'https://projects.itemis.de/nexus/content/repositories/mbeddr' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.itemis.mps:mps-gradle-plugin:1.0.+'
+    }
+}
+
+repositories {
+    maven { url 'https://projects.itemis.de/nexus/content/repositories/mbeddr' }
+    mavenCentral()
+    ivy {
+        url "https://download.jetbrains.com/mps/$mpsMajor/"
+        layout 'pattern', {
+            artifact "[module]-[revision].[ext]"
+        }
+        metadataSources { // skip downloading ivy.xml
+            artifact()
+        }
+    }
+}
+
+configurations {
+    mps
+}
+
+dependencies {
+    mps "com.jetbrains:MPS:$mpsMajor.${mpsMinor}@zip"
+    mps "com.mbeddr:platform:$mbeddrBuildNumber"
+}
+
+task downloadDependencies(type: Copy) {
+    dependsOn configurations.mps
+
+    configurations.mps.files.each {
+        from zipTree(it)
+    }
+    into 'lib'
+}
+
+
+if (file('buildPlugin.xml').exists()) {
+    ant.importBuild('buildPlugin.xml') { 'bp.' + it }
+
+    tasks.'bp.fetchDependencies'.dependsOn 'downloadDependencies'
+
+    task buildPlugin(dependsOn: ['bp.build']) {
+    }
+
+    task clean(dependsOn: ['bp.clean']) {
+    }
+
+    defaultTasks 'buildPlugin'
+}
