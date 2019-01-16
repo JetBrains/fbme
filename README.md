@@ -2,8 +2,13 @@
 
 ### Contributing
 
-- Install [JetBrains MPS 2017.2.3](https://www.jetbrains.com/mps/download/previous.html)
-- Download mbeddr platform plugins: [platform-distribution_2017_2_0.zip](https://github.com/mbeddr/mbeddr.core/releases/tag/mbeddr-2017-2-0)
-- Unpack mbeddr platform plugins into `$MPS_INSTALLATION$/plugins` folder
+- Install [JetBrains MPS 2018.3.*](https://www.jetbrains.com/mps/download)
+- Download mbeddr platform plugins  (via `./gradlew downloadDependencies`, plugins expected in `lib/com.mbeddr.platform` folder)
+- Copy mbeddr platform plugins into `$MPS_INSTALLATION$/plugins` folder
 - Open project with MPS
 - Rebuild project
+
+### Building & deploying as MPS Plugin
+
+- Run `./gradlew buildPlugin` in shell
+- Select `Run->Run...->Deploy Plugin`run `Deploy Plugin` in MPS
