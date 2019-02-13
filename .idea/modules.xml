@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/iec61499.iml" filepath="$PROJECT_DIR$/iec61499.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ide61499.iml" filepath="$PROJECT_DIR$/.idea/modules/ide61499.iml" />
       <module fileurl="file://$PROJECT_DIR$/languages/iec61499/mps.iec61499.iml" filepath="$PROJECT_DIR$/languages/iec61499/mps.iec61499.iml" />
       <module fileurl="file://$PROJECT_DIR$/solutions/iec61499.ide/mps.iec61499.ide.iml" filepath="$PROJECT_DIR$/solutions/iec61499.ide/mps.iec61499.ide.iml" />
       <module fileurl="file://$PROJECT_DIR$/languages/iec61499.meta.diagram/mps.iec61499.meta.diagram.iml" filepath="$PROJECT_DIR$/languages/iec61499.meta.diagram/mps.iec61499.meta.diagram.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workspace.ide61499.iml" filepath="$PROJECT_DIR$/.idea/modules/workspace.ide61499.iml" />
     </modules>
   </component>
 </project>
