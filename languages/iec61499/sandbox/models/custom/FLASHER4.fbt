@@ -36,22 +36,22 @@
     <ECC>
       <ECState Name="WAIT"></ECState>
       <ECState Name="INIT">
-        <ECAction Algorithm="INIT" Output="CNF" />
+        <ECAction Algorithm="INIT" />
       </ECState>
       <ECState Name="FLASH_ALL">
-        <ECAction Algorithm="FLASH_ALL" Output="CNF" />
+        <ECAction Algorithm="FLASH_ALL" />
       </ECState>
       <ECState Name="COUNT_UP">
-        <ECAction Algorithm="COUNT_UP" Output="CNF" />
+        <ECAction Algorithm="COUNT_UP" />
       </ECState>
       <ECState Name="COUNT_DOWN">
-        <ECAction Algorithm="COUNT_DOWN" Output="CNF" />
+        <ECAction Algorithm="COUNT_DOWN" />
       </ECState>
       <ECState Name="CHASE_UP">
-        <ECAction Algorithm="CHASE_UP" Output="CNF" />
+        <ECAction Algorithm="CHASE_UP" />
       </ECState>
       <ECState Name="CHASE_DOWN">
-        <ECAction Algorithm="CHASE_DOWN" Output="CNF" />
+        <ECAction Algorithm="CHASE_DOWN" />
       </ECState>
       <ECState Name="START"></ECState>
       <ECTransition Source="WAIT" Target="INIT" Condition="INIT" />
