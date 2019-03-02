@@ -69,29 +69,28 @@
         <reference id="967875482185482524" name="declaration" index="1N5Pi3" />
         <reference id="967875482185482523" name="component" index="1N5Pi4" />
       </concept>
-      <concept id="967875482185433869" name="iec61499.structure.EventConnection" flags="ng" index="1N5Tqi" />
       <concept id="967875482185433822" name="iec61499.structure.FunctionBlockInstance" flags="ng" index="1N5Tt1">
         <reference id="967875482185433823" name="declaration" index="1N5Tt0" />
       </concept>
-      <concept id="967875482185433821" name="iec61499.structure.CompositeFBTypeDeclaration" flags="ng" index="1N5Tt2">
+      <concept id="967875482185433821" name="iec61499.structure.CompositeFBTypeDeclaration" flags="ng" index="1N5Tt2" />
+      <concept id="2693352324618654708" name="iec61499.structure.IWithFBNetwork" flags="ng" index="1QJEpv">
         <child id="3589220129094132063" name="adapterConnections" index="3IAhBJ" />
-        <child id="967875482185482537" name="eventConnections" index="1N5PiQ" />
         <child id="967875482185482529" name="functionBlocks" index="1N5PiY" />
       </concept>
       <concept id="8167217573768971186" name="iec61499.structure.ComponentEventDestination" flags="ng" index="3Yx0EI" />
-      <concept id="8167217573769463661" name="iec61499.structure.InterfaceEventEndpoint" flags="ng" index="3Yz8TL">
+      <concept id="8167217573769463661" name="iec61499.structure.ContextEventEndpoint" flags="ng" index="3Yz8TL">
         <reference id="8167217573769463662" name="declaration" index="3Yz8TM" />
       </concept>
       <concept id="8167217573768433448" name="iec61499.structure.ComponentEventSource" flags="ng" index="3YB4oO" />
-      <concept id="8167217573769932385" name="iec61499.structure.InterfaceEventSource" flags="ng" index="3YHqtX" />
-      <concept id="8167217573769936073" name="iec61499.structure.InterfaceEventDestination" flags="ng" index="3YHrnl" />
+      <concept id="8167217573769932385" name="iec61499.structure.ContextEventSource" flags="ng" index="3YHqtX" />
+      <concept id="8167217573769936073" name="iec61499.structure.ContextEventDestination" flags="ng" index="3YHrnl" />
       <concept id="8167217573767399865" name="iec61499.structure.FBPlugReference" flags="ng" index="3YV02_">
-        <reference id="8167217573767399870" name="component" index="3YV02y" />
+        <reference id="8167217573767399870" name="functionBlock" index="3YV02y" />
         <reference id="8167217573767399872" name="declaration" index="3YV03s" />
       </concept>
       <concept id="8167217573767369651" name="iec61499.structure.FBSocketReference" flags="ng" index="3YV9EJ">
         <reference id="8167217573767370701" name="declaration" index="3YV9Vh" />
-        <reference id="8167217573767370699" name="component" index="3YV9Vn" />
+        <reference id="8167217573767370699" name="functionBlock" index="3YV9Vn" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -109,6 +108,7 @@
         <property id="6720495385597071503" name="bounds_width" index="gqqTX" />
         <property id="6720495385597071501" name="bounds_x" index="gqqTZ" />
         <property id="4583510071007917016" name="transform" index="TgtnS" />
+        <child id="738815095926774816" name="portLayouts" index="1pap1a" />
       </concept>
       <concept id="2319506556913310852" name="de.itemis.mps.editor.diagram.layout.structure.Layout_Connection" flags="ng" index="2VclpC">
         <child id="2319506556913311101" name="anchors" index="2Vcluh" />
@@ -124,6 +124,10 @@
       <concept id="8963411245960991903" name="de.itemis.mps.editor.diagram.layout.structure.LayoutMapEntry" flags="ng" index="37mRIm">
         <property id="8963411245960998400" name="key" index="37mO49" />
         <child id="8963411245960998404" name="value" index="37mO4d" />
+      </concept>
+      <concept id="738815095926749345" name="de.itemis.mps.editor.diagram.layout.structure.Layout_Port" flags="ng" index="1pa3jb">
+        <property id="7964702570467115501" name="ordinal" index="2gRgW$" />
+        <property id="738815095926749379" name="portName" index="1pa3iD" />
       </concept>
       <concept id="4767615435799372731" name="de.itemis.mps.editor.diagram.layout.structure.Layout_EdgeLabel" flags="ng" index="3ul5H1">
         <property id="4767615435799372759" name="type" index="3ul5GH" />
@@ -350,13 +354,8 @@
   </node>
   <node concept="1N5Tt2" id="G6ZN4N49KI">
     <property role="TrG5h" value="DistributingStation" />
-    <node concept="1N5Tt1" id="G6ZN4N49KJ" role="1N5PiY">
-      <property role="TrG5h" value="Model" />
-      <ref role="1N5Tt0" node="G6ZN4MYPdv" resolve="Model" />
-    </node>
-    <node concept="1N5Tt1" id="G6ZN4N49KL" role="1N5PiY">
-      <property role="TrG5h" value="Control" />
-      <ref role="1N5Tt0" node="G6ZN4N48G6" resolve="DSControl1" />
+    <node concept="2zBDe_" id="2lwHqHkihC4" role="2zBDey">
+      <property role="TrG5h" value="X" />
     </node>
     <node concept="37mRI7" id="G6ZN4N49KP" role="lGtFl">
       <node concept="37mRIm" id="G6ZN4N49KQ" role="37mRID">
@@ -377,6 +376,14 @@
           <property role="gqqTX" value="212.0" />
           <property role="gqqTy" value="131.0" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
+          <node concept="1pa3jb" id="2lwHqHklpdH" role="1pap1a">
+            <property role="1pa3iD" value="StackIO" />
+            <property role="2gRgW$" value="238" />
+          </node>
+          <node concept="1pa3jb" id="2lwHqHklpdI" role="1pap1a">
+            <property role="1pa3iD" value="ArmIO" />
+            <property role="2gRgW$" value="260" />
+          </node>
         </node>
       </node>
       <node concept="37mRIm" id="G6ZN4N49Lq" role="37mRID">
@@ -421,6 +428,24 @@
           </node>
         </node>
       </node>
+      <node concept="37mRIm" id="2lwHqHkihC7" role="37mRID">
+        <property role="37mO49" value="2693352324625668612" />
+        <node concept="gqqVs" id="2lwHqHkihC6" role="37mO4d">
+          <property role="gqqTZ" value="-350.0" />
+          <property role="gqqTW" value="-34.0" />
+          <property role="gqqTX" value="30.0" />
+          <property role="gqqTy" value="29.0" />
+          <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
+        </node>
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="G6ZN4N49KJ" role="1N5PiY">
+      <property role="TrG5h" value="Model" />
+      <ref role="1N5Tt0" node="G6ZN4MYPdv" resolve="Model" />
+    </node>
+    <node concept="1N5Tt1" id="G6ZN4N49KL" role="1N5PiY">
+      <property role="TrG5h" value="Control" />
+      <ref role="1N5Tt0" node="G6ZN4N48G6" resolve="DSControl1" />
     </node>
     <node concept="3IAhBk" id="G6ZN4N49L4" role="3IAhBJ">
       <node concept="3YV02_" id="G6ZN4N49L5" role="2RhMKC">
@@ -440,16 +465,6 @@
       <node concept="3YV9EJ" id="G6ZN4N49Lc" role="2RhMK_">
         <ref role="3YV9Vn" node="G6ZN4N49KJ" resolve="Model" />
         <ref role="3YV9Vh" node="G6ZN4MYPdE" resolve="ArmIO" />
-      </node>
-    </node>
-    <node concept="1N5Tqi" id="G6ZN4N49N3" role="1N5PiQ">
-      <node concept="3YB4oO" id="G6ZN4N49N4" role="2RhMKC">
-        <ref role="1N5Pi4" node="G6ZN4N49KJ" resolve="Model" />
-        <ref role="1N5Pi3" node="G6ZN4MYPdA" resolve="INITO" />
-      </node>
-      <node concept="3Yx0EI" id="G6ZN4N49N5" role="2RhMK_">
-        <ref role="1N5Pi4" node="G6ZN4N49KL" resolve="Control" />
-        <ref role="1N5Pi3" node="G6ZN4N48G7" resolve="INIT" />
       </node>
     </node>
   </node>

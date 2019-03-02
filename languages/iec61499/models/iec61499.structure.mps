@@ -130,7 +130,14 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="type" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="3HBlKeoYKVW" resolve="Type" />
+      <ref role="20lvS9" node="3HBlKeoYKVW" resolve="DataType" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHks4d2" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324628235074" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="initialValue" />
+      <property role="20lbJX" value="0..1" />
+      <ref role="20lvS9" node="2lwHqHjKhl9" resolve="Literal" />
     </node>
     <node concept="PrWs8" id="3HBlKeoYFAR" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -204,8 +211,8 @@
   </node>
   <node concept="1TIwiD" id="3HBlKeoYKVW">
     <property role="EcuMT" value="4280485643802054396" />
-    <property role="3GE5qa" value="types" />
-    <property role="TrG5h" value="Type" />
+    <property role="3GE5qa" value="datatypes" />
+    <property role="TrG5h" value="DataType" />
     <property role="R5$K7" value="true" />
     <property role="R5$K2" value="false" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
@@ -213,16 +220,16 @@
   <node concept="1TIwiD" id="3HBlKeoYKVX">
     <property role="EcuMT" value="4280485643802054397" />
     <property role="TrG5h" value="UIntType" />
-    <property role="3GE5qa" value="types" />
+    <property role="3GE5qa" value="datatypes" />
     <property role="34LRSv" value="UINT" />
-    <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="Type" />
+    <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="DataType" />
   </node>
   <node concept="1TIwiD" id="3HBlKeoYWWU">
     <property role="EcuMT" value="4280485643802103610" />
-    <property role="3GE5qa" value="types" />
+    <property role="3GE5qa" value="datatypes" />
     <property role="TrG5h" value="BoolType" />
     <property role="34LRSv" value="BOOL" />
-    <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="Type" />
+    <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="DataType" />
   </node>
   <node concept="1TIwiD" id="3HBlKeoZ0Un">
     <property role="EcuMT" value="4280485643802119831" />
@@ -355,7 +362,7 @@
     <property role="EcuMT" value="4280485643802239122" />
     <property role="3GE5qa" value="expressions" />
     <property role="TrG5h" value="NumericLiteral" />
-    <ref role="1TJDcQ" node="3HBlKeoZ0X9" resolve="Expression" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
     <node concept="1TJgyi" id="3HBlKeoZu2j" role="1TKVEl">
       <property role="IQ2nx" value="4280485643802239123" />
       <property role="TrG5h" value="value" />
@@ -405,34 +412,6 @@
     <property role="3GE5qa" value="fbtype.composite" />
     <property role="19KtqR" value="true" />
     <ref role="1TJDcQ" node="3HBlKeoYsiw" resolve="FBTypeDeclaration" />
-    <node concept="1TJgyj" id="PI_pXYus4x" role="1TKVEi">
-      <property role="IQ2ns" value="967875482185482529" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="functionBlocks" />
-      <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
-    </node>
-    <node concept="1TJgyj" id="PI_pXYus4D" role="1TKVEi">
-      <property role="IQ2ns" value="967875482185482537" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="eventConnections" />
-      <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="PI_pXYugcd" resolve="EventConnection" />
-    </node>
-    <node concept="1TJgyj" id="PI_pXYus4$" role="1TKVEi">
-      <property role="IQ2ns" value="967875482185482532" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="dataConnections" />
-      <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="PI_pXYugcm" resolve="DataConnection" />
-    </node>
-    <node concept="1TJgyj" id="37fub3vlA5v" role="1TKVEi">
-      <property role="IQ2ns" value="3589220129094132063" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="adapterConnections" />
-      <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="37fub3vlA5$" resolve="AdapterConnection" />
-    </node>
     <node concept="1irR5M" id="1rxLtFPxBha" role="rwd14">
       <property role="2$rrk2" value="2" />
       <node concept="1irR9n" id="3K9TJQKb0qV" role="1irR9h">
@@ -447,10 +426,13 @@
         </node>
       </node>
     </node>
+    <node concept="PrWs8" id="2lwHqHjRxfS" role="PzmwI">
+      <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
   </node>
   <node concept="1TIwiD" id="PI_pXYugbu">
     <property role="EcuMT" value="967875482185433822" />
-    <property role="3GE5qa" value="fbtype.composite" />
+    <property role="3GE5qa" value="fbnetwork" />
     <property role="TrG5h" value="FunctionBlockInstance" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="PI_pXYugbv" role="1TKVEi">
@@ -469,7 +451,7 @@
   </node>
   <node concept="1TIwiD" id="PI_pXYugcd">
     <property role="EcuMT" value="967875482185433869" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="EventConnection" />
     <ref role="1TJDcQ" node="4KieeRVlhii" resolve="Connection" />
     <node concept="1TJgyj" id="PI_pXYus2F" role="1TKVEi">
@@ -491,7 +473,7 @@
   </node>
   <node concept="1TIwiD" id="PI_pXYugcm">
     <property role="EcuMT" value="967875482185433878" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="DataConnection" />
     <ref role="1TJDcQ" node="4KieeRVlhii" resolve="Connection" />
     <node concept="1TJgyj" id="PI_pXYus41" role="1TKVEi">
@@ -513,7 +495,7 @@
   </node>
   <node concept="1TIwiD" id="PI_pXYus3W">
     <property role="EcuMT" value="967875482185482492" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="ComponentDataEndpoint" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
@@ -534,7 +516,7 @@
   </node>
   <node concept="1TIwiD" id="PI_pXYus4l">
     <property role="EcuMT" value="967875482185482517" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="ComponentEventEndpoint" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
@@ -570,7 +552,7 @@
     <property role="TrG5h" value="Connection" />
     <property role="R5$K7" value="true" />
     <property role="R5$K2" value="false" />
-    <property role="3GE5qa" value="connections" />
+    <property role="3GE5qa" value="fbnetwork.connections" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="4KieeRVlhj5" role="1TKVEi">
       <property role="IQ2ns" value="5481506291238376645" />
@@ -590,7 +572,7 @@
   <node concept="PlHQZ" id="4KieeRVlhj7">
     <property role="EcuMT" value="5481506291238376647" />
     <property role="TrG5h" value="Destination" />
-    <property role="3GE5qa" value="connections" />
+    <property role="3GE5qa" value="fbnetwork.connections" />
   </node>
   <node concept="1TIwiD" id="6g3sTReV9I2">
     <property role="EcuMT" value="7206730950341598082" />
@@ -729,7 +711,7 @@
   </node>
   <node concept="1TIwiD" id="37fub3vlA5$">
     <property role="EcuMT" value="3589220129094132068" />
-    <property role="3GE5qa" value="connections.adapter" />
+    <property role="3GE5qa" value="fbnetwork.connections.adapter" />
     <property role="TrG5h" value="AdapterConnection" />
     <ref role="1TJDcQ" node="4KieeRVlhii" resolve="Connection" />
     <node concept="1TJgyj" id="37fub3vlA5_" role="1TKVEi">
@@ -750,12 +732,12 @@
   </node>
   <node concept="PlHQZ" id="37fub3vlApO">
     <property role="EcuMT" value="3589220129094133364" />
-    <property role="3GE5qa" value="connections" />
+    <property role="3GE5qa" value="fbnetwork.connections" />
     <property role="TrG5h" value="Source" />
   </node>
   <node concept="PlHQZ" id="37fub3vlApU">
     <property role="EcuMT" value="3589220129094133370" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="DataDestination" />
     <node concept="PrWs8" id="37fub3vlApV" role="PrDN$">
       <ref role="PrY4T" node="4KieeRVlhj7" resolve="Destination" />
@@ -763,7 +745,7 @@
   </node>
   <node concept="PlHQZ" id="37fub3vlA5G">
     <property role="EcuMT" value="3589220129094132076" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="DataSource" />
     <node concept="PrWs8" id="37fub3vlApS" role="PrDN$">
       <ref role="PrY4T" node="37fub3vlApO" resolve="Source" />
@@ -771,7 +753,7 @@
   </node>
   <node concept="1TIwiD" id="37fub3vlAqp">
     <property role="EcuMT" value="3589220129094133401" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="ComponentDataSource" />
     <ref role="1TJDcQ" node="PI_pXYus3W" resolve="ComponentDataEndpoint" />
     <node concept="PrWs8" id="37fub3vlAqq" role="PzmwI">
@@ -780,7 +762,7 @@
   </node>
   <node concept="1TIwiD" id="37fub3vlCZn">
     <property role="EcuMT" value="3589220129094143959" />
-    <property role="3GE5qa" value="connections.data" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
     <property role="TrG5h" value="ComponentDataDestination" />
     <ref role="1TJDcQ" node="PI_pXYus3W" resolve="ComponentDataEndpoint" />
     <node concept="PrWs8" id="37fub3vlCZo" role="PzmwI">
@@ -789,8 +771,8 @@
   </node>
   <node concept="1TIwiD" id="37fub3vlDyx">
     <property role="EcuMT" value="3589220129094146209" />
-    <property role="3GE5qa" value="connections.data" />
-    <property role="TrG5h" value="InterfaceDataEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
+    <property role="TrG5h" value="ContextDataEndpoint" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="37fub3vlDyy" role="1TKVEi">
@@ -803,31 +785,31 @@
   </node>
   <node concept="1TIwiD" id="37fub3vndep">
     <property role="EcuMT" value="3589220129094554521" />
-    <property role="3GE5qa" value="connections.data" />
-    <property role="TrG5h" value="InterfaceDataSource" />
-    <ref role="1TJDcQ" node="37fub3vlDyx" resolve="InterfaceDataEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
+    <property role="TrG5h" value="ContextDataSource" />
+    <ref role="1TJDcQ" node="37fub3vlDyx" resolve="ContextDataEndpoint" />
     <node concept="PrWs8" id="37fub3vndeq" role="PzmwI">
       <ref role="PrY4T" node="37fub3vlA5G" resolve="DataSource" />
     </node>
   </node>
   <node concept="1TIwiD" id="37fub3vnkIr">
     <property role="EcuMT" value="3589220129094585243" />
-    <property role="3GE5qa" value="connections.data" />
-    <property role="TrG5h" value="InterfaceDataDestination" />
-    <ref role="1TJDcQ" node="37fub3vlDyx" resolve="InterfaceDataEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.data" />
+    <property role="TrG5h" value="ContextDataDestination" />
+    <ref role="1TJDcQ" node="37fub3vlDyx" resolve="ContextDataEndpoint" />
     <node concept="PrWs8" id="37fub3vnkIu" role="PzmwI">
       <ref role="PrY4T" node="37fub3vlApU" resolve="DataDestination" />
     </node>
   </node>
   <node concept="1TIwiD" id="75nMhMfIPeN">
     <property role="EcuMT" value="8167217573767369651" />
-    <property role="3GE5qa" value="connections.adapter" />
+    <property role="3GE5qa" value="fbnetwork.connections.adapter" />
     <property role="TrG5h" value="FBSocketReference" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="75nMhMfIPvb" role="1TKVEi">
       <property role="IQ2ns" value="8167217573767370699" />
       <property role="20lmBu" value="reference" />
-      <property role="20kJfa" value="component" />
+      <property role="20kJfa" value="functionBlock" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
     </node>
@@ -844,13 +826,13 @@
   </node>
   <node concept="1TIwiD" id="75nMhMfIWAT">
     <property role="EcuMT" value="8167217573767399865" />
-    <property role="3GE5qa" value="connections.adapter" />
+    <property role="3GE5qa" value="fbnetwork.connections.adapter" />
     <property role="TrG5h" value="FBPlugReference" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="75nMhMfIWAY" role="1TKVEi">
       <property role="IQ2ns" value="8167217573767399870" />
       <property role="20lmBu" value="reference" />
-      <property role="20kJfa" value="component" />
+      <property role="20kJfa" value="functionBlock" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
     </node>
@@ -867,7 +849,7 @@
   </node>
   <node concept="1TIwiD" id="75nMhMfMSWC">
     <property role="EcuMT" value="8167217573768433448" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="ComponentEventSource" />
     <ref role="1TJDcQ" node="PI_pXYus4l" resolve="ComponentEventEndpoint" />
     <node concept="PrWs8" id="75nMhMfODmh" role="PzmwI">
@@ -876,7 +858,7 @@
   </node>
   <node concept="PlHQZ" id="75nMhMfMSWD">
     <property role="EcuMT" value="8167217573768433449" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="EventSource" />
     <node concept="PrWs8" id="75nMhMfMSWE" role="PrDN$">
       <ref role="PrY4T" node="37fub3vlApO" resolve="Source" />
@@ -884,7 +866,7 @@
   </node>
   <node concept="PlHQZ" id="75nMhMfMSWG">
     <property role="EcuMT" value="8167217573768433452" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="EventDestination" />
     <node concept="PrWs8" id="75nMhMfMSWH" role="PrDN$">
       <ref role="PrY4T" node="4KieeRVlhj7" resolve="Destination" />
@@ -892,7 +874,7 @@
   </node>
   <node concept="1TIwiD" id="75nMhMfOWeM">
     <property role="EcuMT" value="8167217573768971186" />
-    <property role="3GE5qa" value="connections.event" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
     <property role="TrG5h" value="ComponentEventDestination" />
     <ref role="1TJDcQ" node="PI_pXYus4l" resolve="ComponentEventEndpoint" />
     <node concept="PrWs8" id="75nMhMfOWeN" role="PzmwI">
@@ -901,8 +883,8 @@
   </node>
   <node concept="1TIwiD" id="75nMhMfQOtH">
     <property role="EcuMT" value="8167217573769463661" />
-    <property role="3GE5qa" value="connections.event" />
-    <property role="TrG5h" value="InterfaceEventEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
+    <property role="TrG5h" value="ContextEventEndpoint" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="75nMhMfQOtI" role="1TKVEi">
@@ -915,30 +897,30 @@
   </node>
   <node concept="1TIwiD" id="75nMhMfSATx">
     <property role="EcuMT" value="8167217573769932385" />
-    <property role="3GE5qa" value="connections.event" />
-    <property role="TrG5h" value="InterfaceEventSource" />
-    <ref role="1TJDcQ" node="75nMhMfQOtH" resolve="InterfaceEventEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
+    <property role="TrG5h" value="ContextEventSource" />
+    <ref role="1TJDcQ" node="75nMhMfQOtH" resolve="ContextEventEndpoint" />
     <node concept="PrWs8" id="75nMhMfSB9T" role="PzmwI">
       <ref role="PrY4T" node="75nMhMfMSWD" resolve="EventSource" />
     </node>
   </node>
   <node concept="1TIwiD" id="75nMhMfSBN9">
     <property role="EcuMT" value="8167217573769936073" />
-    <property role="3GE5qa" value="connections.event" />
-    <property role="TrG5h" value="InterfaceEventDestination" />
-    <ref role="1TJDcQ" node="75nMhMfQOtH" resolve="InterfaceEventEndpoint" />
+    <property role="3GE5qa" value="fbnetwork.connections.event" />
+    <property role="TrG5h" value="ContextEventDestination" />
+    <ref role="1TJDcQ" node="75nMhMfQOtH" resolve="ContextEventEndpoint" />
     <node concept="PrWs8" id="75nMhMggoBX" role="PzmwI">
       <ref role="PrY4T" node="75nMhMfMSWG" resolve="EventDestination" />
     </node>
   </node>
   <node concept="PlHQZ" id="5L1OxDukYbT">
     <property role="EcuMT" value="6647825535669101305" />
-    <property role="3GE5qa" value="fbtype.composite" />
+    <property role="3GE5qa" value="fbnetwork" />
     <property role="TrG5h" value="IComponent" />
   </node>
   <node concept="1TIwiD" id="5L1OxDukYhj">
     <property role="EcuMT" value="6647825535669101651" />
-    <property role="3GE5qa" value="fbtype.composite" />
+    <property role="3GE5qa" value="fbnetwork" />
     <property role="TrG5h" value="ComponentReference" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="5L1OxDukYhk" role="1TKVEi">
@@ -947,6 +929,221 @@
       <property role="20kJfa" value="declaration" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="5L1OxDukYbT" resolve="IComponent" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjKhl7">
+    <property role="EcuMT" value="2693352324616754503" />
+    <property role="TrG5h" value="ResourceType" />
+    <property role="3GE5qa" value="resources" />
+    <property role="19KtqR" value="true" />
+    <property role="34LRSv" value="resource type" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="2lwHqHjNQ73" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324617691587" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="parameters" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="VariableDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHjRwSo" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324618653208" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="instantiableFBTypes" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="2lwHqHjRwSl" resolve="FBTypeReference" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHjNQ75" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHkn6us" role="PzmwI">
+      <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
+    <node concept="1irR5M" id="2lwHqHkp4wV" role="rwd14">
+      <property role="2$rrk2" value="4" />
+      <node concept="1irR9n" id="2lwHqHkp4x3" role="1irR9h">
+        <node concept="3PKj8D" id="2lwHqHkp4x7" role="3PKjn_">
+          <property role="3PKj8l" value="8FBC8F" />
+        </node>
+      </node>
+      <node concept="1irPie" id="2lwHqHkp4xe" role="1irR9h">
+        <property role="1irPi9" value="R" />
+        <node concept="3PKj8D" id="2lwHqHkp4xl" role="3PKjny">
+          <property role="3PKj8l" value="EEEEEE" />
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjKhl9">
+    <property role="EcuMT" value="2693352324616754505" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="Literal" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" node="3HBlKeoZ0X9" resolve="Expression" />
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjKhla">
+    <property role="EcuMT" value="2693352324616754506" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="BooleanLiteral" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="2lwHqHjKyOE" role="1TKVEl">
+      <property role="IQ2nx" value="2693352324616826154" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjKhle">
+    <property role="EcuMT" value="2693352324616754510" />
+    <property role="3GE5qa" value="datatypes" />
+    <property role="TrG5h" value="StringType" />
+    <property role="34LRSv" value="STRING" />
+    <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="DataType" />
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjKxV$">
+    <property role="EcuMT" value="2693352324616822500" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="StringLiteral" />
+    <property role="34LRSv" value="&quot;" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="2lwHqHjKxV_" role="1TKVEl">
+      <property role="IQ2nx" value="2693352324616822501" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHjRwSl">
+    <property role="EcuMT" value="2693352324618653205" />
+    <property role="3GE5qa" value="resources" />
+    <property role="TrG5h" value="FBTypeReference" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="2lwHqHjRwSm" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324618653206" />
+      <property role="20lmBu" value="reference" />
+      <property role="20kJfa" value="delcaration" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="3HBlKeoYsiw" resolve="FBTypeDeclaration" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="2lwHqHjRxfO">
+    <property role="EcuMT" value="2693352324618654708" />
+    <property role="TrG5h" value="IWithFBNetwork" />
+    <property role="3GE5qa" value="fbnetwork" />
+    <node concept="1TJgyj" id="PI_pXYus4x" role="1TKVEi">
+      <property role="IQ2ns" value="967875482185482529" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="functionBlocks" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
+    </node>
+    <node concept="1TJgyj" id="PI_pXYus4D" role="1TKVEi">
+      <property role="IQ2ns" value="967875482185482537" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="eventConnections" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="PI_pXYugcd" resolve="EventConnection" />
+    </node>
+    <node concept="1TJgyj" id="PI_pXYus4$" role="1TKVEi">
+      <property role="IQ2ns" value="967875482185482532" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="dataConnections" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="PI_pXYugcm" resolve="DataConnection" />
+    </node>
+    <node concept="1TJgyj" id="37fub3vlA5v" role="1TKVEi">
+      <property role="IQ2ns" value="3589220129094132063" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="adapterConnections" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="37fub3vlA5$" resolve="AdapterConnection" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHkyEL8">
+    <property role="EcuMT" value="2693352324629965896" />
+    <property role="TrG5h" value="DeviceType" />
+    <property role="34LRSv" value="device type" />
+    <property role="3GE5qa" value="devices" />
+    <property role="19KtqR" value="true" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="2lwHqHkyEL9" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHkyELg" role="PzmwI">
+      <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHkyELb" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324629965899" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="parameters" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="VariableDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHk$uBA" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324630440422" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="resources" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceInstance" />
+    </node>
+    <node concept="1irR5M" id="2lwHqHkAgDq" role="rwd14">
+      <property role="2$rrk2" value="5" />
+      <node concept="1irR9n" id="2lwHqHkAgDv" role="1irR9h">
+        <node concept="3PKj8D" id="2lwHqHkAgDw" role="3PKjn_">
+          <property role="3PKj8l" value="8FBC8F" />
+        </node>
+      </node>
+      <node concept="1irPie" id="2lwHqHkAgDx" role="1irR9h">
+        <property role="1irPi9" value="D" />
+        <node concept="3PKj8D" id="2lwHqHkAgDy" role="3PKjny">
+          <property role="3PKj8l" value="EEEEEE" />
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHkyELo">
+    <property role="EcuMT" value="2693352324629965912" />
+    <property role="3GE5qa" value="resources" />
+    <property role="TrG5h" value="ResourceInstance" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="2lwHqHkyELp" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324629965913" />
+      <property role="20lmBu" value="reference" />
+      <property role="20kJfa" value="type" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="2lwHqHjKhl7" resolve="ResourceType" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHkyELr" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHk$fu0" role="PzmwI">
+      <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
+    <node concept="PrWs8" id="2lwHqHk$vad" role="PzmwI">
+      <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHk$ftU" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324630378362" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="parameters" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2lwHqHkyF7a">
+    <property role="EcuMT" value="2693352324629967306" />
+    <property role="TrG5h" value="Parameter" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="2lwHqHkyF7b" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324629967307" />
+      <property role="20lmBu" value="reference" />
+      <property role="20kJfa" value="decl" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="VariableDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="2lwHqHkyF7f" role="1TKVEi">
+      <property role="IQ2ns" value="2693352324629967311" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="value" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="2lwHqHjKhl9" resolve="Literal" />
     </node>
   </node>
 </model>

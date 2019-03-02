@@ -311,7 +311,7 @@
             </node>
           </node>
           <node concept="5jKBG" id="4KieeRVkTOe" role="lGtFl">
-            <ref role="v9R2y" node="4KieeRVkWYp" resolve="reduce_CompositeFBTypeDeclaration_FBNetworkElement" />
+            <ref role="v9R2y" node="4KieeRVkWYp" resolve="reduce_IWithFBNetwork_FBNetworkElement" />
             <node concept="3NFfHV" id="4KieeRVkTOf" role="5jGum">
               <node concept="3clFbS" id="4KieeRVkTOg" role="2VODD2">
                 <node concept="3clFbF" id="4KieeRVkTOh" role="3cqZAp">
@@ -875,9 +875,9 @@
     </node>
   </node>
   <node concept="13MO4I" id="4KieeRVkWYp">
-    <property role="TrG5h" value="reduce_CompositeFBTypeDeclaration_FBNetworkElement" />
-    <property role="3GE5qa" value="fbtype.composite" />
-    <ref role="3gUMe" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
+    <property role="TrG5h" value="reduce_IWithFBNetwork_FBNetworkElement" />
+    <property role="3GE5qa" value="fbnetwork" />
+    <ref role="3gUMe" to="xiqq:2lwHqHjRxfO" resolve="IWithFBNetwork" />
     <node concept="2pNNFK" id="4KieeRVkWYq" role="13RCb5">
       <property role="2pNNFO" value="FBNetwork" />
       <property role="qg3DV" value="false" />
@@ -976,7 +976,7 @@
         </node>
       </node>
       <node concept="2pNNFK" id="75nMhMfGLuf" role="3o6s8t">
-        <property role="2pNNFO" value="DataConnections" />
+        <property role="2pNNFO" value="AdapterConnections" />
         <node concept="2pNNFK" id="75nMhMfGLug" role="3o6s8t">
           <property role="2pNNFO" value="Connection" />
           <property role="qg3DV" value="true" />
@@ -1018,7 +1018,7 @@
   </node>
   <node concept="13MO4I" id="4KieeRVl6dD">
     <property role="TrG5h" value="reduce_FunctionBlockInstance" />
-    <property role="3GE5qa" value="fbtype.composite" />
+    <property role="3GE5qa" value="fbnetwork" />
     <ref role="3gUMe" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
     <node concept="2pNNFK" id="4KieeRVl6dI" role="13RCb5">
       <property role="2pNNFO" value="FB" />
