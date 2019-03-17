@@ -24,10 +24,6 @@
         <child id="3296901243643750533" name="event" index="2NbhEN" />
       </concept>
       <concept id="4280485643802103610" name="iec61499.structure.BoolType" flags="ng" index="2zB9wT" />
-      <concept id="4280485643801969824" name="iec61499.structure.FBTypeDeclaration" flags="ng" index="2zBDez">
-        <child id="8167217573769997767" name="plugs" index="3YHajr" />
-        <child id="8167217573769997794" name="sockets" index="3YHajY" />
-      </concept>
       <concept id="4280485643801969830" name="iec61499.structure.EventDeclaration" flags="ng" index="2zBDe_">
         <child id="4280485643801969855" name="associatedVariables" index="2zBDeW" />
       </concept>
@@ -65,12 +61,16 @@
       <concept id="3589220129093721141" name="iec61499.structure.PlugDeclaration" flags="ng" index="3IBQi5">
         <reference id="3589220129093721144" name="adapterType" index="3IBQi8" />
       </concept>
+      <concept id="554302972921896510" name="iec61499.structure.DeclarationWithInterfaceAndAdapters" flags="ng" index="3LgDAz">
+        <child id="8167217573769997767" name="plugs" index="3YHajr" />
+        <child id="8167217573769997794" name="sockets" index="3YHajY" />
+      </concept>
       <concept id="967875482185482517" name="iec61499.structure.ComponentEventEndpoint" flags="ng" index="1N5Pia">
         <reference id="967875482185482524" name="declaration" index="1N5Pi3" />
         <reference id="967875482185482523" name="component" index="1N5Pi4" />
       </concept>
       <concept id="967875482185433822" name="iec61499.structure.FunctionBlockInstance" flags="ng" index="1N5Tt1">
-        <reference id="967875482185433823" name="declaration" index="1N5Tt0" />
+        <reference id="967875482185433823" name="type" index="1N5Tt0" />
       </concept>
       <concept id="967875482185433821" name="iec61499.structure.CompositeFBTypeDeclaration" flags="ng" index="1N5Tt2" />
       <concept id="2693352324618654708" name="iec61499.structure.IWithFBNetwork" flags="ng" index="1QJEpv">
@@ -85,12 +85,12 @@
       <concept id="8167217573769932385" name="iec61499.structure.ContextEventSource" flags="ng" index="3YHqtX" />
       <concept id="8167217573769936073" name="iec61499.structure.ContextEventDestination" flags="ng" index="3YHrnl" />
       <concept id="8167217573767399865" name="iec61499.structure.FBPlugReference" flags="ng" index="3YV02_">
-        <reference id="8167217573767399870" name="functionBlock" index="3YV02y" />
+        <reference id="8167217573767399870" name="component" index="3YV02y" />
         <reference id="8167217573767399872" name="declaration" index="3YV03s" />
       </concept>
       <concept id="8167217573767369651" name="iec61499.structure.FBSocketReference" flags="ng" index="3YV9EJ">
         <reference id="8167217573767370701" name="declaration" index="3YV9Vh" />
-        <reference id="8167217573767370699" name="functionBlock" index="3YV9Vn" />
+        <reference id="8167217573767370699" name="component" index="3YV9Vn" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -236,14 +236,6 @@
   </node>
   <node concept="1N5Tt2" id="G6ZN4MYPdv">
     <property role="TrG5h" value="Model" />
-    <node concept="3Iw0dE" id="G6ZN4MYPdC" role="3YHajY">
-      <property role="TrG5h" value="StackIO" />
-      <ref role="3Iw0dH" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
-    </node>
-    <node concept="3Iw0dE" id="G6ZN4MYPdE" role="3YHajY">
-      <property role="TrG5h" value="ArmIO" />
-      <ref role="3Iw0dH" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
-    </node>
     <node concept="2zBDe_" id="G6ZN4MYPdA" role="2zBDew">
       <property role="TrG5h" value="INITO" />
     </node>
@@ -292,17 +284,17 @@
         </node>
       </node>
     </node>
+    <node concept="3Iw0dE" id="G6ZN4MYPdC" role="3YHajY">
+      <property role="TrG5h" value="StackIO" />
+      <ref role="3Iw0dH" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
+    </node>
+    <node concept="3Iw0dE" id="G6ZN4MYPdE" role="3YHajY">
+      <property role="TrG5h" value="ArmIO" />
+      <ref role="3Iw0dH" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
+    </node>
   </node>
   <node concept="1N5Tt2" id="G6ZN4N48G6">
     <property role="TrG5h" value="DSControl1" />
-    <node concept="3IBQi5" id="G6ZN4N48Gb" role="3YHajr">
-      <property role="TrG5h" value="StackIO" />
-      <ref role="3IBQi8" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
-    </node>
-    <node concept="3IBQi5" id="G6ZN4N48Gd" role="3YHajr">
-      <property role="TrG5h" value="ArmIO" />
-      <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
-    </node>
     <node concept="2zBDe_" id="G6ZN4N48G9" role="2zBDew">
       <property role="TrG5h" value="INITO" />
     </node>
@@ -350,6 +342,14 @@
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
       </node>
+    </node>
+    <node concept="3IBQi5" id="G6ZN4N48Gb" role="3YHajr">
+      <property role="TrG5h" value="StackIO" />
+      <ref role="3IBQi8" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
+    </node>
+    <node concept="3IBQi5" id="G6ZN4N48Gd" role="3YHajr">
+      <property role="TrG5h" value="ArmIO" />
+      <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
     </node>
   </node>
   <node concept="1N5Tt2" id="G6ZN4N49KI">
@@ -522,14 +522,6 @@
     </node>
     <node concept="2zBDe_" id="G6ZN4N970L" role="2zBDey">
       <property role="TrG5h" value="INIT" />
-    </node>
-    <node concept="3IBQi5" id="G6ZN4N970H" role="3YHajr">
-      <property role="TrG5h" value="StackIO" />
-      <ref role="3IBQi8" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
-    </node>
-    <node concept="3IBQi5" id="G6ZN4N970I" role="3YHajr">
-      <property role="TrG5h" value="ArmIO" />
-      <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
     </node>
     <node concept="2zAPAk" id="G6ZN4N970F" role="2zAPwY">
       <property role="TrG5h" value="START" />
@@ -764,6 +756,14 @@
           <property role="gqqTy" value="10006.0" />
         </node>
       </node>
+    </node>
+    <node concept="3IBQi5" id="G6ZN4N970H" role="3YHajr">
+      <property role="TrG5h" value="StackIO" />
+      <ref role="3IBQi8" node="1rxLtFPnd5y" resolve="StackMagazineIO" />
+    </node>
+    <node concept="3IBQi5" id="G6ZN4N970I" role="3YHajr">
+      <property role="TrG5h" value="ArmIO" />
+      <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
     </node>
   </node>
 </model>

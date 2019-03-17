@@ -32,10 +32,6 @@
       </concept>
       <concept id="4280485643802054397" name="iec61499.structure.UIntType" flags="ng" index="2zB5BY" />
       <concept id="4280485643802103610" name="iec61499.structure.BoolType" flags="ng" index="2zB9wT" />
-      <concept id="4280485643801969824" name="iec61499.structure.FBTypeDeclaration" flags="ng" index="2zBDez">
-        <child id="8167217573769997767" name="plugs" index="3YHajr" />
-        <child id="8167217573769997794" name="sockets" index="3YHajY" />
-      </concept>
       <concept id="4280485643801969830" name="iec61499.structure.EventDeclaration" flags="ng" index="2zBDe_">
         <child id="4280485643801969855" name="associatedVariables" index="2zBDeW" />
       </concept>
@@ -56,6 +52,12 @@
         <child id="7206730950341598650" name="guardCondition" index="2EVYSB" />
         <child id="3296901243641762237" name="event" index="2N3Qeb" />
       </concept>
+      <concept id="2250044605250911632" name="iec61499.structure.ResourceTypeReference" flags="ng" index="2JYBSP">
+        <reference id="2250044605250911633" name="decl" index="2JYBSO" />
+      </concept>
+      <concept id="2250044605250911586" name="iec61499.structure.DeviceConfiguration" flags="ng" index="2JYBV7">
+        <reference id="2250044605250911589" name="type" index="2JYBV0" />
+      </concept>
       <concept id="5481506291238376594" name="iec61499.structure.Connection" flags="ng" index="2RhMLZ">
         <child id="5481506291238376648" name="destination" index="2RhMK_" />
         <child id="5481506291238376645" name="source" index="2RhMKC" />
@@ -68,6 +70,17 @@
         <child id="4280485643801969838" name="outputVariables" index="2zBDeH" />
       </concept>
       <concept id="3018159903918047621" name="iec61499.structure.AdapterTypeDeclaration" flags="ng" index="XJABO" />
+      <concept id="6279537560535774753" name="iec61499.structure.SegmentTypeDeclaration" flags="ng" index="16k505">
+        <child id="6279537560535774808" name="parameters" index="16k51W" />
+      </concept>
+      <concept id="6279537560535821563" name="iec61499.structure.Segment" flags="ng" index="16k8Fv">
+        <reference id="6279537560535821566" name="type" index="16k8Fq" />
+        <child id="6279537560535821616" name="parameters" index="16k8Gk" />
+      </concept>
+      <concept id="6279537560537435403" name="iec61499.structure.Link" flags="ng" index="16EYGJ">
+        <reference id="6279537560537435409" name="segment" index="16EYGP" />
+        <child id="6279537560537435404" name="resource" index="16EYGC" />
+      </concept>
       <concept id="4435217627499935168" name="iec61499.structure.BinaryExpression" flags="ng" index="398zGI">
         <child id="4435217627499935199" name="right" index="398zGL" />
         <child id="4435217627499935197" name="left" index="398zGN" />
@@ -87,7 +100,54 @@
       <concept id="3589220129093721141" name="iec61499.structure.PlugDeclaration" flags="ng" index="3IBQi5">
         <reference id="3589220129093721144" name="adapterType" index="3IBQi8" />
       </concept>
-      <concept id="2693352324629965896" name="iec61499.structure.DeviceType" flags="ng" index="1LUxBz">
+      <concept id="554302972924733408" name="iec61499.structure.SystemConfiguration" flags="ng" index="3KFA1X">
+        <child id="6279537560535846736" name="segments" index="16kM_O" />
+        <child id="6279537560538025804" name="links" index="16GI_C" />
+        <child id="554302972924735196" name="devices" index="3KFA_1" />
+        <child id="554302972924735194" name="applications" index="3KFA_7" />
+        <child id="554302972929127418" name="mappings" index="3KORhB" />
+      </concept>
+      <concept id="554302972924734114" name="iec61499.structure.ApplicationConfiguration" flags="ng" index="3KFAOZ" />
+      <concept id="554302972929660960" name="iec61499.structure.ResourceReference" flags="ng" index="3KQLYX">
+        <reference id="554302972929660961" name="device" index="3KQLYW" />
+        <reference id="554302972929660963" name="resource" index="3KQLYY" />
+      </concept>
+      <concept id="554302972928529669" name="iec61499.structure.FBInstanceReference" flags="ng" index="3KU5ao">
+        <reference id="554302972928570185" name="functionBlock" index="3KUfjk" />
+        <child id="554302972928570183" name="application" index="3KUfjq" />
+      </concept>
+      <concept id="554302972928529668" name="iec61499.structure.Mapping" flags="ng" index="3KU5ap">
+        <child id="554302972928570261" name="resource" index="3KUfg8" />
+        <child id="554302972928570259" name="instance" index="3KUfge" />
+      </concept>
+      <concept id="554302972928529671" name="iec61499.structure.SystemApplicationReference" flags="ng" index="3KU5aq">
+        <reference id="554302972928529672" name="application" index="3KU5al" />
+      </concept>
+      <concept id="554302972928539608" name="iec61499.structure.SubapplicationReference" flags="ng" index="3KU7L5">
+        <reference id="554302972928539617" name="subapp" index="3KU7LW" />
+        <child id="554302972928539611" name="parentApp" index="3KU7L6" />
+      </concept>
+      <concept id="554302972928570264" name="iec61499.structure.FBResourceReference" flags="ng" index="3KUfg5">
+        <reference id="554302972930397634" name="functionBlock" index="3KLd9v" />
+        <child id="554302972930397632" name="resource" index="3KLd9t" />
+      </concept>
+      <concept id="554302972921896510" name="iec61499.structure.DeclarationWithInterfaceAndAdapters" flags="ng" index="3LgDAz">
+        <child id="8167217573769997767" name="plugs" index="3YHajr" />
+        <child id="8167217573769997794" name="sockets" index="3YHajY" />
+      </concept>
+      <concept id="554302972921888569" name="iec61499.structure.SubapplicationTypeDeclaration" flags="ng" index="3LgJy$" />
+      <concept id="554302972921888566" name="iec61499.structure.SubapplicationInstance" flags="ng" index="3LgJyF">
+        <reference id="554302972921888567" name="type" index="3LgJyE" />
+      </concept>
+      <concept id="554302972921797056" name="iec61499.structure.IWithSubappNetwork" flags="ng" index="3LgLTt">
+        <child id="554302972921888575" name="subapplications" index="3LgJyy" />
+      </concept>
+      <concept id="2693352324629967306" name="iec61499.structure.Parameter" flags="ng" index="1LUwhx">
+        <reference id="2693352324629967307" name="decl" index="1LUwhw" />
+        <child id="2693352324629967311" name="value" index="1LUwh$" />
+      </concept>
+      <concept id="2693352324629965896" name="iec61499.structure.DeviceTypeDeclaration" flags="ng" index="1LUxBz">
+        <child id="2250044605250911628" name="instantiableResourceTypes" index="2JYBSD" />
         <child id="2693352324630440422" name="resources" index="1LWlLd" />
       </concept>
       <concept id="2693352324629965912" name="iec61499.structure.ResourceInstance" flags="ng" index="1LUxBN">
@@ -104,11 +164,11 @@
       <concept id="967875482185433878" name="iec61499.structure.DataConnection" flags="ng" index="1N5Tq9" />
       <concept id="967875482185433869" name="iec61499.structure.EventConnection" flags="ng" index="1N5Tqi" />
       <concept id="967875482185433822" name="iec61499.structure.FunctionBlockInstance" flags="ng" index="1N5Tt1">
-        <reference id="967875482185433823" name="declaration" index="1N5Tt0" />
+        <reference id="967875482185433823" name="type" index="1N5Tt0" />
       </concept>
       <concept id="967875482185433821" name="iec61499.structure.CompositeFBTypeDeclaration" flags="ng" index="1N5Tt2" />
       <concept id="2693352324616754506" name="iec61499.structure.BooleanLiteral" flags="ng" index="1QCq3x" />
-      <concept id="2693352324616754503" name="iec61499.structure.ResourceType" flags="ng" index="1QCq3G" />
+      <concept id="2693352324616754503" name="iec61499.structure.ResourceTypeDeclaration" flags="ng" index="1QCq3G" />
       <concept id="2693352324618654708" name="iec61499.structure.IWithFBNetwork" flags="ng" index="1QJEpv">
         <child id="3589220129094132063" name="adapterConnections" index="3IAhBJ" />
         <child id="967875482185482537" name="eventConnections" index="1N5PiQ" />
@@ -123,12 +183,12 @@
       <concept id="8167217573769932385" name="iec61499.structure.ContextEventSource" flags="ng" index="3YHqtX" />
       <concept id="8167217573769936073" name="iec61499.structure.ContextEventDestination" flags="ng" index="3YHrnl" />
       <concept id="8167217573767399865" name="iec61499.structure.FBPlugReference" flags="ng" index="3YV02_">
-        <reference id="8167217573767399870" name="functionBlock" index="3YV02y" />
+        <reference id="8167217573767399870" name="component" index="3YV02y" />
         <reference id="8167217573767399872" name="declaration" index="3YV03s" />
       </concept>
       <concept id="8167217573767369651" name="iec61499.structure.FBSocketReference" flags="ng" index="3YV9EJ">
         <reference id="8167217573767370701" name="declaration" index="3YV9Vh" />
-        <reference id="8167217573767370699" name="functionBlock" index="3YV9Vn" />
+        <reference id="8167217573767370699" name="component" index="3YV9Vn" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -1968,14 +2028,6 @@
   </node>
   <node concept="1N5Tt2" id="5VLuTnkolRw">
     <property role="TrG5h" value="Composite1" />
-    <node concept="3Iw0dE" id="5VLuTnkoKSU" role="3YHajY">
-      <property role="TrG5h" value="DSA" />
-      <ref role="3Iw0dH" node="5VLuTnkolQd" resolve="FOOBAR" />
-    </node>
-    <node concept="3IBQi5" id="5VLuTnkoKSS" role="3YHajr">
-      <property role="TrG5h" value="ASD" />
-      <ref role="3IBQi8" node="5VLuTnkolQd" resolve="FOOBAR" />
-    </node>
     <node concept="2zBDe_" id="5VLuTnkolRx" role="2zBDey">
       <property role="TrG5h" value="INIT" />
     </node>
@@ -2501,6 +2553,14 @@
         <ref role="3IAu0i" node="5VLuTnkolRA" resolve="QO" />
       </node>
     </node>
+    <node concept="3IBQi5" id="5VLuTnkoKSS" role="3YHajr">
+      <property role="TrG5h" value="ASD" />
+      <ref role="3IBQi8" node="5VLuTnkolQd" resolve="FOOBAR" />
+    </node>
+    <node concept="3Iw0dE" id="5VLuTnkoKSU" role="3YHajY">
+      <property role="TrG5h" value="DSA" />
+      <ref role="3Iw0dH" node="5VLuTnkolQd" resolve="FOOBAR" />
+    </node>
   </node>
   <node concept="XJABO" id="5VLuTnkolQd">
     <property role="TrG5h" value="FOOBAR" />
@@ -2800,8 +2860,8 @@
       <node concept="37mRIm" id="2lwHqHkylvR" role="37mRID">
         <property role="37mO49" value="2693352324629878768" />
         <node concept="gqqVs" id="2lwHqHkylvP" role="37mO4d">
-          <property role="gqqTZ" value="82.0" />
-          <property role="gqqTW" value="16.671428571428578" />
+          <property role="gqqTZ" value="18.0" />
+          <property role="gqqTW" value="20.0" />
           <property role="gqqTX" value="188.0" />
           <property role="gqqTy" value="131.0" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
@@ -2810,9 +2870,9 @@
       <node concept="37mRIm" id="2lwHqHkylvT" role="37mRID">
         <property role="37mO49" value="2693352324629878770" />
         <node concept="gqqVs" id="2lwHqHkylvS" role="37mO4d">
-          <property role="gqqTZ" value="351.0" />
-          <property role="gqqTW" value="33.67142857142858" />
-          <property role="gqqTX" value="132.0" />
+          <property role="gqqTZ" value="323.0" />
+          <property role="gqqTW" value="15.190816326530609" />
+          <property role="gqqTX" value="137.0" />
           <property role="gqqTy" value="114.0" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
@@ -2831,6 +2891,9 @@
   </node>
   <node concept="1LUxBz" id="2lwHqHkC2HF">
     <property role="TrG5h" value="DeviceSampleType" />
+    <node concept="2JYBSP" id="5s_pyghzCO8" role="2JYBSD">
+      <ref role="2JYBSO" node="2lwHqHkq$rV" resolve="ResourceSampleType" />
+    </node>
     <node concept="1LUxBN" id="2lwHqHkFasE" role="1LWlLd">
       <property role="TrG5h" value="ResourceInst" />
       <ref role="1LUxBM" node="2lwHqHkq$rV" resolve="ResourceSampleType" />
@@ -2850,6 +2913,139 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="3LgJy$" id="uLhTRR5RMn">
+    <property role="TrG5h" value="Subapp1" />
+    <node concept="1N5Tqi" id="uLhTRR7Mv5" role="1N5PiQ">
+      <node concept="3YB4oO" id="uLhTRR7Mvb" role="2RhMKC">
+        <ref role="1N5Pi4" node="uLhTRR7MuW" resolve="subappX" />
+        <ref role="1N5Pi3" node="uLhTRR7Mv0" resolve="B" />
+      </node>
+      <node concept="3Yx0EI" id="uLhTRR7Mve" role="2RhMK_">
+        <ref role="1N5Pi4" node="uLhTRR7Mv2" resolve="subappY" />
+        <ref role="1N5Pi3" node="uLhTRR7MuY" resolve="A" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="uLhTRR7Mvh" role="1N5PiQ">
+      <node concept="3YB4oO" id="uLhTRR7Mvq" role="2RhMKC">
+        <ref role="1N5Pi4" node="uLhTRR7Mv2" resolve="subappY" />
+        <ref role="1N5Pi3" node="uLhTRR7Mv0" resolve="B" />
+      </node>
+      <node concept="3Yx0EI" id="uLhTRR7Mvt" role="2RhMK_">
+        <ref role="1N5Pi4" node="uLhTRR7MuW" resolve="subappX" />
+        <ref role="1N5Pi3" node="uLhTRR7MuY" resolve="A" />
+      </node>
+    </node>
+    <node concept="3LgJyF" id="uLhTRR7MuW" role="3LgJyy">
+      <property role="TrG5h" value="subappX" />
+      <ref role="3LgJyE" node="uLhTRR7MuT" resolve="Subapp2" />
+    </node>
+    <node concept="3LgJyF" id="uLhTRR7Mv2" role="3LgJyy">
+      <property role="TrG5h" value="subappY" />
+      <ref role="3LgJyE" node="uLhTRR7MuT" resolve="Subapp2" />
+    </node>
+  </node>
+  <node concept="3LgJy$" id="uLhTRR7MuT">
+    <property role="TrG5h" value="Subapp2" />
+    <node concept="1N5Tqi" id="uLhTRRDQbz" role="1N5PiQ">
+      <node concept="3YB4oO" id="uLhTRRDQbD" role="2RhMKC">
+        <ref role="1N5Pi4" node="uLhTRRDQbx" resolve="x" />
+        <ref role="1N5Pi3" node="3HBlKeoYV8p" resolve="CNF" />
+      </node>
+      <node concept="3YHrnl" id="uLhTRRE18h" role="2RhMK_">
+        <ref role="3Yz8TM" node="uLhTRR7Mv0" resolve="B" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="uLhTRRE18G" role="1N5PiQ">
+      <node concept="3YHqtX" id="uLhTRRE18P" role="2RhMKC">
+        <ref role="3Yz8TM" node="uLhTRR7MuY" resolve="A" />
+      </node>
+      <node concept="3Yx0EI" id="uLhTRRE18S" role="2RhMK_">
+        <ref role="1N5Pi4" node="uLhTRRDQbx" resolve="x" />
+        <ref role="1N5Pi3" node="3HBlKeoYV8j" resolve="REQ" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="uLhTRRDQbx" role="1N5PiY">
+      <property role="TrG5h" value="x" />
+      <ref role="1N5Tt0" node="3HBlKeoYFbB" resolve="FLASHER4" />
+    </node>
+    <node concept="2zBDe_" id="uLhTRR7Mv0" role="2zBDew">
+      <property role="TrG5h" value="B" />
+    </node>
+    <node concept="2zBDe_" id="uLhTRR7MuY" role="2zBDey">
+      <property role="TrG5h" value="A" />
+    </node>
+  </node>
+  <node concept="3KFA1X" id="uLhTRR9P6A">
+    <property role="TrG5h" value="SampleSystem" />
+    <node concept="3KU5ap" id="5s_pyghIpVu" role="3KORhB">
+      <node concept="3KUfg5" id="5s_pyghIpVx" role="3KUfg8">
+        <ref role="3KLd9v" node="2lwHqHkMVuC" resolve="FB" />
+        <node concept="3KQLYX" id="5s_pyghWI9A" role="3KLd9t">
+          <ref role="3KQLYW" node="uLhTRRE18Y" resolve="X" />
+          <ref role="3KQLYY" node="2lwHqHkFasE" resolve="ResourceInst" />
+        </node>
+      </node>
+      <node concept="3KU5ao" id="5s_pyghIpVF" role="3KUfge">
+        <ref role="3KUfjk" node="uLhTRRDQbx" resolve="x" />
+        <node concept="3KU7L5" id="5s_pyghWI9w" role="3KUfjq">
+          <ref role="3KU7LW" node="uLhTRR7MuW" resolve="subappX" />
+          <node concept="3KU7L5" id="5s_pyghWI9r" role="3KU7L6">
+            <ref role="3KU7LW" node="uLhTRRDQbv" resolve="subapp1" />
+            <node concept="3KU5aq" id="5s_pyghMTYt" role="3KU7L6">
+              <ref role="3KU5al" node="uLhTRRBP8T" resolve="XYZ" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="16k8Fv" id="5s_pyghGt4K" role="16kM_O">
+      <property role="TrG5h" value="sampleSegment" />
+      <ref role="16k8Fq" node="5s_pyghxHhH" resolve="SegmentSampleType" />
+      <node concept="1LUwhx" id="5s_pyghGt4Y" role="16k8Gk">
+        <ref role="1LUwhw" node="5s_pyghxHmu" resolve="x" />
+        <node concept="1QCq3x" id="5s_pyghGt52" role="1LUwh$" />
+      </node>
+    </node>
+    <node concept="16EYGJ" id="5s_pyghGt4D" role="16GI_C">
+      <ref role="16EYGP" node="5s_pyghGt4K" resolve="sampleSegment" />
+      <node concept="3KQLYX" id="5s_pyghGt4M" role="16EYGC">
+        <ref role="3KQLYW" node="uLhTRRE18Y" resolve="X" />
+        <ref role="3KQLYY" node="2lwHqHkFasE" resolve="ResourceInst" />
+      </node>
+    </node>
+    <node concept="2JYBV7" id="uLhTRRE18Y" role="3KFA_1">
+      <property role="TrG5h" value="X" />
+      <ref role="2JYBV0" node="2lwHqHkC2HF" resolve="DeviceSampleType" />
+    </node>
+    <node concept="3KFAOZ" id="uLhTRRBP8T" role="3KFA_7">
+      <property role="TrG5h" value="XYZ" />
+      <node concept="3LgJyF" id="uLhTRRDQbv" role="3LgJyy">
+        <property role="TrG5h" value="subapp1" />
+        <ref role="3LgJyE" node="uLhTRR5RMn" resolve="Subapp1" />
+      </node>
+      <node concept="1N5Tt1" id="uLhTRRDQbt" role="1N5PiY">
+        <property role="TrG5h" value="c1" />
+        <ref role="1N5Tt0" node="5VLuTnkolRw" resolve="Composite1" />
+      </node>
+    </node>
+  </node>
+  <node concept="1N5Tt2" id="uLhTRSuiV4">
+    <property role="TrG5h" value="EmptyComponentFB" />
+  </node>
+  <node concept="2zBDf2" id="4s7KBSjc0Wu">
+    <property role="TrG5h" value="EmptyBasicFB" />
+    <node concept="2zAPAk" id="5s_pyghebPH" role="2zAPwY">
+      <property role="TrG5h" value="START" />
+      <node concept="2WJ7$k" id="5s_pyghebPI" role="lGtFl" />
+    </node>
+  </node>
+  <node concept="16k505" id="5s_pyghxHhH">
+    <property role="TrG5h" value="SegmentSampleType" />
+    <node concept="2zBDeF" id="5s_pyghxHmu" role="16k51W">
+      <property role="TrG5h" value="x" />
+      <node concept="2zB9wT" id="5s_pyghxHmy" role="2zB7qv" />
     </node>
   </node>
 </model>

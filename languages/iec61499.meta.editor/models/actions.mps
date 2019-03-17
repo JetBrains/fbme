@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:77562afc-b226-4e64-be56-d7d95a741553(iec61499.meta.diagram.actions)">
+<model ref="r:77562afc-b226-4e64-be56-d7d95a741553(iec61499.meta.editor.actions)">
   <persistence version="9" />
   <languages>
     <use id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions" version="4" />
@@ -7,7 +7,7 @@
   </languages>
   <imports>
     <import index="2qld" ref="r:24bac084-437d-402d-b9a3-49599b18a0d1(de.itemis.mps.editor.diagram.structure)" />
-    <import index="g3qn" ref="r:9a144fca-becd-4385-a025-398ace28742a(iec61499.meta.diagram.structure)" implicit="true" />
+    <import index="g3qn" ref="r:9a144fca-becd-4385-a025-398ace28742a(iec61499.meta.editor.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
