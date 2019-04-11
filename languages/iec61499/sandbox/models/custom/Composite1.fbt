@@ -18,23 +18,23 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="FLASHER4" />
-    <FB Name="FB2" Type="FLASHER4" />
+    <FB Name="FB1" Type="" />
+    <FB Name="FB2" Type="" />
     <EventConnections>
-      <Connection Source="INIT" Destination="FB1.INIT" />
-      <Connection Source="REQ" Destination="FB1.INIT" />
-      <Connection Source="FB2.CNF" Destination="FB1.REQ" />
-      <Connection Source="FB2.CNF" Destination="OUT" />
-      <Connection Source="REQ" Destination="FB2.INIT" />
-      <Connection Source="FB1.CNF" Destination="OUT" />
-      <Connection Source="INIT" Destination="FB2.REQ" />
+      <Connection Source="" Destination="null.null" />
+      <Connection Source="" Destination="null.null" />
+      <Connection Source="null.null" Destination="null.null" />
+      <Connection Source="null.null" Destination="" />
+      <Connection Source="" Destination="null.null" />
+      <Connection Source="null.null" Destination="" />
+      <Connection Source="" Destination="null.null" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB2.LED3" Destination="FB1.MODE" />
-      <Connection Source="QI" Destination="FB1.MODE" />
-      <Connection Source="FB1.LED1" Destination="QO" />
-      <Connection Source="QI" Destination="FB2.MODE" />
-      <Connection Source="FB2.LED1" Destination="QO" />
+      <Connection Source="null.null" Destination="null.null" />
+      <Connection Source="" Destination="null.null" />
+      <Connection Source="null.null" Destination="" />
+      <Connection Source="" Destination="null.null" />
+      <Connection Source="null.null" Destination="" />
     </DataConnections>
   </FBNetwork>
 </FBType>

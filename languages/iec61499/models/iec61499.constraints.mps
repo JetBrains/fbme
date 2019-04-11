@@ -180,10 +180,6 @@
       <concept id="1160666733551" name="jetbrains.mps.baseLanguage.collections.structure.AddAllElementsOperation" flags="nn" index="X8dFx" />
     </language>
   </registry>
-  <node concept="1M2fIO" id="3HBlKeoZ0X$">
-    <property role="3GE5qa" value="expressions" />
-    <ref role="1M2myG" to="xiqq:3HBlKeoZ0X9" resolve="Expression" />
-  </node>
   <node concept="1M2fIO" id="PI_pXYaX1G">
     <property role="3GE5qa" value="fbtype.basic" />
     <ref role="1M2myG" to="xiqq:3HBlKeoZ0Un" resolve="StateDeclaration" />
@@ -1042,7 +1038,7 @@
     <node concept="1N5Pfh" id="2lwHqHkyF8M" role="1Mr941">
       <ref role="1N5Vy1" to="xiqq:2lwHqHkyF7b" resolve="decl" />
       <node concept="1dDu$B" id="2lwHqHkyF8Q" role="1N6uqs">
-        <ref role="1dDu$A" to="xiqq:3HBlKeoYsiC" resolve="VariableDeclaration" />
+        <ref role="1dDu$A" to="xiqq:3HBlKeoYsiC" resolve="ParameterDeclaration" />
       </node>
     </node>
   </node>

@@ -42,6 +42,7 @@
     <import index="qvra" ref="r:863a1351-4c3d-4cc6-89c5-bce9450aa538(iec61499.ide.persistence)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="iuxj" ref="r:64db3a92-5968-4a73-b456-34504a2d97a6(jetbrains.mps.core.xml.structure)" />
+    <import index="gpgy" ref="r:70ba2090-1a36-4ca3-87ef-116d9af7b3ac(ST.structure)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -4036,7 +4037,7 @@
             </node>
             <node concept="359W_D" id="2ByE74kw$jR" role="37wK5m">
               <ref role="359W_E" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
-              <ref role="359W_F" to="xiqq:PI_pXYugbv" resolve="declaration" />
+              <ref role="359W_F" to="xiqq:PI_pXYugbv" resolve="type" />
             </node>
             <node concept="2OqwBi" id="2ByE74kw$jS" role="37wK5m">
               <node concept="37vLTw" id="2ByE74kw$jT" role="2Oq$k0">
@@ -4380,7 +4381,7 @@
                 <node concept="2ShNRf" id="6g3sTRf3j_o" role="3cqZAk">
                   <node concept="3zrR0B" id="6g3sTRf3lju" role="2ShVmc">
                     <node concept="3Tqbb2" id="6g3sTRf3ljw" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:3HBlKeoYWWU" resolve="BoolType" />
+                      <ref role="ehGHo" to="gpgy:3HBlKeoYWWU" resolve="BoolType" />
                     </node>
                   </node>
                 </node>
@@ -4396,7 +4397,7 @@
                 <node concept="2ShNRf" id="6g3sTRf3luc" role="3cqZAk">
                   <node concept="3zrR0B" id="6g3sTRf3m2K" role="2ShVmc">
                     <node concept="3Tqbb2" id="6g3sTRf3m2M" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:3HBlKeoYKVX" resolve="UIntType" />
+                      <ref role="ehGHo" to="gpgy:3HBlKeoYKVX" resolve="UIntType" />
                     </node>
                   </node>
                 </node>
@@ -4419,7 +4420,7 @@
       </node>
       <node concept="3Tm1VV" id="6g3sTRf3jw2" role="1B3o_S" />
       <node concept="3Tqbb2" id="6g3sTRf3jwq" role="3clF45">
-        <ref role="ehGHo" to="xiqq:3HBlKeoYKVW" resolve="Type" />
+        <ref role="ehGHo" to="gpgy:3HBlKeoYKVW" resolve="DataType" />
       </node>
       <node concept="37vLTG" id="6g3sTRf3jx1" role="3clF46">
         <property role="TrG5h" value="rawType" />
@@ -4448,7 +4449,7 @@
       </node>
       <node concept="3Tm1VV" id="6g3sTRf3VWQ" role="1B3o_S" />
       <node concept="3Tqbb2" id="6g3sTRf3VX_" role="3clF45">
-        <ref role="ehGHo" to="xiqq:3HBlKeoZ0X9" resolve="Expression" />
+        <ref role="ehGHo" to="gpgy:3HBlKeoZ0X9" resolve="Expression" />
       </node>
       <node concept="37vLTG" id="6g3sTRf3VYz" role="3clF46">
         <property role="TrG5h" value="rawExpression" />
@@ -5267,13 +5268,13 @@
                 <ref role="3cqZAo" node="2R0Wzqv705h" resolve="eventSource" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv705c" role="37wK5m">
-                <ref role="35c_gD" to="xiqq:75nMhMfSATx" resolve="InterfaceEventSource" />
+                <ref role="35c_gD" to="xiqq:75nMhMfSATx" resolve="ContextEventSource" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv705d" role="37wK5m">
                 <ref role="35c_gD" to="xiqq:75nMhMfMSWC" resolve="ComponentEventSource" />
               </node>
               <node concept="359W_D" id="2R0Wzqv705e" role="37wK5m">
-                <ref role="359W_E" to="xiqq:75nMhMfQOtH" resolve="InterfaceEventEndpoint" />
+                <ref role="359W_E" to="xiqq:75nMhMfQOtH" resolve="ContextEventEndpoint" />
                 <ref role="359W_F" to="xiqq:75nMhMfQOtI" resolve="declaration" />
               </node>
               <node concept="359W_D" id="2R0Wzqv705f" role="37wK5m">
@@ -5310,13 +5311,13 @@
                 <ref role="3cqZAo" node="2R0Wzqv6REx" resolve="eventDestination" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv6U1B" role="37wK5m">
-                <ref role="35c_gD" to="xiqq:75nMhMfSBN9" resolve="InterfaceEventDestination" />
+                <ref role="35c_gD" to="xiqq:75nMhMfSBN9" resolve="ContextEventDestination" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv6U1C" role="37wK5m">
                 <ref role="35c_gD" to="xiqq:75nMhMfOWeM" resolve="ComponentEventDestination" />
               </node>
               <node concept="359W_D" id="2R0Wzqv6U1D" role="37wK5m">
-                <ref role="359W_E" to="xiqq:75nMhMfQOtH" resolve="InterfaceEventEndpoint" />
+                <ref role="359W_E" to="xiqq:75nMhMfQOtH" resolve="ContextEventEndpoint" />
                 <ref role="359W_F" to="xiqq:75nMhMfQOtI" resolve="declaration" />
               </node>
               <node concept="359W_D" id="2R0Wzqv6U1E" role="37wK5m">
@@ -5356,13 +5357,13 @@
                 <ref role="3cqZAo" node="2R0Wzqv73ii" resolve="dataSource" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv73ic" role="37wK5m">
-                <ref role="35c_gD" to="xiqq:37fub3vndep" resolve="InterfaceDataSource" />
+                <ref role="35c_gD" to="xiqq:37fub3vndep" resolve="ContextDataSource" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv73id" role="37wK5m">
                 <ref role="35c_gD" to="xiqq:37fub3vlAqp" resolve="ComponentDataSource" />
               </node>
               <node concept="359W_D" id="2R0Wzqv73ie" role="37wK5m">
-                <ref role="359W_E" to="xiqq:37fub3vlDyx" resolve="InterfaceDataEndpoint" />
+                <ref role="359W_E" to="xiqq:37fub3vlDyx" resolve="ContextDataEndpoint" />
                 <ref role="359W_F" to="xiqq:37fub3vlDyy" resolve="declaration" />
               </node>
               <node concept="359W_D" id="2R0Wzqv73if" role="37wK5m">
@@ -5402,13 +5403,13 @@
                 <ref role="3cqZAo" node="2R0Wzqv74XT" resolve="dataDestination" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv74XN" role="37wK5m">
-                <ref role="35c_gD" to="xiqq:37fub3vnkIr" resolve="InterfaceDataDestination" />
+                <ref role="35c_gD" to="xiqq:37fub3vnkIr" resolve="ContextDataDestination" />
               </node>
               <node concept="35c_gC" id="2R0Wzqv74XO" role="37wK5m">
                 <ref role="35c_gD" to="xiqq:37fub3vlCZn" resolve="ComponentDataDestination" />
               </node>
               <node concept="359W_D" id="2R0Wzqv74XP" role="37wK5m">
-                <ref role="359W_E" to="xiqq:37fub3vlDyx" resolve="InterfaceDataEndpoint" />
+                <ref role="359W_E" to="xiqq:37fub3vlDyx" resolve="ContextDataEndpoint" />
                 <ref role="359W_F" to="xiqq:37fub3vlDyy" resolve="declaration" />
               </node>
               <node concept="359W_D" id="2R0Wzqv74XQ" role="37wK5m">

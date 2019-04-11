@@ -4,9 +4,13 @@
   <languages>
     <use id="8ca79d43-eb45-4791-bdd4-0d6130ff895b" name="de.itemis.mps.editor.diagram.layout" version="0" />
     <use id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="iec61499" version="0" />
+    <use id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="ST" version="-1" />
   </languages>
   <imports />
   <registry>
+    <language id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="ST">
+      <concept id="4280485643802103610" name="" flags="ng" index="2zB9wT" />
+    </language>
     <language id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="iec61499">
       <concept id="4280485643802119831" name="iec61499.structure.StateDeclaration" flags="ng" index="2zAPAk">
         <child id="4280485643802119923" name="actions" index="2zAPBK" />
@@ -23,7 +27,6 @@
         <reference id="4280485643802119837" name="algorithm" index="2zAPAu" />
         <child id="3296901243643750533" name="event" index="2NbhEN" />
       </concept>
-      <concept id="4280485643802103610" name="iec61499.structure.BoolType" flags="ng" index="2zB9wT" />
       <concept id="4280485643801969830" name="iec61499.structure.EventDeclaration" flags="ng" index="2zBDe_">
         <child id="4280485643801969855" name="associatedVariables" index="2zBDeW" />
       </concept>
