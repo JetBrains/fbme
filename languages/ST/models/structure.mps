@@ -10,6 +10,9 @@
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
+      <concept id="1082978499127" name="jetbrains.mps.lang.structure.structure.ConstrainedDataTypeDeclaration" flags="ng" index="Az7Fb">
+        <property id="1083066089218" name="constraint" index="FLfZY" />
+      </concept>
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
         <property id="4628067390765956807" name="final" index="R5$K2" />
@@ -92,7 +95,7 @@
     <property role="EcuMT" value="2693352324616822500" />
     <property role="3GE5qa" value="expressions" />
     <property role="TrG5h" value="StringLiteral" />
-    <property role="34LRSv" value="&quot;" />
+    <property role="34LRSv" value="'" />
     <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
     <node concept="1TJgyi" id="2lwHqHjKxV_" role="1TKVEl">
       <property role="IQ2nx" value="2693352324616822501" />
@@ -117,12 +120,12 @@
   <node concept="1TIwiD" id="3HBlKeoZu2i">
     <property role="EcuMT" value="4280485643802239122" />
     <property role="3GE5qa" value="expressions" />
-    <property role="TrG5h" value="NumericLiteral" />
+    <property role="TrG5h" value="DecIntegerLiteral" />
     <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
     <node concept="1TJgyi" id="3HBlKeoZu2j" role="1TKVEl">
       <property role="IQ2nx" value="4280485643802239123" />
       <property role="TrG5h" value="value" />
-      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+      <ref role="AX2Wp" node="ahlxKSmN4W" resolve="DecInteger" />
     </node>
   </node>
   <node concept="1TIwiD" id="2lwHqHjKhl9">
@@ -537,7 +540,7 @@
     <property role="3GE5qa" value="expressions" />
     <property role="TrG5h" value="DivExpression" />
     <property role="34LRSv" value="/" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <ref role="1TJDcQ" node="3Qd3IVOFNn0" resolve="BinaryExpression" />
   </node>
   <node concept="1TIwiD" id="7GyesCpmcug">
     <property role="EcuMT" value="8872717756044724112" />
@@ -558,6 +561,20 @@
     <property role="3GE5qa" value="expressions" />
     <property role="TrG5h" value="NegExpression" />
     <property role="34LRSv" value="-" />
+    <ref role="1TJDcQ" node="ahlxKSkj$V" resolve="UnaryExpression" />
+  </node>
+  <node concept="1TIwiD" id="7GyesCpmdwR">
+    <property role="EcuMT" value="8872717756044728375" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="NotExpression" />
+    <property role="34LRSv" value="NOT" />
+    <ref role="1TJDcQ" node="ahlxKSkj$V" resolve="UnaryExpression" />
+  </node>
+  <node concept="1TIwiD" id="ahlxKSkj$V">
+    <property role="EcuMT" value="185023738902821179" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="UnaryExpression" />
+    <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" node="3HBlKeoZ0X9" resolve="Expression" />
     <node concept="1TJgyj" id="7GyesCpmdwr" role="1TKVEi">
       <property role="IQ2ns" value="8872717756044728347" />
@@ -567,18 +584,72 @@
       <ref role="20lvS9" node="3HBlKeoZ0X9" resolve="Expression" />
     </node>
   </node>
-  <node concept="1TIwiD" id="7GyesCpmdwR">
-    <property role="EcuMT" value="8872717756044728375" />
+  <node concept="Az7Fb" id="ahlxKSmN4W">
     <property role="3GE5qa" value="expressions" />
-    <property role="TrG5h" value="NotExpression" />
-    <property role="34LRSv" value="NOT" />
-    <ref role="1TJDcQ" node="3HBlKeoZ0X9" resolve="Expression" />
-    <node concept="1TJgyj" id="7GyesCpmdxN" role="1TKVEi">
-      <property role="IQ2ns" value="8872717756044728435" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="expression" />
-      <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="3HBlKeoZ0X9" resolve="Expression" />
+    <property role="TrG5h" value="DecInteger" />
+    <property role="FLfZY" value="[0-9][_0-9]*" />
+  </node>
+  <node concept="Az7Fb" id="ahlxKSmN4X">
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="BinInteger" />
+    <property role="FLfZY" value="[0-1][_0-1]*" />
+  </node>
+  <node concept="1TIwiD" id="ahlxKSmN4Y">
+    <property role="EcuMT" value="185023738903474494" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="BinIntegerLiteral" />
+    <property role="34LRSv" value="2#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="ahlxKSmN4Z" role="1TKVEl">
+      <property role="IQ2nx" value="185023738903474495" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" node="ahlxKSmN4X" resolve="BinInteger" />
+    </node>
+  </node>
+  <node concept="Az7Fb" id="ahlxKSmN51">
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="OctInteger" />
+    <property role="FLfZY" value="[0-7][_0-7]*" />
+  </node>
+  <node concept="1TIwiD" id="ahlxKSmN6E">
+    <property role="EcuMT" value="185023738903474602" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="OctIntegerLiteral" />
+    <property role="34LRSv" value="8#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="ahlxKSmN6F" role="1TKVEl">
+      <property role="IQ2nx" value="185023738903474603" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" node="ahlxKSmN51" resolve="OctInteger" />
+    </node>
+  </node>
+  <node concept="Az7Fb" id="ahlxKSmN7y">
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="HexInteger" />
+    <property role="FLfZY" value="[0-9a-fA-F][_0-9a-fA-F]*" />
+  </node>
+  <node concept="1TIwiD" id="ahlxKSmN7z">
+    <property role="EcuMT" value="185023738903474659" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="HexIntegerLiteral" />
+    <property role="34LRSv" value="16#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="ahlxKSmN7$" role="1TKVEl">
+      <property role="IQ2nx" value="185023738903474660" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" node="ahlxKSmN7y" resolve="HexInteger" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="ahlxKSoOUg">
+    <property role="EcuMT" value="185023738904006288" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="BinBooleanLiteral" />
+    <property role="34LRSv" value="BOOL#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="ahlxKSoOUh" role="1TKVEl">
+      <property role="IQ2nx" value="185023738904006289" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
     </node>
   </node>
 </model>

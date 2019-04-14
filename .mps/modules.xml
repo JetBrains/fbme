@@ -8,6 +8,7 @@
       <modulePath path="$PROJECT_DIR$/languages/iec61499/sandbox/iec61499.sandbox.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/iec61499.ide/iec61499.ide.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="" />
     </projectModules>
   </component>
 </project>

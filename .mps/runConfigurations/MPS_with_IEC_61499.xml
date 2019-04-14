@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MPS with IEC 61499" type="MPS" factoryName="MPS Instance" activateToolWindowBeforeRun="false">
+    <myMpsSettings>
+      <MyState>
+        <option name="myVmOptions" value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005" />
+        <option name="myJrePath" value="" />
+        <option name="mySettingsPath" value="$USER_HOME$/Library/Preferences" />
+      </MyState>
+    </myMpsSettings>
+    <myPluginsSettings>
+      <MyState>
+        <option name="myPluginsToDeploy">
+          <list>
+            <option value="r:d873dcfc-44fd-449a-83a0-b73f30522ba6(iec61499.build)/7065554940418943295" />
+          </list>
+        </option>
+      </MyState>
+    </myPluginsSettings>
+    <method v="2">
+      <option name="jetbrains.mps.execution.configurations.implementation.plugin.plugin.DeployPlugins_BeforeTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

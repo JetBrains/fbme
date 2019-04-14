@@ -7,13 +7,15 @@
 **/.mps/workspace.xml
 **/.mps/shelf
 
-**/.idea/workspace.xml
-**/.idea/shelf
+.idea/workspace.xml
+.idea/shelf
+.idea/**/gradle.xml
+.idea/**/libraries
 
 **/classes_gen/*
 **/source_gen/*
 **/source_gen.caches/*
 
-build/*
+**/build/
 
-lib/*
+**/lib/

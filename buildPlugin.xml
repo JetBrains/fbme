@@ -65,10 +65,95 @@
       </idea-plugin>
     </echoxml>
     <mkdir dir="${build.layout}/iec61499.plugin/lib" />
+    <copy todir="${build.layout}/iec61499.plugin/lib">
+      <fileset dir="${basedir}/st-parser/lib" />
+    </copy>
     <jar destfile="${build.layout}/iec61499.plugin/lib/iec61499-ide.jar" duplicate="preserve">
       <fileset dir="${build.tmp}/java/out/iec61499.ide" />
     </jar>
     <mkdir dir="${build.layout}/iec61499.plugin/languages" />
+    <mkdir dir="${build.layout}/iec61499.plugin/languages/ST" />
+    <mkdir dir="${build.tmp}/default/ST.jar" />
+    <mkdir dir="${build.tmp}/default/ST.jar/META-INF" />
+    <echoxml file="${build.tmp}/default/ST.jar/META-INF/module.xml">
+      <module namespace="ST" type="language" uuid="2046780a-246e-4cb0-90fe-56a2b7d92c54">
+        <dependencies>
+          <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
+          <module ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" />
+          <module ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)" />
+          <module ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" />
+          <module ref="4c6a28d1-2c60-478d-b36e-db9b3cbb21fb(closures.runtime)" />
+          <module ref="9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)" />
+          <module ref="7ac49bcb-77fb-4f0f-9036-e31b86b854b2(com.mbeddr.mpsutil.grammarcells.runtime)" />
+          <module ref="7037b32c-9607-4f8e-81bd-1f028a4c117b(de.slisson.mps.reflection.runtime)" />
+          <module ref="a3e4657f-a76c-45bb-bbda-c764596ecc65(jetbrains.mps.baseLanguage.logging.runtime)" />
+          <module ref="52b81ac7-93fd-4e9e-b972-4995882da6d4(jetbrains.mps.baseLanguage.references.runtime)" />
+          <module ref="d44dab97-aaac-44cb-9745-8a14db674c03(jetbrains.mps.baseLanguage.tuples.runtime)" />
+          <module ref="d936855b-48da-4812-a8a0-2bfddd633ac5(jetbrains.mps.lang.behavior.api)" />
+          <module ref="d936855b-48da-4812-a8a0-2bfddd633ac4(jetbrains.mps.lang.behavior.runtime)" />
+          <module ref="9a4afe51-f114-4595-b5df-048ce3c596be(jetbrains.mps.runtime)" />
+        </dependencies>
+        <classpath>
+          <entry path="." />
+        </classpath>
+        <sources jar="ST-src.jar" descriptor="ST.mpl" />
+      </module>
+    </echoxml>
+    <jar destfile="${build.layout}/iec61499.plugin/languages/ST/ST.jar" duplicate="preserve">
+      <fileset dir="${build.tmp}/java/out/ST" />
+      <fileset dir="${basedir}/languages/ST/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
+      <fileset dir="${build.tmp}/default/ST.jar" />
+    </jar>
+    <mkdir dir="${build.tmp}/default/ST-generator.jar" />
+    <mkdir dir="${build.tmp}/default/ST-generator.jar/META-INF" />
+    <echoxml file="${build.tmp}/default/ST-generator.jar/META-INF/module.xml">
+      <module namespace="ST#01" type="generator" uuid="9b4b978d-2989-49ae-b210-968bb0aee375">
+        <dependencies>
+          <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
+          <module ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" />
+          <module ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" />
+          <module ref="4c6a28d1-2c60-478d-b36e-db9b3cbb21fb(closures.runtime)" />
+          <module ref="9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)" />
+          <module ref="a3e4657f-a76c-45bb-bbda-c764596ecc65(jetbrains.mps.baseLanguage.logging.runtime)" />
+          <module ref="52b81ac7-93fd-4e9e-b972-4995882da6d4(jetbrains.mps.baseLanguage.references.runtime)" />
+          <module ref="d44dab97-aaac-44cb-9745-8a14db674c03(jetbrains.mps.baseLanguage.tuples.runtime)" />
+          <module ref="d936855b-48da-4812-a8a0-2bfddd633ac5(jetbrains.mps.lang.behavior.api)" />
+          <module ref="d936855b-48da-4812-a8a0-2bfddd633ac4(jetbrains.mps.lang.behavior.runtime)" />
+          <module ref="9a4afe51-f114-4595-b5df-048ce3c596be(jetbrains.mps.runtime)" />
+        </dependencies>
+        <classpath>
+          <entry path="." />
+        </classpath>
+        <sources jar="ST-src.jar" descriptor="ST.mpl" />
+      </module>
+    </echoxml>
+    <jar destfile="${build.layout}/iec61499.plugin/languages/ST/ST-generator.jar" duplicate="preserve">
+      <fileset dir="${build.tmp}/java/out/ST#01" />
+      <fileset dir="${build.tmp}/default/ST-generator.jar" />
+    </jar>
+    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-ST-generator-template">
+      <fileset dir="${basedir}/languages/ST/generator/template" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
+    </copyModels>
+    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-ST-models">
+      <fileset dir="${basedir}/languages/ST/models" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
+    </copyModels>
+    <jar destfile="${build.layout}/iec61499.plugin/languages/ST/ST-src.jar" duplicate="preserve">
+      <fileset dir="${basedir}/languages/ST/generator/source_gen">
+        <exclude name="**/trace.info" />
+        <exclude name="**/exports" />
+        <exclude name="**/checkpoints" />
+        <exclude name="**/*.mps" />
+      </fileset>
+      <fileset dir="${basedir}/languages/ST/source_gen">
+        <exclude name="**/trace.info" />
+        <exclude name="**/exports" />
+        <exclude name="**/checkpoints" />
+        <exclude name="**/*.mps" />
+      </fileset>
+      <zipfileset file="${basedir}/languages/ST/ST.mpl" prefix="module" />
+      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-ST-generator-template" prefix="module/generator/template" />
+      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-ST-models" prefix="module/models" />
+    </jar>
     <mkdir dir="${build.layout}/iec61499.plugin/languages/iec61499" />
     <mkdir dir="${build.tmp}/default/iec61499.jar" />
     <mkdir dir="${build.tmp}/default/iec61499.jar/META-INF" />
@@ -109,6 +194,7 @@
     <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.jar" duplicate="preserve">
       <fileset dir="${build.tmp}/java/out/iec61499" />
       <fileset dir="${basedir}/languages/iec61499" includes="icons/**, resources/**" />
+      <fileset dir="${basedir}/languages/iec61499/source_gen" includes="**/*.png" />
       <fileset dir="${basedir}/languages/iec61499/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
       <fileset dir="${build.tmp}/default/iec61499.jar" />
     </jar>
@@ -162,10 +248,10 @@
       <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499-generator-template" prefix="module/generator/template" />
       <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499-models" prefix="module/models" />
     </jar>
-    <mkdir dir="${build.tmp}/default/iec61499.meta.diagram.jar" />
-    <mkdir dir="${build.tmp}/default/iec61499.meta.diagram.jar/META-INF" />
-    <echoxml file="${build.tmp}/default/iec61499.meta.diagram.jar/META-INF/module.xml">
-      <module namespace="iec61499.meta.diagram" type="language" uuid="8dfbe92d-d233-4cc1-8ddb-a2863fd64843">
+    <mkdir dir="${build.tmp}/default/iec61499.meta.editor.jar" />
+    <mkdir dir="${build.tmp}/default/iec61499.meta.editor.jar/META-INF" />
+    <echoxml file="${build.tmp}/default/iec61499.meta.editor.jar/META-INF/module.xml">
+      <module namespace="iec61499.meta.editor" type="language" uuid="8dfbe92d-d233-4cc1-8ddb-a2863fd64843">
         <dependencies>
           <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
           <module ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" />
@@ -186,19 +272,19 @@
         <classpath>
           <entry path="." />
         </classpath>
-        <sources jar="iec61499.meta.diagram-src.jar" descriptor="iec61499.meta.diagram.mpl" />
+        <sources jar="iec61499.meta.editor-src.jar" descriptor="iec61499.meta.editor.mpl" />
       </module>
     </echoxml>
-    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.diagram.jar" duplicate="preserve">
-      <fileset dir="${build.tmp}/java/out/iec61499.meta.diagram" />
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram" includes="icons/**, resources/**" />
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
-      <fileset dir="${build.tmp}/default/iec61499.meta.diagram.jar" />
+    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.editor.jar" duplicate="preserve">
+      <fileset dir="${build.tmp}/java/out/iec61499.meta.editor" />
+      <fileset dir="${basedir}/languages/iec61499.meta.editor" includes="icons/**, resources/**, source_gen/**/*.png" />
+      <fileset dir="${basedir}/languages/iec61499.meta.editor/source_gen" includes="**/trace.info, **/exports, **/*.mps, **/checkpoints" />
+      <fileset dir="${build.tmp}/default/iec61499.meta.editor.jar" />
     </jar>
-    <mkdir dir="${build.tmp}/default/iec61499.meta.diagram-generator.jar" />
-    <mkdir dir="${build.tmp}/default/iec61499.meta.diagram-generator.jar/META-INF" />
-    <echoxml file="${build.tmp}/default/iec61499.meta.diagram-generator.jar/META-INF/module.xml">
-      <module namespace="iec61499.meta.diagram#3165118101539151995" type="generator" uuid="70d46d48-b971-44d7-874c-f0f70b17dd57">
+    <mkdir dir="${build.tmp}/default/iec61499.meta.editor-generator.jar" />
+    <mkdir dir="${build.tmp}/default/iec61499.meta.editor-generator.jar/META-INF" />
+    <echoxml file="${build.tmp}/default/iec61499.meta.editor-generator.jar/META-INF/module.xml">
+      <module namespace="iec61499.meta.editor#3165118101539151995" type="generator" uuid="70d46d48-b971-44d7-874c-f0f70b17dd57">
         <dependencies>
           <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
           <module ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" />
@@ -217,35 +303,35 @@
         <classpath>
           <entry path="." />
         </classpath>
-        <sources jar="iec61499.meta.diagram-src.jar" descriptor="iec61499.meta.diagram.mpl" />
+        <sources jar="iec61499.meta.editor-src.jar" descriptor="iec61499.meta.editor.mpl" />
       </module>
     </echoxml>
-    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.diagram-generator.jar" duplicate="preserve">
-      <fileset dir="${build.tmp}/java/out/iec61499.meta.diagram#3165118101539151995" />
-      <fileset dir="${build.tmp}/default/iec61499.meta.diagram-generator.jar" />
+    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.editor-generator.jar" duplicate="preserve">
+      <fileset dir="${build.tmp}/java/out/iec61499.meta.editor#3165118101539151995" />
+      <fileset dir="${build.tmp}/default/iec61499.meta.editor-generator.jar" />
     </jar>
-    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.diagram-generator-template">
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram/generator/template" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
+    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.editor-generator-template">
+      <fileset dir="${basedir}/languages/iec61499.meta.editor/generator/template" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
     </copyModels>
-    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.diagram-models">
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram/models" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
+    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.editor-models">
+      <fileset dir="${basedir}/languages/iec61499.meta.editor/models" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
     </copyModels>
-    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.diagram-src.jar" duplicate="preserve">
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram/generator/source_gen">
+    <jar destfile="${build.layout}/iec61499.plugin/languages/iec61499/iec61499.meta.editor-src.jar" duplicate="preserve">
+      <fileset dir="${basedir}/languages/iec61499.meta.editor/generator/source_gen">
         <exclude name="**/trace.info" />
         <exclude name="**/exports" />
         <exclude name="**/checkpoints" />
         <exclude name="**/*.mps" />
       </fileset>
-      <fileset dir="${basedir}/languages/iec61499.meta.diagram/source_gen">
+      <fileset dir="${basedir}/languages/iec61499.meta.editor/source_gen">
         <exclude name="**/trace.info" />
         <exclude name="**/exports" />
         <exclude name="**/checkpoints" />
         <exclude name="**/*.mps" />
       </fileset>
-      <zipfileset file="${basedir}/languages/iec61499.meta.diagram/iec61499.meta.diagram.mpl" prefix="module" />
-      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.diagram-generator-template" prefix="module/generator/template" />
-      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.diagram-models" prefix="module/models" />
+      <zipfileset file="${basedir}/languages/iec61499.meta.editor/iec61499.meta.editor.mpl" prefix="module" />
+      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.editor-generator-template" prefix="module/generator/template" />
+      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-iec61499.meta.editor-models" prefix="module/models" />
     </jar>
     <echo file="${build.layout}/build.properties">iec61499Plugin.date=${date}${line.separator}iec61499Plugin.build.number=${build.number}${line.separator}iec61499Plugin.ide-version=${ide-version}${line.separator}mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}de.itemis.mps.extensions.versionNumber=${de.itemis.mps.extensions.versionNumber}${line.separator}com.mbeddr.platform.major.version=${com.mbeddr.platform.major.version}${line.separator}com.mbeddr.platform.minor.version=${com.mbeddr.platform.minor.version}${line.separator}com.mbeddr.platform.build=${com.mbeddr.platform.build}${line.separator}com.mbeddr.platform.mbeddr.version=${com.mbeddr.platform.mbeddr.version}</echo>
   </target>
@@ -264,7 +350,7 @@
     <delete dir="${build.layout}" />
   </target>
   
-  <target name="compileJava" depends="java.compile.iec61499, java.compile.iec61499#4280485643801969762, java.compile.iec61499.ide, java.compile.iec61499.meta.diagram, java.compile.iec61499.meta.diagram#3165118101539151995" />
+  <target name="compileJava" depends="java.compile.iec61499, java.compile.iec61499#4280485643801969762, java.compile.iec61499.ide, java.compile.iec61499.meta.editor, java.compile.iec61499.meta.editor#3165118101539151995, java.compile.ST, java.compile.ST#01" />
   
   <target name="processResources" />
   
@@ -337,6 +423,7 @@
       <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguageInternal.jar" />
       <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.aspect.constraints.jar" />
       <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.aspect.structure.jar" />
+      <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.aspect.textgen.jar" />
       <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.aspect.typesystem.jar" />
       <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.bootstrap-languages.jar" />
       <library file="${artifacts.mps}/languages/devkits/jetbrains.mps.devkit.general-purpose.jar" />
@@ -393,7 +480,9 @@
       <library file="${artifacts.mps}/lib/mps-references.jar" />
       <library file="${artifacts.mps}/lib/mps-tuples.jar" />
       <chunk>
-        <module file="${basedir}/languages/iec61499.meta.diagram/iec61499.meta.diagram.mpl" />
+        <module file="${basedir}/languages/ST/ST.mpl" />
+        <module file="${basedir}/st-parser/ST.parser.msd" />
+        <module file="${basedir}/languages/iec61499.meta.editor/iec61499.meta.editor.mpl" />
       </chunk>
       <chunk>
         <module file="${basedir}/languages/iec61499/iec61499.mpl" />
@@ -413,7 +502,7 @@
   
   <target name="makeDependents" />
   
-  <target name="java.compile.iec61499" depends="fetchDependencies">
+  <target name="java.compile.iec61499" depends="java.compile.ST, fetchDependencies">
     <mkdir dir="${basedir}/languages/iec61499/source_gen" />
     <mkdir dir="${build.tmp}/java/out/iec61499" />
     <javac destdir="${build.tmp}/java/out/iec61499" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -439,11 +528,12 @@
         <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
         <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
         <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
+        <pathelement path="${build.tmp}/java/out/ST" />
         <fileset file="${artifacts.mps}/lib/annotations.jar" />
         <fileset file="${artifacts.mps}/lib/log4j.jar" />
         <fileset file="${artifacts.mps}/lib/jdom.jar" />
         <fileset file="${artifacts.mps}/lib/trove4j.jar" />
-        <fileset file="${artifacts.mps}/lib/ecj-4.7.2.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
         <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
         <fileset file="${artifacts.com.mbeddr.platform}/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist/com.mbeddr.mpsutil.editor.querylist.runtime.jar" />
         <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells/com.mbeddr.mpsutil.grammarcells.runtime.jar" />
@@ -461,8 +551,10 @@
         <fileset file="${artifacts.de.itemis.mps.extensions}/mps-tables/languages/mps-tables/de.slisson.mps.tables.runtime.jar" />
         <fileset file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.logging.runtime.jar" />
         <fileset file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.regexp.runtime.jar" />
+        <fileset file="${artifacts.mps}/languages/xml/jetbrains.mps.core.xml.jar" />
         <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
         <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.descriptor.aspects.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.traceable.jar" />
         <fileset dir="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.editor.diagram/lib" includes="jgraphx.jar" />
         <fileset dir="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.editor.diagram/lib" includes="org.eclipse.emf.ecore-2.15.0.jar" />
         <fileset dir="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.editor.diagram/lib" includes="org.eclipse.emf.common-2.15.0.jar" />
@@ -486,7 +578,7 @@
     </javac>
   </target>
   
-  <target name="java.compile.iec61499#4280485643801969762" depends="java.compile.iec61499, fetchDependencies">
+  <target name="java.compile.iec61499#4280485643801969762" depends="java.compile.ST, java.compile.iec61499, fetchDependencies">
     <mkdir dir="${basedir}/languages/iec61499/generator/source_gen" />
     <mkdir dir="${build.tmp}/java/out/iec61499#4280485643801969762" />
     <javac destdir="${build.tmp}/java/out/iec61499#4280485643801969762" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -512,20 +604,23 @@
         <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
         <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
         <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
+        <pathelement path="${build.tmp}/java/out/ST" />
         <pathelement path="${build.tmp}/java/out/iec61499" />
         <fileset file="${artifacts.mps}/lib/annotations.jar" />
         <fileset file="${artifacts.mps}/lib/log4j.jar" />
         <fileset file="${artifacts.mps}/lib/jdom.jar" />
         <fileset file="${artifacts.mps}/lib/trove4j.jar" />
-        <fileset file="${artifacts.mps}/lib/ecj-4.7.2.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
         <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
         <fileset file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.logging.runtime.jar" />
+        <fileset file="${artifacts.mps}/languages/xml/jetbrains.mps.core.xml.jar" />
         <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.traceable.jar" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.iec61499.ide" depends="java.compile.iec61499, fetchDependencies">
+  <target name="java.compile.iec61499.ide" depends="java.compile.ST, java.compile.iec61499, fetchDependencies">
     <mkdir dir="${basedir}/solutions/iec61499.ide/source_gen" />
     <mkdir dir="${build.tmp}/java/out/iec61499.ide" />
     <javac destdir="${build.tmp}/java/out/iec61499.ide" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -551,25 +646,30 @@
         <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
         <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
         <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
+        <pathelement path="${build.tmp}/java/out/ST" />
         <pathelement path="${build.tmp}/java/out/iec61499" />
+        <fileset file="${basedir}/st-parser/lib/antlr4-runtime-4.5.jar" />
+        <fileset file="${basedir}/st-parser/lib/st-parser.jar" />
         <fileset file="${artifacts.mps}/lib/annotations.jar" />
         <fileset file="${artifacts.mps}/lib/log4j.jar" />
         <fileset file="${artifacts.mps}/lib/jdom.jar" />
         <fileset file="${artifacts.mps}/lib/trove4j.jar" />
-        <fileset file="${artifacts.mps}/lib/ecj-4.7.2.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
         <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
+        <fileset file="${artifacts.mps}/languages/xml/jetbrains.mps.core.xml.jar" />
         <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.traceable.jar" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.iec61499.meta.diagram" depends="fetchDependencies">
-    <mkdir dir="${basedir}/languages/iec61499.meta.diagram/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/iec61499.meta.diagram" />
-    <javac destdir="${build.tmp}/java/out/iec61499.meta.diagram" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+  <target name="java.compile.iec61499.meta.editor" depends="fetchDependencies">
+    <mkdir dir="${basedir}/languages/iec61499.meta.editor/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/iec61499.meta.editor" />
+    <javac destdir="${build.tmp}/java/out/iec61499.meta.editor" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/languages/iec61499.meta.diagram/source_gen" />
+        <path location="${basedir}/languages/iec61499.meta.editor/source_gen" />
       </src>
       <classpath>
         <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
@@ -593,7 +693,7 @@
         <fileset file="${artifacts.mps}/lib/log4j.jar" />
         <fileset file="${artifacts.mps}/lib/jdom.jar" />
         <fileset file="${artifacts.mps}/lib/trove4j.jar" />
-        <fileset file="${artifacts.mps}/lib/ecj-4.7.2.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
         <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
         <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.celllayout/languages/de.itemis.mps.celllayout/de.itemis.mps.editor.celllayout.runtime.jar" />
         <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.celllayout/languages/de.itemis.mps.celllayout/de.itemis.mps.editor.celllayout.styles.jar" />
@@ -640,13 +740,13 @@
     </javac>
   </target>
   
-  <target name="java.compile.iec61499.meta.diagram#3165118101539151995" depends="java.compile.iec61499.meta.diagram, fetchDependencies">
-    <mkdir dir="${basedir}/languages/iec61499.meta.diagram/generator/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/iec61499.meta.diagram#3165118101539151995" />
-    <javac destdir="${build.tmp}/java/out/iec61499.meta.diagram#3165118101539151995" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+  <target name="java.compile.iec61499.meta.editor#3165118101539151995" depends="java.compile.iec61499.meta.editor, fetchDependencies">
+    <mkdir dir="${basedir}/languages/iec61499.meta.editor/generator/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/iec61499.meta.editor#3165118101539151995" />
+    <javac destdir="${build.tmp}/java/out/iec61499.meta.editor#3165118101539151995" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/languages/iec61499.meta.diagram/generator/source_gen" />
+        <path location="${basedir}/languages/iec61499.meta.editor/generator/source_gen" />
       </src>
       <classpath>
         <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
@@ -666,12 +766,12 @@
         <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
         <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
         <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
-        <pathelement path="${build.tmp}/java/out/iec61499.meta.diagram" />
+        <pathelement path="${build.tmp}/java/out/iec61499.meta.editor" />
         <fileset file="${artifacts.mps}/lib/annotations.jar" />
         <fileset file="${artifacts.mps}/lib/log4j.jar" />
         <fileset file="${artifacts.mps}/lib/jdom.jar" />
         <fileset file="${artifacts.mps}/lib/trove4j.jar" />
-        <fileset file="${artifacts.mps}/lib/ecj-4.7.2.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
         <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
         <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.celllayout/languages/de.itemis.mps.celllayout/de.itemis.mps.editor.celllayout.runtime.jar" />
         <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.celllayout/languages/de.itemis.mps.celllayout/de.itemis.mps.editor.celllayout.styles.jar" />
@@ -718,9 +818,91 @@
     </javac>
   </target>
   
+  <target name="java.compile.ST" depends="fetchDependencies">
+    <mkdir dir="${basedir}/languages/ST/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/ST" />
+    <javac destdir="${build.tmp}/java/out/ST" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+      <compilerarg value="-Xlint:none" />
+      <src>
+        <path location="${basedir}/languages/ST/source_gen" />
+      </src>
+      <classpath>
+        <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-behavior-runtime.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-closures.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-collections.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-annotations.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-openapi.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-core.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-logging.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-tuples.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-references.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-messaging.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-boot-util.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor-api.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
+        <fileset file="${artifacts.mps}/lib/annotations.jar" />
+        <fileset file="${artifacts.mps}/lib/log4j.jar" />
+        <fileset file="${artifacts.mps}/lib/jdom.jar" />
+        <fileset file="${artifacts.mps}/lib/trove4j.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
+        <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
+        <fileset file="${artifacts.de.itemis.mps.extensions}/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells/com.mbeddr.mpsutil.grammarcells.runtime.jar" />
+        <fileset file="${artifacts.de.itemis.mps.extensions}/de.slisson.mps.hacks/languages/de.slisson.mps.hacks/de.slisson.mps.reflection.runtime.jar" />
+        <fileset file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.logging.runtime.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.descriptor.aspects.jar" />
+      </classpath>
+    </javac>
+  </target>
+  
+  <target name="java.compile.ST#01" depends="java.compile.ST, fetchDependencies">
+    <mkdir dir="${basedir}/languages/ST/generator/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/ST#01" />
+    <javac destdir="${build.tmp}/java/out/ST#01" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+      <compilerarg value="-Xlint:none" />
+      <src>
+        <path location="${basedir}/languages/ST/generator/source_gen" />
+      </src>
+      <classpath>
+        <fileset file="${artifacts.mps}/lib/mps-behavior-api.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-behavior-runtime.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-closures.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-collections.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-annotations.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-openapi.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-core.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-logging.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-tuples.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-references.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-messaging.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-boot-util.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor-api.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-editor-runtime.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-platform.jar" />
+        <fileset file="${artifacts.mps}/lib/mps-environment.jar" />
+        <pathelement path="${build.tmp}/java/out/ST" />
+        <fileset file="${artifacts.mps}/lib/annotations.jar" />
+        <fileset file="${artifacts.mps}/lib/log4j.jar" />
+        <fileset file="${artifacts.mps}/lib/jdom.jar" />
+        <fileset file="${artifacts.mps}/lib/trove4j.jar" />
+        <fileset file="${artifacts.mps}/lib/ecj-4.10.jar" />
+        <fileset dir="${artifacts.mps}/lib" includes="*.jar" />
+        <fileset file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.logging.runtime.jar" />
+        <fileset file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
+      </classpath>
+    </javac>
+  </target>
+  
   <target name="cleanSources">
-    <delete dir="${basedir}/languages/iec61499.meta.diagram/source_gen" />
-    <delete dir="${basedir}/languages/iec61499.meta.diagram/generator/source_gen" />
+    <delete dir="${basedir}/languages/ST/source_gen" />
+    <delete dir="${basedir}/languages/ST/generator/source_gen" />
+    <delete dir="${basedir}/languages/iec61499.meta.editor/source_gen" />
+    <delete dir="${basedir}/languages/iec61499.meta.editor/generator/source_gen" />
     <delete dir="${basedir}/languages/iec61499/source_gen" />
     <delete dir="${basedir}/languages/iec61499/generator/source_gen" />
     <delete dir="${basedir}/solutions/iec61499.ide/source_gen" />

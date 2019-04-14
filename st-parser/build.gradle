@@ -1,0 +1,21 @@
+
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.5"
+}
+
+task prepare(type: Copy) {
+    dependsOn build
+    
+    from configurations.antlr.files.find { it.name.startsWith('antlr4-runtime') }
+    from 'build/libs'
+    into 'lib'
+}

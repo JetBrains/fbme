@@ -10,5 +10,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mps" level="project" />
     <orderEntry type="library" name="mps-lib" level="project" />
+    <orderEntry type="module" module-name="iec61499.st-parser" />
+    <orderEntry type="library" name="Gradle: org.antlr:antlr4-runtime:4.5" level="project" />
+    <orderEntry type="module" module-name="iec61499.st-parser.main" />
   </component>
 </module>

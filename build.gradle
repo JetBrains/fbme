@@ -44,16 +44,24 @@ task downloadDependencies(type: Copy) {
     into 'lib'
 }
 
+task prepare() {
+    dependsOn downloadDependencies
+    dependsOn ':st-parser:prepare'
+}
+
 
 if (file('buildPlugin.xml').exists()) {
     ant.importBuild('buildPlugin.xml') { 'bp.' + it }
 
-    tasks.'bp.fetchDependencies'.dependsOn 'downloadDependencies'
+    tasks.'bp.fetchDependencies'.dependsOn 'prepare'
 
-    task buildPlugin(dependsOn: ['bp.build']) {
+    task buildPlugin() {
+        dependsOn 'bp.build'
     }
 
-    task clean(dependsOn: ['bp.clean']) {
+    task clean() {
+        dependsOn 'bp.clean'
+        dependsOn ':st-parser:clean'
     }
 
     defaultTasks 'buildPlugin'
