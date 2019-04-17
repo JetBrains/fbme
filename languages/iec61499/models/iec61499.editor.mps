@@ -11667,7 +11667,7 @@
     <ref role="1XX52x" to="xiqq:2lwHqHjRwSl" resolve="FBTypeReference" />
     <node concept="3EZMnI" id="2lwHqHkp4tz" role="2wV5jI">
       <node concept="1iCGBv" id="2lwHqHkp4tH" role="3EZMnx">
-        <ref role="1NtTu8" to="xiqq:2lwHqHjRwSm" resolve="delcaration" />
+        <ref role="1NtTu8" to="xiqq:2lwHqHjRwSm" resolve="declaration" />
         <node concept="1sVBvm" id="2lwHqHkp4tJ" role="1sWHZn">
           <node concept="3SHvHV" id="2lwHqHkp4tQ" role="2wV5jI" />
         </node>
@@ -12620,10 +12620,7 @@
       </node>
       <node concept="3F0ifn" id="uLhTRRmrf4" role="3EZMnx">
         <property role="3F0ifm" value="ON" />
-        <node concept="VechU" id="uLhTRRmrfh" role="3F10Kt">
-          <property role="Vb096" value="red" />
-        </node>
-        <node concept="Vb9p2" id="uLhTRRmrfm" role="3F10Kt" />
+        <ref role="1k5W1q" to="5kh9:3HBlKeoYLK_" resolve="Keyword" />
       </node>
       <node concept="3F1sOY" id="uLhTRRmrfc" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:uLhTRRmrel" resolve="resource" />
@@ -13202,6 +13199,45 @@
       <node concept="1xolST" id="2JGKyji_TSi" role="1QoVPY">
         <property role="1xolSY" value="no type" />
       </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="23XkovVSBld">
+    <property role="3GE5qa" value="fbtype.service" />
+    <ref role="1XX52x" to="xiqq:23XkovVSBlc" resolve="ServiceInterfaceFBTypeDeclaration" />
+    <node concept="3EZMnI" id="23XkovVSBlf" role="2wV5jI">
+      <node concept="PMmxH" id="23XkovVSBlg" role="3EZMnx">
+        <ref role="PMmxG" node="3HBlKeoZHKf" resolve="FBTypeHeader" />
+        <node concept="ljvvj" id="23XkovVSBlh" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="PMmxH" id="23XkovVSBlo" role="3EZMnx">
+        <ref role="PMmxG" node="PI_pXYvaBz" resolve="FBTypeFooter" />
+      </node>
+      <node concept="18a60v" id="23XkovVSBlq" role="3EZMnx">
+        <node concept="VPM3Z" id="23XkovVSBlr" role="3F10Kt">
+          <property role="VOm3f" value="false" />
+        </node>
+        <node concept="ljvvj" id="23XkovVSBls" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="l2Vlx" id="23XkovVSBlt" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="23XkovWstge">
+    <property role="3GE5qa" value="fbtype.basic" />
+    <ref role="1XX52x" to="xiqq:23XkovWspjs" resolve="UnknownAlgorithmBody" />
+    <node concept="3F2HdR" id="23XkovWstgp" role="2wV5jI">
+      <ref role="1NtTu8" to="xiqq:23XkovWspTW" resolve="code" />
+      <node concept="2iRkQZ" id="23XkovWstgG" role="2czzBx" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="23XkovWstha">
+    <property role="3GE5qa" value="fbtype.basic" />
+    <ref role="1XX52x" to="xiqq:23XkovWspPm" resolve="CodeLine" />
+    <node concept="3F0A7n" id="23XkovWsthc" role="2wV5jI">
+      <ref role="1NtTu8" to="xiqq:23XkovWspPn" resolve="line" />
     </node>
   </node>
 </model>

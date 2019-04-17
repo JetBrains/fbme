@@ -25,6 +25,21 @@
         <child id="4435217627499935199" name="right" index="398zGL" />
         <child id="4435217627499935197" name="left" index="398zGN" />
       </concept>
+      <concept id="2377145822810428106" name="ST.structure.ByteType" flags="ng" index="3r5wdd" />
+      <concept id="2377145822810446367" name="ST.structure.DerivedType" flags="ng" index="3r5GIo">
+        <reference id="2377145822810764011" name="declaration" index="3r3idG" />
+      </concept>
+      <concept id="2377145822810446368" name="ST.structure.DataTypeDeclaration" flags="ng" index="3r5GIB">
+        <child id="2377145822810763976" name="spec" index="3r3idf" />
+      </concept>
+      <concept id="2377145822813873343" name="ST.structure.ArrayTypeSpec" flags="ng" index="3sSFkS">
+        <child id="2377145822813873344" name="baseType" index="3sSFl7" />
+        <child id="2377145822813873864" name="subranges" index="3sSFtf" />
+      </concept>
+      <concept id="2377145822813873263" name="ST.structure.Subrange" flags="ng" index="3sSFnC">
+        <child id="2377145822811274024" name="from" index="3r1mEJ" />
+        <child id="2377145822811274032" name="to" index="3r1mER" />
+      </concept>
       <concept id="8872717756041501703" name="ST.structure.IfStatement" flags="ng" index="1y1qnd">
         <child id="8872717756041501782" name="thenClause" index="1y1qms" />
         <child id="8872717756041501704" name="condition" index="1y1qn2" />
@@ -2347,9 +2362,6 @@
       <node concept="2zB9wT" id="3HBlKeoYZ2s" role="2zB7qv" />
     </node>
   </node>
-  <node concept="XJABO" id="75nMhMfUKXM">
-    <property role="TrG5h" value="XYZ" />
-  </node>
   <node concept="1N5Tt2" id="5VLuTnkolRw">
     <property role="TrG5h" value="Composite1" />
     <node concept="2zBDe_" id="5VLuTnkolRx" role="2zBDey">
@@ -3369,7 +3381,31 @@
     <property role="TrG5h" value="SegmentSampleType" />
     <node concept="2zBDeF" id="5s_pyghxHmu" role="16k51W">
       <property role="TrG5h" value="x" />
-      <node concept="2zB9wT" id="5s_pyghxHmy" role="2zB7qv" />
+      <node concept="3r5GIo" id="23XkovW6Wco" role="2zB7qv">
+        <ref role="3r3idG" node="23XkovVZ9hf" resolve="XYZ" />
+      </node>
+    </node>
+  </node>
+  <node concept="3r5GIB" id="23XkovVZ9hf">
+    <property role="TrG5h" value="XYZ" />
+    <node concept="3sSFkS" id="23XkovW96zf" role="3r3idf">
+      <node concept="3r5wdd" id="23XkovWbmLz" role="3sSFl7" />
+      <node concept="3sSFnC" id="23XkovW96zj" role="3sSFtf">
+        <node concept="2zAFuh" id="23XkovW96zl" role="3r1mEJ">
+          <property role="2zAFug" value="1" />
+        </node>
+        <node concept="2zAFuh" id="23XkovW96zn" role="3r1mER">
+          <property role="2zAFug" value="4" />
+        </node>
+      </node>
+      <node concept="3sSFnC" id="23XkovW96zu" role="3sSFtf">
+        <node concept="2zAFuh" id="23XkovW96zv" role="3r1mEJ">
+          <property role="2zAFug" value="1" />
+        </node>
+        <node concept="2zAFuh" id="23XkovW96zw" role="3r1mER">
+          <property role="2zAFug" value="4" />
+        </node>
+      </node>
     </node>
   </node>
 </model>

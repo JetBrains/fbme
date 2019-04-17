@@ -44,6 +44,8 @@ caseClause
 
 expression
     : literal                                               #constant
+    | ID '(' (params+=expression
+    ( ',' params+=expression)*)? ')'                        #functionCall
     | variable                                              #varExpression
     | '(' e=expression ')'                                  #parensExpression
     | op=('-'|'NOT') e=expression                           #unaryExpression
@@ -63,6 +65,7 @@ literal
     | OctInteger #oct
     | HexInteger #hex
     | String     #string
+    | WString    #wstring
     | Boolean    #boolean
     | BooleanBin #booleanBin
     ;
@@ -70,22 +73,23 @@ literal
 variable
     : ID                                                    #varReference
     | record=variable '.' ID                                #fieldSelctor
-    | array=variable '[' indices+=expression
-    (',' indices+=expression)* ']'                          #arraySelector
+    | subscripted=variable '[' subscrpits+=expression
+    (',' subscrpits+=expression)* ']'                       #arraySelector
     ;
 
-
-ID: [A-Za-z][A-Za-z_0-9]*;
 
 DecInteger:       Dec ('_'|Dec)*;
 BinInteger: '2#'  Bin ('_'|Bin)*;
 OctInteger: '8#'  Oct ('_'|Oct)*;
 HexInteger: '16#' Hex ('_'|Hex)*;
 
-String: '\'' (('$' [$'LNPRT] | '$' Hex Hex)| ~["\n\r\\])* '\'';
+String:  '\'' (('$' [$'LNPRT] | '$' Hex Hex)| ~["\n\r\\])* '\'';
+WString: '"'  (('$' [$"LNPRT] | '$' Hex Hex Hex Hex)| ~["\n\r\\])* '"';
 
 Boolean: 'TRUE'|'FALSE';
 BooleanBin: 'BOOL#'('1'|'0');
+
+ID: [A-Za-z][A-Za-z_0-9]*;
 
 fragment Dec: [0-9];
 fragment Bin: [0-1];
