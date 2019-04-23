@@ -468,7 +468,7 @@
         <node concept="29q25o" id="3HBlKeoZPLD" role="BGLLu">
           <property role="29q25t" value="FBType" />
           <node concept="29qyjW" id="3HBlKeoZPLH" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
@@ -1567,7 +1567,7 @@
         <node concept="29q25o" id="2ByE74koV2p" role="BGLLu">
           <property role="29q25t" value="AdapterType" />
           <node concept="29qyjW" id="2ByE74koV2q" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
@@ -1610,7 +1610,7 @@
         <node concept="29q25o" id="5s_pyghWIPl" role="BGLLu">
           <property role="29q25t" value="SubAppType" />
           <node concept="29qyjW" id="5s_pyghWIPm" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
@@ -1980,7 +1980,28 @@
     </node>
     <node concept="3rIKKV" id="5s_pyghYaPp" role="2pMbU3">
       <node concept="2pNNFK" id="5s_pyghYaPq" role="2pNm8H">
-        <property role="2pNNFO" value="ResourceType" />
+        <property role="2pNNFO" value="DeviceType" />
+        <node concept="2pNUuL" id="23XkovWECDV" role="2pNNFR">
+          <property role="2pNUuO" value="Name" />
+          <node concept="2pMdtt" id="23XkovWECNG" role="2pMdts">
+            <node concept="17Uvod" id="23XkovWECNI" role="lGtFl">
+              <property role="2qtEX9" value="text" />
+              <property role="P4ACc" value="479c7a8c-02f9-43b5-9139-d910cb22f298/6666499814681541919/6666499814681541920" />
+              <node concept="3zFVjK" id="23XkovWECNJ" role="3zH0cK">
+                <node concept="3clFbS" id="23XkovWECNK" role="2VODD2">
+                  <node concept="3clFbF" id="23XkovWED0z" role="3cqZAp">
+                    <node concept="2OqwBi" id="23XkovWEDfZ" role="3clFbG">
+                      <node concept="30H73N" id="23XkovWED0y" role="2Oq$k0" />
+                      <node concept="3TrcHB" id="23XkovWEDLS" role="2OqNvi">
+                        <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="2pNNFK" id="5s_pyghYaPr" role="3o6s8t">
           <property role="2pNNFO" value="Identification" />
           <property role="qg3DV" value="true" />
@@ -2067,7 +2088,7 @@
         <node concept="29q25o" id="5s_pyghYaPO" role="BGLLu">
           <property role="29q25t" value="DeviceType" />
           <node concept="29qyjW" id="5s_pyghYaPP" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
@@ -2165,6 +2186,27 @@
     <node concept="3rIKKV" id="5s_pyghXO4x" role="2pMbU3">
       <node concept="2pNNFK" id="5s_pyghXQX7" role="2pNm8H">
         <property role="2pNNFO" value="ResourceType" />
+        <node concept="2pNUuL" id="23XkovWE_VV" role="2pNNFR">
+          <property role="2pNUuO" value="Name" />
+          <node concept="2pMdtt" id="23XkovWE_VW" role="2pMdts">
+            <node concept="17Uvod" id="23XkovWEA4C" role="lGtFl">
+              <property role="2qtEX9" value="text" />
+              <property role="P4ACc" value="479c7a8c-02f9-43b5-9139-d910cb22f298/6666499814681541919/6666499814681541920" />
+              <node concept="3zFVjK" id="23XkovWEA4D" role="3zH0cK">
+                <node concept="3clFbS" id="23XkovWEA4E" role="2VODD2">
+                  <node concept="3clFbF" id="23XkovWEAht" role="3cqZAp">
+                    <node concept="2OqwBi" id="23XkovWEAwT" role="3clFbG">
+                      <node concept="30H73N" id="23XkovWEAhs" role="2Oq$k0" />
+                      <node concept="3TrcHB" id="23XkovWEB09" role="2OqNvi">
+                        <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="2pNNFK" id="5s_pyghY4E$" role="3o6s8t">
           <property role="2pNNFO" value="Identification" />
           <property role="qg3DV" value="true" />
@@ -2233,7 +2275,7 @@
         <node concept="29q25o" id="5s_pyghXQX0" role="BGLLu">
           <property role="29q25t" value="ResourceType" />
           <node concept="29qyjW" id="5s_pyghXQX1" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
@@ -2602,7 +2644,7 @@
         <node concept="29q25o" id="5s_pyghYW66" role="BGLLu">
           <property role="29q25t" value="SegmentType" />
           <node concept="29qyjW" id="5s_pyghYW67" role="29qyi3">
-            <property role="29qyi7" value="LibraryElement.dtd" />
+            <property role="29qyi7" value="http://www.holobloc.com/xml/LibraryElement.dtd" />
           </node>
         </node>
       </node>
