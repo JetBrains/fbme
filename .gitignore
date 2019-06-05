@@ -10,12 +10,14 @@
 .idea/workspace.xml
 .idea/shelf
 .idea/**/gradle.xml
-.idea/**/libraries
 
-**/classes_gen/*
-**/source_gen/*
-**/source_gen.caches/*
+classes_gen
+source_gen
+source_gen.caches
 
-**/build/
+solutions/iec61499.ide/startup.properties
 
-**/lib/
+build
+out
+
+lib
