@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/languages">
+      <sourceFolder url="file://$MODULE_DIR$/languages/ST/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/iec61499.meta.editor/generator/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/ST/generator/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/iec61499.meta.editor/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/iec61499/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/iec61499/generator/source_gen" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/solutions">
+      <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.ide/source_gen" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="com.mbeddr.platform" level="project" />
+    <orderEntry type="library" name="mps" level="project" />
+  </component>
+</module>

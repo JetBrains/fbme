@@ -1,0 +1,37 @@
+<component name="libraryTable">
+  <library name="com.mbeddr.platform">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.tooltips/languages/de.itemis.mps.tooltips" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.hacks/languages/de.slisson.mps.hacks" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.tooltips/languages/de.itemis.mps.tooltips" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.hacks/languages/de.slisson.mps.hacks" />
+      <root url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.tooltips/languages/de.itemis.mps.tooltips" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.hacks/languages/de.slisson.mps.hacks" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/com.mbeddr.mpsutil.editor.querylist/languages/group.editor.querylist" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/languages/de.itemis.mps.editor.diagram" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.editor.diagram/lib" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.grammarcells/languages/de.itemis.mps.grammarcells" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.itemis.mps.tooltips/languages/de.itemis.mps.tooltips" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.conditionalEditor/languages/de.slisson.mps.conditionalEditor" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/com.mbeddr.platform/de.slisson.mps.hacks/languages/de.slisson.mps.hacks" recursive="false" type="SOURCES" />
+  </library>
+</component>
