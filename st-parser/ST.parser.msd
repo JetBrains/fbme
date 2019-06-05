@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="ST.parser" uuid="1db6de07-b355-4c0f-9979-75b4ac1e8215" moduleVersion="0" compileInMPS="false">
+<solution name="ST.parser" uuid="1db6de07-b355-4c0f-9979-75b4ac1e8215" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="java_classes">
       <sourceRoot location="lib" />

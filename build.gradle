@@ -1,5 +1,5 @@
 ext.mpsMajor = "2018.3"
-ext.mpsMinor = "3"
+ext.mpsMinor = "6"
 ext.mbeddrBuildNumber = "1.2.+"
 
 buildscript {
@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'de.itemis.mps:mps-gradle-plugin:1.0.+'
+        classpath "de.itemis.mps:mps-gradle-plugin:1.2+"
     }
 }
 
@@ -28,11 +28,13 @@ repositories {
 
 configurations {
     mps
+    ant_lib
 }
 
 dependencies {
     mps "com.jetbrains:MPS:$mpsMajor.${mpsMinor}@zip"
     mps "com.mbeddr:platform:$mbeddrBuildNumber"
+    ant_lib "org.apache.ant:ant-junit:1.10.1"
 }
 
 task downloadDependencies(type: Copy) {
@@ -44,25 +46,52 @@ task downloadDependencies(type: Copy) {
     into 'lib'
 }
 
-task prepare() {
-    dependsOn downloadDependencies
-    dependsOn ':st-parser:prepare'
+import de.itemis.mps.gradle.*
+
+ext["itemis.mps.gradle.ant.defaultScriptClasspath"] = configurations.ant_lib.fileCollection { true }
+ext["itemis.mps.gradle.ant.defaultScriptArgs"] = ["-Dbasedir=."]
+
+task prepare(dependsOn: [downloadDependencies, ':st-parser:prepare'])
+
+task buildBootstrap(type: BuildLanguages, dependsOn: prepare) {
+    script 'build-bootstrap.xml'
 }
 
+task generate(type: RunAntScript, dependsOn: buildBootstrap) {
+    script 'build/build-plugin.xml'
+    targets 'generate'
+}
 
-if (file('buildPlugin.xml').exists()) {
-    ant.importBuild('buildPlugin.xml') { 'bp.' + it }
+task buildPlugin(type: BuildLanguages, dependsOn: buildBootstrap) {
+    script 'build/build-plugin.xml'
+}
 
-    tasks.'bp.fetchDependencies'.dependsOn 'prepare'
+task $buildRcp(type: BuildLanguages, dependsOn: buildPlugin) {
+    script 'build/build-rcp.xml'
+}
 
-    task buildPlugin() {
-        dependsOn 'bp.build'
+task copyStartupScripts(type: Copy, dependsOn: buildBootstrap) {
+    from 'solutions/iec61499.build/source_gen/iec61499/build'
+
+    include '*.bat'
+    include '*.sh'
+    include '*.vmoptions'
+    include 'Info.plist.xml'
+
+    into 'build/startup'
+}
+
+task buildRcp(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScripts]) {
+    script 'build/build-rcpdistrib.xml'
+    targets 'clean', 'build'
+}
+
+task clean(type: Delete, dependsOn: ':st-parser:clean') {
+    delete 'build'
+    delete 'lib'
+    delete fileTree('.').matching {
+        include '**/source_gen/**'
+        include '**/source_gen.caches/**'
+        include '**/classes_gen/**'
     }
-
-    task clean() {
-        dependsOn 'bp.clean'
-        dependsOn ':st-parser:clean'
-    }
-
-    defaultTasks 'buildPlugin'
 }
