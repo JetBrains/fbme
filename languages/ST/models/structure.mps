@@ -1078,5 +1078,22 @@
       <ref role="20lvS9" node="3HBlKeoZ0X9" resolve="Expression" />
     </node>
   </node>
+  <node concept="1TIwiD" id="3wAsKTk6T$W">
+    <property role="EcuMT" value="4046047820616800572" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="TimeLiteral" />
+    <property role="34LRSv" value="T#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="3wAsKTk6T$Y" role="1TKVEl">
+      <property role="IQ2nx" value="4046047820616800574" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" node="3wAsKTk6T$X" resolve="Duration" />
+    </node>
+  </node>
+  <node concept="Az7Fb" id="3wAsKTk6T$X">
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="Duration" />
+    <property role="FLfZY" value=".*" />
+  </node>
 </model>
 
