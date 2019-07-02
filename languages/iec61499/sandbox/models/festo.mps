@@ -9,7 +9,8 @@
   <imports />
   <registry>
     <language id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="ST">
-      <concept id="4280485643802103610" name="" flags="ng" index="2zB9wT" />
+      <concept id="4280485643802103610" name="ST.structure.BoolType" flags="ng" index="2zB9wT" />
+      <concept id="8872717756041500089" name="ST.structure.StatementList" flags="ng" index="1y1qLN" />
     </language>
     <language id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="iec61499">
       <concept id="4280485643802119831" name="iec61499.structure.StateDeclaration" flags="ng" index="2zAPAk">
@@ -30,10 +31,10 @@
       <concept id="4280485643801969830" name="iec61499.structure.EventDeclaration" flags="ng" index="2zBDe_">
         <child id="4280485643801969855" name="associatedVariables" index="2zBDeW" />
       </concept>
-      <concept id="4280485643801969832" name="iec61499.structure.VariableDeclaration" flags="ng" index="2zBDeF">
+      <concept id="4280485643801969832" name="iec61499.structure.ParameterDeclaration" flags="ng" index="2zBDeF">
         <child id="4280485643802059164" name="type" index="2zB7qv" />
       </concept>
-      <concept id="4280485643801969849" name="iec61499.structure.VariableAssociation" flags="ng" index="2zBDeU">
+      <concept id="4280485643801969849" name="iec61499.structure.ParameterAssociation" flags="ng" index="2zBDeU">
         <reference id="4280485643801969850" name="declaration" index="2zBDeT" />
       </concept>
       <concept id="4280485643801969857" name="iec61499.structure.BasicFBTypeDeclaration" flags="ng" index="2zBDf2">
@@ -56,7 +57,9 @@
         <child id="4280485643801969838" name="outputVariables" index="2zBDeH" />
       </concept>
       <concept id="3018159903918047621" name="iec61499.structure.AdapterTypeDeclaration" flags="ng" index="XJABO" />
-      <concept id="1794427914277800439" name="iec61499.structure.STAlgorithmBody" flags="ng" index="1tttXp" />
+      <concept id="1794427914277800439" name="iec61499.structure.STAlgorithmBody" flags="ng" index="1tttXp">
+        <child id="8872717756042118835" name="body" index="1y4NXT" />
+      </concept>
       <concept id="3589220129093680090" name="iec61499.structure.SocketDeclaration" flags="ng" index="3Iw0dE">
         <reference id="3589220129093680093" name="adapterType" index="3Iw0dH" />
       </concept>
@@ -475,11 +478,15 @@
     <property role="TrG5h" value="DSControl2" />
     <node concept="2zAPAp" id="2R0WzquVuxO" role="2zAPwS">
       <property role="TrG5h" value="PrepareArm" />
-      <node concept="1tttXp" id="2R0WzquVuxS" role="1toi31" />
+      <node concept="1tttXp" id="2R0WzquVuxS" role="1toi31">
+        <node concept="1y1qLN" id="7DSsXPFKRNw" role="1y4NXT" />
+      </node>
     </node>
     <node concept="2zAPAp" id="2R0WzquVuxV" role="2zAPwS">
       <property role="TrG5h" value="PrepareStack" />
-      <node concept="1tttXp" id="2R0WzquVuy1" role="1toi31" />
+      <node concept="1tttXp" id="2R0WzquVuy1" role="1toi31">
+        <node concept="1y1qLN" id="7DSsXPFKRNy" role="1y4NXT" />
+      </node>
     </node>
     <node concept="2zAPAq" id="G6ZN4N971g" role="2zAPxA">
       <ref role="2zAPx3" node="G6ZN4N970F" resolve="START" />

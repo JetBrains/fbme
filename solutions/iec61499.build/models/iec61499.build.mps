@@ -537,9 +537,19 @@
             <ref role="1Busuk" node="ahlxKSr1W7" resolve="ST" />
           </node>
         </node>
-        <node concept="1SiIV0" id="7DSsXPFG$xf" role="3bR37C">
-          <node concept="3bR9La" id="7DSsXPFG$xg" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:3HV74$ebibC" resolve="jetbrains.mps.lang.text" />
+        <node concept="1SiIV0" id="6q6uBQESPNS" role="3bR37C">
+          <node concept="3bR9La" id="6q6uBQESPNT" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6q6uBQESPNU" role="3bR37C">
+          <node concept="3bR9La" id="6q6uBQESPNV" role="1SiIV1">
+            <ref role="3bR37D" node="4sMntFAi3Db" resolve="iec61499.ide" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6q6uBQESPNW" role="3bR37C">
+          <node concept="3bR9La" id="6q6uBQESPNX" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
           </node>
         </node>
       </node>

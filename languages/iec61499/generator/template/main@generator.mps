@@ -146,6 +146,9 @@
         <child id="1199569916463" name="body" index="1bW5cS" />
       </concept>
     </language>
+    <language id="d7706f63-9be2-479c-a3da-ae92af1e64d5" name="jetbrains.mps.lang.generator.generationContext">
+      <concept id="1216860049635" name="jetbrains.mps.lang.generator.generationContext.structure.TemplateFunctionParameter_generationContext" flags="nn" index="1iwH7S" />
+    </language>
     <language id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel">
       <concept id="1177026924588" name="jetbrains.mps.lang.smodel.structure.RefConcept_Reference" flags="nn" index="chp4Y">
         <reference id="1177026940964" name="conceptDeclaration" index="cht4Q" />
@@ -826,6 +829,7 @@
                       <node concept="2YIFZM" id="7bQ9AP7_HN1" role="3clFbG">
                         <ref role="37wK5l" to="maoc:463hhTc_g0" resolve="print" />
                         <ref role="1Pybhc" to="maoc:463hhTc9vV" resolve="XmlAttributePrinter" />
+                        <node concept="1iwH7S" id="7DSsXPFBD0p" role="37wK5m" />
                         <node concept="2OqwBi" id="7bQ9AP7_IfJ" role="37wK5m">
                           <node concept="30H73N" id="7bQ9AP7_I24" role="2Oq$k0" />
                           <node concept="3TrEf2" id="7bQ9AP7_QNF" role="2OqNvi">
@@ -954,6 +958,7 @@
                   <node concept="2YIFZM" id="23XkovWbnS6" role="3clFbG">
                     <ref role="37wK5l" to="maoc:463hhTc_g0" resolve="print" />
                     <ref role="1Pybhc" to="maoc:463hhTc9vV" resolve="XmlAttributePrinter" />
+                    <node concept="1iwH7S" id="7DSsXPFBB$5" role="37wK5m" />
                     <node concept="2OqwBi" id="23XkovWbojv" role="37wK5m">
                       <node concept="30H73N" id="23XkovWbo5u" role="2Oq$k0" />
                       <node concept="3TrEf2" id="23XkovWboOw" role="2OqNvi">
@@ -2424,6 +2429,7 @@
                   <node concept="2YIFZM" id="7bQ9AP7_Ub2" role="3clFbG">
                     <ref role="37wK5l" to="maoc:463hhTc_g0" resolve="print" />
                     <ref role="1Pybhc" to="maoc:463hhTc9vV" resolve="XmlAttributePrinter" />
+                    <node concept="1iwH7S" id="7DSsXPFBAj6" role="37wK5m" />
                     <node concept="2OqwBi" id="7bQ9AP7_UAp" role="37wK5m">
                       <node concept="30H73N" id="7bQ9AP7_UpS" role="2Oq$k0" />
                       <node concept="3TrEf2" id="7bQ9AP7_VhJ" role="2OqNvi">
@@ -3123,6 +3129,7 @@
                   <node concept="2YIFZM" id="463hhTdKwB" role="3clFbG">
                     <ref role="37wK5l" to="maoc:463hhTc_g0" resolve="print" />
                     <ref role="1Pybhc" to="maoc:463hhTc9vV" resolve="XmlAttributePrinter" />
+                    <node concept="1iwH7S" id="7DSsXPFBAQB" role="37wK5m" />
                     <node concept="2OqwBi" id="463hhTdKwC" role="37wK5m">
                       <node concept="30H73N" id="463hhTdKwD" role="2Oq$k0" />
                       <node concept="3TrEf2" id="463hhTdKwE" role="2OqNvi">
