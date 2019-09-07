@@ -13,6 +13,7 @@
       <concept id="8872717756041500089" name="ST.structure.StatementList" flags="ng" index="1y1qLN" />
     </language>
     <language id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="iec61499">
+      <concept id="4304617121958142617" name="iec61499.structure.StraightConnectionPath" flags="ng" index="bR33I" />
       <concept id="4280485643802119831" name="iec61499.structure.StateDeclaration" flags="ng" index="2zAPAk">
         <child id="4280485643802119923" name="actions" index="2zAPBK" />
       </concept>
@@ -46,6 +47,7 @@
         <child id="3296901243641762237" name="event" index="2N3Qeb" />
       </concept>
       <concept id="5481506291238376594" name="iec61499.structure.Connection" flags="ng" index="2RhMLZ">
+        <child id="4304617121958732207" name="path" index="bPNfo" />
         <child id="5481506291238376648" name="destination" index="2RhMK_" />
         <child id="5481506291238376645" name="source" index="2RhMKC" />
       </concept>
@@ -57,6 +59,10 @@
         <child id="4280485643801969838" name="outputVariables" index="2zBDeH" />
       </concept>
       <concept id="3018159903918047621" name="iec61499.structure.AdapterTypeDeclaration" flags="ng" index="XJABO" />
+      <concept id="6049904230683977455" name="iec61499.structure.Position" flags="ng" index="10YbkR">
+        <property id="6049904230683977456" name="x" index="10YbkC" />
+        <property id="6049904230683977458" name="y" index="10YbkE" />
+      </concept>
       <concept id="1794427914277800439" name="iec61499.structure.STAlgorithmBody" flags="ng" index="1tttXp">
         <child id="8872717756042118835" name="body" index="1y4NXT" />
       </concept>
@@ -75,12 +81,15 @@
         <reference id="967875482185482524" name="declaration" index="1N5Pi3" />
         <reference id="967875482185482523" name="component" index="1N5Pi4" />
       </concept>
+      <concept id="967875482185433869" name="iec61499.structure.EventConnection" flags="ng" index="1N5Tqi" />
       <concept id="967875482185433822" name="iec61499.structure.FunctionBlockInstance" flags="ng" index="1N5Tt1">
         <reference id="967875482185433823" name="type" index="1N5Tt0" />
+        <child id="4304617121954520353" name="position" index="b_cXm" />
       </concept>
       <concept id="967875482185433821" name="iec61499.structure.CompositeFBTypeDeclaration" flags="ng" index="1N5Tt2" />
       <concept id="2693352324618654708" name="iec61499.structure.IWithFBNetwork" flags="ng" index="1QJEpv">
         <child id="3589220129094132063" name="adapterConnections" index="3IAhBJ" />
+        <child id="967875482185482537" name="eventConnections" index="1N5PiQ" />
         <child id="967875482185482529" name="functionBlocks" index="1N5PiY" />
       </concept>
       <concept id="8167217573768971186" name="iec61499.structure.ComponentEventDestination" flags="ng" index="3Yx0EI" />
@@ -311,40 +320,40 @@
       <node concept="37mRIm" id="G6ZN4N48Gi" role="37mRID">
         <property role="37mO49" value="794602971052673803" />
         <node concept="gqqVs" id="G6ZN4N48Gg" role="37mO4d">
-          <property role="gqqTZ" value="529.0" />
-          <property role="gqqTW" value="83.0" />
-          <property role="gqqTX" value="276.0" />
-          <property role="gqqTy" value="131.0" />
+          <property role="gqqTZ" value="88.00019836425781" />
+          <property role="gqqTW" value="12.0" />
+          <property role="gqqTX" value="274.0" />
+          <property role="gqqTy" value="134.64285714285717" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
       </node>
       <node concept="37mRIm" id="G6ZN4N48Gk" role="37mRID">
         <property role="37mO49" value="794602971052673805" />
         <node concept="gqqVs" id="G6ZN4N48Gj" role="37mO4d">
-          <property role="gqqTZ" value="160.0" />
-          <property role="gqqTW" value="83.0" />
-          <property role="gqqTX" value="316.0" />
-          <property role="gqqTy" value="148.0" />
+          <property role="gqqTZ" value="80.00019836425781" />
+          <property role="gqqTW" value="166.64285714285717" />
+          <property role="gqqTX" value="314.0" />
+          <property role="gqqTy" value="151.75" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
       </node>
       <node concept="37mRIm" id="G6ZN4N48Gm" role="37mRID">
         <property role="37mO49" value="794602971052673799" />
         <node concept="gqqVs" id="G6ZN4N48Gl" role="37mO4d">
-          <property role="gqqTZ" value="19.0" />
-          <property role="gqqTW" value="114.0" />
-          <property role="gqqTX" value="44.0" />
-          <property role="gqqTy" value="29.0" />
+          <property role="gqqTZ" value="12.000100000000003" />
+          <property role="gqqTW" value="179.89280714285718" />
+          <property role="gqqTX" value="42.0" />
+          <property role="gqqTy" value="27.0" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
       </node>
       <node concept="37mRIm" id="G6ZN4N48Go" role="37mRID">
         <property role="37mO49" value="794602971052673801" />
         <node concept="gqqVs" id="G6ZN4N48Gn" role="37mO4d">
-          <property role="gqqTZ" value="844.0" />
-          <property role="gqqTW" value="114.0" />
-          <property role="gqqTX" value="52.0" />
-          <property role="gqqTy" value="29.0" />
+          <property role="gqqTZ" value="12.000099999999975" />
+          <property role="gqqTW" value="12.0" />
+          <property role="gqqTX" value="50.0" />
+          <property role="gqqTy" value="27.0" />
           <property role="TgtnS" value="1.0;0.0;0.0;1.0;0.0;0.0" />
         </node>
       </node>
@@ -356,6 +365,16 @@
     <node concept="3IBQi5" id="G6ZN4N48Gd" role="3YHajr">
       <property role="TrG5h" value="ArmIO" />
       <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
+    </node>
+    <node concept="1N5Tqi" id="7qPnRGFpNOT" role="1N5PiQ">
+      <node concept="3YHqtX" id="7qPnRGFpNOR" role="2RhMKC">
+        <ref role="3Yz8TM" node="G6ZN4N48G7" resolve="INIT" />
+      </node>
+      <node concept="3Yx0EI" id="7qPnRGFpNOS" role="2RhMK_">
+        <ref role="1N5Pi4" node="G6ZN4N48Gd" resolve="ArmIO" />
+        <ref role="1N5Pi3" node="1rxLtFPnd4Y" resolve="IND" />
+      </node>
+      <node concept="bR33I" id="3IX4BsKsymY" role="bPNfo" />
     </node>
   </node>
   <node concept="1N5Tt2" id="G6ZN4N49KI">
@@ -448,10 +467,18 @@
     <node concept="1N5Tt1" id="G6ZN4N49KJ" role="1N5PiY">
       <property role="TrG5h" value="Model" />
       <ref role="1N5Tt0" node="G6ZN4MYPdv" resolve="Model" />
+      <node concept="10YbkR" id="3IX4BsKohuX" role="b_cXm">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="1N5Tt1" id="G6ZN4N49KL" role="1N5PiY">
       <property role="TrG5h" value="Control" />
       <ref role="1N5Tt0" node="G6ZN4N48G6" resolve="DSControl1" />
+      <node concept="10YbkR" id="3IX4BsKohuY" role="b_cXm">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="3IAhBk" id="G6ZN4N49L4" role="3IAhBJ">
       <node concept="3YV02_" id="G6ZN4N49L5" role="2RhMKC">
@@ -462,6 +489,7 @@
         <ref role="3YV9Vn" node="G6ZN4N49KJ" resolve="Model" />
         <ref role="3YV9Vh" node="G6ZN4MYPdC" resolve="StackIO" />
       </node>
+      <node concept="bR33I" id="3IX4BsKsymW" role="bPNfo" />
     </node>
     <node concept="3IAhBk" id="G6ZN4N49La" role="3IAhBJ">
       <node concept="3YV02_" id="G6ZN4N49Lb" role="2RhMKC">
@@ -472,6 +500,7 @@
         <ref role="3YV9Vn" node="G6ZN4N49KJ" resolve="Model" />
         <ref role="3YV9Vh" node="G6ZN4MYPdE" resolve="ArmIO" />
       </node>
+      <node concept="bR33I" id="3IX4BsKsymX" role="bPNfo" />
     </node>
   </node>
   <node concept="2zBDf2" id="G6ZN4N970E">
@@ -526,12 +555,6 @@
       <ref role="2zAPx1" node="G6ZN4N970Y" resolve="INIT" />
       <ref role="2zAPx3" node="2R0WzquVuxo" resolve="STACK" />
       <node concept="2EVYwv" id="2R0WzquVuxA" role="2zAZMv" />
-    </node>
-    <node concept="2zBDe_" id="G6ZN4N970N" role="2zBDew">
-      <property role="TrG5h" value="INITO" />
-    </node>
-    <node concept="2zBDe_" id="G6ZN4N970L" role="2zBDey">
-      <property role="TrG5h" value="INIT" />
     </node>
     <node concept="2zAPAk" id="G6ZN4N970F" role="2zAPwY">
       <property role="TrG5h" value="START" />
@@ -774,6 +797,12 @@
     <node concept="3IBQi5" id="G6ZN4N970I" role="3YHajr">
       <property role="TrG5h" value="ArmIO" />
       <ref role="3IBQi8" node="1rxLtFPnd3x" resolve="RotatingArmIO" />
+    </node>
+    <node concept="2zBDe_" id="G6ZN4N970L" role="2zBDey">
+      <property role="TrG5h" value="INIT" />
+    </node>
+    <node concept="2zBDe_" id="G6ZN4N970N" role="2zBDew">
+      <property role="TrG5h" value="INITO" />
     </node>
   </node>
 </model>

@@ -12,6 +12,7 @@
     </content>
     <content url="file://$MODULE_DIR$/solutions">
       <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.ide/source_gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.diagrams/source_gen" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

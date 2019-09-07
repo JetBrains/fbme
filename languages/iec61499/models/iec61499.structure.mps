@@ -7,7 +7,7 @@
   </languages>
   <imports>
     <import index="gpgy" ref="r:70ba2090-1a36-4ca3-87ef-116d9af7b3ac(ST.structure)" />
-    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
+    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
@@ -331,6 +331,13 @@
     <node concept="PrWs8" id="uLhTRQXviI" role="PzmwI">
       <ref role="PrY4T" node="uLhTRQXdkL" resolve="IComponentWithAdapters" />
     </node>
+    <node concept="1TJgyj" id="3IX4BsKatOx" role="1TKVEi">
+      <property role="IQ2ns" value="4304617121954520353" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="position" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
   </node>
   <node concept="1TIwiD" id="PI_pXYugcd">
     <property role="EcuMT" value="967875482185433869" />
@@ -450,6 +457,13 @@
       <property role="20kJfa" value="destination" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="4KieeRVlhj7" resolve="Destination" />
+    </node>
+    <node concept="1TJgyj" id="3IX4BsKqy6J" role="1TKVEi">
+      <property role="IQ2ns" value="4304617121958732207" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="path" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="3IX4BsKohXi" resolve="ConnectionPath" />
     </node>
   </node>
   <node concept="PlHQZ" id="4KieeRVlhj7">
@@ -1489,6 +1503,70 @@
       <property role="20kJfa" value="value" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" to="gpgy:2lwHqHjKhl9" resolve="Literal" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5fP$Xwj3irJ">
+    <property role="EcuMT" value="6049904230683977455" />
+    <property role="TrG5h" value="Position" />
+    <property role="3GE5qa" value="canvas" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="5fP$Xwj3irK" role="1TKVEl">
+      <property role="IQ2nx" value="6049904230683977456" />
+      <property role="TrG5h" value="x" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5fP$Xwj3irM" role="1TKVEl">
+      <property role="IQ2nx" value="6049904230683977458" />
+      <property role="TrG5h" value="y" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="3IX4BsKohXi">
+    <property role="EcuMT" value="4304617121958141778" />
+    <property role="TrG5h" value="ConnectionPath" />
+    <property role="R5$K7" value="true" />
+    <property role="3GE5qa" value="canvas" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+  </node>
+  <node concept="1TIwiD" id="3IX4BsKoiap">
+    <property role="EcuMT" value="4304617121958142617" />
+    <property role="3GE5qa" value="canvas" />
+    <property role="TrG5h" value="StraightConnectionPath" />
+    <property role="34LRSv" value="straight" />
+    <ref role="1TJDcQ" node="3IX4BsKohXi" resolve="ConnectionPath" />
+  </node>
+  <node concept="1TIwiD" id="3IX4BsKoibk">
+    <property role="EcuMT" value="4304617121958142676" />
+    <property role="3GE5qa" value="canvas" />
+    <property role="TrG5h" value="TwoAngleConnectionPath" />
+    <property role="34LRSv" value="two-angles" />
+    <ref role="1TJDcQ" node="3IX4BsKohXi" resolve="ConnectionPath" />
+    <node concept="1TJgyi" id="3IX4BsKoibI" role="1TKVEl">
+      <property role="IQ2nx" value="4304617121958142702" />
+      <property role="TrG5h" value="dx" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="3IX4BsKomat">
+    <property role="EcuMT" value="4304617121958159005" />
+    <property role="3GE5qa" value="canvas" />
+    <property role="TrG5h" value="FourAngleConncetionPath" />
+    <property role="34LRSv" value="four-angles" />
+    <ref role="1TJDcQ" node="3IX4BsKohXi" resolve="ConnectionPath" />
+    <node concept="1TJgyi" id="3IX4BsKomau" role="1TKVEl">
+      <property role="IQ2nx" value="4304617121958159006" />
+      <property role="TrG5h" value="dx1" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="3IX4BsKomaw" role="1TKVEl">
+      <property role="IQ2nx" value="4304617121958159008" />
+      <property role="TrG5h" value="dy" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="3IX4BsKomaz" role="1TKVEl">
+      <property role="IQ2nx" value="4304617121958159011" />
+      <property role="TrG5h" value="dx2" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
   </node>
 </model>

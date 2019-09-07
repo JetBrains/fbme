@@ -64,12 +64,50 @@
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" to="tpc2:fBF0icI" resolve="CellModel_Constant" />
     </node>
+    <node concept="PrWs8" id="4JFQCPiKlmh" role="PzmwI">
+      <ref role="PrY4T" to="tpck:64$4ecGX64Q" resolve="ImplementationWithStubPart" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="4JFQCPipsJs">
+    <property role="EcuMT" value="5470706472879246300" />
+    <property role="TrG5h" value="CellModel_CustomSyncronized" />
+    <property role="34LRSv" value="custom syncronized" />
+    <property role="R4oN_" value="reference to provider of syncronizeable cell" />
+    <ref role="1TJDcQ" to="tpc2:fGgc7fs" resolve="CellModel_Custom" />
+    <node concept="PrWs8" id="4JFQCPipsKR" role="PzmwI">
+      <ref role="PrY4T" to="tpc2:7ARneOGixdd" resolve="Synchronizeable" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="4JFQCPiKfs1">
+    <property role="EcuMT" value="5470706472885221121" />
+    <property role="TrG5h" value="CellModel_Syncronizer" />
+    <property role="34LRSv" value="syncronize" />
+    <property role="R4oN_" value="wrap &amp; syncronize a cell" />
+    <ref role="1TJDcQ" to="tpc2:fBEYTCT" resolve="EditorCellModel" />
+    <node concept="PrWs8" id="4JFQCPiKfs2" role="PzmwI">
+      <ref role="PrY4T" to="tpc2:7ARneOGixdd" resolve="Synchronizeable" />
+    </node>
+    <node concept="1TJgyj" id="4JFQCPiKkdP" role="1TKVEi">
+      <property role="IQ2ns" value="5470706472885240693" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="cellToSyncronize" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" to="tpc2:fBEYTCT" resolve="EditorCellModel" />
+    </node>
   </node>
   <node concept="1TIwiD" id="4s7KBSj$Shx">
     <property role="TrG5h" value="StubCellModel_BorderedRefNodeList" />
     <property role="EcuMT" value="5118273348279960673" />
     <ref role="1TJDcQ" node="4s7KBSjs5FZ" resolve="CellModel_BorderedRefNodeList" />
     <node concept="PrWs8" id="4s7KBSj$Shz" role="PzmwI">
+      <ref role="PrY4T" to="tpck:8AYOKVCAP5" resolve="IStubForAnotherConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="4JFQCPipsLW">
+    <property role="TrG5h" value="StubCellModel_CustomSyncronized" />
+    <property role="EcuMT" value="5470706472879246460" />
+    <ref role="1TJDcQ" node="4JFQCPipsJs" resolve="CellModel_CustomSyncronized" />
+    <node concept="PrWs8" id="4JFQCPipsLY" role="PzmwI">
       <ref role="PrY4T" to="tpck:8AYOKVCAP5" resolve="IStubForAnotherConcept" />
     </node>
   </node>

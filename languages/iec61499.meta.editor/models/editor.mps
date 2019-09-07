@@ -57,6 +57,7 @@
       <concept id="1214406454886" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorStyleClassItem" flags="ln" index="30gYXW" />
       <concept id="1214406466686" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorSelectedStyleClassItem" flags="ln" index="30h1P$" />
       <concept id="1233758997495" name="jetbrains.mps.lang.editor.structure.PunctuationLeftStyleClassItem" flags="ln" index="11L4FC" />
+      <concept id="1233759184865" name="jetbrains.mps.lang.editor.structure.PunctuationRightStyleClassItem" flags="ln" index="11LMrY" />
       <concept id="1165253627126" name="jetbrains.mps.lang.editor.structure.CellMenuPart_AbstractGroup" flags="ng" index="1exORT">
         <property id="1165254125954" name="presentation" index="1ezIyd" />
         <child id="1165253890469" name="parameterObjectType" index="1eyP2E" />
@@ -1050,14 +1051,105 @@
       <node concept="2iRkQZ" id="i2IxuOP" role="2iSdaV" />
     </node>
   </node>
+  <node concept="24kQdi" id="4JFQCPip_Ut">
+    <ref role="1XX52x" to="g3qn:4JFQCPipsJs" resolve="CellModel_CustomSyncronized" />
+    <node concept="3EZMnI" id="fIxFcfv" role="2wV5jI">
+      <ref role="1k5W1q" to="tpc5:i0pPgF8" resolve="rootCellModelStyle" />
+      <node concept="PMmxH" id="h7TNyJG" role="3EZMnx">
+        <ref role="PMmxG" to="tpc5:h7TMiuR" resolve="_OpenTag" />
+      </node>
+      <node concept="3F0ifn" id="h7YH7Ww" role="3EZMnx">
+        <property role="3F0ifm" value="syncronizeable custom cell" />
+      </node>
+      <node concept="PMmxH" id="h7TN$Ex" role="3EZMnx">
+        <ref role="PMmxG" to="tpc5:h7TMK$j" resolve="_CloseTag" />
+      </node>
+      <node concept="2iRfu4" id="i2IxuT6" role="2iSdaV" />
+    </node>
+    <node concept="3EZMnI" id="fIxGFmi" role="6VMZX">
+      <node concept="PMmxH" id="hEUjIXL" role="3EZMnx">
+        <ref role="PMmxG" to="tpc5:hEUgR_Z" resolve="Style_Component" />
+      </node>
+      <node concept="3F0ifn" id="hF4$x8V" role="3EZMnx">
+        <node concept="VPM3Z" id="hF4$yFk" role="3F10Kt">
+          <property role="VOm3f" value="false" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="fIxH7dN" role="3EZMnx">
+        <property role="3F0ifm" value="Custom cell:" />
+      </node>
+      <node concept="3EZMnI" id="hF4$qDk" role="3EZMnx">
+        <node concept="3EZMnI" id="h7YsR5r" role="3EZMnx">
+          <node concept="3F0ifn" id="h7YsRhG" role="3EZMnx">
+            <property role="3F0ifm" value="cell provider" />
+            <ref role="1k5W1q" to="tpc5:hF4H1c8" resolve="property" />
+          </node>
+          <node concept="3F1sOY" id="h7YsRBk" role="3EZMnx">
+            <ref role="1NtTu8" to="tpc2:h7YsKQL" resolve="cellProvider" />
+          </node>
+          <node concept="VPM3Z" id="hEU$PS$" role="3F10Kt">
+            <property role="VOm3f" value="false" />
+          </node>
+          <node concept="VPXOz" id="2jfAk2L98ep" role="3F10Kt">
+            <property role="VOm3f" value="true" />
+          </node>
+          <node concept="2iRfu4" id="i2IxuQz" role="2iSdaV" />
+        </node>
+        <node concept="VPXOz" id="hF4$uMw" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+        <node concept="2EHx9g" id="i2IxuQk" role="2iSdaV" />
+      </node>
+      <node concept="VPM3Z" id="hEU$PME" role="3F10Kt">
+        <property role="VOm3f" value="false" />
+      </node>
+      <node concept="2iRkQZ" id="i2IxuNs" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="4JFQCPiKkeg">
+    <ref role="1XX52x" to="g3qn:4JFQCPiKfs1" resolve="CellModel_Syncronizer" />
+    <node concept="3EZMnI" id="4JFQCPiKkel" role="2wV5jI">
+      <node concept="PMmxH" id="4JFQCPiKkes" role="3EZMnx">
+        <ref role="PMmxG" to="tpco:2wZex4PafBj" resolve="alias" />
+      </node>
+      <node concept="3F0ifn" id="4JFQCPiKkeJ" role="3EZMnx">
+        <property role="3F0ifm" value="[" />
+        <node concept="11L4FC" id="4JFQCPiKkeZ" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+        <node concept="11LMrY" id="4JFQCPiKkf4" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="4JFQCPiKkex" role="3EZMnx">
+        <ref role="1NtTu8" to="g3qn:4JFQCPiKkdP" resolve="cellToSyncronize" />
+      </node>
+      <node concept="3F0ifn" id="4JFQCPiKkeT" role="3EZMnx">
+        <property role="3F0ifm" value="]" />
+        <node concept="11L4FC" id="4JFQCPiKkfa" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="2iRfu4" id="4JFQCPiKkeo" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="3p36aQ" id="4s7KBSj$ShA">
+    <ref role="aqKnT" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
+  </node>
   <node concept="24kQdi" id="4s7KBSj$Sh$">
     <ref role="1XX52x" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
     <node concept="PMmxH" id="4s7KBSj$Sh_" role="2wV5jI">
       <ref role="PMmxG" to="tpco:37EzmTDC95l" resolve="ImplementationRemovedInStubMessage" />
     </node>
   </node>
-  <node concept="3p36aQ" id="4s7KBSj$ShA">
-    <ref role="aqKnT" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
+  <node concept="3p36aQ" id="4JFQCPipsM1">
+    <ref role="aqKnT" to="g3qn:4JFQCPipsLW" resolve="StubCellModel_CustomSyncronized" />
+  </node>
+  <node concept="24kQdi" id="4JFQCPipsLZ">
+    <ref role="1XX52x" to="g3qn:4JFQCPipsLW" resolve="StubCellModel_CustomSyncronized" />
+    <node concept="PMmxH" id="4JFQCPipsM0" role="2wV5jI">
+      <ref role="PMmxG" to="tpco:37EzmTDC95l" resolve="ImplementationRemovedInStubMessage" />
+    </node>
   </node>
 </model>
 

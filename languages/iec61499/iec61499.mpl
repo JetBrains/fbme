@@ -65,6 +65,7 @@
     <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(iec61499.ide)</dependency>
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">3f233e7f-b8a6-46d2-a57f-795d56775243(Annotations)</dependency>
+    <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.diagrams)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:120e1c9d-4e27-4478-b2af-b2c3bd3850b0:com.mbeddr.mpsutil.editor.querylist" version="0" />
@@ -133,6 +134,7 @@
     <module reference="0022e9df-2136-4ef8-81b2-08650aeb1dc7(de.itemis.mps.tooltips.runtime)" version="0" />
     <module reference="f0fff802-6d26-4d2e-b89d-391357265626(de.slisson.mps.hacks.editor)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(iec61499)" version="1" />
+    <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.diagrams)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(iec61499.ide)" version="0" />
     <module reference="27bcdded-bf6e-42ec-b246-aa147c171ade(iec61499@transient121)" version="0" />
     <module reference="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" version="0" />
