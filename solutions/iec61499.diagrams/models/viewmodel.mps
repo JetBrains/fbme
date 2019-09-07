@@ -14,6 +14,7 @@
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
     <import index="kty4" ref="r:5e1cd7b8-f328-464d-9e2d-285cc1ce6935(iec61499.diagrams.viewmodel.fbnetwork)" />
+    <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -142,6 +143,21 @@
         <node concept="3uibUv" id="7qPnRGFlp_6" role="11_B2D">
           <ref role="3uigEE" node="1HEL0zVYNQq" resolve="DiagramConnectionView" />
           <node concept="16syzq" id="6$FGuy5wr2A" role="11_B2D">
+            <ref role="16sUi3" node="6$FGuy5wqW3" resolve="P" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="13N5a7yAtaO" role="jymVt" />
+    <node concept="3clFb_" id="13N5a7yAtx4" role="jymVt">
+      <property role="TrG5h" value="getActions" />
+      <node concept="3clFbS" id="13N5a7yAtx7" role="3clF47" />
+      <node concept="3Tm1VV" id="13N5a7yAtx8" role="1B3o_S" />
+      <node concept="3uibUv" id="13N5a7yAtqM" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="13N5a7yAtum" role="11_B2D">
+          <ref role="3uigEE" node="13N5a7yAkgu" resolve="DiagramCompletionAction" />
+          <node concept="16syzq" id="13N5a7yAtwd" role="11_B2D">
             <ref role="16sUi3" node="6$FGuy5wqW3" resolve="P" />
           </node>
         </node>
@@ -285,6 +301,61 @@
       <node concept="2JFqV2" id="309fsJ6aYjs" role="2frcjj" />
     </node>
     <node concept="3Tm1VV" id="309fsJ6aYiS" role="1B3o_S" />
+  </node>
+  <node concept="3HP615" id="13N5a7yAkgu">
+    <property role="TrG5h" value="DiagramCompletionAction" />
+    <node concept="2tJIrI" id="13N5a7yAkh4" role="jymVt" />
+    <node concept="3clFb_" id="13N5a7yAt5n" role="jymVt">
+      <property role="TrG5h" value="getDiagram" />
+      <node concept="3clFbS" id="13N5a7yAt5q" role="3clF47" />
+      <node concept="3Tm1VV" id="13N5a7yAt5r" role="1B3o_S" />
+      <node concept="3uibUv" id="13N5a7yAt4Q" role="3clF45">
+        <ref role="3uigEE" node="1HEL0zVYNHd" resolve="DiagramView" />
+        <node concept="16syzq" id="13N5a7yAt8n" role="11_B2D">
+          <ref role="16sUi3" node="13N5a7yAsSK" resolve="P" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="13N5a7yAsMI" role="jymVt" />
+    <node concept="3clFb_" id="13N5a7yAs_h" role="jymVt">
+      <property role="TrG5h" value="getMatchingText" />
+      <node concept="3clFbS" id="13N5a7yAs_k" role="3clF47" />
+      <node concept="3Tm1VV" id="13N5a7yAs_l" role="1B3o_S" />
+      <node concept="3uibUv" id="13N5a7yAs_6" role="3clF45">
+        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="13N5a7yAs_I" role="jymVt" />
+    <node concept="3clFb_" id="13N5a7yAsBc" role="jymVt">
+      <property role="TrG5h" value="getDescriptionText" />
+      <node concept="3clFbS" id="13N5a7yAsBf" role="3clF47" />
+      <node concept="3Tm1VV" id="13N5a7yAsBg" role="1B3o_S" />
+      <node concept="3uibUv" id="13N5a7yAsAQ" role="3clF45">
+        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="13N5a7yAsBP" role="jymVt" />
+    <node concept="3clFb_" id="13N5a7yAsDK" role="jymVt">
+      <property role="TrG5h" value="invoke" />
+      <node concept="37vLTG" id="13N5a7yAsF4" role="3clF46">
+        <property role="TrG5h" value="x" />
+        <node concept="10Oyi0" id="13N5a7yAsGp" role="1tU5fm" />
+      </node>
+      <node concept="37vLTG" id="13N5a7yAsIO" role="3clF46">
+        <property role="TrG5h" value="y" />
+        <node concept="10Oyi0" id="13N5a7yAsKd" role="1tU5fm" />
+      </node>
+      <node concept="3clFbS" id="13N5a7yAsDN" role="3clF47" />
+      <node concept="3Tm1VV" id="13N5a7yAsDO" role="1B3o_S" />
+      <node concept="3cqZAl" id="13N5a7yAsDe" role="3clF45" />
+    </node>
+    <node concept="3Tm1VV" id="13N5a7yAkgv" role="1B3o_S" />
+    <node concept="16euLQ" id="13N5a7yAsSK" role="16eVyc">
+      <property role="TrG5h" value="P" />
+      <node concept="3uibUv" id="13N5a7yAt40" role="3ztrMU">
+        <ref role="3uigEE" node="1HEL0zVYNIi" resolve="PortIdentity" />
+      </node>
+    </node>
   </node>
 </model>
 
