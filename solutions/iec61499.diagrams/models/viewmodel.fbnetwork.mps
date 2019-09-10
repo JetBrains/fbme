@@ -887,6 +887,54 @@
           </node>
         </node>
         <node concept="3clFbH" id="7qPnRGGmtwM" role="3cqZAp" />
+        <node concept="3clFbF" id="7qPnRGGmqld" role="3cqZAp">
+          <node concept="2YIFZM" id="4ZaR9mNlrIC" role="3clFbG">
+            <ref role="37wK5l" node="7qPnRGGmjBO" resolve="generatePorts" />
+            <ref role="1Pybhc" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
+            <node concept="37vLTw" id="7qPnRGGmqlf" role="37wK5m">
+              <ref role="3cqZAo" node="7qPnRGGlXru" resolve="result" />
+            </node>
+            <node concept="Xjq3P" id="7qPnRGGmqlg" role="37wK5m" />
+            <node concept="2OqwBi" id="7qPnRGGmrwe" role="37wK5m">
+              <node concept="1rXfSq" id="7qPnRGGpkaa" role="2Oq$k0">
+                <ref role="37wK5l" to="9xi2:1HEL0zVYKgq" resolve="getEventInputPorts" />
+              </node>
+              <node concept="liA8E" id="7qPnRGGmrwi" role="2OqNvi">
+                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+              </node>
+            </node>
+            <node concept="Rm8GO" id="7qPnRGGmrwj" role="37wK5m">
+              <ref role="1Px2BO" node="2R0WzquZm0W" resolve="EntryKind" />
+              <ref role="Rm8GQ" node="2R0WzquZm2Y" resolve="EVENT" />
+            </node>
+            <node concept="3clFbT" id="7qPnRGGmrwk" role="37wK5m" />
+          </node>
+        </node>
+        <node concept="3clFbF" id="7qPnRGGmqEw" role="3cqZAp">
+          <node concept="2YIFZM" id="4ZaR9mNlrID" role="3clFbG">
+            <ref role="37wK5l" node="7qPnRGGmjBO" resolve="generatePorts" />
+            <ref role="1Pybhc" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
+            <node concept="37vLTw" id="7qPnRGGmqEy" role="37wK5m">
+              <ref role="3cqZAo" node="7qPnRGGlXru" resolve="result" />
+            </node>
+            <node concept="Xjq3P" id="7qPnRGGmqEz" role="37wK5m" />
+            <node concept="2OqwBi" id="7qPnRGGmshL" role="37wK5m">
+              <node concept="1rXfSq" id="7qPnRGGpkBq" role="2Oq$k0">
+                <ref role="37wK5l" to="9xi2:1HEL0zVYKjD" resolve="getEventOutputPorts" />
+              </node>
+              <node concept="liA8E" id="7qPnRGGmshP" role="2OqNvi">
+                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+              </node>
+            </node>
+            <node concept="Rm8GO" id="7qPnRGGmshQ" role="37wK5m">
+              <ref role="1Px2BO" node="2R0WzquZm0W" resolve="EntryKind" />
+              <ref role="Rm8GQ" node="2R0WzquZm2Y" resolve="EVENT" />
+            </node>
+            <node concept="3clFbT" id="7qPnRGGmshR" role="37wK5m">
+              <property role="3clFbU" value="true" />
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="7qPnRGGmmaT" role="3cqZAp">
           <node concept="2YIFZM" id="4ZaR9mNlrIA" role="3clFbG">
             <ref role="37wK5l" node="7qPnRGGmjBO" resolve="generatePorts" />
@@ -935,50 +983,50 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbF" id="7qPnRGGmqld" role="3cqZAp">
-          <node concept="2YIFZM" id="4ZaR9mNlrIC" role="3clFbG">
+        <node concept="3clFbF" id="6LU90BNTcOz" role="3cqZAp">
+          <node concept="2YIFZM" id="6LU90BNTcO$" role="3clFbG">
             <ref role="37wK5l" node="7qPnRGGmjBO" resolve="generatePorts" />
             <ref role="1Pybhc" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
-            <node concept="37vLTw" id="7qPnRGGmqlf" role="37wK5m">
+            <node concept="37vLTw" id="6LU90BNTcO_" role="37wK5m">
               <ref role="3cqZAo" node="7qPnRGGlXru" resolve="result" />
             </node>
-            <node concept="Xjq3P" id="7qPnRGGmqlg" role="37wK5m" />
-            <node concept="2OqwBi" id="7qPnRGGmrwe" role="37wK5m">
-              <node concept="1rXfSq" id="7qPnRGGpkaa" role="2Oq$k0">
-                <ref role="37wK5l" to="9xi2:1HEL0zVYKgq" resolve="getEventInputPorts" />
-              </node>
-              <node concept="liA8E" id="7qPnRGGmrwi" role="2OqNvi">
+            <node concept="Xjq3P" id="6LU90BNTcOA" role="37wK5m" />
+            <node concept="2OqwBi" id="6LU90BNTcOB" role="37wK5m">
+              <node concept="liA8E" id="6LU90BNTcOC" role="2OqNvi">
                 <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
               </node>
+              <node concept="1rXfSq" id="6LU90BNTcOD" role="2Oq$k0">
+                <ref role="37wK5l" to="9xi2:6LU90BNRs9B" resolve="getSocketPorts" />
+              </node>
             </node>
-            <node concept="Rm8GO" id="7qPnRGGmrwj" role="37wK5m">
+            <node concept="Rm8GO" id="6LU90BNTgEv" role="37wK5m">
+              <ref role="Rm8GQ" node="2R0WzquZm6t" resolve="ADAPTER" />
               <ref role="1Px2BO" node="2R0WzquZm0W" resolve="EntryKind" />
-              <ref role="Rm8GQ" node="2R0WzquZm2Y" resolve="EVENT" />
             </node>
-            <node concept="3clFbT" id="7qPnRGGmrwk" role="37wK5m" />
+            <node concept="3clFbT" id="6LU90BNTcOF" role="37wK5m" />
           </node>
         </node>
-        <node concept="3clFbF" id="7qPnRGGmqEw" role="3cqZAp">
-          <node concept="2YIFZM" id="4ZaR9mNlrID" role="3clFbG">
+        <node concept="3clFbF" id="6LU90BNTeDc" role="3cqZAp">
+          <node concept="2YIFZM" id="6LU90BNTeDd" role="3clFbG">
             <ref role="37wK5l" node="7qPnRGGmjBO" resolve="generatePorts" />
             <ref role="1Pybhc" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
-            <node concept="37vLTw" id="7qPnRGGmqEy" role="37wK5m">
+            <node concept="37vLTw" id="6LU90BNTeDe" role="37wK5m">
               <ref role="3cqZAo" node="7qPnRGGlXru" resolve="result" />
             </node>
-            <node concept="Xjq3P" id="7qPnRGGmqEz" role="37wK5m" />
-            <node concept="2OqwBi" id="7qPnRGGmshL" role="37wK5m">
-              <node concept="1rXfSq" id="7qPnRGGpkBq" role="2Oq$k0">
-                <ref role="37wK5l" to="9xi2:1HEL0zVYKjD" resolve="getEventOutputPorts" />
+            <node concept="Xjq3P" id="6LU90BNTeDf" role="37wK5m" />
+            <node concept="2OqwBi" id="6LU90BNTeDg" role="37wK5m">
+              <node concept="1rXfSq" id="6LU90BNTeDh" role="2Oq$k0">
+                <ref role="37wK5l" to="9xi2:6LU90BNRs9H" resolve="getPlugPorts" />
               </node>
-              <node concept="liA8E" id="7qPnRGGmshP" role="2OqNvi">
+              <node concept="liA8E" id="6LU90BNTeDi" role="2OqNvi">
                 <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
               </node>
             </node>
-            <node concept="Rm8GO" id="7qPnRGGmshQ" role="37wK5m">
+            <node concept="Rm8GO" id="6LU90BNTgQT" role="37wK5m">
+              <ref role="Rm8GQ" node="2R0WzquZm6t" resolve="ADAPTER" />
               <ref role="1Px2BO" node="2R0WzquZm0W" resolve="EntryKind" />
-              <ref role="Rm8GQ" node="2R0WzquZm2Y" resolve="EVENT" />
             </node>
-            <node concept="3clFbT" id="7qPnRGGmshR" role="37wK5m">
+            <node concept="3clFbT" id="6LU90BNTeDk" role="37wK5m">
               <property role="3clFbU" value="true" />
             </node>
           </node>

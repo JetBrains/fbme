@@ -925,7 +925,25 @@
     <property role="3GE5qa" value="adapter" />
     <ref role="13h7C2" to="xiqq:37fub3vk1KP" resolve="PlugDeclaration" />
     <node concept="13hLZK" id="5L1OxDuoomQ" role="13h7CW">
-      <node concept="3clFbS" id="5L1OxDuoomR" role="2VODD2" />
+      <node concept="3clFbS" id="5L1OxDuoomR" role="2VODD2">
+        <node concept="3clFbF" id="6LU90BOcjjC" role="3cqZAp">
+          <node concept="37vLTI" id="6LU90BOcjjD" role="3clFbG">
+            <node concept="2ShNRf" id="6LU90BOcjjE" role="37vLTx">
+              <node concept="3zrR0B" id="6LU90BOcjjF" role="2ShVmc">
+                <node concept="3Tqbb2" id="6LU90BOcjjG" role="3zrR0E">
+                  <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="6LU90BOcjjH" role="37vLTJ">
+              <node concept="13iPFW" id="6LU90BOcjjI" role="2Oq$k0" />
+              <node concept="3TrEf2" id="6LU90BOcjjJ" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6LU90BOchbE" resolve="position" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
     <node concept="13i0hz" id="5L1OxDuoon0" role="13h7CS">
       <property role="TrG5h" value="eventSources" />
@@ -1116,7 +1134,25 @@
       </node>
     </node>
     <node concept="13hLZK" id="5L1OxDuosf7" role="13h7CW">
-      <node concept="3clFbS" id="5L1OxDuosf8" role="2VODD2" />
+      <node concept="3clFbS" id="5L1OxDuosf8" role="2VODD2">
+        <node concept="3clFbF" id="6LU90BOcpYG" role="3cqZAp">
+          <node concept="37vLTI" id="6LU90BOcrhY" role="3clFbG">
+            <node concept="2ShNRf" id="6LU90BOcrmx" role="37vLTx">
+              <node concept="3zrR0B" id="6LU90BOcrmv" role="2ShVmc">
+                <node concept="3Tqbb2" id="6LU90BOcrmw" role="3zrR0E">
+                  <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="6LU90BOcq82" role="37vLTJ">
+              <node concept="13iPFW" id="6LU90BOcpYF" role="2Oq$k0" />
+              <node concept="3TrEf2" id="6LU90BOcqMG" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6LU90BOcpSo" resolve="position" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
   </node>
   <node concept="13h7C7" id="2lwHqHjRVNg">

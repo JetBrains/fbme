@@ -191,6 +191,30 @@
         </node>
       </node>
     </node>
+    <node concept="2tJIrI" id="6LU90BNRs8C" role="jymVt" />
+    <node concept="3clFb_" id="6LU90BNRs9B" role="jymVt">
+      <property role="TrG5h" value="getSocketPorts" />
+      <node concept="3clFbS" id="6LU90BNRs9C" role="3clF47" />
+      <node concept="3Tm1VV" id="6LU90BNRs9D" role="1B3o_S" />
+      <node concept="3uibUv" id="6LU90BNRs9E" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="6LU90BNRs9F" role="11_B2D">
+          <ref role="3uigEE" node="1HEL0zWehtJ" resolve="FBPortView" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="6LU90BNRs9G" role="jymVt" />
+    <node concept="3clFb_" id="6LU90BNRs9H" role="jymVt">
+      <property role="TrG5h" value="getPlugPorts" />
+      <node concept="3clFbS" id="6LU90BNRs9I" role="3clF47" />
+      <node concept="3Tm1VV" id="6LU90BNRs9J" role="1B3o_S" />
+      <node concept="3uibUv" id="6LU90BNRs9K" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="6LU90BNRs9L" role="11_B2D">
+          <ref role="3uigEE" node="1HEL0zWehtJ" resolve="FBPortView" />
+        </node>
+      </node>
+    </node>
     <node concept="2tJIrI" id="1HEL0zVYNbK" role="jymVt" />
     <node concept="3clFb_" id="1HEL0zVYRNg" role="jymVt">
       <property role="TrG5h" value="getTypeName" />
