@@ -67,6 +67,9 @@
       </concept>
       <concept id="1186414860679" name="jetbrains.mps.lang.editor.structure.EditableStyleClassItem" flags="ln" index="VPxyj" />
       <concept id="1186414928363" name="jetbrains.mps.lang.editor.structure.SelectableStyleSheetItem" flags="ln" index="VPM3Z" />
+      <concept id="1186414999511" name="jetbrains.mps.lang.editor.structure.UnderlinedStyleClassItem" flags="ln" index="VQ3r3">
+        <property id="1214316229833" name="underlined" index="2USNnj" />
+      </concept>
       <concept id="1630016958697344083" name="jetbrains.mps.lang.editor.structure.IMenu_Concept" flags="ng" index="2ZABuq">
         <reference id="6591946374543067572" name="conceptDeclaration" index="aqKnT" />
       </concept>
@@ -592,6 +595,19 @@
           <property role="Vbekb" value="PLAIN" />
         </node>
       </node>
+    </node>
+    <node concept="14StLt" id="6LU90BQ6WR$" role="V601i">
+      <property role="TrG5h" value="DeclarationBlockHeader" />
+      <node concept="VechU" id="6LU90BQ6WRU" role="3F10Kt">
+        <property role="Vb096" value="DARK_GREEN" />
+      </node>
+      <node concept="VQ3r3" id="6LU90BQ6WS0" role="3F10Kt">
+        <property role="2USNnj" value="2" />
+      </node>
+      <node concept="Vb9p2" id="6LU90BQ6WS8" role="3F10Kt">
+        <property role="Vbekb" value="BOLD_ITALIC" />
+      </node>
+      <node concept="VPM3Z" id="6LU90BQ6WSu" role="3F10Kt" />
     </node>
     <node concept="14StLt" id="7GyesCpx4MI" role="V601i">
       <property role="TrG5h" value="Operational" />
