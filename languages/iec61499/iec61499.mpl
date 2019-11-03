@@ -65,8 +65,7 @@
     <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(iec61499.ide)</dependency>
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">3f233e7f-b8a6-46d2-a57f-795d56775243(Annotations)</dependency>
-    <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.diagrams)</dependency>
-    <dependency reexport="false">b387285c-3448-452c-b3bb-a3f8de8eaf08(JDK-tools)</dependency>
+    <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.scenes)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:120e1c9d-4e27-4478-b2af-b2c3bd3850b0:com.mbeddr.mpsutil.editor.querylist" version="0" />
@@ -120,13 +119,13 @@
   <dependencyVersions>
     <module reference="3f233e7f-b8a6-46d2-a57f-795d56775243(Annotations)" version="0" />
     <module reference="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" version="0" />
-    <module reference="b387285c-3448-452c-b3bb-a3f8de8eaf08(JDK-tools)" version="0" />
     <module reference="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" version="0" />
     <module reference="1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)" version="0" />
     <module reference="498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)" version="0" />
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(ST)" version="0" />
+    <module reference="3ba695ad-c19d-4f3c-925b-fe4a54a16367(TempModule3ba695ad-c19d-4f3c-925b-fe4a54a16367)" version="0" />
     <module reference="848ef45d-e560-4e35-853c-f35a64cc135c(de.itemis.mps.editor.celllayout.runtime)" version="0" />
     <module reference="24c96a96-b7a1-4f30-82da-0f8e279a2661(de.itemis.mps.editor.celllayout.styles)" version="0" />
     <module reference="7b45fa94-2707-4a1a-9e6a-ce40c4aaf35a(de.itemis.mps.editor.collapsible.runtime)" version="0" />
@@ -136,8 +135,8 @@
     <module reference="0022e9df-2136-4ef8-81b2-08650aeb1dc7(de.itemis.mps.tooltips.runtime)" version="0" />
     <module reference="f0fff802-6d26-4d2e-b89d-391357265626(de.slisson.mps.hacks.editor)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(iec61499)" version="1" />
-    <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.diagrams)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(iec61499.ide)" version="0" />
+    <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(iec61499.scenes)" version="0" />
     <module reference="27bcdded-bf6e-42ec-b246-aa147c171ade(iec61499@transient121)" version="0" />
     <module reference="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />

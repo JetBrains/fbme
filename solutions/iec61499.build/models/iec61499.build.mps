@@ -4,10 +4,7 @@
   <languages>
     <use id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build" version="0" />
     <use id="0cf935df-4699-4e9c-a132-fa109541cba3" name="jetbrains.mps.build.mps" version="7" />
-    <use id="9ded098b-ad6a-4657-bfd9-48636cfe8bc3" name="jetbrains.mps.lang.traceable" version="0" />
-    <use id="479c7a8c-02f9-43b5-9139-d910cb22f298" name="jetbrains.mps.core.xml" version="0" />
     <use id="d5033cee-f632-44b6-b308-89d4fbde34ff" name="jetbrains.mps.build.startup" version="0" />
-    <use id="0edf22a4-42bc-4e5d-954f-06aaaf51df00" name="jetbrains.mps.lang.makeup" version="0" />
   </languages>
   <imports>
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
@@ -337,7 +334,7 @@
             <ref role="L2wRA" node="4sMntFAi3Db" resolve="iec61499.ide" />
           </node>
           <node concept="L2wRC" id="7qPnRGGeAci" role="39821P">
-            <ref role="L2wRA" node="7qPnRGGeA5o" resolve="iec61499.diagrams" />
+            <ref role="L2wRA" node="7qPnRGGeA5o" resolve="iec61499.scenes" />
           </node>
           <node concept="L2wRC" id="7ok1qOtZaNW" role="39821P">
             <ref role="L2wRA" node="68dTcycFmtF" resolve="iec61499.meta.editor" />
@@ -553,12 +550,17 @@
         </node>
         <node concept="1SiIV0" id="7qPnRGGeAab" role="3bR37C">
           <node concept="3bR9La" id="7qPnRGGeAac" role="1SiIV1">
-            <ref role="3bR37D" node="7qPnRGGeA5o" resolve="iec61499.diagrams" />
+            <ref role="3bR37D" node="7qPnRGGeA5o" resolve="iec61499.scenes" />
           </node>
         </node>
         <node concept="1SiIV0" id="7qPnRGGeAb7" role="3bR37C">
           <node concept="3bR9La" id="7qPnRGGeAb8" role="1SiIV1">
             <ref role="3bR37D" node="4sMntFAi3Db" resolve="iec61499.ide" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5jb5jNBNNra" role="3bR37C">
+          <node concept="3bR9La" id="5jb5jNBNNrb" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:3405ypXZilV" resolve="JDK-tools" />
           </node>
         </node>
       </node>
@@ -708,7 +710,7 @@
       </node>
       <node concept="1E1JtA" id="7qPnRGGeA5o" role="2G$12L">
         <property role="BnDLt" value="true" />
-        <property role="TrG5h" value="iec61499.diagrams" />
+        <property role="TrG5h" value="iec61499.scenes" />
         <property role="3LESm3" value="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9" />
         <node concept="3rtmxn" id="7qPnRGGeA5p" role="3bR31x">
           <node concept="3LXTmp" id="7qPnRGGeA5q" role="3rtmxm">
@@ -747,9 +749,9 @@
           <node concept="2Ry0Ak" id="7qPnRGGeA5B" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
             <node concept="2Ry0Ak" id="7qPnRGGeA5C" role="2Ry0An">
-              <property role="2Ry0Am" value="iec61499.diagrams" />
-              <node concept="2Ry0Ak" id="7qPnRGGeAa1" role="2Ry0An">
-                <property role="2Ry0Am" value="iec61499.diagrams.msd" />
+              <property role="2Ry0Am" value="iec61499.scenes" />
+              <node concept="2Ry0Ak" id="5jb5jNBNNr0" role="2Ry0An">
+                <property role="2Ry0Am" value="iec61499.scenes.msd" />
               </node>
             </node>
           </node>

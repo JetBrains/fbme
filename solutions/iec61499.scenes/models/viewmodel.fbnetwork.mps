@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:5e1cd7b8-f328-464d-9e2d-285cc1ce6935(iec61499.diagrams.viewmodel.fbnetwork)">
+<model ref="r:5e1cd7b8-f328-464d-9e2d-285cc1ce6935(iec61499.scenes.viewmodel.fbnetwork)">
   <persistence version="9" />
   <languages>
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="8" />
@@ -7,11 +7,11 @@
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="hyqd" ref="r:01ce234a-ce36-43f1-8a99-7cbd899f1013(iec61499.diagrams.viewmodel)" />
+    <import index="hyqd" ref="r:01ce234a-ce36-43f1-8a99-7cbd899f1013(iec61499.scenes.viewmodel)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="9xi2" ref="r:19255904-d250-4b16-8c45-b1789b1f48b0(iec61499.diagrams.viewmodel.interfacepart)" />
+    <import index="9xi2" ref="r:19255904-d250-4b16-8c45-b1789b1f48b0(iec61499.scenes.viewmodel.interfacepart)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
   </imports>
   <registry>
@@ -190,7 +190,6 @@
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
-      <concept id="1146644641414" name="jetbrains.mps.baseLanguage.structure.ProtectedVisibility" flags="nn" index="3Tmbuc" />
       <concept id="1178893518978" name="jetbrains.mps.baseLanguage.structure.ThisConstructorInvocation" flags="nn" index="1VxSAg" />
     </language>
     <language id="fdcdc48f-bfd8-4831-aa76-5abac2ffa010" name="jetbrains.mps.baseLanguage.jdk8">
@@ -208,12 +207,6 @@
   <node concept="3HP615" id="4ZaR9mNlnNn">
     <property role="TrG5h" value="FBNetworkConnectionView" />
     <node concept="3Tm1VV" id="4ZaR9mNlnNo" role="1B3o_S" />
-    <node concept="3uibUv" id="4ZaR9mNlqtg" role="3HQHJm">
-      <ref role="3uigEE" to="hyqd:1HEL0zVYNQq" resolve="DiagramConnectionView" />
-      <node concept="3uibUv" id="6$FGuy5wmFs" role="11_B2D">
-        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
-      </node>
-    </node>
     <node concept="2tJIrI" id="6$FGuy5wmDO" role="jymVt" />
     <node concept="3clFb_" id="1HEL0zVYR2t" role="jymVt">
       <property role="TrG5h" value="isTemplate" />
@@ -243,7 +236,51 @@
         </node>
       </node>
     </node>
-    <node concept="2tJIrI" id="6$FGuy5wmLZ" role="jymVt" />
+    <node concept="2tJIrI" id="4y$DvIW7x80" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIW7xbI" role="jymVt">
+      <property role="TrG5h" value="getSourcePort" />
+      <node concept="3clFbS" id="4y$DvIW7xbL" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIW7xbM" role="1B3o_S" />
+      <node concept="3uibUv" id="4y$DvIW7xaJ" role="3clF45">
+        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIW7xdm" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIW7xgx" role="jymVt">
+      <property role="TrG5h" value="setSourcePort" />
+      <node concept="3clFbS" id="4y$DvIW7xg$" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIW7xg_" role="1B3o_S" />
+      <node concept="3cqZAl" id="4y$DvIW7xfn" role="3clF45" />
+      <node concept="37vLTG" id="4y$DvIW7xjf" role="3clF46">
+        <property role="TrG5h" value="port" />
+        <node concept="3uibUv" id="4y$DvIW7xje" role="1tU5fm">
+          <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIW7xzz" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIW7xlq" role="jymVt">
+      <property role="TrG5h" value="getTargetPort" />
+      <node concept="3clFbS" id="4y$DvIW7xlr" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIW7xls" role="1B3o_S" />
+      <node concept="3uibUv" id="4y$DvIW7xlt" role="3clF45">
+        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIW7xlp" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIW7xlj" role="jymVt">
+      <property role="TrG5h" value="setTargetPort" />
+      <node concept="3clFbS" id="4y$DvIW7xlk" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIW7xll" role="1B3o_S" />
+      <node concept="3cqZAl" id="4y$DvIW7xlm" role="3clF45" />
+      <node concept="37vLTG" id="4y$DvIW7xln" role="3clF46">
+        <property role="TrG5h" value="port" />
+        <node concept="3uibUv" id="4y$DvIW7xlo" role="1tU5fm">
+          <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIW7xZE" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGFNgg3" role="jymVt">
       <property role="TrG5h" value="getKind" />
       <node concept="3clFbS" id="7qPnRGFNgg6" role="3clF47" />
@@ -251,6 +288,13 @@
       <node concept="3uibUv" id="7qPnRGFNu3z" role="3clF45">
         <ref role="3uigEE" node="2R0WzquZm0W" resolve="EntryKind" />
       </node>
+    </node>
+    <node concept="2tJIrI" id="6$FGuy5wmLZ" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIW7y4w" role="jymVt">
+      <property role="TrG5h" value="remove" />
+      <node concept="3clFbS" id="4y$DvIW7y4z" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIW7y4$" role="1B3o_S" />
+      <node concept="3cqZAl" id="4y$DvIW7y2E" role="3clF45" />
     </node>
   </node>
   <node concept="312cEu" id="7qPnRGGbtqv">
@@ -281,7 +325,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="7qPnRGGm7_n" role="1B3o_S" />
       <node concept="3uibUv" id="7qPnRGGm8hB" role="1tU5fm">
-        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockInstanceView" />
+        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstanceView" />
       </node>
     </node>
     <node concept="2tJIrI" id="7qPnRGGbFQt" role="jymVt" />
@@ -333,7 +377,7 @@
       <node concept="37vLTG" id="7qPnRGGm6_W" role="3clF46">
         <property role="TrG5h" value="view" />
         <node concept="3uibUv" id="7qPnRGGm6PF" role="1tU5fm">
-          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockInstanceView" />
+          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstanceView" />
         </node>
       </node>
       <node concept="37vLTG" id="7qPnRGGbPYW" role="3clF46">
@@ -356,7 +400,7 @@
       <property role="TrG5h" value="getComponent" />
       <node concept="3Tm1VV" id="7qPnRGGck4p" role="1B3o_S" />
       <node concept="3uibUv" id="6$FGuy5rFwE" role="3clF45">
-        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockInstanceView" />
+        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstanceView" />
       </node>
       <node concept="3clFbS" id="7qPnRGGck4r" role="3clF47">
         <node concept="3clFbF" id="7qPnRGGcl6W" role="3cqZAp">
@@ -693,7 +737,7 @@
                   <ref role="3cqZAo" node="7qPnRGGmjBS" resolve="result" />
                 </node>
                 <node concept="liA8E" id="7qPnRGGmjC7" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~List.add(java.lang.Object):boolean" resolve="add" />
+                  <ref role="37wK5l" to="33ny:~Set.add(java.lang.Object):boolean" resolve="add" />
                   <node concept="2ShNRf" id="7qPnRGGmjC8" role="37wK5m">
                     <node concept="1pGfFk" id="7qPnRGGmjC9" role="2ShVmc">
                       <ref role="37wK5l" node="7qPnRGGbPYP" resolve="FBInstancePortIdentity" />
@@ -741,7 +785,7 @@
       <node concept="37vLTG" id="7qPnRGGmjBS" role="3clF46">
         <property role="TrG5h" value="result" />
         <node concept="3uibUv" id="7qPnRGGmjBT" role="1tU5fm">
-          <ref role="3uigEE" to="33ny:~List" resolve="List" />
+          <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
           <node concept="3uibUv" id="6$FGuy5wqcM" role="11_B2D">
             <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
           </node>
@@ -750,7 +794,7 @@
       <node concept="37vLTG" id="7qPnRGGmkkO" role="3clF46">
         <property role="TrG5h" value="view" />
         <node concept="3uibUv" id="7qPnRGGmkuD" role="1tU5fm">
-          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockInstanceView" />
+          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstanceView" />
         </node>
       </node>
       <node concept="37vLTG" id="7qPnRGGmjBV" role="3clF46">
@@ -774,7 +818,7 @@
     </node>
   </node>
   <node concept="3HP615" id="7qPnRGGlWfX">
-    <property role="TrG5h" value="FunctionBlockInstanceView" />
+    <property role="TrG5h" value="FBInstanceView" />
     <node concept="2tJIrI" id="7qPnRGGlWlO" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlWnJ" role="jymVt">
       <property role="TrG5h" value="getInstanceName" />
@@ -809,26 +853,14 @@
       <node concept="10P_77" id="2_D_3xXugqo" role="3clF45" />
       <node concept="2JFqV2" id="309fsJ6bu7f" role="2frcjj" />
     </node>
-    <node concept="2tJIrI" id="2_D_3xXureW" role="jymVt" />
-    <node concept="3clFb_" id="2_D_3xXurtj" role="jymVt">
-      <property role="TrG5h" value="moveable" />
-      <node concept="3Tm1VV" id="2_D_3xXurtl" role="1B3o_S" />
-      <node concept="10P_77" id="2_D_3xXurtm" role="3clF45" />
-      <node concept="3clFbS" id="2_D_3xXurtn" role="3clF47">
-        <node concept="3clFbF" id="2_D_3xXurNe" role="3cqZAp">
-          <node concept="3fqX7Q" id="2_D_3xXurNc" role="3clFbG">
-            <node concept="1rXfSq" id="2_D_3xXurXk" role="3fr31v">
-              <ref role="37wK5l" node="2_D_3xXugBi" resolve="isPrototype" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="2JFqV2" id="2_D_3xXurto" role="2frcjj" />
-      <node concept="2AHcQZ" id="2_D_3xXurtp" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-    </node>
     <node concept="2tJIrI" id="309fsJ6buFF" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIXoEou" role="jymVt">
+      <property role="TrG5h" value="getX" />
+      <node concept="3clFbS" id="4y$DvIXoEox" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIXoEoy" role="1B3o_S" />
+      <node concept="10Oyi0" id="4y$DvIXoGdY" role="3clF45" />
+    </node>
+    <node concept="2tJIrI" id="4y$DvIXoDLR" role="jymVt" />
     <node concept="3clFb_" id="309fsJ6buVo" role="jymVt">
       <property role="TrG5h" value="setX" />
       <node concept="3Tm1VV" id="309fsJ6buVq" role="1B3o_S" />
@@ -838,9 +870,13 @@
         <node concept="10Oyi0" id="309fsJ6buVt" role="1tU5fm" />
       </node>
       <node concept="3clFbS" id="309fsJ6buVv" role="3clF47" />
-      <node concept="2AHcQZ" id="309fsJ6buVx" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIXoEGi" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIXoFl9" role="jymVt">
+      <property role="TrG5h" value="getY" />
+      <node concept="3clFbS" id="4y$DvIXoFlc" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIXoFld" role="1B3o_S" />
+      <node concept="10Oyi0" id="4y$DvIXoGi0" role="3clF45" />
     </node>
     <node concept="2tJIrI" id="309fsJ6bw0T" role="jymVt" />
     <node concept="3clFb_" id="309fsJ6buV_" role="jymVt">
@@ -852,16 +888,13 @@
         <node concept="10Oyi0" id="309fsJ6buVE" role="1tU5fm" />
       </node>
       <node concept="3clFbS" id="309fsJ6buVG" role="3clF47" />
-      <node concept="2AHcQZ" id="309fsJ6buVI" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
     </node>
     <node concept="2tJIrI" id="2_D_3xXurg6" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlXro" role="jymVt">
       <property role="TrG5h" value="getPorts" />
       <node concept="3Tm1VV" id="7qPnRGGlXrp" role="1B3o_S" />
       <node concept="3uibUv" id="7qPnRGGlXrq" role="3clF45">
-        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
         <node concept="3uibUv" id="6$FGuy5wolO" role="11_B2D">
           <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
         </node>
@@ -871,14 +904,14 @@
           <node concept="3cpWsn" id="7qPnRGGlXru" role="3cpWs9">
             <property role="TrG5h" value="result" />
             <node concept="3uibUv" id="7qPnRGGlXrv" role="1tU5fm">
-              <ref role="3uigEE" to="33ny:~List" resolve="List" />
+              <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
               <node concept="3uibUv" id="6$FGuy5woIY" role="11_B2D">
                 <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
               </node>
             </node>
             <node concept="2ShNRf" id="7qPnRGGlXrx" role="33vP2m">
               <node concept="1pGfFk" id="7qPnRGGlXry" role="2ShVmc">
-                <ref role="37wK5l" to="33ny:~ArrayList.&lt;init&gt;()" resolve="ArrayList" />
+                <ref role="37wK5l" to="33ny:~HashSet.&lt;init&gt;()" resolve="HashSet" />
                 <node concept="3uibUv" id="6$FGuy5wp8S" role="1pMfVU">
                   <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
                 </node>
@@ -1038,23 +1071,17 @@
           </node>
         </node>
       </node>
-      <node concept="2AHcQZ" id="7qPnRGGlXsg" role="2AJF6D">
+      <node concept="2JFqV2" id="7qPnRGGlXsh" role="2frcjj" />
+      <node concept="2AHcQZ" id="4O0ojQq0Qgi" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
-      <node concept="2JFqV2" id="7qPnRGGlXsh" role="2frcjj" />
     </node>
     <node concept="3Tm1VV" id="7qPnRGGlWfY" role="1B3o_S" />
-    <node concept="3uibUv" id="7qPnRGGlWVX" role="3HQHJm">
-      <ref role="3uigEE" to="hyqd:1HEL0zVYNFT" resolve="DiagramComponentView" />
-      <node concept="3uibUv" id="6$FGuy5wnZq" role="11_B2D">
-        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
-      </node>
-    </node>
-    <node concept="3uibUv" id="7qPnRGGphZp" role="3HQHJm">
+    <node concept="3uibUv" id="4O0ojQq0lHQ" role="3HQHJm">
       <ref role="3uigEE" to="9xi2:1HEL0zVYBFE" resolve="FunctionBlockView" />
     </node>
-    <node concept="3uibUv" id="309fsJ6btRf" role="3HQHJm">
-      <ref role="3uigEE" to="hyqd:309fsJ6aYiR" resolve="Moveable" />
+    <node concept="3uibUv" id="4O0ojQq0PvS" role="3HQHJm">
+      <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
     </node>
   </node>
   <node concept="Qs71p" id="2R0WzquZm0W">
@@ -1127,67 +1154,14 @@
   </node>
   <node concept="3HP615" id="6tmlia_XI2H">
     <property role="TrG5h" value="InterfaceEndpointView" />
-    <node concept="2tJIrI" id="6tmlia_XIHq" role="jymVt" />
-    <node concept="3clFb_" id="6tmlia_XIKc" role="jymVt">
-      <property role="TrG5h" value="isSource" />
-      <node concept="3clFbS" id="6tmlia_XIKf" role="3clF47" />
-      <node concept="3Tm1VV" id="6tmlia_XIKg" role="1B3o_S" />
-      <node concept="10P_77" id="6tmlia_XIK1" role="3clF45" />
-    </node>
-    <node concept="2tJIrI" id="6tmlia_XJPP" role="jymVt" />
-    <node concept="3clFb_" id="6tmlia_XJUZ" role="jymVt">
-      <property role="TrG5h" value="getKind" />
-      <node concept="3clFbS" id="6tmlia_XJV2" role="3clF47" />
-      <node concept="3Tm1VV" id="6tmlia_XJV3" role="1B3o_S" />
-      <node concept="3uibUv" id="6tmlia_XJSJ" role="3clF45">
-        <ref role="3uigEE" node="2R0WzquZm0W" resolve="EntryKind" />
-      </node>
-    </node>
-    <node concept="2tJIrI" id="6tmlia_XIKE" role="jymVt" />
-    <node concept="3clFb_" id="6tmlia_XILd" role="jymVt">
-      <property role="TrG5h" value="getX" />
-      <node concept="3Tm1VV" id="6tmlia_XILf" role="1B3o_S" />
-      <node concept="10Oyi0" id="6tmlia_XILg" role="3clF45" />
-      <node concept="3clFbS" id="6tmlia_XILh" role="3clF47">
-        <node concept="3clFbF" id="6tmlia_XIQh" role="3cqZAp">
-          <node concept="3K4zz7" id="6tmliaAiLSF" role="3clFbG">
-            <node concept="3cmrfG" id="6tmliaAiLXS" role="3K4E3e">
-              <property role="3cmrfH" value="0" />
-            </node>
-            <node concept="3cmrfG" id="6tmliaAiM1L" role="3K4GZi">
-              <property role="3cmrfH" value="5000" />
-            </node>
-            <node concept="1rXfSq" id="6tmlia_XIQg" role="3K4Cdx">
-              <ref role="37wK5l" node="6tmlia_XIKc" resolve="isSource" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="2JFqV2" id="6tmlia_XILi" role="2frcjj" />
-      <node concept="2AHcQZ" id="6tmlia_XILj" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
+    <node concept="2tJIrI" id="4y$DvIXqQyU" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIXqMCJ" role="jymVt">
+      <property role="TrG5h" value="getPosition" />
+      <node concept="3clFbS" id="4y$DvIXqMCM" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIXqMCN" role="1B3o_S" />
+      <node concept="10Oyi0" id="4y$DvIXqMwj" role="3clF45" />
     </node>
     <node concept="2tJIrI" id="6tmlia_XNrJ" role="jymVt" />
-    <node concept="3clFb_" id="6tmlia_XNDM" role="jymVt">
-      <property role="TrG5h" value="getIntefacePort" />
-      <node concept="3clFbS" id="6tmlia_XNDP" role="3clF47">
-        <node concept="3clFbF" id="6tmlia_Y7fv" role="3cqZAp">
-          <node concept="2ShNRf" id="6tmlia_Y7ft" role="3clFbG">
-            <node concept="1pGfFk" id="6tmlia_Y83C" role="2ShVmc">
-              <ref role="37wK5l" node="4ZaR9mNmjGX" resolve="InterfaceEndpointView.InterfacePort" />
-              <node concept="Xjq3P" id="6tmlia_Y87p" role="37wK5m" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="3Tm1VV" id="6tmlia_XNDQ" role="1B3o_S" />
-      <node concept="3uibUv" id="6tmlia_XNzi" role="3clF45">
-        <ref role="3uigEE" node="4ZaR9mNmgnE" resolve="InterfaceEndpointView.InterfacePort" />
-      </node>
-      <node concept="2JFqV2" id="6tmlia_Y79l" role="2frcjj" />
-    </node>
-    <node concept="2tJIrI" id="6tmlia_XRTp" role="jymVt" />
     <node concept="3clFb_" id="6tmlia_XSf0" role="jymVt">
       <property role="TrG5h" value="getName" />
       <node concept="3clFbS" id="6tmlia_XSf3" role="3clF47" />
@@ -1201,22 +1175,20 @@
       <property role="TrG5h" value="getPorts" />
       <node concept="3Tm1VV" id="6tmlia_XOcS" role="1B3o_S" />
       <node concept="3uibUv" id="6tmlia_XOcT" role="3clF45">
-        <ref role="3uigEE" to="33ny:~List" resolve="List" />
-        <node concept="3uibUv" id="6$FGuy5CsVU" role="11_B2D">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="3uibUv" id="4O0ojQq0RFH" role="11_B2D">
           <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
         </node>
       </node>
       <node concept="3clFbS" id="6tmlia_XOcV" role="3clF47">
         <node concept="3clFbF" id="6tmlia_XOoV" role="3cqZAp">
-          <node concept="2YIFZM" id="6tmlia_XOw8" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~Collections.singletonList(java.lang.Object):java.util.List" resolve="singletonList" />
+          <node concept="2YIFZM" id="4O0ojQq1b_v" role="3clFbG">
+            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object):java.util.Set" resolve="singleton" />
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
-            <node concept="1rXfSq" id="6tmlia_XO$k" role="37wK5m">
-              <ref role="37wK5l" node="6tmlia_XNDM" resolve="getIntefacePort" />
-            </node>
-            <node concept="3uibUv" id="6$FGuy5Ctax" role="3PaCim">
+            <node concept="3uibUv" id="4O0ojQq1bY2" role="3PaCim">
               <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
             </node>
+            <node concept="Xjq3P" id="4y$DvIVWpvr" role="37wK5m" />
           </node>
         </node>
       </node>
@@ -1226,219 +1198,42 @@
       </node>
     </node>
     <node concept="2tJIrI" id="6tmlia_XL9N" role="jymVt" />
-    <node concept="312cEu" id="4ZaR9mNmgnE" role="jymVt">
-      <property role="TrG5h" value="InterfacePort" />
-      <property role="2bfB8j" value="true" />
-      <node concept="3Tm1VV" id="4ZaR9mNmjcs" role="1B3o_S" />
-      <node concept="3uibUv" id="5FPxgJnzdBZ" role="EKbjA">
-        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+    <node concept="3clFb_" id="4y$DvIVWrwj" role="jymVt">
+      <property role="TrG5h" value="getComponent" />
+      <node concept="3Tm1VV" id="4y$DvIVWrwl" role="1B3o_S" />
+      <node concept="3uibUv" id="4y$DvIVWrwm" role="3clF45">
+        <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
       </node>
-      <node concept="312cEg" id="6tmlia_XLJi" role="jymVt">
-        <property role="TrG5h" value="myComponent" />
-        <property role="3TUv4t" value="true" />
-        <node concept="3Tm6S6" id="6tmlia_XLpX" role="1B3o_S" />
-        <node concept="3uibUv" id="6tmlia_XLGV" role="1tU5fm">
-          <ref role="3uigEE" node="6tmlia_XI2H" resolve="InterfaceEndpointView" />
+      <node concept="3clFbS" id="4y$DvIVWrwo" role="3clF47">
+        <node concept="3clFbF" id="4y$DvIVWrPu" role="3cqZAp">
+          <node concept="Xjq3P" id="4y$DvIVWrPr" role="3clFbG" />
         </node>
       </node>
-      <node concept="2tJIrI" id="6tmlia_XLMK" role="jymVt" />
-      <node concept="3clFbW" id="4ZaR9mNmjGX" role="jymVt">
-        <node concept="3cqZAl" id="4ZaR9mNmjGY" role="3clF45" />
-        <node concept="3clFbS" id="4ZaR9mNmjH0" role="3clF47">
-          <node concept="3clFbF" id="6tmlia_XLZ2" role="3cqZAp">
-            <node concept="37vLTI" id="6tmlia_XN03" role="3clFbG">
-              <node concept="37vLTw" id="6tmlia_XNdz" role="37vLTx">
-                <ref role="3cqZAo" node="6tmlia_XLlj" resolve="component" />
-              </node>
-              <node concept="37vLTw" id="6tmlia_XLZ1" role="37vLTJ">
-                <ref role="3cqZAo" node="6tmlia_XLJi" resolve="myComponent" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3Tmbuc" id="6tmlia_XLhs" role="1B3o_S" />
-        <node concept="37vLTG" id="6tmlia_XLlj" role="3clF46">
-          <property role="TrG5h" value="component" />
-          <node concept="3uibUv" id="6tmlia_XLli" role="1tU5fm">
-            <ref role="3uigEE" node="6tmlia_XI2H" resolve="InterfaceEndpointView" />
-          </node>
-        </node>
-      </node>
-      <node concept="2tJIrI" id="6$FGuy5mVxl" role="jymVt" />
-      <node concept="3clFb_" id="6$FGuy5mVRG" role="jymVt">
-        <property role="TrG5h" value="isSource" />
-        <node concept="3Tm1VV" id="6$FGuy5mVRI" role="1B3o_S" />
-        <node concept="10P_77" id="6$FGuy5mVRJ" role="3clF45" />
-        <node concept="3clFbS" id="6$FGuy5mVRK" role="3clF47">
-          <node concept="3clFbF" id="6$FGuy5n0q0" role="3cqZAp">
-            <node concept="2OqwBi" id="6$FGuy5n0Nh" role="3clFbG">
-              <node concept="37vLTw" id="6$FGuy5n0pX" role="2Oq$k0">
-                <ref role="3cqZAo" node="6tmlia_XLJi" resolve="myComponent" />
-              </node>
-              <node concept="liA8E" id="6$FGuy5n4bg" role="2OqNvi">
-                <ref role="37wK5l" node="6tmlia_XIKc" resolve="isSource" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="2AHcQZ" id="6$FGuy5mVRL" role="2AJF6D">
-          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-        </node>
-      </node>
-      <node concept="2tJIrI" id="6$FGuy5n4gJ" role="jymVt" />
-      <node concept="3clFb_" id="6$FGuy5mVRO" role="jymVt">
-        <property role="TrG5h" value="getKind" />
-        <node concept="3Tm1VV" id="6$FGuy5mVRQ" role="1B3o_S" />
-        <node concept="3uibUv" id="6$FGuy5mVRR" role="3clF45">
-          <ref role="3uigEE" node="2R0WzquZm0W" resolve="EntryKind" />
-        </node>
-        <node concept="3clFbS" id="6$FGuy5mVRS" role="3clF47">
-          <node concept="3clFbF" id="6$FGuy5mWsK" role="3cqZAp">
-            <node concept="2OqwBi" id="6$FGuy5mWNY" role="3clFbG">
-              <node concept="37vLTw" id="6$FGuy5mWsJ" role="2Oq$k0">
-                <ref role="3cqZAo" node="6tmlia_XLJi" resolve="myComponent" />
-              </node>
-              <node concept="liA8E" id="6$FGuy5n0bJ" role="2OqNvi">
-                <ref role="37wK5l" node="6tmlia_XJUZ" resolve="getKind" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="2AHcQZ" id="6$FGuy5mVRT" role="2AJF6D">
-          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-        </node>
-      </node>
-      <node concept="2tJIrI" id="6$FGuy5n4CK" role="jymVt" />
-      <node concept="3clFb_" id="4ZaR9mNmgUN" role="jymVt">
-        <property role="TrG5h" value="getComponent" />
-        <node concept="3Tm1VV" id="4ZaR9mNmgUP" role="1B3o_S" />
-        <node concept="3uibUv" id="6tmlia_Y7sn" role="3clF45">
-          <ref role="3uigEE" node="6tmlia_XI2H" resolve="InterfaceEndpointView" />
-        </node>
-        <node concept="3clFbS" id="4ZaR9mNmgUR" role="3clF47">
-          <node concept="3clFbF" id="6tmlia_XNok" role="3cqZAp">
-            <node concept="37vLTw" id="6tmlia_XNoh" role="3clFbG">
-              <ref role="3cqZAo" node="6tmlia_XLJi" resolve="myComponent" />
-            </node>
-          </node>
-        </node>
-        <node concept="2AHcQZ" id="4ZaR9mNmgUS" role="2AJF6D">
-          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-        </node>
-      </node>
-      <node concept="2tJIrI" id="6tmliaA6eD8" role="jymVt" />
-      <node concept="3clFb_" id="6tmliaA6eMb" role="jymVt">
-        <property role="TrG5h" value="equals" />
-        <node concept="10P_77" id="6tmliaA6eMc" role="3clF45" />
-        <node concept="3Tm1VV" id="6tmliaA6eMd" role="1B3o_S" />
-        <node concept="3clFbS" id="6tmliaA6eMe" role="3clF47">
-          <node concept="3clFbJ" id="6tmliaA6eMf" role="3cqZAp">
-            <node concept="3clFbS" id="6tmliaA6eMg" role="3clFbx">
-              <node concept="3cpWs6" id="6tmliaA6eMh" role="3cqZAp">
-                <node concept="3clFbT" id="6tmliaA6eMi" role="3cqZAk">
-                  <property role="3clFbU" value="true" />
-                </node>
-              </node>
-            </node>
-            <node concept="3clFbC" id="6tmliaA6eMj" role="3clFbw">
-              <node concept="Xjq3P" id="6tmliaA6eMa" role="3uHU7B" />
-              <node concept="37vLTw" id="6tmliaA6eMk" role="3uHU7w">
-                <ref role="3cqZAo" node="6tmliaA6eMF" resolve="o" />
-              </node>
-            </node>
-          </node>
-          <node concept="3clFbJ" id="6tmliaA6eMl" role="3cqZAp">
-            <node concept="3clFbS" id="6tmliaA6eMm" role="3clFbx">
-              <node concept="3cpWs6" id="6tmliaA6eMn" role="3cqZAp">
-                <node concept="3clFbT" id="6tmliaA6eMo" role="3cqZAk" />
-              </node>
-            </node>
-            <node concept="3fqX7Q" id="6tmliaA6jQR" role="3clFbw">
-              <node concept="1eOMI4" id="6tmliaA6jQT" role="3fr31v">
-                <node concept="2ZW3vV" id="6tmliaA6kvY" role="1eOMHV">
-                  <node concept="3uibUv" id="6tmliaA6kDH" role="2ZW6by">
-                    <ref role="3uigEE" node="4ZaR9mNmgnE" resolve="InterfaceEndpointView.InterfacePort" />
-                  </node>
-                  <node concept="37vLTw" id="6tmliaA6kcu" role="2ZW6bz">
-                    <ref role="3cqZAo" node="6tmliaA6eMF" resolve="o" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="3clFbH" id="6tmliaA6eM$" role="3cqZAp" />
-          <node concept="3clFbF" id="6tmliaA6kZ_" role="3cqZAp">
-            <node concept="2YIFZM" id="6tmliaA6hH7" role="3clFbG">
-              <ref role="37wK5l" to="33ny:~Objects.equals(java.lang.Object,java.lang.Object):boolean" resolve="equals" />
-              <ref role="1Pybhc" to="33ny:~Objects" resolve="Objects" />
-              <node concept="2OqwBi" id="6tmliaA6ii5" role="37wK5m">
-                <node concept="Xjq3P" id="6tmliaA6hH8" role="2Oq$k0" />
-                <node concept="2OwXpG" id="6tmliaA6isw" role="2OqNvi">
-                  <ref role="2Oxat5" node="6tmlia_XLJi" resolve="myComponent" />
-                </node>
-              </node>
-              <node concept="2OqwBi" id="6tmliaA6j5N" role="37wK5m">
-                <node concept="1eOMI4" id="6tmliaA6iL6" role="2Oq$k0">
-                  <node concept="10QFUN" id="6tmliaA6hH9" role="1eOMHV">
-                    <node concept="3uibUv" id="6tmliaA6hHa" role="10QFUM">
-                      <ref role="3uigEE" node="4ZaR9mNmgnE" resolve="InterfaceEndpointView.InterfacePort" />
-                    </node>
-                    <node concept="37vLTw" id="6tmliaA6hHb" role="10QFUP">
-                      <ref role="3cqZAo" node="6tmliaA6eMF" resolve="o" />
-                    </node>
-                  </node>
-                </node>
-                <node concept="2OwXpG" id="6tmliaA6jpm" role="2OqNvi">
-                  <ref role="2Oxat5" node="6tmlia_XLJi" resolve="myComponent" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="37vLTG" id="6tmliaA6eMF" role="3clF46">
-          <property role="TrG5h" value="o" />
-          <node concept="3uibUv" id="6tmliaA6eMG" role="1tU5fm">
-            <ref role="3uigEE" to="wyt6:~Object" resolve="Object" />
-          </node>
-        </node>
-        <node concept="2AHcQZ" id="6tmliaA6eMH" role="2AJF6D">
-          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-        </node>
-      </node>
-      <node concept="2tJIrI" id="6tmliaA6mrG" role="jymVt" />
-      <node concept="3clFb_" id="6tmliaA6eN7" role="jymVt">
-        <property role="TrG5h" value="hashCode" />
-        <node concept="10Oyi0" id="6tmliaA6eN8" role="3clF45" />
-        <node concept="3Tm1VV" id="6tmliaA6eN9" role="1B3o_S" />
-        <node concept="3clFbS" id="6tmliaA6eNa" role="3clF47">
-          <node concept="3clFbF" id="6tmliaA6miM" role="3cqZAp">
-            <node concept="2OqwBi" id="6tmliaA6eNx" role="3clFbG">
-              <node concept="37vLTw" id="6tmliaA6eNo" role="2Oq$k0">
-                <ref role="3cqZAo" node="6tmlia_XLJi" resolve="myComponent" />
-              </node>
-              <node concept="liA8E" id="6tmliaA6eN_" role="2OqNvi">
-                <ref role="37wK5l" to="wyt6:~Object.hashCode():int" resolve="hashCode" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="2AHcQZ" id="6tmliaA6eNb" role="2AJF6D">
-          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-        </node>
+      <node concept="2JFqV2" id="4y$DvIVWrwp" role="2frcjj" />
+      <node concept="2AHcQZ" id="4y$DvIVWrwq" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
-    <node concept="2tJIrI" id="6tmlia_XLab" role="jymVt" />
     <node concept="3Tm1VV" id="6tmlia_XI2I" role="1B3o_S" />
-    <node concept="3uibUv" id="6tmlia_XIal" role="3HQHJm">
-      <ref role="3uigEE" to="hyqd:1HEL0zVYNFT" resolve="DiagramComponentView" />
-      <node concept="3uibUv" id="6$FGuy5B_kA" role="11_B2D">
-        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
-      </node>
+    <node concept="3uibUv" id="4O0ojQq0S8C" role="3HQHJm">
+      <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
+    </node>
+    <node concept="3uibUv" id="4y$DvIVWn_k" role="3HQHJm">
+      <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
     </node>
   </node>
   <node concept="3HP615" id="5FPxgJnz8uH">
     <property role="TrG5h" value="FBPortIdentity" />
     <node concept="2tJIrI" id="5FPxgJnz8vl" role="jymVt" />
+    <node concept="3clFb_" id="4O0ojQq1drw" role="jymVt">
+      <property role="TrG5h" value="getComponent" />
+      <node concept="3clFbS" id="4O0ojQq1drz" role="3clF47" />
+      <node concept="3Tm1VV" id="4O0ojQq1dr$" role="1B3o_S" />
+      <node concept="3uibUv" id="4O0ojQq1dqY" role="3clF45">
+        <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4O0ojQq1dp_" role="jymVt" />
     <node concept="3clFb_" id="5FPxgJnz8w3" role="jymVt">
       <property role="TrG5h" value="isSource" />
       <node concept="3clFbS" id="5FPxgJnz8w6" role="3clF47" />
@@ -1455,9 +1250,6 @@
       </node>
     </node>
     <node concept="3Tm1VV" id="5FPxgJnz8uI" role="1B3o_S" />
-    <node concept="3uibUv" id="5FPxgJnz8vf" role="3HQHJm">
-      <ref role="3uigEE" to="hyqd:1HEL0zVYNIi" resolve="PortIdentity" />
-    </node>
   </node>
   <node concept="312cEu" id="6$FGuy5_Djq">
     <property role="TrG5h" value="ConnectionPath" />
@@ -1809,6 +1601,29 @@
         <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
       </node>
     </node>
+  </node>
+  <node concept="3HP615" id="4O0ojQq0P48">
+    <property role="TrG5h" value="FBNetworkComponentView" />
+    <node concept="2tJIrI" id="4O0ojQq0PL_" role="jymVt" />
+    <node concept="3clFb_" id="4O0ojQq0PNT" role="jymVt">
+      <property role="TrG5h" value="getPorts" />
+      <node concept="3clFbS" id="4O0ojQq0PNW" role="3clF47" />
+      <node concept="3Tm1VV" id="4O0ojQq0PNX" role="1B3o_S" />
+      <node concept="3uibUv" id="4O0ojQq0PMC" role="3clF45">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="3uibUv" id="4O0ojQq0PNK" role="11_B2D">
+          <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4y$DvIXHsCr" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIXHsD_" role="jymVt">
+      <property role="TrG5h" value="remove" />
+      <node concept="3clFbS" id="4y$DvIXHsDC" role="3clF47" />
+      <node concept="3Tm1VV" id="4y$DvIXHsDD" role="1B3o_S" />
+      <node concept="3cqZAl" id="4y$DvIXHsDl" role="3clF45" />
+    </node>
+    <node concept="3Tm1VV" id="4O0ojQq0P49" role="1B3o_S" />
   </node>
 </model>
 
