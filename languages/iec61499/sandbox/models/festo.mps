@@ -16,6 +16,7 @@
       <concept id="4304617121958142617" name="iec61499.structure.StraightConnectionPath" flags="ng" index="bR33I" />
       <concept id="4280485643802119831" name="iec61499.structure.StateDeclaration" flags="ng" index="2zAPAk">
         <child id="4280485643802119923" name="actions" index="2zAPBK" />
+        <child id="6110000670794348100" name="position" index="2WOQdS" />
       </concept>
       <concept id="4280485643802119834" name="iec61499.structure.AlgorithmDeclaration" flags="ng" index="2zAPAp">
         <child id="1794427914276976239" name="body" index="1toi31" />
@@ -24,6 +25,7 @@
         <reference id="4280485643802120002" name="targetState" index="2zAPx1" />
         <reference id="4280485643802120000" name="sourceState" index="2zAPx3" />
         <child id="4280485643802160028" name="condition" index="2zAZMv" />
+        <child id="6110000670795492226" name="position" index="2WSJUY" />
       </concept>
       <concept id="4280485643802119832" name="iec61499.structure.StateAction" flags="ng" index="2zAPAr">
         <reference id="4280485643802119837" name="algorithm" index="2zAPAu" />
@@ -51,7 +53,6 @@
         <child id="5481506291238376648" name="destination" index="2RhMK_" />
         <child id="5481506291238376645" name="source" index="2RhMKC" />
       </concept>
-      <concept id="9128111731364718677" name="iec61499.structure.StateActionsEnabler" flags="ng" index="2WJ7$k" />
       <concept id="3018159903918042962" name="iec61499.structure.DeclarationWithInterface" flags="ng" index="XJwsz">
         <child id="4280485643801969827" name="outputEvents" index="2zBDew" />
         <child id="4280485643801969825" name="inputEvents" index="2zBDey" />
@@ -525,6 +526,10 @@
           <ref role="3Yz8TM" node="G6ZN4N970L" resolve="INIT" />
         </node>
       </node>
+      <node concept="10YbkR" id="38k27ITgtra" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVuwJ" role="2zAPxA">
       <ref role="2zAPx3" node="G6ZN4N970Y" resolve="INIT" />
@@ -534,6 +539,10 @@
           <ref role="1N5Pi4" node="G6ZN4N970I" resolve="ArmIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd3y" resolve="REQ" />
         </node>
+      </node>
+      <node concept="10YbkR" id="38k27ITgtrb" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVuxa" role="2zAPxA">
@@ -545,33 +554,50 @@
           <ref role="1N5Pi3" node="1rxLtFPnd65" resolve="REQ" />
         </node>
       </node>
+      <node concept="10YbkR" id="38k27ITgtrc" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVux0" role="2zAPxA">
       <ref role="2zAPx3" node="2R0WzquVuwB" resolve="ARM" />
       <ref role="2zAPx1" node="G6ZN4N970Y" resolve="INIT" />
       <node concept="2EVYwv" id="2R0WzquVux1" role="2zAZMv" />
+      <node concept="10YbkR" id="38k27ITgtrd" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVux_" role="2zAPxA">
       <ref role="2zAPx1" node="G6ZN4N970Y" resolve="INIT" />
       <ref role="2zAPx3" node="2R0WzquVuxo" resolve="STACK" />
       <node concept="2EVYwv" id="2R0WzquVuxA" role="2zAZMv" />
+      <node concept="10YbkR" id="38k27ITgtre" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAk" id="G6ZN4N970F" role="2zAPwY">
       <property role="TrG5h" value="START" />
-      <node concept="2WJ7$k" id="G6ZN4N970G" role="lGtFl" />
+      <node concept="10YbkR" id="5jb5jNCal_s" role="2WOQdS">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAk" id="G6ZN4N970Y" role="2zAPwY">
       <property role="TrG5h" value="INIT" />
-      <node concept="2WJ7$k" id="G6ZN4N970Z" role="lGtFl" />
       <node concept="2zAPAr" id="2R0WzquXoF8" role="2zAPBK">
         <node concept="3YHrnl" id="2R0WzquXoFb" role="2NbhEN">
           <ref role="3Yz8TM" node="G6ZN4N970N" resolve="INITO" />
         </node>
       </node>
+      <node concept="10YbkR" id="5jb5jNCal_t" role="2WOQdS">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAk" id="2R0WzquVuwB" role="2zAPwY">
       <property role="TrG5h" value="ARM" />
-      <node concept="2WJ7$k" id="2R0WzquVuwC" role="lGtFl" />
       <node concept="2zAPAr" id="2R0WzquVuwX" role="2zAPBK">
         <ref role="2zAPAu" node="2R0WzquVuxO" resolve="PrepareArm" />
         <node concept="3Yx0EI" id="2R0WzquXoFd" role="2NbhEN">
@@ -579,16 +605,23 @@
           <ref role="1N5Pi3" node="1rxLtFPnd4Y" resolve="IND" />
         </node>
       </node>
+      <node concept="10YbkR" id="5jb5jNCal_u" role="2WOQdS">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
     </node>
     <node concept="2zAPAk" id="2R0WzquVuxo" role="2zAPwY">
       <property role="TrG5h" value="STACK" />
-      <node concept="2WJ7$k" id="2R0WzquVuxp" role="lGtFl" />
       <node concept="2zAPAr" id="2R0WzquVuxq" role="2zAPBK">
         <ref role="2zAPAu" node="2R0WzquVuxV" resolve="PrepareStack" />
         <node concept="3Yx0EI" id="2R0WzquXoFf" role="2NbhEN">
           <ref role="1N5Pi4" node="G6ZN4N970H" resolve="StackIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd6y" resolve="IND" />
         </node>
+      </node>
+      <node concept="10YbkR" id="5jb5jNCal_v" role="2WOQdS">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
     </node>
     <node concept="37mRI7" id="G6ZN4N970Q" role="lGtFl">

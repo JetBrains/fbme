@@ -201,6 +201,13 @@
     <property role="3GE5qa" value="fbtype.basic" />
     <property role="TrG5h" value="StateDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="5jb5jNC67p4" role="1TKVEi">
+      <property role="IQ2ns" value="6110000670794348100" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="position" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
     <node concept="1TJgyj" id="3HBlKeoZ0VN" role="1TKVEi">
       <property role="IQ2ns" value="4280485643802119923" />
       <property role="20lmBu" value="aggregation" />
@@ -256,6 +263,13 @@
       <property role="20kJfa" value="condition" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="6g3sTReV9I2" resolve="TransitionCondition" />
+    </node>
+    <node concept="1TJgyj" id="5jb5jNCauI2" role="1TKVEi">
+      <property role="IQ2ns" value="6110000670795492226" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="position" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
     </node>
   </node>
   <node concept="1TIwiD" id="3HBlKeoZ0Uq">
