@@ -2,15 +2,19 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
-      <modulePath path="$PROJECT_DIR$/languages/ST/ST.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/iec61499.meta.editor/iec61499.meta.editor.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/iec61499/iec61499.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/iec61499/sandbox/iec61499.sandbox.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/solutions/iec61499.ide/iec61499.ide.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/solutions/iec61499.scenes/iec61499.scenes.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/solutions/stubs/stdlib/stdlib.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/mps.lang.ST/mps.lang.ST.mpl" folder="mps" />
+      <modulePath path="$PROJECT_DIR$/languages/mps.lang.iec61499/mps.lang.iec61499.mpl" folder="mps" />
+      <modulePath path="$PROJECT_DIR$/languages/mps.lang.iec61499/sandbox/mps.lang.iec61499.sandbox.msd" folder="sandboxes" />
+      <modulePath path="$PROJECT_DIR$/languages/mps.lang.meta.editor/mps.lang.meta.editor.mpl" folder="mps" />
+      <modulePath path="$PROJECT_DIR$/languages/richediting.lang/richediting.lang.mpl" folder="richediting" />
+      <modulePath path="$PROJECT_DIR$/solutions/common.iec61499.model/common.iec61499.model.msd" folder="common" />
+      <modulePath path="$PROJECT_DIR$/solutions/fordiacIntegration.ide/fordiacIntegration.ide.msd" folder="4diac integration" />
+      <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="build" />
+      <modulePath path="$PROJECT_DIR$/solutions/mps.ide/mps.ide.msd" folder="mps" />
+      <modulePath path="$PROJECT_DIR$/solutions/richediting.adapters/richediting.adapters.msd" folder="richediting" />
+      <modulePath path="$PROJECT_DIR$/solutions/scenes/scenes.msd" folder="scenes" />
+      <modulePath path="$PROJECT_DIR$/solutions/stubs/stdlib/stdlib.msd" folder="4diac integration" />
+      <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="common" />
     </projectModules>
   </component>
 </project>
