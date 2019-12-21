@@ -8,6 +8,7 @@
   </languages>
   <imports>
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
+    <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -36,6 +37,7 @@
       </concept>
       <concept id="1107535904670" name="jetbrains.mps.baseLanguage.structure.ClassifierType" flags="in" index="3uibUv">
         <reference id="1107535924139" name="classifier" index="3uigEE" />
+        <child id="1109201940907" name="parameter" index="11_B2D" />
       </concept>
       <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
         <child id="1178549979242" name="visibility" index="1B3o_S" />
@@ -208,6 +210,70 @@
     <property role="TrG5h" value="ECAction" />
     <node concept="2tJIrI" id="5jb5jNC3nK$" role="jymVt" />
     <node concept="3Tm1VV" id="5jb5jNC3nKn" role="1B3o_S" />
+  </node>
+  <node concept="3HP615" id="1R4IoyQwdM8">
+    <property role="TrG5h" value="ECC" />
+    <node concept="2tJIrI" id="1R4IoyQwdMi" role="jymVt" />
+    <node concept="3clFb_" id="1R4IoyQwk7A" role="jymVt">
+      <property role="TrG5h" value="getStates" />
+      <node concept="3clFbS" id="1R4IoyQwk7D" role="3clF47" />
+      <node concept="3Tm1VV" id="1R4IoyQwk7E" role="1B3o_S" />
+      <node concept="3uibUv" id="1R4IoyQwk7f" role="3clF45">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="3uibUv" id="1R4IoyQwk7t" role="11_B2D">
+          <ref role="3uigEE" node="5ye4HINyZCA" resolve="ECState" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1R4IoyQHCJM" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1R4IoyQwk8b" role="jymVt" />
+    <node concept="3clFb_" id="1R4IoyQwk9i" role="jymVt">
+      <property role="TrG5h" value="getTransitions" />
+      <node concept="3clFbS" id="1R4IoyQwk9l" role="3clF47" />
+      <node concept="3Tm1VV" id="1R4IoyQwk9m" role="1B3o_S" />
+      <node concept="3uibUv" id="1R4IoyQwk8C" role="3clF45">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="3uibUv" id="1R4IoyQwk99" role="11_B2D">
+          <ref role="3uigEE" node="5ye4HINz47s" resolve="ECTransition" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1R4IoyQHCL6" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1R4IoyQHCak" role="jymVt" />
+    <node concept="3clFb_" id="1R4IoyQHCc1" role="jymVt">
+      <property role="TrG5h" value="addTransition" />
+      <node concept="3clFbS" id="1R4IoyQHCc4" role="3clF47" />
+      <node concept="3Tm1VV" id="1R4IoyQHCc5" role="1B3o_S" />
+      <node concept="3uibUv" id="1R4IoyQHCbp" role="3clF45">
+        <ref role="3uigEE" node="5ye4HINz47s" resolve="ECTransition" />
+      </node>
+      <node concept="37vLTG" id="1R4IoyQHCED" role="3clF46">
+        <property role="TrG5h" value="sourceState" />
+        <node concept="3uibUv" id="1R4IoyQHCEC" role="1tU5fm">
+          <ref role="3uigEE" node="5ye4HINyZCA" resolve="ECState" />
+        </node>
+        <node concept="2AHcQZ" id="1R4IoyQHCOc" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="1R4IoyQHCHw" role="3clF46">
+        <property role="TrG5h" value="targetState" />
+        <node concept="3uibUv" id="1R4IoyQHCId" role="1tU5fm">
+          <ref role="3uigEE" node="5ye4HINyZCA" resolve="ECState" />
+        </node>
+        <node concept="2AHcQZ" id="1R4IoyQHCP$" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1R4IoyQHCM$" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="1R4IoyQwdM9" role="1B3o_S" />
   </node>
 </model>
 

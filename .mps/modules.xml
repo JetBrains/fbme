@@ -11,6 +11,7 @@
       <modulePath path="$PROJECT_DIR$/solutions/fordiacIntegration.ide/fordiacIntegration.ide.msd" folder="4diac integration" />
       <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="build" />
       <modulePath path="$PROJECT_DIR$/solutions/mps.ide/mps.ide.msd" folder="mps" />
+      <modulePath path="$PROJECT_DIR$/solutions/mps.iec61499.model/mps.iec61499.model.msd" folder="mps" />
       <modulePath path="$PROJECT_DIR$/solutions/richediting.adapters/richediting.adapters.msd" folder="richediting" />
       <modulePath path="$PROJECT_DIR$/solutions/scenes/scenes.msd" folder="scenes" />
       <modulePath path="$PROJECT_DIR$/solutions/stubs/stdlib/stdlib.msd" folder="4diac integration" />
