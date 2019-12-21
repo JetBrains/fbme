@@ -9,10 +9,20 @@
       <sourceFolder url="file://$MODULE_DIR$/languages/iec61499.meta.editor/source_gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/languages/iec61499/source_gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/languages/iec61499/generator/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/richediting.lang/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/mps.lang.ST/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/mps.lang.meta.editor/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/languages/mps.lang.iec61499/source_gen" isTestSource="false" generated="true" />
     </content>
     <content url="file://$MODULE_DIR$/solutions">
       <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.ide/source_gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.scenes/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/fordiacIntegration.ide/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/common.iec61499.model/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/iec61499.diagrams/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/mps.ide/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/richediting.adapters/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/scenes/source_gen" isTestSource="false" generated="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
