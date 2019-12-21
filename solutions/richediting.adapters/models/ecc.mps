@@ -196,7 +196,7 @@
     </language>
   </registry>
   <node concept="312cEu" id="38k27IREOjP">
-    <property role="TrG5h" value="ECCModelProvider" />
+    <property role="TrG5h" value="ECCView" />
     <property role="1sVAO0" value="true" />
     <node concept="2tJIrI" id="38k27IREOjQ" role="jymVt" />
     <node concept="3clFb_" id="38k27IREOjR" role="jymVt">
@@ -463,7 +463,7 @@
     </node>
     <node concept="3Tm1VV" id="38k27IREOlB" role="1B3o_S" />
     <node concept="3uibUv" id="38k27IREOlC" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:4O0ojQpH$TE" resolve="DiagramModelProvider" />
+      <ref role="3uigEE" to="5lkm:4O0ojQpH$TE" resolve="DiagramView" />
       <node concept="3uibUv" id="38k27IRERiD" role="11_B2D">
         <ref role="3uigEE" to="6ehz:5ye4HINyZCA" resolve="ECState" />
       </node>

@@ -216,7 +216,6 @@
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
-        <property id="1193676396447" name="virtualPackage" index="3GE5qa" />
         <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
       </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
@@ -530,7 +529,6 @@
   </node>
   <node concept="3HP615" id="2JpbWDsQSwS">
     <property role="TrG5h" value="PortController" />
-    <property role="3GE5qa" value="diagram" />
     <node concept="2tJIrI" id="4O0ojQpH3eU" role="jymVt" />
     <node concept="3clFb_" id="6tmliaB28KD" role="jymVt">
       <property role="TrG5h" value="getBounds" />
@@ -927,8 +925,52 @@
                 <node concept="YeOm9" id="4y$DvIX$Sg1" role="2ShVmc">
                   <node concept="1Y3b0j" id="4y$DvIX$Sg4" role="YeSDq">
                     <property role="2bfB8j" value="true" />
-                    <ref role="1Y3XeK" to="rvgs:1KCfUoKRV4f" resolve="LayoutModel.Listener" />
+                    <ref role="1Y3XeK" to="rvgs:1KCfUoKRV4f" resolve="ROLayoutModel.Listener" />
                     <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+                    <node concept="3clFb_" id="2syzu7qKHz0" role="jymVt">
+                      <property role="TrG5h" value="onComponentAdded" />
+                      <node concept="37vLTG" id="2syzu7qKHz1" role="3clF46">
+                        <property role="TrG5h" value="component" />
+                        <node concept="16syzq" id="2syzu7qKHzd" role="1tU5fm">
+                          <ref role="16sUi3" node="4y$DvIW0XJW" resolve="CompT" />
+                        </node>
+                        <node concept="2AHcQZ" id="2syzu7qKHz3" role="2AJF6D">
+                          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                        </node>
+                      </node>
+                      <node concept="37vLTG" id="2syzu7qKHz4" role="3clF46">
+                        <property role="TrG5h" value="x" />
+                        <node concept="10Oyi0" id="2syzu7qKHz5" role="1tU5fm" />
+                      </node>
+                      <node concept="37vLTG" id="2syzu7qKHz6" role="3clF46">
+                        <property role="TrG5h" value="y" />
+                        <node concept="10Oyi0" id="2syzu7qKHz7" role="1tU5fm" />
+                      </node>
+                      <node concept="3Tm1VV" id="2syzu7qKHz9" role="1B3o_S" />
+                      <node concept="3cqZAl" id="2syzu7qKHza" role="3clF45" />
+                      <node concept="3clFbS" id="2syzu7qKHze" role="3clF47" />
+                      <node concept="2AHcQZ" id="2syzu7qKHzf" role="2AJF6D">
+                        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+                      </node>
+                    </node>
+                    <node concept="3clFb_" id="2syzu7qKHzg" role="jymVt">
+                      <property role="TrG5h" value="onComponentRemoved" />
+                      <node concept="37vLTG" id="2syzu7qKHzh" role="3clF46">
+                        <property role="TrG5h" value="component" />
+                        <node concept="16syzq" id="2syzu7qKHzp" role="1tU5fm">
+                          <ref role="16sUi3" node="4y$DvIW0XJW" resolve="CompT" />
+                        </node>
+                        <node concept="2AHcQZ" id="2syzu7qKHzj" role="2AJF6D">
+                          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                        </node>
+                      </node>
+                      <node concept="3Tm1VV" id="2syzu7qKHzl" role="1B3o_S" />
+                      <node concept="3cqZAl" id="2syzu7qKHzm" role="3clF45" />
+                      <node concept="3clFbS" id="2syzu7qKHzq" role="3clF47" />
+                      <node concept="2AHcQZ" id="2syzu7qKHzr" role="2AJF6D">
+                        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+                      </node>
+                    </node>
                     <node concept="3Tm1VV" id="4y$DvIX$Sg5" role="1B3o_S" />
                     <node concept="3clFb_" id="4y$DvIX$Sg7" role="jymVt">
                       <property role="TrG5h" value="onComponentsMoved" />
@@ -1195,7 +1237,7 @@
       <node concept="37vLTG" id="4y$DvIX$Pvt" role="3clF46">
         <property role="TrG5h" value="componentsLayout" />
         <node concept="3uibUv" id="4y$DvIX$Q0C" role="1tU5fm">
-          <ref role="3uigEE" to="rvgs:1KCfUoKQeCd" resolve="LayoutModel" />
+          <ref role="3uigEE" to="rvgs:2syzu7qKiXL" resolve="ROLayoutModel" />
           <node concept="16syzq" id="4y$DvIX$Q6m" role="11_B2D">
             <ref role="16sUi3" node="4y$DvIW0XJW" resolve="CompT" />
           </node>
@@ -6055,7 +6097,6 @@
   </node>
   <node concept="3HP615" id="2JpbWDsQT0H">
     <property role="TrG5h" value="DiagramController" />
-    <property role="3GE5qa" value="diagram" />
     <node concept="2tJIrI" id="1gL472DM18k" role="jymVt" />
     <node concept="3clFb_" id="3vyG44Arcu2" role="jymVt">
       <property role="TrG5h" value="getPortController" />
@@ -6699,14 +6740,13 @@
   </node>
   <node concept="312cEu" id="4O0ojQpH3gw">
     <property role="TrG5h" value="DiagramFacility" />
-    <property role="3GE5qa" value="diagram" />
     <node concept="2tJIrI" id="4O0ojQpHA1f" role="jymVt" />
     <node concept="312cEg" id="4O0ojQpHCqD" role="jymVt">
       <property role="TrG5h" value="myDiagramModel" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="4O0ojQpHAsu" role="1B3o_S" />
       <node concept="3uibUv" id="4O0ojQpHAS2" role="1tU5fm">
-        <ref role="3uigEE" node="4O0ojQpH$TE" resolve="DiagramModelProvider" />
+        <ref role="3uigEE" node="4O0ojQpH$TE" resolve="DiagramView" />
         <node concept="16syzq" id="4O0ojQpHCo0" role="11_B2D">
           <ref role="16sUi3" node="4O0ojQpHwZE" resolve="CompT" />
         </node>
@@ -6733,15 +6773,15 @@
       </node>
     </node>
     <node concept="312cEg" id="1iOpS24X1n7" role="jymVt">
-      <property role="TrG5h" value="myComponentsFacility" />
+      <property role="TrG5h" value="myComponentSettings" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1iOpS24WWHK" role="1B3o_S" />
-      <node concept="3uibUv" id="1iOpS24X0FL" role="1tU5fm">
-        <ref role="3uigEE" to="xxy3:3vyG44ANA6n" resolve="ComponentsFacility" />
-        <node concept="16syzq" id="1iOpS24X0Hg" role="11_B2D">
+      <node concept="3uibUv" id="2syzu7rdVGX" role="1tU5fm">
+        <ref role="3uigEE" node="2syzu7rdoTh" resolve="DiagramComponentSettingProvider" />
+        <node concept="16syzq" id="2syzu7rdVGY" role="11_B2D">
           <ref role="16sUi3" node="4O0ojQpHwZE" resolve="CompT" />
         </node>
-        <node concept="16syzq" id="1iOpS24X1cm" role="11_B2D">
+        <node concept="16syzq" id="2syzu7rdVGZ" role="11_B2D">
           <ref role="16sUi3" node="1iOpS24VS9U" resolve="CFormT" />
         </node>
       </node>
@@ -6954,7 +6994,7 @@
       <node concept="37vLTG" id="4O0ojQpHEmy" role="3clF46">
         <property role="TrG5h" value="diagramModel" />
         <node concept="3uibUv" id="4O0ojQpHEmR" role="1tU5fm">
-          <ref role="3uigEE" node="4O0ojQpH$TE" resolve="DiagramModelProvider" />
+          <ref role="3uigEE" node="4O0ojQpH$TE" resolve="DiagramView" />
           <node concept="16syzq" id="4O0ojQpHEmS" role="11_B2D">
             <ref role="16sUi3" node="4O0ojQpHwZE" resolve="CompT" />
           </node>
@@ -6985,9 +7025,15 @@
         </node>
       </node>
       <node concept="37vLTG" id="1iOpS24WSxv" role="3clF46">
-        <property role="TrG5h" value="componentsFacility" />
-        <node concept="3uibUv" id="1iOpS24WSFh" role="1tU5fm">
-          <ref role="3uigEE" to="xxy3:3vyG44ANA6n" resolve="ComponentsFacility" />
+        <property role="TrG5h" value="componentSettings" />
+        <node concept="3uibUv" id="2syzu7rdSSv" role="1tU5fm">
+          <ref role="3uigEE" node="2syzu7rdoTh" resolve="DiagramComponentSettingProvider" />
+          <node concept="16syzq" id="2syzu7rdT5_" role="11_B2D">
+            <ref role="16sUi3" node="4O0ojQpHwZE" resolve="CompT" />
+          </node>
+          <node concept="16syzq" id="2syzu7rdTKJ" role="11_B2D">
+            <ref role="16sUi3" node="1iOpS24VS9U" resolve="CFormT" />
+          </node>
         </node>
         <node concept="2AHcQZ" id="1iOpS24X6Ap" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -7018,10 +7064,10 @@
         <node concept="3clFbF" id="1iOpS24X5uP" role="3cqZAp">
           <node concept="37vLTI" id="1iOpS24X6rv" role="3clFbG">
             <node concept="37vLTw" id="1iOpS24X6$w" role="37vLTx">
-              <ref role="3cqZAo" node="1iOpS24WSxv" resolve="componentsFacility" />
+              <ref role="3cqZAo" node="1iOpS24WSxv" resolve="componentSettings" />
             </node>
             <node concept="37vLTw" id="1iOpS24X5uN" role="37vLTJ">
-              <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+              <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
             </node>
           </node>
         </node>
@@ -8016,10 +8062,10 @@
                 <ref role="37wK5l" node="4O0ojQpHFbR" resolve="getBounds" />
                 <node concept="2OqwBi" id="1iOpS250ojW" role="37wK5m">
                   <node concept="37vLTw" id="1iOpS250nMN" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
                   </node>
                   <node concept="liA8E" id="1iOpS250oQO" role="2OqNvi">
-                    <ref role="37wK5l" to="xxy3:1iOpS24Xk6r" resolve="getModelForm" />
+                    <ref role="37wK5l" node="2syzu7rdJ6W" resolve="getModelForm" />
                     <node concept="2OqwBi" id="1iOpS250q38" role="37wK5m">
                       <node concept="37vLTw" id="1iOpS250plf" role="2Oq$k0">
                         <ref role="3cqZAo" node="1gL472DSCTm" resolve="myPortToComponent" />
@@ -8064,10 +8110,10 @@
                 <ref role="37wK5l" node="4O0ojQpHFbX" resolve="getEndpointPosition" />
                 <node concept="2OqwBi" id="1iOpS25678s" role="37wK5m">
                   <node concept="37vLTw" id="1iOpS25678t" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
                   </node>
                   <node concept="liA8E" id="1iOpS25678u" role="2OqNvi">
-                    <ref role="37wK5l" to="xxy3:1iOpS24Xk6r" resolve="getModelForm" />
+                    <ref role="37wK5l" node="2syzu7rdJ6W" resolve="getModelForm" />
                     <node concept="2OqwBi" id="1iOpS25678v" role="37wK5m">
                       <node concept="37vLTw" id="1iOpS25678w" role="2Oq$k0">
                         <ref role="3cqZAo" node="1gL472DSCTm" resolve="myPortToComponent" />
@@ -8111,10 +8157,10 @@
               </node>
               <node concept="2OqwBi" id="1iOpS25DLvd" role="33vP2m">
                 <node concept="37vLTw" id="1iOpS25DLve" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+                  <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
                 </node>
                 <node concept="liA8E" id="1iOpS25DLvf" role="2OqNvi">
-                  <ref role="37wK5l" to="xxy3:1iOpS24XIhe" resolve="getTransformedForm" />
+                  <ref role="37wK5l" node="2syzu7rdJaJ" resolve="getTransformedForm" />
                   <node concept="2OqwBi" id="1iOpS25DLvg" role="37wK5m">
                     <node concept="37vLTw" id="1iOpS25DLvh" role="2Oq$k0">
                       <ref role="3cqZAo" node="1gL472DSCTm" resolve="myPortToComponent" />
@@ -8187,10 +8233,10 @@
                 <ref role="37wK5l" node="4O0ojQpHFc9" resolve="canBeSourcedAt" />
                 <node concept="2OqwBi" id="1iOpS24ZUcY" role="37wK5m">
                   <node concept="37vLTw" id="1iOpS24ZTNp" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
                   </node>
                   <node concept="liA8E" id="1iOpS24ZXlO" role="2OqNvi">
-                    <ref role="37wK5l" to="xxy3:1iOpS24Xk6r" resolve="getModelForm" />
+                    <ref role="37wK5l" node="2syzu7rdJ6W" resolve="getModelForm" />
                     <node concept="2OqwBi" id="1iOpS24ZRFg" role="37wK5m">
                       <node concept="37vLTw" id="1iOpS24ZR5o" role="2Oq$k0">
                         <ref role="3cqZAo" node="1gL472DSCTm" resolve="myPortToComponent" />
@@ -8244,10 +8290,10 @@
                 <ref role="37wK5l" node="4O0ojQpHFcl" resolve="canBeTargetedAt" />
                 <node concept="2OqwBi" id="1iOpS250kQd" role="37wK5m">
                   <node concept="37vLTw" id="1iOpS250kQe" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentsFacility" />
+                    <ref role="3cqZAo" node="1iOpS24X1n7" resolve="myComponentSettings" />
                   </node>
                   <node concept="liA8E" id="1iOpS250kQf" role="2OqNvi">
-                    <ref role="37wK5l" to="xxy3:1iOpS24Xk6r" resolve="getModelForm" />
+                    <ref role="37wK5l" node="2syzu7rdJ6W" resolve="getModelForm" />
                     <node concept="2OqwBi" id="1iOpS250kQg" role="37wK5m">
                       <node concept="37vLTw" id="1iOpS250kQh" role="2Oq$k0">
                         <ref role="3cqZAo" node="1gL472DSCTm" resolve="myPortToComponent" />
@@ -8321,8 +8367,7 @@
     </node>
   </node>
   <node concept="3HP615" id="4O0ojQpH$TE">
-    <property role="TrG5h" value="DiagramModelProvider" />
-    <property role="3GE5qa" value="diagram" />
+    <property role="TrG5h" value="DiagramView" />
     <node concept="3Tm1VV" id="4O0ojQpH$TF" role="1B3o_S" />
     <node concept="16euLQ" id="4O0ojQpH$U5" role="16eVyc">
       <property role="TrG5h" value="C" />
@@ -8548,7 +8593,6 @@
     </node>
   </node>
   <node concept="3HP615" id="4O0ojQpHEzY">
-    <property role="3GE5qa" value="diagram" />
     <property role="TrG5h" value="PortSettingProvider" />
     <node concept="2tJIrI" id="4O0ojQpHFbC" role="jymVt" />
     <node concept="3clFb_" id="4O0ojQpHFbR" role="jymVt">
@@ -8942,6 +8986,11 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="2syzu7qGNvV" role="3cqZAp">
+          <node concept="1rXfSq" id="2syzu7qGNvT" role="3clFbG">
+            <ref role="37wK5l" node="4y$DvIXOUcN" resolve="relayout" />
+          </node>
+        </node>
       </node>
       <node concept="3cqZAl" id="1gL472DTbCW" role="3clF45" />
     </node>
@@ -9327,6 +9376,58 @@
           <property role="1dT_AB" value="FIXME should be an inner class of ConnectionsFacility, but MPS messes with inner classes and generics" />
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="3HP615" id="2syzu7rdoTh">
+    <property role="TrG5h" value="DiagramComponentSettingProvider" />
+    <node concept="2tJIrI" id="2syzu7rdoVu" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7rdJ6W" role="jymVt">
+      <property role="TrG5h" value="getModelForm" />
+      <node concept="3clFbS" id="2syzu7rdJ6Z" role="3clF47" />
+      <node concept="3Tm1VV" id="2syzu7rdJ70" role="1B3o_S" />
+      <node concept="16syzq" id="2syzu7rdtIe" role="3clF45">
+        <ref role="16sUi3" node="2syzu7rdoV0" resolve="CFormT" />
+      </node>
+      <node concept="2AHcQZ" id="2syzu7rdJ7t" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="37vLTG" id="2syzu7rdJ8K" role="3clF46">
+        <property role="TrG5h" value="component" />
+        <node concept="16syzq" id="2syzu7rdJ8J" role="1tU5fm">
+          <ref role="16sUi3" node="2syzu7rdoUC" resolve="CompT" />
+        </node>
+        <node concept="2AHcQZ" id="2syzu7rdJ9H" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2syzu7rdJhW" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7rdJaJ" role="jymVt">
+      <property role="TrG5h" value="getTransformedForm" />
+      <node concept="3clFbS" id="2syzu7rdJaK" role="3clF47" />
+      <node concept="3Tm1VV" id="2syzu7rdJaL" role="1B3o_S" />
+      <node concept="16syzq" id="2syzu7rdJaM" role="3clF45">
+        <ref role="16sUi3" node="2syzu7rdoV0" resolve="CFormT" />
+      </node>
+      <node concept="2AHcQZ" id="2syzu7rdJaN" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="37vLTG" id="2syzu7rdJaO" role="3clF46">
+        <property role="TrG5h" value="component" />
+        <node concept="16syzq" id="2syzu7rdJaP" role="1tU5fm">
+          <ref role="16sUi3" node="2syzu7rdoUC" resolve="CompT" />
+        </node>
+        <node concept="2AHcQZ" id="2syzu7rdJaQ" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="2syzu7rdoTi" role="1B3o_S" />
+    <node concept="16euLQ" id="2syzu7rdoUC" role="16eVyc">
+      <property role="TrG5h" value="CompT" />
+    </node>
+    <node concept="16euLQ" id="2syzu7rdoV0" role="16eVyc">
+      <property role="TrG5h" value="CFormT" />
     </node>
   </node>
 </model>

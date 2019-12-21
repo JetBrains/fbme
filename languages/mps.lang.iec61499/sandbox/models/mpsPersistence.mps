@@ -107,6 +107,7 @@
       </concept>
       <concept id="2250044605250911586" name="mps.lang.iec61499.structure.DeviceConfiguration" flags="ng" index="2JYBV7">
         <reference id="2250044605250911589" name="type" index="2JYBV0" />
+        <child id="2250044605250911600" name="resources" index="2JYBVl" />
       </concept>
       <concept id="5481506291238376594" name="mps.lang.iec61499.structure.Connection" flags="ng" index="2RhMLZ">
         <child id="4304617121958732207" name="path" index="bPNfo" />
@@ -192,6 +193,7 @@
       <concept id="554302972921888569" name="mps.lang.iec61499.structure.SubapplicationTypeDeclaration" flags="ng" index="3LgJy$" />
       <concept id="554302972921888566" name="mps.lang.iec61499.structure.SubapplicationInstance" flags="ng" index="3LgJyF">
         <reference id="554302972921888567" name="type" index="3LgJyE" />
+        <child id="8516149469254321801" name="position" index="n9Bpr" />
       </concept>
       <concept id="554302972921797056" name="mps.lang.iec61499.structure.IWithSubappNetwork" flags="ng" index="3LgLTt">
         <child id="554302972921888575" name="subapplications" index="3LgJyy" />
@@ -2810,12 +2812,17 @@
     <node concept="2JYBV7" id="uLhTRRE18Y" role="3KFA_1">
       <property role="TrG5h" value="X" />
       <ref role="2JYBV0" node="2lwHqHkC2HF" resolve="DeviceSampleType" />
+      <node concept="1LUxBN" id="2syzu7qGin7" role="2JYBVl" />
     </node>
     <node concept="3KFAOZ" id="uLhTRRBP8T" role="3KFA_7">
       <property role="TrG5h" value="XYZ" />
       <node concept="3LgJyF" id="uLhTRRDQbv" role="3LgJyy">
         <property role="TrG5h" value="subapp1" />
         <ref role="3LgJyE" node="uLhTRR5RMn" resolve="Subapp1" />
+        <node concept="10YbkR" id="2syzu7qDP95" role="n9Bpr">
+          <property role="10YbkC" value="0.0" />
+          <property role="10YbkE" value="0.0" />
+        </node>
       </node>
       <node concept="1N5Tt1" id="uLhTRRDQbt" role="1N5PiY">
         <property role="TrG5h" value="c1" />

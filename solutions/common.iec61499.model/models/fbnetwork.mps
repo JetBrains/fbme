@@ -10,6 +10,7 @@
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.interfacepart)" />
+    <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -1551,6 +1552,120 @@
       <node concept="3cqZAl" id="4y$DvIXHsDl" role="3clF45" />
     </node>
     <node concept="3Tm1VV" id="4O0ojQq0P49" role="1B3o_S" />
+  </node>
+  <node concept="3HP615" id="2syzu7qIIiU">
+    <property role="TrG5h" value="InlineValueView" />
+    <node concept="2tJIrI" id="2syzu7qIIrR" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7qIJt_" role="jymVt">
+      <property role="TrG5h" value="getValue" />
+      <node concept="3clFbS" id="2syzu7qIJtC" role="3clF47" />
+      <node concept="3Tm1VV" id="2syzu7qIJtD" role="1B3o_S" />
+      <node concept="3uibUv" id="2syzu7qIJeV" role="3clF45">
+        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+      </node>
+      <node concept="2AHcQZ" id="2syzu7qIJ$a" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2syzu7qIJ8K" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7qIIIP" role="jymVt">
+      <property role="TrG5h" value="getOpppositePort" />
+      <node concept="3clFbS" id="2syzu7qIIIS" role="3clF47" />
+      <node concept="3Tm1VV" id="2syzu7qIIIT" role="1B3o_S" />
+      <node concept="3uibUv" id="2syzu7qIIZD" role="3clF45">
+        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+      </node>
+      <node concept="2AHcQZ" id="2syzu7qIIUb" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2syzu7qIIz6" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7qIIs0" role="jymVt">
+      <property role="TrG5h" value="getPorts" />
+      <node concept="3Tm1VV" id="2syzu7qIIs1" role="1B3o_S" />
+      <node concept="3uibUv" id="2syzu7qIIs2" role="3clF45">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="3uibUv" id="2syzu7qIIs3" role="11_B2D">
+          <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="2syzu7qIIs4" role="3clF47">
+        <node concept="3clFbF" id="2syzu7qIIs5" role="3cqZAp">
+          <node concept="2YIFZM" id="2syzu7qIIs6" role="3clFbG">
+            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object):java.util.Set" resolve="singleton" />
+            <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
+            <node concept="3uibUv" id="2syzu7qIIs7" role="3PaCim">
+              <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+            </node>
+            <node concept="Xjq3P" id="2syzu7qIIs8" role="37wK5m" />
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="2syzu7qIIs9" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="2JFqV2" id="2syzu7qIIsa" role="2frcjj" />
+    </node>
+    <node concept="2tJIrI" id="2syzu7qIIsb" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7qIIsc" role="jymVt">
+      <property role="TrG5h" value="getComponent" />
+      <node concept="3Tm1VV" id="2syzu7qIIsd" role="1B3o_S" />
+      <node concept="3uibUv" id="2syzu7qIIse" role="3clF45">
+        <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
+      </node>
+      <node concept="3clFbS" id="2syzu7qIIsf" role="3clF47">
+        <node concept="3clFbF" id="2syzu7qIIsg" role="3cqZAp">
+          <node concept="Xjq3P" id="2syzu7qIIsh" role="3clFbG" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="2syzu7qIIsi" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="2JFqV2" id="2syzu7qIIsj" role="2frcjj" />
+    </node>
+    <node concept="2tJIrI" id="2syzu7qTfH$" role="jymVt" />
+    <node concept="3clFb_" id="2syzu7qTfNY" role="jymVt">
+      <property role="TrG5h" value="isSource" />
+      <node concept="3Tm1VV" id="2syzu7qTfO0" role="1B3o_S" />
+      <node concept="10P_77" id="2syzu7qTfO1" role="3clF45" />
+      <node concept="3clFbS" id="2syzu7qTfO2" role="3clF47">
+        <node concept="3clFbF" id="2syzu7qTg8L" role="3cqZAp">
+          <node concept="3clFbT" id="2syzu7qTg8K" role="3clFbG">
+            <property role="3clFbU" value="true" />
+          </node>
+        </node>
+      </node>
+      <node concept="2JFqV2" id="2syzu7qTfO3" role="2frcjj" />
+      <node concept="2AHcQZ" id="2syzu7qTfO4" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="2syzu7qTfO7" role="jymVt">
+      <property role="TrG5h" value="getKind" />
+      <node concept="3Tm1VV" id="2syzu7qTfO9" role="1B3o_S" />
+      <node concept="3uibUv" id="2syzu7qTfOa" role="3clF45">
+        <ref role="3uigEE" node="2R0WzquZm0W" resolve="EntryKind" />
+      </node>
+      <node concept="3clFbS" id="2syzu7qTfOb" role="3clF47">
+        <node concept="3clFbF" id="2syzu7qTfYE" role="3cqZAp">
+          <node concept="Rm8GO" id="2syzu7qTfYD" role="3clFbG">
+            <ref role="1Px2BO" node="2R0WzquZm0W" resolve="EntryKind" />
+            <ref role="Rm8GQ" node="2R0WzquZm4$" resolve="DATA" />
+          </node>
+        </node>
+      </node>
+      <node concept="2JFqV2" id="2syzu7qTfOc" role="2frcjj" />
+      <node concept="2AHcQZ" id="2syzu7qTfOd" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="2syzu7qIIiV" role="1B3o_S" />
+    <node concept="3uibUv" id="2syzu7qIIj$" role="3HQHJm">
+      <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponentView" />
+    </node>
+    <node concept="3uibUv" id="2syzu7qIIrJ" role="3HQHJm">
+      <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+    </node>
   </node>
 </model>
 

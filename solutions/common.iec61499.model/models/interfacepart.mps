@@ -76,7 +76,7 @@
     </language>
   </registry>
   <node concept="3HP615" id="7qPnRGGphpu">
-    <property role="TrG5h" value="FunctionBlockTypeTemplateView" />
+    <property role="TrG5h" value="InterfaceTemplateView" />
     <node concept="2tJIrI" id="7qPnRGGphtF" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGphs$" role="jymVt">
       <property role="TrG5h" value="getAssociatedVariablesForInputEvent" />

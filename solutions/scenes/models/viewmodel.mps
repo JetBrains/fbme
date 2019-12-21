@@ -144,5 +144,39 @@
     </node>
     <node concept="3Tm1VV" id="5jb5jNBOk8a" role="1B3o_S" />
   </node>
+  <node concept="3HP615" id="4bHpKVAnix_">
+    <property role="TrG5h" value="ComponentExtsView" />
+    <node concept="2tJIrI" id="4bHpKVAni$E" role="jymVt" />
+    <node concept="3clFb_" id="4bHpKVAni_w" role="jymVt">
+      <property role="TrG5h" value="getExtensions" />
+      <node concept="3clFbS" id="4bHpKVAni_z" role="3clF47" />
+      <node concept="3Tm1VV" id="4bHpKVAni_$" role="1B3o_S" />
+      <node concept="3uibUv" id="4bHpKVAni$Q" role="3clF45">
+        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+        <node concept="16syzq" id="4bHpKVAni_k" role="11_B2D">
+          <ref role="16sUi3" node="4bHpKVAniyg" resolve="CompExtT" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="4bHpKVAniA8" role="3clF46">
+        <property role="TrG5h" value="component" />
+        <node concept="16syzq" id="4bHpKVAniA7" role="1tU5fm">
+          <ref role="16sUi3" node="4bHpKVAni$c" resolve="CompT" />
+        </node>
+        <node concept="2AHcQZ" id="4bHpKVAniDr" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="4bHpKVAniEt" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="4bHpKVAnixA" role="1B3o_S" />
+    <node concept="16euLQ" id="4bHpKVAni$c" role="16eVyc">
+      <property role="TrG5h" value="CompT" />
+    </node>
+    <node concept="16euLQ" id="4bHpKVAniyg" role="16eVyc">
+      <property role="TrG5h" value="CompExtT" />
+    </node>
+  </node>
 </model>
 
