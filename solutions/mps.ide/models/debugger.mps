@@ -843,26 +843,6 @@
         <ref role="3uigEE" node="3wAsKTk9819" resolve="WatcherFacade" />
       </node>
     </node>
-    <node concept="2tJIrI" id="7pEplJkHdIe" role="jymVt" />
-    <node concept="312cEg" id="7pEplJkHqCb" role="jymVt">
-      <property role="TrG5h" value="myConnnectors" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm6S6" id="7pEplJkHmMv" role="1B3o_S" />
-      <node concept="3uibUv" id="7pEplJkHqsz" role="1tU5fm">
-        <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
-        <node concept="3uibUv" id="7pEplJkHqC2" role="11_B2D">
-          <ref role="3uigEE" node="7pEplJkHbCZ" resolve="DeviceConnector" />
-        </node>
-      </node>
-      <node concept="2ShNRf" id="7pEplJkHtrJ" role="33vP2m">
-        <node concept="1pGfFk" id="7pEplJkHtXr" role="2ShVmc">
-          <ref role="37wK5l" to="33ny:~HashSet.&lt;init&gt;()" resolve="HashSet" />
-          <node concept="3uibUv" id="7pEplJkHuz6" role="1pMfVU">
-            <ref role="3uigEE" node="7pEplJkHbCZ" resolve="DeviceConnector" />
-          </node>
-        </node>
-      </node>
-    </node>
     <node concept="2tJIrI" id="5jACUPF_PrY" role="jymVt" />
     <node concept="3clFb_" id="5jACUPF_VLV" role="jymVt">
       <property role="TrG5h" value="watch" />
@@ -1426,7 +1406,7 @@
         <property role="TrG5h" value="port" />
         <node concept="17QB3L" id="6K_0vqjdycM" role="1tU5fm" />
       </node>
-      <node concept="3Tm6S6" id="6K_0vqjdycF" role="1B3o_S" />
+      <node concept="3Tm1VV" id="1R4IoyRy0on" role="1B3o_S" />
     </node>
     <node concept="2tJIrI" id="5jACUPFDzji" role="jymVt" />
     <node concept="3clFb_" id="5jACUPFDAmD" role="jymVt">

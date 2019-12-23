@@ -1425,15 +1425,39 @@
         </node>
       </node>
       <node concept="3clFbS" id="4FkwH71jCRn" role="3clF47">
+        <node concept="3cpWs8" id="3fQLdr1J$wV" role="3cqZAp">
+          <node concept="3cpWsn" id="3fQLdr1J$wW" role="3cpWs9">
+            <property role="TrG5h" value="nodeCell" />
+            <node concept="3uibUv" id="3fQLdr1J$wU" role="1tU5fm">
+              <ref role="3uigEE" to="f4zo:~EditorCell" resolve="EditorCell" />
+            </node>
+            <node concept="1rXfSq" id="3fQLdr1J$wX" role="33vP2m">
+              <ref role="37wK5l" to="7a0s:1FGe55gTHXF" resolve="getNodeCell" />
+              <node concept="37vLTw" id="3fQLdr1J$wY" role="37wK5m">
+                <ref role="3cqZAo" node="4FkwH71jCRh" resolve="editorComponent" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="3fQLdr1JHx_" role="3cqZAp">
+          <node concept="3clFbS" id="3fQLdr1JHxB" role="3clFbx">
+            <node concept="3cpWs6" id="3fQLdr1JIMP" role="3cqZAp">
+              <node concept="10Nm6u" id="3fQLdr1JIYb" role="3cqZAk" />
+            </node>
+          </node>
+          <node concept="3clFbC" id="3fQLdr1JIo7" role="3clFbw">
+            <node concept="10Nm6u" id="3fQLdr1JIzu" role="3uHU7w" />
+            <node concept="37vLTw" id="3fQLdr1JHTg" role="3uHU7B">
+              <ref role="3cqZAo" node="3fQLdr1J$wW" resolve="nodeCell" />
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="4FkwH71jFst" role="3cqZAp">
           <node concept="2YIFZM" id="4FkwH71jFLH" role="3clFbG">
             <ref role="37wK5l" to="g51k:~CellFinderUtil.findChild(jetbrains.mps.openapi.editor.cells.EditorCell,jetbrains.mps.nodeEditor.cells.CellFinderUtil$Finder):jetbrains.mps.openapi.editor.cells.EditorCell" resolve="findChild" />
             <ref role="1Pybhc" to="g51k:~CellFinderUtil" resolve="CellFinderUtil" />
-            <node concept="1rXfSq" id="4FkwH71jHfZ" role="37wK5m">
-              <ref role="37wK5l" to="7a0s:1FGe55gTHXF" resolve="getNodeCell" />
-              <node concept="37vLTw" id="4FkwH71jHg0" role="37wK5m">
-                <ref role="3cqZAo" node="4FkwH71jCRh" resolve="editorComponent" />
-              </node>
+            <node concept="37vLTw" id="3fQLdr1J$wZ" role="37wK5m">
+              <ref role="3cqZAo" node="3fQLdr1J$wW" resolve="nodeCell" />
             </node>
             <node concept="Rm8GO" id="4FkwH71jHfl" role="37wK5m">
               <ref role="Rm8GQ" to="g51k:~CellFinderUtil$Finder.FIRST_EDITABLE" resolve="FIRST_EDITABLE" />

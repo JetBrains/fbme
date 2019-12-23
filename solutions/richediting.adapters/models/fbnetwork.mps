@@ -8778,6 +8778,27 @@
   <node concept="3HP615" id="5jb5jNBJKHJ">
     <property role="TrG5h" value="FBNetworkComponentController" />
     <node concept="2tJIrI" id="5jb5jNBJKIt" role="jymVt" />
+    <node concept="3clFb_" id="1R4IoyQPQTg" role="jymVt">
+      <property role="TrG5h" value="getBounds" />
+      <node concept="37vLTG" id="1R4IoyRb09O" role="3clF46">
+        <property role="TrG5h" value="position" />
+        <node concept="3uibUv" id="1R4IoyRb09P" role="1tU5fm">
+          <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
+        </node>
+        <node concept="2AHcQZ" id="1R4IoyRb09Q" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1R4IoyQPQTj" role="3clF47" />
+      <node concept="3Tm1VV" id="1R4IoyQPQTk" role="1B3o_S" />
+      <node concept="3uibUv" id="1R4IoyQPQS0" role="3clF45">
+        <ref role="3uigEE" to="z60i:~Rectangle" resolve="Rectangle" />
+      </node>
+      <node concept="2AHcQZ" id="1R4IoyQPQWa" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1R4IoyQPQQl" role="jymVt" />
     <node concept="3clFb_" id="5jb5jNBJMpJ" role="jymVt">
       <property role="TrG5h" value="getPortCoordinates" />
       <node concept="3clFbS" id="5jb5jNBJMpK" role="3clF47" />
@@ -12258,7 +12279,6 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
-    <node concept="2tJIrI" id="2syzu7r64tl" role="jymVt" />
     <node concept="2tJIrI" id="2syzu7r64_e" role="jymVt" />
     <node concept="3clFb_" id="2syzu7r68d$" role="jymVt">
       <property role="TrG5h" value="getCoordinates" />
@@ -12296,7 +12316,7 @@
     </node>
     <node concept="2tJIrI" id="2syzu7r6g4K" role="jymVt" />
     <node concept="3clFb_" id="2syzu7r6jdN" role="jymVt">
-      <property role="TrG5h" value="geBounds" />
+      <property role="TrG5h" value="getBounds" />
       <node concept="3Tm1VV" id="2syzu7r6jdO" role="1B3o_S" />
       <node concept="3uibUv" id="2syzu7r6jdP" role="3clF45">
         <ref role="3uigEE" to="z60i:~Rectangle" resolve="Rectangle" />
