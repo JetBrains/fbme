@@ -80,20 +80,6 @@
           <greater-priority-mapping>
             <generator generatorUID="70d46d48-b971-44d7-874c-f0f70b17dd57(mps.lang.meta.editor#3165118101539151995)" />
             <external-mapping>
-              <mapping-node modelUID="r:699109bf-cdf4-48ce-a488-660342f09df8(main@generator)" nodeID="5470706472882681226" />
-            </external-mapping>
-          </greater-priority-mapping>
-          <lesser-priority-mapping>
-            <generator generatorUID="0647eca7-da98-422a-8a8b-6ebc0bd014ea(jetbrains.mps.lang.editor#1129914002149)" />
-            <external-mapping>
-              <mapping-node modelUID="r:00000000-0000-4000-0000-011c8959029f(jetbrains.mps.lang.editor.generator.baseLanguage.template.main@generator)" nodeID="1096629760203" />
-            </external-mapping>
-          </lesser-priority-mapping>
-        </mapping-priority-rule>
-        <mapping-priority-rule kind="strictly_together">
-          <greater-priority-mapping>
-            <generator generatorUID="70d46d48-b971-44d7-874c-f0f70b17dd57(mps.lang.meta.editor#3165118101539151995)" />
-            <external-mapping>
               <mapping-node modelUID="r:699109bf-cdf4-48ce-a488-660342f09df8(main@generator)" nodeID="3165118101539151996" />
             </external-mapping>
           </greater-priority-mapping>

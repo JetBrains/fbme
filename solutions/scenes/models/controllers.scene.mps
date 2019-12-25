@@ -292,11 +292,11 @@
     </node>
     <node concept="2tJIrI" id="17nGqbJd4cM" role="jymVt" />
     <node concept="3clFb_" id="17nGqbJd4hx" role="jymVt">
-      <property role="TrG5h" value="addSyncronizer" />
+      <property role="TrG5h" value="addLayouter" />
       <node concept="37vLTG" id="17nGqbJd4k4" role="3clF46">
-        <property role="TrG5h" value="syncronizer" />
+        <property role="TrG5h" value="layouter" />
         <node concept="3uibUv" id="17nGqbJd4nD" role="1tU5fm">
-          <ref role="3uigEE" node="17nGqbJd3r4" resolve="SceneSynchroinzer" />
+          <ref role="3uigEE" node="17nGqbJd3r4" resolve="SceneLayouter" />
         </node>
         <node concept="2AHcQZ" id="17nGqbJd4k6" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -307,11 +307,11 @@
       <node concept="3cqZAl" id="17nGqbJd4fI" role="3clF45" />
     </node>
     <node concept="3clFb_" id="17nGqbJd4p2" role="jymVt">
-      <property role="TrG5h" value="removeSyncronizer" />
+      <property role="TrG5h" value="removeLayouter" />
       <node concept="37vLTG" id="17nGqbJd4p3" role="3clF46">
-        <property role="TrG5h" value="syncronizer" />
+        <property role="TrG5h" value="layouter" />
         <node concept="3uibUv" id="17nGqbJd4p4" role="1tU5fm">
-          <ref role="3uigEE" node="17nGqbJd3r4" resolve="SceneSynchroinzer" />
+          <ref role="3uigEE" node="17nGqbJd3r4" resolve="SceneLayouter" />
         </node>
         <node concept="2AHcQZ" id="17nGqbJd4p5" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1139,14 +1139,7 @@
     </node>
   </node>
   <node concept="3HP615" id="17nGqbJd3r4">
-    <property role="TrG5h" value="SceneSynchroinzer" />
-    <node concept="2tJIrI" id="17nGqbJd3ry" role="jymVt" />
-    <node concept="3clFb_" id="17nGqbJd3si" role="jymVt">
-      <property role="TrG5h" value="synchronize" />
-      <node concept="3clFbS" id="17nGqbJd3sl" role="3clF47" />
-      <node concept="3Tm1VV" id="17nGqbJd3sm" role="1B3o_S" />
-      <node concept="3cqZAl" id="17nGqbJd3s8" role="3clF45" />
-    </node>
+    <property role="TrG5h" value="SceneLayouter" />
     <node concept="2tJIrI" id="4y$DvIXItQZ" role="jymVt" />
     <node concept="3clFb_" id="4y$DvIXItSd" role="jymVt">
       <property role="TrG5h" value="relayout" />
@@ -1171,54 +1164,6 @@
       </node>
     </node>
     <node concept="2tJIrI" id="17nGqbJd3zp" role="jymVt" />
-    <node concept="3clFb_" id="17nGqbJ_qgA" role="jymVt">
-      <property role="TrG5h" value="syncronizeCells" />
-      <node concept="3Tm1VV" id="17nGqbJ_qgC" role="1B3o_S" />
-      <node concept="3cqZAl" id="17nGqbJ_qgD" role="3clF45" />
-      <node concept="3clFbS" id="17nGqbJ_qgE" role="3clF47">
-        <node concept="2Gpval" id="17nGqbJ_q$s" role="3cqZAp">
-          <node concept="2GrKxI" id="17nGqbJ_q$t" role="2Gsz3X">
-            <property role="TrG5h" value="cell" />
-          </node>
-          <node concept="1rXfSq" id="17nGqbJ_qDN" role="2GsD0m">
-            <ref role="37wK5l" node="17nGqbJd3xz" resolve="getCells" />
-          </node>
-          <node concept="3clFbS" id="17nGqbJ_q$v" role="2LFqv$">
-            <node concept="3clFbJ" id="17nGqbJAbAk" role="3cqZAp">
-              <node concept="3clFbS" id="17nGqbJAbAm" role="3clFbx">
-                <node concept="3clFbF" id="17nGqbJAghf" role="3cqZAp">
-                  <node concept="2OqwBi" id="17nGqbJAh4e" role="3clFbG">
-                    <node concept="1eOMI4" id="17nGqbJAgRx" role="2Oq$k0">
-                      <node concept="10QFUN" id="17nGqbJAghc" role="1eOMHV">
-                        <node concept="3uibUv" id="17nGqbJAgkl" role="10QFUM">
-                          <ref role="3uigEE" to="g51k:~SynchronizeableEditorCell" resolve="SynchronizeableEditorCell" />
-                        </node>
-                        <node concept="2GrUjf" id="17nGqbJAgqZ" role="10QFUP">
-                          <ref role="2Gs0qQ" node="17nGqbJ_q$t" resolve="cell" />
-                        </node>
-                      </node>
-                    </node>
-                    <node concept="liA8E" id="17nGqbJAhh8" role="2OqNvi">
-                      <ref role="37wK5l" to="g51k:~SynchronizeableEditorCell.synchronize():void" resolve="synchronize" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="2ZW3vV" id="17nGqbJAfRg" role="3clFbw">
-                <node concept="3uibUv" id="17nGqbJAg3N" role="2ZW6by">
-                  <ref role="3uigEE" to="g51k:~SynchronizeableEditorCell" resolve="SynchronizeableEditorCell" />
-                </node>
-                <node concept="2GrUjf" id="17nGqbJAbFv" role="2ZW6bz">
-                  <ref role="2Gs0qQ" node="17nGqbJ_q$t" resolve="cell" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="2JFqV2" id="17nGqbJAtKg" role="2frcjj" />
-    </node>
-    <node concept="2tJIrI" id="17nGqbJAuQT" role="jymVt" />
     <node concept="3clFb_" id="17nGqbJ_qgG" role="jymVt">
       <property role="TrG5h" value="relayoutCells" />
       <node concept="3Tm1VV" id="17nGqbJ_qgI" role="1B3o_S" />
