@@ -1636,12 +1636,63 @@
           <ref role="3uigEE" to="g51k:~ParentSettings" resolve="ParentSettings" />
         </node>
       </node>
-      <node concept="3clFbS" id="2_D_3xXqKXT" role="3clF47" />
+      <node concept="3clFbS" id="2_D_3xXqKXT" role="3clF47">
+        <node concept="3clFbJ" id="4vmY7CyMzzn" role="3cqZAp">
+          <node concept="3clFbS" id="4vmY7CyMzzp" role="3clFbx">
+            <node concept="3clFbF" id="4vmY7CyMCJv" role="3cqZAp">
+              <node concept="2OqwBi" id="4vmY7CyMCNC" role="3clFbG">
+                <node concept="37vLTw" id="4vmY7CyMCJq" role="2Oq$k0">
+                  <ref role="3cqZAo" node="2_D_3xXqKXP" resolve="g" />
+                </node>
+                <node concept="liA8E" id="4vmY7CyMENO" role="2OqNvi">
+                  <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color):void" resolve="setColor" />
+                  <node concept="10M0yZ" id="4vmY7CyMMi4" role="37wK5m">
+                    <ref role="3cqZAo" to="z60i:~Color.WHITE" resolve="WHITE" />
+                    <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbF" id="4vmY7CyMNRo" role="3cqZAp">
+              <node concept="2OqwBi" id="4vmY7CyMNRp" role="3clFbG">
+                <node concept="37vLTw" id="4vmY7CyMNRq" role="2Oq$k0">
+                  <ref role="3cqZAo" node="2_D_3xXqKXP" resolve="g" />
+                </node>
+                <node concept="liA8E" id="4vmY7CyMNRr" role="2OqNvi">
+                  <ref role="37wK5l" to="z60i:~Graphics.fillRect(int,int,int,int):void" resolve="fillRect" />
+                  <node concept="37vLTw" id="4vmY7CyMQkM" role="37wK5m">
+                    <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myX" resolve="myX" />
+                  </node>
+                  <node concept="37vLTw" id="4vmY7CyMQkN" role="37wK5m">
+                    <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myY" resolve="myY" />
+                  </node>
+                  <node concept="37vLTw" id="4vmY7CyMQkO" role="37wK5m">
+                    <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myWidth" resolve="myWidth" />
+                  </node>
+                  <node concept="37vLTw" id="4vmY7CyMQkP" role="37wK5m">
+                    <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myHeight" resolve="myHeight" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="4vmY7CyMKn9" role="3clFbw">
+            <node concept="1rXfSq" id="4vmY7CyM_kY" role="2Oq$k0">
+              <ref role="37wK5l" to="g51k:~EditorCell_Basic.isSelectionPaintedOnAncestor(jetbrains.mps.nodeEditor.cells.ParentSettings):jetbrains.mps.nodeEditor.cells.ParentSettings" resolve="isSelectionPaintedOnAncestor" />
+              <node concept="37vLTw" id="4vmY7CyMB1G" role="37wK5m">
+                <ref role="3cqZAo" node="2_D_3xXqKXR" resolve="parentSettings" />
+              </node>
+            </node>
+            <node concept="liA8E" id="4vmY7CyMMdn" role="2OqNvi">
+              <ref role="37wK5l" to="g51k:~ParentSettings.isSelectionPainted():boolean" resolve="isSelectionPainted" />
+            </node>
+          </node>
+        </node>
+      </node>
       <node concept="2AHcQZ" id="2_D_3xXqKXU" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
-    <node concept="2tJIrI" id="7qPnRGFqWPB" role="jymVt" />
     <node concept="2tJIrI" id="38k27IRrSfR" role="jymVt" />
     <node concept="3clFb_" id="38k27IRrZPj" role="jymVt">
       <property role="TrG5h" value="paintChildCells" />
