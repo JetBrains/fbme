@@ -15,6 +15,7 @@
     <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
     <dependency reexport="false">6594f340-4d73-4027-b7d3-c6ca2e70a53b(mps.lang.iec61499)</dependency>
     <dependency reexport="false">742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)</dependency>
+    <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(mps.iec61499.model)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:7e450f4e-1ac3-41ef-a851-4598161bdb94:de.slisson.mps.tables" version="0" />
@@ -49,6 +50,7 @@
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(common.iec61499.model)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
+    <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(mps.iec61499.model)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(mps.lang.ST)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(mps.lang.iec61499)" version="0" />
     <module reference="ce053d11-5ec7-4fac-b419-6715b4a97d3a(richediting.adapters)" version="0" />

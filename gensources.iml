@@ -28,5 +28,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.mbeddr.platform" level="project" />
     <orderEntry type="library" name="mps" level="project" />
+    <orderEntry type="library" name="mps" level="project" />
   </component>
 </module>

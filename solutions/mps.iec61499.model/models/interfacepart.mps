@@ -14,6 +14,7 @@
     <import index="6ehz" ref="r:cb9dc0d6-4720-4b3b-b2e2-f2ed5e59d4e7(common.iec61499.model.ecc)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="lv7i" ref="r:5472e35e-027d-42bb-bcce-32726ec4c9a9(mps.iec61499.model.ecc)" />
+    <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -109,6 +110,7 @@
       <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
         <child id="1178549979242" name="visibility" index="1B3o_S" />
       </concept>
+      <concept id="1107796713796" name="jetbrains.mps.baseLanguage.structure.Interface" flags="ig" index="3HP615" />
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644641414" name="jetbrains.mps.baseLanguage.structure.ProtectedVisibility" flags="nn" index="3Tmbuc" />
     </language>
@@ -853,6 +855,24 @@
         </node>
       </node>
     </node>
+    <node concept="2tJIrI" id="1JYTWWzyYzW" role="jymVt" />
+    <node concept="3clFb_" id="1JYTWWzyZUR" role="jymVt">
+      <property role="TrG5h" value="getNode" />
+      <node concept="3Tm1VV" id="1JYTWWzyZUT" role="1B3o_S" />
+      <node concept="3uibUv" id="1JYTWWzyZUU" role="3clF45">
+        <ref role="3uigEE" to="mhbf:~SNode" resolve="SNode" />
+      </node>
+      <node concept="3clFbS" id="1JYTWWzyZUV" role="3clF47">
+        <node concept="3clFbF" id="1JYTWWzz1kZ" role="3cqZAp">
+          <node concept="37vLTw" id="1JYTWWzz1kY" role="3clFbG">
+            <ref role="3cqZAo" node="1R4IoyQ_1Yn" resolve="myNode" />
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1JYTWWzyZUW" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
     <node concept="3Tm1VV" id="1R4IoyQ_1AA" role="1B3o_S" />
     <node concept="16euLQ" id="1R4IoyQ_1BB" role="16eVyc">
       <property role="TrG5h" value="T" />
@@ -862,6 +882,9 @@
     </node>
     <node concept="3uibUv" id="1R4IoyQ_1E_" role="EKbjA">
       <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+    </node>
+    <node concept="3uibUv" id="1JYTWWzyXeC" role="EKbjA">
+      <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
     </node>
   </node>
   <node concept="312cEu" id="1R4IoyQ_Pw7">
@@ -1195,6 +1218,19 @@
         </node>
       </node>
     </node>
+  </node>
+  <node concept="3HP615" id="1JYTWWzyU94">
+    <property role="TrG5h" value="HasNode" />
+    <node concept="2tJIrI" id="1JYTWWzyU9i" role="jymVt" />
+    <node concept="3clFb_" id="1JYTWWzyU9A" role="jymVt">
+      <property role="TrG5h" value="getNode" />
+      <node concept="3clFbS" id="1JYTWWzyU9D" role="3clF47" />
+      <node concept="3Tm1VV" id="1JYTWWzyU9E" role="1B3o_S" />
+      <node concept="3uibUv" id="1JYTWWzyU9r" role="3clF45">
+        <ref role="3uigEE" to="mhbf:~SNode" resolve="SNode" />
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="1JYTWWzyU95" role="1B3o_S" />
   </node>
 </model>
 

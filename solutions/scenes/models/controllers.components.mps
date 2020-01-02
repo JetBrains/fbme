@@ -20,6 +20,7 @@
     <import index="5lkm" ref="r:7effb02f-bde4-4d2f-b844-eefa6ab09c8c(scenes.controllers.diagram)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
+    <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -413,7 +414,7 @@
       </node>
       <node concept="37vLTG" id="4O0ojQq3jvs" role="3clF46">
         <property role="TrG5h" value="context" />
-        <node concept="3uibUv" id="4O0ojQq3jxp" role="1tU5fm">
+        <node concept="3uibUv" id="1cTKxMS9HbD" role="1tU5fm">
           <ref role="3uigEE" to="cj4x:~EditorContext" resolve="EditorContext" />
         </node>
       </node>
@@ -688,6 +689,12 @@
           </node>
         </node>
         <node concept="3clFbH" id="4O0ojQpYbDr" role="3cqZAp" />
+        <node concept="3clFbF" id="4tjN0ibR1rz" role="3cqZAp">
+          <node concept="1rXfSq" id="4tjN0ibR1rx" role="3clFbG">
+            <ref role="37wK5l" node="4tjN0ibQXfY" resolve="init" />
+          </node>
+        </node>
+        <node concept="3clFbH" id="4tjN0ibQPid" role="3cqZAp" />
         <node concept="3clFbF" id="4O0ojQpYbXg" role="3cqZAp">
           <node concept="2OqwBi" id="4O0ojQpYbXh" role="3clFbG">
             <node concept="37vLTw" id="4O0ojQpYcEf" role="2Oq$k0">
@@ -803,12 +810,6 @@
                 </node>
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="4tjN0ibQPid" role="3cqZAp" />
-        <node concept="3clFbF" id="4tjN0ibR1rz" role="3cqZAp">
-          <node concept="1rXfSq" id="4tjN0ibR1rx" role="3clFbG">
-            <ref role="37wK5l" node="4tjN0ibQXfY" resolve="init" />
           </node>
         </node>
       </node>
@@ -2655,9 +2656,42 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbF" id="2syzu7qHkeb" role="3cqZAp">
-          <node concept="1rXfSq" id="2syzu7qHke9" role="3clFbG">
-            <ref role="37wK5l" node="4y$DvIXIBDy" resolve="relayout" />
+        <node concept="3clFbF" id="3DiEZ8TrgxH" role="3cqZAp">
+          <node concept="37vLTI" id="3DiEZ8TrgxI" role="3clFbG">
+            <node concept="37vLTw" id="3DiEZ8TrgxJ" role="37vLTJ">
+              <ref role="3cqZAo" node="1iOpS24NdRP" resolve="myModelForm" />
+            </node>
+            <node concept="2OqwBi" id="3DiEZ8TrgxK" role="37vLTx">
+              <node concept="37vLTw" id="3DiEZ8TrgxL" role="2Oq$k0">
+                <ref role="3cqZAo" node="4y$DvIXIR3r" resolve="myFormProvider" />
+              </node>
+              <node concept="liA8E" id="3DiEZ8TrgxM" role="2OqNvi">
+                <ref role="37wK5l" to="82uw:~Supplier.get():java.lang.Object" resolve="get" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="3DiEZ8TrgxN" role="3cqZAp">
+          <node concept="37vLTI" id="3DiEZ8TrgxO" role="3clFbG">
+            <node concept="2OqwBi" id="3DiEZ8TrgxP" role="37vLTJ">
+              <node concept="37vLTw" id="3DiEZ8TrgxQ" role="2Oq$k0">
+                <ref role="3cqZAo" node="4O0ojQpAPEF" resolve="myLayoutSetting" />
+              </node>
+              <node concept="2OwXpG" id="3DiEZ8TrgxR" role="2OqNvi">
+                <ref role="2Oxat5" node="4O0ojQpAc$l" resolve="myBounds" />
+              </node>
+            </node>
+            <node concept="2OqwBi" id="3DiEZ8TrgxS" role="37vLTx">
+              <node concept="37vLTw" id="3DiEZ8TrgxT" role="2Oq$k0">
+                <ref role="3cqZAo" node="7_KjZP9f9dA" resolve="myController" />
+              </node>
+              <node concept="liA8E" id="3DiEZ8TrgxU" role="2OqNvi">
+                <ref role="37wK5l" node="4y$DvIXp_gc" resolve="getBounds" />
+                <node concept="37vLTw" id="3DiEZ8TrgxV" role="37wK5m">
+                  <ref role="3cqZAo" node="1iOpS24NdRP" resolve="myModelForm" />
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>
@@ -3171,6 +3205,12 @@
           </node>
         </node>
         <node concept="3clFbH" id="4bHpKVAnNqp" role="3cqZAp" />
+        <node concept="3clFbF" id="4tjN0ibPA72" role="3cqZAp">
+          <node concept="1rXfSq" id="4tjN0ibPA70" role="3clFbG">
+            <ref role="37wK5l" node="4tjN0ibPzdZ" resolve="init" />
+          </node>
+        </node>
+        <node concept="3clFbH" id="3DiEZ8T$NGS" role="3cqZAp" />
         <node concept="3cpWs8" id="4bHpKVAnOyx" role="3cqZAp">
           <node concept="3cpWsn" id="4bHpKVAnOyy" role="3cpWs9">
             <property role="TrG5h" value="editor" />
@@ -3239,11 +3279,6 @@
           </node>
         </node>
         <node concept="3clFbH" id="4tjN0ibPpfE" role="3cqZAp" />
-        <node concept="3clFbF" id="4tjN0ibPA72" role="3cqZAp">
-          <node concept="1rXfSq" id="4tjN0ibPA70" role="3clFbG">
-            <ref role="37wK5l" node="4tjN0ibPzdZ" resolve="init" />
-          </node>
-        </node>
       </node>
       <node concept="37vLTG" id="4bHpKVAnMA$" role="3clF46">
         <property role="TrG5h" value="extView" />

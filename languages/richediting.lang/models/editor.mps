@@ -791,22 +791,27 @@
                     </node>
                     <node concept="37vLTG" id="1HEL0zWg5nn" role="3clF46">
                       <property role="TrG5h" value="e" />
-                      <node concept="3uibUv" id="1HEL0zWg5no" role="1tU5fm">
+                      <node concept="3uibUv" id="1cTKxMSamJp" role="1tU5fm">
                         <ref role="3uigEE" to="cj4x:~EditorContext" resolve="EditorContext" />
                       </node>
                     </node>
                     <node concept="3clFbS" id="1HEL0zWg5np" role="3clF47">
                       <node concept="3clFbF" id="1HEL0zWg5IP" role="3cqZAp">
-                        <node concept="2ShNRf" id="1HEL0zWg5IN" role="3clFbG">
-                          <node concept="1pGfFk" id="1HEL0zWg6PY" role="2ShVmc">
-                            <ref role="37wK5l" to="ubo9:~EditorCell_Basic.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode)" resolve="EditorCell_FBTypeTemplate" />
-                            <node concept="1Q80Hx" id="1HEL0zWg70_" role="37wK5m" />
-                            <node concept="pncrf" id="1HEL0zWg7p7" role="37wK5m" />
-                            <node concept="2YIFZM" id="1R4IoyQNxYw" role="37wK5m">
-                              <ref role="37wK5l" to="go3h:1R4IoyQJjh9" resolve="create" />
-                              <ref role="1Pybhc" to="go3h:1R4IoyQ_1A_" resolve="FBTypeDescriptorByNode" />
-                              <node concept="pncrf" id="1R4IoyQNxYx" role="37wK5m" />
+                        <node concept="2OqwBi" id="1cTKxMSasRK" role="3clFbG">
+                          <node concept="2ShNRf" id="1HEL0zWg5IN" role="2Oq$k0">
+                            <node concept="1pGfFk" id="1HEL0zWg6PY" role="2ShVmc">
+                              <ref role="37wK5l" to="ubo9:~EditorCell_Basic.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode)" resolve="FBTypeTemplateCellComponent" />
+                              <node concept="1Q80Hx" id="1HEL0zWg70_" role="37wK5m" />
+                              <node concept="pncrf" id="1HEL0zWg7p7" role="37wK5m" />
+                              <node concept="2YIFZM" id="1R4IoyQNxYw" role="37wK5m">
+                                <ref role="37wK5l" to="go3h:1R4IoyQJjh9" resolve="create" />
+                                <ref role="1Pybhc" to="go3h:1R4IoyQ_1A_" resolve="FBTypeDescriptorByNode" />
+                                <node concept="pncrf" id="1R4IoyQNxYx" role="37wK5m" />
+                              </node>
                             </node>
+                          </node>
+                          <node concept="liA8E" id="1cTKxMSaDDD" role="2OqNvi">
+                            <ref role="37wK5l" to="ubo9:1cTKxMSa$2F" resolve="getRootCell" />
                           </node>
                         </node>
                       </node>
@@ -3110,7 +3115,7 @@
               </node>
               <node concept="37vLTG" id="4O0ojQq3jvs" role="3clF46">
                 <property role="TrG5h" value="context" />
-                <node concept="3uibUv" id="4O0ojQq3jxp" role="1tU5fm">
+                <node concept="3uibUv" id="1cTKxMS9NKD" role="1tU5fm">
                   <ref role="3uigEE" to="cj4x:~EditorContext" resolve="EditorContext" />
                 </node>
               </node>
@@ -4155,7 +4160,7 @@
               <node concept="37vLTG" id="5jb5jNCcmQF" role="3clF46">
                 <property role="TrG5h" value="context" />
                 <property role="3TUv4t" value="true" />
-                <node concept="3uibUv" id="5jb5jNCcmQG" role="1tU5fm">
+                <node concept="3uibUv" id="1cTKxMS9IZ7" role="1tU5fm">
                   <ref role="3uigEE" to="cj4x:~EditorContext" resolve="EditorContext" />
                 </node>
               </node>
