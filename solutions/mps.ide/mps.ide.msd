@@ -5,6 +5,9 @@
       <sourceRoot location="models" />
     </modelRoot>
   </models>
+  <facets>
+    <facet pluginId="iec61499.mps" type="ideaPlugin" />
+  </facets>
   <sourcePath />
   <dependencies>
     <dependency reexport="false">6594f340-4d73-4027-b7d3-c6ca2e70a53b(mps.lang.iec61499)</dependency>
