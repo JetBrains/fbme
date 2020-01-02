@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="mps">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/MPS 2018.3/lib" />
+      <root url="file://$PROJECT_DIR$/lib/MPS 2018.3/plugins" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2018.3/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2018.3/plugins" recursive="false" />
+  </library>
+</component>
