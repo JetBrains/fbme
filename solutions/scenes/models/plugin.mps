@@ -9,6 +9,7 @@
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="3bo0" ref="r:2b66dd0d-2c90-4da0-994d-d7579a6bca2a(scenes.controllers.scene)" />
+    <import index="7zu8" ref="r:a3d9cb66-c492-4189-9359-282b020eccf4(scenes.ext.contextMenu)" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -74,7 +75,7 @@
     </language>
   </registry>
   <node concept="2uRRBy" id="7eBFChAbxrR">
-    <property role="TrG5h" value="SceneStateManager" />
+    <property role="TrG5h" value="SceneStateManager_Plugin" />
     <node concept="2uRRBT" id="7eBFChAbxrS" role="2uRRB$">
       <node concept="3clFbS" id="7eBFChAbxrT" role="2VODD2">
         <node concept="3cpWs8" id="7eBFChAbzs5" role="3cqZAp">
@@ -148,6 +149,79 @@
   </node>
   <node concept="2DaZZR" id="6wZUH2AM58e">
     <property role="3_H9TB" value="true" />
+  </node>
+  <node concept="2uRRBy" id="1KzgIApPLV1">
+    <property role="TrG5h" value="CellSelectionOnPopupTrigger_Plugin" />
+    <node concept="2uRRBT" id="1KzgIApPMsE" role="2uRRB$">
+      <node concept="3clFbS" id="1KzgIApPMsF" role="2VODD2">
+        <node concept="3cpWs8" id="1KzgIApPMt0" role="3cqZAp">
+          <node concept="3cpWsn" id="1KzgIApPMt1" role="3cpWs9">
+            <property role="TrG5h" value="reg" />
+            <node concept="3uibUv" id="1KzgIApPMt2" role="1tU5fm">
+              <ref role="3uigEE" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
+            </node>
+            <node concept="2OqwBi" id="1KzgIApPMt3" role="33vP2m">
+              <node concept="1KvdUw" id="1KzgIApPMt4" role="2Oq$k0" />
+              <node concept="liA8E" id="1KzgIApPMt5" role="2OqNvi">
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <node concept="3VsKOn" id="1KzgIApPMt6" role="37wK5m">
+                  <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="1KzgIApPMt7" role="3cqZAp">
+          <node concept="2OqwBi" id="1KzgIApPMt8" role="3clFbG">
+            <node concept="37vLTw" id="1KzgIApPMt9" role="2Oq$k0">
+              <ref role="3cqZAo" node="1KzgIApPMt1" resolve="reg" />
+            </node>
+            <node concept="liA8E" id="1KzgIApPMta" role="2OqNvi">
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="registerExtension" />
+              <node concept="10M0yZ" id="1KzgIApPM$6" role="37wK5m">
+                <ref role="3cqZAo" to="7zu8:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
+                <ref role="1PxDUh" to="7zu8:1KzgIApMed1" resolve="CellSelectionOnPopupTrigger" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2uRRBN" id="1KzgIApPMGo" role="2uRRB_">
+      <node concept="3clFbS" id="1KzgIApPMGp" role="2VODD2">
+        <node concept="3cpWs8" id="1KzgIApPMGP" role="3cqZAp">
+          <node concept="3cpWsn" id="1KzgIApPMGQ" role="3cpWs9">
+            <property role="TrG5h" value="reg" />
+            <node concept="3uibUv" id="1KzgIApPMGR" role="1tU5fm">
+              <ref role="3uigEE" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
+            </node>
+            <node concept="2OqwBi" id="1KzgIApPMGS" role="33vP2m">
+              <node concept="1KvdUw" id="1KzgIApPMGT" role="2Oq$k0" />
+              <node concept="liA8E" id="1KzgIApPMGU" role="2OqNvi">
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <node concept="3VsKOn" id="1KzgIApPMGV" role="37wK5m">
+                  <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="1KzgIApPMGW" role="3cqZAp">
+          <node concept="2OqwBi" id="1KzgIApPMGX" role="3clFbG">
+            <node concept="37vLTw" id="1KzgIApPMGY" role="2Oq$k0">
+              <ref role="3cqZAo" node="1KzgIApPMGQ" resolve="reg" />
+            </node>
+            <node concept="liA8E" id="1KzgIApPMGZ" role="2OqNvi">
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="unregisterExtension" />
+              <node concept="10M0yZ" id="1KzgIApPMH0" role="37wK5m">
+                <ref role="1PxDUh" to="7zu8:1KzgIApMed1" resolve="CellSelectionOnPopupTrigger" />
+                <ref role="3cqZAo" to="7zu8:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
   </node>
 </model>
 
