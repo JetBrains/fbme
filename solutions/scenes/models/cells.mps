@@ -117,7 +117,6 @@
       <concept id="1109283449304" name="jetbrains.mps.baseLanguage.structure.TypeVariableReference" flags="in" index="16syzq">
         <reference id="1109283546497" name="typeVariableDeclaration" index="16sUi3" />
       </concept>
-      <concept id="1092119917967" name="jetbrains.mps.baseLanguage.structure.MulExpression" flags="nn" index="17qRlL" />
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
       </concept>
@@ -125,9 +124,6 @@
       <concept id="1068498886294" name="jetbrains.mps.baseLanguage.structure.AssignmentExpression" flags="nn" index="37vLTI" />
       <concept id="4972933694980447171" name="jetbrains.mps.baseLanguage.structure.BaseVariableDeclaration" flags="ng" index="19Szcq">
         <child id="5680397130376446158" name="type" index="1tU5fm" />
-      </concept>
-      <concept id="1111509017652" name="jetbrains.mps.baseLanguage.structure.FloatingPointConstant" flags="nn" index="3b6qkQ">
-        <property id="1113006610751" name="value" index="$nhwW" />
       </concept>
       <concept id="1068580123132" name="jetbrains.mps.baseLanguage.structure.BaseMethodDeclaration" flags="ng" index="3clF44">
         <child id="1068580123133" name="returnType" index="3clF45" />
@@ -591,6 +587,16 @@
                   </node>
                 </node>
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="uP0FLzH983" role="3cqZAp">
+          <node concept="37vLTI" id="uP0FLzHdCf" role="3clFbG">
+            <node concept="3cmrfG" id="uP0FLzHfNp" role="37vLTx">
+              <property role="3cmrfH" value="600" />
+            </node>
+            <node concept="37vLTw" id="uP0FLzH981" role="37vLTJ">
+              <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myHeight" resolve="myHeight" />
             </node>
           </node>
         </node>
@@ -3391,26 +3397,6 @@
                   <ref role="37wK5l" to="exr9:~EditorSettings.getVerticalBoundWidth():int" resolve="getVerticalBoundWidth" />
                 </node>
               </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="4vmY7CyOoY5" role="3cqZAp">
-          <node concept="37vLTI" id="4vmY7CyOuZF" role="3clFbG">
-            <node concept="10QFUN" id="4vmY7CyP$ky" role="37vLTx">
-              <node concept="10Oyi0" id="4vmY7CyPAsV" role="10QFUM" />
-              <node concept="1eOMI4" id="4vmY7CyPyWH" role="10QFUP">
-                <node concept="17qRlL" id="4vmY7CyPuBy" role="1eOMHV">
-                  <node concept="3b6qkQ" id="4vmY7CyPvRx" role="3uHU7w">
-                    <property role="$nhwW" value="0.65" />
-                  </node>
-                  <node concept="37vLTw" id="4vmY7CyOxmJ" role="3uHU7B">
-                    <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myWidth" resolve="myWidth" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="37vLTw" id="4vmY7CyOoY3" role="37vLTJ">
-              <ref role="3cqZAo" to="g51k:~EditorCell_Basic.myHeight" resolve="myHeight" />
             </node>
           </node>
         </node>
