@@ -1094,6 +1094,24 @@
               </node>
             </node>
           </node>
+          <node concept="3clFbF" id="6Na19TM5xvf" role="3cqZAp">
+            <node concept="2OqwBi" id="6Na19TM5xvg" role="3clFbG">
+              <node concept="37vLTw" id="6Na19TM5xvh" role="2Oq$k0">
+                <ref role="3cqZAo" node="1R4IoyRofGx" resolve="style" />
+              </node>
+              <node concept="liA8E" id="6Na19TM5xvi" role="2OqNvi">
+                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object):void" resolve="set" />
+                <node concept="10M0yZ" id="6Na19TM5zZ8" role="37wK5m">
+                  <ref role="3cqZAo" to="5ueo:~StyleAttributes.FONT_STYLE" resolve="FONT_STYLE" />
+                  <ref role="1PxDUh" to="5ueo:~StyleAttributes" resolve="StyleAttributes" />
+                </node>
+                <node concept="10M0yZ" id="6Na19TM5HlQ" role="37wK5m">
+                  <ref role="3cqZAo" to="exr9:~MPSFonts.BOLD" resolve="BOLD" />
+                  <ref role="1PxDUh" to="exr9:~MPSFonts" resolve="MPSFonts" />
+                </node>
+              </node>
+            </node>
+          </node>
           <node concept="3clFbF" id="1R4IoyQQxez" role="3cqZAp">
             <node concept="37vLTI" id="1R4IoyQQxNT" role="3clFbG">
               <node concept="2ShNRf" id="1R4IoyQQxWv" role="37vLTx">
@@ -1150,18 +1168,28 @@
               </node>
               <node concept="liA8E" id="1R4IoyRnZsw" role="2OqNvi">
                 <ref role="37wK5l" to="z60i:~Graphics.fillRect(int,int,int,int):void" resolve="fillRect" />
-                <node concept="37vLTw" id="1R4IoyRnQbC" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyQOzGz" resolve="myX" />
+                <node concept="3cpWsd" id="6Na19TM5oJd" role="37wK5m">
+                  <node concept="3cmrfG" id="6Na19TM5oMi" role="3uHU7w">
+                    <property role="3cmrfH" value="1" />
+                  </node>
+                  <node concept="37vLTw" id="1R4IoyRnQbC" role="3uHU7B">
+                    <ref role="3cqZAo" node="1R4IoyQOzGz" resolve="myX" />
+                  </node>
                 </node>
                 <node concept="37vLTw" id="1R4IoyRnTTi" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyQOzK4" resolve="myY" />
                 </node>
-                <node concept="2OqwBi" id="1R4IoyRnUr9" role="37wK5m">
-                  <node concept="37vLTw" id="1R4IoyRnUbB" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
+                <node concept="3cpWs3" id="6Na19TM5uLf" role="37wK5m">
+                  <node concept="2OqwBi" id="1R4IoyRnUr9" role="3uHU7B">
+                    <node concept="37vLTw" id="1R4IoyRnUbB" role="2Oq$k0">
+                      <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
+                    </node>
+                    <node concept="liA8E" id="1R4IoyRnWiX" role="2OqNvi">
+                      <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                    </node>
                   </node>
-                  <node concept="liA8E" id="1R4IoyRnWiX" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                  <node concept="3cmrfG" id="5wygzc2W4ET" role="3uHU7w">
+                    <property role="3cmrfH" value="2" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="1R4IoyRnWSS" role="37wK5m">
@@ -1195,18 +1223,28 @@
               </node>
               <node concept="liA8E" id="1R4IoyRopOH" role="2OqNvi">
                 <ref role="37wK5l" to="z60i:~Graphics.drawRect(int,int,int,int):void" resolve="drawRect" />
-                <node concept="37vLTw" id="1R4IoyRopOI" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyQOzGz" resolve="myX" />
+                <node concept="3cpWsd" id="6Na19TM5sBO" role="37wK5m">
+                  <node concept="3cmrfG" id="6Na19TM5sF4" role="3uHU7w">
+                    <property role="3cmrfH" value="1" />
+                  </node>
+                  <node concept="37vLTw" id="1R4IoyRopOI" role="3uHU7B">
+                    <ref role="3cqZAo" node="1R4IoyQOzGz" resolve="myX" />
+                  </node>
                 </node>
                 <node concept="37vLTw" id="1R4IoyRopOJ" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyQOzK4" resolve="myY" />
                 </node>
-                <node concept="2OqwBi" id="1R4IoyRopOK" role="37wK5m">
-                  <node concept="37vLTw" id="1R4IoyRopOL" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
+                <node concept="3cpWs3" id="6Na19TM5x2L" role="37wK5m">
+                  <node concept="2OqwBi" id="1R4IoyRopOK" role="3uHU7B">
+                    <node concept="37vLTw" id="1R4IoyRopOL" role="2Oq$k0">
+                      <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
+                    </node>
+                    <node concept="liA8E" id="1R4IoyRopOM" role="2OqNvi">
+                      <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                    </node>
                   </node>
-                  <node concept="liA8E" id="1R4IoyRopOM" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                  <node concept="3cmrfG" id="5wygzc2W52f" role="3uHU7w">
+                    <property role="3cmrfH" value="2" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="1R4IoyRopON" role="37wK5m">
@@ -2286,8 +2324,8 @@
           <node concept="37vLTw" id="1R4IoyQOiK9" role="37wK5m">
             <ref role="3cqZAo" node="1R4IoyQOi_$" resolve="text" />
           </node>
-          <node concept="10M0yZ" id="1R4IoyQOiSM" role="37wK5m">
-            <ref role="3cqZAo" to="z60i:~Color.LIGHT_GRAY" resolve="LIGHT_GRAY" />
+          <node concept="10M0yZ" id="6Na19TM50V0" role="37wK5m">
+            <ref role="3cqZAo" to="z60i:~Color.GRAY" resolve="GRAY" />
             <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
           </node>
         </node>

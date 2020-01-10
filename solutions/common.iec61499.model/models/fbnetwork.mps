@@ -877,6 +877,60 @@
         <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
       </node>
     </node>
+    <node concept="2tJIrI" id="3DiEZ8TN8KD" role="jymVt" />
+    <node concept="3clFb_" id="3DiEZ8TN9rs" role="jymVt">
+      <property role="TrG5h" value="getPort" />
+      <node concept="3clFbS" id="3DiEZ8TN9rv" role="3clF47">
+        <node concept="3clFbF" id="3DiEZ8TNaUD" role="3cqZAp">
+          <node concept="2ShNRf" id="3DiEZ8TNaUF" role="3clFbG">
+            <node concept="1pGfFk" id="3DiEZ8TNaUG" role="2ShVmc">
+              <ref role="37wK5l" node="7qPnRGGbPYP" resolve="FBInstancePortIdentity" />
+              <node concept="Xjq3P" id="3DiEZ8TNaXl" role="37wK5m" />
+              <node concept="2OqwBi" id="3DiEZ8TNbc6" role="37wK5m">
+                <node concept="37vLTw" id="3DiEZ8TNb1v" role="2Oq$k0">
+                  <ref role="3cqZAo" node="3DiEZ8TN9KP" resolve="descriptor" />
+                </node>
+                <node concept="liA8E" id="3DiEZ8TNtKE" role="2OqNvi">
+                  <ref role="37wK5l" to="2xsi:3DiEZ8TNgqG" resolve="getPosition" />
+                </node>
+              </node>
+              <node concept="2OqwBi" id="3DiEZ8TNtX3" role="37wK5m">
+                <node concept="37vLTw" id="3DiEZ8TNtP6" role="2Oq$k0">
+                  <ref role="3cqZAo" node="3DiEZ8TN9KP" resolve="descriptor" />
+                </node>
+                <node concept="liA8E" id="3DiEZ8TNulU" role="2OqNvi">
+                  <ref role="37wK5l" to="2xsi:5fP$XwiOazh" resolve="getConnecitonKind" />
+                </node>
+              </node>
+              <node concept="3fqX7Q" id="3DiEZ8TNARO" role="37wK5m">
+                <node concept="2OqwBi" id="3DiEZ8TNARQ" role="3fr31v">
+                  <node concept="37vLTw" id="3DiEZ8TNARR" role="2Oq$k0">
+                    <ref role="3cqZAo" node="3DiEZ8TN9KP" resolve="descriptor" />
+                  </node>
+                  <node concept="liA8E" id="3DiEZ8TNARS" role="2OqNvi">
+                    <ref role="37wK5l" to="2xsi:3DiEZ8TNwDw" resolve="isInput" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="3DiEZ8TN9rw" role="1B3o_S" />
+      <node concept="3uibUv" id="3DiEZ8TN975" role="3clF45">
+        <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
+      </node>
+      <node concept="37vLTG" id="3DiEZ8TN9KP" role="3clF46">
+        <property role="TrG5h" value="descriptor" />
+        <node concept="3uibUv" id="3DiEZ8TN9Ox" role="1tU5fm">
+          <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+        </node>
+        <node concept="2AHcQZ" id="3DiEZ8TN9RA" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="2JFqV2" id="3DiEZ8TN9SE" role="2frcjj" />
+    </node>
     <node concept="2tJIrI" id="2_D_3xXurg6" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlXro" role="jymVt">
       <property role="TrG5h" value="getPorts" />

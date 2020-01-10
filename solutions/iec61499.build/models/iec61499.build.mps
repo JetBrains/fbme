@@ -935,7 +935,7 @@
       </node>
       <node concept="3_J27D" id="42vv4xsIJhR" role="3s6cr7">
         <node concept="3Mxwew" id="42vv4xsIJhT" role="3MwsjC">
-          <property role="3MwjfP" value="Support for graphical editing for MPS" />
+          <property role="3MwjfP" value="Support for visual editing for MPS" />
         </node>
       </node>
       <node concept="m$f5U" id="42vv4xsIJjP" role="m$_yh">
@@ -1086,6 +1086,31 @@
             <ref role="3bR37D" node="1JYTWWzvsHw" resolve="mps.iec61499.model" />
           </node>
         </node>
+        <node concept="1SiIV0" id="44qSI5$WMqF" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqG" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJ$" resolve="jetbrains.mps.ide.editor" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqH" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqI" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIIUH" resolve="richediting.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqJ" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqK" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqL" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqM" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHLX" resolve="mps.ide" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqN" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqO" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="42vv4xsIIUH" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -1150,6 +1175,21 @@
         <node concept="1SiIV0" id="1JYTWWzvsMv" role="3bR37C">
           <node concept="3bR9La" id="1JYTWWzvsMw" role="1SiIV1">
             <ref role="3bR37D" node="1JYTWWzvsHw" resolve="mps.iec61499.model" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqP" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqQ" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqR" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqS" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="44qSI5$WMqT" role="3bR37C">
+          <node concept="3bR9La" id="44qSI5$WMqU" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJ$" resolve="jetbrains.mps.ide.editor" />
           </node>
         </node>
       </node>
