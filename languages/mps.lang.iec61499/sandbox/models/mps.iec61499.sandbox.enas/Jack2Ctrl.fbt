@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Jack2Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="3/23/2016" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="JackVerUp" />
+        <With Var="JackVerDown" />
+        <With Var="JackHorExt" />
+        <With Var="JackHorRet" />
+        <With Var="JackMidPos" />
+        <With Var="User_demand" />
+        <With Var="Produce_SIG" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="JackVerUp" />
+        <With Var="JackVerDown" />
+        <With Var="JackHorExt" />
+        <With Var="JackHorRet" />
+        <With Var="JackMidPos" />
+        <With Var="User_demand" />
+        <With Var="Produce_SIG" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="JackVer" />
+        <With Var="JackHor" />
+        <With Var="Cylinder" />
+        <With Var="Suction" />
+        <With Var="Sledge" />
+        <With Var="ReadySIG" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="JackVer" />
+        <With Var="JackHor" />
+        <With Var="Cylinder" />
+        <With Var="Suction" />
+        <With Var="Sledge" />
+        <With Var="ReadySIG" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="JackVerUp" Type="BOOL" />
+      <VarDeclaration Name="JackVerDown" Type="BOOL" />
+      <VarDeclaration Name="JackHorExt" Type="BOOL" />
+      <VarDeclaration Name="JackHorRet" Type="BOOL" />
+      <VarDeclaration Name="JackMidPos" Type="BOOL" />
+      <VarDeclaration Name="User_demand" Type="STRING" />
+      <VarDeclaration Name="Produce_SIG" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="JackVer" Type="BOOL" />
+      <VarDeclaration Name="JackHor" Type="BOOL" />
+      <VarDeclaration Name="Cylinder" Type="BOOL" />
+      <VarDeclaration Name="Suction" Type="BOOL" />
+      <VarDeclaration Name="Sledge" Type="BOOL" />
+      <VarDeclaration Name="ReadySIG" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="4633.972" y="353.0316" />
+      <ECState Name="INIT" Comment="Initialization" x="4661.102" y="877.033">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="Temp" x="1688.889" y="1553.333" />
+      <ECState Name="MoveSledge" x="2928.889" y="293.3336">
+        <ECAction Algorithm="MoveSledge" Output="CNF" />
+      </ECState>
+      <ECState Name="TakeWP1" x="2488.889" y="675.5557">
+        <ECAction Algorithm="TakeWP1" Output="CNF" />
+      </ECState>
+      <ECState Name="TakeWP2" x="2493.333" y="977.778">
+        <ECAction Algorithm="TakeWP2" Output="CNF" />
+      </ECState>
+      <ECState Name="TakeWP3" x="2475.556" y="1257.778">
+        <ECAction Algorithm="TakeWP3" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP1" x="2471.111" y="1555.556">
+        <ECAction Algorithm="PlaceWP1" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP2" x="2466.667" y="1853.335">
+        <ECAction Algorithm="PlaceWP2" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP3" x="2471.111" y="2142.224">
+        <ECAction Algorithm="PlaceWP3" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP4" x="2462.222" y="2404.445">
+        <ECAction Algorithm="PlaceWP4" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP5" x="2461.111" y="2638.889">
+        <ECAction Algorithm="PlaceWP5" Output="CNF" />
+      </ECState>
+      <ECState Name="PlaceWP6" x="2471.111" y="2876.667">
+        <ECAction Algorithm="PlaceWP6" Output="CNF" />
+      </ECState>
+      <ECTransition Source="Temp" Destination="INIT" Condition="1" x="2511.014" y="32.8242">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="458.3392,-58.64336,692.3369,-113.3073" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="4763.772" y="585.9334">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1196.554,126.7038,1197.944,161.4131" />
+      </ECTransition>
+      <ECTransition Source="MoveSledge" Destination="TakeWP1" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="2430.563" y="329.3798">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="607.4277,60.26147,579.5346,84.5948" />
+      </ECTransition>
+      <ECTransition Source="TakeWP1" Destination="TakeWP2" Condition="REQ[JackVerDown]" x="2569.606" y="846.7678">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="645.5558,205.2084,645.3575,221.5257" />
+      </ECTransition>
+      <ECTransition Source="TakeWP2" Destination="TakeWP3" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="2376.295" y="1099.454">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="590.6227,266.0575,589.8184,280.6157" />
+      </ECTransition>
+      <ECTransition Source="TakeWP3" Destination="PlaceWP1" Condition="REQ[JackVerUp]" x="2547.993" y="1397.453">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="640.3132,340.5127,639.6061,356.6784" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP1" Destination="PlaceWP2" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="2404.299" y="1706.82">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="598.6169,418.8434,598.3556,434.9626" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP2" Destination="PlaceWP3" Condition="REQ[JackHorExt]" x="2538.111" y="1993.372">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="637.1136,490.2853,637.3347,505.6659" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP3" Destination="PlaceWP4" Condition="REQ[JackVerDown]" x="2365.054" y="2287.881">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.9875,566.6052,587.4919,579.7598" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP4" Destination="PlaceWP5" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="2550.32" y="2522.023">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="640.442,625.1153,640.3906,635.9553" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP5" Destination="PlaceWP6" Condition="REQ[JackVerUp]" x="2374.654" y="2759.626">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="590.4644,684.5018,590.932,695.6196" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP6" Destination="Temp" Condition="INIT" x="1418.69" y="2610.267">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="337.8172,733.7598,277.7729,632.179" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP5" Destination="Temp" Condition="INIT" x="1473.174" y="2565.463">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="355.2665,717.6404,297.1015,635.8745" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP4" Destination="Temp" Condition="INIT" x="1521.608" y="2498.4">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="369.2122,694.6584,312.67,632.4295" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP3" Destination="Temp" Condition="INIT" x="1569.75" y="2417.445">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="381.4805,667.6735,327.8476,627.2963" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP2" Destination="Temp" Condition="INIT" x="1606.342" y="2355.575">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="387.888,647.4539,343.5273,630.3433" />
+      </ECTransition>
+      <ECTransition Source="MoveSledge" Destination="Temp" Condition="INIT" x="1651.631" y="440.5922">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="414.2934,25.14487,319.5192,121.4478" />
+      </ECTransition>
+      <ECTransition Source="TakeWP1" Destination="Temp" Condition="INIT" x="1730.649" y="570.3854">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="436.6134,69.38107,377.8731,133.8322" />
+      </ECTransition>
+      <ECTransition Source="TakeWP2" Destination="Temp" Condition="INIT" x="1753.328" y="673.472">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="440.7674,103.7433,385.8861,143.0092" />
+      </ECTransition>
+      <ECTransition Source="TakeWP3" Destination="Temp" Condition="INIT" x="1792.974" y="741.1115">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="448.6647,125.8401,403.8637,142.672" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP1" Destination="Temp" Condition="INIT" x="2051.758" y="1565.634">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="533.9982,391.921,491.8807,391.8013" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="MoveSledge" Condition="REQ[User_demand='GREEN'&amp;Produce_SIG]" x="3972.019" y="161.0743">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1065.416,30.12442,941.6667,-11.57504" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="TakeWP1" Condition="REQ[User_demand='RED'&amp;Produce_SIG]" x="3608.348" y="858.4515">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="982.1195,227.2702,822.0546,212.4238" />
+      </ECTransition>
+      <ECTransition Source="PlaceWP6" Destination="INIT" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="3936.745" y="2628.474">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="922.0076,794.8225,1094.982,636.8834" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="JackVer:=0;&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="MoveSledge">
+      <ST Text=";&#xD;&#xA;JackVer:=0;&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;Sledge:=1; // Move Sledge to second position...&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#0.3s);" />
+    </Algorithm>
+    <Algorithm Name="TakeWP1">
+      <ST Text=";&#xD;&#xA;// Bring the Jack Nose down.&#xD;&#xA;JackVer:=1; // go down.&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;//Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="TakeWP2">
+      <ST Text=";&#xD;&#xA;// Suction ON and exit after time out.&#xD;&#xA;JackVer:=1;&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=1; // Suction ON.&#xD;&#xA;//Sledge:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#0.2s);" />
+    </Algorithm>
+    <Algorithm Name="TakeWP3">
+      <ST Text=";&#xD;&#xA;// Go Back UP.&#xD;&#xA;JackVer:=0; // go up with wp.&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=1;&#xD;&#xA;//Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP1">
+      <ST Text=";&#xD;&#xA;// Bring Sledge back to orig pos if it was moved.&#xD;&#xA;JackVer:=0;&#xD;&#xA;JackHor:=0;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=1; // Suction remains ON.&#xD;&#xA;Sledge :=0; // bring sledge back to original pos.&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#0.2s);" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP2">
+      <ST Text=";&#xD;&#xA;// Extend the Jack.&#xD;&#xA;JackVer:=0;&#xD;&#xA;JackHor:=1;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=1; // remains on.&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP3">
+      <ST Text=";&#xD;&#xA;// Lower the Nose while extending.&#xD;&#xA;JackVer:=1; // Lower.&#xD;&#xA;JackHor:=1;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=1; // remains on.&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP4">
+      <ST Text=";&#xD;&#xA;// Shut off the Suction.&#xD;&#xA;JackVer:=1; // Lower.&#xD;&#xA;JackHor:=1;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#0.2s);" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP5">
+      <ST Text=";&#xD;&#xA;// Unlower the Jack...&#xD;&#xA;JackVer:=0; // Un-Lower the Jack.&#xD;&#xA;JackHor:=1;&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+    <Algorithm Name="PlaceWP6">
+      <ST Text=";&#xD;&#xA;// Put it back to original position...&#xD;&#xA;JackVer:=0;&#xD;&#xA;JackHor:=0; // Put it back...&#xD;&#xA;Cylinder:=0;&#xD;&#xA;Suction:=0;&#xD;&#xA;Sledge:=0;&#xD;&#xA;ReadySIG:=1; // we are done.&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#1.0s);&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

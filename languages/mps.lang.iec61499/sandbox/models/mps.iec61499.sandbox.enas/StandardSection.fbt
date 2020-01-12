@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="CED9E4C7468C9720" Name="StandardSection" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="11" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="DRIVE_ON" Comment="Set Event" />
+      <Event Name="DRIVE_OFF" Comment="Reset Event" />
+      <Event Name="DELIVERY" Comment="Normal Execution Request" />
+      <Event Name="PAUSE" Comment="Set Event" />
+      <Event Name="START" Comment="Set Event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="SENSOR_ON" Comment="Event Output" />
+      <Event Name="SENSOR_OFF" Comment="Event Output" />
+      <Event Name="DELIVERED" Comment="Execution Confirmation" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" UID="1" Name="FB1" Type="SYMLINKMULTIVARSRC_1559B0FF8170C9BA0" x="4260" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}DRIVE'" />
+    </FB>
+    <FB ID="4" UID="2" Name="FB2" Type="SYMLINKMULTIVARDST_1559B0FF8170C9BA0" x="540" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}SENSOR'" />
+    </FB>
+    <FB ID="5" Name="FB3" Type="E_SR" x="3040" y="860" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="FB4" Type="E_R_TRIG" x="1360" y="420" Namespace="IEC61499.Standard" />
+    <FB ID="7" Name="FB5" Type="E_F_TRIG" x="1360" y="820" Namespace="IEC61499.Standard" />
+    <FB ID="9" Name="FB6" Type="SectionDelivery" x="1140" y="1460" Namespace="Main" />
+    <FB ID="10" Name="FB7" Type="AND_88A3DD8EC65DD11C" x="3540" y="760" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;OUT:BOOL" />
+    </FB>
+    <FB ID="11" Name="RUN" Type="E_SR" x="3020" y="1720" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="40" y="232" Type="Event" />
+    <Input Name="DRIVE_ON" x="1940" y="872" Type="Event" />
+    <Input Name="DRIVE_OFF" x="1940" y="932" Type="Event" />
+    <Input Name="DELIVERY" x="618.8125" y="1471.854" Type="Event" />
+    <Input Name="PAUSE" x="2076" y="1871.854" Type="Event" />
+    <Input Name="START" x="2076" y="1811.854" Type="Event" />
+    <Output Name="INITO" x="4900" y="232" Type="Event" />
+    <Output Name="SENSOR_ON" x="1740" y="412" Type="Event" />
+    <Output Name="SENSOR_OFF" x="1740" y="472" Type="Event" />
+    <Output Name="DELIVERED" x="1934.365" y="1471.854" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB2.INIT" />
+      <Connection Source="FB1.INITO" Destination="INITO" />
+      <Connection Source="FB2.INITO" Destination="FB1.INIT" />
+      <Connection Source="FB3.EO" Destination="FB7.REQ" dx1="50" />
+      <Connection Source="DRIVE_ON" Destination="FB3.S" />
+      <Connection Source="DRIVE_OFF" Destination="FB3.R" />
+      <Connection Source="FB2.CNF" Destination="FB4.EI" dx1="61.625" />
+      <Connection Source="FB4.EO" Destination="SENSOR_ON" dx1="41.72925" />
+      <Connection Source="FB5.EO" Destination="SENSOR_OFF" dx1="46.47925" />
+      <Connection Source="FB2.CNF" Destination="FB5.EI" dx1="61.625" />
+      <Connection Source="DELIVERY" Destination="FB6.TRIGGER" dx1="40" />
+      <Connection Source="FB6.DRIVE_ON" Destination="FB3.S">
+        <Points>
+          <Points>
+            <X>428.40625</X>
+            <Y>390</Y>
+          </Points>
+          <Points>
+            <X>447.5</X>
+            <Y>390</Y>
+          </Points>
+          <Points>
+            <X>447.5</X>
+            <Y>362.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>362.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>225</Y>
+          </Points>
+          <Points>
+            <X>755</X>
+            <Y>225</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB6.DRIVE_OFF" Destination="FB3.R">
+        <Points>
+          <Points>
+            <X>428.40625</X>
+            <Y>405</Y>
+          </Points>
+          <Points>
+            <X>452.5</X>
+            <Y>405</Y>
+          </Points>
+          <Points>
+            <X>452.5</X>
+            <Y>362.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>362.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>240</Y>
+          </Points>
+          <Points>
+            <X>755</X>
+            <Y>240</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB4.EO" Destination="FB6.SENSOR" dx1="41.72925" dx2="70" dy="290" />
+      <Connection Source="FB6.DONE" Destination="DELIVERED" dx1="56.375" />
+      <Connection Source="PAUSE" Destination="RUN.R" dx1="41.35425" />
+      <Connection Source="START" Destination="RUN.S" dx1="46.14575" />
+      <Connection Source="RUN.EO" Destination="FB7.REQ" dx1="68.35425" />
+      <Connection Source="FB7.CNF" Destination="FB1.REQ" dx1="47.47925" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB3.Q" Destination="FB7.IN1" dx1="70" />
+      <Connection Source="FB2.VALUE1" Destination="FB4.QI" dx1="41.625" />
+      <Connection Source="FB2.VALUE1" Destination="FB5.QI" dx1="41.625" />
+      <Connection Source="RUN.Q" Destination="FB7.IN2" dx1="70" />
+      <Connection Source="FB7.OUT" Destination="FB1.VALUE1" dx1="70" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

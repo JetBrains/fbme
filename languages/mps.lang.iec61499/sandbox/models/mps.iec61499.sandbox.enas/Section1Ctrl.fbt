@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5599A521E1427F53" Name="Section1Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="MIA" Date="5/27/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section2" />
+        <With Var="Jack1_finished" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section2" />
+        <With Var="Jack1_finished" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Jack1_removes" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Jack1_removes" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section0" Type="BOOL" />
+      <VarDeclaration Name="Drive_section2" Type="BOOL" />
+      <VarDeclaration Name="Jack1_finished" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Jack1_removes" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,DRIVE,DISCARD,WAIT,CNTINUE,IDLE_MODE" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="348.9412" y="169.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1051.53" y="117.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="IDLE_MODE" x="1480" y="384">
+        <ECAction Algorithm="IDLE_MODE" Output="CNF" />
+      </ECState>
+      <ECState Name="DRIVE" x="1484" y="680">
+        <ECAction Algorithm="DRIVE" Output="CNF" />
+      </ECState>
+      <ECState Name="DISCARD" x="1476" y="968">
+        <ECAction Algorithm="DISCARD" Output="CNF" />
+      </ECState>
+      <ECState Name="WAIT" x="1480" y="1260">
+        <ECAction Algorithm="WAIT" Output="CNF" />
+      </ECState>
+      <ECState Name="CNTINUE" x="2624" y="1364">
+        <ECAction Algorithm="CNTINUE" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="711.1698" y="57.52203">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="157.1589,12.09064,197.8978,9.113791" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1317.119" y="192.6051">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="318.2824,36.61936,343.8094,53.3501" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="1062.376" y="364.736">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="265.8567,107.3505,247.9425,86.87826" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="DRIVE" Condition="REQ[Drive_section0]" x="1572.496" y="530.7996">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="396.5739,124.6153,396.8909,140.5844" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="INIT" Condition="INIT" x="865.4384" y="538.2953">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="203.4387,164.6541,176.4943,123.7579" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="DISCARD" Condition="REQ[Sensor]" x="1568.364" y="825.2925">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="395.7065,198.7797,395.3631,214.082" />
+      </ECTransition>
+      <ECTransition Source="DISCARD" Destination="INIT" Condition="INIT" x="457.6179" y="700.2696">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="71.62857,217.9748,43.88828,155.1825" />
+      </ECTransition>
+      <ECTransition Source="DISCARD" Destination="WAIT" Condition="REQ[Jack1_finished]" x="1564.367" y="1112.973">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="394.3906,270.3394,394.6047,285.9757" />
+      </ECTransition>
+      <ECTransition Source="WAIT" Destination="INIT" Condition="INIT" x="268.5057" y="705.3055">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="8.770401,221.0917,-23.97591,133.8945" />
+      </ECTransition>
+      <ECTransition Source="WAIT" Destination="CNTINUE" Condition="REQ[Drive_section2]" x="1920.242" y="1456.539">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="439.4133,369.3394,506.7202,375.5807" />
+      </ECTransition>
+      <ECTransition Source="CNTINUE" Destination="IDLE_MODE" Condition="REQ[NOT(Drive_section2)]" x="2647.208" y="477.0879">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="737.1639,128.2318,667.9744,51.45267" />
+      </ECTransition>
+      <ECTransition Source="CNTINUE" Destination="INIT" Condition="INIT" x="2807.608" y="225.8048">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="837.4857,63.84286,717.4147,-31.36205" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Jack1_removes := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="IDLE_MODE">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Jack1_removes := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="DRIVE">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Jack1_removes := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="DISCARD">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Jack1_removes := TRUE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="WAIT">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Jack1_removes := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="CNTINUE">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Jack1_removes := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

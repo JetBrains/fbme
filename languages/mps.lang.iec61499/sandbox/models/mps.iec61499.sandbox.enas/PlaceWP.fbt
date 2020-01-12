@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="935A8C26EEB6F95" Name="PlaceWP" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TRIGGER" Comment="Normal Execution Request" />
+      <Event Name="TOP" />
+      <Event Name="BOTTOM" />
+      <Event Name="EXTENDED" />
+      <Event Name="RETRACTED" />
+      <Event Name="RESET" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="DONE" Comment="Initialization Confirm" />
+      <Event Name="DOWN" />
+      <Event Name="UP" />
+      <Event Name="EXTEND" />
+      <Event Name="RETRACT" />
+      <Event Name="VAC_ON" />
+      <Event Name="VAC_OFF" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="760.9412" y="445.4117" />
+      <ECState Name="GO_DOWN" x="1904" y="500">
+        <ECAction Output="DOWN" />
+      </ECState>
+      <ECState Name="GRAB" x="2356" y="1028">
+        <ECAction Output="VAC_ON" />
+        <ECAction Output="UP" />
+      </ECState>
+      <ECState Name="EXTEND" x="2320" y="1516">
+        <ECAction Output="EXTEND" />
+      </ECState>
+      <ECState Name="GO_DOWN2" x="1560" y="1952">
+        <ECAction Output="DOWN" />
+      </ECState>
+      <ECState Name="RELEASE" x="828" y="1688">
+        <ECAction Output="VAC_OFF" />
+        <ECAction Output="UP" />
+      </ECState>
+      <ECState Name="RETRACT" x="408" y="1296">
+        <ECAction Output="RETRACT" />
+        <ECAction Output="DONE" />
+      </ECState>
+      <ECState Name="RESET" x="1316" y="840">
+        <ECAction Output="VAC_OFF" />
+        <ECAction Output="UP" />
+        <ECAction Output="RETRACT" />
+      </ECState>
+      <ECTransition Source="START" Destination="GO_DOWN" Condition="TRIGGER" x="1269.404" y="389.2868">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="285.096,92.32878,343.5298,94.1216" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="BOTTOM" x="2204.324" y="723.4541">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="539.5291,159.958,568.5518,195.0114" />
+      </ECTransition>
+      <ECTransition Source="GRAB" Destination="EXTEND" Condition="TOP" x="2436.031" y="1282.748">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="616.8014,304.4748,611.5974,338.6907" />
+      </ECTransition>
+      <ECTransition Source="EXTEND" Destination="GO_DOWN2" Condition="EXTENDED" x="2119.97" y="1774.39">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="560.3016,434.4213,514.7698,458.9834" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1138.317" y="1881.953">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="302.9204,480.7787,267.6234,467.5392" />
+      </ECTransition>
+      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="586.1918" y="1550.594">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="159.5568,404.2374,137.1617,380.8255" />
+      </ECTransition>
+      <ECTransition Source="RETRACT" Destination="START" Condition="1" x="470.6373" y="779.7629">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="99.07856,218.2809,123.7955,156.4434" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="1658.622" y="738.8331">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="431.9939,179.3242,398.0347,198.9605" />
+      </ECTransition>
+      <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="1841.329" y="1017.623">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="493.6467,264.7631,427.6866,252.8395" />
+      </ECTransition>
+      <ECTransition Source="EXTEND" Destination="RESET" Condition="RESET" x="1808.386" y="1253">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="489.8749,343.3181,419.1251,295.6819" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN2" Destination="RESET" Condition="RESET" x="1437.21" y="1471">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="368.7125,415.9848,350.2875,332.0152" />
+      </ECTransition>
+      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1069.186" y="1189">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="250.1691,321.9848,285.8309,260.0152" />
+      </ECTransition>
+      <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="853.8037" y="989.8437">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="186.3256,256.6515,244.6744,227.3485" />
+      </ECTransition>
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1027.597" y="720.4071">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="276.6281,197.7691,242.6072,173.5838" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

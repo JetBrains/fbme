@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="7BBB81A13FFFF611" Name="ConfigurationManagerC" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/29/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ_HOME" Comment="Normal Execution Request" />
+      <Event Name="REQ_FEED" />
+      <Event Name="REQ_COLLECT" />
+      <Event Name="REQ_REJECT" />
+      <Event Name="RESET" />
+      <Event Name="CONFIRM" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="READY" Comment="Execution Confirmation">
+        <With Var="configurationID" />
+      </Event>
+      <Event Name="S5_GATE_CLOSE" />
+      <Event Name="S5_GATE_OPEN" />
+      <Event Name="REQ_CONFIRMATION">
+        <With Var="configurationID" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="configurationID" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="ConfigurationManager" x="1360" y="620" Namespace="Main" />
+    <FB ID="2" Name="FB2" Type="RobotinoViewUdp" x="2780" y="1400" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="PORT" Value="'UDP:9180'" />
+    </FB>
+    <FB ID="3" Name="FB3" Type="E_DELAY" x="1780" y="1780" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#10s" />
+    </FB>
+    <Input Name="INIT" x="200" y="192" Type="Event" />
+    <Input Name="REQ_HOME" x="200" y="252" Type="Event" />
+    <Input Name="REQ_FEED" x="201.1042" y="312" Type="Event" />
+    <Input Name="REQ_COLLECT" x="192.4792" y="371.8542" Type="Event" />
+    <Input Name="REQ_REJECT" x="195.0313" y="432" Type="Event" />
+    <Input Name="RESET" x="284.875" y="1052" Type="Event" />
+    <Input Name="CONFIRM" x="176.4583" y="712" Type="Event" />
+    <Output Name="INITO" x="3099.115" y="252" Type="Event" />
+    <Output Name="READY" x="3102.5" y="312" Type="Event" />
+    <Output Name="S5_GATE_CLOSE" x="3095.958" y="372" Type="Event" />
+    <Output Name="S5_GATE_OPEN" x="3087.823" y="432" Type="Event" />
+    <Output Name="configurationID" x="3100.073" y="1012" Type="Data" />
+    <Output Name="REQ_CONFIRMATION" x="3073.271" y="512" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB3.START" dx1="221.4167" />
+      <Connection Source="REQ_HOME" Destination="FB1.REQ_HOME" dx1="40" />
+      <Connection Source="REQ_FEED" Destination="FB1.REQ_FEED" dx1="51.10419" />
+      <Connection Source="REQ_COLLECT" Destination="FB1.REQ_COLLECT" dx1="40" />
+      <Connection Source="REQ_REJECT" Destination="FB1.REQ_REJECT" dx1="45.03125" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="40" />
+      <Connection Source="FB1.READY" Destination="READY" dx1="71.75024" />
+      <Connection Source="FB1.S5_GATE_CLOSE" Destination="S5_GATE_CLOSE" dx1="91.75024" />
+      <Connection Source="FB1.S5_GATE_OPEN" Destination="S5_GATE_OPEN" dx1="111.7502" />
+      <Connection Source="FB2.INITO" Destination="FB1.INIT">
+        <Points>
+          <Points>
+            <X>811.223938</X>
+            <Y>360</Y>
+          </Points>
+          <Points>
+            <X>823.723938</X>
+            <Y>360</Y>
+          </Points>
+          <Points>
+            <X>823.723938</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>165</Y>
+          </Points>
+          <Points>
+            <X>335</X>
+            <Y>165</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB1.CNF" Destination="FB2.REQ" dx1="40" />
+      <Connection Source="FB2.CNF" Destination="FB1.REQ">
+        <Points>
+          <Points>
+            <X>811.223938</X>
+            <Y>375</Y>
+          </Points>
+          <Points>
+            <X>828.723938</X>
+            <Y>375</Y>
+          </Points>
+          <Points>
+            <X>828.723938</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>240</Y>
+          </Points>
+          <Points>
+            <X>335</X>
+            <Y>240</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB3.EO" Destination="FB2.INIT" dx1="48.5" />
+      <Connection Source="INIT" Destination="FB2.INIT" dx1="221.4167" />
+      <Connection Source="RESET" Destination="FB1.RESET" dx1="40" />
+      <Connection Source="FB1.REQ_CONFIRMATION" Destination="REQ_CONFIRMATION" dx1="151.75" />
+      <Connection Source="CONFIRM" Destination="FB1.CONFIRM" dx1="46.45837" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB2.dock_out" Destination="FB1.robotinoPos">
+        <Points>
+          <Points>
+            <X>811.223938</X>
+            <Y>485</Y>
+          </Points>
+          <Points>
+            <X>833.723938</X>
+            <Y>485</Y>
+          </Points>
+          <Points>
+            <X>833.723938</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>682.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>342.5</Y>
+          </Points>
+          <Points>
+            <X>327.5</X>
+            <Y>320</Y>
+          </Points>
+          <Points>
+            <X>335</X>
+            <Y>320</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB1.configurationID" Destination="FB2.dock_in" dx1="40" />
+      <Connection Source="FB1.configurationID" Destination="configurationID" dx1="151.7502" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

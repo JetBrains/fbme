@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="RobotinoViewUdp" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="26" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/3/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="PORT" />
+        <With Var="x_in" />
+        <With Var="y_in" />
+        <With Var="pose_in" />
+        <With Var="dock_in" />
+        <With Var="Input0" />
+        <With Var="Input1" />
+        <With Var="Input2" />
+        <With Var="Input3" />
+        <With Var="Input4" />
+        <With Var="Input5" />
+        <With Var="Input6" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="QI" />
+        <With Var="PORT" />
+        <With Var="x_in" />
+        <With Var="y_in" />
+        <With Var="pose_in" />
+        <With Var="dock_in" />
+        <With Var="Input0" />
+        <With Var="Input1" />
+        <With Var="Input2" />
+        <With Var="Input3" />
+        <With Var="Input4" />
+        <With Var="Input5" />
+        <With Var="Input6" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="x_out" />
+        <With Var="y_out" />
+        <With Var="pose_out" />
+        <With Var="dock_out" />
+        <With Var="Output0" />
+        <With Var="Output1" />
+        <With Var="Output2" />
+        <With Var="Output3" />
+        <With Var="Output4" />
+        <With Var="Output5" />
+        <With Var="Output6" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="x_out" />
+        <With Var="y_out" />
+        <With Var="pose_out" />
+        <With Var="dock_out" />
+        <With Var="Output0" />
+        <With Var="Output1" />
+        <With Var="Output2" />
+        <With Var="Output3" />
+        <With Var="Output4" />
+        <With Var="Output5" />
+        <With Var="Output6" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="PORT" Type="STRING" />
+      <VarDeclaration Name="x_in" Type="INT" />
+      <VarDeclaration Name="y_in" Type="INT" />
+      <VarDeclaration Name="pose_in" Type="INT" />
+      <VarDeclaration Name="dock_in" Type="STRING" />
+      <VarDeclaration Name="Input0" Type="BOOL" />
+      <VarDeclaration Name="Input1" Type="BOOL" />
+      <VarDeclaration Name="Input2" Type="BOOL" />
+      <VarDeclaration Name="Input3" Type="BOOL" />
+      <VarDeclaration Name="Input4" Type="BOOL" />
+      <VarDeclaration Name="Input5" Type="BOOL" />
+      <VarDeclaration Name="Input6" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="x_out" Type="INT" />
+      <VarDeclaration Name="y_out" Type="INT" />
+      <VarDeclaration Name="pose_out" Type="INT" />
+      <VarDeclaration Name="dock_out" Type="STRING" />
+      <VarDeclaration Name="Output0" Type="BOOL" />
+      <VarDeclaration Name="Output1" Type="BOOL" />
+      <VarDeclaration Name="Output2" Type="BOOL" />
+      <VarDeclaration Name="Output3" Type="BOOL" />
+      <VarDeclaration Name="Output4" Type="BOOL" />
+      <VarDeclaration Name="Output5" Type="BOOL" />
+      <VarDeclaration Name="Output6" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="TCPIO" x="2240" y="1060" Namespace="Runtime.IoCommon" />
+    <FB ID="24" Name="FB3" Type="VALSCAN_250C7D0577BABBFF9" x="3600" y="1900" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#I:=11;VALUE${I}:LINT,LINT,LINT,STRING,BOOL,BOOL,BOOL,BOOL,BOOL,BOOL,BOOL" />
+      <Parameter Name="FORMAT" Value="'%6s%6s%6s%4s%1d%1d%1d%1d%1d%1d%1d%1d'" />
+    </FB>
+    <FB ID="26" Name="FB4" Type="VALFORMAT_21154F699884FA2C9" x="960" y="1960" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#I:=15;VALUE${I}:INT,BYTE,INT,BYTE,INT,BYTE,STRING,BYTE,BOOL,BOOL,BOOL,BOOL,BOOL,BOOL,BOOL" />
+      <Parameter Name="FORMAT" Value="'%6s%1c%6s%1c%6s%1c%4s%1c%1d%1d%1d%1d%1d%1d%1d'" />
+      <Parameter Name="VALUE2" Value="32" />
+      <Parameter Name="VALUE4" Value="32" />
+      <Parameter Name="VALUE6" Value="32" />
+      <Parameter Name="VALUE8" Value="32" />
+    </FB>
+    <Input Name="INIT" x="20" y="751.8541" Type="Event" />
+    <Input Name="QI" x="12" y="932" Type="Data" />
+    <Input Name="PORT" x="12" y="992" Type="Data" />
+    <Input Name="x_in" x="12" y="1052" Type="Data" />
+    <Input Name="y_in" x="12" y="1112" Type="Data" />
+    <Input Name="pose_in" x="12" y="1172" Type="Data" />
+    <Input Name="dock_in" x="12" y="1232" Type="Data" />
+    <Input Name="Input0" x="12" y="1292" Type="Data" />
+    <Input Name="Input1" x="12" y="1352" Type="Data" />
+    <Input Name="Input2" x="12" y="1412" Type="Data" />
+    <Input Name="Input3" x="12" y="1472" Type="Data" />
+    <Input Name="Input4" x="12" y="1532" Type="Data" />
+    <Input Name="Input5" x="12" y="1592" Type="Data" />
+    <Input Name="Input6" x="12" y="1652" Type="Data" />
+    <Input Name="REQ" x="19.99999" y="871.8542" Type="Event" />
+    <Output Name="INITO" x="4560" y="771.8541" Type="Event" />
+    <Output Name="CNF" x="4560" y="831.8541" Type="Event" />
+    <Output Name="QO" x="4560" y="1011.854" Type="Data" />
+    <Output Name="x_out" x="4660" y="1071.854" Type="Data" />
+    <Output Name="y_out" x="4740" y="1131.854" Type="Data" />
+    <Output Name="pose_out" x="4680" y="1191.854" Type="Data" />
+    <Output Name="dock_out" x="4620" y="1251.854" Type="Data" />
+    <Output Name="Output0" x="4580" y="1311.854" Type="Data" />
+    <Output Name="Output1" x="4580" y="1371.854" Type="Data" />
+    <Output Name="Output2" x="4580" y="1431.854" Type="Data" />
+    <Output Name="Output3" x="4580" y="1491.854" Type="Data" />
+    <Output Name="Output4" x="4580" y="1551.854" Type="Data" />
+    <Output Name="Output5" x="4580" y="1611.854" Type="Data" />
+    <Output Name="Output6" x="4580" y="1671.854" Type="Data" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="200.8334" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="52.16675" />
+      <Connection Source="FB1.IND" Destination="FB3.REQ" dx1="80" />
+      <Connection Source="FB3.CNF" Destination="FB1.ACK" dx1="50" dx2="90" dy="-108" />
+      <Connection Source="REQ" Destination="FB4.REQ" dx1="208.9584" />
+      <Connection Source="FB4.CNF" Destination="FB1.REQ" dx1="54.29175" />
+      <Connection Source="FB3.CNF" Destination="CNF" dx1="50" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="PORT" Destination="FB1.PORT" dx1="46.52087" />
+      <Connection Source="QI" Destination="FB1.QI" dx1="102.625" />
+      <Connection Source="FB1.QO" Destination="QO" dx1="112.1667" />
+      <Connection Source="FB1.DATAIN" Destination="FB3.INSTR" dx1="40" />
+      <Connection Source="FB3.VALUE1" Destination="x_out" dx1="70" />
+      <Connection Source="FB3.VALUE2" Destination="y_out" dx1="90" />
+      <Connection Source="FB3.VALUE3" Destination="pose_out" dx1="110" />
+      <Connection Source="FB3.VALUE4" Destination="dock_out" dx1="130" />
+      <Connection Source="FB3.VALUE5" Destination="Output0" dx1="150" />
+      <Connection Source="FB3.VALUE6" Destination="Output1" dx1="170" />
+      <Connection Source="FB3.VALUE7" Destination="Output2" dx1="190" />
+      <Connection Source="FB3.VALUE8" Destination="Output3" dx1="210" />
+      <Connection Source="FB3.VALUE9" Destination="Output4" dx1="230" />
+      <Connection Source="FB3.VALUE10" Destination="Output5" dx1="250" />
+      <Connection Source="FB3.VALUE11" Destination="Output6" dx1="270" />
+      <Connection Source="x_in" Destination="FB4.VALUE1" dx1="139.1667" />
+      <Connection Source="y_in" Destination="FB4.VALUE3" dx1="139.1667" />
+      <Connection Source="pose_in" Destination="FB4.VALUE5" dx1="67.97919" />
+      <Connection Source="dock_in" Destination="FB4.VALUE7" dx1="40" />
+      <Connection Source="Input0" Destination="FB4.VALUE9" dx1="49.04172" />
+      <Connection Source="Input1" Destination="FB4.VALUE10" dx1="49.04172" />
+      <Connection Source="Input2" Destination="FB4.VALUE11" dx1="49.04172" />
+      <Connection Source="Input3" Destination="FB4.VALUE12" dx1="49.04172" />
+      <Connection Source="Input4" Destination="FB4.VALUE13" dx1="49.04172" />
+      <Connection Source="Input5" Destination="FB4.VALUE14" dx1="49.04172" />
+      <Connection Source="Input6" Destination="FB4.VALUE15" dx1="49.04172" />
+      <Connection Source="FB4.RESULT" Destination="FB1.DATAOUT" dx1="74.29175" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

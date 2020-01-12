@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Conveyor" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="9/30/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ConvOn" />
+        <With Var="StopSignal" />
+        <With Var="Sensor" />
+        <With Var="PauseSignal" />
+        <With Var="ExecutingSignal" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="ConvOn" />
+        <With Var="StopSignal" />
+        <With Var="Sensor" />
+        <With Var="PauseSignal" />
+        <With Var="ExecutingSignal" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ConvOn" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="StopSignal" Type="BOOL" />
+      <VarDeclaration Name="Sensor" Type="BOOL" />
+      <VarDeclaration Name="PauseSignal" Type="BOOL" />
+      <VarDeclaration Name="ExecutingSignal" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="Conveyor_HMI" x="1040" y="380" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>3</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>3</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="ConvOn">
+      <Position>
+        <X>2.99999619</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="StopSignal">
+      <Position>
+        <X>3</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Sensor">
+      <Position>
+        <X>3</X>
+        <Y>62.9999962</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="PauseSignal">
+      <Position>
+        <X>3</X>
+        <Y>78</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="ExecutingSignal">
+      <Position>
+        <X>3</X>
+        <Y>93</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>529.411438</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>535.9323</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="QO">
+      <Position>
+        <X>505.822937</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="288.8334" />
+      <Connection Source="REQ" Destination="IThis.IND" dx1="276.9584" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="40" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ConvOn" Destination="IThis.ConvOn" dx1="71.14587" />
+      <Connection Source="IThis.QO" Destination="QO" dx1="74.95837" />
+      <Connection Source="StopSignal" Destination="IThis.StopSignal" dx1="40.79175" />
+      <Connection Source="Sensor" Destination="IThis.Sensor" dx1="92.47922" />
+      <Connection Source="PauseSignal" Destination="IThis.PauseSignal" dx1="47.58337" />
+      <Connection Source="ExecutingSignal" Destination="IThis.ExecutingSignal" dx1="40.93756" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

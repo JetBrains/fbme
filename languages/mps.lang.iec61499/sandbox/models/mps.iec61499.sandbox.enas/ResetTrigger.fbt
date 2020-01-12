@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ResetTrigger" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="4/20/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ResetButton" />
+        <With Var="CurrMachineState" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="ResetButton" />
+        <With Var="CurrMachineState" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="ResetLight" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="ResetLight" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ResetButton" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="CurrMachineState" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ResetLight" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="InitTrig" Type="E_R_TRIG" x="1960" y="500" Namespace="IEC61499.Standard" />
+    <FB ID="2" Name="FB1" Type="AND_88A3DD8EC65DD11C" x="1280" y="500" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;OUT:BOOL" />
+    </FB>
+    <FB ID="3" Name="FB2" Type="NOT_42C76073DCEB1A7A" x="800" y="500" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=1;OUT${CNT}:BOOL" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Input Name="ResetButton" x="40" y="871.8541" Type="Data" />
+    <Input Name="CurrMachineState" x="40" y="711.8542" Type="Data" />
+    <Output Name="INITO" x="2380" y="191.8542" Type="Event" />
+    <Output Name="CNF" x="2380" y="251.8542" Type="Event" />
+    <Output Name="ResetLight" x="2220" y="911.8542" Type="Data" />
+    <EventConnections>
+      <Connection Source="FB1.CNF" Destination="InitTrig.EI" />
+      <Connection Source="FB2.CNF" Destination="FB1.REQ" />
+      <Connection Source="REQ" Destination="FB2.REQ" dx1="366.9584" dx2="150" dy="109.8542">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="InitTrig.EO" Destination="INITO" dx1="41.72925" />
+      <Connection Source="FB1.CNF" Destination="CNF" dx1="50" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.OUT" Destination="InitTrig.QI" />
+      <Connection Source="FB2.OUT1" Destination="FB1.IN1" />
+      <Connection Source="FB1.OUT" Destination="ResetLight" dx1="47.47925" />
+      <Connection Source="ResetButton" Destination="FB1.IN2" dx1="604.8542" />
+      <Connection Source="CurrMachineState" Destination="FB2.IN1" dx1="42.78131" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

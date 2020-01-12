@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Section5" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="9" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Antti" Date="5/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section4" />
+        <With Var="Start_button" />
+        <With Var="Pause_button" />
+        <With Var="Reset_button" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section4" />
+        <With Var="Start_button" />
+        <With Var="Pause_button" />
+        <With Var="Reset_button" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Start_light" />
+        <With Var="Pause_light" />
+        <With Var="Reset_light" />
+        <With Var="Run" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Start_light" />
+        <With Var="Pause_light" />
+        <With Var="Reset_light" />
+        <With Var="Run" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" />
+      <VarDeclaration Name="Drive_section0" Type="BOOL" />
+      <VarDeclaration Name="Drive_section4" Type="BOOL" />
+      <VarDeclaration Name="Start_button" Type="BOOL" />
+      <VarDeclaration Name="Pause_button" Type="BOOL" />
+      <VarDeclaration Name="Reset_button" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Start_light" Type="BOOL" />
+      <VarDeclaration Name="Pause_light" Type="BOOL" />
+      <VarDeclaration Name="Reset_light" Type="BOOL" />
+      <VarDeclaration Name="Run" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="ControlButtons" Type="PauseSwitch" x="2280" y="2140" Namespace="Main" />
+    <FB ID="4" Name="FB1" Type="ResetTrigger" x="2280" y="1600" Namespace="Main" />
+    <FB ID="5" Name="FB2" Type="E_MERGE" x="3280" y="1460" Namespace="IEC61499.Standard" />
+    <FB ID="7" Name="FB3" Type="DisableConveyor" x="2380" y="820" Namespace="Main" />
+    <FB ID="8" Name="FB4" Type="E_MERGE" x="3320" y="720" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="Section5Ctrl" Type="Section5Ctrl" x="1060" y="900" Namespace="Main" />
+    <FB ID="9" Name="FB5" Type="E_MERGE" x="680" y="680" Namespace="IEC61499.Standard" />
+    <Input Name="INIT">
+      <Position>
+        <X>3</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>3</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="Drive_section0">
+      <Position>
+        <X>3</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Drive_section4">
+      <Position>
+        <X>3</X>
+        <Y>62.9999962</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Sensor">
+      <Position>
+        <X>3</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Start_button">
+      <Position>
+        <X>3</X>
+        <Y>78</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Pause_button">
+      <Position>
+        <X>3</X>
+        <Y>93</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Reset_button">
+      <Position>
+        <X>3</X>
+        <Y>108</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>529.411438</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>535.9323</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="Drive_next">
+      <Position>
+        <X>620</X>
+        <Y>47.9635429</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Drive_prev">
+      <Position>
+        <X>620</X>
+        <Y>62.9635429</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Conveyor">
+      <Position>
+        <X>620</X>
+        <Y>82.96355</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Start_light">
+      <Position>
+        <X>800</X>
+        <Y>612.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Pause_light">
+      <Position>
+        <X>795</X>
+        <Y>627.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Reset_light">
+      <Position>
+        <X>810</X>
+        <Y>477.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Run">
+      <Position>
+        <X>795</X>
+        <Y>587.963562</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="128.8334" />
+      <Connection Source="INIT" Destination="ControlButtons.INIT" dx1="128.8334" />
+      <Connection Source="REQ" Destination="FB1.REQ" dx1="136.9584" />
+      <Connection Source="REQ" Destination="ControlButtons.REQ" dx1="136.9584" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="50" dx2="47.64575" dy="-108" />
+      <Connection Source="FB1.CNF" Destination="FB2.EI1" dx1="70" />
+      <Connection Source="ControlButtons.CNF" Destination="FB2.EI2" dx1="174.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="REQ" Destination="Section5Ctrl.REQ" dx1="316.9584" />
+      <Connection Source="Section5Ctrl.INITO" Destination="FB3.INIT" dx1="41.12512" />
+      <Connection Source="REQ" Destination="FB3.REQ" dx1="1456.958" />
+      <Connection Source="Section5Ctrl.CNF" Destination="FB3.REQ" dx1="70" />
+      <Connection Source="FB2.EO" Destination="FB4.EI2" dx1="41.5415" dx2="30" dy="-108" />
+      <Connection Source="FB3.CNF" Destination="FB4.EI1" dx1="50" />
+      <Connection Source="FB4.EO" Destination="CNF" dx1="41.54175" dx2="33.72925" dy="-108" />
+      <Connection Source="ControlButtons.CNF" Destination="FB3.REQ" dx1="84.521" dx2="70" dy="-708" />
+      <Connection Source="FB1.INITO" Destination="FB5.EI2" dx1="50" dx2="30" dy="-108" />
+      <Connection Source="INIT" Destination="FB5.EI1" dx1="328.8334" />
+      <Connection Source="FB5.EO" Destination="Section5Ctrl.INIT" dx1="41.54175" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ControlButtons.MachineState" Destination="FB1.CurrMachineState" dx1="70" dx2="30" dy="-368" />
+      <Connection Source="Sensor" Destination="Section5Ctrl.Sensor" dx1="132.4792" />
+      <Connection Source="Drive_section0" Destination="Section5Ctrl.Drive_section0" dx1="45.14587" />
+      <Connection Source="Drive_section4" Destination="Section5Ctrl.Drive_section4" dx1="45.14587" />
+      <Connection Source="Section5Ctrl.Conveyor" Destination="FB3.ConvIn" dx1="90" />
+      <Connection Source="Section5Ctrl.Drive_next" Destination="Drive_next" dx1="110" />
+      <Connection Source="Section5Ctrl.Drive_prev" Destination="Drive_prev" dx1="130" />
+      <Connection Source="FB3.ConvOut" Destination="Conveyor" dx1="46.4375" dx2="30" dy="-368" />
+      <Connection Source="Start_button" Destination="ControlButtons.StartButton" dx1="40" />
+      <Connection Source="Pause_button" Destination="ControlButtons.PauseButton" dx1="44.52087" />
+      <Connection Source="Reset_button" Destination="FB1.ResetButton" dx1="40" />
+      <Connection Source="ControlButtons.StartLight" Destination="Start_light" dx1="90" />
+      <Connection Source="ControlButtons.PauseLight" Destination="Pause_light" dx1="110" />
+      <Connection Source="FB1.ResetLight" Destination="Reset_light" dx1="41.66675" />
+      <Connection Source="ControlButtons.MachineState" Destination="Run" dx1="70" />
+      <Connection Source="ControlButtons.MachineState" Destination="FB3.QI" dx1="84.521" dx2="50" dy="-908" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE POUType SYSTEM "../LibraryElement.dtd" >
+<POUType Name="POU1" Namespace="Main" Comment="Program" >
+  <Identification Standard="1131-3" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="valeriy" Date="10/9/2018" Remarks="Template" />
+  <CompilerInfo />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TASKIN" Comment="Initialization Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="TASKOUT" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars />
+    <OutputVars />
+  </InterfaceList>
+  <POUBasicProgram>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" >
+      </ECState>
+      <ECState Name="EXEC" Comment="Initialization" x="923.5294" y="141.1765" >
+        <ECAction Algorithm="POU1" Output="TASKOUT" />
+      </ECState>
+      <ECTransition Source="START" Destination="EXEC" Condition="TASKIN" x="923.5294" y="429.4117" />
+      <ECTransition Source="EXEC" Destination="START" Condition="1" x="552.9412" y="141.1765" />
+    </ECC>
+    <Algorithm Name="POU1" Comment="algorithm" >
+      <ST Text = ";" />
+    </Algorithm>
+  </POUBasicProgram>
+</POUType>

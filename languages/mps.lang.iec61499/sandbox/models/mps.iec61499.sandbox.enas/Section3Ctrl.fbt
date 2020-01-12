@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="A85B1B6864FDF0A6" Name="Section3Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="MIA" Date="5/27/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section2" />
+        <With Var="Drive_section4" />
+        <With Var="Drive_section6" />
+        <With Var="Cups_on_enas" />
+        <With Var="Robotino_at_pos2" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section2" />
+        <With Var="Drive_section4" />
+        <With Var="Drive_section6" />
+        <With Var="Cups_on_enas" />
+        <With Var="Robotino_at_pos2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Permission" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Permission" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section2" Type="BOOL" />
+      <VarDeclaration Name="Drive_section4" Type="BOOL" />
+      <VarDeclaration Name="Drive_section6" Type="BOOL" />
+      <VarDeclaration Name="Cups_on_enas" Type="INT" />
+      <VarDeclaration Name="Robotino_at_pos2" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Permission" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REC_2_CUPS,REC_FIRST,REC_SECOND,REC_CUP,REC,IDLE_MODE" />
+    <InternalVars>
+      <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="828.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1687.53" y="417.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="IDLE_MODE" x="1652" y="836">
+        <ECAction Algorithm="IDLE_MODE" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE_2_CUPS" x="1952" y="1436">
+        <ECAction Algorithm="REC_2_CUPS" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE_FIRST" x="1864" y="1996">
+        <ECAction Algorithm="REC_FIRST" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE_SECOND" x="540" y="1992">
+        <ECAction Algorithm="REC_SECOND" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE_CUP" x="3020" y="828">
+        <ECAction Algorithm="REC_CUP" Output="CNF" />
+      </ECState>
+      <ECState Name="REC" x="3136" y="1192">
+        <ECAction Algorithm="REC" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1276.757" y="339.5059">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="292.6554,81.13566,345.7233,80.37942" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1832.601" y="614.4459">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="467.4417,139.495,465.1338,165.7042" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="1529.862" y="605.8528">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="374.9001,162.7887,376.4049,136.6818" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="RECEIVE_2_CUPS" Condition="REQ[Drive_section2&amp;(Cups_on_enas=0)&amp;Robotino_at_pos2]" x="1871.954" y="1120.836">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="462.0367,258.0102,481.7108,299.8805" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_2_CUPS" Destination="RECEIVE_FIRST" Condition="REQ[Sensor&amp;(Cups_on_enas=1)]" x="2248.609" y="1715.327">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="584.6045,409.7907,578.6378,447.7603" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_FIRST" Destination="RECEIVE_2_CUPS" Condition="REQ[NOT(Sensor)]" x="1650.637" y="1709.337">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="395.0064,445.7638,400.9731,407.7941" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_2_CUPS" Destination="RECEIVE_SECOND" Condition="REQ[Sensor&amp;(Cups_on_enas=2)]" x="1155.138" y="1648.057">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="337.2329,387.7007,241.653,425.3371" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_SECOND" Destination="IDLE_MODE" Condition="REQ[NOT(Robotino_at_pos2)]" x="913.7938" y="1308.206">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="176.4136,361.6794,258.9486,274.7909" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="RECEIVE_CUP" Condition="REQ[Drive_section2&amp;(Cups_on_enas=1)&amp;Robotino_at_pos2]" x="2324.061" y="689.4014">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="539.888,164.4155,622.5513,165.2158" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_CUP" Destination="REC" Condition="REQ[Sensor]" x="3159.825" y="987.2272">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="789.8721,234.0909,796.7673,255.7272" />
+      </ECTransition>
+      <ECTransition Source="REC" Destination="IDLE_MODE" Condition="REQ[NOT(Robotino_at_pos2)]" x="2405.647" y="1098.406">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="654.0739,292.1392,548.7407,267.1919" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_CUP" Destination="INIT" Condition="INIT" x="3111.104" y="239.5113">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="879.9828,44.7937,790.7447,17.28006" />
+      </ECTransition>
+      <ECTransition Source="REC" Destination="INIT" Condition="INIT" x="3426.175" y="144.3131">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="988.1147,12.5146,883.2352,-43.58815" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_SECOND" Destination="INIT" Condition="INIT" x="431.9484" y="909.2861">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="11.52806,265.6906,100.8183,143.1524" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_2_CUPS" Destination="INIT" Condition="INIT" x="807.0531" y="941.6525">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="140.1915,275.7295,120.4099,199.5246" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE_FIRST" Destination="INIT" Condition="INIT" x="4466.785" y="652.6115">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1338.008,180.796,1324.274,57.92429" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="Conveyor := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Permission := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="IDLE_MODE">
+      <ST Text="Conveyor := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Permission := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="REC_2_CUPS">
+      <ST Text="Conveyor := TRUE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Permission := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="REC_FIRST">
+      <ST Text="Conveyor := TRUE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := TRUE;&#xD;&#xA;Permission := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="REC_SECOND">
+      <ST Text="Conveyor := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Permission := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="REC_CUP">
+      <ST Text="Conveyor := TRUE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := TRUE;&#xD;&#xA;Permission := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="REC">
+      <ST Text="Conveyor := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Permission := TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

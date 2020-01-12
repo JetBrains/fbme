@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="EAB705AB16171E32" Name="S5Gate" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="2" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/25/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="OPEN" />
+      <Event Name="CLOSE" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="E_SR" x="1360" y="380" Namespace="IEC61499.Standard" />
+    <FB ID="2" Name="FB2" Type="SYMLINKMULTIVARSRC_1559B0FF8170C9BA0" x="2220" y="340" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}GATE'" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="OPEN" x="12" y="72" Type="Event" />
+    <Input Name="CLOSE" x="12" y="132" Type="Event" />
+    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
+    <EventConnections>
+      <Connection Source="OPEN" Destination="FB1.S" dx1="49.08334" />
+      <Connection Source="CLOSE" Destination="FB1.R" dx1="45.35419" />
+      <Connection Source="INIT" Destination="FB2.INIT" dx1="1389.417" />
+      <Connection Source="FB1.EO" Destination="FB2.REQ" dx1="48.35425" />
+      <Connection Source="FB2.INITO" Destination="INITO" dx1="40" dx2="48.22925" dy="-110" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.Q" Destination="FB2.VALUE1" dx1="48.35425" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

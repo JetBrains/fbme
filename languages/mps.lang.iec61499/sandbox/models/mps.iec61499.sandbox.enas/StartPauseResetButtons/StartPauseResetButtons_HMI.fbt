@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="StartPauseResetButtons_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Attribute Name="HMI.Alias" Value="" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="Aalto_IT" Date="10/12/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event Name="INID">
+        <With Var="StartIn" />
+        <With Var="PauseIn" />
+        <With Var="ResetIn" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="INIDO">
+        <With Var="StartOut" />
+        <With Var="PauseOut" />
+        <With Var="ResetOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="StartIn" Type="BOOL" />
+      <VarDeclaration Name="PauseIn" Type="BOOL" />
+      <VarDeclaration Name="ResetIn" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+      <VarDeclaration Name="StartOut" Type="BOOL" />
+      <VarDeclaration Name="PauseOut" Type="BOOL" />
+      <VarDeclaration Name="ResetOut" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

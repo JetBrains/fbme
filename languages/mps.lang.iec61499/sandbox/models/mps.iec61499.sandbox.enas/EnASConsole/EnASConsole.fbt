@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="A7D5176485A5DF08" Name="EnASConsole" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="AIC3" Date="10/1/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ" Comment="Normal Execution Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation" />
+      <Event Name="RESET" Comment="Event Output" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="SYMLINKMULTIVARDST_151ACB50A2F8223B2" x="580" y="1040" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=3;VALUE${I}:BOOL,BOOL,BOOL" />
+      <Parameter Name="NAME1" Value="'$${PATH}RESET_BUTTON'" />
+      <Parameter Name="NAME2" Value="'$${PATH}PAUSE_BUTTON'" />
+      <Parameter Name="NAME3" Value="'$${PATH}START_BUTTON'" />
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <FB ID="2" Name="FB2" Type="SYMLINKMULTIVARSRC_151ACB50A2F8223B2" x="3440" y="1060" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=3;VALUE${I}:BOOL,BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}RESET_LED'" />
+      <Parameter Name="NAME2" Value="'$${PATH}PAUSE_LED'" />
+      <Parameter Name="NAME3" Value="'$${PATH}START_LED'" />
+    </FB>
+    <FB ID="3" Name="FB3" Type="E_R_TRIG" x="1540" y="680" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Output Name="INITO" x="4520" y="912" Type="Event" />
+    <Output Name="CNF" x="4540" y="972" Type="Event" />
+    <Output Name="RESET" x="3205.177" y="411.8542" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="49.41669" />
+      <Connection Source="FB1.INITO" Destination="FB2.INIT" dx1="41.625" />
+      <Connection Source="FB2.INITO" Destination="INITO" dx1="40" />
+      <Connection Source="FB1.CNF" Destination="FB3.EI" dx1="70" />
+      <Connection Source="FB3.EO" Destination="RESET" dx1="41.72925" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.VALUE1" Destination="FB3.QI" dx1="90" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

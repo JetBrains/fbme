@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ProductOrders" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/28/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="New_order" />
+        <With Var="Green" />
+        <With Var="Red" />
+        <With Var="Product_done" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Green" />
+        <With Var="New_order" />
+        <With Var="Product_done" />
+        <With Var="Red" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Next_color" />
+        <With Var="Products_demanded" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Next_color" />
+        <With Var="Products_demanded" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="New_order" Type="BOOL" />
+      <VarDeclaration Name="Green" Type="INT" Comment="Input event qualifier" />
+      <VarDeclaration Name="Red" Type="INT" />
+      <VarDeclaration Name="Product_done" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Next_color" Type="STRING" Comment="Output event qualifier" />
+      <VarDeclaration Name="Products_demanded" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="Green_count" Type="INT" />
+      <VarDeclaration Name="Red_count" Type="INT" />
+      <VarDeclaration Name="Product_count" Type="INT" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1435.53" y="417.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="NEW_ORDER" x="1576" y="828">
+        <ECAction Algorithm="NEW_ORDER" Output="CNF" />
+      </ECState>
+      <ECState Name="ORDER_GREEN" x="532" y="1416">
+        <ECAction Algorithm="ORDER_GREEN" Output="CNF" />
+      </ECState>
+      <ECState Name="ORDER_RED" x="1908" y="1408">
+        <ECAction Algorithm="ORDER_RED" Output="CNF" />
+      </ECState>
+      <ECState Name="GREEN_DONE" x="448" y="1972">
+        <ECAction Algorithm="GREEN_DONE" Output="CNF" />
+      </ECState>
+      <ECState Name="RED_DONE" x="2376" y="1800">
+        <ECAction Algorithm="RED_DONE" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="1122.29" y="367.3758">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="264.9702,88.95543,314.4298,89.53395" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="NEW_ORDER" Condition="1" x="1586.075" y="598.3232">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="395.7305,134.7896,404.4627,160.3278" />
+      </ECTransition>
+      <ECTransition Source="NEW_ORDER" Destination="ORDER_GREEN" Condition="REQ[Green_count&gt;0]" x="1027.047" y="1199.665">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="289.8657,285.6319,212.1141,327.1449" />
+      </ECTransition>
+      <ECTransition Source="NEW_ORDER" Destination="ORDER_RED" Condition="REQ[Green_count=0&amp;Red_count&gt;0]" x="1815.105" y="1089.309">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="446.4832,250.1696,468.5565,289.7029" />
+      </ECTransition>
+      <ECTransition Source="NEW_ORDER" Destination="NEW_ORDER" Condition="REQ[Product_count=0]" x="1933.84" y="649.9544">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="536,171,469,133" />
+      </ECTransition>
+      <ECTransition Source="ORDER_GREEN" Destination="ORDER_RED" Condition="REQ[Green_count=0&amp;Red_count&gt;0]" x="1303.318" y="1826.448">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="293.5893,487.0233,370.1589,486.5781" />
+      </ECTransition>
+      <ECTransition Source="ORDER_GREEN" Destination="NEW_ORDER" Condition="REQ[Product_count=0]" x="799.9327" y="899.0057">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="151.6737,229.4328,223.232,189.1298" />
+      </ECTransition>
+      <ECTransition Source="ORDER_RED" Destination="NEW_ORDER" Condition="REQ[Product_count=0]" x="2461.741" y="1145.019">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="669.1128,308.1413,646.4244,268.505" />
+      </ECTransition>
+      <ECTransition Source="ORDER_GREEN" Destination="INIT" Condition="(INIT)OR(REQ[New_order)]" x="496.1353" y="769.2932">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="54.79121,218.8415,122.2181,144.3032" />
+      </ECTransition>
+      <ECTransition Source="ORDER_RED" Destination="INIT" Condition="(INIT)OR(REQ[New_order)]" x="2826.149" y="271.3141">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="814.036,54.63121,778.8105,-19.24037" />
+      </ECTransition>
+      <ECTransition Source="NEW_ORDER" Destination="INIT" Condition="INIT" x="1373.147" y="681.8382">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="343.3526,188.1662,334.6205,162.6279" />
+      </ECTransition>
+      <ECTransition Source="ORDER_GREEN" Destination="GREEN_DONE" Condition="REQ[Product_done]" x="622.5795" y="1717.126">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="165.874,412.3904,160.1879,450.0267" />
+      </ECTransition>
+      <ECTransition Source="GREEN_DONE" Destination="ORDER_GREEN" Condition="REQ[NOT(Product_done)]" x="312.6869" y="1679.333">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="65.32229,437.4292,71.00835,399.793" />
+      </ECTransition>
+      <ECTransition Source="ORDER_RED" Destination="RED_DONE" Condition="REQ[Product_done]" x="2208.906" y="1546.505">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="537.2445,369.85,565.8613,393.8197" />
+      </ECTransition>
+      <ECTransition Source="RED_DONE" Destination="ORDER_RED" Condition="REQ[NOT(Product_done)]" x="2146.648" y="1685.523">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="549.8084,437.9848,521.1916,414.0152" />
+      </ECTransition>
+      <ECTransition Source="GREEN_DONE" Destination="INIT" Condition="(INIT)OR(REQ[New_order)]" x="87.60703" y="803.517">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-82.20403,230.8401,-5.433754,109.9685" />
+      </ECTransition>
+      <ECTransition Source="RED_DONE" Destination="INIT" Condition="(INIT)OR(REQ[New_order)]" x="3099.824" y="527.2668">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="904.6665,139.3975,832.2088,32.85917" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Green_count := 0;&#xD;&#xA;Red_count := 0;&#xD;&#xA;Product_count := 0;&#xD;&#xA;Products_demanded := 0;&#xD;&#xA;Next_color := 'NONE';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="NEW_ORDER">
+      <ST Text=";&#xD;&#xA;Red_count := Red;&#xD;&#xA;Green_count := Green;&#xD;&#xA;Product_count := Red_count + Green_count;&#xD;&#xA;Products_demanded := Product_count;&#xD;&#xA;Next_color := 'NONE';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="ORDER_GREEN">
+      <ST Text=";&#xD;&#xA;Products_demanded := Product_count;&#xD;&#xA;Next_color := 'GREEN';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="ORDER_RED">
+      <ST Text=";&#xD;&#xA;Products_demanded := Product_count;&#xD;&#xA;Next_color := 'RED';" />
+    </Algorithm>
+    <Algorithm Name="GREEN_DONE">
+      <ST Text=";&#xD;&#xA;Green_count := Green_count - 1;&#xD;&#xA;Product_count := Green_count + Red_count;&#xD;&#xA;Products_demanded := Product_count;&#xD;&#xA;Next_color := 'GREEN';" />
+    </Algorithm>
+    <Algorithm Name="RED_DONE">
+      <ST Text=";&#xD;&#xA;Red_count := Red_count - 1;&#xD;&#xA;Product_count := Green_count + Red_count;&#xD;&#xA;Products_demanded := Product_count;&#xD;&#xA;Next_color := 'RED';" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

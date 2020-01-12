@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Section0" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="9" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section1" />
+        <With Var="Drive_section5" />
+        <With Var="Run" />
+        <With Var="Product_delivered" />
+        <With Var="At_pos" />
+        <With Var="User_demand" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section1" />
+        <With Var="Drive_section5" />
+        <With Var="Run" />
+        <With Var="Product_delivered" />
+        <With Var="At_pos" />
+        <With Var="User_demand" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Gate_open" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Gate_open" />
+        <With Var="Color_detected" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section1" Type="BOOL" />
+      <VarDeclaration Name="Drive_section5" Type="BOOL" />
+      <VarDeclaration Name="Run" Type="BOOL" />
+      <VarDeclaration Name="Product_delivered" Type="BOOL" />
+      <VarDeclaration Name="At_pos" Type="STRING" />
+      <VarDeclaration Name="User_demand" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Gate_open" Type="BOOL" />
+      <VarDeclaration Name="Color_detected" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="DisableConveyor" x="2540" y="720" Namespace="Main" />
+    <FB ID="3" Name="FB3" Type="TCPIO" x="1280" y="1800" Namespace="Runtime.IoCommon">
+      <Parameter Name="PORT" Value="'UDP:10011;192.168.0.4:9013'" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="DATAOUT" Value="'CHECK'" />
+    </FB>
+    <FB ID="4" Name="FB5" Type="E_R_TRIG" x="400" y="2040" Namespace="IEC61499.Standard" />
+    <FB ID="5" Name="FB4" Type="COMPARE_10593E80BE744DDAF" x="3140" y="1680" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;IN${CNT}:STRING" />
+    </FB>
+    <FB ID="6" Name="FB6" Type="E_MERGE" x="520" y="1400" Namespace="IEC61499.Standard" />
+    <FB ID="7" Name="FB7" Type="E_MERGE" x="2860" y="300" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="FB8" Type="COMPARE_10593E80BE744DDAF" x="840" y="80" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;IN${CNT}:STRING" />
+      <Parameter Name="IN2" Value="'COLL'" />
+    </FB>
+    <FB ID="9" Name="FB9" Type="E_MERGE" x="900" y="1260" Namespace="IEC61499.Standard" />
+    <FB ID="2" Name="FB2" Type="Section0Ctrl" x="1520" y="800" Namespace="Main" />
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Input Name="Sensor" x="20" y="871.8542" Type="Data" />
+    <Input Name="Drive_section5" x="20" y="931.8542" Type="Data" />
+    <Input Name="Run" x="20" y="271.8542" Type="Data" />
+    <Input Name="Product_delivered" x="20" y="1051.854" Type="Data" />
+    <Input Name="At_pos" x="20" y="411.8542" Type="Data" />
+    <Input Name="Drive_section1" x="20" y="991.8542" Type="Data" />
+    <Input Name="User_demand" x="2320" y="1851.854" Type="Data" />
+    <Output Name="INITO" x="3280" y="291.8542" Type="Event" />
+    <Output Name="CNF" x="3280" y="391.8542" Type="Event" />
+    <Output Name="Conveyor" x="3180" y="1011.854" Type="Data" />
+    <Output Name="Drive_next" x="2340" y="1231.854" Type="Data" />
+    <Output Name="Drive_prev" x="2340" y="1291.854" Type="Data" />
+    <Output Name="Gate_open" x="2340" y="1371.854" Type="Data" />
+    <Output Name="Color_detected" x="2300" y="2351.854" Type="Data" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB2.INIT" dx1="228.8334" />
+      <Connection Source="REQ" Destination="FB6.EI1" dx1="376.9584" dx2="50" dy="1229.854" />
+      <Connection Source="FB2.CNF" Destination="FB1.REQ" dx1="70" />
+      <Connection Source="FB2.INITO" Destination="FB1.INIT" dx1="50" />
+      <Connection Source="REQ" Destination="FB1.REQ">
+        <Points>
+          <Points>
+            <X>68.26041</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>152.5</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>152.5</X>
+            <Y>187.5</Y>
+          </Points>
+          <Points>
+            <X>572.5</X>
+            <Y>187.5</Y>
+          </Points>
+          <Points>
+            <X>572.5</X>
+            <Y>204.5</Y>
+          </Points>
+          <Points>
+            <X>630</X>
+            <Y>204.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="INIT" Destination="FB3.INIT" dx1="388.8334" />
+      <Connection Source="FB2.CNF" Destination="FB5.EI" dx1="128.5625" dx2="50" dy="832" />
+      <Connection Source="FB5.EO" Destination="FB3.REQ" dx1="41.72919" />
+      <Connection Source="FB3.IND" Destination="FB3.ACK" dx1="40" dx2="30" dy="-228" />
+      <Connection Source="FB3.CNF" Destination="FB4.REQ" dx1="52.16675" />
+      <Connection Source="FB4.CNF" Destination="FB6.EI2">
+        <Points>
+          <Points>
+            <X>865.036438</X>
+            <Y>429.5</Y>
+          </Points>
+          <Points>
+            <X>877.536438</X>
+            <Y>429.5</Y>
+          </Points>
+          <Points>
+            <X>877.536438</X>
+            <Y>402.5</Y>
+          </Points>
+          <Points>
+            <X>772.5</X>
+            <Y>402.5</Y>
+          </Points>
+          <Points>
+            <X>772.5</X>
+            <Y>432.5</Y>
+          </Points>
+          <Points>
+            <X>117.5</X>
+            <Y>432.5</Y>
+          </Points>
+          <Points>
+            <X>117.5</X>
+            <Y>374.5</Y>
+          </Points>
+          <Points>
+            <X>125</X>
+            <Y>374.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB6.EO" Destination="FB9.EI2" dx1="41.54169" />
+      <Connection Source="FB1.CNF" Destination="FB7.EI1" dx1="50" dx2="50" dy="-168" />
+      <Connection Source="FB3.CNF" Destination="FB7.EI2" dx1="372.1667" />
+      <Connection Source="FB7.EO" Destination="CNF" dx1="41.5415" />
+      <Connection Source="REQ" Destination="FB4.REQ">
+        <Points>
+          <Points>
+            <X>68.26041</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>122.5</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>122.5</X>
+            <Y>177.5</Y>
+          </Points>
+          <Points>
+            <X>207.5</X>
+            <Y>177.5</Y>
+          </Points>
+          <Points>
+            <X>207.5</X>
+            <Y>429.5</Y>
+          </Points>
+          <Points>
+            <X>780</X>
+            <Y>429.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="REQ" Destination="FB8.REQ" dx1="40" />
+      <Connection Source="FB9.EO" Destination="FB2.REQ" dx1="41.54175" />
+      <Connection Source="FB8.CNF" Destination="FB9.EI1" dx1="69.85425" dx2="50" dy="592" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Run" Destination="FB1.QI">
+        <Points>
+          <Points>
+            <X>102.151031</X>
+            <Y>74.99999</Y>
+          </Points>
+          <Points>
+            <X>112.5</X>
+            <Y>74.99999</Y>
+          </Points>
+          <Points>
+            <X>112.5</X>
+            <Y>77.5</Y>
+          </Points>
+          <Points>
+            <X>152.5</X>
+            <Y>77.5</Y>
+          </Points>
+          <Points>
+            <X>152.5</X>
+            <Y>187.5</Y>
+          </Points>
+          <Points>
+            <X>572.5</X>
+            <Y>187.5</Y>
+          </Points>
+          <Points>
+            <X>572.5</X>
+            <Y>254.5</Y>
+          </Points>
+          <Points>
+            <X>630</X>
+            <Y>254.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="Sensor" Destination="FB2.Sensor" dx1="184.4792" />
+      <Connection Source="Drive_section5" Destination="FB2.Drive_section5" dx1="40" />
+      <Connection Source="Product_delivered" Destination="FB2.Product_delivered" dx1="535.4376" />
+      <Connection Source="FB2.Conveyor" Destination="FB1.ConvIn" dx1="90" />
+      <Connection Source="FB2.Drive_next" Destination="Drive_next" dx1="68.5625" />
+      <Connection Source="FB2.Drive_prev" Destination="Drive_prev" dx1="68.5625" />
+      <Connection Source="FB2.Gate_open" Destination="Gate_open" dx1="68.5625" />
+      <Connection Source="FB1.ConvOut" Destination="Conveyor" dx1="46.4375" />
+      <Connection Source="Drive_section1" Destination="FB2.Drive_section1">
+        <Points>
+          <Points>
+            <X>153.213531</X>
+            <Y>254.999985</Y>
+          </Points>
+          <Points>
+            <X>162.5</X>
+            <Y>254.999985</Y>
+          </Points>
+          <Points>
+            <X>162.5</X>
+            <Y>257.5</Y>
+          </Points>
+          <Points>
+            <X>302.5</X>
+            <Y>257.5</Y>
+          </Points>
+          <Points>
+            <X>302.5</X>
+            <Y>304.5</Y>
+          </Points>
+          <Points>
+            <X>375</X>
+            <Y>304.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB2.Check_color" Destination="FB5.QI" dx1="48.5625" dx2="70" dy="392" />
+      <Connection Source="User_demand" Destination="FB4.IN1" dx1="49.229" />
+      <Connection Source="FB3.DATAIN" Destination="FB4.IN2" dx1="92.16675" />
+      <Connection Source="FB4.EQ" Destination="FB2.Valid_product" dx1="70" dx2="30" dy="-428" />
+      <Connection Source="FB3.DATAIN" Destination="Color_detected" dx1="90" />
+      <Connection Source="At_pos" Destination="FB8.IN1" dx1="44.39587" />
+      <Connection Source="FB8.EQ" Destination="FB2.Robotino_docked" dx1="49.85425" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

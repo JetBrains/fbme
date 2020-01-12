@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5E30A7C2EAB3703F" Name="StackControl1" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/29/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="full" />
+      </Event>
+      <Event Name="PLACE_WP" Comment="Normal Execution Request" />
+      <Event Name="GET1" />
+      <Event Name="GET2" />
+      <Event Name="CLEAR" />
+      <Event Name="_RETURN" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="TRIGGER1" />
+      <Event Name="TRIGGER2" />
+      <Event Name="CHECK" />
+      <Event Name="GET1_OK" />
+      <Event Name="GET2_OK" />
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="occupied" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="full" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="occupied" Type="BOOL" ArraySize="2" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,PLACE1,PLACE2,EMPTY1,EMPTY2,READY" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1624.941" y="573.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="2359.529" y="729.1797">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="PLACE1" Comment="Normal execution" x="2573.647" y="2164.941">
+        <ECAction Algorithm="PLACE1" Output="CNF" />
+        <ECAction Output="TRIGGER1" />
+      </ECState>
+      <ECState Name="CHECK" x="4184" y="1320">
+        <ECAction Output="CHECK" />
+      </ECState>
+      <ECState Name="PLACE2" x="1744" y="2188">
+        <ECAction Algorithm="PLACE2" Output="CNF" />
+        <ECAction Output="TRIGGER2" />
+      </ECState>
+      <ECState Name="GET1" x="888" y="968">
+        <ECAction Algorithm="EMPTY1" Output="CNF" />
+        <ECAction Output="GET1_OK" />
+      </ECState>
+      <ECState Name="GET2" x="880" y="1576">
+        <ECAction Algorithm="EMPTY2" Output="CNF" />
+        <ECAction Output="GET2_OK" />
+      </ECState>
+      <ECState Name="READY" x="2440" y="1256" />
+      <ECState Name="CLEAR_SLEDGE" x="3580" y="564">
+        <ECAction Algorithm="INIT" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2059.053" y="521.8577">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="492.2776,117.6118,541.5673,129.3188" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="READY" Condition="1" x="2480.785" y="981.2651">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="621.9658,226.7702,627.3433,261.9749" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="PLACE1" Condition="PLACE_WP[occupied[0]=FALSE]" x="2648.401" y="1695.378">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="665.8986,390.2224,677.0157,454.9512" />
+      </ECTransition>
+      <ECTransition Source="PLACE1" Destination="READY" Condition="_RETURN" x="2324.782" y="1763.612">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="574.3871,478.8589,564.499,411.804" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="CHECK" Condition="PLACE_WP[occupied[0]=TRUE [ occupied[1]=TRUE]]" x="3372.113" y="1126.332">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="786.0123,269.4542,909.4949,273.9388" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="3213.184" y="905.449">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="778.832,252.5389,853.5668,199.1399" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="CHECK" Condition="GET1 [ occupied[0]=FALSE]" x="3326.8" y="1341.602">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="771.5469,336.4272,894.4424,340.9443" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="CHECK" Condition="GET2 [ occupied[1]=FALSE]" x="3346.433" y="1622.368">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="776.241,427.0744,902.491,431.1405" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="PLACE2" Condition="PLACE_WP[occupied[0]=TRUE AND occupied[1]=FALSE]" x="2056.623" y="1728.719">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="537.4548,398.2514,485.9802,467.2282" />
+      </ECTransition>
+      <ECTransition Source="PLACE2" Destination="CHECK" Condition="1" x="3356.011" y="2419.247">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="777.0505,687.9225,957.0818,623.8785" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="GET1" Condition="GET1 [ occupied[0]=TRUE]" x="1655.457" y="932.1873">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="465.962,231.0181,358.5868,211.5308" />
+      </ECTransition>
+      <ECTransition Source="GET1" Destination="READY" Condition="_RETURN" x="1653.644" y="1172.666">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="359.0392,286.8792,467.9087,307.0622" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="GET2" Condition="GET2 [ occupied[1]=TRUE]" x="1639.554" y="1659.781">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="458.807,419.7326,354.4765,443.0459" />
+      </ECTransition>
+      <ECTransition Source="GET2" Destination="READY" Condition="_RETURN" x="1533.603" y="1359.116">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="321.5385,348.5211,426.0493,325.053" />
+      </ECTransition>
+      <ECTransition Source="CLEAR_SLEDGE" Destination="READY" Condition="_RETURN" x="2880.823" y="820.019">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="758.2358,172.8762,676.1709,222.1365" />
+      </ECTransition>
+      <ECTransition Source="CHECK" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="4121.63" y="885.251">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1065.847,243.7351,1022.462,189.4322" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;IF full THEN&#xD;&#xA;	occupied[0]:=TRUE;&#xD;&#xA;	occupied[1]:=TRUE;&#xD;&#xA;ELSE&#xD;&#xA;	occupied[0]:=FALSE;&#xD;&#xA;	occupied[1]:=FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="PLACE1">
+      <ST Text=";&#xD;&#xA;occupied[0]:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="PLACE2">
+      <ST Text=";&#xD;&#xA;occupied[1]:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="EMPTY1">
+      <ST Text=";&#xD;&#xA;occupied[0]:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="EMPTY2">
+      <ST Text=";&#xD;&#xA;occupied[1]:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="READY">
+      <ST Text=";" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

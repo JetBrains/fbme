@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="B11306676ADCD47D" Name="Section0Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="MIA" Date="5/27/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section5" />
+        <With Var="Drive_section1" />
+        <With Var="Product_delivered" />
+        <With Var="Robotino_docked" />
+        <With Var="Valid_product" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section5" />
+        <With Var="Drive_section1" />
+        <With Var="Product_delivered" />
+        <With Var="Robotino_docked" />
+        <With Var="Valid_product" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Gate_open" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Gate_open" />
+        <With Var="Check_color" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section5" Type="BOOL" />
+      <VarDeclaration Name="Drive_section1" Type="BOOL" />
+      <VarDeclaration Name="Product_delivered" Type="BOOL" />
+      <VarDeclaration Name="Robotino_docked" Type="BOOL" />
+      <VarDeclaration Name="Valid_product" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Gate_open" Type="BOOL" />
+      <VarDeclaration Name="Check_color" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,DRIVE,CHECK_PRODUCT,PROD_VALID,PROD_INVALID,CHECK_PRODUCT_0,IDLE_MODE" />
+    <InternalVars>
+      <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="988.9412" y="197.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1915.53" y="193.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="IDLE_MODE" x="1920" y="524">
+        <ECAction Algorithm="IDLE_MODE" Output="CNF" />
+      </ECState>
+      <ECState Name="DRIVE" x="1928" y="824">
+        <ECAction Algorithm="DRIVE" Output="CNF" />
+      </ECState>
+      <ECState Name="CHECK_PRODUCT" x="2072" y="1536">
+        <ECAction Algorithm="CHECK_PRODUCT" Output="CNF" />
+      </ECState>
+      <ECState Name="PROD_VALID" x="1892" y="2156">
+        <ECAction Algorithm="PROD_VALID" Output="CNF" />
+      </ECState>
+      <ECState Name="PROD_INVALID" x="656" y="1244">
+        <ECAction Algorithm="PROD_INVALID" Output="CNF" />
+      </ECState>
+      <ECState Name="CHECK_PRODUCT_0" x="2200" y="1168">
+        <ECAction Algorithm="CHECK_PRODUCT_0" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="1470.758" y="112.2422">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="338.3221,23.93659,397.0567,23.66813" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="2002.978" y="357.5749">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="504.3114,79.87348,504.5664,98.74506" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="1797.627" y="349.8593">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="444.3551,96.1732,444.1001,77.30161" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="DRIVE" Condition="REQ[Drive_section5]" x="2010.096" y="672.0007">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="505.7737,159.6821,506.2085,175.985" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="INIT" Condition="INIT" x="1637.356" y="467.6219">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="392.6821,135.6783,391.8148,91.80676" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="CHECK_PRODUCT_0" Condition="REQ[Sensor]" x="2152.555" y="969.4942">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="534.3491,230.28,547.5644,250.0495" />
+      </ECTransition>
+      <ECTransition Source="CHECK_PRODUCT" Destination="INIT" Condition="INIT" x="1353.723" y="631.5596">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="298.0708,190.2314,284.7496,89.42791" />
+      </ECTransition>
+      <ECTransition Source="CHECK_PRODUCT" Destination="PROD_VALID" Condition="REQ[Valid_product=TRUE&amp;Robotino_docked&amp;TimeStamp&lt;CURRENT_DT()]" x="2031.626" y="1823.689">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="517.1395,432.5062,504.8372,475.6195" />
+      </ECTransition>
+      <ECTransition Source="CHECK_PRODUCT" Destination="PROD_INVALID" Condition="REQ[Valid_product=FALSE&amp;TimeStamp&lt;CURRENT_DT()]" x="1377.953" y="1306.521">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="379.9428,330.7728,302.8471,312.6834" />
+      </ECTransition>
+      <ECTransition Source="PROD_VALID" Destination="INIT" Condition="INIT" x="3069.61" y="1284.348">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="852.6927,405.3669,856.3672,255.2297" />
+      </ECTransition>
+      <ECTransition Source="PROD_INVALID" Destination="INIT" Condition="INIT" x="464.9587" y="113.1524">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="5.60508,20.52874,100.1415,-58.34283" />
+      </ECTransition>
+      <ECTransition Source="PROD_INVALID" Destination="IDLE_MODE" Condition="REQ[NOT(Drive_section1)]" x="945.0745" y="696.7395">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="174.1854,186.2856,256.9093,135.0495" />
+      </ECTransition>
+      <ECTransition Source="PROD_VALID" Destination="IDLE_MODE" Condition="REQ[Product_delivered]" x="3449.875" y="1364.76">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="971.1115,403.4551,981.9502,283.3646" />
+      </ECTransition>
+      <ECTransition Source="CHECK_PRODUCT_0" Destination="CHECK_PRODUCT" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="2236.074" y="1402.209">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="563.3978,343.2599,559.9306,366.213" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;//Product_type := 'NONE';&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="IDLE_MODE">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;//Product_type := 'NONE';&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Check_color := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="DRIVE">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;//Product_type := 'NONE';&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CHECK_PRODUCT">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Check_color := TRUE;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#2.0s);" />
+    </Algorithm>
+    <Algorithm Name="PROD_VALID">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;//Product_type := 'NONE';&#xD;&#xA;Gate_open  := TRUE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="PROD_INVALID">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;//Product_type := 'NONE';&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="CHECK_PRODUCT_0">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Gate_open  := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Check_color := TRUE;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#1.0s);" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

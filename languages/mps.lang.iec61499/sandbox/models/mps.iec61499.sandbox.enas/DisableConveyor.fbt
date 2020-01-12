@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="DisableConveyor" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="4/12/2016" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="ConvIn" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="QI" />
+        <With Var="ConvIn" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="ConvOut" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="ConvOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="ConvIn" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ConvOut" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="ENABLED" Comment="Normal execution" x="1253.647" y="848.9412">
+        <ECAction Algorithm="ENABLE" Output="CNF" />
+      </ECState>
+      <ECState Name="DISABLED" Comment="Normal execution" x="253.647" y="828.9412">
+        <ECAction Algorithm="DISABLE" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="ENABLED" Destination="DISABLED" Condition="REQ[NOT(QI)&#xD;&#xA;]" x="757.3513" y="924.9223">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="216.8214,235.3035,161.8542,234.2042" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="ENABLED" Condition="REQ" x="952.3273" y="571.986">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="216.7327,125.2129,260.5989,151.4766" />
+      </ECTransition>
+      <ECTransition Source="DISABLED" Destination="ENABLED" Condition="REQ[QI]" x="758.8511" y="753.1208">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="162.3541,184.2092,217.3214,185.3083" />
+      </ECTransition>
+      <ECTransition Source="ENABLED" Destination="ENABLED" Condition="REQ" x="1253.647" y="1031.027" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="ENABLE" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;ConvOut:=ConvIn;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="DISABLE">
+      <ST Text=";&#xD;&#xA;ConvOut:=FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="38B7F6E9CA55E0F6" Name="W2W3" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TRIGGER" />
+      <Event Name="S5_DELIVERED" />
+      <Event Name="S3_SENSOR" />
+      <Event Name="S4_SENSOR" />
+      <Event Name="RESET" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="S3_ON" />
+      <Event Name="S3_OFF" />
+      <Event Name="S4_ON" />
+      <Event Name="S4_OFF" />
+      <Event Name="S5_DELIVERY" />
+      <Event Name="DONE" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="848.9412" y="477.4117" />
+      <ECState Name="S3_TRANSPORT" x="2609.778" y="876.4445">
+        <ECAction Output="S3_ON" />
+      </ECState>
+      <ECState Name="S4_TRANSPORT" x="2761.778" y="1342.222">
+        <ECAction Output="S4_ON" />
+      </ECState>
+      <ECState Name="S5_DELIVER" x="1884" y="2412">
+        <ECAction Output="S5_DELIVERY" />
+        <ECAction Output="S3_OFF" />
+      </ECState>
+      <ECState Name="DONE" x="836" y="1768">
+        <ECAction Output="DONE" />
+        <ECAction Output="S4_OFF" />
+      </ECState>
+      <ECState Name="READY" x="1092" y="952" />
+      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="195.9163,168.2527,209.2535,191.7031" />
+      </ECTransition>
+      <ECTransition Source="S3_TRANSPORT" Destination="S4_TRANSPORT" Condition="S3_SENSOR" x="2746.366" y="1066.387">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="682.7239,246.9709,695.4457,279.065" />
+      </ECTransition>
+      <ECTransition Source="S5_DELIVER" Destination="DONE" Condition="S5_DELIVERED" x="1177.791" y="2197.769">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="325.2838,581.5967,248.3258,533.3907" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="S3_TRANSPORT" Condition="TRIGGER" x="1807.975" y="741.7014">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="418.9524,175.6899,484.3111,175.1044" />
+      </ECTransition>
+      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="182.4942,348.8783,201.0539,289.5945" />
+      </ECTransition>
+      <ECTransition Source="S4_TRANSPORT" Destination="S5_DELIVER" Condition="S4_SENSOR" x="2652.255" y="1973.314">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="716.7023,461.1198,650.6902,541.571" />
+      </ECTransition>
+      <ECTransition Source="S3_TRANSPORT" Destination="READY" Condition="RESET" x="1795.303" y="1000.307">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="496.0649,251.9267,401.8883,256.6147" />
+      </ECTransition>
+      <ECTransition Source="S4_TRANSPORT" Destination="READY" Condition="RESET" x="1877.595" y="1218.185">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="525.2375,321.9471,415.8531,296.3843" />
+      </ECTransition>
+      <ECTransition Source="S5_DELIVER" Destination="READY" Condition="RESET" x="1486.539" y="1757">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="402.6411,501.9848,341.3589,389.0152" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

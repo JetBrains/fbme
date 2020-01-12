@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE POUType SYSTEM "../LibraryElement.dtd">
+<POUType GUID="6320709F3AE45B74" Name="ConveyorCTL" Comment="Function Block" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="1131-3" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="valeriy" Date="10/9/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs />
+    <EventOutputs />
+    <InputVars />
+    <OutputVars />
+  </InterfaceList>
+  <POUBasicFB>
+    <Algorithm Name="ConveyorCTL" Comment="Algorithm">
+      <CFC>
+        <FBNetwork />
+      </CFC>
+    </Algorithm>
+    <Algorithm Name="ConveyorCTL">
+      <ST Text=";" />
+    </Algorithm>
+  </POUBasicFB>
+</POUType>

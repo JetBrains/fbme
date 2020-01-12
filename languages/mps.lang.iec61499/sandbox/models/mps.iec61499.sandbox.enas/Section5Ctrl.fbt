@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="9D40DBB307E0B580" Name="Section5Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="MIA" Date="5/27/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section4" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section4" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section0" Type="BOOL" />
+      <VarDeclaration Name="Drive_section4" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,DRIVE,RECEIVED,IDLE_MODE" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="832.9412" y="257.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1419.53" y="253.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="IDLE_MODE" x="1444" y="488">
+        <ECAction Algorithm="IDLE_MODE" Output="CNF" />
+      </ECState>
+      <ECState Name="DRIVE" x="1464" y="840.0001">
+        <ECAction Algorithm="DRIVE" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVED" x="1504" y="1204">
+        <ECAction Algorithm="RECEIVED" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="1034.606" y="115.6398">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="237.7115,21.17873,269.0484,21.46497" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1555.2" y="368.2487">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="392.4774,86.43049,392.9955,97.30396" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="DRIVE" Condition="REQ[Drive_section4]" x="1538.595" y="659.7455">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="387.8735,154.2637,389.046,174.9" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="RECEIVED" Condition="REQ[Sensor]" x="1555.563" y="1010.19">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="390.8731,240.742,393.362,262.3848" />
+      </ECTransition>
+      <ECTransition Source="RECEIVED" Destination="IDLE_MODE" Condition="REQ[NOT(Drive_section0)]" x="977.5589" y="842.0239">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="217.4859,235.0142,209.5032,185.3351" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="1165.129" y="305.2218">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="278.2758,76.70419,280.75,66.9652" />
+      </ECTransition>
+      <ECTransition Source="DRIVE" Destination="INIT" Condition="INIT" x="981.2586" y="437.8648">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="216.024,122.1761,212.9772,81.97116" />
+      </ECTransition>
+      <ECTransition Source="RECEIVED" Destination="INIT" Condition="INIT" x="465.1724" y="619.2153">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="46.27724,182.5375,40.0107,111.9992" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="IDLE_MODE">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="DRIVE">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="RECEIVED">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="E6BE125AD4A07C4A" Name="ConfigurationManager" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ_HOME" Comment="Normal Execution Request" />
+      <Event Name="REQ_FEED" />
+      <Event Name="REQ_COLLECT" />
+      <Event Name="REQ_REJECT" />
+      <Event Name="REQ">
+        <With Var="robotinoPos" />
+      </Event>
+      <Event Name="RESET" />
+      <Event Name="CONFIRM" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="READY" Comment="Execution Confirmation">
+        <With Var="configurationID" />
+      </Event>
+      <Event Name="S5_GATE_CLOSE" />
+      <Event Name="S5_GATE_OPEN" />
+      <Event Name="CNF">
+        <With Var="configurationID" />
+      </Event>
+      <Event Name="REQ_CONFIRMATION" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="robotinoPos" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="configurationID" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,HOME,FEED,REJECT,COLLECT" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1380.941" y="677.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1959.974" y="370.3987">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="HOME" x="591" y="1095">
+        <ECAction Output="S5_GATE_CLOSE" />
+        <ECAction Algorithm="HOME" Output="CNF" />
+      </ECState>
+      <ECState Name="FEED" x="3114.444" y="619.5561">
+        <ECAction Output="S5_GATE_CLOSE" />
+        <ECAction Algorithm="FEED" Output="CNF" />
+      </ECState>
+      <ECState Name="COLLECT" x="2193" y="2237.222">
+        <ECAction Output="S5_GATE_OPEN" />
+        <ECAction Algorithm="COLLECT" Output="CNF" />
+      </ECState>
+      <ECState Name="REJECT" x="3221.111" y="1829.81">
+        <ECAction Output="S5_GATE_CLOSE" />
+        <ECAction Algorithm="REJECT" />
+      </ECState>
+      <ECState Name="READY" x="2200" y="1210">
+        <ECAction Output="READY" />
+      </ECState>
+      <ECState Name="COLL_CONFIRM" x="1204" y="2024">
+        <ECAction Output="REQ_CONFIRMATION" />
+      </ECState>
+      <ECState Name="FEED_CONFIRM" x="3436" y="1252">
+        <ECAction Output="REQ_CONFIRMATION" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1625.17" y="457.8321">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="386.2162,121.1119,422.8236,100.2624" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="READY" Condition="1" x="2010.211" y="808.284">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="489.4278,172.93,506.8289,234.2261" />
+      </ECTransition>
+      <ECTransition Source="HOME" Destination="READY" Condition="robotinoPos='HOME'" x="1368.402" y="929.8104">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="284.9367,213.8975,393.3488,222.5898" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="HOME" Condition="REQ_HOME" x="1264.824" y="1417.787">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="361.5934,376.4638,255.1952,367.9472" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="COLLECT" Condition="REQ_COLLECT" x="2436.971" y="1761.715">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="624.9318,404.9854,626.0632,482.223" />
+      </ECTransition>
+      <ECTransition Source="COLLECT" Destination="COLL_CONFIRM" Condition="(robotinoPos='COLLECT') OR (robotinoPos='COLL')" x="1580.076" y="2302.012">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="430.0015,592.3106,351.0691,579.0757" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="REJECT" Condition="REQ_REJECT" x="2914.264" y="1435.148">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="708.6833,333.2929,772.8981,372.3387" />
+      </ECTransition>
+      <ECTransition Source="REJECT" Destination="READY" Condition="1" x="2700.983" y="1697.397">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="711.2474,456.7887,646.1468,417.2293" />
+      </ECTransition>
+      <ECTransition Source="READY" Destination="FEED" Condition="REQ_FEED" x="2530.966" y="650.4813">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="596.6016,162.855,655.814,124.9807" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="FEED_CONFIRM" Condition="robotinoPos='FEED'" x="3439.844" y="812.1531">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="860.7073,172.5972,876.4954,214.8128" />
+      </ECTransition>
+      <ECTransition Source="COLLECT" Destination="READY" Condition="RESET" x="2196.473" y="1648.611">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="548.863,444.3551,549.387,367.4503" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="READY" Condition="RESET" x="2640.479" y="894.981">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="691.2952,201.8422,628.561,242.3488" />
+      </ECTransition>
+      <ECTransition Source="HOME" Destination="READY" Condition="RESET" x="1367.88" y="1145.704">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="283.7828,281.9757,396.5431,290.0323" />
+      </ECTransition>
+      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="CONFIRM" x="1827.824" y="1865.663">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="421.6124,513.8513,493.9708,454.715" />
+      </ECTransition>
+      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="RESET" x="1735.592" y="1622.233">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="399.7602,435.5626,472.1186,376.4263" />
+      </ECTransition>
+      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="CONFIRM" x="3038.47" y="946.2228">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="809.784,218.3761,738.9619,215.9695" />
+      </ECTransition>
+      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="RESET" x="2943.028" y="1118.14">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="780.4526,274.5678,709.6305,272.1613" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;configurationID := 'NONE';" />
+    </Algorithm>
+    <Algorithm Name="HOME">
+      <ST Text=";&#xD;&#xA;configurationID := 'HOME';" />
+    </Algorithm>
+    <Algorithm Name="FEED">
+      <ST Text=";&#xD;&#xA;configurationID := 'FEED';" />
+    </Algorithm>
+    <Algorithm Name="COLLECT">
+      <ST Text=";&#xD;&#xA;configurationID := 'COLLECT';" />
+    </Algorithm>
+    <Algorithm Name="REJECT">
+      <ST Text=";&#xD;&#xA;configurationID := 'REJECT';" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

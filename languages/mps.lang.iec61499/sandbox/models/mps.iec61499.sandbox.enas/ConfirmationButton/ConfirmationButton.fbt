@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="BD5016AD2AB8180D" Name="ConfirmationButton" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="10/5/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="message" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="message" Type="STRING" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis1" Type="ConfirmationButton_HMI" x="1340" y="320" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Input Name="message" x="12" y="192" Type="Data" />
+    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
+    <Output Name="CNF" x="2144.313" y="72" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis1.INIT" dx1="249.4167" />
+      <Connection Source="REQ" Destination="IThis1.REQ" dx1="237.5417" />
+      <Connection Source="IThis1.INITO" Destination="INITO" dx1="42.52087" />
+      <Connection Source="IThis1.CNF" Destination="CNF" dx1="70" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="message" Destination="IThis1.message" dx1="40" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

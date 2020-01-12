@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Pallet" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="5" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="10/7/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="NextRunning" />
+        <With Var="PalletPresent" />
+        <With Var="PalletOnNext" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="NextRunning" />
+        <With Var="PalletPresent" />
+        <With Var="PalletOnNext" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NextRunning" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="PalletPresent" Type="BOOL" />
+      <VarDeclaration Name="PalletOnNext" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="Pallet_HMI" x="2120" y="60" Namespace="Main" />
+    <FB ID="4" Name="FB1" Type="AND_550FE6D62F509EB3" x="1580" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=3;OUT:BOOL" />
+    </FB>
+    <FB ID="3" Name="FB2" Type="NOT_42C76073DCEB1A7A" x="820" y="360" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=1;OUT${CNT}:BOOL" />
+    </FB>
+    <FB ID="5" Name="FB3" Type="NOT_42C76073DCEB1A7A" x="820" y="820" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=1;OUT${CNT}:BOOL" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Input Name="NextRunning" x="12" y="132" Type="Data" />
+    <Input Name="PalletPresent" x="12" y="192" Type="Data" />
+    <Input Name="PalletOnNext" x="12" y="252" Type="Data" />
+    <Output Name="INITO" x="3060" y="71.85417" Type="Event" />
+    <Output Name="CNF" x="3080" y="131.8542" Type="Event" />
+    <Output Name="QO" x="2960" y="191.8542" Type="Data" />
+    <EventConnections>
+      <Connection Source="REQ" Destination="FB2.REQ" dx1="276.9584" />
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="48.83337" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="67.41675" />
+      <Connection Source="REQ" Destination="FB1.REQ" dx1="276.9584" />
+      <Connection Source="FB2.CNF" Destination="FB1.REQ" dx1="50" />
+      <Connection Source="FB1.CNF" Destination="IThis.INID" dx1="50" />
+      <Connection Source="REQ" Destination="FB3.REQ" dx1="276.9584" />
+      <Connection Source="FB3.CNF" Destination="FB1.REQ" dx1="43.75" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="NextRunning" Destination="FB2.IN1" dx1="110.7501">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="IThis.QO" Destination="QO" dx1="70" />
+      <Connection Source="PalletPresent" Destination="FB1.IN1" dx1="783.3959">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.OUT1" Destination="FB1.IN2" dx1="70" />
+      <Connection Source="FB1.OUT" Destination="IThis.PalletPresent" dx1="70" />
+      <Connection Source="FB3.OUT1" Destination="FB1.IN3" dx1="193.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PalletOnNext" Destination="FB3.IN1" dx1="40" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="9CA978F9B8376E36" Name="ConsoleControl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="10/4/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="RESET" />
+      <Event Name="START" />
+      <Event Name="PAUSE" />
+      <Event Name="RESET_DONE" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="resetLED" />
+        <With Var="startLED" />
+        <With Var="pauseLED" />
+      </Event>
+      <Event Name="E_START" />
+      <Event Name="E_PAUSE" />
+      <Event Name="E_RESET" />
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="resetLED" Type="BOOL" />
+      <VarDeclaration Name="startLED" Type="BOOL" />
+      <VarDeclaration Name="pauseLED" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,PAUSED,RUN,RESET" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="RESET" x="1380" y="660">
+        <ECAction Algorithm="RESET" Output="CNF" />
+        <ECAction Output="E_RESET" />
+      </ECState>
+      <ECState Name="PAUSED" x="1400" y="1256">
+        <ECAction Algorithm="PAUSED" Output="CNF" />
+        <ECAction Output="E_PAUSE" />
+      </ECState>
+      <ECState Name="RUN" x="1516" y="1868">
+        <ECAction Algorithm="RUN" Output="CNF" />
+        <ECAction Output="E_START" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="RESET" Condition="1" x="1217.269" y="350.4402">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="291.517,66.36417,321.9044,100.9024" />
+      </ECTransition>
+      <ECTransition Source="RESET" Destination="PAUSED" Condition="RESET_DONE" x="1895.315" y="959.0218">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="504.0179,219.1884,504.3114,261.1074" />
+      </ECTransition>
+      <ECTransition Source="PAUSED" Destination="RUN" Condition="START" x="1822.191" y="1568.289">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="473.5977,370.8811,480.4326,414.2842" />
+      </ECTransition>
+      <ECTransition Source="RUN" Destination="PAUSED" Condition="PAUSE" x="977.6732" y="1606.226">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="214.0789,426.1165,211.8424,382.0798" />
+      </ECTransition>
+      <ECTransition Source="PAUSED" Destination="RESET" Condition="RESET" x="920.5535" y="966.4637">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="200.8559,262.3093,204.3913,222.3331" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;startLED:=FALSE;&#xD;&#xA;pauseLED:=FALSE;&#xD;&#xA;resetLED:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="PAUSED" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;startLED:=FALSE;&#xD;&#xA;pauseLED:=TRUE;&#xD;&#xA;resetLED:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="RUN">
+      <ST Text=";&#xD;&#xA;startLED:=TRUE;&#xD;&#xA;pauseLED:=FALSE;&#xD;&#xA;resetLED:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text=";&#xD;&#xA;startLED:=FALSE;&#xD;&#xA;pauseLED:=FALSE;&#xD;&#xA;resetLED:=TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

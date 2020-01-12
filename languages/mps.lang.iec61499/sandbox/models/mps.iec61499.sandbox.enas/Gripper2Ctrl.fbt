@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Gripper2Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="3/23/2016" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor1" />
+        <With Var="Sensor2" />
+        <With Var="GripperVerUp" />
+        <With Var="GripperVerDown" />
+        <With Var="Feed" />
+        <With Var="Receive" />
+        <With Var="Stop" />
+        <With Var="GripperActivated" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor1" />
+        <With Var="Sensor2" />
+        <With Var="GripperVerUp" />
+        <With Var="GripperVerDown" />
+        <With Var="Feed" />
+        <With Var="Receive" />
+        <With Var="Stop" />
+        <With Var="GripperActivated" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="DriveConv" />
+        <With Var="GripperVer" />
+        <With Var="GripperCls" />
+        <With Var="ReadySIG" />
+        <With Var="DriveNext" />
+        <With Var="GripperExecuting" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="DriveConv" />
+        <With Var="GripperVer" />
+        <With Var="GripperCls" />
+        <With Var="ReadySIG" />
+        <With Var="DriveNext" />
+        <With Var="GripperExecuting" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Sensor2" Type="BOOL" />
+      <VarDeclaration Name="GripperVerUp" Type="BOOL" />
+      <VarDeclaration Name="GripperVerDown" Type="BOOL" />
+      <VarDeclaration Name="Feed" Type="BOOL" />
+      <VarDeclaration Name="Receive" Type="BOOL" />
+      <VarDeclaration Name="Stop" Type="BOOL" />
+      <VarDeclaration Name="GripperActivated" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DriveConv" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="GripperVer" Type="BOOL" />
+      <VarDeclaration Name="GripperCls" Type="BOOL" />
+      <VarDeclaration Name="ReadySIG" Type="BOOL" />
+      <VarDeclaration Name="DriveNext" Type="BOOL" />
+      <VarDeclaration Name="GripperExecuting" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="768.7495" y="2322.555" />
+      <ECState Name="INIT" Comment="Initialization" x="929.1957" y="1855.843">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="NoMUnit" x="4437.667" y="2164.667">
+        <ECAction Algorithm="NoMUnit" Output="CNF" />
+      </ECState>
+      <ECState Name="PALLETRECEIVED1" x="2731.667" y="1496.667">
+        <ECAction Algorithm="PALLETRECEIVED1" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP1" x="1611.667" y="1064.667">
+        <ECAction Algorithm="GRIP1" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP2" x="1615.667" y="1364.667">
+        <ECAction Algorithm="GRIP2" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP3" x="1619.667" y="1676.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP4" x="1631.667" y="1944.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="FEED" x="3086.667" y="2858.667">
+        <ECAction Algorithm="FEED" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP5" x="1628.667" y="2214.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP6" x="1622.667" y="2499.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP7" x="1628.667" y="2808.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="GRIP8" x="1630.667" y="3156.667">
+        <ECAction Algorithm="GRIP3" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE" x="2848.667" y="1023.333">
+        <ECAction Algorithm="RECEIVE" Output="CNF" />
+      </ECState>
+      <ECState Name="STOP" x="4492.761" y="2830.667">
+        <ECAction Algorithm="STOP" Output="CNF" />
+      </ECState>
+      <ECTransition Source="NoMUnit" Destination="PALLETRECEIVED1" Condition="REQ[Sensor1&amp;GripperActivated]" x="3687.652" y="1924.649">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="994.0001,512.3106,870.1219,464.3686" />
+      </ECTransition>
+      <ECTransition Source="PALLETRECEIVED1" Destination="GRIP1" Condition="REQ[GripperActivated]" x="2048.7" y="901.1494">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="538.134,211.874,466.2435,184.1448" />
+      </ECTransition>
+      <ECTransition Source="GRIP1" Destination="GRIP2" Condition="REQ[GripperVerDown]" x="1699.775" y="1213.667">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="428.3058,295.1819,428.5232,311.4849" />
+      </ECTransition>
+      <ECTransition Source="GRIP2" Destination="GRIP3" Condition="REQ[GripperVerDown&amp;(TimeStamp&lt;CURRENT_DT())]" x="1703.409" y="1519.705">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="429.3036,371.1947,429.5255,388.4977" />
+      </ECTransition>
+      <ECTransition Source="GRIP3" Destination="GRIP4" Condition="REQ[GripperVerUp]" x="1712.849" y="1807.312">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="431.0863,444.7303,431.697,458.3666" />
+      </ECTransition>
+      <ECTransition Source="GRIP8" Destination="FEED" Condition="REQ[Feed&amp;GripperVerUp]" x="2100.493" y="3319.019">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="456.914,863.5198,554.9901,839.1848" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="NoMUnit" Condition="REQ[NOT(Feed)]" x="3686.498" y="2567.296">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="868.3373,670.478,960.8273,622.4022" />
+      </ECTransition>
+      <ECTransition Source="GRIP7" Destination="GRIP8" Condition="REQ" x="1742.221" y="2982.838">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="440.6291,735.5723,440.5849,755.8754" />
+      </ECTransition>
+      <ECTransition Source="GRIP6" Destination="GRIP7" Condition="REQ[GripperVerDown]" x="1694.954" y="2651.8">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="426.3587,654.2272,426.8283,671.2783" />
+      </ECTransition>
+      <ECTransition Source="GRIP5" Destination="GRIP6" Condition="REQ" x="1700.794" y="2356.122">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="428.1295,581.4153,428.0775,596.4711" />
+      </ECTransition>
+      <ECTransition Source="GRIP4" Destination="GRIP5" Condition="REQ[Sensor2]" x="1700.086" y="2074.932">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="427.6017,511.4267,427.5819,525.2501" />
+      </ECTransition>
+      <ECTransition Source="PALLETRECEIVED1" Destination="FEED" Condition="REQ[NOT(GripperActivated)]" x="2517.134" y="2131.758">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.3102,476.8427,615.076,581.3849" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="RECEIVE" Condition="REQ[Receive]" x="3735.15" y="1093.177">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="997.9986,279.5448,875.5792,192.2703" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE" Destination="PALLETRECEIVED1" Condition="REQ[Sensor1]" x="3062.193" y="1243.921">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="786.5746,291.1731,772.2682,328.1074" />
+      </ECTransition>
+      <ECTransition Source="GRIP8" Destination="INIT" Condition="INIT" x="1278.291" y="2581.255">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="346.8658,701.4163,293.0998,601.7113" />
+      </ECTransition>
+      <ECTransition Source="GRIP7" Destination="INIT" Condition="INIT" x="1275.793" y="2407.255">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="345.6852,643.4163,293.7804,572.7113" />
+      </ECTransition>
+      <ECTransition Source="GRIP6" Destination="INIT" Condition="INIT" x="1268.492" y="2252.755">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="343.1935,591.9163,294.772,546.9613" />
+      </ECTransition>
+      <ECTransition Source="GRIP5" Destination="INIT" Condition="INIT" x="1267.446" y="2112.799">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="339.6209,544.0162,297.5055,522.4113" />
+      </ECTransition>
+      <ECTransition Source="GRIP4" Destination="INIT" Condition="INIT" x="1265.6" y="1983.264">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="336.7368,502.1664,296.0634,497.0235" />
+      </ECTransition>
+      <ECTransition Source="GRIP3" Destination="INIT" Condition="INIT" x="1348.451" y="1759.697">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="364.3536,433.3061,324.6802,443.6013" />
+      </ECTransition>
+      <ECTransition Source="GRIP2" Destination="INIT" Condition="INIT" x="1322.774" y="1674.072">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="355.1807,406.7781,310.1298,439.0125" />
+      </ECTransition>
+      <ECTransition Source="GRIP1" Destination="INIT" Condition="INIT" x="1333.7" y="1509.243">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="361.2233,352.7758,311.8528,410.0102" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE" Destination="INIT" Condition="INIT" x="1755.219" y="563.0359">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="557.5733,38.29289,300.0189,105.8301" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="INIT" Condition="INIT" x="1742.711" y="3428.221">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="497.5449,980.0346,333.1028,903.8735" />
+      </ECTransition>
+      <ECTransition Source="PALLETRECEIVED1" Destination="INIT" Condition="INIT" x="1909.358" y="714.9281">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="639.1666,62.91667,327.9819,143.0233" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="INIT" Condition="INIT" x="2119.326" y="225.6155">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="787.9882,-260.9351,180,85" />
+      </ECTransition>
+      <ECTransition Source="STOP" Destination="NoMUnit" Condition="REQ[NOT(Stop)]" x="4280.753" y="2520.485">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1061.036,655.481,1057.149,608.5649" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="STOP" Condition="REQ[Stop]" x="4718.762" y="2488.976">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1192.997,598.0761,1197.128,644.9634" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="568.4404" y="2064.107">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="130.8421,499.6582,120.4614,529.8539" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="740.375" y="2073.885">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="174.3662,532.293,184.7468,502.0974" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="NoMUnit" Condition="REQ[NOT(Sensor1)]" x="2009.553" y="3555.752">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="314.8611,999.9561,594.7108,987.9131" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;GripperExecuting:=0;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="NoMUnit">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="PALLETRECEIVED1">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="GRIP1">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=1;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;GripperExecuting:=1;" />
+    </Algorithm>
+    <Algorithm Name="GRIP2">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=1;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;TimeStamp:=ADD_DT_TIME(CURRENT_DT(),T#0.5s);&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="GRIP3">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="FEED">
+      <ST Text="DriveConv:=1;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=1;" />
+    </Algorithm>
+    <Algorithm Name="GRIP6">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=1;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="GRIP7">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=1;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="GRIP8">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;GripperExecuting:=0;" />
+    </Algorithm>
+    <Algorithm Name="NOPALLET1">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="PALLETRECEIVED">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="RECEIVE">
+      <ST Text="DriveConv:=1;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="FEED1">
+      <ST Text="DriveConv:=1;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=1;" />
+    </Algorithm>
+    <Algorithm Name="RECEIVE1">
+      <ST Text="DriveConv:=1;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=1;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="DriveConv:=0;&#xD;&#xA;GripperVer:=0;&#xD;&#xA;GripperCls:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;ReadySIG:=0;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="2D98CF202DC57F05" Name="ButtonConsole" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="AIC3" Date="10/1/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ" Comment="Normal Execution Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" Name="FB1" Type="SYMLINKMULTIVARDST_151ACB50A2F8223B2" x="780" y="540" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=3;VALUE${I}:BOOL,BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}START_BUTTON'" />
+      <Parameter Name="NAME2" Value="'$${PATH}RESET_BUTTON'" />
+      <Parameter Name="NAME3" Value="'$${PATH}STOP_BUTTON'" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
+    <Output Name="CNF" x="2144.313" y="72" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="49.41669" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>

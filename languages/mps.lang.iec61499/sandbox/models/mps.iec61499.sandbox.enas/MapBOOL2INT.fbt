@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="MapBOOL2INT" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="5/8/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="UserDem_R" />
+        <With Var="UserDem_B" />
+        <With Var="ColorDetection" />
+        <With Var="Jack2Working" />
+        <With Var="DockPos1" />
+        <With Var="DockPos2" />
+        <With Var="ProductDeliveredIn" />
+        <With Var="Sensor" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="UserDem_R" />
+        <With Var="UserDem_B" />
+        <With Var="ColorDetection" />
+        <With Var="Jack2Working" />
+        <With Var="DockPos1" />
+        <With Var="DockPos2" />
+        <With Var="ProductDeliveredIn" />
+        <With Var="Sensor" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="ProductDemanded" />
+        <With Var="ProductDetected" />
+        <With Var="DockingPosition" />
+        <With Var="ActivateGrippers" />
+        <With Var="ProductDeliveredOut" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="ProductDemanded" />
+        <With Var="ProductDetected" />
+        <With Var="DockingPosition" />
+        <With Var="ActivateGrippers" />
+        <With Var="ProductDeliveredOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="UserDem_R" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="UserDem_B" Type="BOOL" />
+      <VarDeclaration Name="ColorDetection" Type="STRING" />
+      <VarDeclaration Name="Jack2Working" Type="BOOL" />
+      <VarDeclaration Name="DockPos1" Type="BOOL" />
+      <VarDeclaration Name="DockPos2" Type="BOOL" />
+      <VarDeclaration Name="ProductDeliveredIn" Type="BOOL" />
+      <VarDeclaration Name="Sensor" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ProductDemanded" Type="INT" Comment="Output event qualifier" />
+      <VarDeclaration Name="ProductDetected" Type="INT" />
+      <VarDeclaration Name="DockingPosition" Type="INT" />
+      <VarDeclaration Name="ActivateGrippers" Type="BOOL" />
+      <VarDeclaration Name="ProductDeliveredOut" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;// Initialize Outputs to Garbage&#xD;&#xA;ProductDetected := -1;&#xD;&#xA;ProductDemanded := -1;&#xD;&#xA;ProductDeliveredOut := 0;&#xD;&#xA;ColorDetection := 'Junk';" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;// USER CONTROLLED INPUT...&#xD;&#xA;&#xD;&#xA;IF UserDem_R &amp; NOT(UserDem_B) THEN&#xD;&#xA;	ProductDemanded := 0;&#xD;&#xA;ELSIF UserDem_B &amp; NOT(UserDem_R) THEN&#xD;&#xA;	ProductDemanded := 1;&#xD;&#xA;ELSE&#xD;&#xA;	ProductDemanded :=-1; // Can't ask for both products simultaneously or none.&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;// Color Detection.&#xD;&#xA;IF ColorDetection='RED' &amp; Sensor THEN&#xD;&#xA;  ProductDetected := 0;&#xD;&#xA;ELSIF ColorDetection='GREEN' &amp; Sensor THEN&#xD;&#xA;	ProductDetected := 1;&#xD;&#xA;ELSIF ColorDetection='EMPTY' &amp; Sensor THEN&#xD;&#xA;	ProductDetected := 2;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;/* COLOR DETECTION ALGORITHM OUTPUT&#xD;&#xA;IF (EmptyCan &amp; NOT(RedCan) &amp; NOT(BlueCan)) THEN&#xD;&#xA;	ProductDetected :=2;&#xD;&#xA;ELSIF (NOT(EmptyCan) &amp; RedCan &amp; NOT(BlueCan)) THEN&#xD;&#xA;	ProductDetected :=0;&#xD;&#xA;ELSIF(NOT(EmptyCan) &amp; NOT(RedCan) &amp; BlueCan) THEN&#xD;&#xA;	ProductDetected :=1;&#xD;&#xA;ELSE&#xD;&#xA;	ProductDetected :=-1;&#xD;&#xA;END_IF;&#xD;&#xA;*/&#xD;&#xA;// Docking Position Update...&#xD;&#xA;&#xD;&#xA;IF (DockPos1)THEN&#xD;&#xA;	DockingPosition := 1;&#xD;&#xA;ELSIF (DockPos2) THEN&#xD;&#xA;	DockingPosition := 2;&#xD;&#xA;ELSE&#xD;&#xA;	DockingPosition := -1;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;// Grippers are only activate when Jack-2 fails. &#xD;&#xA;ActivateGrippers := NOT(Jack2Working);&#xD;&#xA;&#xD;&#xA;// product delivered or not.&#xD;&#xA;IF (ProductDeliveredIn) THEN&#xD;&#xA;	ProductDeliveredOut := 1;&#xD;&#xA;ELSE &#xD;&#xA;	ProductDeliveredOut := 0;&#xD;&#xA;END_IF;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

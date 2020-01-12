@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="A17AB524625ABE0" Name="Section2Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Antti" Date="5/26/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Drive_section1" />
+        <With Var="Drive_section3" />
+        <With Var="Robotino_docked" />
+        <With Var="Sensor" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Drive_section1" />
+        <With Var="Drive_section3" />
+        <With Var="Robotino_docked" />
+        <With Var="Sensor" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Drive_section1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section3" Type="BOOL" />
+      <VarDeclaration Name="Robotino_docked" Type="BOOL" />
+      <VarDeclaration Name="Sensor" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ,SUPPLYING,RECEIVING,FORWARDING,IDLE_MODE" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="268.9412" y="153.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="1235.53" y="209.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="IDLE_MODE" x="1592" y="988">
+        <ECAction Algorithm="IDLE_MODE" Output="CNF" />
+      </ECState>
+      <ECState Name="SUPPLYING" x="2692" y="991.9999">
+        <ECAction Algorithm="SUPPLYING" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVING" x="568.0001" y="976.0001">
+        <ECAction Algorithm="RECEIVING" Output="CNF" />
+      </ECState>
+      <ECState Name="FORWARDING" x="624.0001" y="1512">
+        <ECAction Algorithm="FORWARDING" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="896.6669" y="133.9488">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="206.8082,29.30389,262.5101,33.5843" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1475.122" y="559.3315">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="359.0096,108.2876,385.5438,164.8354" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="SUPPLYING" Condition="REQ[Robotino_docked]" x="2176.052" y="765.7521">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="507.3165,177.1712,584.9711,177.0272" />
+      </ECTransition>
+      <ECTransition Source="SUPPLYING" Destination="IDLE_MODE" Condition="REQ[NOT(Robotino_docked)&amp;NOT(Drive_section3)]" x="2189.358" y="1190.893">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="589.0217,309.278,511.7734,310.9538" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="RECEIVING" Condition="REQ[Drive_section1]" x="1051.711" y="1238.594">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="294.044,326.6447,228.239,326.7208" />
+      </ECTransition>
+      <ECTransition Source="RECEIVING" Destination="FORWARDING" Condition="REQ[Sensor]" x="569.0796" y="1253.622">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="135.7377,295.4092,145.8281,333.0053" />
+      </ECTransition>
+      <ECTransition Source="FORWARDING" Destination="IDLE_MODE" Condition="REQ[NOT(Drive_section3)]" x="1611.68" y="1749.872">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="412.2931,495.3681,466.5591,454.1828" />
+      </ECTransition>
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="1420.475" y="700.8599">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="369.8589,212.0509,343.537,155.4243" />
+      </ECTransition>
+      <ECTransition Source="SUPPLYING" Destination="INIT" Condition="INIT" x="2309.517" y="205.8395">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="661.4101,50.22718,543.5318,-6.811523" />
+      </ECTransition>
+      <ECTransition Source="FORWARDING" Destination="INIT" Condition="INIT" x="54.79374" y="669.7128">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-75.73572,206.4454,-29.12494,99.86371" />
+      </ECTransition>
+      <ECTransition Source="RECEIVING" Destination="INIT" Condition="INIT" x="621.5853" y="578.0896">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="114.754,173.2171,158.7129,114.5679" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Drive_prev := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="IDLE_MODE">
+      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Drive_prev := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="SUPPLYING">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_next := TRUE;&#xD;&#xA;Drive_prev := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="RECEIVING">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Drive_prev := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="FORWARDING">
+      <ST Text=";&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_next := TRUE;&#xD;&#xA;Drive_prev := FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

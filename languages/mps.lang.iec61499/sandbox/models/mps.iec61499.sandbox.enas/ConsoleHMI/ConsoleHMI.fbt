@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="E45748D96501C715" Name="ConsoleHMI" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="8" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="10/4/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="RESET_DONE" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="START" Comment="Event Output" />
+      <Event Name="PAUSE" Comment="Event Output" />
+      <Event Name="RESET" Comment="Event Output" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="StartPauseResetButtons" x="1560" y="620" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <FB ID="2" Name="FB2" Type="E_R_TRIG" x="2680" y="600" Namespace="IEC61499.Standard" />
+    <FB ID="3" Name="FB3" Type="E_R_TRIG" x="2680" y="1000" Namespace="IEC61499.Standard" />
+    <FB ID="4" Name="FB4" Type="E_R_TRIG" x="2680" y="1440" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="FB5" Type="ConsoleControl" x="820" y="1660" Namespace="Main" />
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="RESET_DONE" x="11.46877" y="72" Type="Event" />
+    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
+    <Output Name="START" x="1940" y="1792" Type="Event" />
+    <Output Name="PAUSE" x="1940" y="1852" Type="Event" />
+    <Output Name="RESET" x="1940" y="1912" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB5.INIT" dx1="189.4167" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="42.771" dx2="48.22925" dy="-110" />
+      <Connection Source="FB1.CNF" Destination="FB2.EI" dx1="70" />
+      <Connection Source="FB1.CNF" Destination="FB3.EI" dx1="42.771" />
+      <Connection Source="FB1.CNF" Destination="FB4.EI" dx1="42.771" />
+      <Connection Source="FB5.INITO" Destination="FB1.INIT" dx1="41.68762" dx2="130" dy="-110" />
+      <Connection Source="FB5.CNF" Destination="FB1.REQ" dx1="70" dx2="110" dy="-170" />
+      <Connection Source="FB2.EO" Destination="FB5.START">
+        <Points>
+          <Points>
+            <X>737.0677</X>
+            <Y>160</Y>
+          </Points>
+          <Points>
+            <X>747.5</X>
+            <Y>160</Y>
+          </Points>
+          <Points>
+            <X>747.5</X>
+            <Y>232.5</Y>
+          </Points>
+          <Points>
+            <X>657.5</X>
+            <Y>232.5</Y>
+          </Points>
+          <Points>
+            <X>657.5</X>
+            <Y>297.5</Y>
+          </Points>
+          <Points>
+            <X>177.5</X>
+            <Y>297.5</Y>
+          </Points>
+          <Points>
+            <X>177.5</X>
+            <Y>455</Y>
+          </Points>
+          <Points>
+            <X>200</X>
+            <Y>455</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB3.EO" Destination="FB5.PAUSE" dx1="41.72925" dx2="110" dy="290" />
+      <Connection Source="FB4.EO" Destination="FB5.RESET" dx1="41.72925" dx2="70" dy="-110" />
+      <Connection Source="RESET_DONE" Destination="FB5.RESET_DONE" dx1="41.46875" />
+      <Connection Source="FB5.E_START" Destination="START" />
+      <Connection Source="FB5.E_PAUSE" Destination="PAUSE" />
+      <Connection Source="FB5.E_RESET" Destination="RESET" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.StartOut" Destination="FB2.QI" dx1="90" />
+      <Connection Source="FB1.PauseOut" Destination="FB3.QI" dx1="42.771" />
+      <Connection Source="FB1.ResetOut" Destination="FB4.QI" dx1="42.771" />
+      <Connection Source="FB5.resetLED" Destination="FB1.ResetIn" dx1="61.68762" />
+      <Connection Source="FB5.pauseLED" Destination="FB1.PauseIn" dx1="41.68762" />
+      <Connection Source="FB5.startLED" Destination="FB1.StartIn" dx1="170" dx2="70" dy="-610" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

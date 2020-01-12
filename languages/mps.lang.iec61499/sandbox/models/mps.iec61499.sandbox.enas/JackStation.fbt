@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="E5DA8F4D831EE8C7" Name="JackStation" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="15" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="full" />
+      </Event>
+      <Event Name="PLACE_RED" Comment="Normal Execution Request" />
+      <Event Name="PLACE_GREEN" Comment="Initialization Request" />
+      <Event Name="REMOVE_WP" Comment="Normal Execution Request" />
+      <Event Name="CLEAR" />
+      <Event Name="RESET">
+        <With Var="full" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="DONE_RED" Comment="Initialization Confirm" />
+      <Event Name="DONE_GREEN" Comment="Initialization Confirm" />
+      <Event Name="MAN_CHECK" />
+      <Event Name="WP_REMOVED" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="full" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="JackHAL" x="3680" y="2160" Namespace="Main" />
+    <FB ID="2" Name="FB2" Type="SledgeHAL" x="4620" y="2280" Namespace="Main" />
+    <FB ID="3" Name="PLACE_RED_FB" Type="PlaceWP" x="3680" y="380" Namespace="Main" />
+    <FB ID="4" Name="PLACE_GREEN_FB" Type="PlaceWP" x="4840" y="1340" Namespace="Main" />
+    <FB ID="5" Name="SLEDGE_SHIFT" Type="SimpleMove_E" x="3140" y="1360" Namespace="Main" />
+    <FB ID="6" Name="SLEDGE_RETURN" Type="SimpleMove_E" x="5640" y="1460" Namespace="Main" />
+    <FB ID="7" Name="FB3" Type="RemoveWP" x="4860" y="3180" Namespace="Main" />
+    <FB ID="11" Name="SLEDGE_SHIFT1" Type="SimpleMove_E" x="3920" y="3920" Namespace="Main" />
+    <FB ID="12" Name="SLEDGE_RETURN1" Type="SimpleMove_E" x="5560" y="3820" Namespace="Main" />
+    <FB ID="13" Name="FB4" Type="StackControl1" x="1520" y="2200" Namespace="Main" />
+    <FB ID="14" Name="RED_ERR_BYPASS" Type="E_REND" x="1280" y="1120" Namespace="IEC61499.Standard" />
+    <FB ID="15" Name="GREEN_ERR_BYPASS1" Type="E_REND" x="1300" y="3120" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="620" y="2212" Type="Event" />
+    <Input Name="PLACE_RED" x="620" y="2332" Type="Event" />
+    <Input Name="PLACE_GREEN" x="620" y="2392" Type="Event" />
+    <Input Name="REMOVE_WP" x="620" y="2272" Type="Event" />
+    <Input Name="CLEAR" x="620" y="2452" Type="Event" />
+    <Input Name="full" x="620" y="2792" Type="Data" />
+    <Input Name="RESET" x="624.875" y="1972" Type="Event" />
+    <Output Name="INITO" x="5780" y="2292" Type="Event" />
+    <Output Name="DONE_RED" x="5620" y="392" Type="Event" />
+    <Output Name="DONE_GREEN" x="6420" y="1472" Type="Event" />
+    <Output Name="MAN_CHECK" x="6540" y="3032" Type="Event" />
+    <Output Name="WP_REMOVED" x="6340" y="3212" Type="Event" />
+    <Frame Name="FRAME1" X="2420" Y="1240" Width="4520" Height="760">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="GREEN Sequence" />
+    </Frame>
+    <Frame Name="FRAME2" X="2420" Y="320" Width="4520" Height="800">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="RED Sequence" />
+    </Frame>
+    <Frame Name="FRAME3" X="2420" Y="2080" Width="4500" Height="800">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="HAL" />
+    </Frame>
+    <Frame Name="FRAME4" X="2420" Y="2980" Width="4500" Height="1500">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+    </Frame>
+    <EventConnections>
+      <Connection Source="FB4.INITO" Destination="FB1.INIT" dx1="40" />
+      <Connection Source="FB1.INITO" Destination="FB2.INIT" dx1="127.771" />
+      <Connection Source="FB2.INITO" Destination="INITO" />
+      <Connection Source="PLACE_RED_FB.DONE" Destination="DONE_RED" />
+      <Connection Source="PLACE_RED_FB.DOWN" Destination="FB1.DOWN" dx1="47.77051" dx2="90" dy="1270" />
+      <Connection Source="PLACE_RED_FB.UP" Destination="FB1.UP" dx1="47.77051" dx2="70" dy="1210" />
+      <Connection Source="PLACE_RED_FB.EXTEND" Destination="FB1.EXTEND" dx1="47.77051" dx2="110" dy="1150" />
+      <Connection Source="PLACE_RED_FB.RETRACT" Destination="FB1.RETRACT" dx1="47.77051" dx2="130" dy="1090" />
+      <Connection Source="PLACE_RED_FB.VAC_ON" Destination="FB1.VAC_ON" dx1="47.77051" dx2="150" dy="1030" />
+      <Connection Source="PLACE_RED_FB.VAC_OFF" Destination="FB1.VAC_OFF" dx1="47.77051" dx2="170" dy="970" />
+      <Connection Source="FB1.TOP" Destination="PLACE_RED_FB.TOP" dx1="70" dx2="30" dy="-970" />
+      <Connection Source="FB1.BOTTOM" Destination="PLACE_RED_FB.BOTTOM" dx1="90" dx2="30" dy="-1030" />
+      <Connection Source="FB1.EXTENDED" Destination="PLACE_RED_FB.EXTENDED" dx1="110" dx2="30" dy="-1090" />
+      <Connection Source="FB1.RETRACTED" Destination="PLACE_RED_FB.RETRACTED" dx1="130" dx2="30" dy="-1150" />
+      <Connection Source="SLEDGE_SHIFT.DONE" Destination="PLACE_GREEN_FB.TRIGGER" dx1="50" />
+      <Connection Source="FB1.TOP" Destination="PLACE_GREEN_FB.TOP" dx1="70" />
+      <Connection Source="FB1.BOTTOM" Destination="PLACE_GREEN_FB.BOTTOM" dx1="90" />
+      <Connection Source="FB1.EXTENDED" Destination="PLACE_GREEN_FB.EXTENDED" dx1="110" />
+      <Connection Source="FB1.RETRACTED" Destination="PLACE_GREEN_FB.RETRACTED" dx1="130" />
+      <Connection Source="PLACE_GREEN_FB.DOWN" Destination="FB1.DOWN" dx1="47.77051" dx2="90" dy="530" />
+      <Connection Source="PLACE_GREEN_FB.UP" Destination="FB1.UP" dx1="47.77051" dx2="70" dy="470" />
+      <Connection Source="PLACE_GREEN_FB.EXTEND" Destination="FB1.EXTEND" dx1="47.77051" dx2="110" dy="410" />
+      <Connection Source="PLACE_GREEN_FB.RETRACT" Destination="FB1.RETRACT" dx1="47.77051" dx2="130" dy="350" />
+      <Connection Source="PLACE_GREEN_FB.VAC_ON" Destination="FB1.VAC_ON" dx1="47.77051" dx2="150" dy="290" />
+      <Connection Source="PLACE_GREEN_FB.VAC_OFF" Destination="FB1.VAC_OFF" dx1="47.77051" dx2="170" dy="230" />
+      <Connection Source="SLEDGE_RETURN.DONE" Destination="DONE_GREEN" />
+      <Connection Source="PLACE_GREEN_FB.DONE" Destination="SLEDGE_RETURN.TRIGGER" dx1="47.77051" />
+      <Connection Source="SLEDGE_SHIFT.TO_POSITION" Destination="FB2.SHIFT_RIGHT" dx1="481.396" />
+      <Connection Source="FB2.RIGHT_DONE" Destination="SLEDGE_SHIFT.AT_POSITION" dx1="70.9375" dx2="30" dy="-290" />
+      <Connection Source="SLEDGE_RETURN.TO_POSITION" Destination="FB2.SHIFT_LEFT" dx1="41.396" dx2="90" dy="410" />
+      <Connection Source="FB2.LEFT_DONE" Destination="SLEDGE_RETURN.AT_POSITION" dx1="170.9375" />
+      <Connection Source="FB1.TOP" Destination="FB3.TOP" dx1="107.771" />
+      <Connection Source="FB1.BOTTOM" Destination="FB3.BOTTOM" dx1="87.771" />
+      <Connection Source="FB1.EXTENDED" Destination="FB3.EXTENDED" dx1="67.771" />
+      <Connection Source="FB1.RETRACTED" Destination="FB3.RETRACTED" dx1="47.771" />
+      <Connection Source="FB3.DONE" Destination="WP_REMOVED" dx1="47.77051" />
+      <Connection Source="FB3.DOWN" Destination="FB1.DOWN" dx1="70" dx2="110" dy="-170" />
+      <Connection Source="FB3.UP" Destination="FB1.UP" dx1="90" dx2="130" dy="-230" />
+      <Connection Source="FB3.EXTEND" Destination="FB1.EXTEND" dx1="110" dx2="90" dy="-290" />
+      <Connection Source="FB3.RETRACT" Destination="FB1.RETRACT" dx1="130" dx2="70" dy="-350" />
+      <Connection Source="FB3.VAC_ON" Destination="FB1.VAC_ON" dx1="150" dx2="50" dy="-410" />
+      <Connection Source="FB3.VAC_OFF" Destination="FB1.VAC_OFF" dx1="170" dx2="30" dy="-470" />
+      <Connection Source="SLEDGE_SHIFT1.TO_POSITION" Destination="FB2.SHIFT_RIGHT" dx1="70" dx2="50" dy="-170" />
+      <Connection Source="FB2.RIGHT_DONE" Destination="SLEDGE_SHIFT1.AT_POSITION" dx1="60" dx2="70" dy="410" />
+      <Connection Source="SLEDGE_RETURN1.TO_POSITION" Destination="FB2.SHIFT_LEFT" dx1="41.396" dx2="30" dy="-810" />
+      <Connection Source="FB2.LEFT_DONE" Destination="SLEDGE_RETURN1.AT_POSITION" dx1="190.9375" dx2="70" dy="1370" />
+      <Connection Source="FB3.DONE" Destination="SLEDGE_RETURN1.TRIGGER" dx1="47.771" />
+      <Connection Source="SLEDGE_SHIFT1.DONE" Destination="FB3.TRIGGER" dx1="41.396" />
+      <Connection Source="INIT" Destination="FB4.INIT" />
+      <Connection Source="REMOVE_WP" Destination="FB4.PLACE_WP" />
+      <Connection Source="FB4.TRIGGER1" Destination="FB3.TRIGGER" dx1="140" />
+      <Connection Source="FB4.TRIGGER2" Destination="SLEDGE_SHIFT1.TRIGGER" dx1="120" />
+      <Connection Source="FB4.CHECK" Destination="MAN_CHECK" dx1="40" />
+      <Connection Source="CLEAR" Destination="FB4.CLEAR" />
+      <Connection Source="FB4.CNF" Destination="FB4._RETURN" dx1="139.7083" dx2="30" dy="290" />
+      <Connection Source="PLACE_RED" Destination="FB4.GET1" />
+      <Connection Source="PLACE_GREEN" Destination="FB4.GET2" />
+      <Connection Source="FB4.GET1_OK" Destination="PLACE_RED_FB.TRIGGER" dx1="939.7085" />
+      <Connection Source="FB4.GET2_OK" Destination="SLEDGE_SHIFT.TRIGGER" dx1="159.7085" />
+      <Connection Source="PLACE_RED" Destination="RED_ERR_BYPASS.EI1" dx1="48.45837" />
+      <Connection Source="RED_ERR_BYPASS.EO" Destination="FB4.GET1" dx1="44.3125" dx2="90" dy="350" />
+      <Connection Source="FB4.GET1_OK" Destination="RED_ERR_BYPASS.R" dx1="139.7085" dx2="30" dy="-350" />
+      <Connection Source="CLEAR" Destination="RED_ERR_BYPASS.EI2" dx1="159.7292" />
+      <Connection Source="GREEN_ERR_BYPASS1.EO" Destination="FB4.GET2" dx1="44.3125" dx2="90" dy="-110" />
+      <Connection Source="PLACE_GREEN" Destination="GREEN_ERR_BYPASS1.EI1" dx1="46.8125" />
+      <Connection Source="FB4.GET2_OK" Destination="GREEN_ERR_BYPASS1.R" dx1="60" dx2="90" dy="350" />
+      <Connection Source="CLEAR" Destination="GREEN_ERR_BYPASS1.EI2" dx1="40" />
+      <Connection Source="RESET" Destination="PLACE_RED_FB.RESET" dx1="2114.875" />
+      <Connection Source="RESET" Destination="FB4.CLEAR" dx1="154.875" />
+      <Connection Source="RESET" Destination="GREEN_ERR_BYPASS1.R" dx1="154.875" />
+      <Connection Source="RESET" Destination="RED_ERR_BYPASS.R" dx1="40" />
+      <Connection Source="RESET" Destination="PLACE_GREEN_FB.RESET" dx1="2954.875" />
+      <Connection Source="RESET" Destination="FB3.RESET" dx1="154.875" />
+      <Connection Source="RESET" Destination="SLEDGE_SHIFT.RESET" dx1="2054.875" />
+      <Connection Source="RESET" Destination="SLEDGE_RETURN.RESET" dx1="4554.875" />
+      <Connection Source="RESET" Destination="SLEDGE_RETURN1.RESET">
+        <Points>
+          <Points>
+            <X>233.78125</X>
+            <Y>500</Y>
+          </Points>
+          <Points>
+            <X>1082.5</X>
+            <Y>500</Y>
+          </Points>
+          <Points>
+            <X>1082.5</X>
+            <Y>682.5</Y>
+          </Points>
+          <Points>
+            <X>1167.5</X>
+            <Y>682.5</Y>
+          </Points>
+          <Points>
+            <X>1167.5</X>
+            <Y>995</Y>
+          </Points>
+          <Points>
+            <X>1385</X>
+            <Y>995</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="RESET" Destination="SLEDGE_SHIFT1.RESET" dx1="154.875" />
+      <Connection Source="RESET" Destination="FB2.RESET" dx1="3394.875" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="full" Destination="FB4.full" dx1="45.2085" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

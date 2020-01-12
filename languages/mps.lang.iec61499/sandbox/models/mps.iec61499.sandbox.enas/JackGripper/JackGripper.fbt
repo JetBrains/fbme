@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="JackGripper" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="10/17/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="MachineState" />
+        <With Var="Executing" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="MachineState" />
+        <With Var="Executing" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MachineState" Type="BOOL" />
+      <VarDeclaration Name="Executing" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="JackGripper_HMI" x="960" y="100" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>3</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>3</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="MachineState">
+      <Position>
+        <X>5</X>
+        <Y>52.9635429</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Executing">
+      <Position>
+        <X>3</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>529.411438</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>535.9323</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="QO">
+      <Position>
+        <X>505.822937</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="228.8334" />
+      <Connection Source="REQ" Destination="IThis.IND" dx1="216.9584" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="50" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="MachineState" Destination="IThis.MachineState" dx1="40" />
+      <Connection Source="Executing" Destination="IThis.Executing" dx1="60.04172" />
+      <Connection Source="IThis.QO" Destination="QO" dx1="40.54175" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

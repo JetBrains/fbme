@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="E88A47F69DF2374E" Name="SledgeHAL" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="6" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="SHIFT_RIGHT" Comment="Set Event" />
+      <Event Name="SHIFT_LEFT" Comment="Reset Event" />
+      <Event Name="RESET" Comment="Reset Event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="RIGHT_DONE" Comment="Delayed Event" />
+      <Event Name="LEFT_DONE" Comment="Delayed Event" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" UID="2" Name="Nxt1Outputs" Type="SYMLINKMULTIVARSRC_1559B0FF8170C9BA0" x="2980" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}SLEDGE_SHIFT'" />
+    </FB>
+    <FB ID="4" Name="FB1" Type="E_SR" x="1660" y="320" Namespace="IEC61499.Standard" />
+    <FB ID="5" Name="FB2" Type="E_DELAY" x="1740" y="1000" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#500ms" />
+    </FB>
+    <FB ID="6" Name="FB3" Type="E_DELAY" x="1720" y="1620" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#500ms" />
+    </FB>
+    <Input Name="INIT" x="2500" y="232" Type="Event" />
+    <Input Name="SHIFT_RIGHT" x="160" y="332" Type="Event" />
+    <Input Name="SHIFT_LEFT" x="160" y="392" Type="Event" />
+    <Input Name="RESET" x="156" y="451.8542" Type="Event" />
+    <Output Name="INITO" x="3660" y="232" Type="Event" />
+    <Output Name="RIGHT_DONE" x="2580" y="1012" Type="Event" />
+    <Output Name="LEFT_DONE" x="2560" y="1632" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="Nxt1Outputs.INIT" />
+      <Connection Source="Nxt1Outputs.INITO" Destination="INITO" />
+      <Connection Source="SHIFT_RIGHT" Destination="FB1.S" />
+      <Connection Source="SHIFT_LEFT" Destination="FB1.R" />
+      <Connection Source="FB1.EO" Destination="Nxt1Outputs.REQ" dx1="50" />
+      <Connection Source="FB2.EO" Destination="RIGHT_DONE" />
+      <Connection Source="FB3.EO" Destination="LEFT_DONE" />
+      <Connection Source="SHIFT_RIGHT" Destination="FB2.START" dx1="42.47925" />
+      <Connection Source="SHIFT_LEFT" Destination="FB2.STOP" dx1="40" />
+      <Connection Source="SHIFT_LEFT" Destination="FB3.START" dx1="40" />
+      <Connection Source="SHIFT_RIGHT" Destination="FB3.STOP" dx1="42.47925" />
+      <Connection Source="RESET" Destination="FB1.R" dx1="83.75" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.Q" Destination="Nxt1Outputs.VALUE1" dx1="48.354" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="StartPauseResetButtons" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="10/12/2016" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="StartIn" />
+        <With Var="PauseIn" />
+        <With Var="ResetIn" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="QI" />
+        <With Var="StartIn" />
+        <With Var="PauseIn" />
+        <With Var="ResetIn" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="StartOut" />
+        <With Var="PauseOut" />
+        <With Var="ResetOut" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="StartOut" />
+        <With Var="PauseOut" />
+        <With Var="ResetOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="StartIn" Type="BOOL" />
+      <VarDeclaration Name="PauseIn" Type="BOOL" />
+      <VarDeclaration Name="ResetIn" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="StartOut" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="PauseOut" Type="BOOL" />
+      <VarDeclaration Name="ResetOut" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="StartPauseResetButtons_HMI" x="620" y="600" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>3</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>3</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="QI">
+      <Position>
+        <X>2.99999619</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="StartIn">
+      <Position>
+        <X>3</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="PauseIn">
+      <Position>
+        <X>3</X>
+        <Y>63</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="ResetIn">
+      <Position>
+        <X>3</X>
+        <Y>78</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>529.411438</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>535.9323</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="StartOut">
+      <Position>
+        <X>517.8959</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="PauseOut">
+      <Position>
+        <X>545.6146</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="ResetOut">
+      <Position>
+        <X>583.4323</X>
+        <Y>63</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="88.83337" />
+      <Connection Source="REQ" Destination="IThis.INID" dx1="176.9584" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="41.02087" />
+      <Connection Source="IThis.INIDO" Destination="CNF" dx1="70" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="QI" Destination="IThis.QI" dx1="82.62506" />
+      <Connection Source="StartIn" Destination="IThis.StartIn" dx1="41.97922" />
+      <Connection Source="PauseIn" Destination="IThis.PauseIn">
+        <Points>
+          <Points>
+            <X>119.723946</X>
+            <Y>70.03645</Y>
+          </Points>
+          <Points>
+            <X>117.5</X>
+            <Y>70.03645</Y>
+          </Points>
+          <Points>
+            <X>117.5</X>
+            <Y>254.5</Y>
+          </Points>
+          <Points>
+            <X>150</X>
+            <Y>254.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="ResetIn" Destination="IThis.ResetIn">
+        <Points>
+          <Points>
+            <X>117.343735</X>
+            <Y>85.03645</Y>
+          </Points>
+          <Points>
+            <X>112.5</X>
+            <Y>85.03645</Y>
+          </Points>
+          <Points>
+            <X>112.5</X>
+            <Y>269.5</Y>
+          </Points>
+          <Points>
+            <X>150</X>
+            <Y>269.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="IThis.StartOut" Destination="StartOut" dx1="90" />
+      <Connection Source="IThis.PauseOut" Destination="PauseOut" dx1="110" />
+      <Connection Source="IThis.ResetOut" Destination="ResetOut" dx1="851.0209">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Section3" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="6" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section2" />
+        <With Var="Drive_section4" />
+        <With Var="Drive_section6" />
+        <With Var="Run" />
+        <With Var="Cups_on_enas" />
+        <With Var="At_pos" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Drive_section2" />
+        <With Var="Drive_section4" />
+        <With Var="Drive_section6" />
+        <With Var="Run" />
+        <With Var="Cups_on_enas" />
+        <With Var="At_pos" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="ACK" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="ACK" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section2" Type="BOOL" />
+      <VarDeclaration Name="Drive_section4" Type="BOOL" />
+      <VarDeclaration Name="Drive_section6" Type="BOOL" />
+      <VarDeclaration Name="Run" Type="BOOL" />
+      <VarDeclaration Name="Cups_on_enas" Type="INT" />
+      <VarDeclaration Name="At_pos" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="ACK" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="2" Name="FB2" Type="DisableConveyor" x="2660" y="1100" Namespace="Main" />
+    <FB ID="1" Name="FB1" Type="Section3Ctrl" x="1420" y="980" Namespace="Main" />
+    <FB ID="4" Name="FB3" Type="E_MERGE" x="1040" y="760" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="FB4" Type="COMPARE_10593E80BE744DDAF" x="460" y="1120" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;IN${CNT}:STRING" />
+      <Parameter Name="IN2" Value="'FEED'" />
+    </FB>
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="REQ" x="12" y="72" Type="Event" />
+    <Input Name="Sensor" x="11.99998" y="132" Type="Data" />
+    <Input Name="Drive_section2" x="12" y="192" Type="Data" />
+    <Input Name="Drive_section4" x="12" y="252" Type="Data" />
+    <Input Name="Drive_section6" x="12" y="312" Type="Data" />
+    <Input Name="Cups_on_enas" x="12" y="432" Type="Data" />
+    <Input Name="Run" x="12" y="492" Type="Data" />
+    <Input Name="At_pos" x="12" y="372" Type="Data" />
+    <Output Name="INITO" x="2160" y="31.85417" Type="Event" />
+    <Output Name="CNF" x="2180" y="91.85417" Type="Event" />
+    <Output Name="Drive_next" x="2200" y="211.8542" Type="Data" />
+    <Output Name="Drive_prev" x="2220" y="271.8542" Type="Data" />
+    <Output Name="Conveyor" x="2240" y="331.8542" Type="Data" />
+    <Output Name="ACK" x="2404.875" y="396" Type="Data" />
+    <EventConnections>
+      <Connection Source="FB1.CNF" Destination="FB2.REQ" dx1="40" />
+      <Connection Source="FB1.INITO" Destination="FB2.INIT" dx1="40" />
+      <Connection Source="REQ" Destination="FB2.REQ" dx1="1816.958" />
+      <Connection Source="INIT" Destination="FB1.INIT" dx1="328.8334" />
+      <Connection Source="REQ" Destination="FB3.EI1" dx1="316.9584" />
+      <Connection Source="FB2.CNF" Destination="CNF" dx1="50" dx2="30" dy="-168" />
+      <Connection Source="FB3.EO" Destination="FB1.REQ" dx1="40" />
+      <Connection Source="REQ" Destination="FB4.REQ" dx1="316.9584" dx2="50" dy="409.8542" />
+      <Connection Source="FB4.CNF" Destination="FB3.EI2" dx1="49.85425" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Sensor" Destination="FB1.Sensor" dx1="132.4792" />
+      <Connection Source="Drive_section2" Destination="FB1.Drive_section2" dx1="45.14587" />
+      <Connection Source="Drive_section4" Destination="FB1.Drive_section4" dx1="45.14587" />
+      <Connection Source="Drive_section6" Destination="FB1.Drive_section6" dx1="45.14587" />
+      <Connection Source="Cups_on_enas" Destination="FB1.Cups_on_enas" dx1="40" />
+      <Connection Source="Run" Destination="FB2.QI" dx1="1709.396" />
+      <Connection Source="FB1.Conveyor" Destination="FB2.ConvIn" dx1="40" />
+      <Connection Source="FB2.ConvOut" Destination="Conveyor" dx1="46.4375" dx2="30" dy="-368" />
+      <Connection Source="FB1.Drive_next" Destination="Drive_next" dx1="110" dx2="40" dy="-744.0729" />
+      <Connection Source="FB1.Drive_prev" Destination="Drive_prev" dx1="130" dx2="40" dy="-774.0729" />
+      <Connection Source="FB1.Permission" Destination="ACK" dx1="152.25" />
+      <Connection Source="At_pos" Destination="FB4.IN1" dx1="40" dx2="50" dy="109.8542" />
+      <Connection Source="FB4.EQ" Destination="FB1.Robotino_at_pos2" dx1="49.85425" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

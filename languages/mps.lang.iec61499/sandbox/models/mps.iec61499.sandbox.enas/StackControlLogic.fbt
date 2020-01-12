@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="314DB0308D94475F" Name="StackControlLogic" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="count" />
+      </Event>
+      <Event Name="RESET">
+        <With Var="count" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="TRIGGER1" Comment="Execution Confirmation" />
+      <Event Name="TRIGGER2" />
+      <Event Name="FULL" />
+      <Event Name="R" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="count" Type="UINT" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2140.941" y="1117.412" />
+      <ECState Name="TRIG1" Comment="Normal execution" x="3177.647" y="1388.941">
+        <ECAction Output="TRIGGER1" />
+      </ECState>
+      <ECState Name="TRIG2" x="2364" y="1916">
+        <ECAction Output="TRIGGER2" />
+      </ECState>
+      <ECState Name="FULL" x="1436" y="1700">
+        <ECAction Output="FULL" />
+      </ECState>
+      <ECState Name="RESET" x="1084" y="1060">
+        <ECAction Output="R" />
+      </ECState>
+      <ECState Name="RESET_TRIG" x="2156" y="476">
+        <ECAction Output="R" />
+        <ECAction Output="TRIGGER1" />
+      </ECState>
+      <ECTransition Source="START" Destination="TRIG1" Condition="REQ [ count=1]" x="2645.721" y="1169.396">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="625.1182,279.3032,693.2462,295.7855" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="TRIG2" Condition="REQ [ count=2]" x="2329.525" y="1496.53">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="579.1166,343.525,595.2755,401.377" />
+      </ECTransition>
+      <ECTransition Source="TRIG2" Destination="START" Condition="1" x="2142.861" y="1587.769">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="537.4476,431.79,521.2886,373.938" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="FULL" Condition="REQ [ count&gt;2]" x="1858.006" y="1436.715">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="490.8927,341.5003,444.2728,381.5253" />
+      </ECTransition>
+      <ECTransition Source="FULL" Destination="START" Condition="1" x="1719.116" y="1375.638">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="404.236,360.2825,449.4641,322.0251" />
+      </ECTransition>
+      <ECTransition Source="TRIG1" Destination="START" Condition="1" x="2660.169" y="1335.561">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="698.7156,347.1709,633.1516,329.9987" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="RESET" Condition="RESET [ count &lt;=2]" x="1642.575" y="1172.547">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="444.382,298.9537,381.7984,295.9222" />
+      </ECTransition>
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1604.759" y="999.8191">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="369.334,243.9523,431.6355,246.86" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="RESET_TRIG" Condition="RESET [ count &gt; 2]" x="2080.389" y="825.7496">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="515.8729,229.6749,516.1111,188.0405" />
+      </ECTransition>
+      <ECTransition Source="RESET_TRIG" Destination="START" Condition="1" x="2218.259" y="769.5857">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="558.1783,166.3913,559.2291,213.8815" />
+      </ECTransition>
+    </ECC>
+  </BasicFB>
+</FBType>

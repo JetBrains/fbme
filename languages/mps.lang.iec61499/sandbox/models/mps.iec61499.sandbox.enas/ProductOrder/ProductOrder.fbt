@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="D6A7AD08A75178FC" Name="ProductOrder" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/23/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="CHECK_J1" />
+      <Event Name="CHECK_J2" />
+      <Event Name="READY" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="PRODUCE_RED" Comment="Execution Confirmation">
+        <With Var="QO" />
+      </Event>
+      <Event Name="PRODUCE_GREEN" />
+      <Event Name="CLEAR" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis1" Type="ProductOrder_HMI" x="1020" y="240" Namespace="Main" />
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="QI" x="12" y="132" Type="Data" />
+    <Input Name="CHECK_J1" x="24.50003" y="311.8542" Type="Event" />
+    <Input Name="READY" x="12" y="72" Type="Event" />
+    <Input Name="CHECK_J2" x="12" y="192" Type="Event" />
+    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
+    <Output Name="PRODUCE_RED" x="2144.313" y="71.85417" Type="Event" />
+    <Output Name="QO" x="2023.875" y="132" Type="Data" />
+    <Output Name="PRODUCE_GREEN" x="2082.667" y="192" Type="Event" />
+    <Output Name="CLEAR" x="2084.865" y="252" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis1.INIT" dx1="89.41669" />
+      <Connection Source="CHECK_J1" Destination="IThis1.CHECK_J1" dx1="40" />
+      <Connection Source="READY" Destination="IThis1.READY" dx1="103" />
+      <Connection Source="IThis1.INITO" Destination="INITO" dx1="58.375" />
+      <Connection Source="IThis1.PRODUCE_RED" Destination="PRODUCE_RED" dx1="78.375" />
+      <Connection Source="IThis1.PRODUCE_GREEN" Destination="PRODUCE_GREEN" dx1="98.375" />
+      <Connection Source="IThis1.CLEAR" Destination="CLEAR" dx1="118.375" />
+      <Connection Source="CHECK_J2" Destination="IThis1.CHECK_J2" dx1="40" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="QI" Destination="IThis1.QI" dx1="63.20837" />
+      <Connection Source="IThis1.QO" Destination="QO" dx1="138.375" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

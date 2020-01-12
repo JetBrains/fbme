@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Section1" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="5" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Jack_ver_up" />
+        <With Var="Jack_ver_down" />
+        <With Var="Jack_hor_ext" />
+        <With Var="Jack_hor_ret" />
+        <With Var="Jack_mid_pos" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section2" />
+        <With Var="Run" />
+        <With Var="Color_detected" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Jack_ver_up" />
+        <With Var="Jack_ver_down" />
+        <With Var="Jack_hor_ext" />
+        <With Var="Jack_hor_ret" />
+        <With Var="Jack_mid_pos" />
+        <With Var="Drive_section0" />
+        <With Var="Drive_section2" />
+        <With Var="Run" />
+        <With Var="Color_detected" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Jack_ver" />
+        <With Var="Jack_hor" />
+        <With Var="Cylinder" />
+        <With Var="Suction" />
+        <With Var="Sledge" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Conveyor" />
+        <With Var="Drive_next" />
+        <With Var="Drive_prev" />
+        <With Var="Jack_ver" />
+        <With Var="Jack_hor" />
+        <With Var="Cylinder" />
+        <With Var="Suction" />
+        <With Var="Sledge" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Jack_ver_up" Type="BOOL" />
+      <VarDeclaration Name="Jack_ver_down" Type="BOOL" />
+      <VarDeclaration Name="Jack_hor_ext" Type="BOOL" />
+      <VarDeclaration Name="Jack_hor_ret" Type="BOOL" />
+      <VarDeclaration Name="Jack_mid_pos" Type="BOOL" />
+      <VarDeclaration Name="Drive_section0" Type="BOOL" />
+      <VarDeclaration Name="Drive_section2" Type="BOOL" />
+      <VarDeclaration Name="Run" Type="BOOL" />
+      <VarDeclaration Name="Color_detected" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Conveyor" Type="BOOL" />
+      <VarDeclaration Name="Drive_next" Type="BOOL" />
+      <VarDeclaration Name="Drive_prev" Type="BOOL" />
+      <VarDeclaration Name="Jack_ver" Type="BOOL" />
+      <VarDeclaration Name="Jack_hor" Type="BOOL" />
+      <VarDeclaration Name="Cylinder" Type="BOOL" />
+      <VarDeclaration Name="Suction" Type="BOOL" />
+      <VarDeclaration Name="Sledge" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" Name="FB3" Type="DisableConveyor" x="3000" y="860" Namespace="Main" />
+    <FB ID="4" Name="Section1Ctrl" Type="Section1Ctrl" x="760" y="780" Namespace="Main" />
+    <FB ID="1" Name="Jack1Ctrl" Type="Jack1Ctrl" x="2040" y="680" Namespace="Main" />
+    <Input Name="INIT">
+      <Position>
+        <X>3</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="REQ">
+      <Position>
+        <X>3</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Input>
+    <Input Name="Sensor">
+      <Position>
+        <X>2.99999237</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Jack_ver_up">
+      <Position>
+        <X>3</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Jack_ver_down">
+      <Position>
+        <X>3</X>
+        <Y>63</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Jack_hor_ext">
+      <Position>
+        <X>3</X>
+        <Y>78</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Jack_hor_ret">
+      <Position>
+        <X>3</X>
+        <Y>93</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Jack_mid_pos">
+      <Position>
+        <X>3</X>
+        <Y>108</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Color_detected">
+      <Position>
+        <X>3</X>
+        <Y>123</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Run">
+      <Position>
+        <X>5</X>
+        <Y>142.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Drive_section0">
+      <Position>
+        <X>10</X>
+        <Y>272.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Input Name="Drive_section2">
+      <Position>
+        <X>10</X>
+        <Y>292.963531</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Input>
+    <Output Name="INITO">
+      <Position>
+        <X>750</X>
+        <Y>97.96355</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="CNF">
+      <Position>
+        <X>755</X>
+        <Y>117.963547</Y>
+      </Position>
+      <IsType>Event</IsType>
+    </Output>
+    <Output Name="Conveyor">
+      <Position>
+        <X>575</X>
+        <Y>42.9635429</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Drive_next">
+      <Position>
+        <X>576.9844</X>
+        <Y>63</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Drive_prev">
+      <Position>
+        <X>575</X>
+        <Y>82.96355</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Jack_ver">
+      <Position>
+        <X>735.8073</X>
+        <Y>3</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Jack_hor">
+      <Position>
+        <X>735.2084</X>
+        <Y>18</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Cylinder">
+      <Position>
+        <X>739.192749</X>
+        <Y>33</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Suction">
+      <Position>
+        <X>742.8021</X>
+        <Y>48</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <Output Name="Sledge">
+      <Position>
+        <X>745.1667</X>
+        <Y>63</Y>
+      </Position>
+      <IsType>Data</IsType>
+    </Output>
+    <EventConnections>
+      <Connection Source="FB3.CNF" Destination="CNF" dx1="50" dx2="30" dy="-168" />
+      <Connection Source="INIT" Destination="Section1Ctrl.INIT" dx1="368.8334">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Section1Ctrl.CNF" Destination="Jack1Ctrl.REQ" dx1="70" />
+      <Connection Source="REQ" Destination="Jack1Ctrl.REQ" dx1="1256.958" />
+      <Connection Source="Section1Ctrl.INITO" Destination="Jack1Ctrl.INIT" dx1="50" />
+      <Connection Source="REQ" Destination="Section1Ctrl.REQ" dx1="356.9584" />
+      <Connection Source="Jack1Ctrl.CNF" Destination="Section1Ctrl.REQ" dx1="40" dx2="70" dy="-168" />
+      <Connection Source="Section1Ctrl.CNF" Destination="FB3.REQ">
+        <Points>
+          <Points>
+            <X>370.291656</X>
+            <Y>219.5</Y>
+          </Points>
+          <Points>
+            <X>402.5</X>
+            <Y>219.5</Y>
+          </Points>
+          <Points>
+            <X>402.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>239.5</Y>
+          </Points>
+          <Points>
+            <X>745</X>
+            <Y>239.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="REQ" Destination="FB3.REQ">
+        <Points>
+          <Points>
+            <X>68.26041</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>147.5</X>
+            <Y>25.0364571</Y>
+          </Points>
+          <Points>
+            <X>147.5</X>
+            <Y>102.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>102.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>239.5</Y>
+          </Points>
+          <Points>
+            <X>745</X>
+            <Y>239.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="Section1Ctrl.INITO" Destination="FB3.INIT">
+        <Points>
+          <Points>
+            <X>370.291656</X>
+            <Y>204.5</Y>
+          </Points>
+          <Points>
+            <X>407.5</X>
+            <Y>204.5</Y>
+          </Points>
+          <Points>
+            <X>407.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>152.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>224.5</Y>
+          </Points>
+          <Points>
+            <X>745</X>
+            <Y>224.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Jack_ver_up" Destination="Jack1Ctrl.JackVerUp" dx1="966.1251" />
+      <Connection Source="Jack_ver_down" Destination="Jack1Ctrl.JackVerDown" dx1="911.5834" />
+      <Connection Source="Jack_hor_ext" Destination="Jack1Ctrl.JackHorExt" dx1="954.2709" />
+      <Connection Source="Jack_hor_ret" Destination="Jack1Ctrl.JackHorRet" dx1="961.3959" />
+      <Connection Source="Jack_mid_pos" Destination="Jack1Ctrl.JackMidPos" dx1="935.0626" />
+      <Connection Source="Section1Ctrl.Jack1_removes" Destination="Jack1Ctrl.Jack1_removes" dx1="48.83337" />
+      <Connection Source="Jack1Ctrl.ReadySIG" Destination="Section1Ctrl.Jack1_finished" dx1="174.5625" dx2="30" dy="152" />
+      <Connection Source="Sensor" Destination="Section1Ctrl.Sensor" dx1="172.4792" />
+      <Connection Source="Section1Ctrl.Drive_next" Destination="Drive_next" dx1="110" />
+      <Connection Source="Section1Ctrl.Drive_prev" Destination="Drive_prev" dx1="130" />
+      <Connection Source="Section1Ctrl.Conveyor" Destination="FB3.ConvIn">
+        <Points>
+          <Points>
+            <X>370.291656</X>
+            <Y>269.5</Y>
+          </Points>
+          <Points>
+            <X>397.5</X>
+            <Y>269.5</Y>
+          </Points>
+          <Points>
+            <X>397.5</X>
+            <Y>357.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>357.5</Y>
+          </Points>
+          <Points>
+            <X>677.5</X>
+            <Y>304.5</Y>
+          </Points>
+          <Points>
+            <X>745</X>
+            <Y>304.5</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="Run" Destination="FB3.QI" dx1="2301.396" />
+      <Connection Source="FB3.ConvOut" Destination="Conveyor" dx1="70" dx2="30" dy="-548" />
+      <Connection Source="Color_detected" Destination="Jack1Ctrl.Color_detected" dx1="875.6042" />
+      <Connection Source="Drive_section2" Destination="Section1Ctrl.Drive_section2" dx1="43.57294" />
+      <Connection Source="Drive_section0" Destination="Section1Ctrl.Drive_section0" dx1="40" />
+      <Connection Source="Jack1Ctrl.JackVer" Destination="Jack_ver" dx1="174.5625" />
+      <Connection Source="Jack1Ctrl.JackHor" Destination="Jack_hor" dx1="174.5625" />
+      <Connection Source="Jack1Ctrl.Cylinder" Destination="Cylinder" dx1="174.5625" />
+      <Connection Source="Jack1Ctrl.Suction" Destination="Suction" dx1="174.5625" />
+      <Connection Source="Jack1Ctrl.Sledge" Destination="Sledge" dx1="174.5625" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="ACB74DD7486DE754" Name="SRSection" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="14" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="INPUT" Comment="Set Event" />
+      <Event Name="OUTPUT" Comment="Set Event" />
+      <Event Name="STOP" Comment="Reset Event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="SENSOR_ON" Comment="Event Output" />
+      <Event Name="SENSOR_OFF" Comment="Event Output" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="12" UID="1" Name="FB1" Type="SYMLINKMULTIVARSRC_277E97BEC1451D2C" x="3400" y="240" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=2;VALUE${I}:BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}DRIVE_OUT'" />
+      <Parameter Name="NAME2" Value="'$${PATH}DRIVE_IN'" />
+    </FB>
+    <FB ID="10" UID="2" Name="FB2" Type="SYMLINKMULTIVARDST_151ACB50A2F8223B2" x="540" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=3;VALUE${I}:BOOL,BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}SENSOR_REAR'" />
+      <Parameter Name="NAME2" Value="'$${PATH}SENSOR_MIDDLE'" />
+      <Parameter Name="NAME3" Value="'$${PATH}SENSOR_FRONT'" />
+    </FB>
+    <FB ID="5" Name="DRIVE_IN" Type="E_SR" x="2540" y="760" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="FB4" Type="E_R_TRIG" x="1360" y="420" Namespace="IEC61499.Standard" />
+    <FB ID="7" Name="FB5" Type="E_F_TRIG" x="1360" y="820" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="StopTimeout" Type="E_DELAY" x="2000" y="1380" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#10s" />
+    </FB>
+    <FB ID="13" Name="DRIVE_OUT" Type="E_SR" x="2520" y="1280" Namespace="IEC61499.Standard" />
+    <FB ID="14" Name="REAR_SENSOR_ON" Type="E_R_TRIG" x="1380" y="1260" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="40" y="232" Type="Event" />
+    <Input Name="INPUT" x="1876" y="771.8542" Type="Event" />
+    <Input Name="OUTPUT" x="1876" y="951.8542" Type="Event" />
+    <Input Name="STOP" x="1876" y="831.8542" Type="Event" />
+    <Output Name="INITO" x="4040" y="252" Type="Event" />
+    <Output Name="SENSOR_ON" x="1740" y="412" Type="Event" />
+    <Output Name="SENSOR_OFF" x="1740" y="472" Type="Event" />
+    <EventConnections>
+      <Connection Source="FB4.EO" Destination="SENSOR_ON" dx1="41.72925" />
+      <Connection Source="FB5.EO" Destination="SENSOR_OFF" dx1="46.47925" />
+      <Connection Source="StopTimeout.EO" Destination="DRIVE_IN.R" dx1="48.5" />
+      <Connection Source="INIT" Destination="FB2.INIT" />
+      <Connection Source="FB2.CNF" Destination="FB4.EI" dx1="61.625" />
+      <Connection Source="FB2.CNF" Destination="FB5.EI" dx1="61.625" />
+      <Connection Source="FB2.INITO" Destination="FB1.INIT" dx1="81.625" />
+      <Connection Source="DRIVE_IN.EO" Destination="FB1.REQ" dx1="50" />
+      <Connection Source="FB1.INITO" Destination="INITO" />
+      <Connection Source="DRIVE_OUT.EO" Destination="FB1.REQ" dx1="48.35425" />
+      <Connection Source="StopTimeout.EO" Destination="DRIVE_OUT.R" dx1="48.5" />
+      <Connection Source="INPUT" Destination="DRIVE_IN.S" dx1="40" />
+      <Connection Source="OUTPUT" Destination="DRIVE_OUT.S" dx1="170.6042" />
+      <Connection Source="STOP" Destination="DRIVE_IN.R" dx1="49.83325" />
+      <Connection Source="STOP" Destination="StopTimeout.STOP" dx1="49.83325" dx2="50" dy="170.1458" />
+      <Connection Source="STOP" Destination="DRIVE_OUT.R" dx1="229.8333" />
+      <Connection Source="OUTPUT" Destination="DRIVE_IN.R" dx1="40" />
+      <Connection Source="INPUT" Destination="DRIVE_OUT.R" dx1="218" />
+      <Connection Source="INPUT" Destination="StopTimeout.START" dx1="40" dx2="50" dy="230.1458" />
+      <Connection Source="OUTPUT" Destination="StopTimeout.START" dx1="40" dx2="50" dy="50.14581" />
+      <Connection Source="FB2.CNF" Destination="REAR_SENSOR_ON.EI" dx1="81.625" />
+      <Connection Source="REAR_SENSOR_ON.EO" Destination="DRIVE_OUT.R" dx1="741.7292" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB2.VALUE2" Destination="FB4.QI" dx1="90" />
+      <Connection Source="FB2.VALUE2" Destination="FB5.QI" dx1="41.625" />
+      <Connection Source="DRIVE_IN.Q" Destination="FB1.VALUE1" dx1="70" />
+      <Connection Source="DRIVE_OUT.Q" Destination="FB1.VALUE2" dx1="70" />
+      <Connection Source="FB2.VALUE1" Destination="REAR_SENSOR_ON.QI" dx1="61.625" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

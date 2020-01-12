@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="Conv2Ctrl" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="5/8/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Sensor" />
+        <With Var="Feed" />
+        <With Var="Receive" />
+        <With Var="Stop" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="Sensor" />
+        <With Var="Feed" />
+        <With Var="Receive" />
+        <With Var="Stop" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="DriveConv" />
+        <With Var="ReadySIG" />
+        <With Var="DriveNext" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="DriveConv" />
+        <With Var="ReadySIG" />
+        <With Var="DriveNext" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Sensor" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Feed" Type="BOOL" />
+      <VarDeclaration Name="Receive" Type="BOOL" />
+      <VarDeclaration Name="Stop" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DriveConv" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="ReadySIG" Type="BOOL" />
+      <VarDeclaration Name="DriveNext" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2965.386" y="1252.523" />
+      <ECState Name="INIT1" Comment="Initialization" x="3076.862" y="684.7322">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="FEED" Comment="Normal execution" x="1481.647" y="2288.941">
+        <ECAction Algorithm="Feed" Output="CNF" />
+      </ECState>
+      <ECState Name="MUnitReceived" Comment="Normal execution" x="1114.091" y="1323.163">
+        <ECAction Algorithm="MUnitReceived" Output="CNF" />
+      </ECState>
+      <ECState Name="NoMUnit" x="2264" y="1728">
+        <ECAction Algorithm="NoMUnit" Output="CNF" />
+      </ECState>
+      <ECState Name="RECEIVE" x="1663.556" y="594.2224">
+        <ECAction Algorithm="Receive" Output="CNF" />
+      </ECState>
+      <ECState Name="STOP" x="2761" y="2258">
+        <ECAction Algorithm="Stop" Output="CNF" />
+      </ECState>
+      <ECTransition Source="NoMUnit" Destination="MUnitReceived" Condition="REQ[Sensor]" x="1649.233" y="1560.367">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="427.5132,391.1127,394.5933,394.1359" />
+      </ECTransition>
+      <ECTransition Source="MUnitReceived" Destination="FEED" Condition="REQ[Feed]" x="917.8059" y="1758.184">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="242.4394,415.4498,162.6502,455.6641" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="NoMUnit" Condition="REQ[NOT(Feed)]" x="1679.803" y="1929.91">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="384.077,495.7787,435.0339,458.0162" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE" Destination="MUnitReceived" Condition="REQ[Sensor]" x="1250.25" y="936.4131">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="314.4688,190.8448,296.5562,273.6484" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="RECEIVE" Condition="REQ[Receive]" x="2297.927" y="995.3287">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="617.137,277.8312,572.8,192.8056" />
+      </ECTransition>
+      <ECTransition Source="RECEIVE" Destination="INIT1" Condition="INIT" x="1911.141" y="372.7013">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="397.8386,71.47698,491.1041,77.76972" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="INIT1" Condition="INIT" x="3163.275" y="1354.095">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="795.7003,386.812,853.3398,312.9" />
+      </ECTransition>
+      <ECTransition Source="FEED" Destination="INIT1" Condition="INIT" x="3396.519" y="2267.144">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="875.0946,689.9113,997.4429,567.165" />
+      </ECTransition>
+      <ECTransition Source="MUnitReceived" Destination="INIT1" Condition="INIT" x="1572.328" y="350.5454">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="280.7616,62.60056,427.1076,12.26972" />
+      </ECTransition>
+      <ECTransition Source="NoMUnit" Destination="STOP" Condition="REQ[Stop]" x="2599.159" y="1946.271">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="637.2655,465.0158,668.9382,500.3317" />
+      </ECTransition>
+      <ECTransition Source="STOP" Destination="NoMUnit" Condition="REQ[NOT(Stop)]" x="2210.138" y="2066.598">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="550.1286,539.9685,517.1262,502.9276" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="NoMUnit" Condition="REQ[NOT(Sensor)]" x="2623.121" y="1461.285">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="680.9171,346.9858,634.2298,378.8271" />
+      </ECTransition>
+      <ECTransition Source="INIT1" Destination="START" Condition="1" x="3105.136" y="979.0535">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="784.7683,226.3475,777.2684,264.9169" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT1" Condition="INIT" x="2938.421" y="957.1167">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="726.4353,257.6571,733.3503,218.9828" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="MUnitReceived" Condition="REQ[Sensor]" x="1929.688" y="1110.522">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="531.6796,264.3739,415.9296,268.2498" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;DriveConv:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="NoMUnit">
+      <ST Text=";&#xD;&#xA;DriveConv:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="MUnitReceived">
+      <ST Text=";&#xD;&#xA;DriveConv:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="Receive">
+      <ST Text=";&#xD;&#xA;DriveConv:=1;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+    <Algorithm Name="Feed">
+      <ST Text=";&#xD;&#xA;DriveConv:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=1;" />
+    </Algorithm>
+    <Algorithm Name="Stop">
+      <ST Text=";&#xD;&#xA;DriveConv:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

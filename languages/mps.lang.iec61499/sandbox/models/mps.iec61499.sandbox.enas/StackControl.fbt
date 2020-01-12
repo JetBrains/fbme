@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="EC77C104C35B439A" Name="StackControl" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="4" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="full" />
+      </Event>
+      <Event Name="REQ" Comment="Count Up" />
+      <Event Name="RESET" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="TRIGGER1" Comment="Execution Confirmation" />
+      <Event Name="TRIGGER2" />
+      <Event Name="FULL" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="full" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="StackControlLogic" x="1640" y="800" Namespace="Main" />
+    <FB ID="2" Name="FB2" Type="E_CTU" x="760" y="820" Namespace="IEC61499.Standard">
+      <Parameter Name="PV" Value="2" />
+    </FB>
+    <FB ID="3" Name="LEFT_PLACE" Type="E_SR" x="2400" y="1680" Namespace="IEC61499.Standard" />
+    <FB ID="4" Name="RIGHT_PLACE" Type="E_SR" x="2400" y="2280" Namespace="IEC61499.Standard" />
+    <Input Name="REQ" x="345.1875" y="311.8542" Type="Event" />
+    <Input Name="RESET" x="1044.875" y="312" Type="Event" />
+    <Input Name="INIT" x="12" y="12" Type="Event" />
+    <Input Name="full" x="12" y="72" Type="Data" />
+    <Output Name="TRIGGER1" x="2626.948" y="412" Type="Event" />
+    <Output Name="TRIGGER2" x="2626.948" y="472" Type="Event" />
+    <Output Name="FULL" x="2623.833" y="532" Type="Event" />
+    <EventConnections>
+      <Connection Source="FB2.CUO" Destination="FB1.REQ" dx1="40" />
+      <Connection Source="REQ" Destination="FB2.CU" dx1="44.35419" />
+      <Connection Source="RESET" Destination="FB1.RESET" dx1="40" />
+      <Connection Source="FB1.R" Destination="FB2.R" dx1="49.646" dx2="30" dy="-290" />
+      <Connection Source="FB1.TRIGGER1" Destination="TRIGGER1" dx1="50" />
+      <Connection Source="FB1.TRIGGER2" Destination="TRIGGER2" dx1="70" />
+      <Connection Source="FB1.FULL" Destination="FULL" dx1="90" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB2.CV" Destination="FB1.count" dx1="40" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
