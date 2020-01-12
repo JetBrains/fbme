@@ -53,6 +53,7 @@
       <concept id="1214406454886" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorStyleClassItem" flags="ln" index="30gYXW" />
       <concept id="1214406466686" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorSelectedStyleClassItem" flags="ln" index="30h1P$" />
       <concept id="1233758997495" name="jetbrains.mps.lang.editor.structure.PunctuationLeftStyleClassItem" flags="ln" index="11L4FC" />
+      <concept id="1233759184865" name="jetbrains.mps.lang.editor.structure.PunctuationRightStyleClassItem" flags="ln" index="11LMrY" />
       <concept id="1165253627126" name="jetbrains.mps.lang.editor.structure.CellMenuPart_AbstractGroup" flags="ng" index="1exORT">
         <property id="1165254125954" name="presentation" index="1ezIyd" />
         <child id="1165253890469" name="parameterObjectType" index="1eyP2E" />
@@ -927,6 +928,36 @@
     <ref role="1XX52x" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
     <node concept="PMmxH" id="4s7KBSj$Sh_" role="2wV5jI">
       <ref role="PMmxG" to="tpco:37EzmTDC95l" resolve="ImplementationRemovedInStubMessage" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="3t1pVyvZ9YZ">
+    <ref role="1XX52x" to="g3qn:3t1pVyvZ48U" resolve="CellCreateOperation" />
+    <node concept="3EZMnI" id="3t1pVyvZafi" role="2wV5jI">
+      <node concept="3F0ifn" id="3t1pVyvZafk" role="3EZMnx">
+        <property role="3F0ifm" value="createCell(" />
+        <node concept="11LMrY" id="3t1pVyw1sQW" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="3t1pVyvZrpP" role="3EZMnx">
+        <ref role="1NtTu8" to="g3qn:3t1pVyvZafA" resolve="contextNode" />
+      </node>
+      <node concept="3F0ifn" id="3t1pVyw1sMJ" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+        <node concept="11L4FC" id="3t1pVyw1sPf" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="3t1pVyvZrpj" role="3EZMnx">
+        <ref role="1NtTu8" to="g3qn:3t1pVyvZafE" resolve="editor" />
+      </node>
+      <node concept="3F0ifn" id="3t1pVyw1sNd" role="3EZMnx">
+        <property role="3F0ifm" value=")" />
+        <node concept="11L4FC" id="3t1pVyw1sSD" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="l2Vlx" id="3t1pVyvZafl" role="2iSdaV" />
     </node>
   </node>
 </model>

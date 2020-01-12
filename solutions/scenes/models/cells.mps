@@ -3,14 +3,8 @@
   <persistence version="9" />
   <languages>
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="8" />
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="12" />
-    <use id="c7d5b9dd-a05f-4be2-bc73-f2e16994cc67" name="jetbrains.mps.baseLanguage.lightweightdsl" version="1" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="13" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
-    <use id="fdcdc48f-bfd8-4831-aa76-5abac2ffa010" name="jetbrains.mps.baseLanguage.jdk8" version="0" />
     <use id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging" version="0" />
-    <use id="f2801650-65d5-424e-bb1b-463a8781b786" name="jetbrains.mps.baseLanguage.javadoc" version="2" />
-    <use id="654422bf-e75f-44dc-936d-188890a746ce" name="de.slisson.mps.reflection" version="0" />
     <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="1" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
   </languages>
@@ -1543,24 +1537,45 @@
         </node>
       </node>
       <node concept="3clFbS" id="7eBFChAcIIQ" role="3clF47">
-        <node concept="3clFbF" id="7eBFChAcZSN" role="3cqZAp">
-          <node concept="2OqwBi" id="7eBFChAd1YI" role="3clFbG">
-            <node concept="2YIFZM" id="7eBFChAcZTe" role="2Oq$k0">
+        <node concept="3cpWs8" id="20S9x1v4Sdh" role="3cqZAp">
+          <node concept="3cpWsn" id="20S9x1v4Sdi" role="3cpWs9">
+            <property role="TrG5h" value="sm" />
+            <node concept="3uibUv" id="20S9x1v4Sdf" role="1tU5fm">
+              <ref role="3uigEE" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
+            </node>
+            <node concept="2YIFZM" id="20S9x1v4Sdj" role="33vP2m">
               <ref role="37wK5l" to="3bo0:7eBFChAbDR8" resolve="getInstance" />
               <ref role="1Pybhc" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
-              <node concept="1rXfSq" id="7eBFChAd08f" role="37wK5m">
+              <node concept="1rXfSq" id="20S9x1v4Sdk" role="37wK5m">
                 <ref role="37wK5l" to="g51k:~EditorCell_Basic.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
               </node>
             </node>
-            <node concept="liA8E" id="7eBFChAd3Rv" role="2OqNvi">
-              <ref role="37wK5l" to="3bo0:7eBFChAb5n8" resolve="storeState" />
-              <node concept="Xjq3P" id="7eBFChAd40Z" role="37wK5m" />
-              <node concept="37vLTw" id="7eBFChAdaQo" role="37wK5m">
-                <ref role="3cqZAo" node="7eBFChAcIII" resolve="key" />
+          </node>
+        </node>
+        <node concept="3clFbJ" id="20S9x1v4UUI" role="3cqZAp">
+          <node concept="3clFbS" id="20S9x1v4UUK" role="3clFbx">
+            <node concept="3clFbF" id="7eBFChAcZSN" role="3cqZAp">
+              <node concept="2OqwBi" id="7eBFChAd1YI" role="3clFbG">
+                <node concept="37vLTw" id="20S9x1v4Sdl" role="2Oq$k0">
+                  <ref role="3cqZAo" node="20S9x1v4Sdi" resolve="sm" />
+                </node>
+                <node concept="liA8E" id="7eBFChAd3Rv" role="2OqNvi">
+                  <ref role="37wK5l" to="3bo0:7eBFChAb5n8" resolve="storeState" />
+                  <node concept="Xjq3P" id="7eBFChAd40Z" role="37wK5m" />
+                  <node concept="37vLTw" id="7eBFChAdaQo" role="37wK5m">
+                    <ref role="3cqZAo" node="7eBFChAcIII" resolve="key" />
+                  </node>
+                  <node concept="37vLTw" id="7eBFChAdd8$" role="37wK5m">
+                    <ref role="3cqZAo" node="7eBFChAcIIL" resolve="state" />
+                  </node>
+                </node>
               </node>
-              <node concept="37vLTw" id="7eBFChAdd8$" role="37wK5m">
-                <ref role="3cqZAo" node="7eBFChAcIIL" resolve="state" />
-              </node>
+            </node>
+          </node>
+          <node concept="3y3z36" id="20S9x1v4VEc" role="3clFbw">
+            <node concept="10Nm6u" id="20S9x1v4VLD" role="3uHU7w" />
+            <node concept="37vLTw" id="20S9x1v4Vcp" role="3uHU7B">
+              <ref role="3cqZAo" node="20S9x1v4Sdi" resolve="sm" />
             </node>
           </node>
         </node>
@@ -1588,23 +1603,47 @@
         </node>
       </node>
       <node concept="3clFbS" id="7eBFChAcIJ3" role="3clF47">
-        <node concept="3clFbF" id="7eBFChAdeSJ" role="3cqZAp">
-          <node concept="2OqwBi" id="7eBFChAdeSK" role="3clFbG">
-            <node concept="2YIFZM" id="7eBFChAdeSL" role="2Oq$k0">
+        <node concept="3cpWs8" id="20S9x1v4Y44" role="3cqZAp">
+          <node concept="3cpWsn" id="20S9x1v4Y45" role="3cpWs9">
+            <property role="TrG5h" value="sm" />
+            <node concept="3uibUv" id="20S9x1v4Y42" role="1tU5fm">
+              <ref role="3uigEE" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
+            </node>
+            <node concept="2YIFZM" id="20S9x1v4Y46" role="33vP2m">
               <ref role="37wK5l" to="3bo0:7eBFChAbDR8" resolve="getInstance" />
               <ref role="1Pybhc" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
-              <node concept="1rXfSq" id="7eBFChAdeSM" role="37wK5m">
+              <node concept="1rXfSq" id="20S9x1v4Y47" role="37wK5m">
                 <ref role="37wK5l" to="g51k:~EditorCell_Basic.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
               </node>
             </node>
-            <node concept="liA8E" id="7eBFChAdeSN" role="2OqNvi">
-              <ref role="37wK5l" to="3bo0:7eBFChAbnxt" resolve="loadState" />
-              <node concept="Xjq3P" id="7eBFChAdeSO" role="37wK5m" />
-              <node concept="37vLTw" id="7eBFChAdeSP" role="37wK5m">
-                <ref role="3cqZAo" node="7eBFChAcIIX" resolve="key" />
+          </node>
+        </node>
+        <node concept="3clFbJ" id="20S9x1v50lT" role="3cqZAp">
+          <node concept="3clFbS" id="20S9x1v50lV" role="3clFbx">
+            <node concept="3cpWs6" id="20S9x1v54_7" role="3cqZAp">
+              <node concept="2OqwBi" id="7eBFChAdeSK" role="3cqZAk">
+                <node concept="37vLTw" id="20S9x1v4Y48" role="2Oq$k0">
+                  <ref role="3cqZAo" node="20S9x1v4Y45" resolve="sm" />
+                </node>
+                <node concept="liA8E" id="7eBFChAdeSN" role="2OqNvi">
+                  <ref role="37wK5l" to="3bo0:7eBFChAbnxt" resolve="loadState" />
+                  <node concept="Xjq3P" id="7eBFChAdeSO" role="37wK5m" />
+                  <node concept="37vLTw" id="7eBFChAdeSP" role="37wK5m">
+                    <ref role="3cqZAo" node="7eBFChAcIIX" resolve="key" />
+                  </node>
+                </node>
               </node>
             </node>
           </node>
+          <node concept="3y3z36" id="20S9x1v50TS" role="3clFbw">
+            <node concept="10Nm6u" id="20S9x1v511l" role="3uHU7w" />
+            <node concept="37vLTw" id="20S9x1v50tz" role="3uHU7B">
+              <ref role="3cqZAo" node="20S9x1v4Y45" resolve="sm" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs6" id="20S9x1v5cXI" role="3cqZAp">
+          <node concept="10Nm6u" id="20S9x1v5qaH" role="3cqZAk" />
         </node>
       </node>
       <node concept="2AHcQZ" id="7eBFChAcIJ4" role="2AJF6D">

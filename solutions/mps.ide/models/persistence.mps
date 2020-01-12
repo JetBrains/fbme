@@ -739,18 +739,18 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbF" id="1glcRxpN5Br" role="3cqZAp">
-          <node concept="2OqwBi" id="1glcRxpN6rK" role="3clFbG">
-            <node concept="37vLTw" id="7OBD32HQcBm" role="2Oq$k0">
+        <node concept="3clFbF" id="4xJOZFygOoJ" role="3cqZAp">
+          <node concept="2OqwBi" id="4xJOZFygOoK" role="3clFbG">
+            <node concept="37vLTw" id="4xJOZFygOoL" role="2Oq$k0">
               <ref role="3cqZAo" node="7OBD32HPZVF" resolve="modelData" />
             </node>
-            <node concept="liA8E" id="1glcRxpN7hH" role="2OqNvi">
+            <node concept="liA8E" id="4xJOZFygOoM" role="2OqNvi">
               <ref role="37wK5l" to="w1kc:~SModel.addLanguage(org.jetbrains.mps.openapi.language.SLanguage):void" resolve="addLanguage" />
-              <node concept="pHN19" id="1glcRxpN7kW" role="37wK5m">
-                <node concept="PFCIn" id="1glcRxpN7nw" role="2V$M_3">
-                  <node concept="20RdaH" id="1glcRxpN7nv" role="PFCIW">
-                    <property role="20Rdg5" value="8ca79d43-eb45-4791-bdd4-0d6130ff895b" />
-                    <property role="20Rdg7" value="de.itemis.mps.editor.diagram.layout" />
+              <node concept="pHN19" id="4xJOZFygOoN" role="37wK5m">
+                <node concept="PFCIn" id="4xJOZFygSFH" role="2V$M_3">
+                  <node concept="20RdaH" id="4xJOZFygSFG" role="PFCIW">
+                    <property role="20Rdg5" value="111cc10b-fa1e-4e11-8e9c-37e957c4043f" />
+                    <property role="20Rdg7" value="richediting.lang" />
                   </node>
                 </node>
               </node>

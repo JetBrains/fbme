@@ -850,11 +850,11 @@
                     <ref role="3cqZAo" node="3DiEZ8TIcwN" resolve="inputsWidth" />
                   </node>
                   <node concept="2OqwBi" id="3DiEZ8TImJb" role="3uHU7w">
-                    <node concept="37vLTw" id="3DiEZ8TImJc" role="2Oq$k0">
-                      <ref role="3cqZAo" node="1JYTWWzJ_QF" resolve="myCellCollection" />
+                    <node concept="37vLTw" id="3Sv$YXY0_1T" role="2Oq$k0">
+                      <ref role="3cqZAo" node="7qPnRGG6zO0" resolve="myFBCellComponent" />
                     </node>
                     <node concept="liA8E" id="3DiEZ8TImJd" role="2OqNvi">
-                      <ref role="37wK5l" to="g51k:~EditorCell_Basic.getWidth():int" resolve="getWidth" />
+                      <ref role="37wK5l" node="7qPnRGGb3$p" resolve="getWidth" />
                     </node>
                   </node>
                 </node>
@@ -870,11 +870,11 @@
             <node concept="liA8E" id="3DiEZ8TIomO" role="2OqNvi">
               <ref role="37wK5l" to="g51k:~EditorCell_Basic.setHeight(int):void" resolve="setHeight" />
               <node concept="2OqwBi" id="3DiEZ8TIomT" role="37wK5m">
-                <node concept="37vLTw" id="3DiEZ8TIomU" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1JYTWWzJ_QF" resolve="myCellCollection" />
+                <node concept="37vLTw" id="3Sv$YXY0_NA" role="2Oq$k0">
+                  <ref role="3cqZAo" node="7qPnRGG6zO0" resolve="myFBCellComponent" />
                 </node>
                 <node concept="liA8E" id="3DiEZ8TIomV" role="2OqNvi">
-                  <ref role="37wK5l" to="g51k:~EditorCell_Basic.getHeight():int" resolve="getHeight" />
+                  <ref role="37wK5l" node="7qPnRGGb3$v" resolve="getHeight" />
                 </node>
               </node>
             </node>

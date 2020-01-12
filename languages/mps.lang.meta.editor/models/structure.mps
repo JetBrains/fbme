@@ -7,6 +7,7 @@
   </languages>
   <imports>
     <import index="tpc2" ref="r:00000000-0000-4000-0000-011c8959029e(jetbrains.mps.lang.editor.structure)" />
+    <import index="tpee" ref="r:00000000-0000-4000-0000-011c895902ca(jetbrains.mps.baseLanguage.structure)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -14,6 +15,7 @@
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
         <property id="4628067390765907488" name="conceptShortDescription" index="R4oN_" />
+        <property id="5092175715804935370" name="conceptAlias" index="34LRSv" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
       </concept>
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
@@ -67,6 +69,34 @@
     <node concept="PrWs8" id="4s7KBSj$Shz" role="PzmwI">
       <ref role="PrY4T" to="tpck:8AYOKVCAP5" resolve="IStubForAnotherConcept" />
     </node>
+  </node>
+  <node concept="1TIwiD" id="3t1pVyvZ48U">
+    <property role="TrG5h" value="CellCreateOperation" />
+    <property role="34LRSv" value="createCell" />
+    <property role="EcuMT" value="3981577588227981882" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="3t1pVyvZafA" role="1TKVEi">
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="contextNode" />
+      <property role="20lbJX" value="1" />
+      <property role="IQ2ns" value="3981577588228006886" />
+      <ref role="20lvS9" to="tpee:fz3vP1J" resolve="Expression" />
+    </node>
+    <node concept="1TJgyj" id="3t1pVyvZafE" role="1TKVEi">
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="editor" />
+      <property role="20lbJX" value="1" />
+      <property role="IQ2ns" value="3981577588228006890" />
+      <ref role="20lvS9" node="3t1pVyvZafV" resolve="CellCreateOperationInlineEditor" />
+    </node>
+    <node concept="PrWs8" id="3t1pVyw1sMu" role="PzmwI">
+      <ref role="PrY4T" to="tpee:hqOqG0K" resolve="IOperation" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="3t1pVyvZafV">
+    <property role="TrG5h" value="CellCreateOperationInlineEditor" />
+    <property role="EcuMT" value="3981577588228006907" />
+    <ref role="1TJDcQ" to="tpc2:fPsVBsF" resolve="InlineEditorComponent" />
   </node>
 </model>
 

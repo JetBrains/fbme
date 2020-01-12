@@ -2,7 +2,6 @@
 <model ref="r:02589d2f-0161-41cb-817b-e5767f9e0127(mps.lang.iec61499.sandbox.festo)">
   <persistence version="9" />
   <languages>
-    <use id="8ca79d43-eb45-4791-bdd4-0d6130ff895b" name="de.itemis.mps.editor.diagram.layout" version="0" />
     <use id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="mps.lang.iec61499" version="0" />
     <use id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="mps.lang.ST" version="-1" />
   </languages>
