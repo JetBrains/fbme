@@ -1722,9 +1722,6 @@
         <node concept="28u9K_" id="42vv4xsJOrw" role="39821P">
           <property role="28hIV_" value="mps" />
         </node>
-        <node concept="3_I8Xc" id="1mPaNys5H77" role="39821P">
-          <ref role="3_I8Xa" to="ffeo:1diLdO26H7T" resolve="cvsIntegration" />
-        </node>
         <node concept="3_I8Xc" id="1mPaNys5H78" role="39821P">
           <ref role="3_I8Xa" to="ffeo:3nGzrDEfcNJ" resolve="svn4idea" />
         </node>
@@ -1732,7 +1729,7 @@
           <ref role="3_I8Xa" to="ffeo:I6XuqH2zYV" resolve="git4idea" />
         </node>
         <node concept="3_I8Xc" id="1mPaNys5H7a" role="39821P">
-          <ref role="3_I8Xa" to="ffeo:ymnOULBdbM" resolve="mps-core" />
+          <ref role="3_I8Xa" to="ffeo:4EdAnGErOtx" resolve="mps-core" />
         </node>
         <node concept="3_I8Xc" id="1mPaNys5H7b" role="39821P">
           <ref role="3_I8Xa" to="ffeo:1x6h9EwqP32" resolve="mps-make" />

@@ -591,7 +591,7 @@
               </node>
               <node concept="2OqwBi" id="3wAsKTkjSzM" role="3uHU7w">
                 <node concept="liA8E" id="3wAsKTkjSzO" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~String.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~String.hashCode()" resolve="hashCode" />
                 </node>
                 <node concept="37vLTw" id="3wAsKTkjSzC" role="2Oq$k0">
                   <ref role="3cqZAo" node="3wAsKTkjRWL" resolve="myPort" />
@@ -1454,7 +1454,7 @@
                   <ref role="3uigEE" to="mmaq:~Document" resolve="Document" />
                 </node>
                 <node concept="2YIFZM" id="5jACUPF$6j6" role="33vP2m">
-                  <ref role="37wK5l" to="18ew:~JDOMUtil.loadDocument(java.io.InputStream):org.jdom.Document" resolve="loadDocument" />
+                  <ref role="37wK5l" to="18ew:~JDOMUtil.loadDocument(java.io.InputStream)" resolve="loadDocument" />
                   <ref role="1Pybhc" to="18ew:~JDOMUtil" resolve="JDOMUtil" />
                   <node concept="2ShNRf" id="5jACUPF$6j7" role="37wK5m">
                     <node concept="1pGfFk" id="5jACUPF$6j8" role="2ShVmc">
@@ -1464,7 +1464,7 @@
                           <ref role="3cqZAo" node="6VfPrztaRiv" resolve="watch" />
                         </node>
                         <node concept="liA8E" id="5jACUPF$6jb" role="2OqNvi">
-                          <ref role="37wK5l" to="wyt6:~String.getBytes():byte[]" resolve="getBytes" />
+                          <ref role="37wK5l" to="wyt6:~String.getBytes()" resolve="getBytes" />
                         </node>
                       </node>
                     </node>
@@ -1505,11 +1505,11 @@
                       <ref role="3cqZAo" node="5jACUPF$6j5" resolve="doc" />
                     </node>
                     <node concept="liA8E" id="6K_0vqj6o2c" role="2OqNvi">
-                      <ref role="37wK5l" to="mmaq:~Document.getRootElement():org.jdom.Element" resolve="getRootElement" />
+                      <ref role="37wK5l" to="mmaq:~Document.getRootElement()" resolve="getRootElement" />
                     </node>
                   </node>
                   <node concept="liA8E" id="6K_0vqj6o2d" role="2OqNvi">
-                    <ref role="37wK5l" to="mmaq:~Element.getChild(java.lang.String):org.jdom.Element" resolve="getChild" />
+                    <ref role="37wK5l" to="mmaq:~Element.getChild(java.lang.String)" resolve="getChild" />
                     <node concept="Xl_RD" id="6K_0vqj6o2e" role="37wK5m">
                       <property role="Xl_RC" value="Watches" />
                     </node>
@@ -1526,7 +1526,7 @@
                   <ref role="3cqZAo" node="6K_0vqj6o28" resolve="watchesElement" />
                 </node>
                 <node concept="liA8E" id="6K_0vqj6xuV" role="2OqNvi">
-                  <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String):java.util.List" resolve="getChildren" />
+                  <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String)" resolve="getChildren" />
                   <node concept="Xl_RD" id="6K_0vqj6xPL" role="37wK5m">
                     <property role="Xl_RC" value="Resource" />
                   </node>
@@ -1542,7 +1542,7 @@
                         <ref role="2Gs0qQ" node="6K_0vqj6pcI" resolve="resourceElement" />
                       </node>
                       <node concept="liA8E" id="6K_0vqj7vH0" role="2OqNvi">
-                        <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String):java.lang.String" resolve="getAttributeValue" />
+                        <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String)" resolve="getAttributeValue" />
                         <node concept="Xl_RD" id="6K_0vqj7w1d" role="37wK5m">
                           <property role="Xl_RC" value="name" />
                         </node>
@@ -1602,7 +1602,7 @@
                       <ref role="2Gs0qQ" node="6K_0vqj6pcI" resolve="resourceElement" />
                     </node>
                     <node concept="liA8E" id="6K_0vqj6Tb3" role="2OqNvi">
-                      <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String):java.util.List" resolve="getChildren" />
+                      <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String)" resolve="getChildren" />
                       <node concept="Xl_RD" id="6K_0vqj6TCm" role="37wK5m">
                         <property role="Xl_RC" value="FB" />
                       </node>
@@ -1618,7 +1618,7 @@
                             <ref role="2Gs0qQ" node="6K_0vqj6yCa" resolve="fbElement" />
                           </node>
                           <node concept="liA8E" id="6K_0vqj7wsS" role="2OqNvi">
-                            <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String):java.lang.String" resolve="getAttributeValue" />
+                            <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String)" resolve="getAttributeValue" />
                             <node concept="Xl_RD" id="6K_0vqj7wsT" role="37wK5m">
                               <property role="Xl_RC" value="name" />
                             </node>
@@ -1678,7 +1678,7 @@
                           <ref role="2Gs0qQ" node="6K_0vqj6yCa" resolve="fbElement" />
                         </node>
                         <node concept="liA8E" id="6K_0vqj8vvx" role="2OqNvi">
-                          <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String):java.util.List" resolve="getChildren" />
+                          <ref role="37wK5l" to="mmaq:~Element.getChildren(java.lang.String)" resolve="getChildren" />
                           <node concept="Xl_RD" id="6K_0vqj8vUU" role="37wK5m">
                             <property role="Xl_RC" value="Port" />
                           </node>
@@ -1694,7 +1694,7 @@
                                 <ref role="2Gs0qQ" node="6K_0vqj7xYo" resolve="portElement" />
                               </node>
                               <node concept="liA8E" id="6K_0vqj9BJ_" role="2OqNvi">
-                                <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String):java.lang.String" resolve="getAttributeValue" />
+                                <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String)" resolve="getAttributeValue" />
                                 <node concept="Xl_RD" id="6K_0vqj9CfW" role="37wK5m">
                                   <property role="Xl_RC" value="name" />
                                 </node>
@@ -1713,7 +1713,7 @@
                                 <ref role="2Gs0qQ" node="6K_0vqj7xYo" resolve="portElement" />
                               </node>
                               <node concept="liA8E" id="6K_0vqjd3Q1" role="2OqNvi">
-                                <ref role="37wK5l" to="mmaq:~Element.getChild(java.lang.String):org.jdom.Element" resolve="getChild" />
+                                <ref role="37wK5l" to="mmaq:~Element.getChild(java.lang.String)" resolve="getChild" />
                                 <node concept="Xl_RD" id="6K_0vqjd3Q2" role="37wK5m">
                                   <property role="Xl_RC" value="Data" />
                                 </node>
@@ -1730,7 +1730,7 @@
                                     <ref role="3cqZAo" node="6K_0vqjd3PY" resolve="dataElement" />
                                   </node>
                                   <node concept="liA8E" id="6K_0vqjfaBS" role="2OqNvi">
-                                    <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String):java.lang.String" resolve="getAttributeValue" />
+                                    <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String)" resolve="getAttributeValue" />
                                     <node concept="Xl_RD" id="6K_0vqjfaW1" role="37wK5m">
                                       <property role="Xl_RC" value="value" />
                                     </node>
@@ -1852,7 +1852,7 @@
                   <ref role="3cqZAo" node="5jACUPF_pOQ" resolve="myThread" />
                 </node>
                 <node concept="liA8E" id="5jACUPF_oSM" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Thread.start():void" resolve="start" />
+                  <ref role="37wK5l" to="wyt6:~Thread.start()" resolve="start" />
                 </node>
               </node>
             </node>
@@ -1907,7 +1907,7 @@
                       <ref role="3cqZAo" node="5jACUPF_pOQ" resolve="myThread" />
                     </node>
                     <node concept="liA8E" id="6bryThmfH4M" role="2OqNvi">
-                      <ref role="37wK5l" to="wyt6:~Thread.interrupt():void" resolve="interrupt" />
+                      <ref role="37wK5l" to="wyt6:~Thread.interrupt()" resolve="interrupt" />
                     </node>
                   </node>
                 </node>
@@ -1917,7 +1917,7 @@
                       <ref role="3cqZAo" node="5jACUPF_pOQ" resolve="myThread" />
                     </node>
                     <node concept="liA8E" id="5jACUPF_yGT" role="2OqNvi">
-                      <ref role="37wK5l" to="wyt6:~Thread.join():void" resolve="join" />
+                      <ref role="37wK5l" to="wyt6:~Thread.join()" resolve="join" />
                     </node>
                   </node>
                 </node>
@@ -2006,7 +2006,7 @@
                               </node>
                               <node concept="2YIFZM" id="5jACUPF_V2W" role="33vP2m">
                                 <ref role="1Pybhc" to="w1kc:~MPSModuleRepository" resolve="MPSModuleRepository" />
-                                <ref role="37wK5l" to="w1kc:~MPSModuleRepository.getInstance():jetbrains.mps.smodel.MPSModuleRepository" resolve="getInstance" />
+                                <ref role="37wK5l" to="w1kc:~MPSModuleRepository.getInstance()" resolve="getInstance" />
                               </node>
                             </node>
                           </node>
@@ -2017,11 +2017,11 @@
                                   <ref role="3cqZAo" node="5jACUPF_V2U" resolve="REPO" />
                                 </node>
                                 <node concept="liA8E" id="5jACUPF_V31" role="2OqNvi">
-                                  <ref role="37wK5l" to="lui2:~SRepository.getModelAccess():org.jetbrains.mps.openapi.module.ModelAccess" resolve="getModelAccess" />
+                                  <ref role="37wK5l" to="lui2:~SRepository.getModelAccess()" resolve="getModelAccess" />
                                 </node>
                               </node>
                               <node concept="liA8E" id="5jACUPF_V32" role="2OqNvi">
-                                <ref role="37wK5l" to="lui2:~ModelAccess.runReadInEDT(java.lang.Runnable):void" resolve="runReadInEDT" />
+                                <ref role="37wK5l" to="lui2:~ModelAccess.runReadInEDT(java.lang.Runnable)" resolve="runReadInEDT" />
                                 <node concept="1bVj0M" id="5jACUPF_V33" role="37wK5m">
                                   <node concept="3clFbS" id="5jACUPF_V34" role="1bW5cS">
                                     <node concept="3clFbH" id="5jACUPF_V35" role="3cqZAp" />
@@ -2187,7 +2187,7 @@
                           <node concept="3clFbF" id="5jACUPF_V3A" role="3cqZAp">
                             <node concept="2YIFZM" id="5jACUPF_V3B" role="3clFbG">
                               <ref role="1Pybhc" to="wyt6:~Thread" resolve="Thread" />
-                              <ref role="37wK5l" to="wyt6:~Thread.sleep(long):void" resolve="sleep" />
+                              <ref role="37wK5l" to="wyt6:~Thread.sleep(long)" resolve="sleep" />
                               <node concept="3cmrfG" id="5jACUPF_V3C" role="37wK5m">
                                 <property role="3cmrfH" value="100" />
                               </node>
@@ -2197,11 +2197,11 @@
                         <node concept="3fqX7Q" id="5jACUPF_V3D" role="2$JKZa">
                           <node concept="2OqwBi" id="5jACUPF_V3E" role="3fr31v">
                             <node concept="2YIFZM" id="5jACUPF_V3F" role="2Oq$k0">
-                              <ref role="37wK5l" to="wyt6:~Thread.currentThread():java.lang.Thread" resolve="currentThread" />
+                              <ref role="37wK5l" to="wyt6:~Thread.currentThread()" resolve="currentThread" />
                               <ref role="1Pybhc" to="wyt6:~Thread" resolve="Thread" />
                             </node>
                             <node concept="liA8E" id="5jACUPF_V3G" role="2OqNvi">
-                              <ref role="37wK5l" to="wyt6:~Thread.isInterrupted():boolean" resolve="isInterrupted" />
+                              <ref role="37wK5l" to="wyt6:~Thread.isInterrupted()" resolve="isInterrupted" />
                             </node>
                           </node>
                         </node>
@@ -2219,10 +2219,10 @@
                           <node concept="2OqwBi" id="5jACUPF_V3M" role="3clFbG">
                             <node concept="2YIFZM" id="5jACUPF_V3N" role="2Oq$k0">
                               <ref role="1Pybhc" to="wyt6:~Thread" resolve="Thread" />
-                              <ref role="37wK5l" to="wyt6:~Thread.currentThread():java.lang.Thread" resolve="currentThread" />
+                              <ref role="37wK5l" to="wyt6:~Thread.currentThread()" resolve="currentThread" />
                             </node>
                             <node concept="liA8E" id="5jACUPF_V3O" role="2OqNvi">
-                              <ref role="37wK5l" to="wyt6:~Thread.interrupt():void" resolve="interrupt" />
+                              <ref role="37wK5l" to="wyt6:~Thread.interrupt()" resolve="interrupt" />
                             </node>
                           </node>
                         </node>
@@ -2448,7 +2448,7 @@
                 <ref role="3cqZAo" node="42vv4xs$2oV" resolve="myConnections" />
               </node>
               <node concept="liA8E" id="42vv4xs$B7G" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="2OqwBi" id="42vv4xs$B7H" role="37wK5m">
                   <node concept="37vLTw" id="42vv4xs$B7I" role="2Oq$k0">
                     <ref role="3cqZAo" node="42vv4xs$B8f" resolve="device" />
@@ -2480,7 +2480,7 @@
                   <ref role="3cqZAo" node="42vv4xs$2oV" resolve="myConnections" />
                 </node>
                 <node concept="liA8E" id="5FIIKsRkvLv" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="2OqwBi" id="5FIIKsRkwgU" role="37wK5m">
                     <node concept="37vLTw" id="5FIIKsRkvWg" role="2Oq$k0">
                       <ref role="3cqZAo" node="42vv4xs$B8f" resolve="device" />
@@ -2667,7 +2667,7 @@
               <ref role="3cqZAo" node="42vv4xs$2oV" resolve="myConnections" />
             </node>
             <node concept="liA8E" id="42vv4xs$7Di" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~Map.values():java.util.Collection" resolve="values" />
+              <ref role="37wK5l" to="33ny:~Map.values()" resolve="values" />
             </node>
           </node>
           <node concept="3clFbS" id="42vv4xs$2ok" role="2LFqv$">
@@ -2679,7 +2679,7 @@
                       <ref role="2Gs0qQ" node="42vv4xs$2oi" resolve="connection" />
                     </node>
                     <node concept="liA8E" id="42vv4xs$kZw" role="2OqNvi">
-                      <ref role="37wK5l" to="guwi:~Closeable.close():void" resolve="close" />
+                      <ref role="37wK5l" to="guwi:~Closeable.close()" resolve="close" />
                     </node>
                   </node>
                 </node>
@@ -2717,7 +2717,7 @@
               <ref role="3cqZAo" node="42vv4xs$2oV" resolve="myConnections" />
             </node>
             <node concept="liA8E" id="42vv4xs$__x" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~Map.clear():void" resolve="clear" />
+              <ref role="37wK5l" to="33ny:~Map.clear()" resolve="clear" />
             </node>
           </node>
         </node>
@@ -2950,7 +2950,7 @@
             </node>
             <node concept="2YIFZM" id="5PjcHHG6QJq" role="3uHU7w">
               <ref role="1Pybhc" to="33ny:~Arrays" resolve="Arrays" />
-              <ref role="37wK5l" to="33ny:~Arrays.equals(java.lang.Object[],java.lang.Object[]):boolean" resolve="equals" />
+              <ref role="37wK5l" to="33ny:~Arrays.equals(java.lang.Object[],java.lang.Object[])" resolve="equals" />
               <node concept="37vLTw" id="5PjcHHG6QJr" role="37wK5m">
                 <ref role="3cqZAo" node="5PjcHHG51WO" resolve="myPath" />
               </node>
@@ -3004,7 +3004,7 @@
               </node>
               <node concept="2OqwBi" id="5PjcHHG6QJL" role="3uHU7w">
                 <node concept="liA8E" id="5PjcHHG6QJM" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Object.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~Object.hashCode()" resolve="hashCode" />
                 </node>
                 <node concept="2JrnkZ" id="5PjcHHG6QJN" role="2Oq$k0">
                   <node concept="37vLTw" id="5PjcHHG6QJO" role="2JrQYb">
@@ -3030,7 +3030,7 @@
                 </node>
               </node>
               <node concept="2YIFZM" id="5PjcHHG6QJW" role="3uHU7w">
-                <ref role="37wK5l" to="33ny:~Arrays.hashCode(java.lang.Object[]):int" resolve="hashCode" />
+                <ref role="37wK5l" to="33ny:~Arrays.hashCode(java.lang.Object[])" resolve="hashCode" />
                 <ref role="1Pybhc" to="33ny:~Arrays" resolve="Arrays" />
                 <node concept="37vLTw" id="5PjcHHG6QJX" role="37wK5m">
                   <ref role="3cqZAo" node="5PjcHHG51WO" resolve="myPath" />
@@ -3261,7 +3261,7 @@
               </node>
             </node>
             <node concept="2YIFZM" id="5PjcHHG6mOu" role="3uHU7w">
-              <ref role="37wK5l" to="33ny:~Arrays.equals(java.lang.Object[],java.lang.Object[]):boolean" resolve="equals" />
+              <ref role="37wK5l" to="33ny:~Arrays.equals(java.lang.Object[],java.lang.Object[])" resolve="equals" />
               <ref role="1Pybhc" to="33ny:~Arrays" resolve="Arrays" />
               <node concept="37vLTw" id="5PjcHHG6mOq" role="37wK5m">
                 <ref role="3cqZAo" node="5PjcHHG537Z" resolve="myPath" />
@@ -3316,7 +3316,7 @@
               </node>
               <node concept="2OqwBi" id="5PjcHHG6_cR" role="3uHU7w">
                 <node concept="liA8E" id="5PjcHHG6CnI" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Object.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~Object.hashCode()" resolve="hashCode" />
                 </node>
                 <node concept="2JrnkZ" id="5PjcHHG6_cW" role="2Oq$k0">
                   <node concept="37vLTw" id="5PjcHHG6zKg" role="2JrQYb">
@@ -3342,7 +3342,7 @@
                 </node>
               </node>
               <node concept="2YIFZM" id="5PjcHHG6O8y" role="3uHU7w">
-                <ref role="37wK5l" to="33ny:~Arrays.hashCode(java.lang.Object[]):int" resolve="hashCode" />
+                <ref role="37wK5l" to="33ny:~Arrays.hashCode(java.lang.Object[])" resolve="hashCode" />
                 <ref role="1Pybhc" to="33ny:~Arrays" resolve="Arrays" />
                 <node concept="37vLTw" id="5PjcHHG6mPb" role="37wK5m">
                   <ref role="3cqZAo" node="5PjcHHG537Z" resolve="myPath" />
@@ -3645,7 +3645,7 @@
               </node>
               <node concept="2OqwBi" id="5PjcHHG7mTa" role="3uHU7w">
                 <node concept="liA8E" id="5PjcHHG7mTb" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~String.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~String.hashCode()" resolve="hashCode" />
                 </node>
                 <node concept="37vLTw" id="5PjcHHG7mTc" role="2Oq$k0">
                   <ref role="3cqZAo" node="5PjcHHG7mRq" resolve="myPort" />

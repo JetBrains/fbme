@@ -87,7 +87,7 @@
             <node concept="2OqwBi" id="7eBFChAbzs7" role="33vP2m">
               <node concept="1KvdUw" id="7eBFChAbzs8" role="2Oq$k0" />
               <node concept="liA8E" id="7eBFChAbzs9" role="2OqNvi">
-                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class)" resolve="getComponent" />
                 <node concept="3VsKOn" id="7eBFChAbzsa" role="37wK5m">
                   <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
                 </node>
@@ -101,7 +101,7 @@
               <ref role="3cqZAo" node="7eBFChAbzs6" resolve="reg" />
             </node>
             <node concept="liA8E" id="7eBFChAbzFr" role="2OqNvi">
-              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="registerExtension" />
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
               <node concept="10M0yZ" id="7eBFChAbzKI" role="37wK5m">
                 <ref role="3cqZAo" to="3bo0:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
                 <ref role="1PxDUh" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
@@ -122,7 +122,7 @@
             <node concept="2OqwBi" id="7eBFChAbzUK" role="33vP2m">
               <node concept="1KvdUw" id="7eBFChAbzUL" role="2Oq$k0" />
               <node concept="liA8E" id="7eBFChAbzUM" role="2OqNvi">
-                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class)" resolve="getComponent" />
                 <node concept="3VsKOn" id="7eBFChAbzUN" role="37wK5m">
                   <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
                 </node>
@@ -136,7 +136,7 @@
               <ref role="3cqZAo" node="7eBFChAbzUI" resolve="reg" />
             </node>
             <node concept="liA8E" id="7eBFChAbzUR" role="2OqNvi">
-              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="unregisterExtension" />
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
               <node concept="10M0yZ" id="7eBFChAbzUS" role="37wK5m">
                 <ref role="3cqZAo" to="3bo0:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
                 <ref role="1PxDUh" to="3bo0:7eBFChA9Ziz" resolve="SceneStateManager" />
@@ -163,7 +163,7 @@
             <node concept="2OqwBi" id="1KzgIApPMt3" role="33vP2m">
               <node concept="1KvdUw" id="1KzgIApPMt4" role="2Oq$k0" />
               <node concept="liA8E" id="1KzgIApPMt5" role="2OqNvi">
-                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class)" resolve="getComponent" />
                 <node concept="3VsKOn" id="1KzgIApPMt6" role="37wK5m">
                   <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
                 </node>
@@ -177,7 +177,7 @@
               <ref role="3cqZAo" node="1KzgIApPMt1" resolve="reg" />
             </node>
             <node concept="liA8E" id="1KzgIApPMta" role="2OqNvi">
-              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="registerExtension" />
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
               <node concept="10M0yZ" id="1KzgIApPM$6" role="37wK5m">
                 <ref role="3cqZAo" to="7zu8:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
                 <ref role="1PxDUh" to="7zu8:1KzgIApMed1" resolve="CellSelectionOnPopupTrigger" />
@@ -198,7 +198,7 @@
             <node concept="2OqwBi" id="1KzgIApPMGS" role="33vP2m">
               <node concept="1KvdUw" id="1KzgIApPMGT" role="2Oq$k0" />
               <node concept="liA8E" id="1KzgIApPMGU" role="2OqNvi">
-                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class):java.lang.Object" resolve="getComponent" />
+                <ref role="37wK5l" to="z1c3:~MPSProject.getComponent(java.lang.Class)" resolve="getComponent" />
                 <node concept="3VsKOn" id="1KzgIApPMGV" role="37wK5m">
                   <ref role="3VsUkX" to="wvnl:~EditorExtensionRegistry" resolve="EditorExtensionRegistry" />
                 </node>
@@ -212,7 +212,7 @@
               <ref role="3cqZAo" node="1KzgIApPMGQ" resolve="reg" />
             </node>
             <node concept="liA8E" id="1KzgIApPMGZ" role="2OqNvi">
-              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension):void" resolve="unregisterExtension" />
+              <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
               <node concept="10M0yZ" id="1KzgIApPMH0" role="37wK5m">
                 <ref role="1PxDUh" to="7zu8:1KzgIApMed1" resolve="CellSelectionOnPopupTrigger" />
                 <ref role="3cqZAo" to="7zu8:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />

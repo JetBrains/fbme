@@ -107,11 +107,11 @@
         <node concept="3clFbF" id="6kvdbYu8uiF" role="3cqZAp">
           <node concept="2OqwBi" id="6kvdbYu8uBP" role="3clFbG">
             <node concept="2YIFZM" id="6kvdbYu8uoy" role="2Oq$k0">
-              <ref role="37wK5l" to="ends:~ModelFactoryService.getInstance():jetbrains.mps.extapi.persistence.ModelFactoryService" resolve="getInstance" />
+              <ref role="37wK5l" to="ends:~ModelFactoryService.getInstance()" resolve="getInstance" />
               <ref role="1Pybhc" to="ends:~ModelFactoryService" resolve="ModelFactoryService" />
             </node>
             <node concept="liA8E" id="6kvdbYu8v0l" role="2OqNvi">
-              <ref role="37wK5l" to="ends:~ModelFactoryService.register(org.jetbrains.mps.openapi.persistence.ModelFactory):void" resolve="register" />
+              <ref role="37wK5l" to="ends:~ModelFactoryService.register(org.jetbrains.mps.openapi.persistence.ModelFactory)" resolve="register" />
               <node concept="10M0yZ" id="7pEplJkuzte" role="37wK5m">
                 <ref role="3cqZAo" to="51vd:1_Zi$XmmA7o" resolve="MODEL_FACTORY" />
                 <ref role="1PxDUh" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
@@ -133,10 +133,10 @@
           <node concept="2OqwBi" id="6kvdbYu8$HI" role="3clFbG">
             <node concept="2YIFZM" id="6kvdbYu8$HJ" role="2Oq$k0">
               <ref role="1Pybhc" to="ends:~ModelFactoryService" resolve="ModelFactoryService" />
-              <ref role="37wK5l" to="ends:~ModelFactoryService.getInstance():jetbrains.mps.extapi.persistence.ModelFactoryService" resolve="getInstance" />
+              <ref role="37wK5l" to="ends:~ModelFactoryService.getInstance()" resolve="getInstance" />
             </node>
             <node concept="liA8E" id="6kvdbYu8$HK" role="2OqNvi">
-              <ref role="37wK5l" to="ends:~ModelFactoryService.unregister(org.jetbrains.mps.openapi.persistence.ModelFactory):void" resolve="unregister" />
+              <ref role="37wK5l" to="ends:~ModelFactoryService.unregister(org.jetbrains.mps.openapi.persistence.ModelFactory)" resolve="unregister" />
               <node concept="10M0yZ" id="7pEplJkuzwz" role="37wK5m">
                 <ref role="3cqZAo" to="51vd:1_Zi$XmmA7o" resolve="MODEL_FACTORY" />
                 <ref role="1PxDUh" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
@@ -177,11 +177,11 @@
           <node concept="2OqwBi" id="7OBD32IhNal" role="3clFbG">
             <node concept="2OqwBi" id="7OBD32IhMov" role="2Oq$k0">
               <node concept="2YIFZM" id="7OBD32IhMhj" role="2Oq$k0">
-                <ref role="37wK5l" to="9ti4:~Extensions.getRootArea():com.intellij.openapi.extensions.ExtensionsArea" resolve="getRootArea" />
+                <ref role="37wK5l" to="9ti4:~Extensions.getRootArea()" resolve="getRootArea" />
                 <ref role="1Pybhc" to="9ti4:~Extensions" resolve="Extensions" />
               </node>
               <node concept="liA8E" id="7OBD32IhMUt" role="2OqNvi">
-                <ref role="37wK5l" to="9ti4:~ExtensionsArea.getExtensionPoint(com.intellij.openapi.extensions.ExtensionPointName):com.intellij.openapi.extensions.ExtensionPoint" resolve="getExtensionPoint" />
+                <ref role="37wK5l" to="9ti4:~ExtensionsArea.getExtensionPoint(com.intellij.openapi.extensions.ExtensionPointName)" resolve="getExtensionPoint" />
                 <node concept="10M0yZ" id="7OBD32Ijjl2" role="37wK5m">
                   <ref role="3cqZAo" to="fpme:~ProjectTemplatesGroup.EP_NAME" resolve="EP_NAME" />
                   <ref role="1PxDUh" to="fpme:~ProjectTemplatesGroup" resolve="ProjectTemplatesGroup" />
@@ -189,7 +189,7 @@
               </node>
             </node>
             <node concept="liA8E" id="7OBD32IhQMM" role="2OqNvi">
-              <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object):void" resolve="registerExtension" />
+              <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object)" resolve="registerExtension" />
               <node concept="2OqwBi" id="7OBD32IhQQS" role="37wK5m">
                 <node concept="2WthIp" id="7OBD32IhQQV" role="2Oq$k0" />
                 <node concept="2BZ7hE" id="7OBD32IhQQX" role="2OqNvi">
@@ -207,11 +207,11 @@
           <node concept="2OqwBi" id="7OBD32IhR1h" role="3clFbG">
             <node concept="2OqwBi" id="7OBD32IhR1i" role="2Oq$k0">
               <node concept="2YIFZM" id="7OBD32IhR1j" role="2Oq$k0">
-                <ref role="37wK5l" to="9ti4:~Extensions.getRootArea():com.intellij.openapi.extensions.ExtensionsArea" resolve="getRootArea" />
+                <ref role="37wK5l" to="9ti4:~Extensions.getRootArea()" resolve="getRootArea" />
                 <ref role="1Pybhc" to="9ti4:~Extensions" resolve="Extensions" />
               </node>
               <node concept="liA8E" id="7OBD32IhR1k" role="2OqNvi">
-                <ref role="37wK5l" to="9ti4:~ExtensionsArea.getExtensionPoint(com.intellij.openapi.extensions.ExtensionPointName):com.intellij.openapi.extensions.ExtensionPoint" resolve="getExtensionPoint" />
+                <ref role="37wK5l" to="9ti4:~ExtensionsArea.getExtensionPoint(com.intellij.openapi.extensions.ExtensionPointName)" resolve="getExtensionPoint" />
                 <node concept="10M0yZ" id="7OBD32Ijjpu" role="37wK5m">
                   <ref role="3cqZAo" to="fpme:~ProjectTemplatesGroup.EP_NAME" resolve="EP_NAME" />
                   <ref role="1PxDUh" to="fpme:~ProjectTemplatesGroup" resolve="ProjectTemplatesGroup" />
@@ -219,7 +219,7 @@
               </node>
             </node>
             <node concept="liA8E" id="7OBD32IhR1m" role="2OqNvi">
-              <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Object):void" resolve="unregisterExtension" />
+              <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Object)" resolve="unregisterExtension" />
               <node concept="2OqwBi" id="7OBD32IhR1n" role="37wK5m">
                 <node concept="2WthIp" id="7OBD32IhR1o" role="2Oq$k0" />
                 <node concept="2BZ7hE" id="7OBD32IhR1p" role="2OqNvi">

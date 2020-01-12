@@ -632,7 +632,7 @@
                   <ref role="3cqZAo" node="1R4IoyQOuKr" resolve="myPortInspections" />
                 </node>
                 <node concept="liA8E" id="1R4IoyQOSdY" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.remove(java.lang.Object):java.lang.Object" resolve="remove" />
+                  <ref role="37wK5l" to="33ny:~HashMap.remove(java.lang.Object)" resolve="remove" />
                   <node concept="37vLTw" id="1R4IoyQOSdZ" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQOhQZ" resolve="port" />
                   </node>
@@ -675,7 +675,7 @@
                     <ref role="3cqZAo" node="1R4IoyQOuKr" resolve="myPortInspections" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQOQlO" role="2OqNvi">
-                    <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                    <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                     <node concept="37vLTw" id="1R4IoyQOQ_p" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQOhQZ" resolve="port" />
                     </node>
@@ -738,7 +738,7 @@
                   <ref role="3cqZAo" node="1R4IoyQOuPf" resolve="myComponentInspections" />
                 </node>
                 <node concept="liA8E" id="1R4IoyQOU7p" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.remove(java.lang.Object):java.lang.Object" resolve="remove" />
+                  <ref role="37wK5l" to="33ny:~HashMap.remove(java.lang.Object)" resolve="remove" />
                   <node concept="37vLTw" id="1R4IoyQOU7q" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQOhUv" resolve="component" />
                   </node>
@@ -781,7 +781,7 @@
                     <ref role="3cqZAo" node="1R4IoyQOuPf" resolve="myComponentInspections" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQOU7w" role="2OqNvi">
-                    <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                    <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                     <node concept="37vLTw" id="1R4IoyQOU7x" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQOhUv" resolve="component" />
                     </node>
@@ -836,7 +836,7 @@
               <ref role="3cqZAo" node="1R4IoyQOuKr" resolve="myPortInspections" />
             </node>
             <node concept="liA8E" id="1R4IoyQPc74" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~HashMap.clear():void" resolve="clear" />
+              <ref role="37wK5l" to="33ny:~HashMap.clear()" resolve="clear" />
             </node>
           </node>
         </node>
@@ -846,7 +846,7 @@
               <ref role="3cqZAo" node="1R4IoyQOuPf" resolve="myComponentInspections" />
             </node>
             <node concept="liA8E" id="1R4IoyQPtJm" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~HashMap.clear():void" resolve="clear" />
+              <ref role="37wK5l" to="33ny:~HashMap.clear()" resolve="clear" />
             </node>
           </node>
         </node>
@@ -1007,11 +1007,11 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="1R4IoyRomGA" role="2OqNvi">
-                    <ref role="37wK5l" to="z60i:~Color.brighter():java.awt.Color" resolve="brighter" />
+                    <ref role="37wK5l" to="z60i:~Color.brighter()" resolve="brighter" />
                   </node>
                 </node>
                 <node concept="liA8E" id="1R4IoyRooqm" role="2OqNvi">
-                  <ref role="37wK5l" to="z60i:~Color.brighter():java.awt.Color" resolve="brighter" />
+                  <ref role="37wK5l" to="z60i:~Color.brighter()" resolve="brighter" />
                 </node>
               </node>
             </node>
@@ -1050,7 +1050,7 @@
                 <ref role="3cqZAo" node="1R4IoyRofGx" resolve="style" />
               </node>
               <node concept="liA8E" id="7eBFChA8Tyx" role="2OqNvi">
-                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object):void" resolve="set" />
+                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
                 <node concept="10M0yZ" id="7eBFChA8UWF" role="37wK5m">
                   <ref role="3cqZAo" to="5ueo:~StyleAttributes.FONT_SIZE" resolve="FONT_SIZE" />
                   <ref role="1PxDUh" to="5ueo:~StyleAttributes" resolve="StyleAttributes" />
@@ -1062,11 +1062,11 @@
                   <node concept="17qRlL" id="7eBFChA8Yl4" role="3uHU7B">
                     <node concept="2OqwBi" id="7eBFChA8Wqz" role="3uHU7B">
                       <node concept="2YIFZM" id="7eBFChA8VIN" role="2Oq$k0">
-                        <ref role="37wK5l" to="exr9:~EditorSettings.getInstance():jetbrains.mps.nodeEditor.EditorSettings" resolve="getInstance" />
+                        <ref role="37wK5l" to="exr9:~EditorSettings.getInstance()" resolve="getInstance" />
                         <ref role="1Pybhc" to="exr9:~EditorSettings" resolve="EditorSettings" />
                       </node>
                       <node concept="liA8E" id="7eBFChA8WLh" role="2OqNvi">
-                        <ref role="37wK5l" to="exr9:~EditorSettings.getFontSize():int" resolve="getFontSize" />
+                        <ref role="37wK5l" to="exr9:~EditorSettings.getFontSize()" resolve="getFontSize" />
                       </node>
                     </node>
                     <node concept="3cmrfG" id="7eBFChA96Si" role="3uHU7w">
@@ -1083,7 +1083,7 @@
                 <ref role="3cqZAo" node="1R4IoyRofGx" resolve="style" />
               </node>
               <node concept="liA8E" id="1R4IoyRogpH" role="2OqNvi">
-                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object):void" resolve="set" />
+                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
                 <node concept="10M0yZ" id="1R4IoyRogAa" role="37wK5m">
                   <ref role="3cqZAo" to="5ueo:~StyleAttributes.TEXT_COLOR" resolve="TEXT_COLOR" />
                   <ref role="1PxDUh" to="5ueo:~StyleAttributes" resolve="StyleAttributes" />
@@ -1100,7 +1100,7 @@
                 <ref role="3cqZAo" node="1R4IoyRofGx" resolve="style" />
               </node>
               <node concept="liA8E" id="6Na19TM5xvi" role="2OqNvi">
-                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object):void" resolve="set" />
+                <ref role="37wK5l" to="5ueo:~StyleImpl.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
                 <node concept="10M0yZ" id="6Na19TM5zZ8" role="37wK5m">
                   <ref role="3cqZAo" to="5ueo:~StyleAttributes.FONT_STYLE" resolve="FONT_STYLE" />
                   <ref role="1PxDUh" to="5ueo:~StyleAttributes" resolve="StyleAttributes" />
@@ -1154,7 +1154,7 @@
                 <ref role="3cqZAo" node="1R4IoyRnNfv" resolve="g" />
               </node>
               <node concept="liA8E" id="1R4IoyRo0oZ" role="2OqNvi">
-                <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color):void" resolve="setColor" />
+                <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
                 <node concept="37vLTw" id="1R4IoyRo3ax" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyQOzDA" resolve="myBackgroundColor" />
                 </node>
@@ -1167,7 +1167,7 @@
                 <ref role="3cqZAo" node="1R4IoyRnNfv" resolve="g" />
               </node>
               <node concept="liA8E" id="1R4IoyRnZsw" role="2OqNvi">
-                <ref role="37wK5l" to="z60i:~Graphics.fillRect(int,int,int,int):void" resolve="fillRect" />
+                <ref role="37wK5l" to="z60i:~Graphics.fillRect(int,int,int,int)" resolve="fillRect" />
                 <node concept="3cpWsd" id="6Na19TM5oJd" role="37wK5m">
                   <node concept="3cmrfG" id="6Na19TM5oMi" role="3uHU7w">
                     <property role="3cmrfH" value="1" />
@@ -1185,7 +1185,7 @@
                       <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
                     </node>
                     <node concept="liA8E" id="1R4IoyRnWiX" role="2OqNvi">
-                      <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                      <ref role="37wK5l" to="g51k:~TextLine.getWidth()" resolve="getWidth" />
                     </node>
                   </node>
                   <node concept="3cmrfG" id="5wygzc2W4ET" role="3uHU7w">
@@ -1197,7 +1197,7 @@
                     <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
                   </node>
                   <node concept="liA8E" id="1R4IoyRnYL8" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getHeight():int" resolve="getHeight" />
+                    <ref role="37wK5l" to="g51k:~TextLine.getHeight()" resolve="getHeight" />
                   </node>
                 </node>
               </node>
@@ -1209,7 +1209,7 @@
                 <ref role="3cqZAo" node="1R4IoyRnNfv" resolve="g" />
               </node>
               <node concept="liA8E" id="1R4IoyRopDz" role="2OqNvi">
-                <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color):void" resolve="setColor" />
+                <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
                 <node concept="37vLTw" id="1R4IoyRopKe" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRo9Mm" resolve="myColor" />
                 </node>
@@ -1222,7 +1222,7 @@
                 <ref role="3cqZAo" node="1R4IoyRnNfv" resolve="g" />
               </node>
               <node concept="liA8E" id="1R4IoyRopOH" role="2OqNvi">
-                <ref role="37wK5l" to="z60i:~Graphics.drawRect(int,int,int,int):void" resolve="drawRect" />
+                <ref role="37wK5l" to="z60i:~Graphics.drawRect(int,int,int,int)" resolve="drawRect" />
                 <node concept="3cpWsd" id="6Na19TM5sBO" role="37wK5m">
                   <node concept="3cmrfG" id="6Na19TM5sF4" role="3uHU7w">
                     <property role="3cmrfH" value="1" />
@@ -1240,7 +1240,7 @@
                       <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
                     </node>
                     <node concept="liA8E" id="1R4IoyRopOM" role="2OqNvi">
-                      <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                      <ref role="37wK5l" to="g51k:~TextLine.getWidth()" resolve="getWidth" />
                     </node>
                   </node>
                   <node concept="3cmrfG" id="5wygzc2W52f" role="3uHU7w">
@@ -1252,7 +1252,7 @@
                     <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
                   </node>
                   <node concept="liA8E" id="1R4IoyRopOP" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getHeight():int" resolve="getHeight" />
+                    <ref role="37wK5l" to="g51k:~TextLine.getHeight()" resolve="getHeight" />
                   </node>
                 </node>
               </node>
@@ -1264,7 +1264,7 @@
                 <ref role="3cqZAo" node="1R4IoyQQwjr" resolve="myTextline" />
               </node>
               <node concept="liA8E" id="1R4IoyRorJh" role="2OqNvi">
-                <ref role="37wK5l" to="g51k:~TextLine.paint(java.awt.Graphics,int,int):void" resolve="paint" />
+                <ref role="37wK5l" to="g51k:~TextLine.paint(java.awt.Graphics,int,int)" resolve="paint" />
                 <node concept="37vLTw" id="1R4IoyRorO7" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRnNfv" resolve="g" />
                 </node>
@@ -1431,7 +1431,7 @@
                 <ref role="3cqZAo" node="1R4IoyQOuPf" resolve="myComponentInspections" />
               </node>
               <node concept="liA8E" id="1R4IoyRoLfl" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~HashMap.values():java.util.Collection" resolve="values" />
+                <ref role="37wK5l" to="33ny:~HashMap.values()" resolve="values" />
               </node>
             </node>
             <node concept="3clFbS" id="1R4IoyRnHlf" role="2LFqv$">
@@ -1459,7 +1459,7 @@
                 <ref role="3cqZAo" node="1R4IoyQOuKr" resolve="myPortInspections" />
               </node>
               <node concept="liA8E" id="1R4IoyRpxDh" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~HashMap.values():java.util.Collection" resolve="values" />
+                <ref role="37wK5l" to="33ny:~HashMap.values()" resolve="values" />
               </node>
             </node>
             <node concept="3clFbS" id="1R4IoyRnHlz" role="2LFqv$">
@@ -1551,7 +1551,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="7eBFChAmOvn" role="2OqNvi">
-                    <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
+                    <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent()" resolve="getEditorComponent" />
                   </node>
                 </node>
               </node>
@@ -1635,7 +1635,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="7eBFChAmOzY" role="2OqNvi">
-                    <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
+                    <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent()" resolve="getEditorComponent" />
                   </node>
                 </node>
               </node>
@@ -1675,7 +1675,7 @@
                   <ref role="3cqZAo" node="1R4IoyQOuPf" resolve="myComponentInspections" />
                 </node>
                 <node concept="liA8E" id="7eBFChAehN$" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="2OqwBi" id="7eBFChAeqsw" role="37wK5m">
                     <node concept="2GrUjf" id="7eBFChAepYu" role="2Oq$k0">
                       <ref role="2Gs0qQ" node="7eBFChAdYE6" resolve="componentInspection" />
@@ -1717,7 +1717,7 @@
                   <ref role="3cqZAo" node="1R4IoyQOuKr" resolve="myPortInspections" />
                 </node>
                 <node concept="liA8E" id="7eBFChAgeeu" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="2OqwBi" id="7eBFChAgeev" role="37wK5m">
                     <node concept="2GrUjf" id="7eBFChAgeew" role="2Oq$k0">
                       <ref role="2Gs0qQ" node="7eBFChAgeem" resolve="portInspection" />
@@ -1773,7 +1773,7 @@
                   </node>
                 </node>
                 <node concept="liA8E" id="7eBFChAgPw7" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="2OqwBi" id="7eBFChAgiw8" role="37wK5m">
                     <node concept="2GrUjf" id="7eBFChAgiw9" role="2Oq$k0">
                       <ref role="2Gs0qQ" node="7eBFChAgivZ" resolve="componentInspection" />
@@ -1807,7 +1807,7 @@
             <node concept="3clFbF" id="7eBFChAgiwm" role="3cqZAp">
               <node concept="2OqwBi" id="7eBFChAgiwn" role="3clFbG">
                 <node concept="liA8E" id="7eBFChAgiwp" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~HashMap.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="2OqwBi" id="7eBFChAgiwq" role="37wK5m">
                     <node concept="2GrUjf" id="7eBFChAgiwr" role="2Oq$k0">
                       <ref role="2Gs0qQ" node="7eBFChAgiwh" resolve="portInspection" />
@@ -1877,7 +1877,7 @@
                 <ref role="3cqZAo" node="1R4IoyQPJCV" resolve="myControllerProvider" />
               </node>
               <node concept="liA8E" id="1R4IoyRfVV1" role="2OqNvi">
-                <ref role="37wK5l" to="82uw:~Function.apply(java.lang.Object):java.lang.Object" resolve="apply" />
+                <ref role="37wK5l" to="82uw:~Function.apply(java.lang.Object)" resolve="apply" />
                 <node concept="37vLTw" id="1R4IoyRfVW5" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRfVVX" resolve="key" />
                 </node>
@@ -1923,7 +1923,7 @@
               </node>
             </node>
             <node concept="liA8E" id="1R4IoyRfVVW" role="2OqNvi">
-              <ref role="37wK5l" to="g51k:~TextLine.relayout():void" resolve="relayout" />
+              <ref role="37wK5l" to="g51k:~TextLine.relayout()" resolve="relayout" />
             </node>
           </node>
         </node>
@@ -1948,7 +1948,7 @@
                   </node>
                 </node>
                 <node concept="liA8E" id="1R4IoyRfVVn" role="2OqNvi">
-                  <ref role="37wK5l" to="g51k:~TextLine.getHeight():int" resolve="getHeight" />
+                  <ref role="37wK5l" to="g51k:~TextLine.getHeight()" resolve="getHeight" />
                 </node>
               </node>
               <node concept="3cpWs3" id="1R4IoyRfVVo" role="3uHU7B">
@@ -1994,7 +1994,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="1R4IoyRfVVE" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                    <ref role="37wK5l" to="g51k:~TextLine.getWidth()" resolve="getWidth" />
                   </node>
                 </node>
               </node>
@@ -2079,7 +2079,7 @@
                 <ref role="3cqZAo" node="1R4IoyQPJCV" resolve="myControllerProvider" />
               </node>
               <node concept="liA8E" id="1R4IoyRn$Z5" role="2OqNvi">
-                <ref role="37wK5l" to="82uw:~Function.apply(java.lang.Object):java.lang.Object" resolve="apply" />
+                <ref role="37wK5l" to="82uw:~Function.apply(java.lang.Object)" resolve="apply" />
                 <node concept="37vLTw" id="1R4IoyRn$Z6" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRn$YV" resolve="component" />
                 </node>
@@ -2128,7 +2128,7 @@
               </node>
             </node>
             <node concept="liA8E" id="1R4IoyRn_02" role="2OqNvi">
-              <ref role="37wK5l" to="g51k:~TextLine.relayout():void" resolve="relayout" />
+              <ref role="37wK5l" to="g51k:~TextLine.relayout()" resolve="relayout" />
             </node>
           </node>
         </node>
@@ -2170,7 +2170,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="1R4IoyRn$Zu" role="2OqNvi">
-                    <ref role="37wK5l" to="g51k:~TextLine.getHeight():int" resolve="getHeight" />
+                    <ref role="37wK5l" to="g51k:~TextLine.getHeight()" resolve="getHeight" />
                   </node>
                 </node>
               </node>
@@ -2217,7 +2217,7 @@
                             </node>
                           </node>
                           <node concept="liA8E" id="7eBFChA8RIj" role="2OqNvi">
-                            <ref role="37wK5l" to="g51k:~TextLine.getWidth():int" resolve="getWidth" />
+                            <ref role="37wK5l" to="g51k:~TextLine.getWidth()" resolve="getWidth" />
                           </node>
                         </node>
                         <node concept="37vLTw" id="7eBFChA8RIk" role="3uHU7w">
@@ -2518,7 +2518,7 @@
                       <ref role="3cqZAo" node="1R4IoyRqKPa" resolve="INSTANCES" />
                     </node>
                     <node concept="liA8E" id="7eBFChAktTK" role="2OqNvi">
-                      <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                      <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
                       <node concept="37vLTw" id="7eBFChAkuer" role="37wK5m">
                         <ref role="3cqZAo" node="7eBFChAkeVs" resolve="ec" />
                       </node>
@@ -2557,7 +2557,7 @@
                         <ref role="3cqZAo" node="1R4IoyRqKPa" resolve="INSTANCES" />
                       </node>
                       <node concept="liA8E" id="7eBFChAkRdc" role="2OqNvi">
-                        <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object):java.lang.Object" resolve="remove" />
+                        <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object)" resolve="remove" />
                         <node concept="37vLTw" id="7eBFChAkRdd" role="37wK5m">
                           <ref role="3cqZAo" node="7eBFChAkeV_" resolve="ec" />
                         </node>
@@ -2579,7 +2579,7 @@
                       </node>
                     </node>
                     <node concept="liA8E" id="7eBFChAlH5Y" role="2OqNvi">
-                      <ref role="37wK5l" to="33ny:~Map.values():java.util.Collection" resolve="values" />
+                      <ref role="37wK5l" to="33ny:~Map.values()" resolve="values" />
                     </node>
                   </node>
                   <node concept="3clFbS" id="7eBFChAkSID" role="2LFqv$">
@@ -2612,7 +2612,7 @@
               <ref role="3cqZAo" node="1R4IoyRqKPa" resolve="INSTANCES" />
             </node>
             <node concept="liA8E" id="7eBFChAmsKp" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+              <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
               <node concept="37vLTw" id="7eBFChAmsKq" role="37wK5m">
                 <ref role="3cqZAo" node="7eBFChAmsKi" resolve="ec" />
               </node>
@@ -2717,7 +2717,7 @@
               <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
             </node>
             <node concept="liA8E" id="1R4IoyRpFo2" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+              <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
               <node concept="37vLTw" id="1R4IoyRpFCa" role="37wK5m">
                 <ref role="3cqZAo" node="1R4IoyRpBmW" resolve="network" />
               </node>
@@ -2738,7 +2738,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
               </node>
               <node concept="liA8E" id="7eBFChAlICk" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="37vLTw" id="7eBFChAlICl" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBmW" resolve="network" />
                 </node>
@@ -2797,7 +2797,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
               </node>
               <node concept="liA8E" id="3nGtyfvSEsN" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object):java.lang.Object" resolve="remove" />
+                <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object)" resolve="remove" />
                 <node concept="37vLTw" id="3nGtyfvSEsO" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBn8" resolve="network" />
                 </node>
@@ -2816,7 +2816,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
               </node>
               <node concept="liA8E" id="1R4IoyRq_Ok" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="37vLTw" id="1R4IoyRq_Ol" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBn8" resolve="network" />
                 </node>
@@ -2889,7 +2889,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
               </node>
               <node concept="liA8E" id="1R4IoyRpUI$" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="37vLTw" id="1R4IoyRpUI_" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBnh" resolve="network" />
                 </node>
@@ -2916,7 +2916,7 @@
                     <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
                   </node>
                   <node concept="liA8E" id="1R4IoyRqjqA" role="2OqNvi">
-                    <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                    <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                     <node concept="37vLTw" id="1R4IoyRqjqB" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyRpBnh" resolve="network" />
                     </node>
@@ -2983,7 +2983,7 @@
                   <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
                 </node>
                 <node concept="liA8E" id="1R4IoyRqxKQ" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object):java.lang.Object" resolve="put" />
+                  <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
                   <node concept="37vLTw" id="1R4IoyRqypH" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyRpBnh" resolve="network" />
                   </node>
@@ -3034,7 +3034,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
               </node>
               <node concept="liA8E" id="1R4IoyRpL$2" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="37vLTw" id="1R4IoyRpL$3" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBnt" resolve="network" />
                 </node>
@@ -3053,7 +3053,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
               </node>
               <node concept="liA8E" id="1R4IoyRqaL9" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                 <node concept="37vLTw" id="1R4IoyRqaLa" role="37wK5m">
                   <ref role="3cqZAo" node="1R4IoyRpBnt" resolve="network" />
                 </node>
@@ -3089,7 +3089,7 @@
                   <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
                 </node>
                 <node concept="liA8E" id="1R4IoyRqiS$" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object):java.lang.Object" resolve="remove" />
+                  <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object)" resolve="remove" />
                   <node concept="37vLTw" id="1R4IoyRqj9r" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyRpBnt" resolve="network" />
                   </node>
@@ -3225,7 +3225,7 @@
                   <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
                 </node>
                 <node concept="liA8E" id="7eBFChAlTPx" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAlTPy" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
                   </node>
@@ -3299,7 +3299,7 @@
                   <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
                 </node>
                 <node concept="liA8E" id="7eBFChAm0BL" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAm0BM" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
                   </node>
@@ -3355,7 +3355,7 @@
                   <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
                 </node>
                 <node concept="liA8E" id="7eBFChAm4bJ" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object):java.lang.Object" resolve="get" />
+                  <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAm4bK" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
                   </node>
@@ -3398,7 +3398,7 @@
                 <ref role="3cqZAo" node="1R4IoyRq0Cy" resolve="myDisposer" />
               </node>
               <node concept="liA8E" id="1R4IoyRq3Ut" role="2OqNvi">
-                <ref role="37wK5l" to="wyt6:~Runnable.run():void" resolve="run" />
+                <ref role="37wK5l" to="wyt6:~Runnable.run()" resolve="run" />
               </node>
             </node>
           </node>

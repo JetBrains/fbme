@@ -1261,7 +1261,7 @@
                 <ref role="3cqZAo" node="2JGKyjiIuRX" resolve="context" />
               </node>
               <node concept="liA8E" id="2JGKyjiIK$4" role="2OqNvi">
-                <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
+                <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent()" resolve="getEditorComponent" />
               </node>
             </node>
             <node concept="37vLTw" id="2JGKyjiIFqs" role="37vLTJ">
@@ -1282,11 +1282,11 @@
                   <ref role="3cqZAo" node="2JGKyjiH7L2" resolve="myComponent" />
                 </node>
                 <node concept="liA8E" id="2JGKyjiI$tp" role="2OqNvi">
-                  <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater():jetbrains.mps.openapi.editor.update.Updater" resolve="getUpdater" />
+                  <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater()" resolve="getUpdater" />
                 </node>
               </node>
               <node concept="liA8E" id="2JGKyjiI$tq" role="2OqNvi">
-                <ref role="37wK5l" to="22ra:~Updater.getExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference):java.lang.String[]" resolve="getExplicitEditorHintsForNode" />
+                <ref role="37wK5l" to="22ra:~Updater.getExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference)" resolve="getExplicitEditorHintsForNode" />
                 <node concept="2OqwBi" id="2JGKyjiI$tr" role="37wK5m">
                   <node concept="2JrnkZ" id="2JGKyjiI$ts" role="2Oq$k0">
                     <node concept="37vLTw" id="2JGKyjiILNb" role="2JrQYb">
@@ -1294,7 +1294,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="2JGKyjiI$tu" role="2OqNvi">
-                    <ref role="37wK5l" to="mhbf:~SNode.getReference():org.jetbrains.mps.openapi.model.SNodeReference" resolve="getReference" />
+                    <ref role="37wK5l" to="mhbf:~SNode.getReference()" resolve="getReference" />
                   </node>
                 </node>
               </node>
@@ -1352,11 +1352,11 @@
                     <ref role="3cqZAo" node="2JGKyjiH7L2" resolve="myComponent" />
                   </node>
                   <node concept="liA8E" id="2JGKyjiINCq" role="2OqNvi">
-                    <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater():jetbrains.mps.openapi.editor.update.Updater" resolve="getUpdater" />
+                    <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater()" resolve="getUpdater" />
                   </node>
                 </node>
                 <node concept="liA8E" id="2JGKyjiINCr" role="2OqNvi">
-                  <ref role="37wK5l" to="22ra:~Updater.removeExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference,java.lang.String...):void" resolve="removeExplicitEditorHintsForNode" />
+                  <ref role="37wK5l" to="22ra:~Updater.removeExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference,java.lang.String...)" resolve="removeExplicitEditorHintsForNode" />
                   <node concept="2OqwBi" id="2JGKyjiINCs" role="37wK5m">
                     <node concept="2JrnkZ" id="2JGKyjiINCt" role="2Oq$k0">
                       <node concept="37vLTw" id="2JGKyjiINCu" role="2JrQYb">
@@ -1364,7 +1364,7 @@
                       </node>
                     </node>
                     <node concept="liA8E" id="2JGKyjiINCv" role="2OqNvi">
-                      <ref role="37wK5l" to="mhbf:~SNode.getReference():org.jetbrains.mps.openapi.model.SNodeReference" resolve="getReference" />
+                      <ref role="37wK5l" to="mhbf:~SNode.getReference()" resolve="getReference" />
                     </node>
                   </node>
                   <node concept="37vLTw" id="2JGKyjiINCw" role="37wK5m">
@@ -1386,11 +1386,11 @@
                       <ref role="3cqZAo" node="2JGKyjiH7L2" resolve="myComponent" />
                     </node>
                     <node concept="liA8E" id="2JGKyjiICIa" role="2OqNvi">
-                      <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater():jetbrains.mps.openapi.editor.update.Updater" resolve="getUpdater" />
+                      <ref role="37wK5l" to="cj4x:~EditorComponent.getUpdater()" resolve="getUpdater" />
                     </node>
                   </node>
                   <node concept="liA8E" id="2JGKyjiICIb" role="2OqNvi">
-                    <ref role="37wK5l" to="22ra:~Updater.addExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference,java.lang.String...):void" resolve="addExplicitEditorHintsForNode" />
+                    <ref role="37wK5l" to="22ra:~Updater.addExplicitEditorHintsForNode(org.jetbrains.mps.openapi.model.SNodeReference,java.lang.String...)" resolve="addExplicitEditorHintsForNode" />
                     <node concept="2OqwBi" id="2JGKyjiICIc" role="37wK5m">
                       <node concept="2JrnkZ" id="2JGKyjiICId" role="2Oq$k0">
                         <node concept="37vLTw" id="2JGKyjiILE6" role="2JrQYb">
@@ -1398,7 +1398,7 @@
                         </node>
                       </node>
                       <node concept="liA8E" id="2JGKyjiICIf" role="2OqNvi">
-                        <ref role="37wK5l" to="mhbf:~SNode.getReference():org.jetbrains.mps.openapi.model.SNodeReference" resolve="getReference" />
+                        <ref role="37wK5l" to="mhbf:~SNode.getReference()" resolve="getReference" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="2JGKyjiIMbp" role="37wK5m">
@@ -1416,7 +1416,7 @@
               <ref role="3cqZAo" node="2JGKyjiH7L2" resolve="myComponent" />
             </node>
             <node concept="liA8E" id="2JGKyjiICIk" role="2OqNvi">
-              <ref role="37wK5l" to="cj4x:~EditorComponent.rebuildEditorContent():void" resolve="rebuildEditorContent" />
+              <ref role="37wK5l" to="cj4x:~EditorComponent.rebuildEditorContent()" resolve="rebuildEditorContent" />
             </node>
           </node>
         </node>
@@ -3466,7 +3466,7 @@
             <node concept="3clFbF" id="uLhTRRKcWA" role="3cqZAp">
               <node concept="2OqwBi" id="uLhTRRKfr0" role="3clFbG">
                 <node concept="liA8E" id="uLhTRRKfYD" role="2OqNvi">
-                  <ref role="37wK5l" to="mhbf:~SNode.setReference(org.jetbrains.mps.openapi.language.SReferenceLink,org.jetbrains.mps.openapi.model.SReference):void" resolve="setReference" />
+                  <ref role="37wK5l" to="mhbf:~SNode.setReference(org.jetbrains.mps.openapi.language.SReferenceLink,org.jetbrains.mps.openapi.model.SReference)" resolve="setReference" />
                   <node concept="359W_D" id="uLhTRRKrwu" role="37wK5m">
                     <ref role="359W_E" to="xiqq:uLhTRRq_ww" resolve="ResourceReference" />
                     <ref role="359W_F" to="xiqq:uLhTRRq_wz" resolve="resource" />

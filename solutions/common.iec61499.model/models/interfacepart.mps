@@ -737,7 +737,7 @@
       <node concept="3clFbS" id="1R4IoyQJBFJ" role="3clF47">
         <node concept="3clFbF" id="1R4IoyQJHX5" role="3cqZAp">
           <node concept="2YIFZM" id="1R4IoyQJHYS" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~Collections.emptyList():java.util.List" resolve="emptyList" />
+            <ref role="37wK5l" to="33ny:~Collections.emptyList()" resolve="emptyList" />
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
           </node>
         </node>
@@ -759,7 +759,7 @@
         <node concept="3clFbF" id="1R4IoyQJI2Y" role="3cqZAp">
           <node concept="2YIFZM" id="1R4IoyQJI2Z" role="3clFbG">
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
-            <ref role="37wK5l" to="33ny:~Collections.emptyList():java.util.List" resolve="emptyList" />
+            <ref role="37wK5l" to="33ny:~Collections.emptyList()" resolve="emptyList" />
           </node>
         </node>
       </node>
@@ -1008,7 +1008,7 @@
       <node concept="3clFbS" id="1R4IoyQJMN6" role="3clF47">
         <node concept="3clFbF" id="1R4IoyQJMN7" role="3cqZAp">
           <node concept="2YIFZM" id="1R4IoyQJMN8" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~Collections.emptyList():java.util.List" resolve="emptyList" />
+            <ref role="37wK5l" to="33ny:~Collections.emptyList()" resolve="emptyList" />
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
             <node concept="3uibUv" id="1R4IoyQJOSM" role="3PaCim">
               <ref role="3uigEE" node="1HEL0zWehtJ" resolve="FBPortDescriptor" />
@@ -1033,7 +1033,7 @@
         <node concept="3clFbF" id="1R4IoyQJMNf" role="3cqZAp">
           <node concept="2YIFZM" id="1R4IoyQJMNg" role="3clFbG">
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
-            <ref role="37wK5l" to="33ny:~Collections.emptyList():java.util.List" resolve="emptyList" />
+            <ref role="37wK5l" to="33ny:~Collections.emptyList()" resolve="emptyList" />
             <node concept="3uibUv" id="1R4IoyQJP6x" role="3PaCim">
               <ref role="3uigEE" node="1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>

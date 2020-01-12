@@ -529,7 +529,7 @@
                 <ref role="3cqZAo" node="7qPnRGGm8mJ" resolve="myView" />
               </node>
               <node concept="liA8E" id="5FPxgJnrx2o" role="2OqNvi">
-                <ref role="37wK5l" to="wyt6:~Object.equals(java.lang.Object):boolean" resolve="equals" />
+                <ref role="37wK5l" to="wyt6:~Object.equals(java.lang.Object)" resolve="equals" />
                 <node concept="2OqwBi" id="5FPxgJnrxMA" role="37wK5m">
                   <node concept="37vLTw" id="5FPxgJnrxmi" role="2Oq$k0">
                     <ref role="3cqZAo" node="7qPnRGGbFTg" resolve="that" />
@@ -635,7 +635,7 @@
                   <ref role="3cqZAo" node="7qPnRGGm8mJ" resolve="myView" />
                 </node>
                 <node concept="liA8E" id="7qPnRGGmdsD" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Object.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~Object.hashCode()" resolve="hashCode" />
                 </node>
               </node>
               <node concept="17qRlL" id="7qPnRGGmahY" role="3uHU7B">
@@ -682,7 +682,7 @@
               </node>
               <node concept="2OqwBi" id="7qPnRGGbFU_" role="3uHU7w">
                 <node concept="liA8E" id="7qPnRGGbFUD" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Enum.hashCode():int" resolve="hashCode" />
+                  <ref role="37wK5l" to="wyt6:~Enum.hashCode()" resolve="hashCode" />
                 </node>
                 <node concept="37vLTw" id="7qPnRGGbFUs" role="2Oq$k0">
                   <ref role="3cqZAo" node="7qPnRGGbFBW" resolve="myKind" />
@@ -716,7 +716,7 @@
                   <ref role="3cqZAo" node="7qPnRGGmjBS" resolve="result" />
                 </node>
                 <node concept="liA8E" id="7qPnRGGmjC7" role="2OqNvi">
-                  <ref role="37wK5l" to="33ny:~Set.add(java.lang.Object):boolean" resolve="add" />
+                  <ref role="37wK5l" to="33ny:~Set.add(java.lang.Object)" resolve="add" />
                   <node concept="2ShNRf" id="7qPnRGGmjC8" role="37wK5m">
                     <node concept="1pGfFk" id="7qPnRGGmjC9" role="2ShVmc">
                       <ref role="37wK5l" node="7qPnRGGbPYP" resolve="FBInstancePortIdentity" />
@@ -991,7 +991,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="7qPnRGGmrwi" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
             </node>
             <node concept="Rm8GO" id="7qPnRGGmrwj" role="37wK5m">
@@ -1019,7 +1019,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="7qPnRGGmshP" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
             </node>
             <node concept="Rm8GO" id="7qPnRGGmshQ" role="37wK5m">
@@ -1041,7 +1041,7 @@
             <node concept="Xjq3P" id="7qPnRGGmopY" role="37wK5m" />
             <node concept="2OqwBi" id="7qPnRGGmnDo" role="37wK5m">
               <node concept="liA8E" id="7qPnRGGmnDs" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
               <node concept="2OqwBi" id="1R4IoyQwslF" role="2Oq$k0">
                 <node concept="37vLTw" id="1R4IoyQwssl" role="2Oq$k0">
@@ -1077,7 +1077,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="7qPnRGGmrRZ" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
             </node>
             <node concept="Rm8GO" id="7qPnRGGmrS0" role="37wK5m">
@@ -1099,7 +1099,7 @@
             <node concept="Xjq3P" id="6LU90BNTcOA" role="37wK5m" />
             <node concept="2OqwBi" id="6LU90BNTcOB" role="37wK5m">
               <node concept="liA8E" id="6LU90BNTcOC" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
               <node concept="2OqwBi" id="1R4IoyQwsIv" role="2Oq$k0">
                 <node concept="37vLTw" id="1R4IoyQwsIO" role="2Oq$k0">
@@ -1135,7 +1135,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="6LU90BNTeDi" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~List.size():int" resolve="size" />
+                <ref role="37wK5l" to="33ny:~List.size()" resolve="size" />
               </node>
             </node>
             <node concept="Rm8GO" id="6LU90BNTgQT" role="37wK5m">
@@ -1212,7 +1212,7 @@
       <node concept="3clFbS" id="6tmlia_XOcV" role="3clF47">
         <node concept="3clFbF" id="6tmlia_XOoV" role="3cqZAp">
           <node concept="2YIFZM" id="4O0ojQq1b_v" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object):java.util.Set" resolve="singleton" />
+            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object)" resolve="singleton" />
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
             <node concept="3uibUv" id="4O0ojQq1bY2" role="3PaCim">
               <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
@@ -1693,7 +1693,7 @@
       <node concept="3clFbS" id="2syzu7qIIs4" role="3clF47">
         <node concept="3clFbF" id="2syzu7qIIs5" role="3cqZAp">
           <node concept="2YIFZM" id="2syzu7qIIs6" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object):java.util.Set" resolve="singleton" />
+            <ref role="37wK5l" to="33ny:~Collections.singleton(java.lang.Object)" resolve="singleton" />
             <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
             <node concept="3uibUv" id="2syzu7qIIs7" role="3PaCim">
               <ref role="3uigEE" node="5FPxgJnz8uH" resolve="FBPortIdentity" />
