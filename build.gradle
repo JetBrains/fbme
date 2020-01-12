@@ -1,5 +1,4 @@
-ext.mpsMajor = "2018.3"
-ext.mpsMinor = "7"
+ext.mpsMajor = "2019.3"
 
 buildscript {
     repositories {
@@ -31,7 +30,7 @@ configurations {
 }
 
 dependencies {
-    mps "com.jetbrains:MPS:$mpsMajor.${mpsMinor}@zip"
+    mps "com.jetbrains:MPS:$mpsMajor@zip"
     ant_lib "org.apache.ant:ant-junit:1.10.1"
 }
 
