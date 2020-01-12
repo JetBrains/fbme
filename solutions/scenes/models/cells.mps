@@ -2,10 +2,10 @@
 <model ref="r:c260e783-fa83-4eab-8183-e5c937092355(scenes.cells)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="8" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging" version="0" />
-    <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="1" />
+    <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="2" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
   </languages>
   <imports>
@@ -185,11 +185,8 @@
       <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
         <child id="1178549979242" name="visibility" index="1B3o_S" />
       </concept>
-      <concept id="6329021646629104957" name="jetbrains.mps.baseLanguage.structure.TextCommentPart" flags="nn" index="3SKdUq">
-        <property id="6329021646629104958" name="text" index="3SKdUp" />
-      </concept>
       <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
-        <child id="6329021646629175155" name="commentPart" index="3SKWNk" />
+        <child id="1350122676458893092" name="text" index="3ndbpf" />
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
@@ -224,6 +221,14 @@
       </concept>
       <concept id="4452961908202556907" name="jetbrains.mps.lang.core.structure.BaseCommentAttribute" flags="ng" index="1X3_iC">
         <child id="3078666699043039389" name="commentedNode" index="8Wnug" />
+      </concept>
+    </language>
+    <language id="c7fb639f-be78-4307-89b0-b5959c3fa8c8" name="jetbrains.mps.lang.text">
+      <concept id="155656958578482948" name="jetbrains.mps.lang.text.structure.Word" flags="ng" index="3oM_SD">
+        <property id="155656958578482949" name="value" index="3oM_SC" />
+      </concept>
+      <concept id="2535923850359271782" name="jetbrains.mps.lang.text.structure.Line" flags="ng" index="1PaTwC">
+        <child id="2535923850359271783" name="elements" index="1PaTwD" />
       </concept>
     </language>
     <language id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections">
@@ -447,7 +452,7 @@
           <property role="3V$3am" value="statement" />
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="2xdQw9" id="4JFQCPioE1B" role="8Wnug">
-            <property role="2xdLsb" value="info" />
+            <property role="2xdLsb" value="h1akgim/info" />
             <node concept="3cpWs3" id="4JFQCPioFxE" role="9lYJi">
               <node concept="Xjq3P" id="4JFQCPioN6Z" role="3uHU7w" />
               <node concept="Xl_RD" id="4JFQCPioE1D" role="3uHU7B">
@@ -483,8 +488,28 @@
           </node>
         </node>
         <node concept="3SKdUt" id="17nGqbJeX7Q" role="3cqZAp">
-          <node concept="3SKdUq" id="17nGqbJeX7S" role="3SKWNk">
-            <property role="3SKdUp" value="TODO is registration via awt more appropriate?" />
+          <node concept="1PaTwC" id="3D$ZgG8vrBM" role="3ndbpf">
+            <node concept="3oM_SD" id="3D$ZgG8vrBN" role="1PaTwD">
+              <property role="3oM_SC" value="TODO" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBO" role="1PaTwD">
+              <property role="3oM_SC" value="is" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBP" role="1PaTwD">
+              <property role="3oM_SC" value="registration" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBQ" role="1PaTwD">
+              <property role="3oM_SC" value="via" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBR" role="1PaTwD">
+              <property role="3oM_SC" value="awt" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBS" role="1PaTwD">
+              <property role="3oM_SC" value="more" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBT" role="1PaTwD">
+              <property role="3oM_SC" value="appropriate?" />
+            </node>
           </node>
         </node>
         <node concept="3clFbF" id="1CY1mmBeL6B" role="3cqZAp">
@@ -1743,8 +1768,16 @@
       </node>
       <node concept="3clFbS" id="38k27IRrZPr" role="3clF47">
         <node concept="3SKdUt" id="38k27IRs8CZ" role="3cqZAp">
-          <node concept="3SKdUq" id="38k27IRs8D0" role="3SKWNk">
-            <property role="3SKdUp" value="painted in paintContent(...)" />
+          <node concept="1PaTwC" id="3D$ZgG8vrBU" role="3ndbpf">
+            <node concept="3oM_SD" id="3D$ZgG8vrBV" role="1PaTwD">
+              <property role="3oM_SC" value="painted" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBW" role="1PaTwD">
+              <property role="3oM_SC" value="in" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrBX" role="1PaTwD">
+              <property role="3oM_SC" value="paintContent(...)" />
+            </node>
           </node>
         </node>
       </node>
@@ -1970,7 +2003,7 @@
               <property role="3V$3am" value="statement" />
               <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
               <node concept="2xdQw9" id="4JFQCPioNnM" role="8Wnug">
-                <property role="2xdLsb" value="info" />
+                <property role="2xdLsb" value="h1akgim/info" />
                 <node concept="3cpWs3" id="4JFQCPioNnN" role="9lYJi">
                   <node concept="Xjq3P" id="4JFQCPioNnO" role="3uHU7w" />
                   <node concept="Xl_RD" id="4JFQCPioNnP" role="3uHU7B">
@@ -2104,7 +2137,7 @@
               <property role="3V$3am" value="statement" />
               <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
               <node concept="2xdQw9" id="4JFQCPioQE2" role="8Wnug">
-                <property role="2xdLsb" value="info" />
+                <property role="2xdLsb" value="h1akgim/info" />
                 <node concept="3cpWs3" id="4JFQCPioQE3" role="9lYJi">
                   <node concept="Xjq3P" id="4JFQCPioQE4" role="3uHU7w" />
                   <node concept="Xl_RD" id="4JFQCPioQE5" role="3uHU7B">
@@ -2497,8 +2530,13 @@
                         <node concept="1bVj0M" id="3vyG44ADIKQ" role="37wK5m">
                           <node concept="3clFbS" id="3vyG44ADIKR" role="1bW5cS">
                             <node concept="3SKdUt" id="3vyG44ADIKS" role="3cqZAp">
-                              <node concept="3SKdUq" id="3vyG44ADIKT" role="3SKWNk">
-                                <property role="3SKdUp" value="do noting" />
+                              <node concept="1PaTwC" id="3D$ZgG8vrBY" role="3ndbpf">
+                                <node concept="3oM_SD" id="3D$ZgG8vrBZ" role="1PaTwD">
+                                  <property role="3oM_SC" value="do" />
+                                </node>
+                                <node concept="3oM_SD" id="3D$ZgG8vrC0" role="1PaTwD">
+                                  <property role="3oM_SC" value="noting" />
+                                </node>
                               </node>
                             </node>
                           </node>
@@ -3713,8 +3751,13 @@
               </node>
               <node concept="3clFbS" id="7qPnRGFsmia" role="3clF47">
                 <node concept="3SKdUt" id="7qPnRGFsp53" role="3cqZAp">
-                  <node concept="3SKdUq" id="7qPnRGFsp54" role="3SKWNk">
-                    <property role="3SKdUp" value="do nothing" />
+                  <node concept="1PaTwC" id="3D$ZgG8vrC1" role="3ndbpf">
+                    <node concept="3oM_SD" id="3D$ZgG8vrC2" role="1PaTwD">
+                      <property role="3oM_SC" value="do" />
+                    </node>
+                    <node concept="3oM_SD" id="3D$ZgG8vrC3" role="1PaTwD">
+                      <property role="3oM_SC" value="nothing" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -3736,8 +3779,13 @@
               </node>
               <node concept="3clFbS" id="7qPnRGFsmij" role="3clF47">
                 <node concept="3SKdUt" id="7qPnRGFspbF" role="3cqZAp">
-                  <node concept="3SKdUq" id="7qPnRGFspbG" role="3SKWNk">
-                    <property role="3SKdUp" value="do nothing" />
+                  <node concept="1PaTwC" id="3D$ZgG8vrC4" role="3ndbpf">
+                    <node concept="3oM_SD" id="3D$ZgG8vrC5" role="1PaTwD">
+                      <property role="3oM_SC" value="do" />
+                    </node>
+                    <node concept="3oM_SD" id="3D$ZgG8vrC6" role="1PaTwD">
+                      <property role="3oM_SC" value="nothing" />
+                    </node>
                   </node>
                 </node>
                 <node concept="3clFbF" id="7qPnRGFspiz" role="3cqZAp">
@@ -4494,8 +4542,13 @@
       </node>
       <node concept="3clFbS" id="3DiEZ8TFjDI" role="3clF47">
         <node concept="3SKdUt" id="3DiEZ8TFkfP" role="3cqZAp">
-          <node concept="3SKdUq" id="3DiEZ8TFkfQ" role="3SKWNk">
-            <property role="3SKdUp" value="do noting" />
+          <node concept="1PaTwC" id="3D$ZgG8vrC7" role="3ndbpf">
+            <node concept="3oM_SD" id="3D$ZgG8vrC8" role="1PaTwD">
+              <property role="3oM_SC" value="do" />
+            </node>
+            <node concept="3oM_SD" id="3D$ZgG8vrC9" role="1PaTwD">
+              <property role="3oM_SC" value="noting" />
+            </node>
           </node>
         </node>
       </node>

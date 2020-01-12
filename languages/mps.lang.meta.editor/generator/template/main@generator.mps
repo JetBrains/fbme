@@ -15,6 +15,7 @@
     <import index="tpc3" ref="r:00000000-0000-4000-0000-011c8959029f(jetbrains.mps.lang.editor.generator.baseLanguage.template.main@generator)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
+    <import index="9hsz" ref="r:16d53f5e-7835-4b72-9581-fafeae0db9b1(jetbrains.mps.lang.editor.enumMigration)" />
     <import index="tpcn" ref="r:00000000-0000-4000-0000-011c8959028b(jetbrains.mps.lang.structure.behavior)" implicit="true" />
     <import index="tpce" ref="r:00000000-0000-4000-0000-011c89590292(jetbrains.mps.lang.structure.structure)" implicit="true" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
@@ -46,9 +47,7 @@
         <child id="8329266386016685951" name="editorContext" index="2xHN3q" />
         <child id="8979250711607012232" name="cellSelector" index="3a7HXU" />
       </concept>
-      <concept id="3547227755871693971" name="jetbrains.mps.lang.editor.structure.PredefinedSelector" flags="ng" index="2B6iha">
-        <property id="2162403111523065396" name="cellId" index="1lyBwo" />
-      </concept>
+      <concept id="3547227755871693971" name="jetbrains.mps.lang.editor.structure.PredefinedSelector" flags="ng" index="2B6iha" />
       <concept id="1638911550608610798" name="jetbrains.mps.lang.editor.structure.QueryFunction_TransformationMenu_Execute" flags="ig" index="IWg2L" />
       <concept id="1638911550608610278" name="jetbrains.mps.lang.editor.structure.TransformationMenuPart_Action" flags="ng" index="IWgqT">
         <child id="6202297022026447496" name="canExecuteFunction" index="2jiSrf" />
@@ -370,6 +369,7 @@
       <concept id="3364660638048049750" name="jetbrains.mps.lang.core.structure.PropertyAttribute" flags="ng" index="A9Btg">
         <property id="1757699476691236117" name="name_DebugInfo" index="2qtEX9" />
         <property id="1341860900487648621" name="propertyId" index="P4ACc" />
+        <property id="1189424455254633007" name="enumUsageMigrated" index="1I7cki" />
       </concept>
       <concept id="3364660638048049745" name="jetbrains.mps.lang.core.structure.LinkAttribute" flags="ng" index="A9Btn">
         <property id="1757699476691236116" name="role_DebugInfo" index="2qtEX8" />
@@ -609,12 +609,13 @@
                   <node concept="17Uvod" id="4s7KBSjs$2R" role="lGtFl">
                     <property role="2qtEX9" value="separatorLayoutConstraint" />
                     <property role="P4ACc" value="18bc6592-03a6-4e29-a83a-7ff23bde13ba/1140524381322/1156252885376" />
+                    <property role="1I7cki" value="true" />
                     <node concept="3zFVjK" id="4s7KBSjs$2U" role="3zH0cK">
                       <node concept="3clFbS" id="4s7KBSjs$2V" role="2VODD2">
                         <node concept="3clFbF" id="4s7KBSjs$31" role="3cqZAp">
                           <node concept="2OqwBi" id="4s7KBSjs$2W" role="3clFbG">
                             <node concept="3TrcHB" id="4s7KBSjs$2Z" role="2OqNvi">
-                              <ref role="3TsBF5" to="tpc2:gOQ2I60" resolve="separatorLayoutConstraint" />
+                              <ref role="3TsBF5" to="tpc2:3Ftr4R6BH0D" resolve="separatorLayoutConstraint" />
                             </node>
                             <node concept="30H73N" id="4s7KBSjs$30" role="2Oq$k0" />
                           </node>
@@ -1196,9 +1197,7 @@
                 </node>
                 <node concept="1OKiuA" id="4s7KBSjutZC" role="2OqNvi">
                   <node concept="1Q80Hx" id="4s7KBSjuu3Q" role="lBI5i" />
-                  <node concept="2B6iha" id="4s7KBSjuu4s" role="lGT1i">
-                    <property role="1lyBwo" value="first" />
-                  </node>
+                  <node concept="2B6iha" id="4s7KBSjuu4s" role="lGT1i" />
                 </node>
               </node>
             </node>
@@ -1320,7 +1319,7 @@
     <property role="TrG5h" value="map_CellModel_BorderedRefNodeList_DeleteAll" />
     <property role="3GE5qa" value="bordered" />
     <node concept="1hA7zw" id="4s7KBSjvPKh" role="1h_SK8">
-      <property role="1hAc7j" value="delete_action_id" />
+      <property role="1hAc7j" value="g_hAxAO/delete_action_id" />
       <node concept="1hAIg9" id="4s7KBSjvPKi" role="1hA7z_">
         <node concept="3clFbS" id="4s7KBSjvPKj" role="2VODD2">
           <node concept="3clFbJ" id="4s7KBSjvSNh" role="3cqZAp">

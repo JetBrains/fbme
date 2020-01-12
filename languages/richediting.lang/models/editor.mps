@@ -2,13 +2,13 @@
 <model ref="r:d018f155-a8e1-4632-87ac-0cbc89a1f1c2(richediting.lang.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="12" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="8" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="13" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
-    <use id="3a13115c-633c-4c5c-bbcc-75c4219e9555" name="jetbrains.mps.lang.quotation" version="1" />
-    <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="1" />
+    <use id="3a13115c-633c-4c5c-bbcc-75c4219e9555" name="jetbrains.mps.lang.quotation" version="3" />
+    <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="2" />
     <use id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions" version="4" />
     <use id="8dfbe92d-d233-4cc1-8ddb-a2863fd64843" name="mps.lang.meta.editor" version="0" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
@@ -342,9 +342,7 @@
     <language id="3a13115c-633c-4c5c-bbcc-75c4219e9555" name="jetbrains.mps.lang.quotation">
       <concept id="5455284157993911077" name="jetbrains.mps.lang.quotation.structure.NodeBuilderInitProperty" flags="ng" index="2pJxcG">
         <reference id="5455284157993911078" name="property" index="2pJxcJ" />
-      </concept>
-      <concept id="5455284157993911097" name="jetbrains.mps.lang.quotation.structure.NodeBuilderInitPart" flags="ng" index="2pJxcK">
-        <child id="5455284157993911094" name="expression" index="2pJxcZ" />
+        <child id="1595412875168045201" name="initValue" index="28ntcv" />
       </concept>
       <concept id="5455284157993863837" name="jetbrains.mps.lang.quotation.structure.NodeBuilder" flags="nn" index="2pJPEk">
         <child id="5455284157993863838" name="quotedNode" index="2pJPEn" />
@@ -1113,12 +1111,12 @@
           <property role="VOm3f" value="true" />
         </node>
         <node concept="Vb9p2" id="38k27IRjsjH" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
       </node>
       <node concept="1HlG4h" id="38k27IRjp_B" role="3EZMnx">
         <node concept="Vb9p2" id="38k27IRjsjN" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
         <node concept="1HfYo3" id="38k27IRjp_C" role="1HlULh">
           <node concept="3TQlhw" id="38k27IRjp_D" role="1Hhtcw">
@@ -1146,7 +1144,7 @@
           <property role="VOm3f" value="true" />
         </node>
         <node concept="Vb9p2" id="38k27IRjsjA" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
       </node>
       <node concept="3EZMnI" id="38k27IRjp_N" role="3EZMnx">
@@ -1199,7 +1197,7 @@
         </node>
         <node concept="3F2HdR" id="6LU90BQex7x" role="3EZMnx">
           <property role="2czwfO" value="," />
-          <property role="Q2I2d" value="punctuation" />
+          <property role="Q2I2d" value="g$1Qtxb/punctuation" />
           <ref role="1NtTu8" to="xiqq:3HBlKeoYsiZ" resolve="associatedVariables" />
           <node concept="2iRfu4" id="6LU90BQex7z" role="2czzBx" />
         </node>
@@ -2895,7 +2893,7 @@
             </node>
             <node concept="3clFbS" id="7oJsd9x52OR" role="TDEfX">
               <node concept="2xdQw9" id="7oJsd9x52OS" role="3cqZAp">
-                <property role="2xdLsb" value="error" />
+                <property role="2xdLsb" value="gZ5fh_4/error" />
                 <node concept="Xl_RD" id="7oJsd9x52OT" role="9lYJi">
                   <property role="Xl_RC" value="Error during cell creation" />
                 </node>
@@ -3745,7 +3743,7 @@
                                           <ref role="2pJxaS" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
                                           <node concept="2pJxcG" id="5jb5jNBPC61" role="2pJxcM">
                                             <ref role="2pJxcJ" to="xiqq:5fP$Xwj3irK" resolve="x" />
-                                            <node concept="3cpWs3" id="5jb5jNBPC62" role="2pJxcZ">
+                                            <node concept="3cpWs3" id="5jb5jNBPC62" role="28ntcv">
                                               <node concept="Xl_RD" id="5jb5jNBPC63" role="3uHU7B">
                                                 <property role="Xl_RC" value="" />
                                               </node>
@@ -3756,7 +3754,7 @@
                                           </node>
                                           <node concept="2pJxcG" id="5jb5jNBPC65" role="2pJxcM">
                                             <ref role="2pJxcJ" to="xiqq:5fP$Xwj3irM" resolve="y" />
-                                            <node concept="3cpWs3" id="5jb5jNBPC66" role="2pJxcZ">
+                                            <node concept="3cpWs3" id="5jb5jNBPC66" role="28ntcv">
                                               <node concept="Xl_RD" id="5jb5jNBPC67" role="3uHU7B">
                                                 <property role="Xl_RC" value="" />
                                               </node>
@@ -4376,7 +4374,7 @@
             </node>
             <node concept="3clFbS" id="1R4IoyQIIMc" role="TDEfX">
               <node concept="2xdQw9" id="1R4IoyQIIMd" role="3cqZAp">
-                <property role="2xdLsb" value="error" />
+                <property role="2xdLsb" value="gZ5fh_4/error" />
                 <node concept="Xl_RD" id="1R4IoyQIIMe" role="9lYJi">
                   <property role="Xl_RC" value="Error during cell creation" />
                 </node>
@@ -4505,7 +4503,7 @@
                                   <node concept="3F0A7n" id="5jb5jNCcFPJ" role="3EZMnx">
                                     <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
                                     <node concept="Veino" id="2RGdDgA14hP" role="3F10Kt">
-                                      <property role="Vb096" value="LIGHT_BLUE" />
+                                      <property role="Vb096" value="hGRnIZc/lightBlue" />
                                     </node>
                                     <node concept="VPXOz" id="2RGdDg_RZLh" role="3F10Kt">
                                       <property role="VOm3f" value="true" />
@@ -5101,7 +5099,7 @@
                                   <ref role="2pJxaS" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
                                   <node concept="2pJxcG" id="5jb5jNC5$8U" role="2pJxcM">
                                     <ref role="2pJxcJ" to="xiqq:5fP$Xwj3irK" resolve="x" />
-                                    <node concept="3cpWs3" id="5jb5jNC5$8V" role="2pJxcZ">
+                                    <node concept="3cpWs3" id="5jb5jNC5$8V" role="28ntcv">
                                       <node concept="Xl_RD" id="5jb5jNC5$8W" role="3uHU7B">
                                         <property role="Xl_RC" value="" />
                                       </node>
@@ -5112,7 +5110,7 @@
                                   </node>
                                   <node concept="2pJxcG" id="5jb5jNC5$8Y" role="2pJxcM">
                                     <ref role="2pJxcJ" to="xiqq:5fP$Xwj3irM" resolve="y" />
-                                    <node concept="3cpWs3" id="5jb5jNC5$8Z" role="2pJxcZ">
+                                    <node concept="3cpWs3" id="5jb5jNC5$8Z" role="28ntcv">
                                       <node concept="Xl_RD" id="5jb5jNC5$90" role="3uHU7B">
                                         <property role="Xl_RC" value="" />
                                       </node>

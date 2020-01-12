@@ -2,7 +2,7 @@
 <model ref="r:9a144fca-becd-4385-a025-398ace28742a(mps.lang.meta.editor.structure)">
   <persistence version="9" />
   <languages>
-    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="7" />
+    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="9" />
     <devkit ref="78434eb8-b0e5-444b-850d-e7c4ad2da9ab(jetbrains.mps.devkit.aspect.structure)" />
   </languages>
   <imports>
@@ -46,16 +46,16 @@
     <ref role="1TJDcQ" to="tpc2:fBF2Hee" resolve="CellModel_RefNodeList" />
     <node concept="1TJgyj" id="4s7KBSjslgq" role="1TKVEi">
       <property role="IQ2ns" value="5118273348277720090" />
-      <property role="20lmBu" value="aggregation" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="headerCell" />
-      <property role="20lbJX" value="1" />
+      <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" to="tpc2:fBF0icI" resolve="CellModel_Constant" />
     </node>
     <node concept="1TJgyj" id="4s7KBSjslgs" role="1TKVEi">
       <property role="IQ2ns" value="5118273348277720092" />
-      <property role="20lmBu" value="aggregation" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="footerCell" />
-      <property role="20lbJX" value="1" />
+      <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" to="tpc2:fBF0icI" resolve="CellModel_Constant" />
     </node>
     <node concept="PrWs8" id="4JFQCPiKlmh" role="PzmwI">
@@ -76,16 +76,16 @@
     <property role="EcuMT" value="3981577588227981882" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="3t1pVyvZafA" role="1TKVEi">
-      <property role="20lmBu" value="aggregation" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="contextNode" />
-      <property role="20lbJX" value="1" />
+      <property role="20lbJX" value="fLJekj4/_1" />
       <property role="IQ2ns" value="3981577588228006886" />
       <ref role="20lvS9" to="tpee:fz3vP1J" resolve="Expression" />
     </node>
     <node concept="1TJgyj" id="3t1pVyvZafE" role="1TKVEi">
-      <property role="20lmBu" value="aggregation" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="editor" />
-      <property role="20lbJX" value="1" />
+      <property role="20lbJX" value="fLJekj4/_1" />
       <property role="IQ2ns" value="3981577588228006890" />
       <ref role="20lvS9" node="3t1pVyvZafV" resolve="CellCreateOperationInlineEditor" />
     </node>

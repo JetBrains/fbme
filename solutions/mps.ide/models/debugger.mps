@@ -2,8 +2,8 @@
 <model ref="r:f0179f23-61bb-4719-8c52-ffe510b63d71(mps.ide.debugger)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="8" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="13" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging" version="0" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
@@ -847,7 +847,7 @@
               <node concept="9aQIb" id="7F_O7WvjVpz" role="9aQIa">
                 <node concept="3clFbS" id="7F_O7WvjVp$" role="9aQI4">
                   <node concept="RRSsy" id="7F_O7WvjV$i" role="3cqZAp">
-                    <property role="RRSoG" value="error" />
+                    <property role="RRSoG" value="gZ5fh_4/error" />
                     <node concept="3cpWs3" id="7F_O7WvjW9O" role="RRSoy">
                       <node concept="2OqwBi" id="7F_O7WvjX9v" role="3uHU7w">
                         <node concept="37vLTw" id="5PjcHHG91Cn" role="2Oq$k0">
@@ -875,7 +875,7 @@
             </node>
             <node concept="3clFbS" id="4uvvnUOtx$u" role="TDEfX">
               <node concept="RRSsy" id="4uvvnUOtCo6" role="3cqZAp">
-                <property role="RRSoG" value="error" />
+                <property role="RRSoG" value="gZ5fh_4/error" />
                 <node concept="Xl_RD" id="4uvvnUOtCo8" role="RRSoy">
                   <property role="Xl_RC" value="on start watching" />
                 </node>
@@ -1080,7 +1080,7 @@
             </node>
             <node concept="3clFbS" id="4uvvnUOtIw3" role="TDEfX">
               <node concept="RRSsy" id="4uvvnUOtIw4" role="3cqZAp">
-                <property role="RRSoG" value="error" />
+                <property role="RRSoG" value="gZ5fh_4/error" />
                 <node concept="Xl_RD" id="4uvvnUOtIw5" role="RRSoy">
                   <property role="Xl_RC" value="on remove watching" />
                 </node>
@@ -1436,7 +1436,7 @@
             </node>
             <node concept="3clFbS" id="5jACUPF$j_O" role="TDEfX">
               <node concept="RRSsy" id="5jACUPF$kek" role="3cqZAp">
-                <property role="RRSoG" value="error" />
+                <property role="RRSoG" value="gZ5fh_4/error" />
                 <node concept="37vLTw" id="5jACUPF$kel" role="RRSow">
                   <ref role="3cqZAo" node="5jACUPF$j_M" resolve="e" />
                 </node>
@@ -1797,7 +1797,7 @@
             </node>
             <node concept="3clFbS" id="5jACUPF$7Zv" role="TDEfX">
               <node concept="RRSsy" id="5jACUPF$hRs" role="3cqZAp">
-                <property role="RRSoG" value="error" />
+                <property role="RRSoG" value="gZ5fh_4/error" />
                 <node concept="37vLTw" id="5jACUPF$hRw" role="RRSow">
                   <ref role="3cqZAo" node="5jACUPF$7Zr" resolve="e" />
                 </node>
@@ -1960,7 +1960,7 @@
             </node>
             <node concept="3clFbS" id="5jACUPF_yUZ" role="TDEfX">
               <node concept="RRSsy" id="5jACUPF_BmC" role="3cqZAp">
-                <property role="RRSoG" value="error" />
+                <property role="RRSoG" value="gZ5fh_4/error" />
                 <node concept="Xl_RD" id="5jACUPF_BmE" role="RRSoy">
                   <property role="Xl_RC" value="interurupted during stop" />
                 </node>
@@ -2165,7 +2165,7 @@
                                             </node>
                                             <node concept="3clFbS" id="5jACUPF_V3x" role="TDEfX">
                                               <node concept="2xdQw9" id="5jACUPF_V3y" role="3cqZAp">
-                                                <property role="2xdLsb" value="error" />
+                                                <property role="2xdLsb" value="gZ5fh_4/error" />
                                                 <node concept="37vLTw" id="5jACUPF_V3z" role="9lYJj">
                                                   <ref role="3cqZAo" node="5jACUPF_V3v" resolve="e" />
                                                 </node>
@@ -2607,7 +2607,7 @@
                 </node>
                 <node concept="3clFbS" id="5FIIKsRk71F" role="TDEfX">
                   <node concept="RRSsy" id="5FIIKsRk71G" role="3cqZAp">
-                    <property role="RRSoG" value="error" />
+                    <property role="RRSoG" value="gZ5fh_4/error" />
                     <node concept="3cpWs3" id="5FIIKsRk71H" role="RRSoy">
                       <node concept="2GrUjf" id="5FIIKsRk71I" role="3uHU7B">
                         <ref role="2Gs0qQ" node="5FIIKsRk71j" resolve="connector" />
@@ -2693,7 +2693,7 @@
                 </node>
                 <node concept="3clFbS" id="42vv4xs$lCt" role="TDEfX">
                   <node concept="RRSsy" id="42vv4xs$mkd" role="3cqZAp">
-                    <property role="RRSoG" value="error" />
+                    <property role="RRSoG" value="gZ5fh_4/error" />
                     <node concept="3cpWs3" id="42vv4xs$mq0" role="RRSoy">
                       <node concept="2GrUjf" id="42vv4xs$mqY" role="3uHU7B">
                         <ref role="2Gs0qQ" node="42vv4xs$2oi" resolve="connection" />
