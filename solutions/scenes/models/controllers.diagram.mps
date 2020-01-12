@@ -4608,7 +4608,7 @@
                         </node>
                       </node>
                       <node concept="liA8E" id="4O0ojQpFSme" role="2OqNvi">
-                        <ref role="37wK5l" to="lui2:~ModelAccess.runWriteInEDT(java.lang.Runnable)" resolve="runWriteInEDT" />
+                        <ref role="37wK5l" to="lui2:~ModelAccess.executeCommandInEDT(java.lang.Runnable)" resolve="executeCommandInEDT" />
                         <node concept="1bVj0M" id="4O0ojQpFSmf" role="37wK5m">
                           <node concept="3clFbS" id="4O0ojQpFSmg" role="1bW5cS">
                             <node concept="3cpWs8" id="4y$DvIWc7JP" role="3cqZAp">
@@ -4660,9 +4660,6 @@
                                     </node>
                                     <node concept="liA8E" id="4O0ojQpFSmp" role="2OqNvi">
                                       <ref role="37wK5l" to="82uw:~BiFunction.apply(java.lang.Object,java.lang.Object)" resolve="apply" />
-                                      <node concept="37vLTw" id="4O0ojQpFSmq" role="37wK5m">
-                                        <ref role="3cqZAo" node="4O0ojQpFSke" resolve="myTargetLocation" />
-                                      </node>
                                       <node concept="2OqwBi" id="4O0ojQpFSmr" role="37wK5m">
                                         <node concept="37vLTw" id="4O0ojQpFSms" role="2Oq$k0">
                                           <ref role="3cqZAo" node="4O0ojQpFSlX" resolve="sourceSettings" />
@@ -4670,6 +4667,9 @@
                                         <node concept="liA8E" id="4O0ojQpFSmt" role="2OqNvi">
                                           <ref role="37wK5l" node="1iOpS255UuU" resolve="getModelEndpointPosition" />
                                         </node>
+                                      </node>
+                                      <node concept="37vLTw" id="4O0ojQpFSmq" role="37wK5m">
+                                        <ref role="3cqZAo" node="4O0ojQpFSke" resolve="myTargetLocation" />
                                       </node>
                                     </node>
                                   </node>
