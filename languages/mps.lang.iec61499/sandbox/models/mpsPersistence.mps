@@ -263,8 +263,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrf" role="2WSJUY">
-        <property role="10YbkC" value="3731.0" />
-        <property role="10YbkE" value="762.0" />
+        <property role="10YbkC" value="3750.0" />
+        <property role="10YbkE" value="775.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZnWS" role="2zAPxA">
@@ -284,8 +284,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrg" role="2WSJUY">
-        <property role="10YbkC" value="2056.0" />
-        <property role="10YbkE" value="737.0" />
+        <property role="10YbkC" value="2075.0" />
+        <property role="10YbkE" value="768.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZnXh" role="2zAPxA">
@@ -305,13 +305,13 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrh" role="2WSJUY">
-        <property role="10YbkC" value="1300.0" />
-        <property role="10YbkE" value="1331.0" />
+        <property role="10YbkC" value="1068.0" />
+        <property role="10YbkE" value="1050.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZtYN" role="2zAPxA">
-      <ref role="2zAPx1" node="3HBlKeoZaF_" resolve="COUNT_DOWN" />
       <ref role="2zAPx3" node="3HBlKeoZ7_O" resolve="WAIT" />
+      <ref role="2zAPx1" node="3HBlKeoZaF_" resolve="COUNT_DOWN" />
       <node concept="2EVYwv" id="6g3sTRf2ZkB" role="2zAZMv">
         <node concept="2zAFu8" id="2r29JVYcFtk" role="2EVYSB">
           <node concept="2zAFuc" id="6g3sTRf2ZkE" role="398zGN">
@@ -326,8 +326,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtri" role="2WSJUY">
-        <property role="10YbkC" value="1218.0" />
-        <property role="10YbkE" value="2325.0" />
+        <property role="10YbkC" value="1412.0" />
+        <property role="10YbkE" value="2568.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZtYZ" role="2zAPxA">
@@ -347,13 +347,13 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrj" role="2WSJUY">
-        <property role="10YbkC" value="2975.0" />
-        <property role="10YbkE" value="2306.0" />
+        <property role="10YbkC" value="3006.0" />
+        <property role="10YbkE" value="2325.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZtZd" role="2zAPxA">
-      <ref role="2zAPx3" node="3HBlKeoZ7_O" resolve="WAIT" />
       <ref role="2zAPx1" node="3HBlKeoZaFX" resolve="CHASE_DOWN" />
+      <ref role="2zAPx3" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2ZkR" role="2zAZMv">
         <node concept="2zAFu8" id="6g3sTRf2ZkS" role="2EVYSB">
           <node concept="2zAFuc" id="6g3sTRf2ZkU" role="398zGN">
@@ -368,8 +368,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrk" role="2WSJUY">
-        <property role="10YbkC" value="3612.0" />
-        <property role="10YbkE" value="1743.0" />
+        <property role="10YbkC" value="3650.0" />
+        <property role="10YbkE" value="1750.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZtZP" role="2zAPxA">
@@ -377,8 +377,8 @@
       <ref role="2zAPx1" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2ZkZ" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrl" role="2WSJUY">
-        <property role="10YbkC" value="3406.0" />
-        <property role="10YbkE" value="656.0" />
+        <property role="10YbkC" value="3437.0" />
+        <property role="10YbkE" value="700.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZu0f" role="2zAPxA">
@@ -386,8 +386,8 @@
       <ref role="2zAPx1" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2Zl1" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrm" role="2WSJUY">
-        <property role="10YbkC" value="1525.0" />
-        <property role="10YbkE" value="806.0" />
+        <property role="10YbkC" value="1531.0" />
+        <property role="10YbkE" value="850.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZu0F" role="2zAPxA">
@@ -395,8 +395,8 @@
       <ref role="2zAPx3" node="3HBlKeoZaFs" resolve="COUNT_UP" />
       <node concept="2EVYwv" id="6g3sTRf2Zl3" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrn" role="2WSJUY">
-        <property role="10YbkC" value="1531.0" />
-        <property role="10YbkE" value="1675.0" />
+        <property role="10YbkC" value="1637.0" />
+        <property role="10YbkE" value="1706.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="PI_pXYiHIY" role="2zAPxA">
@@ -404,8 +404,8 @@
       <ref role="2zAPx1" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2Zl5" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtro" role="2WSJUY">
-        <property role="10YbkC" value="2025.0" />
-        <property role="10YbkE" value="2400.0" />
+        <property role="10YbkC" value="2268.0" />
+        <property role="10YbkE" value="2600.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZu19" role="2zAPxA">
@@ -413,8 +413,8 @@
       <ref role="2zAPx1" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2Zl7" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrp" role="2WSJUY">
-        <property role="10YbkC" value="3475.0" />
-        <property role="10YbkE" value="2343.0" />
+        <property role="10YbkC" value="3468.0" />
+        <property role="10YbkE" value="2381.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="PI_pXYiHKo" role="2zAPxA">
@@ -422,8 +422,8 @@
       <ref role="2zAPx3" node="3HBlKeoZaFX" resolve="CHASE_DOWN" />
       <node concept="2EVYwv" id="6g3sTRf2Zl9" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrq" role="2WSJUY">
-        <property role="10YbkC" value="3756.0" />
-        <property role="10YbkE" value="1556.0" />
+        <property role="10YbkC" value="3781.0" />
+        <property role="10YbkE" value="1575.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="3HBlKeoZu1D" role="2zAPxA">
@@ -431,8 +431,8 @@
       <ref role="2zAPx1" node="3HBlKeoZ7_O" resolve="WAIT" />
       <node concept="2EVYwv" id="6g3sTRf2Zlb" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrr" role="2WSJUY">
-        <property role="10YbkC" value="2781.0" />
-        <property role="10YbkE" value="656.0" />
+        <property role="10YbkC" value="2825.0" />
+        <property role="10YbkE" value="675.0" />
       </node>
     </node>
     <node concept="2zAPAp" id="3HBlKeoZ7_V" role="2zAPwS">
@@ -765,8 +765,8 @@
     <node concept="2zAPAk" id="3HBlKeoZ7_O" role="2zAPwY">
       <property role="TrG5h" value="WAIT" />
       <node concept="10YbkR" id="5jb5jNCal_w" role="2WOQdS">
-        <property role="10YbkC" value="2493.0" />
-        <property role="10YbkE" value="1400.0" />
+        <property role="10YbkC" value="2618.0" />
+        <property role="10YbkE" value="1468.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="3HBlKeoZ7_Q" role="2zAPwY">
@@ -792,7 +792,7 @@
       </node>
       <node concept="10YbkR" id="5jb5jNCal_y" role="2WOQdS">
         <property role="10YbkC" value="1487.0" />
-        <property role="10YbkE" value="281.0" />
+        <property role="10YbkE" value="287.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="3HBlKeoZaFs" role="2zAPwY">
@@ -804,8 +804,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_z" role="2WOQdS">
-        <property role="10YbkC" value="306.0" />
-        <property role="10YbkE" value="1687.0" />
+        <property role="10YbkC" value="437.0" />
+        <property role="10YbkE" value="1681.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="3HBlKeoZaF_" role="2zAPwY">
@@ -817,8 +817,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_$" role="2WOQdS">
-        <property role="10YbkC" value="1556.0" />
-        <property role="10YbkE" value="2818.0" />
+        <property role="10YbkC" value="1843.0" />
+        <property role="10YbkE" value="3106.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="3HBlKeoZaFK" role="2zAPwY">
@@ -830,8 +830,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal__" role="2WOQdS">
-        <property role="10YbkC" value="3500.0" />
-        <property role="10YbkE" value="2800.0" />
+        <property role="10YbkC" value="3487.0" />
+        <property role="10YbkE" value="2806.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="3HBlKeoZaFX" role="2zAPwY">

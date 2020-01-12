@@ -4584,6 +4584,16 @@
                                     </node>
                                   </node>
                                   <node concept="3clFbS" id="2RGdDg_ItX_" role="3clF47">
+                                    <node concept="3clFbF" id="6O98XsLlV9K" role="3cqZAp">
+                                      <node concept="2OqwBi" id="6O98XsLlVXU" role="3clFbG">
+                                        <node concept="37vLTw" id="6O98XsLlV9I" role="2Oq$k0">
+                                          <ref role="3cqZAo" node="3Sv$YXY1ycu" resolve="cell" />
+                                        </node>
+                                        <node concept="liA8E" id="6O98XsLlWPG" role="2OqNvi">
+                                          <ref role="37wK5l" to="g51k:~EditorCell_Basic.relayout()" resolve="relayout" />
+                                        </node>
+                                      </node>
+                                    </node>
                                     <node concept="3cpWs8" id="2RGdDg_ItXA" role="3cqZAp">
                                       <node concept="3cpWsn" id="2RGdDg_ItXB" role="3cpWs9">
                                         <property role="TrG5h" value="nameCell" />

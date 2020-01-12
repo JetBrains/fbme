@@ -46,7 +46,6 @@
       </concept>
       <concept id="2820489544401957797" name="jetbrains.mps.baseLanguage.structure.DefaultClassCreator" flags="nn" index="HV5vD">
         <reference id="2820489544401957798" name="classifier" index="HV5vE" />
-        <child id="2820489544402271667" name="typeParameter" index="HU9BZ" />
       </concept>
       <concept id="1154032098014" name="jetbrains.mps.baseLanguage.structure.AbstractLoopStatement" flags="nn" index="2LF5Ji">
         <child id="1154032183016" name="body" index="2LFqv$" />
@@ -642,26 +641,26 @@
         </node>
       </node>
       <node concept="2ShNRf" id="7sG$k3BRVVV" role="33vP2m">
-        <node concept="HV5vD" id="4ZaR9mNkTLM" role="2ShVmc">
-          <ref role="HV5vE" to="33ny:~HashMap" resolve="HashMap" />
-          <node concept="16syzq" id="4y$DvIW4FZM" role="HU9BZ">
+        <node concept="1pGfFk" id="6O98XsLmxpb" role="2ShVmc">
+          <ref role="37wK5l" to="33ny:~HashMap.&lt;init&gt;()" resolve="HashMap" />
+          <node concept="16syzq" id="6O98XsLmxpc" role="1pMfVU">
             <ref role="16sUi3" node="4y$DvIW24c4" resolve="ConnT" />
           </node>
-          <node concept="3uibUv" id="7_KjZP9fvQO" role="HU9BZ">
+          <node concept="3uibUv" id="6O98XsLmxpd" role="1pMfVU">
             <ref role="3uigEE" node="7_KjZP9d656" resolve="ConnectionEntry" />
-            <node concept="16syzq" id="4y$DvIXbxG7" role="11_B2D">
+            <node concept="16syzq" id="6O98XsLmxpe" role="11_B2D">
               <ref role="16sUi3" node="4y$DvIW0XJW" resolve="CompT" />
             </node>
-            <node concept="16syzq" id="4y$DvIXbxG8" role="11_B2D">
+            <node concept="16syzq" id="6O98XsLmxpf" role="11_B2D">
               <ref role="16sUi3" node="7_KjZP9djPD" resolve="PortT" />
             </node>
-            <node concept="16syzq" id="4y$DvIWlJeO" role="11_B2D">
+            <node concept="16syzq" id="6O98XsLmxpg" role="11_B2D">
               <ref role="16sUi3" node="4y$DvIW24c4" resolve="ConnT" />
             </node>
-            <node concept="16syzq" id="4y$DvIWlJeP" role="11_B2D">
+            <node concept="16syzq" id="6O98XsLmxph" role="11_B2D">
               <ref role="16sUi3" node="7_KjZP9bCID" resolve="CursorT" />
             </node>
-            <node concept="16syzq" id="4y$DvIWlJeQ" role="11_B2D">
+            <node concept="16syzq" id="6O98XsLmxpi" role="11_B2D">
               <ref role="16sUi3" node="7_KjZP9bKhr" resolve="PathT" />
             </node>
           </node>
@@ -783,9 +782,9 @@
         </node>
       </node>
       <node concept="2ShNRf" id="3vyG44AvsFT" role="33vP2m">
-        <node concept="HV5vD" id="3vyG44AvsFU" role="2ShVmc">
-          <ref role="HV5vE" to="33ny:~HashSet" resolve="HashSet" />
-          <node concept="16syzq" id="4y$DvIW6V2F" role="HU9BZ">
+        <node concept="1pGfFk" id="6O98XsLmxp7" role="2ShVmc">
+          <ref role="37wK5l" to="33ny:~HashSet.&lt;init&gt;()" resolve="HashSet" />
+          <node concept="16syzq" id="6O98XsLmxp8" role="1pMfVU">
             <ref role="16sUi3" node="4y$DvIW24c4" resolve="ConnT" />
           </node>
         </node>
@@ -5986,6 +5985,16 @@
                 <node concept="2OwXpG" id="7_KjZP9lKe3" role="2OqNvi">
                   <ref role="2Oxat5" node="7_KjZP9glio" resolve="myTransformedPath" />
                 </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbF" id="6O98XsLmGbt" role="3cqZAp">
+            <node concept="2OqwBi" id="6O98XsLmHaE" role="3clFbG">
+              <node concept="37vLTw" id="6O98XsLmGbr" role="2Oq$k0">
+                <ref role="3cqZAo" node="7_KjZP9hsMT" resolve="myScene" />
+              </node>
+              <node concept="liA8E" id="6O98XsLmHZv" role="2OqNvi">
+                <ref role="37wK5l" to="3bo0:1iOpS24Am6k" resolve="fireRelayout" />
               </node>
             </node>
           </node>
