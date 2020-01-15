@@ -49,6 +49,7 @@
     <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
     <import index="iyvn" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.extapi.persistence.datasource(MPS.Core/)" />
     <import index="pa15" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.persistence(MPS.Core/)" />
+    <import index="ni5j" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.regex(JDK/)" />
     <import index="6xeh" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.antlr.v4.runtime.tree(ST.parser/)" implicit="true" />
   </imports>
   <registry>
@@ -508,7 +509,7 @@
               <node concept="3clFbS" id="537nKv8Jx5r" role="3clF47">
                 <node concept="3clFbF" id="537nKv8JxJ2" role="3cqZAp">
                   <node concept="Xl_RD" id="537nKv8JxJ1" role="3clFbG">
-                    <property role="Xl_RC" value="z IEC61499 Model" />
+                    <property role="Xl_RC" value="IEC61499 Model" />
                   </node>
                 </node>
               </node>
@@ -3617,31 +3618,6 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
-    <node concept="2tJIrI" id="7OBD32HJRgV" role="jymVt" />
-    <node concept="3clFb_" id="537nKv8JjPZ" role="jymVt">
-      <property role="1EzhhJ" value="false" />
-      <property role="TrG5h" value="upgrade" />
-      <property role="DiZV1" value="false" />
-      <property role="od$2w" value="false" />
-      <node concept="3Tm1VV" id="537nKv8JjQ0" role="1B3o_S" />
-      <node concept="3cqZAl" id="537nKv8JjQ2" role="3clF45" />
-      <node concept="37vLTG" id="537nKv8JjQ3" role="3clF46">
-        <property role="TrG5h" value="source" />
-        <node concept="3uibUv" id="537nKv8JjQ4" role="1tU5fm">
-          <ref role="3uigEE" to="dush:~DataSource" resolve="DataSource" />
-        </node>
-        <node concept="2AHcQZ" id="537nKv8JjQ5" role="2AJF6D">
-          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
-        </node>
-      </node>
-      <node concept="3uibUv" id="537nKv8JjQ6" role="Sfmx6">
-        <ref role="3uigEE" to="guwi:~IOException" resolve="IOException" />
-      </node>
-      <node concept="3clFbS" id="537nKv8JjQ7" role="3clF47" />
-      <node concept="2AHcQZ" id="537nKv8JjQ8" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-    </node>
     <node concept="3Tm1VV" id="537nKv8IlHF" role="1B3o_S" />
     <node concept="3uibUv" id="537nKv8Irhg" role="EKbjA">
       <ref role="3uigEE" to="g3l6:~SModelPersistence" resolve="SModelPersistence" />
@@ -4478,7 +4454,7 @@
                 <ref role="3cqZAo" node="2ByE74kvDhc" resolve="rawCondition" />
               </node>
               <node concept="liA8E" id="2ByE74kvDgi" role="2OqNvi">
-                <ref role="37wK5l" to="wyt6:~String.indexOf(int)" resolve="indexOf" />
+                <ref role="37wK5l" to="wyt6:~String.lastIndexOf(int)" resolve="lastIndexOf" />
                 <node concept="1Xhbcc" id="2ByE74kvDgj" role="37wK5m">
                   <property role="1XhdNS" value="]" />
                 </node>
@@ -13570,8 +13546,12 @@
               </node>
               <node concept="liA8E" id="23XkovViVUW" role="2OqNvi">
                 <ref role="37wK5l" to="wyt6:~String.split(java.lang.String)" resolve="split" />
-                <node concept="Xl_RD" id="23XkovViVUX" role="37wK5m">
-                  <property role="Xl_RC" value="." />
+                <node concept="2YIFZM" id="1nkeGz57CaF" role="37wK5m">
+                  <ref role="37wK5l" to="ni5j:~Pattern.quote(java.lang.String)" resolve="quote" />
+                  <ref role="1Pybhc" to="ni5j:~Pattern" resolve="Pattern" />
+                  <node concept="Xl_RD" id="1nkeGz57Cnm" role="37wK5m">
+                    <property role="Xl_RC" value="." />
+                  </node>
                 </node>
               </node>
             </node>

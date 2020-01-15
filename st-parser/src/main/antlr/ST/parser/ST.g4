@@ -83,7 +83,7 @@ BinInteger: '2#'  Bin ('_'|Bin)*;
 OctInteger: '8#'  Oct ('_'|Oct)*;
 HexInteger: '16#' Hex ('_'|Hex)*;
 
-String:  '\'' (('$' [$'LNPRT] | '$' Hex Hex)| ~["\n\r\\])* '\'';
+String:  '\'' (('$' [$'LNPRT] | '$' Hex Hex)| ~['\n\r\\])* '\'';
 WString: '"'  (('$' [$"LNPRT] | '$' Hex Hex Hex Hex)| ~["\n\r\\])* '"';
 
 Boolean: 'TRUE'|'FALSE';

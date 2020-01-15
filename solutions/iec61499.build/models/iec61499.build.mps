@@ -184,6 +184,11 @@
       <concept id="1500819558095907805" name="jetbrains.mps.build.mps.structure.BuildMps_Group" flags="ng" index="2G$12M">
         <child id="1500819558095907806" name="modules" index="2G$12L" />
       </concept>
+      <concept id="781140262677906392" name="jetbrains.mps.build.mps.structure.BuildMps_BrandingCompany" flags="ng" index="IuM$Q">
+        <child id="781140262677906402" name="url" index="IuM$c" />
+        <child id="781140262677906401" name="name" index="IuM$f" />
+        <child id="2355727383336213970" name="copyrightStar" index="3fQQh0" />
+      </concept>
       <concept id="1265949165890536423" name="jetbrains.mps.build.mps.structure.BuildMpsLayout_ModuleJars" flags="ng" index="L2wRC">
         <reference id="1265949165890536425" name="module" index="L2wRA" />
       </concept>
@@ -231,7 +236,9 @@
         <child id="6108265972537372847" name="product" index="2EtHGA" />
         <child id="6108265972537372848" name="fullName" index="2EtHGT" />
         <child id="8795525031433238889" name="textColor" index="HFo83" />
+        <child id="781140262677914381" name="company" index="IuKBz" />
         <child id="781140262677761022" name="icon128" index="IvI4g" />
+        <child id="781140262677761833" name="plugins" index="IvIn7" />
         <child id="1462305029084462472" name="buildDate" index="R$TG_" />
         <child id="772379520210716142" name="welcomeLogo" index="3vi$VU" />
         <child id="1084163669516664629" name="copyrightForeground" index="3KTKoD" />
@@ -377,7 +384,7 @@
       <node concept="aVJcg" id="68dTcycFmrR" role="aVJcv">
         <node concept="NbPM2" id="68dTcycFmrS" role="aVJcq">
           <node concept="3Mxwew" id="68dTcycFmrT" role="3MwsjC">
-            <property role="3MwjfP" value="iec61499-183.SNAPSHOT" />
+            <property role="3MwjfP" value="iec61499-193.SNAPSHOT" />
           </node>
         </node>
       </node>
@@ -1419,14 +1426,6 @@
           <ref role="3Mxwex" node="1mPaNys5H5C" resolve="date" />
         </node>
       </node>
-      <node concept="55IIr" id="1mPaNys5H69" role="2EqU2t">
-        <node concept="2Ry0Ak" id="1mPaNys5H6a" role="iGT6I">
-          <property role="2Ry0Am" value="icons" />
-          <node concept="2Ry0Ak" id="1mPaNys5H6b" role="2Ry0An">
-            <property role="2Ry0Am" value="splash.png" />
-          </node>
-        </node>
-      </node>
       <node concept="55IIr" id="1mPaNys5H6c" role="2EqU2s">
         <node concept="2Ry0Ak" id="1mPaNys5H6d" role="iGT6I">
           <property role="2Ry0Am" value="icons" />
@@ -1481,6 +1480,32 @@
           </node>
         </node>
       </node>
+      <node concept="IuM$Q" id="5xRv20i3brC" role="IuKBz">
+        <node concept="3_J27D" id="5xRv20i3brD" role="IuM$f">
+          <node concept="3Mxwew" id="5xRv20i3brK" role="3MwsjC">
+            <property role="3MwjfP" value="no" />
+          </node>
+        </node>
+        <node concept="3_J27D" id="5xRv20i3brE" role="IuM$c">
+          <node concept="3Mxwew" id="5xRv20i3brO" role="3MwsjC">
+            <property role="3MwjfP" value="http://blank.org/" />
+          </node>
+        </node>
+        <node concept="NbPM2" id="5xRv20i3brF" role="3fQQh0" />
+      </node>
+      <node concept="NbPM2" id="5xRv20i3bsO" role="IvIn7">
+        <node concept="3Mxwew" id="57dcfYPuvRj" role="3MwsjC">
+          <property role="3MwjfP" value="http://plugins.jetbrains.com/" />
+        </node>
+      </node>
+      <node concept="55IIr" id="1mPaNys5H69" role="2EqU2t">
+        <node concept="2Ry0Ak" id="1mPaNys5H6a" role="iGT6I">
+          <property role="2Ry0Am" value="icons" />
+          <node concept="2Ry0Ak" id="1mPaNys5H6b" role="2Ry0An">
+            <property role="2Ry0Am" value="splash.png" />
+          </node>
+        </node>
+      </node>
     </node>
     <node concept="2kB4xC" id="1mPaNys5H5C" role="1l3spd">
       <property role="TrG5h" value="date" />
@@ -1493,7 +1518,7 @@
       <node concept="aVJcg" id="1mPaNys5H5F" role="aVJcv">
         <node concept="NbPM2" id="1mPaNys5H5G" role="aVJcq">
           <node concept="3Mxwew" id="1mPaNys5H5H" role="3MwsjC">
-            <property role="3MwjfP" value="183.SNAPSHOT" />
+            <property role="3MwjfP" value="193.SNAPSHOT" />
           </node>
         </node>
       </node>
@@ -2388,7 +2413,7 @@
       <node concept="aVJcg" id="1mPaNys5H7w" role="aVJcv">
         <node concept="NbPM2" id="1mPaNys5H7x" role="aVJcq">
           <node concept="3Mxwew" id="1mPaNys5H7y" role="3MwsjC">
-            <property role="3MwjfP" value="183.SNAPSHOT" />
+            <property role="3MwjfP" value="193.SNAPSHOT" />
           </node>
         </node>
       </node>
