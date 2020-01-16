@@ -4406,7 +4406,7 @@
             </node>
             <node concept="2ShNRf" id="3DiEZ8TCOPx" role="37vLTx">
               <node concept="1pGfFk" id="3DiEZ8TD4tJ" role="2ShVmc">
-                <ref role="37wK5l" to="g51k:~TextLine.&lt;init&gt;(java.lang.String,jetbrains.mps.openapi.editor.style.Style,boolean)" resolve="TextLine" />
+                <ref role="37wK5l" to="g51k:~TextLine.&lt;init&gt;(java.lang.String,jetbrains.mps.openapi.editor.style.Style,boolean,jetbrains.mps.openapi.editor.cells.EditorFontMetricsProvider)" resolve="TextLine" />
                 <node concept="37vLTw" id="3DiEZ8TD5tl" role="37wK5m">
                   <ref role="3cqZAo" node="3DiEZ8TCNZF" resolve="text" />
                 </node>
@@ -4414,8 +4414,28 @@
                   <ref role="37wK5l" to="g51k:~EditorCell_Basic.getStyle()" resolve="getStyle" />
                 </node>
                 <node concept="3clFbT" id="3DiEZ8TEZDb" role="37wK5m" />
+                <node concept="37vLTw" id="31Fn7oZLOww" role="37wK5m">
+                  <ref role="3cqZAo" node="3DiEZ8TCO9w" resolve="context" />
+                </node>
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="31Fn7oZLOPI" role="3cqZAp">
+          <node concept="3clFbS" id="31Fn7oZLOPK" role="3clFbx">
+            <node concept="3clFbF" id="31Fn7oZLP2v" role="3cqZAp">
+              <node concept="2OqwBi" id="31Fn7oZLPg2" role="3clFbG">
+                <node concept="37vLTw" id="31Fn7oZLP2t" role="2Oq$k0">
+                  <ref role="3cqZAo" node="3DiEZ8TCNtb" resolve="myTextLine" />
+                </node>
+                <node concept="liA8E" id="31Fn7oZLPpB" role="2OqNvi">
+                  <ref role="37wK5l" to="g51k:~TextLine.showErrorColor()" resolve="showErrorColor" />
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="37vLTw" id="31Fn7oZLOUw" role="3clFbw">
+            <ref role="3cqZAo" node="31Fn7oZLOyo" resolve="error" />
           </node>
         </node>
       </node>
@@ -4436,6 +4456,10 @@
         <node concept="3uibUv" id="3DiEZ8TCNZE" role="1tU5fm">
           <ref role="3uigEE" to="wyt6:~String" resolve="String" />
         </node>
+      </node>
+      <node concept="37vLTG" id="31Fn7oZLOyo" role="3clF46">
+        <property role="TrG5h" value="error" />
+        <node concept="10P_77" id="31Fn7oZLOGO" role="1tU5fm" />
       </node>
     </node>
     <node concept="2tJIrI" id="3DiEZ8TD6bj" role="jymVt" />

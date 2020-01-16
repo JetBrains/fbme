@@ -29,6 +29,8 @@
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
     <import index="hhnx" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime(MPS.Editor/)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
+    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.adapters.plugin)" />
+    <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -5638,12 +5640,12 @@
             <node concept="liA8E" id="6tmliaAUt1K" role="2OqNvi">
               <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
               <node concept="2OqwBi" id="6tmliaB0MI9" role="37wK5m">
-                <node concept="10M0yZ" id="6tmliaAUtbB" role="2Oq$k0">
+                <node concept="10M0yZ" id="1y1FD3qD4fK" role="2Oq$k0">
+                  <ref role="3cqZAo" to="lzb2:~JBColor.YELLOW" resolve="YELLOW" />
                   <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
-                  <ref role="3cqZAo" to="z60i:~Color.YELLOW" resolve="YELLOW" />
                 </node>
                 <node concept="liA8E" id="6tmliaB0Nrt" role="2OqNvi">
-                  <ref role="37wK5l" to="z60i:~Color.darker()" resolve="darker" />
+                  <ref role="37wK5l" to="lzb2:~JBColor.darker()" resolve="darker" />
                 </node>
               </node>
             </node>
@@ -6650,29 +6652,6 @@
   <node concept="312cEu" id="3IX4BsK5Mi_">
     <property role="TrG5h" value="FBInstanceController" />
     <node concept="2tJIrI" id="3IX4BsK5PoK" role="jymVt" />
-    <node concept="Wx3nA" id="3DiEZ8TNK25" role="jymVt">
-      <property role="TrG5h" value="FB_INST_ATTR" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm1VV" id="3DiEZ8TO2QS" role="1B3o_S" />
-      <node concept="3uibUv" id="3DiEZ8TNJCC" role="1tU5fm">
-        <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
-        <node concept="3uibUv" id="3DiEZ8TNK19" role="11_B2D">
-          <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
-        </node>
-      </node>
-      <node concept="2ShNRf" id="3DiEZ8TNMPa" role="33vP2m">
-        <node concept="1pGfFk" id="3DiEZ8TNNO3" role="2ShVmc">
-          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
-          <node concept="Xl_RD" id="3DiEZ8TNOkk" role="37wK5m">
-            <property role="Xl_RC" value="fb-inst" />
-          </node>
-          <node concept="3uibUv" id="3DiEZ8TNQ_D" role="1pMfVU">
-            <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2tJIrI" id="3DiEZ8TNDvY" role="jymVt" />
     <node concept="312cEg" id="3IX4BsK5QLo" role="jymVt">
       <property role="TrG5h" value="myNameProperty" />
       <property role="3TUv4t" value="true" />
@@ -6782,8 +6761,9 @@
             </node>
             <node concept="liA8E" id="3DiEZ8TNWfn" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-              <node concept="37vLTw" id="3DiEZ8TNWuy" role="37wK5m">
-                <ref role="3cqZAo" node="3DiEZ8TNK25" resolve="FB_INST_ATTR" />
+              <node concept="10M0yZ" id="31Fn7oZOlkY" role="37wK5m">
+                <ref role="3cqZAo" to="5z5t:3DiEZ8TO1Tb" resolve="FB" />
+                <ref role="1PxDUh" to="5z5t:3DiEZ8TM99k" resolve="FBAttributes" />
               </node>
               <node concept="37vLTw" id="3DiEZ8TNXeW" role="37wK5m">
                 <ref role="3cqZAo" node="4O0ojQq4DWU" resolve="fb" />

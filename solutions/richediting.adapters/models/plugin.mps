@@ -31,6 +31,7 @@
     <import index="guwi" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.io(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
+    <import index="5ueo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime.style(MPS.Editor/)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -223,7 +224,9 @@
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
       </concept>
-      <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk" />
+      <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk">
+        <child id="1212687122400" name="typeParameter" index="1pMfVU" />
+      </concept>
       <concept id="1107461130800" name="jetbrains.mps.baseLanguage.structure.Classifier" flags="ng" index="3pOWGL">
         <property id="521412098689998745" name="nonStatic" index="2bfB8j" />
         <child id="5375687026011219971" name="member" index="jymVt" unordered="true" />
@@ -465,9 +468,16 @@
           <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
         </node>
       </node>
-      <node concept="10M0yZ" id="3DiEZ8TM9kK" role="33vP2m">
-        <ref role="3cqZAo" to="78d5:3DiEZ8TM66d" resolve="FB_NETWORK_ATTR" />
-        <ref role="1PxDUh" to="78d5:7oJsd9wVHpq" resolve="FBNetworkEditors" />
+      <node concept="2ShNRf" id="3DiEZ8TM66i" role="33vP2m">
+        <node concept="1pGfFk" id="3DiEZ8TM66j" role="2ShVmc">
+          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
+          <node concept="Xl_RD" id="3DiEZ8TM66k" role="37wK5m">
+            <property role="Xl_RC" value="fb-network" />
+          </node>
+          <node concept="3uibUv" id="3DiEZ8TM66l" role="1pMfVU">
+            <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="Wx3nA" id="3DiEZ8TM9th" role="jymVt">
@@ -480,9 +490,16 @@
           <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
         </node>
       </node>
-      <node concept="10M0yZ" id="3DiEZ8TM9yD" role="33vP2m">
-        <ref role="1PxDUh" to="ubo9:7qPnRGG6q3r" resolve="FBTypeCellComponent" />
-        <ref role="3cqZAo" to="ubo9:3DiEZ8TJfwn" resolve="FB_PORT_ATTR" />
+      <node concept="2ShNRf" id="3DiEZ8TJRSk" role="33vP2m">
+        <node concept="1pGfFk" id="3DiEZ8TJSKK" role="2ShVmc">
+          <ref role="37wK5l" to="5ueo:~SimpleStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="SimpleStyleAttribute" />
+          <node concept="Xl_RD" id="3DiEZ8TJVBx" role="37wK5m">
+            <property role="Xl_RC" value="fb-port" />
+          </node>
+          <node concept="3uibUv" id="3DiEZ8TK8Ic" role="1pMfVU">
+            <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="Wx3nA" id="3DiEZ8TM9F8" role="jymVt">
@@ -495,9 +512,16 @@
           <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
         </node>
       </node>
-      <node concept="10M0yZ" id="3DiEZ8TM9IG" role="33vP2m">
-        <ref role="1PxDUh" to="ubo9:7qPnRGG6q3r" resolve="FBTypeCellComponent" />
-        <ref role="3cqZAo" to="ubo9:3DiEZ8TK8YC" resolve="FB_TYPE_ATTR" />
+      <node concept="2ShNRf" id="3DiEZ8TK8YG" role="33vP2m">
+        <node concept="1pGfFk" id="3DiEZ8TK8YH" role="2ShVmc">
+          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
+          <node concept="Xl_RD" id="3DiEZ8TK8YI" role="37wK5m">
+            <property role="Xl_RC" value="fb-type" />
+          </node>
+          <node concept="3uibUv" id="3DiEZ8TKfOo" role="1pMfVU">
+            <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="Wx3nA" id="3DiEZ8TO1Tb" role="jymVt">
@@ -510,9 +534,16 @@
           <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
         </node>
       </node>
-      <node concept="10M0yZ" id="3DiEZ8TO3lX" role="33vP2m">
-        <ref role="3cqZAo" to="vjnt:3DiEZ8TNK25" resolve="FB_INST_ATTR" />
-        <ref role="1PxDUh" to="vjnt:3IX4BsK5Mi_" resolve="FBInstanceController" />
+      <node concept="2ShNRf" id="3DiEZ8TNMPa" role="33vP2m">
+        <node concept="1pGfFk" id="3DiEZ8TNNO3" role="2ShVmc">
+          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
+          <node concept="Xl_RD" id="3DiEZ8TNOkk" role="37wK5m">
+            <property role="Xl_RC" value="fb-inst" />
+          </node>
+          <node concept="3uibUv" id="3DiEZ8TNQ_D" role="1pMfVU">
+            <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2tJIrI" id="7XpzHqcw9_q" role="jymVt" />
@@ -2742,14 +2773,19 @@
               </node>
               <node concept="2ZW3vV" id="5PjcHHGgKo3" role="3uHU7w">
                 <node concept="3uibUv" id="5PjcHHGgKKh" role="2ZW6by">
-                  <ref role="3uigEE" to="2xsi:1R4IoyQwdLk" resolve="BasicFBType" />
+                  <ref role="3uigEE" to="2xsi:1R4IoyQwdLk" resolve="BasicFBTypeDeclaration" />
                 </node>
-                <node concept="2OqwBi" id="5PjcHHGgjn5" role="2ZW6bz">
-                  <node concept="37vLTw" id="5PjcHHGgj3q" role="2Oq$k0">
-                    <ref role="3cqZAo" node="5PjcHHGfRDu" resolve="fb" />
+                <node concept="2OqwBi" id="31Fn7oZInQB" role="2ZW6bz">
+                  <node concept="2OqwBi" id="5PjcHHGgjn5" role="2Oq$k0">
+                    <node concept="37vLTw" id="5PjcHHGgj3q" role="2Oq$k0">
+                      <ref role="3cqZAo" node="5PjcHHGfRDu" resolve="fb" />
+                    </node>
+                    <node concept="liA8E" id="5PjcHHGgE5F" role="2OqNvi">
+                      <ref role="37wK5l" to="tphl:1R4IoyQw8aL" resolve="getType" />
+                    </node>
                   </node>
-                  <node concept="liA8E" id="5PjcHHGgE5F" role="2OqNvi">
-                    <ref role="37wK5l" to="tphl:1R4IoyQw8aL" resolve="getType" />
+                  <node concept="liA8E" id="31Fn7oZIoQM" role="2OqNvi">
+                    <ref role="37wK5l" to="2xsi:31Fn7oZHRj4" resolve="getDeclaration" />
                   </node>
                 </node>
               </node>
@@ -2852,14 +2888,19 @@
               </node>
               <node concept="2ZW3vV" id="5PjcHHGgLrG" role="3uHU7w">
                 <node concept="3uibUv" id="5PjcHHGgLrH" role="2ZW6by">
-                  <ref role="3uigEE" to="2xsi:1R4IoyQwdLk" resolve="BasicFBType" />
+                  <ref role="3uigEE" to="2xsi:1R4IoyQwdLk" resolve="BasicFBTypeDeclaration" />
                 </node>
-                <node concept="2OqwBi" id="5PjcHHGgLrI" role="2ZW6bz">
-                  <node concept="37vLTw" id="5PjcHHGgLrJ" role="2Oq$k0">
-                    <ref role="3cqZAo" node="5PjcHHGfREt" resolve="fb" />
+                <node concept="2OqwBi" id="31Fn7oZIp5y" role="2ZW6bz">
+                  <node concept="2OqwBi" id="5PjcHHGgLrI" role="2Oq$k0">
+                    <node concept="37vLTw" id="5PjcHHGgLrJ" role="2Oq$k0">
+                      <ref role="3cqZAo" node="5PjcHHGfREt" resolve="fb" />
+                    </node>
+                    <node concept="liA8E" id="5PjcHHGgLrK" role="2OqNvi">
+                      <ref role="37wK5l" to="tphl:1R4IoyQw8aL" resolve="getType" />
+                    </node>
                   </node>
-                  <node concept="liA8E" id="5PjcHHGgLrK" role="2OqNvi">
-                    <ref role="37wK5l" to="tphl:1R4IoyQw8aL" resolve="getType" />
+                  <node concept="liA8E" id="31Fn7oZIpm6" role="2OqNvi">
+                    <ref role="37wK5l" to="2xsi:31Fn7oZHRj4" resolve="getDeclaration" />
                   </node>
                 </node>
               </node>

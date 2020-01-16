@@ -30,6 +30,7 @@
     <import index="hhnx" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime(MPS.Editor/)" />
     <import index="ee2c" ref="r:c260e783-fa83-4eab-8183-e5c937092355(scenes.cells)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
+    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.adapters.plugin)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -83,9 +84,6 @@
       </concept>
       <concept id="1070475354124" name="jetbrains.mps.baseLanguage.structure.ThisExpression" flags="nn" index="Xjq3P">
         <reference id="1182955020723" name="classConcept" index="1HBi2w" />
-      </concept>
-      <concept id="1070475926800" name="jetbrains.mps.baseLanguage.structure.StringLiteral" flags="nn" index="Xl_RD">
-        <property id="1070475926801" name="value" index="Xl_RC" />
       </concept>
       <concept id="1182160077978" name="jetbrains.mps.baseLanguage.structure.AnonymousClassCreator" flags="nn" index="YeOm9">
         <child id="1182160096073" name="cls" index="YeSDq" />
@@ -2307,50 +2305,6 @@
   <node concept="312cEu" id="7qPnRGG6q3r">
     <property role="TrG5h" value="FBTypeCellComponent" />
     <property role="1EXbeo" value="true" />
-    <node concept="Wx3nA" id="3DiEZ8TJfwn" role="jymVt">
-      <property role="TrG5h" value="FB_PORT_ATTR" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm1VV" id="3DiEZ8TKSYT" role="1B3o_S" />
-      <node concept="3uibUv" id="3DiEZ8TJii_" role="1tU5fm">
-        <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
-        <node concept="3uibUv" id="3DiEZ8TJRrx" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
-        </node>
-      </node>
-      <node concept="2ShNRf" id="3DiEZ8TJRSk" role="33vP2m">
-        <node concept="1pGfFk" id="3DiEZ8TJSKK" role="2ShVmc">
-          <ref role="37wK5l" to="5ueo:~SimpleStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="SimpleStyleAttribute" />
-          <node concept="Xl_RD" id="3DiEZ8TJVBx" role="37wK5m">
-            <property role="Xl_RC" value="fb-port" />
-          </node>
-          <node concept="3uibUv" id="3DiEZ8TK8Ic" role="1pMfVU">
-            <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="Wx3nA" id="3DiEZ8TK8YC" role="jymVt">
-      <property role="TrG5h" value="FB_TYPE_ATTR" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm1VV" id="3DiEZ8TKTfv" role="1B3o_S" />
-      <node concept="3uibUv" id="3DiEZ8TK8YE" role="1tU5fm">
-        <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
-        <node concept="3uibUv" id="3DiEZ8TKeYu" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
-        </node>
-      </node>
-      <node concept="2ShNRf" id="3DiEZ8TK8YG" role="33vP2m">
-        <node concept="1pGfFk" id="3DiEZ8TK8YH" role="2ShVmc">
-          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
-          <node concept="Xl_RD" id="3DiEZ8TK8YI" role="37wK5m">
-            <property role="Xl_RC" value="fb-type" />
-          </node>
-          <node concept="3uibUv" id="3DiEZ8TKfOo" role="1pMfVU">
-            <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
-          </node>
-        </node>
-      </node>
-    </node>
     <node concept="2tJIrI" id="7qPnRGG6q4s" role="jymVt" />
     <node concept="Wx3nA" id="3DiEZ8TJvSm" role="jymVt">
       <property role="TrG5h" value="PORT_SIZE" />
@@ -2562,8 +2516,9 @@
             </node>
             <node concept="liA8E" id="3DiEZ8TKwTr" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-              <node concept="37vLTw" id="3DiEZ8TKx1P" role="37wK5m">
-                <ref role="3cqZAo" node="3DiEZ8TK8YC" resolve="FB_TYPE_ATTR" />
+              <node concept="10M0yZ" id="31Fn7oZOBGa" role="37wK5m">
+                <ref role="3cqZAo" to="5z5t:3DiEZ8TM9F8" resolve="TYPE" />
+                <ref role="1PxDUh" to="5z5t:3DiEZ8TM99k" resolve="FBAttributes" />
               </node>
               <node concept="37vLTw" id="3DiEZ8TKxyy" role="37wK5m">
                 <ref role="3cqZAo" node="7qPnRGG7dxg" resolve="fbType" />
@@ -2867,8 +2822,8 @@
             </node>
             <node concept="liA8E" id="1CY1mmCABfK" role="2OqNvi">
               <ref role="37wK5l" to="z60i:~Graphics2D.setPaint(java.awt.Paint)" resolve="setPaint" />
-              <node concept="10M0yZ" id="1CY1mmCEq2A" role="37wK5m">
-                <ref role="3cqZAo" to="z60i:~Color.DARK_GRAY" resolve="DARK_GRAY" />
+              <node concept="10M0yZ" id="31Fn7oZLBKI" role="37wK5m">
+                <ref role="3cqZAo" to="lzb2:~JBColor.DARK_GRAY" resolve="DARK_GRAY" />
                 <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
               </node>
             </node>
@@ -4635,9 +4590,9 @@
                 </node>
                 <node concept="liA8E" id="5fP$Xwj1wtO" role="2OqNvi">
                   <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
-                  <node concept="10M0yZ" id="7qPnRGFoUJG" role="37wK5m">
+                  <node concept="10M0yZ" id="31Fn7oZLBQa" role="37wK5m">
+                    <ref role="3cqZAo" to="lzb2:~JBColor.BLACK" resolve="BLACK" />
                     <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
-                    <ref role="3cqZAo" to="z60i:~Color.black" resolve="black" />
                   </node>
                 </node>
               </node>
@@ -4730,9 +4685,9 @@
         </node>
         <node concept="3cpWs6" id="1HEL0zW07iX" role="3cqZAp">
           <node concept="3K4zz7" id="5fP$XwiGFjv" role="3cqZAk">
-            <node concept="10M0yZ" id="5fP$XwiGLi$" role="3K4E3e">
+            <node concept="10M0yZ" id="31Fn7oZLBR$" role="3K4E3e">
+              <ref role="3cqZAo" to="lzb2:~JBColor.LIGHT_GRAY" resolve="LIGHT_GRAY" />
               <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
-              <ref role="3cqZAo" to="z60i:~Color.LIGHT_GRAY" resolve="LIGHT_GRAY" />
             </node>
             <node concept="37vLTw" id="5fP$XwiGOux" role="3K4GZi">
               <ref role="3cqZAo" node="5fP$XwiGiai" resolve="background" />
@@ -4798,8 +4753,8 @@
         </node>
         <node concept="3cpWs6" id="1HEL0zW8VN4" role="3cqZAp">
           <node concept="3K4zz7" id="5fP$XwiFFge" role="3cqZAk">
-            <node concept="10M0yZ" id="5fP$XwiFVvO" role="3K4E3e">
-              <ref role="3cqZAo" to="z60i:~Color.BLACK" resolve="BLACK" />
+            <node concept="10M0yZ" id="31Fn7oZLH4w" role="3K4E3e">
+              <ref role="3cqZAo" to="lzb2:~JBColor.BLACK" resolve="BLACK" />
               <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
             </node>
             <node concept="37vLTw" id="5fP$XwiGbhY" role="3K4GZi">
@@ -6805,6 +6760,22 @@
         <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
       </node>
       <node concept="3clFbS" id="1JYTWWzxvfM" role="3clF47">
+        <node concept="3cpWs8" id="31Fn7oZMs6Q" role="3cqZAp">
+          <node concept="3cpWsn" id="31Fn7oZMs6R" role="3cpWs9">
+            <property role="TrG5h" value="typeDeclaration" />
+            <node concept="3uibUv" id="31Fn7oZMpF5" role="1tU5fm">
+              <ref role="3uigEE" to="2xsi:31Fn7oZJ7qm" resolve="NamedDeclaration" />
+            </node>
+            <node concept="2OqwBi" id="31Fn7oZMs6S" role="33vP2m">
+              <node concept="37vLTw" id="31Fn7oZMs6T" role="2Oq$k0">
+                <ref role="3cqZAo" node="1JYTWWzzhDF" resolve="fbType" />
+              </node>
+              <node concept="liA8E" id="31Fn7oZMs6U" role="2OqNvi">
+                <ref role="37wK5l" to="2xsi:31Fn7oZHRj4" resolve="getDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3cpWs8" id="1JYTWWz$R6V" role="3cqZAp">
           <node concept="3cpWsn" id="1JYTWWz$R6W" role="3cpWs9">
             <property role="TrG5h" value="constant" />
@@ -6826,6 +6797,12 @@
                   </node>
                   <node concept="liA8E" id="1JYTWWz$R73" role="2OqNvi">
                     <ref role="37wK5l" to="2xsi:1HEL0zVYRNg" resolve="getTypeName" />
+                  </node>
+                </node>
+                <node concept="3clFbC" id="31Fn7oZMhzX" role="37wK5m">
+                  <node concept="10Nm6u" id="31Fn7oZMmzR" role="3uHU7w" />
+                  <node concept="37vLTw" id="31Fn7oZMs6V" role="3uHU7B">
+                    <ref role="3cqZAo" node="31Fn7oZMs6R" resolve="typeDeclaration" />
                   </node>
                 </node>
               </node>
@@ -6867,8 +6844,8 @@
                         <node concept="3uibUv" id="1JYTWWz_ZIQ" role="10QFUM">
                           <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="HasNode" />
                         </node>
-                        <node concept="37vLTw" id="1JYTWWz_Yr0" role="10QFUP">
-                          <ref role="3cqZAo" node="1JYTWWzzhDF" resolve="fbType" />
+                        <node concept="37vLTw" id="31Fn7oZMG3G" role="10QFUP">
+                          <ref role="3cqZAo" node="31Fn7oZMs6R" resolve="typeDeclaration" />
                         </node>
                       </node>
                     </node>
@@ -6884,8 +6861,8 @@
             <node concept="3uibUv" id="1JYTWWz_ORx" role="2ZW6by">
               <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="HasNode" />
             </node>
-            <node concept="37vLTw" id="1JYTWWz_Hmi" role="2ZW6bz">
-              <ref role="3cqZAo" node="1JYTWWzzhDF" resolve="fbType" />
+            <node concept="37vLTw" id="31Fn7oZMs6W" role="2ZW6bz">
+              <ref role="3cqZAo" node="31Fn7oZMs6R" resolve="typeDeclaration" />
             </node>
           </node>
         </node>
@@ -6941,6 +6918,16 @@
                       <ref role="37wK5l" to="2xsi:1HEL0zWeift" resolve="getName" />
                     </node>
                   </node>
+                  <node concept="3fqX7Q" id="31Fn7oZMGzL" role="37wK5m">
+                    <node concept="2OqwBi" id="31Fn7oZMGzN" role="3fr31v">
+                      <node concept="37vLTw" id="31Fn7oZMGzO" role="2Oq$k0">
+                        <ref role="3cqZAo" node="4vmY7CyRIpv" resolve="port" />
+                      </node>
+                      <node concept="liA8E" id="31Fn7oZMGzP" role="2OqNvi">
+                        <ref role="37wK5l" to="2xsi:31Fn7oZvfqf" resolve="isValid" />
+                      </node>
+                    </node>
+                  </node>
                 </node>
               </node>
             </node>
@@ -6957,8 +6944,9 @@
               </node>
               <node concept="liA8E" id="3DiEZ8TKmM_" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-                <node concept="37vLTw" id="3DiEZ8TKmW$" role="37wK5m">
-                  <ref role="3cqZAo" node="3DiEZ8TJfwn" resolve="FB_PORT_ATTR" />
+                <node concept="10M0yZ" id="31Fn7oZOxIQ" role="37wK5m">
+                  <ref role="3cqZAo" to="5z5t:3DiEZ8TM9th" resolve="PORT" />
+                  <ref role="1PxDUh" to="5z5t:3DiEZ8TM99k" resolve="FBAttributes" />
                 </node>
                 <node concept="37vLTw" id="3DiEZ8TKpvp" role="37wK5m">
                   <ref role="3cqZAo" node="4vmY7CyRIpv" resolve="port" />

@@ -49,6 +49,7 @@
     <import index="ppqf" ref="r:bc5caf0f-df14-4a61-a09e-297c528e7095(richediting.adapters.inspections)" />
     <import index="5ueo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime.style(MPS.Editor/)" />
     <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.interfacepart)" />
+    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.adapters.plugin)" />
     <import index="c17a" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.language(MPS.OpenAPI/)" implicit="true" />
   </imports>
   <registry>
@@ -809,10 +810,10 @@
                               <ref role="37wK5l" to="ubo9:~EditorCell_Basic.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode)" resolve="FBTypeTemplateCellComponent" />
                               <node concept="1Q80Hx" id="1HEL0zWg70_" role="37wK5m" />
                               <node concept="pncrf" id="1HEL0zWg7p7" role="37wK5m" />
-                              <node concept="2YIFZM" id="1R4IoyQNxYw" role="37wK5m">
-                                <ref role="37wK5l" to="go3h:1R4IoyQJjh9" resolve="create" />
-                                <ref role="1Pybhc" to="go3h:1R4IoyQ_1A_" resolve="FBTypeDescriptorByNode" />
-                                <node concept="pncrf" id="1R4IoyQNxYx" role="37wK5m" />
+                              <node concept="2YIFZM" id="31Fn7oZK5yZ" role="37wK5m">
+                                <ref role="37wK5l" to="go3h:31Fn7oZK1vY" resolve="adaptTypeDescriptor" />
+                                <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
+                                <node concept="pncrf" id="31Fn7oZK5z0" role="37wK5m" />
                               </node>
                             </node>
                           </node>
@@ -1731,13 +1732,13 @@
                           </node>
                           <node concept="3clFbS" id="7oJsd9x58Rz" role="3clF47">
                             <node concept="3clFbF" id="7oJsd9x58R$" role="3cqZAp">
-                              <node concept="2YIFZM" id="7oJsd9x58R_" role="3clFbG">
-                                <ref role="37wK5l" node="7oJsd9wVN1g" resolve="createFBNetworkCell" />
+                              <node concept="2YIFZM" id="1y1FD3qCiWA" role="3clFbG">
+                                <ref role="37wK5l" node="7oJsd9x560s" resolve="createSubappNetworkCell" />
                                 <ref role="1Pybhc" node="7oJsd9wVHpq" resolve="FBNetworkEditors" />
-                                <node concept="37vLTw" id="7oJsd9x58RA" role="37wK5m">
+                                <node concept="37vLTw" id="1y1FD3qCiWB" role="37wK5m">
                                   <ref role="3cqZAo" node="7oJsd9x58Rx" resolve="context" />
                                 </node>
-                                <node concept="pncrf" id="7oJsd9x58RB" role="37wK5m" />
+                                <node concept="pncrf" id="1y1FD3qCiWC" role="37wK5m" />
                               </node>
                             </node>
                           </node>
@@ -1798,29 +1799,6 @@
     <property role="TrG5h" value="FBNetworkEditors" />
     <property role="1EXbeo" value="true" />
     <node concept="2tJIrI" id="7oJsd9wVHqT" role="jymVt" />
-    <node concept="Wx3nA" id="3DiEZ8TM66d" role="jymVt">
-      <property role="TrG5h" value="FB_NETWORK_ATTR" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3uibUv" id="3DiEZ8TM66g" role="1tU5fm">
-        <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
-        <node concept="3uibUv" id="3DiEZ8TM66h" role="11_B2D">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
-        </node>
-      </node>
-      <node concept="2ShNRf" id="3DiEZ8TM66i" role="33vP2m">
-        <node concept="1pGfFk" id="3DiEZ8TM66j" role="2ShVmc">
-          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
-          <node concept="Xl_RD" id="3DiEZ8TM66k" role="37wK5m">
-            <property role="Xl_RC" value="fb-network" />
-          </node>
-          <node concept="3uibUv" id="3DiEZ8TM66l" role="1pMfVU">
-            <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
-          </node>
-        </node>
-      </node>
-      <node concept="3Tm1VV" id="3DiEZ8TM66f" role="1B3o_S" />
-    </node>
-    <node concept="2tJIrI" id="3DiEZ8TL$Ew" role="jymVt" />
     <node concept="3clFbW" id="7oJsd9x57Gw" role="jymVt">
       <node concept="3cqZAl" id="7oJsd9x57Gx" role="3clF45" />
       <node concept="3Tm6S6" id="7oJsd9x58ic" role="1B3o_S" />
@@ -1972,8 +1950,9 @@
             </node>
             <node concept="liA8E" id="3DiEZ8TLZx0" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-              <node concept="37vLTw" id="3DiEZ8TM8_t" role="37wK5m">
-                <ref role="3cqZAo" node="3DiEZ8TM66d" resolve="FB_NETWORK_ATTR" />
+              <node concept="10M0yZ" id="31Fn7oZNRI9" role="37wK5m">
+                <ref role="3cqZAo" to="5z5t:3DiEZ8TM9f3" resolve="NETWORK" />
+                <ref role="1PxDUh" to="5z5t:3DiEZ8TM99k" resolve="FBAttributes" />
               </node>
               <node concept="37vLTw" id="3DiEZ8TM8XJ" role="37wK5m">
                 <ref role="3cqZAo" node="7oJsd9x52P1" resolve="network" />
