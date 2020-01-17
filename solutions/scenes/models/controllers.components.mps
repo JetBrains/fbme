@@ -21,6 +21,7 @@
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
+    <import index="hyam" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt.event(JDK/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -1665,11 +1666,11 @@
                         <ref role="3cqZAo" node="17nGqbJ$wbx" resolve="event" />
                       </node>
                       <node concept="2OwXpG" id="17nGqbJ$xoz" role="2OqNvi">
-                        <ref role="2Oxat5" to="3bo0:3vyG44AuReH" resolve="data" />
+                        <ref role="2Oxat5" to="3bo0:3vyG44AuReH" resolve="awt" />
                       </node>
                     </node>
-                    <node concept="2OwXpG" id="17nGqbJ$whk" role="2OqNvi">
-                      <ref role="2Oxat5" to="3bo0:3vyG44AulJ$" resolve="x" />
+                    <node concept="liA8E" id="1y1FD3qNvtN" role="2OqNvi">
+                      <ref role="37wK5l" to="hyam:~MouseEvent.getX()" resolve="getX" />
                     </node>
                   </node>
                   <node concept="2OqwBi" id="17nGqbJ$whl" role="37wK5m">
@@ -1678,11 +1679,11 @@
                         <ref role="3cqZAo" node="17nGqbJ$wbx" resolve="event" />
                       </node>
                       <node concept="2OwXpG" id="17nGqbJ$x8z" role="2OqNvi">
-                        <ref role="2Oxat5" to="3bo0:3vyG44AuReH" resolve="data" />
+                        <ref role="2Oxat5" to="3bo0:3vyG44AuReH" resolve="awt" />
                       </node>
                     </node>
-                    <node concept="2OwXpG" id="17nGqbJ$whp" role="2OqNvi">
-                      <ref role="2Oxat5" to="3bo0:3vyG44AulJB" resolve="y" />
+                    <node concept="liA8E" id="1y1FD3qNwhj" role="2OqNvi">
+                      <ref role="37wK5l" to="hyam:~MouseEvent.getY()" resolve="getY" />
                     </node>
                   </node>
                 </node>
@@ -1905,11 +1906,11 @@
                         <ref role="3cqZAo" node="17nGqbJ$mBc" resolve="event" />
                       </node>
                       <node concept="2OwXpG" id="17nGqbJc6VL" role="2OqNvi">
-                        <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="data" />
+                        <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="awt" />
                       </node>
                     </node>
-                    <node concept="2OwXpG" id="17nGqbJc6VM" role="2OqNvi">
-                      <ref role="2Oxat5" to="3bo0:3vyG44AulJ$" resolve="x" />
+                    <node concept="liA8E" id="1y1FD3qNuqe" role="2OqNvi">
+                      <ref role="37wK5l" to="hyam:~MouseEvent.getX()" resolve="getX" />
                     </node>
                   </node>
                   <node concept="2OqwBi" id="17nGqbJc6VN" role="37wK5m">
@@ -1918,11 +1919,11 @@
                         <ref role="3cqZAo" node="17nGqbJ$mBc" resolve="event" />
                       </node>
                       <node concept="2OwXpG" id="17nGqbJc6VQ" role="2OqNvi">
-                        <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="data" />
+                        <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="awt" />
                       </node>
                     </node>
-                    <node concept="2OwXpG" id="17nGqbJc6VR" role="2OqNvi">
-                      <ref role="2Oxat5" to="3bo0:3vyG44AulJB" resolve="y" />
+                    <node concept="liA8E" id="1y1FD3qNuPR" role="2OqNvi">
+                      <ref role="37wK5l" to="hyam:~MouseEvent.getY()" resolve="getY" />
                     </node>
                   </node>
                 </node>
@@ -1989,11 +1990,11 @@
                       <ref role="3cqZAo" node="17nGqbJ$mBc" resolve="event" />
                     </node>
                     <node concept="2OwXpG" id="17nGqbJcsKc" role="2OqNvi">
-                      <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="data" />
+                      <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="awt" />
                     </node>
                   </node>
-                  <node concept="2OwXpG" id="17nGqbJcviv" role="2OqNvi">
-                    <ref role="2Oxat5" to="3bo0:3vyG44AulJH" resolve="metaDown" />
+                  <node concept="liA8E" id="1y1FD3qNv5v" role="2OqNvi">
+                    <ref role="37wK5l" to="hyam:~InputEvent.isMetaDown()" resolve="isMetaDown" />
                   </node>
                 </node>
                 <node concept="9aQIb" id="5MmYuOgVbQK" role="9aQIa">
@@ -2102,11 +2103,11 @@
                                 <ref role="3cqZAo" node="17nGqbJ$mBc" resolve="event" />
                               </node>
                               <node concept="2OwXpG" id="17nGqbJcIMp" role="2OqNvi">
-                                <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="data" />
+                                <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="awt" />
                               </node>
                             </node>
-                            <node concept="2OwXpG" id="17nGqbJcIMq" role="2OqNvi">
-                              <ref role="2Oxat5" to="3bo0:3vyG44AulJ$" resolve="x" />
+                            <node concept="liA8E" id="1y1FD3qNwB8" role="2OqNvi">
+                              <ref role="37wK5l" to="hyam:~MouseEvent.getX()" resolve="getX" />
                             </node>
                           </node>
                           <node concept="2OqwBi" id="17nGqbJcIMr" role="37wK5m">
@@ -2115,11 +2116,11 @@
                                 <ref role="3cqZAo" node="17nGqbJ$mBc" resolve="event" />
                               </node>
                               <node concept="2OwXpG" id="17nGqbJcIMu" role="2OqNvi">
-                                <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="data" />
+                                <ref role="2Oxat5" to="3bo0:3vyG44AuBRH" resolve="awt" />
                               </node>
                             </node>
-                            <node concept="2OwXpG" id="17nGqbJcIMv" role="2OqNvi">
-                              <ref role="2Oxat5" to="3bo0:3vyG44AulJB" resolve="y" />
+                            <node concept="liA8E" id="1y1FD3qNx7q" role="2OqNvi">
+                              <ref role="37wK5l" to="hyam:~MouseEvent.getY()" resolve="getY" />
                             </node>
                           </node>
                         </node>
