@@ -16,6 +16,7 @@
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-core/languages/languageDesign" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" />
+      <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/editor" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign" recursive="false" />
@@ -25,6 +26,7 @@
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-execution-languages/languages/mps-execution-languages" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-execution-languages/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/editor" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/lib" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-core/languages/languageDesign" recursive="false" type="SOURCES" />
