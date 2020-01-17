@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType Name="Section6" Comment="Composite Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="4" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="Section6">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/26/2018" Remarks="template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="At_pos" />
         <With Var="HMI_permission" />
         <With Var="Products_demanded" />
@@ -15,7 +13,7 @@
         <With Var="Sensor2" />
         <With Var="Run" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="At_pos" />
         <With Var="HMI_permission" />
         <With Var="Products_demanded" />
@@ -26,14 +24,14 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="Cups_on_enas" />
         <With Var="Drive_next" />
         <With Var="To_pos" />
         <With Var="Conveyor" />
         <With Var="Conveyor2" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="Cups_on_enas" />
         <With Var="Drive_next" />
         <With Var="Conveyor" />
@@ -61,129 +59,10 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB ID="2" Name="FB2" Type="DisableConveyor" x="2420" y="940" Namespace="Main" />
-    <FB ID="3" Name="FB3" Type="DisableConveyor" x="2440" y="1560" Namespace="Main" />
-    <FB ID="1" Name="FB1" Type="Section6Ctrl" x="980" y="400" Namespace="Main" />
-    <FB ID="4" Name="FB4" Type="E_MERGE" x="3260" y="720" Namespace="IEC61499.Standard" />
-    <Input Name="INIT">
-      <Position>
-        <X>3</X>
-        <Y>3</Y>
-      </Position>
-      <IsType>Event</IsType>
-    </Input>
-    <Input Name="REQ">
-      <Position>
-        <X>3</X>
-        <Y>18</Y>
-      </Position>
-      <IsType>Event</IsType>
-    </Input>
-    <Input Name="At_pos">
-      <Position>
-        <X>5</X>
-        <Y>62.9635429</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="HMI_permission">
-      <Position>
-        <X>5</X>
-        <Y>77.96355</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="Products_demanded">
-      <Position>
-        <X>5</X>
-        <Y>92.96355</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="Section3_permission">
-      <Position>
-        <X>10</X>
-        <Y>42.9635429</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="Sensor1">
-      <Position>
-        <X>3</X>
-        <Y>108</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="Sensor2">
-      <Position>
-        <X>3</X>
-        <Y>123</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Input Name="Run">
-      <Position>
-        <X>365</X>
-        <Y>367.963562</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Input>
-    <Output Name="INITO">
-      <Position>
-        <X>580</X>
-        <Y>42.9635429</Y>
-      </Position>
-      <IsType>Event</IsType>
-    </Output>
-    <Output Name="CNF">
-      <Position>
-        <X>585</X>
-        <Y>57.9635429</Y>
-      </Position>
-      <IsType>Event</IsType>
-    </Output>
-    <Output Name="Cups_on_enas">
-      <Position>
-        <X>565</X>
-        <Y>167.963547</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Output>
-    <Output Name="Drive_next">
-      <Position>
-        <X>565</X>
-        <Y>147.963547</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Output>
-    <Output Name="To_pos">
-      <Position>
-        <X>565</X>
-        <Y>132.963547</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Output>
-    <Output Name="Conveyor">
-      <Position>
-        <X>795</X>
-        <Y>297.963562</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Output>
-    <Output Name="CNF_SEND">
-      <Position>
-        <X>585</X>
-        <Y>72.96354</Y>
-      </Position>
-      <IsType>Event</IsType>
-    </Output>
-    <Output Name="Conveyor2">
-      <Position>
-        <X>790</X>
-        <Y>432.963562</Y>
-      </Position>
-      <IsType>Data</IsType>
-    </Output>
+    <FB Name="FB2" Type="DisableConveyor" x="2420" y="940" />
+    <FB Name="FB3" Type="DisableConveyor" x="2440" y="1560" />
+    <FB Name="FB1" Type="Section6Ctrl" x="980" y="400" />
+    <FB Name="FB4" Type="E_MERGE" x="3260" y="720" />
     <EventConnections>
       <Connection Source="INIT" Destination="FB1.INIT" dx1="468.8334" />
       <Connection Source="FB1.CNF" Destination="FB2.REQ" dx1="166.7085" />
@@ -196,7 +75,7 @@
       <Connection Source="REQ" Destination="FB3.REQ" dx1="456.9584" />
       <Connection Source="FB1.CNF" Destination="FB3.REQ" dx1="166.7085" />
       <Connection Source="FB3.CNF" Destination="FB4.EI2" dx1="50" />
-      <Connection Source="FB4.EO" Destination="CNF" dx1="41.54175" dx2="30" dy="-148" />
+      <Connection Source="FB4.EO" Destination="CNF" dx1="41.54175" dy="-148" dx2="30" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Run" Destination="FB2.QI" dx1="41.39575" />

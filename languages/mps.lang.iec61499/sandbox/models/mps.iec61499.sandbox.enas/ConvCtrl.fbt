@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType Name="ConvCtrl" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ConvCtrl">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="3/23/2016" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="Sensor" />
         <With Var="Feed" />
         <With Var="Receive" />
@@ -17,7 +15,7 @@
         <With Var="ProductDelivered" />
         <With Var="DockCmd_Rob1" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="Sensor" />
         <With Var="Feed" />
         <With Var="Receive" />
@@ -30,7 +28,7 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="DriveConv" />
         <With Var="DriveRobConv" />
         <With Var="ReadySIG" />
@@ -40,7 +38,7 @@
         <With Var="DivertorOut" />
         <With Var="TriggerEvent" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="DriveConv" />
         <With Var="DriveRobConv" />
         <With Var="ReadySIG" />
@@ -53,7 +51,7 @@
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="Sensor" Type="BOOL" />
-      <VarDeclaration Name="Feed" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Feed" Type="BOOL" />
       <VarDeclaration Name="Receive" Type="BOOL" />
       <VarDeclaration Name="Stop" Type="BOOL" />
       <VarDeclaration Name="ProductDemanded" Type="INT" />
@@ -63,7 +61,7 @@
       <VarDeclaration Name="DockCmd_Rob1" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="DriveConv" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="DriveConv" Type="BOOL" />
       <VarDeclaration Name="DriveRobConv" Type="BOOL" />
       <VarDeclaration Name="ReadySIG" Type="BOOL" />
       <VarDeclaration Name="DriveNext" Type="BOOL" />
@@ -78,14 +76,14 @@
       <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
     </InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="4952.369" y="772.2692" />
-      <ECState Name="INIT" Comment="Initialization" x="5038.957" y="1264.034">
+      <ECState Name="START" x="4952.369" y="772.2692"></ECState>
+      <ECState Name="INIT" x="5038.957" y="1264.034">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="FEED" Comment="Normal execution" x="2201.076" y="2143.799">
+      <ECState Name="FEED" x="2201.076" y="2143.799">
         <ECAction Algorithm="FEED" Output="CNF" />
       </ECState>
-      <ECState Name="MUNITRECEIVED" Comment="Normal execution" x="2841.076" y="695.7982">
+      <ECState Name="MUNITRECEIVED" x="2841.076" y="695.7982">
         <ECAction Algorithm="MUNITRECEIVED" Output="CNF" />
       </ECState>
       <ECState Name="NOMUNIT" x="3450.54" y="1158.857">
@@ -106,127 +104,73 @@
       <ECState Name="EmptyProduct" x="1595.429" y="1478.857">
         <ECAction Algorithm="EmptyProduct" Output="CNF" />
       </ECState>
-      <ECState Name="Back_State" x="643.429" y="1582.857" />
+      <ECState Name="Back_State" x="643.429" y="1582.857"></ECState>
       <ECState Name="VerifyDocking" x="792.5079" y="817.1429">
         <ECAction Algorithm="VerifyDocking" Output="CNF" />
       </ECState>
       <ECState Name="DivertBack" x="297.7778" y="1115.817">
         <ECAction Algorithm="DivertBack" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="4931.381" y="1005.138">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1227.158,235.4773,1231.356,264.9231" />
-      </ECTransition>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="5191.428" y="987.3673">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1311.722,259.7922,1304.507,228.7607" />
-      </ECTransition>
-      <ECTransition Source="NOMUNIT" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="3102.903" y="952.6506">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="785.5014,240.4929,762.1975,240.0529" />
-      </ECTransition>
-      <ECTransition Source="FEED" Destination="NOMUNIT" Condition="REQ[NOT(Feed)]" x="2601.458" y="1765.596">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.4359,487.202,678.9786,414.6405" />
-      </ECTransition>
-      <ECTransition Source="RECEIVE" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="2888.72" y="1343.023">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="743.2919,393.6042,690.0772,284.7457" />
-      </ECTransition>
-      <ECTransition Source="START" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="3985.264" y="590.1017">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1061.519,142.9468,934.7578,134.9777" />
-      </ECTransition>
-      <ECTransition Source="NOMUNIT" Destination="RECEIVE" Condition="REQ[Receive]" x="3198.439" y="1524.701">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="807.8047,353.5106,782.1221,407.3693" />
-      </ECTransition>
-      <ECTransition Source="START" Destination="NOMUNIT" Condition="REQ[NOT(Sensor)]" x="3833.015" y="800.7122">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="983.3543,175.3342,881.5839,202.646" />
-      </ECTransition>
-      <ECTransition Source="RECEIVE" Destination="INIT" Condition="INIT" x="3963.379" y="1014.698">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="911.6188,235.1803,1056.876,185.6302" />
-      </ECTransition>
-      <ECTransition Source="NOMUNIT" Destination="INIT" Condition="INIT" x="4281.928" y="835.2639">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1016.944,176.9232,1128.675,186.7088" />
-      </ECTransition>
-      <ECTransition Source="FEED" Destination="INIT" Condition="INIT" x="3807.598" y="2174.453">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="855.2426,613.2988,1073.913,545.611" />
-      </ECTransition>
-      <ECTransition Source="MUNITRECEIVED" Destination="INIT" Condition="INIT" x="4314.139" y="720.253">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1017.255,139.9051,1182.801,183.721" />
-      </ECTransition>
-      <ECTransition Source="NOMUNIT" Destination="STOP" Condition="REQ[Stop]" x="4339.146" y="1523.381">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1023.502,343.7494,1146.806,406.8618" />
-      </ECTransition>
-      <ECTransition Source="STOP" Destination="NOMUNIT" Condition="REQ[NOT(Stop)]" x="3867.628" y="1648.268">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="998.3569,447.463,873.5292,383.9881" />
-      </ECTransition>
-      <ECTransition Source="MUNITRECEIVED" Destination="ValidProduct" Condition="REQ[(ProductDemanded=ProductDetected)[NOT(ProductDetected=-1)&amp;TimeStamp&lt;CURRENT_DT()]]" x="2001.253" y="735.0044">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="533.5181,161.3672,450.2319,185.9884" />
-      </ECTransition>
-      <ECTransition Source="MUNITRECEIVED" Destination="InValidProduct" Condition="REQ[NOT(ProductDemanded=ProductDetected)[NOT(ProductDetected=-1)&amp;NOT(ProductDetected=2)&amp;TimeStamp&lt;CURRENT_DT()]]" x="2168.891" y="881.9222">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.9184,191.8929,505.5941,231.9713" />
-      </ECTransition>
-      <ECTransition Source="MUNITRECEIVED" Destination="EmptyProduct" Condition="REQ[(ProductDetected=2)[TimeStamp&lt;CURRENT_DT()]]" x="2194.764" y="1669.666">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="591.1464,433.0905,500.6432,490.1017" />
-      </ECTransition>
-      <ECTransition Source="InValidProduct" Destination="Back_State" Condition="INIT" x="904.3785" y="1273.334">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="242.2674,300.5103,191.0764,316.0505" />
-      </ECTransition>
-      <ECTransition Source="EmptyProduct" Destination="Back_State" Condition="INIT" x="912.8854" y="1332.446">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="249.7838,313.1654,182.3069,328.6859" />
-      </ECTransition>
-      <ECTransition Source="InValidProduct" Destination="FEED" Condition="REQ[Feed]" x="1272.42" y="1679.269">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="253.4449,385.3912,298.3466,447.2054" />
-      </ECTransition>
-      <ECTransition Source="EmptyProduct" Destination="FEED" Condition="REQ[Feed]" x="1404.731" y="2115.47">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="294.9782,528.416,337.4069,573.9767" />
-      </ECTransition>
-      <ECTransition Source="Back_State" Destination="INIT" Condition="1" x="2819.249" y="2626.234">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="532.3193,765.036,873.2394,739.8487" />
-      </ECTransition>
-      <ECTransition Source="ValidProduct" Destination="VerifyDocking" Condition="REQ[(DockingPosition=1)]" x="1223.626" y="539.7461">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="323.8014,110.5454,291.127,99.31573" />
-      </ECTransition>
-      <ECTransition Source="VerifyDocking" Destination="Back_State" Condition="INIT" x="877.6061" y="1019.846">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="236.4847,214.9404,226.661,269.3055" />
-      </ECTransition>
-      <ECTransition Source="ValidProduct" Destination="Back_State" Condition="INIT" x="959.4285" y="1199.208">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="257.9774,278.6541,208.9661,301.8961" />
-      </ECTransition>
-      <ECTransition Source="VerifyDocking" Destination="DivertBack" Condition="REQ[ProductDelivered]" x="334.3441" y="759.0151">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="86.58785,168.7173,59.76633,184.9098" />
-      </ECTransition>
-      <ECTransition Source="DivertBack" Destination="Back_State" Condition="INIT" x="261.6716" y="1362.481">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="43.54188,326.604,65.90956,356.827" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="4931.381" y="1005.138" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="5191.428" y="987.3673" />
+      <ECTransition Source="NOMUNIT" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="3102.903" y="952.6506" />
+      <ECTransition Source="FEED" Destination="NOMUNIT" Condition="REQ[NOT (Feed)]" x="2601.458" y="1765.596" />
+      <ECTransition Source="RECEIVE" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="2888.72" y="1343.023" />
+      <ECTransition Source="START" Destination="MUNITRECEIVED" Condition="REQ[Sensor]" x="3985.264" y="590.1017" />
+      <ECTransition Source="NOMUNIT" Destination="RECEIVE" Condition="REQ[Receive]" x="3198.439" y="1524.701" />
+      <ECTransition Source="START" Destination="NOMUNIT" Condition="REQ[NOT (Sensor)]" x="3833.015" y="800.7122" />
+      <ECTransition Source="RECEIVE" Destination="INIT" Condition="INIT" x="3963.379" y="1014.698" />
+      <ECTransition Source="NOMUNIT" Destination="INIT" Condition="INIT" x="4281.928" y="835.2639" />
+      <ECTransition Source="FEED" Destination="INIT" Condition="INIT" x="3807.598" y="2174.453" />
+      <ECTransition Source="MUNITRECEIVED" Destination="INIT" Condition="INIT" x="4314.139" y="720.253" />
+      <ECTransition Source="NOMUNIT" Destination="STOP" Condition="REQ[Stop]" x="4339.146" y="1523.381" />
+      <ECTransition Source="STOP" Destination="NOMUNIT" Condition="REQ[NOT (Stop)]" x="3867.628" y="1648.268" />
+      <ECTransition Source="MUNITRECEIVED" Destination="ValidProduct" Condition="REQ[(ProductDemanded = ProductDetected)]" x="2001.253" y="735.0044" />
+      <ECTransition Source="MUNITRECEIVED" Destination="InValidProduct" Condition="REQ[NOT (ProductDemanded = ProductDetected) = - 1 &#38; NOT (ProductDetected = 2) &#38; TimeStamp &#60; CURRENT_DT()]" x="2168.891" y="881.9222" />
+      <ECTransition Source="MUNITRECEIVED" Destination="EmptyProduct" Condition="REQ[(ProductDetected = 2)]" x="2194.764" y="1669.666" />
+      <ECTransition Source="InValidProduct" Destination="Back_State" Condition="INIT" x="904.3785" y="1273.334" />
+      <ECTransition Source="EmptyProduct" Destination="Back_State" Condition="INIT" x="912.8854" y="1332.446" />
+      <ECTransition Source="InValidProduct" Destination="FEED" Condition="REQ[Feed]" x="1272.42" y="1679.269" />
+      <ECTransition Source="EmptyProduct" Destination="FEED" Condition="REQ[Feed]" x="1404.731" y="2115.47" />
+      <ECTransition Source="Back_State" Destination="INIT" Condition="1" x="2819.249" y="2626.234" />
+      <ECTransition Source="ValidProduct" Destination="VerifyDocking" Condition="REQ[(DockingPosition = 1)]" x="1223.626" y="539.7461" />
+      <ECTransition Source="VerifyDocking" Destination="Back_State" Condition="INIT" x="877.6061" y="1019.846" />
+      <ECTransition Source="ValidProduct" Destination="Back_State" Condition="INIT" x="959.4285" y="1199.208" />
+      <ECTransition Source="VerifyDocking" Destination="DivertBack" Condition="REQ[ProductDelivered]" x="334.3441" y="759.0151" />
+      <ECTransition Source="DivertBack" Destination="Back_State" Condition="INIT" x="261.6716" y="1362.481" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";&#xD;&#xA;DriveConv:=0;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;ProductDetected := -1;&#xD;&#xA;ProductType := -1; // Garbage\&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+    <Algorithm Name="INIT">
+      <ST Text="DriveConv := 0;&#38;#10;ReadySIG := 1;&#38;#10;DriveNext := 0;&#38;#10;ProductDetected := - 1;&#38;#10;ProductType := - 1;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="FEED">
-      <ST Text="DriveConv:=1;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext := 1;&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="DriveConv := 1;&#38;#10;ReadySIG := 0;&#38;#10;DriveNext := 1;&#38;#10;DivertorOut := 0;&#38;#10;DriveRobConv := FALSE;&#38;#10;TriggerEvent := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="MUNITRECEIVED">
-      <ST Text="// stop the Conveyor and do color detection.&#xD;&#xA;DriveConv:=0; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;TimeStamp:=ADD_DT_TIME(CURRENT_DT(),T#5.0s);&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="NOMUNIT">
-      <ST Text="// Drive the Conveyor Initially Regardless of the Value of the Sensor.&#xD;&#xA;DriveConv:=1;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;//ProductDetected := -1;&#xD;&#xA;//ProductType := -1; // Garbage&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="RECEIVE">
-      <ST Text="DriveConv:=1;&#xD;&#xA;ReadySIG:=1;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="DriveConv := 1;&#38;#10;ReadySIG := 1;&#38;#10;DriveNext := 0;&#38;#10;DivertorOut := 0;&#38;#10;DriveRobConv := FALSE;&#38;#10;TriggerEvent := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="STOP">
-      <ST Text="DriveConv:=0;&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="DriveConv := 0;&#38;#10;ReadySIG := 0;&#38;#10;DriveNext := 0;&#38;#10;DivertorOut := 0;&#38;#10;DriveRobConv := FALSE;&#38;#10;TriggerEvent := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="ValidProduct">
-      <ST Text=";&#xD;&#xA;// Product is Valid, just drive the conveyor and Open Up the Divertor.&#xD;&#xA;DriveConv:= 0; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;	&#xD;&#xA;ProductType := 1; // Valid Product&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;DockCommand := 1;&#xD;&#xA;TriggerEvent := TRUE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="InValidProduct">
-      <ST Text=";&#xD;&#xA;// Product is In-Valid, and we need Jack1 to remove the WP.&#xD;&#xA;DriveConv:=1; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0; // Should It be 1 ?????&#xD;&#xA;ProductType := 0; // In-Valid Product&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="EmptyProduct">
-      <ST Text=";&#xD;&#xA;// Product is Empty, Jack2 will fill it up !&#xD;&#xA;DriveConv := 1; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0; &#xD;&#xA;ProductType := 2; // Empty Product&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="VerifyDocking">
-      <ST Text=";&#xD;&#xA;// Robotino has docked.&#xD;&#xA;DriveConv:=1; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;	&#xD;&#xA;ProductType := 1; // Valid Product&#xD;&#xA;DivertorOut := 1;// Make the Output for NxtHigh here...&#xD;&#xA;DriveRobConv := TRUE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="DivertBack">
-      <ST Text=";&#xD;&#xA;// product has reached final station. Put the DivertorBack.&#xD;&#xA;DriveConv:=1; //stop the Conveyor&#xD;&#xA;ReadySIG:=0;&#xD;&#xA;DriveNext:=0;	&#xD;&#xA;ProductType := 1; // Valid Product&#xD;&#xA;DivertorOut := 0;&#xD;&#xA;DriveRobConv := FALSE;&#xD;&#xA;TriggerEvent := FALSE;" />
+      <ST Text="" />
     </Algorithm>
   </BasicFB>
 </FBType>

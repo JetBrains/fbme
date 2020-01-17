@@ -1,34 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="BB6BF60C181C099D" Name="W3W1" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="W3W1">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER" />
-      <Event Name="S5_SENSOR" />
-      <Event Name="SR_SENSOR" />
+      <Event Name="TRIGGER"></Event>
+      <Event Name="S5_SENSOR"></Event>
+      <Event Name="SR_SENSOR"></Event>
       <Event Name="CONFIG">
         <With Var="configurationID" />
       </Event>
-      <Event Name="RESET" />
+      <Event Name="RESET"></Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="DONE" />
-      <Event Name="S5_ON" />
-      <Event Name="S5_OFF" />
-      <Event Name="SR_INPUT" />
-      <Event Name="REQ_CONFIG" />
+      <Event Name="DONE"></Event>
+      <Event Name="S5_ON"></Event>
+      <Event Name="S5_OFF"></Event>
+      <Event Name="SR_INPUT"></Event>
+      <Event Name="REQ_CONFIG"></Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="configurationID" Type="STRING" />
     </InputVars>
   </InterfaceList>
   <BasicFB>
-    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="848.9412" y="477.4117" />
+      <ECState Name="START" x="848.9412" y="477.4117"></ECState>
       <ECState Name="SR_INPUT" x="2252" y="1928">
         <ECAction Output="SR_INPUT" />
       </ECState>
@@ -39,43 +37,25 @@
         <ECAction Output="DONE" />
         <ECAction Output="S5_OFF" />
       </ECState>
-      <ECState Name="READY" x="1092" y="952" />
+      <ECState Name="READY" x="1092" y="952"></ECState>
       <ECState Name="SET_CONFIGURATION" x="2276" y="444">
         <ECAction Output="REQ_CONFIG" />
       </ECState>
-      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="195.9163,168.2527,209.2535,191.7031" />
-      </ECTransition>
-      <ECTransition Source="SR_INPUT" Destination="DONE" Condition="SR_SENSOR" x="1393.307" y="2079.759">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="390.5485,539.6345,290.006,530.1743" />
-      </ECTransition>
-      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="358.9364,94.98194,398.4045,74.50307" />
-      </ECTransition>
-      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="CONFIG [ configurationID='COLLECT']" x="2393.951" y="913.3721">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="599.6635,200.2945,605.7104,264.9535" />
-      </ECTransition>
-      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="182.4942,348.8783,201.0539,289.5945" />
-      </ECTransition>
-      <ECTransition Source="S5_TRANSPORT" Destination="SR_INPUT" Condition="S5_SENSOR" x="2399.998" y="1619.026">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="609.4751,383.3553,600.23,428.6619" />
-      </ECTransition>
-      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="470.0555,180.6565,391.6592,214.2928" />
-      </ECTransition>
-      <ECTransition Source="S5_TRANSPORT" Destination="READY" Condition="RESET" x="1693.12" y="1188.711">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="465.2317,311.8018,385.8503,291.6493" />
-      </ECTransition>
-      <ECTransition Source="SR_INPUT" Destination="READY" Condition="RESET" x="1667.055" y="1515">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="461.165,421.3181,374.835,348.6819" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102" />
+      <ECTransition Source="SR_INPUT" Destination="DONE" Condition="SR_SENSOR" x="1393.307" y="2079.759" />
+      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="[configurationID = &#39;COLLECT&#39;]" x="2393.951" y="913.3721" />
+      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709" />
+      <ECTransition Source="S5_TRANSPORT" Destination="SR_INPUT" Condition="S5_SENSOR" x="2399.998" y="1619.026" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033" />
+      <ECTransition Source="S5_TRANSPORT" Destination="READY" Condition="RESET" x="1693.12" y="1188.711" />
+      <ECTransition Source="SR_INPUT" Destination="READY" Condition="RESET" x="1667.055" y="1515" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";" />
+    <Algorithm Name="INIT">
+      <ST Text="" />
     </Algorithm>
-    <Algorithm Name="REQ" Comment="Normally executed algorithm">
-      <ST Text=";" />
+    <Algorithm Name="REQ">
+      <ST Text="" />
     </Algorithm>
   </BasicFB>
 </FBType>

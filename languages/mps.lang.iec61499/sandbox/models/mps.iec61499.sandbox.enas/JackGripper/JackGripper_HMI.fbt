@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType Name="JackGripper_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
-  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
-  <Attribute Name="HMI.Alias" Value="" />
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="JackGripper_HMI">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="Aalto_IT" Date="10/17/2016" Remarks="template" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
@@ -28,9 +24,8 @@
       <VarDeclaration Name="Executing" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
-      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+      <VarDeclaration Name="QO" Type="BOOL" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" />
     </OutputVars>
   </InterfaceList>
-  <Service RightInterface="RESOURCE" />
 </FBType>

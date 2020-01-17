@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType Name="ConvRobCtrl" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ConvRobCtrl">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="5/12/2018" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="Sensor1" />
         <With Var="Sensor2" />
         <With Var="Sensor3" />
@@ -14,7 +12,7 @@
         <With Var="DriveConv_cmd1" />
         <With Var="DriveConv_cmd4" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="Sensor1" />
         <With Var="Sensor2" />
         <With Var="Sensor3" />
@@ -24,14 +22,14 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="MoveConvFrwd" />
         <With Var="MoveConvBack" />
         <With Var="ProductReceived" />
         <With Var="ConvFull" />
         <With Var="DockCmd" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="MoveConvFrwd" />
         <With Var="MoveConvBack" />
         <With Var="ProductReceived" />
@@ -40,7 +38,7 @@
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="Sensor1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Sensor1" Type="BOOL" />
       <VarDeclaration Name="Sensor2" Type="BOOL" />
       <VarDeclaration Name="Sensor3" Type="BOOL" />
       <VarDeclaration Name="DockingPosition" Type="INT" />
@@ -48,7 +46,7 @@
       <VarDeclaration Name="DriveConv_cmd4" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="MoveConvFrwd" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="MoveConvFrwd" Type="BOOL" />
       <VarDeclaration Name="MoveConvBack" Type="BOOL" />
       <VarDeclaration Name="ProductReceived" Type="BOOL" />
       <VarDeclaration Name="ConvFull" Type="BOOL" />
@@ -60,15 +58,15 @@
       <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
     </InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="3300.941" y="1285.411" />
-      <ECState Name="INIT" Comment="Initialization" x="3267.53" y="885.1765">
+      <ECState Name="START" x="3300.941" y="1285.411"></ECState>
+      <ECState Name="INIT" x="3267.53" y="885.1765">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
       <ECState Name="ProdIncoming" x="1048" y="656">
         <ECAction Algorithm="ProdIncoming" Output="CNF" />
       </ECState>
-      <ECState Name="FirstProd" x="928" y="936.0001" />
-      <ECState Name="NotFirstProd" x="1724" y="964.0001" />
+      <ECState Name="FirstProd" x="928" y="936.0001"></ECState>
+      <ECState Name="NotFirstProd" x="1724" y="964.0001"></ECState>
       <ECState Name="DeliverWP" x="1652" y="1568">
         <ECAction Algorithm="DeliverWP" Output="CNF" />
       </ECState>
@@ -81,69 +79,45 @@
       <ECState Name="Wait1" x="1004" y="2128.364">
         <ECAction Algorithm="Wait" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="3209.588" y="1087.575">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="800.1103,284.3484,797.3879,259.8193" />
-      </ECTransition>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="3358.872" y="1081.575">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="842.7523,257.7488,843.9311,282.4186" />
-      </ECTransition>
-      <ECTransition Source="START" Destination="ProdIncoming" Condition="REQ[DockingPosition=1&amp;DriveConv_cmd1]" x="1621.199" y="489.5129">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="450.568,109.837,274.9618,63.41763" />
-      </ECTransition>
-      <ECTransition Source="ProdIncoming" Destination="FirstProd" Condition="REQ[(Sensor3)]" x="781.0245" y="788.4594">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="188.5562,189.1722,187.3874,203.8007" />
-      </ECTransition>
-      <ECTransition Source="ProdIncoming" Destination="NotFirstProd" Condition="REQ[NOT(Sensor3)]" x="1553.495" y="790.6891">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="375.3237,187.1107,414.1699,205.9094" />
-      </ECTransition>
-      <ECTransition Source="NotFirstProd" Destination="DeliverWP" Condition="REQ[Sensor2]" x="1740.213" y="1263.4">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="440.483,294.7896,435.8471,336.477" />
-      </ECTransition>
-      <ECTransition Source="FirstProd" Destination="ProdReceived" Condition="REQ[NOT(Sensor3)]" x="957.4504" y="1213.644">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="238.16,255.0959,239.7356,322.667" />
-      </ECTransition>
-      <ECTransition Source="ProdReceived" Destination="INIT" Condition="INIT" x="599.9984" y="259.6952">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-59.7109,13.81563,116.0847,-60.34058" />
-      </ECTransition>
-      <ECTransition Source="DeliverWP" Destination="ProdReceived" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="1204.429" y="1673.583">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="312.945,409.9659,280.3043,423.5971" />
-      </ECTransition>
-      <ECTransition Source="Wait1" Destination="ConvFull" Condition="REQ[Sensor2]" x="1178.65" y="2277.205">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="305.2123,558.5361,300.0848,577.358" />
-      </ECTransition>
-      <ECTransition Source="ConvFull" Destination="INIT" Condition="INIT" x="383.4624" y="514.4634">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-134.2821,97.53219,47.1669,-26.36799" />
-      </ECTransition>
-      <ECTransition Source="ProdReceived" Destination="Wait1" Condition="REQ[TimeStamp&lt;CURRENT_DT()]" x="1070.051" y="1967.805">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="269.4762,482.8686,270.9218,498.3047" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="3209.588" y="1087.575" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="3358.872" y="1081.575" />
+      <ECTransition Source="START" Destination="ProdIncoming" Condition="REQ[DockingPosition = 1 &#38; DriveConv_cmd1]" x="1621.199" y="489.5129" />
+      <ECTransition Source="ProdIncoming" Destination="FirstProd" Condition="REQ[(Sensor3)]" x="781.0245" y="788.4594" />
+      <ECTransition Source="ProdIncoming" Destination="NotFirstProd" Condition="REQ[NOT (Sensor3)]" x="1553.495" y="790.6891" />
+      <ECTransition Source="NotFirstProd" Destination="DeliverWP" Condition="REQ[Sensor2]" x="1740.213" y="1263.4" />
+      <ECTransition Source="FirstProd" Destination="ProdReceived" Condition="REQ[NOT (Sensor3)]" x="957.4504" y="1213.644" />
+      <ECTransition Source="ProdReceived" Destination="INIT" Condition="INIT" x="599.9984" y="259.6952" />
+      <ECTransition Source="DeliverWP" Destination="ProdReceived" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="1204.429" y="1673.583" />
+      <ECTransition Source="Wait1" Destination="ConvFull" Condition="REQ[Sensor2]" x="1178.65" y="2277.205" />
+      <ECTransition Source="ConvFull" Destination="INIT" Condition="INIT" x="383.4624" y="514.4634" />
+      <ECTransition Source="ProdReceived" Destination="Wait1" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="1070.051" y="1967.805" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";&#xD;&#xA;MoveConvBack := FALSE;&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;ConvFull := FALSE;&#xD;&#xA;ProductReceived := FALSE;&#xD;&#xA;DockCmd  := FALSE;" />
+    <Algorithm Name="INIT">
+      <ST Text="MoveConvBack := FALSE;&#38;#10;MoveConvFrwd := FALSE;&#38;#10;ConvFull := FALSE;&#38;#10;ProductReceived := FALSE;&#38;#10;DockCmd := FALSE;&#38;#10;" />
     </Algorithm>
-    <Algorithm Name="REQ" Comment="Normally executed algorithm">
-      <ST Text=";" />
+    <Algorithm Name="REQ">
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="ProdIncoming">
-      <ST Text=";&#xD;&#xA;// Drive Conveyor Inwards when always at Pos=1&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;MoveConvBack := TRUE;&#xD;&#xA;ConvFull := FALSE;&#xD;&#xA;ProductReceived := FALSE;&#xD;&#xA;DockCmd  := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="DeliverWP">
-      <ST Text=";&#xD;&#xA;// use timer to deliver product once S2 is High.&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#2.5s);&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;MoveConvBack := TRUE;&#xD;&#xA;ProductReceived := FALSE;&#xD;&#xA;DockCmd  := FALSE;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="ConvFull">
-      <ST Text=";&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;MoveConvBack := FALSE;&#xD;&#xA;//ProductReceived := TRUE;&#xD;&#xA;ConvFull := TRUE;&#xD;&#xA;DockCmd  := TRUE;" />
+      <ST Text="MoveConvFrwd := FALSE;&#38;#10;MoveConvBack := FALSE;&#38;#10;ProductReceived := TRUE;&#38;#10;ConvFull := TRUE;&#38;#10;DockCmd := TRUE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="FirstProd">
-      <ST Text=";&#xD;&#xA;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="ProdReceived">
-      <ST Text=";&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;MoveConvBack := FALSE;&#xD;&#xA;ProductReceived := TRUE;&#xD;&#xA;ConvFull := FALSE;&#xD;&#xA;DockCmd  := FALSE;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#1.0s);" />
+      <ST Text="MoveConvFrwd := FALSE;&#38;#10;MoveConvBack := FALSE;&#38;#10;ProductReceived := TRUE;&#38;#10;ConvFull := FALSE;&#38;#10;DockCmd := FALSE;&#38;#10;TimeStamp := ADD_DT_TIME(CURRENT_DT());&#38;#10;" />
     </Algorithm>
     <Algorithm Name="DriveConv">
-      <ST Text=";&#xD;&#xA;MoveConvBack := FALSE;&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;ConvFull := FALSE;&#xD;&#xA;ProductReceived := FALSE;&#xD;&#xA;DockCmd  := FALSE;" />
+      <ST Text="MoveConvBack := FALSE;&#38;#10;MoveConvFrwd := FALSE;&#38;#10;ConvFull := FALSE;&#38;#10;ProductReceived := FALSE;&#38;#10;DockCmd := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="Wait">
-      <ST Text=";&#xD;&#xA;MoveConvFrwd := FALSE;&#xD;&#xA;MoveConvBack := FALSE;&#xD;&#xA;ProductReceived := FALSE;&#xD;&#xA;ConvFull := FALSE;&#xD;&#xA;DockCmd  := FALSE;" />
+      <ST Text="MoveConvFrwd := FALSE;&#38;#10;MoveConvBack := FALSE;&#38;#10;ProductReceived := FALSE;&#38;#10;ConvFull := FALSE;&#38;#10;DockCmd := FALSE;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

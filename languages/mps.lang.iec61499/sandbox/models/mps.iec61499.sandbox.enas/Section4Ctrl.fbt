@@ -1,18 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="F1A367664B8157F6" Name="Section4Ctrl" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="Section4Ctrl">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="MIA" Date="5/27/2018" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="Drive_section3" />
         <With Var="Drive_section5" />
         <With Var="Sensor" />
         <With Var="Jack2_finished" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="Drive_section3" />
         <With Var="Drive_section5" />
         <With Var="Sensor" />
@@ -20,13 +18,13 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="Conveyor" />
         <With Var="Drive_next" />
         <With Var="Drive_prev" />
         <With Var="Jack2_produces" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="Conveyor" />
         <With Var="Drive_next" />
         <With Var="Drive_prev" />
@@ -34,23 +32,23 @@
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="Drive_section3" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Drive_section3" Type="BOOL" />
       <VarDeclaration Name="Drive_section5" Type="BOOL" />
       <VarDeclaration Name="Sensor" Type="BOOL" />
       <VarDeclaration Name="Jack2_finished" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="Conveyor" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Conveyor" Type="BOOL" />
       <VarDeclaration Name="Drive_next" Type="BOOL" />
       <VarDeclaration Name="Drive_prev" Type="BOOL" />
       <VarDeclaration Name="Jack2_produces" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,DRIVE,PRODUCE,PROD_READY,IDLE_MODE" />
+    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="1824.941" y="65.41172" />
-      <ECState Name="INIT" Comment="Initialization" x="1663.53" y="289.1765">
+      <ECState Name="START" x="1824.941" y="65.41172"></ECState>
+      <ECState Name="INIT" x="1663.53" y="289.1765">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
       <ECState Name="IDLE_MODE" x="1528" y="680">
@@ -65,51 +63,31 @@
       <ECState Name="PROD_READY" x="1608" y="1232">
         <ECAction Algorithm="PROD_READY" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="1" x="1841.262" y="218.0161">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="467.1688,49.9656,460.5221,63.07121" />
-      </ECTransition>
-      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1676.46" y="509.161">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="426.7003,117.4022,418.4222,141.2738" />
-      </ECTransition>
-      <ECTransition Source="IDLE_MODE" Destination="DRIVE" Condition="REQ [ Drive_section3]" x="1008.441" y="519.7025">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="284.8674,118.0557,218.9196,120.443" />
-      </ECTransition>
-      <ECTransition Source="DRIVE" Destination="PRODUCE" Condition="REQ [ Sensor]" x="581.8187" y="981.4847">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="150.7707,228.5101,149.1753,262.813" />
-      </ECTransition>
-      <ECTransition Source="PRODUCE" Destination="PROD_READY" Condition="REQ[Jack2_finished]" x="1030.677" y="1452.583">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="226.396,377.3046,286.7047,376.7202" />
-      </ECTransition>
-      <ECTransition Source="PROD_READY" Destination="IDLE_MODE" Condition="REQ [ NOT(Drive_section5)]" x="1566.754" y="1031">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="394.7031,282.6515,389.2969,245.3485" />
-      </ECTransition>
-      <ECTransition Source="DRIVE" Destination="INIT" Condition="INIT" x="418.3477" y="516.5079">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="18.81027,145.7842,96.78256,116.6123" />
-      </ECTransition>
-      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="2481.366" y="665.6863">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="681.3915,189.9514,683.8242,164.3777" />
-      </ECTransition>
-      <ECTransition Source="PROD_READY" Destination="INIT" Condition="INIT" x="2631.51" y="885.8432">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="725.5487,266.5148,729.6639,196.6432" />
-      </ECTransition>
-      <ECTransition Source="PRODUCE" Destination="INIT" Condition="INIT" x="262.0319" y="115.5747">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-40.83755,13.59499,46.3254,-56.60993" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="1841.262" y="218.0161" />
+      <ECTransition Source="INIT" Destination="IDLE_MODE" Condition="1" x="1676.46" y="509.161" />
+      <ECTransition Source="IDLE_MODE" Destination="DRIVE" Condition="[Drive_section3]" x="1008.441" y="519.7025" />
+      <ECTransition Source="DRIVE" Destination="PRODUCE" Condition="[Sensor]" x="581.8187" y="981.4847" />
+      <ECTransition Source="PRODUCE" Destination="PROD_READY" Condition="REQ[Jack2_finished]" x="1030.677" y="1452.583" />
+      <ECTransition Source="PROD_READY" Destination="IDLE_MODE" Condition="[NOT (Drive_section5)]" x="1566.754" y="1031" />
+      <ECTransition Source="DRIVE" Destination="INIT" Condition="INIT" x="418.3477" y="516.5079" />
+      <ECTransition Source="IDLE_MODE" Destination="INIT" Condition="INIT" x="2481.366" y="665.6863" />
+      <ECTransition Source="PROD_READY" Destination="INIT" Condition="INIT" x="2631.51" y="885.8432" />
+      <ECTransition Source="PRODUCE" Destination="INIT" Condition="INIT" x="262.0319" y="115.5747" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Jack2_produces := FALSE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+    <Algorithm Name="INIT">
+      <ST Text="Conveyor := FALSE;&#38;#10;Jack2_produces := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="IDLE_MODE">
-      <ST Text="Conveyor := FALSE;&#xD;&#xA;Jack2_produces := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;Jack2_produces := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="DRIVE">
-      <ST Text="Conveyor := TRUE;&#xD;&#xA;Jack2_produces := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := FALSE;" />
+      <ST Text="Conveyor := TRUE;&#38;#10;Jack2_produces := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PRODUCE">
-      <ST Text="Conveyor := FALSE;&#xD;&#xA;Jack2_produces := TRUE;&#xD;&#xA;Drive_prev := FALSE;&#xD;&#xA;Drive_next := FALSE;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;Jack2_produces := TRUE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PROD_READY">
-      <ST Text="Conveyor := TRUE;&#xD;&#xA;Jack2_produces := FALSE;&#xD;&#xA;Drive_prev := TRUE;&#xD;&#xA;Drive_next := TRUE;" />
+      <ST Text="Conveyor := TRUE;&#38;#10;Jack2_produces := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := TRUE;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

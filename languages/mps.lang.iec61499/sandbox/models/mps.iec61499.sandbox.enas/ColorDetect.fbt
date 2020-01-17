@@ -1,175 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="4A3DDF16AE6DF2B0" Name="ColorDetect" Comment="Composite Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="14" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ColorDetect">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/28/2018" Remarks="template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request" />
-      <Event Name="DETECT" Comment="Write data request event" />
+      <Event Name="INIT"></Event>
+      <Event Name="DETECT"></Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm" />
-      <Event Name="RED" Comment="Event Output">
+      <Event Name="INITO"></Event>
+      <Event Name="RED">
         <With Var="color" />
       </Event>
-      <Event Name="GREEN" Comment="Event Output" />
-      <Event Name="OTHER" Comment="Event output">
+      <Event Name="GREEN"></Event>
+      <Event Name="OTHER">
         <With Var="color" />
       </Event>
     </EventOutputs>
     <OutputVars>
-      <VarDeclaration Name="color" Type="STRING" Comment="Data read with every IND event" />
+      <VarDeclaration Name="color" Type="STRING" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB ID="1" Name="FB1" Type="TCPIO" x="1240" y="880" Namespace="Runtime.IoCommon">
-      <Parameter Name="QI" Value="TRUE" />
-      <Parameter Name="PORT" Value="UDP:10011;192.168.0.178:9013" />
-      <Parameter Name="DATAOUT" Value="CHECK" />
-    </FB>
-    <FB ID="2" Name="FB2" Type="COMPARE_10593E80BE744DDAF" x="3040" y="720" Namespace="Main">
-      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;IN${CNT}:STRING" />
-      <Parameter Name="IN1" Value="'RED'" />
-    </FB>
-    <FB ID="4" Name="FB4" Type="COMPARE_10593E80BE744DDAF" x="3040" y="1600" Namespace="Main">
-      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;IN${CNT}:STRING" />
-      <Parameter Name="IN1" Value="'GREEN'" />
-    </FB>
-    <FB ID="6" Name="FB6" Type="AND_88A3DD8EC65DD11C" x="4140" y="1200" Namespace="Main">
-      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.Standard#CNT:=2;OUT:BOOL" />
-    </FB>
-    <FB ID="7" Name="FB7" Type="E_REND" x="3600" y="1200" Namespace="IEC61499.Standard" />
-    <FB ID="8" Name="FB3" Type="E_PERMIT" x="3620" y="700" Namespace="IEC61499.Standard" />
-    <FB ID="9" Name="FB5" Type="E_PERMIT" x="3640" y="1900" Namespace="IEC61499.Standard" />
-    <FB ID="10" Name="FB8" Type="E_PERMIT" x="4800" y="1220" Namespace="IEC61499.Standard" />
-    <FB ID="12" Name="FB10" Type="E_CTU" x="2000" y="1080" Namespace="IEC61499.Standard">
-      <Parameter Name="PV" Value="2" />
-    </FB>
-    <FB ID="13" Name="FB9" Type="E_PERMIT" x="2440" y="1140" Namespace="IEC61499.Standard" />
-    <FB ID="14" Name="FB11" Type="E_DELAY" x="580" y="2140" Namespace="IEC61499.Standard">
-      <Parameter Name="DT" Value="T#3s" />
-    </FB>
-    <Input Name="INIT" x="12" y="12" Type="Event" />
-    <Input Name="DETECT" x="109.7708" y="991.7084" Type="Event" />
-    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
-    <Output Name="color" x="2940" y="2472" Type="Data" />
-    <Output Name="RED" x="4240" y="692" Type="Event" />
-    <Output Name="GREEN" x="4220" y="1912" Type="Event" />
-    <Output Name="OTHER" x="5360" y="1232" Type="Event" />
+    <FB Name="FB1" Type="" x="1240" y="880" />
+    <FB Name="FB2" Type="" x="3040" y="720" />
+    <FB Name="FB4" Type="" x="3040" y="1600" />
+    <FB Name="FB6" Type="" x="4140" y="1200" />
+    <FB Name="FB7" Type="E_REND" x="3600" y="1200" />
+    <FB Name="FB3" Type="E_PERMIT" x="3620" y="700" />
+    <FB Name="FB5" Type="E_PERMIT" x="3640" y="1900" />
+    <FB Name="FB8" Type="E_PERMIT" x="4800" y="1220" />
+    <FB Name="FB10" Type="E_CTU" x="2000" y="1080" />
+    <FB Name="FB9" Type="E_PERMIT" x="2440" y="1140" />
+    <FB Name="FB11" Type="E_DELAY" x="580" y="2140" />
     <EventConnections>
-      <Connection Source="FB1.INITO" Destination="INITO" dx1="52.16675" />
-      <Connection Source="INIT" Destination="FB1.INIT" dx1="49.41669" />
+      <Connection Source="FB1.null" Destination="INITO" dx1="52.16675" />
+      <Connection Source="INIT" Destination="FB1.null" dx1="49.41669" />
       <Connection Source="DETECT" Destination="FB11.START" dx1="41.56256" />
-      <Connection Source="FB9.EO" Destination="FB2.REQ" dx1="47.16675" />
-      <Connection Source="FB9.EO" Destination="FB4.REQ" dx1="47.16675" />
-      <Connection Source="FB2.CNF" Destination="FB7.EI1" dx1="69.85425" />
-      <Connection Source="FB4.CNF" Destination="FB7.EI2" dx1="50" />
-      <Connection Source="FB7.EO" Destination="FB6.REQ" />
-      <Connection Source="FB2.CNF" Destination="FB3.EI" dx1="50" />
+      <Connection Source="FB9.EO" Destination="FB2.null" dx1="47.16675" />
+      <Connection Source="FB9.EO" Destination="FB4.null" dx1="47.16675" />
+      <Connection Source="FB2.null" Destination="FB7.EI1" dx1="69.85425" />
+      <Connection Source="FB4.null" Destination="FB7.EI2" dx1="50" />
+      <Connection Source="FB7.EO" Destination="FB6.null" />
+      <Connection Source="FB2.null" Destination="FB3.EI" dx1="50" />
       <Connection Source="FB3.EO" Destination="RED" dx1="47.16675" />
-      <Connection Source="FB4.CNF" Destination="FB5.EI" dx1="69.85425" />
+      <Connection Source="FB4.null" Destination="FB5.EI" dx1="69.85425" />
       <Connection Source="FB5.EO" Destination="GREEN" />
-      <Connection Source="FB6.CNF" Destination="FB8.EI" dx1="47.479" />
+      <Connection Source="FB6.null" Destination="FB8.EI" dx1="47.479" />
       <Connection Source="FB8.EO" Destination="OTHER" />
       <Connection Source="FB10.CUO" Destination="FB9.EI" dx1="60" />
-      <Connection Source="FB1.IND" Destination="FB10.CU" dx1="60" />
-      <Connection Source="DETECT" Destination="FB1.REQ" dx1="41.56256" />
-      <Connection Source="DETECT" Destination="FB10.R">
-        <Points>
-          <Points>
-            <X>112.10936</X>
-            <Y>254.9271</Y>
-          </Points>
-          <Points>
-            <X>122.5</X>
-            <Y>254.9271</Y>
-          </Points>
-          <Points>
-            <X>122.5</X>
-            <Y>202.5</Y>
-          </Points>
-          <Points>
-            <X>477.5</X>
-            <Y>202.5</Y>
-          </Points>
-          <Points>
-            <X>477.5</X>
-            <Y>295</Y>
-          </Points>
-          <Points>
-            <X>495</X>
-            <Y>295</Y>
-          </Points>
-        </Points>
-      </Connection>
-      <Connection Source="FB11.EO" Destination="FB1.REQ" dx1="48.5" />
-      <Connection Source="FB1.CNF" Destination="FB1.ACK" dx1="80" dx2="90" dy="-170" />
+      <Connection Source="FB1.null" Destination="FB10.CU" dx1="60" />
+      <Connection Source="DETECT" Destination="FB1.null" dx1="41.56256" />
+      <Connection Source="DETECT" Destination="FB10.R" />
+      <Connection Source="FB11.EO" Destination="FB1.null" dx1="48.5" />
+      <Connection Source="FB1.null" Destination="FB1.null" dx1="80" dy="-170" dx2="90" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB1.DATAIN" Destination="color" dx1="40" />
-      <Connection Source="FB1.DATAIN" Destination="FB2.IN2" dx1="452.1667" />
-      <Connection Source="FB1.DATAIN" Destination="FB4.IN2" dx1="40" />
-      <Connection Source="FB2.NE" Destination="FB6.IN1">
-        <Points>
-          <Points>
-            <X>840.036438</X>
-            <Y>285</Y>
-          </Points>
-          <Points>
-            <X>852.5</X>
-            <Y>285</Y>
-          </Points>
-          <Points>
-            <X>852.5</X>
-            <Y>282.5</Y>
-          </Points>
-          <Points>
-            <X>977.5</X>
-            <Y>282.5</Y>
-          </Points>
-          <Points>
-            <X>977.5</X>
-            <Y>360</Y>
-          </Points>
-          <Points>
-            <X>1030</X>
-            <Y>360</Y>
-          </Points>
-        </Points>
-      </Connection>
-      <Connection Source="FB4.NE" Destination="FB6.IN2">
-        <Points>
-          <Points>
-            <X>840.036438</X>
-            <Y>505</Y>
-          </Points>
-          <Points>
-            <X>857.536438</X>
-            <Y>505</Y>
-          </Points>
-          <Points>
-            <X>857.536438</X>
-            <Y>457.5</Y>
-          </Points>
-          <Points>
-            <X>977.5</X>
-            <Y>457.5</Y>
-          </Points>
-          <Points>
-            <X>977.5</X>
-            <Y>375</Y>
-          </Points>
-          <Points>
-            <X>1030</X>
-            <Y>375</Y>
-          </Points>
-        </Points>
-      </Connection>
-      <Connection Source="FB2.EQ" Destination="FB3.PERMIT" dx1="70" />
-      <Connection Source="FB4.EQ" Destination="FB5.PERMIT" dx1="69.85425" />
-      <Connection Source="FB6.OUT" Destination="FB8.PERMIT" dx1="47.479" />
+      <Connection Source="FB1.null" Destination="color" dx1="40" />
+      <Connection Source="FB1.null" Destination="FB2.null" dx1="452.1667" />
+      <Connection Source="FB1.null" Destination="FB4.null" dx1="40" />
+      <Connection Source="FB2.null" Destination="FB6.null" />
+      <Connection Source="FB4.null" Destination="FB6.null" />
+      <Connection Source="FB2.null" Destination="FB3.PERMIT" dx1="70" />
+      <Connection Source="FB4.null" Destination="FB5.PERMIT" dx1="69.85425" />
+      <Connection Source="FB6.null" Destination="FB8.PERMIT" dx1="47.479" />
       <Connection Source="FB10.Q" Destination="FB9.PERMIT" />
     </DataConnections>
   </FBNetwork>

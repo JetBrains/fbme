@@ -1,47 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="D6A7AD08A75178FC" Name="ProductOrder" Comment="Composite Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ProductOrder">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/23/2018" Remarks="template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="QI" />
       </Event>
-      <Event Name="CHECK_J1" />
-      <Event Name="CHECK_J2" />
-      <Event Name="READY" />
+      <Event Name="CHECK_J1"></Event>
+      <Event Name="CHECK_J2"></Event>
+      <Event Name="READY"></Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="QO" />
       </Event>
-      <Event Name="PRODUCE_RED" Comment="Execution Confirmation">
+      <Event Name="PRODUCE_RED">
         <With Var="QO" />
       </Event>
-      <Event Name="PRODUCE_GREEN" />
-      <Event Name="CLEAR" />
+      <Event Name="PRODUCE_GREEN"></Event>
+      <Event Name="CLEAR"></Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="QI" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="QO" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB ID="1" Name="IThis1" Type="ProductOrder_HMI" x="1020" y="240" Namespace="Main" />
-    <Input Name="INIT" x="12" y="12" Type="Event" />
-    <Input Name="QI" x="12" y="132" Type="Data" />
-    <Input Name="CHECK_J1" x="24.50003" y="311.8542" Type="Event" />
-    <Input Name="READY" x="12" y="72" Type="Event" />
-    <Input Name="CHECK_J2" x="12" y="192" Type="Event" />
-    <Output Name="INITO" x="2118.229" y="12" Type="Event" />
-    <Output Name="PRODUCE_RED" x="2144.313" y="71.85417" Type="Event" />
-    <Output Name="QO" x="2023.875" y="132" Type="Data" />
-    <Output Name="PRODUCE_GREEN" x="2082.667" y="192" Type="Event" />
-    <Output Name="CLEAR" x="2084.865" y="252" Type="Event" />
+    <FB Name="IThis1" Type="ProductOrder_HMI" x="1020" y="240" />
     <EventConnections>
       <Connection Source="INIT" Destination="IThis1.INIT" dx1="89.41669" />
       <Connection Source="CHECK_J1" Destination="IThis1.CHECK_J1" dx1="40" />

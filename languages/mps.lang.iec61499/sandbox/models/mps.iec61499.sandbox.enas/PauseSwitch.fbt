@@ -1,79 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="207F98164055DAC4" Name="PauseSwitch" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="PauseSwitch">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Aalto_IT" Date="4/12/2016" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="PauseButton" />
         <With Var="StartButton" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="PauseButton" />
         <With Var="StartButton" />
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="MachineState" />
         <With Var="StartLight" />
         <With Var="PauseLight" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="MachineState" />
         <With Var="StartLight" />
         <With Var="PauseLight" />
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="PauseButton" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="PauseButton" Type="BOOL" />
       <VarDeclaration Name="StartButton" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="MachineState" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="MachineState" Type="BOOL" />
       <VarDeclaration Name="StartLight" Type="BOOL" />
       <VarDeclaration Name="PauseLight" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,SETON,SETOFF" />
+    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
-      <ECState Name="INIT" Comment="Initialization" x="591.5294" y="145.1765">
+      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
+      <ECState Name="INIT" x="591.5294" y="145.1765">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="TURN_ON" Comment="Normal execution" x="1061.647" y="860.9412">
+      <ECState Name="TURN_ON" x="1061.647" y="860.9412">
         <ECAction Algorithm="SETON" Output="CNF" />
       </ECState>
-      <ECState Name="TURN_OFF" Comment="Normal execution" x="145.647" y="852.9412">
+      <ECState Name="TURN_OFF" x="145.647" y="852.9412">
         <ECAction Algorithm="SETOFF" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="574.252" y="205.7713">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="142.4359,54.31814,144.6818,39.32892" />
-      </ECTransition>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="658.4652" y="297.3837">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="168.8491,67.6921,166.8141,82.68132" />
-      </ECTransition>
-      <ECTransition Source="START" Destination="TURN_OFF" Condition="1" x="273.9888" y="593.2433">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="78.99524,131.4148,54.7321,157.218" />
-      </ECTransition>
-      <ECTransition Source="TURN_ON" Destination="TURN_OFF" Condition="REQ[PauseButton&amp;NOT(StartButton)]" x="539.0068" y="1203.315">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="161.1997,325.7895,99.18482,324.8997" />
-      </ECTransition>
-      <ECTransition Source="TURN_OFF" Destination="TURN_ON" Condition="REQ[StartButton&amp;NOT(PauseButton)]" x="625.7238" y="653.5293">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="126.6888,150.1806,188.841,151.3791" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="574.252" y="205.7713" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="658.4652" y="297.3837" />
+      <ECTransition Source="START" Destination="TURN_OFF" Condition="1" x="273.9888" y="593.2433" />
+      <ECTransition Source="TURN_ON" Destination="TURN_OFF" Condition="REQ[PauseButton &#38; NOT (StartButton)]" x="539.0068" y="1203.315" />
+      <ECTransition Source="TURN_OFF" Destination="TURN_ON" Condition="REQ[StartButton &#38; NOT (PauseButton)]" x="625.7238" y="653.5293" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";" />
+    <Algorithm Name="INIT">
+      <ST Text="" />
     </Algorithm>
-    <Algorithm Name="SETON" Comment="Normally executed algorithm">
-      <ST Text=";&#xD;&#xA;MachineState:=1;&#xD;&#xA;StartLight:=1;&#xD;&#xA;PauseLight:=0;" />
+    <Algorithm Name="SETON">
+      <ST Text="MachineState := 1;&#38;#10;StartLight := 1;&#38;#10;PauseLight := 0;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="SETOFF">
-      <ST Text=";&#xD;&#xA;MachineState:=0;&#xD;&#xA;StartLight:=0;&#xD;&#xA;PauseLight:=1;" />
+      <ST Text="MachineState := 0;&#38;#10;StartLight := 0;&#38;#10;PauseLight := 1;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

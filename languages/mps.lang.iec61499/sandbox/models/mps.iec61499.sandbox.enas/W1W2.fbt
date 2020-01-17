@@ -1,40 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="4CEEACD5F0216FEC" Name="W1W2" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="W1W2">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER" />
-      <Event Name="S3_DELIVERED" />
-      <Event Name="S1_SENSOR" />
-      <Event Name="S2_SENSOR" />
-      <Event Name="SR_SENSOR" />
+      <Event Name="TRIGGER"></Event>
+      <Event Name="S3_DELIVERED"></Event>
+      <Event Name="S1_SENSOR"></Event>
+      <Event Name="S2_SENSOR"></Event>
+      <Event Name="SR_SENSOR"></Event>
       <Event Name="CONFIG">
         <With Var="configurationID" />
       </Event>
-      <Event Name="RESET" />
+      <Event Name="RESET"></Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="DONE" />
-      <Event Name="S1_ON" />
-      <Event Name="S1_OFF" />
-      <Event Name="S2_ON" />
-      <Event Name="S2_OFF" />
-      <Event Name="S3_DELIVERY" />
-      <Event Name="SR_OUTPUT" />
-      <Event Name="SR_OFF" />
-      <Event Name="REQ_CONFIG" />
+      <Event Name="DONE"></Event>
+      <Event Name="S1_ON"></Event>
+      <Event Name="S1_OFF"></Event>
+      <Event Name="S2_ON"></Event>
+      <Event Name="S2_OFF"></Event>
+      <Event Name="S3_DELIVERY"></Event>
+      <Event Name="SR_OUTPUT"></Event>
+      <Event Name="SR_OFF"></Event>
+      <Event Name="REQ_CONFIG"></Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="configurationID" Type="STRING" />
     </InputVars>
   </InterfaceList>
   <BasicFB>
-    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="848.9412" y="477.4117" />
+      <ECState Name="START" x="848.9412" y="477.4117"></ECState>
       <ECState Name="SR_OUTPUT" x="2592" y="832">
         <ECAction Output="SR_OUTPUT" />
       </ECState>
@@ -53,55 +51,29 @@
         <ECAction Output="DONE" />
         <ECAction Output="S2_OFF" />
       </ECState>
-      <ECState Name="READY" x="1092" y="952" />
+      <ECState Name="READY" x="1092" y="952"></ECState>
       <ECState Name="SET_CONFIGURATION" x="2276" y="444">
         <ECAction Output="REQ_CONFIG" />
       </ECState>
-      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="195.9163,168.2527,209.2535,191.7031" />
-      </ECTransition>
-      <ECTransition Source="SR_OUTPUT" Destination="S1_TRANSPORT" Condition="SR_SENSOR" x="2569.407" y="1043.078">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="652.3509,243.1972,640.9242,276.1882" />
-      </ECTransition>
-      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" Condition="S1_SENSOR" x="2486.528" y="1567.517">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="624.6177,370.4487,628.0105,411.5627" />
-      </ECTransition>
-      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" Condition="S2_SENSOR" x="2319.993" y="2207.084">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="605.4623,539.1393,567.0834,574.9171" />
-      </ECTransition>
-      <ECTransition Source="S3_DELIVER" Destination="DONE" Condition="S3_DELIVERED" x="1177.791" y="2197.769">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="325.2838,581.5967,248.3258,533.3907" />
-      </ECTransition>
-      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="358.9364,94.98194,398.4045,74.50307" />
-      </ECTransition>
-      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" Condition="CONFIG [ configurationID='FEED']" x="2527.192" y="634.0869">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="627.37,144.8927,644.666,171.4986" />
-      </ECTransition>
-      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="182.4942,348.8783,201.0539,289.5945" />
-      </ECTransition>
-      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="470.0555,180.6565,391.6592,214.2928" />
-      </ECTransition>
-      <ECTransition Source="SR_OUTPUT" Destination="READY" Condition="RESET" x="1813.228" y="977.0873">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="502.2532,244.7398,405.3578,252.4913" />
-      </ECTransition>
-      <ECTransition Source="S1_TRANSPORT" Destination="READY" Condition="RESET" x="1693.121" y="1188.711">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="465.2317,311.8018,385.8503,291.6493" />
-      </ECTransition>
-      <ECTransition Source="S2_TRANSPORT" Destination="READY" Condition="RESET" x="1753.599" y="1489">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="489.3792,412.6515,390.6208,344.3485" />
-      </ECTransition>
-      <ECTransition Source="S3_DELIVER" Destination="READY" Condition="RESET" x="1486.539" y="1757">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="402.6411,501.9848,341.3589,389.0152" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102" />
+      <ECTransition Source="SR_OUTPUT" Destination="S1_TRANSPORT" Condition="SR_SENSOR" x="2569.407" y="1043.078" />
+      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" Condition="S1_SENSOR" x="2486.528" y="1567.517" />
+      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" Condition="S2_SENSOR" x="2319.993" y="2207.084" />
+      <ECTransition Source="S3_DELIVER" Destination="DONE" Condition="S3_DELIVERED" x="1177.791" y="2197.769" />
+      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" Condition="[configurationID = &#39;FEED&#39;]" x="2527.192" y="634.0869" />
+      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033" />
+      <ECTransition Source="SR_OUTPUT" Destination="READY" Condition="RESET" x="1813.228" y="977.0873" />
+      <ECTransition Source="S1_TRANSPORT" Destination="READY" Condition="RESET" x="1693.121" y="1188.711" />
+      <ECTransition Source="S2_TRANSPORT" Destination="READY" Condition="RESET" x="1753.599" y="1489" />
+      <ECTransition Source="S3_DELIVER" Destination="READY" Condition="RESET" x="1486.539" y="1757" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";" />
+    <Algorithm Name="INIT">
+      <ST Text="" />
     </Algorithm>
-    <Algorithm Name="REQ" Comment="Normally executed algorithm">
-      <ST Text=";" />
+    <Algorithm Name="REQ">
+      <ST Text="" />
     </Algorithm>
   </BasicFB>
 </FBType>

@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
-<FBType GUID="BB8B331573757C4C" Name="Section6Ctrl" Comment="Basic Function Block Type" Namespace="Main">
-  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="Section6Ctrl">
   <Identification Standard="61499-2" />
-  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="taavi" Date="5/28/2018" Remarks="Template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" Comment="Initialization Request">
+      <Event Name="INIT">
         <With Var="Section3_permission" />
         <With Var="At_pos" />
         <With Var="HMI_permission" />
@@ -14,7 +12,7 @@
         <With Var="Sensor1" />
         <With Var="Sensor2" />
       </Event>
-      <Event Name="REQ" Comment="Normal Execution Request">
+      <Event Name="REQ">
         <With Var="Section3_permission" />
         <With Var="At_pos" />
         <With Var="HMI_permission" />
@@ -24,14 +22,14 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm">
+      <Event Name="INITO">
         <With Var="To_pos" />
         <With Var="Conveyor" />
         <With Var="Conveyor2" />
         <With Var="Drive_next" />
         <With Var="Cups_on_enas" />
       </Event>
-      <Event Name="CNF" Comment="Execution Confirmation">
+      <Event Name="CNF">
         <With Var="Conveyor" />
         <With Var="Conveyor2" />
         <With Var="Drive_next" />
@@ -42,7 +40,7 @@
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="Section3_permission" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Section3_permission" Type="BOOL" />
       <VarDeclaration Name="At_pos" Type="STRING" />
       <VarDeclaration Name="HMI_permission" Type="BOOL" />
       <VarDeclaration Name="Product_demanded" Type="INT" />
@@ -50,7 +48,7 @@
       <VarDeclaration Name="Sensor2" Type="BOOL" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="To_pos" Type="STRING" Comment="Output event qualifier" />
+      <VarDeclaration Name="To_pos" Type="STRING" />
       <VarDeclaration Name="Conveyor" Type="BOOL" />
       <VarDeclaration Name="Conveyor2" Type="BOOL" />
       <VarDeclaration Name="Drive_next" Type="BOOL" />
@@ -58,7 +56,6 @@
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ,MOVE_TO_HOME,RECEIVED,HOME,COLLECT,UPDATE_VARS,MOVE_TO_COLLECT,MOVE_TO_FEED,WAIT,FEED" />
     <InternalVars>
       <VarDeclaration Name="Product_to_collect" Type="INT" />
       <VarDeclaration Name="Cups_to_deliver" Type="INT" />
@@ -66,8 +63,8 @@
       <VarDeclaration Name="TimeStamp" Type="DATE_AND_TIME" />
     </InternalVars>
     <ECC>
-      <ECState Name="START" Comment="Initial State" x="1661.513" y="355.126" />
-      <ECState Name="INIT" Comment="Initialization" x="2568.101" y="438.8908">
+      <ECState Name="START" x="1661.513" y="355.126"></ECState>
+      <ECState Name="INIT" x="2568.101" y="438.8908">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
       <ECState Name="MOVE_TO_HOME" x="2784.571" y="1077.714">
@@ -97,105 +94,61 @@
       <ECState Name="FEED" x="4308.572" y="3272.382">
         <ECAction Algorithm="FEED" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="1" x="2140.229" y="315.8872">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="507.0984,72.14954,564.1663,77.42254" />
-      </ECTransition>
-      <ECTransition Source="INIT" Destination="MOVE_TO_HOME" Condition="1" x="2753.9" y="733.436">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="685.3223,159.003,700.4504,203.5706" />
-      </ECTransition>
-      <ECTransition Source="COLLECT" Destination="RECEIVED" Condition="REQ[Sensor2&amp;Product_to_collect=2]" x="1790.949" y="1681.562">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="475.8364,465.182,409.4384,402.8791" />
-      </ECTransition>
-      <ECTransition Source="RECEIVED" Destination="COLLECT" Condition="TimeStamp&lt;CURRENT_DT()" x="1979.134" y="1449.022">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="463.8304,326.5462,530.2285,388.8492" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_HOME" Destination="HOME" Condition="REQ[At_pos='HOME']" x="3677.468" y="894.8115">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="866.6805,215.7143,976.6805,208.5714" />
-      </ECTransition>
-      <ECTransition Source="HOME" Destination="UPDATE_VARS" Condition="REQ[HMI_permission&amp;Product_demanded&gt;0]" x="4223.654" y="1548.423">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1080.819,361.5437,1037.083,420.7857" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_FEED" Destination="FEED" Condition="REQ[At_pos='FEED']" x="4299.461" y="2835.454">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1073.466,676.7939,1086.309,738.2506" />
-      </ECTransition>
-      <ECTransition Source="FEED" Destination="WAIT" Condition="REQ[Sensor1]" x="3494.315" y="3188.445">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="931.114,813.8752,815.1506,790.395" />
-      </ECTransition>
-      <ECTransition Source="WAIT" Destination="FEED" Condition="REQ[Cups_to_deliver&gt;0&amp;Section3_permission]" x="3509.199" y="3024.704">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="820.1119,739.1746,936.0753,762.6545" />
-      </ECTransition>
-      <ECTransition Source="WAIT" Destination="MOVE_TO_COLLECT" Condition="REQ[Cups_to_deliver=0&amp;Section3_permission&amp;TimeStamp&lt;CURRENT_DT()]" x="2589.609" y="2702.857">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="655.1007,703.2111,640.7543,659.8248" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_COLLECT" Destination="COLLECT" Condition="REQ[At_pos='COLL']" x="2426.873" y="2194.857">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="610.8385,566.4611,604.2408,542.5748" />
-      </ECTransition>
-      <ECTransition Source="UPDATE_VARS" Destination="MOVE_TO_COLLECT" Condition="Product_demanded=1[Cups_on_enas_internal=1]" x="3248.159" y="2187.366">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="851.9492,539.2549,765.8694,565.1411" />
-      </ECTransition>
-      <ECTransition Source="UPDATE_VARS" Destination="MOVE_TO_FEED" Condition="(Product_demanded&gt;1[Cups_on_enas_internal=1)OR(Product_demanded&gt;=1&amp;Cups_on_enas_internal=0)]" x="4076.062" y="2134.419">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1013.739,513.262,1031.433,548.3148" />
-      </ECTransition>
-      <ECTransition Source="COLLECT" Destination="MOVE_TO_HOME" Condition="REQ[Sensor2&amp;Product_to_collect=1]" x="2580.265" y="1428.714">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="630.8715,382.0801,660.4142,319.7771" />
-      </ECTransition>
-      <ECTransition Source="HOME" Destination="INIT" Condition="INIT" x="5437.351" y="468.8232">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1580.578,118.4927,1440.736,70.10513" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_HOME" Destination="INIT" Condition="INIT" x="2565.564" y="867.5884">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="645.2155,248.2734,630.1233,203.7351" />
-      </ECTransition>
-      <ECTransition Source="RECEIVED" Destination="INIT" Condition="INIT" x="2016.591" y="680.5894">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="466.8944,186.8448,543.2738,142.3065" />
-      </ECTransition>
-      <ECTransition Source="COLLECT" Destination="INIT" Condition="INIT" x="97.37282" y="1228.959">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-170.2805,369.0548,-155.7471,253.5164" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_COLLECT" Destination="INIT" Condition="INIT" x="311.0714" y="1727.472">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-93.36971,534.2709,-87.10992,386.1491" />
-      </ECTransition>
-      <ECTransition Source="MOVE_TO_FEED" Destination="INIT" Condition="INIT" x="5383.457" y="926.5886">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1569.756,270.0995,1446.136,112.8114" />
-      </ECTransition>
-      <ECTransition Source="FEED" Destination="INIT" Condition="INIT" x="6014.231" y="536.4442">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1781.953,140.8216,1642.256,-86.60551" />
-      </ECTransition>
-      <ECTransition Source="WAIT" Destination="INIT" Condition="INIT" x="55.39389" y="1915.865">
-        <Attribute Name="Configuration.Transaction.BezierPoints" Value="-187.3886,597.1147,-197.5423,396.9096" />
-      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="1" x="2140.229" y="315.8872" />
+      <ECTransition Source="INIT" Destination="MOVE_TO_HOME" Condition="1" x="2753.9" y="733.436" />
+      <ECTransition Source="COLLECT" Destination="RECEIVED" Condition="REQ[Sensor2 &#38; Product_to_collect = 2]" x="1790.949" y="1681.562" />
+      <ECTransition Source="RECEIVED" Destination="COLLECT" Condition="" x="1979.134" y="1449.022" />
+      <ECTransition Source="MOVE_TO_HOME" Destination="HOME" Condition="REQ[At_pos = &#39;HOME&#39;]" x="3677.468" y="894.8115" />
+      <ECTransition Source="HOME" Destination="UPDATE_VARS" Condition="REQ[HMI_permission &#38; Product_demanded &#62; 0]" x="4223.654" y="1548.423" />
+      <ECTransition Source="MOVE_TO_FEED" Destination="FEED" Condition="REQ[At_pos = &#39;FEED&#39;]" x="4299.461" y="2835.454" />
+      <ECTransition Source="FEED" Destination="WAIT" Condition="REQ[Sensor1]" x="3494.315" y="3188.445" />
+      <ECTransition Source="WAIT" Destination="FEED" Condition="REQ[Cups_to_deliver &#62; 0 &#38; Section3_permission]" x="3509.199" y="3024.704" />
+      <ECTransition Source="WAIT" Destination="MOVE_TO_COLLECT" Condition="REQ[Cups_to_deliver = 0 &#38; Section3_permission &#38; TimeStamp &#60; CURRENT_DT()]" x="2589.609" y="2702.857" />
+      <ECTransition Source="MOVE_TO_COLLECT" Destination="COLLECT" Condition="REQ[At_pos = &#39;COLL&#39;]" x="2426.873" y="2194.857" />
+      <ECTransition Source="UPDATE_VARS" Destination="MOVE_TO_COLLECT" Condition="[Cups_on_enas_internal = 1]" x="3248.159" y="2187.366" />
+      <ECTransition Source="UPDATE_VARS" Destination="MOVE_TO_FEED" Condition="[Cups_on_enas_internal = 1 OR (Product_demanded &#62;= 1 &#38; Cups_on_enas_internal = 0)]" x="4076.062" y="2134.419" />
+      <ECTransition Source="COLLECT" Destination="MOVE_TO_HOME" Condition="REQ[Sensor2 &#38; Product_to_collect = 1]" x="2580.265" y="1428.714" />
+      <ECTransition Source="HOME" Destination="INIT" Condition="INIT" x="5437.351" y="468.8232" />
+      <ECTransition Source="MOVE_TO_HOME" Destination="INIT" Condition="INIT" x="2565.564" y="867.5884" />
+      <ECTransition Source="RECEIVED" Destination="INIT" Condition="INIT" x="2016.591" y="680.5894" />
+      <ECTransition Source="COLLECT" Destination="INIT" Condition="INIT" x="97.37282" y="1228.959" />
+      <ECTransition Source="MOVE_TO_COLLECT" Destination="INIT" Condition="INIT" x="311.0714" y="1727.472" />
+      <ECTransition Source="MOVE_TO_FEED" Destination="INIT" Condition="INIT" x="5383.457" y="926.5886" />
+      <ECTransition Source="FEED" Destination="INIT" Condition="INIT" x="6014.231" y="536.4442" />
+      <ECTransition Source="WAIT" Destination="INIT" Condition="INIT" x="55.39389" y="1915.865" />
     </ECC>
-    <Algorithm Name="INIT" Comment="Initialization algorithm">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Product_to_collect := 0;&#xD;&#xA;Cups_to_deliver := 0;&#xD;&#xA;Cups_on_enas := 0;&#xD;&#xA;Cups_on_enas_internal := 0;&#xD;&#xA;" />
+    <Algorithm Name="INIT">
+      <ST Text="Conveyor := FALSE;&#38;#10;To_pos := &#39;NONE&#39;;&#38;#10;Drive_next := FALSE;&#38;#10;Product_to_collect := 0;&#38;#10;Cups_to_deliver := 0;&#38;#10;Cups_on_enas := 0;&#38;#10;Cups_on_enas_internal := 0;&#38;#10;" />
     </Algorithm>
-    <Algorithm Name="REQ" Comment="Normally executed algorithm">
-      <ST Text=";" />
+    <Algorithm Name="REQ">
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="MOVE_TO_HOME">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;To_pos := 'HOME';&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Product_to_collect := 0;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal;&#xD;&#xA;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;To_pos := &#39;HOME&#39;;&#38;#10;Drive_next := FALSE;&#38;#10;Product_to_collect := 0;&#38;#10;Cups_on_enas := Cups_on_enas_internal;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="RECEIVED">
-      <ST Text=";&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Product_to_collect := Product_to_collect - 1;&#xD;&#xA;Drive_next := TRUE;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#2.0s);&#xD;&#xA;" />
+      <ST Text="To_pos := &#39;NONE&#39;;&#38;#10;Conveyor := TRUE;&#38;#10;Product_to_collect := Product_to_collect - 1;&#38;#10;Drive_next := TRUE;&#38;#10;TimeStamp := ADD_DT_TIME(CURRENT_DT());&#38;#10;" />
     </Algorithm>
     <Algorithm Name="HOME">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal;&#xD;&#xA;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;To_pos := &#39;NONE&#39;;&#38;#10;Drive_next := FALSE;&#38;#10;Cups_on_enas := Cups_on_enas_internal;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="COLLECT">
-      <ST Text=";&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Conveyor2 := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal;&#xD;&#xA;" />
+      <ST Text="To_pos := &#39;NONE&#39;;&#38;#10;Conveyor2 := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;Cups_on_enas := Cups_on_enas_internal;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="UPDATE_VARS">
-      <ST Text=";&#xD;&#xA;&#xD;&#xA;IF Product_demanded &gt;= 2 THEN &#xD;&#xA;	Product_to_collect := 2;&#xD;&#xA;ELSE &#xD;&#xA;	Product_to_collect := 1;&#xD;&#xA;END_IF;&#xD;&#xA;		&#xD;&#xA;IF Cups_on_enas_internal = 1 THEN&#xD;&#xA;	Cups_to_deliver := 1;&#xD;&#xA;ELSE&#xD;&#xA;  Cups_to_deliver := 2;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF Cups_on_enas_internal = 1 &amp; Product_demanded = 1 THEN&#xD;&#xA;	Cups_to_deliver := 0;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+      <ST Text="IF Product_demanded &#62;= 2 THEN&#38;#10;  Product_to_collect := 2;&#38;#10;ELSE&#38;#10;  Product_to_collect := 1;&#38;#10;END_IF;&#38;#10;IF Cups_on_enas_internal = 1 THEN&#38;#10;  Cups_to_deliver := 1;&#38;#10;ELSE&#38;#10;  Cups_to_deliver := 2;&#38;#10;END_IF;&#38;#10;IF Cups_on_enas_internal = 1 &#38; Product_demanded = 1 THEN&#38;#10;  Cups_to_deliver := 0;&#38;#10;END_IF;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="MOVE_TO_COLLECT">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;To_pos := 'COLL';&#xD;&#xA;IF Cups_on_enas_internal = 1 THEN Drive_next := TRUE;&#xD;&#xA;ELSE Drive_next := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;To_pos := &#39;COLL&#39;;&#38;#10;IF Cups_on_enas_internal = 1 THEN&#38;#10;  Drive_next := TRUE;&#38;#10;ELSE&#38;#10;  Drive_next := FALSE;&#38;#10;END_IF;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="MOVE_TO_FEED">
-      <ST Text=";&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;To_pos := 'FEED';&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal;&#xD;&#xA;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;To_pos := &#39;FEED&#39;;&#38;#10;Drive_next := FALSE;&#38;#10;Cups_on_enas := Cups_on_enas_internal;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="WAIT">
-      <ST Text=";&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Conveyor := FALSE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Cups_to_deliver := Cups_to_deliver - 1;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal + 1;&#xD;&#xA;Cups_on_enas_internal := Cups_on_enas_internal + 1;&#xD;&#xA;TimeStamp := ADD_DT_TIME(CURRENT_DT(),T#1.0s);&#xD;&#xA;" />
+      <ST Text="To_pos := &#39;NONE&#39;;&#38;#10;Conveyor := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;Cups_to_deliver := Cups_to_deliver - 1;&#38;#10;Cups_on_enas := Cups_on_enas_internal + 1;&#38;#10;Cups_on_enas_internal := Cups_on_enas_internal + 1;&#38;#10;TimeStamp := ADD_DT_TIME(CURRENT_DT());&#38;#10;" />
     </Algorithm>
     <Algorithm Name="FEED">
-      <ST Text=";&#xD;&#xA;To_pos := 'NONE';&#xD;&#xA;Conveyor := TRUE;&#xD;&#xA;Drive_next := FALSE;&#xD;&#xA;Cups_on_enas := Cups_on_enas_internal;&#xD;&#xA;" />
+      <ST Text="To_pos := &#39;NONE&#39;;&#38;#10;Conveyor := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;Cups_on_enas := Cups_on_enas_internal;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
