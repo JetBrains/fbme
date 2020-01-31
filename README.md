@@ -2,7 +2,7 @@
 
 ### Opening MPS project first time
 
-- Install [JetBrains MPS 2018.3.*](https://www.jetbrains.com/mps/download)
+- Install [JetBrains MPS 2019.3.*](https://www.jetbrains.com/mps/download)
 - Run `./gradlew generate`
 - Open project with MPS
 
@@ -10,6 +10,6 @@
 
 - Run `./gradlew buildPlugin`
 
-### Building the RCP
+### Building the standalone IDE
 
 - Run `./gradlew buildRcp`
