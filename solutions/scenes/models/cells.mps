@@ -2464,6 +2464,21 @@
     <node concept="3clFb_" id="1y1FD3qRYQN" role="jymVt">
       <property role="TrG5h" value="installMouseWheelListener" />
       <node concept="3clFbS" id="1y1FD3qRYQQ" role="3clF47">
+        <node concept="3clFbJ" id="SmSpfeNGc7" role="3cqZAp">
+          <node concept="3clFbS" id="SmSpfeNGc9" role="3clFbx">
+            <node concept="3clFbF" id="SmSpfeNPK8" role="3cqZAp">
+              <node concept="1rXfSq" id="SmSpfeNPK6" role="3clFbG">
+                <ref role="37wK5l" node="1y1FD3qVLKd" resolve="uninstallMouseWheelListener" />
+              </node>
+            </node>
+          </node>
+          <node concept="3y3z36" id="SmSpfeNMUK" role="3clFbw">
+            <node concept="10Nm6u" id="SmSpfeNP7F" role="3uHU7w" />
+            <node concept="37vLTw" id="SmSpfeNKmY" role="3uHU7B">
+              <ref role="3cqZAo" node="1y1FD3qRuUE" resolve="parentScrollPane" />
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="1y1FD3qStKA" role="3cqZAp">
           <node concept="37vLTI" id="1y1FD3qSw3B" role="3clFbG">
             <node concept="0kSF2" id="1y1FD3qSybl" role="37vLTx">
@@ -2579,6 +2594,17 @@
     <node concept="3clFb_" id="1y1FD3qVLKd" role="jymVt">
       <property role="TrG5h" value="uninstallMouseWheelListener" />
       <node concept="3clFbS" id="1y1FD3qVLKe" role="3clF47">
+        <node concept="3clFbJ" id="SmSpfeM5b3" role="3cqZAp">
+          <node concept="3clFbS" id="SmSpfeM5b5" role="3clFbx">
+            <node concept="3cpWs6" id="SmSpfeNaC5" role="3cqZAp" />
+          </node>
+          <node concept="3clFbC" id="SmSpfeN8qZ" role="3clFbw">
+            <node concept="10Nm6u" id="SmSpfeN8IE" role="3uHU7w" />
+            <node concept="37vLTw" id="SmSpfeN64c" role="3uHU7B">
+              <ref role="3cqZAo" node="1y1FD3qRuUE" resolve="parentScrollPane" />
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="1y1FD3qVLKD" role="3cqZAp">
           <node concept="2OqwBi" id="1y1FD3qVLKE" role="3clFbG">
             <node concept="37vLTw" id="1y1FD3qVLKF" role="2Oq$k0">
@@ -2611,6 +2637,7 @@
         <ref role="3uigEE" to="dxuu:~JScrollPane" resolve="JScrollPane" />
       </node>
     </node>
+    <node concept="2tJIrI" id="SmSpfeLV99" role="jymVt" />
     <node concept="312cEg" id="1y1FD3qR4vD" role="jymVt">
       <property role="TrG5h" value="myMouseWheelListener" />
       <property role="3TUv4t" value="true" />
@@ -2695,7 +2722,7 @@
                   <node concept="3clFbS" id="1y1FD3qT8W7" role="3clFbx">
                     <node concept="3clFbF" id="1y1FD3qTmkB" role="3cqZAp">
                       <node concept="2OqwBi" id="1y1FD3qTo41" role="3clFbG">
-                        <node concept="37vLTw" id="1y1FD3qTmkA" role="2Oq$k0">
+                        <node concept="37vLTw" id="SmSpfeNdJH" role="2Oq$k0">
                           <ref role="3cqZAo" node="1y1FD3qRuUE" resolve="parentScrollPane" />
                         </node>
                         <node concept="liA8E" id="1y1FD3qT$nI" role="2OqNvi">
@@ -2747,7 +2774,7 @@
                           <node concept="3clFbS" id="1y1FD3qUhq5" role="3clFbx">
                             <node concept="3clFbF" id="1y1FD3qUmPH" role="3cqZAp">
                               <node concept="2OqwBi" id="1y1FD3qUmPI" role="3clFbG">
-                                <node concept="37vLTw" id="1y1FD3qUmPJ" role="2Oq$k0">
+                                <node concept="37vLTw" id="SmSpfeNf8I" role="2Oq$k0">
                                   <ref role="3cqZAo" node="1y1FD3qRuUE" resolve="parentScrollPane" />
                                 </node>
                                 <node concept="liA8E" id="1y1FD3qUmPK" role="2OqNvi">
