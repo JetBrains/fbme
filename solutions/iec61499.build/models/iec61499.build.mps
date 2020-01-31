@@ -1245,7 +1245,6 @@
     <node concept="2G$12M" id="42vv4xsIIPs" role="3989C9">
       <property role="TrG5h" value="iec61499-richediting" />
       <node concept="1E1JtA" id="42vv4xsIIT7" role="2G$12L">
-        <property role="BnDLt" value="true" />
         <property role="TrG5h" value="richediting.adapters" />
         <property role="3LESm3" value="ce053d11-5ec7-4fac-b419-6715b4a97d3a" />
         <node concept="55IIr" id="42vv4xsIITa" role="3LF7KH">
@@ -1324,11 +1323,6 @@
         <node concept="1SiIV0" id="44qSI5$WMqL" role="3bR37C">
           <node concept="3bR9La" id="44qSI5$WMqM" role="1SiIV1">
             <ref role="3bR37D" node="42vv4xsIHLX" resolve="mps.ide" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="44qSI5$WMqN" role="3bR37C">
-          <node concept="3bR9La" id="44qSI5$WMqO" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
           </node>
         </node>
         <node concept="1BupzO" id="6zYxdPXe68r" role="3bR31x">
