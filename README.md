@@ -2,6 +2,7 @@
 
 ### Opening MPS project first time
 
+- Pre-installed JRE 11 is required
 - Install [JetBrains MPS 2019.3.*](https://www.jetbrains.com/mps/download)
 - Run `./gradlew generate`
 - Open project with MPS
