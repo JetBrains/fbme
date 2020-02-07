@@ -15,7 +15,7 @@ classes_gen
 source_gen
 source_gen.caches
 
-solutions/iec61499.ide/startup.properties
+**/startup.properties
 
 build
 out
