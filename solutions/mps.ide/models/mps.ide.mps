@@ -120,9 +120,9 @@
           </node>
         </node>
         <node concept="3clFbF" id="6kvdbYu7vil" role="3cqZAp">
-          <node concept="2YIFZM" id="6kvdbYu7vlk" role="3clFbG">
+          <node concept="2YIFZM" id="3inNSRVw7JW" role="3clFbG">
+            <ref role="37wK5l" to="51vd:3inNSRVvx8C" resolve="reloadAll" />
             <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
-            <ref role="37wK5l" to="51vd:6kvdbYu7uFn" resolve="reloadLibraries" />
           </node>
         </node>
       </node>
@@ -145,9 +145,9 @@
           </node>
         </node>
         <node concept="3clFbF" id="6kvdbYu7vol" role="3cqZAp">
-          <node concept="2YIFZM" id="6kvdbYu7vom" role="3clFbG">
+          <node concept="2YIFZM" id="3inNSRVw7L0" role="3clFbG">
+            <ref role="37wK5l" to="51vd:3inNSRVvx8C" resolve="reloadAll" />
             <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
-            <ref role="37wK5l" to="51vd:6kvdbYu7uFn" resolve="reloadLibraries" />
           </node>
         </node>
       </node>
