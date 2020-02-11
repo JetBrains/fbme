@@ -60,6 +60,9 @@
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
       <concept id="1210180874794" name="jetbrains.mps.lang.plugin.structure.PersistentPropertyReference" flags="nn" index="34pFcN" />
+      <concept id="1210184105060" name="jetbrains.mps.lang.plugin.structure.PreferencesComponentType" flags="in" index="34_ZPX">
+        <reference id="1210184138184" name="componentDeclaration" index="34A7Nh" />
+      </concept>
     </language>
     <language id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor">
       <concept id="1071666914219" name="jetbrains.mps.lang.editor.structure.ConceptEditorDeclaration" flags="ig" index="24kQdi">
@@ -2084,28 +2087,48 @@
                 </node>
               </node>
             </node>
+            <node concept="3cpWs8" id="7H$5i_Y6U8A" role="3cqZAp">
+              <node concept="3cpWsn" id="7H$5i_Y6U8B" role="3cpWs9">
+                <property role="TrG5h" value="scaleComponent" />
+                <node concept="34_ZPX" id="7H$5i_Y6SIv" role="1tU5fm">
+                  <ref role="34A7Nh" to="5z5t:1y1FD3qDmMX" resolve="NetworkPresentationSetting" />
+                </node>
+                <node concept="3K4zz7" id="7H$5i_Y765f" role="33vP2m">
+                  <node concept="10Nm6u" id="7H$5i_Y777y" role="3K4E3e" />
+                  <node concept="3clFbC" id="7H$5i_Y73uZ" role="3K4Cdx">
+                    <node concept="10Nm6u" id="7H$5i_Y74zV" role="3uHU7w" />
+                    <node concept="37vLTw" id="7H$5i_Y71BB" role="3uHU7B">
+                      <ref role="3cqZAo" node="1y1FD3qGTVd" resolve="project" />
+                    </node>
+                  </node>
+                  <node concept="2OqwBi" id="7H$5i_Y6U8C" role="3K4GZi">
+                    <node concept="LR4Ub" id="7H$5i_Y6U8D" role="2OqNvi">
+                      <ref role="LR4Ua" to="5z5t:1y1FD3qDmMX" resolve="NetworkPresentationSetting" />
+                    </node>
+                    <node concept="37vLTw" id="7H$5i_Y6U8E" role="2Oq$k0">
+                      <ref role="3cqZAo" node="1y1FD3qGTVd" resolve="project" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
             <node concept="3cpWs8" id="1y1FD3qG6Zy" role="3cqZAp">
               <node concept="3cpWsn" id="1y1FD3qG6Z_" role="3cpWs9">
                 <property role="TrG5h" value="scale" />
                 <node concept="10OMs4" id="1y1FD3qGZFZ" role="1tU5fm" />
                 <node concept="3K4zz7" id="1y1FD3qI3kA" role="33vP2m">
                   <node concept="2$xPTn" id="1y1FD3qI3kB" role="3K4E3e">
-                    <property role="2$xPTl" value="2.0f" />
+                    <property role="2$xPTl" value="1.0f" />
                   </node>
                   <node concept="3clFbC" id="1y1FD3qI3kC" role="3K4Cdx">
                     <node concept="10Nm6u" id="1y1FD3qI3kD" role="3uHU7w" />
-                    <node concept="37vLTw" id="1y1FD3qI3kE" role="3uHU7B">
-                      <ref role="3cqZAo" node="1y1FD3qGTVd" resolve="project" />
+                    <node concept="37vLTw" id="7H$5i_Y79FP" role="3uHU7B">
+                      <ref role="3cqZAo" node="7H$5i_Y6U8B" resolve="scaleComponent" />
                     </node>
                   </node>
                   <node concept="2OqwBi" id="1y1FD3qI3kF" role="3K4GZi">
-                    <node concept="2OqwBi" id="1y1FD3qI3kG" role="2Oq$k0">
-                      <node concept="LR4Ub" id="1y1FD3qI3kH" role="2OqNvi">
-                        <ref role="LR4Ua" to="5z5t:1y1FD3qDmMX" resolve="NetworkPresentationSetting" />
-                      </node>
-                      <node concept="37vLTw" id="1y1FD3qI3kI" role="2Oq$k0">
-                        <ref role="3cqZAo" node="1y1FD3qGTVd" resolve="project" />
-                      </node>
+                    <node concept="37vLTw" id="7H$5i_Y6U8F" role="2Oq$k0">
+                      <ref role="3cqZAo" node="7H$5i_Y6U8B" resolve="scaleComponent" />
                     </node>
                     <node concept="34pFcN" id="1y1FD3qI3kJ" role="2OqNvi">
                       <ref role="2WH_rO" to="5z5t:1y1FD3qDoAN" resolve="scale" />
