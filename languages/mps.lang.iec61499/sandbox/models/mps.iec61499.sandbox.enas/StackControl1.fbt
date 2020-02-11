@@ -63,35 +63,35 @@
       </ECState>
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2059.053" y="521.8577" />
       <ECTransition Source="INIT" Destination="READY" Condition="1" x="2480.785" y="981.2651" />
-      <ECTransition Source="READY" Destination="PLACE1" Condition="PLACE_WP[occupied[0} = FALSE]" x="2648.401" y="1695.378" />
+      <ECTransition Source="READY" Destination="PLACE1" Condition="PLACE_WP[occupied[0] = FALSE]" x="2648.401" y="1695.378" />
       <ECTransition Source="PLACE1" Destination="READY" Condition="_RETURN" x="2324.782" y="1763.612" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="PLACE_WP[occupied[0} = TRUE = TRUE]" x="3372.113" y="1126.332" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = TRUE]" x="3372.113" y="1126.332" />
       <ECTransition Source="READY" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="3213.184" y="905.449" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[0} = FALSE]" x="3326.8" y="1341.602" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[1} = FALSE]" x="3346.433" y="1622.368" />
-      <ECTransition Source="READY" Destination="PLACE2" Condition="PLACE_WP[occupied[0} = TRUE AND occupied[1} = FALSE]" x="2056.623" y="1728.719" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[0] = FALSE]" x="3326.8" y="1341.602" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[1] = FALSE]" x="3346.433" y="1622.368" />
+      <ECTransition Source="READY" Destination="PLACE2" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = FALSE]" x="2056.623" y="1728.719" />
       <ECTransition Source="PLACE2" Destination="CHECK" Condition="1" x="3356.011" y="2419.247" />
-      <ECTransition Source="READY" Destination="GET1" Condition="[occupied[0} = TRUE]" x="1655.457" y="932.1873" />
+      <ECTransition Source="READY" Destination="GET1" Condition="[occupied[0] = TRUE]" x="1655.457" y="932.1873" />
       <ECTransition Source="GET1" Destination="READY" Condition="_RETURN" x="1653.644" y="1172.666" />
-      <ECTransition Source="READY" Destination="GET2" Condition="[occupied[1} = TRUE]" x="1639.554" y="1659.781" />
+      <ECTransition Source="READY" Destination="GET2" Condition="[occupied[1] = TRUE]" x="1639.554" y="1659.781" />
       <ECTransition Source="GET2" Destination="READY" Condition="_RETURN" x="1533.603" y="1359.116" />
       <ECTransition Source="CLEAR_SLEDGE" Destination="READY" Condition="_RETURN" x="2880.823" y="820.019" />
       <ECTransition Source="CHECK" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="4121.63" y="885.251" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="IF full THEN&#38;#10;  occupied[0} := TRUE;&#38;#10;  occupied[1} := TRUE;&#38;#10;ELSE&#38;#10;  occupied[0} := FALSE;&#38;#10;  occupied[1} := FALSE;&#38;#10;END_IF;&#38;#10;" />
+      <ST Text="IF full THEN&#38;#10;END_IF;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PLACE1">
-      <ST Text="occupied[0} := TRUE;&#38;#10;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="PLACE2">
-      <ST Text="occupied[1} := TRUE;&#38;#10;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="EMPTY1">
-      <ST Text="occupied[0} := FALSE;&#38;#10;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="EMPTY2">
-      <ST Text="occupied[1} := FALSE;&#38;#10;" />
+      <ST Text="" />
     </Algorithm>
     <Algorithm Name="READY">
       <ST Text="" />

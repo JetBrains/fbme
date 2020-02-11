@@ -902,7 +902,7 @@
             </node>
           </node>
           <node concept="la8eA" id="23XkovWwuSR" role="lcghm">
-            <property role="lacIc" value="}" />
+            <property role="lacIc" value="]" />
           </node>
         </node>
       </node>

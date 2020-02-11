@@ -95,22 +95,22 @@
       <ECTransition Source="CHECK_PRODUCT_0" Destination="CHECK_PRODUCT" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="2236.074" y="1402.209" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="Conveyor := FALSE;&#38;#10; := &#39;NONE&#39;;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="IDLE_MODE">
-      <ST Text="Conveyor := FALSE;&#38;#10; := &#39;NONE&#39;;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;Check_color := FALSE;&#38;#10;" />
+      <ST Text="Conveyor := FALSE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;Check_color := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="DRIVE">
-      <ST Text="Conveyor := TRUE;&#38;#10; := &#39;NONE&#39;;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
+      <ST Text="Conveyor := TRUE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := TRUE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="CHECK_PRODUCT">
       <ST Text="Conveyor := FALSE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;Check_color := TRUE;&#38;#10;TimeStamp := ADD_DT_TIME(CURRENT_DT());&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PROD_VALID">
-      <ST Text="Conveyor := TRUE;&#38;#10; := &#39;NONE&#39;;&#38;#10;Gate_open := TRUE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
+      <ST Text="Conveyor := TRUE;&#38;#10;Gate_open := TRUE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PROD_INVALID">
-      <ST Text="Conveyor := TRUE;&#38;#10; := &#39;NONE&#39;;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := TRUE;&#38;#10;" />
+      <ST Text="Conveyor := TRUE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := TRUE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="CHECK_PRODUCT_0">
       <ST Text="Conveyor := FALSE;&#38;#10;Gate_open := FALSE;&#38;#10;Drive_prev := FALSE;&#38;#10;Drive_next := FALSE;&#38;#10;Check_color := TRUE;&#38;#10;TimeStamp := ADD_DT_TIME(CURRENT_DT());&#38;#10;" />

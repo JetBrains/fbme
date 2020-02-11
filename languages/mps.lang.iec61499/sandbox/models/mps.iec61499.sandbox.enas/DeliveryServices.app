@@ -2,58 +2,58 @@
 <!DOCTYPE SubAppType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
 <SubAppType Name="DeliveryServices">
   <Identification Standard="61499-2" />
-  <InterfaceList>
-    <EventInputs>
-      <Event Name="CONFIG"></Event>
-      <Event Name="W1W2"></Event>
-      <Event Name="W2W3"></Event>
-      <Event Name="W3W4"></Event>
-      <Event Name="W3W1"></Event>
-      <Event Name="W4W2"></Event>
-      <Event Name="SR_SENSOR"></Event>
-      <Event Name="S1_SENSOR"></Event>
-      <Event Name="S2_SENSOR"></Event>
-      <Event Name="S3_SENSOR"></Event>
-      <Event Name="S3_DELIVERED"></Event>
-      <Event Name="S4_SENSOR"></Event>
-      <Event Name="S5_SENSOR"></Event>
-      <Event Name="S5_DELIVERED"></Event>
-      <Event Name="S6_SENSOR"></Event>
-      <Event Name="S6_DELIVERED"></Event>
-      <Event Name="RESET"></Event>
-    </EventInputs>
-    <EventOutputs>
-      <Event Name="W1W2_DONE"></Event>
-      <Event Name="W2W3_DONE"></Event>
-      <Event Name="W3W4_DONE"></Event>
-      <Event Name="W3W1_DONE"></Event>
-      <Event Name="W4W2_DONE"></Event>
-      <Event Name="CONFIG_FEED"></Event>
-      <Event Name="CONFIG_REJECT"></Event>
-      <Event Name="CONFIG_DELIVERY"></Event>
-      <Event Name="SR_OUTPUT"></Event>
-      <Event Name="SR_INPUT"></Event>
-      <Event Name="S1_ON"></Event>
-      <Event Name="S1_OFF"></Event>
-      <Event Name="S2_ON"></Event>
-      <Event Name="S2_OFF"></Event>
-      <Event Name="S3_ON"></Event>
-      <Event Name="S3_OFF"></Event>
-      <Event Name="S3_DELIVERY"></Event>
-      <Event Name="S4_ON"></Event>
-      <Event Name="S4_OFF"></Event>
-      <Event Name="S5_ON"></Event>
-      <Event Name="S5_OFF"></Event>
-      <Event Name="S5_DELIVERY"></Event>
-      <Event Name="S6_ON"></Event>
-      <Event Name="S6_OFF"></Event>
-      <Event Name="S6_DELIVERY"></Event>
-      <Event Name="SR_OFF"></Event>
-    </EventOutputs>
+  <SubAppInterfaceList>
+    <SubAppEventInputs>
+      <SubAppEvent Name="CONFIG" />
+      <SubAppEvent Name="W1W2" />
+      <SubAppEvent Name="W2W3" />
+      <SubAppEvent Name="W3W4" />
+      <SubAppEvent Name="W3W1" />
+      <SubAppEvent Name="W4W2" />
+      <SubAppEvent Name="SR_SENSOR" />
+      <SubAppEvent Name="S1_SENSOR" />
+      <SubAppEvent Name="S2_SENSOR" />
+      <SubAppEvent Name="S3_SENSOR" />
+      <SubAppEvent Name="S3_DELIVERED" />
+      <SubAppEvent Name="S4_SENSOR" />
+      <SubAppEvent Name="S5_SENSOR" />
+      <SubAppEvent Name="S5_DELIVERED" />
+      <SubAppEvent Name="S6_SENSOR" />
+      <SubAppEvent Name="S6_DELIVERED" />
+      <SubAppEvent Name="RESET" />
+    </SubAppEventInputs>
+    <SubAppEventOutputs>
+      <SubAppEvent Name="W1W2_DONE" />
+      <SubAppEvent Name="W2W3_DONE" />
+      <SubAppEvent Name="W3W4_DONE" />
+      <SubAppEvent Name="W3W1_DONE" />
+      <SubAppEvent Name="W4W2_DONE" />
+      <SubAppEvent Name="CONFIG_FEED" />
+      <SubAppEvent Name="CONFIG_REJECT" />
+      <SubAppEvent Name="CONFIG_DELIVERY" />
+      <SubAppEvent Name="SR_OUTPUT" />
+      <SubAppEvent Name="SR_INPUT" />
+      <SubAppEvent Name="S1_ON" />
+      <SubAppEvent Name="S1_OFF" />
+      <SubAppEvent Name="S2_ON" />
+      <SubAppEvent Name="S2_OFF" />
+      <SubAppEvent Name="S3_ON" />
+      <SubAppEvent Name="S3_OFF" />
+      <SubAppEvent Name="S3_DELIVERY" />
+      <SubAppEvent Name="S4_ON" />
+      <SubAppEvent Name="S4_OFF" />
+      <SubAppEvent Name="S5_ON" />
+      <SubAppEvent Name="S5_OFF" />
+      <SubAppEvent Name="S5_DELIVERY" />
+      <SubAppEvent Name="S6_ON" />
+      <SubAppEvent Name="S6_OFF" />
+      <SubAppEvent Name="S6_DELIVERY" />
+      <SubAppEvent Name="SR_OFF" />
+    </SubAppEventOutputs>
     <InputVars>
       <VarDeclaration Name="configurationID" Type="STRING" />
     </InputVars>
-  </InterfaceList>
+  </SubAppInterfaceList>
   <SubAppNetwork>
     <FB Name="W1W2_FB" Type="W1W2" x="1620" y="240" />
     <FB Name="W2W3_FB" Type="W2W3" x="1640" y="1260" />

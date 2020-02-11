@@ -22,14 +22,24 @@
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(mps.ide.persistence)" />
   </imports>
   <registry>
+    <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
+      <concept id="1204478074808" name="jetbrains.mps.lang.plugin.structure.ConceptFunctionParameter_MPSProject" flags="nn" index="1KvdUw" />
+    </language>
     <language id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone">
       <concept id="481983775135178851" name="jetbrains.mps.lang.plugin.standalone.structure.ApplicationPluginInitBlock" flags="in" index="2uRRBj" />
+      <concept id="481983775135178834" name="jetbrains.mps.lang.plugin.standalone.structure.ProjectPluginDeclaration" flags="ng" index="2uRRBy">
+        <child id="481983775135178836" name="initBlock" index="2uRRB$" />
+        <child id="481983775135178837" name="disposeBlock" index="2uRRB_" />
+        <child id="481983775135178838" name="fieldDeclaration" index="2uRRBA" />
+      </concept>
       <concept id="481983775135178840" name="jetbrains.mps.lang.plugin.standalone.structure.ApplicationPluginDeclaration" flags="ng" index="2uRRBC">
         <child id="481983775135178842" name="initBlock" index="2uRRBE" />
         <child id="481983775135178843" name="disposeBlock" index="2uRRBF" />
         <child id="481983775135178844" name="fieldDeclaration" index="2uRRBG" />
       </concept>
       <concept id="481983775135178846" name="jetbrains.mps.lang.plugin.standalone.structure.ApplicationPluginDisposeBlock" flags="in" index="2uRRBI" />
+      <concept id="481983775135178819" name="jetbrains.mps.lang.plugin.standalone.structure.ProjectPluginDisposeBlock" flags="in" index="2uRRBN" />
+      <concept id="481983775135178825" name="jetbrains.mps.lang.plugin.standalone.structure.ProjectPluginInitBlock" flags="in" index="2uRRBT" />
       <concept id="7520713872864775836" name="jetbrains.mps.lang.plugin.standalone.structure.StandalonePluginDescriptor" flags="ng" index="2DaZZR">
         <property id="6862207549896125199" name="needInitConfig" index="3_H9TB" />
       </concept>
@@ -313,6 +323,57 @@
             </node>
             <node concept="liA8E" id="42vv4xsA1N4" role="2OqNvi">
               <ref role="37wK5l" to="o04u:42vv4xs$2hD" resolve="stop" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="2uRRBy" id="1eL5bn4Qprw">
+    <property role="TrG5h" value="IEC-61499 Persistence Refs Fixer" />
+    <node concept="2BZ0e9" id="1eL5bn4ReMp" role="2uRRBA">
+      <property role="TrG5h" value="myFixer" />
+      <node concept="3Tm6S6" id="1eL5bn4ReMq" role="1B3o_S" />
+      <node concept="3uibUv" id="1eL5bn4ReSH" role="1tU5fm">
+        <ref role="3uigEE" to="51vd:1eL5bn4QprR" resolve="PersistenceReferencesFixer" />
+      </node>
+      <node concept="2ShNRf" id="4oNJRLlxzEw" role="33vP2m">
+        <node concept="HV5vD" id="4oNJRLlxP0K" role="2ShVmc">
+          <ref role="HV5vE" to="51vd:1eL5bn4QprR" resolve="PersistenceReferencesFixer" />
+        </node>
+      </node>
+    </node>
+    <node concept="2uRRBT" id="1eL5bn4Qprx" role="2uRRB$">
+      <node concept="3clFbS" id="1eL5bn4Qpry" role="2VODD2">
+        <node concept="3clFbF" id="1eL5bn4ReZ9" role="3cqZAp">
+          <node concept="2OqwBi" id="1eL5bn4RfkC" role="3clFbG">
+            <node concept="2OqwBi" id="1eL5bn4ReZ3" role="2Oq$k0">
+              <node concept="2WthIp" id="1eL5bn4ReZ6" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="1eL5bn4ReZ8" role="2OqNvi">
+                <ref role="2WH_rO" node="1eL5bn4ReMp" resolve="myFixer" />
+              </node>
+            </node>
+            <node concept="liA8E" id="1eL5bn4RfyI" role="2OqNvi">
+              <ref role="37wK5l" to="51vd:1eL5bn4Rb4V" resolve="attach" />
+              <node concept="1KvdUw" id="1eL5bn4Rfzu" role="37wK5m" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2uRRBN" id="1eL5bn4RfBK" role="2uRRB_">
+      <node concept="3clFbS" id="1eL5bn4RfBL" role="2VODD2">
+        <node concept="3clFbF" id="1eL5bn4RfG8" role="3cqZAp">
+          <node concept="2OqwBi" id="1eL5bn4RfG9" role="3clFbG">
+            <node concept="2OqwBi" id="1eL5bn4RfGa" role="2Oq$k0">
+              <node concept="2WthIp" id="1eL5bn4RfGb" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="1eL5bn4RfGc" role="2OqNvi">
+                <ref role="2WH_rO" node="1eL5bn4ReMp" resolve="myFixer" />
+              </node>
+            </node>
+            <node concept="liA8E" id="1eL5bn4RfGd" role="2OqNvi">
+              <ref role="37wK5l" to="51vd:1eL5bn4Re2W" resolve="detach" />
+              <node concept="1KvdUw" id="1eL5bn4RfGe" role="37wK5m" />
             </node>
           </node>
         </node>
