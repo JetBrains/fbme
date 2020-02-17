@@ -2536,6 +2536,39 @@
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
       </node>
     </node>
+    <node concept="2tJIrI" id="k3FE8isMI1" role="jymVt" />
+    <node concept="3clFb_" id="k3FE8isKiC" role="jymVt">
+      <property role="TrG5h" value="invalidate" />
+      <node concept="3clFbS" id="k3FE8isKiD" role="3clF47">
+        <node concept="3clFbF" id="k3FE8isLIi" role="3cqZAp">
+          <node concept="2OqwBi" id="k3FE8isLIk" role="3clFbG">
+            <node concept="37vLTw" id="k3FE8isLIl" role="2Oq$k0">
+              <ref role="3cqZAo" node="42vv4xs$2oV" resolve="myConnections" />
+            </node>
+            <node concept="liA8E" id="k3FE8isLIm" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object)" resolve="remove" />
+              <node concept="2OqwBi" id="k3FE8isLIn" role="37wK5m">
+                <node concept="37vLTw" id="k3FE8isLIo" role="2Oq$k0">
+                  <ref role="3cqZAo" node="k3FE8isKjd" resolve="device" />
+                </node>
+                <node concept="iZEcu" id="k3FE8isLIp" role="2OqNvi" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3cqZAl" id="k3FE8isNaK" role="3clF45" />
+      <node concept="37vLTG" id="k3FE8isKjd" role="3clF46">
+        <property role="TrG5h" value="device" />
+        <node concept="3Tqbb2" id="k3FE8isKje" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+        </node>
+        <node concept="2AHcQZ" id="k3FE8isKjf" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="k3FE8isKjg" role="1B3o_S" />
+    </node>
     <node concept="2tJIrI" id="5FIIKsRk7wX" role="jymVt" />
     <node concept="3clFb_" id="5FIIKsRk71S" role="jymVt">
       <property role="TrG5h" value="createConnection" />

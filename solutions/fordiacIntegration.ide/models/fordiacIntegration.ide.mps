@@ -62,6 +62,7 @@
     <import index="o04u" ref="r:f0179f23-61bb-4719-8c52-ffe510b63d71(mps.ide.debugger)" />
     <import index="90d" ref="r:421d64ed-8024-497f-aeab-8bddeb389dd2(jetbrains.mps.lang.extension.methods)" />
     <import index="qvjh" ref="r:d7ebf872-1ce9-4246-93f2-9bff5c1173e6(mps.ide.plugin)" />
+    <import index="cjdg" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.execution.ui(MPS.IDEA/)" implicit="true" />
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
@@ -963,6 +964,16 @@
                   <property role="3clFbU" value="false" />
                 </node>
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="k3FE8itWib" role="3cqZAp">
+          <node concept="2OqwBi" id="k3FE8itWEj" role="3clFbG">
+            <node concept="37vLTw" id="k3FE8itXgM" role="2Oq$k0">
+              <ref role="3cqZAo" node="5gyVhZ17Jmo" resolve="console" />
+            </node>
+            <node concept="liA8E" id="k3FE8itXX9" role="2OqNvi">
+              <ref role="37wK5l" to="cjdg:~ConsoleView.createConsoleActions()" resolve="createConsoleActions" />
             </node>
           </node>
         </node>
@@ -2294,7 +2305,11 @@
               <ref role="37wK5l" to="zf81:~Socket.connect(java.net.SocketAddress)" resolve="connect" />
               <node concept="2ShNRf" id="3wAsKTk9e26" role="37wK5m">
                 <node concept="1pGfFk" id="3wAsKTk9edh" role="2ShVmc">
-                  <ref role="37wK5l" to="zf81:~InetSocketAddress.&lt;init&gt;(int)" resolve="InetSocketAddress" />
+                  <ref role="37wK5l" to="zf81:~InetSocketAddress.&lt;init&gt;(java.net.InetAddress,int)" resolve="InetSocketAddress" />
+                  <node concept="2YIFZM" id="2s_Cndmjhle" role="37wK5m">
+                    <ref role="37wK5l" to="zf81:~InetAddress.getLoopbackAddress()" resolve="getLoopbackAddress" />
+                    <ref role="1Pybhc" to="zf81:~InetAddress" resolve="InetAddress" />
+                  </node>
                   <node concept="37vLTw" id="3wAsKTk9qLf" role="37wK5m">
                     <ref role="3cqZAo" node="3wAsKTk9l5x" resolve="port" />
                   </node>
@@ -3264,13 +3279,23 @@
       <node concept="10P_77" id="5FIIKsRjNAs" role="3clF45" />
       <node concept="3clFbS" id="5FIIKsRjNAt" role="3clF47">
         <node concept="3clFbF" id="5FIIKsRjXxJ" role="3cqZAp">
-          <node concept="3fqX7Q" id="5FIIKsRk1kq" role="3clFbG">
-            <node concept="2OqwBi" id="5FIIKsRk1ks" role="3fr31v">
-              <node concept="37vLTw" id="5FIIKsRk1kt" role="2Oq$k0">
+          <node concept="1Wc70l" id="k3FE8is_dk" role="3clFbG">
+            <node concept="2OqwBi" id="k3FE8isAip" role="3uHU7w">
+              <node concept="37vLTw" id="k3FE8is_BK" role="2Oq$k0">
                 <ref role="3cqZAo" node="3wAsKTk9dMF" resolve="socket" />
               </node>
-              <node concept="liA8E" id="5FIIKsRk1ku" role="2OqNvi">
-                <ref role="37wK5l" to="zf81:~Socket.isClosed()" resolve="isClosed" />
+              <node concept="liA8E" id="k3FE8isBmY" role="2OqNvi">
+                <ref role="37wK5l" to="zf81:~Socket.isConnected()" resolve="isConnected" />
+              </node>
+            </node>
+            <node concept="3fqX7Q" id="5FIIKsRk1kq" role="3uHU7B">
+              <node concept="2OqwBi" id="5FIIKsRk1ks" role="3fr31v">
+                <node concept="37vLTw" id="5FIIKsRk1kt" role="2Oq$k0">
+                  <ref role="3cqZAo" node="3wAsKTk9dMF" resolve="socket" />
+                </node>
+                <node concept="liA8E" id="5FIIKsRk1ku" role="2OqNvi">
+                  <ref role="37wK5l" to="zf81:~Socket.isClosed()" resolve="isClosed" />
+                </node>
               </node>
             </node>
           </node>

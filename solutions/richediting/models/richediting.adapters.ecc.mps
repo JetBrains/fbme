@@ -229,6 +229,22 @@
         </node>
       </node>
     </node>
+    <node concept="2tJIrI" id="4gibKcMp69n" role="jymVt" />
+    <node concept="3clFb_" id="4gibKcMp6zs" role="jymVt">
+      <property role="TrG5h" value="isEditable" />
+      <node concept="3Tm1VV" id="4gibKcMp6zu" role="1B3o_S" />
+      <node concept="10P_77" id="4gibKcMp6zv" role="3clF45" />
+      <node concept="3clFbS" id="4gibKcMp6zw" role="3clF47">
+        <node concept="3clFbF" id="4gibKcMp72z" role="3cqZAp">
+          <node concept="3clFbT" id="4gibKcMp72y" role="3clFbG">
+            <property role="3clFbU" value="true" />
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="4gibKcMp6zx" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="1R4IoyQHz_E" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyQH$lU" role="jymVt">
       <property role="TrG5h" value="components" />
@@ -3649,6 +3665,43 @@
         </node>
       </node>
       <node concept="2AHcQZ" id="38k27IRAx6B" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="bRdTVI3460" role="jymVt" />
+    <node concept="3clFb_" id="bRdTVI35xf" role="jymVt">
+      <property role="TrG5h" value="getBounds" />
+      <node concept="3Tm1VV" id="bRdTVI35xh" role="1B3o_S" />
+      <node concept="3uibUv" id="bRdTVI35xi" role="3clF45">
+        <ref role="3uigEE" to="z60i:~Rectangle" resolve="Rectangle" />
+      </node>
+      <node concept="37vLTG" id="bRdTVI35xj" role="3clF46">
+        <property role="TrG5h" value="path" />
+        <node concept="3uibUv" id="bRdTVI35xl" role="1tU5fm">
+          <ref role="3uigEE" node="38k27IRy0tz" resolve="ECTransitionPath" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="bRdTVI35xm" role="3clF47">
+        <node concept="3clFbF" id="bRdTVI3a67" role="3cqZAp">
+          <node concept="2OqwBi" id="bRdTVI3aw$" role="3clFbG">
+            <node concept="37vLTw" id="bRdTVI3a66" role="2Oq$k0">
+              <ref role="3cqZAo" node="38k27IRB4$D" resolve="myHandle" />
+            </node>
+            <node concept="liA8E" id="bRdTVI3aQT" role="2OqNvi">
+              <ref role="37wK5l" node="38k27IRB1Uy" resolve="getBounds" />
+              <node concept="2OqwBi" id="bRdTVI3czN" role="37wK5m">
+                <node concept="37vLTw" id="bRdTVI3aVr" role="2Oq$k0">
+                  <ref role="3cqZAo" node="bRdTVI35xj" resolve="path" />
+                </node>
+                <node concept="2OwXpG" id="bRdTVI3cUI" role="2OqNvi">
+                  <ref role="2Oxat5" node="38k27IRy0AE" resolve="centre" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="bRdTVI35xn" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>

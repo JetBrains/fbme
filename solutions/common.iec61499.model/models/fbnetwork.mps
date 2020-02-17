@@ -185,6 +185,13 @@
     <property role="TrG5h" value="FBNetworkConnection" />
     <node concept="3Tm1VV" id="4ZaR9mNlnNo" role="1B3o_S" />
     <node concept="2tJIrI" id="6$FGuy5wmDO" role="jymVt" />
+    <node concept="3clFb_" id="1HEL0zVYR2t" role="jymVt">
+      <property role="TrG5h" value="isEditable" />
+      <node concept="3clFbS" id="1HEL0zVYR2w" role="3clF47" />
+      <node concept="3Tm1VV" id="1HEL0zVYR2x" role="1B3o_S" />
+      <node concept="10P_77" id="1HEL0zVYR1J" role="3clF45" />
+    </node>
+    <node concept="2tJIrI" id="31Fn7oZuBQa" role="jymVt" />
     <node concept="3clFb_" id="31Fn7oZuBSs" role="jymVt">
       <property role="TrG5h" value="getNetwork" />
       <node concept="3clFbS" id="31Fn7oZuBSv" role="3clF47" />
@@ -192,13 +199,6 @@
       <node concept="3uibUv" id="31Fn7oZuBRh" role="3clF45">
         <ref role="3uigEE" node="1R4IoyQvXM6" resolve="FBNetwork" />
       </node>
-    </node>
-    <node concept="2tJIrI" id="31Fn7oZuBQa" role="jymVt" />
-    <node concept="3clFb_" id="1HEL0zVYR2t" role="jymVt">
-      <property role="TrG5h" value="isTemplate" />
-      <node concept="3clFbS" id="1HEL0zVYR2w" role="3clF47" />
-      <node concept="3Tm1VV" id="1HEL0zVYR2x" role="1B3o_S" />
-      <node concept="10P_77" id="1HEL0zVYR1J" role="3clF45" />
     </node>
     <node concept="2tJIrI" id="1HEL0zVYNX_" role="jymVt" />
     <node concept="3clFb_" id="1HEL0zVYO0f" role="jymVt">
@@ -281,6 +281,20 @@
       <node concept="3clFbS" id="4y$DvIW7y4z" role="3clF47" />
       <node concept="3Tm1VV" id="4y$DvIW7y4$" role="1B3o_S" />
       <node concept="3cqZAl" id="4y$DvIW7y2E" role="3clF45" />
+    </node>
+    <node concept="2tJIrI" id="4dM3MZ7o98Q" role="jymVt" />
+    <node concept="3clFb_" id="4dM3MZ7o99u" role="jymVt">
+      <property role="TrG5h" value="asd" />
+      <node concept="3clFbS" id="4dM3MZ7o99x" role="3clF47">
+        <node concept="3clFbF" id="4dM3MZ7o9bn" role="3cqZAp">
+          <node concept="3cmrfG" id="4dM3MZ7o9bm" role="3clFbG">
+            <property role="3cmrfH" value="1" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4dM3MZ7o99y" role="1B3o_S" />
+      <node concept="2JFqV2" id="4dM3MZ7o99b" role="2frcjj" />
+      <node concept="10Oyi0" id="4dM3MZ7o9aG" role="3clF45" />
     </node>
   </node>
   <node concept="312cEu" id="7qPnRGGbtqv">
@@ -380,6 +394,9 @@
         <property role="TrG5h" value="view" />
         <node concept="3uibUv" id="7qPnRGGm6PF" role="1tU5fm">
           <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstance" />
+        </node>
+        <node concept="2AHcQZ" id="4FRweWL90Az" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
         </node>
       </node>
       <node concept="37vLTG" id="7qPnRGGbPYW" role="3clF46">
@@ -773,18 +790,6 @@
         </node>
       </node>
     </node>
-    <node concept="2tJIrI" id="2_D_3xXugb0" role="jymVt" />
-    <node concept="3clFb_" id="2_D_3xXugBi" role="jymVt">
-      <property role="TrG5h" value="isPrototype" />
-      <node concept="3clFbS" id="2_D_3xXugBl" role="3clF47">
-        <node concept="3clFbF" id="309fsJ6buzJ" role="3cqZAp">
-          <node concept="3clFbT" id="309fsJ6buzI" role="3clFbG" />
-        </node>
-      </node>
-      <node concept="3Tm1VV" id="2_D_3xXugBm" role="1B3o_S" />
-      <node concept="10P_77" id="2_D_3xXugqo" role="3clF45" />
-      <node concept="2JFqV2" id="309fsJ6bu7f" role="2frcjj" />
-    </node>
     <node concept="2tJIrI" id="309fsJ6buFF" role="jymVt" />
     <node concept="3clFb_" id="4y$DvIXoEou" role="jymVt">
       <property role="TrG5h" value="getX" />
@@ -1111,7 +1116,7 @@
       </node>
       <node concept="3Tm1VV" id="7qPnRGGmn90" role="1B3o_S" />
     </node>
-    <node concept="2tJIrI" id="31Fn7oZDsoP" role="jymVt" />
+    <node concept="2tJIrI" id="4dM3MZ7o5ir" role="jymVt" />
     <node concept="3Tm1VV" id="7qPnRGGlWfY" role="1B3o_S" />
     <node concept="3uibUv" id="4O0ojQq0PvS" role="3HQHJm">
       <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponent" />
@@ -1567,6 +1572,7 @@
       </node>
     </node>
     <node concept="2tJIrI" id="6$FGuy5_V92" role="jymVt" />
+    <node concept="2tJIrI" id="4dM3MZ7o7WB" role="jymVt" />
     <node concept="Qs71p" id="1HEL0zVYOAC" role="jymVt">
       <property role="TrG5h" value="Kind" />
       <node concept="3Tm1VV" id="1HEL0zVYOAD" role="1B3o_S" />
@@ -1586,6 +1592,13 @@
   </node>
   <node concept="3HP615" id="4O0ojQq0P48">
     <property role="TrG5h" value="FBNetworkComponent" />
+    <node concept="2tJIrI" id="2SU8oJdIibd" role="jymVt" />
+    <node concept="3clFb_" id="2SU8oJdIibC" role="jymVt">
+      <property role="TrG5h" value="isEditable" />
+      <node concept="3clFbS" id="2SU8oJdIibF" role="3clF47" />
+      <node concept="3Tm1VV" id="2SU8oJdIibG" role="1B3o_S" />
+      <node concept="10P_77" id="2SU8oJdIibq" role="3clF45" />
+    </node>
     <node concept="2tJIrI" id="4O0ojQq0PL_" role="jymVt" />
     <node concept="3clFb_" id="31Fn7oZuzf2" role="jymVt">
       <property role="TrG5h" value="getNetwork" />
@@ -1733,6 +1746,13 @@
   <node concept="3HP615" id="1R4IoyQvXM6">
     <property role="TrG5h" value="FBNetwork" />
     <node concept="2tJIrI" id="1R4IoyQvXM$" role="jymVt" />
+    <node concept="3clFb_" id="2SU8oJdIi81" role="jymVt">
+      <property role="TrG5h" value="isEditable" />
+      <node concept="3clFbS" id="2SU8oJdIi84" role="3clF47" />
+      <node concept="3Tm1VV" id="2SU8oJdIi85" role="1B3o_S" />
+      <node concept="10P_77" id="2SU8oJdIi7N" role="3clF45" />
+    </node>
+    <node concept="2tJIrI" id="2SU8oJdIi7B" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyQvZqY" role="jymVt">
       <property role="TrG5h" value="getComponents" />
       <node concept="3clFbS" id="1R4IoyQvZr1" role="3clF47" />

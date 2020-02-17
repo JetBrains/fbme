@@ -1,13 +1,14 @@
 <component name="libraryTable">
   <library name="mps">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/lib" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-execution-api/lib" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-execution-languages/lib" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-execution-languages/languages/mps-execution-languages" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-core/languages/languageDesign" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" />
+      <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages" />
+      <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

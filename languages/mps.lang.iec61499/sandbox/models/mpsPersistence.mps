@@ -955,16 +955,16 @@
       <property role="TrG5h" value="fb1" />
       <ref role="1N5Tt0" node="5VLuTnkolRw" resolve="Composite1" />
       <node concept="10YbkR" id="3IX4BsKohv7" role="b_cXm">
-        <property role="10YbkC" value="3043.0" />
-        <property role="10YbkE" value="1025.0" />
+        <property role="10YbkC" value="3050.0" />
+        <property role="10YbkE" value="1000.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="5VLuTnkBdh1" role="1N5PiY">
       <property role="TrG5h" value="fb3" />
       <ref role="1N5Tt0" node="5VLuTnkolRw" resolve="Composite1" />
       <node concept="10YbkR" id="3IX4BsKohv8" role="b_cXm">
-        <property role="10YbkC" value="1568.0" />
-        <property role="10YbkE" value="525.0" />
+        <property role="10YbkC" value="1473.0" />
+        <property role="10YbkE" value="350.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="1CY1mmB9jHC" role="1N5PiQ">
@@ -975,8 +975,8 @@
         <ref role="1N5Pi4" node="5VLuTnkBdgZ" resolve="fb1" />
         <ref role="1N5Pi3" node="5VLuTnkolRx" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="2r29JVYea73" role="bPNfo">
-        <property role="bR32p" value="2243.0" />
+      <node concept="bR32z" id="5sOEwwEEsLD" role="bPNfo">
+        <property role="bR32p" value="2250.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="1CY1mmB9lSe" role="1N5PiQ">
@@ -987,8 +987,8 @@
       <node concept="3YHrnl" id="1CY1mmCNZWh" role="2RhMK_">
         <ref role="3Yz8TM" node="5VLuTnkLfWG" resolve="Y" />
       </node>
-      <node concept="bR32z" id="2r29JVYea6Z" role="bPNfo">
-        <property role="bR32p" value="506.0" />
+      <node concept="bR32z" id="5sOEwwEEsLB" role="bPNfo">
+        <property role="bR32p" value="419.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="1CY1mmBFUed" role="1N5PiQ">
@@ -1000,8 +1000,8 @@
         <ref role="1N5Pi4" node="5VLuTnkBdgZ" resolve="fb1" />
         <ref role="1N5Pi3" node="5VLuTnkolRy" resolve="REQ" />
       </node>
-      <node concept="bR32z" id="2r29JVYea72" role="bPNfo">
-        <property role="bR32p" value="275.0" />
+      <node concept="bR32z" id="5sOEwwEEsL$" role="bPNfo">
+        <property role="bR32p" value="238.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="1CY1mmC40hR" role="1N5PiV">
@@ -1013,10 +1013,10 @@
         <ref role="1N5PlC" node="5VLuTnkBdgZ" resolve="fb1" />
         <ref role="1N5PlF" node="5VLuTnkolRz" resolve="QI" />
       </node>
-      <node concept="bR73E" id="2r29JVYea6W" role="bPNfo">
-        <property role="bR73D" value="275.0" />
-        <property role="bR73n" value="450.0" />
-        <property role="bR73k" value="175.0" />
+      <node concept="bR73E" id="5sOEwwEEsLC" role="bPNfo">
+        <property role="bR73D" value="250.0" />
+        <property role="bR73n" value="400.0" />
+        <property role="bR73k" value="150.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="1CY1mmCOJ2F" role="1N5PiV">
@@ -1027,8 +1027,8 @@
         <ref role="1N5PlC" node="5VLuTnkBdh1" resolve="fb3" />
         <ref role="1N5PlF" node="5VLuTnkolRz" resolve="QI" />
       </node>
-      <node concept="bR32z" id="2r29JVYea71" role="bPNfo">
-        <property role="bR32p" value="1193.0" />
+      <node concept="bR32z" id="5sOEwwEDlOW" role="bPNfo">
+        <property role="bR32p" value="1115.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="4KEbQaibhg_" role="1N5PiV">
@@ -1039,8 +1039,8 @@
         <ref role="1N5PlC" node="5VLuTnkBdgZ" resolve="fb1" />
         <ref role="1N5PlF" node="5VLuTnkolRz" resolve="QI" />
       </node>
-      <node concept="bR32z" id="2r29JVYea6X" role="bPNfo">
-        <property role="bR32p" value="418.0" />
+      <node concept="bR32z" id="5sOEwwEEsL_" role="bPNfo">
+        <property role="bR32p" value="400.0" />
       </node>
     </node>
     <node concept="3IAhBk" id="6LU90BObfHb" role="3IAhBJ">
@@ -1052,8 +1052,8 @@
         <ref role="3YV9Vn" node="5VLuTnkBdgZ" resolve="fb1" />
         <ref role="3YV9Vh" node="5VLuTnkoKSU" resolve="DSA" />
       </node>
-      <node concept="bR32z" id="2r29JVYea6Y" role="bPNfo">
-        <property role="bR32p" value="200.0" />
+      <node concept="bR32z" id="5sOEwwEEsLA" role="bPNfo">
+        <property role="bR32p" value="150.0" />
       </node>
     </node>
     <node concept="3IAhBk" id="6LU90BObhQ7" role="3IAhBJ">
@@ -1065,9 +1065,9 @@
         <ref role="3YV9Vn" node="5VLuTnkBdh1" resolve="fb3" />
         <ref role="3YV9Vh" node="5VLuTnkoKSU" resolve="DSA" />
       </node>
-      <node concept="bR73E" id="2r29JVYea70" role="bPNfo">
-        <property role="bR73D" value="200.0" />
-        <property role="bR73n" value="225.0" />
+      <node concept="bR73E" id="5sOEwwEEsLE" role="bPNfo">
+        <property role="bR73D" value="15.0" />
+        <property role="bR73n" value="150.0" />
         <property role="bR73k" value="250.0" />
       </node>
     </node>
@@ -1338,16 +1338,16 @@
       <property role="TrG5h" value="FB1" />
       <ref role="1N5Tt0" node="3HBlKeoYFbB" resolve="FLASHER4" />
       <node concept="10YbkR" id="3IX4BsKohv5" role="b_cXm">
-        <property role="10YbkC" value="1868.0" />
-        <property role="10YbkE" value="1112.0" />
+        <property role="10YbkC" value="1200.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="5VLuTnkolRD" role="1N5PiY">
       <property role="TrG5h" value="FB2" />
       <ref role="1N5Tt0" node="3HBlKeoYFbB" resolve="FLASHER4" />
       <node concept="10YbkR" id="3IX4BsKohv6" role="b_cXm">
-        <property role="10YbkC" value="3081.0" />
-        <property role="10YbkE" value="25.0" />
+        <property role="10YbkC" value="2350.0" />
+        <property role="10YbkE" value="800.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5VLuTnkolRE" role="1N5PiQ">
@@ -1358,8 +1358,8 @@
         <ref role="1N5Pi4" node="5VLuTnkolRC" resolve="FB1" />
         <ref role="1N5Pi3" node="3HBlKeoYV84" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="38k27IRsBsc" role="bPNfo">
-        <property role="bR32p" value="162.0" />
+      <node concept="bR32z" id="5sOEwwEEsGs" role="bPNfo">
+        <property role="bR32p" value="930.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5VLuTnkolRQ" role="1N5PiQ">
@@ -1370,8 +1370,8 @@
         <ref role="1N5Pi4" node="5VLuTnkolRD" resolve="FB2" />
         <ref role="1N5Pi3" node="3HBlKeoYV84" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="38k27IRsWuJ" role="bPNfo">
-        <property role="bR32p" value="531.0" />
+      <node concept="bR32z" id="30N5LJacReO" role="bPNfo">
+        <property role="bR32p" value="0.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5VLuTnkolRT" role="1N5PiQ">
@@ -1382,8 +1382,8 @@
       <node concept="3YHrnl" id="5VLuTnkolRV" role="2RhMK_">
         <ref role="3Yz8TM" node="5VLuTnkolR_" resolve="OUT" />
       </node>
-      <node concept="bR32z" id="38k27IRsBsb" role="bPNfo">
-        <property role="bR32p" value="1825.0" />
+      <node concept="bR32z" id="5sOEwwEEsGo" role="bPNfo">
+        <property role="bR32p" value="1638.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5VLuTnkolRW" role="1N5PiQ">
@@ -1394,21 +1394,21 @@
         <ref role="1N5Pi4" node="5VLuTnkolRD" resolve="FB2" />
         <ref role="1N5Pi3" node="3HBlKeoYV8j" resolve="REQ" />
       </node>
-      <node concept="bR32z" id="38k27IRsWuI" role="bPNfo">
-        <property role="bR32p" value="1331.0" />
+      <node concept="bR32z" id="30N5LJacReP" role="bPNfo">
+        <property role="bR32p" value="550.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5VLuTnkxhDn" role="1N5PiQ">
-      <node concept="3YB4oO" id="5VLuTnkxhDo" role="2RhMKC">
-        <ref role="1N5Pi4" node="5VLuTnkolRC" resolve="FB1" />
-        <ref role="1N5Pi3" node="3HBlKeoYV8p" resolve="CNF" />
-      </node>
       <node concept="3Yx0EI" id="5VLuTnkxhDp" role="2RhMK_">
         <ref role="1N5Pi4" node="5VLuTnkolRD" resolve="FB2" />
         <ref role="1N5Pi3" node="3HBlKeoYV8j" resolve="REQ" />
       </node>
-      <node concept="bR32z" id="38k27IRsWuL" role="bPNfo">
-        <property role="bR32p" value="256.0" />
+      <node concept="3YB4oO" id="61SA$zdRnnW" role="2RhMKC">
+        <ref role="1N5Pi4" node="5VLuTnkolRC" resolve="FB1" />
+        <ref role="1N5Pi3" node="3HBlKeoYV8p" resolve="CNF" />
+      </node>
+      <node concept="bR32z" id="5sOEwwEEsGv" role="bPNfo">
+        <property role="bR32p" value="376.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5VLuTnkolS2" role="1N5PiV">
@@ -1419,8 +1419,8 @@
         <ref role="1N5PlC" node="5VLuTnkolRC" resolve="FB1" />
         <ref role="1N5PlF" node="3HBlKeoYV86" resolve="MODE" />
       </node>
-      <node concept="bR32z" id="38k27IRsBsa" role="bPNfo">
-        <property role="bR32p" value="581.0" />
+      <node concept="bR32z" id="5sOEwwEEsGr" role="bPNfo">
+        <property role="bR32p" value="700.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5VLuTnkolS8" role="1N5PiV">
@@ -1431,24 +1431,24 @@
         <ref role="1N5PlC" node="5VLuTnkolRD" resolve="FB2" />
         <ref role="1N5PlF" node="3HBlKeoYV86" resolve="MODE" />
       </node>
-      <node concept="bR32z" id="38k27IRsWuM" role="bPNfo">
-        <property role="bR32p" value="956.0" />
+      <node concept="bR32z" id="30N5LJacReN" role="bPNfo">
+        <property role="bR32p" value="211.0" />
       </node>
     </node>
     <node concept="3IBQi5" id="5VLuTnkoKSS" role="3YHajr">
       <property role="TrG5h" value="ASD" />
       <ref role="3IBQi8" node="5VLuTnkolQd" resolve="FOOBAR" />
       <node concept="10YbkR" id="6LU90BOqnLm" role="2oiNrz">
-        <property role="10YbkC" value="3193.0" />
-        <property role="10YbkE" value="2050.0" />
+        <property role="10YbkC" value="2884.0" />
+        <property role="10YbkE" value="1734.0" />
       </node>
     </node>
     <node concept="3Iw0dE" id="5VLuTnkoKSU" role="3YHajY">
       <property role="TrG5h" value="DSA" />
       <ref role="3Iw0dH" node="5VLuTnkolQd" resolve="FOOBAR" />
       <node concept="10YbkR" id="6LU90BOqnLo" role="2oiVCh">
-        <property role="10YbkC" value="1125.0" />
-        <property role="10YbkE" value="2050.0" />
+        <property role="10YbkC" value="1142.0" />
+        <property role="10YbkE" value="1738.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="6LU90BO_Gzv" role="1N5PiV">
@@ -1459,8 +1459,8 @@
       <node concept="3I$zcF" id="6LU90BO_Gzt" role="2RhMK_">
         <ref role="3IAu0i" node="5VLuTnkolRA" resolve="QO" />
       </node>
-      <node concept="bR32z" id="5jb5jNBJtOG" role="bPNfo">
-        <property role="bR32p" value="1018.0" />
+      <node concept="bR32z" id="3vwudsn0eYa" role="bPNfo">
+        <property role="bR32p" value="1150.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="6LU90BO_KRD" role="1N5PiQ">
@@ -1471,8 +1471,8 @@
       <node concept="3YHrnl" id="6LU90BO_KRB" role="2RhMK_">
         <ref role="3Yz8TM" node="5VLuTnkolR_" resolve="OUT" />
       </node>
-      <node concept="bR32z" id="5jb5jNBJtOH" role="bPNfo">
-        <property role="bR32p" value="968.0" />
+      <node concept="bR32z" id="3vwudsn0eYc" role="bPNfo">
+        <property role="bR32p" value="1511.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="6LU90BO_N3X" role="1N5PiQ">
@@ -1483,8 +1483,8 @@
         <ref role="1N5Pi4" node="5VLuTnkoKSU" resolve="DSA" />
         <ref role="1N5Pi3" node="5VLuTnkolQe" resolve="FOO" />
       </node>
-      <node concept="bR32z" id="5jb5jNBNLSc" role="bPNfo">
-        <property role="bR32p" value="387.0" />
+      <node concept="bR32z" id="3vwudsn0BRt" role="bPNfo">
+        <property role="bR32p" value="303.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="6LU90BO_PeT" role="1N5PiV">
@@ -1495,8 +1495,8 @@
         <ref role="1N5PlC" node="5VLuTnkoKSU" resolve="DSA" />
         <ref role="1N5PlF" node="5VLuTnkolQg" resolve="D" />
       </node>
-      <node concept="bR32z" id="5jb5jNC399w" role="bPNfo">
-        <property role="bR32p" value="768.0" />
+      <node concept="bR32z" id="6YAH_gOB8ZD" role="bPNfo">
+        <property role="bR32p" value="742.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5MmYuOgHoY1" role="1N5PiV">
@@ -1508,10 +1508,10 @@
         <ref role="1N5PlC" node="5VLuTnkolRC" resolve="FB1" />
         <ref role="1N5PlF" node="3HBlKeoYV86" resolve="MODE" />
       </node>
-      <node concept="bR73E" id="38k27IRsWuK" role="bPNfo">
-        <property role="bR73D" value="125.0" />
-        <property role="bR73n" value="475.0" />
-        <property role="bR73k" value="225.0" />
+      <node concept="bR73E" id="5sOEwwEEsGt" role="bPNfo">
+        <property role="bR73D" value="100.0" />
+        <property role="bR73n" value="300.0" />
+        <property role="bR73k" value="200.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5MmYuOgMQBD" role="1N5PiQ">
@@ -1522,21 +1522,21 @@
         <ref role="1N5Pi4" node="5VLuTnkolRC" resolve="FB1" />
         <ref role="1N5Pi3" node="3HBlKeoYV84" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="38k27IRsBs6" role="bPNfo">
-        <property role="bR32p" value="112.0" />
+      <node concept="bR32z" id="5sOEwwEEsGq" role="bPNfo">
+        <property role="bR32p" value="888.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5MmYuOgNwrh" role="1N5PiV">
-      <node concept="3IAhSD" id="5MmYuOgNwrf" role="2RhMKC">
-        <ref role="1N5PlC" node="5VLuTnkolRC" resolve="FB1" />
-        <ref role="1N5PlF" node="3HBlKeoYWWK" resolve="LED3" />
-      </node>
       <node concept="3IAvtB" id="5MmYuOgNwrg" role="2RhMK_">
         <ref role="1N5PlC" node="5VLuTnkoKSS" resolve="ASD" />
         <ref role="1N5PlF" node="5VLuTnkolQk" resolve="X" />
       </node>
-      <node concept="bR32z" id="38k27IRsBs9" role="bPNfo">
-        <property role="bR32p" value="318.0" />
+      <node concept="3IAhSD" id="1QSEqLhDqSV" role="2RhMKC">
+        <ref role="1N5PlC" node="5VLuTnkolRC" resolve="FB1" />
+        <ref role="1N5PlF" node="3HBlKeoYWWK" resolve="LED3" />
+      </node>
+      <node concept="bR32z" id="5sOEwwEEsGu" role="bPNfo">
+        <property role="bR32p" value="100.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5MmYuOgOnZO" role="1N5PiQ">
@@ -1547,8 +1547,8 @@
       <node concept="3YHrnl" id="5MmYuOgOnZN" role="2RhMK_">
         <ref role="3Yz8TM" node="5VLuTnkolR_" resolve="OUT" />
       </node>
-      <node concept="bR32z" id="38k27IRsWuN" role="bPNfo">
-        <property role="bR32p" value="525.0" />
+      <node concept="bR32z" id="30N5LJacReM" role="bPNfo">
+        <property role="bR32p" value="353.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5MmYuOgOwEY" role="1N5PiV">
@@ -1560,8 +1560,8 @@
         <ref role="1N5PlC" node="5VLuTnkoKSS" resolve="ASD" />
         <ref role="1N5PlF" node="5VLuTnkolQk" resolve="X" />
       </node>
-      <node concept="bR32z" id="5jb5jNBNLSb" role="bPNfo">
-        <property role="bR32p" value="712.0" />
+      <node concept="bR32z" id="3vwudsn0eY7" role="bPNfo">
+        <property role="bR32p" value="430.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="5MmYuOgQERh" role="1N5PiV">
@@ -1573,8 +1573,8 @@
         <ref role="1N5PlC" node="5VLuTnkoKSS" resolve="ASD" />
         <ref role="1N5PlF" node="5VLuTnkolQk" resolve="X" />
       </node>
-      <node concept="bR32z" id="38k27IRsBs5" role="bPNfo">
-        <property role="bR32p" value="318.0" />
+      <node concept="bR32z" id="5sOEwwEEsGp" role="bPNfo">
+        <property role="bR32p" value="100.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="5jb5jNBJrDG" role="1N5PiQ">
@@ -1586,8 +1586,16 @@
         <ref role="1N5Pi4" node="5VLuTnkoKSS" resolve="ASD" />
         <ref role="1N5Pi3" node="5VLuTnkolQi" resolve="BAR" />
       </node>
-      <node concept="bR32z" id="5jb5jNBNLSe" role="bPNfo">
-        <property role="bR32p" value="737.0" />
+      <node concept="bR32z" id="3vwudsn0eY8" role="bPNfo">
+        <property role="bR32p" value="430.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="5sOEwwEEsGC" role="1N5PiY">
+      <property role="TrG5h" value="EmptyComponentFB" />
+      <ref role="1N5Tt0" node="uLhTRSuiV4" resolve="EmptyComponentFB" />
+      <node concept="10YbkR" id="5sOEwwEEsGE" role="b_cXm">
+        <property role="10YbkC" value="2300.0" />
+        <property role="10YbkE" value="303.0" />
       </node>
     </node>
   </node>

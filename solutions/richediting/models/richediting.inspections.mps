@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:bc5caf0f-df14-4a61-a09e-297c528e7095(richediting.adapters.inspections)">
+<model ref="r:bc5caf0f-df14-4a61-a09e-297c528e7095(richediting.inspections)">
   <persistence version="9" />
   <languages>
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
@@ -1416,9 +1416,38 @@
           <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
         </node>
       </node>
+      <node concept="2tJIrI" id="4FRweWLsNLE" role="jymVt" />
       <node concept="3Tm6S6" id="1R4IoyQPy5l" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyQPzu9" role="EKbjA">
         <ref role="3uigEE" to="3bo0:17nGqbJd3r4" resolve="SceneLayouter" />
+      </node>
+      <node concept="3clFb_" id="bRdTVI7sfZ" role="jymVt">
+        <property role="TrG5h" value="getLayoutBounds" />
+        <node concept="3Tm1VV" id="bRdTVI7sg1" role="1B3o_S" />
+        <node concept="3uibUv" id="bRdTVI7sg2" role="3clF45">
+          <ref role="3uigEE" to="z60i:~Rectangle" resolve="Rectangle" />
+        </node>
+        <node concept="2AHcQZ" id="bRdTVI7sg3" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+        <node concept="3clFbS" id="bRdTVI7sg4" role="3clF47">
+          <node concept="3clFbF" id="bRdTVI7ti2" role="3cqZAp">
+            <node concept="2ShNRf" id="bRdTVI7ti0" role="3clFbG">
+              <node concept="1pGfFk" id="bRdTVI7tTL" role="2ShVmc">
+                <ref role="37wK5l" to="z60i:~Rectangle.&lt;init&gt;(int,int)" resolve="Rectangle" />
+                <node concept="3cmrfG" id="bRdTVI7$2t" role="37wK5m">
+                  <property role="3cmrfH" value="-1" />
+                </node>
+                <node concept="3cmrfG" id="bRdTVI7A3_" role="37wK5m">
+                  <property role="3cmrfH" value="-1" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="2AHcQZ" id="bRdTVI7sg5" role="2AJF6D">
+          <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+        </node>
       </node>
     </node>
     <node concept="2tJIrI" id="1R4IoyRndFV" role="jymVt" />
@@ -1669,7 +1698,6 @@
     <node concept="2tJIrI" id="1R4IoyRfYQi" role="jymVt" />
     <node concept="3clFb_" id="7eBFChAdTUD" role="jymVt">
       <property role="TrG5h" value="loadState" />
-      <property role="DiZV1" value="true" />
       <node concept="3clFbS" id="7eBFChAdTUG" role="3clF47">
         <node concept="2Gpval" id="7eBFChAdYE5" role="3cqZAp">
           <node concept="2GrKxI" id="7eBFChAdYE6" role="2Gsz3X">
@@ -1767,7 +1795,6 @@
     </node>
     <node concept="3clFb_" id="7eBFChAgivW" role="jymVt">
       <property role="TrG5h" value="storeState" />
-      <property role="DiZV1" value="true" />
       <node concept="3clFbS" id="7eBFChAgivX" role="3clF47">
         <node concept="2Gpval" id="7eBFChAgivY" role="3cqZAp">
           <node concept="2GrKxI" id="7eBFChAgivZ" role="2Gsz3X">
@@ -1863,7 +1890,7 @@
       </node>
       <node concept="3cqZAl" id="7eBFChAgiw_" role="3clF45" />
     </node>
-    <node concept="2tJIrI" id="7eBFChAdP5G" role="jymVt" />
+    <node concept="2tJIrI" id="4FRweWLrJY$" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRfVWa" role="jymVt">
       <property role="TrG5h" value="relayoutComponentInspection" />
       <node concept="3Tm6S6" id="1R4IoyRfVWb" role="1B3o_S" />

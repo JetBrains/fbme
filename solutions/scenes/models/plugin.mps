@@ -10,6 +10,8 @@
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="3bo0" ref="r:2b66dd0d-2c90-4da0-994d-d7579a6bca2a(scenes.controllers.scene)" />
     <import index="7zu8" ref="r:a3d9cb66-c492-4189-9359-282b020eccf4(scenes.ext.contextMenu)" />
+    <import index="ee2c" ref="r:c260e783-fa83-4eab-8183-e5c937092355(scenes.cells)" />
+    <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -20,6 +22,10 @@
         <child id="481983775135178836" name="initBlock" index="2uRRB$" />
         <child id="481983775135178837" name="disposeBlock" index="2uRRB_" />
       </concept>
+      <concept id="481983775135178840" name="jetbrains.mps.lang.plugin.standalone.structure.ApplicationPluginDeclaration" flags="ng" index="2uRRBC">
+        <child id="481983775135178843" name="disposeBlock" index="2uRRBF" />
+      </concept>
+      <concept id="481983775135178846" name="jetbrains.mps.lang.plugin.standalone.structure.ApplicationPluginDisposeBlock" flags="in" index="2uRRBI" />
       <concept id="481983775135178819" name="jetbrains.mps.lang.plugin.standalone.structure.ProjectPluginDisposeBlock" flags="in" index="2uRRBN" />
       <concept id="481983775135178825" name="jetbrains.mps.lang.plugin.standalone.structure.ProjectPluginInitBlock" flags="in" index="2uRRBT" />
       <concept id="7520713872864775836" name="jetbrains.mps.lang.plugin.standalone.structure.StandalonePluginDescriptor" flags="ng" index="2DaZZR">
@@ -217,6 +223,24 @@
                 <ref role="1PxDUh" to="7zu8:1KzgIApMed1" resolve="CellSelectionOnPopupTrigger" />
                 <ref role="3cqZAo" to="7zu8:7eBFChA9ZlF" resolve="EDITOR_EXTENSION" />
               </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="2uRRBC" id="2SU8oJe1fQ8">
+    <property role="TrG5h" value="SceneStyleRegistrart" />
+    <node concept="2uRRBI" id="2SU8oJe1fQ9" role="2uRRBF">
+      <node concept="3clFbS" id="2SU8oJe1fQa" role="2VODD2">
+        <node concept="3clFbF" id="2SU8oJe1g2M" role="3cqZAp">
+          <node concept="2OqwBi" id="2SU8oJe1gmC" role="3clFbG">
+            <node concept="10M0yZ" id="2SU8oJe1g3y" role="2Oq$k0">
+              <ref role="3cqZAo" to="ee2c:2SU8oJe1c68" resolve="SCENE_BACKGROUND" />
+              <ref role="1PxDUh" to="ee2c:2SU8oJe1bVF" resolve="SceneStyleAttributes" />
+            </node>
+            <node concept="liA8E" id="2SU8oJe1gyc" role="2OqNvi">
+              <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
             </node>
           </node>
         </node>

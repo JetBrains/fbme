@@ -20,6 +20,14 @@
     <import index="o04u" ref="r:f0179f23-61bb-4719-8c52-ffe510b63d71(mps.ide.debugger)" />
     <import index="vdx1" ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(mps.ide.projectWizard)" />
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(mps.ide.persistence)" />
+    <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
+    <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
+    <import index="de0p" ref="r:d7cab6e9-7043-4e10-b77e-569e7736ba5e(mps.ide.editor)" />
+    <import index="7bx7" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.workbench.action(MPS.Platform/)" />
+    <import index="tprs" ref="r:00000000-0000-4000-0000-011c895904a4(jetbrains.mps.ide.actions)" />
+    <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" implicit="true" />
+    <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
+    <import index="z1c4" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -84,6 +92,7 @@
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
       </concept>
+      <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk" />
       <concept id="1107535904670" name="jetbrains.mps.baseLanguage.structure.ClassifierType" flags="in" index="3uibUv">
         <reference id="1107535924139" name="classifier" index="3uigEE" />
       </concept>
@@ -91,6 +100,14 @@
         <child id="1178549979242" name="visibility" index="1B3o_S" />
       </concept>
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
+      <concept id="1116615150612" name="jetbrains.mps.baseLanguage.structure.ClassifierClassExpression" flags="nn" index="3VsKOn">
+        <reference id="1116615189566" name="classifier" index="3VsUkX" />
+      </concept>
+    </language>
+    <language id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures">
+      <concept id="1199569711397" name="jetbrains.mps.baseLanguage.closures.structure.ClosureLiteral" flags="nn" index="1bVj0M">
+        <child id="1199569916463" name="body" index="1bW5cS" />
+      </concept>
     </language>
     <language id="443f4c36-fcf5-4eb6-9500-8d06ed259e3e" name="jetbrains.mps.baseLanguage.classifiers">
       <concept id="1213999088275" name="jetbrains.mps.baseLanguage.classifiers.structure.DefaultClassifierFieldDeclaration" flags="ig" index="2BZ0e9" />
@@ -374,6 +391,118 @@
             <node concept="liA8E" id="1eL5bn4RfGd" role="2OqNvi">
               <ref role="37wK5l" to="51vd:1eL5bn4Re2W" resolve="detach" />
               <node concept="1KvdUw" id="1eL5bn4RfGe" role="37wK5m" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="2uRRBy" id="7Y8B9wpfmhS">
+    <property role="TrG5h" value="IEC-61499 Headered Editors" />
+    <node concept="2uRRBT" id="7Y8B9wpfmE7" role="2uRRB$">
+      <node concept="3clFbS" id="7Y8B9wpfmE8" role="2VODD2">
+        <node concept="3clFbF" id="1vJkp1TP2yK" role="3cqZAp">
+          <node concept="2OqwBi" id="1vJkp1TP4ZL" role="3clFbG">
+            <node concept="2OqwBi" id="1vJkp1TP3n0" role="2Oq$k0">
+              <node concept="1KvdUw" id="1vJkp1TP2yI" role="2Oq$k0" />
+              <node concept="liA8E" id="1vJkp1TP4RV" role="2OqNvi">
+                <ref role="37wK5l" to="z1c3:~Project.getModelAccess()" resolve="getModelAccess" />
+              </node>
+            </node>
+            <node concept="liA8E" id="1vJkp1TP5k$" role="2OqNvi">
+              <ref role="37wK5l" to="lui2:~ModelAccess.runWriteInEDT(java.lang.Runnable)" resolve="runWriteInEDT" />
+              <node concept="1bVj0M" id="1vJkp1TP5lw" role="37wK5m">
+                <node concept="3clFbS" id="1vJkp1TP5lx" role="1bW5cS">
+                  <node concept="3clFbF" id="2hWn4IdWKfH" role="3cqZAp">
+                    <node concept="2YIFZM" id="2hWn4IdWKwx" role="3clFbG">
+                      <ref role="37wK5l" to="de0p:2hWn4IdWCPe" resolve="install" />
+                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                      <node concept="1KvdUw" id="2hWn4IdWKB0" role="37wK5m" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="7Y8B9wpfmKG" role="3cqZAp">
+          <node concept="2OqwBi" id="7Y8B9wpfocE" role="3clFbG">
+            <node concept="2OqwBi" id="7Y8B9wpfn3W" role="2Oq$k0">
+              <node concept="10M0yZ" id="7Y8B9wpfmL4" role="2Oq$k0">
+                <ref role="3cqZAo" to="k3nr:~NodeEditorFactory.EXT_POINT" resolve="EXT_POINT" />
+                <ref role="1PxDUh" to="k3nr:~NodeEditorFactory" resolve="NodeEditorFactory" />
+              </node>
+              <node concept="liA8E" id="7Y8B9wpfnG1" role="2OqNvi">
+                <ref role="37wK5l" to="9ti4:~ExtensionPointName.getPoint(com.intellij.openapi.extensions.AreaInstance)" resolve="getPoint" />
+                <node concept="2OqwBi" id="7Y8B9wpfpWs" role="37wK5m">
+                  <node concept="1KvdUw" id="7Y8B9wpfnYH" role="2Oq$k0" />
+                  <node concept="liA8E" id="7Y8B9wpfria" role="2OqNvi">
+                    <ref role="37wK5l" to="z1c4:~MPSProject.getProject()" resolve="getProject" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="7Y8B9wpfrHw" role="2OqNvi">
+              <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object)" resolve="registerExtension" />
+              <node concept="2ShNRf" id="7Y8B9wpfrW0" role="37wK5m">
+                <node concept="1pGfFk" id="7Y8B9wpfsfI" role="2ShVmc">
+                  <ref role="37wK5l" to="de0p:7Y8B9wpduOV" resolve="HeaderedEditorFactory" />
+                  <node concept="1KvdUw" id="7Y8B9wpfsiT" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2uRRBN" id="7Y8B9wpftRr" role="2uRRB_">
+      <node concept="3clFbS" id="7Y8B9wpftRs" role="2VODD2">
+        <node concept="3clFbF" id="1vJkp1TPgIK" role="3cqZAp">
+          <node concept="2OqwBi" id="1vJkp1TPgIL" role="3clFbG">
+            <node concept="2OqwBi" id="1vJkp1TPgIM" role="2Oq$k0">
+              <node concept="1KvdUw" id="1vJkp1TPgIN" role="2Oq$k0" />
+              <node concept="liA8E" id="1vJkp1TPgIO" role="2OqNvi">
+                <ref role="37wK5l" to="z1c3:~Project.getModelAccess()" resolve="getModelAccess" />
+              </node>
+            </node>
+            <node concept="liA8E" id="1vJkp1TPgIP" role="2OqNvi">
+              <ref role="37wK5l" to="lui2:~ModelAccess.runWriteInEDT(java.lang.Runnable)" resolve="runWriteInEDT" />
+              <node concept="1bVj0M" id="1vJkp1TPgIQ" role="37wK5m">
+                <node concept="3clFbS" id="1vJkp1TPgIR" role="1bW5cS">
+                  <node concept="3clFbF" id="2hWn4IdWKLy" role="3cqZAp">
+                    <node concept="2YIFZM" id="2hWn4IdWKUi" role="3clFbG">
+                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                      <ref role="37wK5l" to="de0p:2hWn4IdWFAH" resolve="uninstall" />
+                      <node concept="1KvdUw" id="2hWn4IdWKUj" role="37wK5m" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="7Y8B9wpftSW" role="3cqZAp">
+          <node concept="2OqwBi" id="7Y8B9wpftSX" role="3clFbG">
+            <node concept="2OqwBi" id="7Y8B9wpftSY" role="2Oq$k0">
+              <node concept="10M0yZ" id="7Y8B9wpftSZ" role="2Oq$k0">
+                <ref role="1PxDUh" to="k3nr:~NodeEditorFactory" resolve="NodeEditorFactory" />
+                <ref role="3cqZAo" to="k3nr:~NodeEditorFactory.EXT_POINT" resolve="EXT_POINT" />
+              </node>
+              <node concept="liA8E" id="7Y8B9wpftT0" role="2OqNvi">
+                <ref role="37wK5l" to="9ti4:~ExtensionPointName.getPoint(com.intellij.openapi.extensions.AreaInstance)" resolve="getPoint" />
+                <node concept="2OqwBi" id="7Y8B9wpftT1" role="37wK5m">
+                  <node concept="1KvdUw" id="7Y8B9wpftT2" role="2Oq$k0" />
+                  <node concept="liA8E" id="7Y8B9wpftT3" role="2OqNvi">
+                    <ref role="37wK5l" to="z1c4:~MPSProject.getProject()" resolve="getProject" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="7Y8B9wpftT4" role="2OqNvi">
+              <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Class)" resolve="unregisterExtension" />
+              <node concept="3VsKOn" id="7Y8B9wpfuUQ" role="37wK5m">
+                <ref role="3VsUkX" to="de0p:7Y8B9wpdlUb" resolve="HeaderedEditorFactory" />
+              </node>
             </node>
           </node>
         </node>

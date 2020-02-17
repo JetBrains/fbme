@@ -25,6 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/solutions/richediting.adapters/source_gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/solutions/scenes/source_gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/solutions/mps.iec61499.model/source_gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/solutions/richediting/source_gen" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
