@@ -120,8 +120,8 @@
       <ECTransition Source="TakeWP2" Destination="Temp" Condition="INIT" x="1753.328" y="673.472" />
       <ECTransition Source="TakeWP3" Destination="Temp" Condition="INIT" x="1792.974" y="741.1115" />
       <ECTransition Source="PlaceWP1" Destination="Temp" Condition="INIT" x="2051.758" y="1565.634" />
-      <ECTransition Source="INIT" Destination="MoveSledge" Condition="REQ[User_demand = &#39;GREEN&#39; &#38; Produce_SIG]" x="3972.019" y="161.0743" />
-      <ECTransition Source="INIT" Destination="TakeWP1" Condition="REQ[User_demand = &#39;RED&#39; &#38; Produce_SIG]" x="3608.348" y="858.4515" />
+      <ECTransition Source="INIT" Destination="MoveSledge" Condition="REQ[User_demand = GREEN &#38; Produce_SIG]" x="3972.019" y="161.0743" />
+      <ECTransition Source="INIT" Destination="TakeWP1" Condition="REQ[User_demand = RED &#38; Produce_SIG]" x="3608.348" y="858.4515" />
       <ECTransition Source="PlaceWP6" Destination="INIT" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="3936.745" y="2628.474" />
     </ECC>
     <Algorithm Name="INIT">

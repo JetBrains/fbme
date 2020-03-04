@@ -44,7 +44,7 @@
       <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102" />
       <ECTransition Source="SR_INPUT" Destination="DONE" Condition="SR_SENSOR" x="1393.307" y="2079.759" />
       <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="[configurationID = &#39;COLLECT&#39;]" x="2393.951" y="913.3721" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="[configurationID = COLLECT]" x="2393.951" y="913.3721" />
       <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709" />
       <ECTransition Source="S5_TRANSPORT" Destination="SR_INPUT" Condition="S5_SENSOR" x="2399.998" y="1619.026" />
       <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033" />

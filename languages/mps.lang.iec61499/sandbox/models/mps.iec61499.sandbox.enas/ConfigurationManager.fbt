@@ -85,19 +85,19 @@
       <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="RESET" x="2943.028" y="1118.14" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="configurationID := &#39;NONE&#39;;&#38;#10;" />
+      <ST Text="configurationID := NONE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="HOME">
-      <ST Text="configurationID := &#39;HOME&#39;;&#38;#10;" />
+      <ST Text="configurationID := HOME;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="FEED">
-      <ST Text="configurationID := &#39;FEED&#39;;&#38;#10;" />
+      <ST Text="configurationID := FEED;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="COLLECT">
-      <ST Text="configurationID := &#39;COLLECT&#39;;&#38;#10;" />
+      <ST Text="configurationID := COLLECT;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="REJECT">
-      <ST Text="configurationID := &#39;REJECT&#39;;&#38;#10;" />
+      <ST Text="configurationID := REJECT;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

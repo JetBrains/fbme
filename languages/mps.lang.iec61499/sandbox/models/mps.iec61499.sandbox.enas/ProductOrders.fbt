@@ -87,22 +87,22 @@
       <ECTransition Source="RED_DONE" Destination="INIT" Condition="REQ[New_order]" x="3099.824" y="527.2668" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="Green_count := 0;&#38;#10;Red_count := 0;&#38;#10;Product_count := 0;&#38;#10;Products_demanded := 0;&#38;#10;Next_color := &#39;NONE&#39;;&#38;#10;" />
+      <ST Text="Green_count := 0;&#38;#10;Red_count := 0;&#38;#10;Product_count := 0;&#38;#10;Products_demanded := 0;&#38;#10;Next_color := NONE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="NEW_ORDER">
-      <ST Text="Red_count := Red;&#38;#10;Green_count := Green;&#38;#10;Product_count := Red_count + Green_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := &#39;NONE&#39;;&#38;#10;" />
+      <ST Text="Red_count := Red;&#38;#10;Green_count := Green;&#38;#10;Product_count := Red_count + Green_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := NONE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="ORDER_GREEN">
-      <ST Text="Products_demanded := Product_count;&#38;#10;Next_color := &#39;GREEN&#39;;&#38;#10;" />
+      <ST Text="Products_demanded := Product_count;&#38;#10;Next_color := GREEN;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="ORDER_RED">
-      <ST Text="Products_demanded := Product_count;&#38;#10;Next_color := &#39;RED&#39;;&#38;#10;" />
+      <ST Text="Products_demanded := Product_count;&#38;#10;Next_color := RED;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="GREEN_DONE">
-      <ST Text="Green_count := Green_count - 1;&#38;#10;Product_count := Green_count + Red_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := &#39;GREEN&#39;;&#38;#10;" />
+      <ST Text="Green_count := Green_count - 1;&#38;#10;Product_count := Green_count + Red_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := GREEN;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="RED_DONE">
-      <ST Text="Red_count := Red_count - 1;&#38;#10;Product_count := Green_count + Red_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := &#39;RED&#39;;&#38;#10;" />
+      <ST Text="Red_count := Red_count - 1;&#38;#10;Product_count := Green_count + Red_count;&#38;#10;Products_demanded := Product_count;&#38;#10;Next_color := RED;&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
