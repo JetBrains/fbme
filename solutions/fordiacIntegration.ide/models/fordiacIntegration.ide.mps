@@ -61,6 +61,7 @@
     <import index="tpcu" ref="r:00000000-0000-4000-0000-011c89590282(jetbrains.mps.lang.core.behavior)" />
     <import index="o04u" ref="r:f0179f23-61bb-4719-8c52-ffe510b63d71(mps.ide.debugger)" />
     <import index="cjdg" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.execution.ui(MPS.IDEA/)" implicit="true" />
+    <import index="4fey" ref="r:05205c64-537e-47b2-8e85-2f142fc11ac8(mps.lang.ST.behavior)" implicit="true" />
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
@@ -2729,16 +2730,26 @@
                           </node>
                         </node>
                         <node concept="2OqwBi" id="3wAsKTkwlcQ" role="3uHU7w">
-                          <node concept="2OqwBi" id="3wAsKTkwlcR" role="2Oq$k0">
-                            <node concept="37vLTw" id="3wAsKTkwlcS" role="2Oq$k0">
-                              <ref role="3cqZAo" node="3wAsKTkhb0B" resolve="connection" />
+                          <node concept="2OqwBi" id="EAhk9WYLGu" role="2Oq$k0">
+                            <node concept="1PxgMI" id="EAhk9WYK_x" role="2Oq$k0">
+                              <node concept="chp4Y" id="EAhk9WYLrQ" role="3oSUPX">
+                                <ref role="cht4Q" to="xiqq:7DSsXPFKSqU" resolve="ConstantDataSource" />
+                              </node>
+                              <node concept="2OqwBi" id="3wAsKTkwlcR" role="1m5AlR">
+                                <node concept="37vLTw" id="3wAsKTkwlcS" role="2Oq$k0">
+                                  <ref role="3cqZAo" node="3wAsKTkhb0B" resolve="connection" />
+                                </node>
+                                <node concept="3TrEf2" id="3wAsKTkwlcT" role="2OqNvi">
+                                  <ref role="3Tt5mk" to="xiqq:4KieeRVlhj5" resolve="source" />
+                                </node>
+                              </node>
                             </node>
-                            <node concept="3TrEf2" id="3wAsKTkwlcT" role="2OqNvi">
-                              <ref role="3Tt5mk" to="xiqq:4KieeRVlhj5" resolve="source" />
+                            <node concept="3TrEf2" id="EAhk9WYMC2" role="2OqNvi">
+                              <ref role="3Tt5mk" to="xiqq:7DSsXPFKSqX" resolve="value" />
                             </node>
                           </node>
-                          <node concept="2qgKlT" id="3wAsKTkwlcU" role="2OqNvi">
-                            <ref role="37wK5l" to="tpcu:hEwIMiw" resolve="getPresentation" />
+                          <node concept="2qgKlT" id="EAhk9WYNvY" role="2OqNvi">
+                            <ref role="37wK5l" to="4fey:EAhk9WY3Ij" resolve="getLoadablePresentation" />
                           </node>
                         </node>
                       </node>
