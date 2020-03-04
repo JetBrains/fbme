@@ -1155,5 +1155,17 @@
       </node>
     </node>
   </node>
+  <node concept="1TIwiD" id="k3FE8iw36P">
+    <property role="EcuMT" value="361324406238097845" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="BinIntLiteral" />
+    <property role="34LRSv" value="INT#" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="k3FE8iw36Q" role="1TKVEl">
+      <property role="IQ2nx" value="361324406238097846" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+  </node>
 </model>
 

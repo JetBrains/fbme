@@ -102,7 +102,7 @@
         <reference id="4323500428136742952" name="id" index="2TlMyj" />
       </concept>
       <concept id="1186402211651" name="jetbrains.mps.lang.editor.structure.StyleSheet" flags="ng" index="V5hpn">
-        <child id="1186402402630" name="styleClass" index="V601i" />
+        <child id="1186402402630" name="styles" index="V601i" />
       </concept>
       <concept id="1186403694788" name="jetbrains.mps.lang.editor.structure.ColorStyleClassItem" flags="ln" index="VaVBg">
         <property id="1186403713874" name="color" index="Vb096" />
@@ -9834,6 +9834,23 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="k3FE8iw37i">
+    <property role="3GE5qa" value="expressions" />
+    <ref role="1XX52x" to="gpgy:k3FE8iw36P" resolve="BinIntLiteral" />
+    <node concept="3EZMnI" id="k3FE8iw3en" role="2wV5jI">
+      <node concept="3F0ifn" id="k3FE8iw3eo" role="3EZMnx">
+        <property role="3F0ifm" value="INT#" />
+        <node concept="Vb9p2" id="k3FE8iw3ep" role="3F10Kt" />
+        <node concept="11LMrY" id="k3FE8iw3eq" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0A7n" id="k3FE8iw3AB" role="3EZMnx">
+        <ref role="1NtTu8" to="gpgy:k3FE8iw36Q" resolve="value" />
+      </node>
+      <node concept="l2Vlx" id="k3FE8iw3eU" role="2iSdaV" />
     </node>
   </node>
 </model>
