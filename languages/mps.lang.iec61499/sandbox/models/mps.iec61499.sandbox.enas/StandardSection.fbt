@@ -22,38 +22,38 @@
     <FB Name="DRIVER" Type="PUBLISH_1" x="4260" y="220" />
     <FB Name="SENSOR" Type="SUBSCRIBE_1" x="540" y="220" />
     <FB Name="ADAPT_DRIVER" Type="E_SR" x="3040" y="860" />
-    <FB Name="ADAPT_SENSOR_ON" Type="E_R_TRIG" x="1360" y="420" />
-    <FB Name="ADAPT_SENSOR_OFF" Type="E_F_TRIG" x="1360" y="820" />
-    <FB Name="SectionDelivery" Type="SectionDelivery" x="1140" y="1460" />
+    <FB Name="ADAPT_SENSOR_ON" Type="E_R_TRIG" x="1234.0" y="411.0" />
+    <FB Name="ADAPT_SENSOR_OFF" Type="E_F_TRIG" x="1300.0" y="1057.0" />
+    <FB Name="SectionDelivery" Type="SectionDelivery" x="1184.0" y="1365.0" />
     <FB Name="AND" Type="F_AND" x="3540" y="760" />
     <FB Name="RUN" Type="E_SR" x="3020" y="1720" />
     <EventConnections>
-      <Connection Source="INIT" Destination="DRIVER.INIT" />
-      <Connection Source="DRIVER.INITO" Destination="INITO" />
-      <Connection Source="SENSOR.INITO" Destination="DRIVER.INIT" />
+      <Connection Source="INIT" Destination="SENSOR.INIT" dx1="334.0" />
+      <Connection Source="DRIVER.INITO" Destination="INITO" dx1="0.0" />
+      <Connection Source="SENSOR.INITO" Destination="DRIVER.INIT" dx1="0.0" />
       <Connection Source="ADAPT_DRIVER.EO" Destination="AND.REQ" dx1="50" />
-      <Connection Source="DRIVE_ON" Destination="ADAPT_DRIVER.S" />
-      <Connection Source="DRIVE_OFF" Destination="ADAPT_DRIVER.R" />
-      <Connection Source="SENSOR.REQ" Destination="ADAPT_SENSOR_ON.EI" dx1="61.625" />
-      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SENSOR_ON" dx1="41.72925" />
-      <Connection Source="ADAPT_SENSOR_OFF.EO" Destination="SENSOR_OFF" dx1="46.47925" />
-      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_OFF.EI" dx1="61.625" />
-      <Connection Source="DELIVERY" Destination="SectionDelivery.TRIGGER" dx1="40" />
-      <Connection Source="SectionDelivery.DRIVE_ON" Destination="ADAPT_DRIVER.S" />
-      <Connection Source="SectionDelivery.DRIVE_OFF" Destination="ADAPT_DRIVER.R" />
-      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SectionDelivery.SENSOR" dx1="41.72925" dy="290" dx2="70" />
-      <Connection Source="SectionDelivery.DONE" Destination="DELIVERED" dx1="56.375" />
-      <Connection Source="PAUSE" Destination="RUN.R" dx1="41.35425" />
+      <Connection Source="DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="184.0" />
+      <Connection Source="DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="96.0" />
+      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_ON.EI" dx1="153.0" />
+      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SENSOR_ON" dx1="42.0" />
+      <Connection Source="ADAPT_SENSOR_OFF.EO" Destination="SENSOR_OFF" dx1="38.0" />
+      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_OFF.EI" dx1="103.0" />
+      <Connection Source="DELIVERY" Destination="SectionDelivery.TRIGGER" dx1="38.0" />
+      <Connection Source="SectionDelivery.DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="146.0" />
+      <Connection Source="SectionDelivery.DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="215.0" />
+      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SectionDelivery.SENSOR" dx1="34.0" dy="292.0" dx2="65.0" />
+      <Connection Source="SectionDelivery.DONE" Destination="DELIVERED" dx1="53.0" />
+      <Connection Source="PAUSE" Destination="RUN.R" dx1="80.0" />
       <Connection Source="START" Destination="RUN.S" dx1="46.14575" />
       <Connection Source="RUN.EO" Destination="AND.REQ" dx1="68.35425" />
-      <Connection Source="AND.CNF" Destination="DRIVER.REQ" dx1="47.47925" />
+      <Connection Source="AND.CNF" Destination="DRIVER.REQ" dx1="42.0" />
     </EventConnections>
     <DataConnections>
       <Connection Source="ADAPT_DRIVER.Q" Destination="AND.IN1" dx1="70" />
-      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_ON.QI" dx1="41.625" />
-      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_OFF.QI" dx1="41.625" />
+      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_ON.QI" dx1="157.0" />
+      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_OFF.QI" dx1="61.0" />
       <Connection Source="RUN.Q" Destination="AND.IN2" dx1="70" />
-      <Connection Source="FB7.OUT" Destination="DRIVER.SD_1" dx1="70" />
+      <Connection Source="AND.OUT" Destination="DRIVER.SD_1" dx1="70" />
     </DataConnections>
   </FBNetwork>
 </FBType>

@@ -30,22 +30,22 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="InitTrig" Type="E_R_TRIG" x="1960" y="500" />
-    <FB Name="FB1" Type="" x="1280" y="500" />
-    <FB Name="FB2" Type="" x="800" y="500" />
+    <FB Name="InitTrig" Type="E_R_TRIG" x="2273.0" y="396.0" />
+    <FB Name="AND" Type="F_AND" x="1526.0" y="484.0" />
+    <FB Name="NOT" Type="F_NOT" x="803.0" y="442.0" />
     <EventConnections>
-      <Connection Source="FB1.null" Destination="InitTrig.EI" />
-      <Connection Source="FB2.null" Destination="FB1.null" />
-      <Connection Source="REQ" Destination="FB2.null" dx1="366.9584" dy="109.8542" dx2="150" />
-      <Connection Source="InitTrig.EO" Destination="INITO" dx1="41.72925" />
-      <Connection Source="FB1.null" Destination="CNF" dx1="50" />
+      <Connection Source="AND.CNF" Destination="InitTrig.EI" dx1="323.0" />
+      <Connection Source="NOT.CNF" Destination="AND.REQ" dx1="50.0" />
+      <Connection Source="REQ" Destination="NOT.REQ" dx1="480.0" />
+      <Connection Source="InitTrig.EO" Destination="INITO" dx1="34.0" />
+      <Connection Source="AND.CNF" Destination="CNF" dx1="50.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB1.null" Destination="InitTrig.QI" />
-      <Connection Source="FB2.null" Destination="FB1.null" />
-      <Connection Source="FB1.null" Destination="ResetLight" dx1="47.47925" />
-      <Connection Source="ResetButton" Destination="FB1.null" dx1="604.8542" />
-      <Connection Source="CurrMachineState" Destination="FB2.null" dx1="42.78131" />
+      <Connection Source="AND.OUT" Destination="InitTrig.QI" dx1="161.0" />
+      <Connection Source="NOT.OUT" Destination="AND.IN1" dx1="69.0" />
+      <Connection Source="AND.OUT" Destination="ResetLight" dx1="142.0" />
+      <Connection Source="ResetButton" Destination="AND.IN2" dx1="896.0" />
+      <Connection Source="CurrMachineState" Destination="NOT.IN" dx1="150.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

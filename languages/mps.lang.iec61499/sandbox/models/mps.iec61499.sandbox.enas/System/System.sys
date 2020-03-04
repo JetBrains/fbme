@@ -4,142 +4,142 @@
   <Identification Standard="61499-2" />
   <Application Name="APP2">
     <SubAppNetwork>
-      <SubApp Name="SUB_APP1" Type="DeliveryServices" x="4060" y="1720" />
-      <FB Name="Section1" Type="StandardSection" x="5620" y="780" />
-      <FB Name="Section2" Type="StandardSection" x="5600" y="1520" />
+      <SubApp Name="SUB_APP1" Type="DeliveryServices" x="4003.0" y="1753.0" />
+      <FB Name="Section1" Type="StandardSection" x="5657.0" y="803.0" />
+      <FB Name="Section2" Type="StandardSection" x="5634.0" y="1511.0" />
       <FB Name="Section3" Type="StandardSection" x="5620" y="2180" />
-      <FB Name="Section4" Type="StandardSection" x="5560" y="2900" />
+      <FB Name="Section4" Type="StandardSection" x="5557.0" y="2869.0" />
       <FB Name="Section5" Type="StandardSection" x="5620" y="3580" />
       <FB Name="Section6" Type="StandardSection" x="5620" y="4320" />
       <FB Name="FB3" Type="S5Gate" x="4940" y="960" />
       <FB Name="FB4" Type="SRSection" x="5700" y="240" />
-      <FB Name="JACK1" Type="JackStation" x="4020" y="3600" />
-      <FB Name="JACK2" Type="JackStation" x="3980" y="4360" />
+      <FB Name="JACK1" Type="JackStation" x="4000.0" y="3723.0" />
+      <FB Name="JACK2" Type="JackStation" x="3976.0" y="4457.0" />
       <FB Name="PRODUCE_RED" Type="Produce" x="280" y="1880" />
-      <FB Name="CAMERA" Type="ColorDetect" x="1660" y="2300" />
+      <FB Name="CAMERA" Type="ColorDetect" x="1642.0" y="2300.0" />
       <FB Name="PRODUCE_GREEN" Type="Produce" x="300" y="2840" />
-      <FB Name="OrderConsole" Type="ProductOrder" x="2440" y="2340" />
-      <FB Name="ButtonConsole" Type="ConsoleHMI" x="2520" y="3040" />
-      <FB Name="FB2" Type="ConfigurationManagerC" x="2920" y="640" />
-      <FB Name="DockConfirmationButton" Type="ConfirmationButton" x="1780" y="3060" />
+      <FB Name="OrderConsole" Type="ProductOrder" x="2507.0" y="2150.0" />
+      <FB Name="ButtonConsole" Type="ConsoleHMI" x="2503.0" y="3192.0" />
+      <FB Name="FB2" Type="ConfigurationManagerC" x="2742.0" y="311.0" />
+      <FB Name="DockConfirmationButton" Type="ConfirmationButton" x="1615.0" y="3361.0" />
       <EventConnections>
-        <Connection Source="FB2.S5_GATE_CLOSE" Destination="FB3.CLOSE" dx1="40" />
-        <Connection Source="FB2.S5_GATE_OPEN" Destination="FB3.OPEN" dx1="40" />
-        <Connection Source="FB2.READY" Destination="SUB_APP1.CONFIG" dx1="40" />
-        <Connection Source="SUB_APP1.S1_ON" Destination="Section1.DRIVE_ON" dx1="451.9165" />
-        <Connection Source="SUB_APP1.SR_OUTPUT" Destination="FB4.OUTPUT" dx1="451.9165" />
-        <Connection Source="SUB_APP1.SR_INPUT" Destination="FB4.INPUT" dx1="451.9165" />
-        <Connection Source="SUB_APP1.S2_ON" Destination="Section2.DRIVE_ON" dx1="271.9165" />
-        <Connection Source="SUB_APP1.S3_ON" Destination="Section3.DRIVE_ON" dx1="311.9165" />
-        <Connection Source="SUB_APP1.S3_DELIVERY" Destination="Section3.DELIVERY" dx1="351.9165" />
-        <Connection Source="SUB_APP1.S4_ON" Destination="Section4.DRIVE_ON" dx1="40" />
-        <Connection Source="SUB_APP1.S5_ON" Destination="Section5.DRIVE_ON" dx1="40" />
-        <Connection Source="SUB_APP1.S5_DELIVERY" Destination="Section5.DELIVERY" dx1="40" />
-        <Connection Source="SUB_APP1.S6_DELIVERY" Destination="Section6.DELIVERY" dx1="40" />
-        <Connection Source="SUB_APP1.S6_ON" Destination="Section6.DRIVE_ON" dx1="80" />
-        <Connection Source="SUB_APP1.CONFIG_FEED" Destination="FB2.REQ_FEED" dx1="151.9165" dy="-410" dx2="30" />
-        <Connection Source="SUB_APP1.CONFIG_REJECT" Destination="FB2.REQ_REJECT" dx1="171.9165" dy="-470" dx2="30" />
-        <Connection Source="SUB_APP1.CONFIG_DELIVERY" Destination="FB2.REQ_COLLECT" dx1="191.9165" dy="-530" dx2="30" />
-        <Connection Source="FB4.SENSOR_OFF" Destination="SUB_APP1.SR_SENSOR" dx1="45.5625" dy="290" dx2="70" />
-        <Connection Source="Section1.SENSOR_OFF" Destination="SUB_APP1.S1_SENSOR" dx1="41.7085" dy="410" dx2="90" />
-        <Connection Source="Section2.SENSOR_OFF" Destination="SUB_APP1.S2_SENSOR" dx1="41.7085" dy="-230" dx2="110" />
-        <Connection Source="Section3.SENSOR_OFF" Destination="SUB_APP1.S3_SENSOR" />
-        <Connection Source="Section3.DELIVERED" Destination="SUB_APP1.S3_DELIVERED" />
-        <Connection Source="Section4.SENSOR_OFF" Destination="SUB_APP1.S4_SENSOR" />
-        <Connection Source="Section5.SENSOR_OFF" Destination="SUB_APP1.S5_SENSOR" />
-        <Connection Source="Section5.DELIVERED" Destination="SUB_APP1.S5_DELIVERED" />
-        <Connection Source="Section6.SENSOR_OFF" Destination="SUB_APP1.S6_SENSOR" dx1="50" dy="-230" dx2="90" />
-        <Connection Source="Section6.DELIVERED" Destination="SUB_APP1.S6_DELIVERED" dx1="70" dy="-290" dx2="70" />
-        <Connection Source="PRODUCE_RED.W1W2" Destination="SUB_APP1.W1W2" dx1="70" />
-        <Connection Source="PRODUCE_RED.PLACE_CAP" Destination="JACK2.PLACE_RED" dx1="57.37512" />
-        <Connection Source="PRODUCE_RED.W2W3" Destination="SUB_APP1.W2W3" dx1="110" />
-        <Connection Source="PRODUCE_RED.W3W1" Destination="SUB_APP1.W3W1" dx1="150" />
-        <Connection Source="SUB_APP1.W1W2_DONE" Destination="PRODUCE_RED.AT_W2" dx1="500" dy="-110" dx2="70" />
-        <Connection Source="JACK2.DONE_RED" Destination="PRODUCE_RED.ASSEMBLY_DONE" dx1="50" dy="-170" dx2="30" />
-        <Connection Source="SUB_APP1.W2W3_DONE" Destination="PRODUCE_RED.AT_W3" dx1="480" dy="-170" dx2="110" />
-        <Connection Source="SUB_APP1.W3W1_DONE" Destination="PRODUCE_RED.DELIVERED" dx1="440" dy="-290" dx2="150" />
+        <Connection Source="FB2.S5_GATE_CLOSE" Destination="FB3.CLOSE" dx1="46.0" />
+        <Connection Source="FB2.S5_GATE_OPEN" Destination="FB3.OPEN" dx1="46.0" />
+        <Connection Source="FB2.READY" Destination="SUB_APP1.CONFIG" dx1="150.0" dy="846.0" dx2="150.0" />
+        <Connection Source="SUB_APP1.S1_ON" Destination="Section1.DRIVE_ON" dx1="530.0" />
+        <Connection Source="SUB_APP1.SR_OUTPUT" Destination="FB4.OUTPUT" dx1="492.0" />
+        <Connection Source="SUB_APP1.SR_INPUT" Destination="FB4.INPUT" dx1="492.0" />
+        <Connection Source="SUB_APP1.S2_ON" Destination="Section2.DRIVE_ON" dx1="319.0" />
+        <Connection Source="SUB_APP1.S3_ON" Destination="Section3.DRIVE_ON" dx1="346.0" />
+        <Connection Source="SUB_APP1.S3_DELIVERY" Destination="Section3.DELIVERY" dx1="388.0" />
+        <Connection Source="SUB_APP1.S4_ON" Destination="Section4.DRIVE_ON" dx1="42.0" />
+        <Connection Source="SUB_APP1.S5_ON" Destination="Section5.DRIVE_ON" dx1="46.0" />
+        <Connection Source="SUB_APP1.S5_DELIVERY" Destination="Section5.DELIVERY" dx1="46.0" />
+        <Connection Source="SUB_APP1.S6_DELIVERY" Destination="Section6.DELIVERY" dx1="23.0" />
+        <Connection Source="SUB_APP1.S6_ON" Destination="Section6.DRIVE_ON" dx1="88.0" />
+        <Connection Source="SUB_APP1.CONFIG_FEED" Destination="FB2.REQ_FEED" dx1="150.0" dy="-426.0" dx2="138.0" />
+        <Connection Source="SUB_APP1.CONFIG_REJECT" Destination="FB2.REQ_REJECT" dx1="157.0" dy="-500.0" dx2="76.0" />
+        <Connection Source="SUB_APP1.CONFIG_DELIVERY" Destination="FB2.REQ_COLLECT" dx1="176.0" dy="-550.0" dx2="107.0" />
+        <Connection Source="FB4.SENSOR_OFF" Destination="SUB_APP1.SR_SENSOR" dx1="42.0" dy="288.0" dx2="69.0" />
+        <Connection Source="Section1.SENSOR_OFF" Destination="SUB_APP1.S1_SENSOR" dx1="34.0" dy="376.0" dx2="84.0" />
+        <Connection Source="Section2.SENSOR_OFF" Destination="SUB_APP1.S2_SENSOR" dx1="34.0" dy="-215.0" dx2="103.0" />
+        <Connection Source="Section3.SENSOR_OFF" Destination="SUB_APP1.S3_SENSOR" dx1="150.0" dy="1053.0" dx2="150.0" />
+        <Connection Source="Section3.DELIVERED" Destination="SUB_APP1.S3_DELIVERED" dx1="150.0" dy="965.0" dx2="150.0" />
+        <Connection Source="Section4.SENSOR_OFF" Destination="SUB_APP1.S4_SENSOR" dx1="150.0" dy="350.0" dx2="153.0" />
+        <Connection Source="Section5.SENSOR_OFF" Destination="SUB_APP1.S5_SENSOR" dx1="100.0" dy="-334.0" dx2="138.0" />
+        <Connection Source="Section5.DELIVERED" Destination="SUB_APP1.S5_DELIVERED" dx1="150.0" dy="-326.0" dx2="115.0" />
+        <Connection Source="Section6.SENSOR_OFF" Destination="SUB_APP1.S6_SENSOR" dx1="50.0" dy="-226.0" dx2="88.0" />
+        <Connection Source="Section6.DELIVERED" Destination="SUB_APP1.S6_DELIVERED" dx1="69.0" dy="-288.0" dx2="69.0" />
+        <Connection Source="PRODUCE_RED.W1W2" Destination="SUB_APP1.W1W2" dx1="65.0" />
+        <Connection Source="PRODUCE_RED.PLACE_CAP" Destination="JACK2.PLACE_RED" dx1="50.0" />
+        <Connection Source="PRODUCE_RED.W2W3" Destination="SUB_APP1.W2W3" dx1="103.0" />
+        <Connection Source="PRODUCE_RED.W3W1" Destination="SUB_APP1.W3W1" dx1="146.0" />
+        <Connection Source="SUB_APP1.W1W2_DONE" Destination="PRODUCE_RED.AT_W2" dx1="500.0" dy="-142.0" dx2="69.0" />
+        <Connection Source="JACK2.DONE_RED" Destination="PRODUCE_RED.ASSEMBLY_DONE" dx1="50.0" dy="-173.0" dx2="19.0" />
+        <Connection Source="SUB_APP1.W2W3_DONE" Destination="PRODUCE_RED.AT_W3" dx1="476.0" dy="-203.0" dx2="107.0" />
+        <Connection Source="SUB_APP1.W3W1_DONE" Destination="PRODUCE_RED.DELIVERED" dx1="438.0" dy="-323.0" dx2="150.0" />
         <Connection Source="FB3.INITO" Destination="Section5.INIT" dx1="38.0" />
-        <Connection Source="PRODUCE_RED.W3W4" Destination="SUB_APP1.W3W4" dx1="170" />
-        <Connection Source="PRODUCE_RED.J2_REMOVE_WP" Destination="JACK1.REMOVE_WP" dx1="87.37512" />
-        <Connection Source="PRODUCE_RED.TEST" Destination="CAMERA.DETECT" dx1="47.37512" />
-        <Connection Source="CAMERA.RED" Destination="PRODUCE_RED.TEST_OK" dx1="70" dy="-590" dx2="30" />
-        <Connection Source="CAMERA.GREEN" Destination="PRODUCE_RED.TEST_FAIL" />
-        <Connection Source="CAMERA.OTHER" Destination="PRODUCE_RED.TEST_FAIL" />
-        <Connection Source="PRODUCE_GREEN.W1W2" Destination="SUB_APP1.W1W2" dx1="70" />
-        <Connection Source="PRODUCE_GREEN.PLACE_CAP" Destination="JACK2.PLACE_GREEN" dx1="47.37512" />
-        <Connection Source="PRODUCE_GREEN.W2W3" Destination="SUB_APP1.W2W3" dx1="110" />
-        <Connection Source="PRODUCE_GREEN.TEST" Destination="CAMERA.DETECT" dx1="130" />
-        <Connection Source="CAMERA.GREEN" Destination="PRODUCE_GREEN.TEST_OK" />
-        <Connection Source="CAMERA.RED" Destination="PRODUCE_GREEN.TEST_FAIL" />
-        <Connection Source="CAMERA.OTHER" Destination="PRODUCE_GREEN.TEST_FAIL" />
-        <Connection Source="PRODUCE_GREEN.W3W1" Destination="SUB_APP1.W3W1" dx1="150" />
-        <Connection Source="PRODUCE_GREEN.W3W4" Destination="SUB_APP1.W3W4" dx1="170" />
-        <Connection Source="PRODUCE_GREEN.J2_REMOVE_WP" Destination="JACK1.REMOVE_WP" dx1="87.37512" />
-        <Connection Source="JACK2.DONE_GREEN" Destination="PRODUCE_GREEN.ASSEMBLY_DONE" dx1="70" dy="-230" dx2="30" />
-        <Connection Source="SUB_APP1.W1W2_DONE" Destination="PRODUCE_GREEN.AT_W2" dx1="500" dy="-110" dx2="70" />
-        <Connection Source="SUB_APP1.W2W3_DONE" Destination="PRODUCE_GREEN.AT_W3" dx1="480" dy="-170" dx2="110" />
-        <Connection Source="SUB_APP1.W3W1_DONE" Destination="PRODUCE_GREEN.DELIVERED" dx1="440" dy="-290" dx2="150" />
-        <Connection Source="Section5.INITO" Destination="CAMERA.INIT" dx1="50.0" dy="-107.0" dx2="42.0" />
-        <Connection Source="SUB_APP1.W3W4_DONE" Destination="PRODUCE_RED.AT_W4" dx1="460" dy="-230" dx2="190" />
-        <Connection Source="SUB_APP1.W3W4_DONE" Destination="PRODUCE_GREEN.AT_W4" dx1="460" dy="-230" dx2="190" />
-        <Connection Source="JACK1.WP_REMOVED" Destination="PRODUCE_RED.WP_REMOVED" dx1="70" dy="350" dx2="50" />
-        <Connection Source="JACK1.WP_REMOVED" Destination="PRODUCE_GREEN.WP_REMOVED" dx1="70" dy="350" dx2="50" />
-        <Connection Source="OrderConsole.PRODUCE_RED" Destination="PRODUCE_RED.START" dx1="70" dy="-630" dx2="30" />
-        <Connection Source="OrderConsole.PRODUCE_GREEN" Destination="PRODUCE_GREEN.START" />
-        <Connection Source="CAMERA.INITO" Destination="OrderConsole.INIT" dx1="107.6042" />
-        <Connection Source="PRODUCE_RED.REJECTED" Destination="OrderConsole.CHECK_J1" />
-        <Connection Source="PRODUCE_GREEN.REJECTED" Destination="OrderConsole.CHECK_J1" dx1="1007.375" />
-        <Connection Source="OrderConsole.CLEAR" Destination="JACK1.CLEAR" dx1="43.41675" />
-        <Connection Source="OrderConsole.CLEAR" Destination="JACK2.CLEAR" dx1="43.41675" />
-        <Connection Source="JACK1.MAN_CHECK" Destination="OrderConsole.CHECK_J1" dx1="50" dy="410" dx2="90" />
-        <Connection Source="JACK2.MAN_CHECK" Destination="OrderConsole.CHECK_J2" dx1="90" dy="-290" dx2="70" />
-        <Connection Source="FB4.INITO" Destination="FB2.INIT" dx1="65.0" dy="-103.0" dx2="26.0" />
-        <Connection Source="OrderConsole.INITO" Destination="ButtonConsole.INIT" dx1="42.0" dy="480.0" dx2="50.0" />
-        <Connection Source="PRODUCE_RED.DONE" Destination="OrderConsole.READY" dx1="1027.375" />
-        <Connection Source="PRODUCE_GREEN.DONE" Destination="OrderConsole.READY" dx1="1007.375" />
-        <Connection Source="SUB_APP1.S1_OFF" Destination="Section1.DRIVE_OFF" dx1="451.9165" />
-        <Connection Source="SUB_APP1.S2_OFF" Destination="Section2.DRIVE_OFF" dx1="291.9165" />
-        <Connection Source="SUB_APP1.S3_OFF" Destination="Section3.DRIVE_OFF" dx1="331.9165" />
-        <Connection Source="SUB_APP1.S4_OFF" Destination="Section4.DRIVE_OFF" dx1="40" />
-        <Connection Source="SUB_APP1.S5_OFF" Destination="Section5.DRIVE_OFF" dx1="40" />
-        <Connection Source="SUB_APP1.S6_OFF" Destination="Section6.DRIVE_OFF" dx1="60" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section1.PAUSE" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section2.PAUSE" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section3.PAUSE" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section4.PAUSE" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section5.PAUSE" />
-        <Connection Source="ButtonConsole.PAUSE" Destination="Section6.PAUSE" />
-        <Connection Source="ButtonConsole.START" Destination="Section1.START" />
-        <Connection Source="ButtonConsole.START" Destination="Section2.START" />
-        <Connection Source="ButtonConsole.START" Destination="Section3.START" />
-        <Connection Source="ButtonConsole.START" Destination="Section4.START" />
-        <Connection Source="ButtonConsole.START" Destination="Section5.START" />
-        <Connection Source="ButtonConsole.START" Destination="Section6.START" />
-        <Connection Source="ButtonConsole.RESET" Destination="FB2.RESET" dx1="416.2917" dy="-990" dx2="30" />
-        <Connection Source="ButtonConsole.RESET" Destination="SUB_APP1.RESET" dx1="976.2917" />
-        <Connection Source="ButtonConsole.RESET" Destination="FB4.STOP" dx1="996.2917" />
-        <Connection Source="ButtonConsole.RESET" Destination="Section1.DRIVE_OFF" />
-        <Connection Source="ButtonConsole.RESET" Destination="Section2.DRIVE_OFF" />
-        <Connection Source="ButtonConsole.RESET" Destination="Section4.DRIVE_OFF" />
-        <Connection Source="ButtonConsole.RESET" Destination="Section5.DRIVE_OFF" />
-        <Connection Source="ButtonConsole.RESET" Destination="Section6.DRIVE_OFF" />
-        <Connection Source="ButtonConsole.RESET" Destination="JACK2.RESET" dx1="920" />
-        <Connection Source="ButtonConsole.RESET" Destination="JACK1.RESET" dx1="600" />
-        <Connection Source="ButtonConsole.RESET" Destination="ButtonConsole.RESET_DONE" dx1="973.0" dy="-296.0" dx2="26.0" />
-        <Connection Source="ButtonConsole.RESET" Destination="PRODUCE_RED.RESET" />
-        <Connection Source="ButtonConsole.RESET" Destination="PRODUCE_GREEN.RESET" dx1="120" dy="390" dx2="310" />
-        <Connection Source="PRODUCE_RED.W4W2" Destination="SUB_APP1.W4W2" dx1="210" />
-        <Connection Source="PRODUCE_GREEN.W4W2" Destination="SUB_APP1.W4W2" dx1="210" />
-        <Connection Source="SUB_APP1.SR_OFF" Destination="FB4.STOP" dx1="531.9165" />
-        <Connection Source="SUB_APP1.W4W2_DONE" Destination="PRODUCE_RED.AT_W2" dx1="131.9165" dy="-350" dx2="190" />
-        <Connection Source="SUB_APP1.W4W2_DONE" Destination="PRODUCE_GREEN.AT_W2" dx1="460" dy="-350" dx2="70" />
-        <Connection Source="DockConfirmationButton.CNF" Destination="FB2.CONFIRM" dx1="50.0" />
-        <Connection Source="FB2.REQ_CONFIRMATION" Destination="DockConfirmationButton.REQ" />
-        <Connection Source="ButtonConsole.INITO" Destination="DockConfirmationButton.INIT" dx1="100.0" dy="-107.0" dx2="61.0" />
-        <Connection Source="FB2.INITO" Destination="FB3.INIT" dx1="519.0" />
+        <Connection Source="PRODUCE_RED.W3W4" Destination="SUB_APP1.W3W4" dx1="165.0" />
+        <Connection Source="PRODUCE_RED.J2_REMOVE_WP" Destination="JACK1.REMOVE_WP" dx1="73.0" />
+        <Connection Source="PRODUCE_RED.TEST" Destination="CAMERA.DETECT" dx1="38.0" />
+        <Connection Source="CAMERA.RED" Destination="PRODUCE_RED.TEST_OK" dx1="65.0" dy="-588.0" dx2="23.0" />
+        <Connection Source="CAMERA.GREEN" Destination="PRODUCE_RED.TEST_FAIL" dx1="150.0" dy="-719.0" dx2="150.0" />
+        <Connection Source="CAMERA.OTHER" Destination="PRODUCE_RED.TEST_FAIL" dx1="150.0" dy="-726.0" dx2="150.0" />
+        <Connection Source="PRODUCE_GREEN.W1W2" Destination="SUB_APP1.W1W2" dx1="65.0" />
+        <Connection Source="PRODUCE_GREEN.PLACE_CAP" Destination="JACK2.PLACE_GREEN" dx1="42.0" />
+        <Connection Source="PRODUCE_GREEN.W2W3" Destination="SUB_APP1.W2W3" dx1="103.0" />
+        <Connection Source="PRODUCE_GREEN.TEST" Destination="CAMERA.DETECT" dx1="119.0" />
+        <Connection Source="CAMERA.GREEN" Destination="PRODUCE_GREEN.TEST_OK" dx1="80.0" dy="307.0" dx2="150.0" />
+        <Connection Source="CAMERA.RED" Destination="PRODUCE_GREEN.TEST_FAIL" dx1="100.0" dy="384.0" dx2="150.0" />
+        <Connection Source="CAMERA.OTHER" Destination="PRODUCE_GREEN.TEST_FAIL" dx1="150.0" dy="338.0" dx2="150.0" />
+        <Connection Source="PRODUCE_GREEN.W3W1" Destination="SUB_APP1.W3W1" dx1="146.0" />
+        <Connection Source="PRODUCE_GREEN.W3W4" Destination="SUB_APP1.W3W4" dx1="165.0" />
+        <Connection Source="PRODUCE_GREEN.J2_REMOVE_WP" Destination="JACK1.REMOVE_WP" dx1="73.0" />
+        <Connection Source="JACK2.DONE_GREEN" Destination="PRODUCE_GREEN.ASSEMBLY_DONE" dx1="61.0" dy="-234.0" dx2="19.0" />
+        <Connection Source="SUB_APP1.W1W2_DONE" Destination="PRODUCE_GREEN.AT_W2" dx1="500.0" dy="-142.0" dx2="69.0" />
+        <Connection Source="SUB_APP1.W2W3_DONE" Destination="PRODUCE_GREEN.AT_W3" dx1="476.0" dy="-203.0" dx2="107.0" />
+        <Connection Source="SUB_APP1.W3W1_DONE" Destination="PRODUCE_GREEN.DELIVERED" dx1="438.0" dy="-323.0" dx2="150.0" />
+        <Connection Source="Section5.INITO" Destination="CAMERA.INIT" dx1="23.0" dy="50.0" dx2="100.0" />
+        <Connection Source="SUB_APP1.W3W4_DONE" Destination="PRODUCE_RED.AT_W4" dx1="457.0" dy="-261.0" dx2="188.0" />
+        <Connection Source="SUB_APP1.W3W4_DONE" Destination="PRODUCE_GREEN.AT_W4" dx1="457.0" dy="-261.0" dx2="188.0" />
+        <Connection Source="JACK1.WP_REMOVED" Destination="PRODUCE_RED.WP_REMOVED" dx1="57.0" dy="284.0" dx2="50.0" />
+        <Connection Source="JACK1.WP_REMOVED" Destination="PRODUCE_GREEN.WP_REMOVED" dx1="50.0" dy="330.0" dx2="50.0" />
+        <Connection Source="OrderConsole.PRODUCE_RED" Destination="PRODUCE_RED.START" dx1="53.0" dy="-438.0" dx2="11.0" />
+        <Connection Source="OrderConsole.PRODUCE_GREEN" Destination="PRODUCE_GREEN.START" dx1="150.0" dy="450.0" dx2="150.0" />
+        <Connection Source="CAMERA.INITO" Destination="OrderConsole.INIT" dx1="238.0" />
+        <Connection Source="PRODUCE_RED.REJECTED" Destination="OrderConsole.CHECK_J1" dx1="353.0" />
+        <Connection Source="PRODUCE_GREEN.REJECTED" Destination="OrderConsole.CHECK_J1" dx1="1100.0" />
+        <Connection Source="OrderConsole.CLEAR" Destination="JACK1.CLEAR" dx1="50.0" />
+        <Connection Source="OrderConsole.CLEAR" Destination="JACK2.CLEAR" dx1="215.0" />
+        <Connection Source="JACK1.MAN_CHECK" Destination="OrderConsole.CHECK_J1" dx1="50.0" dy="357.0" dx2="57.0" />
+        <Connection Source="JACK2.MAN_CHECK" Destination="OrderConsole.CHECK_J2" dx1="61.0" dy="-234.0" dx2="50.0" />
+        <Connection Source="FB4.INITO" Destination="FB2.INIT" dx1="57.0" dy="-100.0" dx2="19.0" />
+        <Connection Source="OrderConsole.INITO" Destination="ButtonConsole.INIT" dx1="15.0" dy="626.0" dx2="50.0" />
+        <Connection Source="PRODUCE_RED.DONE" Destination="OrderConsole.READY" dx1="1026.0" />
+        <Connection Source="PRODUCE_GREEN.DONE" Destination="OrderConsole.READY" dx1="1080.0" />
+        <Connection Source="SUB_APP1.S1_OFF" Destination="Section1.DRIVE_OFF" dx1="530.0" />
+        <Connection Source="SUB_APP1.S2_OFF" Destination="Section2.DRIVE_OFF" dx1="338.0" />
+        <Connection Source="SUB_APP1.S3_OFF" Destination="Section3.DRIVE_OFF" dx1="369.0" />
+        <Connection Source="SUB_APP1.S4_OFF" Destination="Section4.DRIVE_OFF" dx1="42.0" />
+        <Connection Source="SUB_APP1.S5_OFF" Destination="Section5.DRIVE_OFF" dx1="46.0" />
+        <Connection Source="SUB_APP1.S6_OFF" Destination="Section6.DRIVE_OFF" dx1="65.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section1.PAUSE" dx1="503.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section2.PAUSE" dx1="346.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section3.PAUSE" dx1="2115.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section4.PAUSE" dx1="2184.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section5.PAUSE" dx1="2169.0" />
+        <Connection Source="ButtonConsole.PAUSE" Destination="Section6.PAUSE" dx1="1869.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section1.START" dx1="346.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section2.START" dx1="388.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section3.START" dx1="2150.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section4.START" dx1="2265.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section5.START" dx1="2103.0" />
+        <Connection Source="ButtonConsole.START" Destination="Section6.START" dx1="1788.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="FB2.RESET" dx1="400.0" dy="-1923.0" dx2="42.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="SUB_APP1.RESET" dx1="603.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="FB4.STOP" dx1="2076.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="Section1.DRIVE_OFF" dx1="538.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="Section2.DRIVE_OFF" dx1="469.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="Section4.DRIVE_OFF" dx1="2215.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="Section5.DRIVE_OFF" dx1="2261.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="Section6.DRIVE_OFF" dx1="1930.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="JACK2.RESET" dx1="700.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="JACK1.RESET" dx1="565.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="ButtonConsole.RESET_DONE" dx1="76.0" dy="-284.0" dx2="15.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="PRODUCE_RED.RESET" dx1="150.0" dy="-526.0" dx2="150.0" />
+        <Connection Source="ButtonConsole.RESET" Destination="PRODUCE_GREEN.RESET" dx1="111.0" dy="334.0" dx2="300.0" />
+        <Connection Source="PRODUCE_RED.W4W2" Destination="SUB_APP1.W4W2" dx1="200.0" />
+        <Connection Source="PRODUCE_GREEN.W4W2" Destination="SUB_APP1.W4W2" dx1="200.0" />
+        <Connection Source="SUB_APP1.SR_OFF" Destination="FB4.STOP" dx1="415.0" />
+        <Connection Source="SUB_APP1.W4W2_DONE" Destination="PRODUCE_RED.AT_W2" dx1="130.0" dy="-384.0" dx2="188.0" />
+        <Connection Source="SUB_APP1.W4W2_DONE" Destination="PRODUCE_GREEN.AT_W2" dx1="457.0" dy="-384.0" dx2="69.0" />
+        <Connection Source="DockConfirmationButton.CNF" Destination="FB2.CONFIRM" dx1="100.0" />
+        <Connection Source="FB2.REQ_CONFIRMATION" Destination="DockConfirmationButton.REQ" dx1="150.0" dy="1465.0" dx2="150.0" />
+        <Connection Source="ButtonConsole.INITO" Destination="DockConfirmationButton.INIT" dx1="100.0" dy="-250.0" dx2="50.0" />
+        <Connection Source="FB2.INITO" Destination="FB3.INIT" dx1="600.0" />
       </EventConnections>
       <DataConnections>
-        <Connection Source="FB2.configurationID" Destination="SUB_APP1.configurationID" dx1="40" dy="90" dx2="390" />
+        <Connection Source="FB2.configurationID" Destination="SUB_APP1.configurationID" dx1="26.0" />
       </DataConnections>
     </SubAppNetwork>
   </Application>

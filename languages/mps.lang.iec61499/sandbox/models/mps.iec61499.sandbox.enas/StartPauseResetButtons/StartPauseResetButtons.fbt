@@ -42,21 +42,21 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="IThis" Type="StartPauseResetButtons_HMI" x="620" y="600" />
+    <FB Name="IThis" Type="StartPauseResetButtons_HMI" x="1288.0" y="-3.0" />
     <EventConnections>
-      <Connection Source="INIT" Destination="IThis.INIT" dx1="88.83337" />
-      <Connection Source="REQ" Destination="IThis.INID" dx1="176.9584" />
-      <Connection Source="IThis.INITO" Destination="INITO" dx1="41.02087" />
-      <Connection Source="IThis.INIDO" Destination="CNF" dx1="70" />
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="442.0" />
+      <Connection Source="REQ" Destination="IThis.INID" dx1="407.0" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="26.0" />
+      <Connection Source="IThis.INIDO" Destination="CNF" dx1="50.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="QI" Destination="IThis.QI" dx1="82.62506" />
-      <Connection Source="StartIn" Destination="IThis.StartIn" dx1="41.97922" />
-      <Connection Source="PauseIn" Destination="IThis.PauseIn" />
-      <Connection Source="ResetIn" Destination="IThis.ResetIn" />
-      <Connection Source="IThis.StartOut" Destination="StartOut" dx1="90" />
-      <Connection Source="IThis.PauseOut" Destination="PauseOut" dx1="110" />
-      <Connection Source="IThis.ResetOut" Destination="ResetOut" dx1="851.0209" />
+      <Connection Source="QI" Destination="IThis.QI" dx1="334.0" />
+      <Connection Source="StartIn" Destination="IThis.StartIn" dx1="100.0" />
+      <Connection Source="PauseIn" Destination="IThis.PauseIn" dx1="53.0" />
+      <Connection Source="ResetIn" Destination="IThis.ResetIn" dx1="0.0" />
+      <Connection Source="IThis.StartOut" Destination="StartOut" dx1="38.0" />
+      <Connection Source="IThis.PauseOut" Destination="PauseOut" dx1="80.0" />
+      <Connection Source="IThis.ResetOut" Destination="ResetOut" dx1="119.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

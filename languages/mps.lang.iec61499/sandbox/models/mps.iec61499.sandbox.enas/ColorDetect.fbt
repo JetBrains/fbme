@@ -9,9 +9,7 @@
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO"></Event>
-      <Event Name="RED">
-        <With Var="color" />
-      </Event>
+      <Event Name="RED"></Event>
       <Event Name="GREEN"></Event>
       <Event Name="OTHER">
         <With Var="color" />
@@ -22,49 +20,51 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="" x="1240" y="880" />
-    <FB Name="FB2" Type="" x="3040" y="720" />
-    <FB Name="FB4" Type="" x="3040" y="1600" />
-    <FB Name="FB6" Type="" x="4140" y="1200" />
-    <FB Name="FB7" Type="E_REND" x="3600" y="1200" />
-    <FB Name="FB3" Type="E_PERMIT" x="3620" y="700" />
-    <FB Name="FB5" Type="E_PERMIT" x="3640" y="1900" />
-    <FB Name="FB8" Type="E_PERMIT" x="4800" y="1220" />
-    <FB Name="FB10" Type="E_CTU" x="2000" y="1080" />
-    <FB Name="FB9" Type="E_PERMIT" x="2440" y="1140" />
-    <FB Name="FB11" Type="E_DELAY" x="580" y="2140" />
+    <FB Name="COLOR" Type="SUBSCRIBE_1" x="769.0" y="873.0" />
+    <FB Name="IS_RED" Type="F_EQ" x="3040" y="720" />
+    <FB Name="IS_GREEN" Type="F_EQ" x="3040" y="1600" />
+    <FB Name="AND" Type="F_AND" x="5307.0" y="1342.0" />
+    <FB Name="REND_OTHER" Type="E_REND" x="3680.0" y="1057.0" />
+    <FB Name="PERMIT_RED" Type="E_PERMIT" x="3734.0" y="653.0" />
+    <FB Name="PERMIT_GREEN" Type="E_PERMIT" x="3673.0" y="1888.0" />
+    <FB Name="FB8" Type="E_PERMIT" x="6026.0" y="1196.0" />
+    <FB Name="FB9" Type="E_PERMIT" x="2292.0" y="1153.0" />
+    <FB Name="NOT1" Type="F_NOT" x="4500.0" y="1250.0" />
+    <FB Name="NOT2" Type="F_NOT" x="4500.0" y="1592.0" />
+    <FB Name="REND_DETECT" Type="E_REND" x="1792.0" y="523.0" />
     <EventConnections>
-      <Connection Source="FB1.null" Destination="INITO" dx1="52.16675" />
-      <Connection Source="INIT" Destination="FB1.null" dx1="49.41669" />
-      <Connection Source="DETECT" Destination="FB11.START" dx1="41.56256" />
-      <Connection Source="FB9.EO" Destination="FB2.null" dx1="47.16675" />
-      <Connection Source="FB9.EO" Destination="FB4.null" dx1="47.16675" />
-      <Connection Source="FB2.null" Destination="FB7.EI1" dx1="69.85425" />
-      <Connection Source="FB4.null" Destination="FB7.EI2" dx1="50" />
-      <Connection Source="FB7.EO" Destination="FB6.null" />
-      <Connection Source="FB2.null" Destination="FB3.EI" dx1="50" />
-      <Connection Source="FB3.EO" Destination="RED" dx1="47.16675" />
-      <Connection Source="FB4.null" Destination="FB5.EI" dx1="69.85425" />
-      <Connection Source="FB5.EO" Destination="GREEN" />
-      <Connection Source="FB6.null" Destination="FB8.EI" dx1="47.479" />
-      <Connection Source="FB8.EO" Destination="OTHER" />
-      <Connection Source="FB10.CUO" Destination="FB9.EI" dx1="60" />
-      <Connection Source="FB1.null" Destination="FB10.CU" dx1="60" />
-      <Connection Source="DETECT" Destination="FB1.null" dx1="41.56256" />
-      <Connection Source="DETECT" Destination="FB10.R" />
-      <Connection Source="FB11.EO" Destination="FB1.null" dx1="48.5" />
-      <Connection Source="FB1.null" Destination="FB1.null" dx1="80" dy="-170" dx2="90" />
+      <Connection Source="COLOR.INITO" Destination="INITO" dx1="57.0" />
+      <Connection Source="INIT" Destination="COLOR.INIT" dx1="450.0" />
+      <Connection Source="FB9.EO" Destination="IS_RED.REQ" dx1="80.0" />
+      <Connection Source="FB9.EO" Destination="IS_GREEN.REQ" dx1="80.0" />
+      <Connection Source="IS_RED.CNF" Destination="REND_OTHER.EI1" dx1="142.0" />
+      <Connection Source="IS_GREEN.CNF" Destination="REND_OTHER.EI2" dx1="153.0" />
+      <Connection Source="REND_OTHER.EO" Destination="NOT1.REQ" dx1="226.0" />
+      <Connection Source="IS_RED.CNF" Destination="PERMIT_RED.EI" dx1="365.0" />
+      <Connection Source="PERMIT_RED.EO" Destination="RED" dx1="69.0" />
+      <Connection Source="IS_GREEN.CNF" Destination="PERMIT_GREEN.EI" dx1="234.0" />
+      <Connection Source="PERMIT_GREEN.EO" Destination="GREEN" dx1="238.0" />
+      <Connection Source="AND.CNF" Destination="FB8.EI" dx1="369.0" />
+      <Connection Source="FB8.EO" Destination="OTHER" dx1="150.0" dy="-534.0" dx2="150.0" />
+      <Connection Source="NOT1.CNF" Destination="AND.REQ" dx1="230.0" />
+      <Connection Source="NOT2.CNF" Destination="AND.REQ" dx1="230.0" />
+      <Connection Source="DETECT" Destination="REND_DETECT.EI1" dx1="780.0" />
+      <Connection Source="REND_DETECT.EO" Destination="FB9.EI" dx1="150.0" dy="300.0" dx2="150.0" />
+      <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="276.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB1.null" Destination="color" dx1="40" />
-      <Connection Source="FB1.null" Destination="FB2.null" dx1="452.1667" />
-      <Connection Source="FB1.null" Destination="FB4.null" dx1="40" />
-      <Connection Source="FB2.null" Destination="FB6.null" />
-      <Connection Source="FB4.null" Destination="FB6.null" />
-      <Connection Source="FB2.null" Destination="FB3.PERMIT" dx1="70" />
-      <Connection Source="FB4.null" Destination="FB5.PERMIT" dx1="69.85425" />
-      <Connection Source="FB6.null" Destination="FB8.PERMIT" dx1="47.479" />
-      <Connection Source="FB10.Q" Destination="FB9.PERMIT" />
+      <Connection Source="COLOR.RD_1" Destination="color" dx1="369.0" />
+      <Connection Source="COLOR.RD_1" Destination="IS_RED.IN2" dx1="453.0" />
+      <Connection Source="COLOR.RD_1" Destination="IS_GREEN.IN2" dx1="561.0" />
+      <Connection Source="IS_RED.OUT" Destination="NOT1.IN" dx1="226.0" />
+      <Connection Source="IS_GREEN.OUT" Destination="NOT2.IN" dx1="188.0" />
+      <Connection Source="IS_RED.OUT" Destination="PERMIT_RED.PERMIT" dx1="365.0" />
+      <Connection Source="IS_GREEN.OUT" Destination="PERMIT_GREEN.PERMIT" dx1="176.0" />
+      <Connection Source="AND.OUT" Destination="FB8.PERMIT" dx1="369.0" />
+      <Connection Source="'RED'" Destination="IS_RED.IN1" />
+      <Connection Source="'GREEN'" Destination="IS_GREEN.IN1" />
+      <Connection Source="NOT1.OUT" Destination="AND.IN1" dx1="319.0" />
+      <Connection Source="NOT2.OUT" Destination="AND.IN2" dx1="311.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

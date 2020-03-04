@@ -132,9 +132,9 @@
       <ECTransition Source="PlaceWPB4" Destination="Temp" Condition="INIT" x="1103.96" y="1266.909" />
       <ECTransition Source="Temp" Destination="INIT" Condition="1" x="2752.091" y="2889.393" />
       <ECTransition Source="TakeWP3" Destination="TakeWP4" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="2496.913" y="1314.899" />
-      <ECTransition Source="TakeWP5" Destination="PlaceWPR1" Condition="REQ[Color_detected = RED &#38; TimeStamp &#60; CURRENT_DT()]" x="2494.868" y="1912.315" />
+      <ECTransition Source="TakeWP5" Destination="PlaceWPR1" Condition="REQ[Color_detected = &#39;RED&#39; &#38; TimeStamp &#60; CURRENT_DT()]" x="2494.868" y="1912.315" />
       <ECTransition Source="PlaceWPR1" Destination="PlaceWPR2" Condition="REQ[JackVerDown]" x="2486.754" y="2217.677" />
-      <ECTransition Source="TakeWP5" Destination="MoveSledge" Condition="REQ[Color_detected = GREEN &#38; TimeStamp &#60; CURRENT_DT()]" x="1731.281" y="457.5813" />
+      <ECTransition Source="TakeWP5" Destination="MoveSledge" Condition="REQ[Color_detected = &#39;GREEN&#39; &#38; TimeStamp &#60; CURRENT_DT()]" x="1731.281" y="457.5813" />
       <ECTransition Source="INIT" Destination="TakeWP1" Condition="REQ[Jack1_removes]" x="3216.167" y="354.0548" />
       <ECTransition Source="PlaceWPB4" Destination="INIT" Condition="REQ[TimeStamp &#60; CURRENT_DT()]" x="2729.192" y="3001.94" />
     </ECC>

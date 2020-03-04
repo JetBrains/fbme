@@ -16,44 +16,44 @@
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="" x="3400" y="240" />
-    <FB Name="FB2" Type="" x="540" y="220" />
-    <FB Name="DRIVE_IN" Type="E_SR" x="2540" y="760" />
-    <FB Name="FB4" Type="E_R_TRIG" x="1360" y="420" />
-    <FB Name="FB5" Type="E_F_TRIG" x="1360" y="820" />
-    <FB Name="StopTimeout" Type="E_DELAY" x="2000" y="1380" />
-    <FB Name="DRIVE_OUT" Type="E_SR" x="2520" y="1280" />
-    <FB Name="REAR_SENSOR_ON" Type="E_R_TRIG" x="1380" y="1260" />
+    <FB Name="DRIVER" Type="PUBLISH_2" x="3661.0" y="219.0" />
+    <FB Name="SENSOR" Type="SUBSCRIBE_2" x="540" y="220" />
+    <FB Name="DRIVE_IN" Type="E_SR" x="2665.0" y="750.0" />
+    <FB Name="MID_SENSOR_ON" Type="E_R_TRIG" x="1357.0" y="450.0" />
+    <FB Name="MID_SENSOR_OFF" Type="E_F_TRIG" x="1357.0" y="957.0" />
+    <FB Name="StopTimeout" Type="E_DELAY" x="2011.0" y="357.0" />
+    <FB Name="DRIVE_OUT" Type="E_SR" x="2742.0" y="1288.0" />
+    <FB Name="REAR_SENSOR_ON" Type="E_R_TRIG" x="1357.0" y="1515.0" />
     <EventConnections>
-      <Connection Source="FB4.EO" Destination="SENSOR_ON" dx1="41.72925" />
-      <Connection Source="FB5.EO" Destination="SENSOR_OFF" dx1="46.47925" />
-      <Connection Source="StopTimeout.EO" Destination="DRIVE_IN.R" dx1="48.5" />
-      <Connection Source="INIT" Destination="FB2.null" />
-      <Connection Source="FB2.null" Destination="FB4.EI" dx1="61.625" />
-      <Connection Source="FB2.null" Destination="FB5.EI" dx1="61.625" />
-      <Connection Source="FB2.null" Destination="FB1.null" dx1="81.625" />
-      <Connection Source="DRIVE_IN.EO" Destination="FB1.null" dx1="50" />
-      <Connection Source="FB1.null" Destination="INITO" />
-      <Connection Source="DRIVE_OUT.EO" Destination="FB1.null" dx1="48.35425" />
-      <Connection Source="StopTimeout.EO" Destination="DRIVE_OUT.R" dx1="48.5" />
-      <Connection Source="INPUT" Destination="DRIVE_IN.S" dx1="40" />
-      <Connection Source="OUTPUT" Destination="DRIVE_OUT.S" dx1="170.6042" />
-      <Connection Source="STOP" Destination="DRIVE_IN.R" dx1="49.83325" />
-      <Connection Source="STOP" Destination="StopTimeout.STOP" dx1="49.83325" dy="170.1458" dx2="50" />
-      <Connection Source="STOP" Destination="DRIVE_OUT.R" dx1="229.8333" />
-      <Connection Source="OUTPUT" Destination="DRIVE_IN.R" dx1="40" />
-      <Connection Source="INPUT" Destination="DRIVE_OUT.R" dx1="218" />
-      <Connection Source="INPUT" Destination="StopTimeout.START" dx1="40" dy="230.1458" dx2="50" />
-      <Connection Source="OUTPUT" Destination="StopTimeout.START" dx1="40" dy="50.14581" dx2="50" />
-      <Connection Source="FB2.null" Destination="REAR_SENSOR_ON.EI" dx1="81.625" />
-      <Connection Source="REAR_SENSOR_ON.EO" Destination="DRIVE_OUT.R" dx1="741.7292" />
+      <Connection Source="MID_SENSOR_ON.EO" Destination="SENSOR_ON" dx1="211.0" />
+      <Connection Source="MID_SENSOR_OFF.EO" Destination="SENSOR_OFF" dx1="230.0" />
+      <Connection Source="StopTimeout.EO" Destination="DRIVE_IN.R" dx1="153.0" dy="223.0" dx2="153.0" />
+      <Connection Source="INIT" Destination="SENSOR.INIT" dx1="311.0" />
+      <Connection Source="SENSOR.IND" Destination="MID_SENSOR_ON.EI" dx1="315.0" />
+      <Connection Source="SENSOR.IND" Destination="MID_SENSOR_OFF.EI" dx1="269.0" />
+      <Connection Source="SENSOR.INITO" Destination="DRIVER.INIT" dx1="88.0" />
+      <Connection Source="DRIVE_IN.EO" Destination="DRIVER.REQ" dx1="38.0" />
+      <Connection Source="DRIVER.INITO" Destination="INITO" dx1="169.0" />
+      <Connection Source="DRIVE_OUT.EO" Destination="DRIVER.REQ" dx1="46.0" />
+      <Connection Source="StopTimeout.EO" Destination="DRIVE_OUT.R" dx1="130.0" />
+      <Connection Source="INPUT" Destination="DRIVE_IN.S" dx1="34.0" />
+      <Connection Source="OUTPUT" Destination="DRIVE_OUT.S" dx1="146.0" />
+      <Connection Source="STOP" Destination="DRIVE_IN.R" dx1="46.0" />
+      <Connection Source="STOP" Destination="StopTimeout.STOP" dx1="1646.0" />
+      <Connection Source="STOP" Destination="DRIVE_OUT.R" dx1="126.0" />
+      <Connection Source="OUTPUT" Destination="DRIVE_IN.R" dx1="34.0" />
+      <Connection Source="INPUT" Destination="DRIVE_OUT.R" dx1="234.0" />
+      <Connection Source="INPUT" Destination="StopTimeout.START" dx1="1707.0" />
+      <Connection Source="OUTPUT" Destination="StopTimeout.START" dx1="1630.0" />
+      <Connection Source="SENSOR.IND" Destination="REAR_SENSOR_ON.EI" dx1="203.0" />
+      <Connection Source="REAR_SENSOR_ON.EO" Destination="DRIVE_OUT.R" dx1="957.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB2.null" Destination="FB4.QI" dx1="90" />
-      <Connection Source="FB2.null" Destination="FB5.QI" dx1="41.625" />
-      <Connection Source="DRIVE_IN.Q" Destination="FB1.null" dx1="70" />
-      <Connection Source="DRIVE_OUT.Q" Destination="FB1.null" dx1="70" />
-      <Connection Source="FB2.null" Destination="REAR_SENSOR_ON.QI" dx1="61.625" />
+      <Connection Source="SENSOR.RD_2" Destination="MID_SENSOR_ON.QI" dx1="88.0" />
+      <Connection Source="SENSOR.RD_2" Destination="MID_SENSOR_OFF.QI" dx1="61.0" />
+      <Connection Source="DRIVE_IN.Q" Destination="DRIVER.SD_1" dx1="76.0" />
+      <Connection Source="DRIVE_OUT.Q" Destination="DRIVER.SD_2" dx1="69.0" />
+      <Connection Source="SENSOR.RD_1" Destination="REAR_SENSOR_ON.QI" dx1="138.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

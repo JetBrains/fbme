@@ -13,17 +13,17 @@
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="E_SR" x="1360" y="380" />
-    <FB Name="FB2" Type="" x="2220" y="340" />
+    <FB Name="SR" Type="E_SR" x="1360" y="380" />
+    <FB Name="GATE" Type="PUBLISH_1" x="2220" y="340" />
     <EventConnections>
-      <Connection Source="OPEN" Destination="FB1.S" dx1="49.08334" />
-      <Connection Source="CLOSE" Destination="FB1.R" dx1="45.35419" />
-      <Connection Source="INIT" Destination="FB2.null" dx1="1389.417" />
-      <Connection Source="FB1.EO" Destination="FB2.null" dx1="48.35425" />
-      <Connection Source="FB2.null" Destination="INITO" dx1="40" dy="-110" dx2="48.22925" />
+      <Connection Source="OPEN" Destination="SR.S" dx1="234.0" />
+      <Connection Source="CLOSE" Destination="SR.R" dx1="45.35419" />
+      <Connection Source="INIT" Destination="GATE.INIT" dx1="1734.0" />
+      <Connection Source="SR.EO" Destination="GATE.REQ" dx1="48.35425" />
+      <Connection Source="GATE.INITO" Destination="INITO" dx1="40" dy="-110" dx2="48.22925" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB1.Q" Destination="FB2.null" dx1="48.35425" />
+      <Connection Source="SR.Q" Destination="GATE.SD_1" dx1="48.35425" />
     </DataConnections>
   </FBNetwork>
 </FBType>

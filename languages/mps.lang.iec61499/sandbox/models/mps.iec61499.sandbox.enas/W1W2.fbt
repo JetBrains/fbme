@@ -61,7 +61,7 @@
       <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" Condition="S2_SENSOR" x="2319.993" y="2207.084" />
       <ECTransition Source="S3_DELIVER" Destination="DONE" Condition="S3_DELIVERED" x="1177.791" y="2197.769" />
       <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" Condition="[configurationID = FEED]" x="2527.192" y="634.0869" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" Condition="[configurationID = &#39;FEED&#39;]" x="2527.192" y="634.0869" />
       <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709" />
       <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033" />
       <ECTransition Source="SR_OUTPUT" Destination="READY" Condition="RESET" x="1813.228" y="977.0873" />
