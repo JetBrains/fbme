@@ -29,8 +29,6 @@
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">3f233e7f-b8a6-46d2-a57f-795d56775243(Annotations)</dependency>
     <dependency reexport="false">14f8fb68-9526-41ae-a986-e33a7382fe12(mps.ide.synteticLang)</dependency>
-    <dependency reexport="false">d9e6c08a-a7b1-4ef6-8c54-57d93e9e0ce0(jetbrains.mps.tool.common)</dependency>
-    <dependency reexport="false">111cc10b-fa1e-4e11-8e9c-37e957c4043f(richediting.lang)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="9" />
@@ -79,12 +77,10 @@
     <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
     <module reference="9ded098b-ad6a-4657-bfd9-48636cfe8bc3(jetbrains.mps.lang.traceable)" version="0" />
     <module reference="9a4afe51-f114-4595-b5df-048ce3c596be(jetbrains.mps.runtime)" version="0" />
-    <module reference="d9e6c08a-a7b1-4ef6-8c54-57d93e9e0ce0(jetbrains.mps.tool.common)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(mps.ide)" version="0" />
     <module reference="14f8fb68-9526-41ae-a986-e33a7382fe12(mps.ide.synteticLang)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(mps.lang.ST)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(mps.lang.iec61499)" version="0" />
-    <module reference="111cc10b-fa1e-4e11-8e9c-37e957c4043f(richediting.lang)" version="0" />
   </dependencyVersions>
 </solution>
 

@@ -982,6 +982,43 @@
           </node>
         </node>
       </node>
+      <node concept="1E1JtD" id="1a1larLevcL" role="2G$12L">
+        <property role="BnDLt" value="true" />
+        <property role="TrG5h" value="mps.ide.synteticLang" />
+        <property role="3LESm3" value="14f8fb68-9526-41ae-a986-e33a7382fe12" />
+        <node concept="55IIr" id="1a1larLevcO" role="3LF7KH">
+          <node concept="2Ry0Ak" id="1a1larLevdf" role="iGT6I">
+            <property role="2Ry0Am" value="languages" />
+            <node concept="2Ry0Ak" id="1a1larLevdq" role="2Ry0An">
+              <property role="2Ry0Am" value="mps.ide.synteticLang" />
+              <node concept="2Ry0Ak" id="1a1larLevdX" role="2Ry0An">
+                <property role="2Ry0Am" value="mps.ide.synteticLang.mpl" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1BupzO" id="1a1larLeveP" role="3bR31x">
+          <property role="3ZfqAx" value="models" />
+          <property role="1Hdu6h" value="true" />
+          <property role="1HemKv" value="true" />
+          <node concept="3LXTmp" id="1a1larLeveQ" role="1HemKq">
+            <node concept="55IIr" id="1a1larLeveL" role="3LXTmr">
+              <node concept="2Ry0Ak" id="1a1larLeveM" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="1a1larLeveN" role="2Ry0An">
+                  <property role="2Ry0Am" value="mps.ide.synteticLang" />
+                  <node concept="2Ry0Ak" id="1a1larLeveO" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="1a1larLeveR" role="3LXTna">
+              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+      </node>
       <node concept="1E1JtA" id="42vv4xsIHLX" role="2G$12L">
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="mps.ide" />
@@ -999,6 +1036,7 @@
         </node>
         <node concept="1SiIV0" id="42vv4xsIHND" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHNE" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
           </node>
         </node>
@@ -1111,6 +1149,11 @@
             <node concept="3qWCbU" id="6zYxdPXe68f" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLevg4" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLevg5" role="1SiIV1">
+            <ref role="3bR37D" node="1a1larLevcL" resolve="mps.ide.synteticLang" />
           </node>
         </node>
       </node>
@@ -1245,15 +1288,16 @@
     <node concept="2G$12M" id="42vv4xsIIPs" role="3989C9">
       <property role="TrG5h" value="iec61499-richediting" />
       <node concept="1E1JtA" id="42vv4xsIIT7" role="2G$12L">
-        <property role="TrG5h" value="richediting.adapters" />
+        <property role="TrG5h" value="richediting" />
         <property role="3LESm3" value="ce053d11-5ec7-4fac-b419-6715b4a97d3a" />
+        <property role="BnDLt" value="true" />
         <node concept="55IIr" id="42vv4xsIITa" role="3LF7KH">
           <node concept="2Ry0Ak" id="42vv4xsIITw" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
             <node concept="2Ry0Ak" id="42vv4xsIITX" role="2Ry0An">
-              <property role="2Ry0Am" value="richediting.adapters" />
-              <node concept="2Ry0Ak" id="42vv4xsIIUi" role="2Ry0An">
-                <property role="2Ry0Am" value="richediting.adapters.msd" />
+              <property role="2Ry0Am" value="richediting" />
+              <node concept="2Ry0Ak" id="1a1larLfpo1" role="2Ry0An">
+                <property role="2Ry0Am" value="richediting.msd" />
               </node>
             </node>
           </node>
@@ -1334,7 +1378,7 @@
               <node concept="2Ry0Ak" id="6zYxdPXe68o" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
                 <node concept="2Ry0Ak" id="6zYxdPXe68p" role="2Ry0An">
-                  <property role="2Ry0Am" value="richediting.adapters" />
+                  <property role="2Ry0Am" value="richediting" />
                   <node concept="2Ry0Ak" id="6zYxdPXe68q" role="2Ry0An">
                     <property role="2Ry0Am" value="models" />
                   </node>
@@ -1344,6 +1388,31 @@
             <node concept="3qWCbU" id="6zYxdPXe68t" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLfpph" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLfppi" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7Kfy9QB6L5O" resolve="jetbrains.mps.lang.extension" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLfppj" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLfppk" role="1SiIV1">
+            <ref role="3bR37D" node="1a1larLevcL" resolve="mps.ide.synteticLang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLfppl" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLfppm" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLfppn" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLfppo" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1a1larLfppp" role="3bR37C">
+          <node concept="3bR9La" id="1a1larLfppq" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
           </node>
         </node>
       </node>
@@ -1384,7 +1453,7 @@
         </node>
         <node concept="1SiIV0" id="42vv4xsIJk7" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIJk8" role="1SiIV1">
-            <ref role="3bR37D" node="42vv4xsIIT7" resolve="richediting.adapters" />
+            <ref role="3bR37D" node="42vv4xsIIT7" resolve="richediting" />
           </node>
         </node>
         <node concept="1SiIV0" id="42vv4xsJqoR" role="3bR37C">
