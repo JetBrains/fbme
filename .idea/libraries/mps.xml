@@ -18,6 +18,7 @@
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/plugins/mps-core/languages/languageDesign" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" />
       <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/editor" />
+      <root url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/baseLanguage" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign" recursive="false" />
