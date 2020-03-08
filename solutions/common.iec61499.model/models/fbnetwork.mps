@@ -1631,18 +1631,6 @@
   </node>
   <node concept="3HP615" id="2syzu7qIIiU">
     <property role="TrG5h" value="InlineValue" />
-    <node concept="2tJIrI" id="2syzu7qIIrR" role="jymVt" />
-    <node concept="3clFb_" id="2syzu7qIJt_" role="jymVt">
-      <property role="TrG5h" value="getValue" />
-      <node concept="3clFbS" id="2syzu7qIJtC" role="3clF47" />
-      <node concept="3Tm1VV" id="2syzu7qIJtD" role="1B3o_S" />
-      <node concept="3uibUv" id="2syzu7qIJeV" role="3clF45">
-        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
-      </node>
-      <node concept="2AHcQZ" id="2syzu7qIJ$a" role="2AJF6D">
-        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
-      </node>
-    </node>
     <node concept="2tJIrI" id="2syzu7qIJ8K" role="jymVt" />
     <node concept="3clFb_" id="2syzu7qIIIP" role="jymVt">
       <property role="TrG5h" value="getOpppositePort" />

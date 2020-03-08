@@ -337,12 +337,22 @@
     <node concept="PrWs8" id="uLhTRQXviI" role="PzmwI">
       <ref role="PrY4T" node="uLhTRQXdkL" resolve="IComponentWithAdapters" />
     </node>
+    <node concept="PrWs8" id="5HzRr7EFlw1" role="PzmwI">
+      <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
     <node concept="1TJgyj" id="3IX4BsKatOx" role="1TKVEi">
       <property role="IQ2ns" value="4304617121954520353" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="position" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
+    <node concept="1TJgyj" id="5HzRr7EFlvw" role="1TKVEi">
+      <property role="IQ2ns" value="6585350836361975776" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="parameters" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
     </node>
   </node>
   <node concept="1TIwiD" id="PI_pXYugcd">
@@ -394,13 +404,7 @@
     <property role="3GE5qa" value="network.connections.data" />
     <property role="TrG5h" value="ComponentDataEndpoint" />
     <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="PI_pXYus3R" role="1TKVEi">
-      <property role="IQ2ns" value="967875482185482487" />
-      <property role="20kJfa" value="component" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="5L1OxDukYbT" resolve="IComponent" />
-    </node>
+    <ref role="1TJDcQ" node="6z_cCa7NbTh" resolve="ComponentEndpoint" />
     <node concept="1TJgyj" id="PI_pXYus3O" role="1TKVEi">
       <property role="IQ2ns" value="967875482185482484" />
       <property role="20kJfa" value="declaration" />
@@ -413,13 +417,7 @@
     <property role="3GE5qa" value="network.connections.event" />
     <property role="TrG5h" value="ComponentEventEndpoint" />
     <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="PI_pXYus4r" role="1TKVEi">
-      <property role="IQ2ns" value="967875482185482523" />
-      <property role="20kJfa" value="component" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="5L1OxDukYbT" resolve="IComponent" />
-    </node>
+    <ref role="1TJDcQ" node="6z_cCa7NbTh" resolve="ComponentEndpoint" />
     <node concept="1TJgyj" id="PI_pXYus4s" role="1TKVEi">
       <property role="IQ2ns" value="967875482185482524" />
       <property role="20lbJX" value="fLJekj4/_1" />
@@ -472,6 +470,9 @@
     <property role="EcuMT" value="5481506291238376647" />
     <property role="TrG5h" value="Destination" />
     <property role="3GE5qa" value="network.connections" />
+    <node concept="PrWs8" id="6z_cCa7Nl5i" role="PrDN$">
+      <ref role="PrY4T" node="6z_cCa7Nl5h" resolve="Endpoint" />
+    </node>
   </node>
   <node concept="1TIwiD" id="6g3sTReV9I2">
     <property role="EcuMT" value="7206730950341598082" />
@@ -654,6 +655,9 @@
     <property role="EcuMT" value="3589220129094133364" />
     <property role="3GE5qa" value="network.connections" />
     <property role="TrG5h" value="Source" />
+    <node concept="PrWs8" id="6z_cCa7Nl5k" role="PrDN$">
+      <ref role="PrY4T" node="6z_cCa7Nl5h" resolve="Endpoint" />
+    </node>
   </node>
   <node concept="PlHQZ" id="37fub3vlApU">
     <property role="EcuMT" value="3589220129094133370" />
@@ -694,7 +698,7 @@
     <property role="3GE5qa" value="network.connections.data" />
     <property role="TrG5h" value="ContextDataEndpoint" />
     <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <ref role="1TJDcQ" node="6z_cCa7NnvN" resolve="ContextEndpoint" />
     <node concept="1TJgyj" id="37fub3vlDyy" role="1TKVEi">
       <property role="IQ2ns" value="3589220129094146210" />
       <property role="20kJfa" value="declaration" />
@@ -801,7 +805,7 @@
     <property role="3GE5qa" value="network.connections.event" />
     <property role="TrG5h" value="ContextEventEndpoint" />
     <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <ref role="1TJDcQ" node="6z_cCa7NnvN" resolve="ContextEndpoint" />
     <node concept="1TJgyj" id="75nMhMfQOtI" role="1TKVEi">
       <property role="IQ2ns" value="8167217573769463662" />
       <property role="20kJfa" value="declaration" />
@@ -1567,6 +1571,37 @@
       <property role="IQ2nx" value="4304617121958159011" />
       <property role="TrG5h" value="dx2" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6z_cCa7NbTh">
+    <property role="EcuMT" value="7558503085816725073" />
+    <property role="3GE5qa" value="network.connections" />
+    <property role="TrG5h" value="ComponentEndpoint" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="PI_pXYus4r" role="1TKVEi">
+      <property role="IQ2ns" value="967875482185482523" />
+      <property role="20kJfa" value="component" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5L1OxDukYbT" resolve="IComponent" />
+    </node>
+    <node concept="PrWs8" id="6z_cCa7Nl5m" role="PzmwI">
+      <ref role="PrY4T" node="6z_cCa7Nl5h" resolve="Endpoint" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="6z_cCa7Nl5h">
+    <property role="EcuMT" value="7558503085816762705" />
+    <property role="3GE5qa" value="network.connections" />
+    <property role="TrG5h" value="Endpoint" />
+  </node>
+  <node concept="1TIwiD" id="6z_cCa7NnvN">
+    <property role="EcuMT" value="7558503085816772595" />
+    <property role="3GE5qa" value="network.connections" />
+    <property role="TrG5h" value="ContextEndpoint" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="6z_cCa7Nnwf" role="PzmwI">
+      <ref role="PrY4T" node="6z_cCa7Nl5h" resolve="Endpoint" />
     </node>
   </node>
 </model>

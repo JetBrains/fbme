@@ -322,7 +322,7 @@
     <property role="3GE5qa" value="network.connections.data" />
     <ref role="1M2myG" to="xiqq:PI_pXYus3W" resolve="ComponentDataEndpoint" />
     <node concept="1N5Pfh" id="4KieeRVnA0i" role="1Mr941">
-      <ref role="1N5Vy1" to="xiqq:PI_pXYus3R" resolve="component" />
+      <ref role="1N5Vy1" to="xiqq:PI_pXYus4r" resolve="component" />
       <node concept="3dgokm" id="4KieeRVnA0j" role="1N6uqs">
         <node concept="3clFbS" id="4KieeRVnA0k" role="2VODD2">
           <node concept="3cpWs6" id="75nMhMfYK2R" role="3cqZAp">
@@ -353,8 +353,8 @@
               <ref role="37wK5l" node="75nMhMfYRB_" resolve="componentDataSources" />
               <node concept="2OqwBi" id="75nMhMfYRJ8" role="37wK5m">
                 <node concept="3kakTB" id="75nMhMfYRJ9" role="2Oq$k0" />
-                <node concept="3TrEf2" id="75nMhMfYRJa" role="2OqNvi">
-                  <ref role="3Tt5mk" to="xiqq:PI_pXYus3R" resolve="component" />
+                <node concept="3TrEf2" id="6z_cCa7P34I" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:PI_pXYus4r" resolve="component" />
                 </node>
               </node>
             </node>
@@ -376,8 +376,8 @@
               <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
               <node concept="2OqwBi" id="75nMhMfYVXm" role="37wK5m">
                 <node concept="3kakTB" id="75nMhMfYVIG" role="2Oq$k0" />
-                <node concept="3TrEf2" id="75nMhMfYWcu" role="2OqNvi">
-                  <ref role="3Tt5mk" to="xiqq:PI_pXYus3R" resolve="component" />
+                <node concept="3TrEf2" id="6z_cCa7No4i" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:PI_pXYus4r" resolve="component" />
                 </node>
               </node>
             </node>
@@ -1163,7 +1163,7 @@
     <node concept="1N5Pfh" id="2lwHqHkyF8M" role="1Mr941">
       <ref role="1N5Vy1" to="xiqq:2lwHqHkyF7b" resolve="decl" />
       <node concept="1dDu$B" id="2lwHqHkyF8Q" role="1N6uqs">
-        <ref role="1dDu$A" to="xiqq:3HBlKeoYsiC" resolve="ParameterDeclaration" />
+        <ref role="1dDu$A" to="gpgy:7GyesCpa3Ox" resolve="VariableDeclaration" />
       </node>
     </node>
   </node>

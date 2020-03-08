@@ -77,13 +77,15 @@
         <reference id="3589220129093721144" name="adapterType" index="3IBQi8" />
         <child id="7816599728425079530" name="position" index="2oiNrz" />
       </concept>
+      <concept id="7558503085816725073" name="" flags="ng" index="3JaoNj">
+        <reference id="967875482185482523" name="" index="1N5Pi4" />
+      </concept>
       <concept id="554302972921896510" name="mps.lang.iec61499.structure.DeclarationWithInterfaceAndAdapters" flags="ng" index="3LgDAz">
         <child id="8167217573769997767" name="plugs" index="3YHajr" />
         <child id="8167217573769997794" name="sockets" index="3YHajY" />
       </concept>
       <concept id="967875482185482517" name="mps.lang.iec61499.structure.ComponentEventEndpoint" flags="ng" index="1N5Pia">
         <reference id="967875482185482524" name="declaration" index="1N5Pi3" />
-        <reference id="967875482185482523" name="component" index="1N5Pi4" />
       </concept>
       <concept id="967875482185433869" name="mps.lang.iec61499.structure.EventConnection" flags="ng" index="1N5Tqi" />
       <concept id="967875482185433822" name="mps.lang.iec61499.structure.FunctionBlockInstance" flags="ng" index="1N5Tt1">
@@ -267,8 +269,8 @@
         <ref role="3Yz8TM" node="G6ZN4N48G7" resolve="INIT" />
       </node>
       <node concept="3Yx0EI" id="7qPnRGFpNOS" role="2RhMK_">
-        <ref role="1N5Pi4" node="G6ZN4N48Gd" resolve="ArmIO" />
         <ref role="1N5Pi3" node="1rxLtFPnd4Y" resolve="IND" />
+        <ref role="1N5Pi4" node="G6ZN4N48Gd" resolve="ArmIO" />
       </node>
       <node concept="bR32z" id="1CoiI8TYDF3" role="bPNfo">
         <property role="bR32p" value="118.0" />
@@ -276,12 +278,12 @@
     </node>
     <node concept="1N5Tqi" id="1CoiI8TYDEO" role="1N5PiQ">
       <node concept="3YB4oO" id="1CoiI8TYDEM" role="2RhMKC">
-        <ref role="1N5Pi4" node="G6ZN4N48Gd" resolve="ArmIO" />
         <ref role="1N5Pi3" node="1rxLtFPnd3y" resolve="REQ" />
+        <ref role="1N5Pi4" node="G6ZN4N48Gd" resolve="ArmIO" />
       </node>
       <node concept="3Yx0EI" id="1CoiI8TYDEN" role="2RhMK_">
-        <ref role="1N5Pi4" node="G6ZN4N48Gb" resolve="StackIO" />
         <ref role="1N5Pi3" node="1rxLtFPnd6y" resolve="IND" />
+        <ref role="1N5Pi4" node="G6ZN4N48Gb" resolve="StackIO" />
       </node>
       <node concept="bR32z" id="1CoiI8TYDF4" role="bPNfo">
         <property role="bR32p" value="425.0" />
@@ -340,8 +342,8 @@
         <ref role="3Yz8TM" node="2lwHqHkihC4" resolve="X" />
       </node>
       <node concept="3Yx0EI" id="1CoiI8TYDH0" role="2RhMK_">
-        <ref role="1N5Pi4" node="G6ZN4N49KL" resolve="Control" />
         <ref role="1N5Pi3" node="G6ZN4N48G7" resolve="INIT" />
+        <ref role="1N5Pi4" node="G6ZN4N49KL" resolve="Control" />
       </node>
       <node concept="bR32z" id="1CoiI8TYDH2" role="bPNfo">
         <property role="bR32p" value="806.0" />
@@ -380,8 +382,8 @@
       <ref role="2zAPx1" node="2R0WzquVuwB" resolve="ARM" />
       <node concept="2EVYwv" id="2R0WzquVuwK" role="2zAZMv">
         <node concept="3YB4oO" id="2R0WzquVuwS" role="2N3Qeb">
-          <ref role="1N5Pi4" node="G6ZN4N970I" resolve="ArmIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd3y" resolve="REQ" />
+          <ref role="1N5Pi4" node="G6ZN4N970I" resolve="ArmIO" />
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrb" role="2WSJUY">
@@ -394,8 +396,8 @@
       <ref role="2zAPx1" node="2R0WzquVuxo" resolve="STACK" />
       <node concept="2EVYwv" id="2R0WzquVuxb" role="2zAZMv">
         <node concept="3YB4oO" id="2R0WzquVuxc" role="2N3Qeb">
-          <ref role="1N5Pi4" node="G6ZN4N970H" resolve="StackIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd65" resolve="REQ" />
+          <ref role="1N5Pi4" node="G6ZN4N970H" resolve="StackIO" />
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrc" role="2WSJUY">
@@ -445,8 +447,8 @@
       <node concept="2zAPAr" id="2R0WzquVuwX" role="2zAPBK">
         <ref role="2zAPAu" node="2R0WzquVuxO" resolve="PrepareArm" />
         <node concept="3Yx0EI" id="2R0WzquXoFd" role="2NbhEN">
-          <ref role="1N5Pi4" node="G6ZN4N970I" resolve="ArmIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd4Y" resolve="IND" />
+          <ref role="1N5Pi4" node="G6ZN4N970I" resolve="ArmIO" />
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_u" role="2WOQdS">
@@ -459,8 +461,8 @@
       <node concept="2zAPAr" id="2R0WzquVuxq" role="2zAPBK">
         <ref role="2zAPAu" node="2R0WzquVuxV" resolve="PrepareStack" />
         <node concept="3Yx0EI" id="2R0WzquXoFf" role="2NbhEN">
-          <ref role="1N5Pi4" node="G6ZN4N970H" resolve="StackIO" />
           <ref role="1N5Pi3" node="1rxLtFPnd6y" resolve="IND" />
+          <ref role="1N5Pi4" node="G6ZN4N970H" resolve="StackIO" />
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_v" role="2WOQdS">

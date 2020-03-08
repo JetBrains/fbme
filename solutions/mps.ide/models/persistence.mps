@@ -52,8 +52,8 @@
     <import index="1ka" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.typechecking(MPS.Core/)" />
     <import index="fnpx" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.notification(MPS.IDEA/)" />
     <import index="3qmy" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.classloading(MPS.Core/)" />
+    <import index="ni5j" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.regex(JDK/)" />
     <import index="6xeh" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.antlr.v4.runtime.tree(ST.parser/)" implicit="true" />
-    <import index="ni5j" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.regex(JDK/)" implicit="true" />
     <import index="1ctc" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.stream(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -7972,7 +7972,7 @@
               </node>
               <node concept="359W_D" id="2R0Wzqv73if" role="37wK5m">
                 <ref role="359W_E" to="xiqq:PI_pXYus3W" resolve="ComponentDataEndpoint" />
-                <ref role="359W_F" to="xiqq:PI_pXYus3R" resolve="component" />
+                <ref role="359W_F" to="xiqq:PI_pXYus4r" resolve="component" />
               </node>
               <node concept="359W_D" id="2R0Wzqv73ig" role="37wK5m">
                 <ref role="359W_E" to="xiqq:PI_pXYus3W" resolve="ComponentDataEndpoint" />
@@ -8018,7 +8018,7 @@
               </node>
               <node concept="359W_D" id="2R0Wzqv74XQ" role="37wK5m">
                 <ref role="359W_E" to="xiqq:PI_pXYus3W" resolve="ComponentDataEndpoint" />
-                <ref role="359W_F" to="xiqq:PI_pXYus3R" resolve="component" />
+                <ref role="359W_F" to="xiqq:PI_pXYus4r" resolve="component" />
               </node>
               <node concept="359W_D" id="2R0Wzqv74XR" role="37wK5m">
                 <ref role="359W_E" to="xiqq:PI_pXYus3W" resolve="ComponentDataEndpoint" />
@@ -12087,6 +12087,24 @@
               </node>
               <node concept="3TrEf2" id="4KEbQaiczRD" role="2OqNvi">
                 <ref role="3Tt5mk" to="xiqq:3IX4BsKatOx" resolve="position" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="5HzRr7EFS0c" role="3cqZAp" />
+        <node concept="3clFbF" id="5HzRr7EG3Ao" role="3cqZAp">
+          <node concept="2YIFZM" id="5HzRr7EG56U" role="3clFbG">
+            <ref role="37wK5l" node="7bQ9AP7GMxs" resolve="extractParameters" />
+            <ref role="1Pybhc" node="2ByE74kxcHO" resolve="ConverterUtil" />
+            <node concept="37vLTw" id="5HzRr7EG5Nz" role="37wK5m">
+              <ref role="3cqZAo" node="2ByE74kszIf" resolve="functionBlockElement" />
+            </node>
+            <node concept="2OqwBi" id="5HzRr7EG6vs" role="37wK5m">
+              <node concept="37vLTw" id="5HzRr7EG6jk" role="2Oq$k0">
+                <ref role="3cqZAo" node="2ByE74kszHR" resolve="fbInstace" />
+              </node>
+              <node concept="3Tsc0h" id="5HzRr7EG6Id" role="2OqNvi">
+                <ref role="3TtcxE" to="xiqq:5HzRr7EFlvw" resolve="parameters" />
               </node>
             </node>
           </node>

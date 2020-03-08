@@ -209,6 +209,7 @@
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
       <concept id="4222318806802425298" name="jetbrains.mps.lang.core.structure.SuppressErrorsAnnotation" flags="ng" index="15s5l7">
+        <property id="8575328350543493365" name="message" index="huDt6" />
         <property id="2423417345669755629" name="filter" index="1eyWvh" />
       </concept>
     </language>
@@ -3674,6 +3675,14 @@
                           </node>
                         </node>
                         <node concept="3clFbF" id="2syzu7qPhiK" role="3cqZAp">
+                          <node concept="15s5l7" id="6z_cCa85Rnv" role="lGtFl">
+                            <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: type @ROLayoutModelBase.T is not a subtype of @ExtendedLayoutModel.ResT&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/3216938209399927516,r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/6902868426314509210]&quot;;" />
+                            <property role="huDt6" value="Error: type @ROLayoutModelBase.T is not a subtype of @ExtendedLayoutModel.ResT" />
+                          </node>
+                          <node concept="15s5l7" id="6z_cCa85QVA" role="lGtFl">
+                            <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: type @ExtendedLayoutModel.ResT is not a subtype of @ROLayoutModelBase.T&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/3216938209399927487,r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/6902868426314509210]&quot;;" />
+                            <property role="huDt6" value="Error: type @ExtendedLayoutModel.ResT is not a subtype of @ROLayoutModelBase.T" />
+                          </node>
                           <node concept="1rXfSq" id="2syzu7qPhiI" role="3clFbG">
                             <ref role="37wK5l" node="2XwVnrt0VrH" resolve="fireMoved" />
                             <node concept="37vLTw" id="2syzu7qPia6" role="37wK5m">
@@ -3688,9 +3697,6 @@
                             <node concept="37vLTw" id="2syzu7qPj_D" role="37wK5m">
                               <ref role="3cqZAo" node="2syzu7qN2Lm" resolve="completed" />
                             </node>
-                          </node>
-                          <node concept="15s5l7" id="2syzu7qPww5" role="lGtFl">
-                            <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: type @ExtendedLayoutModel.ExtT is not a subtype of @ROLayoutModelBase.T&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/3216938209399927487,r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/6902868426314509210]&quot;;" />
                           </node>
                         </node>
                       </node>
