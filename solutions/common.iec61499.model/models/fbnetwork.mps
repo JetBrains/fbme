@@ -299,7 +299,7 @@
   </node>
   <node concept="312cEu" id="7qPnRGGbtqv">
     <property role="2bfB8j" value="true" />
-    <property role="TrG5h" value="FBInstancePortIdentity" />
+    <property role="TrG5h" value="FunctionBlockPortIdentity" />
     <node concept="312cEg" id="7qPnRGGbEPF" role="jymVt">
       <property role="TrG5h" value="myPosition" />
       <property role="3TUv4t" value="true" />
@@ -325,7 +325,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="7qPnRGGm7_n" role="1B3o_S" />
       <node concept="3uibUv" id="7qPnRGGm8hB" role="1tU5fm">
-        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstance" />
+        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
       </node>
     </node>
     <node concept="312cEg" id="31Fn7oZDj2A" role="jymVt">
@@ -393,7 +393,7 @@
       <node concept="37vLTG" id="7qPnRGGm6_W" role="3clF46">
         <property role="TrG5h" value="view" />
         <node concept="3uibUv" id="7qPnRGGm6PF" role="1tU5fm">
-          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstance" />
+          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
         </node>
         <node concept="2AHcQZ" id="4FRweWL90Az" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -423,7 +423,7 @@
       <property role="TrG5h" value="getComponent" />
       <node concept="3Tm1VV" id="7qPnRGGck4p" role="1B3o_S" />
       <node concept="3uibUv" id="6$FGuy5rFwE" role="3clF45">
-        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstance" />
+        <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
       </node>
       <node concept="3clFbS" id="7qPnRGGck4r" role="3clF47">
         <node concept="3clFbF" id="7qPnRGGcl6W" role="3cqZAp">
@@ -528,7 +528,7 @@
             <node concept="3fqX7Q" id="7qPnRGGbMW4" role="1eOMHV">
               <node concept="2ZW3vV" id="7qPnRGGbNaS" role="3fr31v">
                 <node concept="3uibUv" id="7qPnRGGbNhr" role="2ZW6by">
-                  <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
+                  <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FunctionBlockPortIdentity" />
                 </node>
                 <node concept="37vLTw" id="7qPnRGGbN1j" role="2ZW6bz">
                   <ref role="3cqZAo" node="7qPnRGGbFTl" resolve="o" />
@@ -542,11 +542,11 @@
           <node concept="3cpWsn" id="7qPnRGGbFTg" role="3cpWs9">
             <property role="TrG5h" value="that" />
             <node concept="3uibUv" id="7qPnRGGbFTh" role="1tU5fm">
-              <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
+              <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FunctionBlockPortIdentity" />
             </node>
             <node concept="10QFUN" id="7qPnRGGbFTi" role="33vP2m">
               <node concept="3uibUv" id="7qPnRGGbFTj" role="10QFUM">
-                <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FBInstancePortIdentity" />
+                <ref role="3uigEE" node="7qPnRGGbtqv" resolve="FunctionBlockPortIdentity" />
               </node>
               <node concept="37vLTw" id="7qPnRGGbFTk" role="10QFUP">
                 <ref role="3cqZAo" node="7qPnRGGbFTl" resolve="o" />
@@ -767,10 +767,10 @@
     </node>
   </node>
   <node concept="3HP615" id="7qPnRGGlWfX">
-    <property role="TrG5h" value="FBInstance" />
+    <property role="TrG5h" value="FunctionBlockDeclaration" />
     <node concept="2tJIrI" id="7qPnRGGlWlO" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlWnJ" role="jymVt">
-      <property role="TrG5h" value="getInstanceName" />
+      <property role="TrG5h" value="getName" />
       <node concept="3clFbS" id="7qPnRGGlWnM" role="3clF47" />
       <node concept="3Tm1VV" id="7qPnRGGlWnN" role="1B3o_S" />
       <node concept="3uibUv" id="7qPnRGGlWnd" role="3clF45">
@@ -779,12 +779,12 @@
     </node>
     <node concept="2tJIrI" id="7qPnRGGlWo$" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlWqW" role="jymVt">
-      <property role="TrG5h" value="setInstanceName" />
+      <property role="TrG5h" value="setName" />
       <node concept="3clFbS" id="7qPnRGGlWqZ" role="3clF47" />
       <node concept="3Tm1VV" id="7qPnRGGlWr0" role="1B3o_S" />
       <node concept="3cqZAl" id="7qPnRGGlWqe" role="3clF45" />
       <node concept="37vLTG" id="7qPnRGGmsVb" role="3clF46">
-        <property role="TrG5h" value="newName" />
+        <property role="TrG5h" value="name" />
         <node concept="3uibUv" id="7qPnRGGmsVa" role="1tU5fm">
           <ref role="3uigEE" to="wyt6:~String" resolve="String" />
         </node>
@@ -842,7 +842,7 @@
         <node concept="3clFbF" id="3DiEZ8TNaUD" role="3cqZAp">
           <node concept="2ShNRf" id="3DiEZ8TNaUF" role="3clFbG">
             <node concept="1pGfFk" id="3DiEZ8TNaUG" role="2ShVmc">
-              <ref role="37wK5l" node="7qPnRGGbPYP" resolve="FBInstancePortIdentity" />
+              <ref role="37wK5l" node="7qPnRGGbPYP" resolve="FunctionBlockPortIdentity" />
               <node concept="Xjq3P" id="3DiEZ8TNaXl" role="37wK5m" />
               <node concept="2OqwBi" id="3DiEZ8TNbc6" role="37wK5m">
                 <node concept="37vLTw" id="3DiEZ8TNb1v" role="2Oq$k0">
@@ -1102,7 +1102,7 @@
       <node concept="37vLTG" id="7qPnRGGmkkO" role="3clF46">
         <property role="TrG5h" value="fb" />
         <node concept="3uibUv" id="7qPnRGGmkuD" role="1tU5fm">
-          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FBInstance" />
+          <ref role="3uigEE" node="7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="7qPnRGGmjBV" role="3clF46">

@@ -241,7 +241,7 @@
       <ref role="3lhOvi" node="5s_pyghYW5W" resolve="mapping_SegmentTypeDeclaration" />
     </node>
     <node concept="3lhOvk" id="5s_pyghZeR2" role="3lj3bC">
-      <ref role="30HIoZ" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+      <ref role="30HIoZ" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
       <ref role="3lhOvi" node="5s_pyghZg1H" resolve="mapping_SystemConfiguration" />
     </node>
     <node concept="3aamgX" id="4KieeRVl5ii" role="3acgRq">
@@ -269,9 +269,9 @@
       </node>
     </node>
     <node concept="3aamgX" id="4KieeRVl5Ia" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
+      <ref role="30HIoZ" to="xiqq:PI_pXYugbu" resolve="FunctionBlockDeclaration" />
       <node concept="j$656" id="4KieeRVl6dF" role="1lVwrX">
-        <ref role="v9R2y" node="4KieeRVl6dD" resolve="reduce_FunctionBlockInstance" />
+        <ref role="v9R2y" node="4KieeRVl6dD" resolve="reduce_FunctionBlockDeclaration" />
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghXbWk" role="3acgRq">
@@ -287,21 +287,21 @@
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYk5R" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+      <ref role="30HIoZ" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
       <node concept="j$656" id="5s_pyghYk6d" role="1lVwrX">
-        <ref role="v9R2y" node="5s_pyghYk6b" resolve="reduce_ResourceInstance" />
+        <ref role="v9R2y" node="5s_pyghYk6b" resolve="reduce_ResourceDeclaration" />
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYIxm" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+      <ref role="30HIoZ" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
       <node concept="j$656" id="5s_pyghYIxK" role="1lVwrX">
-        <ref role="v9R2y" node="5s_pyghYIxI" resolve="reduce_DeviceConfiguration" />
+        <ref role="v9R2y" node="5s_pyghYIxI" resolve="reduce_DeviceDeclaration" />
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYUm9" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+      <ref role="30HIoZ" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
       <node concept="j$656" id="5s_pyghYUm_" role="1lVwrX">
-        <ref role="v9R2y" node="5s_pyghYUmz" resolve="reduce_ApplicationConfiguration" />
+        <ref role="v9R2y" node="5s_pyghYUmz" resolve="reduce_ApplicationDeclaration" />
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYY8g" role="3acgRq">
@@ -336,9 +336,9 @@
       </node>
     </node>
     <node concept="3aamgX" id="5s_pygi0msI" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationInstance" />
+      <ref role="30HIoZ" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
       <node concept="j$656" id="5s_pygi0msJ" role="1lVwrX">
-        <ref role="v9R2y" node="5s_pygi0msG" resolve="reduce_SubapplicationInstance" />
+        <ref role="v9R2y" node="5s_pygi0msG" resolve="reduce_SubapplicationDeclaration" />
       </node>
     </node>
     <node concept="3aamgX" id="463hhT7Lxd" role="3acgRq">
@@ -1187,9 +1187,9 @@
     </node>
   </node>
   <node concept="13MO4I" id="4KieeRVl6dD">
-    <property role="TrG5h" value="reduce_FunctionBlockInstance" />
+    <property role="TrG5h" value="reduce_FunctionBlockDeclaration" />
     <property role="3GE5qa" value="fbnetwork" />
-    <ref role="3gUMe" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
+    <ref role="3gUMe" to="xiqq:PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     <node concept="2pNNFK" id="4KieeRVl6dI" role="13RCb5">
       <property role="2pNNFO" value="FB" />
       <property role="qg3DV" value="true" />
@@ -2452,8 +2452,8 @@
     </node>
   </node>
   <node concept="13MO4I" id="5s_pyghYk6b">
-    <property role="TrG5h" value="reduce_ResourceInstance" />
-    <ref role="3gUMe" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+    <property role="TrG5h" value="reduce_ResourceDeclaration" />
+    <ref role="3gUMe" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
     <node concept="2pNNFK" id="5s_pyghYk6g" role="13RCb5">
       <property role="2pNNFO" value="Resource" />
       <node concept="2pNNFK" id="5s_pyghYkfi" role="3o6s8t">
@@ -2593,8 +2593,8 @@
     </node>
   </node>
   <node concept="13MO4I" id="5s_pyghYIxI">
-    <property role="TrG5h" value="reduce_DeviceConfiguration" />
-    <ref role="3gUMe" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <property role="TrG5h" value="reduce_DeviceDeclaration" />
+    <ref role="3gUMe" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="2pNNFK" id="5s_pyghYIxN" role="13RCb5">
       <property role="2pNNFO" value="Device" />
       <node concept="2pNUuL" id="5s_pyghYIxT" role="2pNNFR">
@@ -2691,8 +2691,8 @@
     </node>
   </node>
   <node concept="13MO4I" id="5s_pyghYUmz">
-    <property role="TrG5h" value="reduce_ApplicationConfiguration" />
-    <ref role="3gUMe" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+    <property role="TrG5h" value="reduce_ApplicationDeclaration" />
+    <ref role="3gUMe" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
     <node concept="2pNNFK" id="5s_pyghYUmC" role="13RCb5">
       <property role="2pNNFO" value="Application" />
       <node concept="2pNUuL" id="5s_pyghYUmI" role="2pNNFR">
@@ -3181,7 +3181,7 @@
       </node>
     </node>
     <node concept="n94m4" id="5s_pyghZg1K" role="lGtFl">
-      <ref role="n9lRv" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+      <ref role="n9lRv" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     </node>
     <node concept="17Uvod" id="5s_pyghZg1Q" role="lGtFl">
       <property role="2qtEX9" value="name" />
@@ -3201,9 +3201,9 @@
     </node>
   </node>
   <node concept="13MO4I" id="5s_pygi0msG">
-    <property role="TrG5h" value="reduce_SubapplicationInstance" />
+    <property role="TrG5h" value="reduce_SubapplicationDeclaration" />
     <property role="3GE5qa" value="network.subapp" />
-    <ref role="3gUMe" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationInstance" />
+    <ref role="3gUMe" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
     <node concept="2pNNFK" id="5s_pygi0mV_" role="13RCb5">
       <property role="2pNNFO" value="SubApp" />
       <property role="qg3DV" value="true" />

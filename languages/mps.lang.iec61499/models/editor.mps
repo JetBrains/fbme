@@ -2272,7 +2272,7 @@
   </node>
   <node concept="24kQdi" id="2lwHqHk$jpf">
     <property role="3GE5qa" value="resources" />
-    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
     <node concept="3EZMnI" id="2lwHqHk$jpo" role="2wV5jI">
       <node concept="3F0ifn" id="2lwHqHk$jpp" role="3EZMnx">
         <property role="3F0ifm" value="RESOURCE" />
@@ -2290,7 +2290,7 @@
           <node concept="3SHvHV" id="2lwHqHk$jrF" role="2wV5jI" />
         </node>
         <node concept="A1WHu" id="PZB1W7eJhA" role="3vIgyS">
-          <ref role="A1WHt" node="PZB1W7eHYs" resolve="ResourceInstance_AddParametersTM" />
+          <ref role="A1WHt" node="PZB1W7eHYs" resolve="ResourceDeclaration_AddParametersTM" />
         </node>
       </node>
       <node concept="3EZMnI" id="2lwHqHk$jy1" role="3EZMnx">
@@ -2558,7 +2558,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRR5RMN">
     <property role="3GE5qa" value="network.subapp" />
-    <ref role="1XX52x" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationInstance" />
+    <ref role="1XX52x" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
     <node concept="3EZMnI" id="uLhTRR5RMP" role="2wV5jI">
       <node concept="3F0A7n" id="uLhTRR5RMZ" role="3EZMnx">
         <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
@@ -2592,7 +2592,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRR7ME_">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
     <node concept="3EZMnI" id="uLhTRR7MEB" role="2wV5jI">
       <node concept="3F0ifn" id="uLhTRR7MEI" role="3EZMnx">
         <property role="3F0ifm" value="APPLICATION" />
@@ -2634,7 +2634,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRR7MHm">
     <property role="3GE5qa" value="devices" />
-    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="3EZMnI" id="uLhTRR7MHo" role="2wV5jI">
       <node concept="3F0ifn" id="uLhTRR7MHv" role="3EZMnx">
         <property role="3F0ifm" value="DEVICE" />
@@ -2652,7 +2652,7 @@
           <node concept="3SHvHV" id="uLhTRR7MI8" role="2wV5jI" />
         </node>
         <node concept="A1WHu" id="PZB1W7aQbG" role="3vIgyS">
-          <ref role="A1WHt" node="PZB1W7aHCo" resolve="DeviceConfiguration_AddParametersTM" />
+          <ref role="A1WHt" node="PZB1W7aHCo" resolve="DeviceDeclaration_AddParametersTM" />
         </node>
       </node>
       <node concept="3EZMnI" id="35u_RMPTTFX" role="3EZMnx">
@@ -2771,7 +2771,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRR7MVS">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     <node concept="3EZMnI" id="uLhTRR7MVX" role="2wV5jI">
       <node concept="3EZMnI" id="7oJsd9x5UA2" role="3EZMnx">
         <node concept="VPM3Z" id="7oJsd9x5UA4" role="3F10Kt" />
@@ -2992,7 +2992,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRRmrd_">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRRmhk5" resolve="FBInstanceReference" />
+    <ref role="1XX52x" to="xiqq:uLhTRRmhk5" resolve="ApplicationFunctionBlockReference" />
     <node concept="3EZMnI" id="uLhTRRmrdB" role="2wV5jI">
       <node concept="3F1sOY" id="uLhTRRmrdI" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:uLhTRRmrd7" resolve="application" />
@@ -3213,7 +3213,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRRzCws">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRRmreo" resolve="FBResourceReference" />
+    <ref role="1XX52x" to="xiqq:uLhTRRmreo" resolve="ResourceFunctionBlockReference" />
     <node concept="3EZMnI" id="uLhTRRzCwx" role="2wV5jI">
       <node concept="3F1sOY" id="uLhTRRzCwC" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:uLhTRRtpn0" resolve="resource" />
@@ -3803,7 +3803,7 @@
   </node>
   <node concept="24kQdi" id="2r29JVY5MC5">
     <property role="3GE5qa" value="network.fb" />
-    <ref role="1XX52x" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
+    <ref role="1XX52x" to="xiqq:PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     <node concept="3EZMnI" id="2r29JVY5MCf" role="2wV5jI">
       <node concept="3F0A7n" id="2r29JVY5MCm" role="3EZMnx">
         <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
@@ -3817,7 +3817,7 @@
           <node concept="3SHvHV" id="2r29JVY5MCJ" role="2wV5jI" />
         </node>
         <node concept="A1WHu" id="PZB1W7eMkf" role="3vIgyS">
-          <ref role="A1WHt" node="PZB1W7eJnW" resolve="FunctionBlockInstance_AddParametersTM" />
+          <ref role="A1WHt" node="PZB1W7eJnW" resolve="FunctionBlockDeclaration_AddParametersTM" />
         </node>
       </node>
       <node concept="3EZMnI" id="PZB1W7eL0o" role="3EZMnx">
@@ -4105,8 +4105,8 @@
   </node>
   <node concept="3ICXOK" id="PZB1W7aHCo">
     <property role="3GE5qa" value="devices" />
-    <property role="TrG5h" value="DeviceConfiguration_AddParametersTM" />
-    <ref role="aqKnT" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <property role="TrG5h" value="DeviceDeclaration_AddParametersTM" />
+    <ref role="aqKnT" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="1Qtc8_" id="PZB1W7aHCp" role="IW6Ez">
       <node concept="3cWJ9i" id="PZB1W7aHCt" role="1Qtc8$">
         <node concept="CtIbL" id="PZB1W7aHCv" role="CtIbM">
@@ -4162,8 +4162,8 @@
   </node>
   <node concept="3ICXOK" id="PZB1W7eHYs">
     <property role="3GE5qa" value="resources" />
-    <property role="TrG5h" value="ResourceInstance_AddParametersTM" />
-    <ref role="aqKnT" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+    <property role="TrG5h" value="ResourceDeclaration_AddParametersTM" />
+    <ref role="aqKnT" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
     <node concept="1Qtc8_" id="PZB1W7eHYt" role="IW6Ez">
       <node concept="3cWJ9i" id="PZB1W7eHYu" role="1Qtc8$">
         <node concept="CtIbL" id="PZB1W7eHYv" role="CtIbM">
@@ -4203,8 +4203,8 @@
                   <node concept="7Obwk" id="PZB1W7eHYM" role="2Oq$k0" />
                   <node concept="Bykcj" id="PZB1W7eHYN" role="2OqNvi">
                     <node concept="1aIX9F" id="PZB1W7eHYO" role="1xVPHs">
-                      <node concept="26LbJo" id="PZB1W7eHYP" role="1aIX9E">
-                        <ref role="26LbJp" to="xiqq:fshQXbRNVN" resolve="parameters" />
+                      <node concept="26LbJo" id="6aeiw5$ptvm" role="1aIX9E">
+                        <ref role="26LbJp" to="xiqq:2lwHqHk$ftU" resolve="parameters" />
                       </node>
                     </node>
                   </node>
@@ -4219,8 +4219,8 @@
   </node>
   <node concept="3ICXOK" id="PZB1W7eJnW">
     <property role="3GE5qa" value="network.fb" />
-    <property role="TrG5h" value="FunctionBlockInstance_AddParametersTM" />
-    <ref role="aqKnT" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
+    <property role="TrG5h" value="FunctionBlockDeclaration_AddParametersTM" />
+    <ref role="aqKnT" to="xiqq:PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     <node concept="1Qtc8_" id="PZB1W7eJnX" role="IW6Ez">
       <node concept="3cWJ9i" id="PZB1W7eJnY" role="1Qtc8$">
         <node concept="CtIbL" id="PZB1W7eJnZ" role="CtIbM">
@@ -4260,8 +4260,8 @@
                   <node concept="7Obwk" id="PZB1W7eJoi" role="2Oq$k0" />
                   <node concept="Bykcj" id="PZB1W7eJoj" role="2OqNvi">
                     <node concept="1aIX9F" id="PZB1W7eJok" role="1xVPHs">
-                      <node concept="26LbJo" id="PZB1W7eJol" role="1aIX9E">
-                        <ref role="26LbJp" to="xiqq:2lwHqHk$ftU" resolve="parameters" />
+                      <node concept="26LbJo" id="6aeiw5$psP0" role="1aIX9E">
+                        <ref role="26LbJp" to="xiqq:5HzRr7EFlvw" resolve="parameters" />
                       </node>
                     </node>
                   </node>

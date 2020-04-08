@@ -6981,9 +6981,9 @@
           <node concept="3clFbS" id="6YAH_gObZiE" role="3clFbx">
             <node concept="3cpWs8" id="6YAH_gOcsex" role="3cqZAp">
               <node concept="3cpWsn" id="6YAH_gOcsey" role="3cpWs9">
-                <property role="TrG5h" value="instance" />
+                <property role="TrG5h" value="functionBlock" />
                 <node concept="3uibUv" id="6YAH_gOvUzt" role="1tU5fm">
-                  <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+                  <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
                 </node>
                 <node concept="2OqwBi" id="6YAH_gOcse$" role="33vP2m">
                   <node concept="37vLTw" id="6YAH_gOcse_" role="2Oq$k0">
@@ -7012,7 +7012,7 @@
                   <node concept="liA8E" id="6YAH_gOcrFN" role="2OqNvi">
                     <ref role="37wK5l" to="rk1n:1QSEqLhV6lF" resolve="getChild" />
                     <node concept="37vLTw" id="6YAH_gOw08i" role="37wK5m">
-                      <ref role="3cqZAo" node="6YAH_gOcsey" resolve="instance" />
+                      <ref role="3cqZAo" node="6YAH_gOcsey" resolve="functionBlock" />
                     </node>
                   </node>
                 </node>

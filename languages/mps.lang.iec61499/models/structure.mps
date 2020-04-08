@@ -323,7 +323,7 @@
   <node concept="1TIwiD" id="PI_pXYugbu">
     <property role="EcuMT" value="967875482185433822" />
     <property role="3GE5qa" value="network.fb" />
-    <property role="TrG5h" value="FunctionBlockInstance" />
+    <property role="TrG5h" value="FunctionBlockDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="PI_pXYugbv" role="1TKVEi">
       <property role="IQ2ns" value="967875482185433823" />
@@ -899,7 +899,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="functionBlocks" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
+      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     </node>
     <node concept="1TJgyj" id="PI_pXYus4D" role="1TKVEi">
       <property role="IQ2ns" value="967875482185482537" />
@@ -951,7 +951,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="resources" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceInstance" />
+      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceDeclaration" />
     </node>
     <node concept="1TJgyj" id="1WTKUmKKVQc" role="1TKVEi">
       <property role="IQ2ns" value="2250044605250911628" />
@@ -978,7 +978,7 @@
   <node concept="1TIwiD" id="2lwHqHkyELo">
     <property role="EcuMT" value="2693352324629965912" />
     <property role="3GE5qa" value="resources" />
-    <property role="TrG5h" value="ResourceInstance" />
+    <property role="TrG5h" value="ResourceDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2lwHqHkyELp" role="1TKVEi">
       <property role="IQ2ns" value="2693352324629965913" />
@@ -1024,7 +1024,7 @@
   <node concept="1TIwiD" id="1WTKUmKKVPy">
     <property role="EcuMT" value="2250044605250911586" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="DeviceConfiguration" />
+    <property role="TrG5h" value="DeviceDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="fshQXbRNVN" role="1TKVEi">
       <property role="IQ2ns" value="278175820329991923" />
@@ -1038,7 +1038,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="resources" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceInstance" />
+      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceDeclaration" />
     </node>
     <node concept="1TJgyj" id="1WTKUmKKVP_" role="1TKVEi">
       <property role="IQ2ns" value="2250044605250911589" />
@@ -1077,7 +1077,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="subapplications" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="uLhTRQWVWQ" resolve="SubapplicationInstance" />
+      <ref role="20lvS9" node="uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
     </node>
     <node concept="PrWs8" id="uLhTRQW_B1" role="PrDN$">
       <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
@@ -1086,7 +1086,7 @@
   <node concept="1TIwiD" id="uLhTRQWVWQ">
     <property role="EcuMT" value="554302972921888566" />
     <property role="3GE5qa" value="network.subapp" />
-    <property role="TrG5h" value="SubapplicationInstance" />
+    <property role="TrG5h" value="SubapplicationDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="7oJsd9x2gq9" role="1TKVEi">
       <property role="IQ2ns" value="8516149469254321801" />
@@ -1164,7 +1164,7 @@
   </node>
   <node concept="1TIwiD" id="uLhTRR7Mvw">
     <property role="EcuMT" value="554302972924733408" />
-    <property role="TrG5h" value="SystemConfiguration" />
+    <property role="TrG5h" value="SystemDeclaration" />
     <property role="34LRSv" value="system configuration" />
     <property role="19KtqR" value="true" />
     <property role="3GE5qa" value="system" />
@@ -1174,14 +1174,14 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="applications" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="uLhTRR7MEy" resolve="ApplicationConfiguration" />
+      <ref role="20lvS9" node="uLhTRR7MEy" resolve="ApplicationDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRR7MVs" role="1TKVEi">
       <property role="IQ2ns" value="554302972924735196" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="devices" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="1WTKUmKKVPy" resolve="DeviceConfiguration" />
+      <ref role="20lvS9" node="1WTKUmKKVPy" resolve="DeviceDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRRozfU" role="1TKVEi">
       <property role="IQ2ns" value="554302972929127418" />
@@ -1225,7 +1225,7 @@
   <node concept="1TIwiD" id="uLhTRR7MEy">
     <property role="EcuMT" value="554302972924734114" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="ApplicationConfiguration" />
+    <property role="TrG5h" value="ApplicationDeclaration" />
     <property role="34LRSv" value="application" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="uLhTRR7MEz" role="PzmwI">
@@ -1245,26 +1245,26 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="instance" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="uLhTRRmhk5" resolve="FBInstanceReference" />
+      <ref role="20lvS9" node="uLhTRRmhk5" resolve="ApplicationFunctionBlockReference" />
     </node>
     <node concept="1TJgyj" id="uLhTRRmrel" role="1TKVEi">
       <property role="IQ2ns" value="554302972928570261" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="resource" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="uLhTRRmreo" resolve="FBResourceReference" />
+      <ref role="20lvS9" node="uLhTRRmreo" resolve="ResourceFunctionBlockReference" />
     </node>
   </node>
   <node concept="1TIwiD" id="uLhTRRmhk5">
     <property role="EcuMT" value="554302972928529669" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="FBInstanceReference" />
+    <property role="TrG5h" value="ApplicationFunctionBlockReference" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="uLhTRRmrd9" role="1TKVEi">
       <property role="IQ2ns" value="554302972928570185" />
       <property role="20kJfa" value="functionBlock" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
+      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRRmrd7" role="1TKVEi">
       <property role="IQ2ns" value="554302972928570183" />
@@ -1290,7 +1290,7 @@
       <property role="IQ2ns" value="554302972928529672" />
       <property role="20kJfa" value="application" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="uLhTRR7MEy" resolve="ApplicationConfiguration" />
+      <ref role="20lvS9" node="uLhTRR7MEy" resolve="ApplicationDeclaration" />
     </node>
   </node>
   <node concept="1TIwiD" id="uLhTRRmjJo">
@@ -1309,19 +1309,19 @@
       <property role="IQ2ns" value="554302972928539617" />
       <property role="20kJfa" value="subapp" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="uLhTRQWVWQ" resolve="SubapplicationInstance" />
+      <ref role="20lvS9" node="uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
     </node>
   </node>
   <node concept="1TIwiD" id="uLhTRRmreo">
     <property role="EcuMT" value="554302972928570264" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="FBResourceReference" />
+    <property role="TrG5h" value="ResourceFunctionBlockReference" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="uLhTRRtpn2" role="1TKVEi">
       <property role="IQ2ns" value="554302972930397634" />
       <property role="20kJfa" value="functionBlock" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockInstance" />
+      <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRRtpn0" role="1TKVEi">
       <property role="IQ2ns" value="554302972930397632" />
@@ -1340,12 +1340,12 @@
       <property role="IQ2ns" value="554302972929660961" />
       <property role="20kJfa" value="device" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="1WTKUmKKVPy" resolve="DeviceConfiguration" />
+      <ref role="20lvS9" node="1WTKUmKKVPy" resolve="DeviceDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRRq_wz" role="1TKVEi">
       <property role="IQ2ns" value="554302972929660963" />
       <property role="20kJfa" value="resource" />
-      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceInstance" />
+      <ref role="20lvS9" node="2lwHqHkyELo" resolve="ResourceDeclaration" />
     </node>
   </node>
   <node concept="PlHQZ" id="4s7KBSjc3Il">

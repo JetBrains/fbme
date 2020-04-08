@@ -955,7 +955,7 @@
   </node>
   <node concept="24kQdi" id="2lwHqHk$A_Z">
     <property role="3GE5qa" value="resources" />
-    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
     <node concept="2aJ2om" id="7MmFhmekdw2" role="CpUAK">
       <ref role="2$4xQ3" node="PI_pXYAiuF" resolve="rich" />
     </node>
@@ -1517,7 +1517,7 @@
   </node>
   <node concept="24kQdi" id="7oJsd9wY0ER">
     <property role="3GE5qa" value="devices" />
-    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="2aJ2om" id="7MmFhmelB0u" role="CpUAK">
       <ref role="2$4xQ3" node="PI_pXYAiuF" resolve="rich" />
     </node>
@@ -1734,7 +1734,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="7oJsd9x58QT">
-    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
     <node concept="2aJ2om" id="7MmFhmekd7w" role="CpUAK">
       <ref role="2$4xQ3" node="PI_pXYAiuF" resolve="rich" />
     </node>
@@ -1820,7 +1820,7 @@
   </node>
   <node concept="24kQdi" id="7oJsd9x5ahB">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     <node concept="3EZMnI" id="7oJsd9x5aDp" role="2wV5jI">
       <node concept="3EZMnI" id="7oJsd9x5aDr" role="3EZMnx">
         <node concept="3F0ifn" id="7oJsd9x5aDs" role="3EZMnx">
@@ -3520,7 +3520,7 @@
                       <node concept="1eOMI4" id="2syzu7r3xIj" role="3fr31v">
                         <node concept="2ZW3vV" id="2syzu7r3xgS" role="1eOMHV">
                           <node concept="3uibUv" id="2syzu7r3xgT" role="2ZW6by">
-                            <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FBInstanceController" />
+                            <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FunctionBlockController" />
                           </node>
                           <node concept="37vLTw" id="2syzu7r3xgU" role="2ZW6bz">
                             <ref role="3cqZAo" node="2syzu7r0IIH" resolve="compController" />
@@ -4064,7 +4064,7 @@
                       </node>
                       <node concept="10QFUN" id="2syzu7r492N" role="37wK5m">
                         <node concept="3uibUv" id="2syzu7r49s0" role="10QFUM">
-                          <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FBInstanceController" />
+                          <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FunctionBlockController" />
                         </node>
                         <node concept="37vLTw" id="2syzu7r48CC" role="10QFUP">
                           <ref role="3cqZAo" node="2syzu7r0IIH" resolve="compController" />
@@ -4137,7 +4137,7 @@
                 <node concept="3clFbJ" id="6oXN8hZZGqD" role="3cqZAp">
                   <node concept="2ZW3vV" id="6oXN8hZZGqE" role="3clFbw">
                     <node concept="3uibUv" id="6LU90BOkRvZ" role="2ZW6by">
-                      <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FBInstanceByNode" />
+                      <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FunctionBlockDeclarationByNode" />
                     </node>
                     <node concept="37vLTw" id="4y$DvIXm9pL" role="2ZW6bz">
                       <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4146,13 +4146,13 @@
                   <node concept="3clFbS" id="6oXN8hZZGqH" role="3clFbx">
                     <node concept="3cpWs8" id="6oXN8hZZGqI" role="3cqZAp">
                       <node concept="3cpWsn" id="6oXN8hZZGqJ" role="3cpWs9">
-                        <property role="TrG5h" value="fbInstance" />
+                        <property role="TrG5h" value="fb" />
                         <node concept="3uibUv" id="6LU90BOqtve" role="1tU5fm">
-                          <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FBInstanceByNode" />
+                          <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FunctionBlockDeclarationByNode" />
                         </node>
                         <node concept="10QFUN" id="6oXN8hZZGqL" role="33vP2m">
                           <node concept="3uibUv" id="6LU90BOqsFY" role="10QFUM">
-                            <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FBInstanceByNode" />
+                            <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FunctionBlockDeclarationByNode" />
                           </node>
                           <node concept="37vLTw" id="4y$DvIXm9Qi" role="10QFUP">
                             <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4163,20 +4163,20 @@
                     <node concept="3cpWs6" id="6oXN8hZZGqO" role="3cqZAp">
                       <node concept="2ShNRf" id="6oXN8hZZGqP" role="3cqZAk">
                         <node concept="1pGfFk" id="6oXN8hZZGqQ" role="2ShVmc">
-                          <ref role="37wK5l" to="vjnt:3IX4BsK5Ppr" resolve="FBInstanceController" />
+                          <ref role="37wK5l" to="vjnt:3IX4BsK5Ppr" resolve="FunctionBlockController" />
                           <node concept="37vLTw" id="4y$DvIXmdDE" role="37wK5m">
                             <ref role="3cqZAo" node="4O0ojQq3jvs" resolve="context" />
                           </node>
                           <node concept="2OqwBi" id="6oXN8hZZGqS" role="37wK5m">
                             <node concept="37vLTw" id="6oXN8hZZGqT" role="2Oq$k0">
-                              <ref role="3cqZAo" node="6oXN8hZZGqJ" resolve="fbInstance" />
+                              <ref role="3cqZAo" node="6oXN8hZZGqJ" resolve="fb" />
                             </node>
                             <node concept="liA8E" id="6oXN8hZZGqU" role="2OqNvi">
                               <ref role="37wK5l" to="rwq3:4FRweWLhgAR" resolve="getNode" />
                             </node>
                           </node>
                           <node concept="37vLTw" id="4y$DvIXmf6X" role="37wK5m">
-                            <ref role="3cqZAo" node="6oXN8hZZGqJ" resolve="fbInstance" />
+                            <ref role="3cqZAo" node="6oXN8hZZGqJ" resolve="fb" />
                           </node>
                         </node>
                       </node>
@@ -4296,7 +4296,7 @@
                       <property role="3cmrfH" value="0" />
                     </node>
                     <node concept="359W_D" id="5jb5jNBPC4N" role="37wK5m">
-                      <ref role="359W_E" to="xiqq:PI_pXYugbu" resolve="FunctionBlockInstance" />
+                      <ref role="359W_E" to="xiqq:PI_pXYugbu" resolve="FunctionBlockDeclaration" />
                       <ref role="359W_F" to="xiqq:PI_pXYugbv" resolve="type" />
                     </node>
                   </node>
@@ -4387,7 +4387,7 @@
                                 <node concept="3clFbS" id="5jb5jNBPC5s" role="3clF47">
                                   <node concept="3clFbF" id="5jb5jNBPC5t" role="3cqZAp">
                                     <node concept="Xl_RD" id="5jb5jNBPC5u" role="3clFbG">
-                                      <property role="Xl_RC" value="create FB instance" />
+                                      <property role="Xl_RC" value="create function block" />
                                     </node>
                                   </node>
                                 </node>
@@ -6388,7 +6388,7 @@
   </node>
   <node concept="24kQdi" id="14erg_TkJam">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     <node concept="2aJ2om" id="14erg_TkK5B" role="CpUAK">
       <ref role="2$4xQ3" node="1kUX9T6j1Ql" resolve="interface" />
     </node>
@@ -6455,7 +6455,7 @@
   </node>
   <node concept="24kQdi" id="14erg_TkK6X">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="3EZMnI" id="14erg_TkK71" role="2wV5jI">
       <node concept="3F0ifn" id="14erg_TkKBO" role="3EZMnx">
         <property role="3F0ifm" value="  •" />
@@ -6484,7 +6484,7 @@
   </node>
   <node concept="24kQdi" id="14erg_TkKC1">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
     <node concept="2aJ2om" id="14erg_TkKC3" role="CpUAK">
       <ref role="2$4xQ3" node="1kUX9T6j1Ql" resolve="interface" />
     </node>
@@ -6638,7 +6638,7 @@
   </node>
   <node concept="24kQdi" id="2SU8oJdGqBC">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
     <node concept="2aJ2om" id="2SU8oJdGqBJ" role="CpUAK">
       <ref role="2$4xQ3" node="2SU8oJdEKXu" resolve="system_app" />
     </node>
@@ -6693,7 +6693,7 @@
   </node>
   <node concept="24kQdi" id="4dM3MZ7p75M">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     <node concept="2aJ2om" id="4dM3MZ7p75N" role="CpUAK">
       <ref role="2$4xQ3" node="2SU8oJdEKXu" resolve="system_app" />
     </node>
@@ -6722,7 +6722,7 @@
   </node>
   <node concept="24kQdi" id="2SP6YJBXyXi">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+    <ref role="1XX52x" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
     <node concept="2aJ2om" id="2SP6YJBXyYN" role="CpUAK">
       <ref role="2$4xQ3" node="2SU8oJdEKXw" resolve="system_res" />
     </node>
@@ -6752,7 +6752,7 @@
   </node>
   <node concept="24kQdi" id="2SP6YJBXzdB">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+    <ref role="1XX52x" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
     <node concept="2aJ2om" id="2SP6YJBXzdC" role="CpUAK">
       <ref role="2$4xQ3" node="2SU8oJdEKXw" resolve="system_res" />
     </node>
@@ -6781,7 +6781,7 @@
   </node>
   <node concept="24kQdi" id="2SP6YJBXzLX">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+    <ref role="1XX52x" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
     <node concept="2aJ2om" id="2SP6YJBXzU7" role="CpUAK">
       <ref role="2$4xQ3" node="2SU8oJdEKXw" resolve="system_res" />
     </node>
