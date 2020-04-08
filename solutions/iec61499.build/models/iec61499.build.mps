@@ -1596,7 +1596,6 @@
         </node>
       </node>
       <node concept="1E1JtA" id="42vv4xsJqS4" role="2G$12L">
-        <property role="BnDLt" value="true" />
         <property role="TrG5h" value="fordiacIntegration.ide" />
         <property role="3LESm3" value="493a4cca-9505-4b07-b547-5711c9dc63e8" />
         <node concept="3rtmxn" id="3DiEZ8THn6F" role="3bR31x">
@@ -1695,6 +1694,26 @@
             <node concept="3qWCbU" id="6zYxdPXe68R" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6aeiw5$tCL0" role="3bR37C">
+          <node concept="3bR9La" id="6aeiw5$tCL1" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHDZ" resolve="mps.lang.ST" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6aeiw5$tCL2" role="3bR37C">
+          <node concept="3bR9La" id="6aeiw5$tCL3" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:2eDSGe9d1qi" resolve="jetbrains.mps.ide" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6aeiw5$tCL4" role="3bR37C">
+          <node concept="3bR9La" id="6aeiw5$tCL5" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJt" resolve="jetbrains.mps.ide.platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6aeiw5$tCL6" role="3bR37C">
+          <node concept="3bR9La" id="6aeiw5$tCL7" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
           </node>
         </node>
       </node>
