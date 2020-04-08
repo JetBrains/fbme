@@ -2,6 +2,7 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
+      <modulePath path="$PROJECT_DIR$/languages/enas/enas.mpl" folder="enas" />
       <modulePath path="$PROJECT_DIR$/languages/mps.ide.synteticLang/mps.ide.synteticLang.mpl" folder="mps" />
       <modulePath path="$PROJECT_DIR$/languages/mps.lang.ST/mps.lang.ST.mpl" folder="mps" />
       <modulePath path="$PROJECT_DIR$/languages/mps.lang.iec61499/mps.lang.iec61499.mpl" folder="mps" />
@@ -9,6 +10,7 @@
       <modulePath path="$PROJECT_DIR$/languages/mps.lang.meta.editor/mps.lang.meta.editor.mpl" folder="mps" />
       <modulePath path="$PROJECT_DIR$/languages/richediting.lang/richediting.lang.mpl" folder="richediting" />
       <modulePath path="$PROJECT_DIR$/solutions/common.iec61499.model/common.iec61499.model.msd" folder="common" />
+      <modulePath path="$PROJECT_DIR$/solutions/enas.analyzer/enas.analyzer.msd" folder="enas" />
       <modulePath path="$PROJECT_DIR$/solutions/fordiacIntegration.ide/fordiacIntegration.ide.msd" folder="4diac integration" />
       <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="build" />
       <modulePath path="$PROJECT_DIR$/solutions/mps.ide/mps.ide.msd" folder="mps" />
