@@ -58,7 +58,7 @@
     <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
     <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
-    <import index="rk1n" ref="r:296ba507-c250-4c4f-87ec-b3402bd9d933(common.iec61499.model.fbnetwork.tree)" />
+    <import index="rk1n" ref="r:296ba507-c250-4c4f-87ec-b3402bd9d933(common.iec61499.model.instances)" />
     <import index="xxkc" ref="r:800eac96-bf9c-458b-84d9-4e8242e44fb3(richediting.editor)" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
     <import index="c17a" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.language(MPS.OpenAPI/)" implicit="true" />
@@ -1861,7 +1861,7 @@
     </node>
     <node concept="2tJIrI" id="7oJsd9x57vL" role="jymVt" />
     <node concept="2YIFZL" id="2hWn4IdSWSS" role="jymVt">
-      <property role="TrG5h" value="createFBNetworkCellFromTreeNode" />
+      <property role="TrG5h" value="createCellForetworkInstance" />
       <node concept="3clFbS" id="2hWn4IdSWST" role="3clF47">
         <node concept="3cpWs8" id="2hWn4IdSWSU" role="3cqZAp">
           <node concept="3cpWsn" id="2hWn4IdSWSV" role="3cpWs9">
@@ -1888,12 +1888,12 @@
         <node concept="3clFbH" id="2hWn4IdT9ja" role="3cqZAp" />
         <node concept="3cpWs8" id="2hWn4IdT9v2" role="3cqZAp">
           <node concept="3cpWsn" id="2hWn4IdT9v3" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="2hWn4IdT9v4" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+            <property role="TrG5h" value="networkInstance" />
+            <node concept="3uibUv" id="4kSwwtSC6HA" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
             <node concept="2YIFZM" id="4dM3MZ7poLm" role="33vP2m">
-              <ref role="37wK5l" to="xxkc:4dM3MZ7piYE" resolve="contextFBNetworkTreeNode" />
+              <ref role="37wK5l" to="xxkc:4dM3MZ7piYE" resolve="contextNetworkInstance" />
               <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
               <node concept="37vLTw" id="4dM3MZ7poXk" role="37wK5m">
                 <ref role="3cqZAo" node="2hWn4IdSWTd" resolve="context" />
@@ -1927,11 +1927,11 @@
                 <node concept="liA8E" id="2hWn4IdT9vi" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
                   <node concept="10M0yZ" id="2CiAywAa1hz" role="37wK5m">
-                    <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_TREE_NODE" />
+                    <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
                     <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
                   </node>
                   <node concept="37vLTw" id="2hWn4IdT9vk" role="37wK5m">
-                    <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="treeNode" />
+                    <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="networkInstance" />
                   </node>
                 </node>
               </node>
@@ -1948,10 +1948,10 @@
                   </node>
                   <node concept="2OqwBi" id="2hWn4IdTMIg" role="10QFUP">
                     <node concept="37vLTw" id="2hWn4IdTMsT" role="2Oq$k0">
-                      <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="treeNode" />
+                      <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="networkInstance" />
                     </node>
-                    <node concept="liA8E" id="2hWn4IdTMX4" role="2OqNvi">
-                      <ref role="37wK5l" to="rk1n:1QSEqLhV6ih" resolve="getNetwork" />
+                    <node concept="liA8E" id="4kSwwtSC74q" role="2OqNvi">
+                      <ref role="37wK5l" to="rk1n:4kSwwtS_7k8" resolve="getNetworkDeclaration" />
                     </node>
                   </node>
                 </node>
@@ -1971,16 +1971,16 @@
               </node>
               <node concept="2OqwBi" id="2hWn4IdTNNI" role="2ZW6bz">
                 <node concept="37vLTw" id="2hWn4IdTNyo" role="2Oq$k0">
-                  <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="treeNode" />
+                  <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="networkInstance" />
                 </node>
-                <node concept="liA8E" id="2hWn4IdTO6z" role="2OqNvi">
-                  <ref role="37wK5l" to="rk1n:1QSEqLhV6ih" resolve="getNetwork" />
+                <node concept="liA8E" id="4kSwwtSC72H" role="2OqNvi">
+                  <ref role="37wK5l" to="rk1n:4kSwwtS_7k8" resolve="getNetworkDeclaration" />
                 </node>
               </node>
             </node>
             <node concept="3y3z36" id="2hWn4IdT9vl" role="3uHU7B">
               <node concept="37vLTw" id="2hWn4IdT9vn" role="3uHU7B">
-                <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="treeNode" />
+                <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="networkInstance" />
               </node>
               <node concept="10Nm6u" id="2hWn4IdT9vm" role="3uHU7w" />
             </node>
@@ -5991,7 +5991,7 @@
                     <node concept="3clFbS" id="bRdTVHYPhN" role="3clF47">
                       <node concept="3clFbF" id="bRdTVHYPhO" role="3cqZAp">
                         <node concept="2YIFZM" id="2hWn4IdU$0_" role="3clFbG">
-                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createFBNetworkCellFromTreeNode" />
+                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createCellForetworkInstance" />
                           <ref role="1Pybhc" node="7oJsd9wVHpq" resolve="FBNetworkEditors" />
                           <node concept="37vLTw" id="2hWn4IdU$0A" role="37wK5m">
                             <ref role="3cqZAo" node="bRdTVHYPhL" resolve="context" />
@@ -6668,7 +6668,7 @@
                     <node concept="3clFbS" id="2SU8oJdHhUu" role="3clF47">
                       <node concept="3clFbF" id="2SU8oJdHhUv" role="3cqZAp">
                         <node concept="2YIFZM" id="4gibKcMtUFe" role="3clFbG">
-                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createFBNetworkCellFromTreeNode" />
+                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createCellForetworkInstance" />
                           <ref role="1Pybhc" node="7oJsd9wVHpq" resolve="FBNetworkEditors" />
                           <node concept="37vLTw" id="4gibKcMtUFf" role="37wK5m">
                             <ref role="3cqZAo" node="2SU8oJdHhUs" resolve="context" />
@@ -6812,7 +6812,7 @@
                       <node concept="3clFbF" id="2SP6YJBXzMd" role="3cqZAp">
                         <node concept="2YIFZM" id="2SP6YJBXzMe" role="3clFbG">
                           <ref role="1Pybhc" node="7oJsd9wVHpq" resolve="FBNetworkEditors" />
-                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createFBNetworkCellFromTreeNode" />
+                          <ref role="37wK5l" node="2hWn4IdSWSS" resolve="createCellForetworkInstance" />
                           <node concept="37vLTw" id="2SP6YJBXzMf" role="37wK5m">
                             <ref role="3cqZAo" node="2SP6YJBXzMa" resolve="context" />
                           </node>

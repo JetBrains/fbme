@@ -768,15 +768,6 @@
   </node>
   <node concept="3HP615" id="7qPnRGGlWfX">
     <property role="TrG5h" value="FunctionBlockDeclaration" />
-    <node concept="2tJIrI" id="7qPnRGGlWlO" role="jymVt" />
-    <node concept="3clFb_" id="7qPnRGGlWnJ" role="jymVt">
-      <property role="TrG5h" value="getName" />
-      <node concept="3clFbS" id="7qPnRGGlWnM" role="3clF47" />
-      <node concept="3Tm1VV" id="7qPnRGGlWnN" role="1B3o_S" />
-      <node concept="3uibUv" id="7qPnRGGlWnd" role="3clF45">
-        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
-      </node>
-    </node>
     <node concept="2tJIrI" id="7qPnRGGlWo$" role="jymVt" />
     <node concept="3clFb_" id="7qPnRGGlWqW" role="jymVt">
       <property role="TrG5h" value="setName" />
@@ -1120,6 +1111,9 @@
     <node concept="3Tm1VV" id="7qPnRGGlWfY" role="1B3o_S" />
     <node concept="3uibUv" id="4O0ojQq0PvS" role="3HQHJm">
       <ref role="3uigEE" node="4O0ojQq0P48" resolve="FBNetworkComponent" />
+    </node>
+    <node concept="3uibUv" id="4kSwwtS$yzs" role="3HQHJm">
+      <ref role="3uigEE" to="2xsi:31Fn7oZJ7qm" resolve="NamedDeclaration" />
     </node>
   </node>
   <node concept="Qs71p" id="2R0WzquZm0W">

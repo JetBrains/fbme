@@ -6,11 +6,12 @@
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
     <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
+    <use id="774bf8a0-62e5-41e1-af63-f4812e60e48b" name="jetbrains.mps.baseLanguage.checkedDots" version="0" />
   </languages>
   <imports>
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
-    <import index="rk1n" ref="r:296ba507-c250-4c4f-87ec-b3402bd9d933(common.iec61499.model.fbnetwork.tree)" />
+    <import index="rk1n" ref="r:296ba507-c250-4c4f-87ec-b3402bd9d933(common.iec61499.model.instances)" />
     <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
@@ -237,9 +238,13 @@
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
       <concept id="1146644641414" name="jetbrains.mps.baseLanguage.structure.ProtectedVisibility" flags="nn" index="3Tmbuc" />
+      <concept id="1080120340718" name="jetbrains.mps.baseLanguage.structure.AndExpression" flags="nn" index="1Wc70l" />
       <concept id="1170345865475" name="jetbrains.mps.baseLanguage.structure.AnonymousClass" flags="ig" index="1Y3b0j">
         <reference id="1170346070688" name="classifier" index="1Y3XeK" />
       </concept>
+    </language>
+    <language id="774bf8a0-62e5-41e1-af63-f4812e60e48b" name="jetbrains.mps.baseLanguage.checkedDots">
+      <concept id="4079382982702596667" name="jetbrains.mps.baseLanguage.checkedDots.structure.CheckedDotExpression" flags="nn" index="2EnYce" />
     </language>
     <language id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures">
       <concept id="1199569711397" name="jetbrains.mps.baseLanguage.closures.structure.ClosureLiteral" flags="nn" index="1bVj0M">
@@ -318,7 +323,7 @@
     </language>
   </registry>
   <node concept="312cEu" id="1QSEqLhzVOM">
-    <property role="TrG5h" value="FBNetworkTreeNodeHeaderComponentProvider" />
+    <property role="TrG5h" value="NetworkInstanceHeaderComponentProvider" />
     <node concept="2tJIrI" id="1QSEqLhzVPK" role="jymVt" />
     <node concept="312cEg" id="1QSEqLh$8De" role="jymVt">
       <property role="TrG5h" value="myBaseNode" />
@@ -339,11 +344,11 @@
     </node>
     <node concept="2tJIrI" id="1QSEqLh_y9k" role="jymVt" />
     <node concept="312cEg" id="1vJkp1TVOIG" role="jymVt">
-      <property role="TrG5h" value="myTreeNode" />
+      <property role="TrG5h" value="myInstance" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1vJkp1TVNXY" role="1B3o_S" />
-      <node concept="3uibUv" id="1vJkp1TVPE_" role="1tU5fm">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="3uibUv" id="4kSwwtSBKPG" role="1tU5fm">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
     </node>
     <node concept="2tJIrI" id="1vJkp1TVPEB" role="jymVt" />
@@ -373,10 +378,10 @@
         <node concept="3clFbF" id="1QSEqLh_F1P" role="3cqZAp">
           <node concept="37vLTI" id="1vJkp1TVRme" role="3clFbG">
             <node concept="37vLTw" id="1vJkp1TVRZk" role="37vLTx">
-              <ref role="3cqZAo" node="1vJkp1TVMeJ" resolve="treeNode" />
+              <ref role="3cqZAo" node="1vJkp1TVMeJ" resolve="instance" />
             </node>
             <node concept="37vLTw" id="1vJkp1TVQAu" role="37vLTJ">
-              <ref role="3cqZAo" node="1vJkp1TVOIG" resolve="myTreeNode" />
+              <ref role="3cqZAo" node="1vJkp1TVOIG" resolve="myInstance" />
             </node>
           </node>
         </node>
@@ -644,7 +649,7 @@
                       <node concept="3clFbF" id="1vJkp1TYAXf" role="3cqZAp">
                         <node concept="2ShNRf" id="1vJkp1TYAX9" role="3clFbG">
                           <node concept="1pGfFk" id="1vJkp1TYEpP" role="2ShVmc">
-                            <ref role="37wK5l" node="1vJkp1TYvgi" resolve="FBNetworkTreeNodeNavBarModel" />
+                            <ref role="37wK5l" node="1vJkp1TYvgi" resolve="NetworkInstanceNavBarModel" />
                             <node concept="37vLTw" id="1vJkp1TYGgR" role="37wK5m">
                               <ref role="3cqZAo" to="93vd:~NavBarPanel.myProject" resolve="myProject" />
                             </node>
@@ -711,7 +716,7 @@
             <node concept="liA8E" id="1vJkp1TYNUm" role="2OqNvi">
               <ref role="37wK5l" to="93vd:~NavBarModel.updateModel(java.lang.Object)" resolve="updateModel" />
               <node concept="37vLTw" id="1vJkp1TYPp_" role="37wK5m">
-                <ref role="3cqZAo" node="1vJkp1TVMeJ" resolve="treeNode" />
+                <ref role="3cqZAo" node="1vJkp1TVMeJ" resolve="instance" />
               </node>
             </node>
           </node>
@@ -737,9 +742,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="1vJkp1TVMeJ" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="1vJkp1TVN0_" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSBKvQ" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="37vLTG" id="1vJkp1TWjra" role="3clF46">
@@ -861,7 +866,7 @@
           </node>
           <node concept="1pnPoh" id="1QSEqLhAGmT" role="1_3QMm">
             <node concept="3gn64h" id="1QSEqLhAGpp" role="1pnPq6">
-              <ref role="3gnhBz" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+              <ref role="3gnhBz" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
             </node>
             <node concept="3clFbS" id="1QSEqLhAGmV" role="1pnPq1">
               <node concept="3cpWs6" id="1QSEqLhBhW7" role="3cqZAp">
@@ -962,7 +967,7 @@
                     <node concept="22lmx$" id="4gibKcMymiH" role="3uHU7B">
                       <node concept="2ZW3vV" id="1vJkp1TZiUr" role="3uHU7B">
                         <node concept="3uibUv" id="5sOEwwECehF" role="2ZW6by">
-                          <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                          <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
                         </node>
                         <node concept="37vLTw" id="1vJkp1TZiiL" role="2ZW6bz">
                           <ref role="3cqZAo" node="1vJkp1TZfSG" resolve="object" />
@@ -970,7 +975,7 @@
                       </node>
                       <node concept="2ZW3vV" id="4gibKcMymyD" role="3uHU7w">
                         <node concept="3uibUv" id="4gibKcMymFs" role="2ZW6by">
-                          <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+                          <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
                         </node>
                         <node concept="37vLTw" id="4gibKcMymyF" role="2ZW6bz">
                           <ref role="3cqZAo" node="1vJkp1TZfSG" resolve="object" />
@@ -979,7 +984,7 @@
                     </node>
                     <node concept="2ZW3vV" id="2SP6YJBWyOZ" role="3uHU7w">
                       <node concept="3uibUv" id="2SP6YJBWyY0" role="2ZW6by">
-                        <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+                        <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
                       </node>
                       <node concept="37vLTw" id="2SP6YJBWyP1" role="2ZW6bz">
                         <ref role="3cqZAo" node="1vJkp1TZfSG" resolve="object" />
@@ -1063,14 +1068,14 @@
     <node concept="3Tm1VV" id="1QSEqLhzVON" role="1B3o_S" />
   </node>
   <node concept="312cEu" id="1QSEqLhW8CO">
-    <property role="TrG5h" value="FBNetworkTreeNodeEditorProjection" />
+    <property role="TrG5h" value="NetworkInstanceEditorProjection" />
     <node concept="2tJIrI" id="1QSEqLhW8ZR" role="jymVt" />
     <node concept="312cEg" id="1QSEqLhW9hu" role="jymVt">
-      <property role="TrG5h" value="myTreeNode" />
+      <property role="TrG5h" value="myInstance" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1QSEqLhW95H" role="1B3o_S" />
-      <node concept="3uibUv" id="1QSEqLhW9hf" role="1tU5fm">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="3uibUv" id="4kSwwtSBHb9" role="1tU5fm">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="2AHcQZ" id="1_XvODPGzeB" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1088,11 +1093,11 @@
     <node concept="2tJIrI" id="1QSEqLhWhSp" role="jymVt" />
     <node concept="Wx3nA" id="1QSEqLhY9nm" role="jymVt">
       <property role="3TUv4t" value="true" />
-      <property role="TrG5h" value="FBNETWORK_PERSISTENCE_KEY" />
+      <property role="TrG5h" value="PERSISTENCE_KEY" />
       <node concept="3Tm1VV" id="1QSEqLhY9nj" role="1B3o_S" />
       <node concept="17QB3L" id="1QSEqLhY9nk" role="1tU5fm" />
       <node concept="Xl_RD" id="1QSEqLhY9nl" role="33vP2m">
-        <property role="Xl_RC" value="fbtreenoderef" />
+        <property role="Xl_RC" value="instance-ref" />
       </node>
     </node>
     <node concept="2tJIrI" id="1QSEqLhW9ic" role="jymVt" />
@@ -1127,10 +1132,10 @@
         <node concept="3clFbF" id="1QSEqLhW9Am" role="3cqZAp">
           <node concept="37vLTI" id="1QSEqLhW9Ao" role="3clFbG">
             <node concept="37vLTw" id="1QSEqLhW9Av" role="37vLTx">
-              <ref role="3cqZAo" node="1QSEqLhW9Al" resolve="treeNode" />
+              <ref role="3cqZAo" node="1QSEqLhW9Al" resolve="instance" />
             </node>
             <node concept="37vLTw" id="1QSEqLhW9PP" role="37vLTJ">
-              <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myTreeNode" />
+              <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myInstance" />
             </node>
           </node>
         </node>
@@ -1164,9 +1169,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="1QSEqLhW9Al" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="1QSEqLhW9Ak" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSBHr$" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1_XvODPGMbG" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1181,15 +1186,15 @@
     </node>
     <node concept="2tJIrI" id="1QSEqLhW9DP" role="jymVt" />
     <node concept="3clFb_" id="1QSEqLhW9iF" role="jymVt">
-      <property role="TrG5h" value="getTreeNode" />
-      <node concept="3uibUv" id="1QSEqLhW9iG" role="3clF45">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <property role="TrG5h" value="getInstance" />
+      <node concept="3uibUv" id="4kSwwtSBHxk" role="3clF45">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="3Tm1VV" id="1QSEqLhW9iH" role="1B3o_S" />
       <node concept="3clFbS" id="1QSEqLhW9iI" role="3clF47">
         <node concept="3clFbF" id="1QSEqLhW9iJ" role="3cqZAp">
           <node concept="37vLTw" id="1QSEqLhW9qR" role="3clFbG">
-            <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myTreeNode" />
+            <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myInstance" />
           </node>
         </node>
       </node>
@@ -1212,12 +1217,12 @@
           <node concept="2OqwBi" id="1vJkp1TX7W0" role="3clFbG">
             <node concept="2ShNRf" id="1vJkp1TWhAa" role="2Oq$k0">
               <node concept="1pGfFk" id="1vJkp1TWiRD" role="2ShVmc">
-                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="FBNetworkTreeNodeHeaderComponentProvider" />
+                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="NetworkInstanceHeaderComponentProvider" />
                 <node concept="37vLTw" id="1vJkp1TX6f_" role="37wK5m">
                   <ref role="3cqZAo" to="de0p:1QSEqLhAhx5" resolve="myNode" />
                 </node>
                 <node concept="37vLTw" id="1vJkp1TX6YC" role="37wK5m">
-                  <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myTreeNode" />
+                  <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myInstance" />
                 </node>
                 <node concept="37vLTw" id="1vJkp1TX7J1" role="37wK5m">
                   <ref role="3cqZAo" node="1vJkp1TWft9" resolve="myProject" />
@@ -1261,14 +1266,14 @@
           <node concept="3clFbS" id="1QSEqLhWgVc" role="3clFbx">
             <node concept="3cpWs6" id="1QSEqLhWk05" role="3cqZAp">
               <node concept="37vLTw" id="1QSEqLhWkug" role="3cqZAk">
-                <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myTreeNode" />
+                <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myInstance" />
               </node>
             </node>
           </node>
           <node concept="17R0WA" id="1QSEqLhWiTN" role="3clFbw">
             <node concept="2OqwBi" id="1QSEqLhWjnp" role="3uHU7w">
               <node concept="10M0yZ" id="2CiAywAa1i7" role="2Oq$k0">
-                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="FBNETWORK_TREENODE" />
+                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="NETWORK_INSTANCE" />
                 <ref role="1PxDUh" node="3vwudsmYiwt" resolve="RichEditorDataKeys" />
               </node>
               <node concept="liA8E" id="1QSEqLhWjPu" role="2OqNvi">
@@ -1311,14 +1316,14 @@
             <node concept="liA8E" id="1QSEqLhXn7K" role="2OqNvi">
               <ref role="37wK5l" to="mmaq:~Element.setAttribute(java.lang.String,java.lang.String)" resolve="setAttribute" />
               <node concept="37vLTw" id="1QSEqLhY9np" role="37wK5m">
-                <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="FBNETWORK_PERSISTENCE_KEY" />
+                <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="PERSISTENCE_KEY" />
               </node>
               <node concept="2OqwBi" id="1QSEqLhXOiP" role="37wK5m">
                 <node concept="2YIFZM" id="1QSEqLhXNEE" role="2Oq$k0">
                   <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
-                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                   <node concept="37vLTw" id="1QSEqLhXNME" role="37wK5m">
-                    <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myTreeNode" />
+                    <ref role="3cqZAo" node="1QSEqLhW9hu" resolve="myInstance" />
                   </node>
                 </node>
                 <node concept="liA8E" id="1QSEqLhXOAa" role="2OqNvi">
@@ -1332,7 +1337,7 @@
     </node>
   </node>
   <node concept="312cEu" id="1vJkp1TZS1d">
-    <property role="TrG5h" value="FBNetworkTreeNodeNavBarExtension" />
+    <property role="TrG5h" value="NetworkInstanceNavBarExtension" />
     <node concept="2tJIrI" id="1vJkp1TZS3j" role="jymVt" />
     <node concept="3Tm1VV" id="1vJkp1TZS1e" role="1B3o_S" />
     <node concept="3clFb_" id="1vJkp1TZS3Z" role="jymVt">
@@ -1355,15 +1360,15 @@
           <node concept="3clFbS" id="1vJkp1TZUf$" role="3clFbx">
             <node concept="3cpWs8" id="1vJkp1TZWh8" role="3cqZAp">
               <node concept="3cpWsn" id="1vJkp1TZWh9" role="3cpWs9">
-                <property role="TrG5h" value="treeNode" />
-                <node concept="3uibUv" id="1vJkp1TZWcX" role="1tU5fm">
-                  <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                <property role="TrG5h" value="instance" />
+                <node concept="3uibUv" id="4kSwwtSCb$a" role="1tU5fm">
+                  <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                 </node>
                 <node concept="2OqwBi" id="2CiAywAc8tq" role="33vP2m">
                   <node concept="1eOMI4" id="1vJkp1TZWha" role="2Oq$k0">
                     <node concept="10QFUN" id="1vJkp1TZWhb" role="1eOMHV">
                       <node concept="3uibUv" id="2CiAywAc8kq" role="10QFUM">
-                        <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                        <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
                       </node>
                       <node concept="37vLTw" id="1vJkp1TZWhd" role="10QFUP">
                         <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1371,7 +1376,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="2CiAywAcyBm" role="2OqNvi">
-                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getTreeNode" />
+                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getInstance" />
                   </node>
                 </node>
               </node>
@@ -1400,44 +1405,44 @@
                   <ref role="37wK5l" to="lui2:~ModelAccess.runReadAction(java.lang.Runnable)" resolve="runReadAction" />
                   <node concept="1bVj0M" id="30N5LJaben7" role="37wK5m">
                     <node concept="3clFbS" id="30N5LJaben8" role="1bW5cS">
-                      <node concept="3cpWs8" id="30N5LJaaVRt" role="3cqZAp">
-                        <node concept="3cpWsn" id="30N5LJaaVRu" role="3cpWs9">
-                          <property role="TrG5h" value="parentSource" />
-                          <node concept="3uibUv" id="30N5LJaaVKK" role="1tU5fm">
-                            <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+                      <node concept="3cpWs8" id="4kSwwtS$_1A" role="3cqZAp">
+                        <node concept="3cpWsn" id="4kSwwtS$_1B" role="3cpWs9">
+                          <property role="TrG5h" value="parent" />
+                          <node concept="3uibUv" id="4kSwwtSCcMs" role="1tU5fm">
+                            <ref role="3uigEE" to="rk1n:4kSwwtS$sUJ" resolve="Instance" />
                           </node>
-                          <node concept="2OqwBi" id="30N5LJaaVRv" role="33vP2m">
-                            <node concept="37vLTw" id="30N5LJaaVRw" role="2Oq$k0">
-                              <ref role="3cqZAo" node="1vJkp1TZWh9" resolve="treeNode" />
+                          <node concept="2OqwBi" id="4kSwwtSCd4E" role="33vP2m">
+                            <node concept="37vLTw" id="4kSwwtSCcVL" role="2Oq$k0">
+                              <ref role="3cqZAo" node="1vJkp1TZWh9" resolve="instance" />
                             </node>
-                            <node concept="liA8E" id="30N5LJaaVRx" role="2OqNvi">
-                              <ref role="37wK5l" to="rk1n:1QSEqLhXshL" resolve="getParentSource" />
+                            <node concept="liA8E" id="4kSwwtSCd8j" role="2OqNvi">
+                              <ref role="37wK5l" to="rk1n:4kSwwtS$sXF" resolve="getParent" />
                             </node>
                           </node>
                         </node>
                       </node>
                       <node concept="3clFbJ" id="30N5LJaaWoj" role="3cqZAp">
                         <node concept="3clFbS" id="30N5LJaaWol" role="3clFbx">
-                          <node concept="3clFbF" id="30N5LJabgo$" role="3cqZAp">
-                            <node concept="37vLTI" id="30N5LJabgTB" role="3clFbG">
-                              <node concept="37vLTw" id="30N5LJabgoy" role="37vLTJ">
+                          <node concept="3clFbF" id="4kSwwtS$wHE" role="3cqZAp">
+                            <node concept="37vLTI" id="4kSwwtS$wHF" role="3clFbG">
+                              <node concept="37vLTw" id="4kSwwtS$wHG" role="37vLTJ">
                                 <ref role="3cqZAo" node="30N5LJabfxW" resolve="name" />
                               </node>
-                              <node concept="2OqwBi" id="30N5LJab1w9" role="37vLTx">
-                                <node concept="0kSF2" id="30N5LJab0Ts" role="2Oq$k0">
-                                  <node concept="3uibUv" id="30N5LJab1ab" role="0kSFW">
+                              <node concept="2OqwBi" id="4kSwwtS$wHH" role="37vLTx">
+                                <node concept="0kSF2" id="4kSwwtSCecU" role="2Oq$k0">
+                                  <node concept="3uibUv" id="4kSwwtSCek5" role="0kSFW">
                                     <ref role="3uigEE" to="2xsi:31Fn7oZJ7qm" resolve="NamedDeclaration" />
                                   </node>
-                                  <node concept="2OqwBi" id="30N5LJaaZWF" role="0kSFX">
-                                    <node concept="37vLTw" id="30N5LJaaZyz" role="2Oq$k0">
-                                      <ref role="3cqZAo" node="1vJkp1TZWh9" resolve="treeNode" />
+                                  <node concept="2OqwBi" id="4kSwwtS$wHK" role="0kSFX">
+                                    <node concept="liA8E" id="4kSwwtS$wHM" role="2OqNvi">
+                                      <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
                                     </node>
-                                    <node concept="liA8E" id="30N5LJab0eJ" role="2OqNvi">
-                                      <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
+                                    <node concept="37vLTw" id="4kSwwtSCdzl" role="2Oq$k0">
+                                      <ref role="3cqZAo" node="1vJkp1TZWh9" resolve="instance" />
                                     </node>
                                   </node>
                                 </node>
-                                <node concept="liA8E" id="30N5LJab1QX" role="2OqNvi">
+                                <node concept="liA8E" id="4kSwwtSCfId" role="2OqNvi">
                                   <ref role="37wK5l" to="2xsi:31Fn7oZJ7rr" resolve="getName" />
                                 </node>
                               </node>
@@ -1447,19 +1452,29 @@
                         <node concept="3clFbC" id="30N5LJaaXaQ" role="3clFbw">
                           <node concept="10Nm6u" id="30N5LJaaXlM" role="3uHU7w" />
                           <node concept="37vLTw" id="30N5LJaaWPv" role="3uHU7B">
-                            <ref role="3cqZAo" node="30N5LJaaVRu" resolve="parentSource" />
+                            <ref role="3cqZAo" node="4kSwwtS$_1B" resolve="parent" />
                           </node>
                         </node>
                         <node concept="9aQIb" id="30N5LJabhIm" role="9aQIa">
                           <node concept="3clFbS" id="30N5LJabhIn" role="9aQI4">
                             <node concept="3clFbF" id="30N5LJabiaV" role="3cqZAp">
                               <node concept="37vLTI" id="30N5LJabiFB" role="3clFbG">
-                                <node concept="2OqwBi" id="30N5LJabjBt" role="37vLTx">
-                                  <node concept="37vLTw" id="30N5LJabjf0" role="2Oq$k0">
-                                    <ref role="3cqZAo" node="30N5LJaaVRu" resolve="parentSource" />
+                                <node concept="2OqwBi" id="4kSwwtSCf7f" role="37vLTx">
+                                  <node concept="2OqwBi" id="30N5LJabjBt" role="2Oq$k0">
+                                    <node concept="0kSF2" id="4kSwwtSCe_T" role="2Oq$k0">
+                                      <node concept="3uibUv" id="4kSwwtSCeGv" role="0kSFW">
+                                        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FunctionBlockInstance" />
+                                      </node>
+                                      <node concept="37vLTw" id="30N5LJabjf0" role="0kSFX">
+                                        <ref role="3cqZAo" node="4kSwwtS$_1B" resolve="parent" />
+                                      </node>
+                                    </node>
+                                    <node concept="liA8E" id="4kSwwtSCeTm" role="2OqNvi">
+                                      <ref role="37wK5l" to="rk1n:4kSwwtS$wX6" resolve="getDeclaration" />
+                                    </node>
                                   </node>
-                                  <node concept="liA8E" id="30N5LJabk0M" role="2OqNvi">
-                                    <ref role="37wK5l" to="tphl:7qPnRGGlWnJ" resolve="getInstanceName" />
+                                  <node concept="liA8E" id="4kSwwtSCfvQ" role="2OqNvi">
+                                    <ref role="37wK5l" to="2xsi:31Fn7oZJ7rr" resolve="getName" />
                                   </node>
                                 </node>
                                 <node concept="37vLTw" id="30N5LJabiaU" role="37vLTJ">
@@ -1483,7 +1498,7 @@
           </node>
           <node concept="2ZW3vV" id="1vJkp1TZUHS" role="3clFbw">
             <node concept="3uibUv" id="2CiAywAc8hY" role="2ZW6by">
-              <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+              <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
             </node>
             <node concept="37vLTw" id="1vJkp1TZUqI" role="2ZW6bz">
               <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1502,7 +1517,7 @@
                   <node concept="1eOMI4" id="4gibKcMxOJ_" role="2Oq$k0">
                     <node concept="10QFUN" id="4gibKcMxOJA" role="1eOMHV">
                       <node concept="3uibUv" id="4gibKcMxP9b" role="10QFUM">
-                        <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+                        <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
                       </node>
                       <node concept="37vLTw" id="4gibKcMxOJC" role="10QFUP">
                         <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1567,7 +1582,7 @@
           </node>
           <node concept="2ZW3vV" id="4gibKcMxOKl" role="3clFbw">
             <node concept="3uibUv" id="4gibKcMxP6p" role="2ZW6by">
-              <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+              <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
             </node>
             <node concept="37vLTw" id="4gibKcMxOKn" role="2ZW6bz">
               <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1586,7 +1601,7 @@
                   <node concept="1eOMI4" id="2SP6YJBWzNN" role="2Oq$k0">
                     <node concept="10QFUN" id="2SP6YJBWzNO" role="1eOMHV">
                       <node concept="3uibUv" id="2SP6YJBW$ek" role="10QFUM">
-                        <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+                        <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
                       </node>
                       <node concept="37vLTw" id="2SP6YJBWzNQ" role="10QFUP">
                         <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1651,7 +1666,7 @@
           </node>
           <node concept="2ZW3vV" id="2SP6YJBWzOc" role="3clFbw">
             <node concept="3uibUv" id="2SP6YJBW$bw" role="2ZW6by">
-              <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+              <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
             </node>
             <node concept="37vLTw" id="2SP6YJBWzOe" role="2ZW6bz">
               <ref role="3cqZAo" node="1vJkp1TZS44" resolve="object" />
@@ -1783,11 +1798,11 @@
               <node concept="3cpWsn" id="2CiAywAcmk4" role="3cpWs9">
                 <property role="TrG5h" value="item" />
                 <node concept="3uibUv" id="2CiAywAcl$a" role="1tU5fm">
-                  <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                  <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
                 </node>
                 <node concept="10QFUN" id="2CiAywAcmk6" role="33vP2m">
                   <node concept="3uibUv" id="2CiAywAcmk7" role="10QFUM">
-                    <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                    <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
                   </node>
                   <node concept="37vLTw" id="2CiAywAcmk8" role="10QFUP">
                     <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -1797,16 +1812,16 @@
             </node>
             <node concept="3cpWs8" id="2CiAywAcadP" role="3cqZAp">
               <node concept="3cpWsn" id="2CiAywAcadQ" role="3cpWs9">
-                <property role="TrG5h" value="treeNode" />
-                <node concept="3uibUv" id="2CiAywAcadR" role="1tU5fm">
-                  <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                <property role="TrG5h" value="instance" />
+                <node concept="3uibUv" id="4kSwwtSCfQy" role="1tU5fm">
+                  <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                 </node>
                 <node concept="2OqwBi" id="2CiAywAcadS" role="33vP2m">
                   <node concept="37vLTw" id="2CiAywAcmk9" role="2Oq$k0">
                     <ref role="3cqZAo" node="2CiAywAcmk4" resolve="item" />
                   </node>
                   <node concept="liA8E" id="2CiAywAcltZ" role="2OqNvi">
-                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getTreeNode" />
+                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getInstance" />
                   </node>
                 </node>
               </node>
@@ -1849,13 +1864,13 @@
                         <node concept="2OqwBi" id="2CiAywAco_F" role="2GsD0m">
                           <node concept="2OqwBi" id="2CiAywAco_G" role="2Oq$k0">
                             <node concept="37vLTw" id="2CiAywAco_H" role="2Oq$k0">
-                              <ref role="3cqZAo" node="2CiAywAcadQ" resolve="treeNode" />
+                              <ref role="3cqZAo" node="2CiAywAcadQ" resolve="instance" />
                             </node>
-                            <node concept="liA8E" id="2CiAywAco_I" role="2OqNvi">
-                              <ref role="37wK5l" to="rk1n:1QSEqLhV6ih" resolve="getNetwork" />
+                            <node concept="liA8E" id="4kSwwtSCg8F" role="2OqNvi">
+                              <ref role="37wK5l" to="rk1n:4kSwwtS_7k8" resolve="getNetworkDeclaration" />
                             </node>
                           </node>
-                          <node concept="liA8E" id="2CiAywAco_J" role="2OqNvi">
+                          <node concept="liA8E" id="4kSwwtSCgn0" role="2OqNvi">
                             <ref role="37wK5l" to="tphl:1R4IoyQvZqY" resolve="getComponents" />
                           </node>
                         </node>
@@ -1863,7 +1878,7 @@
                           <node concept="3clFbJ" id="2CiAywAcppa" role="3cqZAp">
                             <node concept="2ZW3vV" id="2CiAywAcpAx" role="3clFbw">
                               <node concept="3uibUv" id="2CiAywAcpMa" role="2ZW6by">
-                                <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+                                <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
                               </node>
                               <node concept="2GrUjf" id="2CiAywAcpt8" role="2ZW6bz">
                                 <ref role="2Gs0qQ" node="2CiAywAcocW" resolve="component" />
@@ -1874,17 +1889,17 @@
                                 <node concept="3cpWsn" id="2CiAywAcq0B" role="3cpWs9">
                                   <property role="TrG5h" value="child" />
                                   <node concept="3uibUv" id="2CiAywAcq0C" role="1tU5fm">
-                                    <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                                    <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FunctionBlockInstance" />
                                   </node>
                                   <node concept="2OqwBi" id="2CiAywAcr1r" role="33vP2m">
                                     <node concept="37vLTw" id="2CiAywAcqNw" role="2Oq$k0">
-                                      <ref role="3cqZAo" node="2CiAywAcadQ" resolve="treeNode" />
+                                      <ref role="3cqZAo" node="2CiAywAcadQ" resolve="instance" />
                                     </node>
                                     <node concept="liA8E" id="2CiAywAcr8_" role="2OqNvi">
                                       <ref role="37wK5l" to="rk1n:1QSEqLhV6lF" resolve="getChild" />
                                       <node concept="10QFUN" id="2CiAywAcrmq" role="37wK5m">
                                         <node concept="3uibUv" id="2CiAywAcrEa" role="10QFUM">
-                                          <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+                                          <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
                                         </node>
                                         <node concept="2GrUjf" id="2CiAywAcrgK" role="10QFUP">
                                           <ref role="2Gs0qQ" node="2CiAywAcocW" resolve="component" />
@@ -1905,9 +1920,14 @@
                                         <ref role="37wK5l" to="9w4s:~Processor.process(java.lang.Object)" resolve="process" />
                                         <node concept="2ShNRf" id="2CiAywAcu6T" role="37wK5m">
                                           <node concept="1pGfFk" id="2CiAywAcvzi" role="2ShVmc">
-                                            <ref role="37wK5l" node="2CiAywA8u11" resolve="FBNetworkTreeNodeNavBarModel.Item" />
-                                            <node concept="37vLTw" id="2CiAywAcwr0" role="37wK5m">
-                                              <ref role="3cqZAo" node="2CiAywAcq0B" resolve="child" />
+                                            <ref role="37wK5l" node="2CiAywA8u11" resolve="NetworkInstanceNavBarModel.Item" />
+                                            <node concept="2OqwBi" id="4kSwwtSCgNg" role="37wK5m">
+                                              <node concept="37vLTw" id="2CiAywAcwr0" role="2Oq$k0">
+                                                <ref role="3cqZAo" node="2CiAywAcq0B" resolve="child" />
+                                              </node>
+                                              <node concept="liA8E" id="4kSwwtSCiLw" role="2OqNvi">
+                                                <ref role="37wK5l" to="rk1n:1QSEqLhV6ih" resolve="getContainedNetwork" />
+                                              </node>
                                             </node>
                                             <node concept="37vLTw" id="2CiAywAcvVw" role="37wK5m">
                                               <ref role="3cqZAo" node="2CiAywAcvVs" resolve="project" />
@@ -1918,10 +1938,23 @@
                                     </node>
                                   </node>
                                 </node>
-                                <node concept="3y3z36" id="2CiAywActcr" role="3clFbw">
-                                  <node concept="10Nm6u" id="2CiAywActjf" role="3uHU7w" />
-                                  <node concept="37vLTw" id="2CiAywAct2Z" role="3uHU7B">
-                                    <ref role="3cqZAo" node="2CiAywAcq0B" resolve="child" />
+                                <node concept="1Wc70l" id="4kSwwtSCh9m" role="3clFbw">
+                                  <node concept="3y3z36" id="4kSwwtSCif1" role="3uHU7w">
+                                    <node concept="10Nm6u" id="4kSwwtSCiw0" role="3uHU7w" />
+                                    <node concept="2OqwBi" id="4kSwwtSChCP" role="3uHU7B">
+                                      <node concept="37vLTw" id="4kSwwtSChko" role="2Oq$k0">
+                                        <ref role="3cqZAo" node="2CiAywAcq0B" resolve="child" />
+                                      </node>
+                                      <node concept="liA8E" id="4kSwwtSCi1S" role="2OqNvi">
+                                        <ref role="37wK5l" to="rk1n:1QSEqLhV6ih" resolve="getContainedNetwork" />
+                                      </node>
+                                    </node>
+                                  </node>
+                                  <node concept="3y3z36" id="2CiAywActcr" role="3uHU7B">
+                                    <node concept="37vLTw" id="2CiAywAct2Z" role="3uHU7B">
+                                      <ref role="3cqZAo" node="2CiAywAcq0B" resolve="child" />
+                                    </node>
+                                    <node concept="10Nm6u" id="2CiAywActjf" role="3uHU7w" />
                                   </node>
                                 </node>
                               </node>
@@ -1937,7 +1970,7 @@
           </node>
           <node concept="2ZW3vV" id="2CiAywAcaeD" role="3clFbw">
             <node concept="3uibUv" id="2CiAywAcaeE" role="2ZW6by">
-              <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+              <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
             </node>
             <node concept="37vLTw" id="2CiAywAcaeF" role="2ZW6bz">
               <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -1950,12 +1983,12 @@
               <node concept="3cpWsn" id="4gibKcMybtF" role="3cpWs9">
                 <property role="TrG5h" value="systemItem" />
                 <node concept="3uibUv" id="4gibKcMybj7" role="1tU5fm">
-                  <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+                  <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
                 </node>
                 <node concept="1eOMI4" id="4gibKcMybtG" role="33vP2m">
                   <node concept="10QFUN" id="4gibKcMybtH" role="1eOMHV">
                     <node concept="3uibUv" id="4gibKcMybtI" role="10QFUM">
-                      <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+                      <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
                     </node>
                     <node concept="37vLTw" id="4gibKcMybtJ" role="10QFUP">
                       <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -2024,26 +2057,18 @@
                           </node>
                         </node>
                         <node concept="3clFbS" id="4gibKcMyajw" role="2LFqv$">
+                          <node concept="3clFbH" id="4kSwwtSA6Zx" role="3cqZAp" />
                           <node concept="3cpWs8" id="4gibKcMyajA" role="3cqZAp">
                             <node concept="3cpWsn" id="4gibKcMyajB" role="3cpWs9">
                               <property role="TrG5h" value="root" />
-                              <node concept="3uibUv" id="4gibKcMyajC" role="1tU5fm">
-                                <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                              <node concept="3uibUv" id="4kSwwtSCkgh" role="1tU5fm">
+                                <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                               </node>
-                              <node concept="2ShNRf" id="4gibKcMygy1" role="33vP2m">
-                                <node concept="1pGfFk" id="4gibKcMyi9o" role="2ShVmc">
-                                  <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                                  <node concept="2OqwBi" id="4gibKcMyiU0" role="37wK5m">
-                                    <node concept="2GrUjf" id="4gibKcMyizB" role="2Oq$k0">
-                                      <ref role="2Gs0qQ" node="4gibKcMyajq" resolve="application" />
-                                    </node>
-                                    <node concept="liA8E" id="4gibKcMyjpT" role="2OqNvi">
-                                      <ref role="37wK5l" to="2xsi:2SU8oJdHAT_" resolve="getNetwork" />
-                                    </node>
-                                  </node>
-                                  <node concept="2GrUjf" id="4gibKcMyjM3" role="37wK5m">
-                                    <ref role="2Gs0qQ" node="4gibKcMyajq" resolve="application" />
-                                  </node>
+                              <node concept="2YIFZM" id="4kSwwtSCjnE" role="33vP2m">
+                                <ref role="37wK5l" to="rk1n:4kSwwtS_nOs" resolve="createForApplication" />
+                                <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+                                <node concept="2GrUjf" id="4kSwwtSCjAM" role="37wK5m">
+                                  <ref role="2Gs0qQ" node="4gibKcMyajq" resolve="application" />
                                 </node>
                               </node>
                             </node>
@@ -2057,7 +2082,7 @@
                                 <ref role="37wK5l" to="9w4s:~Processor.process(java.lang.Object)" resolve="process" />
                                 <node concept="2ShNRf" id="4gibKcMyajP" role="37wK5m">
                                   <node concept="1pGfFk" id="4gibKcMyajQ" role="2ShVmc">
-                                    <ref role="37wK5l" node="2CiAywA8u11" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                                    <ref role="37wK5l" node="2CiAywA8u11" resolve="NetworkInstanceNavBarModel.Item" />
                                     <node concept="37vLTw" id="4gibKcMyajR" role="37wK5m">
                                       <ref role="3cqZAo" node="4gibKcMyajB" resolve="root" />
                                     </node>
@@ -2079,7 +2104,7 @@
           </node>
           <node concept="2ZW3vV" id="4gibKcMyajW" role="3clFbw">
             <node concept="3uibUv" id="4gibKcMyaOF" role="2ZW6by">
-              <ref role="3uigEE" node="4gibKcMwOFv" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+              <ref role="3uigEE" node="4gibKcMwOFv" resolve="NetworkInstanceNavBarModel.SystemItem" />
             </node>
             <node concept="37vLTw" id="4gibKcMyajY" role="2ZW6bz">
               <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -2092,12 +2117,12 @@
               <node concept="3cpWsn" id="2SP6YJBW$zI" role="3cpWs9">
                 <property role="TrG5h" value="deviceItem" />
                 <node concept="3uibUv" id="2SP6YJBW__v" role="1tU5fm">
-                  <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+                  <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
                 </node>
                 <node concept="1eOMI4" id="2SP6YJBW$zK" role="33vP2m">
                   <node concept="10QFUN" id="2SP6YJBW$zL" role="1eOMHV">
                     <node concept="3uibUv" id="2SP6YJBW_pd" role="10QFUM">
-                      <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+                      <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
                     </node>
                     <node concept="37vLTw" id="2SP6YJBW$zN" role="10QFUP">
                       <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -2166,26 +2191,17 @@
                           </node>
                         </node>
                         <node concept="3clFbS" id="2SP6YJBW$$e" role="2LFqv$">
-                          <node concept="3cpWs8" id="2SP6YJBW$$f" role="3cqZAp">
-                            <node concept="3cpWsn" id="2SP6YJBW$$g" role="3cpWs9">
+                          <node concept="3cpWs8" id="4kSwwtSCko2" role="3cqZAp">
+                            <node concept="3cpWsn" id="4kSwwtSCko3" role="3cpWs9">
                               <property role="TrG5h" value="root" />
-                              <node concept="3uibUv" id="2SP6YJBW$$h" role="1tU5fm">
-                                <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                              <node concept="3uibUv" id="4kSwwtSCko4" role="1tU5fm">
+                                <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                               </node>
-                              <node concept="2ShNRf" id="2SP6YJBW$$i" role="33vP2m">
-                                <node concept="1pGfFk" id="2SP6YJBW$$j" role="2ShVmc">
-                                  <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                                  <node concept="2OqwBi" id="2SP6YJBW$$k" role="37wK5m">
-                                    <node concept="2GrUjf" id="2SP6YJBW$$l" role="2Oq$k0">
-                                      <ref role="2Gs0qQ" node="2SP6YJBW$$a" resolve="resource" />
-                                    </node>
-                                    <node concept="liA8E" id="2SP6YJBW$$m" role="2OqNvi">
-                                      <ref role="37wK5l" to="2xsi:3MncU7wPlZA" resolve="getNetwork" />
-                                    </node>
-                                  </node>
-                                  <node concept="2GrUjf" id="2SP6YJBW$$n" role="37wK5m">
-                                    <ref role="2Gs0qQ" node="2SP6YJBW$$a" resolve="resource" />
-                                  </node>
+                              <node concept="2YIFZM" id="4kSwwtSCkxS" role="33vP2m">
+                                <ref role="37wK5l" to="rk1n:4kSwwtS_o6x" resolve="createForResource" />
+                                <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+                                <node concept="2GrUjf" id="4kSwwtSCkSD" role="37wK5m">
+                                  <ref role="2Gs0qQ" node="2SP6YJBW$$a" resolve="resource" />
                                 </node>
                               </node>
                             </node>
@@ -2199,9 +2215,9 @@
                                 <ref role="37wK5l" to="9w4s:~Processor.process(java.lang.Object)" resolve="process" />
                                 <node concept="2ShNRf" id="2SP6YJBW$$s" role="37wK5m">
                                   <node concept="1pGfFk" id="2SP6YJBW$$t" role="2ShVmc">
-                                    <ref role="37wK5l" node="2CiAywA8u11" resolve="FBNetworkTreeNodeNavBarModel.Item" />
-                                    <node concept="37vLTw" id="2SP6YJBW$$u" role="37wK5m">
-                                      <ref role="3cqZAo" node="2SP6YJBW$$g" resolve="root" />
+                                    <ref role="37wK5l" node="2CiAywA8u11" resolve="NetworkInstanceNavBarModel.Item" />
+                                    <node concept="37vLTw" id="4kSwwtSClg$" role="37wK5m">
+                                      <ref role="3cqZAo" node="4kSwwtSCko3" resolve="root" />
                                     </node>
                                     <node concept="37vLTw" id="2SP6YJBW$$v" role="37wK5m">
                                       <ref role="3cqZAo" node="2SP6YJBW$zV" resolve="project" />
@@ -2221,7 +2237,7 @@
           </node>
           <node concept="2ZW3vV" id="2SP6YJBW$$w" role="3clFbw">
             <node concept="3uibUv" id="2SP6YJBW_mm" role="2ZW6by">
-              <ref role="3uigEE" node="2SP6YJBWpQs" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+              <ref role="3uigEE" node="2SP6YJBWpQs" resolve="NetworkInstanceNavBarModel.DeviceItem" />
             </node>
             <node concept="37vLTw" id="2SP6YJBW$$y" role="2ZW6bz">
               <ref role="3cqZAo" node="2CiAywAc9cG" resolve="object" />
@@ -2424,8 +2440,8 @@
                   <node concept="liA8E" id="1QSEqLhZcco" role="2OqNvi">
                     <ref role="37wK5l" to="mmaq:~Element.getAttributeValue(java.lang.String)" resolve="getAttributeValue" />
                     <node concept="10M0yZ" id="2CiAywA9yhZ" role="37wK5m">
-                      <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="FBNETWORK_PERSISTENCE_KEY" />
-                      <ref role="1PxDUh" node="1QSEqLhW8CO" resolve="FBNetworkTreeNodeEditorProjection" />
+                      <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="PERSISTENCE_KEY" />
+                      <ref role="1PxDUh" node="1QSEqLhW8CO" resolve="NetworkInstanceEditorProjection" />
                     </node>
                   </node>
                 </node>
@@ -2433,9 +2449,9 @@
             </node>
             <node concept="3cpWs8" id="6YAH_gOFzYl" role="3cqZAp">
               <node concept="3cpWsn" id="6YAH_gOFzYm" role="3cpWs9">
-                <property role="TrG5h" value="treeNode" />
-                <node concept="3uibUv" id="6YAH_gOFzQj" role="1tU5fm">
-                  <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                <property role="TrG5h" value="instance" />
+                <node concept="3uibUv" id="4kSwwtSCJ8w" role="1tU5fm">
+                  <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                 </node>
                 <node concept="3K4zz7" id="6YAH_gOFCgf" role="33vP2m">
                   <node concept="3y3z36" id="6YAH_gOFBSg" role="3K4Cdx">
@@ -2447,7 +2463,7 @@
                   <node concept="2OqwBi" id="6YAH_gOFzYn" role="3K4E3e">
                     <node concept="2YIFZM" id="6YAH_gOFzYo" role="2Oq$k0">
                       <ref role="37wK5l" to="rwq3:1QSEqLhZdF9" resolve="deserialize" />
-                      <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                      <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                       <node concept="37vLTw" id="6YAH_gOFzYp" role="37wK5m">
                         <ref role="3cqZAo" node="1QSEqLhZccl" resolve="ref" />
                       </node>
@@ -2478,24 +2494,16 @@
                 <node concept="3clFbF" id="1_XvODPGPw6" role="3cqZAp">
                   <node concept="37vLTI" id="1_XvODPGPHr" role="3clFbG">
                     <node concept="37vLTw" id="1_XvODPGPw4" role="37vLTJ">
-                      <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="treeNode" />
+                      <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="instance" />
                     </node>
-                    <node concept="2ShNRf" id="6YAH_gOFCrl" role="37vLTx">
-                      <node concept="1pGfFk" id="6YAH_gOFCrm" role="2ShVmc">
-                        <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                        <node concept="2YIFZM" id="6YAH_gOFCrn" role="37wK5m">
-                          <ref role="37wK5l" to="go3h:1QSEqLhXTV0" resolve="adaptNetwork" />
-                          <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
-                          <node concept="37vLTw" id="6YAH_gOFCro" role="37wK5m">
-                            <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
-                          </node>
-                        </node>
-                        <node concept="2YIFZM" id="6YAH_gOFCrp" role="37wK5m">
-                          <ref role="37wK5l" to="go3h:1QSEqLhWmX0" resolve="adaptDeclaration" />
-                          <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
-                          <node concept="37vLTw" id="6YAH_gOFCrq" role="37wK5m">
-                            <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
-                          </node>
+                    <node concept="2YIFZM" id="4kSwwtSCKct" role="37vLTx">
+                      <ref role="37wK5l" to="rk1n:4kSwwtS_x0T" resolve="createForDeclaraiton" />
+                      <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+                      <node concept="2YIFZM" id="6YAH_gOFCrp" role="37wK5m">
+                        <ref role="37wK5l" to="go3h:1QSEqLhWmX0" resolve="adaptDeclaration" />
+                        <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
+                        <node concept="37vLTw" id="6YAH_gOFCrq" role="37wK5m">
+                          <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
                         </node>
                       </node>
                     </node>
@@ -2505,7 +2513,7 @@
               <node concept="3clFbC" id="1_XvODPGOQt" role="3clFbw">
                 <node concept="10Nm6u" id="1_XvODPGP1b" role="3uHU7w" />
                 <node concept="37vLTw" id="1_XvODPGOBM" role="3uHU7B">
-                  <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="treeNode" />
+                  <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="instance" />
                 </node>
               </node>
             </node>
@@ -2513,11 +2521,11 @@
               <node concept="3cpWsn" id="6YAH_gOFzHi" role="3cpWs9">
                 <property role="TrG5h" value="projection" />
                 <node concept="3uibUv" id="6YAH_gOFzHj" role="1tU5fm">
-                  <ref role="3uigEE" node="1QSEqLhW8CO" resolve="FBNetworkTreeNodeEditorProjection" />
+                  <ref role="3uigEE" node="1QSEqLhW8CO" resolve="NetworkInstanceEditorProjection" />
                 </node>
                 <node concept="2ShNRf" id="6YAH_gOFzHk" role="33vP2m">
                   <node concept="1pGfFk" id="6YAH_gOFzHl" role="2ShVmc">
-                    <ref role="37wK5l" node="1QSEqLhW9A1" resolve="FBNetworkTreeNodeEditorProjection" />
+                    <ref role="37wK5l" node="1QSEqLhW9A1" resolve="NetworkInstanceEditorProjection" />
                     <node concept="37vLTw" id="6YAH_gOFzHm" role="37wK5m">
                       <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
                     </node>
@@ -2526,7 +2534,7 @@
                       <ref role="3cqZAo" node="1QSEqLhY4Nv" resolve="name" />
                     </node>
                     <node concept="37vLTw" id="6YAH_gOFFYl" role="37wK5m">
-                      <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="treeNode" />
+                      <ref role="3cqZAo" node="6YAH_gOFzYm" resolve="instance" />
                     </node>
                     <node concept="37vLTw" id="1vJkp1TXqfj" role="37wK5m">
                       <ref role="3cqZAo" node="1vJkp1TWbk3" resolve="myProject" />
@@ -2574,7 +2582,7 @@
       <property role="TrG5h" value="createProjectionInternal" />
       <node concept="3Tm6S6" id="1QSEqLhY5Kb" role="1B3o_S" />
       <node concept="3uibUv" id="1QSEqLhY5Kc" role="3clF45">
-        <ref role="3uigEE" node="1QSEqLhW8CO" resolve="FBNetworkTreeNodeEditorProjection" />
+        <ref role="3uigEE" node="1QSEqLhW8CO" resolve="NetworkInstanceEditorProjection" />
       </node>
       <node concept="37vLTG" id="1QSEqLhY5JW" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -2585,26 +2593,18 @@
       <node concept="3clFbS" id="1QSEqLhY5JJ" role="3clF47">
         <node concept="3cpWs8" id="1vJkp1TXqwO" role="3cqZAp">
           <node concept="3cpWsn" id="1vJkp1TXqwP" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="1vJkp1TXqpv" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhVkcc" resolve="RootFBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSCKVw" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
-            <node concept="2ShNRf" id="1vJkp1TXqwQ" role="33vP2m">
-              <node concept="1pGfFk" id="1vJkp1TXqwR" role="2ShVmc">
-                <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                <node concept="2YIFZM" id="1vJkp1TXqwS" role="37wK5m">
-                  <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
-                  <ref role="37wK5l" to="go3h:1QSEqLhXTV0" resolve="adaptNetwork" />
-                  <node concept="37vLTw" id="1vJkp1TXqwT" role="37wK5m">
-                    <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
-                  </node>
-                </node>
-                <node concept="2YIFZM" id="1vJkp1TXqwU" role="37wK5m">
-                  <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
-                  <ref role="37wK5l" to="go3h:1QSEqLhWmX0" resolve="adaptDeclaration" />
-                  <node concept="37vLTw" id="1vJkp1TXqwV" role="37wK5m">
-                    <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
-                  </node>
+            <node concept="2YIFZM" id="4kSwwtSCKAJ" role="33vP2m">
+              <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+              <ref role="37wK5l" to="rk1n:4kSwwtS_x0T" resolve="createForDeclaraiton" />
+              <node concept="2YIFZM" id="4kSwwtSCKAK" role="37wK5m">
+                <ref role="1Pybhc" to="go3h:31Fn7oZJid9" resolve="NodesAdapter" />
+                <ref role="37wK5l" to="go3h:1QSEqLhWmX0" resolve="adaptDeclaration" />
+                <node concept="37vLTw" id="4kSwwtSCKAL" role="37wK5m">
+                  <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
                 </node>
               </node>
             </node>
@@ -2613,7 +2613,7 @@
         <node concept="3cpWs6" id="1QSEqLhY5JK" role="3cqZAp">
           <node concept="2ShNRf" id="1QSEqLhY5JL" role="3cqZAk">
             <node concept="1pGfFk" id="1QSEqLhY5JM" role="2ShVmc">
-              <ref role="37wK5l" node="1QSEqLhW9A1" resolve="FBNetworkTreeNodeEditorProjection" />
+              <ref role="37wK5l" node="1QSEqLhW9A1" resolve="NetworkInstanceEditorProjection" />
               <node concept="37vLTw" id="1QSEqLhY5JN" role="37wK5m">
                 <ref role="3cqZAo" node="1QSEqLhApg2" resolve="myNode" />
               </node>
@@ -2622,7 +2622,7 @@
                 <ref role="3cqZAo" node="1QSEqLhY5JW" resolve="name" />
               </node>
               <node concept="37vLTw" id="1vJkp1TXqwW" role="37wK5m">
-                <ref role="3cqZAo" node="1vJkp1TXqwP" resolve="treeNode" />
+                <ref role="3cqZAo" node="1vJkp1TXqwP" resolve="instance" />
               </node>
               <node concept="37vLTw" id="1vJkp1TXroT" role="37wK5m">
                 <ref role="3cqZAo" node="1vJkp1TWbk3" resolve="myProject" />
@@ -2693,7 +2693,7 @@
     </node>
   </node>
   <node concept="312cEu" id="2CiAywA9Mz5">
-    <property role="TrG5h" value="FBNetworkTreeNodeNavigationSupport" />
+    <property role="TrG5h" value="NetworkInstanceNavigationSupport" />
     <node concept="2tJIrI" id="2CiAywA9M$F" role="jymVt" />
     <node concept="2YIFZL" id="2CiAywAbsXx" role="jymVt">
       <property role="TrG5h" value="navigate" />
@@ -2715,7 +2715,7 @@
                   <ref role="3cqZAo" node="2CiAywAbsXK" resolve="project" />
                 </node>
                 <node concept="37vLTw" id="2CiAywAbsXF" role="37wK5m">
-                  <ref role="3cqZAo" node="2CiAywAbsXM" resolve="treeNode" />
+                  <ref role="3cqZAo" node="2CiAywAbsXM" resolve="instance" />
                 </node>
               </node>
               <node concept="37vLTw" id="2CiAywAbsXG" role="37wK5m">
@@ -2736,9 +2736,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="2CiAywAbsXM" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2CiAywAbsXN" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSAcWX" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="37vLTG" id="2CiAywAbsXO" role="3clF46">
@@ -2758,8 +2758,8 @@
               <node concept="37vLTw" id="2CiAywAbYYF" role="37wK5m">
                 <ref role="3cqZAo" node="2CiAywAbYdL" resolve="project" />
               </node>
-              <node concept="37vLTw" id="2CiAywAbZ7j" role="37wK5m">
-                <ref role="3cqZAo" node="2CiAywAbYdN" resolve="treeNode" />
+              <node concept="37vLTw" id="4kSwwtSAd6C" role="37wK5m">
+                <ref role="3cqZAo" node="4kSwwtSAd1u" resolve="instance" />
               </node>
             </node>
           </node>
@@ -2772,10 +2772,10 @@
           <ref role="3uigEE" to="z1c3:~Project" resolve="Project" />
         </node>
       </node>
-      <node concept="37vLTG" id="2CiAywAbYdN" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2CiAywAbYdO" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="37vLTG" id="4kSwwtSAd1u" role="3clF46">
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSAd1v" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="3Tm1VV" id="2CiAywAbYdR" role="1B3o_S" />
@@ -2784,18 +2784,23 @@
     <node concept="2YIFZL" id="2CiAywAbteV" role="jymVt">
       <property role="TrG5h" value="getNavigationStub" />
       <node concept="3clFbS" id="2CiAywAbtf1" role="3clF47">
-        <node concept="3cpWs8" id="4gibKcMvyNl" role="3cqZAp">
-          <node concept="3cpWsn" id="4gibKcMvyNm" role="3cpWs9">
+        <node concept="3cpWs8" id="4kSwwtS$wI0" role="3cqZAp">
+          <node concept="3cpWsn" id="4kSwwtS$wI1" role="3cpWs9">
             <property role="TrG5h" value="container" />
-            <node concept="3uibUv" id="4gibKcMvyFo" role="1tU5fm">
+            <node concept="3uibUv" id="4kSwwtS$wI2" role="1tU5fm">
               <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
             </node>
-            <node concept="2OqwBi" id="4gibKcMvyNn" role="33vP2m">
-              <node concept="37vLTw" id="4gibKcMvyNo" role="2Oq$k0">
-                <ref role="3cqZAo" node="2CiAywAbteZ" resolve="treeNode" />
+            <node concept="2OqwBi" id="4kSwwtSAfxn" role="33vP2m">
+              <node concept="2OqwBi" id="4kSwwtSAegS" role="2Oq$k0">
+                <node concept="37vLTw" id="4kSwwtSAeWX" role="2Oq$k0">
+                  <ref role="3cqZAo" node="2CiAywAbteZ" resolve="instance" />
+                </node>
+                <node concept="liA8E" id="4kSwwtSAegV" role="2OqNvi">
+                  <ref role="37wK5l" to="rk1n:4kSwwtS$t0Y" resolve="getRootInstance" />
+                </node>
               </node>
-              <node concept="liA8E" id="4gibKcMvyNp" role="2OqNvi">
-                <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
+              <node concept="liA8E" id="4kSwwtSAgdq" role="2OqNvi">
+                <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
               </node>
             </node>
           </node>
@@ -2813,7 +2818,7 @@
                         <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="HasNode" />
                       </node>
                       <node concept="37vLTw" id="4gibKcMvyNr" role="10QFUP">
-                        <ref role="3cqZAo" node="4gibKcMvyNm" resolve="container" />
+                        <ref role="3cqZAo" node="4kSwwtS$wI1" resolve="container" />
                       </node>
                     </node>
                   </node>
@@ -2875,7 +2880,7 @@
                       <node concept="2OqwBi" id="4gibKcMwoJZ" role="37wK5m">
                         <node concept="1PxgMI" id="4gibKcMwo$8" role="2Oq$k0">
                           <node concept="chp4Y" id="4gibKcMwo_l" role="3oSUPX">
-                            <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+                            <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
                           </node>
                           <node concept="37vLTw" id="4gibKcMwo6Z" role="1m5AlR">
                             <ref role="3cqZAo" node="2CiAywAbtf5" resolve="targetNode" />
@@ -2905,9 +2910,9 @@
                         </node>
                         <node concept="2YIFZM" id="4gibKcMvGWx" role="2Oq$k0">
                           <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
-                          <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                          <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                           <node concept="37vLTw" id="4gibKcMvGWy" role="37wK5m">
-                            <ref role="3cqZAo" node="2CiAywAbteZ" resolve="treeNode" />
+                            <ref role="3cqZAo" node="2CiAywAbteZ" resolve="instance" />
                           </node>
                         </node>
                       </node>
@@ -2933,7 +2938,7 @@
                   <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
                 </node>
                 <node concept="37vLTw" id="4gibKcMvGG4" role="2ZW6bz">
-                  <ref role="3cqZAo" node="4gibKcMvyNm" resolve="container" />
+                  <ref role="3cqZAo" node="4kSwwtS$wI1" resolve="container" />
                 </node>
               </node>
               <node concept="3eNFk2" id="2SP6YJBZw7Y" role="3eNLev">
@@ -2971,7 +2976,7 @@
                             <node concept="2OqwBi" id="2SP6YJBZz6s" role="3uHU7B">
                               <node concept="1PxgMI" id="2SP6YJBZyL6" role="2Oq$k0">
                                 <node concept="chp4Y" id="2SP6YJBZyMo" role="3oSUPX">
-                                  <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+                                  <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
                                 </node>
                                 <node concept="2OqwBi" id="2SP6YJBZyty" role="1m5AlR">
                                   <node concept="37vLTw" id="2SP6YJBZyac" role="2Oq$k0">
@@ -2991,7 +2996,7 @@
                           <node concept="2OqwBi" id="2SP6YJBZwEK" role="3uHU7w">
                             <node concept="1PxgMI" id="2SP6YJBZwEL" role="2Oq$k0">
                               <node concept="chp4Y" id="2SP6YJBZxoD" role="3oSUPX">
-                                <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+                                <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
                               </node>
                               <node concept="37vLTw" id="2SP6YJBZwEN" role="1m5AlR">
                                 <ref role="3cqZAo" node="2CiAywAbtf5" resolve="targetNode" />
@@ -3021,10 +3026,10 @@
                             <ref role="37wK5l" to="rwq3:1QSEqLhWZMH" resolve="serialize" />
                           </node>
                           <node concept="2YIFZM" id="2SP6YJBZw8j" role="2Oq$k0">
-                            <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                            <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                             <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
                             <node concept="37vLTw" id="2SP6YJBZw8k" role="37wK5m">
-                              <ref role="3cqZAo" node="2CiAywAbteZ" resolve="treeNode" />
+                              <ref role="3cqZAo" node="2CiAywAbteZ" resolve="instance" />
                             </node>
                           </node>
                         </node>
@@ -3053,7 +3058,7 @@
                     <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
                   </node>
                   <node concept="37vLTw" id="2SP6YJBZztU" role="2ZW6bz">
-                    <ref role="3cqZAo" node="4gibKcMvyNm" resolve="container" />
+                    <ref role="3cqZAo" node="4kSwwtS$wI1" resolve="container" />
                   </node>
                 </node>
               </node>
@@ -3101,18 +3106,18 @@
                       <node concept="liA8E" id="2SP6YJBZwpJ" role="2OqNvi">
                         <ref role="37wK5l" to="mmaq:~Element.setAttribute(java.lang.String,java.lang.String)" resolve="setAttribute" />
                         <node concept="10M0yZ" id="2SP6YJBZwpK" role="37wK5m">
-                          <ref role="1PxDUh" node="1QSEqLhW8CO" resolve="FBNetworkTreeNodeEditorProjection" />
-                          <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="FBNETWORK_PERSISTENCE_KEY" />
+                          <ref role="1PxDUh" node="1QSEqLhW8CO" resolve="NetworkInstanceEditorProjection" />
+                          <ref role="3cqZAo" node="1QSEqLhY9nm" resolve="PERSISTENCE_KEY" />
                         </node>
                         <node concept="2OqwBi" id="2SP6YJBZwpL" role="37wK5m">
                           <node concept="liA8E" id="2SP6YJBZwpM" role="2OqNvi">
                             <ref role="37wK5l" to="rwq3:1QSEqLhWZMH" resolve="serialize" />
                           </node>
                           <node concept="2YIFZM" id="2SP6YJBZwpN" role="2Oq$k0">
-                            <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                            <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                             <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
                             <node concept="37vLTw" id="2SP6YJBZwpO" role="37wK5m">
-                              <ref role="3cqZAo" node="2CiAywAbteZ" resolve="treeNode" />
+                              <ref role="3cqZAo" node="2CiAywAbteZ" resolve="instance" />
                             </node>
                           </node>
                         </node>
@@ -3170,7 +3175,7 @@
               <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="HasNode" />
             </node>
             <node concept="37vLTw" id="4gibKcMvyNq" role="2ZW6bz">
-              <ref role="3cqZAo" node="4gibKcMvyNm" resolve="container" />
+              <ref role="3cqZAo" node="4kSwwtS$wI1" resolve="container" />
             </node>
           </node>
         </node>
@@ -3188,9 +3193,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="2CiAywAbteZ" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2CiAywAbtf0" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSAdbM" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="3Tm1VV" id="2CiAywAbtg6" role="1B3o_S" />
@@ -3222,23 +3227,23 @@
       </node>
     </node>
     <node concept="Wx3nA" id="6YAH_gOc44k" role="jymVt">
-      <property role="TrG5h" value="NETWORK_TREE_NODE" />
+      <property role="TrG5h" value="NETWORK_INSTANCE" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="6YAH_gOc44l" role="1B3o_S" />
       <node concept="3uibUv" id="6YAH_gOc44m" role="1tU5fm">
         <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
-        <node concept="3uibUv" id="6YAH_gOc4ji" role="11_B2D">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <node concept="3uibUv" id="4kSwwtSC7Xt" role="11_B2D">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="2ShNRf" id="6YAH_gOc44o" role="33vP2m">
         <node concept="1pGfFk" id="6YAH_gOc44p" role="2ShVmc">
           <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
           <node concept="Xl_RD" id="6YAH_gOc44q" role="37wK5m">
-            <property role="Xl_RC" value="fb-network-tree-node" />
+            <property role="Xl_RC" value="fb-network-instance" />
           </node>
-          <node concept="3uibUv" id="6YAH_gOc5KP" role="1pMfVU">
-            <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+          <node concept="3uibUv" id="4kSwwtSDVpw" role="1pMfVU">
+            <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
           </node>
         </node>
       </node>
@@ -3294,7 +3299,7 @@
       <node concept="3uibUv" id="3DiEZ8TO1Td" role="1tU5fm">
         <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
         <node concept="3uibUv" id="3DiEZ8TO1VK" role="11_B2D">
-          <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+          <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
         </node>
       </node>
       <node concept="2ShNRf" id="3DiEZ8TNMPa" role="33vP2m">
@@ -3304,7 +3309,7 @@
             <property role="Xl_RC" value="fb-inst" />
           </node>
           <node concept="3uibUv" id="3DiEZ8TNQ_D" role="1pMfVU">
-            <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FBInstance" />
+            <ref role="3uigEE" to="tphl:7qPnRGGlWfX" resolve="FunctionBlockDeclaration" />
           </node>
         </node>
       </node>
@@ -3325,7 +3330,7 @@
         <node concept="3clFbF" id="6YAH_gOc5eX" role="3cqZAp">
           <node concept="2OqwBi" id="6YAH_gOc5r8" role="3clFbG">
             <node concept="37vLTw" id="6YAH_gOc5eV" role="2Oq$k0">
-              <ref role="3cqZAo" node="6YAH_gOc44k" resolve="NETWORK_TREE_NODE" />
+              <ref role="3cqZAo" node="6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
             </node>
             <node concept="liA8E" id="6YAH_gOc5De" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -3370,20 +3375,20 @@
     <property role="TrG5h" value="RichEditorDataKeys" />
     <node concept="2tJIrI" id="3vwudsmYixr" role="jymVt" />
     <node concept="Wx3nA" id="1QSEqLhW3tU" role="jymVt">
-      <property role="TrG5h" value="FBNETWORK_TREENODE" />
+      <property role="TrG5h" value="NETWORK_INSTANCE" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="1QSEqLhW2DL" role="1B3o_S" />
       <node concept="3uibUv" id="1QSEqLhW39M" role="1tU5fm">
         <ref role="3uigEE" to="qkt:~DataKey" resolve="DataKey" />
-        <node concept="3uibUv" id="1QSEqLhW3tP" role="11_B2D">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <node concept="3uibUv" id="4kSwwtSC5HC" role="11_B2D">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="2YIFZM" id="1QSEqLhW4HT" role="33vP2m">
         <ref role="37wK5l" to="qkt:~DataKey.create(java.lang.String)" resolve="create" />
         <ref role="1Pybhc" to="qkt:~DataKey" resolve="DataKey" />
         <node concept="Xl_RD" id="1QSEqLhW4KJ" role="37wK5m">
-          <property role="Xl_RC" value="fbnetwork-treenode" />
+          <property role="Xl_RC" value="fbnetwork-instance" />
         </node>
       </node>
     </node>
@@ -3462,7 +3467,7 @@
     <node concept="2tJIrI" id="3vwudsmYlBD" role="jymVt" />
     <node concept="2tJIrI" id="4dM3MZ7pdwh" role="jymVt" />
     <node concept="2YIFZL" id="4dM3MZ7piYE" role="jymVt">
-      <property role="TrG5h" value="contextFBNetworkTreeNode" />
+      <property role="TrG5h" value="contextNetworkInstance" />
       <node concept="3clFbS" id="4dM3MZ7piYH" role="3clF47">
         <node concept="3cpWs6" id="4dM3MZ7ppVs" role="3cqZAp">
           <node concept="2OqwBi" id="4dM3MZ7pq3t" role="3cqZAk">
@@ -3475,15 +3480,15 @@
             <node concept="liA8E" id="4dM3MZ7pqcu" role="2OqNvi">
               <ref role="37wK5l" to="qkt:~DataContext.getData(com.intellij.openapi.actionSystem.DataKey)" resolve="getData" />
               <node concept="37vLTw" id="4dM3MZ7pqeh" role="37wK5m">
-                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="FBNETWORK_TREENODE" />
+                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="NETWORK_INSTANCE" />
               </node>
             </node>
           </node>
         </node>
       </node>
       <node concept="3Tm1VV" id="4dM3MZ7piUe" role="1B3o_S" />
-      <node concept="3uibUv" id="4dM3MZ7pj2Y" role="3clF45">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="3uibUv" id="4kSwwtSC5Nq" role="3clF45">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="37vLTG" id="4dM3MZ7pj3H" role="3clF46">
         <property role="TrG5h" value="context" />
@@ -3690,7 +3695,7 @@
     </node>
   </node>
   <node concept="312cEu" id="1vJkp1TXRse">
-    <property role="TrG5h" value="FBNetworkTreeNodeNavBarModel" />
+    <property role="TrG5h" value="NetworkInstanceNavBarModel" />
     <node concept="2tJIrI" id="1vJkp1TXSfq" role="jymVt" />
     <node concept="312cEg" id="2CiAywAbUz6" role="jymVt">
       <property role="TrG5h" value="myProject" />
@@ -3782,9 +3787,9 @@
       <node concept="3clFbS" id="1vJkp1TXSsv" role="3clF47">
         <node concept="3cpWs8" id="1vJkp1TXTZX" role="3cqZAp">
           <node concept="3cpWsn" id="1vJkp1TXTZY" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="1vJkp1TXTZZ" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSAhwQ" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
             <node concept="10Nm6u" id="4gibKcMxcf7" role="33vP2m" />
           </node>
@@ -3797,7 +3802,7 @@
                   <node concept="1eOMI4" id="5sOEwwECCAX" role="2Oq$k0">
                     <node concept="10QFUN" id="5sOEwwECCF7" role="1eOMHV">
                       <node concept="3uibUv" id="5sOEwwECCKa" role="10QFUM">
-                        <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                        <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
                       </node>
                       <node concept="37vLTw" id="5sOEwwECCoM" role="10QFUP">
                         <ref role="3cqZAo" node="1vJkp1TXSst" resolve="object" />
@@ -3805,18 +3810,18 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="5sOEwwECD1C" role="2OqNvi">
-                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getTreeNode" />
+                    <ref role="37wK5l" node="2CiAywAciuT" resolve="getInstance" />
                   </node>
                 </node>
                 <node concept="37vLTw" id="5sOEwwECFv5" role="37vLTJ">
-                  <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+                  <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="2ZW3vV" id="5sOEwwECAWk" role="3clFbw">
             <node concept="3uibUv" id="5sOEwwECBcG" role="2ZW6by">
-              <ref role="3uigEE" node="2CiAywA8qPc" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+              <ref role="3uigEE" node="2CiAywA8qPc" resolve="NetworkInstanceNavBarModel.Item" />
             </node>
             <node concept="37vLTw" id="5sOEwwECABx" role="2ZW6bz">
               <ref role="3cqZAo" node="1vJkp1TXSst" resolve="object" />
@@ -3824,8 +3829,8 @@
           </node>
           <node concept="3eNFk2" id="4gibKcMxdG1" role="3eNLev">
             <node concept="2ZW3vV" id="4gibKcMxdG2" role="3eO9$A">
-              <node concept="3uibUv" id="4gibKcMxdG3" role="2ZW6by">
-                <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+              <node concept="3uibUv" id="2bCJJGg_DOf" role="2ZW6by">
+                <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
               </node>
               <node concept="37vLTw" id="4gibKcMxdG4" role="2ZW6bz">
                 <ref role="3cqZAo" node="1vJkp1TXSst" resolve="object" />
@@ -3835,11 +3840,11 @@
               <node concept="3clFbF" id="4gibKcMxdG6" role="3cqZAp">
                 <node concept="37vLTI" id="4gibKcMxdG7" role="3clFbG">
                   <node concept="37vLTw" id="4gibKcMxdG8" role="37vLTJ">
-                    <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+                    <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
                   </node>
                   <node concept="10QFUN" id="4gibKcMxdG9" role="37vLTx">
-                    <node concept="3uibUv" id="4gibKcMxdGa" role="10QFUM">
-                      <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+                    <node concept="3uibUv" id="4kSwwtSAhQK" role="10QFUM">
+                      <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
                     </node>
                     <node concept="37vLTw" id="4gibKcMxdGb" role="10QFUP">
                       <ref role="3cqZAo" node="1vJkp1TXSst" resolve="object" />
@@ -3901,107 +3906,108 @@
             <node concept="10Nm6u" id="2SP6YJBWvaC" role="33vP2m" />
           </node>
         </node>
-        <node concept="3clFbJ" id="4gibKcMwKHJ" role="3cqZAp">
-          <node concept="3clFbS" id="4gibKcMwKHL" role="3clFbx">
-            <node concept="3clFbF" id="4gibKcMxfut" role="3cqZAp">
-              <node concept="37vLTI" id="4gibKcMxfAU" role="3clFbG">
-                <node concept="37vLTw" id="4gibKcMxfur" role="37vLTJ">
+        <node concept="3cpWs8" id="4kSwwtSAj0V" role="3cqZAp">
+          <node concept="3cpWsn" id="4kSwwtSAj0W" role="3cpWs9">
+            <property role="TrG5h" value="container" />
+            <node concept="3uibUv" id="4kSwwtSAj0n" role="1tU5fm">
+              <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+            </node>
+            <node concept="2OqwBi" id="4kSwwtSAj0X" role="33vP2m">
+              <node concept="2OqwBi" id="4kSwwtSAj0Y" role="2Oq$k0">
+                <node concept="37vLTw" id="4kSwwtSAj0Z" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
+                </node>
+                <node concept="liA8E" id="4kSwwtSAj10" role="2OqNvi">
+                  <ref role="37wK5l" to="rk1n:4kSwwtS$t0Y" resolve="getRootInstance" />
+                </node>
+              </node>
+              <node concept="liA8E" id="4kSwwtSAj11" role="2OqNvi">
+                <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4kSwwtS$wIC" role="3cqZAp">
+          <node concept="3clFbS" id="4kSwwtS$wID" role="3clFbx">
+            <node concept="3clFbF" id="4kSwwtS$wIE" role="3cqZAp">
+              <node concept="37vLTI" id="4kSwwtS$wIF" role="3clFbG">
+                <node concept="37vLTw" id="4kSwwtS$wIG" role="37vLTJ">
                   <ref role="3cqZAo" node="4gibKcMxbC3" resolve="system" />
                 </node>
-                <node concept="2OqwBi" id="4gibKcMxfXg" role="37vLTx">
-                  <node concept="0kSF2" id="4gibKcMxfKI" role="2Oq$k0">
-                    <node concept="3uibUv" id="4gibKcMxfOn" role="0kSFW">
+                <node concept="2OqwBi" id="4kSwwtS$wIH" role="37vLTx">
+                  <node concept="0kSF2" id="4kSwwtS$wII" role="2Oq$k0">
+                    <node concept="3uibUv" id="4kSwwtS$wIJ" role="0kSFW">
                       <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
                     </node>
-                    <node concept="2OqwBi" id="4gibKcMxfE1" role="0kSFX">
-                      <node concept="37vLTw" id="4gibKcMxfE2" role="2Oq$k0">
-                        <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
-                      </node>
-                      <node concept="liA8E" id="4gibKcMxfE3" role="2OqNvi">
-                        <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
-                      </node>
+                    <node concept="37vLTw" id="4kSwwtSAj12" role="0kSFX">
+                      <ref role="3cqZAo" node="4kSwwtSAj0W" resolve="container" />
                     </node>
                   </node>
-                  <node concept="liA8E" id="4gibKcMxgdW" role="2OqNvi">
+                  <node concept="liA8E" id="4kSwwtS$wIN" role="2OqNvi">
                     <ref role="37wK5l" to="2xsi:4gibKcMrfxf" resolve="getSytem" />
                   </node>
                 </node>
               </node>
             </node>
           </node>
-          <node concept="2ZW3vV" id="4gibKcMwLUy" role="3clFbw">
-            <node concept="3uibUv" id="4gibKcMwMbj" role="2ZW6by">
+          <node concept="2ZW3vV" id="4kSwwtS$wIO" role="3clFbw">
+            <node concept="3uibUv" id="4kSwwtS$wIP" role="2ZW6by">
               <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
             </node>
-            <node concept="2OqwBi" id="4gibKcMwLuN" role="2ZW6bz">
-              <node concept="37vLTw" id="4gibKcMwLea" role="2Oq$k0">
-                <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
-              </node>
-              <node concept="liA8E" id="4gibKcMwLOp" role="2OqNvi">
-                <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
-              </node>
+            <node concept="37vLTw" id="4kSwwtSAj13" role="2ZW6bz">
+              <ref role="3cqZAo" node="4kSwwtSAj0W" resolve="container" />
             </node>
           </node>
         </node>
-        <node concept="3clFbJ" id="2SP6YJBWuUy" role="3cqZAp">
-          <node concept="3clFbS" id="2SP6YJBWuUz" role="3clFbx">
-            <node concept="3clFbF" id="2SP6YJBWuU$" role="3cqZAp">
-              <node concept="37vLTI" id="2SP6YJBWuU_" role="3clFbG">
-                <node concept="37vLTw" id="2SP6YJBWvLG" role="37vLTJ">
+        <node concept="3clFbJ" id="4kSwwtS$wJt" role="3cqZAp">
+          <node concept="3clFbS" id="4kSwwtS$wJu" role="3clFbx">
+            <node concept="3clFbF" id="4kSwwtS$wJv" role="3cqZAp">
+              <node concept="37vLTI" id="4kSwwtS$wJw" role="3clFbG">
+                <node concept="37vLTw" id="4kSwwtS$wJx" role="37vLTJ">
                   <ref role="3cqZAo" node="2SP6YJBWvaA" resolve="device" />
                 </node>
-                <node concept="0kSF2" id="2SP6YJBWvTu" role="37vLTx">
-                  <node concept="3uibUv" id="2SP6YJBWvTx" role="0kSFW">
+                <node concept="0kSF2" id="4kSwwtS$wJy" role="37vLTx">
+                  <node concept="3uibUv" id="4kSwwtS$wJz" role="0kSFW">
                     <ref role="3uigEE" to="2xsi:2SU8oJdHTR3" resolve="DeviceDeclaration" />
                   </node>
-                  <node concept="2OqwBi" id="2SP6YJBWuUB" role="0kSFX">
-                    <node concept="0kSF2" id="2SP6YJBWuUC" role="2Oq$k0">
-                      <node concept="3uibUv" id="2SP6YJBWvy$" role="0kSFW">
+                  <node concept="2OqwBi" id="4kSwwtS$wJ$" role="0kSFX">
+                    <node concept="0kSF2" id="4kSwwtS$wJ_" role="2Oq$k0">
+                      <node concept="3uibUv" id="4kSwwtS$wJA" role="0kSFW">
                         <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
                       </node>
-                      <node concept="2OqwBi" id="2SP6YJBWuUE" role="0kSFX">
-                        <node concept="37vLTw" id="2SP6YJBWuUF" role="2Oq$k0">
-                          <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
-                        </node>
-                        <node concept="liA8E" id="2SP6YJBWuUG" role="2OqNvi">
-                          <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
-                        </node>
+                      <node concept="37vLTw" id="4kSwwtSAjxO" role="0kSFX">
+                        <ref role="3cqZAo" node="4kSwwtSAj0W" resolve="container" />
                       </node>
                     </node>
-                    <node concept="liA8E" id="2SP6YJBWvKw" role="2OqNvi">
+                    <node concept="liA8E" id="4kSwwtS$wJE" role="2OqNvi">
                       <ref role="37wK5l" to="2xsi:3MncU7wPy7U" resolve="getContainer" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3clFbF" id="2SP6YJBWvYv" role="3cqZAp">
-              <node concept="37vLTI" id="2SP6YJBWw7E" role="3clFbG">
-                <node concept="2OqwBi" id="2SP6YJBWwgV" role="37vLTx">
-                  <node concept="37vLTw" id="2SP6YJBWw89" role="2Oq$k0">
+            <node concept="3clFbF" id="4kSwwtS$wJF" role="3cqZAp">
+              <node concept="37vLTI" id="4kSwwtS$wJG" role="3clFbG">
+                <node concept="2OqwBi" id="4kSwwtS$wJH" role="37vLTx">
+                  <node concept="37vLTw" id="4kSwwtS$wJI" role="2Oq$k0">
                     <ref role="3cqZAo" node="2SP6YJBWvaA" resolve="device" />
                   </node>
-                  <node concept="liA8E" id="2SP6YJBWwwW" role="2OqNvi">
+                  <node concept="liA8E" id="4kSwwtS$wJJ" role="2OqNvi">
                     <ref role="37wK5l" to="2xsi:3MncU7wPdc5" resolve="getSystem" />
                   </node>
                 </node>
-                <node concept="37vLTw" id="2SP6YJBWvYt" role="37vLTJ">
+                <node concept="37vLTw" id="4kSwwtS$wJK" role="37vLTJ">
                   <ref role="3cqZAo" node="4gibKcMxbC3" resolve="system" />
                 </node>
               </node>
             </node>
           </node>
-          <node concept="2ZW3vV" id="2SP6YJBWuUI" role="3clFbw">
-            <node concept="3uibUv" id="2SP6YJBWvy5" role="2ZW6by">
+          <node concept="2ZW3vV" id="4kSwwtS$wJL" role="3clFbw">
+            <node concept="3uibUv" id="4kSwwtS$wJM" role="2ZW6by">
               <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
             </node>
-            <node concept="2OqwBi" id="2SP6YJBWuUK" role="2ZW6bz">
-              <node concept="37vLTw" id="2SP6YJBWuUL" role="2Oq$k0">
-                <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
-              </node>
-              <node concept="liA8E" id="2SP6YJBWuUM" role="2OqNvi">
-                <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
-              </node>
+            <node concept="37vLTw" id="4kSwwtSAjxk" role="2ZW6bz">
+              <ref role="3cqZAo" node="4kSwwtSAj0W" resolve="container" />
             </node>
           </node>
         </node>
@@ -4016,9 +4022,9 @@
                   <ref role="37wK5l" to="33ny:~ArrayList.add(java.lang.Object)" resolve="add" />
                   <node concept="2ShNRf" id="5sOEwwEBD7y" role="37wK5m">
                     <node concept="1pGfFk" id="5sOEwwEC5Eo" role="2ShVmc">
-                      <ref role="37wK5l" node="2CiAywA8u11" resolve="FBNetworkTreeNodeNavBarModel.Item" />
+                      <ref role="37wK5l" node="2CiAywA8u11" resolve="NetworkInstanceNavBarModel.Item" />
                       <node concept="37vLTw" id="5sOEwwEC5N8" role="37wK5m">
-                        <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+                        <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
                       </node>
                       <node concept="37vLTw" id="5sOEwwEC5WF" role="37wK5m">
                         <ref role="3cqZAo" node="2CiAywAbUz6" resolve="myProject" />
@@ -4030,27 +4036,38 @@
             </node>
             <node concept="3clFbF" id="1vJkp1TY3fI" role="3cqZAp">
               <node concept="37vLTI" id="1vJkp1TY3Ir" role="3clFbG">
-                <node concept="2OqwBi" id="1vJkp1TY43S" role="37vLTx">
-                  <node concept="37vLTw" id="1vJkp1TY3TO" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+                <node concept="2EnYce" id="2bCJJGgA6CD" role="37vLTx">
+                  <node concept="0kSF2" id="4kSwwtSAjWf" role="2Oq$k0">
+                    <node concept="3uibUv" id="4kSwwtSAjZj" role="0kSFW">
+                      <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FunctionBlockInstance" />
+                    </node>
+                    <node concept="2OqwBi" id="1vJkp1TY43S" role="0kSFX">
+                      <node concept="37vLTw" id="1vJkp1TY3TO" role="2Oq$k0">
+                        <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
+                      </node>
+                      <node concept="liA8E" id="1vJkp1TY4de" role="2OqNvi">
+                        <ref role="37wK5l" to="rk1n:4kSwwtS$sXF" resolve="getParent" />
+                      </node>
+                    </node>
                   </node>
-                  <node concept="liA8E" id="1vJkp1TY4de" role="2OqNvi">
-                    <ref role="37wK5l" to="rk1n:1QSEqLhV6jL" resolve="getParent" />
+                  <node concept="liA8E" id="4kSwwtSAkeL" role="2OqNvi">
+                    <ref role="37wK5l" to="rk1n:4kSwwtS_Kkh" resolve="getParent" />
                   </node>
                 </node>
                 <node concept="37vLTw" id="1vJkp1TY3fG" role="37vLTJ">
-                  <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+                  <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="3y3z36" id="1vJkp1TXYNw" role="2$JKZa">
             <node concept="10Nm6u" id="1vJkp1TXYWE" role="3uHU7w" />
-            <node concept="37vLTw" id="1vJkp1TXYsS" role="3uHU7B">
-              <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="treeNode" />
+            <node concept="37vLTw" id="2bCJJGgA399" role="3uHU7B">
+              <ref role="3cqZAo" node="1vJkp1TXTZY" resolve="instance" />
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="2bCJJGgA2mC" role="3cqZAp" />
         <node concept="3clFbJ" id="2SP6YJBWwxB" role="3cqZAp">
           <node concept="3clFbS" id="2SP6YJBWwxC" role="3clFbx">
             <node concept="3clFbF" id="2SP6YJBWwxD" role="3cqZAp">
@@ -4062,7 +4079,7 @@
                   <ref role="37wK5l" to="33ny:~ArrayList.add(java.lang.Object)" resolve="add" />
                   <node concept="2ShNRf" id="2SP6YJBWwxH" role="37wK5m">
                     <node concept="1pGfFk" id="2SP6YJBWwxI" role="2ShVmc">
-                      <ref role="37wK5l" node="2SP6YJBWpQA" resolve="FBNetworkTreeNodeNavBarModel.DeviceItem" />
+                      <ref role="37wK5l" node="2SP6YJBWpQA" resolve="NetworkInstanceNavBarModel.DeviceItem" />
                       <node concept="37vLTw" id="2SP6YJBWxKc" role="37wK5m">
                         <ref role="3cqZAo" node="2SP6YJBWvaA" resolve="device" />
                       </node>
@@ -4093,7 +4110,7 @@
                   <ref role="37wK5l" to="33ny:~ArrayList.add(java.lang.Object)" resolve="add" />
                   <node concept="2ShNRf" id="4gibKcMxjvh" role="37wK5m">
                     <node concept="1pGfFk" id="4gibKcMxkRx" role="2ShVmc">
-                      <ref role="37wK5l" node="4gibKcMwOFD" resolve="FBNetworkTreeNodeNavBarModel.SystemItem" />
+                      <ref role="37wK5l" node="4gibKcMwOFD" resolve="NetworkInstanceNavBarModel.SystemItem" />
                       <node concept="37vLTw" id="4gibKcMxl0v" role="37wK5m">
                         <ref role="3cqZAo" node="4gibKcMxbC3" resolve="system" />
                       </node>
@@ -4140,11 +4157,11 @@
     <node concept="312cEu" id="2CiAywA8qPc" role="jymVt">
       <property role="TrG5h" value="Item" />
       <node concept="312cEg" id="2CiAywA8tvK" role="jymVt">
-        <property role="TrG5h" value="myTreeNode" />
+        <property role="TrG5h" value="myInstance" />
         <property role="3TUv4t" value="true" />
         <node concept="3Tm6S6" id="2CiAywAcjEw" role="1B3o_S" />
-        <node concept="3uibUv" id="2CiAywA8tZ7" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <node concept="3uibUv" id="4kSwwtSAaKZ" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="312cEg" id="2CiAywAcjwF" role="jymVt">
@@ -4167,10 +4184,10 @@
           <node concept="3clFbF" id="2CiAywA8u19" role="3cqZAp">
             <node concept="37vLTI" id="2CiAywA8u1b" role="3clFbG">
               <node concept="37vLTw" id="2CiAywA8u1i" role="37vLTx">
-                <ref role="3cqZAo" node="2CiAywA8u18" resolve="treeNode" />
+                <ref role="3cqZAo" node="2CiAywA8u18" resolve="instance" />
               </node>
               <node concept="37vLTw" id="2CiAywA8u$F" role="37vLTJ">
-                <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myTreeNode" />
+                <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myInstance" />
               </node>
             </node>
           </node>
@@ -4186,9 +4203,9 @@
           </node>
         </node>
         <node concept="37vLTG" id="2CiAywA8u18" role="3clF46">
-          <property role="TrG5h" value="treeNode" />
-          <node concept="3uibUv" id="2CiAywA8u17" role="1tU5fm">
-            <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+          <property role="TrG5h" value="instance" />
+          <node concept="3uibUv" id="4kSwwtSAafq" role="1tU5fm">
+            <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
           </node>
           <node concept="2AHcQZ" id="3MncU7wOOaT" role="2AJF6D">
             <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -4228,12 +4245,12 @@
                     <node concept="3clFbF" id="2CiAywAbTeX" role="3cqZAp">
                       <node concept="2YIFZM" id="2CiAywAbWxx" role="3clFbG">
                         <ref role="37wK5l" node="2CiAywAbsXx" resolve="navigate" />
-                        <ref role="1Pybhc" node="2CiAywA9Mz5" resolve="FBNetworkTreeNodeNavigationSupport" />
+                        <ref role="1Pybhc" node="2CiAywA9Mz5" resolve="NetworkInstanceNavigationSupport" />
                         <node concept="37vLTw" id="2CiAywAbWxy" role="37wK5m">
                           <ref role="3cqZAo" node="2CiAywAcjwF" resolve="myProject" />
                         </node>
                         <node concept="37vLTw" id="2CiAywAbWQK" role="37wK5m">
-                          <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myTreeNode" />
+                          <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myInstance" />
                         </node>
                         <node concept="37vLTw" id="2CiAywAbXcr" role="37wK5m">
                           <ref role="3cqZAo" node="2CiAywA8wlS" resolve="requestFocus" />
@@ -4278,12 +4295,12 @@
                     <node concept="3clFbF" id="5sOEwwECOVt" role="3cqZAp">
                       <node concept="2YIFZM" id="2CiAywAbZAl" role="3clFbG">
                         <ref role="37wK5l" node="2CiAywAbYd$" resolve="canNavigate" />
-                        <ref role="1Pybhc" node="2CiAywA9Mz5" resolve="FBNetworkTreeNodeNavigationSupport" />
+                        <ref role="1Pybhc" node="2CiAywA9Mz5" resolve="NetworkInstanceNavigationSupport" />
                         <node concept="37vLTw" id="2CiAywAbZPj" role="37wK5m">
                           <ref role="3cqZAo" node="2CiAywAcjwF" resolve="myProject" />
                         </node>
                         <node concept="37vLTw" id="2CiAywAc0a4" role="37wK5m">
-                          <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myTreeNode" />
+                          <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myInstance" />
                         </node>
                       </node>
                     </node>
@@ -4315,15 +4332,15 @@
       </node>
       <node concept="2tJIrI" id="2CiAywAck5X" role="jymVt" />
       <node concept="3clFb_" id="2CiAywAciuT" role="jymVt">
-        <property role="TrG5h" value="getTreeNode" />
-        <node concept="3uibUv" id="2CiAywAciuU" role="3clF45">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="getInstance" />
+        <node concept="3uibUv" id="4kSwwtSAhZc" role="3clF45">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="3Tm1VV" id="2CiAywAciuV" role="1B3o_S" />
         <node concept="3clFbS" id="2CiAywAciuW" role="3clF47">
           <node concept="3clFbF" id="2CiAywAciuX" role="3cqZAp">
             <node concept="37vLTw" id="2CiAywAckpN" role="3clFbG">
-              <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myTreeNode" />
+              <ref role="3cqZAo" node="2CiAywA8tvK" resolve="myInstance" />
             </node>
           </node>
         </node>
@@ -4522,11 +4539,11 @@
                 <node concept="3cpWsn" id="4gibKcMwZ9v" role="3cpWs9">
                   <property role="TrG5h" value="targetNode" />
                   <node concept="3Tqbb2" id="4gibKcMwZ9w" role="1tU5fm">
-                    <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+                    <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
                   </node>
                   <node concept="1PxgMI" id="4gibKcMx22j" role="33vP2m">
                     <node concept="chp4Y" id="4gibKcMx2Dg" role="3oSUPX">
-                      <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+                      <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
                     </node>
                     <node concept="2OqwBi" id="4gibKcMwZ9x" role="1m5AlR">
                       <node concept="1eOMI4" id="4gibKcMwZ9y" role="2Oq$k0">
@@ -5490,7 +5507,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2SU8oJdFFJn" role="1B3o_S" />
       <node concept="3Tqbb2" id="2SU8oJdFFJo" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
       </node>
     </node>
     <node concept="312cEg" id="2SU8oJdFFJp" role="jymVt">
@@ -5530,7 +5547,7 @@
       <node concept="37vLTG" id="2SU8oJdFFJD" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="2SU8oJdFFJE" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="2SU8oJdFFJF" role="3clF46">
@@ -5585,7 +5602,7 @@
           <node concept="3cpWsn" id="2SU8oJdFFK0" role="3cpWs9">
             <property role="TrG5h" value="appNode" />
             <node concept="3Tqbb2" id="2SU8oJdFFK1" role="1tU5fm">
-              <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+              <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
             </node>
             <node concept="10Nm6u" id="2SU8oJdFFK2" role="33vP2m" />
           </node>
@@ -5696,24 +5713,15 @@
         </node>
         <node concept="3cpWs8" id="4gibKcMssOg" role="3cqZAp">
           <node concept="3cpWsn" id="4gibKcMssOh" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="4gibKcMssIm" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhVkcc" resolve="RootFBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSCH_Y" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
-            <node concept="2ShNRf" id="4gibKcMssOi" role="33vP2m">
-              <node concept="1pGfFk" id="4gibKcMssOj" role="2ShVmc">
-                <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                <node concept="2OqwBi" id="4gibKcMssOk" role="37wK5m">
-                  <node concept="37vLTw" id="4gibKcMssOl" role="2Oq$k0">
-                    <ref role="3cqZAo" node="4gibKcMsrDr" resolve="app" />
-                  </node>
-                  <node concept="liA8E" id="4gibKcMssOm" role="2OqNvi">
-                    <ref role="37wK5l" to="go3h:4gibKcMrdRG" resolve="getNetwork" />
-                  </node>
-                </node>
-                <node concept="37vLTw" id="4gibKcMssOn" role="37wK5m">
-                  <ref role="3cqZAo" node="4gibKcMsrDr" resolve="app" />
-                </node>
+            <node concept="2YIFZM" id="4kSwwtSCFUM" role="33vP2m">
+              <ref role="37wK5l" to="rk1n:4kSwwtS_nOs" resolve="createForApplication" />
+              <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+              <node concept="37vLTw" id="4kSwwtSCGDw" role="37wK5m">
+                <ref role="3cqZAo" node="4gibKcMsrDr" resolve="app" />
               </node>
             </node>
           </node>
@@ -5725,7 +5733,7 @@
               <ref role="3cqZAo" node="2SU8oJdFFJU" resolve="name" />
             </node>
             <node concept="37vLTw" id="4gibKcMsDMQ" role="37wK5m">
-              <ref role="3cqZAo" node="4gibKcMssOh" resolve="treeNode" />
+              <ref role="3cqZAo" node="4gibKcMssOh" resolve="instance" />
             </node>
           </node>
         </node>
@@ -5783,9 +5791,9 @@
         </node>
         <node concept="3cpWs8" id="4gibKcMsAMi" role="3cqZAp">
           <node concept="3cpWsn" id="4gibKcMsAMj" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="4gibKcMsAMk" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSCzSZ" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
             <node concept="3K4zz7" id="4gibKcMsAMl" role="33vP2m">
               <node concept="3y3z36" id="4gibKcMsAMm" role="3K4Cdx">
@@ -5797,7 +5805,7 @@
               <node concept="2OqwBi" id="4gibKcMsAMp" role="3K4E3e">
                 <node concept="2YIFZM" id="4gibKcMsAMq" role="2Oq$k0">
                   <ref role="37wK5l" to="rwq3:1QSEqLhZdF9" resolve="deserialize" />
-                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                   <node concept="37vLTw" id="4gibKcMsAMr" role="37wK5m">
                     <ref role="3cqZAo" node="4gibKcMsAMa" resolve="ref" />
                   </node>
@@ -5832,14 +5840,14 @@
                   <ref role="3cqZAo" node="4gibKcMsvz4" resolve="name" />
                 </node>
                 <node concept="37vLTw" id="4gibKcMsCSK" role="37wK5m">
-                  <ref role="3cqZAo" node="4gibKcMsAMj" resolve="treeNode" />
+                  <ref role="3cqZAo" node="4gibKcMsAMj" resolve="instance" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="3y3z36" id="4gibKcMsCz_" role="3clFbw">
             <node concept="37vLTw" id="4gibKcMsAML" role="3uHU7B">
-              <ref role="3cqZAo" node="4gibKcMsAMj" resolve="treeNode" />
+              <ref role="3cqZAo" node="4gibKcMsAMj" resolve="instance" />
             </node>
             <node concept="10Nm6u" id="4gibKcMsAMK" role="3uHU7w" />
           </node>
@@ -5875,9 +5883,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="4gibKcMsCR1" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="4gibKcMsCR2" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSCAhi" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="3clFbS" id="4gibKcMsCQM" role="3clF47">
@@ -5901,7 +5909,7 @@
                 </node>
               </node>
               <node concept="37vLTw" id="4gibKcMsCSD" role="37wK5m">
-                <ref role="3cqZAo" node="4gibKcMsCR1" resolve="treeNode" />
+                <ref role="3cqZAo" node="4gibKcMsCR1" resolve="instance" />
               </node>
               <node concept="37vLTw" id="4gibKcMsCQY" role="37wK5m">
                 <ref role="3cqZAo" node="2SU8oJdFFJp" resolve="myProject" />
@@ -6112,12 +6120,12 @@
                                   <node concept="3cpWsn" id="2SU8oJdFFMi" role="3cpWs9">
                                     <property role="TrG5h" value="application" />
                                     <node concept="3Tqbb2" id="2SU8oJdFFMj" role="1tU5fm">
-                                      <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+                                      <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
                                     </node>
                                     <node concept="2ShNRf" id="2SU8oJdFFMk" role="33vP2m">
                                       <node concept="3zrR0B" id="2SU8oJdFFMl" role="2ShVmc">
                                         <node concept="3Tqbb2" id="2SU8oJdFFMm" role="3zrR0E">
-                                          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+                                          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
                                         </node>
                                       </node>
                                     </node>
@@ -6198,11 +6206,11 @@
     <property role="TrG5h" value="RichApplicationProjection" />
     <node concept="2tJIrI" id="2SU8oJdFQLp" role="jymVt" />
     <node concept="312cEg" id="2SU8oJdHpg6" role="jymVt">
-      <property role="TrG5h" value="myTreeNode" />
+      <property role="TrG5h" value="myInstance" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2SU8oJdHoUL" role="1B3o_S" />
-      <node concept="3uibUv" id="2SU8oJdHpeM" role="1tU5fm">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="3uibUv" id="4kSwwtSCsTj" role="1tU5fm">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
     </node>
     <node concept="312cEg" id="2SU8oJdHrM_" role="jymVt">
@@ -6220,7 +6228,7 @@
       <node concept="3Tm1VV" id="4gibKcMrPZp" role="1B3o_S" />
       <node concept="17QB3L" id="4gibKcMrPZq" role="1tU5fm" />
       <node concept="Xl_RD" id="4gibKcMrPZr" role="33vP2m">
-        <property role="Xl_RC" value="fbtreenoderef" />
+        <property role="Xl_RC" value="instance-ref" />
       </node>
     </node>
     <node concept="2tJIrI" id="2SU8oJdFQLt" role="jymVt" />
@@ -6250,10 +6258,10 @@
         <node concept="3clFbF" id="2SU8oJdHq4n" role="3cqZAp">
           <node concept="37vLTI" id="2SU8oJdHqi_" role="3clFbG">
             <node concept="37vLTw" id="2SU8oJdHqyX" role="37vLTx">
-              <ref role="3cqZAo" node="2SU8oJdHpCm" resolve="treeNode" />
+              <ref role="3cqZAo" node="2SU8oJdHpCm" resolve="instance" />
             </node>
             <node concept="37vLTw" id="2SU8oJdHq4l" role="37vLTJ">
-              <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+              <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
             </node>
           </node>
         </node>
@@ -6293,9 +6301,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="2SU8oJdHpCm" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2SU8oJdHpMs" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSCtdz" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="37vLTG" id="2SU8oJdHuoA" role="3clF46">
@@ -6307,15 +6315,15 @@
     </node>
     <node concept="2tJIrI" id="2SU8oJdHqLd" role="jymVt" />
     <node concept="3clFb_" id="2SU8oJdHqLf" role="jymVt">
-      <property role="TrG5h" value="getTreeNode" />
-      <node concept="3uibUv" id="2SU8oJdHqLg" role="3clF45">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <property role="TrG5h" value="getInstance" />
+      <node concept="3uibUv" id="4kSwwtSCtoh" role="3clF45">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="3Tm1VV" id="2SU8oJdHqLh" role="1B3o_S" />
       <node concept="3clFbS" id="2SU8oJdHqLi" role="3clF47">
         <node concept="3clFbF" id="2SU8oJdHqLj" role="3cqZAp">
           <node concept="37vLTw" id="2SU8oJdHqLk" role="3clFbG">
-            <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+            <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
           </node>
         </node>
       </node>
@@ -6338,12 +6346,12 @@
           <node concept="2OqwBi" id="2SU8oJdHqLt" role="3clFbG">
             <node concept="2ShNRf" id="2SU8oJdHqLu" role="2Oq$k0">
               <node concept="1pGfFk" id="2SU8oJdHqLv" role="2ShVmc">
-                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="FBNetworkTreeNodeHeaderComponentProvider" />
+                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="NetworkInstanceHeaderComponentProvider" />
                 <node concept="37vLTw" id="2SU8oJdHqLw" role="37wK5m">
                   <ref role="3cqZAo" to="de0p:1QSEqLhAhx5" resolve="myNode" />
                 </node>
                 <node concept="37vLTw" id="2SU8oJdHqLx" role="37wK5m">
-                  <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+                  <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
                 </node>
                 <node concept="37vLTw" id="2SU8oJdHvf0" role="37wK5m">
                   <ref role="3cqZAo" node="2SU8oJdHrM_" resolve="myProject" />
@@ -6385,13 +6393,18 @@
       <node concept="3clFbS" id="2SU8oJdFQM2" role="3clF47">
         <node concept="3clFbJ" id="2SU8oJdFQM3" role="3cqZAp">
           <node concept="3clFbS" id="2SU8oJdFQM4" role="3clFbx">
-            <node concept="3cpWs6" id="2SU8oJdFQM5" role="3cqZAp">
-              <node concept="2OqwBi" id="4gibKcMrSk1" role="3cqZAk">
-                <node concept="37vLTw" id="4gibKcMrRWA" role="2Oq$k0">
-                  <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+            <node concept="3cpWs6" id="4kSwwtS$wK2" role="3cqZAp">
+              <node concept="2OqwBi" id="4kSwwtS$wK3" role="3cqZAk">
+                <node concept="2OqwBi" id="4kSwwtSCtU0" role="2Oq$k0">
+                  <node concept="37vLTw" id="4kSwwtSCumN" role="2Oq$k0">
+                    <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
+                  </node>
+                  <node concept="liA8E" id="4kSwwtSCtU3" role="2OqNvi">
+                    <ref role="37wK5l" to="rk1n:4kSwwtS$t0Y" resolve="getRootInstance" />
+                  </node>
                 </node>
-                <node concept="liA8E" id="4gibKcMrSBZ" role="2OqNvi">
-                  <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
+                <node concept="liA8E" id="4kSwwtSCuDY" role="2OqNvi">
+                  <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
                 </node>
               </node>
             </node>
@@ -6415,14 +6428,14 @@
           <node concept="3clFbS" id="2SU8oJdHoC0" role="3clFbx">
             <node concept="3cpWs6" id="2SU8oJdHoC1" role="3cqZAp">
               <node concept="37vLTw" id="2SU8oJdHvwV" role="3cqZAk">
-                <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+                <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
               </node>
             </node>
           </node>
           <node concept="17R0WA" id="2SU8oJdHoC3" role="3clFbw">
             <node concept="2OqwBi" id="2SU8oJdHpp4" role="3uHU7B">
               <node concept="10M0yZ" id="2SU8oJdHpp5" role="2Oq$k0">
-                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="FBNETWORK_TREENODE" />
+                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="NETWORK_INSTANCE" />
                 <ref role="1PxDUh" node="3vwudsmYiwt" resolve="RichEditorDataKeys" />
               </node>
               <node concept="liA8E" id="2SU8oJdHpp6" role="2OqNvi">
@@ -6470,9 +6483,9 @@
               <node concept="2OqwBi" id="4gibKcMrP5j" role="37wK5m">
                 <node concept="2YIFZM" id="4gibKcMrP5k" role="2Oq$k0">
                   <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
-                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                   <node concept="37vLTw" id="4gibKcMrP5l" role="37wK5m">
-                    <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myTreeNode" />
+                    <ref role="3cqZAo" node="2SU8oJdHpg6" resolve="myInstance" />
                   </node>
                 </node>
                 <node concept="liA8E" id="4gibKcMrP5m" role="2OqNvi">
@@ -6493,7 +6506,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2SP6YJBU5la" role="1B3o_S" />
       <node concept="3Tqbb2" id="2SP6YJBU5lb" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
       </node>
     </node>
     <node concept="312cEg" id="2SP6YJBU5lc" role="jymVt">
@@ -6533,7 +6546,7 @@
       <node concept="37vLTG" id="2SP6YJBU5ls" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="2SP6YJBU5lt" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="2SP6YJBU5lu" role="3clF46">
@@ -6635,7 +6648,7 @@
           <node concept="3cpWsn" id="2SP6YJBU5lN" role="3cpWs9">
             <property role="TrG5h" value="resourceNode" />
             <node concept="3Tqbb2" id="2SP6YJBU5lO" role="1tU5fm">
-              <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+              <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
             </node>
             <node concept="10Nm6u" id="2SP6YJBU5lP" role="33vP2m" />
           </node>
@@ -6805,24 +6818,15 @@
         </node>
         <node concept="3cpWs8" id="2SP6YJBU5mz" role="3cqZAp">
           <node concept="3cpWsn" id="2SP6YJBU5m$" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="2SP6YJBU5m_" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhVkcc" resolve="RootFBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSCYjt" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
-            <node concept="2ShNRf" id="2SP6YJBU5mA" role="33vP2m">
-              <node concept="1pGfFk" id="2SP6YJBU5mB" role="2ShVmc">
-                <ref role="37wK5l" to="rk1n:1QSEqLhVISw" resolve="RootFBNetworkTreeNode" />
-                <node concept="2OqwBi" id="2SP6YJBU5mC" role="37wK5m">
-                  <node concept="37vLTw" id="2SP6YJBU5mD" role="2Oq$k0">
-                    <ref role="3cqZAo" node="2SP6YJBU5mu" resolve="resource" />
-                  </node>
-                  <node concept="liA8E" id="2SP6YJBU5mE" role="2OqNvi">
-                    <ref role="37wK5l" to="go3h:3MncU7wPm1m" resolve="getNetwork" />
-                  </node>
-                </node>
-                <node concept="37vLTw" id="2SP6YJBU5mF" role="37wK5m">
-                  <ref role="3cqZAo" node="2SP6YJBU5mu" resolve="resource" />
-                </node>
+            <node concept="2YIFZM" id="4kSwwtSCWKI" role="33vP2m">
+              <ref role="37wK5l" to="rk1n:4kSwwtS_o6x" resolve="createForResource" />
+              <ref role="1Pybhc" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
+              <node concept="37vLTw" id="4kSwwtSCXqZ" role="37wK5m">
+                <ref role="3cqZAo" node="2SP6YJBU5mu" resolve="resource" />
               </node>
             </node>
           </node>
@@ -6834,7 +6838,7 @@
               <ref role="3cqZAo" node="2SP6YJBU5lH" resolve="name" />
             </node>
             <node concept="37vLTw" id="2SP6YJBU5mJ" role="37wK5m">
-              <ref role="3cqZAo" node="2SP6YJBU5m$" resolve="treeNode" />
+              <ref role="3cqZAo" node="2SP6YJBU5m$" resolve="instance" />
             </node>
           </node>
         </node>
@@ -6843,7 +6847,6 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
-    <node concept="2tJIrI" id="2SP6YJBU5mL" role="jymVt" />
     <node concept="2tJIrI" id="2SP6YJBU5mM" role="jymVt" />
     <node concept="3clFb_" id="2SP6YJBU5mN" role="jymVt">
       <property role="TrG5h" value="restoreProjection" />
@@ -6892,9 +6895,9 @@
         </node>
         <node concept="3cpWs8" id="2SP6YJBU5n4" role="3cqZAp">
           <node concept="3cpWsn" id="2SP6YJBU5n5" role="3cpWs9">
-            <property role="TrG5h" value="treeNode" />
-            <node concept="3uibUv" id="2SP6YJBU5n6" role="1tU5fm">
-              <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+            <property role="TrG5h" value="instance" />
+            <node concept="3uibUv" id="4kSwwtSCSlr" role="1tU5fm">
+              <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
             </node>
             <node concept="3K4zz7" id="2SP6YJBU5n7" role="33vP2m">
               <node concept="3y3z36" id="2SP6YJBU5n8" role="3K4Cdx">
@@ -6906,7 +6909,7 @@
               <node concept="2OqwBi" id="2SP6YJBU5nb" role="3K4E3e">
                 <node concept="2YIFZM" id="2SP6YJBU5nc" role="2Oq$k0">
                   <ref role="37wK5l" to="rwq3:1QSEqLhZdF9" resolve="deserialize" />
-                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                   <node concept="37vLTw" id="2SP6YJBU5nd" role="37wK5m">
                     <ref role="3cqZAo" node="2SP6YJBU5mY" resolve="ref" />
                   </node>
@@ -6941,14 +6944,14 @@
                   <ref role="3cqZAo" node="2SP6YJBU5mQ" resolve="name" />
                 </node>
                 <node concept="37vLTw" id="2SP6YJBU5nr" role="37wK5m">
-                  <ref role="3cqZAo" node="2SP6YJBU5n5" resolve="treeNode" />
+                  <ref role="3cqZAo" node="2SP6YJBU5n5" resolve="instance" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="3y3z36" id="2SP6YJBU5ns" role="3clFbw">
             <node concept="37vLTw" id="2SP6YJBU5nt" role="3uHU7B">
-              <ref role="3cqZAo" node="2SP6YJBU5n5" resolve="treeNode" />
+              <ref role="3cqZAo" node="2SP6YJBU5n5" resolve="instance" />
             </node>
             <node concept="10Nm6u" id="2SP6YJBU5nu" role="3uHU7w" />
           </node>
@@ -6984,9 +6987,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="2SP6YJBU5nF" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2SP6YJBU5nG" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSCTIu" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="3clFbS" id="2SP6YJBU5nH" role="3clF47">
@@ -7010,7 +7013,7 @@
                 </node>
               </node>
               <node concept="37vLTw" id="2SP6YJBU5nS" role="37wK5m">
-                <ref role="3cqZAo" node="2SP6YJBU5nF" resolve="treeNode" />
+                <ref role="3cqZAo" node="2SP6YJBU5nF" resolve="instance" />
               </node>
               <node concept="37vLTw" id="2SP6YJBU5nT" role="37wK5m">
                 <ref role="3cqZAo" node="2SP6YJBU5lc" resolve="myProject" />
@@ -7091,7 +7094,7 @@
                                           <node concept="2OqwBi" id="2SP6YJBVFxh" role="3uHU7B">
                                             <node concept="1PxgMI" id="2SP6YJBVEUY" role="2Oq$k0">
                                               <node concept="chp4Y" id="2SP6YJBVF9z" role="3oSUPX">
-                                                <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+                                                <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
                                               </node>
                                               <node concept="2OqwBi" id="2SP6YJBVDGb" role="1m5AlR">
                                                 <node concept="37vLTw" id="2SP6YJBVDdM" role="2Oq$k0">
@@ -7169,11 +7172,11 @@
     <property role="TrG5h" value="RichResourceProjection" />
     <node concept="2tJIrI" id="2SP6YJBVLKh" role="jymVt" />
     <node concept="312cEg" id="2SP6YJBVLKi" role="jymVt">
-      <property role="TrG5h" value="myTreeNode" />
+      <property role="TrG5h" value="myInstance" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2SP6YJBVLKj" role="1B3o_S" />
-      <node concept="3uibUv" id="2SP6YJBVLKk" role="1tU5fm">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <node concept="3uibUv" id="4kSwwtSCLSV" role="1tU5fm">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
     </node>
     <node concept="312cEg" id="2SP6YJBVLKl" role="jymVt">
@@ -7191,7 +7194,7 @@
       <node concept="3Tm1VV" id="2SP6YJBVLKq" role="1B3o_S" />
       <node concept="17QB3L" id="2SP6YJBVLKr" role="1tU5fm" />
       <node concept="Xl_RD" id="2SP6YJBVLKs" role="33vP2m">
-        <property role="Xl_RC" value="fbtreenoderef" />
+        <property role="Xl_RC" value="instance-ref" />
       </node>
     </node>
     <node concept="2tJIrI" id="2SP6YJBVLKt" role="jymVt" />
@@ -7221,10 +7224,10 @@
         <node concept="3clFbF" id="2SP6YJBVLKD" role="3cqZAp">
           <node concept="37vLTI" id="2SP6YJBVLKE" role="3clFbG">
             <node concept="37vLTw" id="2SP6YJBVLKF" role="37vLTx">
-              <ref role="3cqZAo" node="2SP6YJBVLKU" resolve="treeNode" />
+              <ref role="3cqZAo" node="2SP6YJBVLKU" resolve="instance" />
             </node>
             <node concept="37vLTw" id="2SP6YJBVLKG" role="37vLTJ">
-              <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+              <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
             </node>
           </node>
         </node>
@@ -7264,9 +7267,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="2SP6YJBVLKU" role="3clF46">
-        <property role="TrG5h" value="treeNode" />
-        <node concept="3uibUv" id="2SP6YJBVLKV" role="1tU5fm">
-          <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+        <property role="TrG5h" value="instance" />
+        <node concept="3uibUv" id="4kSwwtSCNkP" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
       </node>
       <node concept="37vLTG" id="2SP6YJBVLKW" role="3clF46">
@@ -7278,15 +7281,15 @@
     </node>
     <node concept="2tJIrI" id="2SP6YJBVLKY" role="jymVt" />
     <node concept="3clFb_" id="2SP6YJBVLKZ" role="jymVt">
-      <property role="TrG5h" value="getTreeNode" />
-      <node concept="3uibUv" id="2SP6YJBVLL0" role="3clF45">
-        <ref role="3uigEE" to="rk1n:1QSEqLhV6fd" resolve="FBNetworkTreeNode" />
+      <property role="TrG5h" value="getInstance" />
+      <node concept="3uibUv" id="4kSwwtSCNsZ" role="3clF45">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="3Tm1VV" id="2SP6YJBVLL1" role="1B3o_S" />
       <node concept="3clFbS" id="2SP6YJBVLL2" role="3clF47">
         <node concept="3clFbF" id="2SP6YJBVLL3" role="3cqZAp">
           <node concept="37vLTw" id="2SP6YJBVLL4" role="3clFbG">
-            <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+            <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
           </node>
         </node>
       </node>
@@ -7309,12 +7312,12 @@
           <node concept="2OqwBi" id="2SP6YJBVLLd" role="3clFbG">
             <node concept="2ShNRf" id="2SP6YJBVLLe" role="2Oq$k0">
               <node concept="1pGfFk" id="2SP6YJBVLLf" role="2ShVmc">
-                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="FBNetworkTreeNodeHeaderComponentProvider" />
+                <ref role="37wK5l" node="1QSEqLh$ahC" resolve="NetworkInstanceHeaderComponentProvider" />
                 <node concept="37vLTw" id="2SP6YJBVLLg" role="37wK5m">
                   <ref role="3cqZAo" to="de0p:1QSEqLhAhx5" resolve="myNode" />
                 </node>
                 <node concept="37vLTw" id="2SP6YJBVLLh" role="37wK5m">
-                  <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+                  <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
                 </node>
                 <node concept="37vLTw" id="2SP6YJBVLLi" role="37wK5m">
                   <ref role="3cqZAo" node="2SP6YJBVLKl" resolve="myProject" />
@@ -7356,13 +7359,18 @@
       <node concept="3clFbS" id="2SP6YJBVLLu" role="3clF47">
         <node concept="3clFbJ" id="2SP6YJBVLLv" role="3cqZAp">
           <node concept="3clFbS" id="2SP6YJBVLLw" role="3clFbx">
-            <node concept="3cpWs6" id="2SP6YJBVLLx" role="3cqZAp">
-              <node concept="2OqwBi" id="2SP6YJBVLLy" role="3cqZAk">
-                <node concept="37vLTw" id="2SP6YJBVLLz" role="2Oq$k0">
-                  <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+            <node concept="3cpWs6" id="4kSwwtS$wKi" role="3cqZAp">
+              <node concept="2OqwBi" id="4kSwwtS$wKj" role="3cqZAk">
+                <node concept="2OqwBi" id="4kSwwtSCOKO" role="2Oq$k0">
+                  <node concept="37vLTw" id="4kSwwtSCPcx" role="2Oq$k0">
+                    <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
+                  </node>
+                  <node concept="liA8E" id="4kSwwtSCOKR" role="2OqNvi">
+                    <ref role="37wK5l" to="rk1n:4kSwwtS$t0Y" resolve="getRootInstance" />
+                  </node>
                 </node>
-                <node concept="liA8E" id="2SP6YJBVLL$" role="2OqNvi">
-                  <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
+                <node concept="liA8E" id="4kSwwtSCP_j" role="2OqNvi">
+                  <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
                 </node>
               </node>
             </node>
@@ -7384,22 +7392,27 @@
         </node>
         <node concept="3clFbJ" id="2SP6YJBX58Q" role="3cqZAp">
           <node concept="3clFbS" id="2SP6YJBX58R" role="3clFbx">
-            <node concept="3cpWs6" id="2SP6YJBX58S" role="3cqZAp">
-              <node concept="2OqwBi" id="2SP6YJBX5xz" role="3cqZAk">
-                <node concept="0kSF2" id="2SP6YJBX64D" role="2Oq$k0">
-                  <node concept="3uibUv" id="2SP6YJBX6lR" role="0kSFW">
+            <node concept="3cpWs6" id="4kSwwtS$wKy" role="3cqZAp">
+              <node concept="2OqwBi" id="4kSwwtS$wKz" role="3cqZAk">
+                <node concept="0kSF2" id="4kSwwtS$wK$" role="2Oq$k0">
+                  <node concept="3uibUv" id="4kSwwtS$wK_" role="0kSFW">
                     <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
                   </node>
-                  <node concept="2OqwBi" id="2SP6YJBX58T" role="0kSFX">
-                    <node concept="37vLTw" id="2SP6YJBX58U" role="2Oq$k0">
-                      <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+                  <node concept="2OqwBi" id="4kSwwtS$wKA" role="0kSFX">
+                    <node concept="2OqwBi" id="4kSwwtSCPUl" role="2Oq$k0">
+                      <node concept="37vLTw" id="4kSwwtSCQ9H" role="2Oq$k0">
+                        <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
+                      </node>
+                      <node concept="liA8E" id="4kSwwtSCPUo" role="2OqNvi">
+                        <ref role="37wK5l" to="rk1n:4kSwwtS$t0Y" resolve="getRootInstance" />
+                      </node>
                     </node>
-                    <node concept="liA8E" id="2SP6YJBX58V" role="2OqNvi">
-                      <ref role="37wK5l" to="rk1n:1QSEqLhV6tR" resolve="getContainer" />
+                    <node concept="liA8E" id="4kSwwtSCQn0" role="2OqNvi">
+                      <ref role="37wK5l" to="rk1n:4kSwwtS$sVt" resolve="getDeclaration" />
                     </node>
                   </node>
                 </node>
-                <node concept="liA8E" id="2SP6YJBX6OU" role="2OqNvi">
+                <node concept="liA8E" id="4kSwwtS$wKD" role="2OqNvi">
                   <ref role="37wK5l" to="2xsi:3MncU7wPy7U" resolve="getContainer" />
                 </node>
               </node>
@@ -7424,7 +7437,7 @@
           <node concept="3clFbS" id="2SP6YJBVLLF" role="3clFbx">
             <node concept="3cpWs6" id="2SP6YJBVLLG" role="3cqZAp">
               <node concept="37vLTw" id="2SP6YJBVLLH" role="3cqZAk">
-                <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+                <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
               </node>
             </node>
           </node>
@@ -7432,7 +7445,7 @@
             <node concept="2OqwBi" id="2SP6YJBVLLJ" role="3uHU7B">
               <node concept="10M0yZ" id="2SP6YJBVLLK" role="2Oq$k0">
                 <ref role="1PxDUh" node="3vwudsmYiwt" resolve="RichEditorDataKeys" />
-                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="FBNETWORK_TREENODE" />
+                <ref role="3cqZAo" node="1QSEqLhW3tU" resolve="NETWORK_INSTANCE" />
               </node>
               <node concept="liA8E" id="2SP6YJBVLLL" role="2OqNvi">
                 <ref role="37wK5l" to="qkt:~DataKey.getName()" resolve="getName" />
@@ -7478,10 +7491,10 @@
               </node>
               <node concept="2OqwBi" id="2SP6YJBVLM3" role="37wK5m">
                 <node concept="2YIFZM" id="2SP6YJBVLM4" role="2Oq$k0">
-                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSFBNetworkTreeNodeReference" />
+                  <ref role="1Pybhc" to="rwq3:1QSEqLhWl9W" resolve="MPSNetworkInstanceReference" />
                   <ref role="37wK5l" to="rwq3:1QSEqLhXrjF" resolve="create" />
                   <node concept="37vLTw" id="2SP6YJBVLM5" role="37wK5m">
-                    <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myTreeNode" />
+                    <ref role="3cqZAo" node="2SP6YJBVLKi" resolve="myInstance" />
                   </node>
                 </node>
                 <node concept="liA8E" id="2SP6YJBVLM6" role="2OqNvi">
