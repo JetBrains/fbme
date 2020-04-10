@@ -1163,7 +1163,7 @@
     <node concept="1N5Pfh" id="2lwHqHkyF8M" role="1Mr941">
       <ref role="1N5Vy1" to="xiqq:2lwHqHkyF7b" resolve="decl" />
       <node concept="1dDu$B" id="2lwHqHkyF8Q" role="1N6uqs">
-        <ref role="1dDu$A" to="gpgy:7GyesCpa3Ox" resolve="VariableDeclaration" />
+        <ref role="1dDu$A" to="xiqq:3HBlKeoYsiC" resolve="ParameterDeclaration" />
       </node>
     </node>
   </node>
