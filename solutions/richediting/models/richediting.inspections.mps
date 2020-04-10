@@ -19,6 +19,7 @@
     <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(scenes.controllers)" />
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
+    <import index="rk1n" ref="r:296ba507-c250-4c4f-87ec-b3402bd9d933(common.iec61499.model.instances)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -171,7 +172,6 @@
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
       <concept id="1178893518978" name="jetbrains.mps.baseLanguage.structure.ThisConstructorInvocation" flags="nn" index="1VxSAg" />
-      <concept id="1080120340718" name="jetbrains.mps.baseLanguage.structure.AndExpression" flags="nn" index="1Wc70l" />
       <concept id="1170345865475" name="jetbrains.mps.baseLanguage.structure.AnonymousClass" flags="ig" index="1Y3b0j">
         <reference id="1170346070688" name="classifier" index="1Y3XeK" />
         <child id="1201186121363" name="typeParameter" index="2Ghqu4" />
@@ -236,11 +236,11 @@
     </node>
     <node concept="2tJIrI" id="1R4IoyQOhOa" role="jymVt" />
     <node concept="312cEg" id="1R4IoyQOjqU" role="jymVt">
-      <property role="TrG5h" value="myNetwork" />
+      <property role="TrG5h" value="myInstance" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1R4IoyQOjm1" role="1B3o_S" />
-      <node concept="3uibUv" id="1R4IoyQOjqM" role="1tU5fm">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+      <node concept="3uibUv" id="19RKY2xCjQ5" role="1tU5fm">
+        <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
       </node>
       <node concept="2AHcQZ" id="1R4IoyQO$RN" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -387,10 +387,10 @@
         <node concept="3clFbF" id="1R4IoyQO$q4" role="3cqZAp">
           <node concept="37vLTI" id="1R4IoyQO$q6" role="3clFbG">
             <node concept="37vLTw" id="1R4IoyQO$IJ" role="37vLTJ">
-              <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myNetwork" />
+              <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myInstance" />
             </node>
             <node concept="37vLTw" id="1R4IoyQO$qd" role="37vLTx">
-              <ref role="3cqZAo" node="1R4IoyQO$q3" resolve="network" />
+              <ref role="3cqZAo" node="1R4IoyQO$q3" resolve="networkInstance" />
             </node>
           </node>
         </node>
@@ -575,9 +575,9 @@
         </node>
       </node>
       <node concept="37vLTG" id="1R4IoyQO$q3" role="3clF46">
-        <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyQO$q2" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <property role="TrG5h" value="networkInstance" />
+        <node concept="3uibUv" id="19RKY2xCjLx" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyQO$Po" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1602,7 +1602,7 @@
               <node concept="liA8E" id="1R4IoyRtyLv" role="2OqNvi">
                 <ref role="37wK5l" node="1R4IoyRpB6a" resolve="registerNetwork" />
                 <node concept="37vLTw" id="1R4IoyRtyVg" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myNetwork" />
+                  <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myInstance" />
                 </node>
                 <node concept="Xjq3P" id="1R4IoyRt$Rc" role="37wK5m">
                   <ref role="1HBi2w" node="1R4IoyQOhNn" resolve="InspectionsFacility" />
@@ -1663,7 +1663,7 @@
               <node concept="liA8E" id="1R4IoyRt_gh" role="2OqNvi">
                 <ref role="37wK5l" node="1R4IoyRpBiY" resolve="unregisterNetwork" />
                 <node concept="37vLTw" id="1R4IoyRt_gi" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myNetwork" />
+                  <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myInstance" />
                 </node>
               </node>
               <node concept="2YIFZM" id="7eBFChAmOzT" role="2Oq$k0">
@@ -2415,7 +2415,7 @@
     </node>
   </node>
   <node concept="3HP615" id="1R4IoyRp$8l">
-    <property role="TrG5h" value="InspectionProvider" />
+    <property role="TrG5h" value="NetworkInspector" />
     <node concept="2tJIrI" id="1R4IoyRp$8V" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRp_nV" role="jymVt">
       <property role="TrG5h" value="setInspectionForPort" />
@@ -2617,7 +2617,7 @@
                         <ref role="3cqZAo" node="7eBFChAkRd9" resolve="manager" />
                       </node>
                       <node concept="2OwXpG" id="7eBFChAl36U" role="2OqNvi">
-                        <ref role="2Oxat5" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                        <ref role="2Oxat5" node="1R4IoyRpUWF" resolve="myInspectors" />
                       </node>
                     </node>
                     <node concept="liA8E" id="7eBFChAlH5Y" role="2OqNvi">
@@ -2683,8 +2683,8 @@
       <node concept="3Tm6S6" id="1R4IoyRpBwh" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyRpBD5" role="1tU5fm">
         <ref role="3uigEE" to="33ny:~Map" resolve="Map" />
-        <node concept="3uibUv" id="1R4IoyRpBKz" role="11_B2D">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xB9Co" role="11_B2D">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="3uibUv" id="1R4IoyRpBRV" role="11_B2D">
           <ref role="3uigEE" node="1R4IoyQOhNn" resolve="InspectionsFacility" />
@@ -2693,8 +2693,8 @@
       <node concept="2ShNRf" id="1R4IoyRpW2d" role="33vP2m">
         <node concept="1pGfFk" id="1R4IoyRpWFu" role="2ShVmc">
           <ref role="37wK5l" to="33ny:~HashMap.&lt;init&gt;()" resolve="HashMap" />
-          <node concept="3uibUv" id="1R4IoyRpXn7" role="1pMfVU">
-            <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+          <node concept="3uibUv" id="19RKY2xBaiR" role="1pMfVU">
+            <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
           </node>
           <node concept="3uibUv" id="1R4IoyRpXn8" role="1pMfVU">
             <ref role="3uigEE" node="1R4IoyQOhNn" resolve="InspectionsFacility" />
@@ -2703,26 +2703,26 @@
       </node>
     </node>
     <node concept="312cEg" id="1R4IoyRpUWF" role="jymVt">
-      <property role="TrG5h" value="myInspectionProviders" />
+      <property role="TrG5h" value="myInspectors" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1R4IoyRpUWG" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyRpUWH" role="1tU5fm">
         <ref role="3uigEE" to="33ny:~Map" resolve="Map" />
-        <node concept="3uibUv" id="1R4IoyRpUWI" role="11_B2D">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBaXc" role="11_B2D">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="3uibUv" id="1R4IoyRpVtK" role="11_B2D">
-          <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+          <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
         </node>
       </node>
       <node concept="2ShNRf" id="1R4IoyRpXLK" role="33vP2m">
         <node concept="1pGfFk" id="1R4IoyRpYlF" role="2ShVmc">
           <ref role="37wK5l" to="33ny:~HashMap.&lt;init&gt;()" resolve="HashMap" />
-          <node concept="3uibUv" id="1R4IoyRpYIp" role="1pMfVU">
-            <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+          <node concept="3uibUv" id="19RKY2xBbBI" role="1pMfVU">
+            <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
           </node>
           <node concept="3uibUv" id="1R4IoyRpYIq" role="1pMfVU">
-            <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+            <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
           </node>
         </node>
       </node>
@@ -2734,8 +2734,8 @@
       <property role="TrG5h" value="registerNetwork" />
       <node concept="37vLTG" id="1R4IoyRpBmW" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBmX" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBcfV" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBmY" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2773,11 +2773,11 @@
           <node concept="3cpWsn" id="7eBFChAlICg" role="3cpWs9">
             <property role="TrG5h" value="current" />
             <node concept="3uibUv" id="7eBFChAlICh" role="1tU5fm">
-              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
             </node>
             <node concept="2OqwBi" id="7eBFChAlICi" role="33vP2m">
               <node concept="37vLTw" id="7eBFChAlICj" role="2Oq$k0">
-                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
               </node>
               <node concept="liA8E" id="7eBFChAlICk" role="2OqNvi">
                 <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
@@ -2818,8 +2818,8 @@
       <property role="TrG5h" value="unregisterNetwork" />
       <node concept="37vLTG" id="1R4IoyRpBn8" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBn9" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBcwE" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBna" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2851,11 +2851,11 @@
           <node concept="3cpWsn" id="1R4IoyRq_Oh" role="3cpWs9">
             <property role="TrG5h" value="current" />
             <node concept="3uibUv" id="1R4IoyRq_Of" role="1tU5fm">
-              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
             </node>
             <node concept="2OqwBi" id="1R4IoyRq_Oi" role="33vP2m">
               <node concept="37vLTw" id="1R4IoyRq_Oj" role="2Oq$k0">
-                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
               </node>
               <node concept="liA8E" id="1R4IoyRq_Ok" role="2OqNvi">
                 <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
@@ -2893,11 +2893,11 @@
     </node>
     <node concept="2tJIrI" id="1R4IoyRpHud" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRpBng" role="jymVt">
-      <property role="TrG5h" value="provideInspection" />
+      <property role="TrG5h" value="installInspector" />
       <node concept="37vLTG" id="1R4IoyRpBnh" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBni" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBcMo" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBnj" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2914,7 +2914,7 @@
       </node>
       <node concept="3Tm1VV" id="1R4IoyRpBnl" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyRpBnm" role="3clF45">
-        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="InspectionProvider" />
+        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="NetworkInspector" />
       </node>
       <node concept="2AHcQZ" id="1R4IoyRpBnn" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -2951,11 +2951,11 @@
               <node concept="3cpWsn" id="1R4IoyRqjqy" role="3cpWs9">
                 <property role="TrG5h" value="previos" />
                 <node concept="3uibUv" id="1R4IoyRqjqz" role="1tU5fm">
-                  <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+                  <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyRqjq$" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyRqjq_" role="2Oq$k0">
-                    <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                    <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
                   </node>
                   <node concept="liA8E" id="1R4IoyRqjqA" role="2OqNvi">
                     <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
@@ -3004,11 +3004,11 @@
               <node concept="3cpWsn" id="1R4IoyRqtCx" role="3cpWs9">
                 <property role="TrG5h" value="res" />
                 <node concept="3uibUv" id="1R4IoyRqtCg" role="1tU5fm">
-                  <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+                  <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
                 </node>
                 <node concept="2ShNRf" id="1R4IoyRqtCy" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyRqtCz" role="2ShVmc">
-                    <ref role="37wK5l" node="1R4IoyRpPwW" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+                    <ref role="37wK5l" node="1R4IoyRpPwW" resolve="InspectionManagerImpl.MyInspector" />
                     <node concept="37vLTw" id="7eBFChAmitb" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyRpBnh" resolve="network" />
                     </node>
@@ -3022,7 +3022,7 @@
             <node concept="3clFbF" id="1R4IoyRqu8l" role="3cqZAp">
               <node concept="2OqwBi" id="1R4IoyRqu_d" role="3clFbG">
                 <node concept="37vLTw" id="1R4IoyRqu8j" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                  <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
                 </node>
                 <node concept="liA8E" id="1R4IoyRqxKQ" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
@@ -3052,11 +3052,11 @@
     </node>
     <node concept="2tJIrI" id="1R4IoyRpHEd" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRpBns" role="jymVt">
-      <property role="TrG5h" value="disposeInspection" />
+      <property role="TrG5h" value="disposeInspector" />
       <node concept="37vLTG" id="1R4IoyRpBnt" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBnu" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBeov" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBnv" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3065,34 +3065,15 @@
       <node concept="3Tm1VV" id="1R4IoyRpBnx" role="1B3o_S" />
       <node concept="3cqZAl" id="1R4IoyRpBny" role="3clF45" />
       <node concept="3clFbS" id="1R4IoyRpBnz" role="3clF47">
-        <node concept="3cpWs8" id="1R4IoyRpLzY" role="3cqZAp">
-          <node concept="3cpWsn" id="1R4IoyRpLzZ" role="3cpWs9">
-            <property role="TrG5h" value="facility" />
-            <node concept="3uibUv" id="1R4IoyRpLzW" role="1tU5fm">
-              <ref role="3uigEE" node="1R4IoyQOhNn" resolve="InspectionsFacility" />
-            </node>
-            <node concept="2OqwBi" id="1R4IoyRpL$0" role="33vP2m">
-              <node concept="37vLTw" id="1R4IoyRpL$1" role="2Oq$k0">
-                <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
-              </node>
-              <node concept="liA8E" id="1R4IoyRpL$2" role="2OqNvi">
-                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
-                <node concept="37vLTw" id="1R4IoyRpL$3" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyRpBnt" resolve="network" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="3cpWs8" id="1R4IoyRqaL5" role="3cqZAp">
           <node concept="3cpWsn" id="1R4IoyRqaL6" role="3cpWs9">
-            <property role="TrG5h" value="inspectionProvider" />
+            <property role="TrG5h" value="inspector" />
             <node concept="3uibUv" id="1R4IoyRqaL3" role="1tU5fm">
-              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.InspectionProviderImpl" />
+              <ref role="3uigEE" node="1R4IoyRpIgF" resolve="InspectionManagerImpl.MyInspector" />
             </node>
             <node concept="2OqwBi" id="1R4IoyRqaL7" role="33vP2m">
               <node concept="37vLTw" id="1R4IoyRqaL8" role="2Oq$k0">
-                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
               </node>
               <node concept="liA8E" id="1R4IoyRqaL9" role="2OqNvi">
                 <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
@@ -3108,27 +3089,17 @@
             <node concept="3clFbF" id="1R4IoyRqebW" role="3cqZAp">
               <node concept="2OqwBi" id="1R4IoyRqetC" role="3clFbG">
                 <node concept="37vLTw" id="1R4IoyRqebU" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1R4IoyRqaL6" resolve="inspectionProvider" />
+                  <ref role="3cqZAo" node="1R4IoyRqaL6" resolve="inspector" />
                 </node>
                 <node concept="liA8E" id="1R4IoyRqeB8" role="2OqNvi">
                   <ref role="37wK5l" node="1R4IoyRq310" resolve="dispose" />
                 </node>
               </node>
             </node>
-            <node concept="3clFbF" id="1R4IoyRpOjd" role="3cqZAp">
-              <node concept="2OqwBi" id="1R4IoyRpOsW" role="3clFbG">
-                <node concept="37vLTw" id="1R4IoyRpOjb" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1R4IoyRpLzZ" resolve="facility" />
-                </node>
-                <node concept="liA8E" id="1R4IoyRpOzV" role="2OqNvi">
-                  <ref role="37wK5l" node="1R4IoyQPBv7" resolve="uninstall" />
-                </node>
-              </node>
-            </node>
             <node concept="3clFbF" id="1R4IoyRqeY8" role="3cqZAp">
               <node concept="2OqwBi" id="1R4IoyRqfH7" role="3clFbG">
                 <node concept="37vLTw" id="1R4IoyRqeY6" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectionProviders" />
+                  <ref role="3cqZAo" node="1R4IoyRpUWF" resolve="myInspectors" />
                 </node>
                 <node concept="liA8E" id="1R4IoyRqiS$" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.remove(java.lang.Object)" resolve="remove" />
@@ -3138,19 +3109,29 @@
                 </node>
               </node>
             </node>
-          </node>
-          <node concept="1Wc70l" id="1R4IoyRqdTh" role="3clFbw">
-            <node concept="3y3z36" id="1R4IoyRpNUs" role="3uHU7B">
-              <node concept="37vLTw" id="1R4IoyRpMdV" role="3uHU7B">
-                <ref role="3cqZAo" node="1R4IoyRpLzZ" resolve="facility" />
+            <node concept="3clFbF" id="19RKY2xCVu9" role="3cqZAp">
+              <node concept="2OqwBi" id="19RKY2xCVHj" role="3clFbG">
+                <node concept="2OqwBi" id="1R4IoyRpL$0" role="2Oq$k0">
+                  <node concept="37vLTw" id="1R4IoyRpL$1" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1R4IoyRpBWS" resolve="myInspections" />
+                  </node>
+                  <node concept="liA8E" id="1R4IoyRpL$2" role="2OqNvi">
+                    <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
+                    <node concept="37vLTw" id="1R4IoyRpL$3" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyRpBnt" resolve="network" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="19RKY2xCWWc" role="2OqNvi">
+                  <ref role="37wK5l" node="1R4IoyQPBv7" resolve="uninstall" />
+                </node>
               </node>
-              <node concept="10Nm6u" id="1R4IoyRpOc1" role="3uHU7w" />
             </node>
-            <node concept="3y3z36" id="1R4IoyRqdZn" role="3uHU7w">
-              <node concept="10Nm6u" id="1R4IoyRqdZo" role="3uHU7w" />
-              <node concept="37vLTw" id="1R4IoyRqdZp" role="3uHU7B">
-                <ref role="3cqZAo" node="1R4IoyRqaL6" resolve="inspectionProvider" />
-              </node>
+          </node>
+          <node concept="3y3z36" id="1R4IoyRqdZn" role="3clFbw">
+            <node concept="10Nm6u" id="1R4IoyRqdZo" role="3uHU7w" />
+            <node concept="37vLTw" id="1R4IoyRqdZp" role="3uHU7B">
+              <ref role="3cqZAo" node="1R4IoyRqaL6" resolve="inspector" />
             </node>
           </node>
         </node>
@@ -3162,14 +3143,14 @@
     <node concept="2tJIrI" id="1R4IoyRpHRE" role="jymVt" />
     <node concept="312cEu" id="1R4IoyRpIgF" role="jymVt">
       <property role="2bfB8j" value="true" />
-      <property role="TrG5h" value="InspectionProviderImpl" />
+      <property role="TrG5h" value="MyInspector" />
       <node concept="2tJIrI" id="1R4IoyRpJiF" role="jymVt" />
       <node concept="312cEg" id="1R4IoyRpP2g" role="jymVt">
-        <property role="TrG5h" value="myNetwork" />
+        <property role="TrG5h" value="myInstance" />
         <property role="3TUv4t" value="true" />
         <node concept="3Tm6S6" id="1R4IoyRpOKf" role="1B3o_S" />
-        <node concept="3uibUv" id="7eBFChAlJo_" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xBgtg" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpQK5" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3198,7 +3179,7 @@
                 <ref role="3cqZAo" node="1R4IoyRpPx3" resolve="network" />
               </node>
               <node concept="37vLTw" id="1R4IoyRpQlQ" role="37vLTJ">
-                <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
+                <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myInstance" />
               </node>
             </node>
           </node>
@@ -3215,8 +3196,8 @@
         </node>
         <node concept="37vLTG" id="1R4IoyRpPx3" role="3clF46">
           <property role="TrG5h" value="network" />
-          <node concept="3uibUv" id="7eBFChAlJRW" role="1tU5fm">
-            <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+          <node concept="3uibUv" id="19RKY2xBeL5" role="1tU5fm">
+            <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
           </node>
           <node concept="2AHcQZ" id="1R4IoyRpQqo" role="2AJF6D">
             <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3269,7 +3250,7 @@
                 <node concept="liA8E" id="7eBFChAlTPx" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAlTPy" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
+                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myInstance" />
                   </node>
                 </node>
               </node>
@@ -3343,7 +3324,7 @@
                 <node concept="liA8E" id="7eBFChAm0BL" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAm0BM" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
+                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myInstance" />
                   </node>
                 </node>
               </node>
@@ -3399,7 +3380,7 @@
                 <node concept="liA8E" id="7eBFChAm4bJ" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
                   <node concept="37vLTw" id="7eBFChAm4bK" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myNetwork" />
+                    <ref role="3cqZAo" node="1R4IoyRpP2g" resolve="myInstance" />
                   </node>
                 </node>
               </node>
@@ -3450,7 +3431,7 @@
       </node>
       <node concept="3Tm6S6" id="1R4IoyRq4dT" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyRpJdi" role="EKbjA">
-        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="InspectionProvider" />
+        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="NetworkInspector" />
       </node>
     </node>
     <node concept="3Tm1VV" id="1R4IoyRpADV" role="1B3o_S" />
@@ -3465,8 +3446,8 @@
       <property role="TrG5h" value="registerNetwork" />
       <node concept="37vLTG" id="1R4IoyRpBaL" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBaM" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xB6_7" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBaN" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3490,8 +3471,8 @@
       <property role="TrG5h" value="unregisterNetwork" />
       <node concept="37vLTG" id="1R4IoyRpBlf" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpBlg" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xB6AA" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpBlh" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3503,11 +3484,11 @@
     </node>
     <node concept="2tJIrI" id="1R4IoyRpBgj" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRpAFf" role="jymVt">
-      <property role="TrG5h" value="provideInspection" />
+      <property role="TrG5h" value="installInspector" />
       <node concept="37vLTG" id="1R4IoyRpAFH" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpAH2" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xB6C4" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpAP4" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3525,7 +3506,7 @@
       <node concept="3clFbS" id="1R4IoyRpAFi" role="3clF47" />
       <node concept="3Tm1VV" id="1R4IoyRpAFj" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyRpAOj" role="3clF45">
-        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="InspectionProvider" />
+        <ref role="3uigEE" node="1R4IoyRp$8l" resolve="NetworkInspector" />
       </node>
       <node concept="2AHcQZ" id="1R4IoyRpAW0" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -3533,11 +3514,11 @@
     </node>
     <node concept="2tJIrI" id="1R4IoyRpAWM" role="jymVt" />
     <node concept="3clFb_" id="1R4IoyRpAYX" role="jymVt">
-      <property role="TrG5h" value="disposeInspection" />
+      <property role="TrG5h" value="disposeInspector" />
       <node concept="37vLTG" id="1R4IoyRpAZI" role="3clF46">
         <property role="TrG5h" value="network" />
-        <node concept="3uibUv" id="1R4IoyRpAZJ" role="1tU5fm">
-          <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <node concept="3uibUv" id="19RKY2xB6Dx" role="1tU5fm">
+          <ref role="3uigEE" to="rk1n:4kSwwtS_6XE" resolve="NetworkInstance" />
         </node>
         <node concept="2AHcQZ" id="1R4IoyRpAZK" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />

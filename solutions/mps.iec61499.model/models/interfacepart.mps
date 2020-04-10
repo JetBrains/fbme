@@ -28,7 +28,6 @@
         <child id="1068498886295" name="lValue" index="37vLTJ" />
       </concept>
       <concept id="4836112446988635817" name="jetbrains.mps.baseLanguage.structure.UndefinedType" flags="in" index="2jxLKc" />
-      <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
       <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="ng" index="2tJIrI" />
       <concept id="1188207840427" name="jetbrains.mps.baseLanguage.structure.AnnotationInstance" flags="nn" index="2AHcQZ">
         <reference id="1188208074048" name="annotation" index="2AI5Lk" />
@@ -1487,7 +1486,7 @@
             </node>
             <node concept="1mIQ4w" id="4gibKcMrc2Q" role="2OqNvi">
               <node concept="chp4Y" id="4gibKcMrc5O" role="cj9EA">
-                <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+                <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
               </node>
             </node>
           </node>
@@ -1498,7 +1497,7 @@
                   <ref role="37wK5l" node="4gibKcMrx9X" resolve="ApplicationDeclarationByNode" />
                   <node concept="1PxgMI" id="4gibKcMrJES" role="37wK5m">
                     <node concept="chp4Y" id="4gibKcMrJHb" role="3oSUPX">
-                      <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+                      <ref role="cht4Q" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
                     </node>
                     <node concept="37vLTw" id="4gibKcMrJgo" role="1m5AlR">
                       <ref role="3cqZAo" node="1QSEqLhWmXE" resolve="node" />
@@ -1520,92 +1519,6 @@
       <node concept="37vLTG" id="1QSEqLhWmXE" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="1QSEqLhWmXF" role="1tU5fm" />
-      </node>
-    </node>
-    <node concept="2tJIrI" id="1QSEqLhXVpI" role="jymVt" />
-    <node concept="2YIFZL" id="1QSEqLhXTV0" role="jymVt">
-      <property role="TrG5h" value="adaptNetwork" />
-      <property role="DiZV1" value="true" />
-      <node concept="3clFbS" id="1QSEqLhXTV1" role="3clF47">
-        <node concept="3clFbJ" id="1QSEqLhXVtk" role="3cqZAp">
-          <node concept="2OqwBi" id="1QSEqLhXVtl" role="3clFbw">
-            <node concept="37vLTw" id="1QSEqLhXVtm" role="2Oq$k0">
-              <ref role="3cqZAo" node="1QSEqLhXTVD" resolve="node" />
-            </node>
-            <node concept="1mIQ4w" id="1QSEqLhXVtn" role="2OqNvi">
-              <node concept="chp4Y" id="1QSEqLhXVto" role="cj9EA">
-                <ref role="cht4Q" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
-              </node>
-            </node>
-          </node>
-          <node concept="3clFbS" id="1QSEqLhXVtp" role="3clFbx">
-            <node concept="3cpWs6" id="1QSEqLhXVtq" role="3cqZAp">
-              <node concept="2OqwBi" id="1QSEqLhXWaW" role="3cqZAk">
-                <node concept="2ShNRf" id="1QSEqLhXVtr" role="2Oq$k0">
-                  <node concept="1pGfFk" id="1QSEqLhXVts" role="2ShVmc">
-                    <ref role="37wK5l" node="1R4IoyQA3I2" resolve="CompositeFBTypeByNode" />
-                    <node concept="1PxgMI" id="1QSEqLhXVtt" role="37wK5m">
-                      <node concept="chp4Y" id="1QSEqLhXVtu" role="3oSUPX">
-                        <ref role="cht4Q" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
-                      </node>
-                      <node concept="37vLTw" id="1QSEqLhXVtv" role="1m5AlR">
-                        <ref role="3cqZAo" node="1QSEqLhXTVD" resolve="node" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-                <node concept="liA8E" id="1QSEqLhXWOu" role="2OqNvi">
-                  <ref role="37wK5l" node="1R4IoyQGq49" resolve="getNetwork" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbJ" id="1QSEqLhXTVd" role="3cqZAp">
-          <node concept="2OqwBi" id="1QSEqLhXTVe" role="3clFbw">
-            <node concept="37vLTw" id="1QSEqLhXTVf" role="2Oq$k0">
-              <ref role="3cqZAo" node="1QSEqLhXTVD" resolve="node" />
-            </node>
-            <node concept="1mIQ4w" id="1QSEqLhXTVg" role="2OqNvi">
-              <node concept="chp4Y" id="1QSEqLhXTVh" role="cj9EA">
-                <ref role="cht4Q" to="xiqq:uLhTRQWVWT" resolve="SubapplicationTypeDeclaration" />
-              </node>
-            </node>
-          </node>
-          <node concept="3clFbS" id="1QSEqLhXTVi" role="3clFbx">
-            <node concept="3cpWs6" id="1QSEqLhXTVj" role="3cqZAp">
-              <node concept="2OqwBi" id="1QSEqLhXXHK" role="3cqZAk">
-                <node concept="2ShNRf" id="1QSEqLhXTVk" role="2Oq$k0">
-                  <node concept="1pGfFk" id="1QSEqLhXTVl" role="2ShVmc">
-                    <ref role="37wK5l" node="1R4IoyQJyUq" resolve="SubapplicationTypeByNode" />
-                    <node concept="1PxgMI" id="1QSEqLhXTVm" role="37wK5m">
-                      <node concept="chp4Y" id="1QSEqLhXTVn" role="3oSUPX">
-                        <ref role="cht4Q" to="xiqq:uLhTRQWVWT" resolve="SubapplicationTypeDeclaration" />
-                      </node>
-                      <node concept="37vLTw" id="1QSEqLhXTVo" role="1m5AlR">
-                        <ref role="3cqZAo" node="1QSEqLhXTVD" resolve="node" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-                <node concept="liA8E" id="1QSEqLhXYBX" role="2OqNvi">
-                  <ref role="37wK5l" node="1R4IoyQJz4u" resolve="getNetwork" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs6" id="1QSEqLhXTV_" role="3cqZAp">
-          <node concept="10Nm6u" id="1QSEqLhXTVA" role="3cqZAk" />
-        </node>
-      </node>
-      <node concept="3Tm1VV" id="1QSEqLhXTVB" role="1B3o_S" />
-      <node concept="3uibUv" id="1QSEqLhXUOH" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
-      </node>
-      <node concept="37vLTG" id="1QSEqLhXTVD" role="3clF46">
-        <property role="TrG5h" value="node" />
-        <node concept="3Tqbb2" id="1QSEqLhXTVE" role="1tU5fm" />
       </node>
     </node>
     <node concept="2tJIrI" id="31Fn7oZJkKp" role="jymVt" />
@@ -1724,7 +1637,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2SU8oJdHMQt" role="1B3o_S" />
       <node concept="3Tqbb2" id="2SU8oJdHMQM" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+        <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
       </node>
     </node>
     <node concept="2tJIrI" id="2SU8oJdHMPn" role="jymVt" />
@@ -1732,7 +1645,7 @@
       <node concept="37vLTG" id="2SU8oJdHMRF" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="2SU8oJdHMRH" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+          <ref role="ehGHo" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
         </node>
       </node>
       <node concept="3cqZAl" id="2SU8oJdHMPH" role="3clF45" />
@@ -1888,7 +1801,7 @@
       <property role="TrG5h" value="myNode" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tqbb2" id="4gibKcMrdER" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+        <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
       </node>
       <node concept="3Tm6S6" id="4gibKcMrdGg" role="1B3o_S" />
     </node>
@@ -1936,7 +1849,7 @@
       <node concept="37vLTG" id="4gibKcMrdGN" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="4gibKcMrdGM" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="4gibKcMrg36" role="3clF46">
@@ -1960,7 +1873,7 @@
               <ref role="37wK5l" node="2SU8oJdHMPG" resolve="SystemDeclarationByNode" />
               <node concept="1PxgMI" id="4gibKcMrz6k" role="37wK5m">
                 <node concept="chp4Y" id="4gibKcMrzbg" role="3oSUPX">
-                  <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+                  <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
                 </node>
                 <node concept="2OqwBi" id="4gibKcMry_y" role="1m5AlR">
                   <node concept="37vLTw" id="4gibKcMrylm" role="2Oq$k0">
@@ -1976,7 +1889,7 @@
       <node concept="37vLTG" id="4gibKcMrxab" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="4gibKcMrxac" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationConfiguration" />
+          <ref role="ehGHo" to="xiqq:uLhTRR7MEy" resolve="ApplicationDeclaration" />
         </node>
       </node>
     </node>
@@ -2089,7 +2002,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3MncU7wPdQb" role="1B3o_S" />
       <node concept="3Tqbb2" id="3MncU7wPdQy" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+        <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
       </node>
     </node>
     <node concept="2tJIrI" id="3MncU7wPdRx" role="jymVt" />
@@ -2128,7 +2041,7 @@
       <node concept="37vLTG" id="3MncU7wPdUS" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="3MncU7wPdUR" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+          <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="3MncU7wPdUG" role="3clF46">
@@ -2153,7 +2066,7 @@
               <ref role="37wK5l" node="2SU8oJdHMPG" resolve="SystemDeclarationByNode" />
               <node concept="1PxgMI" id="3MncU7wPBpn" role="37wK5m">
                 <node concept="chp4Y" id="3MncU7wPBqu" role="3oSUPX">
-                  <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+                  <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
                 </node>
                 <node concept="2OqwBi" id="3MncU7wPBvn" role="1m5AlR">
                   <node concept="37vLTw" id="3MncU7wPBck" role="2Oq$k0">
@@ -2169,7 +2082,7 @@
       <node concept="37vLTG" id="3MncU7wP_hJ" role="3clF46">
         <property role="TrG5h" value="node" />
         <node concept="3Tqbb2" id="3MncU7wP_hK" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+          <ref role="ehGHo" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
         </node>
       </node>
     </node>
@@ -2623,7 +2536,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3MncU7wPlPp" role="1B3o_S" />
       <node concept="3Tqbb2" id="3MncU7wPlPT" role="1tU5fm">
-        <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+        <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
       </node>
     </node>
     <node concept="2tJIrI" id="3MncU7wPlR5" role="jymVt" />
@@ -2662,7 +2575,7 @@
       <node concept="37vLTG" id="3MncU7wPlRL" role="3clF46">
         <property role="TrG5h" value="resource" />
         <node concept="3Tqbb2" id="3MncU7wPlRK" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+          <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="3MncU7wPygS" role="3clF46">
@@ -2696,7 +2609,7 @@
       <node concept="37vLTG" id="3MncU7wPyCv" role="3clF46">
         <property role="TrG5h" value="resource" />
         <node concept="3Tqbb2" id="3MncU7wPyCw" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceInstance" />
+          <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
         </node>
       </node>
     </node>
@@ -2732,7 +2645,7 @@
             </node>
             <node concept="1mIQ4w" id="3MncU7wP$9J" role="2OqNvi">
               <node concept="chp4Y" id="3MncU7wP$bG" role="cj9EA">
-                <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+                <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
               </node>
             </node>
           </node>
@@ -2743,7 +2656,7 @@
                   <ref role="37wK5l" node="3MncU7wP_hx" resolve="DeviceDeclarationByNode" />
                   <node concept="1PxgMI" id="3MncU7wPCU6" role="37wK5m">
                     <node concept="chp4Y" id="3MncU7wPD0Q" role="3oSUPX">
-                      <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceConfiguration" />
+                      <ref role="cht4Q" to="xiqq:1WTKUmKKVPy" resolve="DeviceDeclaration" />
                     </node>
                     <node concept="37vLTw" id="3MncU7wPCBW" role="1m5AlR">
                       <ref role="3cqZAo" node="3MncU7wPzNl" resolve="resourceParent" />
