@@ -1,5 +1,5 @@
 ext.mpsMajor = "2019.3"
-ext.mpsMinor = "1"
+ext.mpsMinor = "4"
 
 buildscript {
     repositories {
