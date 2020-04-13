@@ -70,6 +70,8 @@
     <dependency reexport="false">2046780a-246e-4cb0-90fe-56a2b7d92c54(mps.lang.ST)</dependency>
     <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
+    <dependency reexport="false">92c73834-a51a-47a4-ba36-5d8a69f382af(common.iec61499.model)</dependency>
+    <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(mps.iec61499.model)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:21063c66-85ba-4e98-839b-036445b17ae2:de.itemis.mps.editor.layout" version="0" />
@@ -129,11 +131,13 @@
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
     <module reference="3ba695ad-c19d-4f3c-925b-fe4a54a16367(TempModule3ba695ad-c19d-4f3c-925b-fe4a54a16367)" version="0" />
+    <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(common.iec61499.model)" version="0" />
     <module reference="27bcdded-bf6e-42ec-b246-aa147c171ade(iec61499@transient121)" version="0" />
     <module reference="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
     <module reference="a9e4c532-c5f5-4bb7-99ef-42abb73bbb70(jetbrains.mps.lang.descriptor.aspects)" version="0" />
     <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
+    <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(mps.iec61499.model)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(mps.lang.ST)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(mps.lang.iec61499)" version="1" />
   </dependencyVersions>

@@ -53,6 +53,7 @@
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
     <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
     <import index="9ywi" ref="r:b27d9d9b-1904-40b8-bdb1-cf26b125baf7(mps.ide.synteticLang.structure)" />
+    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(scenes.controllers)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -3314,6 +3315,34 @@
         </node>
       </node>
     </node>
+    <node concept="Wx3nA" id="1DfKejr7po3" role="jymVt">
+      <property role="TrG5h" value="SELECTED_FBS" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm1VV" id="1DfKejr7p8W" role="1B3o_S" />
+      <node concept="3uibUv" id="1DfKejr7plp" role="1tU5fm">
+        <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
+        <node concept="3uibUv" id="1DfKejr7pwn" role="11_B2D">
+          <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
+          <node concept="3uibUv" id="1DfKejr7pPh" role="11_B2D">
+            <ref role="3uigEE" to="tphl:4O0ojQq0P48" resolve="FBNetworkComponent" />
+          </node>
+        </node>
+      </node>
+      <node concept="2ShNRf" id="1DfKejr7pQv" role="33vP2m">
+        <node concept="1pGfFk" id="1DfKejr7pQw" role="2ShVmc">
+          <ref role="37wK5l" to="5ueo:~InheritableStyleAttribute.&lt;init&gt;(java.lang.String)" resolve="InheritableStyleAttribute" />
+          <node concept="Xl_RD" id="1DfKejr7pQx" role="37wK5m">
+            <property role="Xl_RC" value="selected-fbs" />
+          </node>
+          <node concept="3uibUv" id="1DfKejr8oT6" role="1pMfVU">
+            <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
+            <node concept="3uibUv" id="1DfKejr8oT7" role="11_B2D">
+              <ref role="3uigEE" to="tphl:4O0ojQq0P48" resolve="FBNetworkComponent" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="2tJIrI" id="7XpzHqcw9_q" role="jymVt" />
     <node concept="1Pe0a1" id="7XpzHqcwdtQ" role="jymVt">
       <node concept="3clFbS" id="7XpzHqcwdtS" role="1Pe0a2">
@@ -3363,6 +3392,16 @@
               <ref role="3cqZAo" node="3DiEZ8TO1Tb" resolve="FB" />
             </node>
             <node concept="liA8E" id="7XpzHqcwfYy" role="2OqNvi">
+              <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="1DfKejr8oej" role="3cqZAp">
+          <node concept="2OqwBi" id="1DfKejr8ozs" role="3clFbG">
+            <node concept="37vLTw" id="1DfKejr8oeh" role="2Oq$k0">
+              <ref role="3cqZAo" node="1DfKejr7po3" resolve="SELECTED_FBS" />
+            </node>
+            <node concept="liA8E" id="1DfKejr8oMl" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
             </node>
           </node>

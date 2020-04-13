@@ -1658,30 +1658,51 @@
               </node>
             </node>
           </node>
-          <node concept="3clFbF" id="1R4IoyRt_ge" role="3cqZAp">
-            <node concept="2OqwBi" id="1R4IoyRt_gf" role="3clFbG">
-              <node concept="liA8E" id="1R4IoyRt_gh" role="2OqNvi">
-                <ref role="37wK5l" node="1R4IoyRpBiY" resolve="unregisterNetwork" />
-                <node concept="37vLTw" id="1R4IoyRt_gi" role="37wK5m">
-                  <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myInstance" />
-                </node>
+          <node concept="3cpWs8" id="1S4cYrOJQYq" role="3cqZAp">
+            <node concept="3cpWsn" id="1S4cYrOJQYr" role="3cpWs9">
+              <property role="TrG5h" value="manager" />
+              <node concept="3uibUv" id="1S4cYrOJO81" role="1tU5fm">
+                <ref role="3uigEE" node="1R4IoyRpAE3" resolve="InspectionManager" />
               </node>
-              <node concept="2YIFZM" id="7eBFChAmOzT" role="2Oq$k0">
+              <node concept="2YIFZM" id="1S4cYrOJQYs" role="33vP2m">
                 <ref role="37wK5l" node="7eBFChAmsKg" resolve="getInstance" />
                 <ref role="1Pybhc" node="1R4IoyRpADU" resolve="InspectionManagerImpl" />
-                <node concept="2OqwBi" id="7eBFChAmOzU" role="37wK5m">
-                  <node concept="2OqwBi" id="7eBFChAmOzV" role="2Oq$k0">
-                    <node concept="37vLTw" id="7eBFChAmOzW" role="2Oq$k0">
+                <node concept="2OqwBi" id="1S4cYrOJQYt" role="37wK5m">
+                  <node concept="2OqwBi" id="1S4cYrOJQYu" role="2Oq$k0">
+                    <node concept="37vLTw" id="1S4cYrOJQYv" role="2Oq$k0">
                       <ref role="3cqZAo" node="1R4IoyQPwgQ" resolve="myEditor" />
                     </node>
-                    <node concept="liA8E" id="7eBFChAmOzX" role="2OqNvi">
+                    <node concept="liA8E" id="1S4cYrOJQYw" role="2OqNvi">
                       <ref role="37wK5l" to="3bo0:7sG$k3BQmmw" resolve="getContext" />
                     </node>
                   </node>
-                  <node concept="liA8E" id="7eBFChAmOzY" role="2OqNvi">
+                  <node concept="liA8E" id="1S4cYrOJQYx" role="2OqNvi">
                     <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent()" resolve="getEditorComponent" />
                   </node>
                 </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbJ" id="1S4cYrOJRjm" role="3cqZAp">
+            <node concept="3clFbS" id="1S4cYrOJRjo" role="3clFbx">
+              <node concept="3clFbF" id="1R4IoyRt_ge" role="3cqZAp">
+                <node concept="2OqwBi" id="1R4IoyRt_gf" role="3clFbG">
+                  <node concept="liA8E" id="1R4IoyRt_gh" role="2OqNvi">
+                    <ref role="37wK5l" node="1R4IoyRpBiY" resolve="unregisterNetwork" />
+                    <node concept="37vLTw" id="1R4IoyRt_gi" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQOjqU" resolve="myInstance" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="1S4cYrOJQYy" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOJQYr" resolve="manager" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3y3z36" id="1S4cYrOJRGY" role="3clFbw">
+              <node concept="10Nm6u" id="1S4cYrOJRTi" role="3uHU7w" />
+              <node concept="37vLTw" id="1S4cYrOJRrs" role="3uHU7B">
+                <ref role="3cqZAo" node="1S4cYrOJQYr" resolve="manager" />
               </node>
             </node>
           </node>
