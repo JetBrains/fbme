@@ -776,6 +776,16 @@
             </node>
           </node>
         </node>
+        <node concept="1SiIV0" id="1GFn66qEgIm" role="3bR37C">
+          <node concept="3bR9La" id="1GFn66qEgIn" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHXY" resolve="common.iec61499.model" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1GFn66qEgIo" role="3bR37C">
+          <node concept="3bR9La" id="1GFn66qEgIp" role="1SiIV1">
+            <ref role="3bR37D" node="1JYTWWzvsHw" resolve="mps.iec61499.model" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="42vv4xsIHDZ" role="2G$12L">
         <property role="BnDLt" value="true" />
