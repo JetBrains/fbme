@@ -8,8 +8,11 @@ buildscript {
     }
     dependencies {
         classpath "de.itemis.mps:mps-gradle-plugin:1.2+"
+        classpath 'de.undercouch:gradle-download-task:4.0.4'
     }
 }
+
+apply plugin: 'de.undercouch.download'
 
 repositories {
     maven { url 'https://projects.itemis.de/nexus/content/repositories/mbeddr' }
@@ -33,6 +36,17 @@ configurations {
 dependencies {
     mps "com.jetbrains:MPS:$mpsMajor.$mpsMinor@zip"
     ant_lib "org.apache.ant:ant-junit:1.10.1"
+}
+
+task downloadJBRZip(type: Download) {
+    src "https://jetbrains.bintray.com/intellij-jbr/jbrsdk-11_0_6-osx-x64-b520.43.tar.gz"
+    dest file('lib/jbr.tar.gz')
+    overwrite false
+}
+
+task downloadJBR(type: Copy, dependsOn: downloadJBRZip) {
+    from tarTree('lib/jbr.tar.gz')
+    into file('lib/jbr')
 }
 
 task downloadDependencies(type: Copy) {
@@ -81,6 +95,11 @@ task copyStartupScripts(type: Copy, dependsOn: buildBootstrap) {
 
 task buildRcp(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScripts]) {
     script 'build/build-rcpdistrib.xml'
+    targets 'clean', 'build'
+}
+
+task buildRcpWithJBR(type: RunAntScript, dependsOn: [/*$buildRcp, */copyStartupScripts, downloadJBR]) {
+    script 'build/build-rcpdistrib-jbr.xml'
     targets 'clean', 'build'
 }
 
