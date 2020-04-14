@@ -2729,7 +2729,9 @@
           </node>
         </node>
       </node>
-      <node concept="3cqZAl" id="2CiAywAbsXJ" role="3clF45" />
+      <node concept="3uibUv" id="3tYGpuLuupI" role="3clF45">
+        <ref role="3uigEE" to="cj4x:~Editor" resolve="Editor" />
+      </node>
       <node concept="37vLTG" id="2CiAywAbsXK" role="3clF46">
         <property role="TrG5h" value="project" />
         <node concept="3uibUv" id="2CiAywAbsXL" role="1tU5fm">
