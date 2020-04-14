@@ -271,25 +271,13 @@
                             </node>
                           </node>
                         </node>
-                        <node concept="22lmx$" id="4DPb1mRQw0t" role="3uHU7B">
-                          <node concept="2OqwBi" id="4DPb1mRQvdA" role="3uHU7w">
-                            <node concept="37vLTw" id="4DPb1mRQvdB" role="2Oq$k0">
-                              <ref role="3cqZAo" node="1vJkp1TWFh2" resolve="node" />
-                            </node>
-                            <node concept="1mIQ4w" id="4DPb1mRQvdC" role="2OqNvi">
-                              <node concept="chp4Y" id="4DPb1mRQvdD" role="cj9EA">
-                                <ref role="cht4Q" to="xiqq:2lwHqHkyEL8" resolve="DeviceTypeDeclaration" />
-                              </node>
-                            </node>
+                        <node concept="2OqwBi" id="4DPb1mRQvdA" role="3uHU7B">
+                          <node concept="37vLTw" id="4DPb1mRQvdB" role="2Oq$k0">
+                            <ref role="3cqZAo" node="1vJkp1TWFh2" resolve="node" />
                           </node>
-                          <node concept="2OqwBi" id="4DPb1mRQw61" role="3uHU7B">
-                            <node concept="37vLTw" id="4DPb1mRQw62" role="2Oq$k0">
-                              <ref role="3cqZAo" node="1vJkp1TWFh2" resolve="node" />
-                            </node>
-                            <node concept="1mIQ4w" id="4DPb1mRQw63" role="2OqNvi">
-                              <node concept="chp4Y" id="4DPb1mRQw64" role="cj9EA">
-                                <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
-                              </node>
+                          <node concept="1mIQ4w" id="4DPb1mRQvdC" role="2OqNvi">
+                            <node concept="chp4Y" id="4DPb1mRQvdD" role="cj9EA">
+                              <ref role="cht4Q" to="xiqq:2lwHqHkyEL8" resolve="DeviceTypeDeclaration" />
                             </node>
                           </node>
                         </node>
@@ -335,7 +323,7 @@
                           </node>
                           <node concept="1mIQ4w" id="1kUX9T6k$8m" role="2OqNvi">
                             <node concept="chp4Y" id="1kUX9T6k$dT" role="cj9EA">
-                              <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemConfiguration" />
+                              <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
                             </node>
                           </node>
                         </node>
