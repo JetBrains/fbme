@@ -2,23 +2,23 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
-      <modulePath path="$PROJECT_DIR$/languages/enas/enas.mpl" folder="enas" />
-      <modulePath path="$PROJECT_DIR$/languages/mps.ide.synteticLang/mps.ide.synteticLang.mpl" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/languages/mps.lang.ST/mps.lang.ST.mpl" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/languages/mps.lang.iec61499/mps.lang.iec61499.mpl" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/languages/mps.lang.iec61499/sandbox/mps.lang.iec61499.sandbox.msd" folder="sandboxes" />
-      <modulePath path="$PROJECT_DIR$/languages/mps.lang.meta.editor/mps.lang.meta.editor.mpl" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/languages/richediting.lang/richediting.lang.mpl" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/solutions/common.iec61499.model/common.iec61499.model.msd" folder="common" />
-      <modulePath path="$PROJECT_DIR$/solutions/enas.analyzer/enas.analyzer.msd" folder="enas" />
-      <modulePath path="$PROJECT_DIR$/solutions/fordiacIntegration.ide/fordiacIntegration.ide.msd" folder="4diac integration" />
-      <modulePath path="$PROJECT_DIR$/solutions/iec61499.build/iec61499.build.msd" folder="build" />
-      <modulePath path="$PROJECT_DIR$/solutions/mps.ide/mps.ide.msd" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/solutions/mps.iec61499.model/mps.iec61499.model.msd" folder="mps" />
-      <modulePath path="$PROJECT_DIR$/solutions/richediting/richediting.msd" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/solutions/scenes/scenes.msd" folder="scenes" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="enas" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.iec61499.lang/sandbox/org.fbme.ide.iec61499.lang.sandbox.msd" folder="sandboxes" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="richediting" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.build/org.fbme.ide.build.msd" folder="build" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="enas" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="4diac integration" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.richediting/org.fbme.ide.richediting.msd" folder="richediting" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.lib.iec61499/org.fbme.lib.iec61499.msd" folder="library" />
+      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="scenes" />
       <modulePath path="$PROJECT_DIR$/solutions/stubs/stdlib/stdlib.msd" folder="4diac integration" />
-      <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="common" />
+      <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="library" />
     </projectModules>
   </component>
 </project>

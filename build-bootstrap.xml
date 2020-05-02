@@ -128,7 +128,7 @@
       <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.workflow.preset.jar" />
       <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.ide.build.jar" />
       <chunk>
-        <module file="${basedir}/solutions/iec61499.build/iec61499.build.msd" />
+        <module file="${basedir}/solutions/org.fbme.ide.build/org.fbme.ide.build.msd" />
       </chunk>
       <jvmargs>
         <arg value="-ea" />
@@ -144,19 +144,19 @@
   
   <target name="makeDependents" />
   
-  <target name="java.compile.iec61499.build">
-    <mkdir dir="${basedir}/solutions/iec61499.build/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/iec61499.build" />
-    <javac destdir="${build.tmp}/java/out/iec61499.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+  <target name="java.compile.org.fbme.ide.build">
+    <mkdir dir="${basedir}/solutions/org.fbme.ide.build/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/org.fbme.ide.build" />
+    <javac destdir="${build.tmp}/java/out/org.fbme.ide.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/solutions/iec61499.build/source_gen" />
+        <path location="${basedir}/solutions/org.fbme.ide.build/source_gen" />
       </src>
       <classpath />
     </javac>
   </target>
   
   <target name="cleanSources">
-    <delete dir="${basedir}/solutions/iec61499.build/source_gen" />
+    <delete dir="${basedir}/solutions/org.fbme.ide.build/source_gen" />
   </target>
 </project>
