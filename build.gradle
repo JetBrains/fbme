@@ -98,7 +98,7 @@ task buildRcp(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScripts]) {
     targets 'clean', 'build'
 }
 
-task buildRcpWithJBR(type: RunAntScript, dependsOn: [/*$buildRcp, */copyStartupScripts, downloadJBR]) {
+task buildRcpWithJBR(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScripts, downloadJBR]) {
     script 'build/build-rcpdistrib-jbr.xml'
     targets 'clean', 'build'
 }
