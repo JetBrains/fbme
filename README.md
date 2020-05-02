@@ -1,4 +1,7 @@
-# IEC 61499 IDE on MPS
+# FBME 
+
+**FBME** (Function Blocks Modelling Environment) is an IDE for IEC 61499 standard built on top of 
+[JetBrains MPS](https://www.jetbrains.com/mps) language workbench.
 
 ### Opening MPS project first time
 
@@ -7,7 +10,7 @@
 - Run `./gradlew generate`
 - Open project with MPS
 
-### Building the plugin
+### Building the plugins
 
 - Run `./gradlew buildPlugin`
 
