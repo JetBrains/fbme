@@ -21,7 +21,7 @@
     <dependency reexport="false">5fa23c0a-216d-4571-a163-e286643e6f5f(jetbrains.mps.generator)</dependency>
     <dependency reexport="false">479c7a8c-02f9-43b5-9139-d910cb22f298(jetbrains.mps.core.xml)</dependency>
     <dependency reexport="false">9a4afe51-f114-4595-b5df-048ce3c596be(jetbrains.mps.runtime)</dependency>
-    <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(ST.parser)</dependency>
+    <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
     <dependency reexport="false">86441d7a-e194-42da-81a5-2161ec62a379(MPS.Workbench)</dependency>
     <dependency reexport="false">2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)</dependency>
     <dependency reexport="false">1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)</dependency>
@@ -69,7 +69,6 @@
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
     <module reference="86441d7a-e194-42da-81a5-2161ec62a379(MPS.Workbench)" version="0" />
-    <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(ST.parser)" version="0" />
     <module reference="479c7a8c-02f9-43b5-9139-d910cb22f298(jetbrains.mps.core.xml)" version="0" />
     <module reference="5fa23c0a-216d-4571-a163-e286643e6f5f(jetbrains.mps.generator)" version="0" />
     <module reference="25092e07-e655-497c-92fb-558a8e3080ed(jetbrains.mps.ide.ui)" version="0" />
@@ -81,6 +80,7 @@
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)" version="0" />
     <module reference="14f8fb68-9526-41ae-a986-e33a7382fe12(org.fbme.ide.util.lang)" version="0" />
+    <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
   </dependencyVersions>
 </solution>
 

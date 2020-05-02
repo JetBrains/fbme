@@ -13,7 +13,6 @@
   <accessoryModels />
   <sourcePath />
   <dependencies>
-    <dependency reexport="false">92c73834-a51a-47a4-ba36-5d8a69f382af(org.fbme.lib.iec61499)</dependency>
     <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes)</dependency>
     <dependency reexport="false">ce053d11-5ec7-4fac-b419-6715b4a97d3a(org.fbme.ide.richediting)</dependency>
     <dependency reexport="false">1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)</dependency>
@@ -24,6 +23,7 @@
     <dependency reexport="false">8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)</dependency>
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)</dependency>
+    <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="9" />

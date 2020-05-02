@@ -8,14 +8,14 @@
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
-    <import index="tphl" ref="r:633df809-762d-4f16-bc5b-7387c85c4bd1(org.fbme.lib.iec61499.fbnetwork)" />
-    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(org.fbme.lib.iec61499.declarations)" />
     <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(mps.iec61499.model.fbnetwork)" />
-    <import index="6ehz" ref="r:cb9dc0d6-4720-4b3b-b2e2-f2ed5e59d4e7(org.fbme.lib.iec61499.ecc)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="lv7i" ref="r:5472e35e-027d-42bb-bcce-32726ec4c9a9(mps.iec61499.model.ecc)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
-    <import index="jweg" ref="r:7b1e9d17-e026-472f-bc13-715bbedb05ab(org.fbme.lib.iec61499.descriptors)" />
+    <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
+    <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
+    <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
+    <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
     <import index="gpgy" ref="r:70ba2090-1a36-4ca3-87ef-116d9af7b3ac(org.fbme.ide.st.lang.structure)" implicit="true" />
   </imports>
@@ -240,7 +240,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQA3Hp" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:1R4IoyQwdvz" resolve="CompositeFBTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
     </node>
     <node concept="2tJIrI" id="1R4IoyQA3GU" role="jymVt" />
     <node concept="3clFbW" id="1R4IoyQA3I2" role="jymVt">
@@ -266,7 +266,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="1R4IoyQGq4b" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyQGq4c" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="3clFbS" id="1R4IoyQGq4g" role="3clF47">
         <node concept="3clFbF" id="1R4IoyQGq75" role="3cqZAp">
@@ -292,7 +292,7 @@
       <property role="TrG5h" value="getReadonlyNetwork" />
       <node concept="3Tm1VV" id="2SU8oJdTVb0" role="1B3o_S" />
       <node concept="3uibUv" id="2SU8oJdTVb1" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="2AHcQZ" id="2SU8oJdTVb2" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -380,7 +380,7 @@
       <node concept="3uibUv" id="3IX4BsKbji6" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3IX4BsKbji7" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="3IX4BsKbji8" role="3clF47">
@@ -401,7 +401,7 @@
                     <node concept="3clFbF" id="3IX4BsKbjii" role="3cqZAp">
                       <node concept="2ShNRf" id="3IX4BsKbjij" role="3clFbG">
                         <node concept="1pGfFk" id="3IX4BsKbjik" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="3IX4BsKbjil" role="37wK5m">
                             <node concept="37vLTw" id="3IX4BsKbjim" role="2Oq$k0">
                               <ref role="3cqZAo" node="3IX4BsKbjiq" resolve="it" />
@@ -411,8 +411,8 @@
                             </node>
                           </node>
                           <node concept="Rm8GO" id="3IX4BsKbjip" role="37wK5m">
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm2Y" resolve="EVENT" />
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.EVENT" resolve="EVENT" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNl2D" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNkFt" role="2Oq$k0">
@@ -452,7 +452,7 @@
       <node concept="3uibUv" id="3IX4BsKbjiw" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3IX4BsKbjix" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="3IX4BsKbjiy" role="3clF47">
@@ -473,7 +473,7 @@
                     <node concept="3clFbF" id="3IX4BsKbjiG" role="3cqZAp">
                       <node concept="2ShNRf" id="3IX4BsKbjiH" role="3clFbG">
                         <node concept="1pGfFk" id="3IX4BsKbjiI" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="3IX4BsKbjiJ" role="37wK5m">
                             <node concept="37vLTw" id="3IX4BsKbjiK" role="2Oq$k0">
                               <ref role="3cqZAo" node="3IX4BsKbjiO" resolve="it" />
@@ -482,9 +482,9 @@
                               <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                             </node>
                           </node>
-                          <node concept="Rm8GO" id="3IX4BsKbjiN" role="37wK5m">
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm2Y" resolve="EVENT" />
+                          <node concept="Rm8GO" id="2YkCud38k1g" role="37wK5m">
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.EVENT" resolve="EVENT" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNqiu" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNqiv" role="2Oq$k0">
@@ -522,7 +522,7 @@
       <node concept="3uibUv" id="3IX4BsKbjiU" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3IX4BsKbjiV" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="3IX4BsKbjiW" role="3clF47">
@@ -543,7 +543,7 @@
                     <node concept="3clFbF" id="3IX4BsKbjj6" role="3cqZAp">
                       <node concept="2ShNRf" id="3IX4BsKbjj7" role="3clFbG">
                         <node concept="1pGfFk" id="3IX4BsKbjj8" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="3IX4BsKbjj9" role="37wK5m">
                             <node concept="37vLTw" id="3IX4BsKbjja" role="2Oq$k0">
                               <ref role="3cqZAo" node="3IX4BsKbjje" resolve="it" />
@@ -553,8 +553,8 @@
                             </node>
                           </node>
                           <node concept="Rm8GO" id="3IX4BsKbjjd" role="37wK5m">
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm4$" resolve="DATA" />
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.DATA" resolve="DATA" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNqxH" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNqxI" role="2Oq$k0">
@@ -594,7 +594,7 @@
       <node concept="3uibUv" id="3IX4BsKbjjk" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3IX4BsKbjjl" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="3IX4BsKbjjm" role="3clF47">
@@ -615,7 +615,7 @@
                     <node concept="3clFbF" id="3IX4BsKbjjw" role="3cqZAp">
                       <node concept="2ShNRf" id="3IX4BsKbjjx" role="3clFbG">
                         <node concept="1pGfFk" id="3IX4BsKbjjy" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="3IX4BsKbjjz" role="37wK5m">
                             <node concept="37vLTw" id="3IX4BsKbjj$" role="2Oq$k0">
                               <ref role="3cqZAo" node="3IX4BsKbjjC" resolve="it" />
@@ -625,8 +625,8 @@
                             </node>
                           </node>
                           <node concept="Rm8GO" id="3IX4BsKbjjB" role="37wK5m">
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm4$" resolve="DATA" />
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.DATA" resolve="DATA" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNqJx" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNqJy" role="2Oq$k0">
@@ -664,7 +664,7 @@
       <node concept="3uibUv" id="6LU90BNRYPB" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="6LU90BNRYPC" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="6LU90BNRYPD" role="3clF47">
@@ -673,7 +673,7 @@
             <node concept="1pGfFk" id="1R4IoyQ_8Hx" role="2ShVmc">
               <ref role="37wK5l" to="33ny:~ArrayList.&lt;init&gt;()" resolve="ArrayList" />
               <node concept="3uibUv" id="1R4IoyQ_8Hy" role="1pMfVU">
-                <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+                <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
               </node>
             </node>
           </node>
@@ -690,7 +690,7 @@
       <node concept="3uibUv" id="6LU90BNRYQ2" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="6LU90BNRYQ3" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="6LU90BNRYQ4" role="3clF47">
@@ -699,7 +699,7 @@
             <node concept="1pGfFk" id="1R4IoyQ_82l" role="2ShVmc">
               <ref role="37wK5l" to="33ny:~ArrayList.&lt;init&gt;()" resolve="ArrayList" />
               <node concept="3uibUv" id="1R4IoyQ_8md" role="1pMfVU">
-                <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+                <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
               </node>
             </node>
           </node>
@@ -884,10 +884,10 @@
       </node>
     </node>
     <node concept="3uibUv" id="31Fn7oZJcF4" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:31Fn7oZJ7qm" resolve="NamedDeclaration" />
+      <ref role="3uigEE" to="cwd8:~NamedDeclaration" resolve="NamedDeclaration" />
     </node>
     <node concept="3uibUv" id="1R4IoyQ_1E_" role="EKbjA">
-      <ref role="3uigEE" to="jweg:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+      <ref role="3uigEE" to="ntnl:~FBTypeDescriptor" resolve="FBTypeDescriptor" />
     </node>
     <node concept="3uibUv" id="1JYTWWzyXeC" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -1073,7 +1073,7 @@
       <node concept="3uibUv" id="1R4IoyQ_XNv" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="1R4IoyQ_XNw" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="2AHcQZ" id="1R4IoyQ_XNU" role="2AJF6D">
@@ -1097,7 +1097,7 @@
                     <node concept="3clFbF" id="6LU90BNRYPN" role="3cqZAp">
                       <node concept="2ShNRf" id="6LU90BNRYPO" role="3clFbG">
                         <node concept="1pGfFk" id="6LU90BNRYPP" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="6LU90BNRYPQ" role="37wK5m">
                             <node concept="37vLTw" id="6LU90BNRYPR" role="2Oq$k0">
                               <ref role="3cqZAo" node="6LU90BNRYPV" resolve="it" />
@@ -1106,9 +1106,9 @@
                               <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                             </node>
                           </node>
-                          <node concept="Rm8GO" id="6LU90BNRYPU" role="37wK5m">
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm6t" resolve="ADAPTER" />
+                          <node concept="Rm8GO" id="2YkCud38l3$" role="37wK5m">
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.ADAPTER" resolve="ADAPTER" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNr_K" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNr_L" role="2Oq$k0">
@@ -1145,7 +1145,7 @@
       <node concept="3uibUv" id="1R4IoyQ_XO0" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="1R4IoyQ_XO1" role="11_B2D">
-          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="2AHcQZ" id="1R4IoyQ_XOr" role="2AJF6D">
@@ -1169,7 +1169,7 @@
                     <node concept="3clFbF" id="6LU90BNRYQe" role="3cqZAp">
                       <node concept="2ShNRf" id="6LU90BNRYQf" role="3clFbG">
                         <node concept="1pGfFk" id="6LU90BNRYQg" role="2ShVmc">
-                          <ref role="37wK5l" to="jweg:1HEL0zWehAJ" resolve="FBPortDescriptor" />
+                          <ref role="37wK5l" to="ntnl:~FBPortDescriptor.&lt;init&gt;(java.lang.String,org.fbme.lib.iec61499.fbnetwork.EntryKind,int,boolean,boolean)" resolve="FBPortDescriptor" />
                           <node concept="2OqwBi" id="6LU90BNRYQh" role="37wK5m">
                             <node concept="37vLTw" id="6LU90BNRYQi" role="2Oq$k0">
                               <ref role="3cqZAo" node="6LU90BNRYQm" resolve="it" />
@@ -1178,9 +1178,9 @@
                               <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                             </node>
                           </node>
-                          <node concept="Rm8GO" id="6LU90BNRYQl" role="37wK5m">
-                            <ref role="Rm8GQ" to="tphl:2R0WzquZm6t" resolve="ADAPTER" />
-                            <ref role="1Px2BO" to="tphl:2R0WzquZm0W" resolve="EntryKind" />
+                          <node concept="Rm8GO" id="2YkCud38leu" role="37wK5m">
+                            <ref role="Rm8GQ" to="g27j:~EntryKind.ADAPTER" resolve="ADAPTER" />
+                            <ref role="1Px2BO" to="g27j:~EntryKind" resolve="EntryKind" />
                           </node>
                           <node concept="2OqwBi" id="3DiEZ8TNrQr" role="37wK5m">
                             <node concept="37vLTw" id="3DiEZ8TNrQs" role="2Oq$k0">
@@ -1255,7 +1255,7 @@
       <property role="TrG5h" value="getEcc" />
       <node concept="3Tm1VV" id="1R4IoyQHc1U" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyQHc1V" role="3clF45">
-        <ref role="3uigEE" to="6ehz:1R4IoyQwdM8" resolve="ECC" />
+        <ref role="3uigEE" to="g136:~ECC" resolve="ECC" />
       </node>
       <node concept="2AHcQZ" id="1R4IoyQHc1W" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1277,7 +1277,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQHc0Y" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:1R4IoyQwdLk" resolve="BasicFBTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~BasicFBTypeDeclaration" resolve="BasicFBTypeDeclaration" />
     </node>
   </node>
   <node concept="312cEu" id="1R4IoyQJoAV">
@@ -1290,7 +1290,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQJoHl" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:1R4IoyQ_1dm" resolve="ServiceInterfaceFBTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~ServiceInterfaceFBTypeDeclaration" resolve="ServiceInterfaceFBTypeDeclaration" />
     </node>
     <node concept="2tJIrI" id="1R4IoyQJsFq" role="jymVt" />
     <node concept="3clFbW" id="1R4IoyQJsG$" role="jymVt">
@@ -1323,7 +1323,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQJySZ" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:1R4IoyQ$Zos" resolve="SubapplicationTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~SubapplicationTypeDeclaration" resolve="SubapplicationTypeDeclaration" />
     </node>
     <node concept="3clFbW" id="1R4IoyQJyUq" role="jymVt">
       <node concept="3cqZAl" id="1R4IoyQJyUr" role="3clF45" />
@@ -1348,7 +1348,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="1R4IoyQJz4w" role="1B3o_S" />
       <node concept="3uibUv" id="1R4IoyQJz4x" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="3clFbS" id="1R4IoyQJz4z" role="3clF47">
         <node concept="3clFbF" id="1R4IoyQJz7i" role="3cqZAp">
@@ -1374,7 +1374,7 @@
       <property role="TrG5h" value="getReadonlyNetwork" />
       <node concept="3Tm1VV" id="2SU8oJdTXDb" role="1B3o_S" />
       <node concept="3uibUv" id="2SU8oJdTXDc" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="3clFbS" id="2SU8oJdTXDd" role="3clF47">
         <node concept="3clFbF" id="2SU8oJdTXDe" role="3cqZAp">
@@ -1404,7 +1404,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQKawr" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:1R4IoyQ$ZBc" resolve="AdapterTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~AdapterTypeDeclaration" resolve="AdapterTypeDeclaration" />
     </node>
     <node concept="2tJIrI" id="1R4IoyQKawP" role="jymVt" />
     <node concept="3clFbW" id="1R4IoyQKaxv" role="jymVt">
@@ -1544,8 +1544,8 @@
         </node>
       </node>
       <node concept="3Tm1VV" id="31Fn7oZJihW" role="1B3o_S" />
-      <node concept="3uibUv" id="31Fn7oZJizV" role="3clF45">
-        <ref role="3uigEE" to="2xsi:1HEL0zVYBFE" resolve="FBTypeDeclaration" />
+      <node concept="3uibUv" id="2YkCud38lmO" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~FBTypeDeclaration" resolve="FBTypeDeclaration" />
       </node>
       <node concept="37vLTG" id="31Fn7oZJikJ" role="3clF46">
         <property role="TrG5h" value="node" />
@@ -1707,8 +1707,8 @@
         </node>
       </node>
       <node concept="3Tm1VV" id="1QSEqLhWmXC" role="1B3o_S" />
-      <node concept="3uibUv" id="1QSEqLhWn5R" role="3clF45">
-        <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+      <node concept="3uibUv" id="2YkCud38lG3" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~Declaration" resolve="Declaration" />
       </node>
       <node concept="37vLTG" id="1QSEqLhWmXE" role="3clF46">
         <property role="TrG5h" value="node" />
@@ -1810,8 +1810,8 @@
         </node>
       </node>
       <node concept="3Tm1VV" id="31Fn7oZJkMm" role="1B3o_S" />
-      <node concept="3uibUv" id="31Fn7oZK1vN" role="3clF45">
-        <ref role="3uigEE" to="jweg:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+      <node concept="3uibUv" id="2YkCud38lZj" role="3clF45">
+        <ref role="3uigEE" to="ntnl:~FBTypeDescriptor" resolve="FBTypeDescriptor" />
       </node>
       <node concept="37vLTG" id="31Fn7oZK1xj" role="3clF46">
         <property role="TrG5h" value="node" />
@@ -1860,7 +1860,7 @@
     <node concept="2tJIrI" id="2SU8oJdHN50" role="jymVt" />
     <node concept="3Tm1VV" id="2SU8oJdHGJG" role="1B3o_S" />
     <node concept="3uibUv" id="2SU8oJdHMOp" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdH$Ob" resolve="SystemDeclaration" />
+      <ref role="3uigEE" to="cwd8:~SystemDeclaration" resolve="SystemDeclaration" />
     </node>
     <node concept="3uibUv" id="2SU8oJdHMOE" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -1907,12 +1907,12 @@
     </node>
     <node concept="2tJIrI" id="2SU8oJdUdQX" role="jymVt" />
     <node concept="3clFb_" id="2SU8oJdUdT8" role="jymVt">
-      <property role="TrG5h" value="getApplcations" />
+      <property role="TrG5h" value="getApplications" />
       <node concept="3Tm1VV" id="2SU8oJdUdTa" role="1B3o_S" />
       <node concept="3uibUv" id="2SU8oJdUdTb" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="2SU8oJdUdTc" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
+          <ref role="3uigEE" to="cwd8:~ApplicationDeclaration" resolve="ApplicationDeclaration" />
         </node>
       </node>
       <node concept="2AHcQZ" id="2SU8oJdUdTd" role="2AJF6D">
@@ -1936,7 +1936,7 @@
                     <node concept="3clFbF" id="4gibKcMrmOw" role="3cqZAp">
                       <node concept="10QFUN" id="4gibKcMrocS" role="3clFbG">
                         <node concept="3uibUv" id="4gibKcMroqH" role="10QFUM">
-                          <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
+                          <ref role="3uigEE" to="cwd8:~ApplicationDeclaration" resolve="ApplicationDeclaration" />
                         </node>
                         <node concept="2ShNRf" id="4gibKcMrmOu" role="10QFUP">
                           <node concept="1pGfFk" id="4gibKcMrn6i" role="2ShVmc">
@@ -1972,7 +1972,7 @@
       <node concept="3uibUv" id="2SU8oJdUdTl" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="2SU8oJdUdTm" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdHTR3" resolve="DeviceDeclaration" />
+          <ref role="3uigEE" to="cwd8:~DeviceDeclaration" resolve="DeviceDeclaration" />
         </node>
       </node>
       <node concept="2AHcQZ" id="2SU8oJdUdTn" role="2AJF6D">
@@ -2010,7 +2010,7 @@
     <node concept="2tJIrI" id="4gibKcMrduz" role="jymVt" />
     <node concept="3Tm1VV" id="4dM3MZ7oKoR" role="1B3o_S" />
     <node concept="3uibUv" id="4gibKcMrdui" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdH$Pn" resolve="ApplicationDeclaration" />
+      <ref role="3uigEE" to="cwd8:~ApplicationDeclaration" resolve="ApplicationDeclaration" />
     </node>
     <node concept="3uibUv" id="4gibKcMrdFU" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -2092,7 +2092,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="4gibKcMrdRI" role="1B3o_S" />
       <node concept="3uibUv" id="4gibKcMrdRJ" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="2AHcQZ" id="4gibKcMrdRK" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2162,7 +2162,7 @@
       <property role="TrG5h" value="getSytem" />
       <node concept="3Tm1VV" id="4gibKcMrgNI" role="1B3o_S" />
       <node concept="3uibUv" id="4gibKcMrgNJ" role="3clF45">
-        <ref role="3uigEE" to="2xsi:2SU8oJdH$Ob" resolve="SystemDeclaration" />
+        <ref role="3uigEE" to="cwd8:~SystemDeclaration" resolve="SystemDeclaration" />
       </node>
       <node concept="2AHcQZ" id="4gibKcMrgNK" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2187,7 +2187,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3MncU7wPdT9" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPdTw" role="1tU5fm">
-        <ref role="3uigEE" to="2xsi:2SU8oJdH$Ob" resolve="SystemDeclaration" />
+        <ref role="3uigEE" to="cwd8:~SystemDeclaration" resolve="SystemDeclaration" />
       </node>
     </node>
     <node concept="2tJIrI" id="3MncU7wPdSO" role="jymVt" />
@@ -2202,7 +2202,7 @@
     <node concept="2tJIrI" id="3MncU7wPdRx" role="jymVt" />
     <node concept="3Tm1VV" id="3MncU7wPdcv" role="1B3o_S" />
     <node concept="3uibUv" id="3MncU7wPdP$" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdHTR3" resolve="DeviceDeclaration" />
+      <ref role="3uigEE" to="cwd8:~DeviceDeclaration" resolve="DeviceDeclaration" />
     </node>
     <node concept="3uibUv" id="3MncU7wPdPP" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -2241,7 +2241,7 @@
       <node concept="37vLTG" id="3MncU7wPdUG" role="3clF46">
         <property role="TrG5h" value="system" />
         <node concept="3uibUv" id="3MncU7wPdUF" role="1tU5fm">
-          <ref role="3uigEE" to="2xsi:2SU8oJdH$Ob" resolve="SystemDeclaration" />
+          <ref role="3uigEE" to="cwd8:~SystemDeclaration" resolve="SystemDeclaration" />
         </node>
       </node>
     </node>
@@ -2285,7 +2285,7 @@
       <property role="TrG5h" value="getSystem" />
       <node concept="3Tm1VV" id="3MncU7wPe8G" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPe8H" role="3clF45">
-        <ref role="3uigEE" to="2xsi:2SU8oJdH$Ob" resolve="SystemDeclaration" />
+        <ref role="3uigEE" to="cwd8:~SystemDeclaration" resolve="SystemDeclaration" />
       </node>
       <node concept="3clFbS" id="3MncU7wPe8I" role="3clF47">
         <node concept="3clFbF" id="3MncU7wPel7" role="3cqZAp">
@@ -2302,7 +2302,7 @@
       <property role="TrG5h" value="getType" />
       <node concept="3Tm1VV" id="3MncU7wPe8O" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPe8P" role="3clF45">
-        <ref role="3uigEE" to="jweg:2SU8oJdIdgm" resolve="DeviceTypeDescriptor" />
+        <ref role="3uigEE" to="ntnl:~DeviceTypeDescriptor" resolve="DeviceTypeDescriptor" />
       </node>
       <node concept="3clFbS" id="3MncU7wPe8Q" role="3clF47">
         <node concept="3clFbF" id="3MncU7wPe8T" role="3cqZAp">
@@ -2319,7 +2319,7 @@
       <node concept="3uibUv" id="3MncU7wPe8X" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPe8Y" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdHUP_" resolve="ParameterAssigment" />
+          <ref role="3uigEE" to="cwd8:~ParameterAssigment" resolve="ParameterAssigment" />
         </node>
       </node>
       <node concept="3clFbS" id="3MncU7wPe8Z" role="3clF47">
@@ -2337,7 +2337,7 @@
       <node concept="3uibUv" id="3MncU7wPe96" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPe97" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
+          <ref role="3uigEE" to="cwd8:~ResourceDeclaration" resolve="ResourceDeclaration" />
         </node>
       </node>
       <node concept="3clFbS" id="3MncU7wPe98" role="3clF47">
@@ -2353,7 +2353,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="3MncU7wPe9e" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPe9f" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="2AHcQZ" id="3MncU7wPe9g" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -2419,7 +2419,7 @@
     <node concept="2tJIrI" id="3MncU7wPirJ" role="jymVt" />
     <node concept="3Tm1VV" id="3MncU7wPin$" role="1B3o_S" />
     <node concept="3uibUv" id="3MncU7wPioS" role="EKbjA">
-      <ref role="3uigEE" to="jweg:2SU8oJdIdgm" resolve="DeviceTypeDescriptor" />
+      <ref role="3uigEE" to="ntnl:~DeviceTypeDescriptor" resolve="DeviceTypeDescriptor" />
     </node>
     <node concept="3clFbW" id="3MncU7wPisj" role="jymVt">
       <node concept="3cqZAl" id="3MncU7wPisk" role="3clF45" />
@@ -2449,7 +2449,7 @@
       <property role="TrG5h" value="getDeclaration" />
       <node concept="3Tm1VV" id="3MncU7wPiwn" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPiwo" role="3clF45">
-        <ref role="3uigEE" to="2xsi:2SU8oJdHTRH" resolve="DeviceTypeDeclaration" />
+        <ref role="3uigEE" to="cwd8:~DeviceTypeDeclaration" resolve="DeviceTypeDeclaration" />
       </node>
       <node concept="3clFbS" id="3MncU7wPiwp" role="3clF47">
         <node concept="3cpWs8" id="3MncU7wPiYm" role="3cqZAp">
@@ -2570,7 +2570,7 @@
       <node concept="3uibUv" id="3MncU7wPiwC" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPiwD" role="11_B2D">
-          <ref role="3uigEE" to="jweg:2SU8oJdIdjZ" resolve="ParameterDescriptor" />
+          <ref role="3uigEE" to="ntnl:~ParameterDescriptor" resolve="ParameterDescriptor" />
         </node>
       </node>
       <node concept="3clFbS" id="3MncU7wPiwE" role="3clF47">
@@ -2587,7 +2587,7 @@
     <property role="TrG5h" value="DeviceTypeDeclarationByNode" />
     <node concept="3Tm1VV" id="3MncU7wPjJV" role="1B3o_S" />
     <node concept="3uibUv" id="3MncU7wPjMl" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdHTRH" resolve="DeviceTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~DeviceTypeDeclaration" resolve="DeviceTypeDeclaration" />
     </node>
     <node concept="2tJIrI" id="3MncU7wPjPL" role="jymVt" />
     <node concept="312cEg" id="3MncU7wPjQL" role="jymVt">
@@ -2628,7 +2628,7 @@
       <node concept="3uibUv" id="3MncU7wPk7_" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPk7A" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdHUP3" resolve="ParameterDeclaration" />
+          <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
         </node>
       </node>
       <node concept="2AHcQZ" id="3MncU7wPk7B" role="2AJF6D">
@@ -2648,7 +2648,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="3MncU7wPk7I" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPk7J" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="3clFbS" id="3MncU7wPk7K" role="3clF47">
         <node concept="3clFbF" id="3MncU7wPklb" role="3cqZAp">
@@ -2676,7 +2676,7 @@
       <node concept="3uibUv" id="3MncU7wPk7R" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPk7S" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
+          <ref role="3uigEE" to="cwd8:~ResourceDeclaration" resolve="ResourceDeclaration" />
         </node>
       </node>
       <node concept="2AHcQZ" id="3MncU7wPk7T" role="2AJF6D">
@@ -2721,8 +2721,8 @@
       <property role="TrG5h" value="myContainer" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3MncU7wPFWA" role="1B3o_S" />
-      <node concept="3uibUv" id="3MncU7wPG4P" role="1tU5fm">
-        <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+      <node concept="3uibUv" id="2YkCud38mGL" role="1tU5fm">
+        <ref role="3uigEE" to="cwd8:~Declaration" resolve="Declaration" />
       </node>
     </node>
     <node concept="312cEg" id="3MncU7wPlQM" role="jymVt">
@@ -2735,8 +2735,8 @@
     </node>
     <node concept="2tJIrI" id="3MncU7wPlR5" role="jymVt" />
     <node concept="3Tm1VV" id="3MncU7wPlNz" role="1B3o_S" />
-    <node concept="3uibUv" id="3MncU7wPlOS" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdIdeb" resolve="ResourceDeclaration" />
+    <node concept="3uibUv" id="2YkCud38mtj" role="EKbjA">
+      <ref role="3uigEE" to="cwd8:~ResourceDeclaration" resolve="ResourceDeclaration" />
     </node>
     <node concept="3uibUv" id="3MncU7wPlYc" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -2775,7 +2775,7 @@
       <node concept="37vLTG" id="3MncU7wPygS" role="3clF46">
         <property role="TrG5h" value="container" />
         <node concept="3uibUv" id="3MncU7wPypc" role="1tU5fm">
-          <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+          <ref role="3uigEE" to="cwd8:~Declaration" resolve="Declaration" />
         </node>
       </node>
     </node>
@@ -2812,7 +2812,7 @@
       <property role="TrG5h" value="getContainer" />
       <node concept="3Tm1VV" id="3MncU7wPGEu" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPGEv" role="3clF45">
-        <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+        <ref role="3uigEE" to="cwd8:~Declaration" resolve="Declaration" />
       </node>
       <node concept="2AHcQZ" id="3MncU7wPGEw" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2896,7 +2896,7 @@
       </node>
       <node concept="3Tm6S6" id="3MncU7wPzly" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPztZ" role="3clF45">
-        <ref role="3uigEE" to="2xsi:31Fn7oZJ7rQ" resolve="Declaration" />
+        <ref role="3uigEE" to="cwd8:~Declaration" resolve="Declaration" />
       </node>
       <node concept="37vLTG" id="3MncU7wPzNl" role="3clF46">
         <property role="TrG5h" value="resourceParent" />
@@ -2908,7 +2908,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="3MncU7wPm1o" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPm1p" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="2AHcQZ" id="3MncU7wPm1q" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2978,7 +2978,7 @@
       <property role="TrG5h" value="getType" />
       <node concept="3Tm1VV" id="3MncU7wPo2c" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPo2d" role="3clF45">
-        <ref role="3uigEE" to="jweg:2SU8oJdIhW2" resolve="ResourceTypeDescriptor" />
+        <ref role="3uigEE" to="ntnl:~ResourceTypeDescriptor" resolve="ResourceTypeDescriptor" />
       </node>
       <node concept="2AHcQZ" id="3MncU7wPo2e" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3015,7 +3015,7 @@
       <node concept="3uibUv" id="3MncU7wPo2m" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPo2n" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdHUP_" resolve="ParameterAssigment" />
+          <ref role="3uigEE" to="cwd8:~ParameterAssigment" resolve="ParameterAssigment" />
         </node>
       </node>
       <node concept="2AHcQZ" id="3MncU7wPo2o" role="2AJF6D">
@@ -3045,7 +3045,7 @@
     <node concept="2tJIrI" id="3MncU7wPr3u" role="jymVt" />
     <node concept="3Tm1VV" id="3MncU7wPn$_" role="1B3o_S" />
     <node concept="3uibUv" id="3MncU7wPr07" role="EKbjA">
-      <ref role="3uigEE" to="2xsi:2SU8oJdIdfg" resolve="ResourceTypeDeclaration" />
+      <ref role="3uigEE" to="cwd8:~ResourceTypeDeclaration" resolve="ResourceTypeDeclaration" />
     </node>
     <node concept="3uibUv" id="3MncU7wPr17" role="EKbjA">
       <ref role="3uigEE" node="1JYTWWzyU94" resolve="HasNode" />
@@ -3079,7 +3079,7 @@
       <node concept="3uibUv" id="3MncU7wPr9s" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPr9t" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:2SU8oJdHUP3" resolve="ParameterDeclaration" />
+          <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
         </node>
       </node>
       <node concept="3clFbS" id="3MncU7wPr9u" role="3clF47">
@@ -3096,7 +3096,7 @@
       <property role="TrG5h" value="getNetwork" />
       <node concept="3Tm1VV" id="3MncU7wPr9$" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPr9_" role="3clF45">
-        <ref role="3uigEE" to="tphl:1R4IoyQvXM6" resolve="FBNetwork" />
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
       </node>
       <node concept="3clFbS" id="3MncU7wPr9A" role="3clF47">
         <node concept="3clFbF" id="3MncU7wPrtS" role="3cqZAp">
@@ -3163,7 +3163,7 @@
     <property role="TrG5h" value="ResourceTypeDescriptorByReference" />
     <node concept="3Tm1VV" id="3MncU7wPobd" role="1B3o_S" />
     <node concept="3uibUv" id="3MncU7wPodM" role="EKbjA">
-      <ref role="3uigEE" to="jweg:2SU8oJdIhW2" resolve="ResourceTypeDescriptor" />
+      <ref role="3uigEE" to="ntnl:~ResourceTypeDescriptor" resolve="ResourceTypeDescriptor" />
     </node>
     <node concept="2tJIrI" id="3MncU7wPoex" role="jymVt" />
     <node concept="312cEg" id="3MncU7wPof4" role="jymVt">
@@ -3198,7 +3198,7 @@
       <property role="TrG5h" value="getDeclaration" />
       <node concept="3Tm1VV" id="3MncU7wPsVa" role="1B3o_S" />
       <node concept="3uibUv" id="3MncU7wPsVb" role="3clF45">
-        <ref role="3uigEE" to="2xsi:2SU8oJdIdfg" resolve="ResourceTypeDeclaration" />
+        <ref role="3uigEE" to="cwd8:~ResourceTypeDeclaration" resolve="ResourceTypeDeclaration" />
       </node>
       <node concept="2AHcQZ" id="3MncU7wPsVc" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -3325,7 +3325,7 @@
       <node concept="3uibUv" id="3MncU7wPsVt" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3MncU7wPsVu" role="11_B2D">
-          <ref role="3uigEE" to="jweg:2SU8oJdIdjZ" resolve="ParameterDescriptor" />
+          <ref role="3uigEE" to="ntnl:~ParameterDescriptor" resolve="ParameterDescriptor" />
         </node>
       </node>
       <node concept="2AHcQZ" id="3MncU7wPsVv" role="2AJF6D">

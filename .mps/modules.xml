@@ -9,13 +9,13 @@
       <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="richediting" />
       <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="platform" />
       <modulePath path="$PROJECT_DIR$/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="platform" />
+      <modulePath path="$PROJECT_DIR$/library/org.fbme.lib.msd" folder="library" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.build/org.fbme.ide.build.msd" folder="build" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="enas" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="platform" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="4diac integration" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="platform" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.ide.richediting/org.fbme.ide.richediting.msd" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/solutions/org.fbme.lib.iec61499/org.fbme.lib.iec61499.msd" folder="library" />
       <modulePath path="$PROJECT_DIR$/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="scenes" />
       <modulePath path="$PROJECT_DIR$/solutions/stubs/stdlib/stdlib.msd" folder="4diac integration" />
       <modulePath path="$PROJECT_DIR$/st-parser/ST.parser.msd" folder="library" />

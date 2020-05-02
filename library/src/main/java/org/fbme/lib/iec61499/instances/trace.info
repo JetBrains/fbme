@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1082485599095:jetbrains.mps.baseLanguage.structure.BlockStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1170075670744:jetbrains.mps.baseLanguage.structure.SynchronizedStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1076505808687:jetbrains.mps.baseLanguage.structure.WhileStatement" />
+  <root nodeRef="r:296ba507-c250-4c4f-87ec-b3402bd9d933(org.fbme.lib.iec61499.instances)/2141648180388586445">
+    <file name="FunctionBlockInstance.java">
+      <node id="4987879555912369425" at="11,0,13,0" concept="6" trace="getParent#()Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912044358" at="14,0,16,0" concept="6" trace="getDeclaration#()Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;" />
+      <node id="2141648180388586641" at="17,0,19,0" concept="6" trace="getContainedNetwork#()Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <scope id="4987879555912369425" at="11,0,13,0" />
+      <scope id="4987879555912044358" at="14,0,16,0" />
+      <scope id="2141648180388586641" at="17,0,19,0" />
+      <unit id="2141648180388586445" at="9,0,20,0" name="org.fbme.lib.iec61499.instances.FunctionBlockInstance" />
+    </file>
+  </root>
+  <root nodeRef="r:296ba507-c250-4c4f-87ec-b3402bd9d933(org.fbme.lib.iec61499.instances)/2141648180388643668">
+    <file name="RegularFunctionBlockInstance.java">
+      <node id="4987879555912114531" at="15,0,16,0" concept="3" trace="myDeclaration" />
+      <node id="4987879555912118235" at="16,0,17,0" concept="3" trace="myParent" />
+      <node id="2141648180388644010" at="17,0,18,0" concept="3" trace="myNetwork" />
+      <node id="4987879555912120426" at="19,101,20,22" concept="2" />
+      <node id="4987879555912123354" at="20,22,21,32" concept="2" />
+      <node id="4987879555912206265" at="21,32,22,0" concept="9" />
+      <node id="4987879555912206625" at="22,0,23,80" concept="7" />
+      <node id="4987879555912206635" at="24,64,25,137" concept="2" />
+      <node id="2515470377410996565" at="26,74,27,140" concept="2" />
+      <node id="4987879555913284357" at="28,12,29,23" concept="2" />
+      <node id="4987879555912127348" at="35,38,36,20" concept="8" />
+      <node id="4987879555912127791" at="41,52,42,25" concept="8" />
+      <node id="2141648180388655783" at="47,48,48,21" concept="8" />
+      <node id="1895946057307965042" at="53,20,54,18" concept="8" />
+      <node id="1895946057307965048" at="56,57,57,19" concept="8" />
+      <node id="1895946057307965061" at="58,5,59,0" concept="9" />
+      <node id="1895946057307965062" at="59,0,60,73" concept="7" />
+      <node id="1895946057307965080" at="61,63,62,19" concept="8" />
+      <node id="1895946057307965099" at="64,53,65,19" concept="8" />
+      <node id="1895946057307965113" at="66,5,67,0" concept="9" />
+      <node id="1895946057307965114" at="67,0,68,16" concept="8" />
+      <node id="1895946057308003150" at="72,25,73,63" concept="8" />
+      <node id="4987879555913283830" at="28,10,30,5" concept="0" />
+      <node id="1895946057307965040" at="52,35,55,5" concept="5" />
+      <node id="1895946057307965046" at="55,5,58,5" concept="5" />
+      <node id="1895946057307965078" at="60,73,63,5" concept="5" />
+      <node id="1895946057307965097" at="63,5,66,5" concept="5" />
+      <node id="1895946057307965116" at="71,0,75,0" concept="6" trace="hashCode#()I" />
+      <node id="4987879555912110201" at="33,0,38,0" concept="6" trace="getParent#()Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912110211" at="39,0,44,0" concept="6" trace="getDeclaration#()Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;" />
+      <node id="2141648180388644610" at="45,0,50,0" concept="6" trace="getContainedNetwork#()Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912206633" at="23,80,30,5" concept="5" />
+      <node id="2141648180388644076" at="19,0,32,0" concept="1" trace="RegularFunctionBlockInstance#(Lorg/fbme/lib/iec61499/instances/NetworkInstance;Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)V" />
+      <node id="1895946057307965036" at="51,0,70,0" concept="6" trace="equals#(Ljava/lang/Object;)Z" />
+      <scope id="4987879555912206634" at="24,64,25,137" />
+      <scope id="2515470377410996040" at="26,74,27,140" />
+      <scope id="4987879555913283831" at="28,12,29,23" />
+      <scope id="4987879555912110207" at="35,38,36,20" />
+      <scope id="4987879555912110217" at="41,52,42,25" />
+      <scope id="2141648180388644615" at="47,48,48,21" />
+      <scope id="1895946057307965041" at="53,20,54,18" />
+      <scope id="1895946057307965047" at="56,57,57,19" />
+      <scope id="1895946057307965079" at="61,63,62,19" />
+      <scope id="1895946057307965098" at="64,53,65,19" />
+      <scope id="1895946057307965119" at="72,25,73,63" />
+      <scope id="1895946057307965116" at="71,0,75,0" />
+      <scope id="4987879555912110201" at="33,0,38,0" />
+      <scope id="4987879555912110211" at="39,0,44,0" />
+      <scope id="2141648180388644610" at="45,0,50,0" />
+      <scope id="2141648180388644080" at="19,101,30,5">
+        <var name="typeDeclaration" id="4987879555912206626" />
+      </scope>
+      <scope id="2141648180388644076" at="19,0,32,0">
+        <var name="declaration" id="2141648180388644083" />
+        <var name="parent" id="4987879555912103386" />
+      </scope>
+      <scope id="1895946057307965039" at="52,35,68,16">
+        <var name="that" id="1895946057307965063" />
+      </scope>
+      <scope id="1895946057307965036" at="51,0,70,0">
+        <var name="o" id="1895946057307965068" />
+      </scope>
+      <unit id="2141648180388643668" at="13,0,76,0" name="org.fbme.lib.iec61499.instances.RegularFunctionBlockInstance" />
+    </file>
+  </root>
+  <root nodeRef="r:296ba507-c250-4c4f-87ec-b3402bd9d933(org.fbme.lib.iec61499.instances)/4987879555912027823">
+    <file name="Instance.java">
+      <node id="4987879555912028471" at="18,38,19,25" concept="7" />
+      <node id="4987879555912028624" at="19,25,20,39" concept="7" />
+      <node id="4987879555912030437" at="21,28,22,20" concept="2" />
+      <node id="4987879555912030544" at="22,20,23,32" concept="2" />
+      <node id="4987879555912031746" at="24,5,25,16" concept="8" />
+      <node id="4987879555912028011" at="11,0,13,0" concept="6" trace="getParent#()Lorg/fbme/lib/iec61499/instances/Instance;" />
+      <node id="4987879555912027869" at="14,0,16,0" concept="6" trace="getDeclaration#()Lorg/fbme/lib/iec61499/declarations/Declaration;" />
+      <node id="4987879555912028752" at="20,39,24,5" concept="12" />
+      <node id="4987879555912028222" at="17,0,27,0" concept="6" trace="getRootInstance#()Lorg/fbme/lib/iec61499/instances/Instance;" />
+      <scope id="4987879555912028011" at="11,0,13,0" />
+      <scope id="4987879555912027869" at="14,0,16,0" />
+      <scope id="4987879555912028754" at="21,28,23,32" />
+      <scope id="4987879555912028225" at="18,38,25,16">
+        <var name="parent" id="4987879555912028625" />
+        <var name="root" id="4987879555912028472" />
+      </scope>
+      <scope id="4987879555912028222" at="17,0,27,0" />
+      <unit id="4987879555912027823" at="9,0,29,0" name="org.fbme.lib.iec61499.instances.Instance" />
+    </file>
+  </root>
+  <root nodeRef="r:296ba507-c250-4c4f-87ec-b3402bd9d933(org.fbme.lib.iec61499.instances)/4987879555912200042">
+    <file name="NetworkInstance.java">
+      <node id="4987879555912261497" at="27,95,28,91" concept="8" />
+      <node id="4987879555912267792" at="31,104,32,97" concept="8" />
+      <node id="4987879555912273389" at="35,86,36,85" concept="8" />
+      <node id="4987879555912275502" at="39,98,40,81" concept="8" />
+      <node id="4987879555912269086" at="43,83,44,83" concept="8" />
+      <node id="4987879555912270243" at="47,74,48,77" concept="8" />
+      <node id="4987879555912271711" at="51,86,52,73" concept="8" />
+      <node id="2141648180388941341" at="56,60,57,94" concept="7" />
+      <node id="2141648180388941636" at="57,94,58,55" concept="8" />
+      <node id="2141648180388941359" at="59,70,60,95" concept="7" />
+      <node id="2141648180388942097" at="60,95,61,53" concept="8" />
+      <node id="4987879555912311446" at="62,64,63,85" concept="7" />
+      <node id="4987879555912311453" at="63,85,64,49" concept="8" />
+      <node id="4987879555912312655" at="65,62,66,79" concept="7" />
+      <node id="4987879555912312662" at="66,79,67,63" concept="8" />
+      <node id="4905034634937438792" at="68,63,69,74" concept="7" />
+      <node id="4905034634937438799" at="69,74,70,39" concept="8" />
+      <node id="4167976392286910455" at="71,60,72,73" concept="7" />
+      <node id="4167976392286910462" at="72,73,73,41" concept="8" />
+      <node id="4987879555912314107" at="74,58,75,67" concept="7" />
+      <node id="4987879555912314114" at="75,67,76,55" concept="8" />
+      <node id="4987879555912310328" at="77,5,78,16" concept="8" />
+      <node id="4987879555912201480" at="20,0,22,0" concept="6" trace="getNetworkDeclaration#()Lorg/fbme/lib/iec61499/fbnetwork/FBNetwork;" />
+      <node id="2141648180388586859" at="23,0,25,0" concept="6" trace="getChild#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Lorg/fbme/lib/iec61499/instances/FunctionBlockInstance;" />
+      <node id="4987879555912261223" at="27,0,30,0" concept="10" trace="createForCompositeFBType#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912267790" at="31,0,34,0" concept="10" trace="createForSubapplicationType#(Lorg/fbme/lib/iec61499/declarations/SubapplicationTypeDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912273387" at="35,0,38,0" concept="10" trace="createForResourceType#(Lorg/fbme/lib/iec61499/declarations/ResourceTypeDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912275500" at="39,0,42,0" concept="10" trace="createForImplicitResourceOfDeviceType#(Lorg/fbme/lib/iec61499/declarations/DeviceTypeDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912269084" at="43,0,46,0" concept="10" trace="createForApplication#(Lorg/fbme/lib/iec61499/declarations/ApplicationDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912270241" at="47,0,50,0" concept="10" trace="createForResource#(Lorg/fbme/lib/iec61499/declarations/ResourceDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="4987879555912271709" at="51,0,54,0" concept="10" trace="createForImplicitResourceOfDevice#(Lorg/fbme/lib/iec61499/declarations/DeviceDeclaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <node id="2141648180388941339" at="55,72,77,5" concept="5" />
+      <node id="4987879555912306745" at="55,0,80,0" concept="10" trace="createForDeclaraiton#(Lorg/fbme/lib/iec61499/declarations/Declaration;)Lorg/fbme/lib/iec61499/instances/NetworkInstance;" />
+      <scope id="4987879555912261226" at="27,95,28,91" />
+      <scope id="4987879555912267791" at="31,104,32,97" />
+      <scope id="4987879555912273388" at="35,86,36,85" />
+      <scope id="4987879555912275501" at="39,98,40,81" />
+      <scope id="4987879555912269085" at="43,83,44,83" />
+      <scope id="4987879555912270242" at="47,74,48,77" />
+      <scope id="4987879555912271710" at="51,86,52,73" />
+      <scope id="4987879555912201480" at="20,0,22,0" />
+      <scope id="2141648180388586859" at="23,0,25,0">
+        <var name="functionBlock" id="2141648180388586908" />
+      </scope>
+      <scope id="2141648180388941340" at="56,60,58,55">
+        <var name="compositeFBType" id="2141648180388941342" />
+      </scope>
+      <scope id="2141648180388941358" at="59,70,61,53">
+        <var name="subappType" id="2141648180388941360" />
+      </scope>
+      <scope id="4987879555912311445" at="62,64,64,49">
+        <var name="resourceType" id="4987879555912311447" />
+      </scope>
+      <scope id="4987879555912312654" at="65,62,67,63">
+        <var name="deviceType" id="4987879555912312656" />
+      </scope>
+      <scope id="4905034634937433636" at="68,63,70,39">
+        <var name="app" id="4905034634937438793" />
+      </scope>
+      <scope id="4167976392286910454" at="71,60,73,41">
+        <var name="resource" id="4167976392286910456" />
+      </scope>
+      <scope id="4987879555912314106" at="74,58,76,55">
+        <var name="device" id="4987879555912314108" />
+      </scope>
+      <scope id="4987879555912261223" at="27,0,30,0">
+        <var name="compositeFBType" id="4987879555912261435" />
+      </scope>
+      <scope id="4987879555912267790" at="31,0,34,0">
+        <var name="subapplicationType" id="4987879555912267802" />
+      </scope>
+      <scope id="4987879555912273387" at="35,0,38,0">
+        <var name="resourceType" id="4987879555912273399" />
+      </scope>
+      <scope id="4987879555912275500" at="39,0,42,0">
+        <var name="deviceType" id="4987879555912275512" />
+      </scope>
+      <scope id="4987879555912269084" at="43,0,46,0">
+        <var name="application" id="4987879555912269096" />
+      </scope>
+      <scope id="4987879555912270241" at="47,0,50,0">
+        <var name="resource" id="4987879555912270253" />
+      </scope>
+      <scope id="4987879555912271709" at="51,0,54,0">
+        <var name="device" id="4987879555912271721" />
+      </scope>
+      <scope id="4987879555912306748" at="55,72,78,16" />
+      <scope id="4987879555912306745" at="55,0,80,0">
+        <var name="declaration" id="4987879555912307190" />
+      </scope>
+      <unit id="4987879555912200042" at="18,0,81,0" name="org.fbme.lib.iec61499.instances.NetworkInstance" />
+    </file>
+  </root>
+  <root nodeRef="r:296ba507-c250-4c4f-87ec-b3402bd9d933(org.fbme.lib.iec61499.instances)/4987879555912201806">
+    <file name="RegularNetworkInstance.java">
+      <node id="4987879555912211146" at="19,0,20,0" concept="3" trace="myParent" />
+      <node id="4987879555912211268" at="20,0,21,0" concept="3" trace="myNetwork" />
+      <node id="4987879555912223461" at="21,0,22,0" concept="3" trace="myDeclaration" />
+      <node id="4987879555912212050" at="22,0,23,0" concept="3" trace="myChildren" />
+      <node id="4987879555912225081" at="24,94,25,22" concept="2" />
+      <node id="4987879555912225093" at="25,22,26,24" concept="2" />
+      <node id="4987879555912225105" at="26,24,27,32" concept="2" />
+      <node id="4987879555912233284" at="32,44,33,21" concept="8" />
+      <node id="4987879555912236963" at="38,90,39,11" concept="2" />
+      <node id="4987879555912237574" at="39,11,40,62" concept="8" />
+      <node id="4987879555912243929" at="45,31,46,20" concept="8" />
+      <node id="4987879555912244371" at="51,39,52,25" concept="8" />
+      <node id="4987879555912136834" at="58,33,59,86" concept="2" />
+      <node id="4987879555912145716" at="59,86,60,0" concept="9" />
+      <node id="2141648180388709095" at="62,64,63,97" concept="7" />
+      <node id="2141648180388696712" at="63,97,64,130" concept="2" />
+      <node id="4987879555912146417" at="66,11,67,0" concept="9" />
+      <node id="1895946057308010911" at="75,20,76,18" concept="8" />
+      <node id="1895946057308010918" at="78,51,79,19" concept="8" />
+      <node id="1895946057308010925" at="80,5,81,0" concept="9" />
+      <node id="1895946057308010926" at="81,0,82,61" concept="7" />
+      <node id="1895946057308010934" at="83,63,84,19" concept="8" />
+      <node id="1895946057308010943" at="86,53,87,19" concept="8" />
+      <node id="1895946057308010950" at="88,5,89,0" concept="9" />
+      <node id="1895946057308010951" at="89,0,90,16" concept="8" />
+      <node id="1895946057308010961" at="94,25,95,72" concept="8" />
+      <node id="3812683731247491981" at="98,36,99,42" concept="8" />
+      <node id="3812683731247491981" at="100,5,101,13" concept="8" />
+      <node id="1895946057308010909" at="74,35,77,5" concept="5" />
+      <node id="1895946057308010916" at="77,5,80,5" concept="5" />
+      <node id="1895946057308010932" at="82,61,85,5" concept="5" />
+      <node id="1895946057308010941" at="85,5,88,5" concept="5" />
+      <node id="3812683731247491981" at="97,69,100,5" concept="5" />
+      <node id="2141648180388706510" at="61,95,65,13" concept="5" />
+      <node id="1895946057308010957" at="93,0,97,0" concept="6" trace="hashCode#()I" />
+      <node id="4987879555912225073" at="24,0,29,0" concept="1" trace="RegularNetworkInstance#(Lorg/fbme/lib/iec61499/instances/Instance;Lorg/fbme/lib/iec61499/fbnetwork/FBNetwork;Lorg/fbme/lib/iec61499/declarations/Declaration;)V" />
+      <node id="4987879555912231929" at="30,0,35,0" concept="6" trace="getNetworkDeclaration#()Lorg/fbme/lib/iec61499/fbnetwork/FBNetwork;" />
+      <node id="4987879555912231950" at="43,0,48,0" concept="6" trace="getParent#()Lorg/fbme/lib/iec61499/instances/Instance;" />
+      <node id="4987879555912231960" at="49,0,54,0" concept="6" trace="getDeclaration#()Lorg/fbme/lib/iec61499/declarations/Declaration;" />
+      <node id="4987879555912231938" at="36,0,42,0" concept="6" trace="getChild#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Lorg/fbme/lib/iec61499/instances/FunctionBlockInstance;" />
+      <node id="2141648180388694320" at="60,0,66,11" concept="4" />
+      <node id="3812683731247491981" at="97,0,103,0" concept="10" trace="check_s4l1ib_a0a0u#(Lorg/fbme/lib/iec61499/instances/Instance;)I" />
+      <node id="4987879555912139824" at="57,27,68,9" concept="5" />
+      <node id="4987879555912139667" at="56,29,69,7" concept="11" />
+      <node id="4987879555912132204" at="55,23,70,5" concept="5" />
+      <node id="4987879555912131127" at="55,0,72,0" concept="6" trace="init#()V" />
+      <node id="1895946057308010905" at="73,0,92,0" concept="6" trace="equals#(Ljava/lang/Object;)Z" />
+      <scope id="4987879555912231934" at="32,44,33,21" />
+      <scope id="4987879555912231956" at="45,31,46,20" />
+      <scope id="4987879555912231966" at="51,39,52,25" />
+      <scope id="1895946057308010910" at="75,20,76,18" />
+      <scope id="1895946057308010917" at="78,51,79,19" />
+      <scope id="1895946057308010933" at="83,63,84,19" />
+      <scope id="1895946057308010942" at="86,53,87,19" />
+      <scope id="1895946057308010960" at="94,25,95,72" />
+      <scope id="3812683731247491981" at="98,36,99,42" />
+      <scope id="4987879555912231946" at="38,90,40,62" />
+      <scope id="2141648180388706512" at="62,64,64,130">
+        <var name="innerFunctionBlock" id="2141648180388709096" />
+      </scope>
+      <scope id="4987879555912225077" at="24,94,27,32" />
+      <scope id="2141648180388694326" at="61,95,65,13" />
+      <scope id="1895946057308010957" at="93,0,97,0" />
+      <scope id="3812683731247491981" at="97,69,101,13" />
+      <scope id="4987879555912225073" at="24,0,29,0">
+        <var name="declaration" id="4987879555912225104" />
+        <var name="network" id="4987879555912225092" />
+        <var name="parent" id="4987879555912225080" />
+      </scope>
+      <scope id="4987879555912231929" at="30,0,35,0" />
+      <scope id="4987879555912231950" at="43,0,48,0" />
+      <scope id="4987879555912231960" at="49,0,54,0" />
+      <scope id="4987879555912231938" at="36,0,42,0">
+        <var name="functionBlock" id="4987879555912231942" />
+      </scope>
+      <scope id="2141648180388694320" at="60,0,66,11">
+        <var name="component" id="2141648180388694322" />
+      </scope>
+      <scope id="3812683731247491981" at="97,0,103,0">
+        <var name="checkedDotOperand" id="3812683731247491981" />
+      </scope>
+      <scope id="4987879555912139826" at="58,33,67,0" />
+      <scope id="4987879555912139671" at="57,27,68,9" />
+      <scope id="4987879555912132206" at="56,29,69,7" />
+      <scope id="4987879555912131130" at="55,23,70,5" />
+      <scope id="1895946057308010908" at="74,35,90,16">
+        <var name="that" id="1895946057308010927" />
+      </scope>
+      <scope id="4987879555912131127" at="55,0,72,0" />
+      <scope id="1895946057308010905" at="73,0,92,0">
+        <var name="o" id="1895946057308010953" />
+      </scope>
+      <unit id="4987879555912201806" at="17,0,104,0" name="org.fbme.lib.iec61499.instances.RegularNetworkInstance" />
+    </file>
+  </root>
+</debug-info>
+

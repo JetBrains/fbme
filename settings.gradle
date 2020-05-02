@@ -1,2 +1,2 @@
-rootProject.name = 'iec61499'
-include 'st-parser'
+rootProject.name = 'FBME'
+include 'library'

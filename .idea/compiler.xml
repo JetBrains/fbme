@@ -2,6 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="FBME.library_st-parser" target="1.8" />
+      <module name="FBME.library_st-parser.main" target="1.8" />
+      <module name="FBME.library_st-parser.test" target="1.8" />
+      <module name="iec61499.library_st-parser" target="1.8" />
+      <module name="iec61499.library_st-parser.main" target="1.8" />
+      <module name="iec61499.library_st-parser.test" target="1.8" />
+      <module name="iec61499.st-parser" target="1.8" />
+      <module name="iec61499.st-parser.main" target="1.8" />
+      <module name="iec61499.st-parser.test" target="1.8" />
       <module name="st-parser_main" target="1.8" />
       <module name="st-parser_test" target="1.8" />
     </bytecodeTargetLevel>

@@ -20,4 +20,4 @@ source_gen.caches
 build
 out
 
-lib
+/lib

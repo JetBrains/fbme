@@ -63,7 +63,7 @@ import de.itemis.mps.gradle.*
 ext["itemis.mps.gradle.ant.defaultScriptClasspath"] = configurations.ant_lib.fileCollection { true }
 ext["itemis.mps.gradle.ant.defaultScriptArgs"] = ["-Dbasedir=."]
 
-task prepare(dependsOn: [downloadDependencies, ':st-parser:prepare'])
+task prepare(dependsOn: [downloadDependencies, ':library:prepare'])
 
 task buildBootstrap(type: BuildLanguages, dependsOn: prepare) {
     script 'build-bootstrap.xml'
@@ -103,7 +103,7 @@ task buildRcpWithJBR(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScrip
     targets 'clean', 'build'
 }
 
-task clean(type: Delete, dependsOn: ':st-parser:clean') {
+task clean(type: Delete, dependsOn: ':library:clean') {
     delete 'build'
     delete 'lib'
     delete fileTree('.').matching {

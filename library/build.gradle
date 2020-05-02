@@ -1,0 +1,36 @@
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'antlr'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.5"
+    compile "org.jetbrains:annotations:19.0.0"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "src/main/antlr"
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+task prepare(type: Copy) {
+    dependsOn build
+    
+    from configurations.antlr.files.find { it.name.startsWith('antlr4-runtime') }
+    from 'build/libs'
+    into 'out'
+}
