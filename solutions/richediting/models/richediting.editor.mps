@@ -36,7 +36,7 @@
     <import index="tphl" ref="r:633df809-762d-4f16-bc5b-7387c85c4bd1(common.iec61499.model.fbnetwork)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" />
-    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.interfacepart)" />
+    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.declarations)" />
     <import index="jlff" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.vfs(MPS.IDEA/)" />
     <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(mps.iec61499.model.interfacepart)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
@@ -54,6 +54,7 @@
     <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
     <import index="9ywi" ref="r:b27d9d9b-1904-40b8-bdb1-cf26b125baf7(mps.ide.synteticLang.structure)" />
     <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(scenes.controllers)" />
+    <import index="jweg" ref="r:7b1e9d17-e026-472f-bc13-715bbedb05ab(common.iec61499.model.descriptors)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -3258,7 +3259,7 @@
       <node concept="3uibUv" id="3DiEZ8TM9tj" role="1tU5fm">
         <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
         <node concept="3uibUv" id="3DiEZ8TM9w9" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+          <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
         </node>
       </node>
       <node concept="2ShNRf" id="3DiEZ8TJRSk" role="33vP2m">
@@ -3268,7 +3269,7 @@
             <property role="Xl_RC" value="fb-port" />
           </node>
           <node concept="3uibUv" id="3DiEZ8TK8Ic" role="1pMfVU">
-            <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+            <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
           </node>
         </node>
       </node>
@@ -3280,7 +3281,7 @@
       <node concept="3uibUv" id="3DiEZ8TM9Fa" role="1tU5fm">
         <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
         <node concept="3uibUv" id="3DiEZ8TM9H4" role="11_B2D">
-          <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+          <ref role="3uigEE" to="jweg:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
         </node>
       </node>
       <node concept="2ShNRf" id="3DiEZ8TK8YG" role="33vP2m">
@@ -3290,7 +3291,7 @@
             <property role="Xl_RC" value="fb-type" />
           </node>
           <node concept="3uibUv" id="3DiEZ8TKfOo" role="1pMfVU">
-            <ref role="3uigEE" to="2xsi:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
+            <ref role="3uigEE" to="jweg:1R4IoyQ$Zv8" resolve="FBTypeDescriptor" />
           </node>
         </node>
       </node>

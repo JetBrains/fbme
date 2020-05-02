@@ -19,7 +19,7 @@
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="78d5" ref="r:d018f155-a8e1-4632-87ac-0cbc89a1f1c2(richediting.lang.editor)" />
     <import index="tphl" ref="r:633df809-762d-4f16-bc5b-7387c85c4bd1(common.iec61499.model.fbnetwork)" />
-    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.interfacepart)" />
+    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.declarations)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(mps.iec61499.model.fbnetwork)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
@@ -64,6 +64,7 @@
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
     <import index="xygl" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.progress(MPS.IDEA/)" />
     <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(scenes.controllers)" />
+    <import index="jweg" ref="r:7b1e9d17-e026-472f-bc13-715bbedb05ab(common.iec61499.model.descriptors)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" implicit="true" />
@@ -1499,7 +1500,7 @@
             <property role="TrG5h" value="portDecl" />
             <property role="3TUv4t" value="true" />
             <node concept="3uibUv" id="uP0FLzO7Ez" role="1tU5fm">
-              <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+              <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>
             <node concept="2OqwBi" id="uP0FLzO7E$" role="33vP2m">
               <node concept="37vLTw" id="uP0FLzO7E_" role="2Oq$k0">
@@ -1557,7 +1558,7 @@
                   <ref role="3cqZAo" node="uP0FLzO7Ey" resolve="portDecl" />
                 </node>
                 <node concept="liA8E" id="2CN1Od1giy8" role="2OqNvi">
-                  <ref role="37wK5l" to="2xsi:3DiEZ8TNgqG" resolve="getPosition" />
+                  <ref role="37wK5l" to="jweg:3DiEZ8TNgqG" resolve="getPosition" />
                 </node>
               </node>
               <node concept="2OqwBi" id="2CN1Od1giy9" role="1y566C">
@@ -1717,7 +1718,7 @@
           <node concept="3cpWsn" id="uP0FLzPAPZ" role="3cpWs9">
             <property role="TrG5h" value="portDecl" />
             <node concept="3uibUv" id="uP0FLzPAPT" role="1tU5fm">
-              <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+              <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>
             <node concept="2OqwBi" id="uP0FLzPAQ0" role="33vP2m">
               <node concept="37vLTw" id="uP0FLzPAQ1" role="2Oq$k0">
@@ -1745,7 +1746,7 @@
                   <ref role="3cqZAo" node="uP0FLzPAPZ" resolve="portDecl" />
                 </node>
                 <node concept="liA8E" id="uP0FLzQ7HO" role="2OqNvi">
-                  <ref role="37wK5l" to="2xsi:5fP$XwiOazh" resolve="getConnecitonKind" />
+                  <ref role="37wK5l" to="jweg:5fP$XwiOazh" resolve="getConnecitonKind" />
                 </node>
               </node>
             </node>
@@ -1777,7 +1778,7 @@
                   <ref role="3cqZAo" node="uP0FLzPAPZ" resolve="portDecl" />
                 </node>
                 <node concept="liA8E" id="uP0FLzQ0uG" role="2OqNvi">
-                  <ref role="37wK5l" to="2xsi:3DiEZ8TNwDw" resolve="isInput" />
+                  <ref role="37wK5l" to="jweg:3DiEZ8TNwDw" resolve="isInput" />
                 </node>
               </node>
             </node>
@@ -2223,7 +2224,7 @@
           <node concept="3cpWsn" id="19RKY2xFOoB" role="3cpWs9">
             <property role="TrG5h" value="port" />
             <node concept="3uibUv" id="19RKY2xFOoC" role="1tU5fm">
-              <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+              <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>
             <node concept="2OqwBi" id="19RKY2xFOoD" role="33vP2m">
               <node concept="37vLTw" id="19RKY2xFOoE" role="2Oq$k0">
@@ -2245,7 +2246,7 @@
               <ref role="3cqZAo" node="19RKY2xFOoB" resolve="port" />
             </node>
             <node concept="liA8E" id="19RKY2xFOoK" role="2OqNvi">
-              <ref role="37wK5l" to="2xsi:1HEL0zWeift" resolve="getName" />
+              <ref role="37wK5l" to="jweg:1HEL0zWeift" resolve="getName" />
             </node>
           </node>
         </node>
@@ -3399,7 +3400,7 @@
             <property role="TrG5h" value="portDescriptor" />
             <property role="3TUv4t" value="true" />
             <node concept="3uibUv" id="5uVbEkjFHRF" role="1tU5fm">
-              <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+              <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>
             <node concept="2OqwBi" id="5uVbEkjFHRG" role="33vP2m">
               <node concept="37vLTw" id="5uVbEkjJ3Ne" role="2Oq$k0">
@@ -3428,7 +3429,7 @@
                   <ref role="3cqZAo" node="5uVbEkjFHRE" resolve="portDescriptor" />
                 </node>
                 <node concept="liA8E" id="5uVbEkjHKOn" role="2OqNvi">
-                  <ref role="37wK5l" to="2xsi:1HEL0zWeift" resolve="getName" />
+                  <ref role="37wK5l" to="jweg:1HEL0zWeift" resolve="getName" />
                 </node>
               </node>
             </node>
@@ -3811,7 +3812,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="19RKY2xFKPc" role="2OqNvi">
-                    <ref role="37wK5l" to="2xsi:31Fn7oZHRj4" resolve="getDeclaration" />
+                    <ref role="37wK5l" to="jweg:31Fn7oZHRj4" resolve="getDeclaration" />
                   </node>
                 </node>
               </node>
@@ -3908,7 +3909,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="19RKY2xFFjP" role="2OqNvi">
-                    <ref role="37wK5l" to="2xsi:31Fn7oZHRj4" resolve="getDeclaration" />
+                    <ref role="37wK5l" to="jweg:31Fn7oZHRj4" resolve="getDeclaration" />
                   </node>
                 </node>
               </node>
@@ -4620,7 +4621,7 @@
           <node concept="3cpWsn" id="5uVbEkjIgqn" role="3cpWs9">
             <property role="TrG5h" value="portDescriptor" />
             <node concept="3uibUv" id="5uVbEkjIgqo" role="1tU5fm">
-              <ref role="3uigEE" to="2xsi:1HEL0zWehtJ" resolve="FBPortDescriptor" />
+              <ref role="3uigEE" to="jweg:1HEL0zWehtJ" resolve="FBPortDescriptor" />
             </node>
             <node concept="2OqwBi" id="5uVbEkjIgqp" role="33vP2m">
               <node concept="37vLTw" id="5uVbEkjIgqq" role="2Oq$k0">
