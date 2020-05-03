@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144231330558:jetbrains.mps.baseLanguage.structure.ForStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164991038168:jetbrains.mps.baseLanguage.structure.ThrowStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164879751025:jetbrains.mps.baseLanguage.structure.TryCatchStatement" />
+  <root nodeRef="r:f8881905-e907-4a09-8551-ee09b85ae5da(smvDebugger.nusmv)/1928161108292591695">
+    <file name="Counterexample.java">
+      <node id="6445035801680480780" at="8,0,9,0" concept="10" trace="T_GLOBAL" />
+      <node id="1928161108292605699" at="10,0,11,0" concept="2" trace="states" />
+      <node id="1928161108292605099" at="11,0,12,0" concept="2" trace="vars" />
+      <node id="6445035801680519671" at="12,0,13,0" concept="2" trace="globalTime" />
+      <node id="3362669900791134148" at="14,75,15,25" concept="1" />
+      <node id="3362669900791137097" at="15,25,16,21" concept="1" />
+      <node id="6445035801680520399" at="16,21,17,0" concept="9" />
+      <node id="6445035801680522546" at="19,53,20,25" concept="1" />
+      <node id="3356221398867109518" at="25,28,26,37" concept="1" />
+      <node id="3362669900791127590" at="26,37,27,18" concept="8" />
+      <node id="3362669900791130141" at="30,32,31,16" concept="8" />
+      <node id="3362669900791900771" at="36,45,37,17" concept="8" />
+      <node id="3362669900791894730" at="39,5,40,14" concept="8" />
+      <node id="6445035801680484985" at="43,36,44,22" concept="8" />
+      <node id="6445035801680472725" at="18,41,21,7" concept="5" />
+      <node id="3362669900791129684" at="30,0,33,0" concept="6" trace="vars#()[LsmvDebugger/nusmv/VariableData;" />
+      <node id="3362669900791896351" at="35,45,38,7" concept="5" />
+      <node id="6445035801680466516" at="43,0,46,0" concept="6" trace="globalTime#()LsmvDebugger/nusmv/VariableData;" />
+      <node id="3362669900791127234" at="25,0,29,0" concept="6" trace="states#()[Ljava/lang/String;" />
+      <node id="6445035801680468175" at="17,0,22,5" concept="4" />
+      <node id="3362669900791883934" at="34,42,39,5" concept="3" />
+      <node id="3362669900791877369" at="34,0,42,0" concept="6" trace="indexOf#(Ljava/lang/String;)I" />
+      <node id="3362669900791132216" at="14,0,24,0" concept="0" trace="Counterexample#([Ljava/lang/String;[LsmvDebugger/nusmv/VariableData;)V" />
+      <scope id="6445035801680472727" at="19,53,20,25" />
+      <scope id="3362669900791129687" at="30,32,31,16" />
+      <scope id="3362669900791896353" at="36,45,37,17" />
+      <scope id="6445035801680466519" at="43,36,44,22" />
+      <scope id="3362669900791127237" at="25,28,27,18" />
+      <scope id="6445035801680468178" at="18,41,21,7" />
+      <scope id="3362669900791129684" at="30,0,33,0" />
+      <scope id="3362669900791883936" at="35,45,38,7" />
+      <scope id="6445035801680466516" at="43,0,46,0" />
+      <scope id="3362669900791127234" at="25,0,29,0" />
+      <scope id="6445035801680468175" at="17,0,22,5">
+        <var name="var" id="6445035801680468176" />
+      </scope>
+      <scope id="3362669900791883934" at="34,42,39,5">
+        <var name="i" id="3362669900791883935" />
+      </scope>
+      <scope id="3362669900791877372" at="34,42,40,14" />
+      <scope id="3362669900791132219" at="14,75,22,5" />
+      <scope id="3362669900791877369" at="34,0,42,0">
+        <var name="state" id="3362669900791878029" />
+      </scope>
+      <scope id="3362669900791132216" at="14,0,24,0">
+        <var name="states" id="3362669900791132505" />
+        <var name="vars" id="3362669900791132865" />
+      </scope>
+      <unit id="1928161108292591695" at="7,0,47,0" name="smvDebugger.nusmv.Counterexample" />
+    </file>
+  </root>
+  <root nodeRef="r:f8881905-e907-4a09-8551-ee09b85ae5da(smvDebugger.nusmv)/1928161108292593256">
+    <file name="CounterexampleReader.java">
+      <node id="4293739292180133519" at="14,0,15,0" concept="10" trace="STATE_TRASH_SYMBOLS" />
+      <node id="1928161108292643331" at="15,0,16,0" concept="10" trace="DATA_DELIMITER" />
+      <node id="1928161108292618409" at="17,57,18,29" concept="7" />
+      <node id="1928161108292620468" at="19,9,20,48" concept="1" />
+      <node id="1928161108292674128" at="21,41,22,18" concept="8" />
+      <node id="1928161108292678517" at="23,5,24,0" concept="9" />
+      <node id="1928161108292629869" at="24,0,25,93" concept="7" />
+      <node id="1928161108292646288" at="25,93,26,58" concept="1" />
+      <node id="3362669900791097146" at="26,58,27,0" concept="9" />
+      <node id="3362669900791239328" at="27,0,28,67" concept="7" />
+      <node id="1928161108292724274" at="29,44,30,67" concept="7" />
+      <node id="3362669900791295484" at="30,67,31,42" concept="7" />
+      <node id="3362669900791329335" at="31,42,32,79" concept="7" />
+      <node id="1928161108292777479" at="32,79,33,55" concept="1" />
+      <node id="1928161108292790859" at="34,5,35,0" concept="9" />
+      <node id="4596896328934926476" at="37,51,38,30" concept="8" />
+      <node id="1928161108292629127" at="40,8,41,0" concept="9" />
+      <node id="1928161108292627680" at="41,0,42,44" concept="8" />
+      <node id="4596896328934926474" at="37,0,40,0" concept="6" trace="apply#(LsmvDebugger/nusmv/VariableData;)Ljava/lang/String;" />
+      <node id="1928161108292617128" at="18,29,23,5" concept="13" />
+      <node id="3362669900791357808" at="35,0,40,8" concept="1" />
+      <node id="1928161108292682428" at="28,67,34,5" concept="3" />
+      <node id="1928161108292593257" at="17,0,44,0" concept="11" trace="readCSV#(Ljava/io/File;)LsmvDebugger/nusmv/Counterexample;" />
+      <scope id="1928161108292617130" at="19,9,20,48" />
+      <scope id="1928161108292617131" at="21,0,22,18">
+        <var name="ignored" id="1928161108292617133" />
+      </scope>
+      <scope id="1928161108292617137" at="21,41,22,18" />
+      <scope id="4596896328934926475" at="37,51,38,30" />
+      <scope id="4596896328934926474" at="37,0,40,0">
+        <var name="var" id="4596896328934926474" />
+      </scope>
+      <scope id="1928161108292682430" at="29,44,33,55">
+        <var name="fullName" id="3362669900791295482" />
+        <var name="lineData" id="1928161108292724272" />
+        <var name="values" id="3362669900791329333" />
+      </scope>
+      <scope id="1928161108292682428" at="28,67,34,5">
+        <var name="i" id="1928161108292682431" />
+      </scope>
+      <scope id="1928161108292593258" at="17,57,42,44">
+        <var name="lines" id="1928161108292618407" />
+        <var name="states" id="1928161108292629872" />
+        <var name="vars" id="3362669900791239326" />
+      </scope>
+      <scope id="1928161108292593257" at="17,0,44,0">
+        <var name="file" id="1928161108292593261" />
+      </scope>
+      <unit id="4596896328934926474" at="36,47,40,5" name="smvDebugger.nusmv.CounterexampleReader$1" />
+      <unit id="1928161108292593256" at="13,0,45,0" name="smvDebugger.nusmv.CounterexampleReader" />
+    </file>
+  </root>
+  <root nodeRef="r:f8881905-e907-4a09-8551-ee09b85ae5da(smvDebugger.nusmv)/3362669900791125248">
+    <file name="VariableData.java">
+      <node id="3362669900791466441" at="8,0,9,0" concept="10" trace="NAME_DELIMITER" />
+      <node id="3362669900791515635" at="9,0,10,0" concept="10" trace="EVENT_PORT_DELIMITER" />
+      <node id="3362669900791668460" at="10,0,11,0" concept="10" trace="TIME_EVENT_PORT_VALUE" />
+      <node id="6445035801680344238" at="11,0,12,0" concept="10" trace="ECC_END_FEATURE" />
+      <node id="1928161108292598291" at="13,0,14,0" concept="2" trace="fullName" />
+      <node id="1928161108292604173" at="14,0,15,0" concept="2" trace="values" />
+      <node id="3362669900791458960" at="15,0,16,0" concept="2" trace="nameParts" />
+      <node id="3362669900791145168" at="17,69,18,29" concept="1" />
+      <node id="3362669900791148609" at="18,29,19,25" concept="1" />
+      <node id="3362669900791459702" at="19,25,20,52" concept="1" />
+      <node id="3362669900791153145" at="23,28,24,20" concept="8" />
+      <node id="8106213185249579978" at="28,18,29,31" concept="8" />
+      <node id="8106213185249558885" at="31,39,32,41" concept="8" />
+      <node id="8106213185249663805" at="33,5,34,16" concept="8" />
+      <node id="3356221398867018356" at="37,28,38,31" concept="1" />
+      <node id="3362669900791156401" at="38,31,39,18" concept="8" />
+      <node id="3362669900791863426" at="42,43,43,25" concept="8" />
+      <node id="3362669900791599244" at="47,24,48,57" concept="8" />
+      <node id="3362669900791619633" at="50,33,51,26" concept="8" />
+      <node id="3362669900791509144" at="52,5,53,16" concept="8" />
+      <node id="3362669900791623742" at="57,24,58,57" concept="8" />
+      <node id="3362669900791712890" at="60,22,61,26" concept="8" />
+      <node id="3362669900791624085" at="62,5,63,16" concept="8" />
+      <node id="3362669900791530002" at="66,27,67,32" concept="8" />
+      <node id="3362669900791473731" at="70,32,71,149" concept="8" />
+      <node id="3362669900791552783" at="74,30,75,44" concept="8" />
+      <node id="6445035801680339161" at="78,26,79,82" concept="8" />
+      <node id="3362669900791152610" at="23,0,26,0" concept="6" trace="fullName#()Ljava/lang/String;" />
+      <node id="8106213185249575901" at="27,30,30,5" concept="5" />
+      <node id="8106213185249649721" at="30,5,33,5" concept="5" />
+      <node id="3362669900791861156" at="42,0,45,0" concept="6" trace="getValue#(I)Ljava/lang/String;" />
+      <node id="3362669900791493743" at="46,26,49,5" concept="5" />
+      <node id="3362669900791617587" at="49,5,52,5" concept="5" />
+      <node id="3362669900791597956" at="56,28,59,5" concept="5" />
+      <node id="3362669900791711324" at="59,5,62,5" concept="5" />
+      <node id="3362669900791528119" at="66,0,69,0" concept="6" trace="isPort#()Z" />
+      <node id="3362669900791456938" at="70,0,73,0" concept="6" trace="isEventPort#()Z" />
+      <node id="3362669900791550440" at="74,0,77,0" concept="6" trace="isVarPort#()Z" />
+      <node id="6445035801680336676" at="78,0,81,0" concept="6" trace="isECC#()Z" />
+      <node id="3362669900791155839" at="37,0,41,0" concept="6" trace="values#()[Ljava/lang/String;" />
+      <node id="3362669900791143833" at="17,0,22,0" concept="0" trace="VariableData#(Ljava/lang/String;[Ljava/lang/String;)V" />
+      <node id="8106213185249554179" at="27,0,36,0" concept="6" trace="simpleName#()Ljava/lang/String;" />
+      <node id="3362669900791485675" at="46,0,55,0" concept="6" trace="fbName#()Ljava/lang/String;" />
+      <node id="3362669900791596981" at="56,0,65,0" concept="6" trace="portName#()Ljava/lang/String;" />
+      <scope id="3362669900791152613" at="23,28,24,20" />
+      <scope id="8106213185249575903" at="28,18,29,31" />
+      <scope id="8106213185249649723" at="31,39,32,41" />
+      <scope id="3362669900791861159" at="42,43,43,25" />
+      <scope id="3362669900791493745" at="47,24,48,57" />
+      <scope id="3362669900791617589" at="50,33,51,26" />
+      <scope id="3362669900791597958" at="57,24,58,57" />
+      <scope id="3362669900791711326" at="60,22,61,26" />
+      <scope id="3362669900791528122" at="66,27,67,32" />
+      <scope id="3362669900791456941" at="70,32,71,149" />
+      <scope id="3362669900791550443" at="74,30,75,44" />
+      <scope id="6445035801680336679" at="78,26,79,82" />
+      <scope id="3362669900791155842" at="37,28,39,18" />
+      <scope id="3362669900791143836" at="17,69,20,52" />
+      <scope id="3362669900791152610" at="23,0,26,0" />
+      <scope id="3362669900791861156" at="42,0,45,0">
+        <var name="index" id="3362669900791863585" />
+      </scope>
+      <scope id="3362669900791528119" at="66,0,69,0" />
+      <scope id="3362669900791456938" at="70,0,73,0" />
+      <scope id="3362669900791550440" at="74,0,77,0" />
+      <scope id="6445035801680336676" at="78,0,81,0" />
+      <scope id="3362669900791155839" at="37,0,41,0" />
+      <scope id="3362669900791143833" at="17,0,22,0">
+        <var name="fullName" id="3362669900791144159" />
+        <var name="values" id="3362669900791144340" />
+      </scope>
+      <scope id="8106213185249554182" at="27,30,34,16" />
+      <scope id="3362669900791485678" at="46,26,53,16" />
+      <scope id="3362669900791596984" at="56,28,63,16" />
+      <scope id="8106213185249554179" at="27,0,36,0" />
+      <scope id="3362669900791485675" at="46,0,55,0" />
+      <scope id="3362669900791596981" at="56,0,65,0" />
+      <unit id="3362669900791125248" at="7,0,82,0" name="smvDebugger.nusmv.VariableData" />
+    </file>
+  </root>
+  <root nodeRef="r:f8881905-e907-4a09-8551-ee09b85ae5da(smvDebugger.nusmv)/9195503755276441199">
+    <file name="NuSmvIntegration.java">
+      <node id="3233838129229789749" at="8,56,9,56" concept="7" />
+      <node id="3233838129229834460" at="9,56,10,34" concept="1" />
+      <node id="3233838129229922246" at="10,34,11,0" concept="9" />
+      <node id="3233838129229924530" at="11,0,12,26" concept="7" />
+      <node id="3233838129229925517" at="13,9,14,32" concept="1" />
+      <node id="3233838129229934442" at="14,32,15,24" concept="1" />
+      <node id="3233838129229931026" at="16,33,17,36" concept="12" />
+      <node id="3233838129229947418" at="18,5,19,0" concept="9" />
+      <node id="9195503755276420466" at="19,0,20,87" concept="8" />
+      <node id="3233838129230492999" at="23,38,24,19" concept="8" />
+      <node id="3233838129230488649" at="23,0,26,0" concept="11" trace="getCommand#()Ljava/lang/String;" />
+      <node id="3233838129229923378" at="12,26,18,5" concept="13" />
+      <node id="9195503755276415903" at="8,0,22,0" concept="11" trace="convertFbToSmv#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
+      <scope id="3233838129229923381" at="16,0,17,36">
+        <var name="e" id="3233838129229923383" />
+      </scope>
+      <scope id="3233838129229923387" at="16,33,17,36" />
+      <scope id="3233838129230488652" at="23,38,24,19" />
+      <scope id="3233838129229923380" at="13,9,15,24" />
+      <scope id="3233838129230488649" at="23,0,26,0" />
+      <scope id="9195503755276415906" at="8,56,20,87">
+        <var name="builder" id="3233838129229789747" />
+        <var name="process" id="3233838129229924528" />
+      </scope>
+      <scope id="9195503755276415903" at="8,0,22,0">
+        <var name="fbPath" id="9195503755276415949" />
+      </scope>
+      <unit id="9195503755276441199" at="7,0,27,0" name="smvDebugger.nusmv.NuSmvIntegration" />
+    </file>
+  </root>
+</debug-info>
+

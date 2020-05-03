@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1163670490218:jetbrains.mps.baseLanguage.structure.SwitchStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164991038168:jetbrains.mps.baseLanguage.structure.ThrowStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164879751025:jetbrains.mps.baseLanguage.structure.TryCatchStatement" />
+  <root nodeRef="r:8084b59f-3392-43cb-8238-4a96a96c280f(smvDebugger.fb2smv)/9195503755276415408">
+    <file name="Fb2SmvIntegration.java">
+      <node id="3233838129229797162" at="10,0,11,0" concept="4" trace="MAC_MONO_FRAMEWORK" />
+      <node id="3233838129229785773" at="11,0,12,0" concept="4" trace="FB2SMV_EXE_PATH" />
+      <node id="3233838129230012689" at="12,0,13,0" concept="4" trace="SMV_FILE_EXTENSION" />
+      <node id="3233838129229798435" at="14,56,15,34" concept="1" />
+      <node id="3233838129229789749" at="15,34,16,56" concept="1" />
+      <node id="3233838129229834460" at="16,56,17,44" concept="0" />
+      <node id="3233838129229922246" at="17,44,18,0" concept="3" />
+      <node id="3233838129229924530" at="18,0,19,26" concept="1" />
+      <node id="3233838129229925517" at="20,9,21,32" concept="0" />
+      <node id="3233838129229934442" at="21,32,22,24" concept="0" />
+      <node id="3233838129229931026" at="23,33,24,36" concept="7" />
+      <node id="3233838129229947418" at="25,5,26,0" concept="3" />
+      <node id="9195503755276420466" at="26,0,27,30" concept="2" />
+      <node id="3233838129229833643" at="32,18,33,84" concept="2" />
+      <node id="3233838129229852125" at="34,14,35,18" concept="2" />
+      <node id="3233838129230002901" at="39,53,40,62" concept="1" />
+      <node id="3233838129230020394" at="40,62,41,79" concept="1" />
+      <node id="3233838129230032446" at="41,79,42,65" concept="1" />
+      <node id="3233838129229961388" at="42,65,43,51" concept="2" />
+      <node id="3233838129229923378" at="19,26,25,5" concept="8" />
+      <node id="3233838129229832815" at="30,81,36,5" concept="6" />
+      <node id="3233838129229957998" at="39,0,45,0" concept="5" trace="getSmvPath#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
+      <node id="3233838129229831920" at="30,0,38,0" concept="5" trace="getCommand#(LsmvDebugger/commons/OS;Ljava/nio/file/Path;)Ljava/lang/String;" />
+      <node id="9195503755276415903" at="14,0,29,0" concept="5" trace="convertFbToSmv#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
+      <scope id="3233838129229923381" at="23,0,24,36">
+        <var name="e" id="3233838129229923383" />
+      </scope>
+      <scope id="3233838129229923387" at="23,33,24,36" />
+      <scope id="3233838129229832862" at="32,18,33,84" />
+      <scope id="3233838129229850563" at="34,14,35,18" />
+      <scope id="3233838129229923380" at="20,9,22,24" />
+      <scope id="3233838129229958001" at="39,53,43,51">
+        <var name="fbFileName" id="3233838129230002899" />
+        <var name="fbName" id="3233838129230020392" />
+        <var name="smvFileName" id="3233838129230032447" />
+      </scope>
+      <scope id="3233838129229831923" at="30,81,36,5" />
+      <scope id="3233838129229957998" at="39,0,45,0">
+        <var name="fbPath" id="3233838129229961455" />
+      </scope>
+      <scope id="3233838129229831920" at="30,0,38,0">
+        <var name="fbPath" id="3233838129229833766" />
+        <var name="operatingSystem" id="3233838129229832378" />
+      </scope>
+      <scope id="9195503755276415906" at="14,56,27,30">
+        <var name="builder" id="3233838129229789747" />
+        <var name="os" id="3233838129229798433" />
+        <var name="process" id="3233838129229924528" />
+      </scope>
+      <scope id="9195503755276415903" at="14,0,29,0">
+        <var name="fbPath" id="9195503755276415949" />
+      </scope>
+      <unit id="9195503755276415408" at="9,0,46,0" name="smvDebugger.fb2smv.Fb2SmvIntegration" />
+    </file>
+  </root>
+</debug-info>
+

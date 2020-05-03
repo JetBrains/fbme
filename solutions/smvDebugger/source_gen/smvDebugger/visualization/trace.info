@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1082485599095:jetbrains.mps.baseLanguage.structure.BlockStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144231330558:jetbrains.mps.baseLanguage.structure.ForStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/3362669900790767814">
+    <file name="CompositeFBHighlighter.java">
+      <node id="3362669900790951694" at="29,0,30,0" concept="11" trace="HIGHLIGHT_COLOR" />
+      <node id="4507750851568639707" at="31,0,32,0" concept="3" trace="project" />
+      <node id="4507750851568839213" at="32,0,33,0" concept="3" trace="compositeFB" />
+      <node id="4507750851568641694" at="34,105,35,27" concept="2" />
+      <node id="4507750851568844152" at="35,27,36,35" concept="2" />
+      <node id="4507750851569349243" at="39,62,40,54" concept="2" />
+      <node id="4507750851569354490" at="43,23,44,74" concept="2" />
+      <node id="3362669900790803684" at="49,25,50,102" concept="8" />
+      <node id="3362669900790803690" at="50,102,51,105" concept="8" />
+      <node id="3362669900790803697" at="51,105,52,83" concept="8" />
+      <node id="3362669900790803704" at="52,83,53,103" concept="8" />
+      <node id="4507750851568968699" at="57,11,58,0" concept="10" />
+      <node id="4507750851569228359" at="59,49,60,35" concept="2" />
+      <node id="4507750851569235394" at="60,35,61,17" concept="9" />
+      <node id="4507750851569205759" at="62,9,63,0" concept="10" />
+      <node id="4507750851568866651" at="63,0,64,90" concept="8" />
+      <node id="3362669900790803720" at="64,90,65,89" concept="8" />
+      <node id="4507750851570210497" at="65,89,66,0" concept="10" />
+      <node id="3362669900790803742" at="69,64,70,67" concept="9" />
+      <node id="6445035801680430948" at="74,33,75,117" concept="2" />
+      <node id="3362669900790803757" at="76,20,77,86" concept="8" />
+      <node id="3362669900790803772" at="79,75,80,89" concept="9" />
+      <node id="4507750851569038637" at="83,33,84,109" concept="2" />
+      <node id="3362669900790803717" at="55,0,57,0" concept="7" trace="run#()V" />
+      <node id="3362669900790944512" at="39,0,42,0" concept="7" trace="highlight#(Ljava/util/List;)V" />
+      <node id="3362669900791011973" at="43,0,46,0" concept="7" trace="clear#()V" />
+      <node id="3362669900790803735" at="69,0,72,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="3362669900790803770" at="79,0,82,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/PortPath;)Z" />
+      <node id="4507750851569333796" at="82,17,85,15" concept="6" />
+      <node id="3362669900790803641" at="34,0,38,0" concept="1" trace="CompositeFBHighlighter#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
+      <node id="4507750851568964203" at="53,103,57,11" concept="8" />
+      <node id="4507750851569209459" at="58,0,62,9" concept="6" />
+      <node id="3362669900790803729" at="67,54,72,13" concept="8" />
+      <node id="4507750851568992410" at="77,86,82,17" concept="8" />
+      <node id="6445035801680428141" at="76,18,86,13" concept="0" />
+      <node id="6445035801680420397" at="73,34,86,13" concept="6" />
+      <node id="4507750851569393266" at="72,13,87,11" concept="6" />
+      <node id="4507750851569804470" at="66,0,88,9" concept="5" />
+      <node id="4507750851568624016" at="49,0,90,0" concept="7" trace="run#()V" />
+      <node id="4507750851568620544" at="47,100,90,7" concept="2" />
+      <node id="4507750851568947314" at="47,0,92,0" concept="7" trace="runReadAction#(LsmvDebugger/visualization/CompositeFBHighlighter/ReadActionType;Ljava/util/List;)V" />
+      <scope id="3362669900790803718" at="55,29,55,29" />
+      <scope id="3362669900790944515" at="39,62,40,54" />
+      <scope id="3362669900791011976" at="43,23,44,74" />
+      <scope id="3362669900790803736" at="69,64,70,67" />
+      <scope id="6445035801680420399" at="74,33,75,117" />
+      <scope id="3362669900790803771" at="79,75,80,89" />
+      <scope id="4507750851569333798" at="83,33,84,109" />
+      <scope id="3362669900790803644" at="34,105,36,35" />
+      <scope id="3362669900790803717" at="55,0,57,0" />
+      <scope id="4507750851569209461" at="59,49,61,17" />
+      <scope id="3362669900790944512" at="39,0,42,0">
+        <var name="objects" id="3362669900790945872" />
+      </scope>
+      <scope id="3362669900791011973" at="43,0,46,0" />
+      <scope id="3362669900790803735" at="69,0,72,0">
+        <var name="it" id="3362669900790803735" />
+      </scope>
+      <scope id="3362669900790803770" at="79,0,82,0">
+        <var name="it" id="3362669900790803770" />
+      </scope>
+      <scope id="3362669900790803641" at="34,0,38,0">
+        <var name="compositeFB" id="3362669900790826167" />
+        <var name="project" id="3362669900790806465" />
+      </scope>
+      <scope id="6445035801680428142" at="76,20,85,15">
+        <var name="port" id="4507750851568992408" />
+        <var name="ports" id="3362669900790803758" />
+      </scope>
+      <scope id="4507750851569393268" at="73,34,86,13" />
+      <scope id="4507750851569804472" at="67,54,87,11">
+        <var name="component" id="3362669900790803730" />
+      </scope>
+      <scope id="4507750851569804470" at="66,0,88,9">
+        <var name="object" id="4507750851569804473" />
+      </scope>
+      <scope id="4507750851568624017" at="49,25,88,9">
+        <var name="components" id="3362669900790803721" />
+        <var name="editor" id="3362669900790803691" />
+        <var name="editorComponent" id="3362669900790803698" />
+        <var name="fbNethwork" id="4507750851568866649" />
+        <var name="inspectionManager" id="3362669900790803705" />
+        <var name="networkInspector" id="4507750851568964201" />
+        <var name="networkInstance" id="3362669900790803685" />
+      </scope>
+      <scope id="4507750851568624016" at="49,0,90,0" />
+      <scope id="4507750851568947317" at="47,100,90,7" />
+      <scope id="4507750851568947314" at="47,0,92,0">
+        <var name="actionType" id="4507750851569132982" />
+        <var name="objects" id="4507750851569162657" />
+      </scope>
+      <unit id="3362669900790803717" at="54,106,57,9" name="smvDebugger.visualization.CompositeFBHighlighter$1$1" />
+      <unit id="3362669900790803735" at="68,101,72,11" name="smvDebugger.visualization.CompositeFBHighlighter$1$2" />
+      <unit id="3362669900790803770" at="78,100,82,15" name="smvDebugger.visualization.CompositeFBHighlighter$1$3" />
+      <unit id="4507750851569111621" at="93,0,97,0" name="smvDebugger.visualization.CompositeFBHighlighter$ReadActionType" />
+      <unit id="4507750851568624016" at="48,52,90,5" name="smvDebugger.visualization.CompositeFBHighlighter$1" />
+      <unit id="3362669900790767814" at="28,0,98,0" name="smvDebugger.visualization.CompositeFBHighlighter" />
+    </file>
+  </root>
+  <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/4293739292181503837">
+    <file name="VariableStateTrace.java">
+      <node id="1849940828856584799" at="26,0,27,0" concept="3" trace="project" />
+      <node id="1849940828856584802" at="27,0,28,0" concept="3" trace="compositeFB" />
+      <node id="1849940828856818187" at="28,0,29,0" concept="3" trace="counterexample" />
+      <node id="2992635601909022064" at="30,0,31,0" concept="3" trace="tableModel" />
+      <node id="2992635601908952277" at="31,0,32,0" concept="3" trace="table" />
+      <node id="2992635601909812758" at="32,0,33,0" concept="3" trace="scrollPane" />
+      <node id="2992635601911524311" at="33,0,34,0" concept="3" trace="counter" />
+      <node id="1849940828856617991" at="35,138,36,27" concept="2" />
+      <node id="1849940828856639605" at="36,27,37,35" concept="2" />
+      <node id="1849940828856784192" at="37,35,38,41" concept="2" />
+      <node id="1849940828856612761" at="38,41,39,0" concept="10" />
+      <node id="1849940828855714653" at="39,0,40,46" concept="2" />
+      <node id="4293739292181598229" at="40,46,41,58" concept="2" />
+      <node id="2992635601909191302" at="41,58,42,0" concept="10" />
+      <node id="2992635601909283141" at="45,70,46,21" concept="9" />
+      <node id="2992635601909362621" at="48,6,49,0" concept="10" />
+      <node id="2992635601909369520" at="49,0,50,35" concept="2" />
+      <node id="2992635601909417210" at="50,35,51,52" concept="2" />
+      <node id="2992635601909463251" at="51,52,52,31" concept="2" />
+      <node id="2992635601910860860" at="52,31,53,42" concept="2" />
+      <node id="2992635601910905059" at="53,42,54,40" concept="2" />
+      <node id="2992635601912522050" at="54,40,55,0" concept="10" />
+      <node id="2992635601912535115" at="55,0,56,64" concept="8" />
+      <node id="2992635601912535123" at="57,60,58,58" concept="8" />
+      <node id="2992635601912535130" at="58,58,59,28" concept="8" />
+      <node id="2992635601912535137" at="59,28,60,38" concept="2" />
+      <node id="2992635601909721371" at="61,5,62,0" concept="10" />
+      <node id="2992635601909721506" at="62,0,63,40" concept="2" />
+      <node id="2992635601909721512" at="63,40,64,92" concept="2" />
+      <node id="2992635601909721520" at="64,92,65,96" concept="2" />
+      <node id="2992635601909721528" at="65,96,66,57" concept="2" />
+      <node id="2992635601909721438" at="66,57,67,0" concept="10" />
+      <node id="2992635601909733250" at="67,0,68,0" concept="10" />
+      <node id="2992635601909746824" at="68,0,69,20" concept="2" />
+      <node id="1849940828856870008" at="72,69,73,61" concept="8" />
+      <node id="2992635601909715287" at="73,61,74,93" concept="8" />
+      <node id="2992635601909935206" at="74,93,75,57" concept="8" />
+      <node id="2992635601910164677" at="75,57,76,0" concept="10" />
+      <node id="2992635601910812414" at="79,70,80,21" concept="9" />
+      <node id="2992635601909977249" at="83,32,84,39" concept="2" />
+      <node id="2992635601910759543" at="85,5,86,31" concept="2" />
+      <node id="2992635601912596460" at="86,31,87,64" concept="8" />
+      <node id="2992635601912596468" at="88,60,89,58" concept="8" />
+      <node id="2992635601912596475" at="89,58,90,28" concept="8" />
+      <node id="2992635601912596479" at="90,28,91,38" concept="2" />
+      <node id="1849940828857220443" at="95,104,96,67" concept="8" />
+      <node id="1849940828857267279" at="96,67,97,17" concept="9" />
+      <node id="2992635601908924960" at="100,0,102,0" concept="7" trace="traverse#(Ljava/util/Set;Ljava/util/List;)V" />
+      <node id="2992635601909948305" at="82,6,85,5" concept="5" />
+      <node id="2992635601909261182" at="44,0,48,0" concept="7" trace="isCellEditable#(II)Z" />
+      <node id="2992635601910812412" at="78,0,82,0" concept="7" trace="isCellEditable#(II)Z" />
+      <node id="1849940828856698152" at="95,0,99,0" concept="7" trace="getTrace#(Ljava/lang/String;Ljava/lang/String;Z)Ljava/util/List;" />
+      <node id="2992635601912535121" at="56,64,61,5" concept="4" />
+      <node id="2992635601912596466" at="87,64,92,5" concept="4" />
+      <node id="2992635601909199230" at="42,0,48,6" concept="2" />
+      <node id="2992635601910812406" at="76,0,82,6" concept="2" />
+      <node id="6445035801680607748" at="72,0,94,0" concept="7" trace="updateTrace#(II)V" />
+      <node id="4293739292181507673" at="35,0,71,0" concept="1" trace="VariableStateTrace#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;LsmvDebugger/nusmv/Counterexample;)V" />
+      <scope id="2992635601908924963" at="100,104,100,104" />
+      <scope id="2992635601909261185" at="45,70,46,21" />
+      <scope id="2992635601910812413" at="79,70,80,21" />
+      <scope id="2992635601909948307" at="83,32,84,39" />
+      <scope id="1849940828856698153" at="95,104,97,17">
+        <var name="trace" id="1849940828857220441" />
+      </scope>
+      <scope id="2992635601908924960" at="100,0,102,0">
+        <var name="connections" id="2992635601911219437" />
+        <var name="traverse" id="2992635601911130824" />
+      </scope>
+      <scope id="2992635601912535122" at="57,60,60,38">
+        <var name="column" id="2992635601912535124" />
+        <var name="width" id="2992635601912535131" />
+      </scope>
+      <scope id="2992635601909948305" at="82,6,85,5">
+        <var name="path" id="2992635601909948308" />
+      </scope>
+      <scope id="2992635601912596467" at="88,60,91,38">
+        <var name="column" id="2992635601912596469" />
+        <var name="width" id="2992635601912596476" />
+      </scope>
+      <scope id="2992635601909261182" at="44,0,48,0">
+        <var name="column" id="2992635601909334000" />
+        <var name="row" id="2992635601909304783" />
+      </scope>
+      <scope id="2992635601910812412" at="78,0,82,0">
+        <var name="column" id="2992635601910812420" />
+        <var name="row" id="2992635601910812418" />
+      </scope>
+      <scope id="1849940828856698152" at="95,0,99,0">
+        <var name="fbName" id="1849940828856911346" />
+        <var name="isVar" id="2992635601911319664" />
+        <var name="portName" id="1849940828857283895" />
+      </scope>
+      <scope id="2992635601912535121" at="56,64,61,5">
+        <var name="i" id="2992635601912535142" />
+      </scope>
+      <scope id="2992635601912596466" at="87,64,92,5">
+        <var name="i" id="2992635601912596484" />
+      </scope>
+      <scope id="6445035801680607751" at="72,69,92,5">
+        <var name="columnModel" id="2992635601912596461" />
+        <var name="data" id="2992635601909935204" />
+        <var name="trace" id="2992635601909715285" />
+        <var name="var" id="1849940828856870009" />
+      </scope>
+      <scope id="6445035801680607748" at="72,0,94,0">
+        <var name="stateIndex" id="1849940828856834852" />
+        <var name="varIndex" id="6445035801680609136" />
+      </scope>
+      <scope id="4293739292181507676" at="35,138,69,20">
+        <var name="columnModel" id="2992635601912535116" />
+      </scope>
+      <scope id="4293739292181507673" at="35,0,71,0">
+        <var name="compositeFB" id="1849940828856607092" />
+        <var name="counterexample" id="1849940828856757418" />
+        <var name="project" id="1849940828856598504" />
+      </scope>
+      <unit id="2992635601909231503" at="43,21,48,5" name="smvDebugger.visualization.VariableStateTrace$1" />
+      <unit id="2992635601910812410" at="77,21,82,5" name="smvDebugger.visualization.VariableStateTrace$2" />
+      <unit id="4293739292181503837" at="25,0,103,0" name="smvDebugger.visualization.VariableStateTrace" />
+    </file>
+  </root>
+  <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/4507750851569724001">
+    <file name="HiglhightObject.java">
+      <node id="4507750851569725139" at="7,0,8,0" concept="3" trace="fbName" />
+      <node id="4507750851569726272" at="8,0,9,0" concept="3" trace="portName" />
+      <node id="4507750851569727380" at="9,0,10,0" concept="3" trace="value" />
+      <node id="6445035801680372150" at="10,0,11,0" concept="3" trace="isECC" />
+      <node id="4507750851569729932" at="12,111,13,25" concept="2" />
+      <node id="4507750851569732425" at="13,25,14,29" concept="2" />
+      <node id="4507750851569735104" at="14,29,15,23" concept="2" />
+      <node id="6445035801680373842" at="15,23,16,23" concept="2" />
+      <node id="4507750851569738609" at="19,26,20,18" concept="9" />
+      <node id="4507750851569741241" at="23,28,24,20" concept="9" />
+      <node id="4507750851569744563" at="27,25,28,17" concept="9" />
+      <node id="6445035801680378381" at="31,26,32,17" concept="9" />
+      <node id="4507750851569738179" at="19,0,22,0" concept="7" trace="fbName#()Ljava/lang/String;" />
+      <node id="4507750851569740683" at="23,0,26,0" concept="7" trace="portName#()Ljava/lang/String;" />
+      <node id="4507750851569743463" at="27,0,30,0" concept="7" trace="value#()Ljava/lang/String;" />
+      <node id="6445035801680377740" at="31,0,34,0" concept="7" trace="isECC#()Z" />
+      <node id="4507750851569728379" at="12,0,18,0" concept="1" trace="HiglhightObject#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V" />
+      <scope id="4507750851569738182" at="19,26,20,18" />
+      <scope id="4507750851569740686" at="23,28,24,20" />
+      <scope id="4507750851569743466" at="27,25,28,17" />
+      <scope id="6445035801680377743" at="31,26,32,17" />
+      <scope id="4507750851569738179" at="19,0,22,0" />
+      <scope id="4507750851569740683" at="23,0,26,0" />
+      <scope id="4507750851569743463" at="27,0,30,0" />
+      <scope id="6445035801680377740" at="31,0,34,0" />
+      <scope id="4507750851569728382" at="12,111,16,23" />
+      <scope id="4507750851569728379" at="12,0,18,0">
+        <var name="fbName" id="4507750851569728560" />
+        <var name="isECC" id="6445035801680372349" />
+        <var name="portName" id="4507750851569728898" />
+        <var name="value" id="4507750851569729268" />
+      </scope>
+      <unit id="4507750851569724001" at="6,0,35,0" name="smvDebugger.visualization.HiglhightObject" />
+    </file>
+  </root>
+</debug-info>
+

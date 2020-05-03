@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <root nodeRef="r:f04ceaa8-2f6d-421e-a9b4-62fa254517fe(sandbox.numberSelection)/4293739292181768489">
+    <file name="Plant.xml">
+      <unit id="4293739292181768489" at="1,0,52,9" name="sandbox.numberSelection.Plant" />
+    </file>
+  </root>
+  <root nodeRef="r:f04ceaa8-2f6d-421e-a9b4-62fa254517fe(sandbox.numberSelection)/4293739292181768575">
+    <file name="Controller.xml">
+      <unit id="4293739292181768575" at="1,0,41,9" name="sandbox.numberSelection.Controller" />
+    </file>
+  </root>
+  <root nodeRef="r:f04ceaa8-2f6d-421e-a9b4-62fa254517fe(sandbox.numberSelection)/4293739292181894097">
+    <file name="NumberSelection.xml">
+      <unit id="4293739292181894097" at="1,0,40,9" name="sandbox.numberSelection.NumberSelection" />
+    </file>
+  </root>
+</debug-info>
+

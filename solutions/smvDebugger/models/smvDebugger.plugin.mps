@@ -6,17 +6,23 @@
     <use id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone" version="0" />
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="org.fbme.ide.enas.lang" version="0" />
+    <use id="8dfbe92d-d233-4cc1-8ddb-a2863fd64843" name="org.fbme.ide.meta.editor" version="0" />
+    <use id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="org.fbme.ide.iec61499.lang" version="0" />
+    <use id="111cc10b-fa1e-4e11-8e9c-37e957c4043f" name="org.fbme.ide.richediting.lang" version="0" />
+    <use id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="org.fbme.ide.st.lang" version="0" />
+    <use id="14f8fb68-9526-41ae-a986-e33a7382fe12" name="org.fbme.ide.util.lang" version="0" />
   </languages>
   <imports>
-    <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
-    <import index="fhh" ref="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.java)" />
-    <import index="2xsi" ref="r:65444cdf-4c94-4902-99af-ca11b363595e(common.iec61499.model.interfacepart)" />
+    <import index="fhh" ref="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(mps.lang.iec61499.structure)" />
     <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(mps.iec61499.model.interfacepart)" />
-    <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.plugin)" />
-    <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
+    <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
+    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
+    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
+    <import index="hvsg" ref="r:637cc594-151a-4299-b732-c6b4c70f1b89(smvDebugger.main)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" implicit="true" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" implicit="true" />
@@ -223,6 +229,24 @@
             </node>
           </node>
         </node>
+        <node concept="3cpWs8" id="3ZbtdGjuMh2" role="3cqZAp">
+          <node concept="3cpWsn" id="3ZbtdGjuMh3" role="3cpWs9">
+            <property role="TrG5h" value="repository" />
+            <node concept="3uibUv" id="3ZbtdGjuMh4" role="1tU5fm">
+              <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+            </node>
+            <node concept="2YIFZM" id="3ZbtdGjuMzZ" role="33vP2m">
+              <ref role="37wK5l" to="v900:6YcNwH3$i5x" resolve="getInstance" />
+              <ref role="1Pybhc" to="v900:6YcNwH3$7Vx" resolve="PlatformRepositoryProvider" />
+              <node concept="2OqwBi" id="3ZbtdGjuM$H" role="37wK5m">
+                <node concept="2WthIp" id="3ZbtdGjuM$K" role="2Oq$k0" />
+                <node concept="1DTwFV" id="3ZbtdGjuM$M" role="2OqNvi">
+                  <ref role="2WH_rO" node="7l78cIM8G$B" resolve="mpsProject" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="3ryclnQeZre" role="3cqZAp">
           <node concept="2OqwBi" id="3ryclnQeZIY" role="3clFbG">
             <node concept="37vLTw" id="3ryclnQeZrc" role="2Oq$k0">
@@ -243,6 +267,9 @@
                         <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
                       </node>
                     </node>
+                  </node>
+                  <node concept="37vLTw" id="3ZbtdGjuMFJ" role="37wK5m">
+                    <ref role="3cqZAo" node="3ZbtdGjuMh3" resolve="repository" />
                   </node>
                 </node>
               </node>
@@ -338,8 +365,8 @@
     <node concept="2BZ0e9" id="3ryclnQbS_a" role="2XNbBz">
       <property role="TrG5h" value="compositeFB" />
       <node concept="3Tm6S6" id="3ryclnQbS_b" role="1B3o_S" />
-      <node concept="3uibUv" id="3ryclnQbSRQ" role="1tU5fm">
-        <ref role="3uigEE" to="2xsi:1R4IoyQwdvz" resolve="CompositeFBTypeDeclaration" />
+      <node concept="3uibUv" id="3ZbtdGjsThf" role="1tU5fm">
+        <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
       </node>
     </node>
     <node concept="2XrIbr" id="3ryclnQbJrq" role="2XNbBy">
@@ -363,26 +390,26 @@
       <node concept="37vLTG" id="3ryclnQbJyb" role="3clF46">
         <property role="3TUv4t" value="true" />
         <property role="TrG5h" value="compositeFB" />
-        <node concept="3uibUv" id="3ryclnQcpjS" role="1tU5fm">
-          <ref role="3uigEE" to="2xsi:1R4IoyQwdvz" resolve="CompositeFBTypeDeclaration" />
+        <node concept="3uibUv" id="3ZbtdGjsT73" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
         </node>
       </node>
     </node>
     <node concept="2UmK3q" id="2iJMYskfET3" role="2Um5zG">
       <node concept="3clFbS" id="2iJMYskfET4" role="2VODD2">
-        <node concept="3cpWs6" id="2iJMYskfF5o" role="3cqZAp">
-          <node concept="2YIFZM" id="2iJMYskfI2V" role="3cqZAk">
-            <ref role="1Pybhc" to="fhh:2iJMYskfEGs" resolve="SmvDebugger" />
-            <ref role="37wK5l" to="fhh:1F2d4ZDxoej" resolve="getPanel" />
-            <node concept="2OqwBi" id="3ryclnQbTDI" role="37wK5m">
-              <node concept="2WthIp" id="3ryclnQbTvN" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="6vY3mK7SW9b" role="2OqNvi">
+        <node concept="3cpWs6" id="2NwTEkpSwjN" role="3cqZAp">
+          <node concept="2YIFZM" id="2NwTEkpSwtD" role="3cqZAk">
+            <ref role="37wK5l" to="hvsg:7YsZv8g1mKh" resolve="run" />
+            <ref role="1Pybhc" to="hvsg:7YsZv8g1lt$" resolve="SmvDebugger" />
+            <node concept="2OqwBi" id="2NwTEkpSwHj" role="37wK5m">
+              <node concept="2WthIp" id="2NwTEkpSwuV" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="2NwTEkpSwPY" role="2OqNvi">
                 <ref role="2WH_rO" node="2b77TIBOni_" resolve="project" />
               </node>
             </node>
-            <node concept="2OqwBi" id="2b77TIBOGUf" role="37wK5m">
-              <node concept="2WthIp" id="2b77TIBOGMa" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="6vY3mK7SWc1" role="2OqNvi">
+            <node concept="2OqwBi" id="2NwTEkpSx1c" role="37wK5m">
+              <node concept="2WthIp" id="2NwTEkpSwSU" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="2NwTEkpSxgN" role="2OqNvi">
                 <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFB" />
               </node>
             </node>

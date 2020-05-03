@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <root nodeRef="r:637cc594-151a-4299-b732-c6b4c70f1b89(smvDebugger.main)/9195503755276408676">
+    <file name="SmvDebugger.java">
+      <node id="3233838129230413526" at="16,0,17,0" concept="5" trace="FB_FILE_EXTENSION" />
+      <node id="3233838129230219725" at="18,95,19,47" concept="2" />
+      <node id="3233838129230135788" at="19,47,20,66" concept="2" />
+      <node id="3233838129230460915" at="20,66,21,52" concept="2" />
+      <node id="3233838129230465632" at="21,52,22,0" concept="4" />
+      <node id="3233838129230130330" at="22,0,23,0" concept="4" />
+      <node id="1517251448946452091" at="23,0,24,16" concept="3" />
+      <node id="3233838129230433687" at="29,44,30,78" concept="3" />
+      <node id="9195503755276504081" at="35,44,36,94" concept="2" />
+      <node id="9195503755276506448" at="36,94,37,25" concept="3" />
+      <node id="9195503755276507591" at="40,39,41,51" concept="0" />
+      <node id="3233838129230432152" at="29,0,32,0" concept="1" trace="accept#(Ljava/io/File;)Z" />
+      <node id="9195503755276479526" at="40,0,43,0" concept="6" trace="notifySuccess#()V" />
+      <node id="9195503755276479206" at="35,0,39,0" concept="6" trace="getSpecification#()Ljava/lang/String;" />
+      <node id="3233838129230415033" at="27,96,32,19" concept="3" />
+      <node id="3233838129230221212" at="27,0,34,0" concept="6" trace="getFbPath#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljava/nio/file/Path;" />
+      <node id="9195503755276413969" at="18,0,26,0" concept="6" trace="run#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljavax/swing/JComponent;" />
+      <scope id="3233838129230432153" at="29,44,30,78" />
+      <scope id="9195503755276479529" at="40,39,41,51" />
+      <scope id="9195503755276479209" at="35,44,37,25">
+        <var name="specification" id="9195503755276504079" />
+      </scope>
+      <scope id="3233838129230432152" at="29,0,32,0">
+        <var name="it" id="3233838129230432152" />
+      </scope>
+      <scope id="9195503755276479526" at="40,0,43,0" />
+      <scope id="9195503755276479206" at="35,0,39,0" />
+      <scope id="3233838129230221215" at="27,96,32,19" />
+      <scope id="9195503755276413971" at="18,95,24,16">
+        <var name="fbPath" id="3233838129230219723" />
+        <var name="smvPath" id="3233838129230135786" />
+        <var name="specification" id="3233838129230460913" />
+      </scope>
+      <scope id="3233838129230221212" at="27,0,34,0">
+        <var name="fb" id="3233838129230222081" />
+        <var name="project" id="3233838129230221509" />
+      </scope>
+      <scope id="9195503755276413969" at="18,0,26,0">
+        <var name="fb" id="9195503755276413976" />
+        <var name="project" id="9195503755276413974" />
+      </scope>
+      <unit id="3233838129230432152" at="28,50,32,5" name="smvDebugger.main.SmvDebugger$1" />
+      <unit id="9195503755276408676" at="15,0,44,0" name="smvDebugger.main.SmvDebugger" />
+    </file>
+  </root>
+</debug-info>
+
