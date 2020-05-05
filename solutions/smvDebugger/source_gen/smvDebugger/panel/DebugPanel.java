@@ -5,27 +5,18 @@ package smvDebugger.panel;
 import javax.swing.JPanel;
 import jetbrains.mps.project.MPSProject;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
-import java.awt.BorderLayout;
-import java.io.File;
 import smvDebugger.nusmv.Counterexample;
-import smvDebugger.nusmv.CounterexampleReader;
+import java.awt.BorderLayout;
 import smvDebugger.visualization.CompositeFBHighlighter;
 import java.util.List;
 import smvDebugger.visualization.HiglhightObject;
 import smvDebugger.commons.CommonUtils;
 
-public class SmvDebugger {
-  public static JPanel getPanel(final MPSProject project, final CompositeFBTypeDeclaration compositeFB) {
+public class DebugPanel {
+  public static JPanel run(final MPSProject project, final CompositeFBTypeDeclaration compositeFB, final Counterexample counterexample) {
     final JPanel mainPanel = new JPanel();
-    fillPanel(project, compositeFB, mainPanel);
-    return mainPanel;
-  }
 
-  private static void fillPanel(final MPSProject project, final CompositeFBTypeDeclaration compositeFB, final JPanel mainPanel) {
     mainPanel.setLayout(new BorderLayout());
-
-    final File file = CSVFileProvider.getCSVFile();
-    final Counterexample counterexample = CounterexampleReader.readCSV(file);
 
     final StateChanger changer = new StateChanger(counterexample);
     changer.setTime(counterexample.globalTime().getValue(0));
@@ -34,11 +25,12 @@ public class SmvDebugger {
     final StateTable table = new StateTable(counterexample);
     mainPanel.add(table, BorderLayout.CENTER);
 
-
     final CompositeFBHighlighter highlighter = new CompositeFBHighlighter(project, compositeFB);
     final List<HiglhightObject> objects = CommonUtils.toHiglightObjectList(counterexample.vars(), 0);
     highlighter.highlight(objects);
 
     EventManager.manageEvents(counterexample, highlighter, changer, table);
+
+    return mainPanel;
   }
 }

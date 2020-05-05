@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CSVFileProvider {
-  private static final String DEFAULT_PATH = "/Users/mtereshchuk_s/Desktop/Thesis/FB2SMV-example";
+  private static final String DEFAULT_PATH = "/";
   private static final String FILE_NAME_EXT_DESCRIPTION = "*.csv";
   private static final String FILE_NAME_EXT = "csv";
 

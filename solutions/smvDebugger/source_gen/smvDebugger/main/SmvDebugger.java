@@ -7,6 +7,10 @@ import jetbrains.mps.project.MPSProject;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import java.nio.file.Path;
 import smvDebugger.fb2smv.Fb2SmvIntegration;
+import java.util.Optional;
+import smvDebugger.nusmv.Counterexample;
+import smvDebugger.nusmv.NuSmvIntegration;
+import smvDebugger.panel.DebugPanel;
 import java.io.FileFilter;
 import java.io.File;
 import java.util.Objects;
@@ -20,8 +24,12 @@ public class SmvDebugger {
     final Path smvPath = Fb2SmvIntegration.convertFbToSmv(fbPath);
     final String specification = getSpecification();
 
-
-    return null;
+    final Optional<Counterexample> counterexample = NuSmvIntegration.getCounterexample(smvPath, specification);
+    if (counterexample.isEmpty()) {
+      notifySuccess();
+      return null;
+    }
+    return DebugPanel.run(project, fb, counterexample.get());
   }
 
   private static Path getFbPath(final MPSProject project, final CompositeFBTypeDeclaration fb) {

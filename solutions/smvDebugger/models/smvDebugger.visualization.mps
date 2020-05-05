@@ -1594,16 +1594,16 @@
                       <property role="TrG5h" value="components" />
                       <property role="3TUv4t" value="true" />
                       <node concept="_YKpA" id="3ZbtdGjubDQ" role="1tU5fm">
-                        <node concept="3uibUv" id="3ZbtdGjubDS" role="_ZDj9">
-                          <ref role="3uigEE" to="g27j:~FBNetworkComponent" resolve="FBNetworkComponent" />
+                        <node concept="3uibUv" id="2NwTEkpUQKq" role="_ZDj9">
+                          <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
                         </node>
                       </node>
                       <node concept="2OqwBi" id="1AGjQ7BvGlG" role="33vP2m">
                         <node concept="37vLTw" id="1AGjQ7BvGlH" role="2Oq$k0">
                           <ref role="3cqZAo" node="1AGjQ7BvGlx" resolve="fbNethwork" />
                         </node>
-                        <node concept="liA8E" id="1AGjQ7BvGlI" role="2OqNvi">
-                          <ref role="37wK5l" to="g27j:~FBNetwork.getComponents()" resolve="getComponents" />
+                        <node concept="liA8E" id="2NwTEkpULrr" role="2OqNvi">
+                          <ref role="37wK5l" to="g27j:~FBNetwork.getContextComponents()" resolve="getContextComponents" />
                         </node>
                       </node>
                     </node>
@@ -1621,8 +1621,8 @@
                         <node concept="37vLTw" id="2A7Yz_E6hX6" role="2Oq$k0">
                           <ref role="3cqZAo" node="1AGjQ7BvGlx" resolve="fbNethwork" />
                         </node>
-                        <node concept="liA8E" id="2A7Yz_E6lUf" role="2OqNvi">
-                          <ref role="37wK5l" to="g27j:~FBNetwork.getConnections()" resolve="getConnections" />
+                        <node concept="liA8E" id="2NwTEkpV2OB" role="2OqNvi">
+                          <ref role="37wK5l" to="g27j:~FBNetwork.getDataConnections()" resolve="getDataConnections" />
                         </node>
                       </node>
                     </node>
@@ -1632,8 +1632,8 @@
                     <node concept="3cpWsn" id="1AGjQ7BvGlN" role="3cpWs9">
                       <property role="TrG5h" value="component" />
                       <property role="3TUv4t" value="true" />
-                      <node concept="3uibUv" id="3ZbtdGjuo1V" role="1tU5fm">
-                        <ref role="3uigEE" to="g27j:~FBNetworkComponent" resolve="FBNetworkComponent" />
+                      <node concept="3uibUv" id="2NwTEkpV6XB" role="1tU5fm">
+                        <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
                       </node>
                       <node concept="2OqwBi" id="1AGjQ7BvGlP" role="33vP2m">
                         <node concept="37vLTw" id="1AGjQ7BvGlQ" role="2Oq$k0">

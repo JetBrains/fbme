@@ -19,8 +19,19 @@ import smvDebugger.nusmv.VariableData;
 import java.util.List;
 import smvDebugger.commons.CommonUtils;
 import java.util.ArrayList;
-import java.util.Set;
+import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
+import jetbrains.mps.internal.collections.runtime.IWhereFilter;
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import java.util.Objects;
+import org.fbme.ide.iec61499.adapter.interfacepart.BasicFBTypeByNode;
+import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
+import java.util.Set;
+import org.jetbrains.mps.openapi.language.SContainmentLink;
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 
 public class VariableStateTrace extends JPanel {
   private final MPSProject project;
@@ -94,9 +105,52 @@ public class VariableStateTrace extends JPanel {
 
   private List<List<String>> getTrace(final String fbName, final String portName, final boolean isVar) {
     final List<List<String>> trace = new ArrayList<List<String>>();
+    this.project.getModelAccess().runReadAction(new Runnable() {
+      public void run() {
+        final FBNetwork fbNethwork = VariableStateTrace.this.compositeFB.getNetwork();
+        final List<FunctionBlockDeclarationBase> components = fbNethwork.getContextComponents();
+        final List<FBNetworkConnection> connections = fbNethwork.getDataConnections();
+
+        final FunctionBlockDeclarationBase component = ListSequence.fromList(components).findFirst(new IWhereFilter<FunctionBlockDeclarationBase>() {
+          public boolean accept(FunctionBlockDeclarationBase it) {
+            return it instanceof FunctionBlockDeclaration && Objects.equals(((FunctionBlockDeclaration) it).getName(), fbName);
+          }
+        });
+
+
+        if (component instanceof FunctionBlockDeclaration) {
+          final FunctionBlockDeclaration blockDeclaration = (FunctionBlockDeclaration) component;
+          final  declaration = blockDeclaration.getType().getDeclaration();
+          if (declaration instanceof BasicFBTypeByNode) {
+            final BasicFBTypeByNode fbTypeByNode = (BasicFBTypeByNode) declaration;
+            final SNode node = fbTypeByNode.getNode();
+            SLinkOperations.getChildren(node, LINKS.transitions$HOmT);
+
+            for (final SNode algorithm : SLinkOperations.getChildren(node, LINKS.algorithms$xmT2)) {
+              SLinkOperations.getTarget(algorithm, LINKS.body$Dbk);
+            }
+          }
+        }
+      }
+    });
     return trace;
   }
 
   private void traverse(final Set<FBNetworkConnection> connections, final List<List<String>> traverse) {
+    if (declaration instanceof BasicFBTypeByNode) {
+      final BasicFBTypeByNode fbTypeByNode = (BasicFBTypeByNode) declaration;
+      final SNode node = fbTypeByNode.getNode();
+      SLinkOperations.getChildren(node, LINKS.transitions$HOmT);
+
+      for (final SNode algorithm : SLinkOperations.getChildren(node, LINKS.algorithms$xmT2)) {
+        SLinkOperations.getTarget(algorithm, LINKS.body$Dbk);
+      }
+    }
+  }
+
+  private static final class LINKS {
+    /*package*/ static final SContainmentLink transitions$HOmT = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398f9c4c1L, 0x3b67570398fc0f65L, "transitions");
+    /*package*/ static final SContainmentLink body$Dbk = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398fc0e9aL, 0x18e716ae4586366fL, "body");
+    /*package*/ static final SContainmentLink algorithms$xmT2 = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398f9c4c1L, 0x3b67570398fc0f3bL, "algorithms");
   }
 }
