@@ -323,7 +323,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYsC8" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="30HIoZ" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
       <node concept="j$656" id="5s_pyghYsCw" role="1lVwrX">
         <ref role="v9R2y" node="5s_pyghYsCu" resolve="reduce_Parameter" />
       </node>
@@ -2533,7 +2533,7 @@
   </node>
   <node concept="13MO4I" id="5s_pyghYsCu">
     <property role="TrG5h" value="reduce_Parameter" />
-    <ref role="3gUMe" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+    <ref role="3gUMe" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
     <node concept="2pNNFK" id="5s_pyghYsC_" role="13RCb5">
       <property role="2pNNFO" value="Parameter" />
       <property role="qg3DV" value="true" />

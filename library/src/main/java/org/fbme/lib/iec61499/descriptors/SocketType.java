@@ -10,35 +10,41 @@ import java.util.List;
 
 public class SocketType implements FBTypeDescriptor {
 
-    private final AdapterTypeDeclaration myAdapter;
+    private final AdapterTypeDeclaration myDeclaration;
 
-    public SocketType(AdapterTypeDeclaration adapter) {
-        myAdapter = adapter;
+    public SocketType(AdapterTypeDeclaration declaration) {
+        myDeclaration = declaration;
+    }
+
+    @Nullable
+    @Override
+    public NamedDeclaration getDeclaration() {
+        return myDeclaration;
     }
 
     @Override
     public String getTypeName() {
-        return myAdapter.getTypeName();
+        return myDeclaration.getName();
     }
 
     @Override
     public List<FBPortDescriptor> getEventInputPorts() {
-        return myAdapter.getEventInputPorts();
+        return FBTypeDescriptorUtils.getEventInputPorts(myDeclaration);
     }
 
     @Override
     public List<FBPortDescriptor> getEventOutputPorts() {
-        return myAdapter.getEventOutputPorts();
+        return FBTypeDescriptorUtils.getEventOutputPorts(myDeclaration);
     }
 
     @Override
     public List<FBPortDescriptor> getDataInputPorts() {
-        return myAdapter.getDataInputPorts();
+        return FBTypeDescriptorUtils.getDataInputPorts(myDeclaration);
     }
 
     @Override
     public List<FBPortDescriptor> getDataOutputPorts() {
-        return myAdapter.getDataOutputPorts();
+        return FBTypeDescriptorUtils.getDataOutputPorts(myDeclaration);
     }
 
     @Override
@@ -53,17 +59,11 @@ public class SocketType implements FBTypeDescriptor {
 
     @Override
     public List<Integer> getAssociatedVariablesForInputEvent(int eventNumber) {
-        return myAdapter.getAssociatedVariablesForInputEvent(eventNumber);
+        return FBTypeDescriptorUtils.getAssociatedVariablesForInputEvent(myDeclaration, eventNumber);
     }
 
     @Override
     public List<Integer> getAssociatedVariablesForOutputEvent(int eventNumber) {
-        return myAdapter.getAssociatedVariablesForOutputEvent(eventNumber);
-    }
-
-    @Nullable
-    @Override
-    public NamedDeclaration getDeclaration() {
-        return myAdapter;
+        return FBTypeDescriptorUtils.getAssociatedVariablesForOutputEvent(myDeclaration, eventNumber);
     }
 }

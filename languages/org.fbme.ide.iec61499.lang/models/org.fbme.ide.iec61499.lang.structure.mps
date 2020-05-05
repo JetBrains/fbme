@@ -352,7 +352,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="parameters" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
   </node>
   <node concept="1TIwiD" id="PI_pXYugcd">
@@ -1000,12 +1000,12 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="parameters" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
   </node>
   <node concept="1TIwiD" id="2lwHqHkyF7a">
     <property role="EcuMT" value="2693352324629967306" />
-    <property role="TrG5h" value="Parameter" />
+    <property role="TrG5h" value="ParameterAssignment" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2lwHqHkyF7b" role="1TKVEi">
       <property role="IQ2ns" value="2693352324629967307" />
@@ -1031,7 +1031,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="parameters" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
     <node concept="1TJgyj" id="1WTKUmKKVPK" role="1TKVEi">
       <property role="IQ2ns" value="2250044605250911600" />
@@ -1407,7 +1407,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="parameters" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
   </node>
   <node concept="1TIwiD" id="5s_pyghzCOb">
@@ -1427,7 +1427,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="parameters" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="Parameter" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
     <node concept="1TJgyj" id="5s_pyghzCOh" role="1TKVEi">
       <property role="IQ2ns" value="6279537560537435409" />

@@ -22,6 +22,7 @@
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
     <import index="fbzs" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt.geom(JDK/)" />
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
+    <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
   </imports>
   <registry>
@@ -154,7 +155,9 @@
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
       </concept>
-      <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk" />
+      <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk">
+        <child id="1212687122400" name="typeParameter" index="1pMfVU" />
+      </concept>
       <concept id="1107461130800" name="jetbrains.mps.baseLanguage.structure.Classifier" flags="ng" index="3pOWGL">
         <child id="5375687026011219971" name="member" index="jymVt" unordered="true" />
       </concept>
@@ -206,6 +209,14 @@
         <ref role="3uigEE" to="g136:~ECC" resolve="ECC" />
       </node>
     </node>
+    <node concept="312cEg" id="6mkmem0xY3r" role="jymVt">
+      <property role="TrG5h" value="myFactory" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm6S6" id="6mkmem0xWWL" role="1B3o_S" />
+      <node concept="3uibUv" id="6mkmem0xXMY" role="1tU5fm">
+        <ref role="3uigEE" to="v4vf:~DeclarationFactory" resolve="DeclarationFactory" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="1R4IoyQDNgU" role="jymVt" />
     <node concept="3clFbW" id="1R4IoyQDKDs" role="jymVt">
       <node concept="3cqZAl" id="1R4IoyQDKDt" role="3clF45" />
@@ -221,11 +232,27 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="6mkmem0y4PY" role="3cqZAp">
+          <node concept="37vLTI" id="6mkmem0y4XB" role="3clFbG">
+            <node concept="37vLTw" id="6mkmem0y5nz" role="37vLTx">
+              <ref role="3cqZAo" node="6mkmem0xVv7" resolve="factory" />
+            </node>
+            <node concept="37vLTw" id="6mkmem0y4PW" role="37vLTJ">
+              <ref role="3cqZAo" node="6mkmem0xY3r" resolve="myFactory" />
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="37vLTG" id="1R4IoyQDKDz" role="3clF46">
         <property role="TrG5h" value="ecc" />
         <node concept="3uibUv" id="1R4IoyQHzu_" role="1tU5fm">
           <ref role="3uigEE" to="g136:~ECC" resolve="ECC" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="6mkmem0xVv7" role="3clF46">
+        <property role="TrG5h" value="factory" />
+        <node concept="3uibUv" id="6mkmem0xW7p" role="1tU5fm">
+          <ref role="3uigEE" to="v4vf:~DeclarationFactory" resolve="DeclarationFactory" />
         </node>
       </node>
     </node>
@@ -259,13 +286,21 @@
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
       </node>
       <node concept="3clFbS" id="1R4IoyQH$m1" role="3clF47">
-        <node concept="3clFbF" id="1R4IoyQH_fQ" role="3cqZAp">
-          <node concept="2OqwBi" id="1R4IoyQH_FH" role="3clFbG">
-            <node concept="37vLTw" id="1R4IoyQH_fN" role="2Oq$k0">
-              <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
-            </node>
-            <node concept="liA8E" id="5oxN2jlI9nQ" role="2OqNvi">
-              <ref role="37wK5l" to="g136:~ECC.getStates()" resolve="getStates" />
+        <node concept="3clFbF" id="6mkmem0xGf1" role="3cqZAp">
+          <node concept="2ShNRf" id="6mkmem0xGeX" role="3clFbG">
+            <node concept="1pGfFk" id="6mkmem0xRAt" role="2ShVmc">
+              <ref role="37wK5l" to="33ny:~HashSet.&lt;init&gt;(java.util.Collection)" resolve="HashSet" />
+              <node concept="2OqwBi" id="1R4IoyQH_FH" role="37wK5m">
+                <node concept="37vLTw" id="1R4IoyQH_fN" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
+                </node>
+                <node concept="liA8E" id="5oxN2jlI9nQ" role="2OqNvi">
+                  <ref role="37wK5l" to="g136:~ECC.getStates()" resolve="getStates" />
+                </node>
+              </node>
+              <node concept="3uibUv" id="6mkmem0xSGf" role="1pMfVU">
+                <ref role="3uigEE" to="g136:~ECState" resolve="ECState" />
+              </node>
             </node>
           </node>
         </node>
@@ -288,13 +323,21 @@
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
       </node>
       <node concept="3clFbS" id="1R4IoyQH$mc" role="3clF47">
-        <node concept="3clFbF" id="1R4IoyQHAfH" role="3cqZAp">
-          <node concept="2OqwBi" id="1R4IoyQHAFG" role="3clFbG">
-            <node concept="37vLTw" id="1R4IoyQHAfE" role="2Oq$k0">
-              <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
-            </node>
-            <node concept="liA8E" id="1R4IoyQHB7u" role="2OqNvi">
-              <ref role="37wK5l" to="g136:~ECC.getTransitions()" resolve="getTransitions" />
+        <node concept="3clFbF" id="6mkmem0xTwF" role="3cqZAp">
+          <node concept="2ShNRf" id="6mkmem0xTwG" role="3clFbG">
+            <node concept="1pGfFk" id="6mkmem0xTwH" role="2ShVmc">
+              <ref role="37wK5l" to="33ny:~HashSet.&lt;init&gt;(java.util.Collection)" resolve="HashSet" />
+              <node concept="2OqwBi" id="6mkmem0xTwI" role="37wK5m">
+                <node concept="37vLTw" id="6mkmem0xTwJ" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
+                </node>
+                <node concept="liA8E" id="6mkmem0xU5L" role="2OqNvi">
+                  <ref role="37wK5l" to="g136:~ECC.getTransitions()" resolve="getTransitions" />
+                </node>
+              </node>
+              <node concept="3uibUv" id="6mkmem0xUVd" role="1pMfVU">
+                <ref role="3uigEE" to="g136:~ECTransition" resolve="ECTransition" />
+              </node>
             </node>
           </node>
         </node>
@@ -332,20 +375,69 @@
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
       </node>
       <node concept="3clFbS" id="1R4IoyQH$mu" role="3clF47">
-        <node concept="3clFbF" id="1R4IoyQHDUp" role="3cqZAp">
-          <node concept="2OqwBi" id="1R4IoyQHEmt" role="3clFbG">
-            <node concept="37vLTw" id="1R4IoyQHDUo" role="2Oq$k0">
-              <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
+        <node concept="3cpWs8" id="6mkmem0xZFy" role="3cqZAp">
+          <node concept="3cpWsn" id="6mkmem0xZFz" role="3cpWs9">
+            <property role="TrG5h" value="transition" />
+            <node concept="3uibUv" id="6mkmem0xZEV" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~ECTransition" resolve="ECTransition" />
             </node>
-            <node concept="liA8E" id="1R4IoyQHGEk" role="2OqNvi">
-              <ref role="37wK5l" to="g136:~ECC.addTransition(org.fbme.lib.iec61499.ecc.ECState,org.fbme.lib.iec61499.ecc.ECState)" resolve="addTransition" />
-              <node concept="37vLTw" id="1R4IoyQHGMh" role="37wK5m">
+            <node concept="2OqwBi" id="6mkmem0xZF$" role="33vP2m">
+              <node concept="37vLTw" id="6mkmem0xZF_" role="2Oq$k0">
+                <ref role="3cqZAo" node="6mkmem0xY3r" resolve="myFactory" />
+              </node>
+              <node concept="liA8E" id="6mkmem0xZFA" role="2OqNvi">
+                <ref role="37wK5l" to="v4vf:~DeclarationFactory.createECTransition()" resolve="createECTransition" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6mkmem0y0kt" role="3cqZAp">
+          <node concept="2OqwBi" id="6mkmem0y0ss" role="3clFbG">
+            <node concept="37vLTw" id="6mkmem0y0kr" role="2Oq$k0">
+              <ref role="3cqZAo" node="6mkmem0xZFz" resolve="transition" />
+            </node>
+            <node concept="liA8E" id="6mkmem0y0uZ" role="2OqNvi">
+              <ref role="37wK5l" to="g136:~ECTransition.setSourceState(org.fbme.lib.iec61499.ecc.ECState)" resolve="setSourceState" />
+              <node concept="37vLTw" id="6mkmem0y0Aw" role="37wK5m">
                 <ref role="3cqZAo" node="1R4IoyQH$mh" resolve="sourcePort" />
               </node>
-              <node concept="37vLTw" id="1R4IoyQHHfE" role="37wK5m">
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6mkmem0y0UD" role="3cqZAp">
+          <node concept="2OqwBi" id="6mkmem0y0UE" role="3clFbG">
+            <node concept="37vLTw" id="6mkmem0y0UF" role="2Oq$k0">
+              <ref role="3cqZAo" node="6mkmem0xZFz" resolve="transition" />
+            </node>
+            <node concept="liA8E" id="6mkmem0y0UG" role="2OqNvi">
+              <ref role="37wK5l" to="g136:~ECTransition.setTargetState(org.fbme.lib.iec61499.ecc.ECState)" resolve="setTargetState" />
+              <node concept="37vLTw" id="6mkmem0y1n_" role="37wK5m">
                 <ref role="3cqZAo" node="1R4IoyQH$mk" resolve="targetPort" />
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6mkmem0y1Pp" role="3cqZAp">
+          <node concept="2OqwBi" id="6mkmem0y2MO" role="3clFbG">
+            <node concept="2OqwBi" id="6mkmem0y1Yg" role="2Oq$k0">
+              <node concept="37vLTw" id="6mkmem0y1Pn" role="2Oq$k0">
+                <ref role="3cqZAo" node="1R4IoyQDEgb" resolve="myEcc" />
+              </node>
+              <node concept="liA8E" id="6mkmem0y2w9" role="2OqNvi">
+                <ref role="37wK5l" to="g136:~ECC.getTransitions()" resolve="getTransitions" />
+              </node>
+            </node>
+            <node concept="liA8E" id="6mkmem0y3uz" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~List.add(java.lang.Object)" resolve="add" />
+              <node concept="37vLTw" id="6mkmem0y3Ft" role="37wK5m">
+                <ref role="3cqZAo" node="6mkmem0xZFz" resolve="transition" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6mkmem0y4D$" role="3cqZAp">
+          <node concept="37vLTw" id="6mkmem0y4Dy" role="3clFbG">
+            <ref role="3cqZAo" node="6mkmem0xZFz" resolve="transition" />
           </node>
         </node>
       </node>
@@ -4189,8 +4281,8 @@
             <node concept="liA8E" id="38k27IRzqw4" role="2OqNvi">
               <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
               <node concept="10M0yZ" id="38k27IRzrSX" role="37wK5m">
-                <ref role="3cqZAo" to="z60i:~Color.GRAY" resolve="GRAY" />
                 <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
+                <ref role="3cqZAo" to="lzb2:~JBColor.GRAY" resolve="GRAY" />
               </node>
             </node>
           </node>
@@ -4305,12 +4397,12 @@
             <node concept="liA8E" id="38k27IRy7e7" role="2OqNvi">
               <ref role="37wK5l" to="z60i:~Graphics.setColor(java.awt.Color)" resolve="setColor" />
               <node concept="2OqwBi" id="38k27IRy7e8" role="37wK5m">
-                <node concept="10M0yZ" id="38k27IRy7e9" role="2Oq$k0">
+                <node concept="10M0yZ" id="6mkmem0$ovb" role="2Oq$k0">
+                  <ref role="3cqZAo" to="lzb2:~JBColor.YELLOW" resolve="YELLOW" />
                   <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
-                  <ref role="3cqZAo" to="z60i:~Color.YELLOW" resolve="YELLOW" />
                 </node>
                 <node concept="liA8E" id="38k27IRy7ea" role="2OqNvi">
-                  <ref role="37wK5l" to="z60i:~Color.darker()" resolve="darker" />
+                  <ref role="37wK5l" to="lzb2:~JBColor.darker()" resolve="darker" />
                 </node>
               </node>
             </node>

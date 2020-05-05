@@ -1,23 +1,16 @@
 package org.fbme.lib.iec61499.declarations;
 
+import org.fbme.lib.iec61499.descriptors.FBType;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.jetbrains.annotations.NotNull;
 
-public interface SubapplicationTypeDeclaration extends FBTypeDescriptor, NamedDeclaration {
+public interface SubapplicationTypeDeclaration extends FBInterfaceDeclarationWithAdapters {
 
     @NotNull
     FBNetwork getNetwork();
 
-    @NotNull
-    FBNetwork getReadonlyNetwork();
-
-    default NamedDeclaration getDeclaration() {
-        return this;
-    }
-
-    @Override
-    default String getTypeName() {
-        return getName();
+    default FBTypeDescriptor getTypeDescriptor() {
+        return new FBType(this);
     }
 }

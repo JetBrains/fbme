@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.instances;
 
 import org.fbme.lib.iec61499.declarations.*;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,8 +13,7 @@ public interface NetworkInstance extends Instance {
     FBNetwork getNetworkDeclaration();
 
     @Nullable
-    FunctionBlockInstance getChild(@NotNull FunctionBlockDeclaration functionBlock);
-
+    FunctionBlockInstance getChild(@NotNull FunctionBlockDeclarationBase component);
 
     static NetworkInstance createForCompositeFBType(CompositeFBTypeDeclaration compositeFBType) {
         return new RegularNetworkInstance(null, compositeFBType.getNetwork(), compositeFBType);
@@ -44,7 +43,7 @@ public interface NetworkInstance extends Instance {
         return new RegularNetworkInstance(null, device.getNetwork(), device);
     }
 
-    static NetworkInstance createForDeclaraiton(Declaration declaration) {
+    static NetworkInstance createForDeclaration(Declaration declaration) {
         if (declaration instanceof CompositeFBTypeDeclaration) {
             CompositeFBTypeDeclaration compositeFBType = ((CompositeFBTypeDeclaration) declaration);
             return createForCompositeFBType(compositeFBType);

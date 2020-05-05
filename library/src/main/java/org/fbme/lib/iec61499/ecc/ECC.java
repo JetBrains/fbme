@@ -3,16 +3,13 @@ package org.fbme.lib.iec61499.ecc;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ECC {
 
     @NotNull
-    Set<ECState> getStates();
+    List<ECState> getStates();
 
     @NotNull
-    Set<ECTransition> getTransitions();
-
-    @NotNull
-    ECTransition addTransition(@NotNull ECState sourceState, @NotNull ECState targetState);
+    List<ECTransition> getTransitions();
 }

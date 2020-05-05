@@ -6,11 +6,11 @@ public class FunctionBlockPortIdentity implements FBPortIdentity {
     private final int myPosition;
     private final EntryKind myKind;
     private final boolean myIsSource;
-    private final FunctionBlockDeclaration myView;
+    private final FunctionBlockDeclarationBase myView;
     private final String myName;
     private final boolean myIsValid;
 
-    public FunctionBlockPortIdentity(@NotNull FunctionBlockDeclaration view, int position, EntryKind kind, boolean isSource, String name, boolean isValid) {
+    public FunctionBlockPortIdentity(@NotNull FunctionBlockDeclarationBase view, int position, EntryKind kind, boolean isSource, String name, boolean isValid) {
         myPosition = position;
         myKind = kind;
         myIsSource = isSource;
@@ -20,7 +20,7 @@ public class FunctionBlockPortIdentity implements FBPortIdentity {
     }
 
     @Override
-    public FunctionBlockDeclaration getComponent() {
+    public FunctionBlockDeclarationBase getComponent() {
         return myView;
     }
 

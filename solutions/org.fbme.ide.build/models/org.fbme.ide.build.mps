@@ -607,6 +607,11 @@
             <ref role="3bR37D" node="42vv4xsIHXY" resolve="org.fbme.lib" />
           </node>
         </node>
+        <node concept="1SiIV0" id="3bdNQ1lIHgH" role="3bR37C">
+          <node concept="3bR9La" id="3bdNQ1lIHgI" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHLX" resolve="org.fbme.ide.platform" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="68dTcycFmt8" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -1269,7 +1274,13 @@
         </node>
         <node concept="1SiIV0" id="5oxN2jlMhIm" role="3bR37C">
           <node concept="3bR9La" id="5oxN2jlMhIn" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" node="42vv4xsIHXY" resolve="org.fbme.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="3bdNQ1lIHhi" role="3bR37C">
+          <node concept="3bR9La" id="3bdNQ1lIHhj" role="1SiIV1">
+            <ref role="3bR37D" node="1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
           </node>
         </node>
       </node>
@@ -1674,6 +1685,11 @@
         <node concept="1SiIV0" id="5oxN2jlMhIA" role="3bR37C">
           <node concept="3bR9La" id="5oxN2jlMhIB" role="1SiIV1">
             <ref role="3bR37D" node="42vv4xsIHXY" resolve="org.fbme.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="3bdNQ1lIHhw" role="3bR37C">
+          <node concept="3bR9La" id="3bdNQ1lIHhx" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
       </node>

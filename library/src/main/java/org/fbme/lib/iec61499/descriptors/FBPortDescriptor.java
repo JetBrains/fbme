@@ -10,7 +10,7 @@ public class FBPortDescriptor {
     private final String myName;
 
     @NotNull
-    private final EntryKind myConnecitonKind;
+    private final EntryKind myConnectionKind;
 
     private final int myPosition;
 
@@ -20,7 +20,7 @@ public class FBPortDescriptor {
 
     public FBPortDescriptor(@NotNull String name, @NotNull EntryKind connectionKind, int position, boolean isInput, boolean isValid) {
         myName = name;
-        myConnecitonKind = connectionKind;
+        myConnectionKind = connectionKind;
         myPosition = position;
         myIsInput = isInput;
         myIsValid = isValid;
@@ -32,8 +32,8 @@ public class FBPortDescriptor {
     }
 
     @NotNull
-    public EntryKind getConnecitonKind() {
-        return myConnecitonKind;
+    public EntryKind getConnectionKind() {
+        return myConnectionKind;
     }
 
     public int getPosition() {

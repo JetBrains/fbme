@@ -1,14 +1,13 @@
 package org.fbme.lib.iec61499.fbnetwork;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Set;
 
 public interface FBNetworkComponent {
 
-    boolean isEditable();
+    @Nullable FBNetwork getNetwork();
 
-    FBNetwork getNetwork();
-
-    Set<FBPortIdentity> getPorts();
-
-    void remove();
+    @NotNull Set<FBPortIdentity> getPorts();
 }

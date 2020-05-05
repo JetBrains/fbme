@@ -2,8 +2,6 @@ package org.fbme.lib.iec61499.fbnetwork;
 
 public interface FBNetworkConnection {
 
-    boolean isEditable();
-
     FBNetwork getNetwork();
 
     ConnectionPath getPath();
@@ -21,8 +19,4 @@ public interface FBNetworkConnection {
     EntryKind getKind();
 
     void remove();
-
-    default int asd() {
-        return 1;
-    }
 }

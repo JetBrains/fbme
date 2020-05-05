@@ -8,8 +8,6 @@
   </languages>
   <imports>
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(mps.lang.iec61499.structure)" />
-    <import index="22ra" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.update(MPS.Editor/)" />
-    <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(mps.lang.iec61499.behavior)" />
@@ -2253,7 +2251,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="2lwHqHkyF7F">
-    <ref role="1XX52x" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+    <ref role="1XX52x" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
     <node concept="3EZMnI" id="2lwHqHkyF7H" role="2wV5jI">
       <node concept="1iCGBv" id="2lwHqHkyF7O" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:2lwHqHkyF7b" resolve="decl" />

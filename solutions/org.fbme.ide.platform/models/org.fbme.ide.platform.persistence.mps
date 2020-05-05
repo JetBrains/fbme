@@ -7300,12 +7300,12 @@
               <node concept="3cpWsn" id="7bQ9AP7GRhc" role="3cpWs9">
                 <property role="TrG5h" value="parameter" />
                 <node concept="3Tqbb2" id="7bQ9AP7GRh9" role="1tU5fm">
-                  <ref role="ehGHo" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+                  <ref role="ehGHo" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
                 </node>
                 <node concept="2ShNRf" id="7bQ9AP7GRhd" role="33vP2m">
                   <node concept="3zrR0B" id="7bQ9AP7GRhe" role="2ShVmc">
                     <node concept="3Tqbb2" id="7bQ9AP7GRhf" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+                      <ref role="ehGHo" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
                     </node>
                   </node>
                 </node>
@@ -7318,7 +7318,7 @@
                   <ref role="3cqZAo" node="7bQ9AP7GRhc" resolve="parameter" />
                 </node>
                 <node concept="359W_D" id="7bQ9AP7GRJ5" role="37wK5m">
-                  <ref role="359W_E" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+                  <ref role="359W_E" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
                   <ref role="359W_F" to="xiqq:2lwHqHkyF7b" resolve="decl" />
                 </node>
                 <node concept="2OqwBi" id="7bQ9AP7GSb8" role="37wK5m">
@@ -7407,7 +7407,7 @@
       <node concept="37vLTG" id="7bQ9AP7GMDg" role="3clF46">
         <property role="TrG5h" value="parameters" />
         <node concept="2I9FWS" id="7bQ9AP7GMDF" role="1tU5fm">
-          <ref role="2I9WkF" to="xiqq:2lwHqHkyF7a" resolve="Parameter" />
+          <ref role="2I9WkF" to="xiqq:2lwHqHkyF7a" resolve="ParameterAssignment" />
         </node>
       </node>
     </node>

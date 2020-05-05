@@ -7,7 +7,4 @@ public interface CompositeFBTypeDeclaration extends FBTypeDeclaration {
 
     @NotNull
     FBNetwork getNetwork();
-
-    @NotNull
-    FBNetwork getReadonlyNetwork();
 }

@@ -22,15 +22,15 @@ import java.util.Objects;
 
         NamedDeclaration typeDeclaration = myDeclaration.getType().getDeclaration();
         if (typeDeclaration instanceof CompositeFBTypeDeclaration) {
-            myNetwork = new RegularNetworkInstance(this, ((CompositeFBTypeDeclaration) typeDeclaration).getReadonlyNetwork(), typeDeclaration);
+            myNetwork = new RegularNetworkInstance(this, ((CompositeFBTypeDeclaration) typeDeclaration).getNetwork(), typeDeclaration);
         } else if (typeDeclaration instanceof SubapplicationTypeDeclaration) {
-            myNetwork = new RegularNetworkInstance(this, ((SubapplicationTypeDeclaration) typeDeclaration).getReadonlyNetwork(), typeDeclaration);
+            myNetwork = new RegularNetworkInstance(this, ((SubapplicationTypeDeclaration) typeDeclaration).getNetwork(), typeDeclaration);
         } else {
             myNetwork = null;
         }
     }
 
-    @Nullable
+    @NotNull
     @Override
     public NetworkInstance getParent() {
         return myParent;
@@ -53,15 +53,12 @@ import java.util.Objects;
         if (this == o) {
             return true;
         }
-        if (!((o instanceof RegularFunctionBlockInstance))) {
+        if (!(o instanceof RegularFunctionBlockInstance)) {
             return false;
         }
 
         RegularFunctionBlockInstance that = (RegularFunctionBlockInstance) o;
-        if (!(Objects.equals(myDeclaration, that.myDeclaration))) {
-            return false;
-        }
-        return Objects.equals(myParent, that.myParent);
+        return Objects.equals(myDeclaration, that.myDeclaration) && Objects.equals(myParent, that.myParent);
     }
 
     @Override

@@ -4,22 +4,13 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.descriptors.PlugType;
 import org.fbme.lib.iec61499.descriptors.SocketType;
 
-public interface AdapterTypeDeclaration extends FBTypeDescriptor, NamedDeclaration {
+public interface AdapterTypeDeclaration extends FBInterfaceDeclaration, NamedDeclaration {
 
-    default PlugType getPlugType() {
+    default FBTypeDescriptor getPlugTypeDescriptor() {
         return new PlugType(this);
     }
 
-    default SocketType getSocketType() {
+    default FBTypeDescriptor getSocketTypeDescriptor() {
         return new SocketType(this);
-    }
-
-    default NamedDeclaration getDeclaration() {
-        return this;
-    }
-
-    @Override
-    default String getTypeName() {
-        return getName();
     }
 }

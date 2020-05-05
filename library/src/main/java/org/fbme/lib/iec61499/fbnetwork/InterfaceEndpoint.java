@@ -11,7 +11,7 @@ public interface InterfaceEndpoint extends FBNetworkComponent, FBPortIdentity {
     String getName();
 
     @Override
-    default Set<FBPortIdentity> getPorts() {
+    default @org.jetbrains.annotations.NotNull Set<FBPortIdentity> getPorts() {
         return Collections.singleton(this);
     }
 

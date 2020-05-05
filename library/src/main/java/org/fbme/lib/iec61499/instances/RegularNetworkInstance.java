@@ -1,9 +1,7 @@
 package org.fbme.lib.iec61499.instances;
 
 import org.fbme.lib.iec61499.declarations.Declaration;
-import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
-import org.fbme.lib.iec61499.fbnetwork.FBNetworkComponent;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,7 +14,7 @@ import java.util.Objects;
     private final Instance myParent;
     private final FBNetwork myNetwork;
     private final Declaration myDeclaration;
-    private Map<FunctionBlockDeclaration, FunctionBlockInstance> myChildren;
+    private Map<FunctionBlockDeclarationBase, FunctionBlockInstance> myChildren;
 
     public RegularNetworkInstance(Instance parent, FBNetwork network, Declaration declaration) {
         myParent = parent;
@@ -32,9 +30,9 @@ import java.util.Objects;
 
     @Nullable
     @Override
-    public FunctionBlockInstance getChild(@NotNull FunctionBlockDeclaration functionBlock) {
+    public FunctionBlockInstance getChild(@NotNull FunctionBlockDeclarationBase component) {
         init();
-        return myChildren.get(functionBlock);
+        return myChildren.get(component);
     }
 
     @Nullable

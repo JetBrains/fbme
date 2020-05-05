@@ -18,5 +18,5 @@ public interface ResourceDeclaration extends NamedDeclaration {
     ResourceTypeDescriptor getType();
 
     @NotNull
-    List<ParameterAssigment> getParameters();
+    List<ParameterAssignment> getParameters();
 }

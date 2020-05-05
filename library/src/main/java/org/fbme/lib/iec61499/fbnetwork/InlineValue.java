@@ -11,7 +11,7 @@ public interface InlineValue extends FBNetworkComponent, FBPortIdentity {
     FBPortIdentity getOpppositePort();
 
     @Override
-    default Set<FBPortIdentity> getPorts() {
+    default @NotNull Set<FBPortIdentity> getPorts() {
         return Collections.singleton(this);
     }
 

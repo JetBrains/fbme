@@ -12,7 +12,7 @@ public interface DeviceDeclaration extends NamedDeclaration {
 
     DeviceTypeDescriptor getType();
 
-    List<ParameterAssigment> getParameters();
+    List<ParameterAssignment> getParameters();
 
     List<ResourceDeclaration> getResources();
 

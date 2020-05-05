@@ -1,7 +1,11 @@
 package org.fbme.lib.iec61499.ecc;
 
 
-public interface ECState {
+import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+
+import java.util.List;
+
+public interface ECState extends NamedDeclaration {
 
     int getX();
 
@@ -13,4 +17,5 @@ public interface ECState {
 
     void remove();
 
+    List<ECAction> getActions();
 }
