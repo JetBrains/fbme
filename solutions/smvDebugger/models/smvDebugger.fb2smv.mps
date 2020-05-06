@@ -49,9 +49,6 @@
       <concept id="1164991038168" name="jetbrains.mps.baseLanguage.structure.ThrowStatement" flags="nn" index="YS8fn">
         <child id="1164991057263" name="throwable" index="YScLw" />
       </concept>
-      <concept id="1070533707846" name="jetbrains.mps.baseLanguage.structure.StaticFieldReference" flags="nn" index="10M0yZ">
-        <reference id="1144433057691" name="classifier" index="1PxDUh" />
-      </concept>
       <concept id="1068390468198" name="jetbrains.mps.baseLanguage.structure.ClassConcept" flags="ig" index="312cEu" />
       <concept id="1068431474542" name="jetbrains.mps.baseLanguage.structure.VariableDeclaration" flags="ng" index="33uBYm">
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
@@ -485,6 +482,24 @@
         <property role="Xl_RC" value="Library/FB2SMV/nutrac.exe" />
       </node>
     </node>
+    <node concept="Wx3nA" id="2NwTEkpVoYo" role="jymVt">
+      <property role="TrG5h" value="NUTRAC_FILE_EXTENSION" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm6S6" id="2NwTEkpVoYp" role="1B3o_S" />
+      <node concept="17QB3L" id="2NwTEkpVoYq" role="1tU5fm" />
+      <node concept="Xl_RD" id="2NwTEkpVoYr" role="33vP2m">
+        <property role="Xl_RC" value="nutrac" />
+      </node>
+    </node>
+    <node concept="Wx3nA" id="2NwTEkpVlJ_" role="jymVt">
+      <property role="TrG5h" value="CSV_FILE_EXTENSION" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm6S6" id="2NwTEkpVlB6" role="1B3o_S" />
+      <node concept="17QB3L" id="2NwTEkpVlIQ" role="1tU5fm" />
+      <node concept="Xl_RD" id="2NwTEkpVm5b" role="33vP2m">
+        <property role="Xl_RC" value="csv" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="2NwTEkpUiSl" role="jymVt" />
     <node concept="2YIFZL" id="2NwTEkpUhob" role="jymVt">
       <property role="TrG5h" value="convertToCsv" />
@@ -503,6 +518,27 @@
           </node>
         </node>
         <node concept="3clFbH" id="2NwTEkpUkNi" role="3cqZAp" />
+        <node concept="3cpWs8" id="2NwTEkpVKdw" role="3cqZAp">
+          <node concept="3cpWsn" id="2NwTEkpVKdu" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="counterexmaplePath" />
+            <node concept="3uibUv" id="2NwTEkpVKjS" role="1tU5fm">
+              <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+            </node>
+            <node concept="1rXfSq" id="2NwTEkpVKI0" role="33vP2m">
+              <ref role="37wK5l" node="2NwTEkpVt1P" resolve="createCounterexampleFile" />
+              <node concept="37vLTw" id="2NwTEkpVKSl" role="37wK5m">
+                <ref role="3cqZAo" node="2NwTEkpVowV" resolve="fbName" />
+              </node>
+              <node concept="37vLTw" id="2NwTEkpVKYm" role="37wK5m">
+                <ref role="3cqZAo" node="2NwTEkpVtlA" resolve="parentPath" />
+              </node>
+              <node concept="37vLTw" id="2NwTEkpVLcF" role="37wK5m">
+                <ref role="3cqZAo" node="2NwTEkpUhoV" resolve="counterexample" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3cpWs8" id="2NwTEkpUhoh" role="3cqZAp">
           <node concept="3cpWsn" id="2NwTEkpUhoi" role="3cpWs9">
             <property role="3TUv4t" value="true" />
@@ -529,8 +565,8 @@
                 <node concept="37vLTw" id="2NwTEkpUkgW" role="37wK5m">
                   <ref role="3cqZAo" node="2NwTEkpUhoe" resolve="os" />
                 </node>
-                <node concept="37vLTw" id="2NwTEkpUkKO" role="37wK5m">
-                  <ref role="3cqZAo" node="2NwTEkpUhoV" resolve="counterexamplePath" />
+                <node concept="37vLTw" id="2NwTEkpVLKF" role="37wK5m">
+                  <ref role="3cqZAo" node="2NwTEkpVKdu" resolve="counterexmaplePath" />
                 </node>
               </node>
             </node>
@@ -598,11 +634,10 @@
         </node>
         <node concept="3clFbH" id="2NwTEkpUhoP" role="3cqZAp" />
         <node concept="3cpWs6" id="2NwTEkpUhoQ" role="3cqZAp">
-          <node concept="2YIFZM" id="2NwTEkpUhu1" role="3cqZAk">
-            <ref role="1Pybhc" node="7YsZv8g1n6K" resolve="Fb2SmvIntegration" />
-            <ref role="37wK5l" node="2NwTEkpRoHI" resolve="getSmvPath" />
-            <node concept="37vLTw" id="2NwTEkpUhu2" role="37wK5m">
-              <ref role="3cqZAo" node="2NwTEkpUhoV" resolve="counterexamplePath" />
+          <node concept="1rXfSq" id="2NwTEkpVl9s" role="3cqZAk">
+            <ref role="37wK5l" node="2NwTEkpUlgb" resolve="getCsvPath" />
+            <node concept="37vLTw" id="2NwTEkpVNmo" role="37wK5m">
+              <ref role="3cqZAo" node="2NwTEkpVKdu" resolve="counterexmaplePath" />
             </node>
           </node>
         </node>
@@ -611,15 +646,124 @@
       <node concept="3uibUv" id="2NwTEkpUhoU" role="3clF45">
         <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
       </node>
-      <node concept="37vLTG" id="2NwTEkpUhoV" role="3clF46">
-        <property role="TrG5h" value="counterexamplePath" />
+      <node concept="37vLTG" id="2NwTEkpVowV" role="3clF46">
         <property role="3TUv4t" value="true" />
-        <node concept="3uibUv" id="2NwTEkpUhoW" role="1tU5fm">
+        <property role="TrG5h" value="fbName" />
+        <node concept="17QB3L" id="2NwTEkpVVMp" role="1tU5fm" />
+      </node>
+      <node concept="37vLTG" id="2NwTEkpVtlA" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="parentPath" />
+        <node concept="3uibUv" id="2NwTEkpVWAq" role="1tU5fm">
           <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
         </node>
       </node>
+      <node concept="37vLTG" id="2NwTEkpUhoV" role="3clF46">
+        <property role="TrG5h" value="counterexample" />
+        <property role="3TUv4t" value="true" />
+        <node concept="17QB3L" id="2NwTEkpVnrd" role="1tU5fm" />
+      </node>
     </node>
     <node concept="2tJIrI" id="2NwTEkpUhnZ" role="jymVt" />
+    <node concept="2YIFZL" id="2NwTEkpVt1P" role="jymVt">
+      <property role="TrG5h" value="createCounterexampleFile" />
+      <node concept="3clFbS" id="2NwTEkpVt1S" role="3clF47">
+        <node concept="3cpWs8" id="2NwTEkpVDYE" role="3cqZAp">
+          <node concept="3cpWsn" id="2NwTEkpVDYC" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="newPath" />
+            <node concept="3uibUv" id="2NwTEkpVEoj" role="1tU5fm">
+              <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+            </node>
+            <node concept="2OqwBi" id="2NwTEkpVF0G" role="33vP2m">
+              <node concept="37vLTw" id="2NwTEkpW0fl" role="2Oq$k0">
+                <ref role="3cqZAo" node="2NwTEkpVtR3" resolve="parentPath" />
+              </node>
+              <node concept="liA8E" id="2NwTEkpVFaD" role="2OqNvi">
+                <ref role="37wK5l" to="eoo2:~Path.resolve(java.lang.String)" resolve="resolve" />
+                <node concept="3cpWs3" id="2NwTEkpVFxz" role="37wK5m">
+                  <node concept="37vLTw" id="2NwTEkpVF_K" role="3uHU7w">
+                    <ref role="3cqZAo" node="2NwTEkpVoYo" resolve="NUTRAC_FILE_EXTENSION" />
+                  </node>
+                  <node concept="3cpWs3" id="2NwTEkpVFRa" role="3uHU7B">
+                    <node concept="Xl_RD" id="2NwTEkpVFUJ" role="3uHU7w">
+                      <property role="Xl_RC" value="." />
+                    </node>
+                    <node concept="37vLTw" id="2NwTEkpW0u4" role="3uHU7B">
+                      <ref role="3cqZAo" node="2NwTEkpVE6a" resolve="fbName" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="SfApY" id="2NwTEkpVHe7" role="3cqZAp">
+          <node concept="3clFbS" id="2NwTEkpVHe9" role="SfCbr">
+            <node concept="3cpWs6" id="2NwTEkpVtaj" role="3cqZAp">
+              <node concept="2YIFZM" id="2NwTEkpVDOO" role="3cqZAk">
+                <ref role="1Pybhc" to="eoo2:~Files" resolve="Files" />
+                <ref role="37wK5l" to="eoo2:~Files.write(java.nio.file.Path,byte[],java.nio.file.OpenOption...)" resolve="write" />
+                <node concept="37vLTw" id="2NwTEkpVFZ7" role="37wK5m">
+                  <ref role="3cqZAo" node="2NwTEkpVDYC" resolve="newPath" />
+                </node>
+                <node concept="2OqwBi" id="2NwTEkpVGA3" role="37wK5m">
+                  <node concept="37vLTw" id="2NwTEkpVGem" role="2Oq$k0">
+                    <ref role="3cqZAo" node="2NwTEkpVtbR" resolve="counterexample" />
+                  </node>
+                  <node concept="liA8E" id="2NwTEkpVGFV" role="2OqNvi">
+                    <ref role="37wK5l" to="wyt6:~String.getBytes()" resolve="getBytes" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="TDmWw" id="2NwTEkpVHea" role="TEbGg">
+            <node concept="3cpWsn" id="2NwTEkpVHec" role="TDEfY">
+              <property role="3TUv4t" value="true" />
+              <property role="TrG5h" value="e" />
+              <node concept="3uibUv" id="2NwTEkpVI2x" role="1tU5fm">
+                <ref role="3uigEE" to="guwi:~IOException" resolve="IOException" />
+              </node>
+            </node>
+            <node concept="3clFbS" id="2NwTEkpVHeg" role="TDEfX">
+              <node concept="YS8fn" id="2NwTEkpVIeu" role="3cqZAp">
+                <node concept="2ShNRf" id="2NwTEkpVIfG" role="YScLw">
+                  <node concept="1pGfFk" id="2NwTEkpVIvp" role="2ShVmc">
+                    <ref role="37wK5l" to="wyt6:~RuntimeException.&lt;init&gt;(java.lang.Throwable)" resolve="RuntimeException" />
+                    <node concept="37vLTw" id="2NwTEkpVIyM" role="37wK5m">
+                      <ref role="3cqZAo" node="2NwTEkpVHec" resolve="e" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm6S6" id="2NwTEkpVsJC" role="1B3o_S" />
+      <node concept="3uibUv" id="2NwTEkpVJLj" role="3clF45">
+        <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+      </node>
+      <node concept="37vLTG" id="2NwTEkpVE6a" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="fbName" />
+        <node concept="17QB3L" id="2NwTEkpVX$B" role="1tU5fm" />
+      </node>
+      <node concept="37vLTG" id="2NwTEkpVtR3" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="parentPath" />
+        <node concept="3uibUv" id="2NwTEkpVYW7" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="2NwTEkpVtbR" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="counterexample" />
+        <node concept="17QB3L" id="2NwTEkpVtdj" role="1tU5fm" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2NwTEkpVsvO" role="jymVt" />
     <node concept="2YIFZL" id="2NwTEkpUio7" role="jymVt">
       <property role="TrG5h" value="getCommand" />
       <node concept="3clFbS" id="2NwTEkpUio8" role="3clF47">
@@ -693,7 +837,7 @@
     </node>
     <node concept="2tJIrI" id="2NwTEkpUldi" role="jymVt" />
     <node concept="2YIFZL" id="2NwTEkpUlgb" role="jymVt">
-      <property role="TrG5h" value="getSmvPath" />
+      <property role="TrG5h" value="getCsvPath" />
       <node concept="3clFbS" id="2NwTEkpUlgc" role="3clF47">
         <node concept="3cpWs8" id="2NwTEkpUlgd" role="3cqZAp">
           <node concept="3cpWsn" id="2NwTEkpUlge" role="3cpWs9">
@@ -750,9 +894,8 @@
             <property role="3TUv4t" value="true" />
             <node concept="17QB3L" id="2NwTEkpUlgy" role="1tU5fm" />
             <node concept="3cpWs3" id="2NwTEkpUlgz" role="33vP2m">
-              <node concept="10M0yZ" id="2NwTEkpUlbU" role="3uHU7w">
-                <ref role="3cqZAo" node="2NwTEkpRA4h" resolve="SMV_FILE_EXTENSION" />
-                <ref role="1PxDUh" node="7YsZv8g1n6K" resolve="Fb2SmvIntegration" />
+              <node concept="37vLTw" id="2NwTEkpVNVD" role="3uHU7w">
+                <ref role="3cqZAo" node="2NwTEkpVlJ_" resolve="CSV_FILE_EXTENSION" />
               </node>
               <node concept="3cpWs3" id="2NwTEkpUlg$" role="3uHU7B">
                 <node concept="37vLTw" id="2NwTEkpUlg_" role="3uHU7B">
@@ -796,7 +939,6 @@
         </node>
       </node>
     </node>
-    <node concept="2tJIrI" id="2NwTEkpUleI" role="jymVt" />
     <node concept="3Tm1VV" id="2NwTEkpTHa3" role="1B3o_S" />
   </node>
 </model>

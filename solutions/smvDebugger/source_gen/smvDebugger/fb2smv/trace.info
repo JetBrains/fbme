@@ -11,59 +11,83 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164879751025:jetbrains.mps.baseLanguage.structure.TryCatchStatement" />
   <root nodeRef="r:8084b59f-3392-43cb-8238-4a96a96c280f(smvDebugger.fb2smv)/3233838129230566018">
     <file name="NutracIntegration.java">
-      <node id="3233838129230720859" at="10,0,11,0" concept="4" trace="MAC_MONO_FRAMEWORK" />
-      <node id="3233838129230720863" at="11,0,12,0" concept="4" trace="NUTRAC_EXE_PATH" />
-      <node id="3233838129230714381" at="13,66,14,34" concept="1" />
-      <node id="3233838129230728402" at="14,34,15,0" concept="3" />
-      <node id="3233838129230714385" at="15,0,16,56" concept="1" />
-      <node id="3233838129230714390" at="16,56,17,56" concept="0" />
-      <node id="3233838129230714397" at="17,56,18,0" concept="3" />
-      <node id="3233838129230714398" at="18,0,19,26" concept="1" />
-      <node id="3233838129230714403" at="20,9,21,32" concept="0" />
-      <node id="3233838129230714409" at="21,32,22,24" concept="0" />
-      <node id="3233838129230714417" at="23,33,24,36" concept="7" />
-      <node id="3233838129230714421" at="25,5,26,0" concept="3" />
-      <node id="3233838129230714422" at="26,0,27,60" concept="2" />
-      <node id="3233838129230718478" at="32,18,33,96" concept="2" />
-      <node id="3233838129230718489" at="34,14,35,18" concept="2" />
-      <node id="3233838129230730253" at="39,53,40,62" concept="1" />
-      <node id="3233838129230730261" at="40,62,41,79" concept="1" />
-      <node id="3233838129230730272" at="41,79,42,83" concept="1" />
-      <node id="3233838129230730279" at="42,83,43,51" concept="2" />
-      <node id="3233838129230714401" at="19,26,25,5" concept="8" />
-      <node id="3233838129230718473" at="30,93,36,5" concept="6" />
-      <node id="3233838129230730251" at="39,0,45,0" concept="5" trace="getSmvPath#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
-      <node id="3233838129230718471" at="30,0,38,0" concept="5" trace="getCommand#(LsmvDebugger/commons/OS;Ljava/nio/file/Path;)Ljava/lang/String;" />
-      <node id="3233838129230714379" at="13,0,29,0" concept="5" trace="convertToCsv#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
-      <scope id="3233838129230714413" at="23,0,24,36">
+      <node id="3233838129230720859" at="12,0,13,0" concept="4" trace="MAC_MONO_FRAMEWORK" />
+      <node id="3233838129230720863" at="13,0,14,0" concept="4" trace="NUTRAC_EXE_PATH" />
+      <node id="3233838129231007640" at="14,0,15,0" concept="4" trace="NUTRAC_FILE_EXTENSION" />
+      <node id="3233838129230994405" at="15,0,16,0" concept="4" trace="CSV_FILE_EXTENSION" />
+      <node id="3233838129230714381" at="17,108,18,34" concept="1" />
+      <node id="3233838129230728402" at="18,34,19,0" concept="3" />
+      <node id="3233838129231102816" at="19,0,20,97" concept="1" />
+      <node id="3233838129230714385" at="20,97,21,56" concept="1" />
+      <node id="3233838129230714390" at="21,56,22,56" concept="0" />
+      <node id="3233838129230714397" at="22,56,23,0" concept="3" />
+      <node id="3233838129230714398" at="23,0,24,26" concept="1" />
+      <node id="3233838129230714403" at="25,9,26,32" concept="0" />
+      <node id="3233838129230714409" at="26,32,27,24" concept="0" />
+      <node id="3233838129230714417" at="28,33,29,36" concept="7" />
+      <node id="3233838129230714421" at="30,5,31,0" concept="3" />
+      <node id="3233838129230714422" at="31,0,32,42" concept="2" />
+      <node id="3233838129231077290" at="35,121,36,82" concept="1" />
+      <node id="3233838129231024787" at="37,9,38,61" concept="2" />
+      <node id="3233838129231094686" at="39,35,40,36" concept="7" />
+      <node id="3233838129230718478" at="46,18,47,96" concept="2" />
+      <node id="3233838129230718489" at="48,14,49,18" concept="2" />
+      <node id="3233838129230730253" at="53,53,54,62" concept="1" />
+      <node id="3233838129230730261" at="54,62,55,79" concept="1" />
+      <node id="3233838129230730272" at="55,79,56,65" concept="1" />
+      <node id="3233838129230730279" at="56,65,57,51" concept="2" />
+      <node id="3233838129231090567" at="36,82,41,5" concept="8" />
+      <node id="3233838129230714401" at="24,26,30,5" concept="8" />
+      <node id="3233838129230718473" at="44,93,50,5" concept="6" />
+      <node id="3233838129230730251" at="53,0,59,0" concept="5" trace="getCsvPath#(Ljava/nio/file/Path;)Ljava/nio/file/Path;" />
+      <node id="3233838129231024245" at="35,0,43,0" concept="5" trace="createCounterexampleFile#(Ljava/lang/String;Ljava/nio/file/Path;Ljava/lang/String;)Ljava/nio/file/Path;" />
+      <node id="3233838129230718471" at="44,0,52,0" concept="5" trace="getCommand#(LsmvDebugger/commons/OS;Ljava/nio/file/Path;)Ljava/lang/String;" />
+      <node id="3233838129230714379" at="17,0,34,0" concept="5" trace="convertToCsv#(Ljava/lang/String;Ljava/nio/file/Path;Ljava/lang/String;)Ljava/nio/file/Path;" />
+      <scope id="3233838129230714413" at="28,0,29,36">
         <var name="e" id="3233838129230714414" />
       </scope>
-      <scope id="3233838129230714416" at="23,33,24,36" />
-      <scope id="3233838129230718477" at="32,18,33,96" />
-      <scope id="3233838129230718488" at="34,14,35,18" />
-      <scope id="3233838129230714402" at="20,9,22,24" />
-      <scope id="3233838129230730252" at="39,53,43,51">
+      <scope id="3233838129230714416" at="28,33,29,36" />
+      <scope id="3233838129231090569" at="37,9,38,61" />
+      <scope id="3233838129231090570" at="39,0,40,36">
+        <var name="e" id="3233838129231090572" />
+      </scope>
+      <scope id="3233838129231090576" at="39,35,40,36" />
+      <scope id="3233838129230718477" at="46,18,47,96" />
+      <scope id="3233838129230718488" at="48,14,49,18" />
+      <scope id="3233838129230714402" at="25,9,27,24" />
+      <scope id="3233838129230730252" at="53,53,57,51">
         <var name="fbFileName" id="3233838129230730254" />
         <var name="fbName" id="3233838129230730262" />
         <var name="smvFileName" id="3233838129230730273" />
       </scope>
-      <scope id="3233838129230718472" at="30,93,36,5" />
-      <scope id="3233838129230730251" at="39,0,45,0">
+      <scope id="3233838129231024248" at="35,121,41,5">
+        <var name="newPath" id="3233838129231077288" />
+      </scope>
+      <scope id="3233838129230718472" at="44,93,50,5" />
+      <scope id="3233838129230730251" at="53,0,59,0">
         <var name="fbPath" id="3233838129230730288" />
       </scope>
-      <scope id="3233838129230718471" at="30,0,38,0">
+      <scope id="3233838129231024245" at="35,0,43,0">
+        <var name="counterexample" id="3233838129231024887" />
+        <var name="fbName" id="3233838129231077770" />
+        <var name="parentPath" id="3233838129231027651" />
+      </scope>
+      <scope id="3233838129230718471" at="44,0,52,0">
         <var name="counterexamplePath" id="3233838129230718495" />
         <var name="operatingSystem" id="3233838129230718493" />
       </scope>
-      <scope id="3233838129230714380" at="13,66,27,60">
+      <scope id="3233838129230714380" at="17,108,32,42">
         <var name="builder" id="3233838129230714386" />
+        <var name="counterexmaplePath" id="3233838129231102814" />
         <var name="os" id="3233838129230714382" />
         <var name="process" id="3233838129230714399" />
       </scope>
-      <scope id="3233838129230714379" at="13,0,29,0">
-        <var name="counterexamplePath" id="3233838129230714427" />
+      <scope id="3233838129230714379" at="17,0,34,0">
+        <var name="counterexample" id="3233838129230714427" />
+        <var name="fbName" id="3233838129231005755" />
+        <var name="parentPath" id="3233838129231025510" />
       </scope>
-      <unit id="3233838129230566018" at="9,0,47,0" name="smvDebugger.fb2smv.NutracIntegration" />
+      <unit id="3233838129230566018" at="11,0,60,0" name="smvDebugger.fb2smv.NutracIntegration" />
     </file>
   </root>
   <root nodeRef="r:8084b59f-3392-43cb-8238-4a96a96c280f(smvDebugger.fb2smv)/9195503755276415408">

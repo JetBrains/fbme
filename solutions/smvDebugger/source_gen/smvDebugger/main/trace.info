@@ -15,7 +15,7 @@
       <node id="3233838129230135788" at="23,47,24,66" concept="3" />
       <node id="3233838129230460915" at="24,66,25,52" concept="3" />
       <node id="3233838129230745540" at="25,52,26,0" concept="5" />
-      <node id="3233838129230734216" at="26,0,27,111" concept="3" />
+      <node id="3233838129230734216" at="26,0,27,125" concept="3" />
       <node id="3233838129230747214" at="28,35,29,22" concept="0" />
       <node id="3233838129230747439" at="29,22,30,18" concept="4" />
       <node id="1517251448946452091" at="31,5,32,61" concept="4" />
@@ -25,7 +25,7 @@
       <node id="9195503755276507591" at="48,39,49,51" concept="0" />
       <node id="3233838129230432152" at="37,0,40,0" concept="2" trace="accept#(Ljava/io/File;)Z" />
       <node id="9195503755276479526" at="48,0,51,0" concept="7" trace="notifySuccess#()V" />
-      <node id="3233838129230745358" at="27,111,31,5" concept="1" />
+      <node id="3233838129230745358" at="27,125,31,5" concept="1" />
       <node id="9195503755276479206" at="43,0,47,0" concept="7" trace="getSpecification#()Ljava/lang/String;" />
       <node id="3233838129230415033" at="35,96,40,19" concept="4" />
       <node id="3233838129230221212" at="35,0,42,0" concept="7" trace="getFbPath#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljava/nio/file/Path;" />

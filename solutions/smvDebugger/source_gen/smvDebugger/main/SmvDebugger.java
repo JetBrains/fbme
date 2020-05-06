@@ -24,7 +24,7 @@ public class SmvDebugger {
     final Path smvPath = Fb2SmvIntegration.convertFbToSmv(fbPath);
     final String specification = getSpecification();
 
-    final Optional<Counterexample> counterexample = NuSmvIntegration.getCounterexample(smvPath, specification);
+    final Optional<Counterexample> counterexample = NuSmvIntegration.getCounterexample(fb.getName(), smvPath, specification);
     if (counterexample.isEmpty()) {
       notifySuccess();
       return null;

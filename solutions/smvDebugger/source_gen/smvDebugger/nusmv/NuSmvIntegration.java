@@ -6,15 +6,16 @@ import java.util.Optional;
 import java.nio.file.Path;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import smvDebugger.fb2smv.NutracIntegration;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.io.IOException;
 
 public class NuSmvIntegration {
-  private static final String NUSMV_COMMAND = "nusmv";
+  private static final String NUSMV_BIN_PATH = "/Library/NuSMV/bin/NuSMV";
   private static final String NUSMV_SUCCESS = "Success";
 
-  public static Optional<Counterexample> getCounterexample(final Path smvPath, final String specification) {
+  public static Optional<Counterexample> getCounterexample(String fbName, final Path smvPath, final String specification) {
     addSpecification(smvPath, specification);
 
     final ProcessBuilder builder = new ProcessBuilder();
@@ -40,11 +41,11 @@ public class NuSmvIntegration {
     }
 
     if (response.contains(NUSMV_SUCCESS)) {
-      return Optional.empty();
+      return Optional.<Counterexample>empty();
     }
 
-
-    return <!TextGen not found for 'jetbrains.mps.baseLanguage.structure.Expression'!>;
+    final Path csvPath = NutracIntegration.convertToCsv(fbName, smvPath.getParent(), specification);
+    return Optional.of(CounterexampleReader.readCSV(csvPath));
   }
 
   private static void addSpecification(final Path smvPath, final String specification) {
@@ -56,6 +57,6 @@ public class NuSmvIntegration {
   }
 
   private static String getCommand(final Path smvPath) {
-    return NUSMV_COMMAND + smvPath;
+    return NUSMV_BIN_PATH + " " + smvPath;
   }
 }

@@ -5,16 +5,21 @@ package smvDebugger.fb2smv;
 import java.nio.file.Path;
 import smvDebugger.commons.OS;
 import smvDebugger.commons.OSUtils;
+import java.nio.file.Files;
+import java.io.IOException;
 
 public class NutracIntegration {
   private static final String MAC_MONO_FRAMEWORK = "mono";
   private static final String NUTRAC_EXE_PATH = "Library/FB2SMV/nutrac.exe";
+  private static final String NUTRAC_FILE_EXTENSION = "nutrac";
+  private static final String CSV_FILE_EXTENSION = "csv";
 
-  public static Path convertToCsv(final Path counterexamplePath) {
+  public static Path convertToCsv(final String fbName, final Path parentPath, final String counterexample) {
     final OS os = OSUtils.getOS();
 
+    final Path counterexmaplePath = createCounterexampleFile(fbName, parentPath, counterexample);
     final ProcessBuilder builder = new ProcessBuilder();
-    builder.command(getCommand(os, counterexamplePath));
+    builder.command(getCommand(os, counterexmaplePath));
 
     final Process process;
     try {
@@ -24,7 +29,16 @@ public class NutracIntegration {
       throw new RuntimeException(e);
     }
 
-    return Fb2SmvIntegration.getSmvPath(counterexamplePath);
+    return getCsvPath(counterexmaplePath);
+  }
+
+  private static Path createCounterexampleFile(final String fbName, final Path parentPath, final String counterexample) {
+    final Path newPath = parentPath.resolve(fbName + "." + NUTRAC_FILE_EXTENSION);
+    try {
+      return Files.write(newPath, counterexample.getBytes());
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private static String getCommand(final OS operatingSystem, final Path counterexamplePath) {
@@ -36,11 +50,10 @@ public class NutracIntegration {
     }
   }
 
-  private static Path getSmvPath(final Path fbPath) {
+  private static Path getCsvPath(final Path fbPath) {
     final String fbFileName = fbPath.getFileName().toString();
     final String fbName = fbFileName.substring(0, fbFileName.lastIndexOf("."));
-    final String smvFileName = fbName + "." + Fb2SmvIntegration.SMV_FILE_EXTENSION;
+    final String smvFileName = fbName + "." + CSV_FILE_EXTENSION;
     return fbPath.getParent().resolve(smvFileName);
   }
-
 }

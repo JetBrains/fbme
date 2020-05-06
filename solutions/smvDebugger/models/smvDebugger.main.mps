@@ -188,10 +188,18 @@
             <node concept="2YIFZM" id="2NwTEkpUmyQ" role="33vP2m">
               <ref role="37wK5l" to="o1cv:7YsZv8g1nev" resolve="getCounterexample" />
               <ref role="1Pybhc" to="o1cv:7YsZv8g1tpJ" resolve="NuSmvIntegration" />
-              <node concept="37vLTw" id="2NwTEkpUoG7" role="37wK5m">
+              <node concept="2OqwBi" id="2NwTEkpW8mU" role="37wK5m">
+                <node concept="37vLTw" id="2NwTEkpW881" role="2Oq$k0">
+                  <ref role="3cqZAo" node="7YsZv8g1mKo" resolve="fb" />
+                </node>
+                <node concept="liA8E" id="2NwTEkpW8_8" role="2OqNvi">
+                  <ref role="37wK5l" to="7adg:~Declaration.getName()" resolve="getName" />
+                </node>
+              </node>
+              <node concept="37vLTw" id="2NwTEkpW8K9" role="37wK5m">
                 <ref role="3cqZAo" node="2NwTEkpS47E" resolve="smvPath" />
               </node>
-              <node concept="37vLTw" id="2NwTEkpUoKH" role="37wK5m">
+              <node concept="37vLTw" id="2NwTEkpW9dx" role="37wK5m">
                 <ref role="3cqZAo" node="2NwTEkpTjvL" resolve="specification" />
               </node>
             </node>
