@@ -2,6 +2,7 @@ package org.fbme.lib.iec61499.ecc;
 
 
 import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ECState extends NamedDeclaration {
 
     void remove();
 
-    List<ECAction> getActions();
+    @NotNull List<ECAction> getActions();
 }

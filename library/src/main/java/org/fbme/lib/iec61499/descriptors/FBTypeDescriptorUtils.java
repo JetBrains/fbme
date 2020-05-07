@@ -12,7 +12,7 @@ class FBTypeDescriptorUtils {
     private FBTypeDescriptorUtils() {
     }
 
-    public static List<FBPortDescriptor> getEventInputPorts(@NotNull FBInterfaceDeclaration declaration) {
+    public static @NotNull List<FBPortDescriptor> getEventInputPorts(@NotNull FBInterfaceDeclaration declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<EventDeclaration> inputEvents = declaration.getInputEvents();
         for (int i = 0; i < inputEvents.size(); i++) {
@@ -22,7 +22,7 @@ class FBTypeDescriptorUtils {
         return res;
     }
 
-    public static List<FBPortDescriptor> getEventOutputPorts(@NotNull FBInterfaceDeclaration declaration) {
+    public static @NotNull List<FBPortDescriptor> getEventOutputPorts(@NotNull FBInterfaceDeclaration declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<EventDeclaration> outputEvents = declaration.getOutputEvents();
         for (int i = 0; i < outputEvents.size(); i++) {
@@ -32,7 +32,7 @@ class FBTypeDescriptorUtils {
         return res;
     }
 
-    public static List<FBPortDescriptor> getDataInputPorts(@NotNull FBInterfaceDeclaration declaration) {
+    public static @NotNull List<FBPortDescriptor> getDataInputPorts(@NotNull FBInterfaceDeclaration declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<ParameterDeclaration> inputParameters = declaration.getInputParameters();
         for (int i = 0; i < inputParameters.size(); i++) {
@@ -43,7 +43,7 @@ class FBTypeDescriptorUtils {
     }
 
 
-    public static List<FBPortDescriptor> getDataOutputPorts(@NotNull FBInterfaceDeclaration declaration) {
+    public static @NotNull List<FBPortDescriptor> getDataOutputPorts(@NotNull FBInterfaceDeclaration declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<ParameterDeclaration> outputParameters = declaration.getOutputParameters();
         for (int i = 0; i < outputParameters.size(); i++) {
@@ -53,7 +53,7 @@ class FBTypeDescriptorUtils {
         return res;
     }
 
-    public static List<FBPortDescriptor> getSocketPorts(@NotNull FBInterfaceDeclarationWithAdapters declaration) {
+    public static @NotNull List<FBPortDescriptor> getSocketPorts(@NotNull FBInterfaceDeclarationWithAdapters declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<PlugDeclaration> outputParameters = declaration.getPlugs();
         for (int i = 0; i < outputParameters.size(); i++) {
@@ -63,7 +63,7 @@ class FBTypeDescriptorUtils {
         return res;
     }
 
-    public static List<FBPortDescriptor> getPlugPorts(@NotNull FBInterfaceDeclarationWithAdapters declaration) {
+    public static @NotNull List<FBPortDescriptor> getPlugPorts(@NotNull FBInterfaceDeclarationWithAdapters declaration) {
         List<FBPortDescriptor> res = new ArrayList<>();
         List<SocketDeclaration> outputParameters = declaration.getSockets();
         for (int i = 0; i < outputParameters.size(); i++) {
@@ -73,21 +73,21 @@ class FBTypeDescriptorUtils {
         return res;
     }
 
-    public static List<Integer> getAssociatedVariablesForInputEvent(@NotNull FBInterfaceDeclaration declaration, int eventNumber) {
+    public static @NotNull List<Integer> getAssociatedVariablesForInputEvent(@NotNull FBInterfaceDeclaration declaration, int eventNumber) {
         List<ParameterDeclaration> inputParameters = declaration.getInputParameters();
         List<Integer> list = new ArrayList<>();
         for (EventAssociation eventAssociation : declaration.getInputEvents().get(eventNumber).getAssociations()) {
-            int parameterIndex = inputParameters.indexOf(eventAssociation.getParameter());
+            int parameterIndex = inputParameters.indexOf(eventAssociation.getParameterReference().getTarget());
             list.add(parameterIndex);
         }
         return list;
     }
 
-    public static List<Integer> getAssociatedVariablesForOutputEvent(@NotNull FBInterfaceDeclaration declaration, int eventNumber) {
+    public static @NotNull List<Integer> getAssociatedVariablesForOutputEvent(@NotNull FBInterfaceDeclaration declaration, int eventNumber) {
         List<ParameterDeclaration> outputParameters = declaration.getOutputParameters();
         List<Integer> list = new ArrayList<>();
         for (EventAssociation eventAssociation : declaration.getOutputEvents().get(eventNumber).getAssociations()) {
-            int parameterIndex = outputParameters.indexOf(eventAssociation.getParameter());
+            int parameterIndex = outputParameters.indexOf(eventAssociation.getParameterReference().getTarget());
             list.add(parameterIndex);
         }
         return list;

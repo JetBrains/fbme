@@ -9,41 +9,39 @@ import org.jetbrains.annotations.Nullable;
 
 public interface NetworkInstance extends Instance {
 
-    @NotNull
-    FBNetwork getNetworkDeclaration();
+    @NotNull FBNetwork getNetworkDeclaration();
 
-    @Nullable
-    FunctionBlockInstance getChild(@NotNull FunctionBlockDeclarationBase component);
+    @Nullable FunctionBlockInstance getChild(@NotNull FunctionBlockDeclarationBase component);
 
-    static NetworkInstance createForCompositeFBType(CompositeFBTypeDeclaration compositeFBType) {
+    static @NotNull NetworkInstance createForCompositeFBType(@NotNull CompositeFBTypeDeclaration compositeFBType) {
         return new RegularNetworkInstance(null, compositeFBType.getNetwork(), compositeFBType);
     }
 
-    static NetworkInstance createForSubapplicationType(SubapplicationTypeDeclaration subapplicationType) {
+    static @NotNull NetworkInstance createForSubapplicationType(@NotNull SubapplicationTypeDeclaration subapplicationType) {
         return new RegularNetworkInstance(null, subapplicationType.getNetwork(), subapplicationType);
     }
 
-    static NetworkInstance createForResourceType(ResourceTypeDeclaration resourceType) {
+    static @NotNull NetworkInstance createForResourceType(@NotNull ResourceTypeDeclaration resourceType) {
         return new RegularNetworkInstance(null, resourceType.getNetwork(), resourceType);
     }
 
-    static NetworkInstance createForImplicitResourceOfDeviceType(DeviceTypeDeclaration deviceType) {
+    static @NotNull NetworkInstance createForImplicitResourceOfDeviceType(@NotNull DeviceTypeDeclaration deviceType) {
         return new RegularNetworkInstance(null, deviceType.getNetwork(), deviceType);
     }
 
-    static NetworkInstance createForApplication(ApplicationDeclaration application) {
+    static @NotNull NetworkInstance createForApplication(@NotNull ApplicationDeclaration application) {
         return new RegularNetworkInstance(null, application.getNetwork(), application);
     }
 
-    static NetworkInstance createForResource(ResourceDeclaration resource) {
+    static @NotNull NetworkInstance createForResource(@NotNull ResourceDeclaration resource) {
         return new RegularNetworkInstance(null, resource.getNetwork(), resource);
     }
 
-    static NetworkInstance createForImplicitResourceOfDevice(DeviceDeclaration device) {
+    static @NotNull NetworkInstance createForImplicitResourceOfDevice(@NotNull DeviceDeclaration device) {
         return new RegularNetworkInstance(null, device.getNetwork(), device);
     }
 
-    static NetworkInstance createForDeclaration(Declaration declaration) {
+    static @NotNull NetworkInstance createForDeclaration(@NotNull Declaration declaration) {
         if (declaration instanceof CompositeFBTypeDeclaration) {
             CompositeFBTypeDeclaration compositeFBType = ((CompositeFBTypeDeclaration) declaration);
             return createForCompositeFBType(compositeFBType);
@@ -66,6 +64,6 @@ public interface NetworkInstance extends Instance {
             DeviceDeclaration device = ((DeviceDeclaration) declaration);
             return createForImplicitResourceOfDevice(device);
         }
-        return null;
+        throw new IllegalArgumentException("Unknown kind of declaration: " + declaration.getClass());
     }
 }

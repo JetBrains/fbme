@@ -6,11 +6,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class FBPortDescriptor {
 
-    @NotNull
-    private final String myName;
+    private final @NotNull String myName;
 
-    @NotNull
-    private final EntryKind myConnectionKind;
+    private final @NotNull EntryKind myConnectionKind;
 
     private final int myPosition;
 
@@ -26,13 +24,11 @@ public class FBPortDescriptor {
         myIsValid = isValid;
     }
 
-    @NotNull
-    public String getName() {
+    public @NotNull String getName() {
         return myName;
     }
 
-    @NotNull
-    public EntryKind getConnectionKind() {
+    public @NotNull EntryKind getConnectionKind() {
         return myConnectionKind;
     }
 

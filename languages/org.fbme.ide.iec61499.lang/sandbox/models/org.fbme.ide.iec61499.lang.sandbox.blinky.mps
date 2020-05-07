@@ -185,7 +185,7 @@
             <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EI" resolve="EI" />
             <ref role="1N5Pi4" node="3wAsKTk8K1b" resolve="E_SWITCH" />
           </node>
-          <node concept="bR32z" id="4hhlEYV6vre" role="bPNfo">
+          <node concept="bR32z" id="1OXW8NC83YC" role="bPNfo">
             <property role="bR32p" value="150.0" />
           </node>
         </node>
@@ -234,8 +234,8 @@
           <property role="TrG5h" value="E_CYCLE" />
           <ref role="1N5Tt0" to="7fvu:~E_CYCLE" resolve="E_CYCLE" />
           <node concept="10YbkR" id="3IX4BsKohuZ" role="b_cXm">
-            <property role="10YbkC" value="1034.0" />
-            <property role="10YbkE" value="734.0" />
+            <property role="10YbkC" value="1015.0" />
+            <property role="10YbkE" value="688.0" />
           </node>
           <node concept="1LUwhx" id="4hhlEYV6vqa" role="2LNCDh">
             <ref role="1LUwhw" to="7fvu:~E_CYCLE.DT" resolve="DT" />
@@ -269,8 +269,8 @@
             <ref role="1N5Pi4" node="3wAsKTk8K19" resolve="E_CYCLE" />
             <ref role="1N5Pi3" to="7fvu:~E_CYCLE.START" resolve="START" />
           </node>
-          <node concept="bR32z" id="4hhlEYV6vri" role="bPNfo">
-            <property role="bR32p" value="400.0" />
+          <node concept="bR32z" id="1OXW8NC83YB" role="bPNfo">
+            <property role="bR32p" value="388.0" />
           </node>
         </node>
         <node concept="1N5Tqi" id="5OPYJ1hokF$" role="1N5PiQ">
@@ -282,8 +282,8 @@
             <ref role="1N5Pi4" node="3wAsKTk8K19" resolve="E_CYCLE" />
             <ref role="1N5Pi3" to="7fvu:~E_CYCLE.START" resolve="START" />
           </node>
-          <node concept="bR32z" id="4hhlEYV6vrf" role="bPNfo">
-            <property role="bR32p" value="330.0" />
+          <node concept="bR32z" id="1OXW8NC83YA" role="bPNfo">
+            <property role="bR32p" value="311.0" />
           </node>
         </node>
       </node>
@@ -305,9 +305,9 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5PlF" to="7fvu:~E_SWITCH.G" resolve="G" />
         </node>
-        <node concept="bR73E" id="4hhlEYV6vpY" role="bPNfo">
+        <node concept="bR73E" id="1OXW8NC83JA" role="bPNfo">
           <property role="bR73D" value="150.0" />
-          <property role="bR73n" value="157.0" />
+          <property role="bR73n" value="234.0" />
           <property role="bR73k" value="100.0" />
         </node>
       </node>
@@ -320,8 +320,8 @@
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EI" resolve="EI" />
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
         </node>
-        <node concept="bR32z" id="4hhlEYV6vpX" role="bPNfo">
-          <property role="bR32p" value="373.0" />
+        <node concept="bR32z" id="1OXW8NC83JI" role="bPNfo">
+          <property role="bR32p" value="234.0" />
         </node>
       </node>
       <node concept="1N5Tqi" id="3wAsKTk6T$I" role="1N5PiQ">
@@ -333,8 +333,8 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EO1" resolve="EO1" />
         </node>
-        <node concept="bR32z" id="4hhlEYV6vq0" role="bPNfo">
-          <property role="bR32p" value="173.0" />
+        <node concept="bR32z" id="1OXW8NC83JG" role="bPNfo">
+          <property role="bR32p" value="323.0" />
         </node>
       </node>
       <node concept="1N5Tqi" id="3wAsKTk6T$v" role="1N5PiQ">
@@ -346,16 +346,16 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EO0" resolve="EO0" />
         </node>
-        <node concept="bR32z" id="4hhlEYV6vpZ" role="bPNfo">
-          <property role="bR32p" value="173.0" />
+        <node concept="bR32z" id="1OXW8NC83JB" role="bPNfo">
+          <property role="bR32p" value="257.0" />
         </node>
       </node>
       <node concept="1N5Tt1" id="3wAsKTk6SA2" role="1N5PiY">
         <property role="TrG5h" value="E_CYCLE" />
         <ref role="1N5Tt0" to="7fvu:~E_CYCLE" resolve="E_CYCLE" />
         <node concept="10YbkR" id="3IX4BsKohv2" role="b_cXm">
-          <property role="10YbkC" value="265.0" />
-          <property role="10YbkE" value="257.0" />
+          <property role="10YbkC" value="315.0" />
+          <property role="10YbkE" value="211.0" />
         </node>
         <node concept="1LUwhx" id="19RKY2xImJA" role="2LNCDh">
           <ref role="1LUwhw" to="7fvu:~E_CYCLE.DT" resolve="DT" />
@@ -368,8 +368,8 @@
         <property role="TrG5h" value="E_SR" />
         <ref role="1N5Tt0" to="7fvu:~E_SR" resolve="E_SR" />
         <node concept="10YbkR" id="3IX4BsKohv3" role="b_cXm">
-          <property role="10YbkC" value="1688.0" />
-          <property role="10YbkE" value="469.0" />
+          <property role="10YbkC" value="1876.0" />
+          <property role="10YbkE" value="384.0" />
         </node>
       </node>
       <node concept="1N5Tt1" id="3wAsKTk6TzZ" role="1N5PiY">

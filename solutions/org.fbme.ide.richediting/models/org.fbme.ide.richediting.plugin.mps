@@ -9403,12 +9403,12 @@
               <node concept="3cpWsn" id="1DfKejreWP4" role="3cpWs9">
                 <property role="TrG5h" value="mapping" />
                 <node concept="3Tqbb2" id="1DfKejreWOM" role="1tU5fm">
-                  <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+                  <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
                 </node>
                 <node concept="2ShNRf" id="1DfKejreWP5" role="33vP2m">
                   <node concept="3zrR0B" id="1DfKejreWP6" role="2ShVmc">
                     <node concept="3Tqbb2" id="1DfKejreWP7" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+                      <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
                     </node>
                   </node>
                 </node>

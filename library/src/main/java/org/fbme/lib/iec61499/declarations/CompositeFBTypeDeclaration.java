@@ -5,6 +5,5 @@ import org.jetbrains.annotations.NotNull;
 
 public interface CompositeFBTypeDeclaration extends FBTypeDeclaration {
 
-    @NotNull
-    FBNetwork getNetwork();
+    @NotNull FBNetwork getNetwork();
 }

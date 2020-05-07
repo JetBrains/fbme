@@ -8,26 +8,19 @@ import java.util.List;
 
 public interface FBNetwork {
 
-    @NotNull
-    List<FBNetworkComponent> getComponents();
+    @NotNull List<FBNetworkComponent> getComponents();
 
-    @NotNull
-    List<FBNetworkConnection> getConnections();
+    @NotNull List<FBNetworkConnection> getConnections();
 
-    @NotNull
-    List<FunctionBlockDeclaration> getFunctionBlocks();
+    @NotNull List<FunctionBlockDeclaration> getFunctionBlocks();
 
-    @NotNull
-    List<FBNetworkConnection> getDataConnections();
+    @NotNull List<FBNetworkConnection> getDataConnections();
 
-    @NotNull
-    List<FBNetworkConnection> getEventConnections();
+    @NotNull List<FBNetworkConnection> getEventConnections();
 
-    @NotNull
-    List<FBNetworkConnection> getAdapterConnections();
+    @NotNull List<FBNetworkConnection> getAdapterConnections();
 
-    @Nullable
-    FBNetwork getPrototype();
+    @Nullable FBNetwork getPrototype();
 
     static @Nullable FBNetwork extractNetwork(@Nullable Declaration declaration) {
         if (declaration instanceof CompositeFBTypeDeclaration) {

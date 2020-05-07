@@ -26,15 +26,23 @@ public interface DeclarationFactory {
 
     @NotNull ParameterAssignment createParameterAssignment();
 
+    @NotNull EventAssociation createEventAssociation();
+
     @NotNull EventDeclaration createEventDeclaration();
 
-    @NotNull EventAssociation createEventAssociation();
+    @NotNull LinkDeclaration createLinkDeclaration();
+
+    @NotNull MappingDeclaration createMappingDeclaration();
 
     @NotNull ParameterDeclaration createParameterDeclaration();
 
     @NotNull ResourceDeclaration createResourceDeclaration();
 
     @NotNull ResourceTypeDeclaration createResourceTypeDeclaration();
+
+    @NotNull SegmentDeclaration createSegmentDeclaration();
+
+    @NotNull SegmentTypeDeclaration createSegmentTypeDeclaration();
 
     @NotNull ServiceInterfaceFBTypeDeclaration createServiceInterfaceFBTypeDeclaration();
 

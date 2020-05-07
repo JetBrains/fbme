@@ -142,6 +142,7 @@
       <root url="jar://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign/jetbrains.mps.refactoring.participant.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/MPS 2019.3/languages/languageDesign/jetbrains.mps.typesystemEngine.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/MPS 2019.3/languages/runtimes/jetbrains.mps.analyzers.runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/MPS 2019.3/lib/annotations.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

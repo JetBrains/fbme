@@ -1,14 +1,13 @@
 package org.fbme.lib.iec61499.declarations;
 
 import org.fbme.lib.iec61499.Reference;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface PlugDeclaration extends FunctionBlockDeclarationBase {
-
-    @NotNull Reference<AdapterTypeDeclaration> getTypeReference();
+public interface SegmentDeclaration extends NamedDeclaration {
 
     @NotNull List<ParameterAssignment> getParameters();
+
+    @NotNull Reference<SegmentTypeDeclaration> getTypeReference();
 }

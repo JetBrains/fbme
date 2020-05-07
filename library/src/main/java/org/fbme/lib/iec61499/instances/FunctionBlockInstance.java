@@ -7,12 +7,9 @@ import org.jetbrains.annotations.Nullable;
 
 public interface FunctionBlockInstance extends Instance {
 
-    @NotNull
-    NetworkInstance getParent();
+    @NotNull NetworkInstance getParent();
 
-    @NotNull
-    FunctionBlockDeclaration getDeclaration();
+    @NotNull FunctionBlockDeclaration getDeclaration();
 
-    @Nullable
-    NetworkInstance getContainedNetwork();
+    @Nullable NetworkInstance getContainedNetwork();
 }

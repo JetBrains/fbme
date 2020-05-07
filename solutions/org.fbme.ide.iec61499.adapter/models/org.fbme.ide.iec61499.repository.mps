@@ -1771,6 +1771,146 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="3clFb_" id="5nTpYS7MgoJ" role="jymVt">
+      <property role="TrG5h" value="createLinkDeclaration" />
+      <node concept="3Tm1VV" id="5nTpYS7MgoK" role="1B3o_S" />
+      <node concept="2AHcQZ" id="5nTpYS7MgoM" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="5nTpYS7MgoN" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~LinkDeclaration" resolve="LinkDeclaration" />
+      </node>
+      <node concept="3clFbS" id="5nTpYS7MgoO" role="3clF47">
+        <node concept="3clFbF" id="5nTpYS7MoNw" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7Mpmc" role="3clFbG">
+            <node concept="37vLTw" id="5nTpYS7MoNt" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="5nTpYS7MpTe" role="2OqNvi">
+              <ref role="37wK5l" node="1R0_JUQTWTF" resolve="getAdapter" />
+              <node concept="2ShNRf" id="5nTpYS7MpZZ" role="37wK5m">
+                <node concept="3zrR0B" id="5nTpYS7MrKs" role="2ShVmc">
+                  <node concept="3Tqbb2" id="5nTpYS7MrKu" role="3zrR0E">
+                    <ref role="ehGHo" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="5nTpYS7MskF" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~LinkDeclaration" resolve="LinkDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="5nTpYS7MgoP" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="5nTpYS7MgoS" role="jymVt">
+      <property role="TrG5h" value="createMappingDeclaration" />
+      <node concept="3Tm1VV" id="5nTpYS7MgoT" role="1B3o_S" />
+      <node concept="2AHcQZ" id="5nTpYS7MgoV" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="5nTpYS7MgoW" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~MappingDeclaration" resolve="MappingDeclaration" />
+      </node>
+      <node concept="3clFbS" id="5nTpYS7MgoX" role="3clF47">
+        <node concept="3clFbF" id="5nTpYS7MsIQ" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7MsIR" role="3clFbG">
+            <node concept="37vLTw" id="5nTpYS7MsIS" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="5nTpYS7MsIT" role="2OqNvi">
+              <ref role="37wK5l" node="1R0_JUQTWTF" resolve="getAdapter" />
+              <node concept="2ShNRf" id="5nTpYS7MsIU" role="37wK5m">
+                <node concept="3zrR0B" id="5nTpYS7MsIV" role="2ShVmc">
+                  <node concept="3Tqbb2" id="5nTpYS7MsIW" role="3zrR0E">
+                    <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="5nTpYS7MsIX" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~MappingDeclaration" resolve="MappingDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="5nTpYS7MgoY" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="5nTpYS7Mgp1" role="jymVt">
+      <property role="TrG5h" value="createSegmentDeclaration" />
+      <node concept="3Tm1VV" id="5nTpYS7Mgp2" role="1B3o_S" />
+      <node concept="2AHcQZ" id="5nTpYS7Mgp4" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="5nTpYS7Mgp5" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~SegmentDeclaration" resolve="SegmentDeclaration" />
+      </node>
+      <node concept="3clFbS" id="5nTpYS7Mgp6" role="3clF47">
+        <node concept="3clFbF" id="5nTpYS7MtHm" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7MtHn" role="3clFbG">
+            <node concept="37vLTw" id="5nTpYS7MtHo" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="5nTpYS7MtHp" role="2OqNvi">
+              <ref role="37wK5l" node="1R0_JUQTWTF" resolve="getAdapter" />
+              <node concept="2ShNRf" id="5nTpYS7MtHq" role="37wK5m">
+                <node concept="3zrR0B" id="5nTpYS7MtHr" role="2ShVmc">
+                  <node concept="3Tqbb2" id="5nTpYS7MtHs" role="3zrR0E">
+                    <ref role="ehGHo" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="5nTpYS7MtHt" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~SegmentDeclaration" resolve="SegmentDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="5nTpYS7Mgp7" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="5nTpYS7Mgpa" role="jymVt">
+      <property role="TrG5h" value="createSegmentTypeDeclaration" />
+      <node concept="3Tm1VV" id="5nTpYS7Mgpb" role="1B3o_S" />
+      <node concept="2AHcQZ" id="5nTpYS7Mgpd" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="5nTpYS7Mgpe" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~SegmentTypeDeclaration" resolve="SegmentTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="5nTpYS7Mgpf" role="3clF47">
+        <node concept="3clFbF" id="5nTpYS7MuFG" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7MuFH" role="3clFbG">
+            <node concept="37vLTw" id="5nTpYS7MuFI" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="5nTpYS7MuFJ" role="2OqNvi">
+              <ref role="37wK5l" node="1R0_JUQTWTF" resolve="getAdapter" />
+              <node concept="2ShNRf" id="5nTpYS7MuFK" role="37wK5m">
+                <node concept="3zrR0B" id="5nTpYS7MuFL" role="2ShVmc">
+                  <node concept="3Tqbb2" id="5nTpYS7MuFM" role="3zrR0E">
+                    <ref role="ehGHo" to="xiqq:5s_pyghtjox" resolve="SegmentTypeDeclaration" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="5nTpYS7MuFN" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~SegmentTypeDeclaration" resolve="SegmentTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="5nTpYS7Mgpg" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
   </node>
   <node concept="312cEu" id="1R0_JUQTBak">
     <property role="TrG5h" value="PlatformRepository" />
@@ -2433,6 +2573,126 @@
                     </node>
                   </node>
                   <node concept="Xjq3P" id="_2FpOZnyEF" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="5nTpYS7RvtZ" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7Rvu0" role="3clFbw">
+            <node concept="37vLTw" id="5nTpYS7Rvu1" role="2Oq$k0">
+              <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="5nTpYS7Rvu2" role="2OqNvi">
+              <node concept="chp4Y" id="5nTpYS7RxUp" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbS" id="5nTpYS7Rvu4" role="3clFbx">
+            <node concept="3cpWs6" id="5nTpYS7Rvu5" role="3cqZAp">
+              <node concept="2ShNRf" id="5nTpYS7Rvu6" role="3cqZAk">
+                <node concept="1pGfFk" id="5nTpYS7Rvu7" role="2ShVmc">
+                  <ref role="37wK5l" to="go3h:5z1uLkKllW3" resolve="LinkDeclarationByNode" />
+                  <node concept="1PxgMI" id="5nTpYS7Rvu8" role="37wK5m">
+                    <node concept="chp4Y" id="5nTpYS7R$nK" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="5nTpYS7Rvua" role="1m5AlR">
+                      <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="Xjq3P" id="5nTpYS7Rvub" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="5nTpYS7RAHP" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7RAHQ" role="3clFbw">
+            <node concept="37vLTw" id="5nTpYS7RAHR" role="2Oq$k0">
+              <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="5nTpYS7RAHS" role="2OqNvi">
+              <node concept="chp4Y" id="5nTpYS7RBh5" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbS" id="5nTpYS7RAHU" role="3clFbx">
+            <node concept="3cpWs6" id="5nTpYS7RAHV" role="3cqZAp">
+              <node concept="2ShNRf" id="5nTpYS7RAHW" role="3cqZAk">
+                <node concept="1pGfFk" id="5nTpYS7RAHX" role="2ShVmc">
+                  <ref role="37wK5l" to="go3h:3lxP5h4cjwD" resolve="SegmentDeclarationByNode" />
+                  <node concept="1PxgMI" id="5nTpYS7RAHY" role="37wK5m">
+                    <node concept="chp4Y" id="5nTpYS7RGwu" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="5nTpYS7RAI0" role="1m5AlR">
+                      <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="Xjq3P" id="5nTpYS7RAI1" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="5nTpYS7RJmU" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7RJmV" role="3clFbw">
+            <node concept="37vLTw" id="5nTpYS7RJmW" role="2Oq$k0">
+              <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="5nTpYS7RJmX" role="2OqNvi">
+              <node concept="chp4Y" id="5nTpYS7RLVe" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:5s_pyghtjox" resolve="SegmentTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbS" id="5nTpYS7RJmZ" role="3clFbx">
+            <node concept="3cpWs6" id="5nTpYS7RJn0" role="3cqZAp">
+              <node concept="2ShNRf" id="5nTpYS7RJn1" role="3cqZAk">
+                <node concept="1pGfFk" id="5nTpYS7RJn2" role="2ShVmc">
+                  <ref role="37wK5l" to="go3h:5z1uLkKkXPj" resolve="SegmentTypeDeclarationByNode" />
+                  <node concept="1PxgMI" id="5nTpYS7RJn3" role="37wK5m">
+                    <node concept="chp4Y" id="5nTpYS7RP4K" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:5s_pyghtjox" resolve="SegmentTypeDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="5nTpYS7RJn5" role="1m5AlR">
+                      <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="Xjq3P" id="5nTpYS7RJn6" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="5nTpYS7RLZ1" role="3cqZAp">
+          <node concept="2OqwBi" id="5nTpYS7RLZ2" role="3clFbw">
+            <node concept="37vLTw" id="5nTpYS7RLZ3" role="2Oq$k0">
+              <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="5nTpYS7RLZ4" role="2OqNvi">
+              <node concept="chp4Y" id="5nTpYS7RRzu" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
+              </node>
+            </node>
+          </node>
+          <node concept="3clFbS" id="5nTpYS7RLZ6" role="3clFbx">
+            <node concept="3cpWs6" id="5nTpYS7RLZ7" role="3cqZAp">
+              <node concept="2ShNRf" id="5nTpYS7RLZ8" role="3cqZAk">
+                <node concept="1pGfFk" id="5nTpYS7RLZ9" role="2ShVmc">
+                  <ref role="37wK5l" to="go3h:3lxP5h4cziX" resolve="MappingDeclarationByNode" />
+                  <node concept="1PxgMI" id="5nTpYS7RLZa" role="37wK5m">
+                    <node concept="chp4Y" id="5nTpYS7RTgG" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="5nTpYS7RLZc" role="1m5AlR">
+                      <ref role="3cqZAo" node="1R0_JUQTMW_" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="Xjq3P" id="5nTpYS7RLZd" role="37wK5m" />
                 </node>
               </node>
             </node>

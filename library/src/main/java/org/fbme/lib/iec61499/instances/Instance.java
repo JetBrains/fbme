@@ -7,14 +7,11 @@ import org.jetbrains.annotations.Nullable;
 
 public interface Instance {
 
-    @Nullable
-    Instance getParent();
+    @Nullable Instance getParent();
 
-    @NotNull
-    Declaration getDeclaration();
+    @NotNull Declaration getDeclaration();
 
-    @NotNull
-    default Instance getRootInstance() {
+    default @NotNull Instance getRootInstance() {
         Instance root = this;
         Instance parent = this.getParent();
         while (parent != null) {

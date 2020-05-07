@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface ECC {
 
-    @NotNull
-    List<ECState> getStates();
+    @NotNull List<ECState> getStates();
 
-    @NotNull
-    List<ECTransition> getTransitions();
+    @NotNull List<ECTransition> getTransitions();
 }

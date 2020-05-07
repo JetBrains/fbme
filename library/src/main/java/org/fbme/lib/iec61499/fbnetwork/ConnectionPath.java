@@ -1,13 +1,15 @@
 package org.fbme.lib.iec61499.fbnetwork;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ConnectionPath {
 
-    private final Kind myKind;
+    private final @NotNull Kind myKind;
     private final int myDX1;
     private final int myDY;
     private final int myDX2;
 
-    public ConnectionPath(Kind kind, int dx1, int dy, int dx2) {
+    public ConnectionPath(@NotNull Kind kind, int dx1, int dy, int dx2) {
         myKind = kind;
         myDX1 = dx1;
         myDY = dy;
@@ -26,7 +28,7 @@ public class ConnectionPath {
         this(Kind.Straight, 0, 0, 0);
     }
 
-    public Kind getKind() {
+    public @NotNull Kind getKind() {
         return myKind;
     }
 
@@ -42,15 +44,15 @@ public class ConnectionPath {
         return myDX2;
     }
 
-    public ConnectionPath copyDX1(int dx1) {
+    public @NotNull ConnectionPath copyDX1(int dx1) {
         return new ConnectionPath(myKind, dx1, myDY, myDX2);
     }
 
-    public ConnectionPath copyDY(int dy) {
+    public @NotNull ConnectionPath copyDY(int dy) {
         return new ConnectionPath(myKind, myDX1, dy, myDX2);
     }
 
-    public ConnectionPath copyDX2(int dx2) {
+    public @NotNull ConnectionPath copyDX2(int dx2) {
         return new ConnectionPath(myKind, myDX1, myDY, dx2);
     }
 

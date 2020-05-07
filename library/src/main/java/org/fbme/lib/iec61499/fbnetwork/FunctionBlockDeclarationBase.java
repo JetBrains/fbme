@@ -11,7 +11,7 @@ import java.util.Set;
 
 public interface FunctionBlockDeclarationBase extends FBNetworkComponent, NamedDeclaration {
 
-    FBTypeDescriptor getType();
+    @NotNull FBTypeDescriptor getType();
 
     default FBPortIdentity getPort(@NotNull FBPortDescriptor descriptor) {
         return new FunctionBlockPortIdentity(this, descriptor.getPosition(), descriptor.getConnectionKind(), !(descriptor.isInput()), descriptor.getName(), descriptor.isValid());

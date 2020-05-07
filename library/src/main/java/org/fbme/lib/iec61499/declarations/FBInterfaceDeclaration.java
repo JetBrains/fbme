@@ -1,20 +1,21 @@
 package org.fbme.lib.iec61499.declarations;
 
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public interface FBInterfaceDeclaration extends NamedDeclaration {
 
-    List<EventDeclaration> getInputEvents();
+    @NotNull List<EventDeclaration> getInputEvents();
 
-    List<EventDeclaration> getOutputEvents();
+    @NotNull List<EventDeclaration> getOutputEvents();
 
-    List<ParameterDeclaration> getInputParameters();
+    @NotNull List<ParameterDeclaration> getInputParameters();
 
-    List<ParameterDeclaration> getOutputParameters();
+    @NotNull List<ParameterDeclaration> getOutputParameters();
 
-    default FBTypeDescriptor getTemplateTypeDescriptor() {
+    default @NotNull FBTypeDescriptor getTemplateTypeDescriptor() {
         if (this instanceof FBTypeDeclaration) {
             return ((FBTypeDeclaration) this).getTypeDescriptor();
         }
@@ -24,6 +25,6 @@ public interface FBInterfaceDeclaration extends NamedDeclaration {
         if (this instanceof AdapterTypeDeclaration) {
             return ((AdapterTypeDeclaration) this).getSocketTypeDescriptor();
         }
-        return null;
+        throw new IllegalArgumentException("Unknown declaration with FB interface: " + this.getClass().getName());
     }
 }

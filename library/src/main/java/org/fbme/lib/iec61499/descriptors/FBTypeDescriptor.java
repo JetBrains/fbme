@@ -1,31 +1,30 @@
 package org.fbme.lib.iec61499.descriptors;
 
-
 import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public interface FBTypeDescriptor {
 
-    String getTypeName();
+    @NotNull String getTypeName();
 
-    @Nullable
-    NamedDeclaration getDeclaration();
+    @Nullable NamedDeclaration getDeclaration();
 
-    List<FBPortDescriptor> getEventInputPorts();
+    @NotNull List<FBPortDescriptor> getEventInputPorts();
 
-    List<FBPortDescriptor> getEventOutputPorts();
+    @NotNull List<FBPortDescriptor> getEventOutputPorts();
 
-    List<FBPortDescriptor> getDataInputPorts();
+    @NotNull List<FBPortDescriptor> getDataInputPorts();
 
-    List<FBPortDescriptor> getDataOutputPorts();
+    @NotNull List<FBPortDescriptor> getDataOutputPorts();
 
-    List<FBPortDescriptor> getSocketPorts();
+    @NotNull List<FBPortDescriptor> getSocketPorts();
 
-    List<FBPortDescriptor> getPlugPorts();
+    @NotNull List<FBPortDescriptor> getPlugPorts();
 
-    List<Integer> getAssociatedVariablesForInputEvent(int eventNumber);
+    @NotNull List<Integer> getAssociatedVariablesForInputEvent(int eventNumber);
 
-    List<Integer> getAssociatedVariablesForOutputEvent(int eventNumber);
+    @NotNull List<Integer> getAssociatedVariablesForOutputEvent(int eventNumber);
 }

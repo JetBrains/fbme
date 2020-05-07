@@ -3015,7 +3015,7 @@
   </node>
   <node concept="24kQdi" id="uLhTRRmreM">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+    <ref role="1XX52x" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
     <node concept="3EZMnI" id="uLhTRRmreR" role="2wV5jI">
       <node concept="3F1sOY" id="uLhTRRmreY" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:uLhTRRmrej" resolve="instance" />
@@ -3331,7 +3331,7 @@
   </node>
   <node concept="24kQdi" id="5s_pyghtuOp">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+    <ref role="1XX52x" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
     <node concept="3EZMnI" id="5s_pyghtuOr" role="2wV5jI">
       <node concept="3F0A7n" id="5s_pyghtuOy" role="3EZMnx">
         <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
@@ -3378,7 +3378,7 @@
   </node>
   <node concept="24kQdi" id="5s_pyghzCP9">
     <property role="3GE5qa" value="system" />
-    <ref role="1XX52x" to="xiqq:5s_pyghzCOb" resolve="Link" />
+    <ref role="1XX52x" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
     <node concept="3EZMnI" id="5s_pyghzCPb" role="2wV5jI">
       <node concept="3F1sOY" id="5s_pyghzCPi" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:5s_pyghzCOc" resolve="resource" />

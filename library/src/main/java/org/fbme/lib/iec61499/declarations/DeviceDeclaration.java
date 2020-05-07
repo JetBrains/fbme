@@ -1,21 +1,21 @@
 package org.fbme.lib.iec61499.declarations;
 
-import org.fbme.lib.iec61499.descriptors.DeviceTypeDescriptor;
+import org.fbme.lib.iec61499.Reference;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public interface DeviceDeclaration extends NamedDeclaration {
 
-    SystemDeclaration getSystem();
+    @Nullable SystemDeclaration getSystem();
 
-    DeviceTypeDescriptor getType();
+    @NotNull Reference<DeviceTypeDeclaration> getTypeReference();
 
-    List<ParameterAssignment> getParameters();
+    @NotNull List<ParameterAssignment> getParameters();
 
-    List<ResourceDeclaration> getResources();
+    @NotNull List<ResourceDeclaration> getResources();
 
-    @Nullable
-    FBNetwork getNetwork();
+    @Nullable FBNetwork getNetwork();
 }

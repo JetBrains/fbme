@@ -7,10 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 public interface SubapplicationTypeDeclaration extends FBInterfaceDeclarationWithAdapters {
 
-    @NotNull
-    FBNetwork getNetwork();
+    @NotNull FBNetwork getNetwork();
 
-    default FBTypeDescriptor getTypeDescriptor() {
+    default @NotNull FBTypeDescriptor getTypeDescriptor() {
         return new FBType(this);
     }
 }

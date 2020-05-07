@@ -5,13 +5,11 @@ import org.jetbrains.annotations.NotNull;
 
 public interface ECTransition {
 
-    @NotNull
-    ECState getSourceState();
+    @NotNull ECState getSourceState();
 
     void setSourceState(@NotNull ECState state);
 
-    @NotNull
-    ECState getTargetState();
+    @NotNull ECState getTargetState();
 
     void setTargetState(@NotNull ECState state);
 

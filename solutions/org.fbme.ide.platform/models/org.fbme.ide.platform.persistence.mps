@@ -14002,7 +14002,7 @@
       <node concept="37vLTG" id="23XkovVifUN" role="3clF46">
         <property role="TrG5h" value="mappings" />
         <node concept="2I9FWS" id="23XkovVifUO" role="1tU5fm">
-          <ref role="2I9WkF" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+          <ref role="2I9WkF" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
         </node>
       </node>
       <node concept="3clFbS" id="23XkovVifo6" role="3clF47">
@@ -14040,12 +14040,12 @@
               <node concept="3cpWsn" id="23XkovVifuK" role="3cpWs9">
                 <property role="TrG5h" value="mapping" />
                 <node concept="3Tqbb2" id="23XkovVifuL" role="1tU5fm">
-                  <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+                  <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
                 </node>
                 <node concept="2ShNRf" id="23XkovVifuM" role="33vP2m">
                   <node concept="3zrR0B" id="23XkovVifuN" role="2ShVmc">
                     <node concept="3Tqbb2" id="23XkovVifuO" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
+                      <ref role="ehGHo" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
                     </node>
                   </node>
                 </node>
@@ -14741,7 +14741,7 @@
       <node concept="37vLTG" id="23XkovVij6h" role="3clF46">
         <property role="TrG5h" value="segments" />
         <node concept="2I9FWS" id="23XkovVij6i" role="1tU5fm">
-          <ref role="2I9WkF" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+          <ref role="2I9WkF" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
         </node>
       </node>
       <node concept="37vLTG" id="6wZUH2ARJju" role="3clF46">
@@ -14785,17 +14785,17 @@
               <node concept="3cpWsn" id="23XkovVij6x" role="3cpWs9">
                 <property role="TrG5h" value="segment" />
                 <node concept="3Tqbb2" id="23XkovVij6y" role="1tU5fm">
-                  <ref role="ehGHo" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+                  <ref role="ehGHo" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
                 </node>
                 <node concept="10QFUN" id="6wZUH2ARM3w" role="33vP2m">
                   <node concept="3Tqbb2" id="6wZUH2ARM3x" role="10QFUM">
-                    <ref role="ehGHo" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+                    <ref role="ehGHo" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
                   </node>
                   <node concept="2YIFZM" id="6wZUH2ARM3y" role="10QFUP">
                     <ref role="1Pybhc" node="2ByE74kxcHO" resolve="ConverterUtil" />
                     <ref role="37wK5l" node="6wZUH2AMC6f" resolve="createNode" />
                     <node concept="35c_gC" id="6wZUH2ARM3z" role="37wK5m">
-                      <ref role="35c_gD" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+                      <ref role="35c_gD" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
                     </node>
                     <node concept="2GrUjf" id="6wZUH2ARN6t" role="37wK5m">
                       <ref role="2Gs0qQ" node="23XkovVij6t" resolve="segmentElement" />
@@ -14816,7 +14816,7 @@
                   <ref role="3cqZAo" node="23XkovVij6x" resolve="segment" />
                 </node>
                 <node concept="359W_D" id="23XkovVlk9I" role="37wK5m">
-                  <ref role="359W_E" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+                  <ref role="359W_E" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
                   <ref role="359W_F" to="xiqq:5s_pyghtuNY" resolve="type" />
                 </node>
                 <node concept="2OqwBi" id="23XkovVlk9J" role="37wK5m">
@@ -14880,7 +14880,7 @@
       <node concept="37vLTG" id="23XkovVio4C" role="3clF46">
         <property role="TrG5h" value="links" />
         <node concept="2I9FWS" id="23XkovVio4D" role="1tU5fm">
-          <ref role="2I9WkF" to="xiqq:5s_pyghzCOb" resolve="Link" />
+          <ref role="2I9WkF" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
         </node>
       </node>
       <node concept="3clFbS" id="23XkovVio4E" role="3clF47">
@@ -14918,12 +14918,12 @@
               <node concept="3cpWsn" id="23XkovVio4S" role="3cpWs9">
                 <property role="TrG5h" value="link" />
                 <node concept="3Tqbb2" id="23XkovVio4T" role="1tU5fm">
-                  <ref role="ehGHo" to="xiqq:5s_pyghzCOb" resolve="Link" />
+                  <ref role="ehGHo" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
                 </node>
                 <node concept="2ShNRf" id="23XkovVio4U" role="33vP2m">
                   <node concept="3zrR0B" id="23XkovVio4V" role="2ShVmc">
                     <node concept="3Tqbb2" id="23XkovVio4W" role="3zrR0E">
-                      <ref role="ehGHo" to="xiqq:5s_pyghzCOb" resolve="Link" />
+                      <ref role="ehGHo" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
                     </node>
                   </node>
                 </node>
@@ -14964,7 +14964,7 @@
                   <ref role="3cqZAo" node="23XkovVio4S" resolve="link" />
                 </node>
                 <node concept="359W_D" id="23XkovVmbUL" role="37wK5m">
-                  <ref role="359W_E" to="xiqq:5s_pyghzCOb" resolve="Link" />
+                  <ref role="359W_E" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
                   <ref role="359W_F" to="xiqq:5s_pyghzCOh" resolve="segment" />
                 </node>
                 <node concept="2OqwBi" id="23XkovVmcxi" role="37wK5m">

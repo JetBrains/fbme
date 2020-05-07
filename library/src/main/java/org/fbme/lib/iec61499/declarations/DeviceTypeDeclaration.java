@@ -8,12 +8,9 @@ import java.util.List;
 
 public interface DeviceTypeDeclaration extends NamedDeclaration {
 
-    @NotNull
-    List<ParameterDeclaration> getParameters();
+    @NotNull List<ParameterDeclaration> getParameters();
 
-    @Nullable
-    FBNetwork getNetwork();
+    @Nullable FBNetwork getNetwork();
 
-    @NotNull
-    List<ResourceDeclaration> getResources();
+    @NotNull List<ResourceDeclaration> getResources();
 }

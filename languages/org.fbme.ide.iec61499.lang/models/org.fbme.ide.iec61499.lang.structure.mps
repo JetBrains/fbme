@@ -1188,21 +1188,21 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="mappings" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="uLhTRRmhk4" resolve="Mapping" />
+      <ref role="20lvS9" node="uLhTRRmhk4" resolve="MappingDeclaration" />
     </node>
     <node concept="1TJgyj" id="5s_pyght$Xg" role="1TKVEi">
       <property role="IQ2ns" value="6279537560535846736" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="segments" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="5s_pyghtuNV" resolve="Segment" />
+      <ref role="20lvS9" node="5s_pyghtuNV" resolve="SegmentDeclaration" />
     </node>
     <node concept="1TJgyj" id="5s_pygh_SXc" role="1TKVEi">
       <property role="IQ2ns" value="6279537560538025804" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="links" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="5s_pyghzCOb" resolve="Link" />
+      <ref role="20lvS9" node="5s_pyghzCOb" resolve="LinkDeclaration" />
     </node>
     <node concept="PrWs8" id="uLhTRR7Mvx" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -1238,7 +1238,7 @@
   <node concept="1TIwiD" id="uLhTRRmhk4">
     <property role="EcuMT" value="554302972928529668" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="Mapping" />
+    <property role="TrG5h" value="MappingDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="uLhTRRmrej" role="1TKVEi">
       <property role="IQ2ns" value="554302972928570259" />
@@ -1388,7 +1388,7 @@
   <node concept="1TIwiD" id="5s_pyghtuNV">
     <property role="EcuMT" value="6279537560535821563" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="Segment" />
+    <property role="TrG5h" value="SegmentDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="5s_pyghtuNW" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -1413,7 +1413,7 @@
   <node concept="1TIwiD" id="5s_pyghzCOb">
     <property role="EcuMT" value="6279537560537435403" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="Link" />
+    <property role="TrG5h" value="LinkDeclaration" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="5s_pyghzCOc" role="1TKVEi">
       <property role="IQ2ns" value="6279537560537435404" />
@@ -1433,7 +1433,7 @@
       <property role="IQ2ns" value="6279537560537435409" />
       <property role="20kJfa" value="segment" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="5s_pyghtuNV" resolve="Segment" />
+      <ref role="20lvS9" node="5s_pyghtuNV" resolve="SegmentDeclaration" />
     </node>
     <node concept="PrWs8" id="5s_pyghzCOl" role="PzmwI">
       <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />

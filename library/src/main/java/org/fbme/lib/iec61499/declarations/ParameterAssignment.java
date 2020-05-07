@@ -1,14 +1,16 @@
 package org.fbme.lib.iec61499.declarations;
 
-import org.fbme.lib.iec61499.descriptors.ParameterDescriptor;
+import org.fbme.lib.iec61499.Reference;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface ParameterAssignment {
 
-    Declaration getContainer();
+    @Nullable Declaration getContainer();
 
-    ParameterDescriptor getParameter();
+    @NotNull Reference<ParameterDeclaration> getParameterReference();
 
-    String getValue();
+    @Nullable String getValue();
 
     void remove();
 }

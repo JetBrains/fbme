@@ -2553,7 +2553,7 @@
   </node>
   <node concept="13h7C7" id="5s_pyghtuPH">
     <property role="3GE5qa" value="system" />
-    <ref role="13h7C2" to="xiqq:5s_pyghtuNV" resolve="Segment" />
+    <ref role="13h7C2" to="xiqq:5s_pyghtuNV" resolve="SegmentDeclaration" />
     <node concept="13hLZK" id="5s_pyghtuPI" role="13h7CW">
       <node concept="3clFbS" id="5s_pyghtuPJ" role="2VODD2" />
     </node>
@@ -2612,7 +2612,7 @@
   </node>
   <node concept="13h7C7" id="5s_pygh_M3q">
     <property role="3GE5qa" value="system" />
-    <ref role="13h7C2" to="xiqq:5s_pyghzCOb" resolve="Link" />
+    <ref role="13h7C2" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
     <node concept="13i0hz" id="5s_pygh_MiT" role="13h7CS">
       <property role="TrG5h" value="getScope" />
       <ref role="13i0hy" to="tpcu:52_Geb4QDV$" resolve="getScope" />
