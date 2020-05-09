@@ -17,9 +17,11 @@ public class StateChanger extends JPanel {
   private static final int CHANGER_HEIGHT = 70;
   private static final String STEP_LABEL_NAME = "Current step:";
   private static final String TIME_LABEL_NAME = "Current time:";
+  private static final String CONDITION_LABEL_NAME = "Condition";
 
-  private final JSpinner spinner;
-  private final JLabel timeValueLabel;
+  public final JSpinner stepSpinner;
+  public final JSpinner conditionSpinner;
+  public final JLabel timeValueLabel;
 
   public StateChanger(final Counterexample counterexample) {
     setPreferredSize(new Dimension(CHANGER_WIDTH, CHANGER_HEIGHT));
@@ -27,30 +29,36 @@ public class StateChanger extends JPanel {
 
     final JLabel stepLabel = new JLabel(STEP_LABEL_NAME);
     final SpinnerModel spinnerModel = new SpinnerListModel(counterexample.states());
-    spinner = new JSpinner(spinnerModel);
+    stepSpinner = new CustomSpinner(10);
+    stepSpinner.setModel(spinnerModel);
 
     final JLabel timeLabel = new JLabel(TIME_LABEL_NAME);
-    timeValueLabel = new JLabel("12");
+    timeValueLabel = new JLabel();
 
     final JLabel space = new JLabel();
     space.setPreferredSize(new Dimension(30, 10));
 
     add(stepLabel);
-    add(spinner);
+    add(stepSpinner);
     add(space);
     add(timeLabel);
     add(timeValueLabel);
 
     final JLabel spaceJLabel = new JLabel();
     spaceJLabel.setPreferredSize(new Dimension(150, 10));
-
     add(spaceJLabel);
-    add(new JLabel("Condition:"));
-    add(new ConditionNavigator(16));
+
+    conditionSpinner = new CustomSpinner(16);
+    add(new JLabel(CONDITION_LABEL_NAME));
+    add(conditionSpinner);
   }
 
-  public void addChangeListener(final ChangeListener changeListener) {
-    spinner.addChangeListener(changeListener);
+  public void addStepListener(final ChangeListener changeListener) {
+    stepSpinner.addChangeListener(changeListener);
+  }
+
+  public void addConditionListener(final ChangeListener changeListener) {
+    conditionSpinner.addChangeListener(changeListener);
   }
 
   public void setTime(final String value) {

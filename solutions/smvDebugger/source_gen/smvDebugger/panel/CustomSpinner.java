@@ -14,20 +14,18 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.border.Border;
 import javax.swing.UIManager;
 import javax.swing.plaf.UIResource;
+import javax.swing.border.CompoundBorder;
 
-public class ConditionNavigator extends JSpinner {
-  public ConditionNavigator(final int size) {
+public class CustomSpinner extends JSpinner {
+  public CustomSpinner(final int size) {
     super();
-    setUI(new SpinnerUI(size));
-    try {
-    } catch (Exception e) {
-    }
+    setUI(new CustomSpinnerUI(size));
   }
 
-  public class SpinnerUI extends BasicSpinnerUI {
+  private static class CustomSpinnerUI extends BasicSpinnerUI {
     private final int size;
 
-    public SpinnerUI(final int size) {
+    public CustomSpinnerUI(final int size) {
       this.size = size;
     }
 
@@ -66,7 +64,9 @@ public class ConditionNavigator extends JSpinner {
       final JButton button = new BasicArrowButton(direction);
       final Border border = UIManager.getBorder("Spinner.arrowButtonBorder");
       if (border instanceof UIResource) {
+        button.setBorder(new CompoundBorder(border, null));
       } else {
+        button.setBorder(border);
       }
       return button;
     }

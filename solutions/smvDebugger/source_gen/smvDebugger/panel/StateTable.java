@@ -73,19 +73,6 @@ public class StateTable extends JPanel {
             }
           }
 
-          if (column == 175) {
-            color = Color.WHITE;
-          }
-          if (column == 176) {
-            color = Color.LIGHT_GRAY;
-            final String curValue = (String) getValueAt(row, column);
-            final String prevValue = (String) getValueAt(row, column - 2);
-
-            if (!(Objects.equals(curValue, prevValue))) {
-              color = Color.GREEN;
-            }
-          }
-
           component.setBackground(color);
           color = null;
         }
@@ -98,11 +85,9 @@ public class StateTable extends JPanel {
     for (int i = 0; i < columnModel.getColumnCount(); i++) {
       final TableColumn column = columnModel.getColumn(i);
       int width = (i == 0 ? FIRST_COLUMN_WIDTH : OTHER_COLUMN_WIDTH);
-      if (i == 175) {
-        width = FIRST_COLUMN_WIDTH;
-      }
       column.setPreferredWidth(width);
     }
+    table.setCellSelectionEnabled(true);
 
     scrollPane = new JScrollPane(table);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);

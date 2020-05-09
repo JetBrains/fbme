@@ -35,7 +35,6 @@ public class VariableData {
   }
 
   public String[] values() {
-    values[174] = simpleName();
     return values;
   }
 

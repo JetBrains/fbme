@@ -10,12 +10,14 @@ import javax.swing.JSpinner;
 import java.util.List;
 import smvDebugger.visualization.HiglhightObject;
 import smvDebugger.commons.CommonUtils;
+import smvDebugger.condition.Expression;
+import smvDebugger.condition.ConditionParser;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
 public class EventManager {
   public static void manageEvents(final Counterexample counterexample, final CompositeFBHighlighter highlighter, final StateChanger changer, final StateTable table) {
-    changer.addChangeListener(new ChangeListener() {
+    changer.addStepListener(new ChangeListener() {
       public void stateChanged(final ChangeEvent e) {
         final JSpinner spinner = (JSpinner) e.getSource();
         final String curState = (String) spinner.getValue();
@@ -29,6 +31,37 @@ public class EventManager {
 
         table.higlightHeaderColumn(stateIndex);
         table.moveScroll(stateIndex);
+      }
+    });
+
+    changer.addConditionListener(new ChangeListener() {
+      public void stateChanged(final ChangeEvent e) {
+        final JSpinner spinner = (JSpinner) e.getSource();
+        final String curCondition = (String) spinner.getValue();
+        final Expression expr = new ConditionParser().parse(curCondition);
+        final String curState = (String) changer.stepSpinner.getValue();
+        final int stateIndex = counterexample.indexOf(curState);
+
+        int resultStateIndex = stateIndex;
+        for (int i = stateIndex + 1; i < counterexample.lenth(); i++) {
+          if (expr.evaluate(counterexample.stepValuesOf(i))) {
+            resultStateIndex = i;
+            break;
+          }
+        }
+
+        if (resultStateIndex != stateIndex) {
+          highlighter.clear();
+
+          final List<HiglhightObject> objects = CommonUtils.toHiglightObjectList(counterexample.vars(), resultStateIndex);
+          highlighter.highlight(objects);
+
+          changer.setTime(counterexample.globalTime().getValue(resultStateIndex));
+
+          table.higlightHeaderColumn(resultStateIndex);
+          table.moveScroll(resultStateIndex);
+
+        }
       }
     });
 
