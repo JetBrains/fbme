@@ -339,5 +339,238 @@
       <unit id="4507750851569724001" at="6,0,35,0" name="smvDebugger.visualization.HiglhightObject" />
     </file>
   </root>
+  <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/8769796097522682339">
+    <file name="Backtrace.java">
+      <node id="8769796097522684561" at="35,0,36,0" concept="3" trace="graph" />
+      <node id="8769796097522685664" at="36,0,37,0" concept="3" trace="visited" />
+      <node id="8769796097522913303" at="37,0,38,0" concept="3" trace="project" />
+      <node id="8769796097522754026" at="38,0,39,0" concept="3" trace="fb" />
+      <node id="8769796097522963849" at="40,83,41,27" concept="2" />
+      <node id="8769796097522755500" at="41,27,42,17" concept="2" />
+      <node id="8769796097522728125" at="45,87,46,18" concept="2" />
+      <node id="8769796097522732366" at="46,18,47,20" concept="2" />
+      <node id="8769796097522746631" at="47,20,48,0" concept="10" />
+      <node id="8769796097523269129" at="49,22,50,47" concept="2" />
+      <node id="8769796097523317907" at="51,35,52,51" concept="2" />
+      <node id="8769796097523328236" at="53,33,54,49" concept="2" />
+      <node id="8769796097523330868" at="55,5,56,0" concept="10" />
+      <node id="8769796097523432970" at="56,0,57,61" concept="8" />
+      <node id="8769796097523609621" at="57,61,58,42" concept="2" />
+      <node id="8769796097523813220" at="60,49,61,35" concept="2" />
+      <node id="8769796097523653656" at="63,7,64,0" concept="10" />
+      <node id="8769796097523634984" at="64,0,65,49" concept="9" />
+      <node id="8769796097522790039" at="70,25,71,53" concept="8" />
+      <node id="8769796097522790047" at="71,53,72,82" concept="8" />
+      <node id="8769796097522790070" at="74,62,75,59" concept="9" />
+      <node id="8769796097524211334" at="77,42,78,82" concept="8" />
+      <node id="8769796097524431975" at="80,65,81,96" concept="9" />
+      <node id="8769796097524505417" at="84,64,85,78" concept="8" />
+      <node id="8769796097524845848" at="85,78,86,105" concept="8" />
+      <node id="8769796097524578381" at="86,105,87,105" concept="8" />
+      <node id="8769796097524858615" at="87,105,88,61" concept="8" />
+      <node id="8769796097524664739" at="89,48,90,36" concept="2" />
+      <node id="8769796097524687544" at="90,36,91,65" concept="2" />
+      <node id="8769796097524792169" at="91,65,92,63" concept="2" />
+      <node id="8769796097524837143" at="92,63,93,48" concept="2" />
+      <node id="8769796097525186719" at="103,25,104,53" concept="8" />
+      <node id="8769796097525186725" at="104,53,105,82" concept="8" />
+      <node id="8769796097525186744" at="107,62,108,59" concept="9" />
+      <node id="8769796097525399488" at="112,62,113,59" concept="9" />
+      <node id="8769796097525508270" at="116,40,117,66" concept="8" />
+      <node id="8769796097525891816" at="119,58,120,101" concept="8" />
+      <node id="8769796097526046785" at="120,101,121,51" concept="9" />
+      <node id="8769796097526107530" at="124,57,125,102" concept="8" />
+      <node id="8769796097526202770" at="125,102,126,123" concept="8" />
+      <node id="8769796097526107554" at="126,123,127,63" concept="8" />
+      <node id="8769796097526100691" at="127,63,128,0" concept="10" />
+      <node id="8769796097526090123" at="129,50,130,38" concept="2" />
+      <node id="8769796097526090128" at="130,38,131,67" concept="2" />
+      <node id="8769796097526090136" at="131,67,132,65" concept="2" />
+      <node id="8769796097526090148" at="132,65,133,50" concept="2" />
+      <node id="8769796097522807971" at="142,64,143,67" concept="8" />
+      <node id="8769796097522807990" at="145,25,146,77" concept="8" />
+      <node id="8769796097522807998" at="146,77,147,96" concept="8" />
+      <node id="8769796097522808005" at="147,96,148,86" concept="8" />
+      <node id="8769796097522808012" at="148,86,149,0" concept="10" />
+      <node id="8769796097522808021" at="151,66,152,127" concept="9" />
+      <node id="8769796097522808036" at="154,11,155,0" concept="10" />
+      <node id="8769796097522808037" at="155,0,156,0" concept="10" />
+      <node id="8769796097522808040" at="157,60,158,97" concept="8" />
+      <node id="8769796097522808046" at="158,97,159,75" concept="8" />
+      <node id="8769796097522808056" at="160,57,161,83" concept="8" />
+      <node id="8769796097522808062" at="161,83,162,54" concept="8" />
+      <node id="8769796097522808068" at="162,54,163,70" concept="2" />
+      <node id="8769796097522808072" at="163,70,164,0" concept="10" />
+      <node id="8769796097522808075" at="165,100,166,67" concept="2" />
+      <node id="8769796097522682339" at="175,0,176,0" concept="11" trace="transitions$HOmT" />
+      <node id="8769796097522682339" at="176,0,177,0" concept="11" trace="body$Dbk" />
+      <node id="8769796097522682339" at="177,0,178,0" concept="11" trace="algorithms$xmT2" />
+      <node id="8769796097523796835" at="60,0,63,0" concept="7" trace="accept#(Ljava/util/Set;)V" />
+      <node id="8769796097522790068" at="74,0,77,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="8769796097524362832" at="80,0,83,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)Z" />
+      <node id="8769796097525186742" at="107,0,110,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="8769796097525258706" at="112,0,115,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/declarations/EventDeclaration;)Z" />
+      <node id="8769796097522808019" at="151,0,154,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclarationBase;)Z" />
+      <node id="8769796097522808073" at="164,0,167,13" concept="5" />
+      <node id="8769796097522686275" at="40,0,44,0" concept="1" trace="Backtrace#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
+      <node id="8769796097525684675" at="119,0,123,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)Z" />
+      <node id="8769796097523703973" at="58,42,63,7" concept="2" />
+      <node id="8769796097522790062" at="72,82,77,42" concept="8" />
+      <node id="8769796097525186732" at="105,82,110,42" concept="8" />
+      <node id="8769796097525186754" at="110,42,115,23" concept="8" />
+      <node id="8769796097522808013" at="149,0,154,11" concept="8" />
+      <node id="8769796097524631709" at="88,61,94,13" concept="6" />
+      <node id="8769796097526090121" at="128,0,134,15" concept="6" />
+      <node id="8769796097523261496" at="48,0,55,5" concept="6" />
+      <node id="8769796097522808054" at="159,75,168,11" concept="6" />
+      <node id="8769796097524479164" at="84,0,96,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)V" />
+      <node id="8769796097526076390" at="124,0,136,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)V" />
+      <node id="8769796097522808038" at="156,0,169,9" concept="6" />
+      <node id="8769796097524339483" at="78,82,96,11" concept="2" />
+      <node id="8769796097525634011" at="117,66,136,13" concept="2" />
+      <node id="8769796097522718751" at="45,0,67,0" concept="7" trace="getRelatedObjects#(LsmvDebugger/nusmv/VariableData;Ljava/lang/String;)Ljava/util/List;" />
+      <node id="8769796097525468979" at="115,23,137,9" concept="6" />
+      <node id="8769796097522807988" at="145,0,171,0" concept="7" trace="run#()V" />
+      <node id="8769796097522790037" at="70,0,98,0" concept="7" trace="run#()V" />
+      <node id="8769796097522807980" at="143,67,171,7" concept="2" />
+      <node id="8769796097522790029" at="68,78,98,7" concept="2" />
+      <node id="8769796097522779193" at="142,0,173,0" concept="7" trace="backtraceVar#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <node id="8769796097522771633" at="68,0,100,0" concept="7" trace="backtraceEccState#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <node id="8769796097525186717" at="103,0,139,0" concept="7" trace="run#()V" />
+      <node id="8769796097525186709" at="101,75,139,7" concept="2" />
+      <node id="8769796097522777211" at="101,0,141,0" concept="7" trace="backtraceEvent#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <scope id="8769796097523261498" at="49,22,50,47" />
+      <scope id="8769796097523279620" at="51,35,52,51" />
+      <scope id="8769796097523286444" at="53,33,54,49" />
+      <scope id="8769796097523796836" at="60,49,61,35" />
+      <scope id="8769796097522790069" at="74,62,75,59" />
+      <scope id="8769796097524362833" at="80,65,81,96" />
+      <scope id="8769796097525186743" at="107,62,108,59" />
+      <scope id="8769796097525258707" at="112,62,113,59" />
+      <scope id="8769796097522808020" at="151,66,152,127" />
+      <scope id="8769796097522808074" at="165,100,166,67" />
+      <scope id="8769796097522686278" at="40,83,42,17" />
+      <scope id="8769796097525684676" at="119,58,121,51">
+        <var name="target" id="8769796097525891814" />
+      </scope>
+      <scope id="8769796097523796835" at="60,0,63,0">
+        <var name="set" id="8769796097523796835" />
+      </scope>
+      <scope id="8769796097522790068" at="74,0,77,0">
+        <var name="it" id="8769796097522790068" />
+      </scope>
+      <scope id="8769796097524362832" at="80,0,83,0">
+        <var name="transition" id="8769796097524362832" />
+      </scope>
+      <scope id="8769796097525186742" at="107,0,110,0">
+        <var name="it" id="8769796097525186742" />
+      </scope>
+      <scope id="8769796097525258706" at="112,0,115,0">
+        <var name="eventD" id="8769796097525258706" />
+      </scope>
+      <scope id="8769796097522808019" at="151,0,154,0">
+        <var name="it" id="8769796097522808019" />
+      </scope>
+      <scope id="8769796097522808073" at="164,0,167,13">
+        <var name="algorithm" id="8769796097522808079" />
+      </scope>
+      <scope id="8769796097522686275" at="40,0,44,0">
+        <var name="fb" id="8769796097522714217" />
+        <var name="project" id="8769796097522955142" />
+      </scope>
+      <scope id="8769796097524631711" at="89,48,93,48" />
+      <scope id="8769796097525684675" at="119,0,123,0">
+        <var name="con" id="8769796097525684675" />
+      </scope>
+      <scope id="8769796097526090122" at="129,50,133,50" />
+      <scope id="8769796097522808055" at="160,57,167,13">
+        <var name="fbTypeByNode" id="8769796097522808057" />
+        <var name="node" id="8769796097522808063" />
+      </scope>
+      <scope id="8769796097524479165" at="84,64,94,13">
+        <var name="condition" id="8769796097524399305" />
+        <var name="eventName" id="8769796097524578379" />
+        <var name="fbName" id="8769796097524845846" />
+        <var name="fullName" id="8769796097524858613" />
+      </scope>
+      <scope id="8769796097526076391" at="124,57,134,15">
+        <var name="eventName" id="8769796097526202771" />
+        <var name="fbName" id="8769796097526107531" />
+        <var name="fullName" id="8769796097526107555" />
+      </scope>
+      <scope id="8769796097522808039" at="157,60,168,11">
+        <var name="blockDeclaration" id="8769796097522808041" />
+        <var name="declaration" id="8769796097522808047" />
+      </scope>
+      <scope id="8769796097524479164" at="84,0,96,0">
+        <var name="transition" id="8769796097524479164" />
+      </scope>
+      <scope id="8769796097526076390" at="124,0,136,0">
+        <var name="con" id="8769796097526076390" />
+      </scope>
+      <scope id="8769796097522718754" at="45,87,65,49">
+        <var name="relatedObjects" id="8769796097523432968" />
+      </scope>
+      <scope id="8769796097525468981" at="116,40,136,13">
+        <var name="inputEvent" id="8769796097525508268" />
+      </scope>
+      <scope id="8769796097522718751" at="45,0,67,0">
+        <var name="eccName" id="8769796097523563385" />
+        <var name="var" id="8769796097522718944" />
+      </scope>
+      <scope id="8769796097522807989" at="145,25,169,9">
+        <var name="component" id="8769796097522808014" />
+        <var name="components" id="8769796097522807999" />
+        <var name="connections" id="8769796097522808006" />
+        <var name="fbNethwork" id="8769796097522807991" />
+      </scope>
+      <scope id="8769796097522790038" at="70,25,96,11">
+        <var name="curFb" id="8769796097522790063" />
+        <var name="fbNethwork" id="8769796097522790040" />
+        <var name="fbs" id="8769796097522790048" />
+        <var name="transitions" id="8769796097524211332" />
+      </scope>
+      <scope id="8769796097522807988" at="145,0,171,0" />
+      <scope id="8769796097522790037" at="70,0,98,0" />
+      <scope id="8769796097522779194" at="142,64,171,7">
+        <var name="trace" id="8769796097522807972" />
+      </scope>
+      <scope id="8769796097522771636" at="68,78,98,7" />
+      <scope id="8769796097522779193" at="142,0,173,0">
+        <var name="fb" id="8769796097522779197" />
+        <var name="var" id="8769796097522779199" />
+      </scope>
+      <scope id="8769796097522771633" at="68,0,100,0">
+        <var name="curFbName" id="8769796097522773641" />
+        <var name="state" id="8769796097522775380" />
+      </scope>
+      <scope id="8769796097525186718" at="103,25,137,9">
+        <var name="curFb" id="8769796097525186733" />
+        <var name="fbNethwork" id="8769796097525186720" />
+        <var name="fbs" id="8769796097525186726" />
+        <var name="inputEventOpt" id="8769796097525186755" />
+      </scope>
+      <scope id="8769796097525186717" at="103,0,139,0" />
+      <scope id="8769796097522777212" at="101,75,139,7" />
+      <scope id="8769796097522777211" at="101,0,141,0">
+        <var name="curFbName" id="8769796097522777215" />
+        <var name="event" id="8769796097522777217" />
+      </scope>
+      <unit id="8769796097523796835" at="59,31,63,5" name="smvDebugger.visualization.Backtrace$1" />
+      <unit id="8769796097522790068" at="73,111,77,9" name="smvDebugger.visualization.Backtrace$2$1" />
+      <unit id="8769796097524362832" at="79,40,83,9" name="smvDebugger.visualization.Backtrace$2$2" />
+      <unit id="8769796097525186742" at="106,111,110,9" name="smvDebugger.visualization.Backtrace$3$1" />
+      <unit id="8769796097525258706" at="111,100,115,9" name="smvDebugger.visualization.Backtrace$3$2" />
+      <unit id="8769796097522808019" at="150,103,154,9" name="smvDebugger.visualization.Backtrace$4$1" />
+      <unit id="8769796097525684675" at="118,63,123,11" name="smvDebugger.visualization.Backtrace$3$3" />
+      <unit id="8769796097522682339" at="174,0,179,0" name="smvDebugger.visualization.Backtrace$LINKS" />
+      <unit id="8769796097524479164" at="83,23,96,9" name="smvDebugger.visualization.Backtrace$2$3" />
+      <unit id="8769796097526076390" at="123,25,136,11" name="smvDebugger.visualization.Backtrace$3$4" />
+      <unit id="8769796097522807988" at="144,52,171,5" name="smvDebugger.visualization.Backtrace$4" />
+      <unit id="8769796097522790037" at="69,52,98,5" name="smvDebugger.visualization.Backtrace$2" />
+      <unit id="8769796097525186717" at="102,52,139,5" name="smvDebugger.visualization.Backtrace$3" />
+      <unit id="8769796097522682339" at="34,0,180,0" name="smvDebugger.visualization.Backtrace" />
+    </file>
+  </root>
 </debug-info>
 
