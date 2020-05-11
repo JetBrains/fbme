@@ -231,19 +231,22 @@
   <root nodeRef="r:7e7504b7-8127-4c43-83ab-fc88f9ce8d66(smvDebugger.condition)/8769796097521722359">
     <file name="Inequality.java">
       <node id="8769796097521722953" at="8,70,9,25" concept="10" />
-      <node id="8769796097521979939" at="13,65,14,69" concept="9" />
-      <node id="8769796097521722616" at="8,0,11,0" concept="2" trace="Inequality#(LsmvDebugger/condition/Expression;LsmvDebugger/condition/Expression;)V" />
-      <node id="8769796097521979937" at="12,0,16,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
-      <scope id="8769796097521722619" at="8,70,9,25" />
-      <scope id="8769796097521979938" at="13,65,14,69" />
-      <scope id="8769796097521722616" at="8,0,11,0">
+      <node id="8769796097522660012" at="10,76,11,68" concept="11" />
+      <node id="8769796097521979939" at="16,65,17,16" concept="9" />
+      <node id="8769796097522660010" at="9,25,12,5" concept="6" />
+      <node id="8769796097521979937" at="15,0,19,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
+      <node id="8769796097521722616" at="8,0,14,0" concept="2" trace="Inequality#(LsmvDebugger/condition/Expression;LsmvDebugger/condition/Expression;)V" />
+      <scope id="8769796097522660011" at="10,76,11,68" />
+      <scope id="8769796097521979938" at="16,65,17,16" />
+      <scope id="8769796097521722619" at="8,70,12,5" />
+      <scope id="8769796097521979937" at="15,0,19,0">
+        <var name="stepValues" id="8769796097521979951" />
+      </scope>
+      <scope id="8769796097521722616" at="8,0,14,0">
         <var name="firsr" id="8769796097521722650" />
         <var name="second" id="8769796097521722746" />
       </scope>
-      <scope id="8769796097521979937" at="12,0,16,0">
-        <var name="stepValues" id="8769796097521979951" />
-      </scope>
-      <unit id="8769796097521722359" at="7,0,17,0" name="smvDebugger.condition.Inequality" />
+      <unit id="8769796097521722359" at="7,0,20,0" name="smvDebugger.condition.Inequality" />
     </file>
   </root>
   <root nodeRef="r:7e7504b7-8127-4c43-83ab-fc88f9ce8d66(smvDebugger.condition)/8769796097521755548">

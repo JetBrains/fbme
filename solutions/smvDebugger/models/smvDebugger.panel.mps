@@ -2705,6 +2705,34 @@
                           </node>
                         </node>
                       </node>
+                      <node concept="3clFbF" id="7AO$LopskME" role="3cqZAp">
+                        <node concept="2OqwBi" id="7AO$LopsnPe" role="3clFbG">
+                          <node concept="2OqwBi" id="7AO$LopslDI" role="2Oq$k0">
+                            <node concept="37vLTw" id="7AO$LopskMC" role="2Oq$k0">
+                              <ref role="3cqZAo" node="2UEABl__MN8" resolve="changer" />
+                            </node>
+                            <node concept="2OwXpG" id="7AO$Lopsncv" role="2OqNvi">
+                              <ref role="2Oxat5" node="3Imrickz2Yh" resolve="stepSpinner" />
+                            </node>
+                          </node>
+                          <node concept="liA8E" id="7AO$LopspXO" role="2OqNvi">
+                            <ref role="37wK5l" to="dxuu:~JSpinner.setValue(java.lang.Object)" resolve="setValue" />
+                            <node concept="AH0OO" id="7AO$LopstKx" role="37wK5m">
+                              <node concept="37vLTw" id="7AO$LopstPq" role="AHEQo">
+                                <ref role="3cqZAo" node="7AO$LoprlEr" resolve="resultStateIndex" />
+                              </node>
+                              <node concept="2OqwBi" id="7AO$LopsrBO" role="AHHXb">
+                                <node concept="37vLTw" id="7AO$Lopsr3t" role="2Oq$k0">
+                                  <ref role="3cqZAo" node="3UeJSgNHdlF" resolve="counterexample" />
+                                </node>
+                                <node concept="liA8E" id="7AO$LopstvK" role="2OqNvi">
+                                  <ref role="37wK5l" to="o1cv:2UEABl_zpN2" resolve="states" />
+                                </node>
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
                       <node concept="3clFbH" id="7AO$LoprxtU" role="3cqZAp" />
                       <node concept="3clFbF" id="7AO$LoprxtV" role="3cqZAp">
                         <node concept="2OqwBi" id="7AO$LoprxtW" role="3clFbG">

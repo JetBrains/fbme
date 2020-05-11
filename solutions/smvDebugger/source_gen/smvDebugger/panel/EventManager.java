@@ -57,6 +57,7 @@ public class EventManager {
           highlighter.highlight(objects);
 
           changer.setTime(counterexample.globalTime().getValue(resultStateIndex));
+          changer.stepSpinner.setValue(counterexample.states()[resultStateIndex]);
 
           table.higlightHeaderColumn(resultStateIndex);
           table.moveScroll(resultStateIndex);

@@ -7,10 +7,13 @@ import java.util.Map;
 public class Inequality extends BinaryExpression {
   public Inequality(final Expression firsr, final Expression second) {
     super(firsr, second);
+    if (!((first instanceof Argument)) || !((second instanceof Argument))) {
+      throw new IllegalArgumentException("Unexpected type of args");
+    }
   }
 
   @Override
   public boolean evaluate(final Map<String, String> stepValues) {
-    return first.evaluate(stepValues) && second.evaluate(stepValues);
+    return true;
   }
 }

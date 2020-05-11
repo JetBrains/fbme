@@ -343,36 +343,37 @@
       <node id="8769796097522407274" at="56,122,57,41" concept="3" />
       <node id="8769796097522407279" at="57,41,58,0" concept="10" />
       <node id="8769796097522407280" at="58,0,59,82" concept="3" />
-      <node id="8769796097522407290" at="59,82,60,0" concept="10" />
-      <node id="8769796097522407291" at="60,0,61,55" concept="3" />
-      <node id="8769796097522407296" at="61,55,62,45" concept="3" />
-      <node id="8769796097522395407" at="62,45,63,0" concept="10" />
-      <node id="6445035801680991105" at="66,7,67,0" concept="10" />
-      <node id="6445035801681323999" at="69,60,70,55" concept="8" />
-      <node id="6445035801681321836" at="70,55,71,61" concept="8" />
+      <node id="8769796097522617514" at="59,82,60,82" concept="3" />
+      <node id="8769796097522407290" at="60,82,61,0" concept="10" />
+      <node id="8769796097522407291" at="61,0,62,55" concept="3" />
+      <node id="8769796097522407296" at="62,55,63,45" concept="3" />
+      <node id="8769796097522395407" at="63,45,64,0" concept="10" />
+      <node id="6445035801680991105" at="67,7,68,0" concept="10" />
+      <node id="6445035801681323999" at="70,60,71,55" concept="8" />
+      <node id="6445035801681321836" at="71,55,72,61" concept="8" />
       <node id="8769796097522371107" at="46,71,50,11" concept="6" />
-      <node id="6445035801680996278" at="69,0,73,0" concept="7" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
+      <node id="6445035801680996278" at="70,0,74,0" concept="7" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
       <node id="8769796097522311988" at="45,42,51,9" concept="5" />
-      <node id="6445035801680992078" at="67,0,73,7" concept="3" />
-      <node id="8769796097522395406" at="52,0,64,9" concept="6" />
+      <node id="6445035801680992078" at="68,0,74,7" concept="3" />
+      <node id="8769796097522395406" at="52,0,65,9" concept="6" />
       <node id="3362669900791761686" at="21,0,35,0" concept="7" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
       <node id="3362669900791758693" at="19,166,35,7" concept="3" />
-      <node id="3233838129231737829" at="38,0,66,0" concept="7" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
-      <node id="3233838129231704258" at="36,0,66,7" concept="3" />
-      <node id="4293739292180706698" at="19,0,75,0" concept="12" trace="manageEvents#(LsmvDebugger/nusmv/Counterexample;LsmvDebugger/visualization/CompositeFBHighlighter;LsmvDebugger/panel/StateChanger;LsmvDebugger/panel/StateTable;)V" />
+      <node id="3233838129231737829" at="38,0,67,0" concept="7" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
+      <node id="3233838129231704258" at="36,0,67,7" concept="3" />
+      <node id="4293739292180706698" at="19,0,76,0" concept="12" trace="manageEvents#(LsmvDebugger/nusmv/Counterexample;LsmvDebugger/visualization/CompositeFBHighlighter;LsmvDebugger/panel/StateChanger;LsmvDebugger/panel/StateTable;)V" />
       <scope id="8769796097522371109" at="47,62,49,18" />
-      <scope id="6445035801680996279" at="69,60,71,61">
+      <scope id="6445035801680996279" at="70,60,72,61">
         <var name="selectedColumn" id="6445035801681321837" />
         <var name="selectedRow" id="6445035801681324002" />
       </scope>
       <scope id="8769796097522311990" at="46,71,50,11" />
-      <scope id="6445035801680996278" at="69,0,73,0">
+      <scope id="6445035801680996278" at="70,0,74,0">
         <var name="e" id="6445035801680996278" />
       </scope>
       <scope id="8769796097522311988" at="45,42,51,9">
         <var name="i" id="8769796097522311991" />
       </scope>
-      <scope id="8769796097522395408" at="53,45,63,0">
+      <scope id="8769796097522395408" at="53,45,64,0">
         <var name="objects" id="8769796097522407266" />
       </scope>
       <scope id="3362669900791761687" at="21,53,33,37">
@@ -384,7 +385,7 @@
       <scope id="3362669900791761686" at="21,0,35,0">
         <var name="e" id="3362669900791761686" />
       </scope>
-      <scope id="3233838129231737830" at="38,53,64,9">
+      <scope id="3233838129231737830" at="38,53,65,9">
         <var name="curCondition" id="3233838129231745366" />
         <var name="curState" id="8769796097522304584" />
         <var name="expr" id="8769796097522165501" />
@@ -392,20 +393,20 @@
         <var name="spinner" id="3233838129231740532" />
         <var name="stateIndex" id="8769796097522300823" />
       </scope>
-      <scope id="3233838129231737829" at="38,0,66,0">
+      <scope id="3233838129231737829" at="38,0,67,0">
         <var name="e" id="3233838129231737829" />
       </scope>
-      <scope id="4293739292180706701" at="19,166,73,7" />
-      <scope id="4293739292180706698" at="19,0,75,0">
+      <scope id="4293739292180706701" at="19,166,74,7" />
+      <scope id="4293739292180706698" at="19,0,76,0">
         <var name="changer" id="3362669900791753928" />
         <var name="counterexample" id="4507750851568522603" />
         <var name="highlighter" id="3362669900791757157" />
         <var name="table" id="3362669900791754870" />
       </scope>
-      <unit id="6445035801680996278" at="68,35,73,5" name="smvDebugger.panel.EventManager$3" />
+      <unit id="6445035801680996278" at="69,35,74,5" name="smvDebugger.panel.EventManager$3" />
       <unit id="3362669900791761686" at="20,32,35,5" name="smvDebugger.panel.EventManager$1" />
-      <unit id="3233838129231737829" at="37,37,66,5" name="smvDebugger.panel.EventManager$2" />
-      <unit id="4293739292180703748" at="18,0,76,0" name="smvDebugger.panel.EventManager" />
+      <unit id="3233838129231737829" at="37,37,67,5" name="smvDebugger.panel.EventManager$2" />
+      <unit id="4293739292180703748" at="18,0,77,0" name="smvDebugger.panel.EventManager" />
     </file>
   </root>
   <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/8106213185250020456">
