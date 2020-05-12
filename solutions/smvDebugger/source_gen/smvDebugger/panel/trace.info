@@ -364,18 +364,19 @@
       <node id="8769796097526537161" at="82,41,83,48" concept="9" />
       <node id="8769796097526645951" at="83,48,84,69" concept="9" />
       <node id="8769796097526603634" at="84,69,85,119" concept="3" />
-      <node id="8769796097526780203" at="86,9,87,39" concept="3" />
+      <node id="8769796097526825993" at="86,9,87,28" concept="3" />
+      <node id="8769796097526780203" at="87,28,88,39" concept="3" />
       <node id="8769796097522371107" at="49,71,53,11" concept="7" />
       <node id="8769796097522311988" at="48,42,54,9" concept="5" />
       <node id="8769796097526475741" at="79,79,86,9" concept="6" />
       <node id="8769796097522395406" at="55,0,68,9" concept="7" />
       <node id="3362669900791761686" at="24,0,38,0" concept="8" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
       <node id="3362669900791758693" at="22,193,38,7" concept="3" />
-      <node id="6445035801680996278" at="73,0,89,0" concept="8" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
-      <node id="6445035801680992078" at="71,0,89,7" concept="3" />
+      <node id="6445035801680996278" at="73,0,90,0" concept="8" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
+      <node id="6445035801680992078" at="71,0,90,7" concept="3" />
       <node id="3233838129231737829" at="41,0,70,0" concept="8" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
       <node id="3233838129231704258" at="39,0,70,7" concept="3" />
-      <node id="4293739292180706698" at="22,0,91,0" concept="13" trace="manageEvents#(LsmvDebugger/nusmv/Counterexample;LsmvDebugger/visualization/CompositeFBHighlighter;LsmvDebugger/panel/StateChanger;LsmvDebugger/panel/StateTable;LsmvDebugger/visualization/Backtrace;)V" />
+      <node id="4293739292180706698" at="22,0,92,0" concept="13" trace="manageEvents#(LsmvDebugger/nusmv/Counterexample;LsmvDebugger/visualization/CompositeFBHighlighter;LsmvDebugger/panel/StateChanger;LsmvDebugger/panel/StateTable;LsmvDebugger/visualization/Backtrace;)V" />
       <scope id="8769796097522371109" at="50,62,52,18" />
       <scope id="8769796097522311990" at="49,71,53,11" />
       <scope id="8769796097526475743" at="80,53,85,119">
@@ -402,14 +403,14 @@
       <scope id="3362669900791761686" at="24,0,38,0">
         <var name="e" id="3362669900791761686" />
       </scope>
-      <scope id="6445035801680996279" at="73,60,87,39">
+      <scope id="6445035801680996279" at="73,60,88,39">
         <var name="objects" id="8769796097526563164" />
         <var name="relatedObjects" id="8769796097526439933" />
         <var name="selectedColumn" id="6445035801681321837" />
         <var name="selectedRow" id="6445035801681324002" />
         <var name="var" id="8769796097526449185" />
       </scope>
-      <scope id="6445035801680996278" at="73,0,89,0">
+      <scope id="6445035801680996278" at="73,0,90,0">
         <var name="e" id="6445035801680996278" />
       </scope>
       <scope id="3233838129231737830" at="41,53,68,9">
@@ -423,8 +424,8 @@
       <scope id="3233838129231737829" at="41,0,70,0">
         <var name="e" id="3233838129231737829" />
       </scope>
-      <scope id="4293739292180706701" at="22,193,89,7" />
-      <scope id="4293739292180706698" at="22,0,91,0">
+      <scope id="4293739292180706701" at="22,193,90,7" />
+      <scope id="4293739292180706698" at="22,0,92,0">
         <var name="backtrace" id="8769796097526400754" />
         <var name="changer" id="3362669900791753928" />
         <var name="counterexample" id="4507750851568522603" />
@@ -432,9 +433,9 @@
         <var name="table" id="3362669900791754870" />
       </scope>
       <unit id="3362669900791761686" at="23,32,38,5" name="smvDebugger.panel.EventManager$1" />
-      <unit id="6445035801680996278" at="72,35,89,5" name="smvDebugger.panel.EventManager$3" />
+      <unit id="6445035801680996278" at="72,35,90,5" name="smvDebugger.panel.EventManager$3" />
       <unit id="3233838129231737829" at="40,37,70,5" name="smvDebugger.panel.EventManager$2" />
-      <unit id="4293739292180703748" at="21,0,92,0" name="smvDebugger.panel.EventManager" />
+      <unit id="4293739292180703748" at="21,0,93,0" name="smvDebugger.panel.EventManager" />
     </file>
   </root>
   <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/8106213185250020456">

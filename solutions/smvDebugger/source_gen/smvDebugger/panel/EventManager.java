@@ -84,6 +84,7 @@ public class EventManager {
           final VariableData curVar = counterexample.getVar(related);
           objects.add(new HiglhightObject(fbName, componentName, curVar.values()[selectedColumn - 1], curVar.isECC()));
         }
+        highlighter.clear();
         highlighter.highlight(objects);
       }
     });
