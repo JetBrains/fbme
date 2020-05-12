@@ -24,12 +24,14 @@ import org.fbme.lib.iec61499.ecc.ECTransitionCondition;
 import java.util.Optional;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
-import org.fbme.ide.iec61499.adapter.interfacepart.BasicFBTypeByNode;
-import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import org.jetbrains.mps.openapi.language.SContainmentLink;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
+import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
+import org.fbme.lib.iec61499.declarations.AlgorithmBody;
+import org.fbme.lib.st.statements.Statement;
+import org.fbme.lib.st.statements.AssignmentStatement;
+import org.fbme.lib.st.expressions.Variable;
+import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode;
+import org.fbme.lib.iec61499.ecc.StateDeclaration;
+import org.fbme.lib.iec61499.ecc.StateAction;
 
 public class Backtrace {
   private final Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
@@ -117,7 +119,7 @@ public class Backtrace {
           final EventDeclaration inputEvent = inputEventOpt.get();
           fbNethwork.getEventConnections().stream().filter(new Predicate<FBNetworkConnection>() {
             public boolean test(FBNetworkConnection con) {
-              final String target = (con.getTargetReference().getTarget().getPortTarget()).getName();
+              final String target = ((EventDeclaration) con.getTargetReference().getTarget().getPortTarget()).getName();
               return Objects.equals(target, event);
             }
           }).forEach(new Consumer<FBNetworkConnection>() {
@@ -139,41 +141,52 @@ public class Backtrace {
     });
   }
 
-  private void backtraceVar(final String fb, final String var) {
-    final List<List<String>> trace = new ArrayList<List<String>>();
+  private void backtraceVar(final String curFbName, final String var) {
     this.project.getModelAccess().runReadAction(new Runnable() {
       public void run() {
-        final FBNetwork fbNethwork = Backtrace.this.compositeFB.getNetwork();
-        final List<FunctionBlockDeclarationBase> components = fbNethwork.getContextComponents();
-        final List<FBNetworkConnection> connections = fbNethwork.getDataConnections();
+        final FBNetwork fbNethwork = fb.getNetwork();
+        final List<FunctionBlockDeclaration> fbs = fbNethwork.getFunctionBlocks();
+        final BasicFBTypeDeclaration curFb = (BasicFBTypeDeclaration) ListSequence.fromList(fbs).findFirst(new IWhereFilter<FunctionBlockDeclaration>() {
+          public boolean accept(FunctionBlockDeclaration it) {
+            return Objects.equals(it.getName(), curFbName);
+          }
+        }).getTypeReference().getTarget();
+        curFb.getAlgorithms().forEach(new Consumer<AlgorithmDeclaration>() {
+          public void accept(final AlgorithmDeclaration algorithm) {
+            ((AlgorithmBody.ST) algorithm.getBody()).getStatements().stream().forEach(new Consumer<Statement>() {
+              public void accept(final Statement statement) {
+                if (statement instanceof AssignmentStatement) {
+                  final AssignmentStatement assignment = ((AssignmentStatement) statement);
+                  final Variable curVar = assignment.getVariable();
+                  if (curVar instanceof VariableReferenceByNode) {
+                    if (Objects.equals(((VariableReferenceByNode) curVar).getReference().getTarget().getName(), var)) {
+                      curFb.getEcc().getStates().forEach(new Consumer<StateDeclaration>() {
+                        public void accept(final StateDeclaration state) {
+                          if (state.getActions().stream().filter(new Predicate<StateAction>() {
+                            public boolean test(final StateAction action) {
+                              return Objects.equals(action.getAlgorithm(), algorithm);
+                            }
+                          }).findAny().isPresent()) {
+                            final String eccName = state.getName();
+                            final String fullName = curFbName + "." + eccName;
+                            if (!(visited.contains(fullName))) {
+                              visited.add(fullName);
+                              graph.putIfAbsent(fullName, new HashSet<String>());
+                              graph.get(fullName).add(curFbName + "." + eccName);
+                              backtraceEccState(curFbName, eccName);
+                            }
+                          }
+                        }
+                      });
 
-        final FunctionBlockDeclarationBase component = ListSequence.fromList(components).findFirst(new IWhereFilter<FunctionBlockDeclarationBase>() {
-          public boolean accept(FunctionBlockDeclarationBase it) {
-            return it instanceof FunctionBlockDeclaration && Objects.equals(((FunctionBlockDeclaration) it).getName(), fbName);
+                    }
+                  }
+                }
+              }
+            });
           }
         });
-
-
-        if (component instanceof FunctionBlockDeclaration) {
-          final FunctionBlockDeclaration blockDeclaration = (FunctionBlockDeclaration) component;
-          final  declaration = blockDeclaration.getType().getDeclaration();
-          if (declaration instanceof BasicFBTypeByNode) {
-            final BasicFBTypeByNode fbTypeByNode = (BasicFBTypeByNode) declaration;
-            final SNode node = fbTypeByNode.getNode();
-            SLinkOperations.getChildren(node, LINKS.transitions$HOmT);
-
-            for (final SNode algorithm : SLinkOperations.getChildren(node, LINKS.algorithms$xmT2)) {
-              SLinkOperations.getTarget(algorithm, LINKS.body$Dbk);
-            }
-          }
-        }
       }
     });
-  }
-
-  private static final class LINKS {
-    /*package*/ static final SContainmentLink transitions$HOmT = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398f9c4c1L, 0x3b67570398fc0f65L, "transitions");
-    /*package*/ static final SContainmentLink body$Dbk = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398fc0e9aL, 0x18e716ae4586366fL, "body");
-    /*package*/ static final SContainmentLink algorithms$xmT2 = MetaAdapterFactory.getContainmentLink(0x6594f3404d734027L, 0xb7d3c6ca2e70a53bL, 0x3b67570398f9c4c1L, 0x3b67570398fc0f3bL, "algorithms");
   }
 }
