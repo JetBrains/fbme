@@ -36,6 +36,15 @@ public class Counterexample {
     return vars;
   }
 
+  public VariableData getVar(final String name) {
+    for (final VariableData var : vars) {
+      if (Objects.equals(var.fullName(), name)) {
+        return var;
+      }
+    }
+    return null;
+  }
+
   public int indexOf(final String state) {
     for (int i = 0; i < states.length; i++) {
       if (Objects.equals(states[i], state)) {

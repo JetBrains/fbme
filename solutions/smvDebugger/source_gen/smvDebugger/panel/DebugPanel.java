@@ -11,6 +11,7 @@ import smvDebugger.visualization.CompositeFBHighlighter;
 import java.util.List;
 import smvDebugger.visualization.HiglhightObject;
 import smvDebugger.commons.CommonUtils;
+import smvDebugger.visualization.Backtrace;
 
 public class DebugPanel {
   public static JPanel run(final MPSProject project, final CompositeFBTypeDeclaration compositeFB, final Counterexample counterexample) {
@@ -29,7 +30,9 @@ public class DebugPanel {
     final List<HiglhightObject> objects = CommonUtils.toHiglightObjectList(counterexample.vars(), 0);
     highlighter.highlight(objects);
 
-    EventManager.manageEvents(counterexample, highlighter, changer, table);
+    final Backtrace backtrace = new Backtrace(project, compositeFB);
+
+    EventManager.manageEvents(counterexample, highlighter, changer, table, backtrace);
 
     return mainPanel;
   }

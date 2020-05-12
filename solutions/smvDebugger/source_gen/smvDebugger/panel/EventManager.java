@@ -4,6 +4,7 @@ package smvDebugger.panel;
 
 import smvDebugger.nusmv.Counterexample;
 import smvDebugger.visualization.CompositeFBHighlighter;
+import smvDebugger.visualization.Backtrace;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JSpinner;
@@ -14,9 +15,11 @@ import smvDebugger.condition.Expression;
 import smvDebugger.condition.ConditionParser;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import smvDebugger.nusmv.VariableData;
+import java.util.ArrayList;
 
 public class EventManager {
-  public static void manageEvents(final Counterexample counterexample, final CompositeFBHighlighter highlighter, final StateChanger changer, final StateTable table) {
+  public static void manageEvents(final Counterexample counterexample, final CompositeFBHighlighter highlighter, final StateChanger changer, final StateTable table, final Backtrace backtrace) {
     changer.addStepListener(new ChangeListener() {
       public void stateChanged(final ChangeEvent e) {
         final JSpinner spinner = (JSpinner) e.getSource();
@@ -70,6 +73,18 @@ public class EventManager {
       public void valueChanged(final ListSelectionEvent e) {
         final int selectedRow = table.getSelectedRow();
         final int selectedColumn = table.getSelectedColumn();
+
+        final VariableData var = counterexample.vars()[selectedRow];
+        final List<String> relatedObjects = backtrace.getRelatedObjects(var, var.getValue(selectedColumn - 1));
+        final List<HiglhightObject> objects = new ArrayList<HiglhightObject>();
+        for (final String related : relatedObjects) {
+          final String[] parts = related.split(".");
+          final String fbName = parts[0];
+          final String componentName = parts[1];
+          final VariableData curVar = counterexample.getVar(related);
+          objects.add(new HiglhightObject(fbName, componentName, curVar.values()[selectedColumn - 1], curVar.isECC()));
+        }
+        highlighter.highlight(objects);
       }
     });
   }
