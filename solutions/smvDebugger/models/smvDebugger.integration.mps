@@ -3,6 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone" version="0" />
   </languages>
   <imports>
     <import index="nk3o" ref="r:85e05ab4-1ba9-4db5-96e9-56a84bd1472d(smvDebugger.common)" />
@@ -11,6 +12,8 @@
     <import index="guwi" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.io(JDK/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="8uw2" ref="r:e0a1abe3-ec88-452a-aca6-a40a81cc50a1(smvDebugger.model)" />
+    <import index="tp4k" ref="r:00000000-0000-4000-0000-011c89590368(jetbrains.mps.lang.plugin.structure)" />
+    <import index="tp4v" ref="r:00000000-0000-4000-0000-011c89590363(jetbrains.mps.lang.plugin.editor)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -36,6 +39,9 @@
         <child id="1197027771414" name="operand" index="2Oq$k0" />
         <child id="1197027833540" name="operation" index="2OqNvi" />
       </concept>
+      <concept id="1197029447546" name="jetbrains.mps.baseLanguage.structure.FieldReferenceOperation" flags="nn" index="2OwXpG">
+        <reference id="1197029500499" name="fieldDeclaration" index="2Oxat5" />
+      </concept>
       <concept id="1083260308424" name="jetbrains.mps.baseLanguage.structure.EnumConstantReference" flags="nn" index="Rm8GO">
         <reference id="1083260308426" name="enumConstantDeclaration" index="Rm8GQ" />
         <reference id="1144432896254" name="enumClass" index="1Px2BO" />
@@ -52,6 +58,8 @@
         <child id="1164903359217" name="throwable" index="TDEfY" />
       </concept>
       <concept id="1070462154015" name="jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" flags="ig" index="Wx3nA" />
+      <concept id="1070475354124" name="jetbrains.mps.baseLanguage.structure.ThisExpression" flags="nn" index="Xjq3P" />
+      <concept id="1070475587102" name="jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" flags="nn" index="XkiVB" />
       <concept id="1070475926800" name="jetbrains.mps.baseLanguage.structure.StringLiteral" flags="nn" index="Xl_RD">
         <property id="1070475926801" name="value" index="Xl_RC" />
       </concept>
@@ -66,6 +74,7 @@
       </concept>
       <concept id="1070534058343" name="jetbrains.mps.baseLanguage.structure.NullLiteral" flags="nn" index="10Nm6u" />
       <concept id="1070534370425" name="jetbrains.mps.baseLanguage.structure.IntegerType" flags="in" index="10Oyi0" />
+      <concept id="1068390468200" name="jetbrains.mps.baseLanguage.structure.FieldDeclaration" flags="ig" index="312cEg" />
       <concept id="1068390468198" name="jetbrains.mps.baseLanguage.structure.ClassConcept" flags="ig" index="312cEu">
         <property id="1075300953594" name="abstractClass" index="1sVAO0" />
         <child id="1165602531693" name="superclass" index="1zkMxy" />
@@ -102,6 +111,7 @@
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
       </concept>
+      <concept id="1068580123140" name="jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" flags="ig" index="3clFbW" />
       <concept id="1068580320020" name="jetbrains.mps.baseLanguage.structure.IntegerConstant" flags="nn" index="3cmrfG">
         <property id="1068580320021" name="value" index="3cmrfH" />
       </concept>
@@ -179,6 +189,26 @@
       </node>
     </node>
     <node concept="2tJIrI" id="2NwTEkpQIBn" role="jymVt" />
+    <node concept="3clFbW" id="4i$1wjaJFr9" role="jymVt">
+      <node concept="3cqZAl" id="4i$1wjaJFra" role="3clF45" />
+      <node concept="3clFbS" id="4i$1wjaJFrc" role="3clF47">
+        <node concept="XkiVB" id="4i$1wjaJHhk" role="3cqZAp">
+          <ref role="37wK5l" node="4i$1wjaJB2J" resolve="AbstractIntegrationService" />
+          <node concept="37vLTw" id="4i$1wjaJHjB" role="37wK5m">
+            <ref role="3cqZAo" node="4i$1wjaJFQu" resolve="fb2SmvBinaryPath" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4i$1wjaJF0F" role="1B3o_S" />
+      <node concept="37vLTG" id="4i$1wjaJFQu" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="fb2SmvBinaryPath" />
+        <node concept="3uibUv" id="4i$1wjaJG5K" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4i$1wjaJEBa" role="jymVt" />
     <node concept="3clFb_" id="4i$1wja9ZYM" role="jymVt">
       <property role="TrG5h" value="convertFbToSmv" />
       <node concept="3clFbS" id="4i$1wja9ZYO" role="3clF47">
@@ -231,14 +261,6 @@
             <node concept="3clFbS" id="4i$1wjaa0n8" role="3Kbo56">
               <node concept="3cpWs6" id="4i$1wjaa0n9" role="3cqZAp">
                 <node concept="3cpWs3" id="4i$1wjaa0na" role="3cqZAk">
-                  <node concept="2OqwBi" id="4i$1wjaa0nb" role="3uHU7w">
-                    <node concept="37vLTw" id="4i$1wjaa0nc" role="2Oq$k0">
-                      <ref role="3cqZAo" node="4i$1wjaa0ns" resolve="fbPath" />
-                    </node>
-                    <node concept="liA8E" id="4i$1wjaa0nd" role="2OqNvi">
-                      <ref role="37wK5l" to="eoo2:~Path.toString()" resolve="toString" />
-                    </node>
-                  </node>
                   <node concept="3cpWs3" id="4i$1wjaa0ne" role="3uHU7B">
                     <node concept="Xl_RD" id="4i$1wjaa0nf" role="3uHU7w">
                       <property role="Xl_RC" value=" " />
@@ -252,10 +274,13 @@
                           <ref role="3cqZAo" node="2NwTEkpUiXr" resolve="MAC_MONO_FRAMEWORK" />
                         </node>
                       </node>
-                      <node concept="37vLTw" id="4i$1wjaa0nk" role="3uHU7w">
-                        <ref role="3cqZAo" node="2NwTEkpQIEH" resolve="FB2SMV_EXE_PATH" />
+                      <node concept="37vLTw" id="4i$1wjaJPON" role="3uHU7w">
+                        <ref role="3cqZAo" node="4i$1wjaJCYT" resolve="binaryPath" />
                       </node>
                     </node>
+                  </node>
+                  <node concept="37vLTw" id="4i$1wjaJQ2J" role="3uHU7w">
+                    <ref role="3cqZAo" node="4i$1wjaa0ns" resolve="fbPath" />
                   </node>
                 </node>
               </node>
@@ -299,15 +324,6 @@
         <property role="Xl_RC" value="nutrac" />
       </node>
     </node>
-    <node concept="Wx3nA" id="2NwTEkpUiXv" role="jymVt">
-      <property role="TrG5h" value="NUTRAC_EXE_PATH" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm6S6" id="2NwTEkpUiXw" role="1B3o_S" />
-      <node concept="17QB3L" id="2NwTEkpUiXx" role="1tU5fm" />
-      <node concept="Xl_RD" id="2NwTEkpUiXy" role="33vP2m">
-        <property role="Xl_RC" value="Library/FB2SMV/nutrac.exe" />
-      </node>
-    </node>
     <node concept="Wx3nA" id="2NwTEkpVlJ_" role="jymVt">
       <property role="TrG5h" value="CSV_FILE_EXTENSION" />
       <property role="3TUv4t" value="true" />
@@ -318,6 +334,26 @@
       </node>
     </node>
     <node concept="2tJIrI" id="2NwTEkpUiSl" role="jymVt" />
+    <node concept="3clFbW" id="4i$1wjaJREo" role="jymVt">
+      <node concept="3cqZAl" id="4i$1wjaJREp" role="3clF45" />
+      <node concept="3clFbS" id="4i$1wjaJREr" role="3clF47">
+        <node concept="XkiVB" id="4i$1wjaJSFn" role="3cqZAp">
+          <ref role="37wK5l" node="4i$1wjaJB2J" resolve="AbstractIntegrationService" />
+          <node concept="37vLTw" id="4i$1wjaJSHP" role="37wK5m">
+            <ref role="3cqZAo" node="4i$1wjaJRXy" resolve="nutracBinaryPath" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4i$1wjaJRcL" role="1B3o_S" />
+      <node concept="37vLTG" id="4i$1wjaJRXy" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="nutracBinaryPath" />
+        <node concept="3uibUv" id="4i$1wjaJS9W" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4i$1wjaJQSw" role="jymVt" />
     <node concept="3clFb_" id="4i$1wja9XUZ" role="jymVt">
       <property role="TrG5h" value="convertToCsv" />
       <node concept="3clFbS" id="4i$1wja9XV1" role="3clF47">
@@ -370,13 +406,8 @@
             <node concept="3clFbS" id="4i$1wja9YRm" role="3Kbo56">
               <node concept="3cpWs6" id="4i$1wja9YRn" role="3cqZAp">
                 <node concept="3cpWs3" id="4i$1wja9YRo" role="3cqZAk">
-                  <node concept="2OqwBi" id="4i$1wja9YRp" role="3uHU7w">
-                    <node concept="37vLTw" id="4i$1wja9YRq" role="2Oq$k0">
-                      <ref role="3cqZAo" node="4i$1wja9YRE" resolve="counterexamplePath" />
-                    </node>
-                    <node concept="liA8E" id="4i$1wja9YRr" role="2OqNvi">
-                      <ref role="37wK5l" to="eoo2:~Path.toString()" resolve="toString" />
-                    </node>
+                  <node concept="37vLTw" id="4i$1wja9YRq" role="3uHU7w">
+                    <ref role="3cqZAo" node="4i$1wja9YRE" resolve="counterexamplePath" />
                   </node>
                   <node concept="3cpWs3" id="4i$1wja9YRs" role="3uHU7B">
                     <node concept="Xl_RD" id="4i$1wja9YRt" role="3uHU7w">
@@ -391,8 +422,8 @@
                           <ref role="3cqZAo" node="2NwTEkpUiXr" resolve="MAC_MONO_FRAMEWORK" />
                         </node>
                       </node>
-                      <node concept="37vLTw" id="4i$1wja9YRy" role="3uHU7w">
-                        <ref role="3cqZAo" node="2NwTEkpUiXv" resolve="NUTRAC_EXE_PATH" />
+                      <node concept="37vLTw" id="4i$1wjaJSQo" role="3uHU7w">
+                        <ref role="3cqZAo" node="4i$1wjaJCYT" resolve="binaryPath" />
                       </node>
                     </node>
                   </node>
@@ -429,15 +460,6 @@
   </node>
   <node concept="312cEu" id="7YsZv8g1tpJ">
     <property role="TrG5h" value="NuSmvService" />
-    <node concept="Wx3nA" id="2NwTEkpTHjw" role="jymVt">
-      <property role="TrG5h" value="NUSMV_BIN_PATH" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm6S6" id="2NwTEkpTFR1" role="1B3o_S" />
-      <node concept="17QB3L" id="2NwTEkpTFXC" role="1tU5fm" />
-      <node concept="Xl_RD" id="2NwTEkpTHGl" role="33vP2m">
-        <property role="Xl_RC" value="/Library/NuSMV/bin/NuSMV" />
-      </node>
-    </node>
     <node concept="Wx3nA" id="2NwTEkpTVMe" role="jymVt">
       <property role="TrG5h" value="NUSMV_SUCCESS" />
       <property role="3TUv4t" value="true" />
@@ -448,6 +470,26 @@
       </node>
     </node>
     <node concept="2tJIrI" id="2NwTEkpTFL_" role="jymVt" />
+    <node concept="3clFbW" id="4i$1wjaJL5T" role="jymVt">
+      <node concept="3cqZAl" id="4i$1wjaJL5U" role="3clF45" />
+      <node concept="3clFbS" id="4i$1wjaJL5W" role="3clF47">
+        <node concept="XkiVB" id="4i$1wjaJMZZ" role="3cqZAp">
+          <ref role="37wK5l" node="4i$1wjaJB2J" resolve="AbstractIntegrationService" />
+          <node concept="37vLTw" id="4i$1wjaJN3I" role="37wK5m">
+            <ref role="3cqZAo" node="4i$1wjaJLHi" resolve="nuSmvBinaryPath" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4i$1wjaJKDz" role="1B3o_S" />
+      <node concept="37vLTG" id="4i$1wjaJLHi" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="nuSmvBinaryPath" />
+        <node concept="3uibUv" id="4i$1wjaJLYN" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4i$1wjaJK1R" role="jymVt" />
     <node concept="3clFb_" id="4i$1wjaa2cJ" role="jymVt">
       <property role="TrG5h" value="getRawCounterexample" />
       <node concept="3clFbS" id="4i$1wjaa2cL" role="3clF47">
@@ -562,8 +604,8 @@
               <node concept="Xl_RD" id="4i$1wjaa3_T" role="3uHU7w">
                 <property role="Xl_RC" value=" " />
               </node>
-              <node concept="37vLTw" id="4i$1wjacY6K" role="3uHU7B">
-                <ref role="3cqZAo" node="2NwTEkpTHjw" resolve="NUSMV_BIN_PATH" />
+              <node concept="37vLTw" id="4i$1wjaJN4G" role="3uHU7B">
+                <ref role="3cqZAo" node="4i$1wjaJCYT" resolve="binaryPath" />
               </node>
             </node>
           </node>
@@ -756,6 +798,42 @@
       </node>
     </node>
     <node concept="2tJIrI" id="4i$1wjaeZ1j" role="jymVt" />
+    <node concept="312cEg" id="4i$1wjaJCYT" role="jymVt">
+      <property role="TrG5h" value="binaryPath" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tmbuc" id="4i$1wjaJCqD" role="1B3o_S" />
+      <node concept="3uibUv" id="4i$1wjaJCRV" role="1tU5fm">
+        <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4i$1wjaJBzI" role="jymVt" />
+    <node concept="3clFbW" id="4i$1wjaJB2J" role="jymVt">
+      <node concept="3cqZAl" id="4i$1wjaJB2K" role="3clF45" />
+      <node concept="3clFbS" id="4i$1wjaJB2M" role="3clF47">
+        <node concept="3clFbF" id="4i$1wjaJE0l" role="3cqZAp">
+          <node concept="37vLTI" id="4i$1wjaJErw" role="3clFbG">
+            <node concept="37vLTw" id="4i$1wjaJEy9" role="37vLTx">
+              <ref role="3cqZAo" node="4i$1wjaJBw5" resolve="binaryPath" />
+            </node>
+            <node concept="2OqwBi" id="4i$1wjaJE3s" role="37vLTJ">
+              <node concept="Xjq3P" id="4i$1wjaJE0k" role="2Oq$k0" />
+              <node concept="2OwXpG" id="4i$1wjaJE7e" role="2OqNvi">
+                <ref role="2Oxat5" node="4i$1wjaJCYT" resolve="binaryPath" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4i$1wjaJ$Hp" role="1B3o_S" />
+      <node concept="37vLTG" id="4i$1wjaJBw5" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="binaryPath" />
+        <node concept="3uibUv" id="4i$1wjaJDPT" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="4i$1wjaJ$0o" role="jymVt" />
     <node concept="3clFb_" id="4i$1wjacEV1" role="jymVt">
       <property role="TrG5h" value="runProcess" />
       <node concept="3clFbS" id="4i$1wjacEV4" role="3clF47">

@@ -9,6 +9,12 @@ import java.io.InputStreamReader;
 public abstract class AbstractIntegrationService {
   protected static final String MAC_MONO_FRAMEWORK = "mono";
 
+  protected final Path binaryPath;
+
+  public AbstractIntegrationService(final Path binaryPath) {
+    this.binaryPath = binaryPath;
+  }
+
   protected String runProcess(final Path path) {
     final String command = getCommand(path);
     final ProcessBuilder builder = new ProcessBuilder();

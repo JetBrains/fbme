@@ -8,6 +8,7 @@ import jetbrains.mps.ide.tools.BaseTool;
 import com.intellij.openapi.project.Project;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import java.util.ArrayList;
+import jetbrains.mps.plugins.prefs.BaseProjectPrefsComponent;
 
 public class SmvDebugger_ProjectPlugin extends BaseProjectPlugin {
   public SmvDebugger_ProjectPlugin() {
@@ -16,5 +17,11 @@ public class SmvDebugger_ProjectPlugin extends BaseProjectPlugin {
     List<BaseTool> tools = ListSequence.fromList(new ArrayList<BaseTool>());
     ListSequence.fromList(tools).addElement(new Debug_SMV_Tool(project));
     return tools;
+  }
+  public List<BaseProjectPrefsComponent> createPreferencesComponents(Project project) {
+    List<BaseProjectPrefsComponent> components = ListSequence.fromList(new ArrayList<BaseProjectPrefsComponent>());
+
+    ListSequence.fromList(components).addElement(new SmvBinaryPaths_PreferencesComponent(project));
+    return components;
   }
 }

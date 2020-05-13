@@ -7,8 +7,11 @@ import smvDebugger.common.OSUtils;
 
 public class NutracService extends AbstractIntegrationService {
   public static final String NUTRAC_FILE_EXTENSION = "nutrac";
-  private static final String NUTRAC_EXE_PATH = "Library/FB2SMV/nutrac.exe";
   private static final String CSV_FILE_EXTENSION = "csv";
+
+  public NutracService(final Path nutracBinaryPath) {
+    super(nutracBinaryPath);
+  }
 
   public Path convertToCsv(final Path rawCounterexamplePath) {
     runProcess(rawCounterexamplePath);
@@ -19,7 +22,7 @@ public class NutracService extends AbstractIntegrationService {
   protected String getCommand(final Path counterexamplePath) {
     switch (OSUtils.getOS()) {
       case MAC_OS:
-        return MAC_MONO_FRAMEWORK + " " + NUTRAC_EXE_PATH + " " + counterexamplePath.toString();
+        return MAC_MONO_FRAMEWORK + " " + binaryPath + " " + counterexamplePath;
       default:
         return "";
     }

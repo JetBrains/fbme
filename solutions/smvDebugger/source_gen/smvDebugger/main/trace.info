@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
@@ -13,61 +14,80 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164879751025:jetbrains.mps.baseLanguage.structure.TryCatchStatement" />
   <root nodeRef="r:637cc594-151a-4299-b732-c6b4c70f1b89(smvDebugger.main)/9195503755276408676">
     <file name="SmvDebugger.java">
-      <node id="3233838129230413526" at="25,0,26,0" concept="7" trace="FB_FILE_EXTENSION" />
-      <node id="4946084908401937599" at="27,0,28,0" concept="1" trace="fb2SmvService" />
-      <node id="4946084908401943132" at="28,0,29,0" concept="1" trace="nuSmvService" />
-      <node id="4946084908401949356" at="29,0,30,0" concept="1" trace="nutracService" />
-      <node id="4946084908401971032" at="30,0,31,0" concept="1" trace="counterexampleParser" />
-      <node id="4946084908402103200" at="31,0,32,0" concept="1" trace="debugPanelService" />
-      <node id="4946084908401935248" at="33,97,34,56" concept="4" />
-      <node id="4946084908401935254" at="34,56,35,62" concept="4" />
-      <node id="4946084908401935259" at="35,62,36,52" concept="4" />
-      <node id="4946084908401935263" at="36,52,37,0" concept="6" />
-      <node id="4946084908401935264" at="37,0,38,108" concept="4" />
-      <node id="4946084908401935276" at="39,43,40,22" concept="0" />
-      <node id="4946084908401935278" at="40,22,41,18" concept="5" />
-      <node id="4946084908401991572" at="42,5,43,0" concept="6" />
-      <node id="4946084908401993225" at="43,0,44,96" concept="4" />
-      <node id="4946084908402073296" at="44,96,45,29" concept="4" />
-      <node id="4946084908402067914" at="46,9,47,56" concept="0" />
-      <node id="4946084908402079351" at="48,35,49,36" concept="9" />
-      <node id="4946084908402087393" at="50,5,51,76" concept="4" />
-      <node id="4946084908402093787" at="51,76,52,0" concept="6" />
-      <node id="4946084908402111442" at="52,0,53,71" concept="5" />
-      <node id="3233838129230433687" at="58,44,59,78" concept="5" />
-      <node id="9195503755276504081" at="64,44,65,94" concept="4" />
-      <node id="9195503755276506448" at="65,94,66,25" concept="5" />
-      <node id="9195503755276507591" at="69,39,70,51" concept="0" />
-      <node id="3233838129230432152" at="58,0,61,0" concept="3" trace="accept#(Ljava/io/File;)Z" />
-      <node id="9195503755276479526" at="69,0,72,0" concept="8" trace="notifySuccess#()V" />
-      <node id="4946084908401935274" at="38,108,42,5" concept="2" />
-      <node id="9195503755276479206" at="64,0,68,0" concept="8" trace="getSpecification#()Ljava/lang/String;" />
-      <node id="4946084908402070885" at="45,29,50,5" concept="10" />
-      <node id="3233838129230415033" at="56,96,61,19" concept="5" />
-      <node id="3233838129230221212" at="56,0,63,0" concept="8" trace="getFbPath#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljava/nio/file/Path;" />
-      <node id="4946084908401935245" at="33,0,55,0" concept="3" trace="run#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljavax/swing/JComponent;" />
-      <scope id="4946084908402070887" at="46,9,47,56" />
-      <scope id="4946084908402070888" at="48,0,49,36">
+      <node id="3233838129230413526" at="29,0,30,0" concept="8" trace="FB_FILE_EXTENSION" />
+      <node id="4946084908410715006" at="31,0,32,0" concept="2" trace="project" />
+      <node id="4946084908401937599" at="32,0,33,0" concept="2" trace="fb2SmvService" />
+      <node id="4946084908401943132" at="33,0,34,0" concept="2" trace="nuSmvService" />
+      <node id="4946084908401949356" at="34,0,35,0" concept="2" trace="nutracService" />
+      <node id="4946084908401971032" at="35,0,36,0" concept="2" trace="counterexampleParser" />
+      <node id="4946084908402103200" at="36,0,37,0" concept="2" trace="debugPanelService" />
+      <node id="4946084908410737458" at="38,48,39,27" concept="1" />
+      <node id="4946084908410868426" at="39,27,40,0" concept="7" />
+      <node id="4946084908410730322" at="40,0,41,69" concept="5" />
+      <node id="8891254832289784358" at="41,69,42,177" concept="5" />
+      <node id="4946084908410838652" at="42,177,43,91" concept="1" />
+      <node id="4946084908410853101" at="43,91,44,88" concept="1" />
+      <node id="4946084908410855847" at="44,88,45,91" concept="1" />
+      <node id="4946084908410855046" at="45,91,46,0" concept="7" />
+      <node id="4946084908410871012" at="46,0,47,54" concept="1" />
+      <node id="4946084908410877116" at="47,54,48,55" concept="1" />
+      <node id="4946084908401935248" at="51,71,52,56" concept="5" />
+      <node id="4946084908401935254" at="52,56,53,62" concept="5" />
+      <node id="4946084908401935259" at="53,62,54,52" concept="5" />
+      <node id="4946084908401935263" at="54,52,55,0" concept="7" />
+      <node id="4946084908401935264" at="55,0,56,108" concept="5" />
+      <node id="4946084908401935276" at="57,43,58,22" concept="1" />
+      <node id="4946084908401935278" at="58,22,59,18" concept="6" />
+      <node id="4946084908401991572" at="60,5,61,0" concept="7" />
+      <node id="4946084908401993225" at="61,0,62,96" concept="5" />
+      <node id="4946084908402073296" at="62,96,63,29" concept="5" />
+      <node id="4946084908402067914" at="64,9,65,56" concept="1" />
+      <node id="4946084908402079351" at="66,35,67,36" concept="10" />
+      <node id="4946084908402087393" at="68,5,69,76" concept="5" />
+      <node id="4946084908402093787" at="69,76,70,0" concept="7" />
+      <node id="4946084908402111442" at="70,0,71,62" concept="6" />
+      <node id="3233838129230433687" at="76,44,77,78" concept="6" />
+      <node id="9195503755276504081" at="82,44,83,94" concept="5" />
+      <node id="9195503755276506448" at="83,94,84,25" concept="6" />
+      <node id="9195503755276507591" at="87,39,88,51" concept="1" />
+      <node id="3233838129230432152" at="76,0,79,0" concept="4" trace="accept#(Ljava/io/File;)Z" />
+      <node id="9195503755276479526" at="87,0,90,0" concept="9" trace="notifySuccess#()V" />
+      <node id="4946084908401935274" at="56,108,60,5" concept="3" />
+      <node id="9195503755276479206" at="82,0,86,0" concept="9" trace="getSpecification#()Ljava/lang/String;" />
+      <node id="4946084908402070885" at="63,29,68,5" concept="11" />
+      <node id="3233838129230415033" at="74,96,79,19" concept="6" />
+      <node id="3233838129230221212" at="74,0,81,0" concept="9" trace="getFbPath#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljava/nio/file/Path;" />
+      <node id="4946084908410710676" at="38,0,50,0" concept="0" trace="SmvDebugger#(Ljetbrains/mps/project/MPSProject;)V" />
+      <node id="4946084908401935245" at="51,0,73,0" concept="4" trace="run#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljavax/swing/JComponent;" />
+      <scope id="4946084908402070887" at="64,9,65,56" />
+      <scope id="4946084908402070888" at="66,0,67,36">
         <var name="e" id="4946084908402070890" />
       </scope>
-      <scope id="4946084908402070894" at="48,35,49,36" />
-      <scope id="3233838129230432153" at="58,44,59,78" />
-      <scope id="9195503755276479529" at="69,39,70,51" />
-      <scope id="4946084908401935275" at="39,43,41,18" />
-      <scope id="9195503755276479209" at="64,44,66,25">
+      <scope id="4946084908402070894" at="66,35,67,36" />
+      <scope id="3233838129230432153" at="76,44,77,78" />
+      <scope id="9195503755276479529" at="87,39,88,51" />
+      <scope id="4946084908401935275" at="57,43,59,18" />
+      <scope id="9195503755276479209" at="82,44,84,25">
         <var name="specification" id="9195503755276504079" />
       </scope>
-      <scope id="3233838129230432152" at="58,0,61,0">
+      <scope id="3233838129230432152" at="76,0,79,0">
         <var name="it" id="3233838129230432152" />
       </scope>
-      <scope id="9195503755276479526" at="69,0,72,0" />
-      <scope id="9195503755276479206" at="64,0,68,0" />
-      <scope id="3233838129230221215" at="56,96,61,19" />
-      <scope id="3233838129230221212" at="56,0,63,0">
+      <scope id="9195503755276479526" at="87,0,90,0" />
+      <scope id="9195503755276479206" at="82,0,86,0" />
+      <scope id="3233838129230221215" at="74,96,79,19" />
+      <scope id="3233838129230221212" at="74,0,81,0">
         <var name="fb" id="3233838129230222081" />
         <var name="project" id="3233838129230221509" />
       </scope>
-      <scope id="4946084908401935247" at="33,97,53,71">
+      <scope id="4946084908410710679" at="38,48,48,55">
+        <var name="ideaProject" id="4946084908410730320" />
+        <var name="smvBinaryPaths" id="8891254832289784359" />
+      </scope>
+      <scope id="4946084908410710676" at="38,0,50,0">
+        <var name="project" id="4946084908410725467" />
+      </scope>
+      <scope id="4946084908401935247" at="51,71,71,62">
         <var name="counterexample" id="4946084908402087391" />
         <var name="csvCounterexamplePath" id="4946084908401993223" />
         <var name="fbPath" id="4946084908401935249" />
@@ -76,12 +96,11 @@
         <var name="smvPath" id="4946084908401935255" />
         <var name="specification" id="4946084908401935260" />
       </scope>
-      <scope id="4946084908401935245" at="33,0,55,0">
+      <scope id="4946084908401935245" at="51,0,73,0">
         <var name="compositeFb" id="4946084908401935293" />
-        <var name="project" id="4946084908401935291" />
       </scope>
-      <unit id="3233838129230432152" at="57,50,61,5" name="smvDebugger.main.SmvDebugger$1" />
-      <unit id="9195503755276408676" at="24,0,73,0" name="smvDebugger.main.SmvDebugger" />
+      <unit id="3233838129230432152" at="75,50,79,5" name="smvDebugger.main.SmvDebugger$1" />
+      <unit id="9195503755276408676" at="28,0,91,0" name="smvDebugger.main.SmvDebugger" />
     </file>
   </root>
 </debug-info>

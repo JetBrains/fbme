@@ -9,6 +9,10 @@ public class Fb2SmvService extends AbstractIntegrationService {
   private static final String FB2SMV_EXE_PATH = "/Library/FB2SMV/CommandShell.exe";
   private static final String SMV_FILE_EXTENSION = "smv";
 
+  public Fb2SmvService(final Path fb2SmvBinaryPath) {
+    super(fb2SmvBinaryPath);
+  }
+
   public Path convertFbToSmv(final Path fbPath) {
     runProcess(fbPath);
     return newPathOf(fbPath, SMV_FILE_EXTENSION);
@@ -18,7 +22,7 @@ public class Fb2SmvService extends AbstractIntegrationService {
   protected String getCommand(final Path fbPath) {
     switch (OSUtils.getOS()) {
       case MAC_OS:
-        return MAC_MONO_FRAMEWORK + " " + FB2SMV_EXE_PATH + " " + fbPath.toString();
+        return MAC_MONO_FRAMEWORK + " " + binaryPath + " " + fbPath;
       default:
         return "";
     }
