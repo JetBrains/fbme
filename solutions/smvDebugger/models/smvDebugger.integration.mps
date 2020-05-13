@@ -170,15 +170,6 @@
   </registry>
   <node concept="312cEu" id="7YsZv8g1n6K">
     <property role="TrG5h" value="Fb2SmvService" />
-    <node concept="Wx3nA" id="2NwTEkpQIEH" role="jymVt">
-      <property role="TrG5h" value="FB2SMV_EXE_PATH" />
-      <property role="3TUv4t" value="true" />
-      <node concept="3Tm6S6" id="2NwTEkpQIC4" role="1B3o_S" />
-      <node concept="17QB3L" id="2NwTEkpQIEy" role="1tU5fm" />
-      <node concept="Xl_RD" id="2NwTEkpQIFS" role="33vP2m">
-        <property role="Xl_RC" value="/Library/FB2SMV/CommandShell.exe" />
-      </node>
-    </node>
     <node concept="Wx3nA" id="2NwTEkpRA4h" role="jymVt">
       <property role="TrG5h" value="SMV_FILE_EXTENSION" />
       <property role="3TUv4t" value="true" />

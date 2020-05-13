@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import smvDebugger.common.OSUtils;
 
 public class Fb2SmvService extends AbstractIntegrationService {
-  private static final String FB2SMV_EXE_PATH = "/Library/FB2SMV/CommandShell.exe";
   private static final String SMV_FILE_EXTENSION = "smv";
 
   public Fb2SmvService(final Path fb2SmvBinaryPath) {
