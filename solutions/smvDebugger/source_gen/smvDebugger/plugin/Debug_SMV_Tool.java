@@ -4,15 +4,16 @@ package smvDebugger.plugin;
 
 import jetbrains.mps.plugins.tool.GeneratedTool;
 import javax.swing.Icon;
+import smvDebugger.main.SmvDebugger;
 import jetbrains.mps.project.MPSProject;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import javax.swing.JComponent;
-import smvDebugger.main.SmvDebugger;
 
 public class Debug_SMV_Tool extends GeneratedTool {
   private static final Icon ICON = null;
+  private SmvDebugger smvDebugger = new SmvDebugger();
   private MPSProject project;
   private CompositeFBTypeDeclaration compositeFB;
   public Debug_SMV_Tool(Project project) {
@@ -25,6 +26,6 @@ public class Debug_SMV_Tool extends GeneratedTool {
     Debug_SMV_Tool.this.compositeFB = compositeFB;
   }
   public JComponent getComponent() {
-    return SmvDebugger.run(Debug_SMV_Tool.this.project, Debug_SMV_Tool.this.compositeFB);
+    return Debug_SMV_Tool.this.smvDebugger.run(Debug_SMV_Tool.this.project, Debug_SMV_Tool.this.compositeFB);
   }
 }

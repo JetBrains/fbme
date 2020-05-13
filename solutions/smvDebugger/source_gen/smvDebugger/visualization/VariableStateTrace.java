@@ -5,7 +5,7 @@ package smvDebugger.visualization;
 import javax.swing.JPanel;
 import jetbrains.mps.project.MPSProject;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
-import smvDebugger.nusmv.Counterexample;
+import smvDebugger.model.Counterexample;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -15,9 +15,9 @@ import java.awt.Color;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.ScrollPaneConstants;
-import smvDebugger.nusmv.VariableData;
+import smvDebugger.model.SystemItem;
 import java.util.List;
-import smvDebugger.commons.CommonUtils;
+import smvDebugger.common.ArrayUtils;
 import java.util.ArrayList;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
@@ -76,9 +76,9 @@ public class VariableStateTrace extends JPanel {
   }
 
   public void updateTrace(final int varIndex, final int stateIndex) {
-    final VariableData var = counterexample.vars()[varIndex];
-    final List<List<String>> trace = getTrace(var.fbName(), var.portName(), var.isVarPort());
-    final String[][] data = CommonUtils.to2dArray(trace);
+    final SystemItem var = counterexample.???()[varIndex];
+    final List<List<String>> trace = getTrace(var.???(), var.???(), var.???());
+    final String[][] data = ArrayUtils.to2dArray(trace);
 
     tableModel = new DefaultTableModel() {
       @Override

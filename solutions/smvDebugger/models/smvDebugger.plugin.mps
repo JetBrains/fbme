@@ -84,6 +84,9 @@
         <child id="1068498886295" name="lValue" index="37vLTJ" />
       </concept>
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
+      <concept id="2820489544401957797" name="jetbrains.mps.baseLanguage.structure.DefaultClassCreator" flags="nn" index="HV5vD">
+        <reference id="2820489544401957798" name="classifier" index="HV5vE" />
+      </concept>
       <concept id="1197027756228" name="jetbrains.mps.baseLanguage.structure.DotExpression" flags="nn" index="2OqwBi">
         <child id="1197027771414" name="operand" index="2Oq$k0" />
         <child id="1197027833540" name="operation" index="2OqNvi" />
@@ -329,6 +332,18 @@
   </node>
   <node concept="sEfby" id="2iJMYskfET2">
     <property role="TrG5h" value="Debug SMV" />
+    <node concept="2BZ0e9" id="4i$1wjasgSB" role="2XNbBz">
+      <property role="TrG5h" value="smvDebugger" />
+      <node concept="3Tm6S6" id="4i$1wjasgSC" role="1B3o_S" />
+      <node concept="3uibUv" id="4i$1wjasgXF" role="1tU5fm">
+        <ref role="3uigEE" to="hvsg:7YsZv8g1lt$" resolve="SmvDebugger" />
+      </node>
+      <node concept="2ShNRf" id="4i$1wjasgYC" role="33vP2m">
+        <node concept="HV5vD" id="4i$1wjashaO" role="2ShVmc">
+          <ref role="HV5vE" to="hvsg:7YsZv8g1lt$" resolve="SmvDebugger" />
+        </node>
+      </node>
+    </node>
     <node concept="2BZ0e9" id="2b77TIBOni_" role="2XNbBz">
       <property role="TrG5h" value="project" />
       <node concept="3Tm6S6" id="2b77TIBOniA" role="1B3o_S" />
@@ -398,19 +413,26 @@
     <node concept="2UmK3q" id="2iJMYskfET3" role="2Um5zG">
       <node concept="3clFbS" id="2iJMYskfET4" role="2VODD2">
         <node concept="3cpWs6" id="2NwTEkpSwjN" role="3cqZAp">
-          <node concept="2YIFZM" id="2NwTEkpSwtD" role="3cqZAk">
-            <ref role="37wK5l" to="hvsg:7YsZv8g1mKh" resolve="run" />
-            <ref role="1Pybhc" to="hvsg:7YsZv8g1lt$" resolve="SmvDebugger" />
-            <node concept="2OqwBi" id="2NwTEkpSwHj" role="37wK5m">
-              <node concept="2WthIp" id="2NwTEkpSwuV" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="2NwTEkpSwPY" role="2OqNvi">
-                <ref role="2WH_rO" node="2b77TIBOni_" resolve="project" />
+          <node concept="2OqwBi" id="4i$1wjashJd" role="3cqZAk">
+            <node concept="2OqwBi" id="4i$1wjashyO" role="2Oq$k0">
+              <node concept="2WthIp" id="4i$1wjashyR" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="4i$1wjashyT" role="2OqNvi">
+                <ref role="2WH_rO" node="4i$1wjasgSB" resolve="smvDebugger" />
               </node>
             </node>
-            <node concept="2OqwBi" id="2NwTEkpSx1c" role="37wK5m">
-              <node concept="2WthIp" id="2NwTEkpSwSU" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="2NwTEkpSxgN" role="2OqNvi">
-                <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFB" />
+            <node concept="liA8E" id="4i$1wjashQI" role="2OqNvi">
+              <ref role="37wK5l" to="hvsg:4i$1wjadWed" resolve="run" />
+              <node concept="2OqwBi" id="4i$1wjaskrG" role="37wK5m">
+                <node concept="2WthIp" id="4i$1wjaskef" role="2Oq$k0" />
+                <node concept="2BZ7hE" id="4i$1wjaskDB" role="2OqNvi">
+                  <ref role="2WH_rO" node="2b77TIBOni_" resolve="project" />
+                </node>
+              </node>
+              <node concept="2OqwBi" id="4i$1wjaskPD" role="37wK5m">
+                <node concept="2WthIp" id="4i$1wjaskFO" role="2Oq$k0" />
+                <node concept="2BZ7hE" id="4i$1wjasl3J" role="2OqNvi">
+                  <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFB" />
+                </node>
               </node>
             </node>
           </node>
