@@ -12,50 +12,67 @@
   <root nodeRef="r:b753fc44-bc7f-4810-b5a7-701b07c2b3e2(smvDebugger.panel.mvc)/4946084908393521778">
     <file name="DebugPanelModel.java">
       <node id="4946084908395052640" at="16,0,17,0" concept="7" trace="FIRST_COLUMN_NAME" />
-      <node id="4946084908398008241" at="18,0,19,0" concept="2" trace="stepModel" />
-      <node id="4946084908402251947" at="19,0,20,0" concept="2" trace="globalTimeModel" />
-      <node id="4946084908393577456" at="20,0,21,0" concept="2" trace="dataModel" />
-      <node id="4946084908405490668" at="21,0,22,0" concept="2" trace="dataSelectionModel" />
-      <node id="4946084908395380889" at="22,0,23,0" concept="2" trace="dataScrollModel" />
-      <node id="4946084908405318980" at="24,63,25,39" concept="1" />
-      <node id="4946084908405323520" at="25,39,26,44" concept="1" />
-      <node id="4946084908405378783" at="26,44,27,0" concept="6" />
-      <node id="4946084908405327350" at="27,0,28,181" concept="1" />
-      <node id="4946084908405507096" at="28,181,29,57" concept="1" />
-      <node id="4946084908405511970" at="29,57,30,77" concept="1" />
-      <node id="4946084908405506202" at="30,77,31,0" concept="6" />
-      <node id="4946084908395381436" at="31,0,32,53" concept="1" />
-      <node id="4946084908405427832" at="35,38,36,21" concept="5" />
-      <node id="4946084908402262547" at="39,47,40,27" concept="5" />
-      <node id="4946084908393678970" at="43,36,44,21" concept="5" />
-      <node id="4946084908405515821" at="47,53,48,30" concept="5" />
-      <node id="4946084908395667795" at="51,49,52,27" concept="5" />
-      <node id="4946084908405422440" at="35,0,38,0" concept="3" trace="getStepModel#()Ljavax/swing/SpinnerModel;" />
-      <node id="4946084908402261622" at="39,0,42,0" concept="3" trace="getGlobalTimeModel#()LsmvDebugger/panel/mvc/GlobalTimeModel;" />
-      <node id="4946084908393678599" at="43,0,46,0" concept="3" trace="getDataModel#()Ljavax/swing/table/TableModel;" />
-      <node id="4946084908405515819" at="47,0,50,0" concept="3" trace="getDataSelectionModel#()Ljavax/swing/ListSelectionModel;" />
-      <node id="4946084908395667467" at="51,0,54,0" concept="3" trace="getDataScrollModel#()Ljavax/swing/BoundedRangeModel;" />
-      <node id="4946084908393656694" at="24,0,34,0" concept="0" trace="DebugPanelModel#(LsmvDebugger/model/Counterexample;)V" />
-      <scope id="4946084908405422443" at="35,38,36,21" />
-      <scope id="4946084908402261625" at="39,47,40,27" />
-      <scope id="4946084908393678602" at="43,36,44,21" />
-      <scope id="4946084908405515820" at="47,53,48,30" />
-      <scope id="4946084908395667470" at="51,49,52,27" />
-      <scope id="4946084908405422440" at="35,0,38,0" />
-      <scope id="4946084908402261622" at="39,0,42,0" />
-      <scope id="4946084908393678599" at="43,0,46,0" />
-      <scope id="4946084908405515819" at="47,0,50,0" />
-      <scope id="4946084908395667467" at="51,0,54,0" />
-      <scope id="4946084908393656697" at="24,63,32,53" />
-      <scope id="4946084908393656694" at="24,0,34,0">
+      <node id="4946084908408005349" at="18,0,19,0" concept="2" trace="stepIndexModel" />
+      <node id="4946084908398008241" at="19,0,20,0" concept="2" trace="stepSpinnerModel" />
+      <node id="4946084908402251947" at="20,0,21,0" concept="2" trace="globalTimeModel" />
+      <node id="4946084908408344350" at="21,0,22,0" concept="2" trace="conditionModel" />
+      <node id="4946084908393577456" at="22,0,23,0" concept="2" trace="dataModel" />
+      <node id="4946084908405490668" at="23,0,24,0" concept="2" trace="dataSelectionModel" />
+      <node id="4946084908395380889" at="24,0,25,0" concept="2" trace="dataScrollModel" />
+      <node id="4946084908408020561" at="26,63,27,42" concept="1" />
+      <node id="4946084908408032088" at="27,42,28,35" concept="1" />
+      <node id="4946084908408018176" at="28,35,29,0" concept="6" />
+      <node id="4946084908405318980" at="29,0,30,71" concept="1" />
+      <node id="4946084908408355583" at="30,71,31,0" concept="6" />
+      <node id="4946084908405323520" at="31,0,32,44" concept="1" />
+      <node id="4946084908408013939" at="32,44,33,54" concept="1" />
+      <node id="4946084908408356494" at="33,54,34,0" concept="6" />
+      <node id="4946084908408359432" at="34,0,35,42" concept="1" />
+      <node id="4946084908405378783" at="35,42,36,0" concept="6" />
+      <node id="4946084908405327350" at="36,0,37,180" concept="1" />
+      <node id="4946084908405507096" at="37,180,38,57" concept="1" />
+      <node id="4946084908405511970" at="38,57,39,77" concept="1" />
+      <node id="4946084908405506202" at="39,77,40,0" concept="6" />
+      <node id="4946084908395381436" at="40,0,41,53" concept="1" />
+      <node id="4946084908408042008" at="44,45,45,26" concept="5" />
+      <node id="4946084908405427832" at="48,45,49,28" concept="5" />
+      <node id="4946084908402262547" at="52,47,53,27" concept="5" />
+      <node id="4946084908408352279" at="56,45,57,26" concept="5" />
+      <node id="4946084908393678970" at="60,36,61,21" concept="5" />
+      <node id="4946084908405515821" at="64,53,65,30" concept="5" />
+      <node id="4946084908395667795" at="68,49,69,27" concept="5" />
+      <node id="4946084908408039298" at="44,0,47,0" concept="3" trace="getStepIndexModel#()LsmvDebugger/panel/mvc/StepIndexModel;" />
+      <node id="4946084908405422440" at="48,0,51,0" concept="3" trace="getStepSpinnerModel#()Ljavax/swing/SpinnerModel;" />
+      <node id="4946084908402261622" at="52,0,55,0" concept="3" trace="getGlobalTimeModel#()LsmvDebugger/panel/mvc/GlobalTimeModel;" />
+      <node id="4946084908408351065" at="56,0,59,0" concept="3" trace="getConditionModel#()LsmvDebugger/panel/mvc/ConditionModel;" />
+      <node id="4946084908393678599" at="60,0,63,0" concept="3" trace="getDataModel#()Ljavax/swing/table/TableModel;" />
+      <node id="4946084908405515819" at="64,0,67,0" concept="3" trace="getDataSelectionModel#()Ljavax/swing/ListSelectionModel;" />
+      <node id="4946084908395667467" at="68,0,71,0" concept="3" trace="getDataScrollModel#()Ljavax/swing/BoundedRangeModel;" />
+      <node id="4946084908393656694" at="26,0,43,0" concept="0" trace="DebugPanelModel#(LsmvDebugger/model/Counterexample;)V" />
+      <scope id="4946084908408039301" at="44,45,45,26" />
+      <scope id="4946084908405422443" at="48,45,49,28" />
+      <scope id="4946084908402261625" at="52,47,53,27" />
+      <scope id="4946084908408351068" at="56,45,57,26" />
+      <scope id="4946084908393678602" at="60,36,61,21" />
+      <scope id="4946084908405515820" at="64,53,65,30" />
+      <scope id="4946084908395667470" at="68,49,69,27" />
+      <scope id="4946084908408039298" at="44,0,47,0" />
+      <scope id="4946084908405422440" at="48,0,51,0" />
+      <scope id="4946084908402261622" at="52,0,55,0" />
+      <scope id="4946084908408351065" at="56,0,59,0" />
+      <scope id="4946084908393678599" at="60,0,63,0" />
+      <scope id="4946084908405515819" at="64,0,67,0" />
+      <scope id="4946084908395667467" at="68,0,71,0" />
+      <scope id="4946084908393656697" at="26,63,41,53" />
+      <scope id="4946084908393656694" at="26,0,43,0">
         <var name="counterexample" id="4946084908393657034" />
       </scope>
-      <unit id="4946084908393521778" at="15,0,55,0" name="smvDebugger.panel.mvc.DebugPanelModel" />
+      <unit id="4946084908393521778" at="15,0,72,0" name="smvDebugger.panel.mvc.DebugPanelModel" />
     </file>
   </root>
   <root nodeRef="r:b753fc44-bc7f-4810-b5a7-701b07c2b3e2(smvDebugger.panel.mvc)/4946084908393554672">
     <file name="DebugPanelMVCItem.java">
-      <node id="4946084908393575503" at="7,0,8,0" concept="3" trace="setModel#(LsmvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908393575503" at="7,0,8,0" concept="3" trace="setPanelModel#(LsmvDebugger/panel/mvc/DebugPanelModel;)V" />
       <node id="4946084908393576764" at="9,0,10,0" concept="3" trace="initView#()V" />
       <node id="4946084908393577009" at="11,0,12,0" concept="3" trace="initController#()V" />
       <scope id="4946084908393575503" at="7,0,8,0">
@@ -87,13 +104,13 @@
   </root>
   <root nodeRef="r:b753fc44-bc7f-4810-b5a7-701b07c2b3e2(smvDebugger.panel.mvc)/4946084908402262715">
     <file name="GlobalTimeModel.java">
-      <node id="4946084908402274890" at="9,0,10,0" concept="7" trace="TIME" />
+      <node id="4946084908402274890" at="9,0,10,0" concept="7" trace="GLOBAL_TIME" />
       <node id="4946084908402263205" at="11,0,12,0" concept="2" trace="propertyChangeSupport" />
       <node id="4946084908402265833" at="12,0,13,0" concept="2" trace="time" />
       <node id="4946084908402266553" at="14,27,15,16" concept="5" />
       <node id="4946084908402268405" at="18,42,19,37" concept="4" />
       <node id="4946084908402270827" at="19,37,20,21" concept="1" />
-      <node id="4946084908402272466" at="20,21,21,71" concept="1" />
+      <node id="4946084908402272466" at="20,21,21,78" concept="1" />
       <node id="4946084908402283785" at="24,80,25,62" concept="1" />
       <node id="4946084908402287054" at="28,107,29,76" concept="1" />
       <node id="4946084908402266330" at="14,0,17,0" concept="3" trace="getTime#()Ljava/lang/String;" />
@@ -104,7 +121,7 @@
       <scope id="4946084908402280517" at="24,80,25,62" />
       <scope id="4946084908402287053" at="28,107,29,76" />
       <scope id="4946084908402266330" at="14,0,17,0" />
-      <scope id="4946084908402267628" at="18,42,21,71">
+      <scope id="4946084908402267628" at="18,42,21,78">
         <var name="oldTime" id="4946084908402268403" />
       </scope>
       <scope id="4946084908402280514" at="24,0,27,0">
@@ -118,6 +135,68 @@
         <var name="time" id="4946084908402267867" />
       </scope>
       <unit id="4946084908402262715" at="8,0,32,0" name="smvDebugger.panel.mvc.GlobalTimeModel" />
+    </file>
+  </root>
+  <root nodeRef="r:b753fc44-bc7f-4810-b5a7-701b07c2b3e2(smvDebugger.panel.mvc)/4946084908407843177">
+    <file name="StepIndexModel.java">
+      <node id="4946084908407950783" at="9,0,10,0" concept="7" trace="STEP_INDEX" />
+      <node id="4946084908407950788" at="11,0,12,0" concept="2" trace="propertyChangeSupport" />
+      <node id="4946084908407950794" at="12,0,13,0" concept="2" trace="currentStepIndex" />
+      <node id="4946084908407955866" at="13,0,14,0" concept="2" trace="previousStepIndex" />
+      <node id="4946084908407950800" at="15,36,16,28" concept="5" />
+      <node id="4946084908407967739" at="19,37,20,29" concept="5" />
+      <node id="4946084908407977551" at="23,49,24,41" concept="1" />
+      <node id="4946084908407972889" at="24,41,25,33" concept="1" />
+      <node id="4946084908407950819" at="25,33,26,94" concept="1" />
+      <node id="4946084908407950835" at="29,80,30,62" concept="1" />
+      <node id="4946084908407950847" at="33,107,34,76" concept="1" />
+      <node id="4946084908407950798" at="15,0,18,0" concept="3" trace="getCurrentStepIndex#()I" />
+      <node id="4946084908407966709" at="19,0,22,0" concept="3" trace="getPreviousStepIndex#()I" />
+      <node id="4946084908407950833" at="29,0,32,0" concept="3" trace="addPropertyChangeListener#(Ljava/beans/PropertyChangeListener;)V" />
+      <node id="4946084908407950845" at="33,0,36,0" concept="3" trace="addPropertyChangeListener#(Ljava/lang/String;Ljava/beans/PropertyChangeListener;)V" />
+      <node id="4946084908407950805" at="23,0,28,0" concept="3" trace="setStepIndex#(I)V" />
+      <scope id="4946084908407950799" at="15,36,16,28" />
+      <scope id="4946084908407966712" at="19,37,20,29" />
+      <scope id="4946084908407950834" at="29,80,30,62" />
+      <scope id="4946084908407950846" at="33,107,34,76" />
+      <scope id="4946084908407950798" at="15,0,18,0" />
+      <scope id="4946084908407966709" at="19,0,22,0" />
+      <scope id="4946084908407950806" at="23,49,26,94" />
+      <scope id="4946084908407950833" at="29,0,32,0">
+        <var name="listener" id="4946084908407950842" />
+      </scope>
+      <scope id="4946084908407950845" at="33,0,36,0">
+        <var name="listener" id="4946084908407950857" />
+        <var name="propertyName" id="4946084908407950855" />
+      </scope>
+      <scope id="4946084908407950805" at="23,0,28,0">
+        <var name="stepIndex" id="4946084908407950830" />
+      </scope>
+      <unit id="4946084908407843177" at="8,0,37,0" name="smvDebugger.panel.mvc.StepIndexModel" />
+    </file>
+  </root>
+  <root nodeRef="r:b753fc44-bc7f-4810-b5a7-701b07c2b3e2(smvDebugger.panel.mvc)/4946084908408309080">
+    <file name="ConditionModel.java">
+      <node id="4946084908408310195" at="8,0,9,0" concept="2" trace="condition" />
+      <node id="4946084908408311956" at="11,28,12,21" concept="5" />
+      <node id="4946084908408316658" at="16,44,17,31" concept="1" />
+      <node id="4946084908408326399" at="21,32,22,21" concept="5" />
+      <node id="4946084908408333667" at="26,36,27,21" concept="5" />
+      <node id="4946084908408311300" at="10,0,14,0" concept="3" trace="getValue#()Ljava/lang/Object;" />
+      <node id="4946084908408313914" at="15,0,19,0" concept="3" trace="setValue#(Ljava/lang/Object;)V" />
+      <node id="4946084908408325086" at="20,0,24,0" concept="3" trace="getNextValue#()Ljava/lang/Object;" />
+      <node id="4946084908408330968" at="25,0,29,0" concept="3" trace="getPreviousValue#()Ljava/lang/Object;" />
+      <scope id="4946084908408311303" at="11,28,12,21" />
+      <scope id="4946084908408313917" at="16,44,17,31" />
+      <scope id="4946084908408325089" at="21,32,22,21" />
+      <scope id="4946084908408330971" at="26,36,27,21" />
+      <scope id="4946084908408311300" at="10,0,14,0" />
+      <scope id="4946084908408313914" at="15,0,19,0">
+        <var name="value" id="4946084908408314312" />
+      </scope>
+      <scope id="4946084908408325086" at="20,0,24,0" />
+      <scope id="4946084908408330968" at="25,0,29,0" />
+      <unit id="4946084908408309080" at="7,0,30,0" name="smvDebugger.panel.mvc.ConditionModel" />
     </file>
   </root>
 </debug-info>

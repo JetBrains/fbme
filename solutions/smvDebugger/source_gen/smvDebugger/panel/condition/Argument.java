@@ -16,7 +16,7 @@ public class Argument implements Expression {
   }
 
   @Override
-  public boolean evaluate(final Map<String, String> stepValues) {
+  public boolean evaluate(final Map<String, String> itemSimpleNameToValueMap) {
     return true;
   }
 

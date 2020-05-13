@@ -16,8 +16,8 @@ public class Negation implements Expression {
   }
 
   @Override
-  public boolean evaluate(final Map<String, String> stepValues) {
-    return !(expression.evaluate(stepValues));
+  public boolean evaluate(final Map<String, String> itemSimpleNameToValueMap) {
+    return !(expression.evaluate(itemSimpleNameToValueMap));
   }
 
   @Override

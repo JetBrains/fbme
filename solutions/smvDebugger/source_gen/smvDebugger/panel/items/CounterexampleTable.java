@@ -9,8 +9,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import smvDebugger.model.Counterexample;
-import smvDebugger.visualization.BacktraceService;
 import smvDebugger.visualization.SystemHighlighter;
+import smvDebugger.visualization.BacktraceService;
 import smvDebugger.panel.mvc.DebugPanelModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableColumn;
@@ -43,17 +43,21 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
   private final JScrollPane scrollPane = new JScrollPane();
 
   private final Counterexample counterexample;
-  private final BacktraceService backtraceService;
   private final SystemHighlighter systemHighlighter;
+  private final BacktraceService backtraceService;
 
-  public CounterexampleTable(final Counterexample counterexample, final BacktraceService backtraceService, final SystemHighlighter systemHighlighter) {
+  private DebugPanelModel model;
+
+  public CounterexampleTable(final Counterexample counterexample, final SystemHighlighter systemHighlighter, final BacktraceService backtraceService) {
     this.counterexample = counterexample;
-    this.backtraceService = backtraceService;
     this.systemHighlighter = systemHighlighter;
+    this.backtraceService = backtraceService;
   }
 
   @Override
-  public void setModel(final DebugPanelModel model) {
+  public void setPanelModel(final DebugPanelModel model) {
+    this.model = model;
+
     valueTable.setModel(model.getDataModel());
     valueTable.setSelectionModel(model.getDataSelectionModel());
 
@@ -113,13 +117,12 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
     valueTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
       public void valueChanged(final ListSelectionEvent event) {
         final int itemIndex = valueTable.getSelectedRow();
-        final int stateIndex = valueTable.getSelectedColumn();
+        final int stepIndex = valueTable.getSelectedColumn();
 
-        final SystemItemValue itemValue = counterexample.getItemValue(itemIndex, stateIndex);
+        final SystemItemValue itemValue = counterexample.getItemValue(itemIndex, stepIndex);
         final List<String> relatedItemSimpleNames = backtraceService.getRelatedItemSimpleNames(itemValue);
-        final List<SystemItemValue> relatedItems = counterexample.getItemValues(relatedItemSimpleNames, stateIndex);
+        final List<SystemItemValue> relatedItems = counterexample.getItemValues(relatedItemSimpleNames, stepIndex);
         systemHighlighter.highlight(relatedItems);
-
       }
     });
 

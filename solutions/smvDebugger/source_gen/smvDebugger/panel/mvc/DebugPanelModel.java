@@ -15,29 +15,46 @@ import javax.swing.DefaultBoundedRangeModel;
 public class DebugPanelModel {
   private static final String FIRST_COLUMN_NAME = "Components/States";
 
-  private final SpinnerModel stepModel;
+  private final StepIndexModel stepIndexModel;
+  private final SpinnerModel stepSpinnerModel;
   private final GlobalTimeModel globalTimeModel;
+  private final ConditionModel conditionModel;
   private final TableModel dataModel;
   private final ListSelectionModel dataSelectionModel;
   private final BoundedRangeModel dataScrollModel;
 
   public DebugPanelModel(final Counterexample counterexample) {
-    stepModel = new SpinnerListModel();
-    globalTimeModel = new GlobalTimeModel();
+    stepIndexModel = new StepIndexModel();
+    stepIndexModel.setStepIndex(0);
 
-    dataModel = new UneditableTableModel(ArrayUtils.concat(counterexample.getItems(), counterexample.getValues()), ArrayUtils.concat(FIRST_COLUMN_NAME, counterexample.getStates()));
+    stepSpinnerModel = new SpinnerListModel(counterexample.getSteps());
+
+    globalTimeModel = new GlobalTimeModel();
+    globalTimeModel.setTime(counterexample.timeOf(0));
+
+    conditionModel = new ConditionModel();
+
+    dataModel = new UneditableTableModel(ArrayUtils.concat(counterexample.getItems(), counterexample.getValues()), ArrayUtils.concat(FIRST_COLUMN_NAME, counterexample.getSteps()));
     dataSelectionModel = new DefaultListSelectionModel();
     dataSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     dataScrollModel = new DefaultBoundedRangeModel();
   }
 
-  public SpinnerModel getStepModel() {
-    return stepModel;
+  public StepIndexModel getStepIndexModel() {
+    return stepIndexModel;
+  }
+
+  public SpinnerModel getStepSpinnerModel() {
+    return stepSpinnerModel;
   }
 
   public GlobalTimeModel getGlobalTimeModel() {
     return globalTimeModel;
+  }
+
+  public ConditionModel getConditionModel() {
+    return conditionModel;
   }
 
   public TableModel getDataModel() {

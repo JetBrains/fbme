@@ -1,170 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <debug-info version="2">
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081855346303:jetbrains.mps.baseLanguage.structure.BreakStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144231330558:jetbrains.mps.baseLanguage.structure.ForStatement" />
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
-  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
-  <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/4293739292179930071">
-    <file name="CSVFileProvider.java">
-      <node id="4293739292179951493" at="10,0,11,0" concept="9" trace="DEFAULT_PATH" />
-      <node id="4293739292180110819" at="11,0,12,0" concept="9" trace="FILE_NAME_EXT_DESCRIPTION" />
-      <node id="4293739292180114034" at="12,0,13,0" concept="9" trace="FILE_NAME_EXT" />
-      <node id="1928161108292895644" at="14,35,15,68" concept="6" />
-      <node id="1928161108292895649" at="15,68,16,117" concept="6" />
-      <node id="1928161108292895656" at="16,117,17,42" concept="1" />
-      <node id="1928161108292895661" at="17,42,18,37" concept="1" />
-      <node id="4293739292179942962" at="18,37,19,41" concept="7" />
-      <node id="4293739292179933309" at="14,0,21,0" concept="10" trace="getCSVFile#()Ljava/io/File;" />
-      <scope id="4293739292179933312" at="14,35,19,41">
-        <var name="fileChooser" id="1928161108292895645" />
-        <var name="fileFilter" id="1928161108292895650" />
-      </scope>
-      <scope id="4293739292179933309" at="14,0,21,0" />
-      <unit id="4293739292179930071" at="9,0,22,0" name="smvDebugger.panel.CSVFileProvider" />
-    </file>
-  </root>
-  <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/4293739292180703748">
-    <file name="EventManager.java">
-      <node id="3362669900791769325" at="26,53,27,58" concept="6" />
-      <node id="3362669900791785341" at="27,58,28,60" concept="6" />
-      <node id="3362669900791904656" at="28,60,29,64" concept="6" />
-      <node id="3362669900791800213" at="29,64,30,26" concept="1" />
-      <node id="4507750851572773083" at="30,26,31,0" concept="8" />
-      <node id="4507750851570456756" at="31,0,32,95" concept="6" />
-      <node id="4507750851570151967" at="32,95,33,39" concept="1" />
-      <node id="6445035801680505018" at="33,39,34,0" concept="8" />
-      <node id="6445035801680506170" at="34,0,35,62" concept="1" />
-      <node id="1849940828854710461" at="35,62,36,0" concept="8" />
-      <node id="1849940828855309038" at="36,0,37,47" concept="1" />
-      <node id="1849940828854713892" at="37,47,38,37" concept="1" />
-      <node id="3233838129231702518" at="40,7,41,0" concept="8" />
-      <node id="3233838129231740534" at="43,53,44,58" concept="6" />
-      <node id="3233838129231745368" at="44,58,45,64" concept="6" />
-      <node id="8769796097522165503" at="45,64,46,74" concept="6" />
-      <node id="8769796097522304586" at="46,74,47,72" concept="6" />
-      <node id="8769796097522300822" at="47,72,48,64" concept="6" />
-      <node id="8769796097522300784" at="48,64,49,0" concept="8" />
-      <node id="8769796097522358936" at="49,0,50,42" concept="6" />
-      <node id="8769796097522384167" at="52,67,53,33" concept="1" />
-      <node id="8769796097522394020" at="53,33,54,18" concept="0" />
-      <node id="8769796097522295932" at="56,9,57,0" concept="8" />
-      <node id="8769796097522407260" at="58,45,59,28" concept="1" />
-      <node id="8769796097522407264" at="59,28,60,0" concept="8" />
-      <node id="8769796097522407265" at="60,0,61,103" concept="6" />
-      <node id="8769796097522407274" at="61,103,62,41" concept="1" />
-      <node id="8769796097522407279" at="62,41,63,0" concept="8" />
-      <node id="8769796097522407280" at="63,0,64,70" concept="1" />
-      <node id="8769796097522617514" at="64,70,65,79" concept="1" />
-      <node id="8769796097522407290" at="65,79,66,0" concept="8" />
-      <node id="8769796097522407291" at="66,0,67,55" concept="1" />
-      <node id="8769796097522407296" at="67,55,68,45" concept="1" />
-      <node id="8769796097522395407" at="68,45,69,0" concept="8" />
-      <node id="6445035801680991105" at="72,7,73,0" concept="8" />
-      <node id="6445035801681323999" at="75,60,76,55" concept="6" />
-      <node id="6445035801681321836" at="76,55,77,61" concept="6" />
-      <node id="8769796097526341547" at="77,61,78,0" concept="8" />
-      <node id="8769796097526449187" at="78,0,79,65" concept="6" />
-      <node id="8769796097526439935" at="79,65,80,114" concept="6" />
-      <node id="8769796097526563166" at="80,114,81,79" concept="6" />
-      <node id="8769796097526514369" at="82,53,83,52" concept="6" />
-      <node id="8769796097526499568" at="83,52,84,41" concept="6" />
-      <node id="8769796097526537161" at="84,41,85,48" concept="6" />
-      <node id="8769796097526645951" at="85,48,86,68" concept="6" />
-      <node id="8769796097526603634" at="86,68,87,114" concept="1" />
-      <node id="8769796097526825993" at="88,9,89,26" concept="1" />
-      <node id="8769796097526780203" at="89,26,90,39" concept="1" />
-      <node id="8769796097522371107" at="51,70,55,11" concept="4" />
-      <node id="8769796097522311988" at="50,42,56,9" concept="2" />
-      <node id="8769796097526475741" at="81,79,88,9" concept="3" />
-      <node id="8769796097522395406" at="57,0,70,9" concept="4" />
-      <node id="3362669900791761686" at="26,0,40,0" concept="5" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
-      <node id="3362669900791758693" at="24,205,40,7" concept="1" />
-      <node id="6445035801680996278" at="75,0,92,0" concept="5" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
-      <node id="6445035801680992078" at="73,0,92,7" concept="1" />
-      <node id="3233838129231737829" at="43,0,72,0" concept="5" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
-      <node id="3233838129231704258" at="41,0,72,7" concept="1" />
-      <node id="4293739292180706698" at="24,0,94,0" concept="10" trace="manageEvents#(LsmvDebugger/model/Counterexample;LsmvDebugger/visualization/SystemHighlighter;LsmvDebugger/panel/items/StateChanger;LsmvDebugger/panel/items/DeprecatedStateTable;LsmvDebugger/visualization/BacktraceService;)V" />
-      <scope id="8769796097522371109" at="52,67,54,18" />
-      <scope id="8769796097522311990" at="51,70,55,11" />
-      <scope id="8769796097526475743" at="82,53,87,114">
-        <var name="componentName" id="8769796097526537159" />
-        <var name="curVar" id="8769796097526645949" />
-        <var name="fbName" id="8769796097526499566" />
-        <var name="parts" id="8769796097526514367" />
-      </scope>
-      <scope id="8769796097522311988" at="50,42,56,9">
-        <var name="i" id="8769796097522311991" />
-      </scope>
-      <scope id="8769796097526475741" at="81,79,88,9">
-        <var name="related" id="8769796097526475744" />
-      </scope>
-      <scope id="8769796097522395408" at="58,45,69,0">
-        <var name="objects" id="8769796097522407266" />
-      </scope>
-      <scope id="3362669900791761687" at="26,53,38,37">
-        <var name="curState" id="3362669900791785339" />
-        <var name="objects" id="4507750851570456754" />
-        <var name="spinner" id="3362669900791769323" />
-        <var name="stateIndex" id="3362669900791904654" />
-      </scope>
-      <scope id="3362669900791761686" at="26,0,40,0">
-        <var name="e" id="3362669900791761686" />
-      </scope>
-      <scope id="6445035801680996279" at="75,60,90,39">
-        <var name="objects" id="8769796097526563164" />
-        <var name="relatedObjects" id="8769796097526439933" />
-        <var name="selectedColumn" id="6445035801681321837" />
-        <var name="selectedRow" id="6445035801681324002" />
-        <var name="var" id="8769796097526449185" />
-      </scope>
-      <scope id="6445035801680996278" at="75,0,92,0">
-        <var name="e" id="6445035801680996278" />
-      </scope>
-      <scope id="3233838129231737830" at="43,53,70,9">
-        <var name="curCondition" id="3233838129231745366" />
-        <var name="curState" id="8769796097522304584" />
-        <var name="expr" id="8769796097522165501" />
-        <var name="resultStateIndex" id="8769796097522358939" />
-        <var name="spinner" id="3233838129231740532" />
-        <var name="stateIndex" id="8769796097522300823" />
-      </scope>
-      <scope id="3233838129231737829" at="43,0,72,0">
-        <var name="e" id="3233838129231737829" />
-      </scope>
-      <scope id="4293739292180706701" at="24,205,92,7" />
-      <scope id="4293739292180706698" at="24,0,94,0">
-        <var name="backtrace" id="8769796097526400754" />
-        <var name="changer" id="3362669900791753928" />
-        <var name="counterexample" id="4507750851568522603" />
-        <var name="highlighter" id="3362669900791757157" />
-        <var name="table" id="3362669900791754870" />
-      </scope>
-      <unit id="3362669900791761686" at="25,32,40,5" name="smvDebugger.panel.EventManager$1" />
-      <unit id="6445035801680996278" at="74,35,92,5" name="smvDebugger.panel.EventManager$3" />
-      <unit id="3233838129231737829" at="42,37,72,5" name="smvDebugger.panel.EventManager$2" />
-      <unit id="4293739292180703748" at="23,0,95,0" name="smvDebugger.panel.EventManager" />
-    </file>
-  </root>
   <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/4946084908393660274">
     <file name="DebugPanelService.java">
-      <node id="4946084908402108082" at="15,130,16,89" concept="6" />
-      <node id="4946084908402108089" at="16,89,17,92" concept="6" />
-      <node id="4946084908402108096" at="17,92,18,70" concept="6" />
-      <node id="4946084908402108102" at="18,70,19,0" concept="8" />
-      <node id="4946084908402108103" at="19,0,20,102" concept="6" />
-      <node id="4946084908402108110" at="20,102,21,31" concept="1" />
-      <node id="4946084908402108115" at="21,31,22,26" concept="1" />
-      <node id="4946084908402108119" at="22,26,23,32" concept="1" />
-      <node id="4946084908402108123" at="23,32,24,0" concept="8" />
-      <node id="4946084908402108124" at="24,0,25,22" concept="7" />
-      <node id="4946084908402108079" at="15,0,27,0" concept="5" trace="run#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;LsmvDebugger/model/Counterexample;)Ljavax/swing/JPanel;" />
+      <node id="4946084908402108082" at="15,130,16,89" concept="2" />
+      <node id="4946084908402108089" at="16,89,17,92" concept="2" />
+      <node id="4946084908402108096" at="17,92,18,70" concept="2" />
+      <node id="4946084908402108102" at="18,70,19,0" concept="4" />
+      <node id="4946084908402108103" at="19,0,20,102" concept="2" />
+      <node id="4946084908402108110" at="20,102,21,36" concept="0" />
+      <node id="4946084908402108115" at="21,36,22,26" concept="0" />
+      <node id="4946084908402108119" at="22,26,23,32" concept="0" />
+      <node id="4946084908402108123" at="23,32,24,0" concept="4" />
+      <node id="4946084908402108124" at="24,0,25,22" concept="3" />
+      <node id="4946084908402108079" at="15,0,27,0" concept="1" trace="run#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;LsmvDebugger/model/Counterexample;)Ljavax/swing/JPanel;" />
       <scope id="4946084908402108081" at="15,130,25,22">
         <var name="backtraceService" id="4946084908402108083" />
         <var name="debugPanel" id="4946084908402108104" />

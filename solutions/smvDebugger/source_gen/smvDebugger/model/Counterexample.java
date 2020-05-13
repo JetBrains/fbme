@@ -4,9 +4,9 @@ package smvDebugger.model;
 
 import java.util.Objects;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -14,13 +14,13 @@ public class Counterexample {
   public static final String T_GLOBAL = "TGlobal";
 
   private final SystemItem[] items;
-  private final String[] states;
+  private final String[] steps;
   private final String[][] values;
   private final String[] timeValues;
 
-  public Counterexample(final SystemItem[] items, final String[] states, final String[][] values, final String[] timeValues) {
+  public Counterexample(final SystemItem[] items, final String[] steps, final String[][] values, final String[] timeValues) {
     this.items = items;
-    this.states = states;
+    this.steps = steps;
     this.values = values;
     this.timeValues = timeValues;
   }
@@ -29,8 +29,8 @@ public class Counterexample {
     return items;
   }
 
-  public String[] getStates() {
-    return states;
+  public String[] getSteps() {
+    return steps;
   }
 
   public String[][] getValues() {
@@ -41,8 +41,8 @@ public class Counterexample {
     return timeValues;
   }
 
-  public int size() {
-    return states.length;
+  public int length() {
+    return steps.length;
   }
 
   public SystemItem getItem(final String itemSimpleName) {
@@ -54,46 +54,59 @@ public class Counterexample {
     return null;
   }
 
-  public SystemItemValue getItemValue(final int itemIndex, final int stateIndex) {
-    return new SystemItemValue(items[itemIndex], values[itemIndex][stateIndex]);
+  public SystemItemValue getItemValue(final int itemIndex, final int stepIndex) {
+    return new SystemItemValue(items[itemIndex], values[itemIndex][stepIndex]);
   }
 
-  public SystemItemValue getItemValue(final String itemSimpleName, final int stateIndex) {
+  public SystemItemValue getItemValue(final String itemSimpleName, final int stepIndex) {
     for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
       final SystemItem item = items[itemIndex];
       if (Objects.equals(item.getSimpleName(), itemSimpleName)) {
-        return new SystemItemValue(item, values[stateIndex]);
+        return new SystemItemValue(item, values[itemIndex][stepIndex]);
       }
     }
     return null;
   }
 
-  public List<SystemItemValue> getItemValues(final List<String> itemSimpleNames, final int stateIndex) {
+  public List<SystemItemValue> getItemValues(final int stepIndex) {
+    final List<SystemItemValue> itemValues = new ArrayList<SystemItemValue>();
+    for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
+      final SystemItem item = items[itemIndex];
+      itemValues.add(new SystemItemValue(item, values[itemIndex][stepIndex]));
+    }
+    return itemValues;
+  }
+
+  public List<SystemItemValue> getItemValues(final List<String> itemSimpleNames, final int stepIndex) {
     final Set<String> itemSimpleNameSet = new HashSet<String>(itemSimpleNames);
     final List<SystemItemValue> itemValues = new ArrayList<SystemItemValue>();
     for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
       final SystemItem item = items[itemIndex];
       if (itemSimpleNameSet.contains(item.getSimpleName())) {
-        itemValues.add(new SystemItemValue(item, values[itemIndex][stateIndex]));
+        itemValues.add(new SystemItemValue(item, values[itemIndex][stepIndex]));
       }
     }
     return itemValues;
   }
 
-  public Map<SystemItem, String> getItemToValueMap(final int stateIndex) {
-    final Map<SystemItem, String> itemToValueMap = new HashMap<SystemItem, String>();
+  public Map<String, String> getItemSimpleNameToValueMap(final int stepIndex) {
+    final Map<String, String> itemToValueMap = new HashMap<String, String>();
     for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
-      itemToValueMap.put(items[itemIndex], values[itemIndex][stateIndex]);
+      itemToValueMap.put(items[itemIndex].getSimpleName(), values[itemIndex][stepIndex]);
     }
     return itemToValueMap;
   }
 
-  public int indexOf(final String state) {
-    for (int i = 0; i < states.length; i++) {
-      if (Objects.equals(states[i], state)) {
+  public int indexOf(final String step) {
+    for (int i = 0; i < steps.length; i++) {
+      if (Objects.equals(steps[i], step)) {
         return i;
       }
     }
     return -1;
+  }
+
+  public String timeOf(final int stepIndex) {
+    return timeValues[stepIndex];
   }
 }

@@ -4,35 +4,38 @@ package smvDebugger.panel.items;
 
 import javax.swing.JPanel;
 import smvDebugger.panel.mvc.DebugPanelMVCItem;
-import smvDebugger.model.Counterexample;
-import smvDebugger.visualization.BacktraceService;
-import smvDebugger.visualization.SystemHighlighter;
 import smvDebugger.panel.mvc.DebugPanelModel;
+import smvDebugger.model.Counterexample;
+import smvDebugger.visualization.SystemHighlighter;
+import smvDebugger.visualization.BacktraceService;
 import java.awt.BorderLayout;
 
 public class DebugPanel extends JPanel implements DebugPanelMVCItem {
   private final ControlPanel controlPanel;
   private final CounterexampleTable counterexampleTable;
 
-  public DebugPanel(final Counterexample counterexample, final BacktraceService backtraceService, final SystemHighlighter systemHighlighter) {
-    controlPanel = new ControlPanel();
-    counterexampleTable = new CounterexampleTable(counterexample, backtraceService, systemHighlighter);
+  private DebugPanelModel model;
+
+  public DebugPanel(final Counterexample counterexample, final SystemHighlighter systemHighlighter, final BacktraceService backtraceService) {
+    controlPanel = new ControlPanel(counterexample, systemHighlighter);
+    counterexampleTable = new CounterexampleTable(counterexample, systemHighlighter, backtraceService);
   }
 
   @Override
-  public void setModel(final DebugPanelModel model) {
-    controlPanel.setModel(model);
-    counterexampleTable.setModel(model);
+  public void setPanelModel(final DebugPanelModel model) {
+    this.model = model;
+    controlPanel.setPanelModel(model);
+    counterexampleTable.setPanelModel(model);
   }
 
   @Override
   public void initView() {
+    controlPanel.initView();
+    counterexampleTable.initView();
+
     setLayout(new BorderLayout());
     add(controlPanel, BorderLayout.WEST);
     add(counterexampleTable, BorderLayout.CENTER);
-
-    controlPanel.initView();
-    counterexampleTable.initView();
   }
 
   @Override

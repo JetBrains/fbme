@@ -15,12 +15,12 @@ public class CounterexampleParser {
   private final SystemItemParser itemParser = new SystemItemParser();
 
   public Counterexample parse(final List<String> lines) {
-    final String[] emptyHeaderAndStates = lines.get(0).replaceAll(STATE_TRASH_SYMBOLS, "").split(DATA_DELIMITER);
-    final String[] states = Arrays.copyOfRange(emptyHeaderAndStates, 1, emptyHeaderAndStates.length);
+    final String[] emptyHeaderAndSteps = lines.get(0).replaceAll(STATE_TRASH_SYMBOLS, "").split(DATA_DELIMITER);
+    final String[] steps = Arrays.copyOfRange(emptyHeaderAndSteps, 1, emptyHeaderAndSteps.length);
 
     final List<SystemItem> items = new ArrayList<SystemItem>();
     final List<String[]> values = new ArrayList<String[]>();
-    String[] timeValues = new String[states.length];
+    String[] timeValues = new String[steps.length];
     for (int i = 1; i < lines.size(); i++) {
       final String[] lineData = lines.get(i).split(DATA_DELIMITER);
       final String fullName = lineData[0];
@@ -38,6 +38,6 @@ public class CounterexampleParser {
       }
     }
 
-    return new Counterexample(ListSequence.fromList(items).toGenericArray(SystemItem.class), states, ListSequence.fromList(values).toGenericArray(String[].class), timeValues);
+    return new Counterexample(ListSequence.fromList(items).toGenericArray(SystemItem.class), steps, ListSequence.fromList(values).toGenericArray(String[].class), timeValues);
   }
 }

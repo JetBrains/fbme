@@ -191,7 +191,7 @@
     <file name="Expression.java">
       <node id="8769796097521942146" at="8,0,9,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
       <scope id="8769796097521942146" at="8,0,9,0">
-        <var name="stepValues" id="8769796097521942273" />
+        <var name="itemSimpleNameToValueMap" id="8769796097521942273" />
       </scope>
       <unit id="8769796097521565909" at="7,0,10,0" name="smvDebugger.panel.condition.Expression" />
     </file>
@@ -199,20 +199,20 @@
   <root nodeRef="r:4262e970-fd6a-4d54-829a-34800cf4d53e(smvDebugger.panel.condition)/8769796097521566208">
     <file name="Conjunction.java">
       <node id="8769796097521585834" at="8,71,9,25" concept="11" />
-      <node id="8769796097521952184" at="13,65,14,69" concept="9" />
+      <node id="8769796097521952184" at="13,79,14,97" concept="9" />
       <node id="4946084908402706228" at="18,29,19,16" concept="9" />
       <node id="8769796097521585358" at="8,0,11,0" concept="2" trace="Conjunction#(LsmvDebugger/panel/condition/Expression;LsmvDebugger/panel/condition/Expression;)V" />
       <node id="8769796097521950252" at="12,0,16,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
       <node id="4946084908402706225" at="17,0,21,0" concept="7" trace="getSymbol#()Ljava/lang/String;" />
       <scope id="8769796097521585361" at="8,71,9,25" />
-      <scope id="8769796097521950255" at="13,65,14,69" />
+      <scope id="8769796097521950255" at="13,79,14,97" />
       <scope id="4946084908402706227" at="18,29,19,16" />
       <scope id="8769796097521585358" at="8,0,11,0">
         <var name="first" id="8769796097521585407" />
         <var name="second" id="8769796097521585532" />
       </scope>
       <scope id="8769796097521950252" at="12,0,16,0">
-        <var name="stepValues" id="8769796097521950355" />
+        <var name="itemSimpleNameToValueMap" id="8769796097521950355" />
       </scope>
       <scope id="4946084908402706225" at="17,0,21,0" />
       <unit id="8769796097521566208" at="7,0,22,0" name="smvDebugger.panel.condition.Conjunction" />
@@ -250,20 +250,20 @@
   <root nodeRef="r:4262e970-fd6a-4d54-829a-34800cf4d53e(smvDebugger.panel.condition)/8769796097521586286">
     <file name="Disjunction.java">
       <node id="8769796097521587851" at="8,71,9,25" concept="11" />
-      <node id="8769796097521968767" at="13,65,14,69" concept="9" />
+      <node id="8769796097521968767" at="13,79,14,97" concept="9" />
       <node id="4946084908402707065" at="18,29,19,16" concept="9" />
       <node id="8769796097521587400" at="8,0,11,0" concept="2" trace="Disjunction#(LsmvDebugger/panel/condition/Expression;LsmvDebugger/panel/condition/Expression;)V" />
       <node id="8769796097521968765" at="12,0,16,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
       <node id="4946084908402707063" at="17,0,21,0" concept="7" trace="getSymbol#()Ljava/lang/String;" />
       <scope id="8769796097521587403" at="8,71,9,25" />
-      <scope id="8769796097521968766" at="13,65,14,69" />
+      <scope id="8769796097521968766" at="13,79,14,97" />
       <scope id="4946084908402707064" at="18,29,19,16" />
       <scope id="8769796097521587400" at="8,0,11,0">
         <var name="first" id="8769796097521587441" />
         <var name="second" id="8769796097521587527" />
       </scope>
       <scope id="8769796097521968765" at="12,0,16,0">
-        <var name="stepValues" id="8769796097521968779" />
+        <var name="itemSimpleNameToValueMap" id="8769796097521968779" />
       </scope>
       <scope id="4946084908402707063" at="17,0,21,0" />
       <unit id="8769796097521586286" at="7,0,22,0" name="smvDebugger.panel.condition.Disjunction" />
@@ -272,29 +272,29 @@
   <root nodeRef="r:4262e970-fd6a-4d54-829a-34800cf4d53e(smvDebugger.panel.condition)/8769796097521586473">
     <file name="Equality.java">
       <node id="8769796097521587006" at="9,68,10,25" concept="11" />
-      <node id="4946084908402770110" at="15,41,16,71" concept="9" />
+      <node id="4946084908402770110" at="15,41,16,99" concept="9" />
       <node id="8769796097521970786" at="17,5,18,43" concept="8" />
       <node id="8769796097521975241" at="18,43,19,45" concept="8" />
-      <node id="8769796097521969935" at="19,45,20,81" concept="9" />
+      <node id="8769796097521969935" at="19,45,20,95" concept="9" />
       <node id="4946084908402709951" at="24,29,25,16" concept="9" />
       <node id="8769796097521586768" at="9,0,12,0" concept="2" trace="Equality#(LsmvDebugger/panel/condition/Expression;LsmvDebugger/panel/condition/Expression;)V" />
-      <node id="4946084908402766952" at="14,65,17,5" concept="6" />
+      <node id="4946084908402766952" at="14,79,17,5" concept="6" />
       <node id="4946084908402709949" at="23,0,27,0" concept="7" trace="getSymbol#()Ljava/lang/String;" />
       <node id="8769796097521969933" at="13,0,22,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
       <scope id="8769796097521586771" at="9,68,10,25" />
-      <scope id="4946084908402766954" at="15,41,16,71" />
+      <scope id="4946084908402766954" at="15,41,16,99" />
       <scope id="4946084908402709950" at="24,29,25,16" />
       <scope id="8769796097521586768" at="9,0,12,0">
         <var name="first" id="8769796097521586809" />
         <var name="second" id="8769796097521587102" />
       </scope>
       <scope id="4946084908402709949" at="23,0,27,0" />
-      <scope id="8769796097521969934" at="14,65,20,81">
+      <scope id="8769796097521969934" at="14,79,20,95">
         <var name="name" id="8769796097521970784" />
         <var name="value" id="8769796097521975239" />
       </scope>
       <scope id="8769796097521969933" at="13,0,22,0">
-        <var name="stepValues" id="8769796097521969947" />
+        <var name="itemSimpleNameToValueMap" id="8769796097521969947" />
       </scope>
       <unit id="8769796097521586473" at="8,0,28,0" name="smvDebugger.panel.condition.Equality" />
     </file>
@@ -302,29 +302,29 @@
   <root nodeRef="r:4262e970-fd6a-4d54-829a-34800cf4d53e(smvDebugger.panel.condition)/8769796097521722359">
     <file name="Inequality.java">
       <node id="8769796097521722953" at="9,70,10,25" concept="11" />
-      <node id="4946084908402796924" at="15,41,16,71" concept="9" />
+      <node id="4946084908402796924" at="15,41,16,99" concept="9" />
       <node id="4946084908402796939" at="17,5,18,43" concept="8" />
       <node id="4946084908402796945" at="18,43,19,45" concept="8" />
-      <node id="4946084908402796951" at="19,45,20,84" concept="9" />
+      <node id="4946084908402796951" at="19,45,20,98" concept="9" />
       <node id="4946084908402691298" at="24,29,25,16" concept="9" />
       <node id="8769796097521722616" at="9,0,12,0" concept="2" trace="Inequality#(LsmvDebugger/panel/condition/Expression;LsmvDebugger/panel/condition/Expression;)V" />
-      <node id="4946084908402796922" at="14,65,17,5" concept="6" />
+      <node id="4946084908402796922" at="14,79,17,5" concept="6" />
       <node id="4946084908402691296" at="23,0,27,0" concept="7" trace="getSymbol#()Ljava/lang/String;" />
       <node id="4946084908402796920" at="13,0,22,0" concept="7" trace="evaluate#(Ljava/util/Map;)Z" />
       <scope id="8769796097521722619" at="9,70,10,25" />
-      <scope id="4946084908402796923" at="15,41,16,71" />
+      <scope id="4946084908402796923" at="15,41,16,99" />
       <scope id="4946084908402691297" at="24,29,25,16" />
       <scope id="8769796097521722616" at="9,0,12,0">
         <var name="firsr" id="8769796097521722650" />
         <var name="second" id="8769796097521722746" />
       </scope>
       <scope id="4946084908402691296" at="23,0,27,0" />
-      <scope id="4946084908402796921" at="14,65,20,84">
+      <scope id="4946084908402796921" at="14,79,20,98">
         <var name="name" id="4946084908402796940" />
         <var name="value" id="4946084908402796946" />
       </scope>
       <scope id="4946084908402796920" at="13,0,22,0">
-        <var name="stepValues" id="4946084908402796964" />
+        <var name="itemSimpleNameToValueMap" id="4946084908402796964" />
       </scope>
       <unit id="8769796097521722359" at="8,0,28,0" name="smvDebugger.panel.condition.Inequality" />
     </file>
@@ -334,7 +334,7 @@
       <node id="8769796097521756016" at="8,0,9,0" concept="4" trace="expression" />
       <node id="8769796097521756658" at="10,48,11,33" concept="3" />
       <node id="8769796097521761386" at="14,37,15,22" concept="9" />
-      <node id="8769796097521977484" at="19,65,20,46" concept="9" />
+      <node id="8769796097521977484" at="19,79,20,60" concept="9" />
       <node id="4946084908402808644" at="24,28,25,35" concept="9" />
       <node id="8769796097521756409" at="10,0,13,0" concept="2" trace="Negation#(LsmvDebugger/panel/condition/Expression;)V" />
       <node id="8769796097521761210" at="14,0,17,0" concept="7" trace="getExpression#()LsmvDebugger/panel/condition/Expression;" />
@@ -342,14 +342,14 @@
       <node id="4946084908402807273" at="23,0,27,0" concept="7" trace="toString#()Ljava/lang/String;" />
       <scope id="8769796097521756412" at="10,48,11,33" />
       <scope id="8769796097521761213" at="14,37,15,22" />
-      <scope id="8769796097521977483" at="19,65,20,46" />
+      <scope id="8769796097521977483" at="19,79,20,60" />
       <scope id="4946084908402807276" at="24,28,25,35" />
       <scope id="8769796097521756409" at="10,0,13,0">
         <var name="expression" id="8769796097521756455" />
       </scope>
       <scope id="8769796097521761210" at="14,0,17,0" />
       <scope id="8769796097521977482" at="18,0,22,0">
-        <var name="stepValues" id="8769796097521977496" />
+        <var name="itemSimpleNameToValueMap" id="8769796097521977496" />
       </scope>
       <scope id="4946084908402807273" at="23,0,27,0" />
       <unit id="8769796097521755548" at="7,0,28,0" name="smvDebugger.panel.condition.Negation" />
@@ -360,7 +360,7 @@
       <node id="8769796097521982477" at="8,0,9,0" concept="4" trace="content" />
       <node id="8769796097521982820" at="10,41,11,27" concept="3" />
       <node id="8769796097522099791" at="14,30,15,19" concept="9" />
-      <node id="8769796097522080725" at="19,65,20,16" concept="9" />
+      <node id="8769796097522080725" at="19,79,20,16" concept="9" />
       <node id="4946084908402718075" at="24,28,25,19" concept="9" />
       <node id="8769796097521982647" at="10,0,13,0" concept="2" trace="Argument#(Ljava/lang/String;)V" />
       <node id="8769796097522099533" at="14,0,17,0" concept="7" trace="getContent#()Ljava/lang/String;" />
@@ -368,14 +368,14 @@
       <node id="4946084908402718073" at="23,0,27,0" concept="7" trace="toString#()Ljava/lang/String;" />
       <scope id="8769796097521982650" at="10,41,11,27" />
       <scope id="8769796097522099536" at="14,30,15,19" />
-      <scope id="8769796097522080724" at="19,65,20,16" />
+      <scope id="8769796097522080724" at="19,79,20,16" />
       <scope id="4946084908402718074" at="24,28,25,19" />
       <scope id="8769796097521982647" at="10,0,13,0">
         <var name="content" id="8769796097521982685" />
       </scope>
       <scope id="8769796097522099533" at="14,0,17,0" />
       <scope id="8769796097522080723" at="18,0,22,0">
-        <var name="stepValues" id="8769796097522080737" />
+        <var name="itemSimpleNameToValueMap" id="8769796097522080737" />
       </scope>
       <scope id="4946084908402718073" at="23,0,27,0" />
       <unit id="8769796097521949825" at="7,0,28,0" name="smvDebugger.panel.condition.Argument" />

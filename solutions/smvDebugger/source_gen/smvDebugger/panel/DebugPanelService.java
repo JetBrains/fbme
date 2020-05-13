@@ -17,8 +17,8 @@ public class DebugPanelService {
     final SystemHighlighter systemHighlighter = new SystemHighlighter(project, compositeFb);
     final DebugPanelModel model = new DebugPanelModel(counterexample);
 
-    final DebugPanel debugPanel = new DebugPanel(counterexample, backtraceService, systemHighlighter);
-    debugPanel.setModel(model);
+    final DebugPanel debugPanel = new DebugPanel(counterexample, systemHighlighter, backtraceService);
+    debugPanel.setPanelModel(model);
     debugPanel.initView();
     debugPanel.initController();
 

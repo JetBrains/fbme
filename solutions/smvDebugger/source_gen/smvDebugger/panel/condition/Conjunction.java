@@ -10,8 +10,8 @@ public class Conjunction extends BinaryExpression {
   }
 
   @Override
-  public boolean evaluate(final Map<String, String> stepValues) {
-    return first.evaluate(stepValues) && second.evaluate(stepValues);
+  public boolean evaluate(final Map<String, String> itemSimpleNameToValueMap) {
+    return first.evaluate(itemSimpleNameToValueMap) && second.evaluate(itemSimpleNameToValueMap);
   }
 
   @Override

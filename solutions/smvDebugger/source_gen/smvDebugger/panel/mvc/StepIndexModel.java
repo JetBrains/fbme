@@ -5,20 +5,25 @@ package smvDebugger.panel.mvc;
 import javax.swing.event.SwingPropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 
-public class GlobalTimeModel {
-  public static final String GLOBAL_TIME = "globalTime";
+public class StepIndexModel {
+  public static final String STEP_INDEX = "stepIndex";
 
   private SwingPropertyChangeSupport propertyChangeSupport = new SwingPropertyChangeSupport(this);
-  private String time;
+  private int currentStepIndex;
+  private int previousStepIndex;
 
-  public String getTime() {
-    return time;
+  public int getCurrentStepIndex() {
+    return currentStepIndex;
   }
 
-  public void setTime(final String time) {
-    final String oldTime = this.time;
-    this.time = time;
-    propertyChangeSupport.firePropertyChange(GLOBAL_TIME, oldTime, this.time);
+  public int getPreviousStepIndex() {
+    return previousStepIndex;
+  }
+
+  public void setStepIndex(final int stepIndex) {
+    previousStepIndex = currentStepIndex;
+    currentStepIndex = stepIndex;
+    propertyChangeSupport.firePropertyChange(STEP_INDEX, previousStepIndex, currentStepIndex);
   }
 
   public void addPropertyChangeListener(final PropertyChangeListener listener) {

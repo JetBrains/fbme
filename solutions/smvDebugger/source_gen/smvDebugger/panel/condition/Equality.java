@@ -11,13 +11,13 @@ public class Equality extends AbstractEquality {
   }
 
   @Override
-  public boolean evaluate(final Map<String, String> stepValues) {
+  public boolean evaluate(final Map<String, String> itemSimpleNameToValueMap) {
     if (!((first instanceof Argument))) {
-      return first.evaluate(stepValues) == second.evaluate(stepValues);
+      return first.evaluate(itemSimpleNameToValueMap) == second.evaluate(itemSimpleNameToValueMap);
     }
     final Argument name = (Argument) first;
     final Argument value = (Argument) second;
-    return Objects.equals(stepValues.get(name.getContent()), value.getContent());
+    return Objects.equals(itemSimpleNameToValueMap.get(name.getContent()), value.getContent());
   }
 
   @Override

@@ -4,17 +4,17 @@ package smvDebugger.panel.items;
 
 import javax.swing.JLabel;
 import smvDebugger.panel.mvc.DebugPanelMVCItem;
-import smvDebugger.panel.mvc.GlobalTimeModel;
 import smvDebugger.panel.mvc.DebugPanelModel;
+import smvDebugger.panel.mvc.GlobalTimeModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 public class GlobalTime extends JLabel implements DebugPanelMVCItem {
-  private GlobalTimeModel globalTimeModel;
+  private DebugPanelModel model;
 
   @Override
-  public void setModel(final DebugPanelModel model) {
-    globalTimeModel = model.getGlobalTimeModel();
+  public void setPanelModel(final DebugPanelModel model) {
+    this.model = model;
   }
 
   @Override
@@ -23,7 +23,7 @@ public class GlobalTime extends JLabel implements DebugPanelMVCItem {
 
   @Override
   public void initController() {
-    globalTimeModel.addPropertyChangeListener(GlobalTimeModel.TIME, new PropertyChangeListener() {
+    model.getGlobalTimeModel().addPropertyChangeListener(GlobalTimeModel.GLOBAL_TIME, new PropertyChangeListener() {
       public void propertyChange(final PropertyChangeEvent event) {
         final String time = (String) event.getNewValue();
         setText(time);

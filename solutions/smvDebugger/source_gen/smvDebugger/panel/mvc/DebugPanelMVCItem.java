@@ -4,7 +4,7 @@ package smvDebugger.panel.mvc;
 
 
 public interface DebugPanelMVCItem {
-  void setModel(DebugPanelModel model);
+  void setPanelModel(DebugPanelModel model);
 
   void initView();
 
