@@ -14,93 +14,82 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1164879751025:jetbrains.mps.baseLanguage.structure.TryCatchStatement" />
   <root nodeRef="r:637cc594-151a-4299-b732-c6b4c70f1b89(smvDebugger.main)/9195503755276408676">
     <file name="SmvDebugger.java">
-      <node id="3233838129230413526" at="29,0,30,0" concept="8" trace="FB_FILE_EXTENSION" />
-      <node id="4946084908410715006" at="31,0,32,0" concept="2" trace="project" />
-      <node id="4946084908401937599" at="32,0,33,0" concept="2" trace="fb2SmvService" />
-      <node id="4946084908401943132" at="33,0,34,0" concept="2" trace="nuSmvService" />
-      <node id="4946084908401949356" at="34,0,35,0" concept="2" trace="nutracService" />
-      <node id="4946084908401971032" at="35,0,36,0" concept="2" trace="counterexampleParser" />
-      <node id="4946084908402103200" at="36,0,37,0" concept="2" trace="debugPanelService" />
-      <node id="4946084908410737458" at="38,48,39,27" concept="1" />
-      <node id="4946084908410868426" at="39,27,40,0" concept="7" />
-      <node id="4946084908410730322" at="40,0,41,69" concept="5" />
-      <node id="8891254832289784358" at="41,69,42,177" concept="5" />
-      <node id="4946084908410838652" at="42,177,43,91" concept="1" />
-      <node id="4946084908410853101" at="43,91,44,88" concept="1" />
-      <node id="4946084908410855847" at="44,88,45,91" concept="1" />
-      <node id="4946084908410855046" at="45,91,46,0" concept="7" />
-      <node id="4946084908410871012" at="46,0,47,54" concept="1" />
-      <node id="4946084908410877116" at="47,54,48,55" concept="1" />
-      <node id="4946084908401935248" at="51,71,52,56" concept="5" />
-      <node id="4946084908401935254" at="52,56,53,62" concept="5" />
-      <node id="4946084908401935259" at="53,62,54,52" concept="5" />
-      <node id="4946084908401935263" at="54,52,55,0" concept="7" />
-      <node id="4946084908401935264" at="55,0,56,108" concept="5" />
-      <node id="4946084908401935276" at="57,43,58,22" concept="1" />
-      <node id="4946084908401935278" at="58,22,59,18" concept="6" />
-      <node id="4946084908401991572" at="60,5,61,0" concept="7" />
-      <node id="4946084908401993225" at="61,0,62,96" concept="5" />
-      <node id="4946084908402073296" at="62,96,63,29" concept="5" />
-      <node id="4946084908402067914" at="64,9,65,56" concept="1" />
-      <node id="4946084908402079351" at="66,35,67,36" concept="10" />
-      <node id="4946084908402087393" at="68,5,69,76" concept="5" />
-      <node id="4946084908402093787" at="69,76,70,0" concept="7" />
-      <node id="4946084908402111442" at="70,0,71,62" concept="6" />
-      <node id="3233838129230433687" at="76,44,77,78" concept="6" />
-      <node id="9195503755276504081" at="82,44,83,94" concept="5" />
-      <node id="9195503755276506448" at="83,94,84,25" concept="6" />
-      <node id="9195503755276507591" at="87,39,88,51" concept="1" />
-      <node id="3233838129230432152" at="76,0,79,0" concept="4" trace="accept#(Ljava/io/File;)Z" />
-      <node id="9195503755276479526" at="87,0,90,0" concept="9" trace="notifySuccess#()V" />
-      <node id="4946084908401935274" at="56,108,60,5" concept="3" />
-      <node id="9195503755276479206" at="82,0,86,0" concept="9" trace="getSpecification#()Ljava/lang/String;" />
-      <node id="4946084908402070885" at="63,29,68,5" concept="11" />
-      <node id="3233838129230415033" at="74,96,79,19" concept="6" />
-      <node id="3233838129230221212" at="74,0,81,0" concept="9" trace="getFbPath#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljava/nio/file/Path;" />
-      <node id="4946084908410710676" at="38,0,50,0" concept="0" trace="SmvDebugger#(Ljetbrains/mps/project/MPSProject;)V" />
-      <node id="4946084908401935245" at="51,0,73,0" concept="4" trace="run#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljavax/swing/JComponent;" />
-      <scope id="4946084908402070887" at="64,9,65,56" />
-      <scope id="4946084908402070888" at="66,0,67,36">
-        <var name="e" id="4946084908402070890" />
+      <node id="3233838129230413526" at="26,0,27,0" concept="8" trace="FB_FILE_EXTENSION" />
+      <node id="4946084908410715006" at="28,0,29,0" concept="2" trace="project" />
+      <node id="4946084908401937599" at="29,0,30,0" concept="2" trace="fb2SmvService" />
+      <node id="4946084908401943132" at="30,0,31,0" concept="2" trace="nuSmvService" />
+      <node id="4946084908401949356" at="31,0,32,0" concept="2" trace="nutracService" />
+      <node id="4946084908401971032" at="32,0,33,0" concept="2" trace="counterexampleParser" />
+      <node id="4946084908402103200" at="33,0,34,0" concept="2" trace="debugPanelService" />
+      <node id="4946084908410737458" at="35,48,36,27" concept="1" />
+      <node id="4946084908410868426" at="36,27,37,0" concept="7" />
+      <node id="4946084908410730322" at="37,0,38,69" concept="5" />
+      <node id="8891254832289784358" at="38,69,39,177" concept="5" />
+      <node id="4946084908410838652" at="39,177,40,91" concept="1" />
+      <node id="4946084908410853101" at="40,91,41,88" concept="1" />
+      <node id="4946084908410855847" at="41,88,42,91" concept="1" />
+      <node id="4946084908410855046" at="42,91,43,0" concept="7" />
+      <node id="4946084908410871012" at="43,0,44,54" concept="1" />
+      <node id="4946084908410877116" at="44,54,45,55" concept="1" />
+      <node id="4946084908401935254" at="49,9,50,64" concept="5" />
+      <node id="4946084908401935259" at="50,64,51,54" concept="5" />
+      <node id="4946084908401935263" at="51,54,52,0" concept="7" />
+      <node id="4946084908401935264" at="52,0,53,109" concept="5" />
+      <node id="4946084908413251333" at="53,109,54,28" concept="1" />
+      <node id="4946084908413294082" at="54,28,55,0" concept="7" />
+      <node id="4946084908401935276" at="56,44,57,24" concept="1" />
+      <node id="4946084908401935278" at="57,24,58,20" concept="6" />
+      <node id="4946084908401991572" at="59,7,60,0" concept="7" />
+      <node id="4946084908401993225" at="60,0,61,97" concept="5" />
+      <node id="4946084908413269208" at="61,97,62,48" concept="1" />
+      <node id="4946084908413300396" at="62,48,63,0" concept="7" />
+      <node id="4946084908402073296" at="63,0,64,75" concept="5" />
+      <node id="4946084908413283394" at="64,75,65,42" concept="1" />
+      <node id="4946084908413305233" at="65,42,66,0" concept="7" />
+      <node id="4946084908402087393" at="66,0,67,78" concept="5" />
+      <node id="4946084908402111442" at="67,78,68,64" concept="6" />
+      <node id="4946084908413340849" at="69,35,70,36" concept="10" />
+      <node id="9195503755276504081" at="74,44,75,94" concept="5" />
+      <node id="9195503755276506448" at="75,94,76,25" concept="6" />
+      <node id="9195503755276507591" at="79,39,80,51" concept="1" />
+      <node id="9195503755276479526" at="79,0,82,0" concept="9" trace="notifySuccess#()V" />
+      <node id="4946084908401935274" at="55,0,59,7" concept="3" />
+      <node id="9195503755276479206" at="74,0,78,0" concept="9" trace="getSpecification#()Ljava/lang/String;" />
+      <node id="4946084908410710676" at="35,0,47,0" concept="0" trace="SmvDebugger#(Ljetbrains/mps/project/MPSProject;)V" />
+      <node id="4946084908413288047" at="48,90,71,5" concept="11" />
+      <node id="4946084908401935245" at="48,0,73,0" concept="4" trace="run#(Ljava/nio/file/Path;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)Ljavax/swing/JComponent;" />
+      <scope id="4946084908413288050" at="69,0,70,36">
+        <var name="e" id="4946084908413288052" />
       </scope>
-      <scope id="4946084908402070894" at="66,35,67,36" />
-      <scope id="3233838129230432153" at="76,44,77,78" />
-      <scope id="9195503755276479529" at="87,39,88,51" />
-      <scope id="4946084908401935275" at="57,43,59,18" />
-      <scope id="9195503755276479209" at="82,44,84,25">
+      <scope id="4946084908413288056" at="69,35,70,36" />
+      <scope id="9195503755276479529" at="79,39,80,51" />
+      <scope id="4946084908401935275" at="56,44,58,20" />
+      <scope id="9195503755276479209" at="74,44,76,25">
         <var name="specification" id="9195503755276504079" />
       </scope>
-      <scope id="3233838129230432152" at="76,0,79,0">
-        <var name="it" id="3233838129230432152" />
-      </scope>
-      <scope id="9195503755276479526" at="87,0,90,0" />
-      <scope id="9195503755276479206" at="82,0,86,0" />
-      <scope id="3233838129230221215" at="74,96,79,19" />
-      <scope id="3233838129230221212" at="74,0,81,0">
-        <var name="fb" id="3233838129230222081" />
-        <var name="project" id="3233838129230221509" />
-      </scope>
-      <scope id="4946084908410710679" at="38,48,48,55">
+      <scope id="9195503755276479526" at="79,0,82,0" />
+      <scope id="9195503755276479206" at="74,0,78,0" />
+      <scope id="4946084908410710679" at="35,48,45,55">
         <var name="ideaProject" id="4946084908410730320" />
         <var name="smvBinaryPaths" id="8891254832289784359" />
       </scope>
-      <scope id="4946084908410710676" at="38,0,50,0">
+      <scope id="4946084908410710676" at="35,0,47,0">
         <var name="project" id="4946084908410725467" />
       </scope>
-      <scope id="4946084908401935247" at="51,71,71,62">
+      <scope id="4946084908413288049" at="49,9,68,64">
         <var name="counterexample" id="4946084908402087391" />
         <var name="csvCounterexamplePath" id="4946084908401993223" />
-        <var name="fbPath" id="4946084908401935249" />
         <var name="lines" id="4946084908402073294" />
-        <var name="rawcCounterexamplePath" id="4946084908401935265" />
+        <var name="rawCounterexamplePath" id="4946084908401935265" />
         <var name="smvPath" id="4946084908401935255" />
         <var name="specification" id="4946084908401935260" />
       </scope>
-      <scope id="4946084908401935245" at="51,0,73,0">
+      <scope id="4946084908401935247" at="48,90,71,5" />
+      <scope id="4946084908401935245" at="48,0,73,0">
         <var name="compositeFb" id="4946084908401935293" />
+        <var name="fbPath" id="4946084908412937121" />
       </scope>
-      <unit id="3233838129230432152" at="75,50,79,5" name="smvDebugger.main.SmvDebugger$1" />
-      <unit id="9195503755276408676" at="28,0,91,0" name="smvDebugger.main.SmvDebugger" />
+      <unit id="9195503755276408676" at="25,0,83,0" name="smvDebugger.main.SmvDebugger" />
     </file>
   </root>
 </debug-info>

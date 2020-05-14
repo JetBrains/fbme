@@ -81,82 +81,92 @@
   </root>
   <root nodeRef="r:1c3e83f1-dc29-416c-9a91-7ca7507c87bb(smvDebugger.plugin)/2643555699627303987">
     <file name="Debug_SMV_Action.java">
-      <node id="2643555699627303987" at="25,0,26,0" concept="11" trace="ICON" />
-      <node id="2643555699627303987" at="27,29,28,33" concept="12" />
-      <node id="2643555699627303987" at="28,33,29,35" concept="2" />
-      <node id="2643555699627303987" at="29,35,30,52" concept="2" />
-      <node id="2643555699627303987" at="33,32,34,16" concept="8" />
-      <node id="3954777668056808485" at="37,87,38,119" concept="8" />
-      <node id="2643555699627303987" at="41,89,42,85" concept="2" />
-      <node id="2643555699627303987" at="46,53,47,19" concept="8" />
-      <node id="2643555699627328921" at="49,5,50,56" concept="7" />
-      <node id="2643555699627328922" at="51,22,52,21" concept="8" />
-      <node id="8450759285023099175" at="55,5,56,66" concept="7" />
-      <node id="8450759285023099176" at="57,22,58,21" concept="8" />
-      <node id="2643555699627328318" at="61,5,62,57" concept="7" />
-      <node id="2643555699627328320" at="63,25,64,21" concept="8" />
-      <node id="2643555699627303987" at="66,5,67,16" concept="8" />
-      <node id="2643555699627341419" at="70,96,71,139" concept="7" />
-      <node id="2506006471050896560" at="71,139,72,70" concept="2" />
-      <node id="4596896328935220290" at="72,70,73,124" concept="7" />
-      <node id="3954777668057822926" at="73,124,74,114" concept="2" />
-      <node id="2643555699627353108" at="74,114,75,28" concept="2" />
-      <node id="2643555699627303987" at="79,0,80,0" concept="11" trace="CompositeFBTypeDeclaration$Wy" />
-      <node id="2643555699627303987" at="45,95,48,5" concept="5" />
-      <node id="2643555699627328922" at="50,56,53,7" concept="5" />
-      <node id="8450759285023099176" at="56,66,59,7" concept="5" />
-      <node id="2643555699627328320" at="62,57,65,7" concept="5" />
-      <node id="2643555699627303987" at="32,0,36,0" concept="6" trace="isDumbAware#()Z" />
-      <node id="2643555699627303987" at="36,0,40,0" concept="6" trace="isApplicable#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)Z" />
-      <node id="2643555699627303987" at="40,0,44,0" concept="6" trace="doUpdate#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)V" />
-      <node id="2643555699627303987" at="27,0,32,0" concept="1" trace="Debug_SMV_Action#()V" />
-      <node id="2643555699627328921" at="48,5,54,5" concept="0" />
-      <node id="8450759285023099175" at="54,5,60,5" concept="0" />
-      <node id="2643555699627328318" at="60,5,66,5" concept="0" />
-      <node id="2643555699627303987" at="69,0,77,0" concept="6" trace="doExecute#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)V" />
-      <node id="2643555699627303987" at="44,0,69,0" concept="6" trace="collectActionData#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)Z" />
-      <scope id="2643555699627303987" at="33,32,34,16" />
-      <scope id="3954777668056804349" at="37,87,38,119" />
-      <scope id="2643555699627303987" at="41,89,42,85" />
-      <scope id="2643555699627303987" at="46,53,47,19" />
-      <scope id="2643555699627328922" at="51,22,52,21" />
-      <scope id="8450759285023099176" at="57,22,58,21" />
-      <scope id="2643555699627328320" at="63,25,64,21" />
-      <scope id="2643555699627303987" at="27,29,30,52" />
-      <scope id="2643555699627303987" at="32,0,36,0" />
-      <scope id="2643555699627303987" at="36,0,40,0">
+      <node id="2643555699627303987" at="27,0,28,0" concept="11" trace="ICON" />
+      <node id="2643555699627303987" at="29,29,30,33" concept="12" />
+      <node id="2643555699627303987" at="30,33,31,35" concept="2" />
+      <node id="2643555699627303987" at="31,35,32,52" concept="2" />
+      <node id="2643555699627303987" at="35,32,36,16" concept="8" />
+      <node id="3954777668056808485" at="39,87,40,119" concept="8" />
+      <node id="2643555699627303987" at="43,89,44,85" concept="2" />
+      <node id="2643555699627303987" at="48,53,49,19" concept="8" />
+      <node id="2643555699627328921" at="51,5,52,56" concept="7" />
+      <node id="2643555699627328922" at="53,22,54,21" concept="8" />
+      <node id="8450759285023099175" at="57,5,58,66" concept="7" />
+      <node id="8450759285023099176" at="59,22,60,21" concept="8" />
+      <node id="2643555699627328318" at="63,5,64,57" concept="7" />
+      <node id="2643555699627328320" at="65,25,66,21" concept="8" />
+      <node id="2643555699627303987" at="68,5,69,16" concept="8" />
+      <node id="2643555699627341419" at="72,96,73,145" concept="7" />
+      <node id="2506006471050896560" at="73,145,74,70" concept="2" />
+      <node id="4946084908412968645" at="74,70,75,0" concept="10" />
+      <node id="4946084908413180181" at="75,0,76,113" concept="7" />
+      <node id="4946084908413151128" at="76,113,77,43" concept="7" />
+      <node id="4946084908413217645" at="77,43,78,31" concept="2" />
+      <node id="4946084908413127142" at="78,31,79,0" concept="10" />
+      <node id="4946084908412972344" at="79,0,80,135" concept="7" />
+      <node id="4946084908413037271" at="80,135,81,154" concept="7" />
+      <node id="3954777668057822926" at="81,154,82,41" concept="2" />
+      <node id="4946084908413236240" at="82,41,83,0" concept="10" />
+      <node id="2643555699627353108" at="83,0,84,28" concept="2" />
+      <node id="2643555699627303987" at="88,0,89,0" concept="11" trace="CompositeFBTypeDeclaration$Wy" />
+      <node id="2643555699627303987" at="47,95,50,5" concept="5" />
+      <node id="2643555699627328922" at="52,56,55,7" concept="5" />
+      <node id="8450759285023099176" at="58,66,61,7" concept="5" />
+      <node id="2643555699627328320" at="64,57,67,7" concept="5" />
+      <node id="2643555699627303987" at="34,0,38,0" concept="6" trace="isDumbAware#()Z" />
+      <node id="2643555699627303987" at="38,0,42,0" concept="6" trace="isApplicable#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)Z" />
+      <node id="2643555699627303987" at="42,0,46,0" concept="6" trace="doUpdate#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)V" />
+      <node id="2643555699627303987" at="29,0,34,0" concept="1" trace="Debug_SMV_Action#()V" />
+      <node id="2643555699627328921" at="50,5,56,5" concept="0" />
+      <node id="8450759285023099175" at="56,5,62,5" concept="0" />
+      <node id="2643555699627328318" at="62,5,68,5" concept="0" />
+      <node id="2643555699627303987" at="71,0,86,0" concept="6" trace="doExecute#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)V" />
+      <node id="2643555699627303987" at="46,0,71,0" concept="6" trace="collectActionData#(Lcom/intellij/openapi/actionSystem/AnActionEvent;Ljava/util/Map;)Z" />
+      <scope id="2643555699627303987" at="35,32,36,16" />
+      <scope id="3954777668056804349" at="39,87,40,119" />
+      <scope id="2643555699627303987" at="43,89,44,85" />
+      <scope id="2643555699627303987" at="48,53,49,19" />
+      <scope id="2643555699627328922" at="53,22,54,21" />
+      <scope id="8450759285023099176" at="59,22,60,21" />
+      <scope id="2643555699627328320" at="65,25,66,21" />
+      <scope id="2643555699627303987" at="29,29,32,52" />
+      <scope id="2643555699627303987" at="34,0,38,0" />
+      <scope id="2643555699627303987" at="38,0,42,0">
         <var name="_params" id="2643555699627303987" />
         <var name="event" id="2643555699627303987" />
       </scope>
-      <scope id="2643555699627303987" at="40,0,44,0">
+      <scope id="2643555699627303987" at="42,0,46,0">
         <var name="_params" id="2643555699627303987" />
         <var name="event" id="2643555699627303987" />
       </scope>
-      <scope id="2643555699627328921" at="49,5,53,7">
+      <scope id="2643555699627328921" at="51,5,55,7">
         <var name="p" id="2643555699627328921" />
       </scope>
-      <scope id="8450759285023099175" at="55,5,59,7">
+      <scope id="8450759285023099175" at="57,5,61,7">
         <var name="p" id="8450759285023099175" />
       </scope>
-      <scope id="2643555699627328318" at="61,5,65,7">
+      <scope id="2643555699627328318" at="63,5,67,7">
         <var name="node" id="2643555699627328318" />
       </scope>
-      <scope id="2643555699627303987" at="27,0,32,0" />
-      <scope id="2643555699627303987" at="70,96,75,28">
+      <scope id="2643555699627303987" at="29,0,34,0" />
+      <scope id="2643555699627303987" at="72,96,84,28">
+        <var name="compositeFb" id="4946084908413037269" />
         <var name="debugger" id="2643555699627341422" />
-        <var name="repository" id="4596896328935220291" />
+        <var name="fbPath" id="4946084908413151126" />
+        <var name="platformRepository" id="4946084908412972342" />
+        <var name="rawFbPath" id="4946084908413180179" />
       </scope>
-      <scope id="2643555699627303987" at="69,0,77,0">
+      <scope id="2643555699627303987" at="71,0,86,0">
         <var name="_params" id="2643555699627303987" />
         <var name="event" id="2643555699627303987" />
       </scope>
-      <scope id="2643555699627303987" at="45,95,67,16" />
-      <scope id="2643555699627303987" at="44,0,69,0">
+      <scope id="2643555699627303987" at="47,95,69,16" />
+      <scope id="2643555699627303987" at="46,0,71,0">
         <var name="_params" id="2643555699627303987" />
         <var name="event" id="2643555699627303987" />
       </scope>
-      <unit id="2643555699627303987" at="78,0,81,0" name="smvDebugger.plugin.Debug_SMV_Action$CONCEPTS" />
-      <unit id="2643555699627303987" at="24,0,82,0" name="smvDebugger.plugin.Debug_SMV_Action" />
+      <unit id="2643555699627303987" at="87,0,90,0" name="smvDebugger.plugin.Debug_SMV_Action$CONCEPTS" />
+      <unit id="2643555699627303987" at="26,0,91,0" name="smvDebugger.plugin.Debug_SMV_Action" />
     </file>
     <file name="SmvDebugger_ApplicationPlugin.java">
       <node id="2643555699627303987" at="22,30,23,38" concept="2" />
@@ -164,32 +174,39 @@
   </root>
   <root nodeRef="r:1c3e83f1-dc29-416c-9a91-7ca7507c87bb(smvDebugger.plugin)/2643555699627306562">
     <file name="Debug_SMV_Tool.java">
-      <node id="2643555699627306562" at="15,0,16,0" concept="11" trace="ICON" />
-      <node id="2506006471050884261" at="16,0,17,0" concept="3" trace="project" />
-      <node id="3954777668057008458" at="17,0,18,0" concept="3" trace="compositeFB" />
-      <node id="2643555699627306562" at="18,42,19,76" concept="12" />
-      <node id="2506006471050886107" at="21,57,22,42" concept="2" />
-      <node id="3954777668057010060" at="24,81,25,50" concept="2" />
-      <node id="3233838129230251251" at="27,36,28,93" concept="8" />
-      <node id="2643555699627306562" at="18,0,21,0" concept="1" trace="Debug_SMV_Tool#(Lcom/intellij/openapi/project/Project;)V" />
-      <node id="8450759285023149471" at="21,0,24,0" concept="6" trace="setProject#(Ljetbrains/mps/project/MPSProject;)V" />
-      <node id="3954777668056970970" at="24,0,27,0" concept="6" trace="setCompositeFB#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
-      <node id="2643555699627306562" at="27,0,30,0" concept="6" trace="getComponent#()Ljavax/swing/JComponent;" />
-      <scope id="2643555699627306562" at="18,42,19,76" />
-      <scope id="8450759285023149473" at="21,57,22,42" />
-      <scope id="3954777668056970972" at="24,81,25,50" />
-      <scope id="2643555699627306564" at="27,36,28,93" />
-      <scope id="2643555699627306562" at="18,0,21,0">
+      <node id="2643555699627306562" at="16,0,17,0" concept="11" trace="ICON" />
+      <node id="2506006471050884261" at="17,0,18,0" concept="3" trace="project" />
+      <node id="4946084908412954534" at="18,0,19,0" concept="3" trace="fbPath" />
+      <node id="3954777668057008458" at="19,0,20,0" concept="3" trace="compositeFb" />
+      <node id="2643555699627306562" at="20,42,21,76" concept="12" />
+      <node id="2506006471050886107" at="23,57,24,42" concept="2" />
+      <node id="4946084908412957354" at="26,49,27,40" concept="2" />
+      <node id="3954777668057010060" at="29,81,30,50" concept="2" />
+      <node id="3233838129230251251" at="32,36,33,121" concept="8" />
+      <node id="2643555699627306562" at="20,0,23,0" concept="1" trace="Debug_SMV_Tool#(Lcom/intellij/openapi/project/Project;)V" />
+      <node id="8450759285023149471" at="23,0,26,0" concept="6" trace="setProject#(Ljetbrains/mps/project/MPSProject;)V" />
+      <node id="4946084908412955742" at="26,0,29,0" concept="6" trace="setFbPath#(Ljava/nio/file/Path;)V" />
+      <node id="3954777668056970970" at="29,0,32,0" concept="6" trace="setCompositeFb#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
+      <node id="2643555699627306562" at="32,0,35,0" concept="6" trace="getComponent#()Ljavax/swing/JComponent;" />
+      <scope id="2643555699627306562" at="20,42,21,76" />
+      <scope id="8450759285023149473" at="23,57,24,42" />
+      <scope id="4946084908412955744" at="26,49,27,40" />
+      <scope id="3954777668056970972" at="29,81,30,50" />
+      <scope id="2643555699627306564" at="32,36,33,121" />
+      <scope id="2643555699627306562" at="20,0,23,0">
         <var name="project" id="2643555699627306562" />
       </scope>
-      <scope id="8450759285023149471" at="21,0,24,0">
+      <scope id="8450759285023149471" at="23,0,26,0">
         <var name="project" id="8450759285023150748" />
       </scope>
-      <scope id="3954777668056970970" at="24,0,27,0">
-        <var name="compositeFB" id="3954777668056971403" />
+      <scope id="4946084908412955742" at="26,0,29,0">
+        <var name="fbPath" id="4946084908412956401" />
       </scope>
-      <scope id="2643555699627306562" at="27,0,30,0" />
-      <unit id="2643555699627306562" at="14,0,31,0" name="smvDebugger.plugin.Debug_SMV_Tool" />
+      <scope id="3954777668056970970" at="29,0,32,0">
+        <var name="compositeFb" id="3954777668056971403" />
+      </scope>
+      <scope id="2643555699627306562" at="32,0,35,0" />
+      <unit id="2643555699627306562" at="15,0,36,0" name="smvDebugger.plugin.Debug_SMV_Tool" />
     </file>
     <file name="SmvDebugger_ProjectPlugin.java">
       <node id="2643555699627306562" at="17,76,18,73" concept="2" />

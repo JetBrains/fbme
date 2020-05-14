@@ -15,9 +15,11 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import jetbrains.mps.project.MPSProject;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.plugins.projectplugins.ProjectPluginManager;
-import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
+import org.fbme.ide.platform.persistence.IEC61499Persistence;
+import java.nio.file.Path;
+import org.fbme.ide.iec61499.repository.PlatformRepository;
 import org.fbme.ide.platform.PlatformRepositoryProvider;
-import org.fbme.ide.iec61499.adapter.interfacepart.CompositeFBTypeByNode;
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 
@@ -68,10 +70,17 @@ public class Debug_SMV_Action extends BaseAction {
   }
   @Override
   public void doExecute(@NotNull final AnActionEvent event, final Map<String, Object> _params) {
-    Debug_SMV_Tool debugger = event.getData(CommonDataKeys.PROJECT).getComponent(ProjectPluginManager.class).getTool(Debug_SMV_Tool.class);
+    final Debug_SMV_Tool debugger = event.getData(CommonDataKeys.PROJECT).getComponent(ProjectPluginManager.class).getTool(Debug_SMV_Tool.class);
     debugger.setProject(event.getData(MPSCommonDataKeys.MPS_PROJECT));
-    PlatformElementsOwner repository = PlatformRepositoryProvider.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT));
-    debugger.setCompositeFB(new CompositeFBTypeByNode((SNode) event.getData(MPSCommonDataKeys.NODE), repository));
+
+    final String rawFbPath = IEC61499Persistence.getPathToElement((SNode) event.getData(MPSCommonDataKeys.NODE));
+    final Path fbPath = Path.of(rawFbPath);
+    debugger.setFbPath(fbPath);
+
+    final PlatformRepository platformRepository = PlatformRepositoryProvider.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT));
+    final CompositeFBTypeDeclaration compositeFb = platformRepository.getAdapter(event.getData(MPSCommonDataKeys.NODE), CompositeFBTypeDeclaration.class);
+    debugger.setCompositeFb(compositeFb);
+
     debugger.openTool(true);
   }
 

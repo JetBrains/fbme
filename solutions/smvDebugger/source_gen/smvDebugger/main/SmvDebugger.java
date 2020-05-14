@@ -16,13 +16,10 @@ import java.nio.file.Path;
 import javax.swing.JComponent;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import java.util.Optional;
-import java.util.List;
 import java.nio.file.Files;
-import java.io.IOException;
+import java.util.List;
 import smvDebugger.model.Counterexample;
-import java.io.FileFilter;
-import java.io.File;
-import java.util.Objects;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class SmvDebugger {
@@ -48,35 +45,30 @@ public class SmvDebugger {
     debugPanelService = new DebugPanelService(project);
   }
 
-  public JComponent run(final CompositeFBTypeDeclaration compositeFb) {
-    final Path fbPath = getFbPath(project, compositeFb);
-    final Path smvPath = fb2SmvService.convertFbToSmv(fbPath);
-    final String specification = getSpecification();
-
-    final Optional<Path> rawcCounterexamplePath = nuSmvService.getRawCounterexample(smvPath, specification);
-    if (rawcCounterexamplePath.isEmpty()) {
-      notifySuccess();
-      return null;
-    }
-
-    final Path csvCounterexamplePath = nutracService.convertToCsv(rawcCounterexamplePath.get());
-    final List<String> lines;
+  public JComponent run(final Path fbPath, final CompositeFBTypeDeclaration compositeFb) {
     try {
-      lines = Files.readAllLines(csvCounterexamplePath);
+      final Path smvPath = fb2SmvService.convertFbToSmv(fbPath);
+      final String specification = getSpecification();
+
+      final Optional<Path> rawCounterexamplePath = nuSmvService.getRawCounterexample(smvPath, specification);
+      Files.delete(smvPath);
+
+      if (rawCounterexamplePath.isEmpty()) {
+        notifySuccess();
+        return null;
+      }
+
+      final Path csvCounterexamplePath = nutracService.convertToCsv(rawCounterexamplePath.get());
+      Files.delete(rawCounterexamplePath.get());
+
+      final List<String> lines = Files.readAllLines(csvCounterexamplePath);
+      Files.delete(csvCounterexamplePath);
+
+      final Counterexample counterexample = counterexampleParser.parse(lines);
+      return debugPanelService.run(compositeFb, counterexample);
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
-    final Counterexample counterexample = counterexampleParser.parse(lines);
-
-    return debugPanelService.run(compositeFb, counterexample);
-  }
-
-  private static Path getFbPath(final MPSProject project, final CompositeFBTypeDeclaration fb) {
-    return project.getProjectFile().listFiles(new FileFilter() {
-      public boolean accept(final File it) {
-        return Objects.equals(it.getName(), fb.getName() + FB_FILE_EXTENSION);
-      }
-    })[0].toPath();
   }
 
   private static String getSpecification() {

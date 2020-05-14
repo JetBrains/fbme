@@ -16,7 +16,7 @@
   <imports>
     <import index="fhh" ref="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(mps.lang.iec61499.structure)" />
-    <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(mps.iec61499.model.interfacepart)" />
+    <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(org.fbme.ide.iec61499.adapter.interfacepart)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.plugin)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
@@ -29,6 +29,7 @@
     <import index="tsn" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui.components.panels(MPS.IDEA/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" />
+    <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" implicit="true" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" implicit="true" />
@@ -157,6 +158,7 @@
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
+      <concept id="1068580123157" name="jetbrains.mps.baseLanguage.structure.Statement" flags="nn" index="3clFbH" />
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
       </concept>
@@ -197,6 +199,9 @@
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
+      <concept id="1116615150612" name="jetbrains.mps.baseLanguage.structure.ClassifierClassExpression" flags="nn" index="3VsKOn">
+        <reference id="1116615189566" name="classifier" index="3VsUkX" />
+      </concept>
     </language>
     <language id="443f4c36-fcf5-4eb6-9500-8d06ed259e3e" name="jetbrains.mps.baseLanguage.classifiers">
       <concept id="1213999088275" name="jetbrains.mps.baseLanguage.classifiers.structure.DefaultClassifierFieldDeclaration" flags="ig" index="2BZ0e9" />
@@ -247,6 +252,7 @@
         <node concept="3cpWs8" id="2iJMYskfNpF" role="3cqZAp">
           <node concept="3cpWsn" id="2iJMYskfNpI" role="3cpWs9">
             <property role="TrG5h" value="debugger" />
+            <property role="3TUv4t" value="true" />
             <node concept="1xUVSX" id="2iJMYskfNpD" role="1tU5fm">
               <ref role="1xYkEM" node="2iJMYskfET2" resolve="Debug SMV" />
             </node>
@@ -279,19 +285,99 @@
             </node>
           </node>
         </node>
-        <node concept="3cpWs8" id="3ZbtdGjuMh2" role="3cqZAp">
-          <node concept="3cpWsn" id="3ZbtdGjuMh3" role="3cpWs9">
-            <property role="TrG5h" value="repository" />
-            <node concept="3uibUv" id="3ZbtdGjuMh4" role="1tU5fm">
-              <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3clFbH" id="4i$1wjaS1V5" role="3cqZAp" />
+        <node concept="3cpWs8" id="4i$1wjaSP$l" role="3cqZAp">
+          <node concept="3cpWsn" id="4i$1wjaSP$j" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="rawFbPath" />
+            <node concept="17QB3L" id="4i$1wjaSR0s" role="1tU5fm" />
+            <node concept="2YIFZM" id="4i$1wjaR7TR" role="33vP2m">
+              <ref role="37wK5l" to="51vd:13uTNv4mi$Q" resolve="getPathToElement" />
+              <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
+              <node concept="10QFUN" id="4i$1wjaRk7h" role="37wK5m">
+                <node concept="3Tqbb2" id="4i$1wjaRk7i" role="10QFUM">
+                  <ref role="ehGHo" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
+                </node>
+                <node concept="2OqwBi" id="4i$1wjaRk7j" role="10QFUP">
+                  <node concept="2WthIp" id="4i$1wjaRk7k" role="2Oq$k0" />
+                  <node concept="3gHZIF" id="4i$1wjaRk7l" role="2OqNvi">
+                    <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
+                  </node>
+                </node>
+              </node>
             </node>
-            <node concept="2YIFZM" id="3ZbtdGjuMzZ" role="33vP2m">
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4i$1wjaSIuo" role="3cqZAp">
+          <node concept="3cpWsn" id="4i$1wjaSIum" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="fbPath" />
+            <node concept="3uibUv" id="4i$1wjaSK17" role="1tU5fm">
+              <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+            </node>
+            <node concept="2YIFZM" id="4i$1wjaSNZ2" role="33vP2m">
+              <ref role="37wK5l" to="eoo2:~Path.of(java.lang.String,java.lang.String...)" resolve="of" />
+              <ref role="1Pybhc" to="eoo2:~Path" resolve="Path" />
+              <node concept="37vLTw" id="4i$1wjaSWVa" role="37wK5m">
+                <ref role="3cqZAo" node="4i$1wjaSP$j" resolve="rawFbPath" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="4i$1wjaSYHH" role="3cqZAp">
+          <node concept="2OqwBi" id="4i$1wjaSZ3X" role="3clFbG">
+            <node concept="37vLTw" id="4i$1wjaSYHF" role="2Oq$k0">
+              <ref role="3cqZAo" node="2iJMYskfNpI" resolve="debugger" />
+            </node>
+            <node concept="2XshWL" id="4i$1wjaSZNr" role="2OqNvi">
+              <ref role="2WH_rO" node="4i$1wjaRYLu" resolve="setFbPath" />
+              <node concept="37vLTw" id="4i$1wjaT1h7" role="2XxRq1">
+                <ref role="3cqZAo" node="4i$1wjaSIum" resolve="fbPath" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="4i$1wjaSCBA" role="3cqZAp" />
+        <node concept="3cpWs8" id="4i$1wjaS2OS" role="3cqZAp">
+          <node concept="3cpWsn" id="4i$1wjaS2OQ" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="platformRepository" />
+            <node concept="3uibUv" id="4i$1wjaS6E9" role="1tU5fm">
+              <ref role="3uigEE" to="1u7h:1IuIrLUoxLf" resolve="PlatformRepository" />
+            </node>
+            <node concept="2YIFZM" id="4i$1wjaSaxw" role="33vP2m">
               <ref role="37wK5l" to="v900:6YcNwH3$i5x" resolve="getInstance" />
               <ref role="1Pybhc" to="v900:6YcNwH3$7Vx" resolve="PlatformRepositoryProvider" />
-              <node concept="2OqwBi" id="3ZbtdGjuM$H" role="37wK5m">
-                <node concept="2WthIp" id="3ZbtdGjuM$K" role="2Oq$k0" />
-                <node concept="1DTwFV" id="3ZbtdGjuM$M" role="2OqNvi">
+              <node concept="2OqwBi" id="4i$1wjaSbRK" role="37wK5m">
+                <node concept="2WthIp" id="4i$1wjaSb5i" role="2Oq$k0" />
+                <node concept="1DTwFV" id="4i$1wjaSde7" role="2OqNvi">
                   <ref role="2WH_rO" node="7l78cIM8G$B" resolve="mpsProject" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4i$1wjaSiFn" role="3cqZAp">
+          <node concept="3cpWsn" id="4i$1wjaSiFl" role="3cpWs9">
+            <property role="3TUv4t" value="true" />
+            <property role="TrG5h" value="compositeFb" />
+            <node concept="3uibUv" id="4i$1wjaSlkR" role="1tU5fm">
+              <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
+            </node>
+            <node concept="2OqwBi" id="4i$1wjaSqc1" role="33vP2m">
+              <node concept="37vLTw" id="4i$1wjaSpy8" role="2Oq$k0">
+                <ref role="3cqZAo" node="4i$1wjaS2OQ" resolve="platformRepository" />
+              </node>
+              <node concept="liA8E" id="4i$1wjaSrsq" role="2OqNvi">
+                <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+                <node concept="2OqwBi" id="4i$1wjaSsNO" role="37wK5m">
+                  <node concept="2WthIp" id="4i$1wjaSs0q" role="2Oq$k0" />
+                  <node concept="3gHZIF" id="4i$1wjaSt3Z" role="2OqNvi">
+                    <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
+                  </node>
+                </node>
+                <node concept="3VsKOn" id="4i$1wjaSxAy" role="37wK5m">
+                  <ref role="3VsUkX" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
                 </node>
               </node>
             </node>
@@ -303,29 +389,14 @@
               <ref role="3cqZAo" node="2iJMYskfNpI" resolve="debugger" />
             </node>
             <node concept="2XshWL" id="3ryclnQf0$5" role="2OqNvi">
-              <ref role="2WH_rO" node="3ryclnQbJrq" resolve="setCompositeFB" />
-              <node concept="2ShNRf" id="3ryclnQf0In" role="2XxRq1">
-                <node concept="1pGfFk" id="3ryclnQf1Cd" role="2ShVmc">
-                  <ref role="37wK5l" to="go3h:1R4IoyQA3I2" resolve="CompositeFBTypeByNode" />
-                  <node concept="10QFUN" id="3ryclnQf1Y5" role="37wK5m">
-                    <node concept="3Tqbb2" id="3ryclnQf2oq" role="10QFUM">
-                      <ref role="ehGHo" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
-                    </node>
-                    <node concept="2OqwBi" id="3ryclnQf3eQ" role="10QFUP">
-                      <node concept="2WthIp" id="3ryclnQf2Yy" role="2Oq$k0" />
-                      <node concept="3gHZIF" id="3ryclnQf3NC" role="2OqNvi">
-                        <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
-                      </node>
-                    </node>
-                  </node>
-                  <node concept="37vLTw" id="3ZbtdGjuMFJ" role="37wK5m">
-                    <ref role="3cqZAo" node="3ZbtdGjuMh3" resolve="repository" />
-                  </node>
-                </node>
+              <ref role="2WH_rO" node="3ryclnQbJrq" resolve="setCompositeFb" />
+              <node concept="37vLTw" id="4i$1wjaT53n" role="2XxRq1">
+                <ref role="3cqZAo" node="4i$1wjaSiFl" resolve="compositeFb" />
               </node>
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="4i$1wjaT3gg" role="3cqZAp" />
         <node concept="3clFbF" id="2iJMYskfQgk" role="3cqZAp">
           <node concept="2OqwBi" id="2iJMYskfQpu" role="3clFbG">
             <node concept="37vLTw" id="2iJMYskfQgi" role="2Oq$k0">
@@ -386,6 +457,13 @@
         <ref role="3uigEE" to="z1c3:~MPSProject" resolve="MPSProject" />
       </node>
     </node>
+    <node concept="2BZ0e9" id="4i$1wjaRYuA" role="2XNbBz">
+      <property role="TrG5h" value="fbPath" />
+      <node concept="3Tm6S6" id="4i$1wjaRYuB" role="1B3o_S" />
+      <node concept="3uibUv" id="4i$1wjaRYBK" role="1tU5fm">
+        <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+      </node>
+    </node>
     <node concept="2XrIbr" id="7l78cIM8SQv" role="2XNbBy">
       <property role="TrG5h" value="setProject" />
       <node concept="3cqZAl" id="7l78cIM8T1N" role="3clF45" />
@@ -412,26 +490,52 @@
         </node>
       </node>
     </node>
+    <node concept="2XrIbr" id="4i$1wjaRYLu" role="2XNbBy">
+      <property role="TrG5h" value="setFbPath" />
+      <node concept="3cqZAl" id="4i$1wjaRYRq" role="3clF45" />
+      <node concept="3clFbS" id="4i$1wjaRYLw" role="3clF47">
+        <node concept="3clFbF" id="4i$1wjaRZaE" role="3cqZAp">
+          <node concept="37vLTI" id="4i$1wjaRZIN" role="3clFbG">
+            <node concept="37vLTw" id="4i$1wjaRZJf" role="37vLTx">
+              <ref role="3cqZAo" node="4i$1wjaRYVL" resolve="fbPath" />
+            </node>
+            <node concept="2OqwBi" id="4i$1wjaRZgv" role="37vLTJ">
+              <node concept="2WthIp" id="4i$1wjaRZaD" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="4i$1wjaRZo5" role="2OqNvi">
+                <ref role="2WH_rO" node="4i$1wjaRYuA" resolve="fbPath" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="37vLTG" id="4i$1wjaRYVL" role="3clF46">
+        <property role="3TUv4t" value="true" />
+        <property role="TrG5h" value="fbPath" />
+        <node concept="3uibUv" id="4i$1wjaRZ37" role="1tU5fm">
+          <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
+        </node>
+      </node>
+    </node>
     <node concept="2BZ0e9" id="3ryclnQbS_a" role="2XNbBz">
-      <property role="TrG5h" value="compositeFB" />
+      <property role="TrG5h" value="compositeFb" />
       <node concept="3Tm6S6" id="3ryclnQbS_b" role="1B3o_S" />
       <node concept="3uibUv" id="3ZbtdGjsThf" role="1tU5fm">
         <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
       </node>
     </node>
     <node concept="2XrIbr" id="3ryclnQbJrq" role="2XNbBy">
-      <property role="TrG5h" value="setCompositeFB" />
+      <property role="TrG5h" value="setCompositeFb" />
       <node concept="3cqZAl" id="3ryclnQbJuN" role="3clF45" />
       <node concept="3clFbS" id="3ryclnQbJrs" role="3clF47">
         <node concept="3clFbF" id="3ryclnQbSYc" role="3cqZAp">
           <node concept="37vLTI" id="3ryclnQbTiy" role="3clFbG">
             <node concept="37vLTw" id="3ryclnQbTri" role="37vLTx">
-              <ref role="3cqZAo" node="3ryclnQbJyb" resolve="compositeFB" />
+              <ref role="3cqZAo" node="3ryclnQbJyb" resolve="compositeFb" />
             </node>
             <node concept="2OqwBi" id="3ryclnQbSZU" role="37vLTJ">
               <node concept="2WthIp" id="3ryclnQbSYb" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="3ryclnQbT3E" role="2OqNvi">
-                <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFB" />
+              <node concept="2BZ7hE" id="4i$1wjaRYm2" role="2OqNvi">
+                <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFb" />
               </node>
             </node>
           </node>
@@ -439,7 +543,7 @@
       </node>
       <node concept="37vLTG" id="3ryclnQbJyb" role="3clF46">
         <property role="3TUv4t" value="true" />
-        <property role="TrG5h" value="compositeFB" />
+        <property role="TrG5h" value="compositeFb" />
         <node concept="3uibUv" id="3ZbtdGjsT73" role="1tU5fm">
           <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
         </node>
@@ -453,8 +557,14 @@
               <ref role="37wK5l" to="hvsg:4i$1wjadWed" resolve="run" />
               <node concept="2OqwBi" id="4i$1wjaskPD" role="37wK5m">
                 <node concept="2WthIp" id="4i$1wjaskFO" role="2Oq$k0" />
-                <node concept="2BZ7hE" id="4i$1wjasl3J" role="2OqNvi">
-                  <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFB" />
+                <node concept="2BZ7hE" id="4i$1wjaS0jH" role="2OqNvi">
+                  <ref role="2WH_rO" node="4i$1wjaRYuA" resolve="fbPath" />
+                </node>
+              </node>
+              <node concept="2OqwBi" id="4i$1wjaS0u_" role="37wK5m">
+                <node concept="2WthIp" id="4i$1wjaS0m4" role="2Oq$k0" />
+                <node concept="2BZ7hE" id="4i$1wjaS0xe" role="2OqNvi">
+                  <ref role="2WH_rO" node="3ryclnQbS_a" resolve="compositeFb" />
                 </node>
               </node>
             </node>
