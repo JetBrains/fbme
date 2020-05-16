@@ -10,7 +10,7 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import javax.swing.JComponent;
-import smvDebugger.main.SmvDebugger;
+import smvDebugger.execution.SmvDebugger;
 
 public class Debug_SMV_Tool extends GeneratedTool {
   private static final Icon ICON = null;

@@ -16,7 +16,6 @@ import jetbrains.mps.project.MPSProject;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.plugins.projectplugins.ProjectPluginManager;
 import org.fbme.ide.platform.persistence.IEC61499Persistence;
-import javax.swing.JOptionPane;
 import java.nio.file.Path;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
 import org.fbme.ide.platform.PlatformRepositoryProvider;
@@ -75,7 +74,6 @@ public class Debug_SMV_Action extends BaseAction {
     debugger.setProject(event.getData(MPSCommonDataKeys.MPS_PROJECT));
 
     String rawFbPath = IEC61499Persistence.getPathToElement(((SNode) event.getData(MPSCommonDataKeys.NODE)));
-    JOptionPane.showMessageDialog(null, rawFbPath);
     final Path fbPath = Path.of(rawFbPath);
     debugger.setFbPath(fbPath);
 
