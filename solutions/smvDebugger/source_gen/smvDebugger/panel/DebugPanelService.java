@@ -10,6 +10,8 @@ import smvDebugger.visualization.BacktraceService;
 import smvDebugger.visualization.SystemHighlighter;
 import smvDebugger.panel.mvc.DebugPanelModel;
 import smvDebugger.panel.items.DebugPanel;
+import java.util.List;
+import smvDebugger.model.SystemItemValue;
 
 public class DebugPanelService {
   private final MPSProject project;
@@ -27,6 +29,11 @@ public class DebugPanelService {
     debugPanel.setPanelModel(model);
     debugPanel.initView();
     debugPanel.initController();
+    model.getStepIndexModel().setStepIndex(0);
+    model.getGlobalTimeModel().setTime(counterexample.timeOf(0));
+
+    final List<SystemItemValue> itemValues = counterexample.getItemValues(0);
+    systemHighlighter.highlight(itemValues);
 
     return debugPanel;
   }

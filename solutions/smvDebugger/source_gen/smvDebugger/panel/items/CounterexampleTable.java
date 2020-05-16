@@ -13,23 +13,20 @@ import smvDebugger.visualization.SystemHighlighter;
 import smvDebugger.visualization.BacktraceService;
 import smvDebugger.panel.mvc.DebugPanelModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableColumn;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Dimension;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.util.Objects;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import smvDebugger.model.SystemItemValue;
 import java.util.List;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.JViewport;
+import smvDebugger.panel.mvc.StepIndexModel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
   private static final Color DEFAULT_CELL_COLOR = Color.WHITE;
-  private static final Color HIGHLIGHT_CELL_COLOR = Color.GREEN;
+  private static final Color HIGHLIGHT_CELL_COLOR = new Color(128, 189, 128);
+  private static final Color CURRENT_COLUMN_COLOR = new Color(236, 236, 236);
   private static final int COLUMN_WIDTH = 80;
   private static final int FIRST_COLUMN_WIDTH = 360;
   private static final int SCROLL_PANE_WIDTH = 780;
@@ -58,15 +55,10 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
   public void setPanelModel(final DebugPanelModel model) {
     this.model = model;
 
-    valueTable.setModel(model.getDataModel());
+    valueTable.setModel(model.getValueModel());
     valueTable.setSelectionModel(model.getDataSelectionModel());
 
-    itemTable.setModel(valueTable.getModel());
-    itemTable.setSelectionModel(valueTable.getSelectionModel());
-    final TableColumnModel columnModel = valueTable.getColumnModel();
-    final TableColumn column = columnModel.getColumn(0);
-    columnModel.removeColumn(column);
-    itemTable.getColumnModel().addColumn(column);
+    itemTable.setModel(model.getItemModel());
 
     horizontalScrollBar.setModel(model.getDataScrollModel());
   }
@@ -82,14 +74,14 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
     valueTable.setCellSelectionEnabled(true);
     valueTable.setDefaultCellColor(DEFAULT_CELL_COLOR);
     valueTable.setHighlightCellColor(HIGHLIGHT_CELL_COLOR);
+    valueTable.setCurrentColumnColor(CURRENT_COLUMN_COLOR);
 
     itemTable.setAutoCreateColumnsFromModel(false);
-    itemTable.getColumnModel().getColumn(0).setPreferredWidth(FIRST_COLUMN_WIDTH);
     itemTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    itemTable.getColumnModel().getColumn(0).setPreferredWidth(FIRST_COLUMN_WIDTH);
+
     itemTable.setPreferredScrollableViewportSize(itemTable.getPreferredSize());
-    itemTable.setRowSelectionAllowed(false);
-    itemTable.setColumnSelectionAllowed(false);
-    itemTable.setFocusable(false);
+    itemTable.setCellSelectionEnabled(true);
 
     scrollPane.setViewportView(valueTable);
     scrollPane.setHorizontalScrollBar(horizontalScrollBar);
@@ -104,16 +96,6 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
 
   @Override
   public void initController() {
-    valueTable.addPropertyChangeListener(new PropertyChangeListener() {
-      public void propertyChange(final PropertyChangeEvent event) {
-        if (Objects.equals(event.getPropertyName(), MODEL_NAME)) {
-          itemTable.setModel(valueTable.getModel());
-        }
-        if (Objects.equals(event.getPropertyName(), SELECTION_MODEL_NAME)) {
-          itemTable.setSelectionModel(valueTable.getSelectionModel());
-        }
-      }
-    });
     valueTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
       public void valueChanged(final ListSelectionEvent event) {
         final int itemIndex = valueTable.getSelectedRow();
@@ -125,11 +107,11 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
         systemHighlighter.highlight(relatedItems);
       }
     });
-
-    scrollPane.getRowHeader().addChangeListener(new ChangeListener() {
-      public void stateChanged(final ChangeEvent event) {
-        final JViewport viewport = (JViewport) event.getSource();
-        scrollPane.getVerticalScrollBar().setValue(viewport.getViewPosition().y);
+    model.getStepIndexModel().addPropertyChangeListener(StepIndexModel.STEP_INDEX, new PropertyChangeListener() {
+      public void propertyChange(final PropertyChangeEvent event) {
+        final int stepIndex = (int) event.getNewValue();
+        valueTable.setCurrentColumnIndex(stepIndex);
+        valueTable.repaint();
       }
     });
   }

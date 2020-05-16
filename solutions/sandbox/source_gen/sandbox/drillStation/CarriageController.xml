@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="CarriageController">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="BLOCK">
+        <With Var="BLK" />
+      </Event>
+      <Event Name="INIT">
+        <With Var="LOAD_P" />
+        <With Var="WP" />
+      </Event>
+      <Event Name="CHGI">
+        <With Var="LOAD_P" />
+        <With Var="WP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CHGO">
+        <With Var="INSIDE" />
+        <With Var="OUTSIDE" />
+      </Event>
+      <Event Name="READY">
+        <With Var="INSIDE" />
+        <With Var="OUTSIDE" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LOAD_P" Type="BOOL" />
+      <VarDeclaration Name="WP" Type="BOOL" />
+      <VarDeclaration Name="BLK" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="INSIDE" Type="BOOL" />
+      <VarDeclaration Name="OUTSIDE" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars></InternalVars>
+    <ECC>
+      <ECState Name="START" x="0.0" y="0.0"></ECState>
+      <ECState Name="WAIT" x="0.0" y="0.0">
+        <ECAction Algorithm="OUT_0" Output="CHGO" />
+      </ECState>
+      <ECState Name="BRING" x="0.0" y="0.0">
+        <ECAction Algorithm="IN_1" Output="CHGO" />
+      </ECState>
+      <ECState Name="DRILLED" x="0.0" y="0.0">
+        <ECAction Algorithm="IN_0" Output="READY" />
+      </ECState>
+      <ECState Name="REMOVE" x="0.0" y="0.0">
+        <ECAction Algorithm="OUT_1" Output="CHGO" />
+      </ECState>
+      <ECTransition Source="START" Destination="WAIT" Condition="INIT" x="0.0" y="0.0" />
+      <ECTransition Source="WAIT" Destination="BRING" Condition="[NOT BLK]" x="0.0" y="0.0" />
+      <ECTransition Source="BRING" Destination="DRILLED" Condition="[WP]" x="0.0" y="0.0" />
+      <ECTransition Source="DRILLED" Destination="REMOVE" Condition="[NOT BLK]" x="0.0" y="0.0" />
+      <ECTransition Source="REMOVE" Destination="WAIT" Condition="[LOAD_P]" x="0.0" y="0.0" />
+    </ECC>
+    <Algorithm Name="IN_0">
+      <ST Text="INSIDE := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="IN_1">
+      <ST Text="INSIDE := TRUE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="OUT_0">
+      <ST Text="OUTSIDE := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="OUT_1">
+      <ST Text="OUTSIDE := TRUE;&#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -18,9 +18,11 @@ import smvDebugger.panel.condition.Expression;
 import smvDebugger.panel.condition.ConditionParseException;
 import javax.swing.JOptionPane;
 import java.util.Map;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
 
 public class ConditionNavigator extends HorizontalSpinner implements DebugPanelMVCItem {
-  private static final int SPINNER_WIDTH = 200;
+  private static final int SPINNER_WIDTH = 300;
   private static final int SPINNER_HEIGHT = 25;
 
   private final Counterexample counterexample;
@@ -42,6 +44,7 @@ public class ConditionNavigator extends HorizontalSpinner implements DebugPanelM
   @Override
   public void initView() {
     setPreferredSize(new Dimension(SPINNER_WIDTH, SPINNER_HEIGHT));
+    getConditionField().setEditable(true);
   }
 
   @Override
@@ -83,7 +86,7 @@ public class ConditionNavigator extends HorizontalSpinner implements DebugPanelM
   }
 
   private void processAction(final Predicate<Integer> stopPredicate, final Function<Integer, Integer> stepFunction) {
-    final String condition = (String) getValue();
+    final String condition = (String) getConditionField().getText();
     final Expression expression;
     try {
       expression = conditionParser.parse(condition);
@@ -91,12 +94,23 @@ public class ConditionNavigator extends HorizontalSpinner implements DebugPanelM
       JOptionPane.showMessageDialog(null, e.getMessage());
       return;
     }
-    for (int stepIndex = model.getStepIndexModel().getCurrentStepIndex(); stopPredicate.test(stepIndex); stepIndex = stepFunction.apply(stepIndex)) {
+    final int currentStepIndex = model.getStepIndexModel().getCurrentStepIndex();
+    for (int stepIndex = stepFunction.apply(currentStepIndex); stopPredicate.test(stepIndex); stepIndex = stepFunction.apply(stepIndex)) {
       final Map<String, String> itemSimpleNameToValueMap = counterexample.getItemSimpleNameToValueMap(stepIndex);
       if (expression.evaluate(itemSimpleNameToValueMap)) {
         model.getStepIndexModel().setStepIndex(stepIndex);
         return;
       }
     }
+  }
+
+  private JFormattedTextField getConditionField() {
+    for (final Component component : getComponents()) {
+      if (component instanceof JSpinner.DefaultEditor) {
+        final JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) component;
+        return editor.getTextField();
+      }
+    }
+    return null;
   }
 }

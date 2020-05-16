@@ -2,6 +2,7 @@
 <debug-info version="2">
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1082485599095:jetbrains.mps.baseLanguage.structure.BlockStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1082113931046:jetbrains.mps.baseLanguage.structure.ContinueStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
@@ -14,71 +15,74 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1163670490218:jetbrains.mps.baseLanguage.structure.SwitchStatement" />
   <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/3362669900790767814">
     <file name="SystemHighlighter.java">
-      <node id="3362669900790951694" at="31,0,32,0" concept="10" trace="HIGHLIGHT_COLOR" />
-      <node id="4507750851568639707" at="33,0,34,0" concept="3" trace="project" />
-      <node id="4507750851568839213" at="34,0,35,0" concept="3" trace="compositeFb" />
-      <node id="4507750851568641694" at="36,100,37,27" concept="2" />
-      <node id="4507750851568844152" at="37,27,38,35" concept="2" />
-      <node id="3362669900790803684" at="43,25,44,102" concept="7" />
-      <node id="3362669900790803690" at="44,102,45,105" concept="7" />
-      <node id="3362669900790803697" at="45,105,46,83" concept="7" />
-      <node id="3362669900790803704" at="46,83,47,103" concept="7" />
-      <node id="4946084908403219211" at="51,11,52,33" concept="2" />
-      <node id="4507750851569205759" at="52,33,53,0" concept="9" />
-      <node id="4507750851568866651" at="53,0,54,85" concept="7" />
-      <node id="3362669900790803720" at="54,85,55,89" concept="7" />
-      <node id="4507750851570210497" at="55,89,56,0" concept="9" />
-      <node id="4946084908403384889" at="57,60,58,54" concept="7" />
-      <node id="3362669900790803742" at="60,64,61,68" concept="8" />
-      <node id="6445035801680430948" at="65,55,66,123" concept="2" />
-      <node id="3362669900790803757" at="67,20,68,86" concept="7" />
-      <node id="3362669900790803772" at="70,75,71,90" concept="8" />
-      <node id="4507750851569038637" at="74,33,75,115" concept="2" />
-      <node id="3362669900790803717" at="49,0,51,0" concept="6" trace="run#()V" />
-      <node id="3362669900790803735" at="60,0,63,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
-      <node id="3362669900790803770" at="70,0,73,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/PortPath;)Z" />
-      <node id="4507750851569333796" at="73,17,76,15" concept="5" />
+      <node id="3362669900790951694" at="31,0,32,0" concept="11" trace="HIGHLIGHT_COLOR" />
+      <node id="4507750851568639707" at="33,0,34,0" concept="4" trace="project" />
+      <node id="4507750851568839213" at="34,0,35,0" concept="4" trace="compositeFb" />
+      <node id="4507750851568641694" at="36,100,37,27" concept="3" />
+      <node id="4507750851568844152" at="37,27,38,35" concept="3" />
+      <node id="3362669900790803684" at="43,25,44,102" concept="8" />
+      <node id="3362669900790803690" at="44,102,45,105" concept="8" />
+      <node id="3362669900790803697" at="45,105,46,83" concept="8" />
+      <node id="3362669900790803704" at="46,83,47,103" concept="8" />
+      <node id="4946084908403219211" at="51,11,52,33" concept="3" />
+      <node id="4507750851569205759" at="52,33,53,0" concept="10" />
+      <node id="4507750851568866651" at="53,0,54,85" concept="8" />
+      <node id="3362669900790803720" at="54,85,55,89" concept="8" />
+      <node id="4507750851570210497" at="55,89,56,0" concept="10" />
+      <node id="4946084908403384889" at="57,60,58,54" concept="8" />
+      <node id="1566995493932931134" at="59,46,60,21" concept="2" />
+      <node id="3362669900790803742" at="63,64,64,72" concept="9" />
+      <node id="6445035801680430948" at="68,55,69,123" concept="3" />
+      <node id="3362669900790803757" at="70,20,71,86" concept="8" />
+      <node id="3362669900790803772" at="73,75,74,90" concept="9" />
+      <node id="4507750851569038637" at="77,33,78,115" concept="3" />
+      <node id="3362669900790803717" at="49,0,51,0" concept="7" trace="run#()V" />
+      <node id="1566995493932900325" at="58,54,61,11" concept="6" />
+      <node id="3362669900790803735" at="63,0,66,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="3362669900790803770" at="73,0,76,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/PortPath;)Z" />
+      <node id="4507750851569333796" at="76,17,79,15" concept="6" />
       <node id="3362669900790803641" at="36,0,40,0" concept="1" trace="SystemHighlighter#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
-      <node id="4507750851568964203" at="47,103,51,11" concept="7" />
-      <node id="3362669900790803729" at="58,54,63,13" concept="7" />
-      <node id="4507750851568992410" at="68,86,73,17" concept="7" />
-      <node id="6445035801680428141" at="67,18,77,13" concept="0" />
-      <node id="6445035801680420397" at="64,34,77,13" concept="5" />
-      <node id="4507750851569393266" at="63,13,78,11" concept="5" />
-      <node id="4507750851569804470" at="56,0,79,9" concept="4" />
-      <node id="4507750851568624016" at="43,0,81,0" concept="6" trace="run#()V" />
-      <node id="4507750851568620544" at="41,65,81,7" concept="2" />
-      <node id="3362669900790944512" at="41,0,83,0" concept="6" trace="highlight#(Ljava/util/List;)V" />
+      <node id="4507750851568964203" at="47,103,51,11" concept="8" />
+      <node id="3362669900790803729" at="61,11,66,13" concept="8" />
+      <node id="4507750851568992410" at="71,86,76,17" concept="8" />
+      <node id="6445035801680428141" at="70,18,80,13" concept="0" />
+      <node id="6445035801680420397" at="67,34,80,13" concept="6" />
+      <node id="4507750851569393266" at="66,13,81,11" concept="6" />
+      <node id="4507750851569804470" at="56,0,82,9" concept="5" />
+      <node id="4507750851568624016" at="43,0,84,0" concept="7" trace="run#()V" />
+      <node id="4507750851568620544" at="41,65,84,7" concept="3" />
+      <node id="3362669900790944512" at="41,0,86,0" concept="7" trace="highlight#(Ljava/util/List;)V" />
       <scope id="3362669900790803718" at="49,29,49,29" />
-      <scope id="3362669900790803736" at="60,64,61,68" />
-      <scope id="6445035801680420399" at="65,55,66,123" />
-      <scope id="3362669900790803771" at="70,75,71,90" />
-      <scope id="4507750851569333798" at="74,33,75,115" />
+      <scope id="1566995493932900327" at="59,46,60,21" />
+      <scope id="3362669900790803736" at="63,64,64,72" />
+      <scope id="6445035801680420399" at="68,55,69,123" />
+      <scope id="3362669900790803771" at="73,75,74,90" />
+      <scope id="4507750851569333798" at="77,33,78,115" />
       <scope id="3362669900790803644" at="36,100,38,35" />
       <scope id="3362669900790803717" at="49,0,51,0" />
-      <scope id="3362669900790803735" at="60,0,63,0">
+      <scope id="3362669900790803735" at="63,0,66,0">
         <var name="it" id="3362669900790803735" />
       </scope>
-      <scope id="3362669900790803770" at="70,0,73,0">
+      <scope id="3362669900790803770" at="73,0,76,0">
         <var name="it" id="3362669900790803770" />
       </scope>
       <scope id="3362669900790803641" at="36,0,40,0">
         <var name="compositeFb" id="3362669900790826167" />
         <var name="project" id="3362669900790806465" />
       </scope>
-      <scope id="6445035801680428142" at="67,20,76,15">
+      <scope id="6445035801680428142" at="70,20,79,15">
         <var name="port" id="4507750851568992408" />
         <var name="ports" id="3362669900790803758" />
       </scope>
-      <scope id="4507750851569393268" at="64,34,77,13" />
-      <scope id="4507750851569804472" at="57,60,78,11">
+      <scope id="4507750851569393268" at="67,34,80,13" />
+      <scope id="4507750851569804472" at="57,60,81,11">
         <var name="component" id="3362669900790803730" />
         <var name="item" id="4946084908403384887" />
       </scope>
-      <scope id="4507750851569804470" at="56,0,79,9">
+      <scope id="4507750851569804470" at="56,0,82,9">
         <var name="itemValue" id="4507750851569804473" />
       </scope>
-      <scope id="4507750851568624017" at="43,25,79,9">
+      <scope id="4507750851568624017" at="43,25,82,9">
         <var name="components" id="3362669900790803721" />
         <var name="editor" id="3362669900790803691" />
         <var name="editorComponent" id="3362669900790803698" />
@@ -87,123 +91,123 @@
         <var name="networkInspector" id="4507750851568964201" />
         <var name="networkInstance" id="3362669900790803685" />
       </scope>
-      <scope id="4507750851568624016" at="43,0,81,0" />
-      <scope id="3362669900790944515" at="41,65,81,7" />
-      <scope id="3362669900790944512" at="41,0,83,0">
+      <scope id="4507750851568624016" at="43,0,84,0" />
+      <scope id="3362669900790944515" at="41,65,84,7" />
+      <scope id="3362669900790944512" at="41,0,86,0">
         <var name="itemValues" id="3362669900790945872" />
       </scope>
       <unit id="3362669900790803717" at="48,106,51,9" name="smvDebugger.visualization.SystemHighlighter$1$1" />
-      <unit id="3362669900790803735" at="59,101,63,11" name="smvDebugger.visualization.SystemHighlighter$1$2" />
-      <unit id="3362669900790803770" at="69,100,73,15" name="smvDebugger.visualization.SystemHighlighter$1$3" />
-      <unit id="4507750851568624016" at="42,52,81,5" name="smvDebugger.visualization.SystemHighlighter$1" />
-      <unit id="3362669900790767814" at="30,0,84,0" name="smvDebugger.visualization.SystemHighlighter" />
+      <unit id="3362669900790803735" at="62,101,66,11" name="smvDebugger.visualization.SystemHighlighter$1$2" />
+      <unit id="3362669900790803770" at="72,100,76,15" name="smvDebugger.visualization.SystemHighlighter$1$3" />
+      <unit id="4507750851568624016" at="42,52,84,5" name="smvDebugger.visualization.SystemHighlighter$1" />
+      <unit id="3362669900790767814" at="30,0,87,0" name="smvDebugger.visualization.SystemHighlighter" />
     </file>
   </root>
   <root nodeRef="r:dad30b8e-b9b3-4f8e-9c3f-f1962e49c61c(smvDebugger.visualization)/8769796097522682339">
     <file name="BacktraceService.java">
-      <node id="8769796097522684561" at="38,0,39,0" concept="3" trace="graph" />
-      <node id="8769796097522685664" at="39,0,40,0" concept="3" trace="visited" />
-      <node id="8769796097522913303" at="40,0,41,0" concept="3" trace="project" />
-      <node id="8769796097522754026" at="41,0,42,0" concept="3" trace="compositeFb" />
-      <node id="8769796097522963849" at="43,99,44,27" concept="2" />
-      <node id="8769796097522755500" at="44,27,45,35" concept="2" />
-      <node id="8769796097522728125" at="48,82,49,18" concept="2" />
-      <node id="8769796097522732366" at="49,18,50,20" concept="2" />
-      <node id="8769796097522746631" at="50,20,51,0" concept="9" />
-      <node id="4946084908403816143" at="51,0,52,48" concept="7" />
-      <node id="8769796097523328236" at="54,22,55,61" concept="2" />
-      <node id="8769796097523269129" at="56,21,57,60" concept="2" />
-      <node id="4946084908403708242" at="58,15,59,68" concept="2" />
-      <node id="8769796097523330868" at="60,5,61,0" concept="9" />
-      <node id="8769796097523432970" at="61,0,62,69" concept="7" />
-      <node id="8769796097523609621" at="62,69,63,50" concept="2" />
-      <node id="8769796097523813220" at="65,49,66,43" concept="2" />
-      <node id="8769796097523653656" at="68,7,69,0" concept="9" />
-      <node id="8769796097523634984" at="69,0,70,57" concept="8" />
-      <node id="8769796097525186719" at="75,25,76,62" concept="7" />
-      <node id="8769796097525186725" at="76,62,77,82" concept="7" />
-      <node id="8769796097525186744" at="79,62,80,59" concept="8" />
-      <node id="8769796097525399488" at="84,62,85,59" concept="8" />
-      <node id="8769796097525508270" at="88,40,89,66" concept="7" />
-      <node id="8769796097525891816" at="91,58,92,120" concept="7" />
-      <node id="8769796097526046785" at="92,120,93,51" concept="8" />
-      <node id="8769796097526107530" at="96,57,97,102" concept="7" />
-      <node id="8769796097526202770" at="97,102,98,123" concept="7" />
-      <node id="8769796097526107554" at="98,123,99,63" concept="7" />
-      <node id="8769796097526100691" at="99,63,100,0" concept="9" />
-      <node id="8769796097526090123" at="101,50,102,38" concept="2" />
-      <node id="8769796097526090128" at="102,38,103,67" concept="2" />
-      <node id="8769796097526090136" at="103,67,104,65" concept="2" />
-      <node id="8769796097526090148" at="104,65,105,50" concept="2" />
-      <node id="8769796097526992228" at="116,25,117,62" concept="7" />
-      <node id="8769796097526992234" at="117,62,118,82" concept="7" />
-      <node id="8769796097526992253" at="120,62,121,59" concept="8" />
-      <node id="8769796097527180089" at="128,63,129,91" concept="7" />
-      <node id="8769796097527240849" at="129,91,130,67" concept="7" />
-      <node id="8769796097527660164" at="136,75,137,86" concept="8" />
-      <node id="8769796097527378784" at="139,53,140,67" concept="7" />
-      <node id="8769796097527337439" at="140,67,141,78" concept="7" />
-      <node id="8769796097527337450" at="142,64,143,52" concept="2" />
-      <node id="8769796097527337455" at="143,52,144,81" concept="2" />
-      <node id="8769796097527337463" at="144,81,145,81" concept="2" />
-      <node id="8769796097527337475" at="145,81,146,68" concept="2" />
-      <node id="8769796097527576710" at="150,25,151,0" concept="9" />
-      <node id="8769796097522790039" at="165,25,166,62" concept="7" />
-      <node id="8769796097522790047" at="166,62,167,82" concept="7" />
-      <node id="8769796097522790070" at="169,62,170,59" concept="8" />
-      <node id="8769796097524211334" at="172,42,173,82" concept="7" />
-      <node id="8769796097524431975" at="175,65,176,96" concept="8" />
-      <node id="8769796097524505417" at="179,64,180,78" concept="7" />
-      <node id="8769796097524845848" at="180,78,181,105" concept="7" />
-      <node id="8769796097524578381" at="181,105,182,105" concept="7" />
-      <node id="8769796097524858615" at="182,105,183,61" concept="7" />
-      <node id="8769796097524664739" at="184,48,185,36" concept="2" />
-      <node id="8769796097524687544" at="185,36,186,65" concept="2" />
-      <node id="8769796097524792169" at="186,65,187,63" concept="2" />
-      <node id="8769796097524837143" at="187,63,188,48" concept="2" />
-      <node id="8769796097523796835" at="65,0,68,0" concept="6" trace="accept#(Ljava/util/Set;)V" />
-      <node id="8769796097525186742" at="79,0,82,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
-      <node id="8769796097525258706" at="84,0,87,0" concept="6" trace="test#(Lorg/fbme/lib/iec61499/declarations/EventDeclaration;)Z" />
-      <node id="8769796097526992251" at="120,0,123,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
-      <node id="8769796097527641119" at="136,0,139,0" concept="6" trace="test#(Lorg/fbme/lib/iec61499/ecc/StateAction;)Z" />
-      <node id="8769796097522790068" at="169,0,172,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
-      <node id="8769796097524362832" at="175,0,178,0" concept="6" trace="test#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)Z" />
+      <node id="8769796097522684561" at="38,0,39,0" concept="4" trace="graph" />
+      <node id="8769796097522685664" at="39,0,40,0" concept="4" trace="visited" />
+      <node id="8769796097522913303" at="40,0,41,0" concept="4" trace="project" />
+      <node id="8769796097522754026" at="41,0,42,0" concept="4" trace="compositeFb" />
+      <node id="8769796097522963849" at="43,99,44,27" concept="3" />
+      <node id="8769796097522755500" at="44,27,45,35" concept="3" />
+      <node id="8769796097522728125" at="48,82,49,18" concept="3" />
+      <node id="8769796097522732366" at="49,18,50,20" concept="3" />
+      <node id="8769796097522746631" at="50,20,51,0" concept="10" />
+      <node id="4946084908403816143" at="51,0,52,48" concept="8" />
+      <node id="8769796097523328236" at="54,22,55,61" concept="3" />
+      <node id="8769796097523269129" at="56,21,57,60" concept="3" />
+      <node id="4946084908403708242" at="58,15,59,68" concept="3" />
+      <node id="8769796097523330868" at="60,5,61,0" concept="10" />
+      <node id="8769796097523432970" at="61,0,62,69" concept="8" />
+      <node id="8769796097523609621" at="62,69,63,50" concept="3" />
+      <node id="8769796097523813220" at="65,49,66,43" concept="3" />
+      <node id="1566995493938286388" at="68,7,69,0" concept="10" />
+      <node id="8769796097523634984" at="69,0,70,57" concept="9" />
+      <node id="8769796097525186719" at="75,25,76,62" concept="8" />
+      <node id="8769796097525186725" at="76,62,77,82" concept="8" />
+      <node id="8769796097525186744" at="79,62,80,59" concept="9" />
+      <node id="8769796097525399488" at="84,62,85,59" concept="9" />
+      <node id="8769796097525508270" at="88,40,89,66" concept="8" />
+      <node id="8769796097525891816" at="91,58,92,120" concept="8" />
+      <node id="8769796097526046785" at="92,120,93,51" concept="9" />
+      <node id="8769796097526107530" at="96,57,97,102" concept="8" />
+      <node id="8769796097526202770" at="97,102,98,123" concept="8" />
+      <node id="8769796097526107554" at="98,123,99,63" concept="8" />
+      <node id="8769796097526100691" at="99,63,100,0" concept="10" />
+      <node id="8769796097526090123" at="101,50,102,38" concept="3" />
+      <node id="8769796097526090128" at="102,38,103,67" concept="3" />
+      <node id="8769796097526090136" at="103,67,104,65" concept="3" />
+      <node id="8769796097526090148" at="104,65,105,50" concept="3" />
+      <node id="8769796097526992228" at="116,25,117,62" concept="8" />
+      <node id="8769796097526992234" at="117,62,118,82" concept="8" />
+      <node id="8769796097526992253" at="120,62,121,59" concept="9" />
+      <node id="8769796097527180089" at="128,63,129,91" concept="8" />
+      <node id="8769796097527240849" at="129,91,130,67" concept="8" />
+      <node id="8769796097527660164" at="136,75,137,86" concept="9" />
+      <node id="8769796097527378784" at="139,53,140,67" concept="8" />
+      <node id="8769796097527337439" at="140,67,141,78" concept="8" />
+      <node id="8769796097527337450" at="142,64,143,52" concept="3" />
+      <node id="8769796097527337455" at="143,52,144,81" concept="3" />
+      <node id="8769796097527337463" at="144,81,145,81" concept="3" />
+      <node id="8769796097527337475" at="145,81,146,68" concept="3" />
+      <node id="8769796097527576710" at="150,25,151,0" concept="10" />
+      <node id="8769796097522790039" at="165,25,166,62" concept="8" />
+      <node id="8769796097522790047" at="166,62,167,82" concept="8" />
+      <node id="8769796097522790070" at="169,62,170,59" concept="9" />
+      <node id="8769796097524211334" at="172,42,173,82" concept="8" />
+      <node id="8769796097524431975" at="175,65,176,96" concept="9" />
+      <node id="8769796097524505417" at="179,64,180,78" concept="8" />
+      <node id="8769796097524845848" at="180,78,181,105" concept="8" />
+      <node id="8769796097524578381" at="181,105,182,105" concept="8" />
+      <node id="8769796097524858615" at="182,105,183,61" concept="8" />
+      <node id="8769796097524664739" at="184,48,185,36" concept="3" />
+      <node id="8769796097524687544" at="185,36,186,65" concept="3" />
+      <node id="8769796097524792169" at="186,65,187,63" concept="3" />
+      <node id="8769796097524837143" at="187,63,188,48" concept="3" />
+      <node id="8769796097523796835" at="65,0,68,0" concept="7" trace="accept#(Ljava/util/Set;)V" />
+      <node id="8769796097525186742" at="79,0,82,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="8769796097525258706" at="84,0,87,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/declarations/EventDeclaration;)Z" />
+      <node id="8769796097526992251" at="120,0,123,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="8769796097527641119" at="136,0,139,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/ecc/StateAction;)Z" />
+      <node id="8769796097522790068" at="169,0,172,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FunctionBlockDeclaration;)Z" />
+      <node id="8769796097524362832" at="175,0,178,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)Z" />
       <node id="8769796097522686275" at="43,0,47,0" concept="1" trace="BacktraceService#(Ljetbrains/mps/project/MPSProject;Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;)V" />
-      <node id="8769796097525684675" at="91,0,95,0" concept="6" trace="test#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)Z" />
-      <node id="8769796097523703973" at="63,50,68,7" concept="2" />
-      <node id="8769796097525186732" at="77,82,82,42" concept="7" />
-      <node id="8769796097525186754" at="82,42,87,23" concept="7" />
-      <node id="8769796097526992241" at="118,82,123,42" concept="7" />
-      <node id="8769796097522790062" at="167,82,172,42" concept="7" />
-      <node id="8769796097526090121" at="100,0,106,15" concept="5" />
-      <node id="8769796097527337448" at="141,78,147,29" concept="5" />
-      <node id="8769796097524631709" at="183,61,189,13" concept="5" />
-      <node id="4946084908403612248" at="52,48,60,5" concept="11" />
-      <node id="8769796097526076390" at="96,0,108,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)V" />
-      <node id="8769796097524479164" at="179,0,191,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)V" />
-      <node id="8769796097527547860" at="134,74,148,27" concept="5" />
-      <node id="8769796097527485584" at="134,0,150,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/ecc/StateDeclaration;)V" />
-      <node id="8769796097527468652" at="132,119,150,25" concept="2" />
-      <node id="8769796097524339483" at="173,82,191,11" concept="2" />
-      <node id="8769796097525634011" at="89,66,108,13" concept="2" />
-      <node id="8769796097527329039" at="131,66,152,21" concept="5" />
-      <node id="8769796097525468979" at="87,23,109,9" concept="5" />
-      <node id="8769796097527255095" at="130,67,153,19" concept="5" />
-      <node id="8769796097522718751" at="48,0,72,0" concept="6" trace="getRelatedItemSimpleNames#(LsmvDebugger/model/SystemItemValue;)Ljava/util/List;" />
-      <node id="8769796097527174932" at="127,61,154,17" concept="5" />
-      <node id="8769796097522790037" at="165,0,193,0" concept="6" trace="run#()V" />
-      <node id="8769796097527128485" at="127,0,156,0" concept="6" trace="accept#(Lorg/fbme/lib/st/statements/Statement;)V" />
-      <node id="8769796097522790029" at="163,78,193,7" concept="2" />
-      <node id="8769796097527044901" at="125,68,156,15" concept="2" />
-      <node id="8769796097522771633" at="163,0,195,0" concept="6" trace="backtraceEccState#(Ljava/lang/String;Ljava/lang/String;)V" />
-      <node id="8769796097527030262" at="125,0,158,0" concept="6" trace="accept#(Lorg/fbme/lib/iec61499/declarations/AlgorithmDeclaration;)V" />
-      <node id="8769796097527016467" at="123,42,158,11" concept="2" />
-      <node id="8769796097525186717" at="75,0,111,0" concept="6" trace="run#()V" />
-      <node id="8769796097525186709" at="73,75,111,7" concept="2" />
-      <node id="8769796097522777211" at="73,0,113,0" concept="6" trace="backtraceEvent#(Ljava/lang/String;Ljava/lang/String;)V" />
-      <node id="8769796097526992226" at="116,0,160,0" concept="6" trace="run#()V" />
-      <node id="8769796097526992218" at="114,72,160,7" concept="2" />
-      <node id="8769796097522779193" at="114,0,162,0" concept="6" trace="backtraceData#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <node id="8769796097525684675" at="91,0,95,0" concept="7" trace="test#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)Z" />
+      <node id="8769796097523703973" at="63,50,68,7" concept="3" />
+      <node id="8769796097525186732" at="77,82,82,42" concept="8" />
+      <node id="8769796097525186754" at="82,42,87,23" concept="8" />
+      <node id="8769796097526992241" at="118,82,123,42" concept="8" />
+      <node id="8769796097522790062" at="167,82,172,42" concept="8" />
+      <node id="8769796097526090121" at="100,0,106,15" concept="6" />
+      <node id="8769796097527337448" at="141,78,147,29" concept="6" />
+      <node id="8769796097524631709" at="183,61,189,13" concept="6" />
+      <node id="4946084908403612248" at="52,48,60,5" concept="12" />
+      <node id="8769796097526076390" at="96,0,108,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/fbnetwork/FBNetworkConnection;)V" />
+      <node id="8769796097524479164" at="179,0,191,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/ecc/StateTransition;)V" />
+      <node id="8769796097527547860" at="134,74,148,27" concept="6" />
+      <node id="8769796097527485584" at="134,0,150,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/ecc/StateDeclaration;)V" />
+      <node id="8769796097527468652" at="132,119,150,25" concept="3" />
+      <node id="8769796097524339483" at="173,82,191,11" concept="3" />
+      <node id="8769796097525634011" at="89,66,108,13" concept="3" />
+      <node id="8769796097527329039" at="131,66,152,21" concept="6" />
+      <node id="8769796097525468979" at="87,23,109,9" concept="6" />
+      <node id="8769796097527255095" at="130,67,153,19" concept="6" />
+      <node id="8769796097522718751" at="48,0,72,0" concept="7" trace="getRelatedItemSimpleNames#(LsmvDebugger/model/SystemItemValue;)Ljava/util/List;" />
+      <node id="8769796097527174932" at="127,61,154,17" concept="6" />
+      <node id="8769796097522790037" at="165,0,193,0" concept="7" trace="run#()V" />
+      <node id="8769796097527128485" at="127,0,156,0" concept="7" trace="accept#(Lorg/fbme/lib/st/statements/Statement;)V" />
+      <node id="8769796097522790029" at="163,78,193,7" concept="3" />
+      <node id="8769796097527044901" at="125,68,156,15" concept="3" />
+      <node id="8769796097522771633" at="163,0,195,0" concept="7" trace="backtraceEccState#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <node id="8769796097527030262" at="125,0,158,0" concept="7" trace="accept#(Lorg/fbme/lib/iec61499/declarations/AlgorithmDeclaration;)V" />
+      <node id="8769796097527016467" at="123,42,158,11" concept="3" />
+      <node id="8769796097525186717" at="75,0,111,0" concept="7" trace="run#()V" />
+      <node id="8769796097525186709" at="73,75,111,7" concept="3" />
+      <node id="8769796097522777211" at="73,0,113,0" concept="7" trace="backtraceEvent#(Ljava/lang/String;Ljava/lang/String;)V" />
+      <node id="8769796097526992226" at="116,0,160,0" concept="7" trace="run#()V" />
+      <node id="8769796097526992218" at="114,72,160,7" concept="3" />
+      <node id="8769796097522779193" at="114,0,162,0" concept="7" trace="backtraceData#(Ljava/lang/String;Ljava/lang/String;)V" />
       <scope id="4946084908403715915" at="54,22,55,61" />
       <scope id="4946084908403630915" at="56,21,57,60" />
       <scope id="4946084908403663083" at="58,15,59,68" />

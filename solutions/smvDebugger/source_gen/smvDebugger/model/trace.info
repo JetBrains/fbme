@@ -26,104 +26,116 @@
       <node id="4946084908400930708" at="23,23,24,25" concept="3" />
       <node id="4946084908400932661" at="24,25,25,33" concept="3" />
       <node id="4946084908400939558" at="28,34,29,17" concept="10" />
-      <node id="4946084908400947986" at="32,30,33,17" concept="10" />
-      <node id="4946084908400957721" at="36,33,37,18" concept="10" />
-      <node id="4946084908400966268" at="40,35,41,22" concept="10" />
-      <node id="8769796097522217939" at="44,23,45,24" concept="10" />
-      <node id="8769796097526716703" at="50,65,51,20" concept="10" />
-      <node id="8769796097526719099" at="53,5,54,16" concept="10" />
-      <node id="4946084908404761324" at="57,81,58,79" concept="10" />
-      <node id="4946084908404523127" at="62,68,63,47" concept="9" />
-      <node id="4946084908404590618" at="64,65,65,71" concept="10" />
-      <node id="4946084908404523163" at="67,5,68,16" concept="10" />
-      <node id="4946084908407593970" at="71,67,72,78" concept="9" />
-      <node id="4946084908407593979" at="73,68,74,47" concept="9" />
-      <node id="4946084908407593987" at="74,47,75,78" concept="3" />
-      <node id="4946084908407594015" at="76,5,77,22" concept="10" />
-      <node id="4946084908403271711" at="80,103,81,79" concept="9" />
-      <node id="4946084908403294537" at="81,79,82,78" concept="9" />
-      <node id="4946084908403305753" at="83,68,84,47" concept="9" />
-      <node id="4946084908403311830" at="85,61,86,80" concept="3" />
-      <node id="4946084908403256532" at="88,5,89,22" concept="10" />
-      <node id="8769796097522331699" at="92,79,93,77" concept="9" />
-      <node id="4946084908401174297" at="94,68,95,89" concept="3" />
-      <node id="8769796097522334775" at="96,5,97,26" concept="10" />
-      <node id="3362669900791900771" at="102,43,103,17" concept="10" />
-      <node id="3362669900791894730" at="105,5,106,14" concept="10" />
-      <node id="4946084908407367990" at="109,45,110,33" concept="10" />
+      <node id="6003518628802452920" at="32,40,33,62" concept="9" />
+      <node id="6003518628802535523" at="34,54,35,50" concept="3" />
+      <node id="6003518628802556814" at="36,5,37,27" concept="10" />
+      <node id="4946084908400947986" at="40,30,41,17" concept="10" />
+      <node id="4946084908400957721" at="44,33,45,18" concept="10" />
+      <node id="4946084908400966268" at="48,35,49,22" concept="10" />
+      <node id="8769796097522217939" at="52,23,53,24" concept="10" />
+      <node id="8769796097526716703" at="58,65,59,20" concept="10" />
+      <node id="8769796097526719099" at="61,5,62,16" concept="10" />
+      <node id="4946084908404761324" at="65,81,66,79" concept="10" />
+      <node id="4946084908404523127" at="70,68,71,47" concept="9" />
+      <node id="4946084908404590618" at="72,65,73,71" concept="10" />
+      <node id="4946084908404523163" at="75,5,76,16" concept="10" />
+      <node id="4946084908407593970" at="79,67,80,78" concept="9" />
+      <node id="4946084908407593979" at="81,68,82,47" concept="9" />
+      <node id="4946084908407593987" at="82,47,83,78" concept="3" />
+      <node id="4946084908407594015" at="84,5,85,22" concept="10" />
+      <node id="4946084908403271711" at="88,103,89,79" concept="9" />
+      <node id="4946084908403294537" at="89,79,90,78" concept="9" />
+      <node id="4946084908403305753" at="91,68,92,47" concept="9" />
+      <node id="4946084908403311830" at="93,61,94,80" concept="3" />
+      <node id="4946084908403256532" at="96,5,97,22" concept="10" />
+      <node id="8769796097522331699" at="100,79,101,77" concept="9" />
+      <node id="4946084908401174297" at="102,68,103,89" concept="3" />
+      <node id="8769796097522334775" at="104,5,105,26" concept="10" />
+      <node id="3362669900791900771" at="110,43,111,17" concept="10" />
+      <node id="3362669900791894730" at="113,5,114,14" concept="10" />
+      <node id="4946084908407367990" at="117,45,118,33" concept="10" />
       <node id="4946084908400937612" at="28,0,31,0" concept="8" trace="getItems#()[LsmvDebugger/model/SystemItem;" />
-      <node id="4946084908400946003" at="32,0,35,0" concept="8" trace="getSteps#()[Ljava/lang/String;" />
-      <node id="4946084908400955692" at="36,0,39,0" concept="8" trace="getValues#()[[Ljava/lang/String;" />
-      <node id="4946084908400964630" at="40,0,43,0" concept="8" trace="getTimeValues#()[Ljava/lang/String;" />
-      <node id="8769796097522217092" at="44,0,47,0" concept="8" trace="length#()I" />
-      <node id="8769796097526714977" at="49,46,52,7" concept="7" />
-      <node id="4946084908404751634" at="57,0,60,0" concept="8" trace="getItemValue#(II)LsmvDebugger/model/SystemItemValue;" />
-      <node id="4946084908404589410" at="63,47,66,7" concept="7" />
-      <node id="4946084908403304799" at="84,47,87,7" concept="7" />
-      <node id="4946084908401141267" at="93,77,96,5" concept="5" />
-      <node id="3362669900791896351" at="101,44,104,7" concept="7" />
-      <node id="4946084908407367967" at="109,0,112,0" concept="8" trace="timeOf#(I)Ljava/lang/String;" />
-      <node id="4946084908407593977" at="72,78,76,5" concept="5" />
-      <node id="8769796097526712146" at="48,58,53,5" concept="6" />
-      <node id="3362669900791883934" at="100,41,105,5" concept="5" />
+      <node id="6003518628802490337" at="33,62,36,5" concept="5" />
+      <node id="4946084908400946003" at="40,0,43,0" concept="8" trace="getSteps#()[Ljava/lang/String;" />
+      <node id="4946084908400955692" at="44,0,47,0" concept="8" trace="getValues#()[[Ljava/lang/String;" />
+      <node id="4946084908400964630" at="48,0,51,0" concept="8" trace="getTimeValues#()[Ljava/lang/String;" />
+      <node id="8769796097522217092" at="52,0,55,0" concept="8" trace="length#()I" />
+      <node id="8769796097526714977" at="57,46,60,7" concept="7" />
+      <node id="4946084908404751634" at="65,0,68,0" concept="8" trace="getItemValue#(II)LsmvDebugger/model/SystemItemValue;" />
+      <node id="4946084908404589410" at="71,47,74,7" concept="7" />
+      <node id="4946084908403304799" at="92,47,95,7" concept="7" />
+      <node id="4946084908401141267" at="101,77,104,5" concept="5" />
+      <node id="3362669900791896351" at="109,44,112,7" concept="7" />
+      <node id="4946084908407367967" at="117,0,120,0" concept="8" trace="timeOf#(I)Ljava/lang/String;" />
+      <node id="4946084908407593977" at="80,78,84,5" concept="5" />
+      <node id="8769796097526712146" at="56,58,61,5" concept="6" />
+      <node id="3362669900791883934" at="108,41,113,5" concept="5" />
       <node id="3362669900791132216" at="21,0,27,0" concept="1" trace="Counterexample#([LsmvDebugger/model/SystemItem;[Ljava/lang/String;[[Ljava/lang/String;[Ljava/lang/String;)V" />
-      <node id="4946084908404523125" at="61,89,67,5" concept="5" />
-      <node id="4946084908403276418" at="82,78,88,5" concept="5" />
-      <node id="3233838129231761120" at="92,0,99,0" concept="8" trace="getItemSimpleNameToValueMap#(I)Ljava/util/Map;" />
-      <node id="8769796097526709882" at="48,0,56,0" concept="8" trace="getItem#(Ljava/lang/String;)LsmvDebugger/model/SystemItem;" />
-      <node id="4946084908407593960" at="71,0,79,0" concept="8" trace="getItemValues#(I)Ljava/util/List;" />
-      <node id="3362669900791877369" at="100,0,108,0" concept="8" trace="indexOf#(Ljava/lang/String;)I" />
-      <node id="4946084908404523108" at="61,0,70,0" concept="8" trace="getItemValue#(Ljava/lang/String;I)LsmvDebugger/model/SystemItemValue;" />
-      <node id="4946084908403256516" at="80,0,91,0" concept="8" trace="getItemValues#(Ljava/util/List;I)Ljava/util/List;" />
+      <node id="4946084908404523125" at="69,89,75,5" concept="5" />
+      <node id="4946084908403276418" at="90,78,96,5" concept="5" />
+      <node id="6003518628802352164" at="32,0,39,0" concept="8" trace="getItemSimpleNames#()[Ljava/lang/String;" />
+      <node id="3233838129231761120" at="100,0,107,0" concept="8" trace="getItemSimpleNameToValueMap#(I)Ljava/util/Map;" />
+      <node id="8769796097526709882" at="56,0,64,0" concept="8" trace="getItem#(Ljava/lang/String;)LsmvDebugger/model/SystemItem;" />
+      <node id="4946084908407593960" at="79,0,87,0" concept="8" trace="getItemValues#(I)Ljava/util/List;" />
+      <node id="3362669900791877369" at="108,0,116,0" concept="8" trace="indexOf#(Ljava/lang/String;)I" />
+      <node id="4946084908404523108" at="69,0,78,0" concept="8" trace="getItemValue#(Ljava/lang/String;I)LsmvDebugger/model/SystemItemValue;" />
+      <node id="4946084908403256516" at="88,0,99,0" concept="8" trace="getItemValues#(Ljava/util/List;I)Ljava/util/List;" />
       <scope id="4946084908400937615" at="28,34,29,17" />
-      <scope id="4946084908400946006" at="32,30,33,17" />
-      <scope id="4946084908400955695" at="36,33,37,18" />
-      <scope id="4946084908400964633" at="40,35,41,22" />
-      <scope id="8769796097522217095" at="44,23,45,24" />
-      <scope id="8769796097526714979" at="50,65,51,20" />
-      <scope id="4946084908404751635" at="57,81,58,79" />
-      <scope id="4946084908404589412" at="64,65,65,71" />
-      <scope id="4946084908403304801" at="85,61,86,80" />
-      <scope id="4946084908401141269" at="94,68,95,89" />
-      <scope id="3362669900791896353" at="102,43,103,17" />
-      <scope id="4946084908407367968" at="109,45,110,33" />
-      <scope id="4946084908407593978" at="73,68,75,78">
+      <scope id="6003518628802490339" at="34,54,35,50" />
+      <scope id="4946084908400946006" at="40,30,41,17" />
+      <scope id="4946084908400955695" at="44,33,45,18" />
+      <scope id="4946084908400964633" at="48,35,49,22" />
+      <scope id="8769796097522217095" at="52,23,53,24" />
+      <scope id="8769796097526714979" at="58,65,59,20" />
+      <scope id="4946084908404751635" at="65,81,66,79" />
+      <scope id="4946084908404589412" at="72,65,73,71" />
+      <scope id="4946084908403304801" at="93,61,94,80" />
+      <scope id="4946084908401141269" at="102,68,103,89" />
+      <scope id="3362669900791896353" at="110,43,111,17" />
+      <scope id="4946084908407367968" at="117,45,118,33" />
+      <scope id="4946084908407593978" at="81,68,83,78">
         <var name="item" id="4946084908407593980" />
       </scope>
       <scope id="4946084908400937612" at="28,0,31,0" />
-      <scope id="4946084908400946003" at="32,0,35,0" />
-      <scope id="4946084908400955692" at="36,0,39,0" />
-      <scope id="4946084908400964630" at="40,0,43,0" />
-      <scope id="8769796097522217092" at="44,0,47,0" />
-      <scope id="8769796097526712148" at="49,46,52,7" />
-      <scope id="4946084908404751634" at="57,0,60,0">
+      <scope id="6003518628802490337" at="33,62,36,5">
+        <var name="i" id="6003518628802490340" />
+      </scope>
+      <scope id="4946084908400946003" at="40,0,43,0" />
+      <scope id="4946084908400955692" at="44,0,47,0" />
+      <scope id="4946084908400964630" at="48,0,51,0" />
+      <scope id="8769796097522217092" at="52,0,55,0" />
+      <scope id="8769796097526712148" at="57,46,60,7" />
+      <scope id="4946084908404751634" at="65,0,68,0">
         <var name="itemIndex" id="4946084908404751671" />
         <var name="stepIndex" id="4946084908404751673" />
       </scope>
-      <scope id="4946084908401141267" at="93,77,96,5">
+      <scope id="4946084908401141267" at="101,77,104,5">
         <var name="itemIndex" id="4946084908401141270" />
       </scope>
-      <scope id="3362669900791883936" at="101,44,104,7" />
-      <scope id="4946084908407367967" at="109,0,112,0">
+      <scope id="3362669900791883936" at="109,44,112,7" />
+      <scope id="4946084908407367967" at="117,0,120,0">
         <var name="stepIndex" id="4946084908407367994" />
       </scope>
       <scope id="3362669900791132219" at="21,125,25,33" />
-      <scope id="4946084908404523126" at="62,68,66,7">
+      <scope id="4946084908404523126" at="70,68,74,7">
         <var name="item" id="4946084908404523128" />
       </scope>
-      <scope id="4946084908407593977" at="72,78,76,5">
+      <scope id="4946084908407593977" at="80,78,84,5">
         <var name="itemIndex" id="4946084908407594005" />
       </scope>
-      <scope id="4946084908403276419" at="83,68,87,7">
+      <scope id="4946084908403276419" at="91,68,95,7">
         <var name="item" id="4946084908403305751" />
       </scope>
-      <scope id="8769796097526712146" at="48,58,53,5">
+      <scope id="6003518628802352165" at="32,40,37,27">
+        <var name="itemSimpleNames" id="6003518628802452918" />
+      </scope>
+      <scope id="8769796097526712146" at="56,58,61,5">
         <var name="item" id="8769796097526712149" />
       </scope>
-      <scope id="3233838129231761123" at="92,79,97,26">
+      <scope id="3233838129231761123" at="100,79,105,26">
         <var name="itemToValueMap" id="8769796097522331697" />
       </scope>
-      <scope id="3362669900791883934" at="100,41,105,5">
+      <scope id="3362669900791883934" at="108,41,113,5">
         <var name="i" id="3362669900791883935" />
       </scope>
       <scope id="3362669900791132216" at="21,0,27,0">
@@ -132,195 +144,202 @@
         <var name="timeValues" id="4946084908400883823" />
         <var name="values" id="4946084908400882665" />
       </scope>
-      <scope id="8769796097526709885" at="48,58,54,16" />
-      <scope id="4946084908404523125" at="61,89,67,5">
+      <scope id="8769796097526709885" at="56,58,62,16" />
+      <scope id="4946084908404523125" at="69,89,75,5">
         <var name="itemIndex" id="4946084908404523153" />
       </scope>
-      <scope id="4946084908407593961" at="71,67,77,22">
+      <scope id="4946084908407593961" at="79,67,85,22">
         <var name="itemValues" id="4946084908407593971" />
       </scope>
-      <scope id="4946084908403276418" at="82,78,88,5">
+      <scope id="4946084908403276418" at="90,78,96,5">
         <var name="itemIndex" id="4946084908403276432" />
       </scope>
-      <scope id="3362669900791877372" at="100,41,106,14" />
-      <scope id="4946084908404523109" at="61,89,68,16" />
-      <scope id="3233838129231761120" at="92,0,99,0">
+      <scope id="3362669900791877372" at="108,41,114,14" />
+      <scope id="6003518628802352164" at="32,0,39,0" />
+      <scope id="4946084908404523109" at="69,89,76,16" />
+      <scope id="3233838129231761120" at="100,0,107,0">
         <var name="stepIndex" id="3233838129231761677" />
       </scope>
-      <scope id="8769796097526709882" at="48,0,56,0">
+      <scope id="8769796097526709882" at="56,0,64,0">
         <var name="itemSimpleName" id="8769796097526711045" />
       </scope>
-      <scope id="4946084908407593960" at="71,0,79,0">
+      <scope id="4946084908407593960" at="79,0,87,0">
         <var name="stepIndex" id="4946084908407594023" />
       </scope>
-      <scope id="3362669900791877369" at="100,0,108,0">
+      <scope id="3362669900791877369" at="108,0,116,0">
         <var name="step" id="3362669900791878029" />
       </scope>
-      <scope id="4946084908404523108" at="61,0,70,0">
+      <scope id="4946084908404523108" at="69,0,78,0">
         <var name="itemSimpleName" id="4946084908404523168" />
         <var name="stepIndex" id="4946084908404523171" />
       </scope>
-      <scope id="4946084908403256517" at="80,103,89,22">
+      <scope id="4946084908403256517" at="88,103,97,22">
         <var name="itemSimpleNameSet" id="4946084908403271709" />
         <var name="itemValues" id="4946084908403294535" />
       </scope>
-      <scope id="4946084908403256516" at="80,0,91,0">
+      <scope id="4946084908403256516" at="88,0,99,0">
         <var name="itemSimpleNames" id="4946084908403256536" />
         <var name="stepIndex" id="4946084908403273444" />
       </scope>
-      <unit id="1928161108292591695" at="13,0,113,0" name="smvDebugger.model.Counterexample" />
+      <unit id="1928161108292591695" at="13,0,121,0" name="smvDebugger.model.Counterexample" />
     </file>
   </root>
   <root nodeRef="r:e0a1abe3-ec88-452a-aca6-a40a81cc50a1(smvDebugger.model)/3362669900791125248">
     <file name="SystemItem.java">
-      <node id="4946084908400308383" at="8,0,9,0" concept="12" trace="SIMPLE_NAME_DELIMITER" />
-      <node id="1928161108292598291" at="10,0,11,0" concept="4" trace="fullName" />
-      <node id="4946084908400323739" at="11,0,12,0" concept="4" trace="fbName" />
-      <node id="4946084908400324098" at="12,0,13,0" concept="4" trace="itemName" />
-      <node id="4946084908400325613" at="13,0,14,0" concept="4" trace="type" />
-      <node id="3362669900791145168" at="15,115,16,29" concept="3" />
-      <node id="4946084908400325777" at="16,29,17,25" concept="3" />
-      <node id="4946084908400327127" at="17,25,18,29" concept="3" />
-      <node id="4946084908400328655" at="18,29,19,21" concept="3" />
-      <node id="3362669900791153145" at="22,31,23,20" concept="10" />
-      <node id="4946084908400331425" at="26,29,27,18" concept="10" />
-      <node id="4946084908400332629" at="30,31,31,20" concept="10" />
-      <node id="4946084908400333857" at="34,35,35,16" concept="10" />
-      <node id="4946084908400335198" at="38,33,39,53" concept="10" />
-      <node id="4946084908401022144" at="44,20,45,18" concept="10" />
-      <node id="4946084908401085044" at="47,50,48,19" concept="10" />
-      <node id="4946084908401086454" at="49,5,50,43" concept="9" />
-      <node id="4946084908401087396" at="50,43,51,51" concept="10" />
-      <node id="4946084908401098265" at="55,25,56,34" concept="10" />
-      <node id="3362669900791152610" at="22,0,25,0" concept="8" trace="getFullName#()Ljava/lang/String;" />
-      <node id="4946084908400331220" at="26,0,29,0" concept="8" trace="getFbName#()Ljava/lang/String;" />
-      <node id="4946084908400332303" at="30,0,33,0" concept="8" trace="getItemName#()Ljava/lang/String;" />
-      <node id="4946084908400333492" at="34,0,37,0" concept="8" trace="getType#()LsmvDebugger/model/SystemItemType;" />
-      <node id="4946084908400334912" at="38,0,41,0" concept="8" trace="getSimpleName#()Ljava/lang/String;" />
-      <node id="4946084908401021654" at="43,41,46,5" concept="7" />
-      <node id="4946084908401081516" at="46,5,49,5" concept="7" />
-      <node id="4946084908401096924" at="54,0,58,0" concept="8" trace="hashCode#()I" />
-      <node id="3362669900791143833" at="15,0,21,0" concept="1" trace="SystemItem#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;LsmvDebugger/model/SystemItemType;)V" />
-      <node id="4946084908401020610" at="42,0,53,0" concept="8" trace="equals#(Ljava/lang/Object;)Z" />
-      <scope id="3362669900791152613" at="22,31,23,20" />
-      <scope id="4946084908400331223" at="26,29,27,18" />
-      <scope id="4946084908400332306" at="30,31,31,20" />
-      <scope id="4946084908400333495" at="34,35,35,16" />
-      <scope id="4946084908400334915" at="38,33,39,53" />
-      <scope id="4946084908401021656" at="44,20,45,18" />
-      <scope id="4946084908401081518" at="47,50,48,19" />
-      <scope id="4946084908401096927" at="55,25,56,34" />
-      <scope id="3362669900791152610" at="22,0,25,0" />
-      <scope id="4946084908400331220" at="26,0,29,0" />
-      <scope id="4946084908400332303" at="30,0,33,0" />
-      <scope id="4946084908400333492" at="34,0,37,0" />
-      <scope id="4946084908400334912" at="38,0,41,0" />
-      <scope id="3362669900791143836" at="15,115,19,21" />
-      <scope id="4946084908401096924" at="54,0,58,0" />
-      <scope id="3362669900791143833" at="15,0,21,0">
-        <var name="fbName" id="4946084908400311869" />
+      <node id="4946084908400308383" at="9,0,10,0" concept="12" trace="SIMPLE_NAME_DELIMITER" />
+      <node id="1928161108292598291" at="11,0,12,0" concept="4" trace="fullName" />
+      <node id="4946084908400323739" at="12,0,13,0" concept="4" trace="fbNames" />
+      <node id="4946084908400324098" at="13,0,14,0" concept="4" trace="itemName" />
+      <node id="1566995493930226223" at="14,0,15,0" concept="4" trace="simpleName" />
+      <node id="4946084908400325613" at="15,0,16,0" concept="4" trace="type" />
+      <node id="3362669900791145168" at="17,118,18,29" concept="3" />
+      <node id="4946084908400325777" at="18,29,19,27" concept="3" />
+      <node id="4946084908400327127" at="19,27,20,29" concept="3" />
+      <node id="1566995493930228944" at="20,29,21,95" concept="3" />
+      <node id="4946084908400328655" at="21,95,22,21" concept="3" />
+      <node id="3362669900791153145" at="25,31,26,20" concept="10" />
+      <node id="4946084908400331425" at="29,32,30,19" concept="10" />
+      <node id="1566995493940061497" at="33,29,34,39" concept="10" />
+      <node id="4946084908400332629" at="37,31,38,20" concept="10" />
+      <node id="4946084908400333857" at="41,35,42,16" concept="10" />
+      <node id="4946084908400335198" at="45,33,46,22" concept="10" />
+      <node id="4946084908401022144" at="51,20,52,18" concept="10" />
+      <node id="4946084908401085044" at="54,50,55,19" concept="10" />
+      <node id="4946084908401086454" at="56,5,57,43" concept="9" />
+      <node id="4946084908401087396" at="57,43,58,51" concept="10" />
+      <node id="4946084908401098265" at="62,25,63,34" concept="10" />
+      <node id="1566995493930206155" at="67,28,68,27" concept="10" />
+      <node id="3362669900791152610" at="25,0,28,0" concept="8" trace="getFullName#()Ljava/lang/String;" />
+      <node id="4946084908400331220" at="29,0,32,0" concept="8" trace="getFbNames#()[Ljava/lang/String;" />
+      <node id="1566995493940036828" at="33,0,36,0" concept="8" trace="getFbName#()Ljava/lang/String;" />
+      <node id="4946084908400332303" at="37,0,40,0" concept="8" trace="getItemName#()Ljava/lang/String;" />
+      <node id="4946084908400333492" at="41,0,44,0" concept="8" trace="getType#()LsmvDebugger/model/SystemItemType;" />
+      <node id="4946084908400334912" at="45,0,48,0" concept="8" trace="getSimpleName#()Ljava/lang/String;" />
+      <node id="4946084908401021654" at="50,41,53,5" concept="7" />
+      <node id="4946084908401081516" at="53,5,56,5" concept="7" />
+      <node id="4946084908401096924" at="61,0,65,0" concept="8" trace="hashCode#()I" />
+      <node id="1566995493930179749" at="66,0,70,0" concept="8" trace="toString#()Ljava/lang/String;" />
+      <node id="3362669900791143833" at="17,0,24,0" concept="1" trace="SystemItem#(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;LsmvDebugger/model/SystemItemType;)V" />
+      <node id="4946084908401020610" at="49,0,60,0" concept="8" trace="equals#(Ljava/lang/Object;)Z" />
+      <scope id="3362669900791152613" at="25,31,26,20" />
+      <scope id="4946084908400331223" at="29,32,30,19" />
+      <scope id="1566995493940036831" at="33,29,34,39" />
+      <scope id="4946084908400332306" at="37,31,38,20" />
+      <scope id="4946084908400333495" at="41,35,42,16" />
+      <scope id="4946084908400334915" at="45,33,46,22" />
+      <scope id="4946084908401021656" at="51,20,52,18" />
+      <scope id="4946084908401081518" at="54,50,55,19" />
+      <scope id="4946084908401096927" at="62,25,63,34" />
+      <scope id="1566995493930179752" at="67,28,68,27" />
+      <scope id="3362669900791152610" at="25,0,28,0" />
+      <scope id="4946084908400331220" at="29,0,32,0" />
+      <scope id="1566995493940036828" at="33,0,36,0" />
+      <scope id="4946084908400332303" at="37,0,40,0" />
+      <scope id="4946084908400333492" at="41,0,44,0" />
+      <scope id="4946084908400334912" at="45,0,48,0" />
+      <scope id="4946084908401096924" at="61,0,65,0" />
+      <scope id="1566995493930179749" at="66,0,70,0" />
+      <scope id="3362669900791143836" at="17,118,22,21" />
+      <scope id="3362669900791143833" at="17,0,24,0">
+        <var name="fbNames" id="4946084908400311869" />
         <var name="fullName" id="3362669900791144159" />
         <var name="itemName" id="4946084908400312604" />
         <var name="type" id="4946084908400312850" />
       </scope>
-      <scope id="4946084908401020613" at="43,41,51,51">
+      <scope id="4946084908401020613" at="50,41,58,51">
         <var name="item" id="4946084908401086452" />
       </scope>
-      <scope id="4946084908401020610" at="42,0,53,0">
+      <scope id="4946084908401020610" at="49,0,60,0">
         <var name="o" id="4946084908401021031" />
       </scope>
-      <unit id="3362669900791125248" at="7,0,59,0" name="smvDebugger.model.SystemItem" />
+      <unit id="3362669900791125248" at="8,0,71,0" name="smvDebugger.model.SystemItem" />
     </file>
   </root>
   <root nodeRef="r:e0a1abe3-ec88-452a-aca6-a40a81cc50a1(smvDebugger.model)/4946084908400310552">
     <file name="SystemItemParser.java">
-      <node id="4946084908400347767" at="8,0,9,0" concept="12" trace="FULL_NAME_DELIMITER" />
-      <node id="4946084908400432736" at="9,0,10,0" concept="12" trace="EVENT_PORT_DELIMITER" />
-      <node id="4946084908400421635" at="10,0,11,0" concept="12" trace="TIME_EVENT_PORT_VALUE" />
-      <node id="4946084908400417170" at="11,0,12,0" concept="12" trace="ECC_END_FEATURE" />
-      <node id="4946084908400354698" at="12,0,13,0" concept="12" trace="ECC_ITEM_NAME" />
-      <node id="4946084908400807178" at="14,50,15,67" concept="9" />
-      <node id="4946084908400807186" at="15,67,16,0" concept="11" />
-      <node id="4946084908400807187" at="16,0,17,30" concept="9" />
-      <node id="4946084908400807192" at="18,33,19,39" concept="3" />
-      <node id="4946084908400807202" at="20,39,21,38" concept="3" />
-      <node id="4946084908400807210" at="22,34,23,32" concept="3" />
-      <node id="4946084908400807216" at="24,12,25,18" concept="10" />
-      <node id="4946084908400807218" at="26,5,27,0" concept="11" />
-      <node id="4946084908400807219" at="27,0,28,53" concept="9" />
-      <node id="4946084908400807225" at="28,53,29,57" concept="9" />
-      <node id="4946084908400807231" at="29,57,30,0" concept="11" />
-      <node id="4946084908400807232" at="30,0,31,60" concept="10" />
-      <node id="4946084908400808248" at="34,57,35,158" concept="10" />
-      <node id="4946084908400809435" at="38,56,39,53" concept="10" />
-      <node id="4946084908400810327" at="42,51,43,82" concept="10" />
-      <node id="4946084908400811002" at="46,52,47,32" concept="10" />
-      <node id="4946084908400812239" at="52,22,53,59" concept="10" />
-      <node id="4946084908400812254" at="55,15,56,28" concept="10" />
-      <node id="4946084908400812260" at="57,14,58,20" concept="10" />
-      <node id="4946084908400813525" at="64,22,65,59" concept="10" />
-      <node id="4946084908400813537" at="66,21,67,28" concept="10" />
-      <node id="4946084908400813544" at="68,15,69,29" concept="10" />
-      <node id="4946084908400813548" at="70,14,71,20" concept="10" />
-      <node id="4946084908400807214" at="24,10,26,5" concept="0" />
-      <node id="4946084908400808245" at="34,0,37,0" concept="8" trace="isEventPort#([Ljava/lang/String;)Z" />
-      <node id="4946084908400809432" at="38,0,41,0" concept="8" trace="isDataPort#([Ljava/lang/String;)Z" />
-      <node id="4946084908400810324" at="42,0,45,0" concept="8" trace="isECC#([Ljava/lang/String;)Z" />
-      <node id="4946084908400810999" at="46,0,49,0" concept="8" trace="isPort#([Ljava/lang/String;)Z" />
-      <node id="4946084908400807190" at="17,30,26,5" concept="7" />
-      <node id="4946084908400812235" at="50,81,59,5" concept="13" />
-      <node id="4946084908400813521" at="62,83,72,5" concept="13" />
-      <node id="4946084908400812232" at="50,0,61,0" concept="8" trace="getFbName#([Ljava/lang/String;LsmvDebugger/model/SystemItemType;)Ljava/lang/String;" />
-      <node id="4946084908400813518" at="62,0,74,0" concept="8" trace="getItemName#([Ljava/lang/String;LsmvDebugger/model/SystemItemType;)Ljava/lang/String;" />
-      <node id="4946084908400807175" at="14,0,33,0" concept="8" trace="parse#(Ljava/lang/String;)LsmvDebugger/model/SystemItem;" />
-      <scope id="4946084908400812250" at="54,21,54,21" />
-      <scope id="4946084908400807191" at="18,33,19,39" />
-      <scope id="4946084908400807201" at="20,39,21,38" />
-      <scope id="4946084908400807209" at="22,34,23,32" />
-      <scope id="4946084908400807215" at="24,12,25,18" />
-      <scope id="4946084908400808247" at="34,57,35,158" />
-      <scope id="4946084908400809434" at="38,56,39,53" />
-      <scope id="4946084908400810326" at="42,51,43,82" />
-      <scope id="4946084908400811001" at="46,52,47,32" />
-      <scope id="4946084908400812238" at="52,22,53,59" />
-      <scope id="4946084908400812253" at="55,15,56,28" />
-      <scope id="4946084908400812259" at="57,14,58,20" />
-      <scope id="4946084908400813524" at="64,22,65,59" />
-      <scope id="4946084908400813536" at="66,21,67,28" />
-      <scope id="4946084908400813543" at="68,15,69,29" />
-      <scope id="4946084908400813547" at="70,14,71,20" />
-      <scope id="4946084908400808245" at="34,0,37,0">
+      <node id="4946084908400347767" at="9,0,10,0" concept="12" trace="FULL_NAME_DELIMITER" />
+      <node id="4946084908400432736" at="10,0,11,0" concept="12" trace="EVENT_PORT_DELIMITER" />
+      <node id="4946084908400421635" at="11,0,12,0" concept="12" trace="TIME_EVENT_PORT_VALUE" />
+      <node id="1566995493929982364" at="12,0,13,0" concept="12" trace="EVENT_PORT_KEY_FEATURE" />
+      <node id="4946084908400417170" at="13,0,14,0" concept="12" trace="ECC_KEY_FEATURE" />
+      <node id="4946084908400354698" at="14,0,15,0" concept="12" trace="ECC_ITEM_NAME" />
+      <node id="4946084908400807178" at="16,50,17,67" concept="9" />
+      <node id="4946084908400807186" at="17,67,18,0" concept="11" />
+      <node id="4946084908400807187" at="18,0,19,30" concept="9" />
+      <node id="4946084908400807192" at="20,33,21,39" concept="3" />
+      <node id="4946084908400807202" at="22,39,23,38" concept="3" />
+      <node id="4946084908400807210" at="24,34,25,32" concept="3" />
+      <node id="4946084908400807216" at="26,12,27,18" concept="10" />
+      <node id="4946084908400807218" at="28,5,29,0" concept="11" />
+      <node id="4946084908400807219" at="29,0,30,51" concept="9" />
+      <node id="1566995493933724433" at="31,30,32,18" concept="10" />
+      <node id="1566995493933727261" at="33,5,34,0" concept="11" />
+      <node id="4946084908400807225" at="34,0,35,57" concept="9" />
+      <node id="4946084908400807232" at="35,57,36,61" concept="10" />
+      <node id="4946084908400808248" at="39,57,40,97" concept="10" />
+      <node id="4946084908400809435" at="43,56,44,60" concept="10" />
+      <node id="4946084908400810327" at="47,51,48,76" concept="10" />
+      <node id="4946084908400811002" at="51,52,52,55" concept="10" />
+      <node id="1566995493930152513" at="55,57,56,67" concept="10" />
+      <node id="4946084908400813525" at="61,22,62,78" concept="10" />
+      <node id="4946084908400813537" at="63,21,64,47" concept="10" />
+      <node id="4946084908400813544" at="65,15,66,29" concept="10" />
+      <node id="4946084908400813548" at="67,14,68,20" concept="10" />
+      <node id="4946084908400807214" at="26,10,28,5" concept="0" />
+      <node id="1566995493933718911" at="30,51,33,5" concept="7" />
+      <node id="4946084908400808245" at="39,0,42,0" concept="8" trace="isEventPort#([Ljava/lang/String;)Z" />
+      <node id="4946084908400809432" at="43,0,46,0" concept="8" trace="isDataPort#([Ljava/lang/String;)Z" />
+      <node id="4946084908400810324" at="47,0,50,0" concept="8" trace="isECC#([Ljava/lang/String;)Z" />
+      <node id="4946084908400810999" at="51,0,54,0" concept="8" trace="isPort#([Ljava/lang/String;)Z" />
+      <node id="4946084908400812232" at="55,0,58,0" concept="8" trace="getFbNames#([Ljava/lang/String;)[Ljava/lang/String;" />
+      <node id="4946084908400807190" at="19,30,28,5" concept="7" />
+      <node id="4946084908400813521" at="59,83,69,5" concept="13" />
+      <node id="4946084908400813518" at="59,0,71,0" concept="8" trace="getItemName#([Ljava/lang/String;LsmvDebugger/model/SystemItemType;)Ljava/lang/String;" />
+      <node id="4946084908400807175" at="16,0,38,0" concept="8" trace="parse#(Ljava/lang/String;)LsmvDebugger/model/SystemItem;" />
+      <scope id="4946084908400807191" at="20,33,21,39" />
+      <scope id="4946084908400807201" at="22,39,23,38" />
+      <scope id="4946084908400807209" at="24,34,25,32" />
+      <scope id="4946084908400807215" at="26,12,27,18" />
+      <scope id="1566995493933718913" at="31,30,32,18" />
+      <scope id="4946084908400808247" at="39,57,40,97" />
+      <scope id="4946084908400809434" at="43,56,44,60" />
+      <scope id="4946084908400810326" at="47,51,48,76" />
+      <scope id="4946084908400811001" at="51,52,52,55" />
+      <scope id="4946084908400812234" at="55,57,56,67" />
+      <scope id="4946084908400813524" at="61,22,62,78" />
+      <scope id="4946084908400813536" at="63,21,64,47" />
+      <scope id="4946084908400813543" at="65,15,66,29" />
+      <scope id="4946084908400813547" at="67,14,68,20" />
+      <scope id="4946084908400808245" at="39,0,42,0">
         <var name="nameParts" id="4946084908400808272" />
       </scope>
-      <scope id="4946084908400809432" at="38,0,41,0">
+      <scope id="4946084908400809432" at="43,0,46,0">
         <var name="nameParts" id="4946084908400809445" />
       </scope>
-      <scope id="4946084908400810324" at="42,0,45,0">
+      <scope id="4946084908400810324" at="47,0,50,0">
         <var name="nameParts" id="4946084908400810340" />
       </scope>
-      <scope id="4946084908400810999" at="46,0,49,0">
+      <scope id="4946084908400810999" at="51,0,54,0">
         <var name="nameParts" id="4946084908400811009" />
       </scope>
-      <scope id="4946084908400812234" at="50,81,59,5" />
-      <scope id="4946084908400813520" at="62,83,72,5" />
-      <scope id="4946084908400812232" at="50,0,61,0">
+      <scope id="4946084908400812232" at="55,0,58,0">
         <var name="nameParts" id="4946084908400812263" />
-        <var name="type" id="4946084908400812266" />
       </scope>
-      <scope id="4946084908400813518" at="62,0,74,0">
+      <scope id="4946084908400813520" at="59,83,69,5" />
+      <scope id="4946084908400813518" at="59,0,71,0">
         <var name="nameParts" id="4946084908400813551" />
         <var name="type" id="4946084908400813554" />
       </scope>
-      <scope id="4946084908400807177" at="14,50,31,60">
-        <var name="fbName" id="4946084908400807220" />
+      <scope id="4946084908400807177" at="16,50,36,61">
+        <var name="fbNames" id="4946084908400807220" />
         <var name="itemName" id="4946084908400807226" />
         <var name="nameParts" id="4946084908400807179" />
         <var name="type" id="4946084908400807188" />
       </scope>
-      <scope id="4946084908400807175" at="14,0,33,0">
+      <scope id="4946084908400807175" at="16,0,38,0">
         <var name="fullName" id="4946084908400807241" />
       </scope>
-      <unit id="4946084908400310552" at="7,0,75,0" name="smvDebugger.model.SystemItemParser" />
+      <unit id="4946084908400310552" at="8,0,72,0" name="smvDebugger.model.SystemItemParser" />
     </file>
   </root>
   <root nodeRef="r:e0a1abe3-ec88-452a-aca6-a40a81cc50a1(smvDebugger.model)/4946084908400313047">
@@ -340,8 +359,8 @@
       <node id="4946084908401342047" at="21,63,22,60" concept="9" />
       <node id="4946084908401489670" at="22,60,23,51" concept="9" />
       <node id="4946084908400800955" at="24,44,25,67" concept="9" />
-      <node id="4946084908400800966" at="25,67,26,42" concept="9" />
-      <node id="4946084908400800972" at="26,42,27,82" concept="9" />
+      <node id="4946084908400800966" at="25,67,26,36" concept="9" />
+      <node id="4946084908400800972" at="26,36,27,82" concept="9" />
       <node id="4946084908401280622" at="27,82,28,0" concept="11" />
       <node id="4946084908401493248" at="29,62,30,31" concept="3" />
       <node id="4946084908401505681" at="30,31,31,17" concept="2" />

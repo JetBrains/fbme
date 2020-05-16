@@ -15,10 +15,10 @@
   </languages>
   <imports>
     <import index="fhh" ref="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)" />
-    <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(mps.lang.iec61499.structure)" />
+    <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
     <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(org.fbme.ide.iec61499.adapter.interfacepart)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
-    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(richediting.plugin)" />
+    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
@@ -30,6 +30,8 @@
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" />
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
+    <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
+    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" implicit="true" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" implicit="true" />
@@ -128,6 +130,7 @@
       <concept id="1070533707846" name="jetbrains.mps.baseLanguage.structure.StaticFieldReference" flags="nn" index="10M0yZ">
         <reference id="1144433057691" name="classifier" index="1PxDUh" />
       </concept>
+      <concept id="1070534058343" name="jetbrains.mps.baseLanguage.structure.NullLiteral" flags="nn" index="10Nm6u" />
       <concept id="1070534934090" name="jetbrains.mps.baseLanguage.structure.CastExpression" flags="nn" index="10QFUN">
         <child id="1070534934091" name="type" index="10QFUM" />
         <child id="1070534934092" name="expression" index="10QFUP" />
@@ -177,6 +180,9 @@
       </concept>
       <concept id="1068581242863" name="jetbrains.mps.baseLanguage.structure.LocalVariableDeclaration" flags="nr" index="3cpWsn" />
       <concept id="1068581517677" name="jetbrains.mps.baseLanguage.structure.VoidType" flags="in" index="3cqZAl" />
+      <concept id="1079359253375" name="jetbrains.mps.baseLanguage.structure.ParenthesizedExpression" flags="nn" index="1eOMI4">
+        <child id="1079359253376" name="expression" index="1eOMHV" />
+      </concept>
       <concept id="1204053956946" name="jetbrains.mps.baseLanguage.structure.IMethodCall" flags="ng" index="1ndlxa">
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
@@ -285,26 +291,37 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="4i$1wjaS1V5" role="3cqZAp" />
+        <node concept="3clFbH" id="1mZ5x_OW8BD" role="3cqZAp" />
         <node concept="3cpWs8" id="4i$1wjaSP$l" role="3cqZAp">
           <node concept="3cpWsn" id="4i$1wjaSP$j" role="3cpWs9">
-            <property role="3TUv4t" value="true" />
             <property role="TrG5h" value="rawFbPath" />
             <node concept="17QB3L" id="4i$1wjaSR0s" role="1tU5fm" />
             <node concept="2YIFZM" id="4i$1wjaR7TR" role="33vP2m">
               <ref role="37wK5l" to="51vd:13uTNv4mi$Q" resolve="getPathToElement" />
               <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
-              <node concept="10QFUN" id="4i$1wjaRk7h" role="37wK5m">
-                <node concept="3Tqbb2" id="4i$1wjaRk7i" role="10QFUM">
-                  <ref role="ehGHo" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
-                </node>
-                <node concept="2OqwBi" id="4i$1wjaRk7j" role="10QFUP">
-                  <node concept="2WthIp" id="4i$1wjaRk7k" role="2Oq$k0" />
-                  <node concept="3gHZIF" id="4i$1wjaRk7l" role="2OqNvi">
-                    <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
+              <node concept="1eOMI4" id="7Mw$cFXJdeW" role="37wK5m">
+                <node concept="10QFUN" id="7Mw$cFXJdeT" role="1eOMHV">
+                  <node concept="2OqwBi" id="7Mw$cFXJ8mv" role="10QFUP">
+                    <node concept="2WthIp" id="7Mw$cFXJ7nG" role="2Oq$k0" />
+                    <node concept="3gHZIF" id="7Mw$cFXJa8O" role="2OqNvi">
+                      <ref role="2WH_rO" node="2iJMYskfKcY" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="3Tqbb2" id="13uTNv4mEd6" role="10QFUM">
+                    <ref role="ehGHo" to="tpck:h0TrEE$" resolve="INamedConcept" />
                   </node>
                 </node>
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="7YsZv8g1HB7" role="3cqZAp">
+          <node concept="2YIFZM" id="7YsZv8g1HC3" role="3clFbG">
+            <ref role="1Pybhc" to="dxuu:~JOptionPane" resolve="JOptionPane" />
+            <ref role="37wK5l" to="dxuu:~JOptionPane.showMessageDialog(java.awt.Component,java.lang.Object)" resolve="showMessageDialog" />
+            <node concept="10Nm6u" id="7YsZv8g1HI0" role="37wK5m" />
+            <node concept="37vLTw" id="7Mw$cFXIQXY" role="37wK5m">
+              <ref role="3cqZAo" node="4i$1wjaSP$j" resolve="rawFbPath" />
             </node>
           </node>
         </node>
@@ -889,7 +906,10 @@
               <node concept="37vLTI" id="1y1FD3qEbwp" role="37wK5m">
                 <node concept="2ShNRf" id="1y1FD3qEc8t" role="37vLTx">
                   <node concept="1pGfFk" id="1y1FD3qEc6q" role="2ShVmc">
-                    <ref role="37wK5l" to="qqrq:~JBTextField.&lt;init&gt;()" resolve="JBTextField" />
+                    <ref role="37wK5l" to="qqrq:~JBTextField.&lt;init&gt;(int)" resolve="JBTextField" />
+                    <node concept="3cmrfG" id="7Mw$cFY1ttX" role="37wK5m">
+                      <property role="3cmrfH" value="40" />
+                    </node>
                   </node>
                 </node>
                 <node concept="37vLTw" id="1y1FD3qEal1" role="37vLTJ">

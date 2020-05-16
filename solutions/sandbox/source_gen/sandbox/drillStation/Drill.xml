@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="Drill">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT"></Event>
+      <Event Name="DR_EV"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="BLOCK">
+        <With Var="BLK" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="BLK" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="drillController" Type="DrillController" x="1919.0" y="530.0" />
+    <FB Name="drillModelView" Type="DrillModelView" x="3226.0" y="565.0" />
+    <EventConnections>
+      <Connection Source="drillController.CHGO" Destination="drillModelView.CHGI" dx1="788.0" />
+      <Connection Source="INIT" Destination="drillController.INIT" dx1="1230.0" />
+      <Connection Source="DR_EV" Destination="drillController.DR_EV" dx1="184.0" />
+      <Connection Source="drillModelView.CHANGE" Destination="drillController.CHG" dx1="150.0" dy="-142.0" dx2="100.0" />
+      <Connection Source="drillModelView.CHANGE" Destination="BLOCK" dx1="638.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="drillController.LIFT" Destination="drillModelView.LIFT" dx1="788.0" />
+      <Connection Source="drillController.DRILL" Destination="drillModelView.LOWER" dx1="788.0" />
+      <Connection Source="drillModelView.UP" Destination="drillController.UP" dx1="250.0" dy="415.0" dx2="200.0" />
+      <Connection Source="drillModelView.DOWN" Destination="drillController.DOWN" dx1="150.0" dy="257.0" dx2="150.0" />
+      <Connection Source="drillController.LOCK" Destination="BLK" dx1="1823.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

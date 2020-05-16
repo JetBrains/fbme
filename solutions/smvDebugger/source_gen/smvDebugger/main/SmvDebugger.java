@@ -37,6 +37,7 @@ public class SmvDebugger {
 
     final Project ideaProject = ProjectHelper.toIdeaProject(project);
     final SmvBinaryPaths_PreferencesComponent smvBinaryPaths = ideaProject.getComponent(ProjectPluginManager.class).getPrefsComponent(SmvBinaryPaths_PreferencesComponent.class);
+
     fb2SmvService = new Fb2SmvService(Path.of(smvBinaryPaths.getStateObject().fb2SmvPath));
     nuSmvService = new NuSmvService(Path.of(smvBinaryPaths.getStateObject().nuSmvPath));
     nutracService = new NutracService(Path.of(smvBinaryPaths.getStateObject().nutracPath));
@@ -47,8 +48,8 @@ public class SmvDebugger {
 
   public JComponent run(final Path fbPath, final CompositeFBTypeDeclaration compositeFb) {
     try {
-      final Path smvPath = fb2SmvService.convertFbToSmv(fbPath);
       final String specification = getSpecification();
+      final Path smvPath = fb2SmvService.convertFbToSmv(fbPath);
 
       final Optional<Path> rawCounterexamplePath = nuSmvService.getRawCounterexample(smvPath, specification);
       Files.delete(smvPath);
@@ -72,7 +73,7 @@ public class SmvDebugger {
   }
 
   private static String getSpecification() {
-    final String specification = JOptionPane.showInputDialog(null, "Enter LTL specification");
+    final String specification = JOptionPane.showInputDialog(null, "Enter LTL/CTL specification");
     return specification;
   }
 

@@ -15,6 +15,7 @@ public class ConditionModel extends AbstractSpinnerModel {
   @Override
   public void setValue(final Object value) {
     condition = (String) value;
+    fireStateChanged();
   }
 
   @Override

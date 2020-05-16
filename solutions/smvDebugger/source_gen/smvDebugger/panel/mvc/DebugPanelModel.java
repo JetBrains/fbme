@@ -8,7 +8,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.BoundedRangeModel;
 import smvDebugger.model.Counterexample;
 import javax.swing.SpinnerListModel;
-import smvDebugger.common.ArrayUtils;
+import smvDebugger.commons.ArrayUtils;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.DefaultBoundedRangeModel;
 
@@ -19,22 +19,21 @@ public class DebugPanelModel {
   private final SpinnerModel stepSpinnerModel;
   private final GlobalTimeModel globalTimeModel;
   private final ConditionModel conditionModel;
-  private final TableModel dataModel;
+  private final TableModel itemModel;
+  private final TableModel valueModel;
   private final ListSelectionModel dataSelectionModel;
   private final BoundedRangeModel dataScrollModel;
 
   public DebugPanelModel(final Counterexample counterexample) {
     stepIndexModel = new StepIndexModel();
-    stepIndexModel.setStepIndex(0);
 
     stepSpinnerModel = new SpinnerListModel(counterexample.getSteps());
-
     globalTimeModel = new GlobalTimeModel();
-    globalTimeModel.setTime(counterexample.timeOf(0));
-
     conditionModel = new ConditionModel();
 
-    dataModel = new UneditableTableModel(ArrayUtils.concat(counterexample.getItems(), counterexample.getValues()), ArrayUtils.concat(FIRST_COLUMN_NAME, counterexample.getSteps()));
+    itemModel = new UneditableTableModel(ArrayUtils.to2dArray(counterexample.getItems()), new String[]{FIRST_COLUMN_NAME});
+    valueModel = new UneditableTableModel(counterexample.getValues(), counterexample.getSteps());
+
     dataSelectionModel = new DefaultListSelectionModel();
     dataSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -57,8 +56,12 @@ public class DebugPanelModel {
     return conditionModel;
   }
 
-  public TableModel getDataModel() {
-    return dataModel;
+  public TableModel getItemModel() {
+    return itemModel;
+  }
+
+  public TableModel getValueModel() {
+    return valueModel;
   }
 
   public ListSelectionModel getDataSelectionModel() {

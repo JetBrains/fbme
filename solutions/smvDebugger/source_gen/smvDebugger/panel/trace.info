@@ -9,35 +9,41 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
   <root nodeRef="r:f4a915f7-fe0a-4d70-93d8-9a6c9b61418e(smvDebugger.panel)/4946084908393660274">
     <file name="DebugPanelService.java">
-      <node id="4946084908410884168" at="15,0,16,0" concept="2" trace="project" />
-      <node id="4946084908410888019" at="17,54,18,27" concept="1" />
-      <node id="4946084908402108082" at="21,104,22,89" concept="4" />
-      <node id="4946084908402108089" at="22,89,23,92" concept="4" />
-      <node id="4946084908402108096" at="23,92,24,70" concept="4" />
-      <node id="4946084908402108102" at="24,70,25,0" concept="6" />
-      <node id="4946084908402108103" at="25,0,26,102" concept="4" />
-      <node id="4946084908402108110" at="26,102,27,36" concept="1" />
-      <node id="4946084908402108115" at="27,36,28,26" concept="1" />
-      <node id="4946084908402108119" at="28,26,29,32" concept="1" />
-      <node id="4946084908402108123" at="29,32,30,0" concept="6" />
-      <node id="4946084908402108124" at="30,0,31,22" concept="5" />
-      <node id="4946084908410886780" at="17,0,20,0" concept="0" trace="DebugPanelService#(Ljetbrains/mps/project/MPSProject;)V" />
-      <node id="4946084908402108079" at="21,0,33,0" concept="3" trace="run#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;LsmvDebugger/model/Counterexample;)Ljavax/swing/JPanel;" />
-      <scope id="4946084908410886783" at="17,54,18,27" />
-      <scope id="4946084908410886780" at="17,0,20,0">
+      <node id="4946084908410884168" at="17,0,18,0" concept="2" trace="project" />
+      <node id="4946084908410888019" at="19,54,20,27" concept="1" />
+      <node id="4946084908402108082" at="23,104,24,89" concept="4" />
+      <node id="4946084908402108089" at="24,89,25,92" concept="4" />
+      <node id="4946084908402108096" at="25,92,26,70" concept="4" />
+      <node id="4946084908402108102" at="26,70,27,0" concept="6" />
+      <node id="4946084908402108103" at="27,0,28,102" concept="4" />
+      <node id="4946084908402108110" at="28,102,29,36" concept="1" />
+      <node id="4946084908402108115" at="29,36,30,26" concept="1" />
+      <node id="4946084908402108119" at="30,26,31,32" concept="1" />
+      <node id="1566995493932993311" at="31,32,32,46" concept="1" />
+      <node id="1566995493938179061" at="32,46,33,65" concept="1" />
+      <node id="1566995493938178347" at="33,65,34,0" concept="6" />
+      <node id="4946084908407727753" at="34,0,35,77" concept="4" />
+      <node id="4946084908407821270" at="35,77,36,44" concept="1" />
+      <node id="4946084908402108123" at="36,44,37,0" concept="6" />
+      <node id="4946084908402108124" at="37,0,38,22" concept="5" />
+      <node id="4946084908410886780" at="19,0,22,0" concept="0" trace="DebugPanelService#(Ljetbrains/mps/project/MPSProject;)V" />
+      <node id="4946084908402108079" at="23,0,40,0" concept="3" trace="run#(Lorg/fbme/lib/iec61499/declarations/CompositeFBTypeDeclaration;LsmvDebugger/model/Counterexample;)Ljavax/swing/JPanel;" />
+      <scope id="4946084908410886783" at="19,54,20,27" />
+      <scope id="4946084908410886780" at="19,0,22,0">
         <var name="project" id="4946084908410887170" />
       </scope>
-      <scope id="4946084908402108081" at="21,104,31,22">
+      <scope id="4946084908402108081" at="23,104,38,22">
         <var name="backtraceService" id="4946084908402108083" />
         <var name="debugPanel" id="4946084908402108104" />
+        <var name="itemValues" id="4946084908407727751" />
         <var name="model" id="4946084908402108097" />
         <var name="systemHighlighter" id="4946084908402108090" />
       </scope>
-      <scope id="4946084908402108079" at="21,0,33,0">
+      <scope id="4946084908402108079" at="23,0,40,0">
         <var name="compositeFb" id="4946084908402108130" />
         <var name="counterexample" id="4946084908402108132" />
       </scope>
-      <unit id="4946084908393660274" at="14,0,34,0" name="smvDebugger.panel.DebugPanelService" />
+      <unit id="4946084908393660274" at="16,0,41,0" name="smvDebugger.panel.DebugPanelService" />
     </file>
   </root>
 </debug-info>

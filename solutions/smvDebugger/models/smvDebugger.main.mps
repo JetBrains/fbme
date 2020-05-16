@@ -262,6 +262,7 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="7Mw$cFXTk1L" role="3cqZAp" />
         <node concept="3clFbF" id="4i$1wjaJTTW" role="3cqZAp">
           <node concept="37vLTI" id="4i$1wjaJUcD" role="3clFbG">
             <node concept="2ShNRf" id="4i$1wjaJUlL" role="37vLTx">
@@ -378,6 +379,16 @@
       <node concept="3clFbS" id="4i$1wjadWef" role="3clF47">
         <node concept="SfApY" id="4i$1wjaTfTJ" role="3cqZAp">
           <node concept="3clFbS" id="4i$1wjaTfTL" role="SfCbr">
+            <node concept="3cpWs8" id="4i$1wjadWer" role="3cqZAp">
+              <node concept="3cpWsn" id="4i$1wjadWes" role="3cpWs9">
+                <property role="3TUv4t" value="true" />
+                <property role="TrG5h" value="specification" />
+                <node concept="17QB3L" id="4i$1wjadWet" role="1tU5fm" />
+                <node concept="1rXfSq" id="4i$1wjadWeu" role="33vP2m">
+                  <ref role="37wK5l" node="7YsZv8g1AFA" resolve="getSpecification" />
+                </node>
+              </node>
+            </node>
             <node concept="3cpWs8" id="4i$1wjadWem" role="3cqZAp">
               <node concept="3cpWsn" id="4i$1wjadWen" role="3cpWs9">
                 <property role="3TUv4t" value="true" />
@@ -398,17 +409,7 @@
                 </node>
               </node>
             </node>
-            <node concept="3cpWs8" id="4i$1wjadWer" role="3cqZAp">
-              <node concept="3cpWsn" id="4i$1wjadWes" role="3cpWs9">
-                <property role="3TUv4t" value="true" />
-                <property role="TrG5h" value="specification" />
-                <node concept="17QB3L" id="4i$1wjadWet" role="1tU5fm" />
-                <node concept="1rXfSq" id="4i$1wjadWeu" role="33vP2m">
-                  <ref role="37wK5l" node="7YsZv8g1AFA" resolve="getSpecification" />
-                </node>
-              </node>
-            </node>
-            <node concept="3clFbH" id="4i$1wjadWev" role="3cqZAp" />
+            <node concept="3clFbH" id="1mZ5x_OWAcL" role="3cqZAp" />
             <node concept="3cpWs8" id="4i$1wjadWew" role="3cqZAp">
               <node concept="3cpWsn" id="4i$1wjadWex" role="3cpWs9">
                 <property role="3TUv4t" value="true" />
@@ -466,11 +467,11 @@
               </node>
             </node>
             <node concept="3clFbH" id="4i$1wjae9Yk" role="3cqZAp" />
-            <node concept="3cpWs8" id="4i$1wjaeao9" role="3cqZAp">
-              <node concept="3cpWsn" id="4i$1wjaeao7" role="3cpWs9">
+            <node concept="3cpWs8" id="5dgM6a87X2f" role="3cqZAp">
+              <node concept="3cpWsn" id="5dgM6a87X2d" role="3cpWs9">
                 <property role="3TUv4t" value="true" />
                 <property role="TrG5h" value="csvCounterexamplePath" />
-                <node concept="3uibUv" id="4i$1wjaeaVZ" role="1tU5fm">
+                <node concept="3uibUv" id="5dgM6a87XLX" role="1tU5fm">
                   <ref role="3uigEE" to="eoo2:~Path" resolve="Path" />
                 </node>
                 <node concept="2OqwBi" id="4i$1wjaebec" role="33vP2m">
@@ -493,8 +494,8 @@
             </node>
             <node concept="3clFbF" id="4i$1wjaTbjo" role="3cqZAp">
               <node concept="2YIFZM" id="4i$1wjaTbjp" role="3clFbG">
-                <ref role="1Pybhc" to="eoo2:~Files" resolve="Files" />
                 <ref role="37wK5l" to="eoo2:~Files.delete(java.nio.file.Path)" resolve="delete" />
+                <ref role="1Pybhc" to="eoo2:~Files" resolve="Files" />
                 <node concept="2OqwBi" id="4i$1wjaTcvq" role="37wK5m">
                   <node concept="37vLTw" id="4i$1wjaTcbm" role="2Oq$k0">
                     <ref role="3cqZAo" node="4i$1wjadWex" resolve="rawCounterexamplePath" />
@@ -505,7 +506,7 @@
                 </node>
               </node>
             </node>
-            <node concept="3clFbH" id="4i$1wjaTiUG" role="3cqZAp" />
+            <node concept="3clFbH" id="5dgM6a87W_$" role="3cqZAp" />
             <node concept="3cpWs8" id="4i$1wjaetVg" role="3cqZAp">
               <node concept="3cpWsn" id="4i$1wjaetVe" role="3cpWs9">
                 <property role="3TUv4t" value="true" />
@@ -518,7 +519,7 @@
                   <ref role="37wK5l" to="eoo2:~Files.readAllLines(java.nio.file.Path)" resolve="readAllLines" />
                   <ref role="1Pybhc" to="eoo2:~Files" resolve="Files" />
                   <node concept="37vLTw" id="4i$1wjaeuPa" role="37wK5m">
-                    <ref role="3cqZAo" node="4i$1wjaeao7" resolve="csvCounterexamplePath" />
+                    <ref role="3cqZAo" node="5dgM6a87X2d" resolve="csvCounterexamplePath" />
                   </node>
                 </node>
               </node>
@@ -528,7 +529,7 @@
                 <ref role="37wK5l" to="eoo2:~Files.delete(java.nio.file.Path)" resolve="delete" />
                 <ref role="1Pybhc" to="eoo2:~Files" resolve="Files" />
                 <node concept="37vLTw" id="4i$1wjaTf3b" role="37wK5m">
-                  <ref role="3cqZAo" node="4i$1wjaeao7" resolve="csvCounterexamplePath" />
+                  <ref role="3cqZAo" node="5dgM6a87X2d" resolve="csvCounterexamplePath" />
                 </node>
               </node>
             </node>
@@ -626,7 +627,7 @@
               <ref role="37wK5l" to="dxuu:~JOptionPane.showInputDialog(java.awt.Component,java.lang.Object)" resolve="showInputDialog" />
               <node concept="10Nm6u" id="7YsZv8g1GXZ" role="37wK5m" />
               <node concept="Xl_RD" id="7YsZv8g1H4W" role="37wK5m">
-                <property role="Xl_RC" value="Enter LTL specification" />
+                <property role="Xl_RC" value="Enter LTL/CTL specification" />
               </node>
             </node>
           </node>

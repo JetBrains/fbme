@@ -23,7 +23,7 @@ public class CounterexampleParser {
     String[] timeValues = new String[steps.length];
     for (int i = 1; i < lines.size(); i++) {
       final String[] lineData = lines.get(i).split(DATA_DELIMITER);
-      final String fullName = lineData[0];
+      String fullName = lineData[0];
       final String[] curValues = Arrays.copyOfRange(lineData, 1, lineData.length);
 
       if (Objects.equals(fullName, Counterexample.T_GLOBAL)) {

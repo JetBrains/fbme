@@ -66,6 +66,9 @@ public class StepChanger extends HorizontalSpinner implements DebugPanelMVCItem 
 
         final List<SystemItemValue> itemValues = counterexample.getItemValues(stepIndex);
         systemHighlighter.highlight(itemValues);
+
+        final String step = counterexample.getSteps()[stepIndex];
+        setValue(step);
       }
     });
   }

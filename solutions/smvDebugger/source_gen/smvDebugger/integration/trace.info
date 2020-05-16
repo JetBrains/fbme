@@ -144,8 +144,8 @@
       <node id="3233838129230625934" at="12,0,13,0" concept="8" trace="NUSMV_SUCCESS" />
       <node id="4946084908410810367" at="14,51,15,27" concept="9" />
       <node id="4946084908400911154" at="18,94,19,45" concept="1" />
-      <node id="4946084908401856812" at="19,45,20,0" concept="7" />
-      <node id="4946084908400911171" at="20,0,21,46" concept="5" />
+      <node id="4946084908400911171" at="19,45,20,46" concept="5" />
+      <node id="1566995493934583579" at="20,46,21,0" concept="7" />
       <node id="4946084908400911247" at="22,41,23,36" concept="6" />
       <node id="4946084908402024862" at="24,5,25,0" concept="7" />
       <node id="4946084908402025773" at="25,0,26,84" concept="5" />
@@ -157,7 +157,7 @@
       <node id="4946084908400894966" at="45,9,46,75" concept="6" />
       <node id="4946084908400894976" at="47,35,48,36" concept="11" />
       <node id="4946084908410802553" at="14,0,17,0" concept="0" trace="NuSmvService#(Ljava/nio/file/Path;)V" />
-      <node id="4946084908400911245" at="21,46,24,5" concept="3" />
+      <node id="4946084908400911245" at="21,0,24,5" concept="3" />
       <node id="4946084908400916850" at="30,0,34,0" concept="4" trace="getCommand#(Ljava/nio/file/Path;)Ljava/lang/String;" />
       <node id="4946084908400914315" at="35,81,40,5" concept="12" />
       <node id="4946084908400894964" at="44,95,49,5" concept="12" />

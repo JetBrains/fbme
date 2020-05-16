@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/1317730570820385702">
+    <file name="Carriage.xml">
+      <unit id="1317730570820385702" at="1,0,37,9" name="sandbox.drillStation.Carriage" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153888929703">
+    <file name="DrillStation.xml">
+      <unit id="516909153888929703" at="1,0,23,9" name="sandbox.drillStation.DrillStation" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153888962040">
+    <file name="DrillController.xml">
+      <unit id="516909153888962040" at="1,0,79,9" name="sandbox.drillStation.DrillController" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153888972837">
+    <file name="Drill.xml">
+      <unit id="516909153888972837" at="1,0,37,9" name="sandbox.drillStation.Drill" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153889037537">
+    <file name="DrillModelView.xml">
+      <unit id="516909153889037537" at="1,0,40,9" name="sandbox.drillStation.DrillModelView" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153889037561">
+    <file name="CarriageModelView.xml">
+      <unit id="516909153889037561" at="1,0,40,9" name="sandbox.drillStation.CarriageModelView" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153889350255">
+    <file name="CarriageController.xml">
+      <unit id="516909153889350255" at="1,0,74,9" name="sandbox.drillStation.CarriageController" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153889361277">
+    <file name="DrillModel.xml">
+      <unit id="516909153889361277" at="1,0,61,9" name="sandbox.drillStation.DrillModel" />
+    </file>
+  </root>
+  <root nodeRef="r:421e910b-04d5-4ddf-8fc0-b4910010d51e(sandbox.drillStation)/516909153889361329">
+    <file name="CarriageModel.xml">
+      <unit id="516909153889361329" at="1,0,61,9" name="sandbox.drillStation.CarriageModel" />
+    </file>
+  </root>
+</debug-info>
+

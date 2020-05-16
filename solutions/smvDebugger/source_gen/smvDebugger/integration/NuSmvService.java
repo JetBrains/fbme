@@ -17,8 +17,8 @@ public class NuSmvService extends AbstractIntegrationService {
 
   public Optional<Path> getRawCounterexample(final Path smvPath, final String specification) {
     addSpecification(smvPath, specification);
-
     final String output = runProcess(smvPath);
+
     if (output.contains(NUSMV_SUCCESS)) {
       return Optional.<Path>empty();
     }

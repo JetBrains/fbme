@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 public class GlobalTime extends JLabel implements DebugPanelMVCItem {
+  private static final String LEFT_PADDING = "     ";
   private DebugPanelModel model;
 
   @Override
@@ -26,7 +27,7 @@ public class GlobalTime extends JLabel implements DebugPanelMVCItem {
     model.getGlobalTimeModel().addPropertyChangeListener(GlobalTimeModel.GLOBAL_TIME, new PropertyChangeListener() {
       public void propertyChange(final PropertyChangeEvent event) {
         final String time = (String) event.getNewValue();
-        setText(time);
+        setText(LEFT_PADDING + time);
       }
     });
   }

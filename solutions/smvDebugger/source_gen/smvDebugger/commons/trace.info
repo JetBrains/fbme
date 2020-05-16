@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144231330558:jetbrains.mps.baseLanguage.structure.ForStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <root nodeRef="r:85e05ab4-1ba9-4db5-96e9-56a84bd1472d(smvDebugger.commons)/1928161108293732174">
+    <file name="ArrayUtils.java">
+      <node id="4946084908405344549" at="8,55,9,41" concept="3" />
+      <node id="4946084908405344560" at="9,41,10,22" concept="0" />
+      <node id="4946084908405344566" at="10,22,11,17" concept="4" />
+      <node id="4946084908405339055" at="14,60,15,61" concept="3" />
+      <node id="8173689851888096596" at="16,48,17,33" concept="0" />
+      <node id="4946084908405342991" at="18,5,19,21" concept="4" />
+      <node id="4946084908405791652" at="22,76,23,57" concept="3" />
+      <node id="1928161108292937403" at="23,57,24,23" concept="0" />
+      <node id="1928161108292941706" at="24,23,25,56" concept="0" />
+      <node id="1928161108292940010" at="25,56,26,18" concept="4" />
+      <node id="1566995493930240774" at="29,73,30,57" concept="3" />
+      <node id="1566995493930240793" at="30,57,31,56" concept="0" />
+      <node id="1566995493930253916" at="31,56,32,36" concept="0" />
+      <node id="1566995493930240802" at="32,36,33,18" concept="4" />
+      <node id="4946084908405795065" at="36,85,37,84" concept="3" />
+      <node id="6003518628802856622" at="38,45,39,30" concept="0" />
+      <node id="6003518628802868016" at="40,50,41,43" concept="0" />
+      <node id="4946084908405783729" at="43,5,44,18" concept="4" />
+      <node id="2992635601909559150" at="47,76,48,62" concept="3" />
+      <node id="2992635601909610766" at="49,44,50,51" concept="3" />
+      <node id="2992635601909603405" at="50,51,51,41" concept="0" />
+      <node id="2992635601909661086" at="52,49,53,34" concept="0" />
+      <node id="2992635601909571116" at="55,5,56,17" concept="4" />
+      <node id="1566995493930109747" at="59,99,60,62" concept="3" />
+      <node id="1566995493930122220" at="60,62,61,66" concept="0" />
+      <node id="1566995493930120250" at="61,66,62,18" concept="4" />
+      <node id="8173689851888086170" at="15,61,18,5" concept="1" />
+      <node id="6003518628802859255" at="39,30,42,7" concept="1" />
+      <node id="2992635601909636809" at="51,41,54,7" concept="1" />
+      <node id="4946084908405344547" at="8,0,13,0" concept="6" trace="toArray#(Ljava/lang/Object;)[Ljava/lang/Object;" />
+      <node id="1566995493930104091" at="59,0,64,0" concept="6" trace="subarray#([Ljava/lang/String;II)[Ljava/lang/String;" />
+      <node id="1928161108292917388" at="22,0,28,0" concept="6" trace="concat#(Ljava/lang/Object;[Ljava/lang/Object;)[Ljava/lang/Object;" />
+      <node id="1566995493930240772" at="29,0,35,0" concept="6" trace="concat#([Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;" />
+      <node id="6003518628802844293" at="37,84,43,5" concept="1" />
+      <node id="4946084908405337751" at="14,0,21,0" concept="6" trace="to2dArray#([Ljava/lang/Object;)[[Ljava/lang/Object;" />
+      <node id="2992635601909588454" at="48,62,55,5" concept="1" />
+      <node id="4946084908405783699" at="36,0,46,0" concept="6" trace="concat#([Ljava/lang/Object;[[Ljava/lang/Object;)[[Ljava/lang/Object;" />
+      <node id="2992635601909556861" at="47,0,58,0" concept="6" trace="to2dArray#(Ljava/util/List;)[[Ljava/lang/String;" />
+      <scope id="8173689851888086172" at="16,48,17,33" />
+      <scope id="6003518628802859257" at="40,50,41,43" />
+      <scope id="2992635601909636811" at="52,49,53,34" />
+      <scope id="4946084908405344548" at="8,55,11,17">
+        <var name="array" id="4946084908405344550" />
+      </scope>
+      <scope id="8173689851888086170" at="15,61,18,5">
+        <var name="i" id="8173689851888086173" />
+      </scope>
+      <scope id="6003518628802859255" at="39,30,42,7">
+        <var name="j" id="6003518628802859258" />
+      </scope>
+      <scope id="2992635601909636809" at="51,41,54,7">
+        <var name="j" id="2992635601909636812" />
+      </scope>
+      <scope id="1566995493930104094" at="59,99,62,18">
+        <var name="result" id="1566995493930109745" />
+      </scope>
+      <scope id="1928161108292917391" at="22,76,26,18">
+        <var name="result" id="4946084908405791650" />
+      </scope>
+      <scope id="1566995493930240773" at="29,73,33,18">
+        <var name="result" id="1566995493930240775" />
+      </scope>
+      <scope id="6003518628802844295" at="38,45,42,7" />
+      <scope id="4946084908405344547" at="8,0,13,0">
+        <var name="object" id="4946084908405344570" />
+      </scope>
+      <scope id="4946084908405337754" at="14,60,19,21">
+        <var name="twoDArray" id="4946084908405339053" />
+      </scope>
+      <scope id="2992635601909588456" at="49,44,54,7">
+        <var name="list" id="2992635601909610764" />
+      </scope>
+      <scope id="1566995493930104091" at="59,0,64,0">
+        <var name="array" id="1566995493930104845" />
+        <var name="beginIndex" id="1566995493930105698" />
+        <var name="endIndex" id="1566995493930107253" />
+      </scope>
+      <scope id="1928161108292917388" at="22,0,28,0">
+        <var name="array" id="4946084908405802510" />
+        <var name="object" id="1928161108292919094" />
+      </scope>
+      <scope id="1566995493930240772" at="29,0,35,0">
+        <var name="array" id="1566995493930240807" />
+        <var name="str" id="1566995493930240809" />
+      </scope>
+      <scope id="6003518628802844293" at="37,84,43,5">
+        <var name="i" id="6003518628802844296" />
+      </scope>
+      <scope id="4946084908405337751" at="14,0,21,0">
+        <var name="array" id="4946084908405338420" />
+      </scope>
+      <scope id="2992635601909588454" at="48,62,55,5">
+        <var name="i" id="2992635601909588457" />
+      </scope>
+      <scope id="4946084908405783700" at="36,85,44,18">
+        <var name="result" id="4946084908405795066" />
+      </scope>
+      <scope id="2992635601909556864" at="47,76,56,17">
+        <var name="array" id="2992635601909559148" />
+      </scope>
+      <scope id="4946084908405783699" at="36,0,46,0">
+        <var name="array" id="4946084908405808039" />
+        <var name="twoDArray" id="4946084908405809208" />
+      </scope>
+      <scope id="2992635601909556861" at="47,0,58,0">
+        <var name="listOfLists" id="2992635601909557525" />
+      </scope>
+      <unit id="1928161108293732174" at="7,0,65,0" name="smvDebugger.commons.ArrayUtils" />
+    </file>
+  </root>
+  <root nodeRef="r:85e05ab4-1ba9-4db5-96e9-56a84bd1472d(smvDebugger.commons)/3233838129230071036">
+    <file name="OS.java">
+      <unit id="3233838129230071036" at="6,0,11,0" name="smvDebugger.commons.OS" />
+    </file>
+  </root>
+  <root nodeRef="r:85e05ab4-1ba9-4db5-96e9-56a84bd1472d(smvDebugger.commons)/3233838129230080366">
+    <file name="OSUtils.java">
+      <node id="3233838129229853132" at="8,0,9,0" concept="5" trace="SUPPORTED_OS" />
+      <node id="3233838129229807389" at="10,28,11,70" concept="3" />
+      <node id="3233838129229815019" at="12,36,13,23" concept="4" />
+      <node id="3233838129229812650" at="15,37,16,24" concept="4" />
+      <node id="3233838129229823403" at="17,5,18,22" concept="4" />
+      <node id="3233838129229939773" at="21,52,22,37" concept="4" />
+      <node id="3233838129229815017" at="11,70,14,5" concept="2" />
+      <node id="3233838129229810849" at="14,5,17,5" concept="2" />
+      <node id="3233838129229905742" at="21,0,24,0" concept="6" trace="isSupportedOS#(LsmvDebugger/commons/OS;)Z" />
+      <node id="3233838129229806729" at="10,0,20,0" concept="6" trace="getOS#()LsmvDebugger/commons/OS;" />
+      <scope id="3233838129229815018" at="12,36,13,23" />
+      <scope id="3233838129229810851" at="15,37,16,24" />
+      <scope id="3233838129229905745" at="21,52,22,37" />
+      <scope id="3233838129229905742" at="21,0,24,0">
+        <var name="os" id="3233838129229909261" />
+      </scope>
+      <scope id="3233838129229806732" at="10,28,18,22">
+        <var name="osName" id="3233838129229807387" />
+      </scope>
+      <scope id="3233838129229806729" at="10,0,20,0" />
+      <unit id="3233838129230080366" at="7,0,25,0" name="smvDebugger.commons.OSUtils" />
+    </file>
+  </root>
+</debug-info>
+

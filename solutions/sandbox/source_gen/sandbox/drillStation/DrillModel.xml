@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="DrillModel">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CHGI">
+        <With Var="LIFT" />
+        <With Var="LOWER" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CHANGE">
+        <With Var="UP" />
+        <With Var="DOWN" />
+        <With Var="COORD" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LIFT" Type="BOOL" />
+      <VarDeclaration Name="LOWER" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="COORD" Type="DINT" />
+      <VarDeclaration Name="UP" Type="BOOL" />
+      <VarDeclaration Name="DOWN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars></InternalVars>
+    <ECC>
+      <ECState Name="START" x="0.0" y="0.0">
+        <ECAction Algorithm="UP_1" />
+        <ECAction Algorithm="DOWN_0" />
+      </ECState>
+      <ECState Name="DRILL" x="0.0" y="0.0">
+        <ECAction Algorithm="UP_0" />
+        <ECAction Algorithm="DOWN_1" Output="CHANGE" />
+      </ECState>
+      <ECState Name="WAITING" x="0.0" y="0.0">
+        <ECAction Algorithm="UP_1" />
+        <ECAction Algorithm="DOWN_0" Output="CHANGE" />
+      </ECState>
+      <ECTransition Source="START" Destination="DRILL" Condition="CHGI[LOWER]" x="0.0" y="0.0" />
+      <ECTransition Source="DRILL" Destination="WAITING" Condition="CHGI[LIFT]" x="0.0" y="0.0" />
+      <ECTransition Source="WAITING" Destination="DRILL" Condition="CHGI[LOWER]" x="0.0" y="0.0" />
+    </ECC>
+    <Algorithm Name="UP_0">
+      <ST Text="UP := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="UP_1">
+      <ST Text="UP := TRUE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="DOWN_0">
+      <ST Text="DOWN := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="DOWN_1">
+      <ST Text="DOWN := TRUE;&#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

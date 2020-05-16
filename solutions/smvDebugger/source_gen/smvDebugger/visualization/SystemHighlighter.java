@@ -56,9 +56,12 @@ public class SystemHighlighter {
 
         for (final SystemItemValue itemValue : itemValues) {
           final SystemItem item = itemValue.getItem();
+          if (item.getFbNames().length == 0) {
+            continue;
+          }
           final FunctionBlockDeclaration component = ListSequence.fromList(components).findFirst(new IWhereFilter<FunctionBlockDeclaration>() {
             public boolean accept(FunctionBlockDeclaration it) {
-              return Objects.equals(it.getName(), item.getFbName());
+              return Objects.equals(it.getName(), item.getFbNames()[0]);
             }
           });
           if (component != null) {

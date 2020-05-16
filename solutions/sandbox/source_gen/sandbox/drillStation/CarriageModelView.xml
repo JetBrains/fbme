@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="CarriageModelView">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CHGI">
+        <With Var="INSIDE" />
+        <With Var="OUTSIDE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CHANGE">
+        <With Var="LOAD_P" />
+        <With Var="WORK_P" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INSIDE" Type="BOOL" />
+      <VarDeclaration Name="OUTSIDE" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LOAD_P" Type="BOOL" />
+      <VarDeclaration Name="WORK_P" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="carriageModel" Type="CarriageModel" x="1319.0" y="680.0" />
+    <EventConnections>
+      <Connection Source="CHGI" Destination="carriageModel.CHGI" dx1="580.0" />
+      <Connection Source="carriageModel.CHANGE" Destination="CHANGE" dx1="938.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="carriageModel.LOAD_P" Destination="LOAD_P" dx1="1057.0" />
+      <Connection Source="carriageModel.WORK_P" Destination="WORK_P" dx1="1226.0" />
+      <Connection Source="INSIDE" Destination="carriageModel.INSIDE" dx1="565.0" />
+      <Connection Source="OUTSIDE" Destination="carriageModel.OUTSIDE" dx1="419.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

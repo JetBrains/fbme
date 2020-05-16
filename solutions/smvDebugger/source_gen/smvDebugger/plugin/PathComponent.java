@@ -16,7 +16,7 @@ public class PathComponent extends JBPanel {
     JBPanel inner = new JBPanel(new FlowLayout(FlowLayout.LEFT));
     add(inner);
     inner.add(new JBLabel(fieldName));
-    inner.add(fieldValue = new JBTextField());
+    inner.add(fieldValue = new JBTextField(40));
   }
 
   public String getValue() {

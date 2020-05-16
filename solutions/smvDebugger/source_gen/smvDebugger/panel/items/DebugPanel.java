@@ -8,7 +8,7 @@ import smvDebugger.panel.mvc.DebugPanelModel;
 import smvDebugger.model.Counterexample;
 import smvDebugger.visualization.SystemHighlighter;
 import smvDebugger.visualization.BacktraceService;
-import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 public class DebugPanel extends JPanel implements DebugPanelMVCItem {
   private final ControlPanel controlPanel;
@@ -33,9 +33,9 @@ public class DebugPanel extends JPanel implements DebugPanelMVCItem {
     controlPanel.initView();
     counterexampleTable.initView();
 
-    setLayout(new BorderLayout());
-    add(controlPanel, BorderLayout.WEST);
-    add(counterexampleTable, BorderLayout.CENTER);
+    setLayout(new FlowLayout());
+    add(controlPanel);
+    add(counterexampleTable);
   }
 
   @Override

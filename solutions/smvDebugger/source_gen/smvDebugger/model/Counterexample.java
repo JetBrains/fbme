@@ -29,6 +29,14 @@ public class Counterexample {
     return items;
   }
 
+  public String[] getItemSimpleNames() {
+    final String[] itemSimpleNames = new String[items.length];
+    for (int i = 0; i < itemSimpleNames.length; i++) {
+      itemSimpleNames[i] = items[i].getFullName();
+    }
+    return itemSimpleNames;
+  }
+
   public String[] getSteps() {
     return steps;
   }

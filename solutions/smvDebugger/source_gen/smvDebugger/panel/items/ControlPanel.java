@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 public class ControlPanel extends JPanel implements DebugPanelMVCItem {
   private static final String STEP_LABEL_NAME = "Current step:";
   private static final String TIME_LABEL_NAME = "Current time:";
-  private static final String CONDITION_LABEL_NAME = "Condition";
+  private static final String CONDITION_LABEL_NAME = "Condition:";
 
   private final StepChanger stepChanger;
   private final GlobalTime globalTime;
