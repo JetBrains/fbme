@@ -196,7 +196,7 @@
   </root>
   <root nodeRef="r:7d4b3040-5e2b-4e34-a42b-b9af403ede5f(smvDebugger.integration)/9195503755276441199">
     <file name="NuSmvService.java">
-      <node id="3233838129230625934" at="12,0,13,0" concept="8" trace="NUSMV_SUCCESS" />
+      <node id="3233838129230625934" at="12,0,13,0" concept="8" trace="NUSMV_FAIL" />
       <node id="4946084908410810367" at="14,51,15,27" concept="9" />
       <node id="4946084908400911154" at="18,94,19,45" concept="1" />
       <node id="4946084908400911171" at="19,45,20,46" concept="5" />

@@ -34,13 +34,18 @@ public class SmvDebugger {
   }
 
   public JComponent run(final Path fbPath, final CompositeFBTypeDeclaration compositeFb) {
-    final String specification = getSpecification();
-    final Optional<Counterexample> counterexample = smvService.verify(fbPath, specification);
-    if (counterexample.isEmpty()) {
-      notifySuccess();
+    try {
+      final String specification = getSpecification();
+      final Optional<Counterexample> counterexample = smvService.verify(fbPath, specification);
+      if (counterexample.isEmpty()) {
+        notifySuccess();
+        return null;
+      }
+      return debugPanelService.run(compositeFb, counterexample.get());
+    } catch (final Exception e) {
+      JOptionPane.showMessageDialog(null, e.getMessage());
       return null;
     }
-    return debugPanelService.run(compositeFb, counterexample.get());
   }
 
   private static String getSpecification() {

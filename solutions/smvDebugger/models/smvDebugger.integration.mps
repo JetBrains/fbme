@@ -144,6 +144,9 @@
       <concept id="1079359253375" name="jetbrains.mps.baseLanguage.structure.ParenthesizedExpression" flags="nn" index="1eOMI4">
         <child id="1079359253376" name="expression" index="1eOMHV" />
       </concept>
+      <concept id="1081516740877" name="jetbrains.mps.baseLanguage.structure.NotExpression" flags="nn" index="3fqX7Q">
+        <child id="1081516765348" name="expression" index="3fr31v" />
+      </concept>
       <concept id="1204053956946" name="jetbrains.mps.baseLanguage.structure.IMethodCall" flags="ng" index="1ndlxa">
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
@@ -474,12 +477,12 @@
   <node concept="312cEu" id="7YsZv8g1tpJ">
     <property role="TrG5h" value="NuSmvService" />
     <node concept="Wx3nA" id="2NwTEkpTVMe" role="jymVt">
-      <property role="TrG5h" value="NUSMV_SUCCESS" />
+      <property role="TrG5h" value="NUSMV_FAIL" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2NwTEkpTVC4" role="1B3o_S" />
       <node concept="17QB3L" id="2NwTEkpTVLh" role="1tU5fm" />
       <node concept="Xl_RD" id="2NwTEkpTWgD" role="33vP2m">
-        <property role="Xl_RC" value="Success" />
+        <property role="Xl_RC" value="is false" />
       </node>
     </node>
     <node concept="2tJIrI" id="2NwTEkpTFL_" role="jymVt" />
@@ -543,14 +546,16 @@
               </node>
             </node>
           </node>
-          <node concept="2OqwBi" id="4i$1wjaa2ei" role="3clFbw">
-            <node concept="37vLTw" id="4i$1wjaa2ej" role="2Oq$k0">
-              <ref role="3cqZAo" node="4i$1wjaa2d4" resolve="output" />
-            </node>
-            <node concept="liA8E" id="4i$1wjaa2ek" role="2OqNvi">
-              <ref role="37wK5l" to="wyt6:~String.contains(java.lang.CharSequence)" resolve="contains" />
-              <node concept="37vLTw" id="4i$1wjaa2el" role="37wK5m">
-                <ref role="3cqZAo" node="2NwTEkpTVMe" resolve="NUSMV_SUCCESS" />
+          <node concept="3fqX7Q" id="1mZ5x_P0HFq" role="3clFbw">
+            <node concept="2OqwBi" id="1mZ5x_P0HFs" role="3fr31v">
+              <node concept="37vLTw" id="1mZ5x_P0HFt" role="2Oq$k0">
+                <ref role="3cqZAo" node="4i$1wjaa2d4" resolve="output" />
+              </node>
+              <node concept="liA8E" id="1mZ5x_P0HFu" role="2OqNvi">
+                <ref role="37wK5l" to="wyt6:~String.contains(java.lang.CharSequence)" resolve="contains" />
+                <node concept="37vLTw" id="1mZ5x_P0HFv" role="37wK5m">
+                  <ref role="3cqZAo" node="2NwTEkpTVMe" resolve="NUSMV_FAIL" />
+                </node>
               </node>
             </node>
           </node>

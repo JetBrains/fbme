@@ -63,6 +63,8 @@ public class ConditionParser {
         result = new Equality(result, negation());
       } else if (compare("!=")) {
         result = new Inequality(result, negation());
+      } else {
+        break;
       }
     }
     return result;
@@ -78,7 +80,6 @@ public class ConditionParser {
   private Expression brackets() {
     if (compare("(")) {
       Expression result = disjunction();
-      index++;
       if (!(compare(")"))) {
         throw new ConditionParseException(String.format("Expected ')' at position %d", index));
       }
@@ -92,6 +93,10 @@ public class ConditionParser {
     while (index < str.length() && (Character.isLetterOrDigit(str.charAt(index)) || SPECIAL_SYMBOLS.contains(str.charAt(index)))) {
       builder.append(str.charAt(index));
       index++;
+    }
+    final String result = builder.toString();
+    if (result.isEmpty()) {
+      throw new ConditionParseException(String.format("Expected argument at position %d", index));
     }
     return new Argument(builder.toString());
   }

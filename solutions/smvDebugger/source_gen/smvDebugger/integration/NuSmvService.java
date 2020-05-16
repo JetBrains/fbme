@@ -9,7 +9,7 @@ import java.nio.file.StandardOpenOption;
 import java.io.IOException;
 
 public class NuSmvService extends AbstractIntegrationService {
-  private static final String NUSMV_SUCCESS = "Success";
+  private static final String NUSMV_FAIL = "is false";
 
   public NuSmvService(final Path nuSmvBinaryPath) {
     super(nuSmvBinaryPath);
@@ -19,7 +19,7 @@ public class NuSmvService extends AbstractIntegrationService {
     addSpecification(smvPath, specification);
     final String output = runProcess(smvPath);
 
-    if (output.contains(NUSMV_SUCCESS)) {
+    if (!(output.contains(NUSMV_FAIL))) {
       return Optional.<Path>empty();
     }
 
