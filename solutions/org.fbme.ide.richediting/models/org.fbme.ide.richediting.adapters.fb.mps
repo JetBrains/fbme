@@ -39,6 +39,8 @@
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
+    <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
+    <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -7122,8 +7124,8 @@
         <node concept="3cpWs8" id="1QSEqLi6gMQ" role="3cqZAp">
           <node concept="3cpWsn" id="1QSEqLi6gMR" role="3cpWs9">
             <property role="TrG5h" value="typeDeclaration" />
-            <node concept="3uibUv" id="1QSEqLi6gMS" role="1tU5fm">
-              <ref role="3uigEE" to="cwd8:~NamedDeclaration" resolve="NamedDeclaration" />
+            <node concept="3uibUv" id="5F$aghy4m1w" role="1tU5fm">
+              <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
             </node>
             <node concept="2OqwBi" id="1QSEqLi6gMT" role="33vP2m">
               <node concept="2OqwBi" id="6YAH_gOBBBZ" role="2Oq$k0">
@@ -7161,7 +7163,7 @@
                     <node concept="1eOMI4" id="1QSEqLi5GUC" role="2Oq$k0">
                       <node concept="10QFUN" id="1QSEqLi5GUD" role="1eOMHV">
                         <node concept="3uibUv" id="1QSEqLi5GUE" role="10QFUM">
-                          <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="RepositoryEntry" />
+                          <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
                         </node>
                         <node concept="37vLTw" id="1QSEqLi6seD" role="10QFUP">
                           <ref role="3cqZAo" node="1QSEqLi6gMR" resolve="typeDeclaration" />
@@ -7169,7 +7171,7 @@
                       </node>
                     </node>
                     <node concept="liA8E" id="1QSEqLi5GUG" role="2OqNvi">
-                      <ref role="37wK5l" to="go3h:1JYTWWzyU9A" resolve="getNode" />
+                      <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
                     </node>
                   </node>
                 </node>
@@ -7178,7 +7180,7 @@
           </node>
           <node concept="2ZW3vV" id="1QSEqLi5GUH" role="3clFbw">
             <node concept="3uibUv" id="1QSEqLi5GUI" role="2ZW6by">
-              <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="RepositoryEntry" />
+              <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
             </node>
             <node concept="37vLTw" id="1QSEqLi6shh" role="2ZW6bz">
               <ref role="3cqZAo" node="1QSEqLi6gMR" resolve="typeDeclaration" />
@@ -7218,8 +7220,8 @@
         <node concept="3cpWs8" id="1QSEqLi5GU7" role="3cqZAp">
           <node concept="3cpWsn" id="1QSEqLi5GU8" role="3cpWs9">
             <property role="TrG5h" value="typeDeclaration" />
-            <node concept="3uibUv" id="1QSEqLi5GU9" role="1tU5fm">
-              <ref role="3uigEE" to="cwd8:~NamedDeclaration" resolve="NamedDeclaration" />
+            <node concept="3uibUv" id="5F$aghy4fEj" role="1tU5fm">
+              <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
             </node>
             <node concept="2OqwBi" id="1QSEqLi5GUa" role="33vP2m">
               <node concept="37vLTw" id="1QSEqLi5GUV" role="2Oq$k0">
