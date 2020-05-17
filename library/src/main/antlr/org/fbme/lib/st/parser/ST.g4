@@ -39,7 +39,7 @@ elsifClause
     ;
 
 caseClause
-    : expression '->' body=statementList
+    : literal '->' body=statementList
     ;
 
 expression

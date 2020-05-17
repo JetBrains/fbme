@@ -42,6 +42,7 @@
     <language slang="l:c7d5b9dd-a05f-4be2-bc73-f2e16994cc67:jetbrains.mps.baseLanguage.lightweightdsl" version="1" />
     <language slang="l:760a0a8c-eabb-4521-8bfd-65db761a9ba3:jetbrains.mps.baseLanguage.logging" version="0" />
     <language slang="l:a247e09e-2435-45ba-b8d2-07e93feba96a:jetbrains.mps.baseLanguage.tuples" version="0" />
+    <language slang="l:aee9cad2-acd4-4608-aef2-0004f6a1cdbd:jetbrains.mps.lang.actions" version="4" />
     <language slang="l:fe9d76d7-5809-45c9-ae28-a40915b4d6ff:jetbrains.mps.lang.checkedName" version="1" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />
     <language slang="l:18bc6592-03a6-4e29-a83a-7ff23bde13ba:jetbrains.mps.lang.editor" version="13" />
@@ -80,6 +81,7 @@
     <module reference="111cc10b-fa1e-4e11-8e9c-37e957c4043f(org.fbme.ide.richediting.lang)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)" version="0" />
     <module reference="14f8fb68-9526-41ae-a986-e33a7382fe12(org.fbme.ide.util.lang)" version="0" />
+    <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(org.fbme.lib.iec61499)" version="0" />
     <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes)" version="0" />
   </dependencyVersions>

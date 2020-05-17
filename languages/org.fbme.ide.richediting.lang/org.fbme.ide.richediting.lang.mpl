@@ -77,9 +77,11 @@
     <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
     <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)" version="0" />
+    <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
     <module reference="ce053d11-5ec7-4fac-b419-6715b4a97d3a(org.fbme.ide.richediting)" version="0" />
     <module reference="111cc10b-fa1e-4e11-8e9c-37e957c4043f(org.fbme.ide.richediting.lang)" version="0" />
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)" version="0" />
+    <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(org.fbme.lib.iec61499)" version="0" />
     <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes)" version="0" />
   </dependencyVersions>
