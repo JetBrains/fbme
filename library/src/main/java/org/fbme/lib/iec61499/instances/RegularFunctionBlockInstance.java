@@ -2,7 +2,7 @@ package org.fbme.lib.iec61499.instances;
 
 
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
-import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.declarations.SubapplicationTypeDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +20,7 @@ import java.util.Objects;
         myParent = parent;
         myDeclaration = declaration;
 
-        NamedDeclaration typeDeclaration = myDeclaration.getType().getDeclaration();
+        Declaration typeDeclaration = myDeclaration.getType().getDeclaration();
         if (typeDeclaration instanceof CompositeFBTypeDeclaration) {
             myNetwork = new RegularNetworkInstance(this, ((CompositeFBTypeDeclaration) typeDeclaration).getNetwork(), typeDeclaration);
         } else if (typeDeclaration instanceof SubapplicationTypeDeclaration) {

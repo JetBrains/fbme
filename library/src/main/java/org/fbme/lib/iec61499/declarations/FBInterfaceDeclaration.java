@@ -1,11 +1,12 @@
 package org.fbme.lib.iec61499.declarations;
 
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface FBInterfaceDeclaration extends NamedDeclaration {
+public interface FBInterfaceDeclaration extends Declaration {
 
     @NotNull List<EventDeclaration> getInputEvents();
 

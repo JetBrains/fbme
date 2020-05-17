@@ -1,5 +1,6 @@
 package org.fbme.lib.iec61499;
 
+import org.fbme.lib.common.Identifier;
 import org.fbme.lib.iec61499.declarations.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

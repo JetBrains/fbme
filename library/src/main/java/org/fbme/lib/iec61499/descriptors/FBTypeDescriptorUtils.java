@@ -17,7 +17,7 @@ class FBTypeDescriptorUtils {
         List<EventDeclaration> inputEvents = declaration.getInputEvents();
         for (int i = 0; i < inputEvents.size(); i++) {
             EventDeclaration eventDeclaration = inputEvents.get(i);
-            res.add(new FBPortDescriptor(eventDeclaration.getName(), EntryKind.EVENT, i, true, true));
+            res.add(new FBPortDescriptor(eventDeclaration.getName(), EntryKind.EVENT, i, true, true, eventDeclaration));
         }
         return res;
     }
@@ -27,7 +27,7 @@ class FBTypeDescriptorUtils {
         List<EventDeclaration> outputEvents = declaration.getOutputEvents();
         for (int i = 0; i < outputEvents.size(); i++) {
             EventDeclaration eventDeclaration = outputEvents.get(i);
-            res.add(new FBPortDescriptor(eventDeclaration.getName(), EntryKind.EVENT, i, false, true));
+            res.add(new FBPortDescriptor(eventDeclaration.getName(), EntryKind.EVENT, i, false, true, eventDeclaration));
         }
         return res;
     }
@@ -37,7 +37,7 @@ class FBTypeDescriptorUtils {
         List<ParameterDeclaration> inputParameters = declaration.getInputParameters();
         for (int i = 0; i < inputParameters.size(); i++) {
             ParameterDeclaration parameterDeclaration = inputParameters.get(i);
-            res.add(new FBPortDescriptor(parameterDeclaration.getName(), EntryKind.DATA, i, true, true));
+            res.add(new FBPortDescriptor(parameterDeclaration.getName(), EntryKind.DATA, i, true, true, parameterDeclaration));
         }
         return res;
     }
@@ -48,7 +48,7 @@ class FBTypeDescriptorUtils {
         List<ParameterDeclaration> outputParameters = declaration.getOutputParameters();
         for (int i = 0; i < outputParameters.size(); i++) {
             ParameterDeclaration parameterDeclaration = outputParameters.get(i);
-            res.add(new FBPortDescriptor(parameterDeclaration.getName(), EntryKind.DATA, i, false, true));
+            res.add(new FBPortDescriptor(parameterDeclaration.getName(), EntryKind.DATA, i, false, true, parameterDeclaration));
         }
         return res;
     }
@@ -58,7 +58,7 @@ class FBTypeDescriptorUtils {
         List<PlugDeclaration> outputParameters = declaration.getPlugs();
         for (int i = 0; i < outputParameters.size(); i++) {
             PlugDeclaration plugDeclaration = outputParameters.get(i);
-            res.add(new FBPortDescriptor(plugDeclaration.getName(), EntryKind.ADAPTER, i, true, true));
+            res.add(new FBPortDescriptor(plugDeclaration.getName(), EntryKind.ADAPTER, i, true, true, plugDeclaration));
         }
         return res;
     }
@@ -68,7 +68,7 @@ class FBTypeDescriptorUtils {
         List<SocketDeclaration> outputParameters = declaration.getSockets();
         for (int i = 0; i < outputParameters.size(); i++) {
             SocketDeclaration socketDeclaration = outputParameters.get(i);
-            res.add(new FBPortDescriptor(socketDeclaration.getName(), EntryKind.ADAPTER, i, false, true));
+            res.add(new FBPortDescriptor(socketDeclaration.getName(), EntryKind.ADAPTER, i, false, true, socketDeclaration));
         }
         return res;
     }

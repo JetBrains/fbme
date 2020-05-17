@@ -1,16 +1,24 @@
 package org.fbme.lib.iec61499.fbnetwork;
 
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.common.Element;
 import org.fbme.lib.iec61499.declarations.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface FBNetwork {
+public interface FBNetwork extends Element {
 
-    @NotNull List<FBNetworkComponent> getComponents();
+    @NotNull /*readonly*/ List<FunctionBlockDeclarationBase> getContextComponents();
 
-    @NotNull List<FBNetworkConnection> getConnections();
+    @NotNull /*readonly*/ List<ParameterDeclaration> getContextDataSources();
+
+    @NotNull /*readonly*/ List<ParameterDeclaration> getContextDataDestinations();
+
+    @NotNull /*readonly*/ List<EventDeclaration> getContextEventSources();
+
+    @NotNull /*readonly*/ List<EventDeclaration> getContextEventDestinations();
 
     @NotNull List<FunctionBlockDeclaration> getFunctionBlocks();
 

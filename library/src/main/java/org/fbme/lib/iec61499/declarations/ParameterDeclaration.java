@@ -1,10 +1,16 @@
 package org.fbme.lib.iec61499.declarations;
 
+import org.fbme.lib.common.ContainedElement;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.st.expressions.VariableDeclaration;
+import org.fbme.lib.st.types.DataType;
 import org.jetbrains.annotations.Nullable;
 
-public interface ParameterDeclaration extends NamedDeclaration {
+public interface ParameterDeclaration extends VariableDeclaration, ContainedElement {
 
     @Nullable Declaration getContainer();
 
-    void remove();
+    @Nullable DataType getType();
+
+    void setType(@Nullable DataType type);
 }

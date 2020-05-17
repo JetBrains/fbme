@@ -1,6 +1,6 @@
 package org.fbme.lib.iec61499.instances;
 
-import org.fbme.lib.iec61499.declarations.Declaration;
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.fbnetwork.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -52,8 +52,7 @@ import java.util.Objects;
             synchronized (this) {
                 if (myChildren == null) {
                     myChildren = new HashMap<>();
-
-                    for (FBNetworkComponent component : myNetwork.getComponents()) {
+                    for (Declaration component : myNetwork.getFunctionBlocks()) {
                         if (component instanceof FunctionBlockDeclaration) {
                             FunctionBlockDeclaration innerFunctionBlock = (FunctionBlockDeclaration) component;
                             myChildren.put(innerFunctionBlock, new RegularFunctionBlockInstance(this, innerFunctionBlock));

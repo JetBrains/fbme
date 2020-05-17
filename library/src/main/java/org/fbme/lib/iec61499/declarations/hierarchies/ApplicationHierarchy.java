@@ -1,10 +1,15 @@
 package org.fbme.lib.iec61499.declarations.hierarchies;
 
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.common.DeclarationPath;
 import org.fbme.lib.iec61499.declarations.ApplicationDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubapplicationDeclaration;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class ApplicationHierarchy {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class ApplicationHierarchy implements DeclarationPath {
 
     ApplicationHierarchy() {
     }
@@ -19,6 +24,13 @@ public abstract class ApplicationHierarchy {
 
         public @NotNull ApplicationDeclaration getApplication() {
             return myApplication;
+        }
+
+        @Override
+        public @NotNull List<Declaration> getDeclarations() {
+            ArrayList<Declaration> res = new ArrayList<>();
+            res.add(myApplication);
+            return res;
         }
     }
 
@@ -39,6 +51,13 @@ public abstract class ApplicationHierarchy {
 
         public @NotNull SubapplicationDeclaration getSubapplication() {
             return mySubapplication;
+        }
+
+        @Override
+        public @NotNull List<Declaration> getDeclarations() {
+            List<Declaration> declarations = myParent.getDeclarations();
+            declarations.add(mySubapplication);
+            return declarations;
         }
     }
 }

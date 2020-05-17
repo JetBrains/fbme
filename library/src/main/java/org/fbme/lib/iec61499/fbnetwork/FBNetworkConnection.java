@@ -1,22 +1,21 @@
 package org.fbme.lib.iec61499.fbnetwork;
 
-public interface FBNetworkConnection {
+import org.fbme.lib.common.CompositeReference;
+import org.fbme.lib.common.ContainedElement;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-    FBNetwork getNetwork();
+public interface FBNetworkConnection extends ContainedElement {
 
-    ConnectionPath getPath();
+    @Nullable FBNetwork getContainer();
 
-    void setPath(ConnectionPath path);
+    @Nullable ConnectionPath getPath();
 
-    FBPortIdentity getSourcePort();
+    void setPath(@Nullable ConnectionPath path);
 
-    void setSourcePort(FBPortIdentity port);
+    @NotNull CompositeReference<PortPath<?>> getSourceReference();
 
-    FBPortIdentity getTargetPort();
+    @NotNull CompositeReference<PortPath<?>> getTargetReference();
 
-    void setTargetPort(FBPortIdentity port);
-
-    EntryKind getKind();
-
-    void remove();
+    @NotNull EntryKind getKind();
 }

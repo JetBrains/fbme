@@ -1,8 +1,10 @@
 package org.fbme.lib.iec61499.descriptors;
 
 
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class FBPortDescriptor {
 
@@ -16,12 +18,15 @@ public class FBPortDescriptor {
 
     private final boolean myIsValid;
 
-    public FBPortDescriptor(@NotNull String name, @NotNull EntryKind connectionKind, int position, boolean isInput, boolean isValid) {
+    private final @Nullable Declaration myDeclaration;
+
+    public FBPortDescriptor(@NotNull String name, @NotNull EntryKind connectionKind, int position, boolean isInput, boolean isValid, @Nullable Declaration declaration) {
         myName = name;
         myConnectionKind = connectionKind;
         myPosition = position;
         myIsInput = isInput;
         myIsValid = isValid;
+        myDeclaration = declaration;
     }
 
     public @NotNull String getName() {
@@ -42,5 +47,9 @@ public class FBPortDescriptor {
 
     public boolean isValid() {
         return myIsValid;
+    }
+
+    public @Nullable Declaration getDeclaration() {
+        return myDeclaration;
     }
 }

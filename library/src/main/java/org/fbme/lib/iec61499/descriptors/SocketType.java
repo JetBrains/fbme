@@ -2,7 +2,7 @@ package org.fbme.lib.iec61499.descriptors;
 
 
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration;
-import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+import org.fbme.lib.common.Declaration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +19,7 @@ public class SocketType implements FBTypeDescriptor {
 
     @Nullable
     @Override
-    public NamedDeclaration getDeclaration() {
+    public Declaration getDeclaration() {
         return myDeclaration;
     }
 

@@ -1,4 +1,4 @@
-package org.fbme.lib.iec61499;
+package org.fbme.lib.common;
 
 public interface Identifier {
 }

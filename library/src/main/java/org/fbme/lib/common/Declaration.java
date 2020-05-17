@@ -1,8 +1,10 @@
-package org.fbme.lib.iec61499.declarations;
+package org.fbme.lib.common;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface NamedDeclaration extends Declaration {
+public interface Declaration extends Element {
+
+    @NotNull Identifier getIdentifier();
 
     @NotNull String getName();
 

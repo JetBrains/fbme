@@ -1,6 +1,10 @@
 package org.fbme.lib.iec61499.fbnetwork;
 
-import org.fbme.lib.iec61499.declarations.NamedDeclaration;
+import org.fbme.lib.common.ContainedElement;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
+import org.fbme.lib.iec61499.declarations.ParameterAssignment;
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.jetbrains.annotations.NotNull;
@@ -9,17 +13,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public interface FunctionBlockDeclarationBase extends FBNetworkComponent, NamedDeclaration {
+public interface FunctionBlockDeclarationBase extends Declaration, ContainedElement {
 
     @NotNull FBTypeDescriptor getType();
 
-    default FBPortIdentity getPort(@NotNull FBPortDescriptor descriptor) {
-        return new FunctionBlockPortIdentity(this, descriptor.getPosition(), descriptor.getConnectionKind(), !(descriptor.isInput()), descriptor.getName(), descriptor.isValid());
+    @NotNull List<ParameterAssignment> getParameters();
+
+    default PortPath<? extends Declaration> getPort(@NotNull FBPortDescriptor descriptor) {
+        assert descriptor.getDeclaration() != null;
+        return PortPath.createPortPath(this, descriptor.getConnectionKind(), descriptor.getDeclaration());
     }
 
-    @Override
-    default @NotNull Set<FBPortIdentity> getPorts() {
-        Set<FBPortIdentity> result = new HashSet<FBPortIdentity>();
+    default @NotNull Set<PortPath<? extends Declaration>> getPorts() {
+        Set<PortPath<? extends Declaration>> result = new HashSet<>();
 
         FBTypeDescriptor type = getType();
         generatePorts(result, this, type.getEventInputPorts());
@@ -32,7 +38,7 @@ public interface FunctionBlockDeclarationBase extends FBNetworkComponent, NamedD
         return result;
     }
 
-    static void generatePorts(Set<FBPortIdentity> result, FunctionBlockDeclarationBase fb, List<FBPortDescriptor> ports) {
+    static void generatePorts(Set<PortPath<?>> result, FunctionBlockDeclarationBase fb, List<FBPortDescriptor> ports) {
         for (FBPortDescriptor port : ports) {
             result.add(fb.getPort(port));
         }
@@ -45,6 +51,4 @@ public interface FunctionBlockDeclarationBase extends FBNetworkComponent, NamedD
     int getY();
 
     void setY(int y);
-
-    void remove();
 }

@@ -1,14 +1,13 @@
 package org.fbme.lib.iec61499.declarations;
 
-import org.fbme.lib.iec61499.Reference;
+import org.fbme.lib.common.ContainedElement;
+import org.fbme.lib.common.Reference;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface EventAssociation {
+public interface EventAssociation extends ContainedElement {
 
-    @Nullable EventDeclaration getEvent();
+    @Nullable EventDeclaration getContainer();
 
     @NotNull Reference<ParameterDeclaration> getParameterReference();
-
-    void remove();
 }
