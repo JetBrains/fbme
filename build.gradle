@@ -83,7 +83,7 @@ task $buildRcp(type: BuildLanguages, dependsOn: buildPlugin) {
 }
 
 task copyStartupScripts(type: Copy, dependsOn: buildBootstrap) {
-    from 'solutions/iec61499.build/source_gen/iec61499/build'
+    from 'solutions/org.fbme.ide.build/source_gen/org/fbme/ide/build'
 
     include '*.bat'
     include '*.sh'

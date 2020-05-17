@@ -354,6 +354,11 @@
             </node>
           </node>
         </node>
+        <node concept="1SiIV0" id="4Hbpy_fMSp_" role="3bR37C">
+          <node concept="3bR9La" id="4Hbpy_fMSpA" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="10PD9b" id="2H5LTAROD4A" role="10PD9s" />
@@ -569,22 +574,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe67q" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe67l" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe67m" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="6zYxdPXe67n" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.iec61499.model" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67o" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe67r" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSkS" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSkO" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSkP" role="iGT6I">
@@ -655,25 +644,6 @@
             <property role="3ZfqAx" value="generator/template" />
             <property role="1Hdu6h" value="true" />
             <property role="1HemKv" value="true" />
-            <node concept="3LXTmp" id="6zYxdPXe67D" role="1HemKq">
-              <node concept="55IIr" id="6zYxdPXe67z" role="3LXTmr">
-                <node concept="2Ry0Ak" id="6zYxdPXe67$" role="iGT6I">
-                  <property role="2Ry0Am" value="languages" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67_" role="2Ry0An">
-                    <property role="2Ry0Am" value="mps.lang.iec61499" />
-                    <node concept="2Ry0Ak" id="6zYxdPXe67A" role="2Ry0An">
-                      <property role="2Ry0Am" value="generator" />
-                      <node concept="2Ry0Ak" id="6zYxdPXe67B" role="2Ry0An">
-                        <property role="2Ry0Am" value="template" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3qWCbU" id="6zYxdPXe67E" role="3LXTna">
-                <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-              </node>
-            </node>
             <node concept="3LXTmp" id="40XHEQlWSl5" role="1HemKq">
               <node concept="55IIr" id="40XHEQlWSl0" role="3LXTmr">
                 <node concept="2Ry0Ak" id="40XHEQlWSl1" role="iGT6I">
@@ -695,28 +665,13 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="3c8BrEoHyeq" role="3bR31x">
-          <node concept="3LXTmp" id="3c8BrEoHyer" role="3rtmxm">
-            <node concept="3qWCbU" id="3c8BrEoHyes" role="3LXTna">
-              <property role="3qWCbO" value="icons/**, resources/**" />
-            </node>
-            <node concept="55IIr" id="3c8BrEoHyet" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3c8BrEoHyeu" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="3DiEZ8TGoea" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.lang.iec61499" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="3rtmxn" id="7bQ9AP7Cats" role="3bR31x">
           <node concept="3LXTmp" id="7bQ9AP7Catu" role="3rtmxm">
             <node concept="55IIr" id="7bQ9AP7CatN" role="3LXTmr">
               <node concept="2Ry0Ak" id="7bQ9AP7Cau1" role="iGT6I">
                 <property role="2Ry0Am" value="languages" />
                 <node concept="2Ry0Ak" id="7bQ9AP7Caue" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.lang.iec61499" />
+                  <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
                   <node concept="2Ry0Ak" id="7bQ9AP7Cauj" role="2Ry0An">
                     <property role="2Ry0Am" value="source_gen" />
                   </node>
@@ -752,22 +707,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe67x" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe67s" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe67t" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="6zYxdPXe67u" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.lang.iec61499" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67v" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe67y" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSkY" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSkU" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSkV" role="iGT6I">
@@ -818,25 +757,6 @@
             <property role="3ZfqAx" value="generator/template" />
             <property role="1Hdu6h" value="true" />
             <property role="1HemKv" value="true" />
-            <node concept="3LXTmp" id="6zYxdPXe67S" role="1HemKq">
-              <node concept="55IIr" id="6zYxdPXe67M" role="3LXTmr">
-                <node concept="2Ry0Ak" id="6zYxdPXe67N" role="iGT6I">
-                  <property role="2Ry0Am" value="languages" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67O" role="2Ry0An">
-                    <property role="2Ry0Am" value="mps.lang.ST" />
-                    <node concept="2Ry0Ak" id="6zYxdPXe67P" role="2Ry0An">
-                      <property role="2Ry0Am" value="generator" />
-                      <node concept="2Ry0Ak" id="6zYxdPXe67Q" role="2Ry0An">
-                        <property role="2Ry0Am" value="template" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3qWCbU" id="6zYxdPXe67T" role="3LXTna">
-                <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-              </node>
-            </node>
             <node concept="3LXTmp" id="40XHEQlWSli" role="1HemKq">
               <node concept="55IIr" id="40XHEQlWSld" role="3LXTmr">
                 <node concept="2Ry0Ak" id="40XHEQlWSle" role="iGT6I">
@@ -872,22 +792,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe67K" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe67F" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe67G" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="6zYxdPXe67H" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.lang.ST" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67I" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe67L" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlb" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSl7" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSl8" role="iGT6I">
@@ -978,25 +882,6 @@
             <property role="3ZfqAx" value="generator/template" />
             <property role="1Hdu6h" value="true" />
             <property role="1HemKv" value="true" />
-            <node concept="3LXTmp" id="6zYxdPXe687" role="1HemKq">
-              <node concept="55IIr" id="6zYxdPXe681" role="3LXTmr">
-                <node concept="2Ry0Ak" id="6zYxdPXe682" role="iGT6I">
-                  <property role="2Ry0Am" value="languages" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe683" role="2Ry0An">
-                    <property role="2Ry0Am" value="mps.lang.meta.editor" />
-                    <node concept="2Ry0Ak" id="6zYxdPXe684" role="2Ry0An">
-                      <property role="2Ry0Am" value="generator" />
-                      <node concept="2Ry0Ak" id="6zYxdPXe685" role="2Ry0An">
-                        <property role="2Ry0Am" value="template" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3qWCbU" id="6zYxdPXe688" role="3LXTna">
-                <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-              </node>
-            </node>
             <node concept="3LXTmp" id="40XHEQlWSlv" role="1HemKq">
               <node concept="55IIr" id="40XHEQlWSlq" role="3LXTmr">
                 <node concept="2Ry0Ak" id="40XHEQlWSlr" role="iGT6I">
@@ -1037,22 +922,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe67Z" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe67U" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe67V" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="6zYxdPXe67W" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.lang.meta.editor" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe67X" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe680" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlo" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlk" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSll" role="iGT6I">
@@ -1090,22 +959,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="1a1larLeveQ" role="1HemKq">
-            <node concept="55IIr" id="1a1larLeveL" role="3LXTmr">
-              <node concept="2Ry0Ak" id="1a1larLeveM" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="1a1larLeveN" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.ide.synteticLang" />
-                  <node concept="2Ry0Ak" id="1a1larLeveO" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="1a1larLeveR" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSl_" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlx" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSly" role="iGT6I">
@@ -1128,6 +981,21 @@
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.ide.platform" />
         <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
+        <node concept="3rtmxn" id="3DiEZ8THn5x" role="3bR31x">
+          <node concept="3LXTmp" id="3DiEZ8THn5y" role="3rtmxm">
+            <node concept="55IIr" id="3DiEZ8THn5J" role="3LXTmr">
+              <node concept="2Ry0Ak" id="3DiEZ8THn5X" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="mO0SGikAQ5" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                </node>
+              </node>
+            </node>
+            <node concept="3LWZYx" id="3DiEZ8THn67" role="3LXTna">
+              <property role="3LWZYw" value="startup.properties" />
+            </node>
+          </node>
+        </node>
         <node concept="55IIr" id="42vv4xsIHM0" role="3LF7KH">
           <node concept="2Ry0Ak" id="42vv4xsIHNt" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
@@ -1215,41 +1083,10 @@
             <ref role="3bR37D" to="ffeo:7KapL9OABnm" resolve="jetbrains.mps.ide.ui" />
           </node>
         </node>
-        <node concept="3rtmxn" id="3DiEZ8THn5x" role="3bR31x">
-          <node concept="3LXTmp" id="3DiEZ8THn5y" role="3rtmxm">
-            <node concept="55IIr" id="3DiEZ8THn5J" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3DiEZ8THn5X" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="3DiEZ8THn62" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.ide" />
-                </node>
-              </node>
-            </node>
-            <node concept="3LWZYx" id="3DiEZ8THn67" role="3LXTna">
-              <property role="3LWZYw" value="startup.properties" />
-            </node>
-          </node>
-        </node>
         <node concept="1BupzO" id="6zYxdPXe68d" role="3bR31x">
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe68e" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe689" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe68a" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="6zYxdPXe68b" role="2Ry0An">
-                  <property role="2Ry0Am" value="mps.ide" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe68c" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe68f" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlF" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlB" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSlC" role="iGT6I">
@@ -1320,6 +1157,21 @@
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.scenes" />
         <property role="3LESm3" value="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9" />
+        <node concept="3rtmxn" id="mO0SGikARS" role="3bR31x">
+          <node concept="3LXTmp" id="mO0SGikART" role="3rtmxm">
+            <node concept="55IIr" id="mO0SGikARU" role="3LXTmr">
+              <node concept="2Ry0Ak" id="mO0SGikARV" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="mO0SGikARW" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.scenes" />
+                </node>
+              </node>
+            </node>
+            <node concept="3LWZYx" id="mO0SGikARY" role="3LXTna">
+              <property role="3LWZYw" value="startup.properties" />
+            </node>
+          </node>
+        </node>
         <node concept="55IIr" id="42vv4xsIJj0" role="3LF7KH">
           <node concept="2Ry0Ak" id="42vv4xsIJjm" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
@@ -1361,22 +1213,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe68l" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe68g" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe68h" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="6zYxdPXe68i" role="2Ry0An">
-                  <property role="2Ry0Am" value="scenes" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe68j" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe68m" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlL" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlH" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSlI" role="iGT6I">
@@ -1434,6 +1270,21 @@
         <property role="TrG5h" value="org.fbme.ide.richediting" />
         <property role="3LESm3" value="ce053d11-5ec7-4fac-b419-6715b4a97d3a" />
         <property role="BnDLt" value="true" />
+        <node concept="3rtmxn" id="mO0SGikARj" role="3bR31x">
+          <node concept="3LXTmp" id="mO0SGikARk" role="3rtmxm">
+            <node concept="55IIr" id="mO0SGikARl" role="3LXTmr">
+              <node concept="2Ry0Ak" id="mO0SGikARm" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="mO0SGikARn" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                </node>
+              </node>
+            </node>
+            <node concept="3LWZYx" id="mO0SGikARp" role="3LXTna">
+              <property role="3LWZYw" value="startup.properties" />
+            </node>
+          </node>
+        </node>
         <node concept="55IIr" id="42vv4xsIITa" role="3LF7KH">
           <node concept="2Ry0Ak" id="42vv4xsIITw" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
@@ -1511,22 +1362,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe68s" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe68n" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe68o" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="6zYxdPXe68p" role="2Ry0An">
-                  <property role="2Ry0Am" value="richediting" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe68q" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe68t" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlR" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlN" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSlO" role="iGT6I">
@@ -1571,6 +1406,7 @@
         </node>
         <node concept="1SiIV0" id="5oxN2jlMhIw" role="3bR37C">
           <node concept="3bR9La" id="5oxN2jlMhIx" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" node="42vv4xsIHXY" resolve="org.fbme.lib" />
           </node>
         </node>
@@ -1649,22 +1485,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="6zYxdPXe68B" role="1HemKq">
-            <node concept="55IIr" id="6zYxdPXe68y" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6zYxdPXe68z" role="iGT6I">
-                <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="6zYxdPXe68$" role="2Ry0An">
-                  <property role="2Ry0Am" value="richediting.lang" />
-                  <node concept="2Ry0Ak" id="6zYxdPXe68_" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6zYxdPXe68C" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="40XHEQlWSlX" role="1HemKq">
             <node concept="55IIr" id="40XHEQlWSlT" role="3LXTmr">
               <node concept="2Ry0Ak" id="40XHEQlWSlU" role="iGT6I">
@@ -1779,17 +1599,17 @@
         <property role="TrG5h" value="org.fbme.ide.integration.fordiac" />
         <property role="3LESm3" value="493a4cca-9505-4b07-b547-5711c9dc63e8" />
         <property role="BnDLt" value="true" />
-        <node concept="3rtmxn" id="3DiEZ8THn6F" role="3bR31x">
-          <node concept="3LXTmp" id="3DiEZ8THn6G" role="3rtmxm">
-            <node concept="55IIr" id="3DiEZ8THn6H" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3DiEZ8THn6I" role="iGT6I">
+        <node concept="3rtmxn" id="mO0SGikAQ_" role="3bR31x">
+          <node concept="3LXTmp" id="mO0SGikAQA" role="3rtmxm">
+            <node concept="55IIr" id="mO0SGikAQB" role="3LXTmr">
+              <node concept="2Ry0Ak" id="mO0SGikAQC" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="40XHEQlWSjM" role="2Ry0An">
+                <node concept="2Ry0Ak" id="mO0SGikAQD" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.integration.fordiac" />
                 </node>
               </node>
             </node>
-            <node concept="3LWZYx" id="3DiEZ8THn6K" role="3LXTna">
+            <node concept="3LWZYx" id="mO0SGikAQF" role="3LXTna">
               <property role="3LWZYw" value="startup.properties" />
             </node>
           </node>
