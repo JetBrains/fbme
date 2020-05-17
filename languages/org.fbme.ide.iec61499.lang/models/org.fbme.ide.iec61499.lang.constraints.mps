@@ -1403,7 +1403,7 @@
   </node>
   <node concept="1M2fIO" id="5s_pyghzCRH">
     <property role="3GE5qa" value="system" />
-    <ref role="1M2myG" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+    <ref role="1M2myG" to="xiqq:5s_pyghzCOb" resolve="Link" />
     <node concept="1N5Pfh" id="5s_pyghzCRK" role="1Mr941">
       <ref role="1N5Vy1" to="xiqq:5s_pyghzCOh" resolve="segment" />
       <node concept="3dgokm" id="5s_pyghzCRO" role="1N6uqs">
@@ -1435,7 +1435,7 @@
   </node>
   <node concept="1M2fIO" id="23XkovWgxDt">
     <property role="3GE5qa" value="interface" />
-    <ref role="1M2myG" to="xiqq:3HBlKeoYsiT" resolve="ParameterAssociation" />
+    <ref role="1M2myG" to="xiqq:3HBlKeoYsiT" resolve="EventAssociation" />
     <node concept="1N5Pfh" id="23XkovWgxDu" role="1Mr941">
       <ref role="1N5Vy1" to="xiqq:3HBlKeoYsiU" resolve="declaration" />
       <node concept="3dgokm" id="23XkovWgxDy" role="1N6uqs">

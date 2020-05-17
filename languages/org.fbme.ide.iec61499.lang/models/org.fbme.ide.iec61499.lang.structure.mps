@@ -101,7 +101,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="associatedVariables" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="3HBlKeoYsiT" resolve="ParameterAssociation" />
+      <ref role="20lvS9" node="3HBlKeoYsiT" resolve="EventAssociation" />
     </node>
     <node concept="PrWs8" id="3HBlKeoYsiR" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -128,7 +128,7 @@
   </node>
   <node concept="1TIwiD" id="3HBlKeoYsiT">
     <property role="EcuMT" value="4280485643801969849" />
-    <property role="TrG5h" value="ParameterAssociation" />
+    <property role="TrG5h" value="EventAssociation" />
     <property role="3GE5qa" value="interface" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="3HBlKeoYsiU" role="1TKVEi">
@@ -1188,7 +1188,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="mappings" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="uLhTRRmhk4" resolve="MappingDeclaration" />
+      <ref role="20lvS9" node="uLhTRRmhk4" resolve="Mapping" />
     </node>
     <node concept="1TJgyj" id="5s_pyght$Xg" role="1TKVEi">
       <property role="IQ2ns" value="6279537560535846736" />
@@ -1202,7 +1202,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="links" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="5s_pyghzCOb" resolve="LinkDeclaration" />
+      <ref role="20lvS9" node="5s_pyghzCOb" resolve="Link" />
     </node>
     <node concept="PrWs8" id="uLhTRR7Mvx" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -1238,7 +1238,7 @@
   <node concept="1TIwiD" id="uLhTRRmhk4">
     <property role="EcuMT" value="554302972928529668" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="MappingDeclaration" />
+    <property role="TrG5h" value="Mapping" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="uLhTRRmrej" role="1TKVEi">
       <property role="IQ2ns" value="554302972928570259" />
@@ -1413,7 +1413,7 @@
   <node concept="1TIwiD" id="5s_pyghzCOb">
     <property role="EcuMT" value="6279537560537435403" />
     <property role="3GE5qa" value="system" />
-    <property role="TrG5h" value="LinkDeclaration" />
+    <property role="TrG5h" value="Link" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="5s_pyghzCOc" role="1TKVEi">
       <property role="IQ2ns" value="6279537560537435404" />

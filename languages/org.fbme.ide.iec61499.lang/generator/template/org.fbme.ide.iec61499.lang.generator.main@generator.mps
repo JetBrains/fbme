@@ -305,7 +305,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghYY8g" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
+      <ref role="30HIoZ" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
       <node concept="j$656" id="5s_pyghYY8I" role="1lVwrX">
         <ref role="v9R2y" node="5s_pyghYY8G" resolve="reduce_Mapping" />
       </node>
@@ -317,7 +317,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="5s_pyghZ2Vs" role="3acgRq">
-      <ref role="30HIoZ" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+      <ref role="30HIoZ" to="xiqq:5s_pyghzCOb" resolve="Link" />
       <node concept="j$656" id="5s_pyghZ2VW" role="1lVwrX">
         <ref role="v9R2y" node="5s_pyghZ2VU" resolve="reduce_Link" />
       </node>
@@ -2823,7 +2823,7 @@
   </node>
   <node concept="13MO4I" id="5s_pyghYY8G">
     <property role="TrG5h" value="reduce_Mapping" />
-    <ref role="3gUMe" to="xiqq:uLhTRRmhk4" resolve="MappingDeclaration" />
+    <ref role="3gUMe" to="xiqq:uLhTRRmhk4" resolve="Mapping" />
     <node concept="2pNNFK" id="5s_pyghYY8L" role="13RCb5">
       <property role="2pNNFO" value="Mapping" />
       <property role="qg3DV" value="true" />
@@ -2884,7 +2884,7 @@
   </node>
   <node concept="13MO4I" id="5s_pyghZ2VU">
     <property role="TrG5h" value="reduce_Link" />
-    <ref role="3gUMe" to="xiqq:5s_pyghzCOb" resolve="LinkDeclaration" />
+    <ref role="3gUMe" to="xiqq:5s_pyghzCOb" resolve="Link" />
     <node concept="2pNNFK" id="5s_pyghZ2VZ" role="13RCb5">
       <property role="2pNNFO" value="Link" />
       <node concept="2pNNFK" id="5s_pyghZ66_" role="3o6s8t">

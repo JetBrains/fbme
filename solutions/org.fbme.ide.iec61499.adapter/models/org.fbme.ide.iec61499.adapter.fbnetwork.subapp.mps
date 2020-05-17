@@ -20,6 +20,8 @@
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
     <import index="6iyo" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork.subapp(org.fbme.lib/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
+    <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
+    <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -42,7 +44,14 @@
         <child id="1145553007750" name="creator" index="2ShVmc" />
       </concept>
       <concept id="1070475587102" name="jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" flags="nn" index="XkiVB" />
+      <concept id="1081236700937" name="jetbrains.mps.baseLanguage.structure.StaticMethodCall" flags="nn" index="2YIFZM">
+        <reference id="1144433194310" name="classConcept" index="1Pybhc" />
+      </concept>
       <concept id="1070534058343" name="jetbrains.mps.baseLanguage.structure.NullLiteral" flags="nn" index="10Nm6u" />
+      <concept id="1070534934090" name="jetbrains.mps.baseLanguage.structure.CastExpression" flags="nn" index="10QFUN">
+        <child id="1070534934091" name="type" index="10QFUM" />
+        <child id="1070534934092" name="expression" index="10QFUP" />
+      </concept>
       <concept id="1068390468198" name="jetbrains.mps.baseLanguage.structure.ClassConcept" flags="ig" index="312cEu">
         <child id="1095933932569" name="implementedInterface" index="EKbjA" />
         <child id="1165602531693" name="superclass" index="1zkMxy" />
@@ -87,7 +96,6 @@
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
       </concept>
-      <concept id="1073063089578" name="jetbrains.mps.baseLanguage.structure.SuperMethodCall" flags="nn" index="3nyPlj" />
       <concept id="1212685548494" name="jetbrains.mps.baseLanguage.structure.ClassCreator" flags="nn" index="1pGfFk">
         <child id="1212687122400" name="typeParameter" index="1pMfVU" />
       </concept>
@@ -125,6 +133,7 @@
         <reference id="2644386474301421078" name="conceptDeclaration" index="359W_E" />
         <reference id="2644386474301421079" name="linkDeclaration" index="359W_F" />
       </concept>
+      <concept id="1139613262185" name="jetbrains.mps.lang.smodel.structure.Node_GetParentOperation" flags="nn" index="1mfA1w" />
       <concept id="1140137987495" name="jetbrains.mps.lang.smodel.structure.SNodeTypeCastExpression" flags="nn" index="1PxgMI" />
       <concept id="1138055754698" name="jetbrains.mps.lang.smodel.structure.SNodeType" flags="in" index="3Tqbb2">
         <reference id="1138405853777" name="concept" index="ehGHo" />
@@ -179,7 +188,7 @@
       <node concept="37vLTG" id="3VhUp_YQv8x" role="3clF46">
         <property role="TrG5h" value="repository" />
         <node concept="3uibUv" id="3VhUp_YQv8z" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformRepository" />
+          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -193,8 +202,8 @@
       <node concept="3clFbS" id="3VhUp_YQtue" role="3clF47">
         <node concept="3clFbF" id="3VhUp_YQtuf" role="3cqZAp">
           <node concept="2OqwBi" id="3VhUp_YQtug" role="3clFbG">
-            <node concept="37vLTw" id="3VhUp_YQtuh" role="2Oq$k0">
-              <ref role="3cqZAo" to="rwq3:2syzu7qTgQb" resolve="myNode" />
+            <node concept="37vLTw" id="7OvpRfuTtxo" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
             </node>
             <node concept="3TrEf2" id="3VhUp_YSpYW" role="2OqNvi">
               <ref role="3Tt5mk" to="xiqq:7oJsd9x2gq9" resolve="position" />
@@ -211,7 +220,7 @@
       <property role="TrG5h" value="getTypeReference" />
       <node concept="3Tm1VV" id="3lxP5h48PxJ" role="1B3o_S" />
       <node concept="3uibUv" id="3lxP5h48PxM" role="3clF45">
-        <ref role="3uigEE" to="v4vf:~Reference" resolve="Reference" />
+        <ref role="3uigEE" to="7adg:~Reference" resolve="Reference" />
         <node concept="3uibUv" id="3lxP5h4ersN" role="11_B2D">
           <ref role="3uigEE" to="cwd8:~SubapplicationTypeDeclaration" resolve="SubapplicationTypeDeclaration" />
         </node>
@@ -220,9 +229,9 @@
         <node concept="3clFbF" id="3lxP5h48QmM" role="3cqZAp">
           <node concept="2ShNRf" id="3lxP5h48QmG" role="3clFbG">
             <node concept="1pGfFk" id="3lxP5h48QH9" role="2ShVmc">
-              <ref role="37wK5l" to="go3h:3lxP5h46OjL" resolve="PlatformReference" />
-              <node concept="37vLTw" id="3lxP5h48QLY" role="37wK5m">
-                <ref role="3cqZAo" to="rwq3:2syzu7qTgQb" resolve="myNode" />
+              <ref role="37wK5l" to="fcfa:3lxP5h46OjL" resolve="PlatformReference" />
+              <node concept="37vLTw" id="7OvpRfuTu7A" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
               </node>
               <node concept="359W_D" id="3lxP5h48R79" role="37wK5m">
                 <ref role="359W_E" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
@@ -234,8 +243,8 @@
               <node concept="3uibUv" id="3lxP5h4erSy" role="1pMfVU">
                 <ref role="3uigEE" to="cwd8:~SubapplicationTypeDeclaration" resolve="SubapplicationTypeDeclaration" />
               </node>
-              <node concept="37vLTw" id="3lxP5h48TxK" role="37wK5m">
-                <ref role="3cqZAo" to="rwq3:3VhUp_YNzQc" resolve="myRepository" />
+              <node concept="37vLTw" id="7OvpRfuTuvy" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
               </node>
             </node>
           </node>
@@ -260,7 +269,7 @@
           <node concept="3cpWsn" id="3lxP5h48Vz0" role="3cpWs9">
             <property role="TrG5h" value="typeReference" />
             <node concept="3uibUv" id="3lxP5h48V3T" role="1tU5fm">
-              <ref role="3uigEE" to="v4vf:~Reference" resolve="Reference" />
+              <ref role="3uigEE" to="7adg:~Reference" resolve="Reference" />
               <node concept="3uibUv" id="3lxP5h4esKt" role="11_B2D">
                 <ref role="3uigEE" to="cwd8:~SubapplicationTypeDeclaration" resolve="SubapplicationTypeDeclaration" />
               </node>
@@ -281,7 +290,7 @@
                 <ref role="3cqZAo" node="3lxP5h48Vz0" resolve="typeReference" />
               </node>
               <node concept="liA8E" id="3lxP5h48Yi8" role="2OqNvi">
-                <ref role="37wK5l" to="v4vf:~Reference.getTarget()" resolve="getTarget" />
+                <ref role="37wK5l" to="7adg:~Reference.getTarget()" resolve="getTarget" />
               </node>
             </node>
           </node>
@@ -316,7 +325,7 @@
                         <ref role="3cqZAo" node="3lxP5h48Vz0" resolve="typeReference" />
                       </node>
                       <node concept="liA8E" id="3lxP5h492sw" role="2OqNvi">
-                        <ref role="37wK5l" to="v4vf:~Reference.getPresentation()" resolve="getPresentation" />
+                        <ref role="37wK5l" to="7adg:~Reference.getPresentation()" resolve="getPresentation" />
                       </node>
                     </node>
                   </node>
@@ -330,17 +339,97 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="2tJIrI" id="7OvpRfuTvyN" role="jymVt" />
     <node concept="3Tm1VV" id="3VhUp_YN5sB" role="1B3o_S" />
     <node concept="3uibUv" id="_2FpOZlmQg" role="EKbjA">
       <ref role="3uigEE" to="6iyo:~SubapplicationDeclaration" resolve="SubapplicationDeclaration" />
     </node>
     <node concept="3uibUv" id="3VhUp_YN5sD" role="EKbjA">
-      <ref role="3uigEE" to="go3h:1JYTWWzyU94" resolve="RepositoryEntry" />
+      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
     </node>
     <node concept="3uibUv" id="3VhUp_YN5sG" role="1zkMxy">
       <ref role="3uigEE" to="rwq3:3VhUp_YMiEx" resolve="FunctionBlockDeclarationBaseByNode" />
       <node concept="3Tqbb2" id="3VhUp_YNdfL" role="11_B2D">
         <ref role="ehGHo" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="1IuIrLUuGVS" role="jymVt">
+      <property role="TrG5h" value="getContainer" />
+      <node concept="3Tm1VV" id="1IuIrLUuGVT" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1IuIrLUuGVV" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="7OvpRfuTzdn" role="3clF45">
+        <ref role="3uigEE" to="6iyo:~SubappNetwork" resolve="SubappNetwork" />
+      </node>
+      <node concept="3clFbS" id="1IuIrLUuGWn" role="3clF47">
+        <node concept="3cpWs8" id="1IuIrLUuNdx" role="3cqZAp">
+          <node concept="3cpWsn" id="1IuIrLUuNdy" role="3cpWs9">
+            <property role="TrG5h" value="container" />
+            <node concept="3uibUv" id="1IuIrLUuNdz" role="1tU5fm">
+              <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
+            </node>
+            <node concept="2OqwBi" id="1IuIrLUuNd$" role="33vP2m">
+              <node concept="37vLTw" id="1IuIrLUuNd_" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+              <node concept="liA8E" id="1IuIrLUuNdA" role="2OqNvi">
+                <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+                <node concept="2OqwBi" id="1IuIrLUuNdB" role="37wK5m">
+                  <node concept="37vLTw" id="1IuIrLUuNdC" role="2Oq$k0">
+                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                  </node>
+                  <node concept="1mfA1w" id="1IuIrLUuNdD" role="2OqNvi" />
+                </node>
+                <node concept="3VsKOn" id="1IuIrLUuNdE" role="37wK5m">
+                  <ref role="3VsUkX" to="7adg:~Declaration" resolve="Declaration" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="1IuIrLUuNdF" role="3cqZAp">
+          <node concept="10QFUN" id="7OvpRfuTzLg" role="3clFbG">
+            <node concept="3uibUv" id="7OvpRfuTzO4" role="10QFUM">
+              <ref role="3uigEE" to="6iyo:~SubappNetwork" resolve="SubappNetwork" />
+            </node>
+            <node concept="2YIFZM" id="1IuIrLUuNdI" role="10QFUP">
+              <ref role="37wK5l" to="g27j:~FBNetwork.extractNetwork(org.fbme.lib.common.Declaration)" resolve="extractNetwork" />
+              <ref role="1Pybhc" to="g27j:~FBNetwork" resolve="FBNetwork" />
+              <node concept="37vLTw" id="1IuIrLUuNdJ" role="37wK5m">
+                <ref role="3cqZAo" node="1IuIrLUuNdy" resolve="container" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1IuIrLUuGWo" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="7OvpRfuT_1w" role="jymVt" />
+    <node concept="3clFb_" id="7OvpRfuT_va" role="jymVt">
+      <property role="TrG5h" value="getParameters" />
+      <node concept="3Tm1VV" id="7OvpRfuT_vb" role="1B3o_S" />
+      <node concept="2AHcQZ" id="7OvpRfuT_vd" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="7OvpRfuT_ve" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="7OvpRfuT_vf" role="11_B2D">
+          <ref role="3uigEE" to="cwd8:~ParameterAssignment" resolve="ParameterAssignment" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="7OvpRfuT_vq" role="3clF47">
+        <node concept="3clFbF" id="7OvpRfuTA0A" role="3cqZAp">
+          <node concept="2YIFZM" id="7OvpRfuTA2p" role="3clFbG">
+            <ref role="37wK5l" to="33ny:~Collections.emptyList()" resolve="emptyList" />
+            <ref role="1Pybhc" to="33ny:~Collections" resolve="Collections" />
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="7OvpRfuT_vr" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
   </node>
@@ -359,7 +448,7 @@
       <node concept="3Tm1VV" id="6YcNwH3zv24" role="1B3o_S" />
       <node concept="3clFbS" id="6YcNwH3zv26" role="3clF47">
         <node concept="XkiVB" id="6YcNwH3zv28" role="3cqZAp">
-          <ref role="37wK5l" to="rwq3:1R4IoyQANA7" resolve="FBNetworkByNode" />
+          <ref role="37wK5l" to="rwq3:1IuIrLUvuAR" resolve="FBNetworkByNode" />
           <node concept="37vLTw" id="6YcNwH3zv2c" role="37wK5m">
             <ref role="3cqZAo" node="6YcNwH3zv29" resolve="node" />
           </node>
@@ -377,7 +466,7 @@
       <node concept="37vLTG" id="6YcNwH3zv2d" role="3clF46">
         <property role="TrG5h" value="repository" />
         <node concept="3uibUv" id="6YcNwH3zv2f" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformRepository" />
+          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -401,8 +490,8 @@
                   <node concept="chp4Y" id="6YcNwH3zvKY" role="3oSUPX">
                     <ref role="cht4Q" to="xiqq:uLhTRQW_B0" resolve="IWithSubappNetwork" />
                   </node>
-                  <node concept="37vLTw" id="6YcNwH3zvs2" role="1m5AlR">
-                    <ref role="3cqZAo" to="rwq3:1R4IoyQANA3" resolve="myNode" />
+                  <node concept="37vLTw" id="7OvpRfuTqIy" role="1m5AlR">
+                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="6YcNwH3zwnU" role="2OqNvi">
@@ -412,8 +501,8 @@
               <node concept="3VsKOn" id="6YcNwH3zyRw" role="37wK5m">
                 <ref role="3VsUkX" to="6iyo:~SubapplicationDeclaration" resolve="SubapplicationDeclaration" />
               </node>
-              <node concept="37vLTw" id="6YcNwH3z_Zd" role="37wK5m">
-                <ref role="3cqZAo" to="rwq3:1R0_JUQXkK4" resolve="myRepository" />
+              <node concept="37vLTw" id="7OvpRfuTqV1" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
               </node>
               <node concept="3uibUv" id="6YcNwH3zAHe" role="1pMfVU">
                 <ref role="3uigEE" to="6iyo:~SubapplicationDeclaration" resolve="SubapplicationDeclaration" />
@@ -424,57 +513,6 @@
       </node>
       <node concept="2AHcQZ" id="6YcNwH3zv62" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-    </node>
-    <node concept="2tJIrI" id="6YcNwH3zB1H" role="jymVt" />
-    <node concept="3clFb_" id="6YcNwH3zBjO" role="jymVt">
-      <property role="TrG5h" value="getComponents" />
-      <node concept="3Tm1VV" id="6YcNwH3zBjP" role="1B3o_S" />
-      <node concept="3uibUv" id="6YcNwH3zBjQ" role="3clF45">
-        <ref role="3uigEE" to="33ny:~List" resolve="List" />
-        <node concept="3uibUv" id="6YcNwH3zBjR" role="11_B2D">
-          <ref role="3uigEE" to="g27j:~FBNetworkComponent" resolve="FBNetworkComponent" />
-        </node>
-      </node>
-      <node concept="2AHcQZ" id="6YcNwH3zBmg" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-      <node concept="2AHcQZ" id="6YcNwH3zBmh" role="2AJF6D">
-        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
-      </node>
-      <node concept="3clFbS" id="6YcNwH3zBmi" role="3clF47">
-        <node concept="3cpWs8" id="6YcNwH3zBJO" role="3cqZAp">
-          <node concept="3cpWsn" id="6YcNwH3zBJP" role="3cpWs9">
-            <property role="TrG5h" value="components" />
-            <node concept="3uibUv" id="6YcNwH3zBvQ" role="1tU5fm">
-              <ref role="3uigEE" to="33ny:~List" resolve="List" />
-              <node concept="3uibUv" id="6YcNwH3zBvT" role="11_B2D">
-                <ref role="3uigEE" to="g27j:~FBNetworkComponent" resolve="FBNetworkComponent" />
-              </node>
-            </node>
-            <node concept="3nyPlj" id="6YcNwH3zBJQ" role="33vP2m">
-              <ref role="37wK5l" to="rwq3:1R4IoyQANAk" resolve="getComponents" />
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="6YcNwH3zBmk" role="3cqZAp">
-          <node concept="2OqwBi" id="6YcNwH3zCs8" role="3clFbG">
-            <node concept="37vLTw" id="6YcNwH3zBJR" role="2Oq$k0">
-              <ref role="3cqZAo" node="6YcNwH3zBJP" resolve="components" />
-            </node>
-            <node concept="liA8E" id="6YcNwH3zDyx" role="2OqNvi">
-              <ref role="37wK5l" to="33ny:~List.addAll(java.util.Collection)" resolve="addAll" />
-              <node concept="1rXfSq" id="6YcNwH3zDFF" role="37wK5m">
-                <ref role="37wK5l" node="6YcNwH3zv5U" resolve="getSubapplications" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs6" id="6YcNwH3zE4U" role="3cqZAp">
-          <node concept="37vLTw" id="6YcNwH3zEfA" role="3cqZAk">
-            <ref role="3cqZAo" node="6YcNwH3zBJP" resolve="components" />
-          </node>
-        </node>
       </node>
     </node>
   </node>

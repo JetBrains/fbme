@@ -123,7 +123,7 @@
   <node concept="1TIwiD" id="3Qd3IVOFNl$">
     <property role="EcuMT" value="4435217627499935076" />
     <property role="3GE5qa" value="expressions" />
-    <property role="TrG5h" value="ParensExpression" />
+    <property role="TrG5h" value="ParenthesisExpression" />
     <property role="34LRSv" value="( ... )" />
     <ref role="1TJDcQ" node="3HBlKeoZ0X9" resolve="Expression" />
     <node concept="1TJgyj" id="3Qd3IVOFNmU" role="1TKVEi">
@@ -235,7 +235,7 @@
   <node concept="1TIwiD" id="7GyesCp9TvI">
     <property role="EcuMT" value="8872717756041500654" />
     <property role="3GE5qa" value="statements" />
-    <property role="TrG5h" value="AssigmentStatement" />
+    <property role="TrG5h" value="AssignmentStatement" />
     <property role="34LRSv" value=":=" />
     <ref role="1TJDcQ" node="7GyesCp9Th6" resolve="Statement" />
     <node concept="1TJgyj" id="7GyesCp9TvL" role="1TKVEi">
@@ -285,7 +285,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="elseifClauses" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="7GyesCp9TKa" resolve="IfStatementElseifClause" />
+      <ref role="20lvS9" node="7GyesCp9TKa" resolve="ElseIfClause" />
     </node>
     <node concept="1TJgyj" id="7GyesCp9TLt" role="1TKVEi">
       <property role="IQ2ns" value="8872717756041501789" />
@@ -297,7 +297,7 @@
   <node concept="1TIwiD" id="7GyesCp9TKa">
     <property role="EcuMT" value="8872717756041501706" />
     <property role="3GE5qa" value="statements" />
-    <property role="TrG5h" value="IfStatementElseifClause" />
+    <property role="TrG5h" value="ElseIfClause" />
     <property role="34LRSv" value="ELSIF" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="7GyesCp9TKb" role="1TKVEi">
@@ -428,7 +428,7 @@
     <node concept="1TJgyj" id="7GyesCpem8U" role="1TKVEi">
       <property role="IQ2ns" value="8872717756042666554" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="byExpression" />
+      <property role="20kJfa" value="stepExpression" />
       <ref role="20lvS9" node="3HBlKeoZ0X9" resolve="Expression" />
     </node>
   </node>

@@ -145,7 +145,7 @@
   </node>
   <node concept="WtQ9Q" id="463hhT5jn9">
     <property role="3GE5qa" value="statements" />
-    <ref role="WuzLi" to="gpgy:7GyesCp9TvI" resolve="AssigmentStatement" />
+    <ref role="WuzLi" to="gpgy:7GyesCp9TvI" resolve="AssignmentStatement" />
     <node concept="11bSqf" id="463hhT5jna" role="11c4hB">
       <node concept="3clFbS" id="463hhT5jnb" role="2VODD2">
         <node concept="lc7rE" id="463hhT5jvx" role="3cqZAp">
@@ -381,7 +381,7 @@
                     <ref role="3cqZAo" node="463hhT5uLK" resolve="var" />
                   </node>
                   <node concept="3TrEf2" id="463hhT5$OM" role="2OqNvi">
-                    <ref role="3Tt5mk" to="gpgy:7GyesCpem8U" resolve="byExpression" />
+                    <ref role="3Tt5mk" to="gpgy:7GyesCpem8U" resolve="stepExpression" />
                   </node>
                 </node>
               </node>
@@ -393,7 +393,7 @@
                 <ref role="3cqZAo" node="463hhT5uLK" resolve="var" />
               </node>
               <node concept="3TrEf2" id="463hhT5$TF" role="2OqNvi">
-                <ref role="3Tt5mk" to="gpgy:7GyesCpem8U" resolve="byExpression" />
+                <ref role="3Tt5mk" to="gpgy:7GyesCpem8U" resolve="stepExpression" />
               </node>
             </node>
             <node concept="3x8VRR" id="463hhT5zJc" role="2OqNvi" />
@@ -520,7 +520,7 @@
   </node>
   <node concept="WtQ9Q" id="463hhT5GD8">
     <property role="3GE5qa" value="statements" />
-    <ref role="WuzLi" to="gpgy:7GyesCp9TKa" resolve="IfStatementElseifClause" />
+    <ref role="WuzLi" to="gpgy:7GyesCp9TKa" resolve="ElseIfClause" />
     <node concept="11bSqf" id="463hhT5GD9" role="11c4hB">
       <node concept="3clFbS" id="463hhT5GDa" role="2VODD2">
         <node concept="lc7rE" id="463hhT5GDt" role="3cqZAp">
@@ -734,7 +734,7 @@
   </node>
   <node concept="WtQ9Q" id="463hhT5RYw">
     <property role="3GE5qa" value="expressions" />
-    <ref role="WuzLi" to="gpgy:3Qd3IVOFNl$" resolve="ParensExpression" />
+    <ref role="WuzLi" to="gpgy:3Qd3IVOFNl$" resolve="ParenthesisExpression" />
     <node concept="11bSqf" id="463hhT5RYx" role="11c4hB">
       <node concept="3clFbS" id="463hhT5RYy" role="2VODD2">
         <node concept="lc7rE" id="463hhT5Sny" role="3cqZAp">
