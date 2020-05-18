@@ -38,21 +38,21 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
-      <ECState Name="INIT" x="591.5294" y="145.1765">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="INIT" x="591.0" y="145.0">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="TURN_ON" x="1061.647" y="860.9412">
+      <ECState Name="TURN_ON" x="1061.0" y="860.0">
         <ECAction Algorithm="SETON" Output="CNF" />
       </ECState>
-      <ECState Name="TURN_OFF" x="145.647" y="852.9412">
+      <ECState Name="TURN_OFF" x="145.0" y="852.0">
         <ECAction Algorithm="SETOFF" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="574.252" y="205.7713" />
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="658.4652" y="297.3837" />
-      <ECTransition Source="START" Destination="TURN_OFF" Condition="1" x="273.9888" y="593.2433" />
-      <ECTransition Source="TURN_ON" Destination="TURN_OFF" Condition="REQ[PauseButton &#38; NOT (StartButton)]" x="539.0068" y="1203.315" />
-      <ECTransition Source="TURN_OFF" Destination="TURN_ON" Condition="REQ[StartButton &#38; NOT (PauseButton)]" x="625.7238" y="653.5293" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="574.0" y="205.0" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="658.0" y="297.0" />
+      <ECTransition Source="START" Destination="TURN_OFF" Condition="1" x="273.0" y="593.0" />
+      <ECTransition Source="TURN_ON" Destination="TURN_OFF" Condition="REQ[PauseButton &#38; NOT (StartButton)]" x="539.0" y="1203.0" />
+      <ECTransition Source="TURN_OFF" Destination="TURN_ON" Condition="REQ[StartButton &#38; NOT (PauseButton)]" x="625.0" y="653.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

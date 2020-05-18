@@ -16,16 +16,16 @@
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="OUTPUTS" Type="PUBLISH_1" x="2980" y="220" />
-    <FB Name="FB1" Type="E_SR" x="1660" y="320" />
-    <FB Name="FB2" Type="E_DELAY" x="1740" y="1000" />
-    <FB Name="FB3" Type="E_DELAY" x="1720" y="1620" />
+    <FB Name="OUTPUTS" Type="PUBLISH_1" x="2980.0" y="220.0" />
+    <FB Name="FB1" Type="E_SR" x="1660.0" y="320.0" />
+    <FB Name="FB2" Type="E_DELAY" x="1740.0" y="1000.0" />
+    <FB Name="FB3" Type="E_DELAY" x="1720.0" y="1620.0" />
     <EventConnections>
       <Connection Source="INIT" Destination="OUTPUTS.INIT" dx1="1423.0" />
       <Connection Source="OUTPUTS.INITO" Destination="INITO" dx1="176.0" />
       <Connection Source="SHIFT_RIGHT" Destination="FB1.S" dx1="1153.0" />
       <Connection Source="SHIFT_LEFT" Destination="FB1.R" dx1="726.0" />
-      <Connection Source="FB1.EO" Destination="OUTPUTS.REQ" dx1="50" />
+      <Connection Source="FB1.EO" Destination="OUTPUTS.REQ" dx1="50.0" />
       <Connection Source="FB2.EO" Destination="RIGHT_DONE" dx1="1553.0" />
       <Connection Source="FB3.EO" Destination="LEFT_DONE" dx1="1638.0" />
       <Connection Source="SHIFT_RIGHT" Destination="FB2.START" dx1="1088.0" />
@@ -35,7 +35,7 @@
       <Connection Source="RESET" Destination="FB1.R" dx1="461.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="FB1.Q" Destination="OUTPUTS.SD_1" dx1="48.354" />
+      <Connection Source="FB1.Q" Destination="OUTPUTS.SD_1" dx1="48.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

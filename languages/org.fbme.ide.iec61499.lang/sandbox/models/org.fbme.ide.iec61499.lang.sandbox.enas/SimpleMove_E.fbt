@@ -15,17 +15,17 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
-      <ECState Name="OPERATE" x="1336" y="664">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="OPERATE" x="1336.0" y="664.0">
         <ECAction Output="TO_POSITION" />
       </ECState>
-      <ECState Name="DONE" x="896" y="1144">
+      <ECState Name="DONE" x="896.0" y="1144.0">
         <ECAction Output="DONE" />
       </ECState>
-      <ECTransition Source="START" Destination="OPERATE" Condition="TRIGGER" x="957.0488" y="463.4021" />
-      <ECTransition Source="OPERATE" Destination="DONE" Condition="AT_POSITION" x="1182.956" y="954.6793" />
-      <ECTransition Source="DONE" Destination="START" Condition="1" x="477.8725" y="885.7357" />
-      <ECTransition Source="OPERATE" Destination="START" Condition="RESET" x="918.4189" y="623.7888" />
+      <ECTransition Source="START" Destination="OPERATE" Condition="TRIGGER" x="957.0" y="463.0" />
+      <ECTransition Source="OPERATE" Destination="DONE" Condition="AT_POSITION" x="1182.0" y="954.0" />
+      <ECTransition Source="DONE" Destination="START" Condition="1" x="477.0" y="885.0" />
+      <ECTransition Source="OPERATE" Destination="START" Condition="RESET" x="918.0" y="623.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

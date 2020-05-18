@@ -15,19 +15,19 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
-      <ECState Name="MOVING" x="1612" y="768">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="MOVING" x="1612.0" y="768.0">
         <ECAction Output="DRIVE_ON" />
       </ECState>
-      <ECState Name="WAIT" x="568" y="796"></ECState>
-      <ECState Name="DONE" x="912" y="1312">
+      <ECState Name="WAIT" x="568.0" y="796.0"></ECState>
+      <ECState Name="DONE" x="912.0" y="1312.0">
         <ECAction Output="DRIVE_OFF" />
         <ECAction Output="DONE" />
       </ECState>
-      <ECTransition Source="START" Destination="WAIT" Condition="1" x="626.4328" y="591.4529" />
-      <ECTransition Source="WAIT" Destination="MOVING" Condition="TRIGGER" x="1081.287" y="607.6661" />
-      <ECTransition Source="MOVING" Destination="DONE" Condition="SENSOR" x="1405.708" y="1203.244" />
-      <ECTransition Source="DONE" Destination="WAIT" Condition="1" x="609.6904" y="1125.168" />
+      <ECTransition Source="START" Destination="WAIT" Condition="1" x="626.0" y="591.0" />
+      <ECTransition Source="WAIT" Destination="MOVING" Condition="TRIGGER" x="1081.0" y="607.0" />
+      <ECTransition Source="MOVING" Destination="DONE" Condition="SENSOR" x="1405.0" y="1203.0" />
+      <ECTransition Source="DONE" Destination="WAIT" Condition="1" x="609.0" y="1125.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

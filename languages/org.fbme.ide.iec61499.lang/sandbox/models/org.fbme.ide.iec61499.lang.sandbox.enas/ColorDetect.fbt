@@ -21,12 +21,8 @@
   </InterfaceList>
   <FBNetwork>
     <FB Name="COLOR" Type="SUBSCRIBE_1" x="769.0" y="873.0" />
-    <FB Name="IS_RED" Type="F_EQ" x="3040" y="720">
-      <Parameter Name="IN1" Value="&#39;RED&#39;" />
-    </FB>
-    <FB Name="IS_GREEN" Type="F_EQ" x="3040" y="1600">
-      <Parameter Name="IN1" Value="&#39;GREEN&#39;" />
-    </FB>
+    <FB Name="IS_RED" Type="F_EQ" x="3040.0" y="720.0" />
+    <FB Name="IS_GREEN" Type="F_EQ" x="3040.0" y="1600.0" />
     <FB Name="AND" Type="F_AND" x="5307.0" y="1342.0" />
     <FB Name="REND_OTHER" Type="E_REND" x="3680.0" y="1057.0" />
     <FB Name="PERMIT_RED" Type="E_PERMIT" x="3734.0" y="653.0" />

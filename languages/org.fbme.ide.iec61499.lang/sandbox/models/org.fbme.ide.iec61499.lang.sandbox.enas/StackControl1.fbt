@@ -34,64 +34,64 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="1624.941" y="573.4117"></ECState>
-      <ECState Name="INIT" x="2359.529" y="729.1797">
+      <ECState Name="START" x="2030.0" y="176.0"></ECState>
+      <ECState Name="INIT" x="2415.0" y="561.0">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="PLACE1" x="2573.647" y="2164.941">
+      <ECState Name="PLACE1" x="4023.0" y="3423.0">
         <ECAction Algorithm="PLACE1" Output="CNF" />
         <ECAction Output="TRIGGER1" />
       </ECState>
-      <ECState Name="CHECK" x="4184" y="1320">
+      <ECState Name="CHECK" x="6476.0" y="1861.0">
         <ECAction Output="CHECK" />
       </ECState>
-      <ECState Name="PLACE2" x="1744" y="2188">
+      <ECState Name="PLACE2" x="1753.0" y="3738.0">
         <ECAction Algorithm="PLACE2" Output="CNF" />
         <ECAction Output="TRIGGER2" />
       </ECState>
-      <ECState Name="GET1" x="888" y="968">
+      <ECState Name="GET1" x="546.0" y="815.0">
         <ECAction Algorithm="EMPTY1" Output="CNF" />
         <ECAction Output="GET1_OK" />
       </ECState>
-      <ECState Name="GET2" x="880" y="1576">
+      <ECState Name="GET2" x="538.0" y="1630.0">
         <ECAction Algorithm="EMPTY2" Output="CNF" />
         <ECAction Output="GET2_OK" />
       </ECState>
-      <ECState Name="READY" x="2440" y="1256"></ECState>
-      <ECState Name="CLEAR_SLEDGE" x="3580" y="564">
+      <ECState Name="READY" x="2438.0" y="1253.0"></ECState>
+      <ECState Name="CLEAR_SLEDGE" x="3984.0" y="438.0">
         <ECAction Algorithm="INIT" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2059.053" y="521.8577" />
-      <ECTransition Source="INIT" Destination="READY" Condition="1" x="2480.785" y="981.2651" />
-      <ECTransition Source="READY" Destination="PLACE1" Condition="PLACE_WP[occupied[0] = FALSE]" x="2648.401" y="1695.378" />
-      <ECTransition Source="PLACE1" Destination="READY" Condition="_RETURN" x="2324.782" y="1763.612" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = TRUE]" x="3372.113" y="1126.332" />
-      <ECTransition Source="READY" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="3213.184" y="905.449" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[0] = FALSE]" x="3326.8" y="1341.602" />
-      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[1] = FALSE]" x="3346.433" y="1622.368" />
-      <ECTransition Source="READY" Destination="PLACE2" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = FALSE]" x="2056.623" y="1728.719" />
-      <ECTransition Source="PLACE2" Destination="CHECK" Condition="1" x="3356.011" y="2419.247" />
-      <ECTransition Source="READY" Destination="GET1" Condition="[occupied[0] = TRUE]" x="1655.457" y="932.1873" />
-      <ECTransition Source="GET1" Destination="READY" Condition="_RETURN" x="1653.644" y="1172.666" />
-      <ECTransition Source="READY" Destination="GET2" Condition="[occupied[1] = TRUE]" x="1639.554" y="1659.781" />
-      <ECTransition Source="GET2" Destination="READY" Condition="_RETURN" x="1533.603" y="1359.116" />
-      <ECTransition Source="CLEAR_SLEDGE" Destination="READY" Condition="_RETURN" x="2880.823" y="820.019" />
-      <ECTransition Source="CHECK" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="4121.63" y="885.251" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2269.0" y="346.0" />
+      <ECTransition Source="INIT" Destination="READY" Condition="1" x="2523.0" y="900.0" />
+      <ECTransition Source="READY" Destination="PLACE1" Condition="PLACE_WP[occupied[0] = FALSE]" x="3569.0" y="2100.0" />
+      <ECTransition Source="PLACE1" Destination="READY" Condition="_RETURN" x="2823.0" y="2707.0" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = TRUE]" x="4607.0" y="1246.0" />
+      <ECTransition Source="READY" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="3469.0" y="846.0" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[0] = FALSE]" x="4723.0" y="1630.0" />
+      <ECTransition Source="READY" Destination="CHECK" Condition="[occupied[1] = FALSE]" x="4407.0" y="1907.0" />
+      <ECTransition Source="READY" Destination="PLACE2" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = FALSE]" x="2023.0" y="2523.0" />
+      <ECTransition Source="PLACE2" Destination="CHECK" Condition="1" x="4930.0" y="4069.0" />
+      <ECTransition Source="READY" Destination="GET1" Condition="[occupied[0] = TRUE]" x="1400.0" y="623.0" />
+      <ECTransition Source="GET1" Destination="READY" Condition="_RETURN" x="1461.0" y="1100.0" />
+      <ECTransition Source="READY" Destination="GET2" Condition="[occupied[1] = TRUE]" x="1269.0" y="2100.0" />
+      <ECTransition Source="GET2" Destination="READY" Condition="_RETURN" x="1323.0" y="1361.0" />
+      <ECTransition Source="CLEAR_SLEDGE" Destination="READY" Condition="_RETURN" x="3038.0" y="707.0" />
+      <ECTransition Source="CHECK" Destination="CLEAR_SLEDGE" Condition="CLEAR" x="6076.0" y="700.0" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="IF full THEN&#38;#10;END_IF;&#38;#10;" />
+      <ST Text="IF full THEN&#38;#10;  occupied[0] := TRUE;&#38;#10;  occupied[1] := TRUE;&#38;#10;ELSE&#38;#10;  occupied[0] := FALSE;&#38;#10;  occupied[1] := FALSE;&#38;#10;END_IF;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PLACE1">
-      <ST Text="" />
+      <ST Text="occupied[0] := TRUE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="PLACE2">
-      <ST Text="" />
+      <ST Text="occupied[1] := TRUE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="EMPTY1">
-      <ST Text="" />
+      <ST Text="occupied[0] := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="EMPTY2">
-      <ST Text="" />
+      <ST Text="occupied[1] := FALSE;&#38;#10;" />
     </Algorithm>
     <Algorithm Name="READY">
       <ST Text="" />

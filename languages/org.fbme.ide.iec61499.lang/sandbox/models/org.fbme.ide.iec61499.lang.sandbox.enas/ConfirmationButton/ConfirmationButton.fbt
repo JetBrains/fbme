@@ -18,15 +18,15 @@
     </InputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="IThis1" Type="ConfirmationButton_HMI" x="1340" y="320" />
+    <FB Name="IThis1" Type="ConfirmationButton_HMI" x="1340.0" y="320.0" />
     <EventConnections>
-      <Connection Source="INIT" Destination="IThis1.INIT" dx1="249.4167" />
-      <Connection Source="REQ" Destination="IThis1.REQ" dx1="237.5417" />
-      <Connection Source="IThis1.INITO" Destination="INITO" dx1="42.52087" />
-      <Connection Source="IThis1.CNF" Destination="CNF" dx1="70" />
+      <Connection Source="INIT" Destination="IThis1.INIT" dx1="249.0" />
+      <Connection Source="REQ" Destination="IThis1.REQ" dx1="237.0" />
+      <Connection Source="IThis1.INITO" Destination="INITO" dx1="42.0" />
+      <Connection Source="IThis1.CNF" Destination="CNF" dx1="70.0" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="message" Destination="IThis1.message" dx1="40" />
+      <Connection Source="message" Destination="IThis1.message" dx1="40.0" />
     </DataConnections>
   </FBNetwork>
 </FBType>

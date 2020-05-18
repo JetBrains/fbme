@@ -26,30 +26,30 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="848.9412" y="477.4117"></ECState>
-      <ECState Name="S5_TRANSPORT" x="2384" y="1280">
+      <ECState Name="START" x="848.0" y="477.0"></ECState>
+      <ECState Name="S5_TRANSPORT" x="2384.0" y="1280.0">
         <ECAction Output="S5_ON" />
       </ECState>
-      <ECState Name="S6_DELIVER" x="2196" y="2048">
+      <ECState Name="S6_DELIVER" x="2196.0" y="2048.0">
         <ECAction Output="S6_DELIVERY" />
       </ECState>
-      <ECState Name="DONE" x="836" y="1768">
+      <ECState Name="DONE" x="836.0" y="1768.0">
         <ECAction Output="DONE" />
         <ECAction Output="S5_OFF" />
       </ECState>
-      <ECState Name="READY" x="1092" y="952"></ECState>
-      <ECState Name="SET_CONFIGURATION" x="2276" y="444">
+      <ECState Name="READY" x="1092.0" y="952.0"></ECState>
+      <ECState Name="SET_CONFIGURATION" x="2276.0" y="444.0">
         <ECAction Output="REQ_CONFIG" />
       </ECState>
-      <ECTransition Source="START" Destination="READY" Condition="1" x="839.2142" y="718.6102" />
-      <ECTransition Source="S5_TRANSPORT" Destination="S6_DELIVER" Condition="S5_SENSOR" x="2365.676" y="1668.473" />
-      <ECTransition Source="S6_DELIVER" Destination="DONE" Condition="S6_DELIVERED" x="1388.922" y="2073.627" />
-      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.442" y="415.6819" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="[configurationID = &#39;REJECT&#39;]" x="2394.167" y="913.3721" />
-      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.3698" y="1297.709" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.041" y="770.1033" />
-      <ECTransition Source="S5_TRANSPORT" Destination="READY" Condition="RESET" x="1693.12" y="1188.711" />
-      <ECTransition Source="S6_DELIVER" Destination="READY" Condition="RESET" x="1640.315" y="1575" />
+      <ECTransition Source="START" Destination="READY" Condition="1" x="839.0" y="718.0" />
+      <ECTransition Source="S5_TRANSPORT" Destination="S6_DELIVER" Condition="S5_SENSOR" x="2365.0" y="1668.0" />
+      <ECTransition Source="S6_DELIVER" Destination="DONE" Condition="S6_DELIVERED" x="1388.0" y="2073.0" />
+      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.0" y="415.0" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="S5_TRANSPORT" Condition="[configurationID = &#39;REJECT&#39;]" x="2394.0" y="913.0" />
+      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.0" y="1297.0" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.0" y="770.0" />
+      <ECTransition Source="S5_TRANSPORT" Destination="READY" Condition="RESET" x="1693.0" y="1188.0" />
+      <ECTransition Source="S6_DELIVER" Destination="READY" Condition="RESET" x="1640.0" y="1575.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

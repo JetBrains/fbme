@@ -23,47 +23,47 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="760.9412" y="445.4117"></ECState>
-      <ECState Name="GO_DOWN" x="1904" y="500">
+      <ECState Name="START" x="760.0" y="445.0"></ECState>
+      <ECState Name="GO_DOWN" x="1904.0" y="500.0">
         <ECAction Output="DOWN" />
       </ECState>
-      <ECState Name="GRAB" x="2356" y="1028">
+      <ECState Name="GRAB" x="2356.0" y="1028.0">
         <ECAction Output="VAC_ON" />
         <ECAction Output="UP" />
       </ECState>
-      <ECState Name="EXTEND" x="2320" y="1516">
+      <ECState Name="EXTEND" x="2320.0" y="1516.0">
         <ECAction Output="EXTEND" />
       </ECState>
-      <ECState Name="GO_DOWN2" x="1560" y="1952">
+      <ECState Name="GO_DOWN2" x="1560.0" y="1952.0">
         <ECAction Output="DOWN" />
       </ECState>
-      <ECState Name="RELEASE" x="828" y="1688">
+      <ECState Name="RELEASE" x="828.0" y="1688.0">
         <ECAction Output="VAC_OFF" />
         <ECAction Output="UP" />
       </ECState>
-      <ECState Name="RETRACT" x="408" y="1296">
+      <ECState Name="RETRACT" x="408.0" y="1296.0">
         <ECAction Output="RETRACT" />
         <ECAction Output="DONE" />
       </ECState>
-      <ECState Name="RESET" x="1316" y="840">
+      <ECState Name="RESET" x="1316.0" y="840.0">
         <ECAction Output="VAC_OFF" />
         <ECAction Output="UP" />
         <ECAction Output="RETRACT" />
       </ECState>
-      <ECTransition Source="START" Destination="GO_DOWN" Condition="TRIGGER" x="1269.404" y="389.2868" />
-      <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="BOTTOM" x="2204.324" y="723.4541" />
-      <ECTransition Source="GRAB" Destination="EXTEND" Condition="TOP" x="2436.031" y="1282.748" />
-      <ECTransition Source="EXTEND" Destination="GO_DOWN2" Condition="EXTENDED" x="2119.97" y="1774.39" />
-      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1138.317" y="1881.953" />
-      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="586.1918" y="1550.594" />
-      <ECTransition Source="RETRACT" Destination="START" Condition="1" x="470.6373" y="779.7629" />
-      <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="1658.622" y="738.8331" />
-      <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="1841.329" y="1017.623" />
-      <ECTransition Source="EXTEND" Destination="RESET" Condition="RESET" x="1808.386" y="1253" />
-      <ECTransition Source="GO_DOWN2" Destination="RESET" Condition="RESET" x="1437.21" y="1471" />
-      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1069.186" y="1189" />
-      <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="853.8037" y="989.8437" />
-      <ECTransition Source="RESET" Destination="START" Condition="1" x="1027.597" y="720.4071" />
+      <ECTransition Source="START" Destination="GO_DOWN" Condition="TRIGGER" x="1269.0" y="389.0" />
+      <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="BOTTOM" x="2204.0" y="723.0" />
+      <ECTransition Source="GRAB" Destination="EXTEND" Condition="TOP" x="2436.0" y="1282.0" />
+      <ECTransition Source="EXTEND" Destination="GO_DOWN2" Condition="EXTENDED" x="2119.0" y="1774.0" />
+      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1138.0" y="1881.0" />
+      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="586.0" y="1550.0" />
+      <ECTransition Source="RETRACT" Destination="START" Condition="1" x="470.0" y="779.0" />
+      <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="1658.0" y="738.0" />
+      <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="1841.0" y="1017.0" />
+      <ECTransition Source="EXTEND" Destination="RESET" Condition="RESET" x="1808.0" y="1253.0" />
+      <ECTransition Source="GO_DOWN2" Destination="RESET" Condition="RESET" x="1437.0" y="1471.0" />
+      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1069.0" y="1189.0" />
+      <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="853.0" y="989.0" />
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1027.0" y="720.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

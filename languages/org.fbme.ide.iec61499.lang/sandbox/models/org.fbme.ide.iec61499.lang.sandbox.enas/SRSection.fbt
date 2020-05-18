@@ -17,7 +17,7 @@
   </InterfaceList>
   <FBNetwork>
     <FB Name="DRIVER" Type="PUBLISH_2" x="3661.0" y="219.0" />
-    <FB Name="SENSOR" Type="SUBSCRIBE_2" x="540" y="220" />
+    <FB Name="SENSOR" Type="SUBSCRIBE_2" x="540.0" y="220.0" />
     <FB Name="DRIVE_IN" Type="E_SR" x="2665.0" y="750.0" />
     <FB Name="MID_SENSOR_ON" Type="E_R_TRIG" x="1357.0" y="450.0" />
     <FB Name="MID_SENSOR_OFF" Type="E_F_TRIG" x="1357.0" y="957.0" />

@@ -30,59 +30,59 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
-      <ECState Name="TO_ASSEMBLY" x="1200" y="668">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="TO_ASSEMBLY" x="1200.0" y="668.0">
         <ECAction Output="W1W2" />
       </ECState>
-      <ECState Name="ASSEMBLE" x="1452" y="1060">
+      <ECState Name="ASSEMBLE" x="1452.0" y="1060.0">
         <ECAction Output="PLACE_CAP" />
       </ECState>
-      <ECState Name="TO_TEST" x="1808" y="1480">
+      <ECState Name="TO_TEST" x="1808.0" y="1480.0">
         <ECAction Output="W2W3" />
       </ECState>
-      <ECState Name="TEST" x="2236" y="1848">
+      <ECState Name="TEST" x="2236.0" y="1848.0">
         <ECAction Output="TEST" />
       </ECState>
-      <ECState Name="TO_OUTPUT" x="2704" y="2208">
+      <ECState Name="TO_OUTPUT" x="2704.0" y="2208.0">
         <ECAction Output="W3W1" />
       </ECState>
-      <ECState Name="DONE" x="539.9999" y="2192">
+      <ECState Name="DONE" x="539.0" y="2192.0">
         <ECAction Output="DONE" />
       </ECState>
-      <ECState Name="REJECT" x="3184" y="1444">
+      <ECState Name="REJECT" x="3184.0" y="1444.0">
         <ECAction Output="W3W4" />
       </ECState>
-      <ECState Name="REMOVE" x="3000" y="1068">
+      <ECState Name="REMOVE" x="3000.0" y="1068.0">
         <ECAction Output="J2_REMOVE_WP" />
       </ECState>
-      <ECState Name="REJECT_DONE" x="3240" y="716.0001">
+      <ECState Name="REJECT_DONE" x="3240.0" y="716.0">
         <ECAction Output="REJECTED" />
       </ECState>
-      <ECState Name="RESET" x="2432" y="688.0001"></ECState>
-      <ECState Name="TO_ASSEMBLY1" x="2368" y="236">
+      <ECState Name="RESET" x="2432.0" y="688.0"></ECState>
+      <ECState Name="TO_ASSEMBLY1" x="2368.0" y="236.0">
         <ECAction Output="W4W2" />
       </ECState>
-      <ECTransition Source="START" Destination="TO_ASSEMBLY" Condition="START" x="906.1697" y="470.1465" />
-      <ECTransition Source="TO_ASSEMBLY" Destination="ASSEMBLE" Condition="AT_W2" x="1401.175" y="823.4431" />
-      <ECTransition Source="ASSEMBLE" Destination="TO_TEST" Condition="ASSEMBLY_DONE" x="1700.284" y="1221.505" />
-      <ECTransition Source="TO_TEST" Destination="TEST" Condition="AT_W3" x="2071.2" y="1598.968" />
-      <ECTransition Source="TEST" Destination="TO_OUTPUT" Condition="TEST_OK" x="2525.956" y="1965.371" />
-      <ECTransition Source="TO_OUTPUT" Destination="DONE" Condition="DELIVERED" x="1586.125" y="2268.864" />
-      <ECTransition Source="DONE" Destination="START" Condition="1" x="513.8019" y="1376.152" />
-      <ECTransition Source="TEST" Destination="REJECT" Condition="TEST_FAIL" x="2616.424" y="1578.076" />
-      <ECTransition Source="REJECT" Destination="REMOVE" Condition="AT_W4" x="3201.979" y="1253.632" />
-      <ECTransition Source="REMOVE" Destination="REJECT_DONE" Condition="WP_REMOVED" x="3204.054" y="891.5156" />
-      <ECTransition Source="REJECT_DONE" Destination="TO_ASSEMBLY1" Condition="1" x="3030.186" y="363.5728" />
-      <ECTransition Source="TO_ASSEMBLY" Destination="RESET" Condition="RESET" x="1856.544" y="566.5289" />
-      <ECTransition Source="ASSEMBLE" Destination="RESET" Condition="RESET" x="1906.26" y="795.1609" />
-      <ECTransition Source="TO_TEST" Destination="RESET" Condition="RESET" x="2088.772" y="1021.89" />
-      <ECTransition Source="TEST" Destination="RESET" Condition="RESET" x="2269.177" y="1267.395" />
-      <ECTransition Source="TO_OUTPUT" Destination="RESET" Condition="RESET" x="2516.236" y="1501.895" />
-      <ECTransition Source="REJECT" Destination="RESET" Condition="RESET" x="2735.68" y="1109.251" />
-      <ECTransition Source="REMOVE" Destination="RESET" Condition="RESET" x="2676.23" y="922.2711" />
-      <ECTransition Source="RESET" Destination="START" Condition="1" x="1599.807" y="410.2592" />
-      <ECTransition Source="TO_ASSEMBLY1" Destination="ASSEMBLE" Condition="AT_W2" x="767.3005" y="635.9865" />
-      <ECTransition Source="TO_ASSEMBLY1" Destination="RESET" Condition="RESET" x="2482.154" y="451.4855" />
+      <ECTransition Source="START" Destination="TO_ASSEMBLY" Condition="START" x="906.0" y="470.0" />
+      <ECTransition Source="TO_ASSEMBLY" Destination="ASSEMBLE" Condition="AT_W2" x="1401.0" y="823.0" />
+      <ECTransition Source="ASSEMBLE" Destination="TO_TEST" Condition="ASSEMBLY_DONE" x="1700.0" y="1221.0" />
+      <ECTransition Source="TO_TEST" Destination="TEST" Condition="AT_W3" x="2071.0" y="1598.0" />
+      <ECTransition Source="TEST" Destination="TO_OUTPUT" Condition="TEST_OK" x="2525.0" y="1965.0" />
+      <ECTransition Source="TO_OUTPUT" Destination="DONE" Condition="DELIVERED" x="1586.0" y="2268.0" />
+      <ECTransition Source="DONE" Destination="START" Condition="1" x="513.0" y="1376.0" />
+      <ECTransition Source="TEST" Destination="REJECT" Condition="TEST_FAIL" x="2616.0" y="1578.0" />
+      <ECTransition Source="REJECT" Destination="REMOVE" Condition="AT_W4" x="3201.0" y="1253.0" />
+      <ECTransition Source="REMOVE" Destination="REJECT_DONE" Condition="WP_REMOVED" x="3204.0" y="891.0" />
+      <ECTransition Source="REJECT_DONE" Destination="TO_ASSEMBLY1" Condition="1" x="3030.0" y="363.0" />
+      <ECTransition Source="TO_ASSEMBLY" Destination="RESET" Condition="RESET" x="1856.0" y="566.0" />
+      <ECTransition Source="ASSEMBLE" Destination="RESET" Condition="RESET" x="1906.0" y="795.0" />
+      <ECTransition Source="TO_TEST" Destination="RESET" Condition="RESET" x="2088.0" y="1021.0" />
+      <ECTransition Source="TEST" Destination="RESET" Condition="RESET" x="2269.0" y="1267.0" />
+      <ECTransition Source="TO_OUTPUT" Destination="RESET" Condition="RESET" x="2516.0" y="1501.0" />
+      <ECTransition Source="REJECT" Destination="RESET" Condition="RESET" x="2735.0" y="1109.0" />
+      <ECTransition Source="REMOVE" Destination="RESET" Condition="RESET" x="2676.0" y="922.0" />
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1599.0" y="410.0" />
+      <ECTransition Source="TO_ASSEMBLY1" Destination="ASSEMBLE" Condition="AT_W2" x="767.0" y="635.0" />
+      <ECTransition Source="TO_ASSEMBLY1" Destination="RESET" Condition="RESET" x="2482.0" y="451.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

@@ -32,22 +32,22 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="552.9412" y="429.4117"></ECState>
-      <ECState Name="INIT" x="923.5294" y="141.1765">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="INIT" x="923.0" y="141.0">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="ENABLED" x="1253.647" y="848.9412">
+      <ECState Name="ENABLED" x="1253.0" y="848.0">
         <ECAction Algorithm="ENABLE" Output="CNF" />
       </ECState>
-      <ECState Name="DISABLED" x="253.647" y="828.9412">
+      <ECState Name="DISABLED" x="253.0" y="828.0">
         <ECAction Algorithm="DISABLE" Output="CNF" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
-      <ECTransition Source="ENABLED" Destination="DISABLED" Condition="REQ[NOT (QI)]" x="757.3513" y="924.9223" />
-      <ECTransition Source="START" Destination="ENABLED" Condition="REQ" x="952.3273" y="571.986" />
-      <ECTransition Source="DISABLED" Destination="ENABLED" Condition="REQ[QI]" x="758.8511" y="753.1208" />
-      <ECTransition Source="ENABLED" Destination="ENABLED" Condition="REQ" x="1253.647" y="1031.027" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.0" y="204.0" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.0" y="348.0" />
+      <ECTransition Source="ENABLED" Destination="DISABLED" Condition="REQ[NOT (QI)]" x="757.0" y="924.0" />
+      <ECTransition Source="START" Destination="ENABLED" Condition="REQ" x="952.0" y="571.0" />
+      <ECTransition Source="DISABLED" Destination="ENABLED" Condition="REQ[QI]" x="758.0" y="753.0" />
+      <ECTransition Source="ENABLED" Destination="ENABLED" Condition="REQ" x="1253.0" y="1031.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

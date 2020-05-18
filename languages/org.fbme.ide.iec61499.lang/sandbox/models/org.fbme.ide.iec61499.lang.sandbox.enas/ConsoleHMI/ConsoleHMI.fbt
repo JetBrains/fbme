@@ -28,9 +28,9 @@
       <Connection Source="FB1.CNF" Destination="FB4.EI" dx1="288.0" />
       <Connection Source="FB5.INITO" Destination="FB1.INIT" dx1="15.0" />
       <Connection Source="FB5.CNF" Destination="FB1.REQ" dx1="100.0" />
-      <Connection Source="FB2.EO" Destination="FB5.START" dx1="130.0" dy="350.0" dx2="150.0" />
-      <Connection Source="FB3.EO" Destination="FB5.PAUSE" dx1="26.0" dy="203.0" dx2="100.0" />
-      <Connection Source="FB4.EO" Destination="FB5.RESET" dx1="7.0" dy="-184.0" dx2="50.0" />
+      <Connection Source="FB2.EO" Destination="FB5.START" dx1="130.0" dy="350.0" dx2="130.0" />
+      <Connection Source="FB3.EO" Destination="FB5.PAUSE" dx1="26.0" dy="203.0" dx2="26.0" />
+      <Connection Source="FB4.EO" Destination="FB5.RESET" dx1="7.0" dy="-184.0" dx2="7.0" />
       <Connection Source="RESET_DONE" Destination="FB5.RESET_DONE" dx1="496.0" />
       <Connection Source="FB5.E_START" Destination="START" dx1="2219.0" />
       <Connection Source="FB5.E_PAUSE" Destination="PAUSE" dx1="2261.0" />

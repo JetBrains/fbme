@@ -21,15 +21,15 @@
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="JACK_STATE" Type="SUBSCRIBE_5" x="540" y="1100" />
+    <FB Name="JACK_STATE" Type="SUBSCRIBE_5" x="540.0" y="1100.0" />
     <FB Name="JACK_ACTION" Type="PUBLISH_5" x="4307.0" y="1073.0" />
     <FB Name="JACK_EXTEND" Type="E_SR" x="3065.0" y="1184.0" />
-    <FB Name="JACK_DOWN_FB" Type="E_SR" x="3060" y="1600" />
-    <FB Name="VACUUM" Type="E_SR" x="3100" y="2120" />
+    <FB Name="JACK_DOWN_FB" Type="E_SR" x="3060.0" y="1600.0" />
+    <FB Name="VACUUM" Type="E_SR" x="3100.0" y="2120.0" />
     <FB Name="JACK_EXTENDED" Type="E_R_TRIG" x="1473.0" y="1200.0" />
-    <FB Name="JACK_RETRACTED" Type="E_R_TRIG" x="1540" y="1820" />
-    <FB Name="JACK_TOP" Type="E_R_TRIG" x="1480" y="280" />
-    <FB Name="JACK_BOTTOM" Type="E_R_TRIG" x="1480" y="720" />
+    <FB Name="JACK_RETRACTED" Type="E_R_TRIG" x="1540.0" y="1820.0" />
+    <FB Name="JACK_TOP" Type="E_R_TRIG" x="1480.0" y="280.0" />
+    <FB Name="JACK_BOTTOM" Type="E_R_TRIG" x="1480.0" y="720.0" />
     <FB Name="FB1" Type="E_DELAY" x="2319.0" y="557.0" />
     <FB Name="FB2" Type="E_PERMIT" x="3065.0" y="600.0" />
     <EventConnections>
@@ -44,15 +44,15 @@
       <Connection Source="JACK_DOWN_FB.EO" Destination="JACK_ACTION.REQ" dx1="261.0" />
       <Connection Source="VACUUM.EO" Destination="JACK_ACTION.REQ" dx1="373.0" />
       <Connection Source="VAC_ON" Destination="VACUUM.S" dx1="119.0" />
-      <Connection Source="VAC_OFF" Destination="VACUUM.R" dx1="40" />
+      <Connection Source="VAC_OFF" Destination="VACUUM.R" dx1="40.0" />
       <Connection Source="JACK_EXTENDED.EO" Destination="EXTENDED" dx1="400.0" />
       <Connection Source="JACK_RETRACTED.EO" Destination="RETRACTED" dx1="392.0" />
       <Connection Source="JACK_STATE.IND" Destination="JACK_RETRACTED.EI" dx1="200.0" />
       <Connection Source="JACK_STATE.IND" Destination="JACK_EXTENDED.EI" dx1="330.0" />
       <Connection Source="JACK_TOP.EO" Destination="TOP" dx1="357.0" />
       <Connection Source="JACK_BOTTOM.EO" Destination="FB1.START" dx1="38.0" />
-      <Connection Source="JACK_STATE.IND" Destination="JACK_TOP.EI" dx1="70" />
-      <Connection Source="JACK_STATE.IND" Destination="JACK_BOTTOM.EI" dx1="70" />
+      <Connection Source="JACK_STATE.IND" Destination="JACK_TOP.EI" dx1="70.0" />
+      <Connection Source="JACK_STATE.IND" Destination="JACK_BOTTOM.EI" dx1="70.0" />
       <Connection Source="FB1.EO" Destination="FB2.EI" dx1="61.0" />
       <Connection Source="FB2.EO" Destination="BOTTOM" dx1="46.0" />
     </EventConnections>
@@ -60,7 +60,7 @@
       <Connection Source="JACK_EXTEND.Q" Destination="JACK_ACTION.SD_1" dx1="73.0" />
       <Connection Source="VACUUM.Q" Destination="JACK_ACTION.SD_3" dx1="534.0" />
       <Connection Source="JACK_STATE.RD_3" Destination="JACK_EXTENDED.QI" dx1="330.0" />
-      <Connection Source="JACK_STATE.RD_4" Destination="JACK_RETRACTED.QI" dx1="41.625" />
+      <Connection Source="JACK_STATE.RD_4" Destination="JACK_RETRACTED.QI" dx1="41.0" />
       <Connection Source="JACK_STATE.RD_1" Destination="JACK_TOP.QI" dx1="153.0" />
       <Connection Source="JACK_STATE.RD_2" Destination="JACK_BOTTOM.QI" dx1="300.0" />
       <Connection Source="JACK_STATE.RD_2" Destination="FB2.PERMIT" dx1="1784.0" />

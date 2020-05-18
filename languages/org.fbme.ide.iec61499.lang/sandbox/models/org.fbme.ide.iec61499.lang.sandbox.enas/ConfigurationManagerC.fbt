@@ -40,7 +40,7 @@
       <Connection Source="FB1.READY" Destination="READY" dx1="57.0" />
       <Connection Source="FB1.S5_GATE_CLOSE" Destination="S5_GATE_CLOSE" dx1="73.0" />
       <Connection Source="FB1.S5_GATE_OPEN" Destination="S5_GATE_OPEN" dx1="92.0" />
-      <Connection Source="ROBOTINO_ACTION.INITO" Destination="FB1.INIT" dx1="150.0" dy="-826.0" dx2="100.0" />
+      <Connection Source="ROBOTINO_ACTION.INITO" Destination="FB1.INIT" dx1="150.0" dy="-826.0" dx2="150.0" />
       <Connection Source="INIT" Destination="ROBOTINO_STATE.INIT" dx1="388.0" />
       <Connection Source="RESET" Destination="FB1.RESET" dx1="492.0" />
       <Connection Source="FB1.REQ_CONFIRMATION" Destination="REQ_CONFIRMATION" dx1="126.0" />

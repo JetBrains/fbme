@@ -24,33 +24,33 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="2140.941" y="1117.412"></ECState>
-      <ECState Name="TRIG1" x="3177.647" y="1388.941">
+      <ECState Name="START" x="2140.0" y="1117.0"></ECState>
+      <ECState Name="TRIG1" x="3177.0" y="1388.0">
         <ECAction Output="TRIGGER1" />
       </ECState>
-      <ECState Name="TRIG2" x="2364" y="1916">
+      <ECState Name="TRIG2" x="2364.0" y="1916.0">
         <ECAction Output="TRIGGER2" />
       </ECState>
-      <ECState Name="FULL" x="1436" y="1700">
+      <ECState Name="FULL" x="1436.0" y="1700.0">
         <ECAction Output="FULL" />
       </ECState>
-      <ECState Name="RESET" x="1084" y="1060">
+      <ECState Name="RESET" x="1084.0" y="1060.0">
         <ECAction Output="R" />
       </ECState>
-      <ECState Name="RESET_TRIG" x="2156" y="476">
+      <ECState Name="RESET_TRIG" x="2156.0" y="476.0">
         <ECAction Output="R" />
         <ECAction Output="TRIGGER1" />
       </ECState>
-      <ECTransition Source="START" Destination="TRIG1" Condition="[count = 1]" x="2645.721" y="1169.396" />
-      <ECTransition Source="START" Destination="TRIG2" Condition="[count = 2]" x="2329.525" y="1496.53" />
-      <ECTransition Source="TRIG2" Destination="START" Condition="1" x="2142.861" y="1587.769" />
-      <ECTransition Source="START" Destination="FULL" Condition="[count &#62; 2]" x="1858.006" y="1436.715" />
-      <ECTransition Source="FULL" Destination="START" Condition="1" x="1719.116" y="1375.638" />
-      <ECTransition Source="TRIG1" Destination="START" Condition="1" x="2660.169" y="1335.561" />
-      <ECTransition Source="START" Destination="RESET" Condition="[count &#60;= 2]" x="1642.575" y="1172.547" />
-      <ECTransition Source="RESET" Destination="START" Condition="1" x="1604.759" y="999.8191" />
-      <ECTransition Source="START" Destination="RESET_TRIG" Condition="[count &#62; 2]" x="2080.389" y="825.7496" />
-      <ECTransition Source="RESET_TRIG" Destination="START" Condition="1" x="2218.259" y="769.5857" />
+      <ECTransition Source="START" Destination="TRIG1" Condition="[count = 1]" x="2645.0" y="1169.0" />
+      <ECTransition Source="START" Destination="TRIG2" Condition="[count = 2]" x="2329.0" y="1496.0" />
+      <ECTransition Source="TRIG2" Destination="START" Condition="1" x="2142.0" y="1587.0" />
+      <ECTransition Source="START" Destination="FULL" Condition="[count &#62; 2]" x="1858.0" y="1436.0" />
+      <ECTransition Source="FULL" Destination="START" Condition="1" x="1719.0" y="1375.0" />
+      <ECTransition Source="TRIG1" Destination="START" Condition="1" x="2660.0" y="1335.0" />
+      <ECTransition Source="START" Destination="RESET" Condition="[count &#60;= 2]" x="1642.0" y="1172.0" />
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1604.0" y="999.0" />
+      <ECTransition Source="START" Destination="RESET_TRIG" Condition="[count &#62; 2]" x="2080.0" y="825.0" />
+      <ECTransition Source="RESET_TRIG" Destination="START" Condition="1" x="2218.0" y="769.0" />
     </ECC>
   </BasicFB>
 </FBType>
