@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="INTEGRAL_REAL">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT"></Event>
+      <Event Name="EX"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO"></Event>
+      <Event Name="EXO"></Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="HOLD" Type="BOOL" />
+      <VarDeclaration Name="XIN" Type="REAL" />
+      <VarDeclaration Name="CYCLE" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="XOUT" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars></InternalVars>
+    <ECC>
+      <ECState Name="START" x="0.0" y="0.0"></ECState>
+    </ECC>
+  </BasicFB>
+</FBType>

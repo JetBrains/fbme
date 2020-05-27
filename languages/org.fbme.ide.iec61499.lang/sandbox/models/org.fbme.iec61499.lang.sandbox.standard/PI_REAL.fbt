@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="PI_REAL">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="KP" />
+        <With Var="KI" />
+        <With Var="CYCLE" />
+      </Event>
+      <Event Name="EX">
+        <With Var="HOLD" />
+        <With Var="PV" />
+        <With Var="SP" />
+        <With Var="KP" />
+        <With Var="KI" />
+        <With Var="CYCLE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EXO">
+        <With Var="XOUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="HOLD" Type="BOOL" />
+      <VarDeclaration Name="PV" Type="REAL" />
+      <VarDeclaration Name="SP" Type="REAL" />
+      <VarDeclaration Name="KP" Type="REAL" />
+      <VarDeclaration Name="KI" Type="REAL" />
+      <VarDeclaration Name="CYCLE" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="XOUT" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="CALC" Type="PID_CALC" x="1173.0" y="-150.0">
+      <Parameter Name="TD" Value="T#1s" />
+      <Parameter Name="DTERM" Value="T#1s" />
+    </FB>
+    <FB Name="INTEGRAL_TERM" Type="INTEGRAL_REAL" x="3023.0" y="584.0" />
+    <EventConnections>
+      <Connection Source="CALC.POSTO" Destination="EXO" dx1="503.0" />
+      <Connection Source="CALC.INTIO" Destination="INTEGRAL_TERM.INIT" dx1="226.0" />
+      <Connection Source="CALC.PREO" Destination="INTEGRAL_TERM.EX" dx1="165.0" />
+      <Connection Source="INTEGRAL_TERM.EXO" Destination="CALC.POST" dx1="300.0" dy="-934.0" dx2="300.0" />
+      <Connection Source="INIT" Destination="CALC.INIT" dx1="303.0" />
+      <Connection Source="EX" Destination="CALC.PRE" dx1="519.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="PV" Destination="CALC.PV" dx1="388.0" />
+      <Connection Source="SP" Destination="CALC.SP" dx1="388.0" />
+      <Connection Source="KP" Destination="CALC.KP" dx1="319.0" />
+      <Connection Source="KI" Destination="CALC.KI" dx1="288.0" />
+      <Connection Source="CYCLE" Destination="INTEGRAL_TERM.CYCLE" dx1="84.0" />
+      <Connection Source="CALC.ETERM" Destination="INTEGRAL_TERM.XIN" dx1="100.0" />
+      <Connection Source="CALC.XOUT" Destination="XOUT" dx1="703.0" />
+      <Connection Source="INTEGRAL_TERM.XOUT" Destination="CALC.ITERM" dx1="300.0" dy="373.0" dx2="300.0" />
+      <Connection Source="HOLD" Destination="INTEGRAL_TERM.HOLD" dx1="230.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
