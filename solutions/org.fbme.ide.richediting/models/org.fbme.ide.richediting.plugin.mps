@@ -6170,7 +6170,7 @@
   </node>
   <node concept="1lYeZD" id="1kUX9T6iVOT">
     <property role="TrG5h" value="RichInterfaceProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="1kUX9T6iVOU" role="1B3o_S" />
     <node concept="2tJIrI" id="1kUX9T6iVOV" role="jymVt" />
     <node concept="3tTeZs" id="1kUX9T6iVOW" role="jymVt">
@@ -6203,14 +6203,14 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="7Y8B9wpl4BT" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="7Y8B9wpl4BU" role="33vP2m">
         <node concept="YeOm9" id="7Y8B9wpl4BV" role="2ShVmc">
           <node concept="1Y3b0j" id="7Y8B9wpl4BW" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="7Y8B9wpl4BX" role="1B3o_S" />
             <node concept="3clFb_" id="7Y8B9wpl4BY" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -6267,7 +6267,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="7Y8B9wpl4C7" role="1B3o_S" />
               <node concept="3uibUv" id="7Y8B9wpl4C8" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="7Y8B9wpl4C9" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -6291,7 +6291,7 @@
                 <node concept="3clFbF" id="7Y8B9wpl4Jg" role="3cqZAp">
                   <node concept="2ShNRf" id="7Y8B9wpl4Ja" role="3clFbG">
                     <node concept="1pGfFk" id="1QSEqLhAMsC" role="2ShVmc">
-                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleHeaderedEditorProjectionController" />
+                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="1QSEqLhAMsB" role="37wK5m">
                         <ref role="3cqZAo" node="7Y8B9wpl4C9" resolve="node" />
                       </node>
@@ -6325,7 +6325,7 @@
   </node>
   <node concept="1lYeZD" id="bRdTVHYKuY">
     <property role="TrG5h" value="RichNetworkProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="bRdTVHYKuZ" role="1B3o_S" />
     <node concept="2tJIrI" id="bRdTVHYKv0" role="jymVt" />
     <node concept="3tTeZs" id="bRdTVHYKv1" role="jymVt">
@@ -6358,14 +6358,14 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="bRdTVHYKw1" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="bRdTVHYKw2" role="33vP2m">
         <node concept="YeOm9" id="bRdTVHYKw3" role="2ShVmc">
           <node concept="1Y3b0j" id="bRdTVHYKw4" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="bRdTVHYKw5" role="1B3o_S" />
             <node concept="3clFb_" id="bRdTVHYKw6" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -6422,7 +6422,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="bRdTVHYKwu" role="1B3o_S" />
               <node concept="3uibUv" id="bRdTVHYKwv" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="bRdTVHYKww" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -6678,7 +6678,7 @@
   </node>
   <node concept="1lYeZD" id="1_XvODPJb1r">
     <property role="TrG5h" value="RichECCProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="1_XvODPJb1s" role="1B3o_S" />
     <node concept="2tJIrI" id="1_XvODPJb1t" role="jymVt" />
     <node concept="3tTeZs" id="1_XvODPJb1u" role="jymVt">
@@ -6711,14 +6711,14 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="1_XvODPJb1D" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="1_XvODPJb1E" role="33vP2m">
         <node concept="YeOm9" id="1_XvODPJb1F" role="2ShVmc">
           <node concept="1Y3b0j" id="1_XvODPJb1G" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="1_XvODPJb1H" role="1B3o_S" />
             <node concept="3clFb_" id="1_XvODPJb1I" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -6775,7 +6775,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="1_XvODPJb26" role="1B3o_S" />
               <node concept="3uibUv" id="1_XvODPJb27" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="1_XvODPJb28" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -6797,7 +6797,7 @@
                 <node concept="3clFbF" id="1_XvODPJb2f" role="3cqZAp">
                   <node concept="2ShNRf" id="1_XvODPJb2g" role="3clFbG">
                     <node concept="1pGfFk" id="1_XvODPJb2h" role="2ShVmc">
-                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleHeaderedEditorProjectionController" />
+                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="1_XvODPJb2i" role="37wK5m">
                         <ref role="3cqZAo" node="1_XvODPJb28" resolve="node" />
                       </node>
@@ -6829,7 +6829,7 @@
   </node>
   <node concept="1lYeZD" id="1_XvODPMzrZ">
     <property role="TrG5h" value="RichAlgorithmsProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="1_XvODPMzs0" role="1B3o_S" />
     <node concept="2tJIrI" id="1_XvODPMzs1" role="jymVt" />
     <node concept="3tTeZs" id="1_XvODPMzs2" role="jymVt">
@@ -6862,13 +6862,13 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="1_XvODPMzsd" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="1_XvODPMzse" role="33vP2m">
         <node concept="YeOm9" id="1_XvODPMzsf" role="2ShVmc">
           <node concept="1Y3b0j" id="1_XvODPMzsg" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
             <node concept="3Tm1VV" id="1_XvODPMzsh" role="1B3o_S" />
             <node concept="3clFb_" id="1_XvODPMzsi" role="jymVt">
@@ -6926,7 +6926,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="1_XvODPMzsE" role="1B3o_S" />
               <node concept="3uibUv" id="1_XvODPMzsF" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="1_XvODPMzsG" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -6978,7 +6978,7 @@
   </node>
   <node concept="1lYeZD" id="14erg_Tlh91">
     <property role="TrG5h" value="RichSystemOverviewProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="14erg_Tlh92" role="1B3o_S" />
     <node concept="2tJIrI" id="14erg_Tlh93" role="jymVt" />
     <node concept="3tTeZs" id="14erg_Tlh94" role="jymVt">
@@ -7011,14 +7011,14 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="14erg_Tlh9f" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="14erg_Tlh9g" role="33vP2m">
         <node concept="YeOm9" id="14erg_Tlh9h" role="2ShVmc">
           <node concept="1Y3b0j" id="14erg_Tlh9i" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="14erg_Tlh9j" role="1B3o_S" />
             <node concept="3clFb_" id="14erg_Tlh9k" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -7075,7 +7075,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="14erg_Tlh9G" role="1B3o_S" />
               <node concept="3uibUv" id="14erg_Tlh9H" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="14erg_Tlh9I" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -7099,7 +7099,7 @@
                 <node concept="3clFbF" id="14erg_Tlh9P" role="3cqZAp">
                   <node concept="2ShNRf" id="14erg_Tlh9Q" role="3clFbG">
                     <node concept="1pGfFk" id="14erg_Tlh9R" role="2ShVmc">
-                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleHeaderedEditorProjectionController" />
+                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="14erg_Tlh9S" role="37wK5m">
                         <ref role="3cqZAo" node="14erg_Tlh9I" resolve="node" />
                       </node>
@@ -7133,7 +7133,7 @@
   </node>
   <node concept="1lYeZD" id="2SU8oJdFtw1">
     <property role="TrG5h" value="RichApplicationProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="2SU8oJdFtw2" role="1B3o_S" />
     <node concept="2tJIrI" id="2SU8oJdFtw3" role="jymVt" />
     <node concept="3tTeZs" id="2SU8oJdFtw4" role="jymVt">
@@ -7166,14 +7166,14 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="2SU8oJdFtwf" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="2SU8oJdFtwg" role="33vP2m">
         <node concept="YeOm9" id="2SU8oJdFtwh" role="2ShVmc">
           <node concept="1Y3b0j" id="2SU8oJdFtwi" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="2SU8oJdFtwj" role="1B3o_S" />
             <node concept="3clFb_" id="2SU8oJdFtwk" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -7230,7 +7230,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="2SU8oJdFtwG" role="1B3o_S" />
               <node concept="3uibUv" id="2SU8oJdFtwH" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="2SU8oJdFtwI" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -7399,7 +7399,7 @@
   </node>
   <node concept="1lYeZD" id="2SP6YJBTSW9">
     <property role="TrG5h" value="RichResourceProjectionControllerExt" />
-    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" to="qvjh:7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="2SP6YJBTSWa" role="1B3o_S" />
     <node concept="2tJIrI" id="2SP6YJBTSWb" role="jymVt" />
     <node concept="3tTeZs" id="2SP6YJBTSWc" role="jymVt">
@@ -7432,13 +7432,13 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="2SP6YJBTSWn" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="2SP6YJBTSWo" role="33vP2m">
         <node concept="YeOm9" id="2SP6YJBTSWp" role="2ShVmc">
           <node concept="1Y3b0j" id="2SP6YJBTSWq" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
             <node concept="3Tm1VV" id="2SP6YJBTSWr" role="1B3o_S" />
             <node concept="3clFb_" id="2SP6YJBTSWs" role="jymVt">
@@ -7496,7 +7496,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="2SP6YJBTSWO" role="1B3o_S" />
               <node concept="3uibUv" id="2SP6YJBTSWP" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="2SP6YJBTSWQ" role="3clF46">
                 <property role="TrG5h" value="node" />

@@ -147,14 +147,14 @@
     </node>
   </node>
   <node concept="vrV6u" id="7Y8B9wpjmV_">
-    <property role="TrG5h" value="HeaderedEditorProjectionControllerEP" />
+    <property role="TrG5h" value="EditorProjectionControllerRegistry" />
     <node concept="3uibUv" id="7Y8B9wpl23z" role="luc8K">
-      <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
     </node>
   </node>
   <node concept="1lYeZD" id="7Y8B9wpjmYo">
     <property role="TrG5h" value="SourceProjectionExtension" />
-    <ref role="1lYe$Y" node="7Y8B9wpjmV_" resolve="HeaderedEditorProjectionControllerEP" />
+    <ref role="1lYe$Y" node="7Y8B9wpjmV_" resolve="EditorProjectionControllerRegistry" />
     <node concept="3Tm1VV" id="7Y8B9wpjmYp" role="1B3o_S" />
     <node concept="2tJIrI" id="7Y8B9wpjmYq" role="jymVt" />
     <node concept="3tTeZs" id="7Y8B9wpjmYr" role="jymVt">
@@ -187,13 +187,13 @@
       <property role="TrG5h" value="myFactory" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="7Y8B9wpl4BT" role="1tU5fm">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="7Y8B9wpl4BU" role="33vP2m">
         <node concept="YeOm9" id="7Y8B9wpl4BV" role="2ShVmc">
           <node concept="1Y3b0j" id="7Y8B9wpl4BW" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="HeaderedEditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="de0p:7Y8B9wpl1pB" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
             <node concept="3Tm1VV" id="7Y8B9wpl4BX" role="1B3o_S" />
             <node concept="3clFb_" id="7Y8B9wpl4BY" role="jymVt">
@@ -221,7 +221,7 @@
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="1vJkp1TWFh0" role="1B3o_S" />
               <node concept="3uibUv" id="1vJkp1TWFh1" role="3clF45">
-                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+                <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
               </node>
               <node concept="37vLTG" id="1vJkp1TWFh2" role="3clF46">
                 <property role="TrG5h" value="node" />
@@ -243,7 +243,7 @@
                 <node concept="3clFbF" id="7Y8B9wpl4Jg" role="3cqZAp">
                   <node concept="2ShNRf" id="7Y8B9wpl4Ja" role="3clFbG">
                     <node concept="1pGfFk" id="1QSEqLhBmkn" role="2ShVmc">
-                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleHeaderedEditorProjectionController" />
+                      <ref role="37wK5l" to="de0p:7ii99HMn_Fj" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="1vJkp1TWFyC" role="37wK5m">
                         <ref role="3cqZAo" node="1vJkp1TWFh2" resolve="node" />
                       </node>
