@@ -425,7 +425,7 @@
     </node>
     <node concept="2tJIrI" id="5er1Yemzlsj" role="jymVt" />
     <node concept="312cEg" id="4Hbpy_fxY4g" role="jymVt">
-      <property role="TrG5h" value="myModelMap" />
+      <property role="TrG5h" value="myElementModelMap" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="4Hbpy_fxPpo" role="1B3o_S" />
       <node concept="3uibUv" id="4Hbpy_fxVDJ" role="1tU5fm">
@@ -472,6 +472,31 @@
           </node>
           <node concept="3uibUv" id="4Hbpy_f$B3r" role="1pMfVU">
             <ref role="3uigEE" node="5er1YemzmpJ" resolve="NetworkPortView" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="312cEg" id="2wHo_lFR0qR" role="jymVt">
+      <property role="TrG5h" value="myConnectionModelMap" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm6S6" id="2wHo_lFR0qS" role="1B3o_S" />
+      <node concept="3uibUv" id="2wHo_lFR0qT" role="1tU5fm">
+        <ref role="3uigEE" to="33ny:~Map" resolve="Map" />
+        <node concept="3uibUv" id="2wHo_lFRMTJ" role="11_B2D">
+          <ref role="3uigEE" to="g27j:~FBNetworkConnection" resolve="FBNetworkConnection" />
+        </node>
+        <node concept="3uibUv" id="2wHo_lFRKvM" role="11_B2D">
+          <ref role="3uigEE" node="5er1YemzmHk" resolve="NetworkConnectionView" />
+        </node>
+      </node>
+      <node concept="2ShNRf" id="2wHo_lFR0qW" role="33vP2m">
+        <node concept="1pGfFk" id="2wHo_lFR0qX" role="2ShVmc">
+          <ref role="37wK5l" to="33ny:~HashMap.&lt;init&gt;()" resolve="HashMap" />
+          <node concept="3uibUv" id="2wHo_lFRNrX" role="1pMfVU">
+            <ref role="3uigEE" to="g27j:~FBNetworkConnection" resolve="FBNetworkConnection" />
+          </node>
+          <node concept="3uibUv" id="2wHo_lFRLGM" role="1pMfVU">
+            <ref role="3uigEE" node="5er1YemzmHk" resolve="NetworkConnectionView" />
           </node>
         </node>
       </node>
@@ -1246,7 +1271,7 @@
         <node concept="3clFbF" id="4Hbpy_fyU48" role="3cqZAp">
           <node concept="2OqwBi" id="4Hbpy_fyUvN" role="3clFbG">
             <node concept="37vLTw" id="4Hbpy_fyU46" role="2Oq$k0">
-              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myModelMap" />
+              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myElementModelMap" />
             </node>
             <node concept="liA8E" id="4Hbpy_fyV3k" role="2OqNvi">
               <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
@@ -1385,7 +1410,7 @@
         <node concept="3clFbF" id="4Hbpy_fyci_" role="3cqZAp">
           <node concept="2OqwBi" id="4Hbpy_fyiBM" role="3clFbG">
             <node concept="37vLTw" id="4Hbpy_fyciz" role="2Oq$k0">
-              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myModelMap" />
+              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myElementModelMap" />
             </node>
             <node concept="liA8E" id="4Hbpy_fylSn" role="2OqNvi">
               <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
@@ -1621,7 +1646,7 @@
             <node concept="3clFbF" id="4Hbpy_fyqZs" role="3cqZAp">
               <node concept="2OqwBi" id="4Hbpy_fyqZt" role="3clFbG">
                 <node concept="37vLTw" id="4Hbpy_fyqZu" role="2Oq$k0">
-                  <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myModelMap" />
+                  <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myElementModelMap" />
                 </node>
                 <node concept="liA8E" id="4Hbpy_fyqZv" role="2OqNvi">
                   <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
@@ -2537,6 +2562,22 @@
                 <node concept="37vLTw" id="3V49AcvQNZT" role="37wK5m">
                   <ref role="3cqZAo" node="5er1YemzHLj" resolve="editable" />
                 </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="2wHo_lFR$XC" role="3cqZAp">
+          <node concept="2OqwBi" id="2wHo_lFRGG1" role="3clFbG">
+            <node concept="37vLTw" id="2wHo_lFR$XA" role="2Oq$k0">
+              <ref role="3cqZAo" node="2wHo_lFR0qR" resolve="myConnectionModelMap" />
+            </node>
+            <node concept="liA8E" id="2wHo_lFRHHT" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
+              <node concept="37vLTw" id="2wHo_lFRK9o" role="37wK5m">
+                <ref role="3cqZAo" node="5er1YemzHwF" resolve="connection" />
+              </node>
+              <node concept="37vLTw" id="2wHo_lFRKnA" role="37wK5m">
+                <ref role="3cqZAo" node="3V49AcvQMKb" resolve="view" />
               </node>
             </node>
           </node>
@@ -3998,12 +4039,12 @@
       </node>
     </node>
     <node concept="3clFb_" id="4Hbpy_fzbsw" role="jymVt">
-      <property role="TrG5h" value="getView" />
+      <property role="TrG5h" value="getComponentView" />
       <node concept="3clFbS" id="4Hbpy_fzbsz" role="3clF47">
         <node concept="3clFbF" id="4Hbpy_fzi0w" role="3cqZAp">
           <node concept="2OqwBi" id="4Hbpy_f$8GU" role="3clFbG">
             <node concept="37vLTw" id="4Hbpy_fzi0v" role="2Oq$k0">
-              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myModelMap" />
+              <ref role="3cqZAo" node="4Hbpy_fxY4g" resolve="myElementModelMap" />
             </node>
             <node concept="liA8E" id="4Hbpy_f$9qV" role="2OqNvi">
               <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
@@ -4022,6 +4063,34 @@
         <property role="TrG5h" value="element" />
         <node concept="3uibUv" id="4Hbpy_f$2hN" role="1tU5fm">
           <ref role="3uigEE" to="7adg:~Element" resolve="Element" />
+        </node>
+      </node>
+    </node>
+    <node concept="3clFb_" id="2wHo_lFQAnI" role="jymVt">
+      <property role="TrG5h" value="getConnectionView" />
+      <node concept="3clFbS" id="2wHo_lFQAnJ" role="3clF47">
+        <node concept="3clFbF" id="2wHo_lFQAnK" role="3cqZAp">
+          <node concept="2OqwBi" id="2wHo_lFQAnL" role="3clFbG">
+            <node concept="37vLTw" id="2wHo_lFRVKX" role="2Oq$k0">
+              <ref role="3cqZAo" node="2wHo_lFR0qR" resolve="myConnectionModelMap" />
+            </node>
+            <node concept="liA8E" id="2wHo_lFQAnN" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
+              <node concept="37vLTw" id="2wHo_lFQAnO" role="37wK5m">
+                <ref role="3cqZAo" node="2wHo_lFQAnR" resolve="connection" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="2wHo_lFQAnP" role="1B3o_S" />
+      <node concept="3uibUv" id="2wHo_lFRNZZ" role="3clF45">
+        <ref role="3uigEE" node="5er1YemzmHk" resolve="NetworkConnectionView" />
+      </node>
+      <node concept="37vLTG" id="2wHo_lFQAnR" role="3clF46">
+        <property role="TrG5h" value="connection" />
+        <node concept="3uibUv" id="2wHo_lFQZDT" role="1tU5fm">
+          <ref role="3uigEE" to="g27j:~FBNetworkConnection" resolve="FBNetworkConnection" />
         </node>
       </node>
     </node>

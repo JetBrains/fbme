@@ -73,6 +73,7 @@
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
+    <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" implicit="true" />
     <import index="9ti4" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.extensions(MPS.IDEA/)" implicit="true" />
     <import index="tprs" ref="r:00000000-0000-4000-0000-011c895904a4(jetbrains.mps.ide.actions)" implicit="true" />
@@ -460,6 +461,7 @@
       <concept id="1139621453865" name="jetbrains.mps.lang.smodel.structure.Node_IsInstanceOfOperation" flags="nn" index="1mIQ4w">
         <child id="1177027386292" name="conceptArgument" index="cj9EA" />
       </concept>
+      <concept id="1144100932627" name="jetbrains.mps.lang.smodel.structure.OperationParm_Inclusion" flags="ng" index="1xIGOp" />
       <concept id="1144101597970" name="jetbrains.mps.lang.smodel.structure.OperationParm_Root" flags="ng" index="1xLf8o" />
       <concept id="1144101972840" name="jetbrains.mps.lang.smodel.structure.OperationParm_Concept" flags="ng" index="1xMEDy">
         <child id="1207343664468" name="conceptArgument" index="ri$Ld" />
@@ -1416,6 +1418,9 @@
       <node concept="tCFHf" id="2nz0_8qr3UU" role="ftvYc">
         <ref role="tCJdB" node="5PjcHHGgRM$" resolve="Debug_UnwatchECCState" />
       </node>
+      <node concept="tCFHf" id="2wHo_lFZMJi" role="ftvYc">
+        <ref role="tCJdB" node="2wHo_lFWP3z" resolve="Debug_HighlightConnections" />
+      </node>
     </node>
     <node concept="tT9cl" id="3DiEZ8TON8r" role="2f5YQi">
       <ref role="tU$_T" to="ekwn:1xsN4xJX8VI" resolve="EditorPopup" />
@@ -2069,6 +2074,115 @@
       </node>
     </node>
     <node concept="2tJIrI" id="19RKY2xF2vs" role="jymVt" />
+    <node concept="3clFb_" id="2wHo_lFXM7A" role="jymVt">
+      <property role="TrG5h" value="highlightEventConnections" />
+      <node concept="3clFbS" id="2wHo_lFXM7D" role="3clF47">
+        <node concept="3SKdUt" id="2wHo_lG35dy" role="3cqZAp">
+          <node concept="1PaTwC" id="2wHo_lG35dz" role="3ndbpf">
+            <node concept="3oM_SD" id="2wHo_lG35d_" role="1PaTwD">
+              <property role="3oM_SC" value="to" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37pJ" role="1PaTwD">
+              <property role="3oM_SC" value="test" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37pM" role="1PaTwD">
+              <property role="3oM_SC" value="highlight" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37qm" role="1PaTwD">
+              <property role="3oM_SC" value="connections" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37qF" role="1PaTwD">
+              <property role="3oM_SC" value="only," />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37r1" role="1PaTwD">
+              <property role="3oM_SC" value="TODO" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37ro" role="1PaTwD">
+              <property role="3oM_SC" value="write" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37rK" role="1PaTwD">
+              <property role="3oM_SC" value="normal" />
+            </node>
+            <node concept="3oM_SD" id="2wHo_lG37sh" role="1PaTwD">
+              <property role="3oM_SC" value="tests" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="2wHo_lFXZ9q" role="3cqZAp">
+          <node concept="3cpWsn" id="2wHo_lFXZ9r" role="3cpWs9">
+            <property role="TrG5h" value="inspector" />
+            <node concept="3uibUv" id="2wHo_lFXYBP" role="1tU5fm">
+              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            </node>
+            <node concept="1rXfSq" id="2wHo_lFXZ9s" role="33vP2m">
+              <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="2wHo_lFXRoI" role="3cqZAp">
+          <node concept="3clFbS" id="2wHo_lFXRoJ" role="3clFbx">
+            <node concept="3cpWs6" id="2wHo_lFXRoK" role="3cqZAp" />
+          </node>
+          <node concept="3clFbC" id="2wHo_lFXRoM" role="3clFbw">
+            <node concept="10Nm6u" id="2wHo_lFXRoN" role="3uHU7w" />
+            <node concept="37vLTw" id="2wHo_lFXZ9t" role="3uHU7B">
+              <ref role="3cqZAo" node="2wHo_lFXZ9r" resolve="inspector" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="2wHo_lFY8Ea" role="3cqZAp">
+          <node concept="3cpWsn" id="2wHo_lFY8Eb" role="3cpWs9">
+            <property role="TrG5h" value="networkInstance" />
+            <node concept="3uibUv" id="2wHo_lFY89Z" role="1tU5fm">
+              <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
+            </node>
+            <node concept="1rXfSq" id="2wHo_lFY8Ec" role="33vP2m">
+              <ref role="37wK5l" node="19RKY2xFeiO" resolve="getNetworkInstance" />
+            </node>
+          </node>
+        </node>
+        <node concept="2Gpval" id="2wHo_lFY_Ix" role="3cqZAp">
+          <node concept="2GrKxI" id="2wHo_lFY_Iz" role="2Gsz3X">
+            <property role="TrG5h" value="connection" />
+          </node>
+          <node concept="3clFbS" id="2wHo_lFY_IB" role="2LFqv$">
+            <node concept="3clFbF" id="2wHo_lFYUos" role="3cqZAp">
+              <node concept="2OqwBi" id="2wHo_lFYUYL" role="3clFbG">
+                <node concept="37vLTw" id="2wHo_lFYUNn" role="2Oq$k0">
+                  <ref role="3cqZAo" node="2wHo_lFXZ9r" resolve="inspector" />
+                </node>
+                <node concept="liA8E" id="2wHo_lFYV7s" role="2OqNvi">
+                  <ref role="37wK5l" to="ppqf:2wHo_lFPqg7" resolve="setHighlightingForConnection" />
+                  <node concept="2GrUjf" id="2wHo_lFYWeN" role="37wK5m">
+                    <ref role="2Gs0qQ" node="2wHo_lFY_Iz" resolve="connection" />
+                  </node>
+                  <node concept="10M0yZ" id="2wHo_lG2mPI" role="37wK5m">
+                    <ref role="3cqZAo" to="lzb2:~JBColor.YELLOW" resolve="YELLOW" />
+                    <ref role="1PxDUh" to="exr9:~MPSColors" resolve="MPSColors" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="2wHo_lFYqkv" role="2GsD0m">
+            <node concept="2OqwBi" id="2wHo_lFYqkw" role="2Oq$k0">
+              <node concept="37vLTw" id="2wHo_lFYqkx" role="2Oq$k0">
+                <ref role="3cqZAo" node="2wHo_lFY8Eb" resolve="networkInstance" />
+              </node>
+              <node concept="liA8E" id="2wHo_lFYqky" role="2OqNvi">
+                <ref role="37wK5l" to="74cb:~NetworkInstance.getNetworkDeclaration()" resolve="getNetworkDeclaration" />
+              </node>
+            </node>
+            <node concept="liA8E" id="2wHo_lFYqkz" role="2OqNvi">
+              <ref role="37wK5l" to="g27j:~FBNetwork.getEventConnections()" resolve="getEventConnections" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="2wHo_lFXHXA" role="1B3o_S" />
+      <node concept="3cqZAl" id="2wHo_lFXOX5" role="3clF45" />
+    </node>
+    <node concept="2tJIrI" id="2wHo_lFXF8J" role="jymVt" />
     <node concept="3clFb_" id="19RKY2xF3hL" role="jymVt">
       <property role="TrG5h" value="hasPortToWatch" />
       <node concept="3clFbS" id="19RKY2xF3hP" role="3clF47">
@@ -10492,6 +10606,77 @@
       <property role="TrG5h" value="project" />
       <ref role="1DUlNI" to="qq03:~MPSCommonDataKeys.MPS_PROJECT" resolve="MPS_PROJECT" />
       <node concept="1oajcY" id="sOaa8ZZTl3" role="1oa70y" />
+    </node>
+  </node>
+  <node concept="sE7Ow" id="2wHo_lFWP3z">
+    <property role="TrG5h" value="Debug_HighlightConnections" />
+    <property role="2uzpH1" value="Highlight Event Connections" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="tnohg" id="2wHo_lFWP3$" role="tncku">
+      <node concept="3clFbS" id="2wHo_lFWP3_" role="2VODD2">
+        <node concept="3clFbF" id="2wHo_lFWP3A" role="3cqZAp">
+          <node concept="2OqwBi" id="2wHo_lFWP3B" role="3clFbG">
+            <node concept="2ShNRf" id="2wHo_lFWP3C" role="2Oq$k0">
+              <node concept="1pGfFk" id="2wHo_lFWP3D" role="2ShVmc">
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
+                <node concept="2OqwBi" id="2wHo_lFWP3E" role="37wK5m">
+                  <node concept="2WthIp" id="2wHo_lFWP3F" role="2Oq$k0" />
+                  <node concept="2XshWL" id="2wHo_lFWP3G" role="2OqNvi">
+                    <ref role="2WH_rO" node="2wHo_lFWP4K" resolve="resource" />
+                  </node>
+                </node>
+                <node concept="2OqwBi" id="2wHo_lFWP3H" role="37wK5m">
+                  <node concept="2WthIp" id="2wHo_lFWP3I" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="2wHo_lFWP3J" role="2OqNvi">
+                    <ref role="2WH_rO" node="2wHo_lFWP4I" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="2wHo_lFZ7Wh" role="2OqNvi">
+              <ref role="37wK5l" node="2wHo_lFXM7A" resolve="highlightEventConnections" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2S4$dB" id="2wHo_lFWP4E" role="1NuT2Z">
+      <property role="TrG5h" value="node" />
+      <node concept="3Tm6S6" id="2wHo_lFWP4F" role="1B3o_S" />
+      <node concept="1oajcY" id="2wHo_lFWP4G" role="1oa70y" />
+      <node concept="3Tqbb2" id="2wHo_lFWP4H" role="1tU5fm" />
+    </node>
+    <node concept="1DS2jV" id="2wHo_lFWP4I" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="2wHo_lFWP4J" role="1oa70y" />
+    </node>
+    <node concept="2XrIbr" id="2wHo_lFWP4K" role="32lrUH">
+      <property role="TrG5h" value="resource" />
+      <node concept="3Tm6S6" id="2wHo_lFWP4L" role="1B3o_S" />
+      <node concept="3Tqbb2" id="2wHo_lFWP4M" role="3clF45">
+        <ref role="ehGHo" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
+      </node>
+      <node concept="3clFbS" id="2wHo_lFWP4N" role="3clF47">
+        <node concept="3cpWs6" id="2wHo_lFWP4O" role="3cqZAp">
+          <node concept="2OqwBi" id="2wHo_lFWP4P" role="3cqZAk">
+            <node concept="2OqwBi" id="2wHo_lFWP4Q" role="2Oq$k0">
+              <node concept="2WthIp" id="2wHo_lFWP4R" role="2Oq$k0" />
+              <node concept="3gHZIF" id="2wHo_lFWP4S" role="2OqNvi">
+                <ref role="2WH_rO" node="2wHo_lFWP4E" resolve="node" />
+              </node>
+            </node>
+            <node concept="2Xjw5R" id="2wHo_lFWP4T" role="2OqNvi">
+              <node concept="1xMEDy" id="2wHo_lFWP4U" role="1xVPHs">
+                <node concept="chp4Y" id="2wHo_lFWP4V" role="ri$Ld">
+                  <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
+                </node>
+              </node>
+              <node concept="1xIGOp" id="5fDsrd1otrS" role="1xVPHs" />
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
   </node>
 </model>

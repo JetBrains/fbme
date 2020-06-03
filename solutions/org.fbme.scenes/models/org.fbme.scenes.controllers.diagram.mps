@@ -8,7 +8,7 @@
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(scenes.controllers)" />
+    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
@@ -6296,6 +6296,78 @@
       <node concept="3Tm6S6" id="7_KjZP9lKea" role="1B3o_S" />
       <node concept="3uibUv" id="7_KjZP9lKeb" role="EKbjA">
         <ref role="3uigEE" to="rvgs:2_D_3xWXMp$" resolve="DragEventHandler" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2wHo_lFUsqp" role="jymVt" />
+    <node concept="3clFb_" id="4y$DvIVUIFH" role="jymVt">
+      <property role="TrG5h" value="getController" />
+      <node concept="3clFbS" id="4y$DvIVUIFK" role="3clF47">
+        <node concept="3cpWs8" id="4bHpKVAnst0" role="3cqZAp">
+          <node concept="3cpWsn" id="4bHpKVAnst1" role="3cpWs9">
+            <property role="TrG5h" value="entry" />
+            <node concept="3uibUv" id="4bHpKVAnssS" role="1tU5fm">
+              <ref role="3uigEE" node="7_KjZP9d656" resolve="ConnectionEntry" />
+              <node concept="16syzq" id="2wHo_lFVjfA" role="11_B2D">
+                <ref role="16sUi3" node="4y$DvIW0XJW" resolve="CompT" />
+              </node>
+              <node concept="16syzq" id="2wHo_lFVjYZ" role="11_B2D">
+                <ref role="16sUi3" node="7_KjZP9djPD" resolve="PortT" />
+              </node>
+              <node concept="16syzq" id="2wHo_lFVkQv" role="11_B2D">
+                <ref role="16sUi3" node="4y$DvIW24c4" resolve="ConnT" />
+              </node>
+              <node concept="16syzq" id="2wHo_lFVlOF" role="11_B2D">
+                <ref role="16sUi3" node="7_KjZP9bCID" resolve="CursorT" />
+              </node>
+              <node concept="16syzq" id="2wHo_lFVmMX" role="11_B2D">
+                <ref role="16sUi3" node="7_KjZP9bKhr" resolve="PathT" />
+              </node>
+            </node>
+            <node concept="2OqwBi" id="4bHpKVAnst2" role="33vP2m">
+              <node concept="37vLTw" id="2wHo_lFVgB_" role="2Oq$k0">
+                <ref role="3cqZAo" node="7sG$k3BRVVR" resolve="myConnections" />
+              </node>
+              <node concept="liA8E" id="4bHpKVAnst4" role="2OqNvi">
+                <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
+                <node concept="37vLTw" id="4bHpKVAnst5" role="37wK5m">
+                  <ref role="3cqZAo" node="4y$DvIVUKOk" resolve="connection" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="4y$DvIVUOUA" role="3cqZAp">
+          <node concept="2OqwBi" id="4y$DvIVUWJ6" role="3clFbG">
+            <node concept="37vLTw" id="4bHpKVAnst6" role="2Oq$k0">
+              <ref role="3cqZAo" node="4bHpKVAnst1" resolve="entry" />
+            </node>
+            <node concept="2OwXpG" id="2wHo_lFVnIx" role="2OqNvi">
+              <ref role="2Oxat5" node="7_KjZP9f9dA" resolve="myController" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4y$DvIVUGvY" role="1B3o_S" />
+      <node concept="3uibUv" id="4y$DvIVUIEs" role="3clF45">
+        <ref role="3uigEE" node="7sG$k3BBij3" resolve="ConnectionController" />
+        <node concept="16syzq" id="2wHo_lFVdvM" role="11_B2D">
+          <ref role="16sUi3" node="7_KjZP9bCID" resolve="CursorT" />
+        </node>
+        <node concept="16syzq" id="2wHo_lFVepj" role="11_B2D">
+          <ref role="16sUi3" node="7_KjZP9bKhr" resolve="PathT" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="4y$DvIVUKOk" role="3clF46">
+        <property role="TrG5h" value="connection" />
+        <node concept="16syzq" id="2wHo_lFVf1N" role="1tU5fm">
+          <ref role="16sUi3" node="4y$DvIW24c4" resolve="ConnT" />
+        </node>
+        <node concept="2AHcQZ" id="4y$DvIVUMNg" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1iOpS24XxuW" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
       </node>
     </node>
     <node concept="3Tm1VV" id="2JpbWDsQSWB" role="1B3o_S" />

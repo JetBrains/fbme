@@ -2853,7 +2853,7 @@
             <node concept="3clFbH" id="2syzu7ret9I" role="3cqZAp" />
             <node concept="3cpWs8" id="1R4IoyRrlh8" role="3cqZAp">
               <node concept="3cpWsn" id="1R4IoyRrlh9" role="3cpWs9">
-                <property role="TrG5h" value="controllerProvider" />
+                <property role="TrG5h" value="componentProvider" />
                 <node concept="3uibUv" id="1R4IoyRrtLh" role="1tU5fm">
                   <ref role="3uigEE" to="82uw:~Function" resolve="Function" />
                   <node concept="3uibUv" id="4Hbpy_frgw9" role="11_B2D">
@@ -2933,6 +2933,7 @@
                 </node>
               </node>
             </node>
+            <node concept="3clFbH" id="2wHo_lFTuXA" role="3cqZAp" />
             <node concept="3clFbH" id="1R4IoyRrrv$" role="3cqZAp" />
             <node concept="3cpWs8" id="7oJsd9x52Oj" role="3cqZAp">
               <node concept="3cpWsn" id="7oJsd9x52Ok" role="3cpWs9">
@@ -2944,7 +2945,7 @@
                   <node concept="1pGfFk" id="2syzu7rgkme" role="2ShVmc">
                     <ref role="37wK5l" to="vjnt:4y$DvIVWOEH" resolve="FBPortSettingProvider" />
                     <node concept="37vLTw" id="1R4IoyRrlhz" role="37wK5m">
-                      <ref role="3cqZAo" node="1R4IoyRrlh9" resolve="controllerProvider" />
+                      <ref role="3cqZAo" node="1R4IoyRrlh9" resolve="componentProvider" />
                     </node>
                   </node>
                 </node>
@@ -3313,68 +3314,117 @@
               </node>
             </node>
             <node concept="3clFbH" id="2syzu7r4lxI" role="3cqZAp" />
-            <node concept="3clFbF" id="7oJsd9x52Ox" role="3cqZAp">
-              <node concept="2ShNRf" id="7oJsd9x52Oy" role="3clFbG">
-                <node concept="1pGfFk" id="7oJsd9x52Oz" role="2ShVmc">
-                  <ref role="37wK5l" to="5lkm:2JpbWDsR2ER" resolve="ConnectionsFacility" />
-                  <node concept="37vLTw" id="7oJsd9x52O$" role="37wK5m">
-                    <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQyiJ$" role="37wK5m">
-                    <ref role="3cqZAo" node="4y$DvIXmGPh" resolve="CONNECTION_CONTROLLER_FACTORY" />
-                  </node>
-                  <node concept="2YIFZM" id="1pJxKgrwjRl" role="37wK5m">
-                    <ref role="37wK5l" to="vjnt:1pJxKgrvOg1" resolve="getPathFactory" />
-                    <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
-                    <node concept="37vLTw" id="2hWn4IdU7LF" role="37wK5m">
-                      <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
+            <node concept="3cpWs8" id="2wHo_lFU6jV" role="3cqZAp">
+              <node concept="3cpWsn" id="2wHo_lFU6jW" role="3cpWs9">
+                <property role="TrG5h" value="connectionsFacility" />
+                <node concept="3uibUv" id="2wHo_lFU5Ba" role="1tU5fm">
+                  <ref role="3uigEE" to="5lkm:2JpbWDsQSWA" resolve="ConnectionsFacility" />
+                </node>
+                <node concept="2ShNRf" id="2wHo_lFU6jX" role="33vP2m">
+                  <node concept="1pGfFk" id="2wHo_lFU6jY" role="2ShVmc">
+                    <ref role="37wK5l" to="5lkm:2JpbWDsR2ER" resolve="ConnectionsFacility" />
+                    <node concept="37vLTw" id="2wHo_lFU6jZ" role="37wK5m">
+                      <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                     </node>
-                  </node>
-                  <node concept="2YIFZM" id="1pJxKgrwmX3" role="37wK5m">
-                    <ref role="37wK5l" to="vjnt:1pJxKgrvTUL" resolve="getPathPainter" />
-                    <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
-                    <node concept="37vLTw" id="2hWn4IdU8k6" role="37wK5m">
-                      <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
+                    <node concept="37vLTw" id="2wHo_lFU6k0" role="37wK5m">
+                      <ref role="3cqZAo" node="4y$DvIXmGPh" resolve="CONNECTION_CONTROLLER_FACTORY" />
                     </node>
-                  </node>
-                  <node concept="2ShNRf" id="7oJsd9x52OC" role="37wK5m">
-                    <node concept="1pGfFk" id="7oJsd9x52OD" role="2ShVmc">
-                      <ref role="37wK5l" to="vjnt:4y$DvIXx4WE" resolve="FBConnectionPathSyncronizer" />
-                      <node concept="37vLTw" id="7oJsd9x52OE" role="37wK5m">
-                        <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
-                      </node>
-                      <node concept="37vLTw" id="61SA$ze31OP" role="37wK5m">
-                        <ref role="3cqZAo" node="1y1FD3qG6Z_" resolve="scale" />
+                    <node concept="2YIFZM" id="2wHo_lFU6k1" role="37wK5m">
+                      <ref role="37wK5l" to="vjnt:1pJxKgrvOg1" resolve="getPathFactory" />
+                      <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
+                      <node concept="37vLTw" id="2wHo_lFU6k2" role="37wK5m">
+                        <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
                       </node>
                     </node>
-                  </node>
-                  <node concept="37vLTw" id="2syzu7r7Sf3" role="37wK5m">
-                    <ref role="3cqZAo" node="2syzu7r4n08" resolve="extendedLayout" />
-                  </node>
-                  <node concept="37vLTw" id="7oJsd9x52OG" role="37wK5m">
-                    <ref role="3cqZAo" node="7oJsd9x52NF" resolve="componentsSelection" />
-                  </node>
-                  <node concept="2OqwBi" id="7oJsd9x52OH" role="37wK5m">
-                    <node concept="37vLTw" id="7oJsd9x52OI" role="2Oq$k0">
-                      <ref role="3cqZAo" node="7oJsd9x52Op" resolve="diagramFacility" />
+                    <node concept="2YIFZM" id="2wHo_lFU6k3" role="37wK5m">
+                      <ref role="37wK5l" to="vjnt:1pJxKgrvTUL" resolve="getPathPainter" />
+                      <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
+                      <node concept="37vLTw" id="2wHo_lFU6k4" role="37wK5m">
+                        <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
+                      </node>
                     </node>
-                    <node concept="liA8E" id="7oJsd9x52OJ" role="2OqNvi">
-                      <ref role="37wK5l" to="5lkm:4y$DvIX$zw5" resolve="getDiagramController" />
+                    <node concept="2ShNRf" id="2wHo_lFU6k5" role="37wK5m">
+                      <node concept="1pGfFk" id="2wHo_lFU6k6" role="2ShVmc">
+                        <ref role="37wK5l" to="vjnt:4y$DvIXx4WE" resolve="FBConnectionPathSyncronizer" />
+                        <node concept="37vLTw" id="2wHo_lFU6k7" role="37wK5m">
+                          <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
+                        </node>
+                        <node concept="37vLTw" id="2wHo_lFU6k8" role="37wK5m">
+                          <ref role="3cqZAo" node="1y1FD3qG6Z_" resolve="scale" />
+                        </node>
+                      </node>
                     </node>
-                  </node>
-                  <node concept="37vLTw" id="7oJsd9x52OK" role="37wK5m">
-                    <ref role="3cqZAo" node="7oJsd9x52Nf" resolve="connectionsLayer" />
-                  </node>
-                  <node concept="37vLTw" id="7oJsd9x52OL" role="37wK5m">
-                    <ref role="3cqZAo" node="7oJsd9x52N1" resolve="tracesLayer" />
-                  </node>
-                  <node concept="37vLTw" id="7oJsd9x52OM" role="37wK5m">
-                    <ref role="3cqZAo" node="61SA$zecHP2" resolve="focus" />
+                    <node concept="37vLTw" id="2wHo_lFU6k9" role="37wK5m">
+                      <ref role="3cqZAo" node="2syzu7r4n08" resolve="extendedLayout" />
+                    </node>
+                    <node concept="37vLTw" id="2wHo_lFU6ka" role="37wK5m">
+                      <ref role="3cqZAo" node="7oJsd9x52NF" resolve="componentsSelection" />
+                    </node>
+                    <node concept="2OqwBi" id="2wHo_lFU6kb" role="37wK5m">
+                      <node concept="37vLTw" id="2wHo_lFU6kc" role="2Oq$k0">
+                        <ref role="3cqZAo" node="7oJsd9x52Op" resolve="diagramFacility" />
+                      </node>
+                      <node concept="liA8E" id="2wHo_lFU6kd" role="2OqNvi">
+                        <ref role="37wK5l" to="5lkm:4y$DvIX$zw5" resolve="getDiagramController" />
+                      </node>
+                    </node>
+                    <node concept="37vLTw" id="2wHo_lFU6ke" role="37wK5m">
+                      <ref role="3cqZAo" node="7oJsd9x52Nf" resolve="connectionsLayer" />
+                    </node>
+                    <node concept="37vLTw" id="2wHo_lFU6kf" role="37wK5m">
+                      <ref role="3cqZAo" node="7oJsd9x52N1" resolve="tracesLayer" />
+                    </node>
+                    <node concept="37vLTw" id="2wHo_lFU6kg" role="37wK5m">
+                      <ref role="3cqZAo" node="61SA$zecHP2" resolve="focus" />
+                    </node>
                   </node>
                 </node>
               </node>
             </node>
             <node concept="3clFbH" id="1R4IoyRrbvF" role="3cqZAp" />
+            <node concept="3cpWs8" id="2wHo_lFTwNw" role="3cqZAp">
+              <node concept="3cpWsn" id="2wHo_lFTwNz" role="3cpWs9">
+                <property role="TrG5h" value="connectionProvider" />
+                <node concept="3uibUv" id="2wHo_lFTwN$" role="1tU5fm">
+                  <ref role="3uigEE" to="82uw:~Function" resolve="Function" />
+                  <node concept="3uibUv" id="2wHo_lFT_Wr" role="11_B2D">
+                    <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                  </node>
+                  <node concept="3uibUv" id="2wHo_lFTAps" role="11_B2D">
+                    <ref role="3uigEE" to="vjnt:4ZaR9mNllb3" resolve="FBConnectionController" />
+                  </node>
+                </node>
+                <node concept="1bVj0M" id="2wHo_lFTwNB" role="33vP2m">
+                  <node concept="3clFbS" id="2wHo_lFTwNC" role="1bW5cS">
+                    <node concept="3clFbF" id="2wHo_lFUbXo" role="3cqZAp">
+                      <node concept="10QFUN" id="2wHo_lFVEGG" role="3clFbG">
+                        <node concept="3uibUv" id="2wHo_lFVHne" role="10QFUM">
+                          <ref role="3uigEE" to="vjnt:4ZaR9mNllb3" resolve="FBConnectionController" />
+                        </node>
+                        <node concept="2OqwBi" id="2wHo_lFUcXa" role="10QFUP">
+                          <node concept="37vLTw" id="2wHo_lFUbXm" role="2Oq$k0">
+                            <ref role="3cqZAo" node="2wHo_lFU6jW" resolve="connectionsFacility" />
+                          </node>
+                          <node concept="liA8E" id="2wHo_lFVCPD" role="2OqNvi">
+                            <ref role="37wK5l" to="5lkm:4y$DvIVUIFH" resolve="getController" />
+                            <node concept="37vLTw" id="2wHo_lFVDKI" role="37wK5m">
+                              <ref role="3cqZAo" node="2wHo_lFTwO0" resolve="it" />
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="37vLTG" id="2wHo_lFTwO0" role="1bW2Oz">
+                    <property role="TrG5h" value="it" />
+                    <node concept="3uibUv" id="2wHo_lFTBSJ" role="1tU5fm">
+                      <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbH" id="2wHo_lFU3Um" role="3cqZAp" />
             <node concept="3clFbF" id="1R4IoyRtLpc" role="3cqZAp">
               <node concept="2ShNRf" id="1R4IoyRrE0E" role="3clFbG">
                 <node concept="1pGfFk" id="1R4IoyRrE0F" role="2ShVmc">
@@ -3389,7 +3439,10 @@
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="37vLTw" id="1R4IoyRrE0I" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyRrlh9" resolve="controllerProvider" />
+                    <ref role="3cqZAo" node="1R4IoyRrlh9" resolve="componentProvider" />
+                  </node>
+                  <node concept="37vLTw" id="2wHo_lFVIr2" role="37wK5m">
+                    <ref role="3cqZAo" node="2wHo_lFTwNz" resolve="connectionProvider" />
                   </node>
                   <node concept="37vLTw" id="1R4IoyRrE0J" role="37wK5m">
                     <ref role="3cqZAo" node="2syzu7r4n08" resolve="extendedLayout" />
