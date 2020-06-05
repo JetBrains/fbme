@@ -17,6 +17,7 @@ import org.fbme.ide.richediting.inspections.NetworkInspector;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import smvDebugger.model.SystemItem;
+import jetbrains.mps.baseLanguage.closures.runtime.Wrappers;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import java.util.Objects;
@@ -51,19 +52,32 @@ public class SystemHighlighter {
         });
         networkInspector.clear();
 
-        final FBNetwork fbNethwork = SystemHighlighter.this.compositeFb.getNetwork();
-        final List<FunctionBlockDeclaration> components = fbNethwork.getFunctionBlocks();
+        final FBNetwork fbNetwork = SystemHighlighter.this.compositeFb.getNetwork();
+        final List<FunctionBlockDeclaration> components = fbNetwork.getFunctionBlocks();
 
         for (final SystemItemValue itemValue : itemValues) {
           final SystemItem item = itemValue.getItem();
           if (item.getFbNames().length == 0) {
             continue;
           }
-          final FunctionBlockDeclaration component = ListSequence.fromList(components).findFirst(new IWhereFilter<FunctionBlockDeclaration>() {
-            public boolean accept(FunctionBlockDeclaration it) {
-              return Objects.equals(it.getName(), item.getFbNames()[0]);
+
+          FunctionBlockDeclaration component = null;
+          List<FunctionBlockDeclaration> curComponents = components;
+
+          for (final Wrappers._int i = new Wrappers._int(0); i.value < item.getFbNames().length; i.value++) {
+            component = ListSequence.fromList(curComponents).findFirst(new IWhereFilter<FunctionBlockDeclaration>() {
+              public boolean accept(FunctionBlockDeclaration it) {
+                return Objects.equals(it.getName(), item.getFbNames()[i.value]);
+              }
+            });
+            if (component != null && component.getTypeReference().getTarget() instanceof CompositeFBTypeDeclaration) {
+              final CompositeFBTypeDeclaration compositeDeclaration = (CompositeFBTypeDeclaration) component.getTypeReference().getTarget();
+              curComponents = compositeDeclaration.getNetwork().getFunctionBlocks();
+            } else {
+              break;
             }
-          });
+          }
+
           if (component != null) {
             if (item.getType() == SystemItemType.ECC) {
               networkInspector.setInspectionForComponent(component, new Inspection(itemValue.getValue(), HIGHLIGHT_COLOR));

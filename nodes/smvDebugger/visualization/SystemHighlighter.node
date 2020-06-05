@@ -21,13 +21,26 @@ public class SystemHighlighter {
       final NetworkInspector networkInspector = inspectionManager.installInspector(networkInstance, { => <no statements> });
       networkInspector.clear();
 
-      final FBNetwork fbNethwork = this.compositeFb.getNetwork();
-      final list<FunctionBlockDeclaration> components = fbNethwork.getFunctionBlocks();
+      final FBNetwork fbNetwork = this.compositeFb.getNetwork();
+      final list<FunctionBlockDeclaration> components = fbNetwork.getFunctionBlocks();
 
       for (final SystemItemValue itemValue : itemValues) {
         final SystemItem item = itemValue.getItem();
         if (item.getFbNames().length == 0) { continue; }
-        final FunctionBlockDeclaration component = components.findFirst({~it => it.getName() :eq: item.getFbNames()[0]; });
+
+        FunctionBlockDeclaration component = null;
+        list<FunctionBlockDeclaration> curComponents = components;
+
+        for (int i = 0; i < item.getFbNames().length; i++) {
+          component = curComponents.findFirst({~it => it.getName() :eq: item.getFbNames()[i]; });
+          if (component != null && component.getTypeReference().getTarget() instanceof CompositeFBTypeDeclaration) {
+            final CompositeFBTypeDeclaration compositeDeclaration = (CompositeFBTypeDeclaration) component.getTypeReference().getTarget();
+            curComponents = compositeDeclaration.getNetwork().getFunctionBlocks();
+          } else {
+            break;
+          }
+        }
+
         if (component != null) {
           if (item.getType() == SystemItemType.ECC) {
             networkInspector.setInspectionForComponent(component, new Inspection(itemValue.getValue(), HIGHLIGHT_COLOR));
