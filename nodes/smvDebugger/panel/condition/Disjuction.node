@@ -1,0 +1,17 @@
+
+public class Disjunction extends BinaryExpression {
+
+  public Disjunction(final Expression first, final Expression second) {
+    super(first, second);
+  }
+
+  @Override
+  public boolean evaluate(final Map<string, string> itemSimpleNameToValueMap) {
+    return first.evaluate(itemSimpleNameToValueMap) || second.evaluate(itemSimpleNameToValueMap);
+  }
+
+  @Override
+  public string getSymbol() {
+    return "||";
+  }
+}

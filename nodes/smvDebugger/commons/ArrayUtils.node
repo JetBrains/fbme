@@ -1,0 +1,66 @@
+
+public final class ArrayUtils {
+
+  public static Object[] toArray(final Object object) {
+    final Object[] array = new Object[1];
+    array[0] = object;
+    return array;
+  }
+
+
+  public static Object[][] to2dArray(final Object[] array) {
+    final Object[][] twoDArray = new Object[array.length][1];
+    for (int i = 0; i < twoDArray.length; i++) {
+      twoDArray[i][0] = array[i];
+    }
+    return twoDArray;
+  }
+
+
+  public static Object[] concat(final Object object, final Object[] array) {
+    final Object[] result = new Object[array.length + 1];
+    result[0] = object;
+    System.arraycopy(array, 0, result, 1, array.length);
+    return result;
+  }
+
+
+  public static string[] concat(final string[] array, final string str) {
+    final string[] result = new string[array.length + 1];
+    System.arraycopy(array, 0, result, 0, array.length);
+    result[result.length - 1] = str;
+    return result;
+  }
+
+
+  public static Object[][] concat(final Object[] array, final Object[][] twoDArray) {
+    final Object[][] result = new Object[twoDArray.length][twoDArray[0].length + 1];
+    for (int i = 0; i < result.length; i++) {
+      result[i][0] = array[i];
+      for (int j = 1; j < result[i].length; j++) {
+        result[i][j] = twoDArray[i][j - 1];
+      }
+    }
+    return result;
+  }
+
+
+  public static string[][] to2dArray(final List<List<string>> listOfLists) {
+    final string[][] array = new string[listOfLists.size()][];
+    for (int i = 0; i < array.length; i++) {
+      final List<string> list = listOfLists.get(i);
+      array[i] = new string[list.size()];
+      for (int j = 0; j < array[i].length; j++) {
+        array[i][j] = list.get(j);
+      }
+    }
+    return array;
+  }
+
+
+  public static string[] subarray(final string[] array, final int beginIndex, final int endIndex) {
+    final string[] result = new string[endIndex - beginIndex];
+    System.arraycopy(array, beginIndex, result, 0, result.length);
+    return result;
+  }
+}

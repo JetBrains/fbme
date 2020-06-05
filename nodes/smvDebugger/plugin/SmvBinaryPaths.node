@@ -1,0 +1,63 @@
+
+preferences component SmvBinaryPaths {
+  string fb2SmvPath ;
+  string nuSmvPath ;
+  string nutracPath ;
+
+  <no afterRead block>
+  <no beforeWrite block>
+
+  page Fb2SmvPath {
+    component : new PathComponent("FB2SMV")
+    icon : <no icon>
+    help topic : <default help topic>
+
+    reset(project, component)->void {
+      component.setValue(this.fb2SmvPath);
+    }
+
+    commit(project, component)->void {
+      this.fb2SmvPath = component.getValue();
+    }
+
+    isModified(project, component)->boolean {
+      this.fb2SmvPath != component.getValue();
+    }
+  }
+
+  page NuSmvPath {
+    component : new PathComponent("NuSMV")
+    icon : <no icon>
+    help topic : <default help topic>
+
+    reset(project, component)->void {
+      component.setValue(this.nuSmvPath);
+    }
+
+    commit(project, component)->void {
+      this.nuSmvPath = component.getValue();
+    }
+
+    isModified(project, component)->boolean {
+      this.nuSmvPath != component.getValue();
+    }
+  }
+
+  page NutracPath {
+    component : new PathComponent("nutrac")
+    icon : <no icon>
+    help topic : <default help topic>
+
+    reset(project, component)->void {
+      component.setValue(this.nutracPath);
+    }
+
+    commit(project, component)->void {
+      this.nutracPath = component.getValue();
+    }
+
+    isModified(project, component)->boolean {
+      this.nutracPath != component.getValue();
+    }
+  }
+}

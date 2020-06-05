@@ -1,0 +1,7 @@
+
+public class ImpossibleComparsionException extends ConditionParseException {
+
+  public ImpossibleComparsionException(final string argument, final string expression) {
+    super(String.format("Argument '%s' can't be compared with complex expression '%s'", argument, expression));
+  }
+}

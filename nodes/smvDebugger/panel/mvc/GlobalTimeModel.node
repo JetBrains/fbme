@@ -1,0 +1,26 @@
+
+public class GlobalTimeModel {
+
+  public static final string GLOBAL_TIME = "globalTime";
+
+  private SwingPropertyChangeSupport propertyChangeSupport = new SwingPropertyChangeSupport(this);
+  private string time;
+
+  public string getTime() {
+    return time;
+  }
+
+  public void setTime(final string time) {
+    final string oldTime = this.time;
+    this.time = time;
+    propertyChangeSupport.firePropertyChange(GLOBAL_TIME, oldTime, this.time);
+  }
+
+  public void addPropertyChangeListener(final PropertyChangeListener listener) {
+    propertyChangeSupport.addPropertyChangeListener(listener);
+  }
+
+  public void addPropertyChangeListener(final string propertyName, final PropertyChangeListener listener) {
+    propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+  }
+}

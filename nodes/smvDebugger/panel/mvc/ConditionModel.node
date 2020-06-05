@@ -1,0 +1,25 @@
+
+public class ConditionModel extends AbstractSpinnerModel {
+  private string condition = "";
+
+  @Override
+  public Object getValue() {
+    return condition;
+  }
+
+  @Override
+  public void setValue(final Object value) {
+    condition = (string) value;
+    fireStateChanged();
+  }
+
+  @Override
+  public Object getNextValue() {
+    return condition;
+  }
+
+  @Override
+  public Object getPreviousValue() {
+    return condition;
+  }
+}

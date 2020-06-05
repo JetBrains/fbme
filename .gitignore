@@ -20,3 +20,6 @@ build
 out
 
 lib
+
+.idea
+*.iml

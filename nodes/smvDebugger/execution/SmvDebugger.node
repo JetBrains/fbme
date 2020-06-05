@@ -1,0 +1,46 @@
+
+public class SmvDebugger {
+
+  private static final string FB_FILE_EXTENSION = ".xml";
+
+  private final MPSProject project;
+  private final SmvService smvService;
+  private final DebugPanelService debugPanelService;
+
+
+  public SmvDebugger(final MPSProject project) {
+    this.project = project;
+
+    final Project ideaProject = ProjectHelper.toIdeaProject(project);
+    final preferenceComponent<SmvBinaryPaths> smvBinaryPaths = ideaProject.preferenceComponent<SmvBinaryPaths>;
+    smvService = new SmvService(smvBinaryPaths);
+
+    debugPanelService = new DebugPanelService(project);
+  }
+
+  public JComponent run(final Path fbPath, final CompositeFBTypeDeclaration compositeFb) {
+    try {
+      final string specification = getSpecification();
+      final Optional<Counterexample> counterexample = smvService.verify(fbPath, specification);
+      if (counterexample.isEmpty()) {
+        notifySuccess();
+        return null;
+      }
+      return debugPanelService.run(compositeFb, counterexample.get());
+    } catch (final Exception e) {
+      JOptionPane.showMessageDialog(null, e.getMessage());
+      return null;
+    }
+  }
+
+
+  private static string getSpecification() {
+    final string specification = JOptionPane.showInputDialog(null, "Enter LTL/CTL specification");
+    return specification;
+  }
+
+
+  private static void notifySuccess() {
+    JOptionPane.showMessageDialog(null, "Success");
+  }
+}

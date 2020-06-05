@@ -1,0 +1,43 @@
+
+public abstract class AbstractIntegrationService {
+
+  protected static final string MAC_MONO_FRAMEWORK = "mono";
+
+  protected final Path binaryPath;
+
+
+  public AbstractIntegrationService(final Path binaryPath) {
+    this.binaryPath = binaryPath;
+  }
+
+  protected string runProcess(final Path path) {
+    final string command = getCommand(path);
+    final ProcessBuilder builder = new ProcessBuilder();
+    builder.command(command);
+
+    try {
+      final Process process = builder.start();
+      process.waitFor();
+
+      final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      final StringBuilder sb = new StringBuilder();
+      string line = "";
+      while ((line = reader.readLine()) != null) {
+        sb.append(line).append("\n");
+      }
+
+      return sb.toString();
+    } catch (final Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  protected Path newPathOf(final Path basePath, final string fileExtension) {
+    final string fullFileName = basePath.getFileName().toString();
+    final int dotIndex = fullFileName.lastIndexOf(".");
+    final string fileNameWithoutExtension = fullFileName.substring(0, dotIndex);
+    return basePath.getParent().resolve(fileNameWithoutExtension + "." + fileExtension);
+  }
+
+  protected abstract string getCommand(final Path path);
+}

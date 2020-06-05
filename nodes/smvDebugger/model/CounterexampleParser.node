@@ -1,0 +1,36 @@
+
+public class CounterexampleParser {
+
+  private static final string STATE_TRASH_SYMBOLS = "-1[.]";
+
+  private static final string DATA_DELIMITER = ",";
+
+  private final SystemItemParser itemParser = new SystemItemParser();
+
+  public Counterexample parse(final List<string> lines) {
+    final string[] emptyHeaderAndSteps = lines.get(0).replaceAll(STATE_TRASH_SYMBOLS, "").split(DATA_DELIMITER);
+    final string[] steps = Arrays.copyOfRange(emptyHeaderAndSteps, 1, emptyHeaderAndSteps.length);
+
+    final list<SystemItem> items = new ArrayList<SystemItem>();
+    final list<string[]> values = new ArrayList<string[]>();
+    string[] timeValues = new string[steps.length];
+    for (int i = 1; i < lines.size(); i++) {
+      final string[] lineData = lines.get(i).split(DATA_DELIMITER);
+      string fullName = lineData[0];
+      final string[] curValues = Arrays.copyOfRange(lineData, 1, lineData.length);
+
+      if (fullName :eq: Counterexample.T_GLOBAL) {
+        timeValues = curValues;
+        continue;
+      }
+
+      final SystemItem item = itemParser.parse(fullName);
+      if (item != null) {
+        items.add(item);
+        values.add(curValues);
+      }
+    }
+
+    return new Counterexample(items.toArray, steps, values.toArray, timeValues);
+  }
+}

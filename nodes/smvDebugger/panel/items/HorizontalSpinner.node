@@ -1,0 +1,8 @@
+
+public class HorizontalSpinner extends JSpinner {
+
+  public HorizontalSpinner() {
+    super();
+    setUI(new HorizontalSpinnerUI());
+  }
+}
