@@ -1,9 +1,9 @@
 package org.fbme.lib.iec61499.declarations;
 
-import jdk.internal.jline.internal.Nullable;
 import org.fbme.lib.common.ContainedElement;
 import org.fbme.lib.common.Declaration;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 

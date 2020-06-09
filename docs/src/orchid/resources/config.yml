@@ -1,0 +1,44 @@
+site:
+  about:
+    siteName: 'FBME'
+    subtitle: 'Function Blocks Modelling Environment'
+  theme: 'Editorial'
+
+theme:
+  social:
+    github: 'JetBrains/fbme'
+  primaryColor: '#00bfff'
+  menu:
+    - type: 'page'
+      title: 'Home'
+      itemId: 'Home'
+    - type: 'separator'
+      title: 'User Manuals'
+    - type: 'wiki'
+      section: 'userManual'
+    - type: 'separator'
+      title: 'Developer Guides'
+    - type: 'wiki'
+      section: 'devGuides'
+    - type: 'sourcedocPages'
+      moduleType: 'javadoc'
+      node: 'packages'
+      asSubmenu: true
+      submenuTitle: 'API Documentation'
+
+wiki:
+  sections:
+    - 'userManual'
+    - 'devGuides'
+
+javadoc:
+  sourcePages:
+    menu:
+      - type: 'sourcedocPageLinks'
+        includeItems: true
+  sourceDirs:
+    - '../../../../library/src/main/java'
+  pages:
+    menu:
+      - type: 'javadocPackages'
+      - type: 'javadocClasses'
