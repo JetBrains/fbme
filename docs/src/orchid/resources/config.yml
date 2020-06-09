@@ -3,6 +3,7 @@ site:
     siteName: 'FBME'
     subtitle: 'Function Blocks Modelling Environment'
   theme: 'Editorial'
+  baseUrl: 'https://jetbrains.github.io/fbme'
 
 theme:
   social:
@@ -42,3 +43,11 @@ javadoc:
     menu:
       - type: 'javadocPackages'
       - type: 'javadocClasses'
+
+services:
+  publications:
+    stages:
+      - type: githubPages
+        branch: gh-pages
+        username: qradimir
+        repo: 'JetBrains/fbme'
