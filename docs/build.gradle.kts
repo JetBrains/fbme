@@ -4,7 +4,6 @@ plugins {
 
 repositories {
     jcenter()
-//    maven(url = "https://kotlin.bintray.com/kotlinx/")
 }
 
 dependencies {
@@ -28,5 +27,5 @@ version = "1.0"
 
 orchid {
     args = listOf("--experimentalSourceDoc")
-    githubToken = rootProject.property("githubToken") as String
+    githubToken = if (rootProject.hasProperty("github_token")) rootProject.property("github_token") as String else null
 }
