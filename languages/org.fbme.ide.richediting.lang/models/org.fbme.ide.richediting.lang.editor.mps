@@ -3428,7 +3428,7 @@
             <node concept="3clFbF" id="1R4IoyRtLpc" role="3cqZAp">
               <node concept="2ShNRf" id="1R4IoyRrE0E" role="3clFbG">
                 <node concept="1pGfFk" id="1R4IoyRrE0F" role="2ShVmc">
-                  <ref role="37wK5l" to="ppqf:1R4IoyQO$pW" resolve="InspectionsFacility" />
+                  <ref role="37wK5l" to="ppqf:1R4IoyQO$pW" resolve="NetworkInspectionsFacility" />
                   <node concept="37vLTw" id="4Hbpy_fJLWB" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQFFNL" resolve="networkView" />
                   </node>
@@ -5048,74 +5048,137 @@
                 </node>
               </node>
             </node>
-            <node concept="3clFbF" id="1R4IoyQIILJ" role="3cqZAp">
-              <node concept="2ShNRf" id="1R4IoyQIILK" role="3clFbG">
-                <node concept="1pGfFk" id="1R4IoyQIILL" role="2ShVmc">
-                  <ref role="37wK5l" to="5lkm:2JpbWDsR2ER" resolve="ConnectionsFacility" />
-                  <node concept="37vLTw" id="1R4IoyQIILM" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIILN" role="37wK5m">
-                    <ref role="3cqZAo" node="38k27IRLnsq" resolve="TRANSITION_CONTROLLER_FACTORY" />
-                  </node>
-                  <node concept="10M0yZ" id="1R4IoyQIILO" role="37wK5m">
-                    <ref role="3cqZAo" to="4n2q:38k27IRRUR4" resolve="PATH_FACTORY" />
-                    <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
-                  </node>
-                  <node concept="10M0yZ" id="1R4IoyQIILP" role="37wK5m">
-                    <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
-                    <ref role="3cqZAo" to="4n2q:38k27IRRUSR" resolve="PATH_PAINTER" />
-                  </node>
-                  <node concept="2ShNRf" id="1R4IoyQIILQ" role="37wK5m">
-                    <node concept="1pGfFk" id="1R4IoyQIILR" role="2ShVmc">
-                      <ref role="37wK5l" to="4n2q:38k27IRQ3Jd" resolve="ECTransitionPathSyncronizer" />
-                      <node concept="37vLTw" id="1R4IoyQIILS" role="37wK5m">
-                        <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
-                      </node>
-                    </node>
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIILT" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIK4" resolve="componentsLayout" />
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIILU" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIJX" resolve="componentsSelection" />
-                  </node>
-                  <node concept="2OqwBi" id="1R4IoyQIILV" role="37wK5m">
-                    <node concept="37vLTw" id="1R4IoyQIILW" role="2Oq$k0">
-                      <ref role="3cqZAo" node="1R4IoyQIIL0" resolve="diagramFacility" />
-                    </node>
-                    <node concept="liA8E" id="1R4IoyQIILX" role="2OqNvi">
-                      <ref role="37wK5l" to="5lkm:4y$DvIX$zw5" resolve="getDiagramController" />
-                    </node>
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIILY" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIJx" resolve="connectionsLayer" />
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIILZ" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIJj" resolve="tracesLayer" />
-                  </node>
-                  <node concept="37vLTw" id="1R4IoyQIIM0" role="37wK5m">
-                    <ref role="3cqZAo" node="1R4IoyQIIJK" resolve="focus" />
-                  </node>
-                  <node concept="3uibUv" id="4Hbpy_fGEpk" role="1pMfVU">
+            <node concept="3cpWs8" id="38F6aFupE_o" role="3cqZAp">
+              <node concept="3cpWsn" id="38F6aFupE_p" role="3cpWs9">
+                <property role="TrG5h" value="connectionsFacility" />
+                <node concept="3uibUv" id="38F6aFupA_F" role="1tU5fm">
+                  <ref role="3uigEE" to="5lkm:2JpbWDsQSWA" resolve="ConnectionsFacility" />
+                  <node concept="3uibUv" id="38F6aFupA_R" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
-                  <node concept="3uibUv" id="4Hbpy_fGEpl" role="1pMfVU">
+                  <node concept="3uibUv" id="38F6aFupA_Q" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
-                  <node concept="3uibUv" id="4Hbpy_fGEpm" role="1pMfVU">
+                  <node concept="3uibUv" id="38F6aFupA_T" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
                   </node>
-                  <node concept="3uibUv" id="1R4IoyQIIM4" role="1pMfVU">
+                  <node concept="3uibUv" id="38F6aFupA_S" role="11_B2D">
                     <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
                   </node>
-                  <node concept="3uibUv" id="1R4IoyQIIM5" role="1pMfVU">
+                  <node concept="3uibUv" id="38F6aFupA_U" role="11_B2D">
                     <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+                  </node>
+                </node>
+                <node concept="2ShNRf" id="38F6aFupE_q" role="33vP2m">
+                  <node concept="1pGfFk" id="38F6aFupE_r" role="2ShVmc">
+                    <ref role="37wK5l" to="5lkm:2JpbWDsR2ER" resolve="ConnectionsFacility" />
+                    <node concept="37vLTw" id="38F6aFupE_s" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_t" role="37wK5m">
+                      <ref role="3cqZAo" node="38k27IRLnsq" resolve="TRANSITION_CONTROLLER_FACTORY" />
+                    </node>
+                    <node concept="10M0yZ" id="38F6aFupE_u" role="37wK5m">
+                      <ref role="3cqZAo" to="4n2q:38k27IRRUR4" resolve="PATH_FACTORY" />
+                      <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
+                    </node>
+                    <node concept="10M0yZ" id="38F6aFupE_v" role="37wK5m">
+                      <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
+                      <ref role="3cqZAo" to="4n2q:38k27IRRUSR" resolve="PATH_PAINTER" />
+                    </node>
+                    <node concept="2ShNRf" id="38F6aFupE_w" role="37wK5m">
+                      <node concept="1pGfFk" id="38F6aFupE_x" role="2ShVmc">
+                        <ref role="37wK5l" to="4n2q:38k27IRQ3Jd" resolve="ECTransitionPathSyncronizer" />
+                        <node concept="37vLTw" id="38F6aFupE_y" role="37wK5m">
+                          <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
+                        </node>
+                      </node>
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_z" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIK4" resolve="componentsLayout" />
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_$" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIJX" resolve="componentsSelection" />
+                    </node>
+                    <node concept="2OqwBi" id="38F6aFupE__" role="37wK5m">
+                      <node concept="37vLTw" id="38F6aFupE_A" role="2Oq$k0">
+                        <ref role="3cqZAo" node="1R4IoyQIIL0" resolve="diagramFacility" />
+                      </node>
+                      <node concept="liA8E" id="38F6aFupE_B" role="2OqNvi">
+                        <ref role="37wK5l" to="5lkm:4y$DvIX$zw5" resolve="getDiagramController" />
+                      </node>
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_C" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIJx" resolve="connectionsLayer" />
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_D" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIJj" resolve="tracesLayer" />
+                    </node>
+                    <node concept="37vLTw" id="38F6aFupE_E" role="37wK5m">
+                      <ref role="3cqZAo" node="1R4IoyQIIJK" resolve="focus" />
+                    </node>
+                    <node concept="3uibUv" id="38F6aFupE_F" role="1pMfVU">
+                      <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
+                    </node>
+                    <node concept="3uibUv" id="38F6aFupE_G" role="1pMfVU">
+                      <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
+                    </node>
+                    <node concept="3uibUv" id="38F6aFupE_H" role="1pMfVU">
+                      <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
+                    </node>
+                    <node concept="3uibUv" id="38F6aFupE_I" role="1pMfVU">
+                      <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+                    </node>
+                    <node concept="3uibUv" id="38F6aFupE_J" role="1pMfVU">
+                      <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+                    </node>
                   </node>
                 </node>
               </node>
             </node>
             <node concept="3clFbH" id="1R4IoyQIIM6" role="3cqZAp" />
+            <node concept="3clFbF" id="38F6aFup$gp" role="3cqZAp">
+              <node concept="2ShNRf" id="38F6aFup$gl" role="3clFbG">
+                <node concept="1pGfFk" id="38F6aFupBvA" role="2ShVmc">
+                  <ref role="37wK5l" to="ppqf:38F6aFuh$LD" resolve="ECCInspectionsFacility" />
+                  <node concept="37vLTw" id="38F6aFupBJ1" role="37wK5m">
+                    <ref role="3cqZAo" node="2yJZQx2viBw" resolve="ecc" />
+                  </node>
+                  <node concept="37vLTw" id="38F6aFupDie" role="37wK5m">
+                    <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
+                  </node>
+                  <node concept="1bVj0M" id="38F6aFupZkb" role="37wK5m">
+                    <node concept="3clFbS" id="38F6aFupZkd" role="1bW5cS">
+                      <node concept="3clFbF" id="38F6aFuq5wG" role="3cqZAp">
+                        <node concept="10QFUN" id="38F6aFuqBE9" role="3clFbG">
+                          <node concept="3uibUv" id="38F6aFuqCsF" role="10QFUM">
+                            <ref role="3uigEE" to="4n2q:38k27IRy0o9" resolve="ECTransitionController" />
+                          </node>
+                          <node concept="2OqwBi" id="38F6aFuq5YR" role="10QFUP">
+                            <node concept="37vLTw" id="38F6aFuq5wF" role="2Oq$k0">
+                              <ref role="3cqZAo" node="38F6aFupE_p" resolve="connectionsFacility" />
+                            </node>
+                            <node concept="liA8E" id="38F6aFuq6ms" role="2OqNvi">
+                              <ref role="37wK5l" to="5lkm:4y$DvIVUIFH" resolve="getController" />
+                              <node concept="37vLTw" id="38F6aFuq6Bn" role="37wK5m">
+                                <ref role="3cqZAo" node="38F6aFuq0Ib" resolve="it" />
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                    <node concept="37vLTG" id="38F6aFuq0Ib" role="1bW2Oz">
+                      <property role="TrG5h" value="it" />
+                      <node concept="3uibUv" id="38F6aFuq0Ia" role="1tU5fm">
+                        <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbH" id="38F6aFupyb5" role="3cqZAp" />
             <node concept="3cpWs6" id="1R4IoyQIIM7" role="3cqZAp">
               <node concept="37vLTw" id="1R4IoyQIIM8" role="3cqZAk">
                 <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />

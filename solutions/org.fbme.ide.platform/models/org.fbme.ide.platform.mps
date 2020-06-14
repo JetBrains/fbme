@@ -439,7 +439,7 @@
                   <node concept="3clFbF" id="2hWn4IdWKfH" role="3cqZAp">
                     <node concept="2YIFZM" id="2hWn4IdWKwx" role="3clFbG">
                       <ref role="37wK5l" to="de0p:2hWn4IdWCPe" resolve="install" />
-                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                       <node concept="1KvdUw" id="2hWn4IdWKB0" role="37wK5m" />
                     </node>
                   </node>
@@ -469,7 +469,7 @@
               <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object)" resolve="registerExtension" />
               <node concept="2ShNRf" id="7Y8B9wpfrW0" role="37wK5m">
                 <node concept="1pGfFk" id="7Y8B9wpfsfI" role="2ShVmc">
-                  <ref role="37wK5l" to="de0p:7Y8B9wpduOV" resolve="HeaderedEditorFactory" />
+                  <ref role="37wK5l" to="de0p:7Y8B9wpduOV" resolve="PlatformEditorFactory" />
                   <node concept="1KvdUw" id="7Y8B9wpfsiT" role="37wK5m" />
                 </node>
               </node>
@@ -494,7 +494,7 @@
                 <node concept="3clFbS" id="1vJkp1TPgIR" role="1bW5cS">
                   <node concept="3clFbF" id="2hWn4IdWKLy" role="3cqZAp">
                     <node concept="2YIFZM" id="2hWn4IdWKUi" role="3clFbG">
-                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                      <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                       <ref role="37wK5l" to="de0p:2hWn4IdWFAH" resolve="uninstall" />
                       <node concept="1KvdUw" id="2hWn4IdWKUj" role="37wK5m" />
                     </node>
@@ -524,7 +524,7 @@
             <node concept="liA8E" id="7Y8B9wpftT4" role="2OqNvi">
               <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Class)" resolve="unregisterExtension" />
               <node concept="3VsKOn" id="7Y8B9wpfuUQ" role="37wK5m">
-                <ref role="3VsUkX" to="de0p:7Y8B9wpdlUb" resolve="HeaderedEditorFactory" />
+                <ref role="3VsUkX" to="de0p:7Y8B9wpdlUb" resolve="PlatformEditorFactory" />
               </node>
             </node>
           </node>
