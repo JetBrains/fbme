@@ -10,9 +10,6 @@ theme:
     github: 'JetBrains/fbme'
   primaryColor: '#00bfff'
   menu:
-    - type: 'page'
-      title: 'Home'
-      itemId: 'Home'
     - type: 'separator'
       title: 'User Manuals'
     - type: 'wiki'
@@ -26,6 +23,8 @@ theme:
       node: 'packages'
       asSubmenu: true
       submenuTitle: 'API Documentation'
+  extraCss:
+    - 'assets/css/custom.scss'
 
 wiki:
   sections:
@@ -33,16 +32,10 @@ wiki:
     - 'devGuides'
 
 javadoc:
-  sourcePages:
-    menu:
-      - type: 'sourcedocPageLinks'
-        includeItems: true
+  homePagePermalink:   'docs'
+  sourcePagePermalink: 'docs/:sourceDocPath'
   sourceDirs:
     - '../../../../library/src/main/java'
-  pages:
-    menu:
-      - type: 'javadocPackages'
-      - type: 'javadocClasses'
 
 services:
   publications:
