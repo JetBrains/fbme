@@ -7,7 +7,7 @@ During the tutorial, we will build a small application and deploy it on a local 
 To start the tutorial, open the FBME platform. 
 The figure below shows the view of the platform on the first start. 
 
-![](../../assets/media/launch.png)
+![](../../../assets/media/launch.png)
 
 Let's press `Create New Project`. 
 You will be prompted to enter the project name. 
@@ -33,7 +33,7 @@ Let's right-click on `E_CYCLE.DT` and choose `Add Constant` action and then spec
 
 We should have achieved the following network. 
 
-![](../../assets/media/blinking-app.png)
+![](../../../assets/media/blinking-app.png)
 
 ### Running the application
 
@@ -56,13 +56,13 @@ It opens a run configuration window for our device.
 Let's specify the path to the 4diac FORTE runtime executable and click `Run` button.
 FBME will run 4diac FORTE and open its console in the dedicated tool window.
 
-![](../../assets/media/blinking-device.png)
+![](../../../assets/media/blinking-device.png)
 
 We also have to specify the device's resource on which our application will be deployed. 
 Let's add a new resource by hitting _Enter_ on the `Testee` 's resource list, name it `BlinkyRES` and select its type as `EMB_RES`. 
 Now we have to map our application on the resource, let's right-click on the application and invoke `Map to... -> Testee.BlinkyRES`.
 
-![](../../assets/media/blinking-system.png)
+![](../../../assets/media/blinking-system.png)
 
 We have to configure the created resource before deployment. 
 Let's open the resource's network (using _Cntrl+B_ on the resource's selected name) and connect `START.COLD` and `START.WARM` events to `E_CYCLE.START`.
@@ -79,7 +79,7 @@ Let's ask FBME to reveal the state of our application's function blocks.
 Firstly, we have to invoke action `Enable Watching for Resource` from the context menu.
 To expose the state of interested function blocks, we can select then and run action `Watch for Selected Function Blocks` from the context menu.
 
-![](../../assets/media/blinking-monitor.png)
+![](../../../assets/media/blinking-monitor.png)
 
 ### Exporting the system
 
@@ -87,4 +87,4 @@ FBME automatically exports edited systems and libraries into the standard XML-fo
 The designed system should be located at _\<project_path\>/BlinkingSample/models/BlinkingSample.sys_ file path. 
 We can also observe the exported system using `File System` project view.
 
-![](../../assets/media/blinking-text.png)
+![](../../../assets/media/blinking-text.png)
