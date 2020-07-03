@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    val orchid_version = "0.21.0"
+    val orchid_version = "0.21.1"
     orchidRuntimeOnly("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidRuntimeOnly("io.github.javaeden.orchid:OrchidPosts:$orchid_version")
     orchidRuntimeOnly("io.github.javaeden.orchid:OrchidPages:$orchid_version")
