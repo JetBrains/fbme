@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<System Comment="" Name="sample">
-  <VersionInfo Author="Author" Organization="Eclipse 4diac" Version="1.0"/>
-  <Application Comment="" Name="sampleApp">
-    <SubAppNetwork/>
-  </Application>
-</System>

@@ -38,6 +38,31 @@ dependencies {
     ant_lib "org.apache.ant:ant-junit:1.10.1"
 }
 
+subprojects {
+    if (path.contains(':code:')) {
+        plugins.withType(JavaPlugin) {
+            sourceSets {
+                mps {
+                    java {
+                        file("${projectDir}/languages").listFiles().each { moduleDir ->
+                            srcDir "${moduleDir}/source_gen"
+                        }
+                        file("${projectDir}/solutions").listFiles().each { moduleDir ->
+                            srcDir "${moduleDir}/source_gen"
+                        }
+                    }
+                }
+            }
+            dependencies {
+                mpsCompile fileTree('../../lib/MPS 2019.3/') {
+                    include '**/*.jar'
+                    exclude '**/*-src.jar'
+                }
+            }
+        }
+    }
+}
+
 task downloadJBRZip(type: Download) {
     src "https://jetbrains.bintray.com/intellij-jbr/jbrsdk-11_0_6-osx-x64-b520.43.tar.gz"
     dest file('lib/jbr.tar.gz')
@@ -63,7 +88,7 @@ import de.itemis.mps.gradle.*
 ext["itemis.mps.gradle.ant.defaultScriptClasspath"] = configurations.ant_lib.fileCollection { true }
 ext["itemis.mps.gradle.ant.defaultScriptArgs"] = ["-Dbasedir=."]
 
-task prepare(dependsOn: [downloadDependencies, ':library:prepare'])
+task prepare(dependsOn: [downloadDependencies, ':code:library:prepare'])
 
 task buildBootstrap(type: BuildLanguages, dependsOn: prepare) {
     script 'build-bootstrap.xml'
@@ -83,7 +108,7 @@ task $buildRcp(type: BuildLanguages, dependsOn: buildPlugin) {
 }
 
 task copyStartupScripts(type: Copy, dependsOn: buildBootstrap) {
-    from 'solutions/org.fbme.ide.build/source_gen/org/fbme/ide/build'
+    from 'code/buildscripts/solutions/org.fbme.ide.build/source_gen/org/fbme/ide/build'
 
     include '*.bat'
     include '*.sh'
@@ -103,7 +128,7 @@ task buildRcpWithJBR(type: RunAntScript, dependsOn: [$buildRcp, copyStartupScrip
     targets 'clean', 'build'
 }
 
-task clean(type: Delete, dependsOn: ':library:clean') {
+task clean(type: Delete, dependsOn: ':code:library:clean') {
     delete 'build'
     delete 'lib'
     delete fileTree('.').matching {
