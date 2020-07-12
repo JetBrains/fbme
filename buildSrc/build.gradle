@@ -1,0 +1,14 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+}
+
+gradlePlugin {
+    plugins {
+        myPlugins {
+            id = 'mps'
+            implementationClass = 'MpsPlugin'
+        }
+    }
+}
+

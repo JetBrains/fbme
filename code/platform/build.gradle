@@ -1,4 +1,8 @@
 
 plugins {
-    id 'java'
+    id 'mps'
+}
+
+dependencies {
+    implementation project(':code:library')
 }

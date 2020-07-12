@@ -1,3 +1,6 @@
+import de.itemis.mps.gradle.BuildLanguages
+import de.itemis.mps.gradle.RunAntScript
+
 ext.mpsMajor = "2019.3"
 ext.mpsMinor = "4"
 
@@ -16,7 +19,6 @@ apply plugin: 'de.undercouch.download'
 
 repositories {
     maven { url 'https://projects.itemis.de/nexus/content/repositories/mbeddr' }
-    mavenCentral()
     ivy {
         url "https://download.jetbrains.com/mps/$mpsMajor/"
         layout 'pattern', {
@@ -28,6 +30,12 @@ repositories {
     }
 }
 
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
 configurations {
     mps
     ant_lib
@@ -36,31 +44,6 @@ configurations {
 dependencies {
     mps "com.jetbrains:MPS:$mpsMajor.$mpsMinor@zip"
     ant_lib "org.apache.ant:ant-junit:1.10.1"
-}
-
-subprojects {
-    if (path.contains(':code:')) {
-        plugins.withType(JavaPlugin) {
-            sourceSets {
-                mps {
-                    java {
-                        file("${projectDir}/languages").listFiles().each { moduleDir ->
-                            srcDir "${moduleDir}/source_gen"
-                        }
-                        file("${projectDir}/solutions").listFiles().each { moduleDir ->
-                            srcDir "${moduleDir}/source_gen"
-                        }
-                    }
-                }
-            }
-            dependencies {
-                mpsCompile fileTree('../../lib/MPS 2019.3/') {
-                    include '**/*.jar'
-                    exclude '**/*-src.jar'
-                }
-            }
-        }
-    }
 }
 
 task downloadJBRZip(type: Download) {
@@ -83,7 +66,6 @@ task downloadDependencies(type: Copy) {
     into 'lib'
 }
 
-import de.itemis.mps.gradle.*
 
 ext["itemis.mps.gradle.ant.defaultScriptClasspath"] = configurations.ant_lib.fileCollection { true }
 ext["itemis.mps.gradle.ant.defaultScriptArgs"] = ["-Dbasedir=."]
