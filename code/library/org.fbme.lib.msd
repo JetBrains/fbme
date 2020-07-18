@@ -2,7 +2,8 @@
 <solution name="org.fbme.lib" uuid="1db6de07-b355-4c0f-9979-75b4ac1e8215" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="java_classes">
-      <sourceRoot location="out" />
+      <sourceRoot location="out/antlr4-runtime-4.5.jar" />
+      <sourceRoot location="out/library.jar" />
     </modelRoot>
   </models>
   <facets>

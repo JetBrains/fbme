@@ -68,22 +68,67 @@ task downloadDependencies(type: Copy) {
 
 
 ext["itemis.mps.gradle.ant.defaultScriptClasspath"] = configurations.ant_lib.fileCollection { true }
-ext["itemis.mps.gradle.ant.defaultScriptArgs"] = ["-Dbasedir=."]
 
 task prepare(dependsOn: [downloadDependencies, ':code:library:prepare'])
 
 task buildBootstrap(type: BuildLanguages, dependsOn: prepare) {
     script 'build-bootstrap.xml'
+    scriptArgs = ["-Dbasedir=${file('.')}"]
 }
 
-task generate(type: RunAntScript, dependsOn: buildBootstrap) {
-    script 'build/build-plugin.xml'
+task generate_platform(type: RunAntScript, dependsOn: [buildBootstrap]) {
+    script 'code/platform/build.xml'
     targets 'generate'
+    scriptArgs = ["-Dbasedir=${file('code/platform')}"]
 }
 
-task buildPlugin(type: BuildLanguages, dependsOn: buildBootstrap) {
-    script 'build/build-plugin.xml'
+task generate_scenes(type: RunAntScript, dependsOn: buildBootstrap) {
+    script 'code/scenes/build.xml'
+    targets 'generate'
+    scriptArgs = ["-Dbasedir=${file('code/scenes')}"]
 }
+
+task generate_richediting(type: RunAntScript, dependsOn: [buildBootstrap, generate_scenes]) {
+    script 'code/richediting/build.xml'
+    targets 'generate'
+    scriptArgs = ["-Dbasedir=${file('code/richediting')}"]
+}
+
+task generate_fordiac(type: RunAntScript, dependsOn: [buildBootstrap, generate_platform]) {
+    script 'code/4diac-integration/build.xml'
+    targets 'generate'
+    scriptArgs = ["-Dbasedir=${file('code/4diac-integration')}"]
+}
+
+task generate(dependsOn: [generate_platform, generate_scenes, generate_richediting, generate_fordiac])
+
+task build_library(type: RunAntScript, dependsOn: buildBootstrap) {
+    script 'code/library/build.xml'
+    scriptArgs = ["-Dbasedir=${file('code/library')}"]
+    targets 'clean', 'assemble'
+}
+
+task build_platform(type: BuildLanguages, dependsOn: [buildBootstrap, build_library]) {
+    script 'code/platform/build.xml'
+    scriptArgs = ["-Dbasedir=${file('code/platform')}"]
+}
+
+task build_scenes(type: BuildLanguages, dependsOn: buildBootstrap) {
+    script 'code/scenes/build.xml'
+    scriptArgs = ["-Dbasedir=${file('code/scenes')}"]
+}
+
+task build_richediting(type: BuildLanguages, dependsOn: [buildBootstrap, build_platform, build_scenes]) {
+    script 'code/richediting/build.xml'
+    scriptArgs = ["-Dbasedir=${file('code/richediting')}"]
+}
+
+task build_fordiac(type: BuildLanguages, dependsOn: [buildBootstrap, build_platform]) {
+    script 'code/4diac-integration/build.xml'
+    scriptArgs = ["-Dbasedir=${file('code/4diac-integration')}"]
+}
+
+task buildPlugin(dependsOn: [build_library, build_platform, build_scenes, build_richediting, build_fordiac])
 
 task $buildRcp(type: BuildLanguages, dependsOn: buildPlugin) {
     script 'build/build-rcp.xml'
