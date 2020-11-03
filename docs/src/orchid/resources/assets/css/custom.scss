@@ -1,0 +1,7 @@
+
+// disable uppercase for package names in docs menu
+.menu {
+    li > ul {
+        text-transform: none;
+    }
+}

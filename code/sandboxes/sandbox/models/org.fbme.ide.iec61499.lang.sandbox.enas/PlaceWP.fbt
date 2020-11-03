@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="PlaceWP">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TRIGGER"></Event>
+      <Event Name="TOP"></Event>
+      <Event Name="BOTTOM"></Event>
+      <Event Name="EXTENDED"></Event>
+      <Event Name="RETRACTED"></Event>
+      <Event Name="RESET"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="DONE"></Event>
+      <Event Name="DOWN"></Event>
+      <Event Name="UP"></Event>
+      <Event Name="EXTEND"></Event>
+      <Event Name="RETRACT"></Event>
+      <Event Name="VAC_ON"></Event>
+      <Event Name="VAC_OFF"></Event>
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="760.0" y="445.0"></ECState>
+      <ECState Name="GO_DOWN" x="1904.0" y="500.0">
+        <ECAction Output="DOWN" />
+      </ECState>
+      <ECState Name="GRAB" x="2356.0" y="1028.0">
+        <ECAction Output="VAC_ON" />
+        <ECAction Output="UP" />
+      </ECState>
+      <ECState Name="EXTEND" x="2323.0" y="1500.0">
+        <ECAction Output="EXTEND" />
+      </ECState>
+      <ECState Name="GO_DOWN2" x="1560.0" y="1952.0">
+        <ECAction Output="DOWN" />
+      </ECState>
+      <ECState Name="RELEASE" x="828.0" y="1688.0">
+        <ECAction Output="VAC_OFF" />
+        <ECAction Output="UP" />
+      </ECState>
+      <ECState Name="RETRACT" x="408.0" y="1296.0">
+        <ECAction Output="RETRACT" />
+        <ECAction Output="DONE" />
+      </ECState>
+      <ECState Name="RESET" x="1316.0" y="840.0">
+        <ECAction Output="VAC_OFF" />
+        <ECAction Output="UP" />
+        <ECAction Output="RETRACT" />
+      </ECState>
+      <ECTransition Source="START" Destination="GO_DOWN" Condition="TRIGGER" x="1269.0" y="389.0" />
+      <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="BOTTOM" x="2204.0" y="723.0" />
+      <ECTransition Source="GRAB" Destination="EXTEND" Condition="TOP" x="2430.0" y="1269.0" />
+      <ECTransition Source="EXTEND" Destination="GO_DOWN2" Condition="EXTENDED" x="2123.0" y="1761.0" />
+      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1138.0" y="1881.0" />
+      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="586.0" y="1550.0" />
+      <ECTransition Source="RETRACT" Destination="START" Condition="1" x="470.0" y="779.0" />
+      <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="1658.0" y="738.0" />
+      <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="1841.0" y="1017.0" />
+      <ECTransition Source="EXTEND" Destination="RESET" Condition="RESET" x="1815.0" y="1238.0" />
+      <ECTransition Source="GO_DOWN2" Destination="RESET" Condition="RESET" x="1437.0" y="1471.0" />
+      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1069.0" y="1189.0" />
+      <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="853.0" y="989.0" />
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="1027.0" y="720.0" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="" />
+    </Algorithm>
+    <Algorithm Name="REQ">
+      <ST Text="" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

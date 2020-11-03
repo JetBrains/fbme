@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ConfirmationButton">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT"></Event>
+      <Event Name="REQ">
+        <With Var="message" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO"></Event>
+      <Event Name="CNF"></Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="message" Type="STRING" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="IThis1" Type="ConfirmationButton_HMI" x="1340.0" y="320.0" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis1.INIT" dx1="249.0" />
+      <Connection Source="REQ" Destination="IThis1.REQ" dx1="237.0" />
+      <Connection Source="IThis1.INITO" Destination="INITO" dx1="42.0" />
+      <Connection Source="IThis1.CNF" Destination="CNF" dx1="70.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="message" Destination="IThis1.message" dx1="40.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

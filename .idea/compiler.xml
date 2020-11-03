@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="11">
+      <module name="FBME.code.main" target="11" />
+      <module name="FBME.code.test" target="11" />
+      <module name="FBME.library" target="1.8" />
+      <module name="FBME.library.main" target="1.8" />
+      <module name="FBME.library.test" target="1.8" />
+      <module name="FBME.library_st-parser" target="1.8" />
+      <module name="FBME.library_st-parser.main" target="1.8" />
+      <module name="FBME.library_st-parser.test" target="1.8" />
+      <module name="iec61499.library_st-parser" target="1.8" />
+      <module name="iec61499.library_st-parser.main" target="1.8" />
+      <module name="iec61499.library_st-parser.test" target="1.8" />
+      <module name="iec61499.st-parser" target="1.8" />
+      <module name="iec61499.st-parser.main" target="1.8" />
+      <module name="iec61499.st-parser.test" target="1.8" />
+      <module name="st-parser_main" target="1.8" />
+      <module name="st-parser_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

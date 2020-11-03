@@ -12,6 +12,7 @@
 .idea/**/gradle.xml
 
 classes_gen
+source_gen
 source_gen.caches
 
 **/startup.properties
@@ -19,7 +20,6 @@ source_gen.caches
 build
 out
 
-lib
+/lib
 
-.idea
-*.iml
+build.xml

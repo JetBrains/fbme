@@ -1,8 +1,19 @@
-# SMV Debugger
+# FBME 
 
-[Исходный код](https://github.com/mtereshchuk/smv-debugger/tree/master/nodes/smvDebugger) для проверки комиссией
+**FBME** (Function Blocks Modelling Environment) is an IDE for IEC 61499 standard built on top of 
+[JetBrains MPS](https://www.jetbrains.com/mps) language workbench.
 
-Requires for work:
-- [FBME](https://github.com/JetBrains/fbme) — IDE for IEC61499
-- [FB2SMV](https://github.com/mtereshchuk/fb2smv) — Converter of function blocks to SMV model 
-- [NuSMV](https://nusmv.fbk.eu) — SMV Verifier
+### Opening MPS project first time
+
+- Pre-installed JRE 11 is required
+- Install [JetBrains MPS 2019.3.*](https://www.jetbrains.com/mps/download)
+- Run `./gradlew generate`
+- Open project with MPS
+
+### Building the plugins
+
+- Run `./gradlew buildPlugin`
+
+### Building the standalone IDE
+
+- Run `./gradlew buildRcp`

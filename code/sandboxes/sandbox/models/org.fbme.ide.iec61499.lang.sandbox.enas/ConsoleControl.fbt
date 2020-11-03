@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ConsoleControl">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT"></Event>
+      <Event Name="RESET"></Event>
+      <Event Name="START"></Event>
+      <Event Name="PAUSE"></Event>
+      <Event Name="RESET_DONE"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO"></Event>
+      <Event Name="CNF">
+        <With Var="resetLED" />
+        <With Var="startLED" />
+        <With Var="pauseLED" />
+      </Event>
+      <Event Name="E_START"></Event>
+      <Event Name="E_PAUSE"></Event>
+      <Event Name="E_RESET"></Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="resetLED" Type="BOOL" />
+      <VarDeclaration Name="startLED" Type="BOOL" />
+      <VarDeclaration Name="pauseLED" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="INIT" x="923.0" y="141.0">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="RESET" x="1380.0" y="660.0">
+        <ECAction Algorithm="RESET" Output="CNF" />
+        <ECAction Output="E_RESET" />
+      </ECState>
+      <ECState Name="PAUSED" x="1400.0" y="1256.0">
+        <ECAction Algorithm="PAUSED" Output="CNF" />
+        <ECAction Output="E_PAUSE" />
+      </ECState>
+      <ECState Name="RUN" x="1516.0" y="1868.0">
+        <ECAction Algorithm="RUN" Output="CNF" />
+        <ECAction Output="E_START" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.0" y="204.0" />
+      <ECTransition Source="INIT" Destination="RESET" Condition="1" x="1217.0" y="350.0" />
+      <ECTransition Source="RESET" Destination="PAUSED" Condition="RESET_DONE" x="1895.0" y="959.0" />
+      <ECTransition Source="PAUSED" Destination="RUN" Condition="START" x="1822.0" y="1568.0" />
+      <ECTransition Source="RUN" Destination="PAUSED" Condition="PAUSE" x="977.0" y="1606.0" />
+      <ECTransition Source="PAUSED" Destination="RESET" Condition="RESET" x="920.0" y="966.0" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="startLED := FALSE;&#38;#10;pauseLED := FALSE;&#38;#10;resetLED := TRUE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="PAUSED">
+      <ST Text="startLED := FALSE;&#38;#10;pauseLED := TRUE;&#38;#10;resetLED := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="RUN">
+      <ST Text="startLED := TRUE;&#38;#10;pauseLED := FALSE;&#38;#10;resetLED := FALSE;&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text="startLED := FALSE;&#38;#10;pauseLED := FALSE;&#38;#10;resetLED := TRUE;&#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
