@@ -1,7 +1,0 @@
-
-public class ConditionParseException extends RuntimeException {
-
-  public ConditionParseException(final string message) {
-    super(message);
-  }
-}

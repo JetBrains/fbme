@@ -1,7 +1,0 @@
-public enum SystemItemType {
-  EVENT_PORT()
-  DATA_PORT()
-  ECC()
-
-
-}

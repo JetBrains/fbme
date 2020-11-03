@@ -1,3 +1,0 @@
-public interface Expression {
-  boolean evaluate(Map<string, string> itemSimpleNameToValueMap);
-}

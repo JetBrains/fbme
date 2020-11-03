@@ -1,3 +1,0 @@
-standalone descriptor
-   Generate initializer config false
-      When true, generates a configuration file to get application and project components started from modules with MPS-controlled class loaders (generally, compileInMPS==true)

@@ -1,8 +1,0 @@
-group SmvDebuggerGroup
-is popup: false
-
-contents
-   Debug SMV
-
-modifications
-   add to IEC61499Actions at position <default>

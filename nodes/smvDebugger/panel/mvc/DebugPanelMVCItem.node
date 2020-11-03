@@ -1,7 +1,0 @@
-public interface DebugPanelMVCItem {
-  void setPanelModel(DebugPanelModel model);
-
-  void initView();
-
-  void initController();
-}
