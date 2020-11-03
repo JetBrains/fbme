@@ -23,6 +23,8 @@
       <modulePath path="$PROJECT_DIR$/code/sandboxes/sandbox/org.fbme.ide.sandbox.msd" folder="sandboxes" />
       <modulePath path="$PROJECT_DIR$/code/scenes/buildsolution/org.fbme.scenes.build.msd" folder="scenes" />
       <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="scenes" />
+      <modulePath path="$PROJECT_DIR$/samples/statistics/buildsolution/org.fbme.samples.statistics.build.msd" folder="samples.statistics" />
+      <modulePath path="$PROJECT_DIR$/samples/statistics/solutions/org.fbme.samples.statistics/org.fbme.samples.statistics.msd" folder="samples.statistics" />
     </projectModules>
   </component>
 </project>

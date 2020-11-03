@@ -1,14 +1,18 @@
+package org.fbme.gradle
+
 import org.gradle.api.*
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.plugins.*
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
+import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
 
 class MpsPlugin : Plugin<Project> {
 
     override fun apply(project: Project): Unit = with(project) {
         pluginManager.apply(JavaPlugin::class.java)
+        pluginManager.apply(JavaLibraryPlugin::class.java)
 
         val sourceSets = the<SourceSetContainer>()
 
@@ -22,7 +26,6 @@ class MpsPlugin : Plugin<Project> {
                         srcDir("${moduleDir}/source_gen")
                     }
                 }
-                compiledBy("mpsAssemble")
             }
         }
 
@@ -38,6 +41,11 @@ class MpsPlugin : Plugin<Project> {
         val mpsExtension = extensions.create<MpsExtension>("mps", hasBuildSolution)
 
         val mps by configurations.registering {
+            isCanBeConsumed = true
+            isCanBeResolved = false
+        }
+
+        val mpsClasses by configurations.registering {
             isCanBeConsumed = true
             isCanBeResolved = false
         }
@@ -71,6 +79,7 @@ class MpsPlugin : Plugin<Project> {
                 dependsOn("mpsGenerate")
                 doLast {
                     executeMpsBuild(antBinaries, "assemble")
+                    mpsExtension.artifactName ?: error("No artifact name provided for mps buildscript")
                 }
             }
             tasks.named("assemble") {
@@ -84,10 +93,16 @@ class MpsPlugin : Plugin<Project> {
             tasks.named("clean") {
                 dependsOn("mpsClean")
             }
+            tasks.register<Jar>("mpsJar") {
+                archiveBaseName.set("${mpsExtension.artifactName}-classes")
+                from(project.the<SourceSetContainer>()["mps"].output)
+            }
             artifacts {
-                add(mps.name, provider { file("$buildDir/artifacts/${mpsExtension.artifactName!!}/") }) {
+                add(mps.name, provider { file("$buildDir/artifacts/${mpsExtension.artifactName}/") }) {
                     builtBy(tasks.named("mpsAssemble"))
                 }
+                add(mps.name, tasks["jar"])
+                add(mpsClasses.name, tasks["mpsJar"])
             }
         }
     }
@@ -103,9 +118,4 @@ class MpsPlugin : Plugin<Project> {
             )
         }
     }
-}
-
-open class MpsExtension(val hasBuildSolution: Boolean) {
-    var artifactName: String? = null
-    var skipGeneration = false
 }

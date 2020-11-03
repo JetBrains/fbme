@@ -2,7 +2,7 @@
 plugins {
     java
     antlr
-    id("mps")
+    mps
 }
 
 dependencies {
@@ -11,7 +11,7 @@ dependencies {
     implementation("org.jdom:jdom:1.1.3")
 }
 
-configure<MpsExtension> {
+mps {
     artifactName = "library"
     skipGeneration = true
 }

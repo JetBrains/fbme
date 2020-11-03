@@ -10,8 +10,8 @@ repositories {
 gradlePlugin {
     plugins {
         create("mpsPlugin") {
-            id = "mps"
-            implementationClass = "MpsPlugin"
+            id = "org.fbme.gradle.mps"
+            implementationClass = "org.fbme.gradle.MpsPlugin"
         }
     }
 }

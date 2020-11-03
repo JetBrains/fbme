@@ -1,8 +1,8 @@
 
 plugins {
-    id("mps")
+    mps
 }
 
-configure<MpsExtension> {
+mps {
     artifactName = "scenes"
 }

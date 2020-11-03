@@ -10,5 +10,7 @@ include(
         "code:sandboxes",
         "code:scenes",
 
-        "docs"
+        "docs",
+
+        "samples:statistics"
 )

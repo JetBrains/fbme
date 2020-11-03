@@ -1,12 +1,12 @@
 
 plugins {
-    id("mps")
+    mps
 }
 
 dependencies {
-    "mpsImplementation"(project(":code:library", "mps"))
+    mpsImplementation(project(":code:library", "mps"))
 }
 
-configure<MpsExtension> {
+mps {
     artifactName = "platform"
 }

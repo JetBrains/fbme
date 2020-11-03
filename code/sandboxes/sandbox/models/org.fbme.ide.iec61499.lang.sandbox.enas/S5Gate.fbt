@@ -14,10 +14,7 @@
   </InterfaceList>
   <FBNetwork>
     <FB Name="SR" Type="E_SR" x="1360.0" y="380.0" />
-    <FB Name="GATE" Type="PUBLISH_1" x="3269.0" y="184.0">
-      <Parameter Name="ID" Value="&#39;239.0.0.1:61000&#39;" />
-      <Parameter Name="QI" Value="1" />
-    </FB>
+    <FB Name="GATE" Type="PUBLISH_1" x="3269.0" y="184.0" />
     <EventConnections>
       <Connection Source="OPEN" Destination="SR.S" dx1="234.0" />
       <Connection Source="CLOSE" Destination="SR.R" dx1="45.0" />

@@ -1,12 +1,13 @@
+
 plugins {
-    id("mps")
+    mps
 }
 
 dependencies {
-    "mpsImplementation"(project(":code:library", configuration = "mps"))
-    "mpsImplementation"(project(":code:platform", configuration = "mps"))
+    mpsImplementation(project(":code:library", "mps"))
+    mpsImplementation(project(":code:platform", "mps"))
 }
 
-configure<MpsExtension> {
+mps {
     artifactName = "4diac-integration"
 }

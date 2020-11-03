@@ -1,14 +1,14 @@
 
 plugins {
-    id("mps")
+    mps
 }
 
 dependencies {
-    "mpsImplementation"(project(":code:scenes", "mps"))
-    "mpsImplementation"(project(":code:library", "mps"))
-    "mpsImplementation"(project(":code:platform", "mps"))
+    mpsImplementation(project(":code:scenes", "mps"))
+    mpsImplementation(project(":code:library", "mps"))
+    mpsImplementation(project(":code:platform", "mps"))
 }
 
-configure<MpsExtension> {
+mps {
     artifactName = "richediting"
 }

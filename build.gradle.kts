@@ -1,4 +1,5 @@
 import de.undercouch.gradle.tasks.download.Download
+import org.fbme.gradle.*
 
 val mpsMajor = "2019.3"
 val mpsMinor = "4"
@@ -35,7 +36,7 @@ dependencies {
 }
 
 subprojects {
-    pluginManager.withPlugin("mps") {
+    pluginManager.withPlugin("org.fbme.gradle.mps") {
         if (the<MpsExtension>().hasBuildSolution) {
             dependencies {
                 "mpsBinaries"("com.jetbrains:MPS:$mpsMajor.$mpsMinor@zip")
