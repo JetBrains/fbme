@@ -9,6 +9,7 @@ include(
         "code:richediting",
         "code:sandboxes",
         "code:scenes",
+        "code:smv-debugger",
 
         "docs",
 

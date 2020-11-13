@@ -14,6 +14,7 @@
     <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
     <import index="bco3" ref="r:4904ab70-42df-49dd-8218-a04fff347a01(org.fbme.richediting.build)" />
     <import index="vjdp" ref="r:1663fe77-f495-4cde-b50b-d3576358c123(org.fbme.samples.statistics.build)" />
+    <import index="1b2w" ref="r:fec8a7bb-501c-442b-98be-18567111039e(org.fbme.smvDebugger.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -404,6 +405,9 @@
     <node concept="2sgV4H" id="2ww0H4BPlHs" role="1l3spa">
       <ref role="1l3spb" to="vjdp:68dTcycFmrj" resolve="fbme_statistics" />
     </node>
+    <node concept="2sgV4H" id="3xMXS68nMr" role="1l3spa">
+      <ref role="1l3spb" to="1b2w:68dTcycFmrj" resolve="fbme_smvdebugger" />
+    </node>
     <node concept="2sgV4H" id="1mPaNys5H5J" role="1l3spa">
       <ref role="1l3spb" to="ffeo:1diLdO26mQ6" resolve="mpsStandalone" />
       <node concept="398BVA" id="1mPaNys5H5K" role="2JcizS">
@@ -609,7 +613,10 @@
           <ref role="3_I8Xa" to="bco3:42vv4xsJM_o" resolve="fbme.richediting" />
         </node>
         <node concept="3_I8Xc" id="42vv4xsJOpm" role="39821P">
-          <ref role="3_I8Xa" to="4hy5:42vv4xsJMBz" resolve="fbme.integration.4diac" />
+          <ref role="3_I8Xa" to="4hy5:6YXqqolsxwi" resolve="fbme.integration.4diac" />
+        </node>
+        <node concept="3_I8Xc" id="3xMXS68nKP" role="39821P">
+          <ref role="3_I8Xa" to="1b2w:42vv4xsJM_o" resolve="fbme.smvdebugger" />
         </node>
         <node concept="28u9K_" id="2ww0H4BPlEp" role="39821P">
           <property role="28hIV_" value="sample plugins" />
@@ -1420,6 +1427,11 @@
           <ref role="3bR37D" node="2ww0H4BOL8J" resolve="org.fbme.samples.statistics.build" />
         </node>
       </node>
+      <node concept="1SiIV0" id="7nNI4eNtlbQ" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtlbR" role="1SiIV1">
+          <ref role="3bR37D" node="7nNI4eNtl5i" resolve="org.fbme.smvDebugger.build" />
+        </node>
+      </node>
     </node>
     <node concept="1E1JtA" id="Ej4tEpnfCr" role="3989C9">
       <property role="BnDLt" value="true" />
@@ -1691,6 +1703,74 @@
         </node>
       </node>
     </node>
+    <node concept="1E1JtA" id="7nNI4eNtl5i" role="3989C9">
+      <property role="BnDLt" value="true" />
+      <property role="TrG5h" value="org.fbme.smvDebugger.build" />
+      <property role="3LESm3" value="73b76635-8a63-49a1-ae16-da85b8524b49" />
+      <node concept="55IIr" id="7nNI4eNtl5k" role="3LF7KH">
+        <node concept="2Ry0Ak" id="7nNI4eNtl7C" role="iGT6I">
+          <property role="2Ry0Am" value="code" />
+          <node concept="2Ry0Ak" id="7nNI4eNtl7H" role="2Ry0An">
+            <property role="2Ry0Am" value="smv-debugger" />
+            <node concept="2Ry0Ak" id="7nNI4eNtl7M" role="2Ry0An">
+              <property role="2Ry0Am" value="buildsolution" />
+              <node concept="2Ry0Ak" id="7nNI4eNtl7R" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.smvDebugger.build.msd" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7nNI4eNtl8t" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtl8u" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDM" resolve="org.fbme.richediting.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7nNI4eNtl8v" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtl8w" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfCS" resolve="org.fbme.platform.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7nNI4eNtl8x" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtl8y" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfCr" resolve="org.fbme.library.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7nNI4eNtl8z" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtl8$" role="1SiIV1">
+          <ref role="3bR37D" to="ffeo:78GwwOvB3tw" resolve="jetbrains.mps.ide.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7nNI4eNtl8_" role="3bR37C">
+        <node concept="3bR9La" id="7nNI4eNtl8A" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDl" resolve="org.fbme.scenes.build" />
+        </node>
+      </node>
+      <node concept="1BupzO" id="7nNI4eNtl8G" role="3bR31x">
+        <property role="3ZfqAx" value="models" />
+        <property role="1Hdu6h" value="true" />
+        <property role="1HemKv" value="true" />
+        <node concept="3LXTmp" id="7nNI4eNtl8H" role="1HemKq">
+          <node concept="55IIr" id="7nNI4eNtl8B" role="3LXTmr">
+            <node concept="2Ry0Ak" id="7nNI4eNtl8C" role="iGT6I">
+              <property role="2Ry0Am" value="code" />
+              <node concept="2Ry0Ak" id="7nNI4eNtl8D" role="2Ry0An">
+                <property role="2Ry0Am" value="smv-debugger" />
+                <node concept="2Ry0Ak" id="7nNI4eNtl8E" role="2Ry0An">
+                  <property role="2Ry0Am" value="buildsolution" />
+                  <node concept="2Ry0Ak" id="7nNI4eNtl8F" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3qWCbU" id="7nNI4eNtl8I" role="3LXTna">
+            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="1E1JtA" id="2ww0H4BOL8J" role="3989C9">
       <property role="BnDLt" value="true" />
       <property role="TrG5h" value="org.fbme.samples.statistics.build" />
@@ -1785,6 +1865,9 @@
     </node>
     <node concept="2sgV4H" id="Ej4tEpnfEX" role="1l3spa">
       <ref role="1l3spb" to="4hy5:68dTcycFmrj" resolve="fbme_fordiac" />
+    </node>
+    <node concept="2sgV4H" id="7nNI4eNtl2i" role="1l3spa">
+      <ref role="1l3spb" to="1b2w:68dTcycFmrj" resolve="fbme_smvdebugger" />
     </node>
     <node concept="1l3spV" id="6kvdbYtXYcm" role="1l3spN" />
     <node concept="3b7kt6" id="6kvdbYtXYcn" role="10PD9s" />
@@ -2035,10 +2118,32 @@
                   <property role="3MwjfP" value="jbr" />
                 </node>
               </node>
-              <node concept="yKbIv" id="6kcQr5wweyt" role="39821P">
-                <node concept="2HvfSZ" id="6kcQr5wwLhH" role="39821P">
-                  <node concept="398BVA" id="6kcQr5wwLjt" role="2HvfZ0">
+              <node concept="28u9K_" id="3sQO0wewX5W" role="39821P">
+                <property role="28hIV_" value="Executable files" />
+              </node>
+              <node concept="yKbIv" id="3sQO0wewX5X" role="39821P">
+                <property role="yKbIr" value="755" />
+                <node concept="2HvfSZ" id="3sQO0wewX5Y" role="39821P">
+                  <node concept="3LWZYq" id="3sQO0wewX5Z" role="2HvfZ1">
+                    <property role="3LWZYl" value="**/*.dylib" />
+                  </node>
+                  <node concept="398BVA" id="3sQO0wewX61" role="2HvfZ0">
                     <ref role="398BVh" node="6GNoG1I1K9N" resolve="jbr_home" />
+                    <node concept="2Ry0Ak" id="3sQO0wewX62" role="iGT6I" />
+                  </node>
+                </node>
+              </node>
+              <node concept="28u9K_" id="3sQO0wewX6c" role="39821P">
+                <property role="28hIV_" value="Required libraries" />
+              </node>
+              <node concept="yKbIv" id="3sQO0wewX6d" role="39821P">
+                <node concept="2HvfSZ" id="3sQO0wewX6e" role="39821P">
+                  <node concept="3LWZYx" id="3sQO0wewX6f" role="2HvfZ1">
+                    <property role="3LWZYw" value="**/*.dylib" />
+                  </node>
+                  <node concept="398BVA" id="3sQO0wewX6g" role="2HvfZ0">
+                    <ref role="398BVh" node="6GNoG1I1K9N" resolve="jbr_home" />
+                    <node concept="2Ry0Ak" id="3sQO0wewX6h" role="iGT6I" />
                   </node>
                 </node>
               </node>

@@ -19,6 +19,7 @@
     <dependency reexport="false">6f3e1591-96a9-409d-b092-cee9cf71c197(org.fbme.scenes.build)</dependency>
     <dependency reexport="false">c44ff7f6-aa34-4dc2-a9b3-93cc101df3d4(org.fbme.richediting.build)</dependency>
     <dependency reexport="false">1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statistics.build)</dependency>
+    <dependency reexport="false">73b76635-8a63-49a1-ae16-da85b8524b49(org.fbme.smvDebugger.build)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:798100da-4f0a-421a-b991-71f8c50ce5d2:jetbrains.mps.build" version="0" />
