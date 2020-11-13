@@ -182,56 +182,56 @@
       </node>
     </node>
     <node concept="1l3spV" id="68dTcycFms2" role="1l3spN">
-      <node concept="m$_wl" id="42vv4xsJMBz" role="39821P">
+      <node concept="m$_wl" id="6YXqqolsxwi" role="39821P">
         <ref role="m_rDy" node="42vv4xsJqzV" resolve="fbme.integration.fordiac" />
-        <node concept="pUk6w" id="42vv4xsJMCD" role="pUk7w" />
-        <node concept="398223" id="42vv4xsJMCN" role="39821P">
-          <node concept="L2wRC" id="42vv4xsJME9" role="39821P">
+        <node concept="pUk6w" id="6YXqqolsxwj" role="pUk7w" />
+        <node concept="398223" id="6YXqqolsxwk" role="39821P">
+          <node concept="L2wRC" id="6YXqqolsxwl" role="39821P">
             <ref role="L2wRA" node="42vv4xsJqS4" resolve="org.fbme.ide.integration.fordiac" />
           </node>
-          <node concept="3981dx" id="42vv4xsJMD1" role="39821P">
-            <node concept="3_J27D" id="42vv4xsJMD2" role="Nbhlr">
-              <node concept="3Mxwew" id="42vv4xsJMD3" role="3MwsjC">
+          <node concept="3981dx" id="6YXqqolsxwm" role="39821P">
+            <node concept="3_J27D" id="6YXqqolsxwn" role="Nbhlr">
+              <node concept="3Mxwew" id="6YXqqolsxwo" role="3MwsjC">
                 <property role="3MwjfP" value="stdlib-stubs.jar" />
               </node>
             </node>
-            <node concept="398223" id="42vv4xsJMD4" role="39821P">
-              <node concept="3_J27D" id="42vv4xsJMD5" role="Nbhlr">
-                <node concept="3Mxwew" id="42vv4xsJMD6" role="3MwsjC">
+            <node concept="398223" id="6YXqqolsxwp" role="39821P">
+              <node concept="3_J27D" id="6YXqqolsxwq" role="Nbhlr">
+                <node concept="3Mxwew" id="6YXqqolsxwr" role="3MwsjC">
                   <property role="3MwjfP" value="META-INF" />
                 </node>
               </node>
-              <node concept="1kK7hY" id="42vv4xsJMD7" role="39821P">
+              <node concept="1kK7hY" id="6YXqqolsxws" role="39821P">
                 <ref role="1kK7hZ" node="42vv4xsJqQi" resolve="IEC-61499" />
-                <node concept="1cIVw3" id="42vv4xsJMD8" role="3SGgvt">
+                <node concept="1cIVw3" id="6YXqqolsxwt" role="3SGgvt">
                   <property role="1cIVw0" value="." />
                 </node>
-                <node concept="1cIVw3" id="42vv4xsJMD9" role="2JVP1x">
+                <node concept="1cIVw3" id="6YXqqolsxwu" role="2JVP1x">
                   <property role="1cIVw0" value="stdlib.msd" />
                 </node>
               </node>
-              <node concept="3FFNgc" id="42vv4xsJMDa" role="39821P" />
+              <node concept="3FFNgc" id="6YXqqolsxwv" role="39821P" />
             </node>
-            <node concept="398223" id="42vv4xsJMDb" role="39821P">
-              <node concept="3_J27D" id="42vv4xsJMDc" role="Nbhlr">
-                <node concept="3Mxwew" id="42vv4xsJMDd" role="3MwsjC">
+            <node concept="398223" id="6YXqqolsxww" role="39821P">
+              <node concept="3_J27D" id="6YXqqolsxwx" role="Nbhlr">
+                <node concept="3Mxwew" id="6YXqqolsxwy" role="3MwsjC">
                   <property role="3MwjfP" value="module" />
                 </node>
               </node>
-              <node concept="2HvfSZ" id="42vv4xsJMDe" role="39821P">
-                <node concept="55IIr" id="3f0ZsV2QQ_H" role="2HvfZ0">
-                  <node concept="2Ry0Ak" id="3f0ZsV2QQA0" role="iGT6I">
+              <node concept="2HvfSZ" id="6YXqqolsxwz" role="39821P">
+                <node concept="55IIr" id="42vv4xsJMDf" role="2HvfZ0">
+                  <node concept="2Ry0Ak" id="42vv4xsJMDg" role="iGT6I">
                     <property role="2Ry0Am" value="solutions" />
-                    <node concept="2Ry0Ak" id="3f0ZsV2QQA6" role="2Ry0An">
-                      <property role="2Ry0Am" value="org.fbme.ide.integration.fordiac" />
+                    <node concept="2Ry0Ak" id="42vv4xsJMDh" role="2Ry0An">
+                      <property role="2Ry0Am" value="stdlib" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
           </node>
-          <node concept="3_J27D" id="42vv4xsJMCO" role="Nbhlr">
-            <node concept="3Mxwew" id="42vv4xsJMCZ" role="3MwsjC">
+          <node concept="3_J27D" id="6YXqqolsxw$" role="Nbhlr">
+            <node concept="3Mxwew" id="6YXqqolsxw_" role="3MwsjC">
               <property role="3MwjfP" value="languages" />
             </node>
           </node>

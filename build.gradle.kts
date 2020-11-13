@@ -120,6 +120,27 @@ tasks.register("buildRcpWithJBR") {
     antexec("-Dbasedir=$projectDir", "-buildfile", file("build/build-rcpdistrib-jbr.xml"))
 }
 
+tasks.register<Copy>("macosBinaries") {
+    dependsOn("buildRcpWithJBR")
+    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/iec61499-193.SNAPSHOT.macos.zip"))) {
+        eachFile {
+            relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
+        }
+        includeEmptyDirs = false
+    }
+    into(file("build/iec61499-macos.app"))
+
+    doLast {
+        delete("$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib")
+        ant.withGroovyBuilder {
+            "symlink"(
+                    "resource" to "$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/Home/lib/jli/libjli.dylib",
+                    "link" to "$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib"
+            )
+        }
+    }
+}
+
 tasks.named<Delete>("clean") {
     delete("lib")
 }
