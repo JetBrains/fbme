@@ -22,5 +22,5 @@ java {
 }
 
 mps {
-    artifactName = "statistics"
+    artifactName = "statistics-plugin"
 }

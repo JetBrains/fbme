@@ -2,32 +2,32 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
-      <modulePath path="$PROJECT_DIR$/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" folder="4diac integration" />
-      <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="4diac integration" />
-      <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/stdlib/stdlib.msd" folder="4diac integration" />
-      <modulePath path="$PROJECT_DIR$/code/buildscripts/solutions/org.fbme.ide.build/org.fbme.ide.build.msd" folder="buildscripts" />
-      <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="enas" />
-      <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="enas" />
-      <modulePath path="$PROJECT_DIR$/code/library/buildsolution/org.fbme.library.build.msd" folder="library" />
-      <modulePath path="$PROJECT_DIR$/code/library/org.fbme.lib.msd" folder="library" />
-      <modulePath path="$PROJECT_DIR$/code/platform/buildsolution/org.fbme.platform.build.msd" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="platform" />
-      <modulePath path="$PROJECT_DIR$/code/richediting/buildsolution/org.fbme.richediting.build.msd" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/code/richediting/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/code/richediting/solutions/org.fbme.ide.richediting/org.fbme.ide.richediting.msd" folder="richediting" />
-      <modulePath path="$PROJECT_DIR$/code/sandboxes/sandbox/org.fbme.ide.sandbox.msd" folder="sandboxes" />
-      <modulePath path="$PROJECT_DIR$/code/scenes/buildsolution/org.fbme.scenes.build.msd" folder="scenes" />
-      <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="scenes" />
-      <modulePath path="$PROJECT_DIR$/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" folder="smv debugger" />
-      <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger.sandbox/org.fbme.smvDebugger.sandbox.msd" folder="smv debugger" />
-      <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger/org.fbme.smvDebugger.msd" folder="smv debugger" />
-      <modulePath path="$PROJECT_DIR$/samples/statistics/buildsolution/org.fbme.samples.statistics.build.msd" folder="samples.statistics" />
-      <modulePath path="$PROJECT_DIR$/samples/statistics/solutions/org.fbme.samples.statistics/org.fbme.samples.statistics.msd" folder="samples.statistics" />
+      <modulePath path="$PROJECT_DIR$/buildscripts/org.fbme.ide.build.msd" folder="buildscripts" />
+      <modulePath path="$PROJECT_DIR$/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" folder="code.4diac integration" />
+      <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="code.4diac integration" />
+      <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/stdlib/stdlib.msd" folder="code.4diac integration" />
+      <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="code.enas" />
+      <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="code.enas" />
+      <modulePath path="$PROJECT_DIR$/code/library/buildsolution/org.fbme.library.build.msd" folder="code.library" />
+      <modulePath path="$PROJECT_DIR$/code/library/org.fbme.lib.msd" folder="code.library" />
+      <modulePath path="$PROJECT_DIR$/code/platform/buildsolution/org.fbme.platform.build.msd" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="code.platform" />
+      <modulePath path="$PROJECT_DIR$/code/richediting/buildsolution/org.fbme.richediting.build.msd" folder="code.richediting" />
+      <modulePath path="$PROJECT_DIR$/code/richediting/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="code.richediting" />
+      <modulePath path="$PROJECT_DIR$/code/richediting/solutions/org.fbme.ide.richediting/org.fbme.ide.richediting.msd" folder="code.richediting" />
+      <modulePath path="$PROJECT_DIR$/code/scenes/buildsolution/org.fbme.scenes.build.msd" folder="code.scenes" />
+      <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="code.scenes" />
+      <modulePath path="$PROJECT_DIR$/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" folder="code.smv debugger" />
+      <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger/org.fbme.smvDebugger.msd" folder="code.smv debugger" />
+      <modulePath path="$PROJECT_DIR$/samples/sandbox/solution/org.fbme.ide.sandbox.msd" folder="samples.sandbox" />
+      <modulePath path="$PROJECT_DIR$/samples/smv-debugger/solutions/org.fbme.smvDebugger.sandbox/org.fbme.smvDebugger.sandbox.msd" folder="samples.smv debugger" />
+      <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/buildsolution/org.fbme.samples.statisticsPlugin.build.msd" folder="samples.statistics plugin" />
+      <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/solutions/org.fbme.samples.statisticsPlugin/org.fbme.samples.statisticsPlugin.msd" folder="samples.statistics plugin" />
     </projectModules>
   </component>
 </project>

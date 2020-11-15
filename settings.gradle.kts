@@ -1,17 +1,17 @@
-rootProject.name = "fbme"
+rootProject.name = "FBME"
 
 include(
         "code:4diac-integration",
-        "code:buildscripts",
         "code:enas",
         "code:library",
         "code:platform",
         "code:richediting",
-        "code:sandboxes",
         "code:scenes",
         "code:smv-debugger",
 
         "docs",
 
-        "samples:statistics"
+        "samples:statistics-plugin",
+        "samples:sandbox",
+        "samples:smv-debugger"
 )

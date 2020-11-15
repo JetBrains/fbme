@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    mpsImplementation(project(":code:library"))
     mpsImplementation(project(":code:library", "mps"))
 }
 

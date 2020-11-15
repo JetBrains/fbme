@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="org.fbme.samples.statistics" uuid="e75dd6b6-f70b-468d-91bc-fb7684b58409" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="true">
+<solution name="org.fbme.samples.statisticsPlugin" uuid="e75dd6b6-f70b-468d-91bc-fb7684b58409" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/samples/statistics" type="java_classes">
-      <sourceRoot location="build/libs" />
+    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/samples/statistics-plugin/build/libs" type="java_classes">
+      <sourceRoot location="statistics-plugin.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/samples/statistics/build/libs/statistics.jar" />
+    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/samples/statistics-plugin/build/libs/statistics-plugin.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>
@@ -25,7 +25,7 @@
   </dependencies>
   <languageVersions />
   <dependencyVersions>
-    <module reference="e75dd6b6-f70b-468d-91bc-fb7684b58409(org.fbme.samples.statistics)" version="0" />
+    <module reference="e75dd6b6-f70b-468d-91bc-fb7684b58409(org.fbme.samples.statisticsPlugin)" version="0" />
   </dependencyVersions>
 </solution>
 

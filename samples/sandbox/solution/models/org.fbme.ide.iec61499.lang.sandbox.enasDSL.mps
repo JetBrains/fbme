@@ -2,7 +2,7 @@
 <model ref="r:61069482-9b3f-4347-82b6-e155cfc20e47(org.fbme.ide.iec61499.lang.sandbox.enasDSL)">
   <persistence version="9" />
   <languages>
-    <use id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="enas" version="0" />
+    <use id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="org.fbme.ide.enas.lang" version="0" />
   </languages>
   <imports />
   <registry>
@@ -11,91 +11,91 @@
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
     </language>
-    <language id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="enas">
-      <concept id="7558503085825161366" name="enas.structure.StandartSection" flags="ng" index="3wE4Ck" />
-      <concept id="7558503085825161364" name="enas.structure.EnasSystem" flags="ng" index="3wE4Cm">
+    <language id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="org.fbme.ide.enas.lang">
+      <concept id="7558503085825161366" name="org.fbme.ide.enas.lang.structure.StandartSection" flags="ng" index="3wE4Ck" />
+      <concept id="7558503085825161364" name="org.fbme.ide.enas.lang.structure.EnasSystem" flags="ng" index="3wE4Cm">
         <child id="7558503085825161516" name="components" index="3wE4II" />
         <child id="7558503085825161520" name="points" index="3wE4IM" />
         <child id="7558503085825161525" name="receipts" index="3wE4IR" />
         <child id="7558503085825978331" name="configurations" index="3wJdPp" />
       </concept>
-      <concept id="7558503085825161368" name="enas.structure.StaticPosition" flags="ng" index="3wE4Cq">
+      <concept id="7558503085825161368" name="org.fbme.ide.enas.lang.structure.StaticPosition" flags="ng" index="3wE4Cq">
         <property id="7558503085825161383" name="rotation" index="3wE4C_" />
         <property id="7558503085825161385" name="x" index="3wE4CF" />
         <property id="7558503085825161388" name="y" index="3wE4CI" />
       </concept>
-      <concept id="7558503085825161392" name="enas.structure.ConfigurableStand" flags="ng" index="3wE4CM">
+      <concept id="7558503085825161392" name="org.fbme.ide.enas.lang.structure.ConfigurableStand" flags="ng" index="3wE4CM">
         <child id="7558503085825161395" name="positions" index="3wE4CL" />
       </concept>
-      <concept id="7558503085825161393" name="enas.structure.PositionDeclaration" flags="ng" index="3wE4CN">
+      <concept id="7558503085825161393" name="org.fbme.ide.enas.lang.structure.PositionDeclaration" flags="ng" index="3wE4CN">
         <child id="7558503085825161403" name="position" index="3wE4CT" />
       </concept>
-      <concept id="7558503085825161405" name="enas.structure.StaticComponent" flags="ng" index="3wE4CZ">
+      <concept id="7558503085825161405" name="org.fbme.ide.enas.lang.structure.StaticComponent" flags="ng" index="3wE4CZ">
         <child id="7558503085825161408" name="position" index="3wE4D2" />
       </concept>
-      <concept id="7558503085825161410" name="enas.structure.JackStation" flags="ng" index="3wE4D0" />
-      <concept id="7558503085825161650" name="enas.structure.SwitchInstruction" flags="ng" index="3wE4GK">
+      <concept id="7558503085825161410" name="org.fbme.ide.enas.lang.structure.JackStation" flags="ng" index="3wE4D0" />
+      <concept id="7558503085825161650" name="org.fbme.ide.enas.lang.structure.SwitchInstruction" flags="ng" index="3wE4GK">
         <child id="7558503085825272985" name="condition" index="3wExSr" />
         <child id="7558503085825272886" name="cases" index="3wExUO" />
       </concept>
-      <concept id="7558503085825161651" name="enas.structure.SwitchCase" flags="ng" index="3wE4GL">
+      <concept id="7558503085825161651" name="org.fbme.ide.enas.lang.structure.SwitchCase" flags="ng" index="3wE4GL">
         <child id="7558503085825161671" name="instructions" index="3wE4H5" />
         <child id="7558503085825161669" name="predicate" index="3wE4H7" />
       </concept>
-      <concept id="7558503085825161654" name="enas.structure.CameraTestCondition" flags="ng" index="3wE4GO">
+      <concept id="7558503085825161654" name="org.fbme.ide.enas.lang.structure.CameraTestCondition" flags="ng" index="3wE4GO">
         <reference id="7558503085825617715" name="camera" index="3wGlQL" />
       </concept>
-      <concept id="7558503085825161655" name="enas.structure.CameraOutputPredicate" flags="ng" index="3wE4GP">
+      <concept id="7558503085825161655" name="org.fbme.ide.enas.lang.structure.CameraOutputPredicate" flags="ng" index="3wE4GP">
         <property id="7558503085825161665" name="cameraOutput" index="3wE4H3" />
       </concept>
-      <concept id="7558503085825161674" name="enas.structure.OtherwisePredicate" flags="ng" index="3wE4H8" />
-      <concept id="7558503085825161486" name="enas.structure.Camera" flags="ng" index="3wE4Ic" />
-      <concept id="7558503085825161485" name="enas.structure.SectionGate" flags="ng" index="3wE4If">
+      <concept id="7558503085825161674" name="org.fbme.ide.enas.lang.structure.OtherwisePredicate" flags="ng" index="3wE4H8" />
+      <concept id="7558503085825161486" name="org.fbme.ide.enas.lang.structure.Camera" flags="ng" index="3wE4Ic" />
+      <concept id="7558503085825161485" name="org.fbme.ide.enas.lang.structure.SectionGate" flags="ng" index="3wE4If">
         <property id="7558503085825844277" name="side" index="3wGHqR" />
         <reference id="7558503085825844267" name="section" index="3wGHqD" />
       </concept>
-      <concept id="7558503085825161511" name="enas.structure.PositionOnStand" flags="ng" index="3wE4I_">
+      <concept id="7558503085825161511" name="org.fbme.ide.enas.lang.structure.PositionOnStand" flags="ng" index="3wE4I_">
         <property id="7558503085825161514" name="relativeRotation" index="3wE4IC" />
         <reference id="7558503085825161512" name="stand" index="3wE4IE" />
       </concept>
-      <concept id="7558503085825161524" name="enas.structure.SectionDeliveryPoint" flags="ng" index="3wE4IQ">
+      <concept id="7558503085825161524" name="org.fbme.ide.enas.lang.structure.SectionDeliveryPoint" flags="ng" index="3wE4IQ">
         <reference id="7558503085825172372" name="section" index="3wE94m" />
       </concept>
-      <concept id="7558503085825161529" name="enas.structure.Receipt" flags="ng" index="3wE4IV">
+      <concept id="7558503085825161529" name="org.fbme.ide.enas.lang.structure.Receipt" flags="ng" index="3wE4IV">
         <reference id="7558503085825516959" name="startingPoint" index="3wHXst" />
         <reference id="7558503085826098814" name="startingConfiguration" index="3wJJjW" />
         <child id="7558503085825161532" name="parts" index="3wE4IY" />
       </concept>
-      <concept id="7558503085825161535" name="enas.structure.MoveToPoint" flags="ng" index="3wE4IX">
+      <concept id="7558503085825161535" name="org.fbme.ide.enas.lang.structure.MoveToPoint" flags="ng" index="3wE4IX">
         <reference id="7558503085825172432" name="point" index="3wE95i" />
       </concept>
-      <concept id="7558503085825161536" name="enas.structure.TriggerJack" flags="ng" index="3wE4J2">
+      <concept id="7558503085825161536" name="org.fbme.ide.enas.lang.structure.TriggerJack" flags="ng" index="3wE4J2">
         <property id="7558503085825161548" name="action" index="3wE4Je" />
         <reference id="7558503085825161550" name="jackStation" index="3wE4Jc" />
       </concept>
-      <concept id="7558503085825172364" name="enas.structure.PointDeclaration" flags="ng" index="3wE94e">
+      <concept id="7558503085825172364" name="org.fbme.ide.enas.lang.structure.PointDeclaration" flags="ng" index="3wE94e">
         <child id="7558503085825172367" name="decsriptor" index="3wE94d" />
       </concept>
-      <concept id="7558503085825228985" name="enas.structure.SRSection" flags="ng" index="3wEV8V" />
-      <concept id="7558503085825844153" name="enas.structure.ConfigurationDeclaration" flags="ng" index="3wGH4V">
+      <concept id="7558503085825228985" name="org.fbme.ide.enas.lang.structure.SRSection" flags="ng" index="3wEV8V" />
+      <concept id="7558503085825844153" name="org.fbme.ide.enas.lang.structure.ConfigurationDeclaration" flags="ng" index="3wGH4V">
         <child id="7558503085825844158" name="specs" index="3wGH4W" />
       </concept>
-      <concept id="7558503085825844156" name="enas.structure.StandPositionSpecification" flags="ng" index="3wGH4Y">
+      <concept id="7558503085825844156" name="org.fbme.ide.enas.lang.structure.StandPositionSpecification" flags="ng" index="3wGH4Y">
         <reference id="7558503085825844162" name="position" index="3wGH50" />
         <reference id="7558503085825844160" name="stand" index="3wGH52" />
       </concept>
-      <concept id="7558503085825844257" name="enas.structure.GateStateSpecification" flags="ng" index="3wGHqz">
+      <concept id="7558503085825844257" name="org.fbme.ide.enas.lang.structure.GateStateSpecification" flags="ng" index="3wGHqz">
         <property id="7558503085825844263" name="state" index="3wGHq_" />
         <reference id="7558503085825844265" name="gate" index="3wGHqF" />
       </concept>
-      <concept id="7558503085825724034" name="enas.structure.LoopInstruction" flags="ng" index="3wGNK0">
+      <concept id="7558503085825724034" name="org.fbme.ide.enas.lang.structure.LoopInstruction" flags="ng" index="3wGNK0">
         <child id="7558503085825724035" name="instructions" index="3wGNK1" />
       </concept>
-      <concept id="7558503085825781918" name="enas.structure.DoneInstruction" flags="ng" index="3wGW8s" />
-      <concept id="7558503085825366513" name="enas.structure.SRSectionStartPoint" flags="ng" index="3wHqHN">
+      <concept id="7558503085825781918" name="org.fbme.ide.enas.lang.structure.DoneInstruction" flags="ng" index="3wGW8s" />
+      <concept id="7558503085825366513" name="org.fbme.ide.enas.lang.structure.SRSectionStartPoint" flags="ng" index="3wHqHN">
         <reference id="7558503085825366514" name="section" index="3wHqHK" />
       </concept>
-      <concept id="7558503085826098727" name="enas.structure.SetConfiguraitonInstruction" flags="ng" index="3wJJi_">
+      <concept id="7558503085826098727" name="org.fbme.ide.enas.lang.structure.SetConfiguraitonInstruction" flags="ng" index="3wJJi_">
         <reference id="7558503085826098728" name="configuration" index="3wJJiE" />
       </concept>
     </language>

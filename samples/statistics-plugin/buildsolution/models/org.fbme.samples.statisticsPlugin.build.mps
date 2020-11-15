@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:1663fe77-f495-4cde-b50b-d3576358c123(org.fbme.samples.statistics.build)">
+<model ref="r:1663fe77-f495-4cde-b50b-d3576358c123(org.fbme.samples.statisticsPlugin.build)">
   <persistence version="9" />
   <languages>
     <use id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build" version="0" />
@@ -112,6 +112,9 @@
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
+      <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
+        <child id="763829979718664967" name="files" index="3rtmxm" />
+      </concept>
       <concept id="4278635856200817744" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleModelRoot" flags="ng" index="1BupzO">
         <property id="8137134783396907368" name="convert2binary" index="1Hdu6h" />
         <property id="8137134783396676838" name="extracted" index="1HemKv" />
@@ -219,16 +222,16 @@
     <node concept="2G$12M" id="42vv4xsIIPs" role="3989C9">
       <property role="TrG5h" value="fbme-statistics" />
       <node concept="1E1JtA" id="42vv4xsIIT7" role="2G$12L">
-        <property role="TrG5h" value="org.fbme.samples.statistics" />
+        <property role="TrG5h" value="org.fbme.samples.statisticsPlugin" />
         <property role="3LESm3" value="e75dd6b6-f70b-468d-91bc-fb7684b58409" />
         <property role="BnDLt" value="true" />
         <node concept="55IIr" id="42vv4xsIITa" role="3LF7KH">
           <node concept="2Ry0Ak" id="3f0ZsV2QMgT" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
             <node concept="2Ry0Ak" id="3f0ZsV2QMgU" role="2Ry0An">
-              <property role="2Ry0Am" value="org.fbme.samples.statistics" />
-              <node concept="2Ry0Ak" id="2ww0H4BOCwk" role="2Ry0An">
-                <property role="2Ry0Am" value="org.fbme.samples.statistics.msd" />
+              <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin" />
+              <node concept="2Ry0Ak" id="5sRy4_w5Qh6" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin.msd" />
               </node>
             </node>
           </node>
@@ -243,38 +246,23 @@
             <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2ww0H4BP5Xg" role="3bR37C">
-          <node concept="1BurEX" id="2ww0H4BP5Xh" role="1SiIV1">
-            <node concept="55IIr" id="2ww0H4BP5Xc" role="1BurEY">
-              <node concept="2Ry0Ak" id="2ww0H4BP5Xd" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="2ww0H4BP5Xe" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="2ww0H4BP5Xf" role="2Ry0An">
-                    <property role="2Ry0Am" value="statistics.jar" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="1BupzO" id="2ww0H4BP5Xm" role="3bR31x">
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="2ww0H4BP5Xn" role="1HemKq">
-            <node concept="55IIr" id="2ww0H4BP5Xi" role="3LXTmr">
-              <node concept="2Ry0Ak" id="2ww0H4BP5Xj" role="iGT6I">
+          <node concept="3LXTmp" id="5sRy4_w5Qhc" role="1HemKq">
+            <node concept="55IIr" id="5sRy4_w5Qh8" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5sRy4_w5Qh9" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="2ww0H4BP5Xk" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.samples.statistics" />
-                  <node concept="2Ry0Ak" id="2ww0H4BP5Xl" role="2Ry0An">
+                <node concept="2Ry0Ak" id="5sRy4_w5Qha" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin" />
+                  <node concept="2Ry0Ak" id="5sRy4_w5Qhb" role="2Ry0An">
                     <property role="2Ry0Am" value="models" />
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="2ww0H4BP5Xo" role="3LXTna">
+            <node concept="3qWCbU" id="5sRy4_w5Qhd" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
             </node>
           </node>
@@ -287,6 +275,36 @@
         <node concept="1SiIV0" id="5Z7HjgyQua8" role="3bR37C">
           <node concept="3bR9La" id="5Z7HjgyQua9" role="1SiIV1">
             <ref role="3bR37D" to="ci82:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="3rtmxn" id="5sRy4_w6JhD" role="3bR31x">
+          <node concept="3LXTmp" id="5sRy4_w6JhE" role="3rtmxm">
+            <node concept="55IIr" id="5sRy4_w6JhF" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5sRy4_w6JhG" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5sRy4_w6JhH" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5sRy4_w6JhJ" role="3LXTna">
+              <property role="3qWCbO" value="icons/**" />
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5sRy4_w7Ook" role="3bR37C">
+          <node concept="1BurEX" id="5sRy4_w7Ool" role="1SiIV1">
+            <node concept="55IIr" id="5sRy4_w7Oog" role="1BurEY">
+              <node concept="2Ry0Ak" id="5sRy4_w7Ooh" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="5sRy4_w7Ooi" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="5sRy4_w7Ooj" role="2Ry0An">
+                    <property role="2Ry0Am" value="statistics-plugin.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

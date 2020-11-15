@@ -153,12 +153,12 @@
       <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.workflow.preset.jar" />
       <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.ide.build.jar" />
       <chunk>
-        <module file="${basedir}/code/buildscripts/solutions/org.fbme.ide.build/org.fbme.ide.build.msd" />
+        <module file="${basedir}/buildscripts/org.fbme.ide.build.msd" />
         <module file="${basedir}/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" />
         <module file="${basedir}/code/library/buildsolution/org.fbme.library.build.msd" />
         <module file="${basedir}/code/platform/buildsolution/org.fbme.platform.build.msd" />
         <module file="${basedir}/code/richediting/buildsolution/org.fbme.richediting.build.msd" />
-        <module file="${basedir}/samples/statistics/buildsolution/org.fbme.samples.statistics.build.msd" />
+        <module file="${basedir}/samples/statistics-plugin/buildsolution/org.fbme.samples.statisticsPlugin.build.msd" />
         <module file="${basedir}/code/scenes/buildsolution/org.fbme.scenes.build.msd" />
         <module file="${basedir}/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" />
       </chunk>
@@ -201,20 +201,20 @@
     </ant>
   </target>
   
-  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statistics.build, java.compile.org.fbme.scenes.build, java.compile.org.fbme.smvDebugger.build">
-    <mkdir dir="${basedir}/code/buildscripts/solutions/org.fbme.ide.build/source_gen" />
+  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statisticsPlugin.build, java.compile.org.fbme.scenes.build, java.compile.org.fbme.smvDebugger.build">
+    <mkdir dir="${basedir}/buildscripts/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.ide.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.ide.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/code/buildscripts/solutions/org.fbme.ide.build/source_gen" />
+        <path location="${basedir}/buildscripts/source_gen" />
       </src>
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.integration.fordiac.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.samples.statistics.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.scenes.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.smvDebugger.build" />
       </classpath>
@@ -305,13 +305,13 @@
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.samples.statistics.build" depends="java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
-    <mkdir dir="${basedir}/samples/statistics/buildsolution/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/org.fbme.samples.statistics.build" />
-    <javac destdir="${build.tmp}/java/out/org.fbme.samples.statistics.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+  <target name="java.compile.org.fbme.samples.statisticsPlugin.build" depends="java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
+    <mkdir dir="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" />
+    <javac destdir="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
       <compilerarg value="-Xlint:none" />
       <src>
-        <path location="${basedir}/samples/statistics/buildsolution/source_gen" />
+        <path location="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
       </src>
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
@@ -322,12 +322,12 @@
   </target>
   
   <target name="cleanSources">
-    <delete dir="${basedir}/code/buildscripts/solutions/org.fbme.ide.build/source_gen" />
+    <delete dir="${basedir}/buildscripts/source_gen" />
     <delete dir="${basedir}/code/4diac-integration/buildsolution/source_gen" />
     <delete dir="${basedir}/code/library/buildsolution/source_gen" />
     <delete dir="${basedir}/code/platform/buildsolution/source_gen" />
     <delete dir="${basedir}/code/richediting/buildsolution/source_gen" />
-    <delete dir="${basedir}/samples/statistics/buildsolution/source_gen" />
+    <delete dir="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
     <delete dir="${basedir}/code/scenes/buildsolution/source_gen" />
     <delete dir="${basedir}/code/smv-debugger/buildsolution/source_gen" />
   </target>

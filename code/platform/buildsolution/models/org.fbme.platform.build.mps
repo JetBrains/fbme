@@ -55,9 +55,6 @@
         <child id="7389400916848037006" name="children" index="39821P" />
       </concept>
       <concept id="841011766566059607" name="jetbrains.mps.build.structure.BuildStringNotEmpty" flags="ng" index="3_J27D" />
-      <concept id="5248329904288051100" name="jetbrains.mps.build.structure.BuildFileIncludeSelector" flags="ng" index="3LWZYx">
-        <property id="5248329904288051101" name="pattern" index="3LWZYw" />
-      </concept>
       <concept id="5248329904287794596" name="jetbrains.mps.build.structure.BuildInputFiles" flags="ng" index="3LXTmp">
         <child id="5248329904287794598" name="dir" index="3LXTmr" />
         <child id="5248329904287794679" name="selectors" index="3LXTna" />
@@ -342,31 +339,6 @@
                 <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
               </node>
             </node>
-            <node concept="3LXTmp" id="3f0ZsV2YqsP" role="1HemKq">
-              <node concept="55IIr" id="3f0ZsV2YqsI" role="3LXTmr">
-                <node concept="2Ry0Ak" id="3f0ZsV2YqsJ" role="iGT6I">
-                  <property role="2Ry0Am" value="code" />
-                  <node concept="2Ry0Ak" id="3f0ZsV2YqsK" role="2Ry0An">
-                    <property role="2Ry0Am" value="platform" />
-                    <node concept="2Ry0Ak" id="3f0ZsV2YqsL" role="2Ry0An">
-                      <property role="2Ry0Am" value="languages" />
-                      <node concept="2Ry0Ak" id="3f0ZsV2YqsM" role="2Ry0An">
-                        <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
-                        <node concept="2Ry0Ak" id="3f0ZsV2YqsN" role="2Ry0An">
-                          <property role="2Ry0Am" value="generator" />
-                          <node concept="2Ry0Ak" id="3f0ZsV2YqsO" role="2Ry0An">
-                            <property role="2Ry0Am" value="template" />
-                          </node>
-                        </node>
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3qWCbU" id="3f0ZsV2YqsQ" role="3LXTna">
-                <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-              </node>
-            </node>
           </node>
         </node>
         <node concept="1SiIV0" id="ahlxKSr1RM" role="3bR37C">
@@ -398,28 +370,6 @@
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="3f0ZsV2YqsG" role="1HemKq">
-            <node concept="55IIr" id="3f0ZsV2Yqs_" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3f0ZsV2YqsA" role="iGT6I">
-                <property role="2Ry0Am" value="code" />
-                <node concept="2Ry0Ak" id="3f0ZsV2YqsB" role="2Ry0An">
-                  <property role="2Ry0Am" value="platform" />
-                  <node concept="2Ry0Ak" id="3f0ZsV2YqsC" role="2Ry0An">
-                    <property role="2Ry0Am" value="languages" />
-                    <node concept="2Ry0Ak" id="3f0ZsV2YqsD" role="2Ry0An">
-                      <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
-                      <node concept="2Ry0Ak" id="3f0ZsV2YqsE" role="2Ry0An">
-                        <property role="2Ry0Am" value="models" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="3f0ZsV2YqsH" role="3LXTna">
-              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-            </node>
-          </node>
           <node concept="3LXTmp" id="Ej4tEpmLt2" role="1HemKq">
             <node concept="55IIr" id="Ej4tEpmLsY" role="3LXTmr">
               <node concept="2Ry0Ak" id="Ej4tEpmLsZ" role="iGT6I">
@@ -739,18 +689,18 @@
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.ide.platform" />
         <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
-        <node concept="3rtmxn" id="3f0ZsV2Yq$R" role="3bR31x">
-          <node concept="3LXTmp" id="3f0ZsV2Yq$S" role="3rtmxm">
-            <node concept="3LWZYx" id="3f0ZsV2Yq$T" role="3LXTna">
-              <property role="3LWZYw" value="startup.properties" />
-            </node>
-            <node concept="55IIr" id="3f0ZsV2Yq$U" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3f0ZsV2Yq$X" role="iGT6I">
+        <node concept="3rtmxn" id="qjx41CDwI6" role="3bR31x">
+          <node concept="3LXTmp" id="qjx41CDwI8" role="3rtmxm">
+            <node concept="55IIr" id="qjx41CDwIa" role="3LXTmr">
+              <node concept="2Ry0Ak" id="qjx41CDwIv" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="3f0ZsV2Yq_j" role="2Ry0An">
+                <node concept="2Ry0Ak" id="qjx41CDwI$" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.platform" />
                 </node>
               </node>
+            </node>
+            <node concept="3qWCbU" id="qjx41CDwIA" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, startup.properties" />
             </node>
           </node>
         </node>

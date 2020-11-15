@@ -13,7 +13,7 @@
     <import index="4hy5" ref="r:d3cdc78f-1e25-43ab-bb29-d75cffece3a5(org.fbme.integration.fordiac.build)" />
     <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
     <import index="bco3" ref="r:4904ab70-42df-49dd-8218-a04fff347a01(org.fbme.richediting.build)" />
-    <import index="vjdp" ref="r:1663fe77-f495-4cde-b50b-d3576358c123(org.fbme.samples.statistics.build)" />
+    <import index="vjdp" ref="r:1663fe77-f495-4cde-b50b-d3576358c123(org.fbme.samples.statisticsPlugin.build)" />
     <import index="1b2w" ref="r:fec8a7bb-501c-442b-98be-18567111039e(org.fbme.smvDebugger.build)" />
   </imports>
   <registry>
@@ -226,7 +226,7 @@
   </registry>
   <node concept="1l3spW" id="1mPaNys5H5_">
     <property role="TrG5h" value="fbme_rcp" />
-    <property role="2DA0ip" value="../../../../" />
+    <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcp.xml" />
     <node concept="10PD9b" id="1mPaNys5H5A" role="10PD9s" />
     <node concept="3b7kt6" id="1mPaNys5H5B" role="10PD9s" />
@@ -238,7 +238,7 @@
       <node concept="55IIr" id="1mPaNys5H5S" role="3vi$VU">
         <node concept="2Ry0Ak" id="1mPaNys5H5T" role="iGT6I">
           <property role="2Ry0Am" value="icons" />
-          <node concept="2Ry0Ak" id="1mPaNys5H5U" role="2Ry0An">
+          <node concept="2Ry0Ak" id="qjx41CDd0H" role="2Ry0An">
             <property role="2Ry0Am" value="logo.png" />
           </node>
         </node>
@@ -258,12 +258,12 @@
       </node>
       <node concept="3_J27D" id="1mPaNys5H60" role="2EtHGA">
         <node concept="3Mxwew" id="1mPaNys5H61" role="3MwsjC">
-          <property role="3MwjfP" value="iec61499" />
+          <property role="3MwjfP" value="FBME" />
         </node>
       </node>
       <node concept="3_J27D" id="1mPaNys5H62" role="2EtHGT">
         <node concept="3Mxwew" id="1mPaNys5H63" role="3MwsjC">
-          <property role="3MwjfP" value="IEC 61499 IDE" />
+          <property role="3MwjfP" value="FBME" />
         </node>
       </node>
       <node concept="55IIr" id="1mPaNys5H64" role="2EteIj">
@@ -289,7 +289,7 @@
       </node>
       <node concept="3_J27D" id="1mPaNys5H6f" role="2gvbiD">
         <node concept="3Mxwew" id="1mPaNys5H6g" role="3MwsjC">
-          <property role="3MwjfP" value="iec61499" />
+          <property role="3MwjfP" value="fbme" />
         </node>
       </node>
       <node concept="3_J27D" id="1mPaNys5H6h" role="HFo83">
@@ -321,7 +321,7 @@
         <node concept="2Ry0Ak" id="6kvdbYu4nok" role="iGT6I">
           <property role="2Ry0Am" value="icons" />
           <node concept="2Ry0Ak" id="6kvdbYu4nop" role="2Ry0An">
-            <property role="2Ry0Am" value="iec61499.icns" />
+            <property role="2Ry0Am" value="fbme.icns" />
           </node>
         </node>
       </node>
@@ -541,7 +541,17 @@
             </node>
           </node>
           <node concept="1zDrgl" id="1mPaNys5H75" role="39821P">
-            <ref role="1zDrgn" node="1mPaNys5H5R" resolve="IEC 61499 IDE 1.0" />
+            <ref role="1zDrgn" node="1mPaNys5H5R" resolve="FBME 1.0" />
+          </node>
+          <node concept="28jJK3" id="qjx41CDd6K" role="39821P">
+            <node concept="55IIr" id="qjx41CDd70" role="28jJRO">
+              <node concept="2Ry0Ak" id="qjx41CDd75" role="iGT6I">
+                <property role="2Ry0Am" value="icons" />
+                <node concept="2Ry0Ak" id="qjx41CDd7a" role="2Ry0An">
+                  <property role="2Ry0Am" value="splash@2x.png" />
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3981dx" id="7ok1qOu0gKS" role="39821P">
@@ -782,7 +792,7 @@
   </node>
   <node concept="1l3spW" id="1mPaNys5H7r">
     <property role="TrG5h" value="fbme_rcp_distrib" />
-    <property role="2DA0ip" value="../../../../" />
+    <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcpdistrib.xml" />
     <node concept="2sgV4H" id="1mPaNys5H7s" role="1l3spa">
       <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp" />
@@ -829,8 +839,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3h0" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3h1" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec61499.vmoptions" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOb" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.vmoptions" />
                   </node>
                 </node>
               </node>
@@ -846,8 +856,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3hG" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3hH" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec6149964.vmoptions" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOd" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme64.vmoptions" />
                   </node>
                 </node>
               </node>
@@ -867,8 +877,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3in" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3iq" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec61499.sh" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOf" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.sh" />
                   </node>
                 </node>
               </node>
@@ -877,7 +887,7 @@
         </node>
         <node concept="3_J27D" id="1mPaNys5H8s" role="Nbhlr">
           <node concept="3Mxwew" id="1mPaNys5H8t" role="3MwsjC">
-            <property role="3MwjfP" value="iec61499" />
+            <property role="3MwjfP" value="fbme" />
           </node>
           <node concept="3Mxwew" id="1mPaNys5H8u" role="3MwsjC">
             <property role="3MwjfP" value="-" />
@@ -908,7 +918,7 @@
               <property role="2$htvj" value="*" />
               <node concept="NbPM2" id="1mPaNys5H8P" role="2$htvi">
                 <node concept="3Mxwew" id="1mPaNys5H8Q" role="3MwsjC">
-                  <property role="3MwjfP" value="iec61499.exe.vmoptions" />
+                  <property role="3MwjfP" value="fbme.exe.vmoptions" />
                 </node>
               </node>
             </node>
@@ -920,8 +930,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3gi" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3gh" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec61499.vmoptions" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOh" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.vmoptions" />
                   </node>
                 </node>
               </node>
@@ -932,7 +942,7 @@
               <property role="2$htvj" value="*" />
               <node concept="NbPM2" id="1mPaNys5H91" role="2$htvi">
                 <node concept="3Mxwew" id="1mPaNys5H92" role="3MwsjC">
-                  <property role="3MwjfP" value="iec6149964.exe.vmoptions" />
+                  <property role="3MwjfP" value="fbme64.exe.vmoptions" />
                 </node>
               </node>
             </node>
@@ -944,8 +954,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3gn" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3gm" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec6149964.vmoptions" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOj" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme64.vmoptions" />
                   </node>
                 </node>
               </node>
@@ -1007,8 +1017,8 @@
                 <property role="2Ry0Am" value="build" />
                 <node concept="2Ry0Ak" id="2H5LTARS3ec" role="2Ry0An">
                   <property role="2Ry0Am" value="startup" />
-                  <node concept="2Ry0Ak" id="2H5LTARS3er" role="2Ry0An">
-                    <property role="2Ry0Am" value="iec61499.bat" />
+                  <node concept="2Ry0Ak" id="4K9PzRDlbOl" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.bat" />
                   </node>
                 </node>
               </node>
@@ -1017,7 +1027,7 @@
         </node>
         <node concept="3_J27D" id="1mPaNys5H9o" role="Nbhlr">
           <node concept="3Mxwew" id="1mPaNys5H9p" role="3MwsjC">
-            <property role="3MwjfP" value="iec61499" />
+            <property role="3MwjfP" value="fbme" />
           </node>
           <node concept="3Mxwew" id="1mPaNys5H9q" role="3MwsjC">
             <property role="3MwjfP" value="-" />
@@ -1033,7 +1043,7 @@
       <node concept="3981dG" id="1mPaNys5Ha7" role="39821P">
         <node concept="3_J27D" id="1mPaNys5Ha8" role="Nbhlr">
           <node concept="3Mxwew" id="1mPaNys5Ha9" role="3MwsjC">
-            <property role="3MwjfP" value="iec61499" />
+            <property role="3MwjfP" value="fbme" />
           </node>
           <node concept="3Mxwew" id="1mPaNys5Haa" role="3MwsjC">
             <property role="3MwjfP" value="-" />
@@ -1076,7 +1086,7 @@
                   <node concept="2Ry0Ak" id="6kvdbYu4$Br" role="iGT6I">
                     <property role="2Ry0Am" value="icons" />
                     <node concept="2Ry0Ak" id="6kvdbYu4$Bw" role="2Ry0An">
-                      <property role="2Ry0Am" value="iec61499.icns" />
+                      <property role="2Ry0Am" value="fbme.icns" />
                     </node>
                   </node>
                 </node>
@@ -1110,7 +1120,7 @@
                   <property role="2$htvj" value="*" />
                   <node concept="NbPM2" id="1mPaNys5Har" role="2$htvi">
                     <node concept="3Mxwew" id="1mPaNys5Has" role="3MwsjC">
-                      <property role="3MwjfP" value="iec61499" />
+                      <property role="3MwjfP" value="fbme" />
                     </node>
                   </node>
                 </node>
@@ -1250,22 +1260,22 @@
                     <property role="2Ry0Am" value="build" />
                     <node concept="2Ry0Ak" id="2H5LTAROddq" role="2Ry0An">
                       <property role="2Ry0Am" value="startup" />
-                      <node concept="2Ry0Ak" id="2H5LTARS3dN" role="2Ry0An">
-                        <property role="2Ry0Am" value="iec6149964.vmoptions" />
+                      <node concept="2Ry0Ak" id="4K9PzRDlbO7" role="2Ry0An">
+                        <property role="2Ry0Am" value="fbme64.vmoptions" />
                       </node>
                     </node>
                   </node>
                 </node>
                 <node concept="2$htT0" id="1mPaNys5Hb7" role="28jJR8">
-                  <property role="2$htTZ" value="iec6149964.vmoptions" />
-                  <property role="2$htTY" value="iec61499.vmoptions" />
+                  <property role="2$htTZ" value="fbme64.vmoptions" />
+                  <property role="2$htTY" value="fbme.vmoptions" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="3_J27D" id="1mPaNys5Hb8" role="Nbhlr">
             <node concept="3Mxwew" id="1mPaNys5Hb9" role="3MwsjC">
-              <property role="3MwjfP" value="iec61499 " />
+              <property role="3MwjfP" value="fbme " />
             </node>
             <node concept="3Mxwey" id="1mPaNys5Hba" role="3MwsjC">
               <ref role="3Mxwex" node="1mPaNys5H7v" resolve="version" />
@@ -1308,7 +1318,7 @@
     <property role="26EafI" value="-" />
     <property role="26FY9R" value="jetbrains.mps.Launcher" />
     <property role="TrG5h" value="fbme_script" />
-    <ref role="1_kbm$" node="1mPaNys5H5R" resolve="IEC 61499 IDE 1.0" />
+    <ref role="1_kbm$" node="1mPaNys5H5R" resolve="FBME 1.0" />
     <node concept="26EafG" id="1mPaNys5Hbd" role="26Ea7d">
       <property role="26EafJ" value="lib/branding.jar" />
     </node>
@@ -1341,7 +1351,7 @@
     </node>
   </node>
   <node concept="1l3spW" id="6kvdbYtXYck">
-    <property role="2DA0ip" value="../../../../" />
+    <property role="2DA0ip" value="../" />
     <property role="TrG5h" value="fbme_bootstrap" />
     <property role="turDy" value="build-bootstrap.xml" />
     <node concept="1E1JtA" id="3Sv$YXY4B$u" role="3989C9">
@@ -1349,19 +1359,10 @@
       <property role="TrG5h" value="org.fbme.ide.build" />
       <property role="3LESm3" value="03167fa4-d2b2-43a9-8149-2d4f4957c404" />
       <node concept="55IIr" id="3Sv$YXY4B$v" role="3LF7KH">
-        <node concept="2Ry0Ak" id="3Sv$YXY4B$_" role="iGT6I">
-          <property role="2Ry0Am" value="code" />
-          <node concept="2Ry0Ak" id="3f0ZsV2Rz3l" role="2Ry0An">
-            <property role="2Ry0Am" value="buildscripts" />
-            <node concept="2Ry0Ak" id="3f0ZsV2Rz3p" role="2Ry0An">
-              <property role="2Ry0Am" value="solutions" />
-              <node concept="2Ry0Ak" id="3f0ZsV2Rz3q" role="2Ry0An">
-                <property role="2Ry0Am" value="org.fbme.ide.build" />
-                <node concept="2Ry0Ak" id="3f0ZsV2Rz3r" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.build.msd" />
-                </node>
-              </node>
-            </node>
+        <node concept="2Ry0Ak" id="3f0ZsV2Rz3l" role="iGT6I">
+          <property role="2Ry0Am" value="buildscripts" />
+          <node concept="2Ry0Ak" id="3f0ZsV2Rz3r" role="2Ry0An">
+            <property role="2Ry0Am" value="org.fbme.ide.build.msd" />
           </node>
         </node>
       </node>
@@ -1374,25 +1375,16 @@
         <property role="3ZfqAx" value="models" />
         <property role="1Hdu6h" value="true" />
         <property role="1HemKv" value="true" />
-        <node concept="3LXTmp" id="Ej4tEpnfCi" role="1HemKq">
-          <node concept="55IIr" id="Ej4tEpnfCc" role="3LXTmr">
-            <node concept="2Ry0Ak" id="Ej4tEpnfCd" role="iGT6I">
-              <property role="2Ry0Am" value="code" />
-              <node concept="2Ry0Ak" id="Ej4tEpnfCe" role="2Ry0An">
-                <property role="2Ry0Am" value="buildscripts" />
-                <node concept="2Ry0Ak" id="Ej4tEpnfCf" role="2Ry0An">
-                  <property role="2Ry0Am" value="solutions" />
-                  <node concept="2Ry0Ak" id="Ej4tEpnfCg" role="2Ry0An">
-                    <property role="2Ry0Am" value="org.fbme.ide.build" />
-                    <node concept="2Ry0Ak" id="Ej4tEpnfCh" role="2Ry0An">
-                      <property role="2Ry0Am" value="models" />
-                    </node>
-                  </node>
-                </node>
+        <node concept="3LXTmp" id="5sRy4_wf9eh" role="1HemKq">
+          <node concept="55IIr" id="5sRy4_wf9ee" role="3LXTmr">
+            <node concept="2Ry0Ak" id="5sRy4_wf9ef" role="iGT6I">
+              <property role="2Ry0Am" value="buildscripts" />
+              <node concept="2Ry0Ak" id="5sRy4_wf9eg" role="2Ry0An">
+                <property role="2Ry0Am" value="models" />
               </node>
             </node>
           </node>
-          <node concept="3qWCbU" id="Ej4tEpnfCj" role="3LXTna">
+          <node concept="3qWCbU" id="5sRy4_wf9ei" role="3LXTna">
             <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
           </node>
         </node>
@@ -1424,7 +1416,7 @@
       </node>
       <node concept="1SiIV0" id="2ww0H4BPnBm" role="3bR37C">
         <node concept="3bR9La" id="2ww0H4BPnBn" role="1SiIV1">
-          <ref role="3bR37D" node="2ww0H4BOL8J" resolve="org.fbme.samples.statistics.build" />
+          <ref role="3bR37D" node="2ww0H4BOL8J" resolve="org.fbme.samples.statisticsPlugin.build" />
         </node>
       </node>
       <node concept="1SiIV0" id="7nNI4eNtlbQ" role="3bR37C">
@@ -1773,17 +1765,17 @@
     </node>
     <node concept="1E1JtA" id="2ww0H4BOL8J" role="3989C9">
       <property role="BnDLt" value="true" />
-      <property role="TrG5h" value="org.fbme.samples.statistics.build" />
+      <property role="TrG5h" value="org.fbme.samples.statisticsPlugin.build" />
       <property role="3LESm3" value="1e230472-5031-41e3-a8db-02d0c36f3ee2" />
       <node concept="55IIr" id="2ww0H4BOL8L" role="3LF7KH">
         <node concept="2Ry0Ak" id="2ww0H4BOLb0" role="iGT6I">
           <property role="2Ry0Am" value="samples" />
           <node concept="2Ry0Ak" id="2ww0H4BOLb5" role="2Ry0An">
-            <property role="2Ry0Am" value="statistics" />
+            <property role="2Ry0Am" value="statistics-plugin" />
             <node concept="2Ry0Ak" id="2ww0H4BOLba" role="2Ry0An">
               <property role="2Ry0Am" value="buildsolution" />
-              <node concept="2Ry0Ak" id="2ww0H4BOLbf" role="2Ry0An">
-                <property role="2Ry0Am" value="org.fbme.samples.statistics.build.msd" />
+              <node concept="2Ry0Ak" id="5sRy4_w5OWT" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin.build.msd" />
               </node>
             </node>
           </node>
@@ -1832,6 +1824,44 @@
             <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
           </node>
         </node>
+        <node concept="3LXTmp" id="5sRy4_w5mAH" role="1HemKq">
+          <node concept="55IIr" id="5sRy4_w5mAC" role="3LXTmr">
+            <node concept="2Ry0Ak" id="5sRy4_w5mAD" role="iGT6I">
+              <property role="2Ry0Am" value="samples" />
+              <node concept="2Ry0Ak" id="5sRy4_w5mAE" role="2Ry0An">
+                <property role="2Ry0Am" value="statisticsPlugin" />
+                <node concept="2Ry0Ak" id="5sRy4_w5mAF" role="2Ry0An">
+                  <property role="2Ry0Am" value="buildsolution" />
+                  <node concept="2Ry0Ak" id="5sRy4_w5mAG" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3qWCbU" id="5sRy4_w5mAI" role="3LXTna">
+            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+          </node>
+        </node>
+        <node concept="3LXTmp" id="5sRy4_w6Jh8" role="1HemKq">
+          <node concept="55IIr" id="5sRy4_w6Jh3" role="3LXTmr">
+            <node concept="2Ry0Ak" id="5sRy4_w6Jh4" role="iGT6I">
+              <property role="2Ry0Am" value="samples" />
+              <node concept="2Ry0Ak" id="5sRy4_w6Jh5" role="2Ry0An">
+                <property role="2Ry0Am" value="statistics-plugin" />
+                <node concept="2Ry0Ak" id="5sRy4_w6Jh6" role="2Ry0An">
+                  <property role="2Ry0Am" value="buildsolution" />
+                  <node concept="2Ry0Ak" id="5sRy4_w6Jh7" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3qWCbU" id="5sRy4_w6Jh9" role="3LXTna">
+            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="398rNT" id="6kvdbYtXYkJ" role="1l3spd">
@@ -1874,7 +1904,7 @@
   </node>
   <node concept="1l3spW" id="6GNoG1I1IKi">
     <property role="TrG5h" value="fbme_rcp_distrib_jbr" />
-    <property role="2DA0ip" value="../../../../" />
+    <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcpdistrib-jbr.xml" />
     <node concept="2sgV4H" id="6GNoG1I1IKj" role="1l3spa">
       <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp" />
@@ -1883,7 +1913,7 @@
       <node concept="3981dG" id="6GNoG1I1ILG" role="39821P">
         <node concept="3_J27D" id="6GNoG1I1ILH" role="Nbhlr">
           <node concept="3Mxwew" id="6GNoG1I1ILI" role="3MwsjC">
-            <property role="3MwjfP" value="iec61499" />
+            <property role="3MwjfP" value="fbme" />
           </node>
           <node concept="3Mxwew" id="6GNoG1I1ILJ" role="3MwsjC">
             <property role="3MwjfP" value="-" />
@@ -1926,7 +1956,7 @@
                   <node concept="2Ry0Ak" id="6GNoG1I1IM0" role="iGT6I">
                     <property role="2Ry0Am" value="icons" />
                     <node concept="2Ry0Ak" id="6GNoG1I1IM1" role="2Ry0An">
-                      <property role="2Ry0Am" value="iec61499.icns" />
+                      <property role="2Ry0Am" value="fbme.icns" />
                     </node>
                   </node>
                 </node>
@@ -1960,7 +1990,7 @@
                   <property role="2$htvj" value="*" />
                   <node concept="NbPM2" id="6GNoG1I1IMc" role="2$htvi">
                     <node concept="3Mxwew" id="6GNoG1I1IMd" role="3MwsjC">
-                      <property role="3MwjfP" value="iec61499" />
+                      <property role="3MwjfP" value="fbme" />
                     </node>
                   </node>
                 </node>
@@ -2100,15 +2130,15 @@
                     <property role="2Ry0Am" value="build" />
                     <node concept="2Ry0Ak" id="6GNoG1I1IMZ" role="2Ry0An">
                       <property role="2Ry0Am" value="startup" />
-                      <node concept="2Ry0Ak" id="6GNoG1I1IN0" role="2Ry0An">
-                        <property role="2Ry0Am" value="iec6149964.vmoptions" />
+                      <node concept="2Ry0Ak" id="4K9PzRDlbO9" role="2Ry0An">
+                        <property role="2Ry0Am" value="fbme64.vmoptions" />
                       </node>
                     </node>
                   </node>
                 </node>
                 <node concept="2$htT0" id="6GNoG1I1IN1" role="28jJR8">
-                  <property role="2$htTZ" value="iec6149964.vmoptions" />
-                  <property role="2$htTY" value="iec61499.vmoptions" />
+                  <property role="2$htTZ" value="fbme64.vmoptions" />
+                  <property role="2$htTY" value="fbme.vmoptions" />
                 </node>
               </node>
             </node>
@@ -2151,7 +2181,7 @@
           </node>
           <node concept="3_J27D" id="6GNoG1I1IN2" role="Nbhlr">
             <node concept="3Mxwew" id="6GNoG1I1IN3" role="3MwsjC">
-              <property role="3MwjfP" value="iec61499 " />
+              <property role="3MwjfP" value="fbme " />
             </node>
             <node concept="3Mxwey" id="6GNoG1I1IN4" role="3MwsjC">
               <ref role="3Mxwex" node="6GNoG1I1INa" resolve="version" />

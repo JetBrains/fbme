@@ -100,7 +100,7 @@ tasks.register("\$buildRcp") {
 tasks.register<Copy>("copyStartupScripts") {
     dependsOn("buildBootstrap")
 
-    from("code/buildscripts/solutions/org.fbme.ide.build/source_gen/org/fbme/ide/build")
+    from("buildscripts/source_gen/org/fbme/ide/build")
 
     include("*.bat")
     include("*.sh")
@@ -122,20 +122,20 @@ tasks.register("buildRcpWithJBR") {
 
 tasks.register<Copy>("macosBinaries") {
     dependsOn("buildRcpWithJBR")
-    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/iec61499-193.SNAPSHOT.macos.zip"))) {
+    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/fbme-193.SNAPSHOT.macos.zip"))) {
         eachFile {
             relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
         }
         includeEmptyDirs = false
     }
-    into(file("build/iec61499-macos.app"))
+    into(file("build/fbme-macos.app"))
 
     doLast {
-        delete("$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib")
+        delete("$projectDir/build/fbme-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib")
         ant.withGroovyBuilder {
             "symlink"(
-                    "resource" to "$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/Home/lib/jli/libjli.dylib",
-                    "link" to "$projectDir/build/iec61499-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib"
+                    "resource" to "$projectDir/build/fbme-macos.app/Contents/jbr/Contents/Home/lib/jli/libjli.dylib",
+                    "link" to "$projectDir/build/fbme-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib"
             )
         }
     }

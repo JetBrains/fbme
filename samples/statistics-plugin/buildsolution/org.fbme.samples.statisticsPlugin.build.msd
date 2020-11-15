@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="org.fbme.samples.statistics.build" uuid="1e230472-5031-41e3-a8db-02d0c36f3ee2" moduleVersion="0" compileInMPS="true">
+<solution name="org.fbme.samples.statisticsPlugin.build" uuid="1e230472-5031-41e3-a8db-02d0c36f3ee2" moduleVersion="0" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
@@ -17,7 +17,7 @@
   </dependencies>
   <languageVersions />
   <dependencyVersions>
-    <module reference="1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statistics.build)" version="0" />
+    <module reference="1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statisticsPlugin.build)" version="0" />
   </dependencyVersions>
 </solution>
 
