@@ -106,6 +106,9 @@
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
+      <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
+        <child id="763829979718664967" name="files" index="3rtmxm" />
+      </concept>
       <concept id="4278635856200817744" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleModelRoot" flags="ng" index="1BupzO">
         <property id="8137134783396907368" name="convert2binary" index="1Hdu6h" />
         <property id="8137134783396676838" name="extracted" index="1HemKv" />
@@ -274,6 +277,21 @@
         <node concept="1SiIV0" id="1b51meRU43g" role="3bR37C">
           <node concept="3bR9La" id="1b51meRU43h" role="1SiIV1">
             <ref role="3bR37D" to="bco3:42vv4xsIIT7" resolve="org.fbme.ide.richediting" />
+          </node>
+        </node>
+        <node concept="3rtmxn" id="2fGh0w71KJf" role="3bR31x">
+          <node concept="3LXTmp" id="2fGh0w71KJg" role="3rtmxm">
+            <node concept="55IIr" id="2fGh0w71KJh" role="3LXTmr">
+              <node concept="2Ry0Ak" id="2fGh0w71KJi" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2fGh0w71KJj" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.smvDebugger" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="2fGh0w71KJl" role="3LXTna">
+              <property role="3qWCbO" value="icons/**" />
+            </node>
           </node>
         </node>
       </node>
