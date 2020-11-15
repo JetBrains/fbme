@@ -73,19 +73,23 @@ tasks.register<Copy>("downloadDependencies") {
     into("lib")
 }
 
-fun Task.antexec(vararg args: Any) {
+fun Task.antexec(path: String, task: String? = null) {
     doLast {
         javaexec {
             main = "org.apache.tools.ant.launch.Launcher"
             classpath = ant_lib
-            args(*args)
+
+            args("-Dbasedir=$projectDir", "-buildfile", file(path))
+            if (task != null) {
+                args(task)
+            }
         }
     }
 }
 
 tasks.register("buildBootstrap") {
     dependsOn("downloadDependencies")
-    antexec("-Dbasedir=$projectDir", "-buildfile", file("build-bootstrap.xml"), "generate")
+    antexec("build-bootstrap.xml", "generate")
 }
 
 tasks.named("build") {
@@ -94,7 +98,7 @@ tasks.named("build") {
 
 tasks.register("\$buildRcp") {
     dependsOn("build")
-    antexec("-Dbasedir=$projectDir", "-buildfile", file("build/build-rcp.xml"))
+    antexec("build/build-rcp.xml")
 }
 
 tasks.register<Copy>("copyStartupScripts") {
@@ -112,12 +116,12 @@ tasks.register<Copy>("copyStartupScripts") {
 
 tasks.register("buildRcp") {
     dependsOn("\$buildRcp", "copyStartupScripts")
-    antexec("-Dbasedir=$projectDir", "-buildfile", file("build/build-rcpdistrib.xml"))
+    antexec("build/build-rcpdistrib.xml")
 }
 
 tasks.register("buildRcpWithJBR") {
     dependsOn("\$buildRcp", "copyStartupScripts", "downloadJBR")
-    antexec("-Dbasedir=$projectDir", "-buildfile", file("build/build-rcpdistrib-jbr.xml"))
+    antexec("build/build-rcpdistrib-jbr.xml")
 }
 
 tasks.register<Copy>("macosBinaries") {
