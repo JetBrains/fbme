@@ -3,7 +3,7 @@
   <property name="build.dir" location="build" />
   <property name="build.tmp" location="${build.dir}/tmp/fbme_bootstrap" />
   <property name="build.layout" location="${build.dir}/artifacts/fbme_bootstrap" />
-  <property name="mps_home" location="${basedir}/lib/MPS 2019.3" />
+  <property name="mps_home" location="${basedir}/lib/MPS 2020.1" />
   <property name="artifacts.mps" location="${mps_home}" />
   <property name="artifacts.fbme_library" location="code/library/build/artifacts/fbme_library" />
   <property name="artifacts.fbme_scenes" location="code/scenes/build/artifacts/fbme_scenes" />

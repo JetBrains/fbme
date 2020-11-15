@@ -36,10 +36,7 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="CALC" Type="PID_CALC" x="1173.0" y="-150.0">
-      <Parameter Name="TD" Value="T#1s" />
-      <Parameter Name="DTERM" Value="T#1s" />
-    </FB>
+    <FB Name="CALC" Type="PID_CALC" x="1173.0" y="-150.0" />
     <FB Name="INTEGRAL_TERM" Type="INTEGRAL_REAL" x="3023.0" y="584.0" />
     <EventConnections>
       <Connection Source="CALC.POSTO" Destination="EXO" dx1="503.0" />

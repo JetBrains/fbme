@@ -2,7 +2,7 @@
 <model ref="r:c260e783-fa83-4eab-8183-e5c937092355(org.fbme.scenes.cells)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging" version="0" />
     <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="2" />
@@ -208,7 +208,7 @@
         <child id="1221737317278" name="statementList" index="1Pe0a2" />
       </concept>
       <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
-        <child id="1350122676458893092" name="text" index="3ndbpf" />
+        <child id="8356039341262087992" name="line" index="1aUNEU" />
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
@@ -2281,7 +2281,7 @@
       </node>
       <node concept="3clFbS" id="38k27IRrZPr" role="3clF47">
         <node concept="3SKdUt" id="38k27IRs8CZ" role="3cqZAp">
-          <node concept="1PaTwC" id="3D$ZgG8vrBU" role="3ndbpf">
+          <node concept="1PaTwC" id="3D$ZgG8vrBU" role="1aUNEU">
             <node concept="3oM_SD" id="3D$ZgG8vrBV" role="1PaTwD">
               <property role="3oM_SC" value="painted" />
             </node>
@@ -3383,7 +3383,7 @@
                         <node concept="1bVj0M" id="3vyG44ADIKQ" role="37wK5m">
                           <node concept="3clFbS" id="3vyG44ADIKR" role="1bW5cS">
                             <node concept="3SKdUt" id="3vyG44ADIKS" role="3cqZAp">
-                              <node concept="1PaTwC" id="3D$ZgG8vrBY" role="3ndbpf">
+                              <node concept="1PaTwC" id="3D$ZgG8vrBY" role="1aUNEU">
                                 <node concept="3oM_SD" id="3D$ZgG8vrBZ" role="1PaTwD">
                                   <property role="3oM_SC" value="do" />
                                 </node>
@@ -5326,7 +5326,7 @@
               </node>
               <node concept="3clFbS" id="6O98XsLktPK" role="3clF47">
                 <node concept="3SKdUt" id="6O98XsLktPL" role="3cqZAp">
-                  <node concept="1PaTwC" id="6O98XsLktPM" role="3ndbpf">
+                  <node concept="1PaTwC" id="6O98XsLktPM" role="1aUNEU">
                     <node concept="3oM_SD" id="6O98XsLktPN" role="1PaTwD">
                       <property role="3oM_SC" value="do" />
                     </node>
@@ -6240,7 +6240,7 @@
       </node>
       <node concept="3clFbS" id="3DiEZ8TFjDI" role="3clF47">
         <node concept="3SKdUt" id="3DiEZ8TFkfP" role="3cqZAp">
-          <node concept="1PaTwC" id="3D$ZgG8vrC7" role="3ndbpf">
+          <node concept="1PaTwC" id="3D$ZgG8vrC7" role="1aUNEU">
             <node concept="3oM_SD" id="3D$ZgG8vrC8" role="1PaTwD">
               <property role="3oM_SC" value="do" />
             </node>

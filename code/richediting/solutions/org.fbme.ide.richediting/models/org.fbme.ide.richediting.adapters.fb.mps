@@ -2,7 +2,7 @@
 <model ref="r:15c6feaa-d38f-494f-a105-0b74d654dd08(org.fbme.ide.richediting.adapters.fb)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
   </languages>
@@ -242,7 +242,7 @@
         <child id="1163670683720" name="body" index="3Kbo56" />
       </concept>
       <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
-        <child id="1350122676458893092" name="text" index="3ndbpf" />
+        <child id="8356039341262087992" name="line" index="1aUNEU" />
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
@@ -6716,7 +6716,7 @@
                   </node>
                   <node concept="3clFbS" id="4xpFLWeinCC" role="3clF47">
                     <node concept="3SKdUt" id="4xpFLWeiB5r" role="3cqZAp">
-                      <node concept="1PaTwC" id="3D$ZgG8vrBq" role="3ndbpf">
+                      <node concept="1PaTwC" id="3D$ZgG8vrBq" role="1aUNEU">
                         <node concept="3oM_SD" id="3D$ZgG8vrBr" role="1PaTwD">
                           <property role="3oM_SC" value="do" />
                         </node>

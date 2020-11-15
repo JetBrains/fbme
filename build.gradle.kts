@@ -1,8 +1,8 @@
 import de.undercouch.gradle.tasks.download.Download
 import org.fbme.gradle.*
 
-val mpsMajor = "2019.3"
-val mpsMinor = "4"
+val mpsMajor = "2020.1"
+val mpsMinor = "6"
 
 plugins {
     base

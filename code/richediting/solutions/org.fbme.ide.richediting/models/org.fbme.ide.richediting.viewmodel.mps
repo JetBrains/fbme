@@ -2,7 +2,7 @@
 <model ref="r:70067d3a-bbe4-4c69-a49e-eb3628586837(org.fbme.ide.richediting.viewmodel)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
@@ -200,7 +200,7 @@
       </concept>
       <concept id="1082113931046" name="jetbrains.mps.baseLanguage.structure.ContinueStatement" flags="nn" index="3N13vt" />
       <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
-        <child id="1350122676458893092" name="text" index="3ndbpf" />
+        <child id="8356039341262087992" name="line" index="1aUNEU" />
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
@@ -737,7 +737,7 @@
           </node>
           <node concept="3clFbS" id="1KgvZpg2OTN" role="2LFqv$">
             <node concept="3SKdUt" id="1KgvZpg2Rd8" role="3cqZAp">
-              <node concept="1PaTwC" id="1KgvZpg2Rd9" role="3ndbpf">
+              <node concept="1PaTwC" id="1KgvZpg2Rd9" role="1aUNEU">
                 <node concept="3oM_SD" id="1KgvZpg2Rdb" role="1PaTwD">
                   <property role="3oM_SC" value="TODO" />
                 </node>
@@ -1524,7 +1524,7 @@
             <node concept="3clFbJ" id="3V49AcvOW3C" role="3cqZAp">
               <node concept="3clFbS" id="3V49AcvOW3E" role="3clFbx">
                 <node concept="3SKdUt" id="2jkJwnb4NoO" role="3cqZAp">
-                  <node concept="1PaTwC" id="2jkJwnb4NoP" role="3ndbpf">
+                  <node concept="1PaTwC" id="2jkJwnb4NoP" role="1aUNEU">
                     <node concept="3oM_SD" id="2jkJwnb4NoR" role="1PaTwD">
                       <property role="3oM_SC" value="TODO" />
                     </node>

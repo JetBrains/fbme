@@ -2,9 +2,9 @@
 <model ref="r:800eac96-bf9c-458b-84d9-4e8242e44fb3(org.fbme.ide.richediting.editor)">
   <persistence version="9" />
   <languages>
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="9" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
     <use id="774bf8a0-62e5-41e1-af63-f4812e60e48b" name="jetbrains.mps.baseLanguage.checkedDots" version="0" />
   </languages>
@@ -1109,14 +1109,14 @@
     <node concept="2tJIrI" id="1QSEqLhW9ic" role="jymVt" />
     <node concept="3Tm1VV" id="1QSEqLhW8CP" role="1B3o_S" />
     <node concept="3uibUv" id="1QSEqLhW8ZC" role="1zkMxy">
-      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleHeaderedEditorProjection" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleEditorProjection" />
     </node>
     <node concept="3clFbW" id="1QSEqLhW9A1" role="jymVt">
       <node concept="3cqZAl" id="1QSEqLhW9A2" role="3clF45" />
       <node concept="3Tm1VV" id="1QSEqLhW9A3" role="1B3o_S" />
       <node concept="3clFbS" id="1QSEqLhW9A5" role="3clF47">
         <node concept="XkiVB" id="1QSEqLhW9A7" role="3cqZAp">
-          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleHeaderedEditorProjection" />
+          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleEditorProjection" />
           <node concept="37vLTw" id="1QSEqLhW9Ab" role="37wK5m">
             <ref role="3cqZAo" node="1QSEqLhW9A8" resolve="node" />
           </node>
@@ -1165,7 +1165,7 @@
       <node concept="37vLTG" id="1QSEqLhW9Ac" role="3clF46">
         <property role="TrG5h" value="controller" />
         <node concept="3uibUv" id="1QSEqLhW9Ae" role="1tU5fm">
-          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
         </node>
       </node>
       <node concept="37vLTG" id="1QSEqLhW9Ag" role="3clF46">
@@ -2275,7 +2275,7 @@
     <node concept="2tJIrI" id="1QSEqLhAptM" role="jymVt" />
     <node concept="3Tm1VV" id="bRdTVHYKvd" role="1B3o_S" />
     <node concept="3uibUv" id="bRdTVHYKve" role="EKbjA">
-      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
     </node>
     <node concept="3clFbW" id="1QSEqLhAp$$" role="jymVt">
       <node concept="3cqZAl" id="1QSEqLhAp$_" role="3clF45" />
@@ -2339,7 +2339,7 @@
       <property role="TrG5h" value="createProjection" />
       <node concept="3Tm1VV" id="bRdTVHYKvp" role="1B3o_S" />
       <node concept="3uibUv" id="bRdTVHYKvq" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="bRdTVHYKvr" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -2398,7 +2398,7 @@
       <property role="TrG5h" value="restoreProjection" />
       <node concept="3Tm1VV" id="1QSEqLhY4Nt" role="1B3o_S" />
       <node concept="3uibUv" id="1QSEqLhY4Nu" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="1QSEqLhY4Nv" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -3162,11 +3162,11 @@
               <node concept="3cpWsn" id="2CiAywAbtfH" role="3cpWs9">
                 <property role="TrG5h" value="specs" />
                 <node concept="3uibUv" id="2CiAywAbtfI" role="1tU5fm">
-                  <ref role="3uigEE" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                  <ref role="3uigEE" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                 </node>
                 <node concept="2YIFZM" id="2CiAywAbtfJ" role="33vP2m">
                   <ref role="37wK5l" to="de0p:2hWn4IdWIEf" resolve="getInstance" />
-                  <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                  <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                   <node concept="37vLTw" id="2CiAywAbtfK" role="37wK5m">
                     <ref role="3cqZAo" node="2CiAywAbteX" resolve="project" />
                   </node>
@@ -3807,22 +3807,6 @@
         <node concept="3uibUv" id="1vJkp1TYvgr" role="1tU5fm">
           <ref role="3uigEE" to="4nm9:~Project" resolve="Project" />
         </node>
-      </node>
-    </node>
-    <node concept="2tJIrI" id="1vJkp1U0sSk" role="jymVt" />
-    <node concept="3clFb_" id="1vJkp1U0t8r" role="jymVt">
-      <property role="TrG5h" value="updateModel" />
-      <node concept="3Tmbuc" id="1vJkp1U0t8s" role="1B3o_S" />
-      <node concept="3cqZAl" id="1vJkp1U0t8u" role="3clF45" />
-      <node concept="37vLTG" id="1vJkp1U0t8v" role="3clF46">
-        <property role="TrG5h" value="psiElement" />
-        <node concept="3uibUv" id="1vJkp1U0t8w" role="1tU5fm">
-          <ref role="3uigEE" to="dj18:~PsiElement" resolve="PsiElement" />
-        </node>
-      </node>
-      <node concept="3clFbS" id="1vJkp1U0t8x" role="3clF47" />
-      <node concept="2AHcQZ" id="1vJkp1U0t8y" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
     <node concept="2tJIrI" id="1vJkp1U0tIk" role="jymVt" />
@@ -4689,10 +4673,10 @@
                 <node concept="3cpWsn" id="4gibKcMwZaG" role="3cpWs9">
                   <property role="TrG5h" value="specs" />
                   <node concept="3uibUv" id="4gibKcMwZaH" role="1tU5fm">
-                    <ref role="3uigEE" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                    <ref role="3uigEE" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                   </node>
                   <node concept="2YIFZM" id="4gibKcMwZaI" role="33vP2m">
-                    <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectHeaderedEditorSpecs" />
+                    <ref role="1Pybhc" to="de0p:2hWn4IdUWjD" resolve="ProjectEditorSpecs" />
                     <ref role="37wK5l" to="de0p:2hWn4IdWIEf" resolve="getInstance" />
                     <node concept="37vLTw" id="4gibKcMx5GU" role="37wK5m">
                       <ref role="3cqZAo" node="4gibKcMwOFz" resolve="myProject" />
@@ -4970,7 +4954,7 @@
       <property role="TrG5h" value="createProjection" />
       <node concept="3Tm1VV" id="1_XvODPJH2O" role="1B3o_S" />
       <node concept="3uibUv" id="1_XvODPJH2P" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="1_XvODPJH2Q" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -5432,7 +5416,7 @@
     <node concept="2tJIrI" id="1_XvODPJGSY" role="jymVt" />
     <node concept="3Tm1VV" id="1_XvODPJGLo" role="1B3o_S" />
     <node concept="3uibUv" id="1_XvODPJGSE" role="EKbjA">
-      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
     </node>
   </node>
   <node concept="312cEu" id="1_XvODPK0PB">
@@ -5449,14 +5433,14 @@
     <node concept="2tJIrI" id="1_XvODPK1ts" role="jymVt" />
     <node concept="3Tm1VV" id="1_XvODPK0PC" role="1B3o_S" />
     <node concept="3uibUv" id="1_XvODPK0VS" role="1zkMxy">
-      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleHeaderedEditorProjection" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleEditorProjection" />
     </node>
     <node concept="3clFbW" id="1_XvODPK1tU" role="jymVt">
       <node concept="3cqZAl" id="1_XvODPK1tV" role="3clF45" />
       <node concept="3Tm1VV" id="1_XvODPK1tW" role="1B3o_S" />
       <node concept="3clFbS" id="1_XvODPK1tY" role="3clF47">
         <node concept="XkiVB" id="1_XvODPK1u0" role="3cqZAp">
-          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleHeaderedEditorProjection" />
+          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleEditorProjection" />
           <node concept="37vLTw" id="1_XvODPK1u4" role="37wK5m">
             <ref role="3cqZAo" node="1_XvODPK1u1" resolve="node" />
           </node>
@@ -5490,7 +5474,7 @@
       <node concept="37vLTG" id="1_XvODPK1u5" role="3clF46">
         <property role="TrG5h" value="controller" />
         <node concept="3uibUv" id="1_XvODPK1u7" role="1tU5fm">
-          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
         </node>
       </node>
       <node concept="37vLTG" id="1_XvODPK1u9" role="3clF46">
@@ -5651,7 +5635,7 @@
       <property role="TrG5h" value="createProjection" />
       <node concept="3Tm1VV" id="2SU8oJdFFJS" role="1B3o_S" />
       <node concept="3uibUv" id="2SU8oJdFFJT" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="2SU8oJdFFJU" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -5838,7 +5822,7 @@
       <property role="TrG5h" value="restoreProjection" />
       <node concept="3Tm1VV" id="4gibKcMsvz2" role="1B3o_S" />
       <node concept="3uibUv" id="4gibKcMsvz3" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="4gibKcMsvz4" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -5970,7 +5954,7 @@
       <property role="TrG5h" value="createProjection0" />
       <node concept="3Tm6S6" id="4gibKcMsCSH" role="1B3o_S" />
       <node concept="3uibUv" id="4gibKcMsCSI" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="4gibKcMsCQZ" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -6295,7 +6279,7 @@
     <node concept="2tJIrI" id="2SU8oJdFFMU" role="jymVt" />
     <node concept="3Tm1VV" id="2SU8oJdFFMV" role="1B3o_S" />
     <node concept="3uibUv" id="2SU8oJdFFMW" role="EKbjA">
-      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
     </node>
   </node>
   <node concept="312cEu" id="2SU8oJdFQLo">
@@ -6330,14 +6314,14 @@
     <node concept="2tJIrI" id="2SU8oJdFQLt" role="jymVt" />
     <node concept="3Tm1VV" id="2SU8oJdFQLu" role="1B3o_S" />
     <node concept="3uibUv" id="2SU8oJdFQLv" role="1zkMxy">
-      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleHeaderedEditorProjection" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleEditorProjection" />
     </node>
     <node concept="3clFbW" id="2SU8oJdFQLw" role="jymVt">
       <node concept="3cqZAl" id="2SU8oJdFQLx" role="3clF45" />
       <node concept="3Tm1VV" id="2SU8oJdFQLy" role="1B3o_S" />
       <node concept="3clFbS" id="2SU8oJdFQLz" role="3clF47">
         <node concept="XkiVB" id="2SU8oJdFQL$" role="3cqZAp">
-          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleHeaderedEditorProjection" />
+          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleEditorProjection" />
           <node concept="37vLTw" id="2SU8oJdFQL_" role="37wK5m">
             <ref role="3cqZAo" node="2SU8oJdFQLH" resolve="node" />
           </node>
@@ -6381,7 +6365,7 @@
       <node concept="37vLTG" id="2SU8oJdFQLJ" role="3clF46">
         <property role="TrG5h" value="controller" />
         <node concept="3uibUv" id="2SU8oJdFQLK" role="1tU5fm">
-          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
         </node>
       </node>
       <node concept="37vLTG" id="2SU8oJdFQLL" role="3clF46">
@@ -6678,7 +6662,7 @@
       <property role="TrG5h" value="createProjection" />
       <node concept="3Tm1VV" id="2SP6YJBU5lF" role="1B3o_S" />
       <node concept="3uibUv" id="2SP6YJBU5lG" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="2SP6YJBU5lH" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -6969,7 +6953,7 @@
       <property role="TrG5h" value="restoreProjection" />
       <node concept="3Tm1VV" id="2SP6YJBU5mO" role="1B3o_S" />
       <node concept="3uibUv" id="2SP6YJBU5mP" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="2SP6YJBU5mQ" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -7101,7 +7085,7 @@
       <property role="TrG5h" value="createProjection0" />
       <node concept="3Tm6S6" id="2SP6YJBU5nB" role="1B3o_S" />
       <node concept="3uibUv" id="2SP6YJBU5nC" role="3clF45">
-        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="HeaderedEditorProjection" />
+        <ref role="3uigEE" to="de0p:7Y8B9wpl75t" resolve="EditorProjection" />
       </node>
       <node concept="37vLTG" id="2SP6YJBU5nD" role="3clF46">
         <property role="TrG5h" value="name" />
@@ -7288,7 +7272,7 @@
     </node>
     <node concept="3Tm1VV" id="2SP6YJBU5pK" role="1B3o_S" />
     <node concept="3uibUv" id="2SP6YJBU5pL" role="EKbjA">
-      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
     </node>
   </node>
   <node concept="312cEu" id="2SP6YJBVLKg">
@@ -7323,14 +7307,14 @@
     <node concept="2tJIrI" id="2SP6YJBVLKt" role="jymVt" />
     <node concept="3Tm1VV" id="2SP6YJBVLKu" role="1B3o_S" />
     <node concept="3uibUv" id="2SP6YJBVLKv" role="1zkMxy">
-      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleHeaderedEditorProjection" />
+      <ref role="3uigEE" to="de0p:7Y8B9wpmJ8m" resolve="SimpleEditorProjection" />
     </node>
     <node concept="3clFbW" id="2SP6YJBVLKw" role="jymVt">
       <node concept="3cqZAl" id="2SP6YJBVLKx" role="3clF45" />
       <node concept="3Tm1VV" id="2SP6YJBVLKy" role="1B3o_S" />
       <node concept="3clFbS" id="2SP6YJBVLKz" role="3clF47">
         <node concept="XkiVB" id="2SP6YJBVLK$" role="3cqZAp">
-          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleHeaderedEditorProjection" />
+          <ref role="37wK5l" to="de0p:7Y8B9wpmJqb" resolve="SimpleEditorProjection" />
           <node concept="37vLTw" id="2SP6YJBVLK_" role="37wK5m">
             <ref role="3cqZAo" node="2SP6YJBVLKL" resolve="node" />
           </node>
@@ -7374,7 +7358,7 @@
       <node concept="37vLTG" id="2SP6YJBVLKN" role="3clF46">
         <property role="TrG5h" value="controller" />
         <node concept="3uibUv" id="2SP6YJBVLKO" role="1tU5fm">
-          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="HeaderedEditorProjectionController" />
+          <ref role="3uigEE" to="de0p:7Y8B9wpj6Z6" resolve="EditorProjectionController" />
         </node>
       </node>
       <node concept="37vLTG" id="2SP6YJBVLKP" role="3clF46">

@@ -2,7 +2,7 @@
 <model ref="r:fa6c636c-b2b7-439c-9e62-8550571c6e77(org.fbme.ide.meta.editor.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />
     <devkit ref="2677cb18-f558-4e33-bc38-a5139cee06dc(jetbrains.mps.devkit.language-design)" />
   </languages>
   <imports>
@@ -16,6 +16,8 @@
   </imports>
   <registry>
     <language id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor">
+      <concept id="5991739802479784073" name="jetbrains.mps.lang.editor.structure.MenuTypeDefault" flags="ng" index="22hDWj" />
+      <concept id="2000375450116423800" name="jetbrains.mps.lang.editor.structure.SubstituteMenu" flags="ng" index="22mcaB" />
       <concept id="1071666914219" name="jetbrains.mps.lang.editor.structure.ConceptEditorDeclaration" flags="ig" index="24kQdi">
         <child id="1078153129734" name="inspectedCellModel" index="6VMZX" />
       </concept>
@@ -49,6 +51,7 @@
       <concept id="1186414976055" name="jetbrains.mps.lang.editor.structure.DrawBorderStyleClassItem" flags="ln" index="VPXOz" />
       <concept id="1630016958697344083" name="jetbrains.mps.lang.editor.structure.IMenu_Concept" flags="ng" index="2ZABuq">
         <reference id="6591946374543067572" name="conceptDeclaration" index="aqKnT" />
+        <child id="5991739802479788259" name="type" index="22hAXT" />
       </concept>
       <concept id="1214406454886" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorStyleClassItem" flags="ln" index="30gYXW" />
       <concept id="1214406466686" name="jetbrains.mps.lang.editor.structure.TextBackgroundColorSelectedStyleClassItem" flags="ln" index="30h1P$" />
@@ -71,7 +74,6 @@
         <child id="1165420413720" name="parametersFunction" index="1ou48n" />
       </concept>
       <concept id="1165420626554" name="jetbrains.mps.lang.editor.structure.CellMenuPart_Generic_Group_Handler" flags="in" index="1ouSdP" />
-      <concept id="3308396621974580100" name="jetbrains.mps.lang.editor.structure.SubstituteMenu_Default" flags="ng" index="3p36aQ" />
       <concept id="1088185857835" name="jetbrains.mps.lang.editor.structure.InlineEditorComponent" flags="ig" index="1sVBvm" />
       <concept id="1139848536355" name="jetbrains.mps.lang.editor.structure.CellModel_WithRole" flags="ng" index="1$h60E">
         <property id="1214560368769" name="emptyNoTargetText" index="39s7Ar" />
@@ -921,9 +923,6 @@
       <node concept="2iRkQZ" id="i2IxuOP" role="2iSdaV" />
     </node>
   </node>
-  <node concept="3p36aQ" id="4s7KBSj$ShA">
-    <ref role="aqKnT" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
-  </node>
   <node concept="24kQdi" id="4s7KBSj$Sh$">
     <ref role="1XX52x" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
     <node concept="PMmxH" id="4s7KBSj$Sh_" role="2wV5jI">
@@ -959,6 +958,10 @@
       </node>
       <node concept="l2Vlx" id="3t1pVyvZafl" role="2iSdaV" />
     </node>
+  </node>
+  <node concept="22mcaB" id="4s7KBSj$ShA">
+    <ref role="aqKnT" to="g3qn:4s7KBSj$Shx" resolve="StubCellModel_BorderedRefNodeList" />
+    <node concept="22hDWj" id="6pYQ4mCjF2d" role="22hAXT" />
   </node>
 </model>
 
