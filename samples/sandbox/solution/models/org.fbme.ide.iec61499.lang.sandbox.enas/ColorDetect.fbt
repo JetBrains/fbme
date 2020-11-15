@@ -20,7 +20,7 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="COLOR" Type="SUBSCRIBE_1" x="769.0" y="873.0" />
+    <FB Name="COLOR" Type="SUBSCRIBE_1" x="742.0" y="861.0" />
     <FB Name="IS_RED" Type="F_EQ" x="3040.0" y="720.0" />
     <FB Name="IS_GREEN" Type="F_EQ" x="3040.0" y="1600.0" />
     <FB Name="AND" Type="F_AND" x="5307.0" y="1342.0" />
@@ -34,7 +34,7 @@
     <FB Name="REND_DETECT" Type="E_REND" x="1792.0" y="523.0" />
     <EventConnections>
       <Connection Source="COLOR.INITO" Destination="INITO" dx1="57.0" />
-      <Connection Source="INIT" Destination="COLOR.INIT" dx1="450.0" />
+      <Connection Source="INIT" Destination="COLOR.INIT" dx1="426.0" />
       <Connection Source="FB9.EO" Destination="IS_RED.REQ" dx1="80.0" />
       <Connection Source="FB9.EO" Destination="IS_GREEN.REQ" dx1="80.0" />
       <Connection Source="IS_RED.CNF" Destination="REND_OTHER.EI1" dx1="142.0" />
@@ -50,12 +50,12 @@
       <Connection Source="NOT2.CNF" Destination="AND.REQ" dx1="230.0" />
       <Connection Source="DETECT" Destination="REND_DETECT.EI1" dx1="780.0" />
       <Connection Source="REND_DETECT.EO" Destination="FB9.EI" dx1="150.0" dy="300.0" dx2="150.0" />
-      <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="276.0" />
+      <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="284.0" />
     </EventConnections>
     <DataConnections>
       <Connection Source="COLOR.RD_1" Destination="color" dx1="369.0" />
-      <Connection Source="COLOR.RD_1" Destination="IS_RED.IN2" dx1="453.0" />
-      <Connection Source="COLOR.RD_1" Destination="IS_GREEN.IN2" dx1="561.0" />
+      <Connection Source="COLOR.RD_1" Destination="IS_RED.IN2" dx1="457.0" />
+      <Connection Source="COLOR.RD_1" Destination="IS_GREEN.IN2" dx1="565.0" />
       <Connection Source="IS_RED.OUT" Destination="NOT1.IN" dx1="226.0" />
       <Connection Source="IS_GREEN.OUT" Destination="NOT2.IN" dx1="188.0" />
       <Connection Source="IS_RED.OUT" Destination="PERMIT_RED.PERMIT" dx1="365.0" />

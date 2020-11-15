@@ -1579,9 +1579,9 @@
         <ref role="1N5Pi4" node="199xfzRqZJ_" resolve="carriageModelView" />
         <ref role="1N5Pi3" node="199xfzRqZDV" resolve="CHGI" />
       </node>
-      <node concept="bR73E" id="73RPw3h3yFi" role="bPNfo">
+      <node concept="bR73E" id="1OmIjxN0RuB" role="bPNfo">
         <property role="bR73D" value="150.0" />
-        <property role="bR73n" value="-96.0" />
+        <property role="bR73n" value="-88.0" />
         <property role="bR73k" value="150.0" />
       </node>
     </node>
@@ -1589,8 +1589,8 @@
       <property role="TrG5h" value="carriageModelView" />
       <ref role="1N5Tt0" node="sGryc2H2NT" resolve="CarriageModelView" />
       <node concept="10YbkR" id="199xfzRqZJB" role="b_cXm">
-        <property role="10YbkC" value="1719.0" />
-        <property role="10YbkE" value="657.0" />
+        <property role="10YbkC" value="1734.0" />
+        <property role="10YbkE" value="642.0" />
       </node>
     </node>
     <node concept="2zBDeF" id="199xfzRqZJq" role="2zBDeD">
@@ -1659,9 +1659,9 @@
         <ref role="1N5Pi4" node="199xfzRqZJ_" resolve="carriageModelView" />
         <ref role="1N5PlF" node="199xfzRqZDX" resolve="INSIDE" />
       </node>
-      <node concept="bR73E" id="73RPw3h3yFg" role="bPNfo">
+      <node concept="bR73E" id="1OmIjxN0RuE" role="bPNfo">
         <property role="bR73D" value="150.0" />
-        <property role="bR73n" value="746.0" />
+        <property role="bR73n" value="738.0" />
         <property role="bR73k" value="350.0" />
       </node>
     </node>
@@ -1674,9 +1674,9 @@
         <ref role="1N5Pi4" node="199xfzRqZJ_" resolve="carriageModelView" />
         <ref role="1N5PlF" node="199xfzRqZDZ" resolve="OUTSIDE" />
       </node>
-      <node concept="bR73E" id="73RPw3h3yFe" role="bPNfo">
+      <node concept="bR73E" id="1OmIjxN0RuA" role="bPNfo">
         <property role="bR73D" value="50.0" />
-        <property role="bR73n" value="592.0" />
+        <property role="bR73n" value="584.0" />
         <property role="bR73k" value="250.0" />
       </node>
     </node>
@@ -1689,8 +1689,8 @@
         <ref role="1N5Pi4" node="199xfzRqZJD" resolve="carriageController" />
         <ref role="1N5Pi3" node="sGryc2Ifac" resolve="CHGI" />
       </node>
-      <node concept="bR32z" id="73RPw3h3yF8" role="bPNfo">
-        <property role="bR32p" value="323.0" />
+      <node concept="bR32z" id="1OmIjxN0RuD" role="bPNfo">
+        <property role="bR32p" value="307.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="199xfzRqZKN" role="1N5PiV">
@@ -1702,8 +1702,8 @@
         <ref role="1N5Pi4" node="199xfzRqZJD" resolve="carriageController" />
         <ref role="1N5PlF" node="sGryc2Ifaj" resolve="LOAD_P" />
       </node>
-      <node concept="bR32z" id="73RPw3h3yFc" role="bPNfo">
-        <property role="bR32p" value="507.0" />
+      <node concept="bR32z" id="1OmIjxN0RuC" role="bPNfo">
+        <property role="bR32p" value="488.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="199xfzRqZKX" role="1N5PiV">
@@ -1715,8 +1715,8 @@
         <ref role="1N5Pi4" node="199xfzRqZJD" resolve="carriageController" />
         <ref role="1N5PlF" node="sGryc2Ifan" resolve="WP" />
       </node>
-      <node concept="bR32z" id="73RPw3h3yF7" role="bPNfo">
-        <property role="bR32p" value="719.0" />
+      <node concept="bR32z" id="1OmIjxN0RuF" role="bPNfo">
+        <property role="bR32p" value="700.0" />
       </node>
     </node>
   </node>

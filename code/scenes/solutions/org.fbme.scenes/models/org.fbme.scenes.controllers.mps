@@ -33,7 +33,7 @@
         <child id="2323553266850475953" name="modifiers" index="2frcjj" />
       </concept>
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
-      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="ng" index="2tJIrI" />
+      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="nn" index="2tJIrI" />
       <concept id="1188207840427" name="jetbrains.mps.baseLanguage.structure.AnnotationInstance" flags="nn" index="2AHcQZ">
         <reference id="1188208074048" name="annotation" index="2AI5Lk" />
       </concept>
@@ -2421,16 +2421,16 @@
       <node concept="3clFbS" id="17nGqbJdRmt" role="3clF47">
         <node concept="3cpWs8" id="1y1FD3qMlGy" role="3cqZAp">
           <node concept="3cpWsn" id="1y1FD3qMlGz" role="3cpWs9">
-            <property role="TrG5h" value="lineSize" />
+            <property role="TrG5h" value="fontSize" />
             <node concept="10Oyi0" id="1y1FD3qMlvz" role="1tU5fm" />
-            <node concept="2YIFZM" id="1y1FD3qMlG$" role="33vP2m">
-              <ref role="37wK5l" node="7qPnRGFzb_r" resolve="getLineSize" />
+            <node concept="2YIFZM" id="7MP0dMzafh" role="33vP2m">
+              <ref role="37wK5l" node="7qPnRGFzb_r" resolve="getFontSize" />
               <ref role="1Pybhc" node="1Oxt8dqZWeT" resolve="LayoutUtil" />
-              <node concept="2OqwBi" id="1y1FD3qMlG_" role="37wK5m">
-                <node concept="37vLTw" id="1y1FD3qMlGA" role="2Oq$k0">
+              <node concept="2OqwBi" id="7MP0dMzafi" role="37wK5m">
+                <node concept="37vLTw" id="7MP0dMzafj" role="2Oq$k0">
                   <ref role="3cqZAo" node="17nGqbJdQf_" resolve="myCell" />
                 </node>
-                <node concept="liA8E" id="1y1FD3qMlGB" role="2OqNvi">
+                <node concept="liA8E" id="7MP0dMzafk" role="2OqNvi">
                   <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
                 </node>
               </node>
@@ -2441,7 +2441,7 @@
           <node concept="1rXfSq" id="1y1FD3qMlPw" role="3cqZAk">
             <ref role="37wK5l" node="1y1FD3qMlPs" resolve="scale" />
             <node concept="37vLTw" id="1y1FD3qMlPv" role="37wK5m">
-              <ref role="3cqZAo" node="1y1FD3qMlGz" resolve="lineSize" />
+              <ref role="3cqZAo" node="1y1FD3qMlGz" resolve="fontSize" />
             </node>
           </node>
         </node>
@@ -2545,7 +2545,7 @@
               </node>
               <node concept="3clFbF" id="1y1FD3qYQrU" role="3cqZAp">
                 <node concept="2YIFZM" id="1y1FD3qYQBE" role="3clFbG">
-                  <ref role="37wK5l" node="1y1FD3qMQQ8" resolve="setLineSize" />
+                  <ref role="37wK5l" node="1y1FD3qMQQ8" resolve="setFontSize" />
                   <ref role="1Pybhc" node="1Oxt8dqZWeT" resolve="LayoutUtil" />
                   <node concept="2OqwBi" id="1y1FD3qYQBF" role="37wK5m">
                     <node concept="37vLTw" id="1y1FD3qYQBG" role="2Oq$k0">
@@ -2604,14 +2604,14 @@
                     <node concept="37vLTw" id="1y1FD3qIM73" role="37wK5m">
                       <ref role="3cqZAo" node="1iOpS24_v5l" resolve="shiftY" />
                     </node>
-                    <node concept="2YIFZM" id="1y1FD3qYPAo" role="37wK5m">
-                      <ref role="37wK5l" node="7qPnRGFzb_r" resolve="getLineSize" />
+                    <node concept="2YIFZM" id="7MP0dMvj64" role="37wK5m">
+                      <ref role="37wK5l" node="7qPnRGFzb_r" resolve="getFontSize" />
                       <ref role="1Pybhc" node="1Oxt8dqZWeT" resolve="LayoutUtil" />
-                      <node concept="2OqwBi" id="1y1FD3qYPAp" role="37wK5m">
-                        <node concept="37vLTw" id="1y1FD3qYPAq" role="2Oq$k0">
+                      <node concept="2OqwBi" id="7MP0dMvj65" role="37wK5m">
+                        <node concept="37vLTw" id="7MP0dMvj66" role="2Oq$k0">
                           <ref role="3cqZAo" node="17nGqbJdQf_" resolve="myCell" />
                         </node>
-                        <node concept="liA8E" id="1y1FD3qYPAr" role="2OqNvi">
+                        <node concept="liA8E" id="7MP0dMvj67" role="2OqNvi">
                           <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
                         </node>
                       </node>
@@ -2935,9 +2935,46 @@
   <node concept="312cEu" id="1Oxt8dqZWeT">
     <property role="TrG5h" value="LayoutUtil" />
     <node concept="2tJIrI" id="7qPnRGFzkWo" role="jymVt" />
-    <node concept="2tJIrI" id="7qPnRGFzado" role="jymVt" />
-    <node concept="2YIFZL" id="7qPnRGFzb_r" role="jymVt">
+    <node concept="2YIFZL" id="7MP0dMsbTr" role="jymVt">
       <property role="TrG5h" value="getLineSize" />
+      <node concept="3clFbS" id="7MP0dMsbTu" role="3clF47">
+        <node concept="3clFbF" id="7MP0dMsc0z" role="3cqZAp">
+          <node concept="10QFUN" id="7MP0dMsdPM" role="3clFbG">
+            <node concept="10Oyi0" id="7MP0dMsdWD" role="10QFUM" />
+            <node concept="1eOMI4" id="7MP0dMsdGK" role="10QFUP">
+              <node concept="17qRlL" id="7MP0dMsd0i" role="1eOMHV">
+                <node concept="1rXfSq" id="7MP0dMsc0y" role="3uHU7B">
+                  <ref role="37wK5l" node="7qPnRGFzb_r" resolve="getFontSize" />
+                  <node concept="37vLTw" id="7MP0dMsc2X" role="37wK5m">
+                    <ref role="3cqZAo" node="7MP0dMsbWk" resolve="style" />
+                  </node>
+                </node>
+                <node concept="2OqwBi" id="7MP0dMsd2S" role="3uHU7w">
+                  <node concept="2YIFZM" id="7MP0dMsd2T" role="2Oq$k0">
+                    <ref role="37wK5l" to="exr9:~EditorSettings.getInstance()" resolve="getInstance" />
+                    <ref role="1Pybhc" to="exr9:~EditorSettings" resolve="EditorSettings" />
+                  </node>
+                  <node concept="liA8E" id="7MP0dMsdgO" role="2OqNvi">
+                    <ref role="37wK5l" to="exr9:~EditorSettings.getLineSpacing()" resolve="getLineSpacing" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="7MP0dMsbPk" role="1B3o_S" />
+      <node concept="10Oyi0" id="7MP0dMsbTa" role="3clF45" />
+      <node concept="37vLTG" id="7MP0dMsbWk" role="3clF46">
+        <property role="TrG5h" value="style" />
+        <node concept="3uibUv" id="7MP0dMsbWj" role="1tU5fm">
+          <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="7MP0dMsbME" role="jymVt" />
+    <node concept="2YIFZL" id="7qPnRGFzb_r" role="jymVt">
+      <property role="TrG5h" value="getFontSize" />
       <node concept="3clFbS" id="7qPnRGFzb_v" role="3clF47">
         <node concept="3cpWs8" id="7qPnRGFzb_w" role="3cqZAp">
           <node concept="3cpWsn" id="7qPnRGFzb_x" role="3cpWs9">
@@ -3002,7 +3039,7 @@
     </node>
     <node concept="2tJIrI" id="1y1FD3r10sk" role="jymVt" />
     <node concept="2YIFZL" id="1y1FD3qMQQ8" role="jymVt">
-      <property role="TrG5h" value="setLineSize" />
+      <property role="TrG5h" value="setFontSize" />
       <node concept="3clFbS" id="1y1FD3qMQQ9" role="3clF47">
         <node concept="3clFbJ" id="1y1FD3qZpTB" role="3cqZAp">
           <node concept="3clFbS" id="1y1FD3qZpTD" role="3clFbx">

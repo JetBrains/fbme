@@ -15,6 +15,11 @@
       <concept id="4304617121958142676" name="org.fbme.ide.iec61499.lang.structure.TwoAngleConnectionPath" flags="ng" index="bR32z">
         <property id="4304617121958142702" name="dx" index="bR32p" />
       </concept>
+      <concept id="4304617121958159005" name="org.fbme.ide.iec61499.lang.structure.FourAngleConncetionPath" flags="ng" index="bR73E">
+        <property id="4304617121958159011" name="dx2" index="bR73k" />
+        <property id="4304617121958159008" name="dy" index="bR73n" />
+        <property id="4304617121958159006" name="dx1" index="bR73D" />
+      </concept>
       <concept id="4280485643802119831" name="org.fbme.ide.iec61499.lang.structure.StateDeclaration" flags="ng" index="2zAPAk">
         <child id="4280485643802119923" name="actions" index="2zAPBK" />
         <child id="6110000670794348100" name="position" index="2WOQdS" />
@@ -73,6 +78,8 @@
         <child id="7816599728425115160" name="position" index="2oiVCh" />
       </concept>
       <concept id="3589220129094132068" name="org.fbme.ide.iec61499.lang.structure.AdapterConnection" flags="ng" index="3IAhBk" />
+      <concept id="3589220129094133401" name="org.fbme.ide.iec61499.lang.structure.ComponentDataSource" flags="ng" index="3IAhSD" />
+      <concept id="3589220129094143959" name="org.fbme.ide.iec61499.lang.structure.ComponentDataDestination" flags="ng" index="3IAvtB" />
       <concept id="3589220129093721141" name="org.fbme.ide.iec61499.lang.structure.PlugDeclaration" flags="ng" index="3IBQi5">
         <reference id="3589220129093721144" name="adapterType" index="3IBQi8" />
         <child id="7816599728425079530" name="position" index="2oiNrz" />
@@ -87,6 +94,10 @@
       <concept id="967875482185482517" name="org.fbme.ide.iec61499.lang.structure.ComponentEventEndpoint" flags="ng" index="1N5Pia">
         <reference id="967875482185482524" name="declaration" index="1N5Pi3" />
       </concept>
+      <concept id="967875482185482492" name="org.fbme.ide.iec61499.lang.structure.ComponentDataEndpoint" flags="ng" index="1N5Plz">
+        <reference id="967875482185482484" name="declaration" index="1N5PlF" />
+      </concept>
+      <concept id="967875482185433878" name="org.fbme.ide.iec61499.lang.structure.DataConnection" flags="ng" index="1N5Tq9" />
       <concept id="967875482185433869" name="org.fbme.ide.iec61499.lang.structure.EventConnection" flags="ng" index="1N5Tqi" />
       <concept id="967875482185433822" name="org.fbme.ide.iec61499.lang.structure.FunctionBlockDeclaration" flags="ng" index="1N5Tt1">
         <reference id="967875482185433823" name="type" index="1N5Tt0" />
@@ -96,6 +107,7 @@
       <concept id="2693352324618654708" name="org.fbme.ide.iec61499.lang.structure.IWithFBNetwork" flags="ng" index="1QJEpv">
         <child id="3589220129094132063" name="adapterConnections" index="3IAhBJ" />
         <child id="967875482185482537" name="eventConnections" index="1N5PiQ" />
+        <child id="967875482185482532" name="dataConnections" index="1N5PiV" />
         <child id="967875482185482529" name="functionBlocks" index="1N5PiY" />
       </concept>
       <concept id="8167217573768971186" name="org.fbme.ide.iec61499.lang.structure.ComponentEventDestination" flags="ng" index="3Yx0EI" />
@@ -217,6 +229,21 @@
   </node>
   <node concept="1N5Tt2" id="G6ZN4MYPdv">
     <property role="TrG5h" value="Model" />
+    <node concept="1N5Tq9" id="7MP0dMz4Ds" role="1N5PiV">
+      <node concept="3IAvtB" id="7MP0dMz4Dv" role="2RhMK_">
+        <ref role="1N5Pi4" node="G6ZN4MYPdE" resolve="ArmIO" />
+        <ref role="1N5PlF" node="1rxLtFPnd3J" resolve="at_client" />
+      </node>
+      <node concept="3IAhSD" id="7MP0dMz4DB" role="2RhMKC">
+        <ref role="1N5Pi4" node="G6ZN4MYPdE" resolve="ArmIO" />
+        <ref role="1N5PlF" node="1rxLtFPnd4u" resolve="to_client" />
+      </node>
+      <node concept="bR73E" id="7MP0dMz4DE" role="bPNfo">
+        <property role="bR73D" value="130.0" />
+        <property role="bR73n" value="116.0" />
+        <property role="bR73k" value="130.0" />
+      </node>
+    </node>
     <node concept="2zBDe_" id="G6ZN4MYPdA" role="2zBDew">
       <property role="TrG5h" value="INITO" />
     </node>
@@ -237,6 +264,19 @@
       <node concept="10YbkR" id="1CoiI8TYDHm" role="2oiVCh">
         <property role="10YbkC" value="2900.0" />
         <property role="10YbkE" value="718.0" />
+      </node>
+    </node>
+    <node concept="1N5Tq9" id="7MP0dMz9Li" role="1N5PiV">
+      <node concept="3IAhSD" id="7MP0dMz9Lk" role="2RhMKC">
+        <ref role="1N5Pi4" node="G6ZN4MYPdC" resolve="StackIO" />
+        <ref role="1N5PlF" node="1rxLtFPnd5Y" resolve="retract" />
+      </node>
+      <node concept="3IAvtB" id="7MP0dMz9Ll" role="2RhMK_">
+        <ref role="1N5Pi4" node="G6ZN4MYPdE" resolve="ArmIO" />
+        <ref role="1N5PlF" node="1rxLtFPnd3C" resolve="at_magazine" />
+      </node>
+      <node concept="bR32z" id="7MP0dMz9Lm" role="bPNfo">
+        <property role="bR32p" value="753.0" />
       </node>
     </node>
   </node>

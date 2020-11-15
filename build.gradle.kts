@@ -1,8 +1,8 @@
 import de.undercouch.gradle.tasks.download.Download
 import org.fbme.gradle.*
 
-val mpsMajor = "2020.1"
-val mpsMinor = "6"
+val mpsMajor = "2020.2"
+val mpsMinor = "2"
 
 plugins {
     base
@@ -126,7 +126,7 @@ tasks.register("buildRcpWithJBR") {
 
 tasks.register<Copy>("macosBinaries") {
     dependsOn("buildRcpWithJBR")
-    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/fbme-193.SNAPSHOT.macos.zip"))) {
+    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/fbme-202.SNAPSHOT.macos.zip"))) {
         eachFile {
             relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
         }

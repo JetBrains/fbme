@@ -57,7 +57,7 @@ class MpsPlugin : Plugin<Project> {
         }
 
         dependencies {
-            mpsBinaries(fileTree("../../lib/MPS 2020.1/") {
+            mpsBinaries(fileTree("../../lib/MPS 2020.2/") {
                 include("**/*.jar")
                 exclude("**/*-src.jar")
             })

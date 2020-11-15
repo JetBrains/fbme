@@ -39,7 +39,7 @@
         <child id="2323553266850475953" name="modifiers" index="2frcjj" />
       </concept>
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
-      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="ng" index="2tJIrI" />
+      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="nn" index="2tJIrI" />
       <concept id="1188207840427" name="jetbrains.mps.baseLanguage.structure.AnnotationInstance" flags="nn" index="2AHcQZ">
         <reference id="1188208074048" name="annotation" index="2AI5Lk" />
       </concept>
@@ -1528,12 +1528,12 @@
                       </node>
                       <node concept="3cpWs8" id="1y1FD3qMePV" role="3cqZAp">
                         <node concept="3cpWsn" id="1y1FD3qMePW" role="3cpWs9">
-                          <property role="TrG5h" value="currentLineSize" />
+                          <property role="TrG5h" value="currentFontSize" />
                           <node concept="10Oyi0" id="1y1FD3qMePX" role="1tU5fm" />
-                          <node concept="2YIFZM" id="1y1FD3qMePY" role="33vP2m">
-                            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getLineSize" />
+                          <node concept="2YIFZM" id="7MP0dMuVSq" role="33vP2m">
+                            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
                             <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
-                            <node concept="37vLTw" id="61SA$ze6Ga2" role="37wK5m">
+                            <node concept="37vLTw" id="7MP0dMuVSr" role="37wK5m">
                               <ref role="3cqZAo" node="61SA$ze6G9W" resolve="style" />
                             </node>
                           </node>
@@ -1548,7 +1548,7 @@
                               <ref role="3cqZAo" node="1y1FD3qMePQ" resolve="unitsToScroll" />
                             </node>
                             <node concept="37vLTw" id="1y1FD3qMeQ7" role="3uHU7B">
-                              <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentLineSize" />
+                              <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentFontSize" />
                             </node>
                           </node>
                         </node>
@@ -1608,7 +1608,7 @@
                                 <node concept="1rXfSq" id="1y1FD3qMz45" role="3uHU7w">
                                   <ref role="37wK5l" node="1y1FD3qMlPs" resolve="scale" />
                                   <node concept="37vLTw" id="1y1FD3qMzyt" role="37wK5m">
-                                    <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentLineSize" />
+                                    <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentFontSize" />
                                   </node>
                                 </node>
                                 <node concept="1eOMI4" id="1y1FD3qMxWH" role="3uHU7B">
@@ -1642,7 +1642,7 @@
                                 <node concept="1rXfSq" id="1y1FD3qM_y$" role="3uHU7w">
                                   <ref role="37wK5l" node="1y1FD3qMlPs" resolve="scale" />
                                   <node concept="37vLTw" id="1y1FD3qM_y_" role="37wK5m">
-                                    <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentLineSize" />
+                                    <ref role="3cqZAo" node="1y1FD3qMePW" resolve="currentFontSize" />
                                   </node>
                                 </node>
                                 <node concept="1eOMI4" id="1y1FD3qM_yA" role="3uHU7B">
@@ -1783,7 +1783,7 @@
                       </node>
                       <node concept="3clFbF" id="1y1FD3qMYZD" role="3cqZAp">
                         <node concept="2YIFZM" id="1y1FD3qMZw4" role="3clFbG">
-                          <ref role="37wK5l" to="rvgs:1y1FD3qMQQ8" resolve="setLineSize" />
+                          <ref role="37wK5l" to="rvgs:1y1FD3qMQQ8" resolve="setFontSize" />
                           <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
                           <node concept="37vLTw" id="61SA$ze6H8r" role="37wK5m">
                             <ref role="3cqZAo" node="61SA$ze6G9W" resolve="style" />
@@ -3750,12 +3750,12 @@
                       </node>
                       <node concept="3cpWs8" id="61SA$ze7OcN" role="3cqZAp">
                         <node concept="3cpWsn" id="61SA$ze7OcO" role="3cpWs9">
-                          <property role="TrG5h" value="currentLineSize" />
+                          <property role="TrG5h" value="currentFontSize" />
                           <node concept="10Oyi0" id="61SA$ze7OcP" role="1tU5fm" />
-                          <node concept="2YIFZM" id="61SA$ze7OcQ" role="33vP2m">
-                            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getLineSize" />
+                          <node concept="2YIFZM" id="7MP0dMz6wk" role="33vP2m">
+                            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
                             <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
-                            <node concept="37vLTw" id="61SA$ze7OcR" role="37wK5m">
+                            <node concept="37vLTw" id="7MP0dMz6wl" role="37wK5m">
                               <ref role="3cqZAo" node="61SA$ze7OcG" resolve="style" />
                             </node>
                           </node>
@@ -3770,7 +3770,7 @@
                               <ref role="3cqZAo" node="61SA$ze7OcA" resolve="unitsToScroll" />
                             </node>
                             <node concept="37vLTw" id="61SA$ze7OcX" role="3uHU7B">
-                              <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentLineSize" />
+                              <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentFontSize" />
                             </node>
                           </node>
                         </node>
@@ -3830,7 +3830,7 @@
                                 <node concept="1rXfSq" id="61SA$ze7Odn" role="3uHU7w">
                                   <ref role="37wK5l" node="61SA$ze7OeD" resolve="scale" />
                                   <node concept="37vLTw" id="61SA$ze7Odo" role="37wK5m">
-                                    <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentLineSize" />
+                                    <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentFontSize" />
                                   </node>
                                 </node>
                                 <node concept="1eOMI4" id="61SA$ze7Odp" role="3uHU7B">
@@ -3864,7 +3864,7 @@
                                 <node concept="1rXfSq" id="61SA$ze7OdA" role="3uHU7w">
                                   <ref role="37wK5l" node="61SA$ze7OeD" resolve="scale" />
                                   <node concept="37vLTw" id="61SA$ze7OdB" role="37wK5m">
-                                    <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentLineSize" />
+                                    <ref role="3cqZAo" node="61SA$ze7OcO" resolve="currentFontSize" />
                                   </node>
                                 </node>
                                 <node concept="1eOMI4" id="61SA$ze7OdC" role="3uHU7B">
@@ -3954,7 +3954,7 @@
                       <node concept="3clFbF" id="61SA$ze7Oev" role="3cqZAp">
                         <node concept="2YIFZM" id="61SA$ze7Oew" role="3clFbG">
                           <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
-                          <ref role="37wK5l" to="rvgs:1y1FD3qMQQ8" resolve="setLineSize" />
+                          <ref role="37wK5l" to="rvgs:1y1FD3qMQQ8" resolve="setFontSize" />
                           <node concept="37vLTw" id="61SA$ze7Oex" role="37wK5m">
                             <ref role="3cqZAo" node="61SA$ze7OcG" resolve="style" />
                           </node>
@@ -4583,7 +4583,7 @@
               </node>
             </node>
             <node concept="37vLTw" id="1y1FD3qYOF5" role="37vLTx">
-              <ref role="3cqZAo" node="1y1FD3qYOEV" resolve="fontSize" />
+              <ref role="3cqZAo" node="1y1FD3qYOEV" resolve="lineSize" />
             </node>
           </node>
         </node>
@@ -4597,7 +4597,7 @@
         <node concept="10Oyi0" id="1y1FD3qYOEI" role="1tU5fm" />
       </node>
       <node concept="37vLTG" id="1y1FD3qYOEV" role="3clF46">
-        <property role="TrG5h" value="fontSize" />
+        <property role="TrG5h" value="lineSize" />
         <node concept="10Oyi0" id="1y1FD3qYOEU" role="1tU5fm" />
       </node>
     </node>
