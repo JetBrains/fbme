@@ -7,6 +7,7 @@ import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
+import java.io.File
 
 class MpsPlugin : Plugin<Project> {
 
@@ -19,12 +20,7 @@ class MpsPlugin : Plugin<Project> {
         sourceSets {
             create("mps") {
                 java {
-                    file("languages").listFiles()?.forEach { moduleDir ->
-                        srcDir("${moduleDir}/source_gen")
-                    }
-                    file("solutions").listFiles()?.forEach { moduleDir ->
-                        srcDir("${moduleDir}/source_gen")
-                    }
+                    mpsModules().forEach { moduleDir -> srcDir("${moduleDir}/source_gen") }
                 }
             }
         }
@@ -41,11 +37,6 @@ class MpsPlugin : Plugin<Project> {
         val mpsExtension = extensions.create<MpsExtension>("mps", hasBuildSolution)
 
         val mps by configurations.registering {
-            isCanBeConsumed = true
-            isCanBeResolved = false
-        }
-
-        val mpsClasses by configurations.registering {
             isCanBeConsumed = true
             isCanBeResolved = false
         }
@@ -69,6 +60,11 @@ class MpsPlugin : Plugin<Project> {
             }
             tasks.register("mpsGenerate") {
                 dependsOn("mpsPrepare")
+
+                inputs.file("$projectDir/build.xml")
+                mpsModules().forEach { moduleDir -> inputs.dir("${moduleDir}/models") }
+                mpsModules().forEach { moduleDir -> outputs.dir("${moduleDir}/source_gen") }
+
                 doLast {
                     if (!mpsExtension.skipGeneration) {
                         executeMpsBuild(antBinaries, "generate")
@@ -77,6 +73,11 @@ class MpsPlugin : Plugin<Project> {
             }
             tasks.register("mpsAssemble") {
                 dependsOn("mpsGenerate")
+
+                inputs.file("$projectDir/build.xml")
+                mpsModules().forEach { module -> inputs.dir("${module.path}/source_gen/") }
+                outputs.dir("$buildDir/artifacts/")
+
                 doLast {
                     executeMpsBuild(antBinaries, "assemble")
                     mpsExtension.artifactName ?: error("No artifact name provided for mps buildscript")
@@ -94,17 +95,28 @@ class MpsPlugin : Plugin<Project> {
                 dependsOn("mpsClean")
             }
             tasks.register<Jar>("mpsJar") {
-                archiveBaseName.set("${mpsExtension.artifactName}-classes")
-                from(project.the<SourceSetContainer>()["mps"].output)
+                dependsOn("mpsAssemble")
+                doFirst {
+                    for (module in mpsModules()) {
+                        from("$buildDir/tmp/${mpsExtension.buildScriptName}/java/out/${module.name}/")
+                    }
+                }
+                archiveBaseName.set("${project.name}-mps")
             }
             artifacts {
                 add(mps.name, provider { file("$buildDir/artifacts/${mpsExtension.artifactName}/") }) {
-                    builtBy(tasks.named("mpsAssemble"))
+                    builtBy(tasks.named("mpsJar"))
                 }
                 add(mps.name, tasks["jar"])
-                add(mpsClasses.name, tasks["mpsJar"])
+                add(mps.name, tasks["mpsJar"])
             }
         }
+    }
+
+    private fun Project.mpsModules(): Array<File> {
+        val langauges = file("languages").listFiles() ?: emptyArray()
+        val solutions = file("solutions").listFiles() ?: emptyArray()
+        return langauges + solutions
     }
 
     private fun Project.executeMpsBuild(antBinaries: Configuration, vararg targets: String) {

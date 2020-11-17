@@ -88,7 +88,12 @@ fun Task.antexec(path: String, task: String? = null) {
 }
 
 tasks.register("buildBootstrap") {
+    inputs.dir("buildscripts/models")
+    inputs.file("build-bootstrap.xml")
+    outputs.dir("buildscripts/source_gen")
+
     dependsOn("downloadDependencies")
+
     antexec("build-bootstrap.xml", "generate")
 }
 

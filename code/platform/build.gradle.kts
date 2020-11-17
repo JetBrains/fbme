@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-    mpsImplementation(project(":code:library"))
     mpsImplementation(project(":code:library", "mps"))
 }
 
 mps {
     artifactName = "platform"
+    buildScriptName = "fbme_platform"
 }

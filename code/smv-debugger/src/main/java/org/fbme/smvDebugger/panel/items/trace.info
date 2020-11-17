@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1082485599095:jetbrains.mps.baseLanguage.structure.BlockStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123140:jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068390468200:jetbrains.mps.baseLanguage.structure.FieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144231330558:jetbrains.mps.baseLanguage.structure.ForStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1144226303539:jetbrains.mps.baseLanguage.structure.ForeachStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123159:jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070475587102:jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/5351203823916750322:jetbrains.mps.baseLanguage.structure.TryUniversalStatement" />
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/2643555699627305756">
+    <file name="DebugPanel.java">
+      <node id="4946084908399764799" at="14,0,15,0" concept="3" trace="controlPanel" />
+      <node id="4946084908399776967" at="15,0,16,0" concept="3" trace="counterexampleTable" />
+      <node id="4946084908406772472" at="17,0,18,0" concept="3" trace="model" />
+      <node id="4946084908399791733" at="19,142,20,71" concept="2" />
+      <node id="4946084908399814676" at="20,71,21,103" concept="2" />
+      <node id="4946084908406779105" at="25,58,26,23" concept="2" />
+      <node id="4946084908399833458" at="26,23,27,38" concept="2" />
+      <node id="4946084908399896102" at="27,38,28,45" concept="2" />
+      <node id="4946084908399914595" at="32,26,33,28" concept="2" />
+      <node id="4946084908399921548" at="33,28,34,35" concept="2" />
+      <node id="4946084908409648141" at="34,35,35,0" concept="10" />
+      <node id="8140210150492100041" at="35,0,36,32" concept="2" />
+      <node id="8140210150492134995" at="36,32,37,22" concept="2" />
+      <node id="8140210150492146142" at="37,22,38,29" concept="2" />
+      <node id="4946084908399927828" at="42,32,43,34" concept="2" />
+      <node id="4946084908399927832" at="43,34,44,41" concept="2" />
+      <node id="4946084908399681957" at="19,0,23,0" concept="1" trace="DebugPanel#(Lorg/fbme/smvDebugger/model/Counterexample;Lorg/fbme/smvDebugger/visualization/SystemHighlighter;Lorg/fbme/smvDebugger/visualization/BacktraceService;)V" />
+      <node id="4946084908393577009" at="41,0,46,0" concept="7" trace="initController#()V" />
+      <node id="4946084908393575503" at="24,0,30,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908393576764" at="31,0,40,0" concept="7" trace="initView#()V" />
+      <scope id="4946084908399681960" at="19,142,21,103" />
+      <scope id="4946084908393577012" at="42,32,44,41" />
+      <scope id="4946084908393575506" at="25,58,28,45" />
+      <scope id="4946084908399681957" at="19,0,23,0">
+        <var name="backtraceService" id="4946084908399781031" />
+        <var name="counterexample" id="4946084908405022374" />
+        <var name="systemHighlighter" id="4946084908399783653" />
+      </scope>
+      <scope id="4946084908393577009" at="41,0,46,0" />
+      <scope id="4946084908393575503" at="24,0,30,0">
+        <var name="model" id="4946084908393575858" />
+      </scope>
+      <scope id="4946084908393576767" at="32,26,38,29" />
+      <scope id="4946084908393576764" at="31,0,40,0" />
+      <unit id="2643555699627305756" at="13,0,47,0" name="org.fbme.smvDebugger.panel.items.DebugPanel" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908393598496">
+    <file name="CounterexampleTable.java">
+      <node id="4946084908396549259" at="27,0,28,0" concept="11" trace="DEFAULT_CELL_COLOR" />
+      <node id="4946084908396549264" at="28,0,29,0" concept="11" trace="HIGHLIGHT_CELL_COLOR" />
+      <node id="1566995493933411522" at="29,0,30,0" concept="11" trace="CURRENT_COLUMN_COLOR" />
+      <node id="4946084908396758939" at="30,0,31,0" concept="11" trace="COLUMN_WIDTH" />
+      <node id="4946084908396758935" at="31,0,32,0" concept="11" trace="FIRST_COLUMN_WIDTH" />
+      <node id="4946084908395272275" at="32,0,33,0" concept="11" trace="SCROLL_PANE_WIDTH" />
+      <node id="4946084908395272279" at="33,0,34,0" concept="11" trace="SCROLL_PANE_HEIGHT" />
+      <node id="4946084908394820453" at="34,0,35,0" concept="11" trace="MODEL_NAME" />
+      <node id="4946084908394843476" at="35,0,36,0" concept="11" trace="SELECTION_MODEL_NAME" />
+      <node id="4946084908393771481" at="37,0,38,0" concept="3" trace="valueTable" />
+      <node id="4946084908393761508" at="38,0,39,0" concept="3" trace="itemTable" />
+      <node id="4946084908395478766" at="39,0,40,0" concept="3" trace="horizontalScrollBar" />
+      <node id="4946084908394527261" at="40,0,41,0" concept="3" trace="scrollPane" />
+      <node id="4946084908404393819" at="42,0,43,0" concept="3" trace="counterexample" />
+      <node id="4946084908399488882" at="43,0,44,0" concept="3" trace="systemHighlighter" />
+      <node id="4946084908399401826" at="44,0,45,0" concept="3" trace="backtraceService" />
+      <node id="4946084908406843515" at="46,0,47,0" concept="3" trace="model" />
+      <node id="4946084908404441103" at="48,151,49,41" concept="2" />
+      <node id="4946084908399592721" at="49,41,50,47" concept="2" />
+      <node id="4946084908399520804" at="50,47,51,45" concept="2" />
+      <node id="4946084908406867126" at="55,58,56,23" concept="2" />
+      <node id="4946084908406849399" at="56,23,57,0" concept="10" />
+      <node id="4946084908394344464" at="57,0,58,47" concept="2" />
+      <node id="4946084908396188529" at="58,47,59,64" concept="2" />
+      <node id="4946084908396262598" at="59,64,60,0" concept="10" />
+      <node id="4946084908394211976" at="60,0,61,45" concept="2" />
+      <node id="4946084908395395634" at="61,45,62,0" concept="10" />
+      <node id="4946084908395615159" at="62,0,63,61" concept="2" />
+      <node id="4946084908393972322" at="67,26,68,52" concept="2" />
+      <node id="4946084908396711014" at="68,52,69,57" concept="2" />
+      <node id="4946084908397328262" at="69,57,70,78" concept="8" />
+      <node id="4946084908397470384" at="71,69,72,72" concept="2" />
+      <node id="4946084908395687568" at="73,5,74,45" concept="2" />
+      <node id="4946084908396498461" at="74,45,75,55" concept="2" />
+      <node id="4946084908396529757" at="75,55,76,59" concept="2" />
+      <node id="1566995493933620523" at="76,59,77,59" concept="2" />
+      <node id="4946084908394123231" at="77,59,78,0" concept="10" />
+      <node id="4946084908394171407" at="78,0,79,51" concept="2" />
+      <node id="4946084908396734210" at="79,51,80,56" concept="2" />
+      <node id="4946084908397619637" at="80,56,81,82" concept="2" />
+      <node id="1566995493931823692" at="81,82,82,0" concept="10" />
+      <node id="4946084908394693606" at="82,0,83,79" concept="2" />
+      <node id="4946084908396900024" at="83,79,84,44" concept="2" />
+      <node id="4946084908395292948" at="84,44,85,0" concept="10" />
+      <node id="4946084908397808218" at="85,0,86,43" concept="2" />
+      <node id="4946084908395562696" at="86,43,87,59" concept="2" />
+      <node id="4946084908394726829" at="87,59,88,43" concept="2" />
+      <node id="4946084908394746813" at="88,43,89,84" concept="2" />
+      <node id="4946084908405115964" at="89,84,90,93" concept="2" />
+      <node id="4946084908395106330" at="90,93,91,89" concept="2" />
+      <node id="4946084908395184218" at="91,89,92,86" concept="2" />
+      <node id="4946084908397971459" at="92,86,93,0" concept="10" />
+      <node id="4946084908395086745" at="93,0,94,20" concept="2" />
+      <node id="6445035801681323999" at="100,64,101,58" concept="8" />
+      <node id="6445035801681321836" at="101,58,102,61" concept="8" />
+      <node id="8769796097526341547" at="102,61,103,0" concept="10" />
+      <node id="8769796097526449187" at="103,0,104,92" concept="8" />
+      <node id="8769796097526439935" at="104,92,105,106" concept="8" />
+      <node id="4946084908404678953" at="105,106,106,115" concept="8" />
+      <node id="8769796097526780203" at="106,115,107,50" concept="2" />
+      <node id="1566995493932584241" at="111,67,112,56" concept="8" />
+      <node id="1566995493932614538" at="112,56,113,52" concept="2" />
+      <node id="1566995493932652961" at="113,52,114,29" concept="2" />
+      <node id="4946084908397419400" at="70,78,73,5" concept="4" />
+      <node id="4946084908393862750" at="48,0,53,0" concept="1" trace="CounterexampleTable#(Lorg/fbme/smvDebugger/model/Counterexample;Lorg/fbme/smvDebugger/visualization/SystemHighlighter;Lorg/fbme/smvDebugger/visualization/BacktraceService;)V" />
+      <node id="1566995493932584239" at="111,0,116,0" concept="7" trace="propertyChange#(Ljava/beans/PropertyChangeEvent;)V" />
+      <node id="1566995493932584235" at="109,7,116,7" concept="2" />
+      <node id="4946084908398437652" at="100,0,109,0" concept="7" trace="valueChanged#(Ljavax/swing/event/ListSelectionEvent;)V" />
+      <node id="4946084908393665983" at="54,0,65,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908398402535" at="98,32,109,7" concept="2" />
+      <node id="4946084908393675975" at="97,0,118,0" concept="7" trace="initController#()V" />
+      <node id="4946084908393668758" at="66,0,96,0" concept="7" trace="initView#()V" />
+      <scope id="4946084908397419402" at="71,69,72,72" />
+      <scope id="4946084908393862753" at="48,151,51,45" />
+      <scope id="4946084908397419400" at="70,78,73,5">
+        <var name="i" id="4946084908397419403" />
+      </scope>
+      <scope id="1566995493932584240" at="111,67,114,29">
+        <var name="stepIndex" id="1566995493932584242" />
+      </scope>
+      <scope id="4946084908393862750" at="48,0,53,0">
+        <var name="backtraceService" id="4946084908398798894" />
+        <var name="counterexample" id="4946084908404215323" />
+        <var name="systemHighlighter" id="4946084908398970338" />
+      </scope>
+      <scope id="1566995493932584239" at="111,0,116,0">
+        <var name="event" id="1566995493932584239" />
+      </scope>
+      <scope id="4946084908398437653" at="100,64,107,50">
+        <var name="itemIndex" id="6445035801681324002" />
+        <var name="itemValue" id="8769796097526449185" />
+        <var name="relatedItemSimpleNames" id="8769796097526439933" />
+        <var name="relatedItems" id="4946084908404678951" />
+        <var name="stepIndex" id="6445035801681321837" />
+      </scope>
+      <scope id="4946084908393665986" at="55,58,63,61" />
+      <scope id="4946084908398437652" at="100,0,109,0">
+        <var name="event" id="4946084908398437652" />
+      </scope>
+      <scope id="4946084908393665983" at="54,0,65,0">
+        <var name="model" id="4946084908393666634" />
+      </scope>
+      <scope id="4946084908393675978" at="98,32,116,7" />
+      <scope id="4946084908393675975" at="97,0,118,0" />
+      <scope id="4946084908393668761" at="67,26,94,20">
+        <var name="mainTableColumnModel" id="4946084908397328260" />
+      </scope>
+      <scope id="4946084908393668758" at="66,0,96,0" />
+      <unit id="1566995493932584239" at="110,87,116,5" name="org.fbme.smvDebugger.panel.items.CounterexampleTable$2" />
+      <unit id="4946084908398437652" at="99,64,109,5" name="org.fbme.smvDebugger.panel.items.CounterexampleTable$1" />
+      <unit id="4946084908393598496" at="26,0,119,0" name="org.fbme.smvDebugger.panel.items.CounterexampleTable" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908395720911">
+    <file name="HighlightedTable.java">
+      <node id="4946084908395767198" at="12,0,13,0" concept="3" trace="defaultCellColor" />
+      <node id="4946084908395788012" at="13,0,14,0" concept="3" trace="highlightCellColor" />
+      <node id="1566995493933266892" at="14,0,15,0" concept="3" trace="currentColumnColor" />
+      <node id="1566995493932219874" at="16,0,17,0" concept="3" trace="currentColumnIndex" />
+      <node id="4946084908395916651" at="18,38,19,28" concept="9" />
+      <node id="4946084908395985144" at="22,65,23,45" concept="2" />
+      <node id="4946084908395926842" at="26,40,27,30" concept="9" />
+      <node id="4946084908396033196" at="30,70,31,50" concept="2" />
+      <node id="1566995493933275514" at="34,40,35,30" concept="9" />
+      <node id="1566995493933275521" at="38,69,39,49" concept="2" />
+      <node id="1566995493932512809" at="43,67,44,49" concept="2" />
+      <node id="4946084908395732901" at="48,113,49,87" concept="8" />
+      <node id="4946084908395732910" at="50,81,51,37" concept="8" />
+      <node id="8140210150491739327" at="51,37,52,0" concept="10" />
+      <node id="1566995493932319988" at="53,46,54,35" concept="2" />
+      <node id="4946084908395732917" at="56,28,57,75" concept="8" />
+      <node id="4946084908395732925" at="57,75,58,80" concept="8" />
+      <node id="4946084908395732935" at="58,80,59,0" concept="10" />
+      <node id="4946084908395732938" at="60,53,61,37" concept="2" />
+      <node id="4946084908395732948" at="63,7,64,0" concept="10" />
+      <node id="4946084908395732949" at="64,0,65,37" concept="2" />
+      <node id="4946084908395732954" at="65,37,66,19" concept="2" />
+      <node id="4946084908395732963" at="67,5,68,21" concept="9" />
+      <node id="4946084908395912949" at="18,0,21,0" concept="7" trace="getDefaultCellColor#()Ljava/awt/Color;" />
+      <node id="4946084908395974571" at="22,0,25,0" concept="7" trace="setDefaultCellColor#(Ljava/awt/Color;)V" />
+      <node id="4946084908395903703" at="26,0,29,0" concept="7" trace="getHighlightCellColor#()Ljava/awt/Color;" />
+      <node id="4946084908396017473" at="30,0,33,0" concept="7" trace="setHighlightCellColor#(Ljava/awt/Color;)V" />
+      <node id="1566995493933275512" at="34,0,37,0" concept="7" trace="getCurrentColumnColor#()Ljava/awt/Color;" />
+      <node id="1566995493933275519" at="38,0,41,0" concept="7" trace="setCurrentColumnColor#(Ljava/awt/Color;)V" />
+      <node id="1566995493932493396" at="43,0,46,0" concept="7" trace="setCurrentColumnIndex#(I)V" />
+      <node id="1566995493932298303" at="52,0,55,7" concept="6" />
+      <node id="4946084908395732936" at="59,0,62,9" concept="6" />
+      <node id="4946084908395732915" at="55,7,63,7" concept="6" />
+      <node id="4946084908395732908" at="49,87,67,5" concept="6" />
+      <node id="4946084908395732899" at="47,0,70,0" concept="7" trace="prepareRenderer#(Ljavax/swing/table/TableCellRenderer;II)Ljava/awt/Component;" />
+      <scope id="4946084908395912952" at="18,38,19,28" />
+      <scope id="4946084908395974574" at="22,65,23,45" />
+      <scope id="4946084908395903706" at="26,40,27,30" />
+      <scope id="4946084908396017476" at="30,70,31,50" />
+      <scope id="1566995493933275513" at="34,40,35,30" />
+      <scope id="1566995493933275520" at="38,69,39,49" />
+      <scope id="1566995493932493399" at="43,67,44,49" />
+      <scope id="1566995493932298305" at="53,46,54,35" />
+      <scope id="4946084908395732937" at="60,53,61,37" />
+      <scope id="4946084908395912949" at="18,0,21,0" />
+      <scope id="4946084908395974571" at="22,0,25,0">
+        <var name="defaultCellColor" id="4946084908395977192" />
+      </scope>
+      <scope id="4946084908395903703" at="26,0,29,0" />
+      <scope id="4946084908396017473" at="30,0,33,0">
+        <var name="hightlightCellColor" id="4946084908396024670" />
+      </scope>
+      <scope id="1566995493933275512" at="34,0,37,0" />
+      <scope id="1566995493933275519" at="38,0,41,0">
+        <var name="currentColumnColor" id="1566995493933275529" />
+      </scope>
+      <scope id="1566995493932493396" at="43,0,46,0">
+        <var name="currentColumnIndex" id="1566995493932499768" />
+      </scope>
+      <scope id="4946084908395732916" at="56,28,62,9">
+        <var name="curValue" id="4946084908395732918" />
+        <var name="prevValue" id="4946084908395732926" />
+      </scope>
+      <scope id="4946084908395732909" at="50,81,66,19">
+        <var name="color" id="4946084908395732911" />
+      </scope>
+      <scope id="4946084908395732900" at="48,113,68,21">
+        <var name="component" id="4946084908395732902" />
+      </scope>
+      <scope id="4946084908395732899" at="47,0,70,0">
+        <var name="columnIndex" id="4946084908395732971" />
+        <var name="renderer" id="4946084908395732967" />
+        <var name="rowIndex" id="4946084908395732969" />
+      </scope>
+      <unit id="4946084908395720911" at="11,0,71,0" name="org.fbme.smvDebugger.panel.items.HighlightedTable" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908398046451">
+    <file name="ControlPanel.java">
+      <node id="4946084908409582813" at="15,0,16,0" concept="11" trace="STEP_LABEL_NAME" />
+      <node id="4946084908409582817" at="16,0,17,0" concept="11" trace="TIME_LABEL_NAME" />
+      <node id="4946084908409582821" at="17,0,18,0" concept="11" trace="CONDITION_LABEL_NAME" />
+      <node id="4946084908408962223" at="19,0,20,0" concept="3" trace="stepChanger" />
+      <node id="4946084908408969486" at="20,0,21,0" concept="3" trace="globalTime" />
+      <node id="4946084908408979325" at="21,0,22,0" concept="3" trace="conditionNavigator" />
+      <node id="4946084908409283248" at="23,0,24,0" concept="3" trace="model" />
+      <node id="4946084908409205690" at="25,103,26,69" concept="2" />
+      <node id="4946084908409233235" at="26,69,27,34" concept="2" />
+      <node id="4946084908409253055" at="27,34,28,64" concept="2" />
+      <node id="4946084908409287241" at="32,58,33,23" concept="2" />
+      <node id="4946084908409296691" at="33,23,34,37" concept="2" />
+      <node id="4946084908409312632" at="34,37,35,36" concept="2" />
+      <node id="4946084908409328114" at="35,36,36,44" concept="2" />
+      <node id="4946084908409595687" at="40,26,41,27" concept="2" />
+      <node id="4946084908409605380" at="41,27,42,26" concept="2" />
+      <node id="4946084908409616259" at="42,26,43,34" concept="2" />
+      <node id="4946084908409642956" at="43,34,44,0" concept="10" />
+      <node id="4946084908409723455" at="44,0,45,35" concept="2" />
+      <node id="4946084908409747655" at="45,35,46,68" concept="8" />
+      <node id="4946084908409774519" at="46,68,47,53" concept="2" />
+      <node id="4946084908409791990" at="47,53,48,28" concept="2" />
+      <node id="4946084908409814947" at="48,28,49,0" concept="10" />
+      <node id="4946084908409808266" at="49,0,50,26" concept="2" />
+      <node id="4946084908409848915" at="50,26,51,26" concept="2" />
+      <node id="4946084908409844784" at="51,26,52,50" concept="2" />
+      <node id="4946084908409904304" at="52,50,53,0" concept="10" />
+      <node id="4946084908409904415" at="53,0,54,26" concept="2" />
+      <node id="4946084908409904421" at="54,26,55,26" concept="2" />
+      <node id="4946084908409904427" at="55,26,56,34" concept="2" />
+      <node id="4946084908409908446" at="56,34,57,0" concept="10" />
+      <node id="4946084908409908597" at="57,0,58,26" concept="2" />
+      <node id="4946084908409908603" at="58,26,59,26" concept="2" />
+      <node id="4946084908409908609" at="59,26,60,50" concept="2" />
+      <node id="4946084908409909136" at="60,50,61,0" concept="10" />
+      <node id="4946084908409909327" at="61,0,62,26" concept="2" />
+      <node id="4946084908409909333" at="62,26,63,26" concept="2" />
+      <node id="4946084908409909339" at="63,26,64,33" concept="2" />
+      <node id="4946084908409909897" at="64,33,65,0" concept="10" />
+      <node id="4946084908409910128" at="65,0,66,26" concept="2" />
+      <node id="4946084908409910134" at="66,26,67,26" concept="2" />
+      <node id="4946084908409910140" at="67,26,68,55" concept="2" />
+      <node id="4946084908409912241" at="68,55,69,0" concept="10" />
+      <node id="4946084908409912512" at="69,0,70,26" concept="2" />
+      <node id="4946084908409912518" at="70,26,71,26" concept="2" />
+      <node id="4946084908409912524" at="71,26,72,41" concept="2" />
+      <node id="4946084908409623065" at="76,32,77,33" concept="2" />
+      <node id="4946084908409623069" at="77,33,78,32" concept="2" />
+      <node id="4946084908409623073" at="78,32,79,40" concept="2" />
+      <node id="4946084908408986871" at="25,0,30,0" concept="1" trace="ControlPanel#(Lorg/fbme/smvDebugger/model/Counterexample;Lorg/fbme/smvDebugger/visualization/SystemHighlighter;)V" />
+      <node id="4946084908405673750" at="75,0,81,0" concept="7" trace="initController#()V" />
+      <node id="4946084908405673730" at="31,0,38,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908405673744" at="39,0,74,0" concept="7" trace="initView#()V" />
+      <scope id="4946084908408986874" at="25,103,28,64" />
+      <scope id="4946084908405673751" at="76,32,79,40" />
+      <scope id="4946084908405673731" at="32,58,36,44" />
+      <scope id="4946084908408986871" at="25,0,30,0">
+        <var name="counterexample" id="4946084908408988945" />
+        <var name="systemHighlighter" id="4946084908409170129" />
+      </scope>
+      <scope id="4946084908405673750" at="75,0,81,0" />
+      <scope id="4946084908405673730" at="31,0,38,0">
+        <var name="model" id="4946084908405673740" />
+      </scope>
+      <scope id="4946084908405673745" at="40,26,72,41">
+        <var name="constraints" id="4946084908409747653" />
+      </scope>
+      <scope id="4946084908405673744" at="39,0,74,0" />
+      <unit id="4946084908398046451" at="14,0,82,0" name="org.fbme.smvDebugger.panel.items.ControlPanel" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908402293732">
+    <file name="GlobalTime.java">
+      <node id="8173689851888184955" at="13,0,14,0" concept="11" trace="LEFT_PADDING" />
+      <node id="4946084908406894365" at="14,0,15,0" concept="3" trace="model" />
+      <node id="4946084908406900364" at="17,58,18,23" concept="2" />
+      <node id="4946084908402476496" at="28,67,29,57" concept="8" />
+      <node id="4946084908402494949" at="29,57,30,37" concept="2" />
+      <node id="4946084908402342029" at="21,0,24,0" concept="7" trace="initView#()V" />
+      <node id="4946084908402342022" at="16,0,20,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908402464092" at="28,0,32,0" concept="7" trace="propertyChange#(Ljava/beans/PropertyChangeEvent;)V" />
+      <node id="4946084908402452984" at="26,32,32,7" concept="2" />
+      <node id="4946084908402342034" at="25,0,34,0" concept="7" trace="initController#()V" />
+      <scope id="4946084908402342030" at="22,26,22,26" />
+      <scope id="4946084908402342023" at="17,58,18,23" />
+      <scope id="4946084908402464094" at="28,67,30,37">
+        <var name="time" id="4946084908402476494" />
+      </scope>
+      <scope id="4946084908402342029" at="21,0,24,0" />
+      <scope id="4946084908402342022" at="16,0,20,0">
+        <var name="model" id="4946084908402342026" />
+      </scope>
+      <scope id="4946084908402464092" at="28,0,32,0">
+        <var name="event" id="4946084908402464092" />
+      </scope>
+      <scope id="4946084908402342035" at="26,32,32,7" />
+      <scope id="4946084908402342034" at="25,0,34,0" />
+      <unit id="4946084908402464092" at="27,90,32,5" name="org.fbme.smvDebugger.panel.items.GlobalTime$1" />
+      <unit id="4946084908402293732" at="12,0,35,0" name="org.fbme.smvDebugger.panel.items.GlobalTime" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908406314864">
+    <file name="HorizontalSpinnerUI.java">
+      <node id="4946084908406350965" at="19,0,20,0" concept="11" trace="NEXT_BUTTON_NAME" />
+      <node id="4946084908406355457" at="20,0,21,0" concept="11" trace="PREVIOUS_BUTTON_NAME" />
+      <node id="4946084908406360523" at="21,0,22,0" concept="11" trace="ARROW_BUTTON_BORDER" />
+      <node id="6003518628801674449" at="23,66,24,37" concept="9" />
+      <node id="4946084908406314909" at="28,42,29,71" concept="8" />
+      <node id="4946084908406314914" at="29,71,30,40" concept="2" />
+      <node id="4946084908406314919" at="30,40,31,42" concept="2" />
+      <node id="4946084908406314922" at="31,42,32,21" concept="9" />
+      <node id="4946084908406314930" at="36,46,37,71" concept="8" />
+      <node id="4946084908406314935" at="37,71,38,44" concept="2" />
+      <node id="4946084908406314940" at="38,44,39,46" concept="2" />
+      <node id="4946084908406314943" at="39,46,40,21" concept="9" />
+      <node id="4946084908406314961" at="44,53,45,31" concept="2" />
+      <node id="4946084908406314964" at="45,31,46,26" concept="2" />
+      <node id="6003518628801746634" at="50,43,51,31" concept="2" />
+      <node id="6003518628801754116" at="52,9,53,57" concept="2" />
+      <node id="4946084908406314974" at="55,7,56,57" concept="2" />
+      <node id="4946084908406314980" at="56,57,57,61" concept="2" />
+      <node id="4946084908406314986" at="57,61,58,55" concept="2" />
+      <node id="4946084908406315000" at="61,58,62,59" concept="8" />
+      <node id="4946084908406315006" at="62,59,63,67" concept="8" />
+      <node id="4946084908406315013" at="64,39,65,57" concept="2" />
+      <node id="4946084908406315026" at="66,12,67,31" concept="2" />
+      <node id="4946084908406340769" at="68,5,69,38" concept="2" />
+      <node id="4946084908406315031" at="69,38,70,18" concept="9" />
+      <node id="4946084908406315024" at="66,10,68,5" concept="0" />
+      <node id="6003518628801673085" at="23,0,26,0" concept="12" trace="createUI#(Ljavax/swing/JComponent;)Ljavax/swing/plaf/ComponentUI;" />
+      <node id="6003518628801740089" at="49,85,52,9" concept="6" />
+      <node id="4946084908406315011" at="63,67,68,5" concept="6" />
+      <node id="4946084908406314907" at="27,0,34,0" concept="7" trace="createNextButton#()Ljava/awt/Component;" />
+      <node id="4946084908406314928" at="35,0,42,0" concept="7" trace="createPreviousButton#()Ljava/awt/Component;" />
+      <node id="6003518628801731183" at="48,0,55,0" concept="7" trace="addLayoutComponent#(Ljava/awt/Component;Ljava/lang/Object;)V" />
+      <node id="4946084908406314968" at="46,26,55,7" concept="2" />
+      <node id="4946084908406314998" at="61,0,72,0" concept="7" trace="createArrowButton#(I)Ljavax/swing/JButton;" />
+      <node id="4946084908406314959" at="43,0,60,0" concept="7" trace="installUI#(Ljavax/swing/JComponent;)V" />
+      <scope id="6003518628801673088" at="23,66,24,37" />
+      <scope id="6003518628801740091" at="50,43,51,31" />
+      <scope id="4946084908406315012" at="64,39,65,57" />
+      <scope id="4946084908406315025" at="66,12,67,31" />
+      <scope id="6003518628801673085" at="23,0,26,0">
+        <var name="component" id="6003518628801677899" />
+      </scope>
+      <scope id="4946084908406314908" at="28,42,32,21">
+        <var name="component" id="4946084908406314910" />
+      </scope>
+      <scope id="4946084908406314929" at="36,46,40,21">
+        <var name="component" id="4946084908406314931" />
+      </scope>
+      <scope id="6003518628801731186" at="49,85,53,57" />
+      <scope id="4946084908406314907" at="27,0,34,0" />
+      <scope id="4946084908406314928" at="35,0,42,0" />
+      <scope id="6003518628801731183" at="48,0,55,0">
+        <var name="component" id="6003518628801733319" />
+        <var name="constraints" id="6003518628801735134" />
+      </scope>
+      <scope id="4946084908406314999" at="61,58,70,18">
+        <var name="border" id="4946084908406315007" />
+        <var name="button" id="4946084908406315001" />
+      </scope>
+      <scope id="4946084908406314998" at="61,0,72,0">
+        <var name="direction" id="4946084908406315035" />
+      </scope>
+      <scope id="4946084908406314960" at="44,53,58,55" />
+      <scope id="4946084908406314959" at="43,0,60,0">
+        <var name="component" id="4946084908406314994" />
+      </scope>
+      <unit id="6003518628801727664" at="47,28,55,5" name="org.fbme.smvDebugger.panel.items.HorizontalSpinnerUI$1" />
+      <unit id="4946084908406314864" at="18,0,73,0" name="org.fbme.smvDebugger.panel.items.HorizontalSpinnerUI" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908406376053">
+    <file name="StepChanger.java">
+      <node id="4946084908406530604" at="21,0,22,0" concept="11" trace="SPINNER_WIDTH" />
+      <node id="4946084908406556754" at="22,0,23,0" concept="11" trace="SPINNER_HEIGHT" />
+      <node id="4946084908407088732" at="24,0,25,0" concept="3" trace="counterexample" />
+      <node id="4946084908407787267" at="25,0,26,0" concept="3" trace="systemHighlighter" />
+      <node id="4946084908395380889" at="27,0,28,0" concept="3" trace="model" />
+      <node id="4946084908407121414" at="29,102,30,41" concept="2" />
+      <node id="4946084908407798796" at="30,41,31,47" concept="2" />
+      <node id="4946084908406439906" at="35,58,36,23" concept="2" />
+      <node id="4946084908407061677" at="36,23,37,42" concept="2" />
+      <node id="4946084908406475451" at="41,26,42,67" concept="2" />
+      <node id="4946084908408202184" at="46,32,47,68" concept="8" />
+      <node id="4946084908406661922" at="49,57,50,62" concept="8" />
+      <node id="4946084908406990731" at="50,62,51,56" concept="8" />
+      <node id="4946084908407136445" at="51,56,52,59" concept="8" />
+      <node id="4946084908408054277" at="52,59,53,47" concept="2" />
+      <node id="4946084908408167531" at="57,67,58,56" concept="8" />
+      <node id="4946084908408192299" at="58,56,59,0" concept="10" />
+      <node id="4946084908407259701" at="59,0,60,77" concept="8" />
+      <node id="4946084908407201745" at="60,77,61,78" concept="8" />
+      <node id="4946084908407245325" at="61,78,62,73" concept="8" />
+      <node id="4946084908407190479" at="62,73,63,40" concept="2" />
+      <node id="4946084908407325560" at="63,40,64,0" concept="10" />
+      <node id="4946084908407334993" at="64,0,65,77" concept="2" />
+      <node id="4946084908407681412" at="65,77,66,0" concept="10" />
+      <node id="4946084908407727753" at="66,0,67,89" concept="8" />
+      <node id="4946084908407821270" at="67,89,68,48" concept="2" />
+      <node id="1566995493930846941" at="68,48,69,0" concept="10" />
+      <node id="1566995493930852168" at="69,0,70,65" concept="8" />
+      <node id="1566995493930880156" at="70,65,71,23" concept="2" />
+      <node id="4946084908407104864" at="29,0,33,0" concept="1" trace="StepChanger#(Lorg/fbme/smvDebugger/model/Counterexample;Lorg/fbme/smvDebugger/visualization/SystemHighlighter;)V" />
+      <node id="4946084908406387294" at="40,0,44,0" concept="7" trace="initView#()V" />
+      <node id="4946084908406387280" at="34,0,39,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908406649994" at="49,0,55,0" concept="7" trace="stateChanged#(Ljavax/swing/event/ChangeEvent;)V" />
+      <node id="4946084908406647128" at="47,68,55,7" concept="2" />
+      <node id="4946084908408107625" at="57,0,73,0" concept="7" trace="propertyChange#(Ljava/beans/PropertyChangeEvent;)V" />
+      <node id="4946084908408093139" at="55,7,73,7" concept="2" />
+      <node id="4946084908406387300" at="45,0,75,0" concept="7" trace="initController#()V" />
+      <scope id="4946084908406387295" at="41,26,42,67" />
+      <scope id="4946084908407104867" at="29,102,31,47" />
+      <scope id="4946084908406387281" at="35,58,37,42" />
+      <scope id="4946084908407104864" at="29,0,33,0">
+        <var name="counterexample" id="4946084908407109808" />
+        <var name="systemHighlighter" id="4946084908407464479" />
+      </scope>
+      <scope id="4946084908406387294" at="40,0,44,0" />
+      <scope id="4946084908406649995" at="49,57,53,47">
+        <var name="spinner" id="4946084908406661920" />
+        <var name="step" id="4946084908406990729" />
+        <var name="stepIndex" id="4946084908407136443" />
+      </scope>
+      <scope id="4946084908406387280" at="34,0,39,0">
+        <var name="model" id="4946084908406387290" />
+      </scope>
+      <scope id="4946084908406649994" at="49,0,55,0">
+        <var name="event" id="4946084908406649994" />
+      </scope>
+      <scope id="4946084908408107627" at="57,67,71,23">
+        <var name="dataScrollModel" id="4946084908407259699" />
+        <var name="itemValues" id="4946084908407727751" />
+        <var name="percent" id="4946084908407201743" />
+        <var name="step" id="1566995493930852166" />
+        <var name="stepIndex" id="4946084908408167532" />
+        <var name="value" id="4946084908407245323" />
+      </scope>
+      <scope id="4946084908408107625" at="57,0,73,0">
+        <var name="event" id="4946084908408107625" />
+      </scope>
+      <scope id="4946084908406387301" at="46,32,73,7">
+        <var name="stepIndexModel" id="4946084908408202182" />
+      </scope>
+      <scope id="4946084908406387300" at="45,0,75,0" />
+      <unit id="4946084908406649994" at="48,26,55,5" name="org.fbme.smvDebugger.panel.items.StepChanger$1" />
+      <unit id="4946084908408107625" at="56,76,73,5" name="org.fbme.smvDebugger.panel.items.StepChanger$2" />
+      <unit id="4946084908406376053" at="20,0,76,0" name="org.fbme.smvDebugger.panel.items.StepChanger" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/4946084908408260587">
+    <file name="ConditionNavigator.java">
+      <node id="4946084908408265925" at="25,0,26,0" concept="11" trace="SPINNER_WIDTH" />
+      <node id="4946084908408265929" at="26,0,27,0" concept="11" trace="SPINNER_HEIGHT" />
+      <node id="4946084908408265934" at="28,0,29,0" concept="3" trace="counterexample" />
+      <node id="4946084908408265937" at="29,0,30,0" concept="3" trace="conditionParser" />
+      <node id="4946084908408265941" at="31,0,32,0" concept="3" trace="model" />
+      <node id="4946084908408265948" at="33,66,34,41" concept="2" />
+      <node id="4946084908408265954" at="34,41,35,49" concept="2" />
+      <node id="4946084908408265970" at="39,58,40,23" concept="2" />
+      <node id="4946084908408370519" at="40,23,41,40" concept="2" />
+      <node id="4946084908408265989" at="45,26,46,67" concept="2" />
+      <node id="1566995493931531382" at="46,67,47,42" concept="2" />
+      <node id="4946084908408719486" at="52,55,53,55" concept="8" />
+      <node id="4946084908408422776" at="54,80,55,55" concept="8" />
+      <node id="4946084908408855316" at="59,60,60,59" concept="9" />
+      <node id="4946084908408855324" at="63,61,64,37" concept="9" />
+      <node id="4946084908408750057" at="69,91,70,59" concept="8" />
+      <node id="4946084908408828207" at="74,60,75,38" concept="9" />
+      <node id="4946084908408848613" at="78,61,79,37" concept="9" />
+      <node id="4946084908408812091" at="88,117,89,68" concept="8" />
+      <node id="4946084908408812097" at="89,68,90,32" concept="8" />
+      <node id="4946084908408812102" at="91,9,92,52" concept="2" />
+      <node id="4946084908408812113" at="93,47,94,58" concept="2" />
+      <node id="4946084908408812119" at="94,58,95,13" concept="9" />
+      <node id="1566995493930958550" at="96,5,97,81" concept="8" />
+      <node id="4946084908408812122" at="98,138,99,113" concept="8" />
+      <node id="4946084908408812133" at="100,58,101,58" concept="2" />
+      <node id="4946084908408812140" at="101,58,102,15" concept="9" />
+      <node id="1566995493931392530" at="109,56,110,81" concept="8" />
+      <node id="1566995493931398646" at="110,81,111,37" concept="9" />
+      <node id="1566995493931416509" at="113,5,114,16" concept="9" />
+      <node id="4946084908408855314" at="59,0,62,0" concept="7" trace="test#(Ljava/lang/Integer;)Z" />
+      <node id="4946084908408855322" at="63,0,66,0" concept="7" trace="apply#(Ljava/lang/Integer;)Ljava/lang/Integer;" />
+      <node id="4946084908408821367" at="74,0,77,0" concept="7" trace="test#(Ljava/lang/Integer;)Z" />
+      <node id="4946084908408840628" at="78,0,81,0" concept="7" trace="apply#(Ljava/lang/Integer;)Ljava/lang/Integer;" />
+      <node id="4946084908408265945" at="33,0,37,0" concept="1" trace="ConditionNavigator#(Lorg/fbme/smvDebugger/model/Counterexample;)V" />
+      <node id="4946084908408812131" at="99,113,103,7" concept="6" />
+      <node id="1566995493931392528" at="108,55,112,7" concept="6" />
+      <node id="4946084908408265968" at="38,0,43,0" concept="7" trace="setPanelModel#(Lorg/fbme/smvDebugger/panel/mvc/DebugPanelModel;)V" />
+      <node id="4946084908408265987" at="44,0,49,0" concept="7" trace="initView#()V" />
+      <node id="4946084908408812100" at="90,32,96,5" concept="14" />
+      <node id="1566995493931392526" at="107,51,113,5" concept="5" />
+      <node id="4946084908408812120" at="97,81,104,5" concept="4" />
+      <node id="4946084908408855312" at="57,64,66,15" concept="2" />
+      <node id="4946084908408818679" at="72,64,81,15" concept="2" />
+      <node id="1566995493931358047" at="107,0,116,0" concept="7" trace="getConditionField#()Ljavax/swing/JFormattedTextField;" />
+      <node id="4946084908408855310" at="57,0,68,0" concept="7" trace="actionPerformed#(Ljava/awt/event/ActionEvent;)V" />
+      <node id="4946084908408750067" at="72,0,83,0" concept="7" trace="actionPerformed#(Ljava/awt/event/ActionEvent;)V" />
+      <node id="4946084908408855306" at="55,55,68,11" concept="2" />
+      <node id="4946084908408750063" at="70,59,83,11" concept="2" />
+      <node id="4946084908408781899" at="88,0,106,0" concept="7" trace="processAction#(Ljava/util/function/Predicate;Ljava/util/function/Function;)V" />
+      <node id="4946084908408404023" at="53,55,84,7" concept="6" />
+      <node id="4946084908408390064" at="51,32,85,5" concept="5" />
+      <node id="4946084908408265999" at="50,0,87,0" concept="7" trace="initController#()V" />
+      <scope id="4946084908408855315" at="59,60,60,59" />
+      <scope id="4946084908408855323" at="63,61,64,37" />
+      <scope id="4946084908408821368" at="74,60,75,38" />
+      <scope id="4946084908408840630" at="78,61,79,37" />
+      <scope id="4946084908408812101" at="91,9,92,52" />
+      <scope id="4946084908408265947" at="33,66,35,49" />
+      <scope id="4946084908408265969" at="39,58,41,40" />
+      <scope id="4946084908408265988" at="45,26,47,42" />
+      <scope id="4946084908408812112" at="93,47,95,13" />
+      <scope id="4946084908408812132" at="100,58,102,15" />
+      <scope id="1566995493931392529" at="109,56,111,37">
+        <var name="editor" id="1566995493931392531" />
+      </scope>
+      <scope id="4946084908408855314" at="59,0,62,0">
+        <var name="stepIndex" id="4946084908408855314" />
+      </scope>
+      <scope id="4946084908408855322" at="63,0,66,0">
+        <var name="stepIndex" id="4946084908408855322" />
+      </scope>
+      <scope id="4946084908408821367" at="74,0,77,0">
+        <var name="stepIndex" id="4946084908408821367" />
+      </scope>
+      <scope id="4946084908408840628" at="78,0,81,0">
+        <var name="stepIndex" id="4946084908408840628" />
+      </scope>
+      <scope id="4946084908408812109" at="93,5,96,5">
+        <var name="e" id="4946084908408812110" />
+      </scope>
+      <scope id="4946084908408265945" at="33,0,37,0">
+        <var name="counterexample" id="4946084908408265961" />
+      </scope>
+      <scope id="1566995493931392527" at="108,55,112,7" />
+      <scope id="4946084908408265968" at="38,0,43,0">
+        <var name="model" id="4946084908408265983" />
+      </scope>
+      <scope id="4946084908408265987" at="44,0,49,0" />
+      <scope id="4946084908408812121" at="98,138,103,7">
+        <var name="itemSimpleNameToValueMap" id="4946084908408812123" />
+      </scope>
+      <scope id="1566995493931392526" at="107,51,113,5">
+        <var name="component" id="1566995493931392547" />
+      </scope>
+      <scope id="4946084908408812120" at="97,81,104,5">
+        <var name="stepIndex" id="4946084908408812145" />
+      </scope>
+      <scope id="1566995493931358050" at="107,51,114,16" />
+      <scope id="4946084908408855311" at="57,64,66,15" />
+      <scope id="4946084908408750068" at="72,64,81,15" />
+      <scope id="1566995493931358047" at="107,0,116,0" />
+      <scope id="4946084908408855310" at="57,0,68,0">
+        <var name="event" id="4946084908408855310" />
+      </scope>
+      <scope id="4946084908408750067" at="72,0,83,0">
+        <var name="event" id="4946084908408750067" />
+      </scope>
+      <scope id="4946084908408404025" at="54,80,68,11">
+        <var name="nextButton" id="4946084908408422774" />
+      </scope>
+      <scope id="4946084908408709223" at="69,91,83,11">
+        <var name="previousButton" id="4946084908408750058" />
+      </scope>
+      <scope id="4946084908408781902" at="88,117,104,5">
+        <var name="condition" id="4946084908408812092" />
+        <var name="currentStepIndex" id="1566995493930958548" />
+        <var name="expression" id="4946084908408812098" />
+      </scope>
+      <scope id="4946084908408781899" at="88,0,106,0">
+        <var name="stepFunction" id="4946084908408801285" />
+        <var name="stopPredicate" id="4946084908408786907" />
+      </scope>
+      <scope id="4946084908408390067" at="52,55,84,7">
+        <var name="componentName" id="4946084908408719484" />
+      </scope>
+      <scope id="4946084908408266000" at="51,32,85,5" />
+      <scope id="4946084908408390064" at="51,32,85,5">
+        <var name="component" id="4946084908408390065" />
+      </scope>
+      <scope id="4946084908408265999" at="50,0,87,0" />
+      <unit id="4946084908408855314" at="58,30,62,13" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$1$1" />
+      <unit id="4946084908408855322" at="62,19,66,13" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$1$2" />
+      <unit id="4946084908408821367" at="73,30,77,13" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$2$1" />
+      <unit id="4946084908408840628" at="77,19,81,13" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$2$2" />
+      <unit id="4946084908408855310" at="56,41,68,9" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$1" />
+      <unit id="4946084908408750067" at="71,45,83,9" name="org.fbme.smvDebugger.panel.items.ConditionNavigator$2" />
+      <unit id="4946084908408260587" at="24,0,117,0" name="org.fbme.smvDebugger.panel.items.ConditionNavigator" />
+    </file>
+  </root>
+  <root nodeRef="r:00db3664-eaf5-4dfc-95d9-374394b19e04(org.fbme.smvDebugger.panel.items)/8106213185250020456">
+    <file name="HorizontalSpinner.java">
+      <node id="8106213185250521888" at="8,30,9,12" concept="13" />
+      <node id="8106213185250685455" at="9,12,10,37" concept="2" />
+      <node id="8106213185250161745" at="8,0,12,0" concept="1" trace="HorizontalSpinner#()V" />
+      <scope id="8106213185250161748" at="8,30,10,37" />
+      <scope id="8106213185250161745" at="8,0,12,0" />
+      <unit id="8106213185250020456" at="7,0,13,0" name="org.fbme.smvDebugger.panel.items.HorizontalSpinner" />
+    </file>
+  </root>
+</debug-info>
+

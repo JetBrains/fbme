@@ -13,6 +13,7 @@ dependencies {
 
 mps {
     artifactName = "library"
+    buildScriptName = "fbme_library"
     skipGeneration = true
 }
 

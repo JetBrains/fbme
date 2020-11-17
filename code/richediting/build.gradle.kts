@@ -5,11 +5,11 @@ plugins {
 
 dependencies {
     mpsImplementation(project(":code:scenes", "mps"))
-    mpsImplementation(project(":code:library"))
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:platform", "mps"))
 }
 
 mps {
     artifactName = "richediting"
+    buildScriptName = "fbme_richediting"
 }

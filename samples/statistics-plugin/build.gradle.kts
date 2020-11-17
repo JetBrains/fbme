@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     implementation(project(":code:library"))
-    implementation(project(":code:platform", "mpsClasses"))
+    implementation(project(":code:platform", "mps"))
 }
 
 
@@ -23,4 +23,5 @@ java {
 
 mps {
     artifactName = "statistics-plugin"
+    buildScriptName = "fbme_statistics"
 }
