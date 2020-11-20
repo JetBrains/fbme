@@ -50,7 +50,6 @@
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
     <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
     <import index="9ywi" ref="r:b27d9d9b-1904-40b8-bdb1-cf26b125baf7(org.fbme.ide.util.lang.structure)" />
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
@@ -60,6 +59,7 @@
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="mpua" ref="r:70067d3a-bbe4-4c69-a49e-eb3628586837(org.fbme.ide.richediting.viewmodel)" />
+    <import index="nf53" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -83,7 +83,7 @@
       </concept>
       <concept id="4836112446988635817" name="jetbrains.mps.baseLanguage.structure.UndefinedType" flags="in" index="2jxLKc" />
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
-      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="ng" index="2tJIrI" />
+      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="nn" index="2tJIrI" />
       <concept id="1076505808687" name="jetbrains.mps.baseLanguage.structure.WhileStatement" flags="nn" index="2$JKZl">
         <child id="1076505808688" name="condition" index="2$JKZa" />
       </concept>
@@ -3351,9 +3351,9 @@
       <node concept="3uibUv" id="1DfKejr7plp" role="1tU5fm">
         <ref role="3uigEE" to="hox0:~StyleAttribute" resolve="StyleAttribute" />
         <node concept="3uibUv" id="1DfKejr7pwn" role="11_B2D">
-          <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
-          <node concept="3uibUv" id="5F$aghybak3" role="11_B2D">
-            <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+          <ref role="3uigEE" to="nf53:~SelectionModel" resolve="SelectionModel" />
+          <node concept="3uibUv" id="3tHZ0yHKJ_o" role="11_B2D">
+            <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
           </node>
         </node>
       </node>
@@ -3364,9 +3364,9 @@
             <property role="Xl_RC" value="selected-fbs" />
           </node>
           <node concept="3uibUv" id="1DfKejr8oT6" role="1pMfVU">
-            <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
-            <node concept="3uibUv" id="5F$aghybaw$" role="11_B2D">
-              <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+            <ref role="3uigEE" to="nf53:~SelectionModel" resolve="SelectionModel" />
+            <node concept="3uibUv" id="3tHZ0yHKJOf" role="11_B2D">
+              <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
             </node>
           </node>
         </node>

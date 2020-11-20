@@ -60,7 +60,6 @@
     <import index="kz9k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.navigation(MPS.Editor/)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
     <import index="xygl" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.progress(MPS.IDEA/)" />
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
@@ -72,6 +71,7 @@
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -4879,8 +4879,8 @@
           <node concept="3cpWsn" id="1S4cYrOQtpI" role="3cpWs9">
             <property role="TrG5h" value="selectedComponents" />
             <node concept="2hMVRd" id="1S4cYrOQv9Y" role="1tU5fm">
-              <node concept="3uibUv" id="1gxDN_wCcCP" role="2hN53Y">
-                <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+              <node concept="3uibUv" id="3tHZ0yHKQLf" role="2hN53Y">
+                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1S4cYrOQtpJ" role="33vP2m">
@@ -4897,7 +4897,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="1S4cYrOQtpO" role="2OqNvi">
-                <ref role="37wK5l" to="rvgs:1KCfUoKS0LD" resolve="getSelectedComponents" />
+                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
               </node>
             </node>
           </node>
@@ -4906,8 +4906,15 @@
           <node concept="2OqwBi" id="1S4cYrOQ_z5" role="3cqZAk">
             <node concept="2OqwBi" id="64EP$RZ5FoL" role="2Oq$k0">
               <node concept="2OqwBi" id="1gxDN_wCgtK" role="2Oq$k0">
-                <node concept="37vLTw" id="1S4cYrOQtpP" role="2Oq$k0">
-                  <ref role="3cqZAo" node="1S4cYrOQtpI" resolve="selectedComponents" />
+                <node concept="2OqwBi" id="3tHZ0yHKZ2n" role="2Oq$k0">
+                  <node concept="37vLTw" id="1S4cYrOQtpP" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOQtpI" resolve="selectedComponents" />
+                  </node>
+                  <node concept="UnYns" id="3tHZ0yHL2hO" role="2OqNvi">
+                    <node concept="3uibUv" id="3tHZ0yHL4Ic" role="UnYnz">
+                      <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                    </node>
+                  </node>
                 </node>
                 <node concept="3$u5V9" id="1gxDN_wCjLu" role="2OqNvi">
                   <node concept="1bVj0M" id="1gxDN_wCjLw" role="23t8la">
@@ -4917,7 +4924,7 @@
                           <node concept="37vLTw" id="1gxDN_wCmlC" role="2Oq$k0">
                             <ref role="3cqZAo" node="1gxDN_wCjLy" resolve="it" />
                           </node>
-                          <node concept="liA8E" id="1gxDN_wCrro" role="2OqNvi">
+                          <node concept="liA8E" id="3tHZ0yHL7i5" role="2OqNvi">
                             <ref role="37wK5l" to="mpua:5er1Yem_uhE" resolve="getComponent" />
                           </node>
                         </node>
@@ -5408,7 +5415,7 @@
                   <ref role="3cqZAo" node="5PjcHHGcLbZ" resolve="myPort" />
                 </node>
                 <node concept="liA8E" id="5F$aghybWO1" role="2OqNvi">
-                  <ref role="37wK5l" to="wyt6:~Object.hashCode()" resolve="hashCode" />
+                  <ref role="37wK5l" to="g27j:~PortPath.hashCode()" resolve="hashCode" />
                 </node>
               </node>
             </node>
@@ -7956,9 +7963,9 @@
           <node concept="3cpWsn" id="1DfKejr8H5P" role="3cpWs9">
             <property role="TrG5h" value="selectedFBs" />
             <node concept="3uibUv" id="1DfKejr8H5Q" role="1tU5fm">
-              <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
-              <node concept="3uibUv" id="4Hbpy_fGkz2" role="11_B2D">
-                <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+              <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
+              <node concept="3uibUv" id="3tHZ0yHMONz" role="11_B2D">
+                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1DfKejr8H5S" role="33vP2m">
@@ -7990,8 +7997,8 @@
           <node concept="3cpWsn" id="1DfKejr8IdT" role="3cpWs9">
             <property role="TrG5h" value="selectedComponents" />
             <node concept="2hMVRd" id="1DfKejr8K6W" role="1tU5fm">
-              <node concept="3uibUv" id="4Hbpy_fGl0T" role="2hN53Y">
-                <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+              <node concept="3uibUv" id="3tHZ0yHMZ6B" role="2hN53Y">
+                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1DfKejr8IdU" role="33vP2m">
@@ -7999,7 +8006,7 @@
                 <ref role="3cqZAo" node="1DfKejr8H5P" resolve="selectedFBs" />
               </node>
               <node concept="liA8E" id="1DfKejr8IdW" role="2OqNvi">
-                <ref role="37wK5l" to="rvgs:1KCfUoKS0LD" resolve="getSelectedComponents" />
+                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
               </node>
             </node>
           </node>
@@ -8020,8 +8027,15 @@
                 <node concept="2OqwBi" id="1DfKejraLIS" role="I$8f6">
                   <node concept="2OqwBi" id="1DfKejr8MyS" role="2Oq$k0">
                     <node concept="2OqwBi" id="4Hbpy_fGlU7" role="2Oq$k0">
-                      <node concept="37vLTw" id="1DfKejr8MyT" role="2Oq$k0">
-                        <ref role="3cqZAo" node="1DfKejr8IdT" resolve="selectedComponents" />
+                      <node concept="2OqwBi" id="3tHZ0yHMXyb" role="2Oq$k0">
+                        <node concept="37vLTw" id="1DfKejr8MyT" role="2Oq$k0">
+                          <ref role="3cqZAo" node="1DfKejr8IdT" resolve="selectedComponents" />
+                        </node>
+                        <node concept="UnYns" id="3tHZ0yHMYz9" role="2OqNvi">
+                          <node concept="3uibUv" id="3tHZ0yHMYQ0" role="UnYnz">
+                            <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                          </node>
+                        </node>
                       </node>
                       <node concept="3$u5V9" id="4Hbpy_fGmUN" role="2OqNvi">
                         <node concept="1bVj0M" id="4Hbpy_fGmUP" role="23t8la">
@@ -8131,9 +8145,9 @@
               <node concept="3cpWsn" id="1DfKejr8BXo" role="3cpWs9">
                 <property role="TrG5h" value="selectedFBs" />
                 <node concept="3uibUv" id="1DfKejr8BKV" role="1tU5fm">
-                  <ref role="3uigEE" to="rvgs:1KCfUoKRX_E" resolve="SelectionModel" />
-                  <node concept="3uibUv" id="4Hbpy_fGk2h" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                  <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
+                  <node concept="3uibUv" id="3tHZ0yHMOmk" role="11_B2D">
+                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="1DfKejr8BXp" role="33vP2m">
@@ -8198,10 +8212,10 @@
                         <ref role="3cqZAo" node="1DfKejr8BXo" resolve="selectedFBs" />
                       </node>
                       <node concept="liA8E" id="1DfKejr8FgR" role="2OqNvi">
-                        <ref role="37wK5l" to="rvgs:1KCfUoKS0LD" resolve="getSelectedComponents" />
+                        <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
                       </node>
                     </node>
-                    <node concept="liA8E" id="1DfKejr8FgS" role="2OqNvi">
+                    <node concept="liA8E" id="3tHZ0yHsdkt" role="2OqNvi">
                       <ref role="37wK5l" to="33ny:~Set.isEmpty()" resolve="isEmpty" />
                     </node>
                   </node>

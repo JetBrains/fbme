@@ -11,6 +11,9 @@
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
       <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="9126048691955220717" name="jetbrains.mps.build.structure.BuildLayout_File" flags="ng" index="28jJK3">
+        <child id="9126048691955220762" name="path" index="28jJRO" />
+      </concept>
       <concept id="2755237150521975431" name="jetbrains.mps.build.structure.BuildVariableMacroInitWithString" flags="ng" index="aVJcg">
         <child id="2755237150521975437" name="value" index="aVJcq" />
       </concept>
@@ -32,6 +35,10 @@
         <child id="8618885170173601778" name="tail" index="2Ry0An" />
       </concept>
       <concept id="6647099934206700647" name="jetbrains.mps.build.structure.BuildJavaPlugin" flags="ng" index="10PD9b" />
+      <concept id="7389400916848050060" name="jetbrains.mps.build.structure.BuildLayout_NamedContainer" flags="ng" index="3981dR">
+        <child id="4380385936562148502" name="containerName" index="Nbhlr" />
+      </concept>
+      <concept id="7389400916848036984" name="jetbrains.mps.build.structure.BuildLayout_Folder" flags="ng" index="398223" />
       <concept id="7389400916848136194" name="jetbrains.mps.build.structure.BuildFolderMacro" flags="ng" index="398rNT">
         <child id="7389400916848144618" name="defaultPath" index="398pKh" />
       </concept>
@@ -115,6 +122,9 @@
         <property id="2889113830911481881" name="deployFolderName" index="3ZfqAx" />
         <child id="8137134783396676835" name="location" index="1HemKq" />
       </concept>
+      <concept id="4278635856200826393" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyJar" flags="ng" index="1BurEX">
+        <child id="4278635856200826394" name="path" index="1BurEY" />
+      </concept>
       <concept id="3189788309731840247" name="jetbrains.mps.build.mps.structure.BuildMps_Solution" flags="ng" index="1E1JtA" />
       <concept id="322010710375871467" name="jetbrains.mps.build.mps.structure.BuildMps_AbstractModule" flags="ng" index="3LEN3z">
         <property id="8369506495128725901" name="compact" index="BnDLt" />
@@ -162,6 +172,26 @@
       <node concept="m$_wl" id="42vv4xsJMzh" role="39821P">
         <ref role="m_rDy" node="42vv4xsIJ5y" resolve="scenes" />
         <node concept="pUk6x" id="42vv4xsJM$j" role="pUk7w" />
+        <node concept="398223" id="3tHZ0yHpqR9" role="39821P">
+          <node concept="3_J27D" id="3tHZ0yHpqRa" role="Nbhlr">
+            <node concept="3Mxwew" id="3tHZ0yHpqRn" role="3MwsjC">
+              <property role="3MwjfP" value="lib" />
+            </node>
+          </node>
+          <node concept="28jJK3" id="3tHZ0yHpqSb" role="39821P">
+            <node concept="55IIr" id="3tHZ0yHpqSj" role="28jJRO">
+              <node concept="2Ry0Ak" id="3tHZ0yHpqSt" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="3tHZ0yHpqSy" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="3tHZ0yHpqSB" role="2Ry0An">
+                    <property role="2Ry0Am" value="scenes.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
       </node>
     </node>
     <node concept="m$_wf" id="42vv4xsIJ5y" role="3989C9">
@@ -269,6 +299,21 @@
             </node>
             <node concept="3qWCbU" id="Ej4tEplrRk" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="3tHZ0yHpqSH" role="3bR37C">
+          <node concept="1BurEX" id="3tHZ0yHpqSI" role="1SiIV1">
+            <node concept="55IIr" id="3tHZ0yHpqSD" role="1BurEY">
+              <node concept="2Ry0Ak" id="3tHZ0yHpqSE" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="3tHZ0yHpqSF" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="3tHZ0yHpqSG" role="2Ry0An">
+                    <property role="2Ry0Am" value="scenes.jar" />
+                  </node>
+                </node>
+              </node>
             </node>
           </node>
         </node>

@@ -7,12 +7,8 @@
   </languages>
   <imports>
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
-    <import index="5lkm" ref="r:7effb02f-bde4-4d2f-b844-eefa6ab09c8c(org.fbme.scenes.controllers.diagram)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="hyqd" ref="r:01ce234a-ce36-43f1-8a99-7cbd899f1013(org.fbme.scenes.viewmodel)" />
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
-    <import index="xxy3" ref="r:b09c5f9b-eaf5-42ce-8c06-05ad1ccd4ce3(org.fbme.scenes.controllers.components)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="82uw" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.function(JDK/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
@@ -24,7 +20,18 @@
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
     <import index="vjnt" ref="r:dcc8041c-4feb-4a59-913c-c4ff83a14df3(org.fbme.ide.richediting.adapters.fbnetwork)" />
+    <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
+    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="ar7i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
+    <import index="ks6i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.ext.contextMenu(org.fbme.scenes/)" />
+    <import index="gl2l" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.viewmodel(org.fbme.scenes/)" />
+    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" implicit="true" />
+    <import index="pl58" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" implicit="true" />
+    <import index="br90" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.viewmodel(org.fbme.scenes/)" implicit="true" />
+    <import index="nf53" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" implicit="true" />
+    <import index="a6f1" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
   </imports>
   <registry>
@@ -40,7 +47,7 @@
       <concept id="1215695189714" name="jetbrains.mps.baseLanguage.structure.PlusAssignmentExpression" flags="nn" index="d57v9" />
       <concept id="1215695201514" name="jetbrains.mps.baseLanguage.structure.MinusAssignmentExpression" flags="nn" index="d5anL" />
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
-      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="ng" index="2tJIrI" />
+      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="nn" index="2tJIrI" />
       <concept id="5279705229678483897" name="jetbrains.mps.baseLanguage.structure.FloatingPointFloatConstant" flags="nn" index="2$xPTn">
         <property id="5279705229678483899" name="value" index="2$xPTl" />
       </concept>
@@ -743,7 +750,7 @@
     </node>
     <node concept="3Tm1VV" id="38k27IREOlB" role="1B3o_S" />
     <node concept="3uibUv" id="38k27IREOlC" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:4O0ojQpH$TE" resolve="DiagramView" />
+      <ref role="3uigEE" to="pl58:~DiagramView" resolve="DiagramView" />
       <node concept="3uibUv" id="5F$aghy1vqU" role="11_B2D">
         <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
       </node>
@@ -755,7 +762,7 @@
       </node>
     </node>
     <node concept="3uibUv" id="38k27IREOlG" role="EKbjA">
-      <ref role="3uigEE" to="hyqd:1KCfUoKQiq3" resolve="ComponentsView" />
+      <ref role="3uigEE" to="br90:~ComponentsView" resolve="ComponentsView" />
       <node concept="3uibUv" id="5F$aghy1xQz" role="11_B2D">
         <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
       </node>
@@ -768,14 +775,14 @@
       <property role="TrG5h" value="myViewpoint" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="5jb5jNCfCVG" role="1B3o_S" />
-      <node concept="3uibUv" id="5jb5jNCfCVH" role="1tU5fm">
-        <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+      <node concept="3uibUv" id="3tHZ0yHptTS" role="1tU5fm">
+        <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
       </node>
     </node>
     <node concept="2tJIrI" id="5jb5jNCfCVI" role="jymVt" />
     <node concept="3Tm1VV" id="5jb5jNCfCVJ" role="1B3o_S" />
     <node concept="3uibUv" id="5jb5jNCfCVK" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:1gL472EF7fL" resolve="ComponentSynchronizer" />
+      <ref role="3uigEE" to="a6f1:~ComponentSynchronizer" resolve="ComponentSynchronizer" />
       <node concept="3uibUv" id="5F$aghy1tCw" role="11_B2D">
         <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
       </node>
@@ -800,8 +807,8 @@
       </node>
       <node concept="37vLTG" id="5jb5jNCfCVV" role="3clF46">
         <property role="TrG5h" value="viewpoint" />
-        <node concept="3uibUv" id="5jb5jNCfCVW" role="1tU5fm">
-          <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+        <node concept="3uibUv" id="3tHZ0yHpuca" role="1tU5fm">
+          <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
         </node>
       </node>
     </node>
@@ -868,7 +875,7 @@
                         <ref role="3cqZAo" node="5jb5jNCfCVF" resolve="myViewpoint" />
                       </node>
                       <node concept="liA8E" id="5jb5jNCfCWA" role="2OqNvi">
-                        <ref role="37wK5l" to="rvgs:7sG$k3BM$l1" resolve="translateToEditorX" />
+                        <ref role="37wK5l" to="nf53:~SceneViewpoint.translateToEditorX(int)" resolve="translateToEditorX" />
                         <node concept="37vLTw" id="5jb5jNCfJYB" role="37wK5m">
                           <ref role="3cqZAo" node="5jb5jNCfH1N" resolve="x" />
                         </node>
@@ -879,7 +886,7 @@
                         <ref role="3cqZAo" node="5jb5jNCfCVF" resolve="myViewpoint" />
                       </node>
                       <node concept="liA8E" id="5jb5jNCfCWE" role="2OqNvi">
-                        <ref role="37wK5l" to="rvgs:309fsJ6evNL" resolve="translateToEditorY" />
+                        <ref role="37wK5l" to="nf53:~SceneViewpoint.translateToEditorY(int)" resolve="translateToEditorY" />
                         <node concept="37vLTw" id="5jb5jNCfKh_" role="37wK5m">
                           <ref role="3cqZAo" node="5jb5jNCfIxt" resolve="y" />
                         </node>
@@ -932,7 +939,7 @@
                   <ref role="3cqZAo" node="5jb5jNCfCVF" resolve="myViewpoint" />
                 </node>
                 <node concept="liA8E" id="5jb5jNCfCXR" role="2OqNvi">
-                  <ref role="37wK5l" to="rvgs:309fsJ6iBhP" resolve="translateFromEditorX" />
+                  <ref role="37wK5l" to="nf53:~SceneViewpoint.translateFromEditorX(int)" resolve="translateFromEditorX" />
                   <node concept="2OqwBi" id="5jb5jNCfCXS" role="37wK5m">
                     <node concept="37vLTw" id="5jb5jNCfCXT" role="2Oq$k0">
                       <ref role="3cqZAo" node="5jb5jNCfCXy" resolve="position" />
@@ -958,7 +965,7 @@
                   <ref role="3cqZAo" node="5jb5jNCfCVF" resolve="myViewpoint" />
                 </node>
                 <node concept="liA8E" id="5jb5jNCfCY1" role="2OqNvi">
-                  <ref role="37wK5l" to="rvgs:309fsJ6iBhV" resolve="translateFromEditorY" />
+                  <ref role="37wK5l" to="nf53:~SceneViewpoint.translateFromEditorY(int)" resolve="translateFromEditorY" />
                   <node concept="2OqwBi" id="5jb5jNCfCY2" role="37wK5m">
                     <node concept="37vLTw" id="5jb5jNCfCY3" role="2Oq$k0">
                       <ref role="3cqZAo" node="5jb5jNCfCXy" resolve="position" />
@@ -1031,7 +1038,7 @@
       <node concept="37vLTG" id="38k27IRCmWo" role="3clF46">
         <property role="TrG5h" value="componentsFacitlity" />
         <node concept="3uibUv" id="38k27IRCmWp" role="1tU5fm">
-          <ref role="3uigEE" to="xxy3:3vyG44ANA6n" resolve="ComponentsFacility" />
+          <ref role="3uigEE" to="a6f1:~ComponentsFacility" resolve="ComponentsFacility" />
           <node concept="3uibUv" id="5F$aghy1OTE" role="11_B2D">
             <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
           </node>
@@ -1057,7 +1064,7 @@
                           <ref role="3cqZAo" node="38k27IRCmWo" resolve="componentsFacitlity" />
                         </node>
                         <node concept="liA8E" id="38k27IRCmWB" role="2OqNvi">
-                          <ref role="37wK5l" to="xxy3:4y$DvIVUIFH" resolve="getController" />
+                          <ref role="37wK5l" to="a6f1:~ComponentsFacility.getController(java.lang.Object)" resolve="getController" />
                           <node concept="37vLTw" id="38k27IRCmWC" role="37wK5m">
                             <ref role="3cqZAo" node="38k27IRCmWD" resolve="it" />
                           </node>
@@ -1555,7 +1562,7 @@
     </node>
     <node concept="3Tm1VV" id="38k27IRCmYM" role="1B3o_S" />
     <node concept="3uibUv" id="38k27IRCmYN" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:4O0ojQpHEzY" resolve="PortSettingProvider" />
+      <ref role="3uigEE" to="pl58:~PortSettingProvider" resolve="PortSettingProvider" />
       <node concept="3uibUv" id="5F$aghy1NLX" role="11_B2D">
         <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
       </node>
@@ -1605,7 +1612,7 @@
     <property role="TrG5h" value="ECStateController" />
     <node concept="3Tm1VV" id="5ye4HINzDYW" role="1B3o_S" />
     <node concept="3uibUv" id="5ye4HINzFv3" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:1KCfUoKRRlk" resolve="ComponentController" />
+      <ref role="3uigEE" to="a6f1:~ComponentController" resolve="ComponentController" />
       <node concept="3uibUv" id="1iOpS24PLKh" role="11_B2D">
         <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
       </node>
@@ -4017,7 +4024,7 @@
     </node>
     <node concept="3Tm1VV" id="38k27IRy0oa" role="1B3o_S" />
     <node concept="3uibUv" id="38k27IRy0sj" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:7sG$k3BBij3" resolve="ConnectionController" />
+      <ref role="3uigEE" to="pl58:~ConnectionController" resolve="ConnectionController" />
       <node concept="3uibUv" id="38k27IRAx1Y" role="11_B2D">
         <ref role="3uigEE" node="38k27IRy1n0" resolve="ECTransitionCursor" />
       </node>
@@ -5183,7 +5190,7 @@
       <property role="TrG5h" value="myViewpoint" />
       <property role="3TUv4t" value="true" />
       <node concept="3uibUv" id="38k27IRQ3Ja" role="1tU5fm">
-        <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+        <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
       </node>
       <node concept="3Tm6S6" id="38k27IRQ3Jb" role="1B3o_S" />
     </node>
@@ -5206,7 +5213,7 @@
       <node concept="37vLTG" id="38k27IRQ3Jl" role="3clF46">
         <property role="TrG5h" value="viewpoint" />
         <node concept="3uibUv" id="38k27IRQ3Jm" role="1tU5fm">
-          <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+          <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
         </node>
       </node>
     </node>
@@ -5273,7 +5280,7 @@
                             <ref role="3cqZAo" node="38k27IRQ3J9" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="38k27IRQrHI" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:7sG$k3BM$l1" resolve="translateToEditorX" />
+                            <ref role="37wK5l" to="nf53:~SceneViewpoint.translateToEditorX(int)" resolve="translateToEditorX" />
                             <node concept="37vLTw" id="38k27IRQsif" role="37wK5m">
                               <ref role="3cqZAo" node="38k27IRQjVT" resolve="cx" />
                             </node>
@@ -5284,7 +5291,7 @@
                             <ref role="3cqZAo" node="38k27IRQ3J9" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="38k27IRQsL$" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:309fsJ6evNL" resolve="translateToEditorY" />
+                            <ref role="37wK5l" to="nf53:~SceneViewpoint.translateToEditorY(int)" resolve="translateToEditorY" />
                             <node concept="37vLTw" id="38k27IRQu3M" role="37wK5m">
                               <ref role="3cqZAo" node="38k27IRQloh" resolve="cy" />
                             </node>
@@ -5366,7 +5373,7 @@
                   <ref role="3cqZAo" node="38k27IRQ3J9" resolve="myViewpoint" />
                 </node>
                 <node concept="liA8E" id="38k27IRQxD1" role="2OqNvi">
-                  <ref role="37wK5l" to="rvgs:309fsJ6iBhP" resolve="translateFromEditorX" />
+                  <ref role="37wK5l" to="nf53:~SceneViewpoint.translateFromEditorX(int)" resolve="translateFromEditorX" />
                   <node concept="2OqwBi" id="38k27IRQz5r" role="37wK5m">
                     <node concept="2OqwBi" id="38k27IRQxRT" role="2Oq$k0">
                       <node concept="37vLTw" id="38k27IRQxI9" role="2Oq$k0">
@@ -5397,7 +5404,7 @@
                   <ref role="3cqZAo" node="38k27IRQ3J9" resolve="myViewpoint" />
                 </node>
                 <node concept="liA8E" id="38k27IRQCyU" role="2OqNvi">
-                  <ref role="37wK5l" to="rvgs:309fsJ6iBhV" resolve="translateFromEditorY" />
+                  <ref role="37wK5l" to="nf53:~SceneViewpoint.translateFromEditorY(int)" resolve="translateFromEditorY" />
                   <node concept="2OqwBi" id="38k27IRQCyV" role="37wK5m">
                     <node concept="2OqwBi" id="38k27IRQCyW" role="2Oq$k0">
                       <node concept="37vLTw" id="38k27IRQCyX" role="2Oq$k0">
@@ -5423,12 +5430,9 @@
     </node>
     <node concept="3Tm1VV" id="38k27IRQ3LJ" role="1B3o_S" />
     <node concept="3uibUv" id="38k27IRQ3LK" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:7_KjZP9eHRu" resolve="ConnectionPathSyncronizer" />
+      <ref role="3uigEE" to="pl58:~ConnectionPathSyncronizer" resolve="ConnectionPathSyncronizer" />
       <node concept="3uibUv" id="5F$aghy1R3P" role="11_B2D">
         <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
-      </node>
-      <node concept="3uibUv" id="5F$aghy1QQm" role="11_B2D">
-        <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
       </node>
       <node concept="3uibUv" id="38k27IRQhwK" role="11_B2D">
         <ref role="3uigEE" node="38k27IRy0tz" resolve="ECTransitionPath" />

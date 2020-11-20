@@ -7,7 +7,6 @@
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
   </languages>
   <imports>
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
@@ -26,7 +25,6 @@
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
     <import index="kcid" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cellLayout(MPS.Editor/)" />
     <import index="hhnx" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime(MPS.Editor/)" />
-    <import index="ee2c" ref="r:c260e783-fa83-4eab-8183-e5c937092355(org.fbme.scenes.cells)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="de0p" ref="r:d7cab6e9-7043-4e10-b77e-569e7736ba5e(org.fbme.ide.platform.editor)" />
     <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(org.fbme.ide.iec61499.adapter.fbnetwork)" />
@@ -41,6 +39,8 @@
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
+    <import index="nf53" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" implicit="true" />
+    <import index="n0ip" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -1337,8 +1337,8 @@
         <node concept="3Tm6S6" id="7qPnRGGt7DT" role="1B3o_S" />
         <node concept="10Oyi0" id="7qPnRGGt8cz" role="1tU5fm" />
         <node concept="2YIFZM" id="7MP0dMy90R" role="33vP2m">
-          <ref role="37wK5l" to="rvgs:7MP0dMsbTr" resolve="getLineSize" />
-          <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+          <ref role="1Pybhc" to="nf53:~LayoutUtil" resolve="LayoutUtil" />
+          <ref role="37wK5l" to="nf53:~LayoutUtil.getLineSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getLineSize" />
           <node concept="2OqwBi" id="7MP0dMy90S" role="37wK5m">
             <node concept="37vLTw" id="7MP0dMy90T" role="2Oq$k0">
               <ref role="3cqZAo" node="1JYTWWzJ_QF" resolve="myCellCollection" />
@@ -2374,8 +2374,8 @@
       <property role="TrG5h" value="myTypeNameLabel" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="1HEL0zW0T3g" role="1B3o_S" />
-      <node concept="3uibUv" id="3DiEZ8TEsOv" role="1tU5fm">
-        <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+      <node concept="3uibUv" id="3tHZ0yHq1mI" role="1tU5fm">
+        <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
       </node>
     </node>
     <node concept="2tJIrI" id="1HEL0zW11Df" role="jymVt" />
@@ -3179,8 +3179,8 @@
             <node concept="3cpWs8" id="1JYTWWzEgrz" role="3cqZAp">
               <node concept="3cpWsn" id="1JYTWWzEgr$" role="3cpWs9">
                 <property role="TrG5h" value="label" />
-                <node concept="3uibUv" id="3DiEZ8TEygw" role="1tU5fm">
-                  <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+                <node concept="3uibUv" id="3tHZ0yHqflI" role="1tU5fm">
+                  <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
                 </node>
                 <node concept="2OqwBi" id="1JYTWWzEgr_" role="33vP2m">
                   <node concept="2GrUjf" id="1JYTWWzEgrA" role="2Oq$k0">
@@ -3370,8 +3370,8 @@
             <node concept="3cpWs8" id="1JYTWWzG1Am" role="3cqZAp">
               <node concept="3cpWsn" id="1JYTWWzG1An" role="3cpWs9">
                 <property role="TrG5h" value="label" />
-                <node concept="3uibUv" id="3DiEZ8TEzum" role="1tU5fm">
-                  <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+                <node concept="3uibUv" id="3tHZ0yHqfoM" role="1tU5fm">
+                  <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
                 </node>
                 <node concept="2OqwBi" id="1JYTWWzG1Ap" role="33vP2m">
                   <node concept="2GrUjf" id="1JYTWWzG1Aq" role="2Oq$k0">
@@ -3433,8 +3433,8 @@
             <node concept="3cpWs8" id="1cTKxMSgoT5" role="3cqZAp">
               <node concept="3cpWsn" id="1cTKxMSgoT6" role="3cpWs9">
                 <property role="TrG5h" value="label" />
-                <node concept="3uibUv" id="3DiEZ8TE$xu" role="1tU5fm">
-                  <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+                <node concept="3uibUv" id="3tHZ0yHqfkW" role="1tU5fm">
+                  <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
                 </node>
                 <node concept="2OqwBi" id="1cTKxMSgoT8" role="33vP2m">
                   <node concept="2GrUjf" id="1cTKxMSgoT9" role="2Oq$k0">
@@ -6532,8 +6532,8 @@
       <node concept="3clFbS" id="7qPnRGGu9qB" role="3clF47">
         <node concept="3cpWs6" id="7qPnRGGu9rv" role="3cqZAp">
           <node concept="2YIFZM" id="7MP0dMszbV" role="3cqZAk">
-            <ref role="37wK5l" to="rvgs:7MP0dMsbTr" resolve="getLineSize" />
-            <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+            <ref role="1Pybhc" to="nf53:~LayoutUtil" resolve="LayoutUtil" />
+            <ref role="37wK5l" to="nf53:~LayoutUtil.getLineSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getLineSize" />
             <node concept="2OqwBi" id="7MP0dMszbW" role="37wK5m">
               <node concept="37vLTw" id="7MP0dMszbX" role="2Oq$k0">
                 <ref role="3cqZAo" node="1JYTWWzCC45" resolve="myCellCollection" />
@@ -6554,8 +6554,8 @@
       <node concept="3clFbS" id="7MP0dMsDTY" role="3clF47">
         <node concept="3cpWs6" id="7MP0dMsDTZ" role="3cqZAp">
           <node concept="2YIFZM" id="7MP0dMsPRI" role="3cqZAk">
-            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
-            <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+            <ref role="1Pybhc" to="nf53:~LayoutUtil" resolve="LayoutUtil" />
+            <ref role="37wK5l" to="nf53:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
             <node concept="2OqwBi" id="7MP0dMsPRJ" role="37wK5m">
               <node concept="37vLTw" id="7MP0dMsPRK" role="2Oq$k0">
                 <ref role="3cqZAo" node="1JYTWWzCC45" resolve="myCellCollection" />
@@ -7205,8 +7205,8 @@
     <node concept="3clFb_" id="1QSEqLi5GUY" role="jymVt">
       <property role="TrG5h" value="createTypeNameLabel" />
       <node concept="3Tm6S6" id="1QSEqLi5GUZ" role="1B3o_S" />
-      <node concept="3uibUv" id="1QSEqLi5GV0" role="3clF45">
-        <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+      <node concept="3uibUv" id="3tHZ0yHqfbu" role="3clF45">
+        <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
       </node>
       <node concept="37vLTG" id="1QSEqLi5GUM" role="3clF46">
         <property role="TrG5h" value="fbType" />
@@ -7246,7 +7246,7 @@
         <node concept="3cpWs6" id="1QSEqLi5GUK" role="3cqZAp">
           <node concept="2ShNRf" id="6YAH_gOxhSz" role="3cqZAk">
             <node concept="1pGfFk" id="6YAH_gOxhS$" role="2ShVmc">
-              <ref role="37wK5l" to="ee2c:3DiEZ8TCNUJ" resolve="EditorCell_SceneLabel" />
+              <ref role="37wK5l" to="n0ip:~EditorCell_SceneLabel.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,java.lang.String,boolean)" resolve="EditorCell_SceneLabel" />
               <node concept="37vLTw" id="6YAH_gOxhS_" role="37wK5m">
                 <ref role="3cqZAo" node="1QSEqLi5GUO" resolve="context" />
               </node>
@@ -7279,8 +7279,8 @@
         <property role="TrG5h" value="myLabel" />
         <property role="3TUv4t" value="true" />
         <node concept="3Tm6S6" id="4vmY7CyQqNR" role="1B3o_S" />
-        <node concept="3uibUv" id="3DiEZ8TEroh" role="1tU5fm">
-          <ref role="3uigEE" to="ee2c:3DiEZ8TCKgO" resolve="EditorCell_SceneLabel" />
+        <node concept="3uibUv" id="3tHZ0yHqfo0" role="1tU5fm">
+          <ref role="3uigEE" to="n0ip:~EditorCell_SceneLabel" resolve="EditorCell_SceneLabel" />
         </node>
       </node>
       <node concept="312cEg" id="5fP$XwiXktG" role="jymVt">
@@ -7302,7 +7302,7 @@
               </node>
               <node concept="2ShNRf" id="3DiEZ8TEqro" role="37vLTx">
                 <node concept="1pGfFk" id="3DiEZ8TEqrp" role="2ShVmc">
-                  <ref role="37wK5l" to="ee2c:3DiEZ8TCNUJ" resolve="EditorCell_SceneLabel" />
+                  <ref role="37wK5l" to="n0ip:~EditorCell_SceneLabel.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,java.lang.String,boolean)" resolve="EditorCell_SceneLabel" />
                   <node concept="37vLTw" id="3DiEZ8TEqrq" role="37wK5m">
                     <ref role="3cqZAo" node="4vmY7CyRIpr" resolve="context" />
                   </node>

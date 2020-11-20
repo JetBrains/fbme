@@ -10,18 +10,14 @@
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="82uw" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.function(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="5lkm" ref="r:7effb02f-bde4-4d2f-b844-eefa6ab09c8c(org.fbme.scenes.controllers.diagram)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
-    <import index="rvgs" ref="r:22f3147c-cd8c-496f-a7fc-c31f351de000(org.fbme.scenes.controllers)" />
     <import index="ubo9" ref="r:15c6feaa-d38f-494f-a105-0b74d654dd08(richediting.adapters.fb)" />
-    <import index="xxy3" ref="r:b09c5f9b-eaf5-42ce-8c06-05ad1ccd4ce3(org.fbme.scenes.controllers.components)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="5ueo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime.style(MPS.Editor/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
-    <import index="hyqd" ref="r:01ce234a-ce36-43f1-8a99-7cbd899f1013(org.fbme.scenes.viewmodel)" />
     <import index="fbzs" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt.geom(JDK/)" />
     <import index="kcid" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cellLayout(MPS.Editor/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
@@ -32,6 +28,9 @@
     <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
     <import index="mpua" ref="r:70067d3a-bbe4-4c69-a49e-eb3628586837(org.fbme.ide.richediting.viewmodel)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
+    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
   </imports>
@@ -5708,8 +5707,8 @@
       <node concept="3clFbS" id="1pJxKgrtVIJ" role="3clF47">
         <node concept="3clFbF" id="1pJxKgrtZj8" role="3cqZAp">
           <node concept="2YIFZM" id="7MP0dMtjed" role="3clFbG">
-            <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
-            <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+            <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+            <ref role="37wK5l" to="kdnk:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
             <node concept="2OqwBi" id="7MP0dMtjee" role="37wK5m">
               <node concept="37vLTw" id="7MP0dMtjef" role="2Oq$k0">
                 <ref role="3cqZAo" node="1pJxKgrty__" resolve="myFakeCell" />
@@ -5759,7 +5758,7 @@
     </node>
     <node concept="3Tm1VV" id="4ZaR9mNllb4" role="1B3o_S" />
     <node concept="3uibUv" id="17nGqbJCM4f" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:7sG$k3BBij3" resolve="ConnectionController" />
+      <ref role="3uigEE" to="tamd:~ConnectionController" resolve="ConnectionController" />
       <node concept="3uibUv" id="IMWzYPks10" role="11_B2D">
         <ref role="3uigEE" node="IMWzYPgjIH" resolve="FBConnectionCursor" />
       </node>
@@ -8028,8 +8027,8 @@
     <node concept="312cEg" id="4y$DvIXvn00" role="jymVt">
       <property role="TrG5h" value="myViewpoint" />
       <property role="3TUv4t" value="true" />
-      <node concept="3uibUv" id="4y$DvIXvmSw" role="1tU5fm">
-        <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+      <node concept="3uibUv" id="3tHZ0yHqXzU" role="1tU5fm">
+        <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
       </node>
       <node concept="3Tm6S6" id="4y$DvIXx3kx" role="1B3o_S" />
     </node>
@@ -8067,8 +8066,8 @@
       </node>
       <node concept="37vLTG" id="4y$DvIXx4WX" role="3clF46">
         <property role="TrG5h" value="viewpoint" />
-        <node concept="3uibUv" id="4y$DvIXx4WW" role="1tU5fm">
-          <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+        <node concept="3uibUv" id="3tHZ0yHqY$x" role="1tU5fm">
+          <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
         </node>
       </node>
       <node concept="37vLTG" id="61SA$ze2s_S" role="3clF46">
@@ -8208,7 +8207,7 @@
                           <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                         </node>
                         <node concept="liA8E" id="4y$DvIXPtpx" role="2OqNvi">
-                          <ref role="37wK5l" to="rvgs:4KEbQahQyvv" resolve="toEditorDimension" />
+                          <ref role="37wK5l" to="kdnk:~SceneViewpoint.toEditorDimension(int)" resolve="toEditorDimension" />
                           <node concept="37vLTw" id="4y$DvIXPtpy" role="37wK5m">
                             <ref role="3cqZAo" node="4y$DvIXPc27" resolve="dx1" />
                           </node>
@@ -8229,7 +8228,7 @@
                           <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                         </node>
                         <node concept="liA8E" id="4y$DvIXPu37" role="2OqNvi">
-                          <ref role="37wK5l" to="rvgs:4KEbQahQyvv" resolve="toEditorDimension" />
+                          <ref role="37wK5l" to="kdnk:~SceneViewpoint.toEditorDimension(int)" resolve="toEditorDimension" />
                           <node concept="37vLTw" id="4y$DvIXPu38" role="37wK5m">
                             <ref role="3cqZAo" node="4y$DvIXPcwd" resolve="dy" />
                           </node>
@@ -8250,7 +8249,7 @@
                           <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                         </node>
                         <node concept="liA8E" id="4y$DvIXPuG$" role="2OqNvi">
-                          <ref role="37wK5l" to="rvgs:4KEbQahQyvv" resolve="toEditorDimension" />
+                          <ref role="37wK5l" to="kdnk:~SceneViewpoint.toEditorDimension(int)" resolve="toEditorDimension" />
                           <node concept="37vLTw" id="4y$DvIXPuG_" role="37wK5m">
                             <ref role="3cqZAo" node="4y$DvIXPcYv" resolve="dx2" />
                           </node>
@@ -8371,7 +8370,7 @@
                       <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                     </node>
                     <node concept="liA8E" id="61SA$ze2DUi" role="2OqNvi">
-                      <ref role="37wK5l" to="rvgs:4KEbQahQyMc" resolve="fromEditorDimension" />
+                      <ref role="37wK5l" to="kdnk:~SceneViewpoint.fromEditorDimension(int)" resolve="fromEditorDimension" />
                       <node concept="3cpWsd" id="61SA$ze2DUj" role="37wK5m">
                         <node concept="2OqwBi" id="61SA$ze2DUk" role="3uHU7w">
                           <node concept="37vLTw" id="61SA$ze2DUl" role="2Oq$k0">
@@ -8413,7 +8412,7 @@
                       <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                     </node>
                     <node concept="liA8E" id="61SA$ze2DLY" role="2OqNvi">
-                      <ref role="37wK5l" to="rvgs:4KEbQahQyMc" resolve="fromEditorDimension" />
+                      <ref role="37wK5l" to="kdnk:~SceneViewpoint.fromEditorDimension(int)" resolve="fromEditorDimension" />
                       <node concept="3cpWsd" id="61SA$ze2DLZ" role="37wK5m">
                         <node concept="2OqwBi" id="61SA$ze2DM0" role="3uHU7B">
                           <node concept="37vLTw" id="61SA$ze2DM1" role="2Oq$k0">
@@ -8455,7 +8454,7 @@
                       <ref role="3cqZAo" node="4y$DvIXvn00" resolve="myViewpoint" />
                     </node>
                     <node concept="liA8E" id="61SA$ze2Dn2" role="2OqNvi">
-                      <ref role="37wK5l" to="rvgs:4KEbQahQyMc" resolve="fromEditorDimension" />
+                      <ref role="37wK5l" to="kdnk:~SceneViewpoint.fromEditorDimension(int)" resolve="fromEditorDimension" />
                       <node concept="3cpWsd" id="61SA$ze2Dn3" role="37wK5m">
                         <node concept="2OqwBi" id="61SA$ze2Dn4" role="3uHU7B">
                           <node concept="37vLTw" id="61SA$ze2Dn5" role="2Oq$k0">
@@ -8522,12 +8521,9 @@
     </node>
     <node concept="3Tm1VV" id="4y$DvIXuI3x" role="1B3o_S" />
     <node concept="3uibUv" id="4y$DvIXuI51" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:7_KjZP9eHRu" resolve="ConnectionPathSyncronizer" />
+      <ref role="3uigEE" to="tamd:~ConnectionPathSyncronizer" resolve="ConnectionPathSyncronizer" />
       <node concept="3uibUv" id="5F$aghy4n0g" role="11_B2D">
         <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
-      </node>
-      <node concept="3uibUv" id="5F$aghy4pbJ" role="11_B2D">
-        <ref role="3uigEE" to="mpua:5er1YemzmpJ" resolve="NetworkPortView" />
       </node>
       <node concept="3uibUv" id="4y$DvIXuK8U" role="11_B2D">
         <ref role="3uigEE" node="IMWzYPg151" resolve="FBConnectionPath" />
@@ -8983,8 +8979,8 @@
           <node concept="FJ1c_" id="1pJxKgrvUPT" role="3clFbG">
             <node concept="17qRlL" id="1pJxKgrvUPV" role="3uHU7B">
               <node concept="2YIFZM" id="1pJxKgrvUPW" role="3uHU7B">
-                <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
-                <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+                <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+                <ref role="37wK5l" to="kdnk:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
                 <node concept="37vLTw" id="1pJxKgrvUPX" role="37wK5m">
                   <ref role="3cqZAo" node="1pJxKgrvUQ0" resolve="style" />
                 </node>
@@ -9021,8 +9017,8 @@
           <node concept="FJ1c_" id="1pJxKgrvRU8" role="3clFbG">
             <node concept="17qRlL" id="1pJxKgrvRUa" role="3uHU7B">
               <node concept="2YIFZM" id="1pJxKgrvRUb" role="3uHU7B">
-                <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
-                <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+                <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+                <ref role="37wK5l" to="kdnk:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
                 <node concept="37vLTw" id="1pJxKgrvRUc" role="37wK5m">
                   <ref role="3cqZAo" node="1pJxKgrvRU4" resolve="style" />
                 </node>
@@ -9060,8 +9056,8 @@
           <node concept="FJ1c_" id="1pJxKgrvS01" role="3clFbG">
             <node concept="1eOMI4" id="1pJxKgrvS03" role="3uHU7B">
               <node concept="2YIFZM" id="1pJxKgrvS06" role="1eOMHV">
-                <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
-                <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+                <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+                <ref role="37wK5l" to="kdnk:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
                 <node concept="37vLTw" id="1pJxKgrvS07" role="37wK5m">
                   <ref role="3cqZAo" node="1pJxKgrvRZX" resolve="style" />
                 </node>
@@ -9137,7 +9133,7 @@
     <node concept="2tJIrI" id="7oJsd9x1bUi" role="jymVt" />
     <node concept="3Tm1VV" id="3IX4BsK5MiA" role="1B3o_S" />
     <node concept="3uibUv" id="2JpbWDsNkIQ" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:1KCfUoKRRlk" resolve="ComponentController" />
+      <ref role="3uigEE" to="2w4:~ComponentController" resolve="ComponentController" />
       <node concept="3uibUv" id="1iOpS24JX3m" role="11_B2D">
         <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
       </node>
@@ -11026,8 +11022,8 @@
       <node concept="3clFbS" id="3IX4BsK6sto" role="3clF47">
         <node concept="3cpWs6" id="3IX4BsK6stp" role="3cqZAp">
           <node concept="2YIFZM" id="7MP0dMtuED" role="3cqZAk">
-            <ref role="37wK5l" to="rvgs:7MP0dMsbTr" resolve="getLineSize" />
-            <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+            <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+            <ref role="37wK5l" to="kdnk:~LayoutUtil.getLineSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getLineSize" />
             <node concept="2OqwBi" id="7MP0dMtuEE" role="37wK5m">
               <node concept="37vLTw" id="7MP0dMtuEF" role="2Oq$k0">
                 <ref role="3cqZAo" node="6tmliaAt$MH" resolve="myCellCollection" />
@@ -11048,8 +11044,8 @@
       <property role="TrG5h" value="myViewpoint" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="4y$DvIXnDP8" role="1B3o_S" />
-      <node concept="3uibUv" id="4y$DvIXnDSN" role="1tU5fm">
-        <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+      <node concept="3uibUv" id="3tHZ0yHr0f1" role="1tU5fm">
+        <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
       </node>
     </node>
     <node concept="312cEg" id="61SA$ze2nET" role="jymVt">
@@ -11061,7 +11057,7 @@
     <node concept="2tJIrI" id="4y$DvIXnDTg" role="jymVt" />
     <node concept="3Tm1VV" id="4O0ojQq1kJR" role="1B3o_S" />
     <node concept="3uibUv" id="4y$DvIXnDGU" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:1gL472EF7fL" resolve="ComponentSynchronizer" />
+      <ref role="3uigEE" to="2w4:~ComponentSynchronizer" resolve="ComponentSynchronizer" />
       <node concept="3uibUv" id="5F$aghy4WKx" role="11_B2D">
         <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
       </node>
@@ -11096,8 +11092,8 @@
       </node>
       <node concept="37vLTG" id="4y$DvIXnDU0" role="3clF46">
         <property role="TrG5h" value="viewpoint" />
-        <node concept="3uibUv" id="4y$DvIXnDTZ" role="1tU5fm">
-          <ref role="3uigEE" to="rvgs:17nGqbJdbfv" resolve="SceneViewpoint" />
+        <node concept="3uibUv" id="3tHZ0yHr0O6" role="1tU5fm">
+          <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
         </node>
       </node>
       <node concept="37vLTG" id="61SA$ze2mtD" role="3clF46">
@@ -11224,7 +11220,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="4y$DvIXqTfX" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:7sG$k3BM$l1" resolve="translateToEditorX" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateToEditorX(int)" resolve="translateToEditorX" />
                             <node concept="37vLTw" id="4y$DvIXIF1O" role="37wK5m">
                               <ref role="3cqZAo" node="4y$DvIXIF1K" resolve="x" />
                             </node>
@@ -11235,7 +11231,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="4y$DvIXqVyN" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:309fsJ6evNL" resolve="translateToEditorY" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateToEditorY(int)" resolve="translateToEditorY" />
                             <node concept="37vLTw" id="4y$DvIXIFq$" role="37wK5m">
                               <ref role="3cqZAo" node="4y$DvIXIFqw" resolve="y" />
                             </node>
@@ -11315,7 +11311,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="4y$DvIXqWd9" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:7sG$k3BM$l1" resolve="translateToEditorX" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateToEditorX(int)" resolve="translateToEditorX" />
                             <node concept="3K4zz7" id="4y$DvIXqXtO" role="37wK5m">
                               <node concept="3cmrfG" id="4y$DvIXqXAH" role="3K4E3e">
                                 <property role="3cmrfH" value="0" />
@@ -11344,7 +11340,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="4y$DvIXqWdf" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:309fsJ6evNL" resolve="translateToEditorY" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateToEditorY(int)" resolve="translateToEditorY" />
                             <node concept="17qRlL" id="4y$DvIXr053" role="37wK5m">
                               <node concept="37vLTw" id="4y$DvIXIM0_" role="3uHU7B">
                                 <ref role="3cqZAo" node="4y$DvIXIIhg" resolve="pos" />
@@ -11451,7 +11447,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="61SA$ze2KoL" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:309fsJ6iBhP" resolve="translateFromEditorX" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateFromEditorX(int)" resolve="translateFromEditorX" />
                             <node concept="2OqwBi" id="61SA$ze2KoM" role="37wK5m">
                               <node concept="37vLTw" id="61SA$ze2KoN" role="2Oq$k0">
                                 <ref role="3cqZAo" node="4y$DvIXnE3Z" resolve="position" />
@@ -11492,7 +11488,7 @@
                             <ref role="3cqZAo" node="4y$DvIXnDSX" resolve="myViewpoint" />
                           </node>
                           <node concept="liA8E" id="61SA$ze2MjP" role="2OqNvi">
-                            <ref role="37wK5l" to="rvgs:309fsJ6iBhV" resolve="translateFromEditorY" />
+                            <ref role="37wK5l" to="kdnk:~SceneViewpoint.translateFromEditorY(int)" resolve="translateFromEditorY" />
                             <node concept="2OqwBi" id="61SA$ze2MjQ" role="37wK5m">
                               <node concept="37vLTw" id="61SA$ze2MjR" role="2Oq$k0">
                                 <ref role="3cqZAo" node="4y$DvIXnE3Z" resolve="position" />
@@ -11779,7 +11775,7 @@
       <node concept="37vLTG" id="4y$DvIXz_Is" role="3clF46">
         <property role="TrG5h" value="componentsFacitlity" />
         <node concept="3uibUv" id="4y$DvIXz_It" role="1tU5fm">
-          <ref role="3uigEE" to="xxy3:3vyG44ANA6n" resolve="ComponentsFacility" />
+          <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
           <node concept="3uibUv" id="5F$aghy53$r" role="11_B2D">
             <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
           </node>
@@ -11805,7 +11801,7 @@
                           <ref role="3cqZAo" node="4y$DvIXz_Is" resolve="componentsFacitlity" />
                         </node>
                         <node concept="liA8E" id="4y$DvIXuw_N" role="2OqNvi">
-                          <ref role="37wK5l" to="xxy3:4y$DvIVUIFH" resolve="getController" />
+                          <ref role="37wK5l" to="2w4:~ComponentsFacility.getController(java.lang.Object)" resolve="getController" />
                           <node concept="37vLTw" id="4y$DvIXuwIZ" role="37wK5m">
                             <ref role="3cqZAo" node="4y$DvIXuvQv" resolve="it" />
                           </node>
@@ -12194,7 +12190,7 @@
     </node>
     <node concept="3Tm1VV" id="4O0ojQq1tYI" role="1B3o_S" />
     <node concept="3uibUv" id="4O0ojQq1tZF" role="EKbjA">
-      <ref role="3uigEE" to="5lkm:4O0ojQpHEzY" resolve="PortSettingProvider" />
+      <ref role="3uigEE" to="tamd:~PortSettingProvider" resolve="PortSettingProvider" />
       <node concept="3uibUv" id="5F$aghy525$" role="11_B2D">
         <ref role="3uigEE" to="mpua:5er1YemzmpJ" resolve="NetworkPortView" />
       </node>
@@ -13508,8 +13504,8 @@
         <node concept="3clFbS" id="6tmlia_TG6v" role="3clF47">
           <node concept="3cpWs6" id="6tmlia_TG6w" role="3cqZAp">
             <node concept="2YIFZM" id="7MP0dMtH7b" role="3cqZAk">
-              <ref role="37wK5l" to="rvgs:7MP0dMsbTr" resolve="getLineSize" />
-              <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
+              <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+              <ref role="37wK5l" to="kdnk:~LayoutUtil.getLineSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getLineSize" />
               <node concept="1rXfSq" id="7MP0dMtH7c" role="37wK5m">
                 <ref role="37wK5l" to="g51k:~EditorCell_Basic.getStyle()" resolve="getStyle" />
               </node>
@@ -13525,8 +13521,8 @@
         <node concept="3clFbS" id="7MP0dMt$Ee" role="3clF47">
           <node concept="3cpWs6" id="7MP0dMt$Ef" role="3cqZAp">
             <node concept="2YIFZM" id="7MP0dMt$Eg" role="3cqZAk">
-              <ref role="1Pybhc" to="rvgs:1Oxt8dqZWeT" resolve="LayoutUtil" />
-              <ref role="37wK5l" to="rvgs:7qPnRGFzb_r" resolve="getFontSize" />
+              <ref role="1Pybhc" to="kdnk:~LayoutUtil" resolve="LayoutUtil" />
+              <ref role="37wK5l" to="kdnk:~LayoutUtil.getFontSize(jetbrains.mps.openapi.editor.style.Style)" resolve="getFontSize" />
               <node concept="1rXfSq" id="7MP0dMt$Eh" role="37wK5m">
                 <ref role="37wK5l" to="g51k:~EditorCell_Basic.getStyle()" resolve="getStyle" />
               </node>
@@ -14104,7 +14100,7 @@
     <node concept="2tJIrI" id="1pJxKgrx1_2" role="jymVt" />
     <node concept="3Tm1VV" id="6tmlia_TEhv" role="1B3o_S" />
     <node concept="3uibUv" id="6tmlia_TZny" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:1KCfUoKRRlk" resolve="ComponentController" />
+      <ref role="3uigEE" to="2w4:~ComponentController" resolve="ComponentController" />
       <node concept="3uibUv" id="1iOpS24J35w" role="11_B2D">
         <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
       </node>
@@ -14865,7 +14861,7 @@
     </node>
     <node concept="3Tm1VV" id="2syzu7qINNI" role="1B3o_S" />
     <node concept="3uibUv" id="2syzu7qINNJ" role="EKbjA">
-      <ref role="3uigEE" to="xxy3:4bHpKVAnjnU" resolve="ComponentExtController" />
+      <ref role="3uigEE" to="2w4:~ComponentExtController" resolve="ComponentExtController" />
       <node concept="3uibUv" id="2syzu7qJbq_" role="11_B2D">
         <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
       </node>
