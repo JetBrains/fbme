@@ -24,7 +24,8 @@
       <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="code.scenes" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" folder="code.smv debugger" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger/org.fbme.smvDebugger.msd" folder="code.smv debugger" />
-      <modulePath path="$PROJECT_DIR$/samples/sandbox/solution/org.fbme.ide.sandbox.msd" folder="samples.sandbox" />
+      <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.sandbox.enasDSL/org.fbme.ide.sandbox.enasDSL.msd" folder="samples.sandbox" />
+      <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.sandbox/org.fbme.ide.sandbox.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/smv-debugger/solutions/org.fbme.smvDebugger.sandbox/org.fbme.smvDebugger.sandbox.msd" folder="samples.smv debugger" />
       <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/buildsolution/org.fbme.samples.statisticsPlugin.build.msd" folder="samples.statistics plugin" />
       <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/solutions/org.fbme.samples.statisticsPlugin/org.fbme.samples.statisticsPlugin.msd" folder="samples.statistics plugin" />

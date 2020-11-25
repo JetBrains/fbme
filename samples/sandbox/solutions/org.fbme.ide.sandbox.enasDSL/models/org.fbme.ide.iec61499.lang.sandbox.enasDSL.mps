@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:61069482-9b3f-4347-82b6-e155cfc20e47(org.fbme.ide.iec61499.lang.sandbox.enasDSL)">
+<model ref="r:5163ebd0-8a64-4cdc-a356-0072f9a71ec3(org.fbme.ide.iec61499.lang.sandbox.enasDSL)">
   <persistence version="9" />
+  <attribute name="doNotGenerate" value="false" />
   <languages>
     <use id="078e33a9-a07c-4fc1-a94d-df8e6071f71e" name="org.fbme.ide.enas.lang" version="0" />
   </languages>
