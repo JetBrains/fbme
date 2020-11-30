@@ -1,9 +1,6 @@
 import de.undercouch.gradle.tasks.download.Download
 import org.fbme.gradle.MpsExtension
 
-val mpsMajor = "2020.2"
-val mpsMinor = "2"
-
 plugins {
     base
     id("de.undercouch.download") version "4.1.1"
@@ -12,18 +9,6 @@ plugins {
 allprojects {
     repositories {
         mavenCentral()
-        maven {
-            url = uri("https://projects.itemis.de/nexus/content/repositories/mbeddr")
-        }
-        ivy {
-            url = uri("https://download.jetbrains.com/mps/$mpsMajor/")
-            patternLayout {
-                artifact("[module]-[revision].[ext]")
-            }
-            metadataSources { // skip downloading ivy.xml
-                artifact()
-            }
-        }
     }
 }
 
@@ -31,7 +16,7 @@ val mps by configurations.creating
 val ant_lib by configurations.creating
 
 dependencies {
-    mps("com.jetbrains:MPS:$mpsMajor.$mpsMinor@zip")
+    mps(mpsDistribution())
     ant_lib("org.apache.ant:ant-junit:1.10.1")
 }
 
@@ -47,22 +32,12 @@ val downloadJbr by tasks.registering(Copy::class) {
     into(file("lib/jbr"))
 }
 
-val downloadDependencies by tasks.registering(Copy::class) {
-    dependsOn(mps)
-
-    mps.files.forEach {
-        from(zipTree(it))
-    }
-    into("lib")
-}
-
 val buildBootstrap by tasks.registering {
     inputs.dir("buildscripts/models")
     inputs.file("build-bootstrap.xml")
     outputs.dir("buildscripts/source_gen")
 
-
-    dependsOn(downloadDependencies)
+    dependsOn(mps)
 
     antexec("build-bootstrap.xml", "generate")
 }
@@ -77,7 +52,6 @@ subprojects {
         if (the<MpsExtension>().hasBuildSolution) {
             buildBootstrap.get().inputs.dir("$projectDir/buildsolution/models")
             dependencies {
-                "mpsBinaries"("com.jetbrains:MPS:$mpsMajor.$mpsMinor@zip")
                 "antBinaries"("org.apache.ant:ant-junit:1.10.1")
             }
             tasks.named("mpsPrepare") {
@@ -151,6 +125,5 @@ val macosBinaries by tasks.registering(Copy::class) {
 }
 
 val clean by tasks.getting {
-    delete("lib")
     antexec("build-bootstrap.xml", "clean", "cleanSources")
 }

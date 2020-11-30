@@ -11,13 +11,8 @@ mps {
 }
 
 dependencies {
+    implementation(mpsDistribution())
     implementation("org.jetbrains:annotations:19.0.0")
-}
-
-configurations {
-    implementation {
-        extendsFrom(mpsBinaries.get())
-    }
 }
 
 java {

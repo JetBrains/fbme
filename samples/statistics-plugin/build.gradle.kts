@@ -5,15 +5,9 @@ plugins {
 }
 
 dependencies {
+    implementation(mpsDistribution())
     implementation(project(":code:library"))
     implementation(project(":code:platform", "mps"))
-}
-
-
-configurations {
-    implementation {
-        extendsFrom(configurations["mpsBinaries"])
-    }
 }
 
 java {

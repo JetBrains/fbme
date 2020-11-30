@@ -1,8 +1,11 @@
 package org.fbme.gradle
 
-import org.gradle.api.*
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
-import org.gradle.api.plugins.*
+import org.gradle.api.file.ConfigurableFileTree
+import org.gradle.api.plugins.JavaLibraryPlugin
+import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.jvm.tasks.Jar
@@ -48,10 +51,7 @@ class MpsPlugin : Plugin<Project> {
         }
 
         dependencies {
-            mpsBinaries(fileTree("../../lib/MPS 2020.2/") {
-                include("**/*.jar")
-                exclude("**/*-src.jar")
-            })
+            mpsBinaries(mpsDistribution())
         }
 
         if (hasBuildSolution) {
@@ -129,5 +129,13 @@ class MpsPlugin : Plugin<Project> {
                     *targets
             )
         }
+    }
+    companion object {
+
+        fun Project.mpsDistribution(): ConfigurableFileTree =
+                fileTree("../../lib/MPS 2020.2/") {
+                    include("**/*.jar")
+                    exclude("**/*-src.jar")
+                }
     }
 }
