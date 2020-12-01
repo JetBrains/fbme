@@ -27,7 +27,7 @@ public interface ConnectionController<CursorT, PathT> {
 
     Rectangle getBounds(PathT path);
 
-    void paintConneciton(PathT path, CursorT cursor, boolean selected, Graphics graphics);
+    void paintConnection(PathT path, CursorT cursor, boolean selected, Graphics graphics);
 
     void paintTrace(PathT path, Graphics graphics);
 

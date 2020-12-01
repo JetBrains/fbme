@@ -14,6 +14,9 @@
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
       <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="9126048691955220717" name="jetbrains.mps.build.structure.BuildLayout_File" flags="ng" index="28jJK3">
+        <child id="9126048691955220762" name="path" index="28jJRO" />
+      </concept>
       <concept id="2755237150521975431" name="jetbrains.mps.build.structure.BuildVariableMacroInitWithString" flags="ng" index="aVJcg">
         <child id="2755237150521975437" name="value" index="aVJcq" />
       </concept>
@@ -35,6 +38,10 @@
         <child id="8618885170173601778" name="tail" index="2Ry0An" />
       </concept>
       <concept id="6647099934206700647" name="jetbrains.mps.build.structure.BuildJavaPlugin" flags="ng" index="10PD9b" />
+      <concept id="7389400916848050060" name="jetbrains.mps.build.structure.BuildLayout_NamedContainer" flags="ng" index="3981dR">
+        <child id="4380385936562148502" name="containerName" index="Nbhlr" />
+      </concept>
+      <concept id="7389400916848036984" name="jetbrains.mps.build.structure.BuildLayout_Folder" flags="ng" index="398223" />
       <concept id="7389400916848136194" name="jetbrains.mps.build.structure.BuildFolderMacro" flags="ng" index="398rNT">
         <child id="7389400916848144618" name="defaultPath" index="398pKh" />
       </concept>
@@ -118,6 +125,9 @@
         <property id="2889113830911481881" name="deployFolderName" index="3ZfqAx" />
         <child id="8137134783396676835" name="location" index="1HemKq" />
       </concept>
+      <concept id="4278635856200826393" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyJar" flags="ng" index="1BurEX">
+        <child id="4278635856200826394" name="path" index="1BurEY" />
+      </concept>
       <concept id="4278635856200794926" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyExtendLanguage" flags="ng" index="1Busua">
         <reference id="4278635856200794928" name="language" index="1Busuk" />
       </concept>
@@ -169,6 +179,26 @@
       <node concept="m$_wl" id="42vv4xsJM_o" role="39821P">
         <ref role="m_rDy" node="42vv4xsIIHl" resolve="fbme.richediting" />
         <node concept="pUk6x" id="42vv4xsJMAs" role="pUk7w" />
+        <node concept="398223" id="6SLp5w3L4GA" role="39821P">
+          <node concept="3_J27D" id="6SLp5w3L4GB" role="Nbhlr">
+            <node concept="3Mxwew" id="6SLp5w3L4GE" role="3MwsjC">
+              <property role="3MwjfP" value="lib" />
+            </node>
+          </node>
+          <node concept="28jJK3" id="6SLp5w3L7me" role="39821P">
+            <node concept="55IIr" id="6SLp5w3L7mm" role="28jJRO">
+              <node concept="2Ry0Ak" id="6SLp5w3L7mw" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="6SLp5w3L7m_" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="6SLp5w3L7mE" role="2Ry0An">
+                    <property role="2Ry0Am" value="richediting.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
       </node>
     </node>
     <node concept="m$_wf" id="42vv4xsIIHl" role="3989C9">
@@ -349,6 +379,21 @@
             <ref role="3bR37D" to="ci82:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
+        <node concept="1SiIV0" id="6SLp5w3L7lc" role="3bR37C">
+          <node concept="1BurEX" id="6SLp5w3L7ld" role="1SiIV1">
+            <node concept="55IIr" id="6SLp5w3L7l8" role="1BurEY">
+              <node concept="2Ry0Ak" id="6SLp5w3L7l9" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="6SLp5w3L7la" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="6SLp5w3L7lb" role="2Ry0An">
+                    <property role="2Ry0Am" value="richediting.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="42vv4xsIIUH" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -449,6 +494,21 @@
         <node concept="1SiIV0" id="Ej4tEplrVa" role="3bR37C">
           <node concept="1Busua" id="Ej4tEplrVb" role="1SiIV1">
             <ref role="1Busuk" to="ci82:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="3rtmxn" id="6SLp5w3L4G9" role="3bR31x">
+          <node concept="3LXTmp" id="6SLp5w3L4Ga" role="3rtmxm">
+            <node concept="55IIr" id="6SLp5w3L4Gb" role="3LXTmr">
+              <node concept="2Ry0Ak" id="6SLp5w3L4Gc" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="6SLp5w3L4Gd" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting.lang" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="6SLp5w3L4Gf" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
           </node>
         </node>
       </node>

@@ -14,7 +14,6 @@
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="ppqf" ref="r:bc5caf0f-df14-4a61-a09e-297c528e7095(richediting.inspections)" />
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="78d5" ref="r:d018f155-a8e1-4632-87ac-0cbc89a1f1c2(org.fbme.ide.richediting.lang.editor)" />
@@ -56,7 +55,6 @@
     <import index="g1qu" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.util.ui(MPS.IDEA/)" />
     <import index="ouby" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui.tree(MPS.IDEA/)" />
     <import index="dixw" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.pom(MPS.IDEA/)" />
-    <import index="xxkc" ref="r:800eac96-bf9c-458b-84d9-4e8242e44fb3(richediting.editor)" />
     <import index="kz9k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.navigation(MPS.Editor/)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
     <import index="xygl" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.progress(MPS.IDEA/)" />
@@ -67,11 +65,16 @@
     <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
-    <import index="mpua" ref="r:70067d3a-bbe4-4c69-a49e-eb3628586837(org.fbme.ide.richediting.viewmodel)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
+    <import index="ek6x" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.inspections(org.fbme.ide.richediting/)" />
+    <import index="s1eo" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fb(org.fbme.ide.richediting/)" />
+    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
+    <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
+    <import index="1hzy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.viewmodel(org.fbme.ide.richediting/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -225,9 +228,6 @@
       </concept>
       <concept id="1188208481402" name="jetbrains.mps.baseLanguage.structure.HasAnnotation" flags="ng" index="2AJDlI">
         <child id="1188208488637" name="annotation" index="2AJF6D" />
-      </concept>
-      <concept id="2820489544401957797" name="jetbrains.mps.baseLanguage.structure.DefaultClassCreator" flags="nn" index="HV5vD">
-        <reference id="2820489544401957798" name="classifier" index="HV5vE" />
       </concept>
       <concept id="1154032098014" name="jetbrains.mps.baseLanguage.structure.AbstractLoopStatement" flags="nn" index="2LF5Ji">
         <child id="1154032183016" name="body" index="2LFqv$" />
@@ -499,9 +499,6 @@
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
-      <concept id="779128492853369165" name="jetbrains.mps.lang.core.structure.SideTransformInfo" flags="ng" index="1KehLL">
-        <property id="779128492853934523" name="cellId" index="1K8rM7" />
-      </concept>
       <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
         <property id="709746936026609031" name="linkId" index="3V$3ak" />
         <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
@@ -612,9 +609,9 @@
             </node>
             <node concept="liA8E" id="7eBFChAkOQV" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
-              <node concept="10M0yZ" id="7eBFChAkQ4u" role="37wK5m">
-                <ref role="3cqZAo" to="ppqf:7eBFChAkdvZ" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="ppqf:1R4IoyRpADU" resolve="InspectionManagerImpl" />
+              <node concept="10M0yZ" id="6SLp5w3JmPR" role="37wK5m">
+                <ref role="3cqZAo" to="ek6x:~InspectionManagerImpl.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
+                <ref role="1PxDUh" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
               </node>
             </node>
           </node>
@@ -647,9 +644,9 @@
             </node>
             <node concept="liA8E" id="7eBFChAkQcF" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
-              <node concept="10M0yZ" id="7eBFChAkQcG" role="37wK5m">
-                <ref role="3cqZAo" to="ppqf:7eBFChAkdvZ" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="ppqf:1R4IoyRpADU" resolve="InspectionManagerImpl" />
+              <node concept="10M0yZ" id="6SLp5w3JmTY" role="37wK5m">
+                <ref role="3cqZAo" to="ek6x:~InspectionManagerImpl.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
+                <ref role="1PxDUh" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
               </node>
             </node>
           </node>
@@ -666,9 +663,9 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$EMW" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$F5n" role="3clFbG">
-              <node concept="10M0yZ" id="2CiAywAa1hU" role="2Oq$k0">
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3JmCX" role="2Oq$k0">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="7TC3cEN$ZfW" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -681,9 +678,9 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$Zh8" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$Zh9" role="3clFbG">
-              <node concept="10M0yZ" id="2CiAywAa1ht" role="2Oq$k0">
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TM9f3" resolve="NETWORK" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3JmDh" role="2Oq$k0">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="7TC3cEN$Zhb" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -696,9 +693,9 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="6YAH_gOce$V" role="8Wnug">
             <node concept="2OqwBi" id="6YAH_gOce$W" role="3clFbG">
-              <node concept="10M0yZ" id="2CiAywAa1h_" role="2Oq$k0">
-                <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3JmD_" role="2Oq$k0">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="6YAH_gOce$Y" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -711,9 +708,9 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$Zhr" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$Zhs" role="3clFbG">
-              <node concept="10M0yZ" id="2CiAywAa1hD" role="2Oq$k0">
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3JmDH" role="2Oq$k0">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="7TC3cEN$Zhu" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -726,9 +723,9 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$ZhM" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$ZhN" role="3clFbG">
-              <node concept="10M0yZ" id="2CiAywAa1hO" role="2Oq$k0">
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TM9F8" resolve="TYPE" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3JmDP" role="2Oq$k0">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.TYPE" resolve="TYPE" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="7TC3cEN$ZhP" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -764,9 +761,9 @@
       <node concept="3clFbS" id="7TC3cEN$DE8" role="2VODD2">
         <node concept="3clFbF" id="7TC3cEN$ZNz" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZN$" role="3clFbG">
-            <node concept="10M0yZ" id="2CiAywAa1hV" role="2Oq$k0">
-              <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-              <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+            <node concept="10M0yZ" id="6SLp5w3JmDX" role="2Oq$k0">
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+              <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
             <node concept="liA8E" id="7TC3cEN$ZNA" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -775,9 +772,9 @@
         </node>
         <node concept="3clFbF" id="7TC3cEN$ZNB" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNC" role="3clFbG">
-            <node concept="10M0yZ" id="2CiAywAa1hu" role="2Oq$k0">
-              <ref role="3cqZAo" to="xxkc:3DiEZ8TM9f3" resolve="NETWORK" />
-              <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+            <node concept="10M0yZ" id="6SLp5w3JmE5" role="2Oq$k0">
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+              <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
             <node concept="liA8E" id="7TC3cEN$ZNE" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -786,9 +783,9 @@
         </node>
         <node concept="3clFbF" id="6YAH_gOceAF" role="3cqZAp">
           <node concept="2OqwBi" id="6YAH_gOceAG" role="3clFbG">
-            <node concept="10M0yZ" id="2CiAywAa1hA" role="2Oq$k0">
-              <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-              <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+            <node concept="10M0yZ" id="6SLp5w3JmEd" role="2Oq$k0">
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+              <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
             <node concept="liA8E" id="6YAH_gOceAI" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -797,9 +794,9 @@
         </node>
         <node concept="3clFbF" id="7TC3cEN$ZNF" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNG" role="3clFbG">
-            <node concept="10M0yZ" id="2CiAywAa1hE" role="2Oq$k0">
-              <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-              <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+            <node concept="10M0yZ" id="6SLp5w3JmEl" role="2Oq$k0">
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+              <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
             <node concept="liA8E" id="7TC3cEN$ZNI" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -808,9 +805,9 @@
         </node>
         <node concept="3clFbF" id="7TC3cEN$ZNJ" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNK" role="3clFbG">
-            <node concept="10M0yZ" id="2CiAywAa1hP" role="2Oq$k0">
-              <ref role="3cqZAo" to="xxkc:3DiEZ8TM9F8" resolve="TYPE" />
-              <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+            <node concept="10M0yZ" id="6SLp5w3JmEt" role="2Oq$k0">
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.TYPE" resolve="TYPE" />
+              <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
             <node concept="liA8E" id="7TC3cEN$ZNM" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -857,9 +854,9 @@
               </node>
               <node concept="liA8E" id="19RKY2xGcx1" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="19RKY2xGd0f" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Jcuv" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -868,12 +865,12 @@
         <node concept="3cpWs8" id="3DiEZ8TMy3t" role="3cqZAp">
           <node concept="3cpWsn" id="3DiEZ8TMy3u" role="3cpWs9">
             <property role="TrG5h" value="manager" />
-            <node concept="3uibUv" id="3DiEZ8TMy3v" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRpAE3" resolve="InspectionManager" />
+            <node concept="3uibUv" id="6SLp5w3Jc4D" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
             </node>
             <node concept="2YIFZM" id="3DiEZ8TMy3w" role="33vP2m">
-              <ref role="37wK5l" to="ppqf:7eBFChAmsKg" resolve="getInstance" />
-              <ref role="1Pybhc" to="ppqf:1R4IoyRpADU" resolve="InspectionManagerImpl" />
+              <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+              <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
               <node concept="2OqwBi" id="3DiEZ8TMy3x" role="37wK5m">
                 <node concept="liA8E" id="3DiEZ8TMy3y" role="2OqNvi">
                   <ref role="37wK5l" to="f4zo:~EditorCell.getEditorComponent()" resolve="getEditorComponent" />
@@ -894,7 +891,7 @@
               <ref role="3cqZAo" node="3DiEZ8TMy3u" resolve="manager" />
             </node>
             <node concept="liA8E" id="3DiEZ8TMD_G" role="2OqNvi">
-              <ref role="37wK5l" to="ppqf:1R4IoyRpAYX" resolve="disposeInspector" />
+              <ref role="37wK5l" to="ek6x:~InspectionManager.disposeInspector(org.fbme.lib.iec61499.instances.NetworkInstance)" resolve="disposeInspector" />
               <node concept="37vLTw" id="3DiEZ8TMDAT" role="37wK5m">
                 <ref role="3cqZAo" node="3DiEZ8TMy3o" resolve="network" />
               </node>
@@ -1021,12 +1018,12 @@
         <node concept="3cpWs8" id="1R4IoyRvckb" role="3cqZAp">
           <node concept="3cpWsn" id="1R4IoyRvckc" role="3cpWs9">
             <property role="TrG5h" value="manager" />
-            <node concept="3uibUv" id="1R4IoyRvcka" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRpAE3" resolve="InspectionManager" />
+            <node concept="3uibUv" id="6SLp5w3JcQ4" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
             </node>
             <node concept="2YIFZM" id="7eBFChAmu8L" role="33vP2m">
-              <ref role="1Pybhc" to="ppqf:1R4IoyRpADU" resolve="InspectionManagerImpl" />
-              <ref role="37wK5l" to="ppqf:7eBFChAmsKg" resolve="getInstance" />
+              <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+              <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
               <node concept="2OqwBi" id="7eBFChAmuCc" role="37wK5m">
                 <node concept="liA8E" id="7eBFChAmv6c" role="2OqNvi">
                   <ref role="37wK5l" to="f4zo:~EditorCell.getEditorComponent()" resolve="getEditorComponent" />
@@ -1044,15 +1041,15 @@
         <node concept="3cpWs8" id="1R4IoyRvdob" role="3cqZAp">
           <node concept="3cpWsn" id="1R4IoyRvdoc" role="3cpWs9">
             <property role="TrG5h" value="inspector" />
-            <node concept="3uibUv" id="1R4IoyRvdo3" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3JcUO" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="2OqwBi" id="1R4IoyRvdod" role="33vP2m">
               <node concept="37vLTw" id="1R4IoyRvdoe" role="2Oq$k0">
                 <ref role="3cqZAo" node="1R4IoyRvckc" resolve="manager" />
               </node>
               <node concept="liA8E" id="1R4IoyRvdof" role="2OqNvi">
-                <ref role="37wK5l" to="ppqf:1R4IoyRpAFf" resolve="installInspector" />
+                <ref role="37wK5l" to="ek6x:~InspectionManager.installInspector(org.fbme.lib.iec61499.instances.NetworkInstance,java.lang.Runnable)" resolve="installInspector" />
                 <node concept="37vLTw" id="19RKY2xGt9O" role="37wK5m">
                   <ref role="3cqZAo" node="19RKY2xGq66" resolve="networkInstance" />
                 </node>
@@ -1494,9 +1491,9 @@
               </node>
               <node concept="liA8E" id="uP0FLzO7Ev" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2CiAywAa1hW" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3JbCD" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -1515,9 +1512,9 @@
               </node>
               <node concept="liA8E" id="uP0FLzO7EA" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2CiAywAa1hF" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3JbGf" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -1679,9 +1676,9 @@
               </node>
               <node concept="liA8E" id="uP0FLzPzSD" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2CiAywAa1hy" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9f3" resolve="NETWORK" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3JaMs" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -1699,9 +1696,9 @@
               </node>
               <node concept="liA8E" id="uP0FLzPAeD" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2CiAywAa1hX" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Jb6A" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -1719,9 +1716,9 @@
               </node>
               <node concept="liA8E" id="uP0FLzPAQ2" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2CiAywAa1hG" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3JaWE" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -2130,8 +2127,8 @@
         <node concept="3cpWs8" id="2wHo_lFXZ9q" role="3cqZAp">
           <node concept="3cpWsn" id="2wHo_lFXZ9r" role="3cpWs9">
             <property role="TrG5h" value="inspector" />
-            <node concept="3uibUv" id="2wHo_lFXYBP" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3KpVa" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="2wHo_lFXZ9s" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -2171,7 +2168,7 @@
                   <ref role="3cqZAo" node="2wHo_lFXZ9r" resolve="inspector" />
                 </node>
                 <node concept="liA8E" id="2wHo_lFYV7s" role="2OqNvi">
-                  <ref role="37wK5l" to="ppqf:2wHo_lFPqg7" resolve="setHighlightingForConnection" />
+                  <ref role="37wK5l" to="ek6x:~NetworkInspector.setHighlightingForConnection(org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection,java.awt.Color)" resolve="setHighlightingForConnection" />
                   <node concept="2GrUjf" id="2wHo_lFYWeN" role="37wK5m">
                     <ref role="2Gs0qQ" node="2wHo_lFY_Iz" resolve="connection" />
                   </node>
@@ -2339,9 +2336,9 @@
               </node>
               <node concept="liA8E" id="19RKY2xFOoF" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="19RKY2xFOoG" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Kq0C" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -2824,8 +2821,8 @@
           <node concept="3cpWsn" id="1S4cYrOQ3XY" role="3cpWs9">
             <property role="TrG5h" value="provider" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="1S4cYrOQ3XZ" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3Kqb2" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="1S4cYrOQ3Y0" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -2944,7 +2941,7 @@
                   <ref role="3cqZAo" node="1S4cYrOQ3XY" resolve="provider" />
                 </node>
                 <node concept="liA8E" id="1S4cYrOQ3YK" role="2OqNvi">
-                  <ref role="37wK5l" to="ppqf:1R4IoyRp_nV" resolve="setInspectionForPort" />
+                  <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
                   <node concept="2GrUjf" id="1S4cYrOQ3YL" role="37wK5m">
                     <ref role="2Gs0qQ" node="1S4cYrOQ3Y3" resolve="port" />
                   </node>
@@ -3046,8 +3043,8 @@
           <node concept="3cpWsn" id="1S4cYrOPZO4" role="3cpWs9">
             <property role="TrG5h" value="provider" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="1S4cYrOPZO5" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3KFwJ" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="1S4cYrOPZO6" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -3150,13 +3147,13 @@
                                 <ref role="3cqZAo" node="1S4cYrOPZO4" resolve="provider" />
                               </node>
                               <node concept="liA8E" id="1S4cYrOPZOP" role="2OqNvi">
-                                <ref role="37wK5l" to="ppqf:1R4IoyRp_nV" resolve="setInspectionForPort" />
+                                <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
                                 <node concept="2GrUjf" id="1S4cYrOPZOQ" role="37wK5m">
                                   <ref role="2Gs0qQ" node="1S4cYrOPZO9" resolve="port" />
                                 </node>
                                 <node concept="2ShNRf" id="1S4cYrOPZOR" role="37wK5m">
                                   <node concept="1pGfFk" id="1S4cYrOPZOS" role="2ShVmc">
-                                    <ref role="37wK5l" to="ppqf:1R4IoyQOiyk" resolve="Inspection" />
+                                    <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
                                     <node concept="37vLTw" id="1S4cYrOPZOT" role="37wK5m">
                                       <ref role="3cqZAo" node="1S4cYrOPZOJ" resolve="newValue" />
                                     </node>
@@ -3286,9 +3283,9 @@
               </node>
               <node concept="liA8E" id="74jd4DVyRqP" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="74jd4DVyRqQ" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3KFlu" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -3525,9 +3522,9 @@
               </node>
               <node concept="liA8E" id="5uVbEkjFHRI" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5uVbEkjFHRJ" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3KBXF" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -3590,8 +3587,8 @@
           <node concept="3cpWsn" id="19RKY2xFNcz" role="3cpWs9">
             <property role="TrG5h" value="provider" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="19RKY2xFNc$" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3K_1b" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="19RKY2xFNc_" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -3665,13 +3662,13 @@
                             <ref role="3cqZAo" node="19RKY2xFNcz" resolve="provider" />
                           </node>
                           <node concept="liA8E" id="19RKY2xFNdK" role="2OqNvi">
-                            <ref role="37wK5l" to="ppqf:1R4IoyRp_nV" resolve="setInspectionForPort" />
+                            <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
                             <node concept="37vLTw" id="19RKY2xFNdL" role="37wK5m">
                               <ref role="3cqZAo" node="19RKY2xFNdp" resolve="port" />
                             </node>
                             <node concept="2ShNRf" id="19RKY2xFNdM" role="37wK5m">
                               <node concept="1pGfFk" id="19RKY2xFNdN" role="2ShVmc">
-                                <ref role="37wK5l" to="ppqf:1R4IoyQOiyk" resolve="Inspection" />
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
                                 <node concept="37vLTw" id="19RKY2xFNdO" role="37wK5m">
                                   <ref role="3cqZAo" node="19RKY2xFNdE" resolve="newValue" />
                                 </node>
@@ -3757,8 +3754,8 @@
           <node concept="3cpWsn" id="19RKY2xFM1b" role="3cpWs9">
             <property role="TrG5h" value="provider" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="19RKY2xFM1c" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3K$SK" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="19RKY2xFM1d" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -3833,7 +3830,7 @@
               <ref role="3cqZAo" node="19RKY2xFM1b" resolve="provider" />
             </node>
             <node concept="liA8E" id="19RKY2xFM2m" role="2OqNvi">
-              <ref role="37wK5l" to="ppqf:1R4IoyRp_nV" resolve="setInspectionForPort" />
+              <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
               <node concept="37vLTw" id="19RKY2xFM2n" role="37wK5m">
                 <ref role="3cqZAo" node="19RKY2xFM1X" resolve="port" />
               </node>
@@ -3900,9 +3897,9 @@
               </node>
               <node concept="liA8E" id="19RKY2xFKOY" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="19RKY2xFKOZ" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Ky$G" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -3997,9 +3994,9 @@
               </node>
               <node concept="liA8E" id="19RKY2xFFjB" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="19RKY2xFFjC" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Kwfa" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -4056,8 +4053,8 @@
           <node concept="3cpWsn" id="19RKY2xFC5H" role="3cpWs9">
             <property role="TrG5h" value="inspector" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="19RKY2xFC5I" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3Kwaf" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="19RKY2xFC5J" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -4117,9 +4114,9 @@
               </node>
               <node concept="liA8E" id="5uVbEkjJgzM" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5uVbEkjJgzN" role="37wK5m">
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
+                <node concept="10M0yZ" id="6SLp5w3KsWE" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -4155,13 +4152,13 @@
                             <ref role="3cqZAo" node="19RKY2xFC5H" resolve="inspector" />
                           </node>
                           <node concept="liA8E" id="19RKY2xFC6O" role="2OqNvi">
-                            <ref role="37wK5l" to="ppqf:1R4IoyRp_or" resolve="setInspectionForComponent" />
+                            <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForComponent(org.fbme.lib.common.Declaration,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForComponent" />
                             <node concept="37vLTw" id="5uVbEkjJhuh" role="37wK5m">
                               <ref role="3cqZAo" node="5uVbEkjJgzI" resolve="fb" />
                             </node>
                             <node concept="2ShNRf" id="19RKY2xFC6Q" role="37wK5m">
                               <node concept="1pGfFk" id="19RKY2xFC6R" role="2ShVmc">
-                                <ref role="37wK5l" to="ppqf:1R4IoyQOiyk" resolve="Inspection" />
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
                                 <node concept="3cpWs3" id="19RKY2xFC6S" role="37wK5m">
                                   <node concept="37vLTw" id="19RKY2xFC6T" role="3uHU7w">
                                     <ref role="3cqZAo" node="19RKY2xFC6I" resolve="newValue" />
@@ -4252,8 +4249,8 @@
           <node concept="3cpWsn" id="19RKY2xFzsa" role="3cpWs9">
             <property role="TrG5h" value="provider" />
             <property role="3TUv4t" value="true" />
-            <node concept="3uibUv" id="19RKY2xFzsb" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3KsSA" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="1rXfSq" id="19RKY2xFzsc" role="33vP2m">
               <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
@@ -4301,9 +4298,9 @@
               </node>
               <node concept="liA8E" id="5uVbEkjJifE" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5uVbEkjJifF" role="37wK5m">
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
+                <node concept="10M0yZ" id="6SLp5w3KsFP" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -4353,7 +4350,7 @@
               <ref role="3cqZAo" node="19RKY2xFzsa" resolve="provider" />
             </node>
             <node concept="liA8E" id="19RKY2xFzt4" role="2OqNvi">
-              <ref role="37wK5l" to="ppqf:1R4IoyRp_or" resolve="setInspectionForComponent" />
+              <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForComponent(org.fbme.lib.common.Declaration,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForComponent" />
               <node concept="37vLTw" id="5uVbEkjJiSL" role="37wK5m">
                 <ref role="3cqZAo" node="5uVbEkjJifA" resolve="fb" />
               </node>
@@ -4405,8 +4402,8 @@
         </node>
         <node concept="3clFbF" id="19RKY2xFaZo" role="3cqZAp">
           <node concept="0kSF2" id="19RKY2xFaZp" role="3clFbG">
-            <node concept="3uibUv" id="19RKY2xFaZq" role="0kSFW">
-              <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+            <node concept="3uibUv" id="6SLp5w3KsB_" role="0kSFW">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
             </node>
             <node concept="2OqwBi" id="19RKY2xFaZr" role="0kSFX">
               <node concept="liA8E" id="19RKY2xFaZs" role="2OqNvi">
@@ -4428,8 +4425,8 @@
           </node>
         </node>
       </node>
-      <node concept="3uibUv" id="19RKY2xFaZy" role="3clF45">
-        <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+      <node concept="3uibUv" id="6SLp5w3Kqjm" role="3clF45">
+        <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
       </node>
       <node concept="3Tm1VV" id="19RKY2xFaZx" role="1B3o_S" />
     </node>
@@ -4464,8 +4461,8 @@
       <node concept="3cqZAl" id="19RKY2xFn68" role="3clF45" />
       <node concept="37vLTG" id="19RKY2xFn6f" role="3clF46">
         <property role="TrG5h" value="inspector" />
-        <node concept="3uibUv" id="19RKY2xFn6g" role="1tU5fm">
-          <ref role="3uigEE" to="ppqf:1R4IoyRp$8l" resolve="NetworkInspector" />
+        <node concept="3uibUv" id="6SLp5w3KGr5" role="1tU5fm">
+          <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
         </node>
         <node concept="2AHcQZ" id="19RKY2xFn6h" role="2AJF6D">
           <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -4689,9 +4686,9 @@
             </node>
             <node concept="liA8E" id="19RKY2xFeiL" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-              <node concept="10M0yZ" id="19RKY2xFeiM" role="37wK5m">
-                <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3KGAJ" role="37wK5m">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
             </node>
           </node>
@@ -4730,9 +4727,9 @@
               </node>
               <node concept="liA8E" id="5uVbEkjIgq$" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5uVbEkjIgq_" role="37wK5m">
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
+                <node concept="10M0yZ" id="6SLp5w3KIZr" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -4750,9 +4747,9 @@
               </node>
               <node concept="liA8E" id="5uVbEkjIgqr" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5uVbEkjIgqs" role="37wK5m">
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="xxkc:3DiEZ8TM9th" resolve="PORT" />
+                <node concept="10M0yZ" id="6SLp5w3KLyM" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -4842,9 +4839,9 @@
             </node>
             <node concept="liA8E" id="1S4cYrOMT4D" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-              <node concept="10M0yZ" id="1S4cYrOMT4E" role="37wK5m">
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TO1Tb" resolve="FB" />
+              <node concept="10M0yZ" id="6SLp5w3KNLC" role="37wK5m">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
             </node>
           </node>
@@ -4879,8 +4876,8 @@
           <node concept="3cpWsn" id="1S4cYrOQtpI" role="3cpWs9">
             <property role="TrG5h" value="selectedComponents" />
             <node concept="2hMVRd" id="1S4cYrOQv9Y" role="1tU5fm">
-              <node concept="3uibUv" id="3tHZ0yHKQLf" role="2hN53Y">
-                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+              <node concept="3uibUv" id="6SLp5w3KQoU" role="2hN53Y">
+                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1S4cYrOQtpJ" role="33vP2m">
@@ -4890,9 +4887,9 @@
                 </node>
                 <node concept="liA8E" id="1S4cYrOQtpM" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                  <node concept="10M0yZ" id="1S4cYrOQtpN" role="37wK5m">
-                    <ref role="3cqZAo" to="xxkc:1DfKejr7po3" resolve="SELECTED_FBS" />
-                    <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                  <node concept="10M0yZ" id="6SLp5w3KSMz" role="37wK5m">
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
+                    <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                   </node>
                 </node>
               </node>
@@ -4911,8 +4908,8 @@
                     <ref role="3cqZAo" node="1S4cYrOQtpI" resolve="selectedComponents" />
                   </node>
                   <node concept="UnYns" id="3tHZ0yHL2hO" role="2OqNvi">
-                    <node concept="3uibUv" id="3tHZ0yHL4Ic" role="UnYnz">
-                      <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                    <node concept="3uibUv" id="6SLp5w3KVic" role="UnYnz">
+                      <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
                     </node>
                   </node>
                 </node>
@@ -4925,7 +4922,7 @@
                             <ref role="3cqZAo" node="1gxDN_wCjLy" resolve="it" />
                           </node>
                           <node concept="liA8E" id="3tHZ0yHL7i5" role="2OqNvi">
-                            <ref role="37wK5l" to="mpua:5er1Yem_uhE" resolve="getComponent" />
+                            <ref role="37wK5l" to="1hzy:~FunctionBlockView.getComponent()" resolve="getComponent" />
                           </node>
                         </node>
                       </node>
@@ -6587,7 +6584,7 @@
                 <node concept="3clFbF" id="bRdTVHYKw$" role="3cqZAp">
                   <node concept="2ShNRf" id="bRdTVHYKw_" role="3clFbG">
                     <node concept="1pGfFk" id="1QSEqLhAqoy" role="2ShVmc">
-                      <ref role="37wK5l" to="xxkc:1QSEqLhAp$$" resolve="RichNetworkProjectionController" />
+                      <ref role="37wK5l" to="je9f:~RichNetworkProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,jetbrains.mps.project.Project)" resolve="RichNetworkProjectionController" />
                       <node concept="37vLTw" id="1QSEqLhAqox" role="37wK5m">
                         <ref role="3cqZAo" node="bRdTVHYKww" resolve="node" />
                       </node>
@@ -6630,8 +6627,8 @@
             <node concept="liA8E" id="7Y8B9wpfrHw" role="2OqNvi">
               <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object)" resolve="registerExtension" />
               <node concept="2ShNRf" id="1vJkp1U04LB" role="37wK5m">
-                <node concept="HV5vD" id="1vJkp1U0cko" role="2ShVmc">
-                  <ref role="HV5vE" to="xxkc:1vJkp1TZS1d" resolve="NetworkInstanceNavBarExtension" />
+                <node concept="1pGfFk" id="6SLp5w3O7Bb" role="2ShVmc">
+                  <ref role="37wK5l" to="je9f:~NetworkInstanceNavBarExtension.&lt;init&gt;()" resolve="NetworkInstanceNavBarExtension" />
                 </node>
               </node>
             </node>
@@ -6659,7 +6656,7 @@
             <node concept="liA8E" id="1vJkp1U0dGm" role="2OqNvi">
               <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Class)" resolve="unregisterExtension" />
               <node concept="3VsKOn" id="1vJkp1U0gKW" role="37wK5m">
-                <ref role="3VsUkX" to="xxkc:1vJkp1TZS1d" resolve="NetworkInstanceNavBarExtension" />
+                <ref role="3VsUkX" to="je9f:~NetworkInstanceNavBarExtension" resolve="NetworkInstanceNavBarExtension" />
               </node>
             </node>
           </node>
@@ -7093,7 +7090,7 @@
                 <node concept="3clFbF" id="1_XvODPMzsN" role="3cqZAp">
                   <node concept="2ShNRf" id="1_XvODPMzsO" role="3clFbG">
                     <node concept="1pGfFk" id="1_XvODPMzsP" role="2ShVmc">
-                      <ref role="37wK5l" to="xxkc:1_XvODPJH2p" resolve="RichAlgorithmsProjectionController" />
+                      <ref role="37wK5l" to="je9f:~RichAlgorithmsProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,jetbrains.mps.project.Project)" resolve="RichAlgorithmsProjectionController" />
                       <node concept="1PxgMI" id="1_XvODPM_4t" role="37wK5m">
                         <node concept="chp4Y" id="1_XvODPM_96" role="3oSUPX">
                           <ref role="cht4Q" to="xiqq:3HBlKeoYsj1" resolve="BasicFBTypeDeclaration" />
@@ -7397,7 +7394,7 @@
                 <node concept="3clFbF" id="2SU8oJdFtwP" role="3cqZAp">
                   <node concept="2ShNRf" id="2SU8oJdFtwQ" role="3clFbG">
                     <node concept="1pGfFk" id="2SU8oJdFtwR" role="2ShVmc">
-                      <ref role="37wK5l" to="xxkc:2SU8oJdFFJt" resolve="RichApplicationProjectionController" />
+                      <ref role="37wK5l" to="je9f:~RichApplicationProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,jetbrains.mps.project.Project)" resolve="RichApplicationProjectionController" />
                       <node concept="1PxgMI" id="2SU8oJdFtwS" role="37wK5m">
                         <node concept="chp4Y" id="2SU8oJdFAq3" role="3oSUPX">
                           <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
@@ -7498,7 +7495,7 @@
     </node>
     <node concept="1DS2jV" id="4gibKcM_j46" role="1NuT2Z">
       <property role="TrG5h" value="node" />
-      <ref role="1DUlNI" to="xxkc:1QSEqLhW3tU" resolve="NETWORK_INSTANCE" />
+      <ref role="1DUlNI" to="je9f:~RichEditorDataKeys.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
       <node concept="1oajcY" id="4gibKcM_j47" role="1oa70y" />
     </node>
     <node concept="1DS2jV" id="3MncU7wO7$v" role="1NuT2Z">
@@ -7663,7 +7660,7 @@
                 <node concept="3clFbF" id="2SP6YJBTSWX" role="3cqZAp">
                   <node concept="2ShNRf" id="2SP6YJBTSWY" role="3clFbG">
                     <node concept="1pGfFk" id="2SP6YJBTSWZ" role="2ShVmc">
-                      <ref role="37wK5l" to="xxkc:2SP6YJBU5lg" resolve="RichResourceProjectionController" />
+                      <ref role="37wK5l" to="je9f:~RichResourceProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,jetbrains.mps.project.Project)" resolve="RichResourceProjectionController" />
                       <node concept="1PxgMI" id="2SP6YJBTSX0" role="37wK5m">
                         <node concept="chp4Y" id="2SP6YJBTSX1" role="3oSUPX">
                           <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
@@ -7858,9 +7855,9 @@
                       </node>
                       <node concept="liA8E" id="74jd4DV_S3F" role="2OqNvi">
                         <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                        <node concept="10M0yZ" id="74jd4DV_SoP" role="37wK5m">
-                          <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                          <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                        <node concept="10M0yZ" id="6SLp5w3JnwR" role="37wK5m">
+                          <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                          <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                         </node>
                       </node>
                     </node>
@@ -7951,9 +7948,9 @@
               </node>
               <node concept="liA8E" id="1DfKejran99" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="1DfKejran9a" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3JpX9" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -7964,8 +7961,8 @@
             <property role="TrG5h" value="selectedFBs" />
             <node concept="3uibUv" id="1DfKejr8H5Q" role="1tU5fm">
               <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
-              <node concept="3uibUv" id="3tHZ0yHMONz" role="11_B2D">
-                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+              <node concept="3uibUv" id="6SLp5w3Jqpg" role="11_B2D">
+                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1DfKejr8H5S" role="33vP2m">
@@ -7982,12 +7979,9 @@
               </node>
               <node concept="liA8E" id="1DfKejr8H5Y" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="1DfKejr8H5Z" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:1DfKejr7po3" resolve="SELECTED_FBS" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
-                </node>
-                <node concept="1KehLL" id="1DfKejr8H60" role="lGtFl">
-                  <property role="1K8rM7" value="Constant_arlg9k_c0" />
+                <node concept="10M0yZ" id="6SLp5w3JqNb" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -7997,8 +7991,8 @@
           <node concept="3cpWsn" id="1DfKejr8IdT" role="3cpWs9">
             <property role="TrG5h" value="selectedComponents" />
             <node concept="2hMVRd" id="1DfKejr8K6W" role="1tU5fm">
-              <node concept="3uibUv" id="3tHZ0yHMZ6B" role="2hN53Y">
-                <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+              <node concept="3uibUv" id="6SLp5w3JqRV" role="2hN53Y">
+                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
               </node>
             </node>
             <node concept="2OqwBi" id="1DfKejr8IdU" role="33vP2m">
@@ -8032,8 +8026,8 @@
                           <ref role="3cqZAo" node="1DfKejr8IdT" resolve="selectedComponents" />
                         </node>
                         <node concept="UnYns" id="3tHZ0yHMYz9" role="2OqNvi">
-                          <node concept="3uibUv" id="3tHZ0yHMYQ0" role="UnYnz">
-                            <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                          <node concept="3uibUv" id="6SLp5w3JqWF" role="UnYnz">
+                            <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
                           </node>
                         </node>
                       </node>
@@ -8045,8 +8039,8 @@
                                 <node concept="37vLTw" id="4Hbpy_fGnaZ" role="2Oq$k0">
                                   <ref role="3cqZAo" node="4Hbpy_fGmUR" resolve="it" />
                                 </node>
-                                <node concept="liA8E" id="4Hbpy_fGnKq" role="2OqNvi">
-                                  <ref role="37wK5l" to="mpua:5er1Yem_uhE" resolve="getComponent" />
+                                <node concept="liA8E" id="6SLp5w3JrvY" role="2OqNvi">
+                                  <ref role="37wK5l" to="1hzy:~FunctionBlockView.getComponent()" resolve="getComponent" />
                                 </node>
                               </node>
                             </node>
@@ -8131,9 +8125,9 @@
               </node>
               <node concept="liA8E" id="1DfKejrap1q" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="1DfKejrap1r" role="37wK5m">
-                  <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                  <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="6SLp5w3Jo$W" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -8146,8 +8140,8 @@
                 <property role="TrG5h" value="selectedFBs" />
                 <node concept="3uibUv" id="1DfKejr8BKV" role="1tU5fm">
                   <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
-                  <node concept="3uibUv" id="3tHZ0yHMOmk" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <node concept="3uibUv" id="6SLp5w3Jpit" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="1DfKejr8BXp" role="33vP2m">
@@ -8164,9 +8158,9 @@
                   </node>
                   <node concept="liA8E" id="1DfKejr8BXv" role="2OqNvi">
                     <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                    <node concept="10M0yZ" id="1DfKejr8BXw" role="37wK5m">
-                      <ref role="3cqZAo" to="xxkc:1DfKejr7po3" resolve="SELECTED_FBS" />
-                      <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                    <node concept="10M0yZ" id="6SLp5w3JpCj" role="37wK5m">
+                      <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
+                      <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                     </node>
                   </node>
                 </node>
@@ -10772,12 +10766,12 @@
         <node concept="3cpWs8" id="38F6aFunzh1" role="3cqZAp">
           <node concept="3cpWsn" id="38F6aFunzh2" role="3cpWs9">
             <property role="TrG5h" value="manager" />
-            <node concept="3uibUv" id="38F6aFunzgr" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:1R4IoyRpAE3" resolve="InspectionManager" />
+            <node concept="3uibUv" id="6SLp5w3L4af" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
             </node>
             <node concept="2YIFZM" id="38F6aFunzh3" role="33vP2m">
-              <ref role="37wK5l" to="ppqf:7eBFChAmsKg" resolve="getInstance" />
-              <ref role="1Pybhc" to="ppqf:1R4IoyRpADU" resolve="InspectionManagerImpl" />
+              <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+              <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
               <node concept="2OqwBi" id="38F6aFunzh4" role="37wK5m">
                 <node concept="2OqwBi" id="38F6aFunzh5" role="2Oq$k0">
                   <node concept="2WthIp" id="38F6aFunzh6" role="2Oq$k0" />
@@ -10825,15 +10819,15 @@
         <node concept="3cpWs8" id="38F6aFunN5s" role="3cqZAp">
           <node concept="3cpWsn" id="38F6aFunN5t" role="3cpWs9">
             <property role="TrG5h" value="inspector" />
-            <node concept="3uibUv" id="38F6aFunN2t" role="1tU5fm">
-              <ref role="3uigEE" to="ppqf:38F6aFugE8w" resolve="ECCInspector" />
+            <node concept="3uibUv" id="6SLp5w3L4De" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~ECCInspector" resolve="ECCInspector" />
             </node>
             <node concept="2OqwBi" id="38F6aFunN5u" role="33vP2m">
               <node concept="37vLTw" id="38F6aFunN5v" role="2Oq$k0">
                 <ref role="3cqZAo" node="38F6aFunzh2" resolve="manager" />
               </node>
               <node concept="liA8E" id="38F6aFunN5w" role="2OqNvi">
-                <ref role="37wK5l" to="ppqf:38F6aFuhiHY" resolve="installInspector" />
+                <ref role="37wK5l" to="ek6x:~InspectionManager.installInspector(org.fbme.lib.iec61499.ecc.ECC,java.lang.Runnable)" resolve="installInspector" />
                 <node concept="37vLTw" id="38F6aFunOHJ" role="37wK5m">
                   <ref role="3cqZAo" node="38F6aFunOH_" resolve="ecc" />
                 </node>
@@ -10874,7 +10868,7 @@
                   <ref role="3cqZAo" node="38F6aFunN5t" resolve="inspector" />
                 </node>
                 <node concept="liA8E" id="38F6aFunVra" role="2OqNvi">
-                  <ref role="37wK5l" to="ppqf:38F6aFugEb6" resolve="highlightTransition" />
+                  <ref role="37wK5l" to="ek6x:~ECCInspector.highlightTransition(org.fbme.lib.iec61499.ecc.StateTransition,java.awt.Color)" resolve="highlightTransition" />
                   <node concept="2GrUjf" id="38F6aFunVsl" role="37wK5m">
                     <ref role="2Gs0qQ" node="38F6aFunP6I" resolve="transition" />
                   </node>

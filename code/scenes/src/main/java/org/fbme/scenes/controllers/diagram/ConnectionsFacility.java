@@ -283,7 +283,7 @@ public class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT> {
                     path = connection.myModelPath;
                     selected = false;
                 }
-                connection.myController.paintConneciton(path, connection.getCursor(), selected || connection.isSelected(), graphics.create());
+                connection.myController.paintConnection(path, connection.getCursor(), selected || connection.isSelected(), graphics.create());
             }
             if (myNewConnectionPath != null) {
                 graphics.setColor(MPSColors.DARK_GRAY);

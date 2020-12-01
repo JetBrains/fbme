@@ -27,19 +27,15 @@
     <import index="35tq" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.scope(MPS.Core/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
-    <import index="vjnt" ref="r:dcc8041c-4feb-4a59-913c-c4ff83a14df3(org.fbme.ide.richediting.adapters.fbnetwork)" />
     <import index="82uw" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.function(JDK/)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
-    <import index="4n2q" ref="r:373665e5-4a07-4fed-8807-490b2a5624d1(org.fbme.ide.richediting.adapters.ecc)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="tpco" ref="r:00000000-0000-4000-0000-011c89590284(jetbrains.mps.lang.core.editor)" />
-    <import index="ubo9" ref="r:15c6feaa-d38f-494f-a105-0b74d654dd08(org.fbme.ide.richediting.adapters.fb)" />
     <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(org.fbme.ide.iec61499.adapter.fbnetwork)" />
     <import index="lv7i" ref="r:5472e35e-027d-42bb-bcce-32726ec4c9a9(org.fbme.ide.iec61499.adapter.ecc)" />
     <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(org.fbme.ide.iec61499.adapter.interfacepart)" />
-    <import index="ppqf" ref="r:bc5caf0f-df14-4a61-a09e-297c528e7095(org.fbme.ide.richediting.inspections)" />
     <import index="5ueo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime.style(MPS.Editor/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
@@ -49,7 +45,6 @@
     <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
     <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
-    <import index="xxkc" ref="r:800eac96-bf9c-458b-84d9-4e8242e44fb3(org.fbme.ide.richediting.editor)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
@@ -58,16 +53,19 @@
     <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
-    <import index="mpua" ref="r:70067d3a-bbe4-4c69-a49e-eb3628586837(org.fbme.ide.richediting.viewmodel)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
-    <import index="n0ip" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
-    <import index="d1s5" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
-    <import index="nf53" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
-    <import index="a6f1" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
-    <import index="pl58" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
-    <import index="br90" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.viewmodel(org.fbme.scenes/)" />
     <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
     <import index="ar7i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
+    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
+    <import index="gl2l" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.viewmodel(org.fbme.scenes/)" />
+    <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
+    <import index="ek6x" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.inspections(org.fbme.ide.richediting/)" />
+    <import index="s1eo" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fb(org.fbme.ide.richediting/)" />
+    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
+    <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
+    <import index="1hzy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.viewmodel(org.fbme.ide.richediting/)" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
     <import index="c17a" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.language(MPS.OpenAPI/)" implicit="true" />
   </imports>
@@ -552,8 +550,8 @@
                             </node>
                             <node concept="pncrf" id="1R4IoyQILea" role="37wK5m" />
                             <node concept="Rm8GO" id="3tHZ0yHxzET" role="37wK5m">
-                              <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                              <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                              <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                              <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                             </node>
                           </node>
                         </node>
@@ -638,8 +636,8 @@
                             </node>
                             <node concept="pncrf" id="7oJsd9wVOxp" role="37wK5m" />
                             <node concept="Rm8GO" id="3tHZ0yHx$A$" role="37wK5m">
-                              <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                              <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                              <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                              <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                             </node>
                           </node>
                         </node>
@@ -885,7 +883,7 @@
                         <node concept="2OqwBi" id="1cTKxMSasRK" role="3clFbG">
                           <node concept="2ShNRf" id="1HEL0zWg5IN" role="2Oq$k0">
                             <node concept="1pGfFk" id="1HEL0zWg6PY" role="2ShVmc">
-                              <ref role="37wK5l" to="ubo9:~EditorCell_Basic.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode)" resolve="FBTypeTemplateCellComponent" />
+                              <ref role="37wK5l" to="s1eo:~FBTypeTemplateCellComponent.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.lib.iec61499.descriptors.FBTypeDescriptor)" resolve="FBTypeTemplateCellComponent" />
                               <node concept="1Q80Hx" id="1HEL0zWg70_" role="37wK5m" />
                               <node concept="pncrf" id="1HEL0zWg7p7" role="37wK5m" />
                               <node concept="2OqwBi" id="2yJZQx2AHAr" role="37wK5m">
@@ -908,7 +906,7 @@
                             </node>
                           </node>
                           <node concept="liA8E" id="1cTKxMSaDDD" role="2OqNvi">
-                            <ref role="37wK5l" to="ubo9:1cTKxMSa$2F" resolve="getRootCell" />
+                            <ref role="37wK5l" to="s1eo:~FBTypeTemplateCellComponent.getRootCell()" resolve="getRootCell" />
                           </node>
                         </node>
                       </node>
@@ -1064,8 +1062,8 @@
                                 </node>
                                 <node concept="pncrf" id="7oJsd9wWOPh" role="37wK5m" />
                                 <node concept="Rm8GO" id="3tHZ0yHx_ko" role="37wK5m">
-                                  <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                                  <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                                  <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                                  <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                                 </node>
                               </node>
                             </node>
@@ -1149,8 +1147,8 @@
                             </node>
                             <node concept="pncrf" id="7oJsd9wWgfe" role="37wK5m" />
                             <node concept="Rm8GO" id="3tHZ0yHx_$D" role="37wK5m">
-                              <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                              <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                              <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                              <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                             </node>
                           </node>
                         </node>
@@ -1502,8 +1500,8 @@
                               </node>
                               <node concept="pncrf" id="7oJsd9wXo3A" role="37wK5m" />
                               <node concept="Rm8GO" id="3tHZ0yHxyKO" role="37wK5m">
-                                <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                                <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                                <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                                <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                               </node>
                             </node>
                           </node>
@@ -1634,8 +1632,8 @@
                                   </node>
                                   <node concept="pncrf" id="7oJsd9wY0F$" role="37wK5m" />
                                   <node concept="Rm8GO" id="3tHZ0yHxyid" role="37wK5m">
-                                    <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                                    <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                                    <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                                    <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                                   </node>
                                 </node>
                               </node>
@@ -1740,8 +1738,8 @@
                             </node>
                             <node concept="pncrf" id="1XSQy8A5tsQ" role="37wK5m" />
                             <node concept="Rm8GO" id="3tHZ0yHx_R7" role="37wK5m">
-                              <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                              <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                              <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                              <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                             </node>
                           </node>
                         </node>
@@ -1820,8 +1818,8 @@
                                 </node>
                                 <node concept="pncrf" id="1XSQy8A5sTY" role="37wK5m" />
                                 <node concept="Rm8GO" id="3tHZ0yHxBv2" role="37wK5m">
-                                  <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                                  <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                                  <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                                  <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                                 </node>
                               </node>
                             </node>
@@ -1917,8 +1915,8 @@
               <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
             </node>
             <node concept="2YIFZM" id="4dM3MZ7poLm" role="33vP2m">
-              <ref role="37wK5l" to="xxkc:4dM3MZ7piYE" resolve="contextNetworkInstance" />
-              <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
+              <ref role="1Pybhc" to="je9f:~RichEditorDataKeys" resolve="RichEditorDataKeys" />
+              <ref role="37wK5l" to="je9f:~RichEditorDataKeys.contextNetworkInstance(jetbrains.mps.openapi.editor.EditorContext)" resolve="contextNetworkInstance" />
               <node concept="37vLTw" id="4dM3MZ7poXk" role="37wK5m">
                 <ref role="3cqZAo" node="2hWn4IdSWTd" resolve="context" />
               </node>
@@ -1950,9 +1948,9 @@
                 </node>
                 <node concept="liA8E" id="2hWn4IdT9vi" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-                  <node concept="10M0yZ" id="2CiAywAa1hz" role="37wK5m">
-                    <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                    <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                  <node concept="10M0yZ" id="6SLp5w3M1Wu" role="37wK5m">
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                    <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                   </node>
                   <node concept="37vLTw" id="2hWn4IdT9vk" role="37wK5m">
                     <ref role="3cqZAo" node="2hWn4IdT9v3" resolve="networkInstance" />
@@ -2137,7 +2135,7 @@
       <node concept="37vLTG" id="bRdTVIcPcl" role="3clF46">
         <property role="TrG5h" value="layout" />
         <node concept="3uibUv" id="3tHZ0yHuRyr" role="1tU5fm">
-          <ref role="3uigEE" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+          <ref role="3uigEE" to="ar7i:~SceneLayout" resolve="SceneLayout" />
         </node>
       </node>
       <node concept="3Tm1VV" id="7oJsd9wVN3C" role="1B3o_S" />
@@ -2169,9 +2167,9 @@
             </node>
             <node concept="liA8E" id="3DiEZ8TLZx0" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-              <node concept="10M0yZ" id="2CiAywAa1hr" role="37wK5m">
-                <ref role="3cqZAo" to="xxkc:3DiEZ8TM9f3" resolve="NETWORK" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3M24y" role="37wK5m">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="2OqwBi" id="19RKY2xC9g4" role="37wK5m">
                 <node concept="37vLTw" id="2hWn4IdTUxg" role="2Oq$k0">
@@ -2191,9 +2189,9 @@
             </node>
             <node concept="liA8E" id="19RKY2xC75a" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-              <node concept="10M0yZ" id="19RKY2xC8Mn" role="37wK5m">
-                <ref role="3cqZAo" to="xxkc:6YAH_gOc44k" resolve="NETWORK_INSTANCE" />
-                <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+              <node concept="10M0yZ" id="6SLp5w3M2hl" role="37wK5m">
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="37vLTw" id="19RKY2xC75c" role="37wK5m">
                 <ref role="3cqZAo" node="7oJsd9x52P1" resolve="networkInstance" />
@@ -2209,8 +2207,8 @@
             <node concept="liA8E" id="4gibKcM$vBO" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
               <node concept="10M0yZ" id="3tHZ0yHuTFa" role="37wK5m">
-                <ref role="3cqZAo" to="n0ip:~SceneStyleAttributes.SCENE_BACKGROUND" resolve="SCENE_BACKGROUND" />
-                <ref role="1PxDUh" to="n0ip:~SceneStyleAttributes" resolve="SceneStyleAttributes" />
+                <ref role="3cqZAo" to="sli2:~SceneStyleAttributes.SCENE_BACKGROUND" resolve="SCENE_BACKGROUND" />
+                <ref role="1PxDUh" to="sli2:~SceneStyleAttributes" resolve="SceneStyleAttributes" />
               </node>
               <node concept="10M0yZ" id="4gibKcM$wBw" role="37wK5m">
                 <ref role="3cqZAo" to="lzb2:~JBColor.WHITE" resolve="WHITE" />
@@ -2284,12 +2282,12 @@
             <node concept="3cpWs8" id="1R4IoyQFFNK" role="3cqZAp">
               <node concept="3cpWsn" id="1R4IoyQFFNL" role="3cpWs9">
                 <property role="TrG5h" value="networkView" />
-                <node concept="3uibUv" id="1hwo9XLG3Ac" role="1tU5fm">
-                  <ref role="3uigEE" to="mpua:5er1YemzlqL" resolve="NetworkView" />
+                <node concept="3uibUv" id="6SLp5w3M2IZ" role="1tU5fm">
+                  <ref role="3uigEE" to="1hzy:~NetworkView" resolve="NetworkView" />
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQFHSa" role="33vP2m">
                   <node concept="1pGfFk" id="1hwo9XLGpZ9" role="2ShVmc">
-                    <ref role="37wK5l" to="mpua:5hluBvQ7vdw" resolve="NetworkView" />
+                    <ref role="37wK5l" to="1hzy:~NetworkView.&lt;init&gt;(org.fbme.lib.iec61499.IEC61499Factory,org.fbme.lib.iec61499.fbnetwork.FBNetwork,boolean)" resolve="NetworkView" />
                     <node concept="2OqwBi" id="2yJZQx2zBT0" role="37wK5m">
                       <node concept="37vLTw" id="2yJZQx2zAAG" role="2Oq$k0">
                         <ref role="3cqZAo" node="2yJZQx2zspE" resolve="repository" />
@@ -2325,14 +2323,14 @@
               <node concept="3cpWsn" id="7oJsd9x52MU" role="3cpWs9">
                 <property role="TrG5h" value="backgroundLayer" />
                 <node concept="3uibUv" id="3tHZ0yHuTYK" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="7oJsd9x52MW" role="33vP2m">
                   <node concept="37vLTw" id="7oJsd9x52MX" role="2Oq$k0">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="7oJsd9x52MY" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="7oJsd9x52MZ" role="37wK5m">
                       <property role="2$xPTl" value="0.f" />
                     </node>
@@ -2344,14 +2342,14 @@
               <node concept="3cpWsn" id="7oJsd9x52N1" role="3cpWs9">
                 <property role="TrG5h" value="tracesLayer" />
                 <node concept="3uibUv" id="3tHZ0yHuUn5" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="7oJsd9x52N3" role="33vP2m">
                   <node concept="37vLTw" id="7oJsd9x52N4" role="2Oq$k0">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="7oJsd9x52N5" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="7oJsd9x52N6" role="37wK5m">
                       <property role="2$xPTl" value="1.f" />
                     </node>
@@ -2363,14 +2361,14 @@
               <node concept="3cpWsn" id="7oJsd9x52N8" role="3cpWs9">
                 <property role="TrG5h" value="componentsLayer" />
                 <node concept="3uibUv" id="3tHZ0yHuUJm" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="7oJsd9x52Na" role="33vP2m">
                   <node concept="37vLTw" id="7oJsd9x52Nb" role="2Oq$k0">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="7oJsd9x52Nc" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="7oJsd9x52Nd" role="37wK5m">
                       <property role="2$xPTl" value="2.f" />
                     </node>
@@ -2382,14 +2380,14 @@
               <node concept="3cpWsn" id="7oJsd9x52Nf" role="3cpWs9">
                 <property role="TrG5h" value="connectionsLayer" />
                 <node concept="3uibUv" id="3tHZ0yHuV7x" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="7oJsd9x52Nh" role="33vP2m">
                   <node concept="37vLTw" id="7oJsd9x52Ni" role="2Oq$k0">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="7oJsd9x52Nj" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="7oJsd9x52Nk" role="37wK5m">
                       <property role="2$xPTl" value="3.f" />
                     </node>
@@ -2401,14 +2399,14 @@
               <node concept="3cpWsn" id="1R4IoyRr9qy" role="3cpWs9">
                 <property role="TrG5h" value="inspectionsLayer" />
                 <node concept="3uibUv" id="3tHZ0yHuVvA" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyRr9q$" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyRr9q_" role="2Oq$k0">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="1R4IoyRr9qA" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="1R4IoyRr9qB" role="37wK5m">
                       <property role="2$xPTl" value="4.f" />
                     </node>
@@ -2487,7 +2485,7 @@
               <node concept="3cpWsn" id="61SA$zecHON" role="3cpWs9">
                 <property role="TrG5h" value="viewpoint" />
                 <node concept="3uibUv" id="3tHZ0yHuVZq" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
+                  <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
                 </node>
                 <node concept="3K4zz7" id="61SA$zecHOP" role="33vP2m">
                   <node concept="2OqwBi" id="61SA$zecHOQ" role="3K4GZi">
@@ -2495,13 +2493,13 @@
                       <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                     </node>
                     <node concept="liA8E" id="61SA$zecHOS" role="2OqNvi">
-                      <ref role="37wK5l" to="n0ip:~EditorCell_Scene.getImplicitViewpoint()" resolve="getImplicitViewpoint" />
+                      <ref role="37wK5l" to="sli2:~EditorCell_Scene.getImplicitViewpoint()" resolve="getImplicitViewpoint" />
                     </node>
                   </node>
                   <node concept="3clFbC" id="61SA$zecHOT" role="3K4Cdx">
                     <node concept="Rm8GO" id="3tHZ0yHuWya" role="3uHU7w">
-                      <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                      <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                      <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                      <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                     </node>
                     <node concept="37vLTw" id="61SA$zecHOV" role="3uHU7B">
                       <ref role="3cqZAo" node="bRdTVIcSJa" resolve="layout" />
@@ -2509,7 +2507,7 @@
                   </node>
                   <node concept="2ShNRf" id="61SA$zecHOW" role="3K4E3e">
                     <node concept="1pGfFk" id="61SA$zecHOX" role="2ShVmc">
-                      <ref role="37wK5l" to="nf53:~SceneViewpointByCell.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SceneViewpointByCell" />
+                      <ref role="37wK5l" to="kdnk:~SceneViewpointByCell.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SceneViewpointByCell" />
                       <node concept="37vLTw" id="61SA$zecHOY" role="37wK5m">
                         <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                       </node>
@@ -2525,11 +2523,11 @@
               <node concept="3cpWsn" id="61SA$zecHP2" role="3cpWs9">
                 <property role="TrG5h" value="focus" />
                 <node concept="3uibUv" id="61SA$zecHP3" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~SceneFocusModel" resolve="SceneFocusModel" />
+                  <ref role="3uigEE" to="kdnk:~SceneFocusModel" resolve="SceneFocusModel" />
                 </node>
                 <node concept="2ShNRf" id="61SA$zecHP4" role="33vP2m">
                   <node concept="1pGfFk" id="3tHZ0yHv0Lt" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultFocusModel.&lt;init&gt;()" resolve="DefaultFocusModel" />
+                    <ref role="37wK5l" to="kdnk:~DefaultFocusModel.&lt;init&gt;()" resolve="DefaultFocusModel" />
                   </node>
                 </node>
               </node>
@@ -2539,13 +2537,13 @@
                 <node concept="3clFbF" id="61SA$zecHP8" role="3cqZAp">
                   <node concept="2ShNRf" id="61SA$zecHP9" role="3clFbG">
                     <node concept="1pGfFk" id="61SA$zecHPa" role="2ShVmc">
-                      <ref role="37wK5l" to="d1s5:~WindowedBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneViewpointByCell,org.fbme.scenes.controllers.scene.Layer)" resolve="WindowedBackgroundDragFacility" />
+                      <ref role="37wK5l" to="ar7i:~WindowedBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneViewpointByCell,org.fbme.scenes.controllers.scene.Layer)" resolve="WindowedBackgroundDragFacility" />
                       <node concept="37vLTw" id="61SA$zecHPb" role="37wK5m">
                         <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                       </node>
                       <node concept="10QFUN" id="61SA$zecHPc" role="37wK5m">
                         <node concept="3uibUv" id="61SA$zecHPd" role="10QFUM">
-                          <ref role="3uigEE" to="nf53:~SceneViewpointByCell" resolve="SceneViewpointByCell" />
+                          <ref role="3uigEE" to="kdnk:~SceneViewpointByCell" resolve="SceneViewpointByCell" />
                         </node>
                         <node concept="37vLTw" id="61SA$zecHPe" role="10QFUP">
                           <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
@@ -2560,8 +2558,8 @@
               </node>
               <node concept="3clFbC" id="61SA$zecHPg" role="3clFbw">
                 <node concept="Rm8GO" id="3tHZ0yHv26b" role="3uHU7w">
-                  <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                  <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                  <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                  <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                 </node>
                 <node concept="37vLTw" id="61SA$zecHPi" role="3uHU7B">
                   <ref role="3cqZAo" node="bRdTVIcSJa" resolve="layout" />
@@ -2572,7 +2570,7 @@
                   <node concept="3clFbF" id="61SA$zecHPl" role="3cqZAp">
                     <node concept="2ShNRf" id="61SA$zecHPm" role="3clFbG">
                       <node concept="1pGfFk" id="61SA$zecHPn" role="2ShVmc">
-                        <ref role="37wK5l" to="d1s5:~FullEditorBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell,javax.swing.JViewport,org.fbme.scenes.controllers.scene.Layer)" resolve="FullEditorBackgroundDragFacility" />
+                        <ref role="37wK5l" to="ar7i:~FullEditorBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell,javax.swing.JViewport,org.fbme.scenes.controllers.scene.Layer)" resolve="FullEditorBackgroundDragFacility" />
                         <node concept="37vLTw" id="61SA$zecHPo" role="37wK5m">
                           <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                         </node>
@@ -2599,7 +2597,7 @@
             <node concept="3clFbF" id="61SA$zecHPy" role="3cqZAp">
               <node concept="2ShNRf" id="61SA$zecHPz" role="3clFbG">
                 <node concept="1pGfFk" id="61SA$zecHP$" role="2ShVmc">
-                  <ref role="37wK5l" to="d1s5:~BackgroundFocusLossFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer)" resolve="BackgroundFocusLossFacility" />
+                  <ref role="37wK5l" to="ar7i:~BackgroundFocusLossFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer)" resolve="BackgroundFocusLossFacility" />
                   <node concept="37vLTw" id="61SA$zecHP_" role="37wK5m">
                     <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                   </node>
@@ -2617,16 +2615,16 @@
               <node concept="3cpWsn" id="7oJsd9x52NF" role="3cpWs9">
                 <property role="TrG5h" value="componentsSelection" />
                 <node concept="3uibUv" id="7oJsd9x52NG" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~DefaultSelectionModel" resolve="DefaultSelectionModel" />
-                  <node concept="3uibUv" id="3tHZ0yHH836" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="kdnk:~DefaultSelectionModel" resolve="DefaultSelectionModel" />
+                  <node concept="3uibUv" id="6SLp5w3M72Z" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="7oJsd9x52NH" role="33vP2m">
                   <node concept="1pGfFk" id="3tHZ0yHv0Lv" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultSelectionModel.&lt;init&gt;()" resolve="DefaultSelectionModel" />
-                    <node concept="3uibUv" id="3tHZ0yHHaft" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <ref role="37wK5l" to="kdnk:~DefaultSelectionModel.&lt;init&gt;()" resolve="DefaultSelectionModel" />
+                    <node concept="3uibUv" id="6SLp5w3M8NQ" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
                   </node>
                 </node>
@@ -2639,9 +2637,9 @@
                 </node>
                 <node concept="liA8E" id="1DfKejr8$2v" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.set(jetbrains.mps.openapi.editor.style.StyleAttribute,java.lang.Object)" resolve="set" />
-                  <node concept="10M0yZ" id="1DfKejr8$Dd" role="37wK5m">
-                    <ref role="3cqZAo" to="xxkc:1DfKejr7po3" resolve="SELECTED_FBS" />
-                    <ref role="1PxDUh" to="xxkc:3DiEZ8TM99k" resolve="RichEditorStyleAttributes" />
+                  <node concept="10M0yZ" id="6SLp5w3M9Q0" role="37wK5m">
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
+                    <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                   </node>
                   <node concept="37vLTw" id="1DfKejr8_fr" role="37wK5m">
                     <ref role="3cqZAo" node="7oJsd9x52NF" resolve="componentsSelection" />
@@ -2654,14 +2652,14 @@
               <node concept="3cpWsn" id="7oJsd9x52NK" role="3cpWs9">
                 <property role="TrG5h" value="componentsLayout" />
                 <node concept="3uibUv" id="7oJsd9x52NL" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~DefaultLayoutModel" resolve="DefaultLayoutModel" />
-                  <node concept="3uibUv" id="4Hbpy_flIEj" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="kdnk:~DefaultLayoutModel" resolve="DefaultLayoutModel" />
+                  <node concept="3uibUv" id="6SLp5w3M9Vf" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="7oJsd9x52NM" role="33vP2m">
                   <node concept="1pGfFk" id="7oJsd9x52NN" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultLayoutModel.&lt;init&gt;(org.jetbrains.mps.openapi.module.SRepository)" resolve="DefaultLayoutModel" />
+                    <ref role="37wK5l" to="kdnk:~DefaultLayoutModel.&lt;init&gt;(org.jetbrains.mps.openapi.module.SRepository)" resolve="DefaultLayoutModel" />
                     <node concept="2OqwBi" id="7oJsd9x52NO" role="37wK5m">
                       <node concept="37vLTw" id="7oJsd9x52NP" role="2Oq$k0">
                         <ref role="3cqZAo" node="7oJsd9x52P3" resolve="context" />
@@ -2670,8 +2668,8 @@
                         <ref role="37wK5l" to="cj4x:~EditorContext.getRepository()" resolve="getRepository" />
                       </node>
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_flK4N" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3Ma0u" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
                   </node>
                 </node>
@@ -2682,9 +2680,9 @@
                 <property role="TrG5h" value="componentsFacility" />
                 <property role="3TUv4t" value="true" />
                 <node concept="3uibUv" id="7oJsd9x52NT" role="1tU5fm">
-                  <ref role="3uigEE" to="a6f1:~ComponentsFacility" resolve="ComponentsFacility" />
-                  <node concept="3uibUv" id="4Hbpy_flLv9" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
+                  <node concept="3uibUv" id="6SLp5w3Ma5H" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                   <node concept="3uibUv" id="2syzu7r7_Ow" role="11_B2D">
                     <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -2692,7 +2690,7 @@
                 </node>
                 <node concept="2ShNRf" id="7oJsd9x52NU" role="33vP2m">
                   <node concept="1pGfFk" id="7oJsd9x52NV" role="2ShVmc">
-                    <ref role="37wK5l" to="a6f1:~ComponentsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.viewmodel.ComponentsView,org.fbme.scenes.controllers.components.ComponentControllerFactory,org.fbme.scenes.controllers.components.ComponentSynchronizer,org.fbme.scenes.controllers.LayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsFacility" />
+                    <ref role="37wK5l" to="2w4:~ComponentsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.viewmodel.ComponentsView,org.fbme.scenes.controllers.components.ComponentControllerFactory,org.fbme.scenes.controllers.components.ComponentSynchronizer,org.fbme.scenes.controllers.LayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsFacility" />
                     <node concept="37vLTw" id="7oJsd9x52NW" role="37wK5m">
                       <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                     </node>
@@ -2701,7 +2699,7 @@
                         <ref role="3cqZAo" node="1R4IoyQFFNL" resolve="networkView" />
                       </node>
                       <node concept="liA8E" id="4Hbpy_flADG" role="2OqNvi">
-                        <ref role="37wK5l" to="mpua:1hwo9XL_7Er" resolve="getComponentsView" />
+                        <ref role="37wK5l" to="1hzy:~NetworkView.getComponentsView()" resolve="getComponentsView" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="1R4IoyQzDap" role="37wK5m">
@@ -2709,7 +2707,7 @@
                     </node>
                     <node concept="2ShNRf" id="7oJsd9x52NZ" role="37wK5m">
                       <node concept="1pGfFk" id="7oJsd9x52O0" role="2ShVmc">
-                        <ref role="37wK5l" to="vjnt:4y$DvIXnDTT" resolve="FBNetworkComponentSynhcronizer" />
+                        <ref role="37wK5l" to="p24u:~FBNetworkComponentSynhcronizer.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,float)" resolve="FBNetworkComponentSynhcronizer" />
                         <node concept="37vLTw" id="7oJsd9x52O1" role="37wK5m">
                           <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
                         </node>
@@ -2733,8 +2731,8 @@
                     <node concept="37vLTw" id="7oJsd9x52O6" role="37wK5m">
                       <ref role="3cqZAo" node="7oJsd9x52N1" resolve="tracesLayer" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_flMrT" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MaaX" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
                     <node concept="3uibUv" id="2syzu7r7BO2" role="1pMfVU">
                       <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -2750,10 +2748,10 @@
                   <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                 </node>
                 <node concept="liA8E" id="7oJsd9x52Ob" role="2OqNvi">
-                  <ref role="37wK5l" to="n0ip:~EditorCell_Scene.addCompletionProvider(org.fbme.scenes.controllers.scene.SceneCompletionProvider)" resolve="addCompletionProvider" />
+                  <ref role="37wK5l" to="sli2:~EditorCell_Scene.addCompletionProvider(org.fbme.scenes.controllers.scene.SceneCompletionProvider)" resolve="addCompletionProvider" />
                   <node concept="2ShNRf" id="7oJsd9x52Oc" role="37wK5m">
                     <node concept="1pGfFk" id="7oJsd9x52Od" role="2ShVmc">
-                      <ref role="37wK5l" to="d1s5:~CompletionProviderByViewpoint.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,java.util.function.Supplier)" resolve="CompletionProviderByViewpoint" />
+                      <ref role="37wK5l" to="ar7i:~CompletionProviderByViewpoint.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,java.util.function.Supplier)" resolve="CompletionProviderByViewpoint" />
                       <node concept="37vLTw" id="7oJsd9x52Oe" role="37wK5m">
                         <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
                       </node>
@@ -2795,12 +2793,12 @@
               <node concept="3cpWsn" id="2syzu7r7KZo" role="3cpWs9">
                 <property role="TrG5h" value="inlineValuesView" />
                 <node concept="3uibUv" id="2syzu7r7KZ8" role="1tU5fm">
-                  <ref role="3uigEE" to="br90:~ComponentExtsView" resolve="ComponentExtsView" />
-                  <node concept="3uibUv" id="4Hbpy_fxdb_" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="gl2l:~ComponentExtsView" resolve="ComponentExtsView" />
+                  <node concept="3uibUv" id="6SLp5w3Malx" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
-                  <node concept="3uibUv" id="1hwo9XL_7EB" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <node concept="3uibUv" id="6SLp5w3MaqL" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="2syzu7r7KZp" role="33vP2m">
@@ -2808,7 +2806,7 @@
                     <ref role="3cqZAo" node="1R4IoyQFFNL" resolve="networkView" />
                   </node>
                   <node concept="liA8E" id="4Hbpy_fr1P8" role="2OqNvi">
-                    <ref role="37wK5l" to="mpua:1hwo9XL_7E$" resolve="getExtensionsView" />
+                    <ref role="37wK5l" to="1hzy:~NetworkView.getExtensionsView()" resolve="getExtensionsView" />
                   </node>
                 </node>
               </node>
@@ -2819,12 +2817,12 @@
                 <property role="TrG5h" value="inlineValuesFacility" />
                 <property role="3TUv4t" value="true" />
                 <node concept="3uibUv" id="2syzu7r4ydX" role="1tU5fm">
-                  <ref role="3uigEE" to="a6f1:~ComponentsExtensionsFacility" resolve="ComponentsExtensionsFacility" />
-                  <node concept="3uibUv" id="4Hbpy_frf6E" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                  <ref role="3uigEE" to="2w4:~ComponentsExtensionsFacility" resolve="ComponentsExtensionsFacility" />
+                  <node concept="3uibUv" id="6SLp5w3Maw1" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
                   </node>
-                  <node concept="3uibUv" id="4Hbpy_frf6F" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <node concept="3uibUv" id="6SLp5w3Ma_i" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                   <node concept="3uibUv" id="2syzu7rfUdD" role="11_B2D">
                     <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -2832,7 +2830,7 @@
                 </node>
                 <node concept="2ShNRf" id="2syzu7r4zFf" role="33vP2m">
                   <node concept="1pGfFk" id="2syzu7r4$eB" role="2ShVmc">
-                    <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.&lt;init&gt;(org.fbme.scenes.viewmodel.ComponentExtsView,org.fbme.scenes.controllers.components.ComponentsFacility,org.fbme.scenes.controllers.components.ComponentExtControllerFactory,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsExtensionsFacility" />
+                    <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.&lt;init&gt;(org.fbme.scenes.viewmodel.ComponentExtsView,org.fbme.scenes.controllers.components.ComponentsFacility,org.fbme.scenes.controllers.components.ComponentExtControllerFactory,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsExtensionsFacility" />
                     <node concept="37vLTw" id="2syzu7r7KZs" role="37wK5m">
                       <ref role="3cqZAo" node="2syzu7r7KZo" resolve="inlineValuesView" />
                     </node>
@@ -2858,11 +2856,11 @@
                 <property role="TrG5h" value="componentProvider" />
                 <node concept="3uibUv" id="1R4IoyRrtLh" role="1tU5fm">
                   <ref role="3uigEE" to="82uw:~Function" resolve="Function" />
-                  <node concept="3uibUv" id="4Hbpy_frgw9" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <node concept="3uibUv" id="6SLp5w3MaEz" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
-                  <node concept="3uibUv" id="1R4IoyRrvYG" role="11_B2D">
-                    <ref role="3uigEE" to="vjnt:5jb5jNBJKHJ" resolve="FBNetworkComponentController" />
+                  <node concept="3uibUv" id="6SLp5w3MaJN" role="11_B2D">
+                    <ref role="3uigEE" to="p24u:~FBNetworkComponentController" resolve="FBNetworkComponentController" />
                   </node>
                 </node>
                 <node concept="1bVj0M" id="1R4IoyRrlha" role="33vP2m">
@@ -2871,15 +2869,15 @@
                       <node concept="3clFbS" id="1R4IoyRrlhd" role="3clFbx">
                         <node concept="3cpWs6" id="1R4IoyRrlhe" role="3cqZAp">
                           <node concept="10QFUN" id="1R4IoyRrlhf" role="3cqZAk">
-                            <node concept="3uibUv" id="1R4IoyRrlhg" role="10QFUM">
-                              <ref role="3uigEE" to="vjnt:5jb5jNBJKHJ" resolve="FBNetworkComponentController" />
+                            <node concept="3uibUv" id="6SLp5w3Mb4K" role="10QFUM">
+                              <ref role="3uigEE" to="p24u:~FBNetworkComponentController" resolve="FBNetworkComponentController" />
                             </node>
                             <node concept="2OqwBi" id="1R4IoyRrlhh" role="10QFUP">
                               <node concept="37vLTw" id="1R4IoyRrlhi" role="2Oq$k0">
                                 <ref role="3cqZAo" node="2syzu7r4ydW" resolve="inlineValuesFacility" />
                               </node>
                               <node concept="liA8E" id="1R4IoyRrlhj" role="2OqNvi">
-                                <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
+                                <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
                                 <node concept="37vLTw" id="1R4IoyRrlhm" role="37wK5m">
                                   <ref role="3cqZAo" node="1R4IoyRrlhx" resolve="it" />
                                 </node>
@@ -2890,16 +2888,16 @@
                       </node>
                       <node concept="22lmx$" id="4Hbpy_frvyg" role="3clFbw">
                         <node concept="2ZW3vV" id="4Hbpy_frx3M" role="3uHU7w">
-                          <node concept="3uibUv" id="4Hbpy_frxRo" role="2ZW6by">
-                            <ref role="3uigEE" to="mpua:5er1YemzkBL" resolve="BrokenPortView" />
+                          <node concept="3uibUv" id="6SLp5w3MaZx" role="2ZW6by">
+                            <ref role="3uigEE" to="1hzy:~BrokenPortView" resolve="BrokenPortView" />
                           </node>
                           <node concept="37vLTw" id="4Hbpy_frwfA" role="2ZW6bz">
                             <ref role="3cqZAo" node="1R4IoyRrlhx" resolve="it" />
                           </node>
                         </node>
                         <node concept="2ZW3vV" id="1R4IoyRrlhn" role="3uHU7B">
-                          <node concept="3uibUv" id="4Hbpy_fri8e" role="2ZW6by">
-                            <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+                          <node concept="3uibUv" id="6SLp5w3MaUi" role="2ZW6by">
+                            <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
                           </node>
                           <node concept="37vLTw" id="1R4IoyRrlhp" role="2ZW6bz">
                             <ref role="3cqZAo" node="1R4IoyRrlhx" resolve="it" />
@@ -2909,15 +2907,15 @@
                     </node>
                     <node concept="3clFbF" id="1R4IoyRrlhq" role="3cqZAp">
                       <node concept="10QFUN" id="1R4IoyRrlhr" role="3clFbG">
-                        <node concept="3uibUv" id="1R4IoyRrlhs" role="10QFUM">
-                          <ref role="3uigEE" to="vjnt:5jb5jNBJKHJ" resolve="FBNetworkComponentController" />
+                        <node concept="3uibUv" id="6SLp5w3Mb9Z" role="10QFUM">
+                          <ref role="3uigEE" to="p24u:~FBNetworkComponentController" resolve="FBNetworkComponentController" />
                         </node>
                         <node concept="2OqwBi" id="1R4IoyRrlht" role="10QFUP">
                           <node concept="37vLTw" id="1R4IoyRrlhu" role="2Oq$k0">
                             <ref role="3cqZAo" node="7oJsd9x52NS" resolve="componentsFacility" />
                           </node>
                           <node concept="liA8E" id="1R4IoyRrlhv" role="2OqNvi">
-                            <ref role="37wK5l" to="a6f1:~ComponentsFacility.getController(java.lang.Object)" resolve="getController" />
+                            <ref role="37wK5l" to="2w4:~ComponentsFacility.getController(java.lang.Object)" resolve="getController" />
                             <node concept="37vLTw" id="1R4IoyRrlhw" role="37wK5m">
                               <ref role="3cqZAo" node="1R4IoyRrlhx" resolve="it" />
                             </node>
@@ -2928,8 +2926,8 @@
                   </node>
                   <node concept="37vLTG" id="1R4IoyRrlhx" role="1bW2Oz">
                     <property role="TrG5h" value="it" />
-                    <node concept="3uibUv" id="4Hbpy_frhhK" role="1tU5fm">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MaP3" role="1tU5fm">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
                   </node>
                 </node>
@@ -2940,12 +2938,12 @@
             <node concept="3cpWs8" id="7oJsd9x52Oj" role="3cqZAp">
               <node concept="3cpWsn" id="7oJsd9x52Ok" role="3cpWs9">
                 <property role="TrG5h" value="portSettings" />
-                <node concept="3uibUv" id="7oJsd9x52Ol" role="1tU5fm">
-                  <ref role="3uigEE" to="vjnt:4O0ojQq1tYH" resolve="FBPortSettingProvider" />
+                <node concept="3uibUv" id="6SLp5w3Mbfe" role="1tU5fm">
+                  <ref role="3uigEE" to="p24u:~FBPortSettingProvider" resolve="FBPortSettingProvider" />
                 </node>
                 <node concept="2ShNRf" id="2syzu7rgjob" role="33vP2m">
                   <node concept="1pGfFk" id="2syzu7rgkme" role="2ShVmc">
-                    <ref role="37wK5l" to="vjnt:4y$DvIVWOEH" resolve="FBPortSettingProvider" />
+                    <ref role="37wK5l" to="p24u:~FBPortSettingProvider.&lt;init&gt;(java.util.function.Function)" resolve="FBPortSettingProvider" />
                     <node concept="37vLTw" id="1R4IoyRrlhz" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyRrlh9" resolve="componentProvider" />
                     </node>
@@ -2957,9 +2955,9 @@
               <node concept="3cpWsn" id="2syzu7rgam9" role="3cpWs9">
                 <property role="TrG5h" value="diagramComponentSettings" />
                 <node concept="3uibUv" id="2syzu7rgam7" role="1tU5fm">
-                  <ref role="3uigEE" to="pl58:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
-                  <node concept="3uibUv" id="4Hbpy_fwhSN" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="tamd:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
+                  <node concept="3uibUv" id="6SLp5w3MbpL" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                   <node concept="3uibUv" id="2syzu7rgaj8" role="11_B2D">
                     <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -2970,7 +2968,7 @@
                     <node concept="1Y3b0j" id="2syzu7rgamc" role="YeSDq">
                       <property role="2bfB8j" value="true" />
                       <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                      <ref role="1Y3XeK" to="pl58:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
+                      <ref role="1Y3XeK" to="tamd:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
                       <node concept="3Tm1VV" id="2syzu7rgamd" role="1B3o_S" />
                       <node concept="3clFb_" id="2syzu7rgame" role="jymVt">
                         <property role="TrG5h" value="getModelForm" />
@@ -2983,8 +2981,8 @@
                         </node>
                         <node concept="37vLTG" id="2syzu7rgami" role="3clF46">
                           <property role="TrG5h" value="component" />
-                          <node concept="3uibUv" id="4Hbpy_fwjCu" role="1tU5fm">
-                            <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                          <node concept="3uibUv" id="6SLp5w3MbLx" role="1tU5fm">
+                            <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                           </node>
                           <node concept="2AHcQZ" id="2syzu7rgamk" role="2AJF6D">
                             <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -2994,16 +2992,16 @@
                           <node concept="3clFbJ" id="2syzu7rgamm" role="3cqZAp">
                             <node concept="22lmx$" id="4Hbpy_fwlaP" role="3clFbw">
                               <node concept="2ZW3vV" id="4Hbpy_fwnmB" role="3uHU7w">
-                                <node concept="3uibUv" id="4Hbpy_fwnTT" role="2ZW6by">
-                                  <ref role="3uigEE" to="mpua:5er1YemzkBL" resolve="BrokenPortView" />
+                                <node concept="3uibUv" id="6SLp5w3Mc9f" role="2ZW6by">
+                                  <ref role="3uigEE" to="1hzy:~BrokenPortView" resolve="BrokenPortView" />
                                 </node>
                                 <node concept="37vLTw" id="4Hbpy_fwmhw" role="2ZW6bz">
                                   <ref role="3cqZAo" node="2syzu7rgami" resolve="component" />
                                 </node>
                               </node>
                               <node concept="2ZW3vV" id="2syzu7rgamn" role="3uHU7B">
-                                <node concept="3uibUv" id="4Hbpy_fwk$e" role="2ZW6by">
-                                  <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+                                <node concept="3uibUv" id="6SLp5w3MbXo" role="2ZW6by">
+                                  <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
                                 </node>
                                 <node concept="37vLTw" id="2syzu7rgamp" role="2ZW6bz">
                                   <ref role="3cqZAo" node="2syzu7rgami" resolve="component" />
@@ -3017,7 +3015,7 @@
                                     <ref role="3cqZAo" node="2syzu7r4ydW" resolve="inlineValuesFacility" />
                                   </node>
                                   <node concept="liA8E" id="2syzu7rgamu" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
                                     <node concept="37vLTw" id="2syzu7rgamx" role="37wK5m">
                                       <ref role="3cqZAo" node="2syzu7rgami" resolve="component" />
                                     </node>
@@ -3032,7 +3030,7 @@
                                 <ref role="3cqZAo" node="7oJsd9x52NS" resolve="componentsFacility" />
                               </node>
                               <node concept="liA8E" id="2syzu7rgam_" role="2OqNvi">
-                                <ref role="37wK5l" to="a6f1:~ComponentsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
+                                <ref role="37wK5l" to="2w4:~ComponentsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
                                 <node concept="37vLTw" id="2syzu7rgamA" role="37wK5m">
                                   <ref role="3cqZAo" node="2syzu7rgami" resolve="component" />
                                 </node>
@@ -3052,8 +3050,8 @@
                         </node>
                         <node concept="37vLTG" id="2syzu7rgamF" role="3clF46">
                           <property role="TrG5h" value="component" />
-                          <node concept="3uibUv" id="4Hbpy_fwoRW" role="1tU5fm">
-                            <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                          <node concept="3uibUv" id="6SLp5w3Me$S" role="1tU5fm">
+                            <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                           </node>
                           <node concept="2AHcQZ" id="2syzu7rgamH" role="2AJF6D">
                             <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -3068,7 +3066,7 @@
                                     <ref role="3cqZAo" node="2syzu7r4ydW" resolve="inlineValuesFacility" />
                                   </node>
                                   <node concept="liA8E" id="2syzu7rgamR" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
                                     <node concept="37vLTw" id="2syzu7rgamU" role="37wK5m">
                                       <ref role="3cqZAo" node="2syzu7rgamF" resolve="component" />
                                     </node>
@@ -3078,16 +3076,16 @@
                             </node>
                             <node concept="22lmx$" id="4Hbpy_fwpOy" role="3clFbw">
                               <node concept="2ZW3vV" id="4Hbpy_fwpOz" role="3uHU7w">
-                                <node concept="3uibUv" id="4Hbpy_fwpO$" role="2ZW6by">
-                                  <ref role="3uigEE" to="mpua:5er1YemzkBL" resolve="BrokenPortView" />
+                                <node concept="3uibUv" id="6SLp5w3MeWA" role="2ZW6by">
+                                  <ref role="3uigEE" to="1hzy:~BrokenPortView" resolve="BrokenPortView" />
                                 </node>
                                 <node concept="37vLTw" id="4Hbpy_fwpO_" role="2ZW6bz">
                                   <ref role="3cqZAo" node="2syzu7rgamF" resolve="component" />
                                 </node>
                               </node>
                               <node concept="2ZW3vV" id="4Hbpy_fwpOA" role="3uHU7B">
-                                <node concept="3uibUv" id="4Hbpy_fwpOB" role="2ZW6by">
-                                  <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+                                <node concept="3uibUv" id="6SLp5w3MeKJ" role="2ZW6by">
+                                  <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
                                 </node>
                                 <node concept="37vLTw" id="4Hbpy_fwpOC" role="2ZW6bz">
                                   <ref role="3cqZAo" node="2syzu7rgamF" resolve="component" />
@@ -3101,7 +3099,7 @@
                                 <ref role="3cqZAo" node="7oJsd9x52NS" resolve="componentsFacility" />
                               </node>
                               <node concept="liA8E" id="2syzu7rgamY" role="2OqNvi">
-                                <ref role="37wK5l" to="a6f1:~ComponentsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
+                                <ref role="37wK5l" to="2w4:~ComponentsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
                                 <node concept="37vLTw" id="2syzu7rgamZ" role="37wK5m">
                                   <ref role="3cqZAo" node="2syzu7rgamF" resolve="component" />
                                 </node>
@@ -3110,8 +3108,8 @@
                           </node>
                         </node>
                       </node>
-                      <node concept="3uibUv" id="4Hbpy_fwiL2" role="2Ghqu4">
-                        <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                      <node concept="3uibUv" id="6SLp5w3Mb_D" role="2Ghqu4">
+                        <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                       </node>
                       <node concept="3uibUv" id="2syzu7rgan1" role="2Ghqu4">
                         <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3125,15 +3123,15 @@
               <node concept="3cpWsn" id="7oJsd9x52Op" role="3cpWs9">
                 <property role="TrG5h" value="diagramFacility" />
                 <node concept="3uibUv" id="7oJsd9x52Oq" role="1tU5fm">
-                  <ref role="3uigEE" to="pl58:~DiagramFacility" resolve="DiagramFacility" />
-                  <node concept="3uibUv" id="4Hbpy_fwroa" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="tamd:~DiagramFacility" resolve="DiagramFacility" />
+                  <node concept="3uibUv" id="6SLp5w3Mf1P" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
-                  <node concept="3uibUv" id="4Hbpy_fws8r" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzmpJ" resolve="NetworkPortView" />
+                  <node concept="3uibUv" id="6SLp5w3Mf77" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
                   </node>
-                  <node concept="3uibUv" id="4Hbpy_fwCkn" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                  <node concept="3uibUv" id="6SLp5w3Mfcp" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
                   </node>
                   <node concept="3uibUv" id="2syzu7reiv2" role="11_B2D">
                     <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3141,13 +3139,13 @@
                 </node>
                 <node concept="2ShNRf" id="7oJsd9x52Or" role="33vP2m">
                   <node concept="1pGfFk" id="7oJsd9x52Os" role="2ShVmc">
-                    <ref role="37wK5l" to="pl58:~DiagramFacility.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramView,org.fbme.scenes.controllers.diagram.PortSettingProvider,org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider)" resolve="DiagramFacility" />
+                    <ref role="37wK5l" to="tamd:~DiagramFacility.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramView,org.fbme.scenes.controllers.diagram.PortSettingProvider,org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider)" resolve="DiagramFacility" />
                     <node concept="2OqwBi" id="2syzu7r4jNT" role="37wK5m">
                       <node concept="37vLTw" id="1R4IoyQFL_M" role="2Oq$k0">
                         <ref role="3cqZAo" node="1R4IoyQFFNL" resolve="networkView" />
                       </node>
                       <node concept="liA8E" id="2syzu7r4kAT" role="2OqNvi">
-                        <ref role="37wK5l" to="mpua:1hwo9XL_7Eg" resolve="getDiagramView" />
+                        <ref role="37wK5l" to="1hzy:~NetworkView.getDiagramView()" resolve="getDiagramView" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="7oJsd9x52Ov" role="37wK5m">
@@ -3156,14 +3154,14 @@
                     <node concept="37vLTw" id="2syzu7rgan2" role="37wK5m">
                       <ref role="3cqZAo" node="2syzu7rgam9" resolve="diagramComponentSettings" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fwsOl" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MfhF" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fwsOm" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzmpJ" resolve="NetworkPortView" />
+                    <node concept="3uibUv" id="6SLp5w3MfmX" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fwCXK" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                    <node concept="3uibUv" id="6SLp5w3Mfsf" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
                     </node>
                     <node concept="3uibUv" id="4Hbpy_fwsOo" role="1pMfVU">
                       <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3177,14 +3175,14 @@
               <node concept="3cpWsn" id="2syzu7r4n08" role="3cpWs9">
                 <property role="TrG5h" value="extendedLayout" />
                 <node concept="3uibUv" id="2syzu7r4n09" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~ROLayoutModel" resolve="ROLayoutModel" />
-                  <node concept="3uibUv" id="4Hbpy_fwDxG" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                  <ref role="3uigEE" to="kdnk:~ROLayoutModel" resolve="ROLayoutModel" />
+                  <node concept="3uibUv" id="6SLp5w3Mfxx" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="2syzu7r4nQb" role="33vP2m">
                   <node concept="1pGfFk" id="2syzu7r4opn" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~ExtendedLayoutModel.&lt;init&gt;(org.fbme.scenes.controllers.LayoutModel,java.util.function.BiFunction,java.util.function.BiFunction,java.util.function.Function)" resolve="ExtendedLayoutModel" />
+                    <ref role="37wK5l" to="kdnk:~ExtendedLayoutModel.&lt;init&gt;(org.fbme.scenes.controllers.LayoutModel,java.util.function.BiFunction,java.util.function.BiFunction,java.util.function.Function)" resolve="ExtendedLayoutModel" />
                     <node concept="37vLTw" id="2syzu7r4txA" role="37wK5m">
                       <ref role="3cqZAo" node="7oJsd9x52NK" resolve="componentsLayout" />
                     </node>
@@ -3194,15 +3192,15 @@
                           <node concept="2OqwBi" id="2syzu7r5Z7A" role="3clFbG">
                             <node concept="1eOMI4" id="2syzu7r60CI" role="2Oq$k0">
                               <node concept="10QFUN" id="2syzu7r61B2" role="1eOMHV">
-                                <node concept="3uibUv" id="2syzu7r61Tf" role="10QFUM">
-                                  <ref role="3uigEE" to="vjnt:2syzu7qINCF" resolve="InlineValueController" />
+                                <node concept="3uibUv" id="6SLp5w3MfVM" role="10QFUM">
+                                  <ref role="3uigEE" to="p24u:~InlineValueController" resolve="InlineValueController" />
                                 </node>
                                 <node concept="2OqwBi" id="2syzu7r5Xvd" role="10QFUP">
                                   <node concept="37vLTw" id="2syzu7r5Xg5" role="2Oq$k0">
                                     <ref role="3cqZAo" node="2syzu7r4ydW" resolve="inlineValuesFacility" />
                                   </node>
                                   <node concept="liA8E" id="2syzu7r5XNw" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
                                     <node concept="37vLTw" id="2syzu7r5Y2v" role="37wK5m">
                                       <ref role="3cqZAo" node="2syzu7r5VUu" resolve="view" />
                                     </node>
@@ -3211,7 +3209,7 @@
                               </node>
                             </node>
                             <node concept="liA8E" id="2syzu7r6wgn" role="2OqNvi">
-                              <ref role="37wK5l" to="vjnt:2syzu7r68d$" resolve="getCoordinates" />
+                              <ref role="37wK5l" to="p24u:~InlineValueController.getCoordinates(java.awt.Point)" resolve="getCoordinates" />
                               <node concept="37vLTw" id="2syzu7r6wBZ" role="37wK5m">
                                 <ref role="3cqZAo" node="2syzu7r62qu" resolve="compPosition" />
                               </node>
@@ -3221,8 +3219,8 @@
                       </node>
                       <node concept="37vLTG" id="2syzu7r5VUu" role="1bW2Oz">
                         <property role="TrG5h" value="view" />
-                        <node concept="3uibUv" id="4Hbpy_fwR6t" role="1tU5fm">
-                          <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                        <node concept="3uibUv" id="6SLp5w3MfQz" role="1tU5fm">
+                          <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                         </node>
                       </node>
                       <node concept="37vLTG" id="2syzu7r62qu" role="1bW2Oz">
@@ -3238,15 +3236,15 @@
                           <node concept="2OqwBi" id="2syzu7r7GyF" role="3clFbG">
                             <node concept="1eOMI4" id="2syzu7r7GyG" role="2Oq$k0">
                               <node concept="10QFUN" id="2syzu7r7GyH" role="1eOMHV">
-                                <node concept="3uibUv" id="2syzu7r7GyI" role="10QFUM">
-                                  <ref role="3uigEE" to="vjnt:2syzu7qINCF" resolve="InlineValueController" />
+                                <node concept="3uibUv" id="6SLp5w3Mg6D" role="10QFUM">
+                                  <ref role="3uigEE" to="p24u:~InlineValueController" resolve="InlineValueController" />
                                 </node>
                                 <node concept="2OqwBi" id="2syzu7r7GyJ" role="10QFUP">
                                   <node concept="37vLTw" id="2syzu7r7GyK" role="2Oq$k0">
                                     <ref role="3cqZAo" node="2syzu7r4ydW" resolve="inlineValuesFacility" />
                                   </node>
                                   <node concept="liA8E" id="2syzu7r7GyL" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsExtensionsFacility.getController(java.lang.Object)" resolve="getController" />
                                     <node concept="37vLTw" id="2syzu7r7GyM" role="37wK5m">
                                       <ref role="3cqZAo" node="2syzu7r7GyP" resolve="view" />
                                     </node>
@@ -3255,7 +3253,7 @@
                               </node>
                             </node>
                             <node concept="liA8E" id="2syzu7r7GyN" role="2OqNvi">
-                              <ref role="37wK5l" to="vjnt:2syzu7r6jdN" resolve="getBounds" />
+                              <ref role="37wK5l" to="p24u:~InlineValueController.getBounds(java.awt.Point)" resolve="getBounds" />
                               <node concept="37vLTw" id="2syzu7r7GyO" role="37wK5m">
                                 <ref role="3cqZAo" node="2syzu7r7GyR" resolve="compPosition" />
                               </node>
@@ -3265,8 +3263,8 @@
                       </node>
                       <node concept="37vLTG" id="2syzu7r7GyP" role="1bW2Oz">
                         <property role="TrG5h" value="view" />
-                        <node concept="3uibUv" id="4Hbpy_fxve8" role="1tU5fm">
-                          <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                        <node concept="3uibUv" id="6SLp5w3Mg1q" role="1tU5fm">
+                          <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                         </node>
                       </node>
                       <node concept="37vLTG" id="2syzu7r7GyR" role="1bW2Oz">
@@ -3276,14 +3274,14 @@
                         </node>
                       </node>
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fwQ88" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MfAK" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fxubE" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MfG1" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
-                    <node concept="3uibUv" id="4Hbpy_fxpBR" role="1pMfVU">
-                      <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                    <node concept="3uibUv" id="6SLp5w3MfLi" role="1pMfVU">
+                      <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                     </node>
                     <node concept="1bVj0M" id="2syzu7r7Nz4" role="37wK5m">
                       <node concept="3clFbS" id="2syzu7r7Nz6" role="1bW5cS">
@@ -3293,7 +3291,7 @@
                               <ref role="3cqZAo" node="2syzu7r7KZo" resolve="inlineValuesView" />
                             </node>
                             <node concept="liA8E" id="2syzu7r7RdV" role="2OqNvi">
-                              <ref role="37wK5l" to="br90:~ComponentExtsView.getExtensions(java.lang.Object)" resolve="getExtensions" />
+                              <ref role="37wK5l" to="gl2l:~ComponentExtsView.getExtensions(java.lang.Object)" resolve="getExtensions" />
                               <node concept="37vLTw" id="2syzu7r7RGf" role="37wK5m">
                                 <ref role="3cqZAo" node="2syzu7r7NYo" resolve="view" />
                               </node>
@@ -3303,8 +3301,8 @@
                       </node>
                       <node concept="37vLTG" id="2syzu7r7NYo" role="1bW2Oz">
                         <property role="TrG5h" value="view" />
-                        <node concept="3uibUv" id="4Hbpy_fxaDn" role="1tU5fm">
-                          <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                        <node concept="3uibUv" id="6SLp5w3Mgch" role="1tU5fm">
+                          <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                         </node>
                       </node>
                     </node>
@@ -3317,11 +3315,11 @@
               <node concept="3cpWsn" id="2wHo_lFU6jW" role="3cpWs9">
                 <property role="TrG5h" value="connectionsFacility" />
                 <node concept="3uibUv" id="3tHZ0yHv9QO" role="1tU5fm">
-                  <ref role="3uigEE" to="pl58:~ConnectionsFacility" resolve="ConnectionsFacility" />
+                  <ref role="3uigEE" to="tamd:~ConnectionsFacility" resolve="ConnectionsFacility" />
                 </node>
                 <node concept="2ShNRf" id="2wHo_lFU6jX" role="33vP2m">
                   <node concept="1pGfFk" id="2wHo_lFU6jY" role="2ShVmc">
-                    <ref role="37wK5l" to="pl58:~ConnectionsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.diagram.ConnectionControllerFactory,java.util.function.BiFunction,java.util.function.BiConsumer,org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer,org.fbme.scenes.controllers.ROLayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.diagram.DiagramController,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.SceneFocusModel)" resolve="ConnectionsFacility" />
+                    <ref role="37wK5l" to="tamd:~ConnectionsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.diagram.ConnectionControllerFactory,java.util.function.BiFunction,java.util.function.BiConsumer,org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer,org.fbme.scenes.controllers.ROLayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.diagram.DiagramController,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.SceneFocusModel)" resolve="ConnectionsFacility" />
                     <node concept="37vLTw" id="2wHo_lFU6jZ" role="37wK5m">
                       <ref role="3cqZAo" node="7oJsd9x52OZ" resolve="scene" />
                     </node>
@@ -3329,22 +3327,22 @@
                       <ref role="3cqZAo" node="4y$DvIXmGPh" resolve="CONNECTION_CONTROLLER_FACTORY" />
                     </node>
                     <node concept="2YIFZM" id="2wHo_lFU6k1" role="37wK5m">
-                      <ref role="37wK5l" to="vjnt:1pJxKgrvOg1" resolve="getPathFactory" />
-                      <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
+                      <ref role="1Pybhc" to="p24u:~FBConnectionUtils" resolve="FBConnectionUtils" />
+                      <ref role="37wK5l" to="p24u:~FBConnectionUtils.getPathFactory(jetbrains.mps.openapi.editor.style.Style)" resolve="getPathFactory" />
                       <node concept="37vLTw" id="2wHo_lFU6k2" role="37wK5m">
                         <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
                       </node>
                     </node>
                     <node concept="2YIFZM" id="2wHo_lFU6k3" role="37wK5m">
-                      <ref role="37wK5l" to="vjnt:1pJxKgrvTUL" resolve="getPathPainter" />
-                      <ref role="1Pybhc" to="vjnt:4y$DvIXxa0C" resolve="FBConnectionUtils" />
+                      <ref role="1Pybhc" to="p24u:~FBConnectionUtils" resolve="FBConnectionUtils" />
+                      <ref role="37wK5l" to="p24u:~FBConnectionUtils.getPathPainter(jetbrains.mps.openapi.editor.style.Style)" resolve="getPathPainter" />
                       <node concept="37vLTw" id="2wHo_lFU6k4" role="37wK5m">
                         <ref role="3cqZAo" node="2hWn4IdU1wy" resolve="style" />
                       </node>
                     </node>
                     <node concept="2ShNRf" id="2wHo_lFU6k5" role="37wK5m">
                       <node concept="1pGfFk" id="2wHo_lFU6k6" role="2ShVmc">
-                        <ref role="37wK5l" to="vjnt:4y$DvIXx4WE" resolve="FBConnectionPathSyncronizer" />
+                        <ref role="37wK5l" to="p24u:~FBConnectionPathSyncronizer.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,float)" resolve="FBConnectionPathSyncronizer" />
                         <node concept="37vLTw" id="2wHo_lFU6k7" role="37wK5m">
                           <ref role="3cqZAo" node="61SA$zecHON" resolve="viewpoint" />
                         </node>
@@ -3364,7 +3362,7 @@
                         <ref role="3cqZAo" node="7oJsd9x52Op" resolve="diagramFacility" />
                       </node>
                       <node concept="liA8E" id="2wHo_lFU6kd" role="2OqNvi">
-                        <ref role="37wK5l" to="pl58:~DiagramFacility.getDiagramController()" resolve="getDiagramController" />
+                        <ref role="37wK5l" to="tamd:~DiagramFacility.getDiagramController()" resolve="getDiagramController" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="2wHo_lFU6ke" role="37wK5m">
@@ -3386,26 +3384,26 @@
                 <property role="TrG5h" value="connectionProvider" />
                 <node concept="3uibUv" id="2wHo_lFTwN$" role="1tU5fm">
                   <ref role="3uigEE" to="82uw:~Function" resolve="Function" />
-                  <node concept="3uibUv" id="2wHo_lFT_Wr" role="11_B2D">
-                    <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                  <node concept="3uibUv" id="6SLp5w3Mgqg" role="11_B2D">
+                    <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
                   </node>
-                  <node concept="3uibUv" id="2wHo_lFTAps" role="11_B2D">
-                    <ref role="3uigEE" to="vjnt:4ZaR9mNllb3" resolve="FBConnectionController" />
+                  <node concept="3uibUv" id="6SLp5w3Mgvw" role="11_B2D">
+                    <ref role="3uigEE" to="p24u:~FBConnectionController" resolve="FBConnectionController" />
                   </node>
                 </node>
                 <node concept="1bVj0M" id="2wHo_lFTwNB" role="33vP2m">
                   <node concept="3clFbS" id="2wHo_lFTwNC" role="1bW5cS">
                     <node concept="3clFbF" id="2wHo_lFUbXo" role="3cqZAp">
                       <node concept="10QFUN" id="2wHo_lFVEGG" role="3clFbG">
-                        <node concept="3uibUv" id="2wHo_lFVHne" role="10QFUM">
-                          <ref role="3uigEE" to="vjnt:4ZaR9mNllb3" resolve="FBConnectionController" />
+                        <node concept="3uibUv" id="6SLp5w3MgDZ" role="10QFUM">
+                          <ref role="3uigEE" to="p24u:~FBConnectionController" resolve="FBConnectionController" />
                         </node>
                         <node concept="2OqwBi" id="2wHo_lFUcXa" role="10QFUP">
                           <node concept="37vLTw" id="2wHo_lFUbXm" role="2Oq$k0">
                             <ref role="3cqZAo" node="2wHo_lFU6jW" resolve="connectionsFacility" />
                           </node>
                           <node concept="liA8E" id="2wHo_lFVCPD" role="2OqNvi">
-                            <ref role="37wK5l" to="pl58:~ConnectionsFacility.getController(java.lang.Object)" resolve="getController" />
+                            <ref role="37wK5l" to="tamd:~ConnectionsFacility.getController(java.lang.Object)" resolve="getController" />
                             <node concept="37vLTw" id="2wHo_lFVDKI" role="37wK5m">
                               <ref role="3cqZAo" node="2wHo_lFTwO0" resolve="it" />
                             </node>
@@ -3416,8 +3414,8 @@
                   </node>
                   <node concept="37vLTG" id="2wHo_lFTwO0" role="1bW2Oz">
                     <property role="TrG5h" value="it" />
-                    <node concept="3uibUv" id="2wHo_lFTBSJ" role="1tU5fm">
-                      <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                    <node concept="3uibUv" id="6SLp5w3Mg$K" role="1tU5fm">
+                      <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
                     </node>
                   </node>
                 </node>
@@ -3427,7 +3425,7 @@
             <node concept="3clFbF" id="1R4IoyRtLpc" role="3cqZAp">
               <node concept="2ShNRf" id="1R4IoyRrE0E" role="3clFbG">
                 <node concept="1pGfFk" id="1R4IoyRrE0F" role="2ShVmc">
-                  <ref role="37wK5l" to="ppqf:1R4IoyQO$pW" resolve="NetworkInspectionsFacility" />
+                  <ref role="37wK5l" to="ek6x:~NetworkInspectionsFacility.&lt;init&gt;(org.fbme.ide.richediting.viewmodel.NetworkView,org.fbme.lib.iec61499.instances.NetworkInstance,org.fbme.scenes.controllers.scene.SceneEditor,java.util.function.Function,java.util.function.Function,org.fbme.scenes.controllers.ROLayoutModel,org.fbme.scenes.controllers.scene.Layer)" resolve="NetworkInspectionsFacility" />
                   <node concept="37vLTw" id="4Hbpy_fJLWB" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQFFNL" resolve="networkView" />
                   </node>
@@ -3487,7 +3485,7 @@
       <node concept="37vLTG" id="7oJsd9x52OZ" role="3clF46">
         <property role="TrG5h" value="scene" />
         <node concept="3uibUv" id="3tHZ0yHuROG" role="1tU5fm">
-          <ref role="3uigEE" to="n0ip:~EditorCell_Scene" resolve="EditorCell_Scene" />
+          <ref role="3uigEE" to="sli2:~EditorCell_Scene" resolve="EditorCell_Scene" />
         </node>
       </node>
       <node concept="37vLTG" id="7oJsd9x52P1" role="3clF46">
@@ -3505,7 +3503,7 @@
       <node concept="37vLTG" id="bRdTVIcSJa" role="3clF46">
         <property role="TrG5h" value="layout" />
         <node concept="3uibUv" id="3tHZ0yHuT3i" role="1tU5fm">
-          <ref role="3uigEE" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+          <ref role="3uigEE" to="ar7i:~SceneLayout" resolve="SceneLayout" />
         </node>
       </node>
       <node concept="3Tm6S6" id="7oJsd9x52OX" role="1B3o_S" />
@@ -3516,15 +3514,15 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="4y$DvIXmynw" role="1B3o_S" />
       <node concept="3uibUv" id="4y$DvIXmFW0" role="1tU5fm">
-        <ref role="3uigEE" to="pl58:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
-        <node concept="3uibUv" id="4Hbpy_fzqJ_" role="11_B2D">
-          <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+        <ref role="3uigEE" to="tamd:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
+        <node concept="3uibUv" id="6SLp5w3MgOy" role="11_B2D">
+          <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
         </node>
-        <node concept="3uibUv" id="IMWzYPks10" role="11_B2D">
-          <ref role="3uigEE" to="vjnt:IMWzYPgjIH" resolve="FBConnectionCursor" />
+        <node concept="3uibUv" id="6SLp5w3MgTN" role="11_B2D">
+          <ref role="3uigEE" to="p24u:~FBConnectionCursor" resolve="FBConnectionCursor" />
         </node>
-        <node concept="3uibUv" id="IMWzYPoMvE" role="11_B2D">
-          <ref role="3uigEE" to="vjnt:IMWzYPg151" resolve="FBConnectionPath" />
+        <node concept="3uibUv" id="6SLp5w3MgZ4" role="11_B2D">
+          <ref role="3uigEE" to="p24u:~FBConnectionPath" resolve="FBConnectionPath" />
         </node>
       </node>
       <node concept="2ShNRf" id="4y$DvIXmPzd" role="33vP2m">
@@ -3532,13 +3530,13 @@
           <node concept="1Y3b0j" id="4y$DvIXmQD5" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="pl58:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
+            <ref role="1Y3XeK" to="tamd:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
             <node concept="3Tm1VV" id="4y$DvIXmQD6" role="1B3o_S" />
             <node concept="3clFb_" id="4y$DvIXmQD8" role="jymVt">
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="4y$DvIXmQDa" role="1B3o_S" />
               <node concept="3uibUv" id="3tHZ0yHvcvv" role="3clF45">
-                <ref role="3uigEE" to="pl58:~ConnectionController" resolve="ConnectionController" />
+                <ref role="3uigEE" to="tamd:~ConnectionController" resolve="ConnectionController" />
               </node>
               <node concept="37vLTG" id="4y$DvIXmQDc" role="3clF46">
                 <property role="TrG5h" value="context" />
@@ -3548,15 +3546,15 @@
               </node>
               <node concept="37vLTG" id="4y$DvIXmQDe" role="3clF46">
                 <property role="TrG5h" value="view" />
-                <node concept="3uibUv" id="4Hbpy_ft5bV" role="1tU5fm">
-                  <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+                <node concept="3uibUv" id="6SLp5w3MhPg" role="1tU5fm">
+                  <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
                 </node>
               </node>
               <node concept="3clFbS" id="4y$DvIXmQDi" role="3clF47">
                 <node concept="3cpWs6" id="7PF$iX$pNhn" role="3cqZAp">
                   <node concept="2ShNRf" id="7PF$iX$pNho" role="3cqZAk">
                     <node concept="1pGfFk" id="7PF$iX$pNhp" role="2ShVmc">
-                      <ref role="37wK5l" to="vjnt:309fsJ6enBS" resolve="FBConnectionController" />
+                      <ref role="37wK5l" to="p24u:~FBConnectionController.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.fbme.ide.richediting.viewmodel.NetworkConnectionView)" resolve="FBConnectionController" />
                       <node concept="37vLTw" id="1pJxKgrwqVW" role="37wK5m">
                         <ref role="3cqZAo" node="4y$DvIXmQDc" resolve="context" />
                       </node>
@@ -3568,14 +3566,14 @@
                 </node>
               </node>
             </node>
-            <node concept="3uibUv" id="4Hbpy_ft65e" role="2Ghqu4">
-              <ref role="3uigEE" to="mpua:5er1YemzmHk" resolve="NetworkConnectionView" />
+            <node concept="3uibUv" id="6SLp5w3MhcB" role="2Ghqu4">
+              <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
             </node>
-            <node concept="3uibUv" id="1iOpS25f_tj" role="2Ghqu4">
-              <ref role="3uigEE" to="vjnt:IMWzYPgjIH" resolve="FBConnectionCursor" />
+            <node concept="3uibUv" id="6SLp5w3Mhqa" role="2Ghqu4">
+              <ref role="3uigEE" to="p24u:~FBConnectionCursor" resolve="FBConnectionCursor" />
             </node>
-            <node concept="3uibUv" id="1iOpS25f_tk" role="2Ghqu4">
-              <ref role="3uigEE" to="vjnt:IMWzYPg151" resolve="FBConnectionPath" />
+            <node concept="3uibUv" id="6SLp5w3MhBH" role="2Ghqu4">
+              <ref role="3uigEE" to="p24u:~FBConnectionPath" resolve="FBConnectionPath" />
             </node>
           </node>
         </node>
@@ -3587,9 +3585,9 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="2syzu7r0iRO" role="1B3o_S" />
       <node concept="3uibUv" id="2syzu7r0x0p" role="1tU5fm">
-        <ref role="3uigEE" to="a6f1:~ComponentExtControllerFactory" resolve="ComponentExtControllerFactory" />
-        <node concept="3uibUv" id="4Hbpy_fslcU" role="11_B2D">
-          <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+        <ref role="3uigEE" to="2w4:~ComponentExtControllerFactory" resolve="ComponentExtControllerFactory" />
+        <node concept="3uibUv" id="6SLp5w3MiiM" role="11_B2D">
+          <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
         </node>
         <node concept="3uibUv" id="2syzu7r0y5Q" role="11_B2D">
           <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3600,7 +3598,7 @@
           <node concept="1Y3b0j" id="2syzu7r0II_" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="a6f1:~ComponentExtControllerFactory" resolve="ComponentExtControllerFactory" />
+            <ref role="1Y3XeK" to="2w4:~ComponentExtControllerFactory" resolve="ComponentExtControllerFactory" />
             <node concept="3Tm1VV" id="2syzu7r0IIA" role="1B3o_S" />
             <node concept="3clFb_" id="2syzu7r0IIC" role="jymVt">
               <property role="TrG5h" value="create" />
@@ -3612,21 +3610,21 @@
               </node>
               <node concept="37vLTG" id="2syzu7r0IIF" role="3clF46">
                 <property role="TrG5h" value="extView" />
-                <node concept="3uibUv" id="4Hbpy_fshJX" role="1tU5fm">
-                  <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+                <node concept="3uibUv" id="6SLp5w3MiEy" role="1tU5fm">
+                  <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
                 </node>
               </node>
               <node concept="37vLTG" id="2syzu7r0IIH" role="3clF46">
                 <property role="TrG5h" value="compController" />
                 <node concept="3uibUv" id="2syzu7r0III" role="1tU5fm">
-                  <ref role="3uigEE" to="a6f1:~ComponentController" resolve="ComponentController" />
+                  <ref role="3uigEE" to="2w4:~ComponentController" resolve="ComponentController" />
                   <node concept="3uibUv" id="2syzu7r0IIV" role="11_B2D">
                     <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
                   </node>
                 </node>
               </node>
               <node concept="3uibUv" id="2syzu7r0IIL" role="3clF45">
-                <ref role="3uigEE" to="a6f1:~ComponentExtController" resolve="ComponentExtController" />
+                <ref role="3uigEE" to="2w4:~ComponentExtController" resolve="ComponentExtController" />
                 <node concept="3uibUv" id="2syzu7r0IIW" role="11_B2D">
                   <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
                 </node>
@@ -3636,8 +3634,8 @@
                   <node concept="3fqX7Q" id="2syzu7r3xgQ" role="3clFbw">
                     <node concept="1eOMI4" id="2syzu7r3xIj" role="3fr31v">
                       <node concept="2ZW3vV" id="2syzu7r3xgS" role="1eOMHV">
-                        <node concept="3uibUv" id="2syzu7r3xgT" role="2ZW6by">
-                          <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FunctionBlockController" />
+                        <node concept="3uibUv" id="6SLp5w3MiQp" role="2ZW6by">
+                          <ref role="3uigEE" to="p24u:~FunctionBlockController" resolve="FunctionBlockController" />
                         </node>
                         <node concept="37vLTw" id="2syzu7r3xgU" role="2ZW6bz">
                           <ref role="3cqZAo" node="2syzu7r0IIH" resolve="compController" />
@@ -3690,8 +3688,8 @@
                       <node concept="37vLTw" id="4Hbpy_fsqd7" role="2Oq$k0">
                         <ref role="3cqZAo" node="2syzu7r0IIF" resolve="extView" />
                       </node>
-                      <node concept="liA8E" id="4Hbpy_fsAuv" role="2OqNvi">
-                        <ref role="37wK5l" to="mpua:4Hbpy_fsxfE" resolve="getAssociatedNode" />
+                      <node concept="liA8E" id="6SLp5w3Mkge" role="2OqNvi">
+                        <ref role="37wK5l" to="1hzy:~InlineValueView.getAssociatedNode()" resolve="getAssociatedNode" />
                       </node>
                     </node>
                   </node>
@@ -3930,7 +3928,7 @@
                 <node concept="3cpWs6" id="2syzu7r3yRw" role="3cqZAp">
                   <node concept="2ShNRf" id="2syzu7r3yZ2" role="3cqZAk">
                     <node concept="1pGfFk" id="2syzu7r3zIo" role="2ShVmc">
-                      <ref role="37wK5l" to="vjnt:2syzu7qINCT" resolve="InlineValueController" />
+                      <ref role="37wK5l" to="p24u:~InlineValueController.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.fbme.ide.richediting.viewmodel.InlineValueView,org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController,jetbrains.mps.nodeEditor.cells.EditorCell)" resolve="InlineValueController" />
                       <node concept="37vLTw" id="2syzu7r3$dz" role="37wK5m">
                         <ref role="3cqZAo" node="2syzu7r0IID" resolve="context" />
                       </node>
@@ -3938,8 +3936,8 @@
                         <ref role="3cqZAo" node="2syzu7r0IIF" resolve="extView" />
                       </node>
                       <node concept="10QFUN" id="2syzu7r492N" role="37wK5m">
-                        <node concept="3uibUv" id="2syzu7r49s0" role="10QFUM">
-                          <ref role="3uigEE" to="vjnt:3IX4BsK5Mi_" resolve="FunctionBlockController" />
+                        <node concept="3uibUv" id="6SLp5w3MnwW" role="10QFUM">
+                          <ref role="3uigEE" to="p24u:~FunctionBlockController" resolve="FunctionBlockController" />
                         </node>
                         <node concept="37vLTw" id="2syzu7r48CC" role="10QFUP">
                           <ref role="3cqZAo" node="2syzu7r0IIH" resolve="compController" />
@@ -3959,8 +3957,8 @@
               </node>
               <node concept="3Tm1VV" id="2syzu7r0J6M" role="1B3o_S" />
             </node>
-            <node concept="3uibUv" id="4Hbpy_fsjUH" role="2Ghqu4">
-              <ref role="3uigEE" to="mpua:5er1Yemzkpx" resolve="InlineValueView" />
+            <node concept="3uibUv" id="6SLp5w3MiuE" role="2Ghqu4">
+              <ref role="3uigEE" to="1hzy:~InlineValueView" resolve="InlineValueView" />
             </node>
             <node concept="3uibUv" id="2syzu7r0IIU" role="2Ghqu4">
               <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3975,9 +3973,9 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="6oXN8hZZWd6" role="1B3o_S" />
       <node concept="3uibUv" id="7PF$iX$hsD_" role="1tU5fm">
-        <ref role="3uigEE" to="a6f1:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
-        <node concept="3uibUv" id="4Hbpy_flNR5" role="11_B2D">
-          <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+        <ref role="3uigEE" to="2w4:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
+        <node concept="3uibUv" id="6SLp5w3MnAb" role="11_B2D">
+          <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
         </node>
         <node concept="3uibUv" id="1iOpS25fsaw" role="11_B2D">
           <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -3988,13 +3986,13 @@
           <node concept="1Y3b0j" id="6oXN8hZZLzx" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="a6f1:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
+            <ref role="1Y3XeK" to="2w4:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
             <node concept="2tJIrI" id="7PF$iX$hzSf" role="jymVt" />
             <node concept="3clFb_" id="6oXN8hZZGqx" role="jymVt">
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="6oXN8hZZGqy" role="1B3o_S" />
               <node concept="3uibUv" id="4y$DvIXm6_O" role="3clF45">
-                <ref role="3uigEE" to="a6f1:~ComponentController" resolve="ComponentController" />
+                <ref role="3uigEE" to="2w4:~ComponentController" resolve="ComponentController" />
               </node>
               <node concept="37vLTG" id="4O0ojQq3jvs" role="3clF46">
                 <property role="TrG5h" value="context" />
@@ -4004,15 +4002,15 @@
               </node>
               <node concept="37vLTG" id="4y$DvIVPduo" role="3clF46">
                 <property role="TrG5h" value="view" />
-                <node concept="3uibUv" id="4Hbpy_flRi0" role="1tU5fm">
-                  <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+                <node concept="3uibUv" id="6SLp5w3MnXV" role="1tU5fm">
+                  <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                 </node>
               </node>
               <node concept="3clFbS" id="6oXN8hZZGqC" role="3clF47">
                 <node concept="3clFbJ" id="6oXN8hZZGqD" role="3cqZAp">
                   <node concept="2ZW3vV" id="6oXN8hZZGqE" role="3clFbw">
-                    <node concept="3uibUv" id="4Hbpy_flT86" role="2ZW6by">
-                      <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                    <node concept="3uibUv" id="6SLp5w3Mo9M" role="2ZW6by">
+                      <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
                     </node>
                     <node concept="37vLTw" id="4y$DvIXm9pL" role="2ZW6bz">
                       <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4022,13 +4020,13 @@
                     <node concept="3cpWs6" id="6oXN8hZZGqO" role="3cqZAp">
                       <node concept="2ShNRf" id="6oXN8hZZGqP" role="3cqZAk">
                         <node concept="1pGfFk" id="6oXN8hZZGqQ" role="2ShVmc">
-                          <ref role="37wK5l" to="vjnt:3IX4BsK5Ppr" resolve="FunctionBlockController" />
+                          <ref role="37wK5l" to="p24u:~FunctionBlockController.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.fbme.ide.richediting.viewmodel.FunctionBlockView)" resolve="FunctionBlockController" />
                           <node concept="37vLTw" id="4y$DvIXmdDE" role="37wK5m">
                             <ref role="3cqZAo" node="4O0ojQq3jvs" resolve="context" />
                           </node>
                           <node concept="10QFUN" id="4Hbpy_frTNS" role="37wK5m">
-                            <node concept="3uibUv" id="4Hbpy_frTNT" role="10QFUM">
-                              <ref role="3uigEE" to="mpua:5er1Yemzkmb" resolve="FunctionBlockView" />
+                            <node concept="3uibUv" id="6SLp5w3MoE9" role="10QFUM">
+                              <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
                             </node>
                             <node concept="37vLTw" id="4Hbpy_frTNU" role="10QFUP">
                               <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4044,13 +4042,13 @@
                     <node concept="3cpWs6" id="6tmlia_XFoA" role="3cqZAp">
                       <node concept="2ShNRf" id="6tmlia_XFoB" role="3cqZAk">
                         <node concept="1pGfFk" id="6tmlia_XFoC" role="2ShVmc">
-                          <ref role="37wK5l" to="vjnt:6tmlia_TG2n" resolve="InterfaceEndpointController" />
+                          <ref role="37wK5l" to="p24u:~InterfaceEndpointController.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.fbme.ide.richediting.viewmodel.InterfaceEndpointView)" resolve="InterfaceEndpointController" />
                           <node concept="37vLTw" id="4y$DvIXn47C" role="37wK5m">
                             <ref role="3cqZAo" node="4O0ojQq3jvs" resolve="context" />
                           </node>
                           <node concept="10QFUN" id="4Hbpy_fs6qh" role="37wK5m">
-                            <node concept="3uibUv" id="4Hbpy_fs6qi" role="10QFUM">
-                              <ref role="3uigEE" to="mpua:5er1Yemzkuz" resolve="InterfaceEndpointView" />
+                            <node concept="3uibUv" id="6SLp5w3Mpmn" role="10QFUM">
+                              <ref role="3uigEE" to="1hzy:~InterfaceEndpointView" resolve="InterfaceEndpointView" />
                             </node>
                             <node concept="37vLTw" id="4Hbpy_fs6qj" role="10QFUP">
                               <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4061,8 +4059,8 @@
                     </node>
                   </node>
                   <node concept="2ZW3vV" id="6tmlia_XEAQ" role="3clFbw">
-                    <node concept="3uibUv" id="4Hbpy_frA2Q" role="2ZW6by">
-                      <ref role="3uigEE" to="mpua:5er1Yemzkuz" resolve="InterfaceEndpointView" />
+                    <node concept="3uibUv" id="6SLp5w3MoQ0" role="2ZW6by">
+                      <ref role="3uigEE" to="1hzy:~InterfaceEndpointView" resolve="InterfaceEndpointView" />
                     </node>
                     <node concept="37vLTw" id="4y$DvIXn3iI" role="2ZW6bz">
                       <ref role="3cqZAo" node="4y$DvIVPduo" resolve="view" />
@@ -4078,8 +4076,8 @@
               </node>
             </node>
             <node concept="3Tm1VV" id="6oXN8hZZLzy" role="1B3o_S" />
-            <node concept="3uibUv" id="4Hbpy_flP$_" role="2Ghqu4">
-              <ref role="3uigEE" to="mpua:5er1YemzlNF" resolve="NetworkComponentView" />
+            <node concept="3uibUv" id="6SLp5w3MnM3" role="2Ghqu4">
+              <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
             </node>
             <node concept="3uibUv" id="1iOpS25frCD" role="2Ghqu4">
               <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
@@ -4148,7 +4146,7 @@
             <property role="TrG5h" value="res" />
             <node concept="_YKpA" id="5jb5jNBRWCX" role="1tU5fm">
               <node concept="3uibUv" id="3tHZ0yHvdOs" role="_ZDj9">
-                <ref role="3uigEE" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+                <ref role="3uigEE" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
               </node>
             </node>
             <node concept="2OqwBi" id="5jb5jNBPC4U" role="33vP2m">
@@ -4177,7 +4175,7 @@
                             <node concept="1Y3b0j" id="5jb5jNBPC58" role="YeSDq">
                               <property role="2bfB8j" value="true" />
                               <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                              <ref role="1Y3XeK" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+                              <ref role="1Y3XeK" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
                               <node concept="3Tm1VV" id="5jb5jNBPC59" role="1B3o_S" />
                               <node concept="3clFb_" id="5jb5jNBPC5h" role="jymVt">
                                 <property role="TrG5h" value="getMatchingText" />
@@ -4411,7 +4409,7 @@
       <node concept="3uibUv" id="5jb5jNBPC4$" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="3tHZ0yHvdvH" role="11_B2D">
-          <ref role="3uigEE" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+          <ref role="3uigEE" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
         </node>
       </node>
     </node>
@@ -4470,11 +4468,11 @@
               <node concept="3cpWsn" id="1R4IoyQIIJ5" role="3cpWs9">
                 <property role="TrG5h" value="scene" />
                 <node concept="3uibUv" id="1R4IoyQIIJ6" role="1tU5fm">
-                  <ref role="3uigEE" to="n0ip:~EditorCell_Scene" resolve="EditorCell_Scene" />
+                  <ref role="3uigEE" to="sli2:~EditorCell_Scene" resolve="EditorCell_Scene" />
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIJ7" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyQIIJ8" role="2ShVmc">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="EditorCell_Scene" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.&lt;init&gt;(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="EditorCell_Scene" />
                     <node concept="37vLTw" id="1R4IoyQIIJ9" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQIIMk" resolve="context" />
                     </node>
@@ -4492,14 +4490,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIJc" role="3cpWs9">
                 <property role="TrG5h" value="backgroundLayer" />
                 <node concept="3uibUv" id="1R4IoyQIIJd" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyQIIJe" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyQIIJf" role="2Oq$k0">
                     <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQIIJg" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="1R4IoyQIIJh" role="37wK5m">
                       <property role="2$xPTl" value="0.f" />
                     </node>
@@ -4511,14 +4509,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIJj" role="3cpWs9">
                 <property role="TrG5h" value="tracesLayer" />
                 <node concept="3uibUv" id="1R4IoyQIIJk" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyQIIJl" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyQIIJm" role="2Oq$k0">
                     <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQIIJn" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="1R4IoyQIIJo" role="37wK5m">
                       <property role="2$xPTl" value="1.f" />
                     </node>
@@ -4530,14 +4528,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIJq" role="3cpWs9">
                 <property role="TrG5h" value="componentsLayer" />
                 <node concept="3uibUv" id="1R4IoyQIIJr" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyQIIJs" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyQIIJt" role="2Oq$k0">
                     <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQIIJu" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="1R4IoyQIIJv" role="37wK5m">
                       <property role="2$xPTl" value="3.f" />
                     </node>
@@ -4549,14 +4547,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIJx" role="3cpWs9">
                 <property role="TrG5h" value="connectionsLayer" />
                 <node concept="3uibUv" id="1R4IoyQIIJy" role="1tU5fm">
-                  <ref role="3uigEE" to="d1s5:~Layer" resolve="Layer" />
+                  <ref role="3uigEE" to="ar7i:~Layer" resolve="Layer" />
                 </node>
                 <node concept="2OqwBi" id="1R4IoyQIIJz" role="33vP2m">
                   <node concept="37vLTw" id="1R4IoyQIIJ$" role="2Oq$k0">
                     <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                   </node>
                   <node concept="liA8E" id="1R4IoyQIIJ_" role="2OqNvi">
-                    <ref role="37wK5l" to="n0ip:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
+                    <ref role="37wK5l" to="sli2:~EditorCell_Scene.createLayer(float)" resolve="createLayer" />
                     <node concept="2$xPTn" id="1R4IoyQIIJA" role="37wK5m">
                       <property role="2$xPTl" value="2.f" />
                     </node>
@@ -4569,7 +4567,7 @@
               <node concept="3cpWsn" id="1R4IoyQIIJD" role="3cpWs9">
                 <property role="TrG5h" value="viewpoint" />
                 <node concept="3uibUv" id="61SA$ze56hb" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~SceneViewpoint" resolve="SceneViewpoint" />
+                  <ref role="3uigEE" to="kdnk:~SceneViewpoint" resolve="SceneViewpoint" />
                 </node>
                 <node concept="3K4zz7" id="61SA$ze5fEH" role="33vP2m">
                   <node concept="2OqwBi" id="61SA$ze5kHE" role="3K4GZi">
@@ -4577,13 +4575,13 @@
                       <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                     </node>
                     <node concept="liA8E" id="61SA$ze5n2_" role="2OqNvi">
-                      <ref role="37wK5l" to="n0ip:~EditorCell_Scene.getImplicitViewpoint()" resolve="getImplicitViewpoint" />
+                      <ref role="37wK5l" to="sli2:~EditorCell_Scene.getImplicitViewpoint()" resolve="getImplicitViewpoint" />
                     </node>
                   </node>
                   <node concept="3clFbC" id="61SA$ze5bAb" role="3K4Cdx">
                     <node concept="Rm8GO" id="3tHZ0yHvmw4" role="3uHU7w">
-                      <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
-                      <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                      <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                      <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                     </node>
                     <node concept="37vLTw" id="61SA$ze5af6" role="3uHU7B">
                       <ref role="3cqZAo" node="bRdTVIcFaG" resolve="layout" />
@@ -4591,7 +4589,7 @@
                   </node>
                   <node concept="2ShNRf" id="1R4IoyQIIJF" role="3K4E3e">
                     <node concept="1pGfFk" id="1R4IoyQIIJG" role="2ShVmc">
-                      <ref role="37wK5l" to="nf53:~SceneViewpointByCell.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SceneViewpointByCell" />
+                      <ref role="37wK5l" to="kdnk:~SceneViewpointByCell.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SceneViewpointByCell" />
                       <node concept="37vLTw" id="1R4IoyQIIJH" role="37wK5m">
                         <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                       </node>
@@ -4607,11 +4605,11 @@
               <node concept="3cpWsn" id="1R4IoyQIIJK" role="3cpWs9">
                 <property role="TrG5h" value="focus" />
                 <node concept="3uibUv" id="1R4IoyQIIJL" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~SceneFocusModel" resolve="SceneFocusModel" />
+                  <ref role="3uigEE" to="kdnk:~SceneFocusModel" resolve="SceneFocusModel" />
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIJM" role="33vP2m">
                   <node concept="1pGfFk" id="3tHZ0yHvkGW" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultFocusModel.&lt;init&gt;()" resolve="DefaultFocusModel" />
+                    <ref role="37wK5l" to="kdnk:~DefaultFocusModel.&lt;init&gt;()" resolve="DefaultFocusModel" />
                   </node>
                 </node>
               </node>
@@ -4621,13 +4619,13 @@
                 <node concept="3clFbF" id="1R4IoyQIIJO" role="3cqZAp">
                   <node concept="2ShNRf" id="1R4IoyQIIJP" role="3clFbG">
                     <node concept="1pGfFk" id="1R4IoyQIIJQ" role="2ShVmc">
-                      <ref role="37wK5l" to="d1s5:~WindowedBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneViewpointByCell,org.fbme.scenes.controllers.scene.Layer)" resolve="WindowedBackgroundDragFacility" />
+                      <ref role="37wK5l" to="ar7i:~WindowedBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneViewpointByCell,org.fbme.scenes.controllers.scene.Layer)" resolve="WindowedBackgroundDragFacility" />
                       <node concept="37vLTw" id="1R4IoyQIIJR" role="37wK5m">
                         <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                       </node>
                       <node concept="10QFUN" id="61SA$ze57Fz" role="37wK5m">
                         <node concept="3uibUv" id="61SA$ze8keP" role="10QFUM">
-                          <ref role="3uigEE" to="nf53:~SceneViewpointByCell" resolve="SceneViewpointByCell" />
+                          <ref role="3uigEE" to="kdnk:~SceneViewpointByCell" resolve="SceneViewpointByCell" />
                         </node>
                         <node concept="37vLTw" id="1R4IoyQIIJU" role="10QFUP">
                           <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
@@ -4642,8 +4640,8 @@
               </node>
               <node concept="3clFbC" id="61SA$ze4U1i" role="3clFbw">
                 <node concept="Rm8GO" id="61SA$ze4UR9" role="3uHU7w">
-                  <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
-                  <ref role="Rm8GQ" to="d1s5:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                  <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
+                  <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
                 </node>
                 <node concept="37vLTw" id="61SA$ze4Tw7" role="3uHU7B">
                   <ref role="3cqZAo" node="bRdTVIcFaG" resolve="layout" />
@@ -4654,7 +4652,7 @@
                   <node concept="3clFbF" id="61SA$ze54OM" role="3cqZAp">
                     <node concept="2ShNRf" id="61SA$ze54OO" role="3clFbG">
                       <node concept="1pGfFk" id="61SA$ze54OP" role="2ShVmc">
-                        <ref role="37wK5l" to="d1s5:~FullEditorBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell,javax.swing.JViewport,org.fbme.scenes.controllers.scene.Layer)" resolve="FullEditorBackgroundDragFacility" />
+                        <ref role="37wK5l" to="ar7i:~FullEditorBackgroundDragFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,jetbrains.mps.openapi.editor.cells.EditorCell,javax.swing.JViewport,org.fbme.scenes.controllers.scene.Layer)" resolve="FullEditorBackgroundDragFacility" />
                         <node concept="37vLTw" id="61SA$ze54OQ" role="37wK5m">
                           <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                         </node>
@@ -4691,7 +4689,7 @@
             <node concept="3clFbF" id="61SA$ze4MWI" role="3cqZAp">
               <node concept="2ShNRf" id="61SA$ze4MWJ" role="3clFbG">
                 <node concept="1pGfFk" id="61SA$ze4MWK" role="2ShVmc">
-                  <ref role="37wK5l" to="d1s5:~BackgroundFocusLossFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer)" resolve="BackgroundFocusLossFacility" />
+                  <ref role="37wK5l" to="ar7i:~BackgroundFocusLossFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer)" resolve="BackgroundFocusLossFacility" />
                   <node concept="37vLTw" id="61SA$ze4MWL" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                   </node>
@@ -4709,14 +4707,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIJX" role="3cpWs9">
                 <property role="TrG5h" value="componentsSelection" />
                 <node concept="3uibUv" id="1R4IoyQIIJY" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~DefaultSelectionModel" resolve="DefaultSelectionModel" />
+                  <ref role="3uigEE" to="kdnk:~DefaultSelectionModel" resolve="DefaultSelectionModel" />
                   <node concept="3uibUv" id="4Hbpy_fGs3o" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIK0" role="33vP2m">
                   <node concept="1pGfFk" id="3tHZ0yHvkGY" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultSelectionModel.&lt;init&gt;()" resolve="DefaultSelectionModel" />
+                    <ref role="37wK5l" to="kdnk:~DefaultSelectionModel.&lt;init&gt;()" resolve="DefaultSelectionModel" />
                     <node concept="3uibUv" id="3tHZ0yHvkGZ" role="1pMfVU">
                       <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                     </node>
@@ -4728,14 +4726,14 @@
               <node concept="3cpWsn" id="1R4IoyQIIK4" role="3cpWs9">
                 <property role="TrG5h" value="componentsLayout" />
                 <node concept="3uibUv" id="1R4IoyQIIK5" role="1tU5fm">
-                  <ref role="3uigEE" to="nf53:~DefaultLayoutModel" resolve="DefaultLayoutModel" />
+                  <ref role="3uigEE" to="kdnk:~DefaultLayoutModel" resolve="DefaultLayoutModel" />
                   <node concept="3uibUv" id="4Hbpy_fGtft" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIK7" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyQIIK8" role="2ShVmc">
-                    <ref role="37wK5l" to="nf53:~DefaultLayoutModel.&lt;init&gt;(org.jetbrains.mps.openapi.module.SRepository)" resolve="DefaultLayoutModel" />
+                    <ref role="37wK5l" to="kdnk:~DefaultLayoutModel.&lt;init&gt;(org.jetbrains.mps.openapi.module.SRepository)" resolve="DefaultLayoutModel" />
                     <node concept="2OqwBi" id="1R4IoyQIIK9" role="37wK5m">
                       <node concept="37vLTw" id="1R4IoyQIIKa" role="2Oq$k0">
                         <ref role="3cqZAo" node="1R4IoyQIIMk" resolve="context" />
@@ -4797,7 +4795,7 @@
                 <property role="TrG5h" value="eccAdapter" />
                 <node concept="2ShNRf" id="1R4IoyQJ9ue" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyQJaYs" role="2ShVmc">
-                    <ref role="37wK5l" to="4n2q:1R4IoyQDKDs" resolve="ECCViewAdapter" />
+                    <ref role="37wK5l" to="56zl:~ECCViewAdapter.&lt;init&gt;(org.fbme.lib.iec61499.ecc.ECC,org.fbme.lib.iec61499.IEC61499Factory)" resolve="ECCViewAdapter" />
                     <node concept="37vLTw" id="2yJZQx2viBC" role="37wK5m">
                       <ref role="3cqZAo" node="2yJZQx2viBw" resolve="ecc" />
                     </node>
@@ -4806,8 +4804,8 @@
                     </node>
                   </node>
                 </node>
-                <node concept="3uibUv" id="1R4IoyQJd7d" role="1tU5fm">
-                  <ref role="3uigEE" to="4n2q:38k27IREOjP" resolve="ECCViewAdapter" />
+                <node concept="3uibUv" id="6SLp5w3LDj6" role="1tU5fm">
+                  <ref role="3uigEE" to="56zl:~ECCViewAdapter" resolve="ECCViewAdapter" />
                 </node>
               </node>
             </node>
@@ -4816,7 +4814,7 @@
                 <property role="TrG5h" value="componentsFacility" />
                 <property role="3TUv4t" value="true" />
                 <node concept="3uibUv" id="1R4IoyQIIKq" role="1tU5fm">
-                  <ref role="3uigEE" to="a6f1:~ComponentsFacility" resolve="ComponentsFacility" />
+                  <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
                   <node concept="3uibUv" id="4Hbpy_fGwHA" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
@@ -4826,7 +4824,7 @@
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIKt" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyQIIKu" role="2ShVmc">
-                    <ref role="37wK5l" to="a6f1:~ComponentsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.viewmodel.ComponentsView,org.fbme.scenes.controllers.components.ComponentControllerFactory,org.fbme.scenes.controllers.components.ComponentSynchronizer,org.fbme.scenes.controllers.LayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsFacility" />
+                    <ref role="37wK5l" to="2w4:~ComponentsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.viewmodel.ComponentsView,org.fbme.scenes.controllers.components.ComponentControllerFactory,org.fbme.scenes.controllers.components.ComponentSynchronizer,org.fbme.scenes.controllers.LayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.SceneFocusModel,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer)" resolve="ComponentsFacility" />
                     <node concept="37vLTw" id="1R4IoyQIIKv" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                     </node>
@@ -4838,7 +4836,7 @@
                     </node>
                     <node concept="2ShNRf" id="1R4IoyQIIKy" role="37wK5m">
                       <node concept="1pGfFk" id="1R4IoyQIIKz" role="2ShVmc">
-                        <ref role="37wK5l" to="4n2q:5jb5jNCfCVN" resolve="ECCSynchronizer" />
+                        <ref role="37wK5l" to="56zl:~ECCSynchronizer.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint)" resolve="ECCSynchronizer" />
                         <node concept="37vLTw" id="1R4IoyQIIK$" role="37wK5m">
                           <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
                         </node>
@@ -4876,10 +4874,10 @@
                   <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                 </node>
                 <node concept="liA8E" id="1R4IoyQIIKK" role="2OqNvi">
-                  <ref role="37wK5l" to="n0ip:~EditorCell_Scene.addCompletionProvider(org.fbme.scenes.controllers.scene.SceneCompletionProvider)" resolve="addCompletionProvider" />
+                  <ref role="37wK5l" to="sli2:~EditorCell_Scene.addCompletionProvider(org.fbme.scenes.controllers.scene.SceneCompletionProvider)" resolve="addCompletionProvider" />
                   <node concept="2ShNRf" id="1R4IoyQIIKL" role="37wK5m">
                     <node concept="1pGfFk" id="1R4IoyQIIKM" role="2ShVmc">
-                      <ref role="37wK5l" to="d1s5:~CompletionProviderByViewpoint.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,java.util.function.Supplier)" resolve="CompletionProviderByViewpoint" />
+                      <ref role="37wK5l" to="ar7i:~CompletionProviderByViewpoint.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint,java.util.function.Supplier)" resolve="CompletionProviderByViewpoint" />
                       <node concept="37vLTw" id="1R4IoyQIIKN" role="37wK5m">
                         <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
                       </node>
@@ -4907,12 +4905,12 @@
             <node concept="3cpWs8" id="1R4IoyQIIKU" role="3cqZAp">
               <node concept="3cpWsn" id="1R4IoyQIIKV" role="3cpWs9">
                 <property role="TrG5h" value="portSettings" />
-                <node concept="3uibUv" id="1R4IoyQIIKW" role="1tU5fm">
-                  <ref role="3uigEE" to="4n2q:38k27IRCmW1" resolve="ECPortSettingProvider" />
+                <node concept="3uibUv" id="6SLp5w3LGYE" role="1tU5fm">
+                  <ref role="3uigEE" to="56zl:~ECPortSettingProvider" resolve="ECPortSettingProvider" />
                 </node>
                 <node concept="2YIFZM" id="1R4IoyQIIKX" role="33vP2m">
-                  <ref role="1Pybhc" to="4n2q:38k27IRCmW1" resolve="ECPortSettingProvider" />
-                  <ref role="37wK5l" to="4n2q:38k27IRCmWn" resolve="create" />
+                  <ref role="1Pybhc" to="56zl:~ECPortSettingProvider" resolve="ECPortSettingProvider" />
+                  <ref role="37wK5l" to="56zl:~ECPortSettingProvider.create(org.fbme.scenes.controllers.components.ComponentsFacility)" resolve="create" />
                   <node concept="37vLTw" id="1R4IoyQIIKY" role="37wK5m">
                     <ref role="3cqZAo" node="1R4IoyQIIKp" resolve="componentsFacility" />
                   </node>
@@ -4923,7 +4921,7 @@
               <node concept="3cpWsn" id="1R4IoyQIIL0" role="3cpWs9">
                 <property role="TrG5h" value="diagramFacility" />
                 <node concept="3uibUv" id="1R4IoyQIIL1" role="1tU5fm">
-                  <ref role="3uigEE" to="pl58:~DiagramFacility" resolve="DiagramFacility" />
+                  <ref role="3uigEE" to="tamd:~DiagramFacility" resolve="DiagramFacility" />
                   <node concept="3uibUv" id="4Hbpy_fGyGh" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
@@ -4939,7 +4937,7 @@
                 </node>
                 <node concept="2ShNRf" id="1R4IoyQIIL6" role="33vP2m">
                   <node concept="1pGfFk" id="1R4IoyQIIL7" role="2ShVmc">
-                    <ref role="37wK5l" to="pl58:~DiagramFacility.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramView,org.fbme.scenes.controllers.diagram.PortSettingProvider,org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider)" resolve="DiagramFacility" />
+                    <ref role="37wK5l" to="tamd:~DiagramFacility.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramView,org.fbme.scenes.controllers.diagram.PortSettingProvider,org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider)" resolve="DiagramFacility" />
                     <node concept="37vLTw" id="1R4IoyQIIL9" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQIIKj" resolve="eccAdapter" />
                     </node>
@@ -4951,7 +4949,7 @@
                         <node concept="1Y3b0j" id="1R4IoyQIILd" role="YeSDq">
                           <property role="2bfB8j" value="true" />
                           <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                          <ref role="1Y3XeK" to="pl58:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
+                          <ref role="1Y3XeK" to="tamd:~DiagramComponentSettingProvider" resolve="DiagramComponentSettingProvider" />
                           <node concept="3Tm1VV" id="1R4IoyQIILe" role="1B3o_S" />
                           <node concept="3clFb_" id="1R4IoyQIILf" role="jymVt">
                             <property role="TrG5h" value="getModelForm" />
@@ -4978,7 +4976,7 @@
                                     <ref role="3cqZAo" node="1R4IoyQIIKp" resolve="componentsFacility" />
                                   </node>
                                   <node concept="liA8E" id="1R4IoyQIILq" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsFacility.getModelForm(java.lang.Object)" resolve="getModelForm" />
                                     <node concept="37vLTw" id="1R4IoyQIILr" role="37wK5m">
                                       <ref role="3cqZAo" node="1R4IoyQIILj" resolve="component" />
                                     </node>
@@ -5012,7 +5010,7 @@
                                     <ref role="3cqZAo" node="1R4IoyQIIKp" resolve="componentsFacility" />
                                   </node>
                                   <node concept="liA8E" id="1R4IoyQIILB" role="2OqNvi">
-                                    <ref role="37wK5l" to="a6f1:~ComponentsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
+                                    <ref role="37wK5l" to="2w4:~ComponentsFacility.getTransformedForm(java.lang.Object)" resolve="getTransformedForm" />
                                     <node concept="37vLTw" id="1R4IoyQIILC" role="37wK5m">
                                       <ref role="3cqZAo" node="1R4IoyQIILw" resolve="component" />
                                     </node>
@@ -5050,7 +5048,7 @@
               <node concept="3cpWsn" id="38F6aFupE_p" role="3cpWs9">
                 <property role="TrG5h" value="connectionsFacility" />
                 <node concept="3uibUv" id="38F6aFupA_F" role="1tU5fm">
-                  <ref role="3uigEE" to="pl58:~ConnectionsFacility" resolve="ConnectionsFacility" />
+                  <ref role="3uigEE" to="tamd:~ConnectionsFacility" resolve="ConnectionsFacility" />
                   <node concept="3uibUv" id="38F6aFupA_R" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
                   </node>
@@ -5060,33 +5058,33 @@
                   <node concept="3uibUv" id="38F6aFupA_T" role="11_B2D">
                     <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
                   </node>
-                  <node concept="3uibUv" id="38F6aFupA_S" role="11_B2D">
-                    <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+                  <node concept="3uibUv" id="6SLp5w3LJKg" role="11_B2D">
+                    <ref role="3uigEE" to="56zl:~ECTransitionCursor" resolve="ECTransitionCursor" />
                   </node>
-                  <node concept="3uibUv" id="38F6aFupA_U" role="11_B2D">
-                    <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+                  <node concept="3uibUv" id="6SLp5w3LKNa" role="11_B2D">
+                    <ref role="3uigEE" to="56zl:~ECTransitionPath" resolve="ECTransitionPath" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="38F6aFupE_q" role="33vP2m">
                   <node concept="1pGfFk" id="38F6aFupE_r" role="2ShVmc">
-                    <ref role="37wK5l" to="pl58:~ConnectionsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.diagram.ConnectionControllerFactory,java.util.function.BiFunction,java.util.function.BiConsumer,org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer,org.fbme.scenes.controllers.ROLayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.diagram.DiagramController,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.SceneFocusModel)" resolve="ConnectionsFacility" />
+                    <ref role="37wK5l" to="tamd:~ConnectionsFacility.&lt;init&gt;(org.fbme.scenes.controllers.scene.SceneEditor,org.fbme.scenes.controllers.diagram.ConnectionControllerFactory,java.util.function.BiFunction,java.util.function.BiConsumer,org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer,org.fbme.scenes.controllers.ROLayoutModel,org.fbme.scenes.controllers.SelectionModel,org.fbme.scenes.controllers.diagram.DiagramController,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.scene.Layer,org.fbme.scenes.controllers.SceneFocusModel)" resolve="ConnectionsFacility" />
                     <node concept="37vLTw" id="38F6aFupE_s" role="37wK5m">
                       <ref role="3cqZAo" node="1R4IoyQIIJ5" resolve="scene" />
                     </node>
                     <node concept="37vLTw" id="38F6aFupE_t" role="37wK5m">
                       <ref role="3cqZAo" node="38k27IRLnsq" resolve="TRANSITION_CONTROLLER_FACTORY" />
                     </node>
-                    <node concept="10M0yZ" id="38F6aFupE_u" role="37wK5m">
-                      <ref role="3cqZAo" to="4n2q:38k27IRRUR4" resolve="PATH_FACTORY" />
-                      <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
+                    <node concept="10M0yZ" id="6SLp5w3LMTQ" role="37wK5m">
+                      <ref role="3cqZAo" to="56zl:~ECTransitionUtils.PATH_FACTORY" resolve="PATH_FACTORY" />
+                      <ref role="1PxDUh" to="56zl:~ECTransitionUtils" resolve="ECTransitionUtils" />
                     </node>
-                    <node concept="10M0yZ" id="38F6aFupE_v" role="37wK5m">
-                      <ref role="1PxDUh" to="4n2q:38k27IRRUQX" resolve="ECTransitionUtils" />
-                      <ref role="3cqZAo" to="4n2q:38k27IRRUSR" resolve="PATH_PAINTER" />
+                    <node concept="10M0yZ" id="6SLp5w3LNrT" role="37wK5m">
+                      <ref role="3cqZAo" to="56zl:~ECTransitionUtils.PATH_PAINTER" resolve="PATH_PAINTER" />
+                      <ref role="1PxDUh" to="56zl:~ECTransitionUtils" resolve="ECTransitionUtils" />
                     </node>
                     <node concept="2ShNRf" id="38F6aFupE_w" role="37wK5m">
                       <node concept="1pGfFk" id="38F6aFupE_x" role="2ShVmc">
-                        <ref role="37wK5l" to="4n2q:38k27IRQ3Jd" resolve="ECTransitionPathSyncronizer" />
+                        <ref role="37wK5l" to="56zl:~ECTransitionPathSynchronizer.&lt;init&gt;(org.fbme.scenes.controllers.SceneViewpoint)" resolve="ECTransitionPathSynchronizer" />
                         <node concept="37vLTw" id="38F6aFupE_y" role="37wK5m">
                           <ref role="3cqZAo" node="1R4IoyQIIJD" resolve="viewpoint" />
                         </node>
@@ -5103,7 +5101,7 @@
                         <ref role="3cqZAo" node="1R4IoyQIIL0" resolve="diagramFacility" />
                       </node>
                       <node concept="liA8E" id="38F6aFupE_B" role="2OqNvi">
-                        <ref role="37wK5l" to="pl58:~DiagramFacility.getDiagramController()" resolve="getDiagramController" />
+                        <ref role="37wK5l" to="tamd:~DiagramFacility.getDiagramController()" resolve="getDiagramController" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="38F6aFupE_C" role="37wK5m">
@@ -5124,11 +5122,11 @@
                     <node concept="3uibUv" id="38F6aFupE_H" role="1pMfVU">
                       <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
                     </node>
-                    <node concept="3uibUv" id="38F6aFupE_I" role="1pMfVU">
-                      <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+                    <node concept="3uibUv" id="6SLp5w3LLn2" role="1pMfVU">
+                      <ref role="3uigEE" to="56zl:~ECTransitionCursor" resolve="ECTransitionCursor" />
                     </node>
-                    <node concept="3uibUv" id="38F6aFupE_J" role="1pMfVU">
-                      <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+                    <node concept="3uibUv" id="6SLp5w3LLUM" role="1pMfVU">
+                      <ref role="3uigEE" to="56zl:~ECTransitionPath" resolve="ECTransitionPath" />
                     </node>
                   </node>
                 </node>
@@ -5138,7 +5136,7 @@
             <node concept="3clFbF" id="38F6aFup$gp" role="3cqZAp">
               <node concept="2ShNRf" id="38F6aFup$gl" role="3clFbG">
                 <node concept="1pGfFk" id="38F6aFupBvA" role="2ShVmc">
-                  <ref role="37wK5l" to="ppqf:38F6aFuh$LD" resolve="ECCInspectionsFacility" />
+                  <ref role="37wK5l" to="ek6x:~ECCInspectionsFacility.&lt;init&gt;(org.fbme.lib.iec61499.ecc.ECC,org.fbme.scenes.controllers.scene.SceneEditor,java.util.function.Function)" resolve="ECCInspectionsFacility" />
                   <node concept="37vLTw" id="38F6aFupBJ1" role="37wK5m">
                     <ref role="3cqZAo" node="2yJZQx2viBw" resolve="ecc" />
                   </node>
@@ -5149,15 +5147,15 @@
                     <node concept="3clFbS" id="38F6aFupZkd" role="1bW5cS">
                       <node concept="3clFbF" id="38F6aFuq5wG" role="3cqZAp">
                         <node concept="10QFUN" id="38F6aFuqBE9" role="3clFbG">
-                          <node concept="3uibUv" id="38F6aFuqCsF" role="10QFUM">
-                            <ref role="3uigEE" to="4n2q:38k27IRy0o9" resolve="ECTransitionController" />
+                          <node concept="3uibUv" id="6SLp5w3LPW6" role="10QFUM">
+                            <ref role="3uigEE" to="56zl:~ECTransitionController" resolve="ECTransitionController" />
                           </node>
                           <node concept="2OqwBi" id="38F6aFuq5YR" role="10QFUP">
                             <node concept="37vLTw" id="38F6aFuq5wF" role="2Oq$k0">
                               <ref role="3cqZAo" node="38F6aFupE_p" resolve="connectionsFacility" />
                             </node>
                             <node concept="liA8E" id="38F6aFuq6ms" role="2OqNvi">
-                              <ref role="37wK5l" to="pl58:~ConnectionsFacility.getController(java.lang.Object)" resolve="getController" />
+                              <ref role="37wK5l" to="tamd:~ConnectionsFacility.getController(java.lang.Object)" resolve="getController" />
                               <node concept="37vLTw" id="38F6aFuq6Bn" role="37wK5m">
                                 <ref role="3cqZAo" node="38F6aFuq0Ib" resolve="it" />
                               </node>
@@ -5230,7 +5228,7 @@
       <node concept="37vLTG" id="bRdTVIcFaG" role="3clF46">
         <property role="TrG5h" value="layout" />
         <node concept="3uibUv" id="3tHZ0yHvgmW" role="1tU5fm">
-          <ref role="3uigEE" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+          <ref role="3uigEE" to="ar7i:~SceneLayout" resolve="SceneLayout" />
         </node>
       </node>
       <node concept="3Tm1VV" id="1R4IoyQIIMi" role="1B3o_S" />
@@ -5240,7 +5238,7 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="5jb5jNCcmQw" role="1B3o_S" />
       <node concept="3uibUv" id="5jb5jNCcmQx" role="1tU5fm">
-        <ref role="3uigEE" to="a6f1:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
+        <ref role="3uigEE" to="2w4:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
         <node concept="3uibUv" id="4Hbpy_fH6XD" role="11_B2D">
           <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
         </node>
@@ -5253,13 +5251,13 @@
           <node concept="1Y3b0j" id="5jb5jNCcmQA" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="a6f1:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
+            <ref role="1Y3XeK" to="2w4:~ComponentControllerFactory" resolve="ComponentControllerFactory" />
             <node concept="2tJIrI" id="5jb5jNCcmQB" role="jymVt" />
             <node concept="3clFb_" id="5jb5jNCcmQC" role="jymVt">
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="5jb5jNCcmQD" role="1B3o_S" />
               <node concept="3uibUv" id="5jb5jNCcmQE" role="3clF45">
-                <ref role="3uigEE" to="a6f1:~ComponentController" resolve="ComponentController" />
+                <ref role="3uigEE" to="2w4:~ComponentController" resolve="ComponentController" />
               </node>
               <node concept="37vLTG" id="5jb5jNCcmQF" role="3clF46">
                 <property role="TrG5h" value="context" />
@@ -5376,13 +5374,13 @@
                     <node concept="3cpWs6" id="5jb5jNCcmQV" role="3cqZAp">
                       <node concept="2ShNRf" id="5jb5jNCcmQW" role="3cqZAk">
                         <node concept="1pGfFk" id="2RGdDg_Ir47" role="2ShVmc">
-                          <ref role="37wK5l" to="4n2q:2RGdDg_HVx4" resolve="ECStateController" />
+                          <ref role="37wK5l" to="56zl:~ECStateController.&lt;init&gt;(org.fbme.ide.richediting.adapters.ecc.ECStateCellHandle)" resolve="ECStateController" />
                           <node concept="2ShNRf" id="2RGdDg_ItXm" role="37wK5m">
                             <node concept="YeOm9" id="2RGdDg_ItXn" role="2ShVmc">
                               <node concept="1Y3b0j" id="2RGdDg_ItXo" role="YeSDq">
                                 <property role="2bfB8j" value="true" />
                                 <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                                <ref role="1Y3XeK" to="4n2q:5jb5jNC3ozP" resolve="ECStateCellHandle" />
+                                <ref role="1Y3XeK" to="56zl:~ECStateCellHandle" resolve="ECStateCellHandle" />
                                 <node concept="3Tm1VV" id="2RGdDg_ItXp" role="1B3o_S" />
                                 <node concept="3clFb_" id="2RGdDg_ItXq" role="jymVt">
                                   <property role="TrG5h" value="getCell" />
@@ -5573,15 +5571,15 @@
       <property role="3TUv4t" value="true" />
       <node concept="3Tm1VV" id="38k27IRLiA2" role="1B3o_S" />
       <node concept="3uibUv" id="38k27IRLlxv" role="1tU5fm">
-        <ref role="3uigEE" to="pl58:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
+        <ref role="3uigEE" to="tamd:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
         <node concept="3uibUv" id="4Hbpy_fGFi6" role="11_B2D">
           <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
         </node>
-        <node concept="3uibUv" id="38k27IRLmEM" role="11_B2D">
-          <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+        <node concept="3uibUv" id="6SLp5w3L_7B" role="11_B2D">
+          <ref role="3uigEE" to="56zl:~ECTransitionCursor" resolve="ECTransitionCursor" />
         </node>
-        <node concept="3uibUv" id="38k27IRLmPE" role="11_B2D">
-          <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+        <node concept="3uibUv" id="6SLp5w3LAbd" role="11_B2D">
+          <ref role="3uigEE" to="56zl:~ECTransitionPath" resolve="ECTransitionPath" />
         </node>
       </node>
       <node concept="2ShNRf" id="38k27IRLr93" role="33vP2m">
@@ -5589,18 +5587,18 @@
           <node concept="1Y3b0j" id="38k27IRLtKw" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="pl58:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
+            <ref role="1Y3XeK" to="tamd:~ConnectionControllerFactory" resolve="ConnectionControllerFactory" />
             <node concept="3Tm1VV" id="38k27IRLtKx" role="1B3o_S" />
             <node concept="3clFb_" id="38k27IRLtKz" role="jymVt">
               <property role="TrG5h" value="create" />
               <node concept="3Tm1VV" id="38k27IRLtK_" role="1B3o_S" />
               <node concept="3uibUv" id="38k27IRLtKA" role="3clF45">
-                <ref role="3uigEE" to="pl58:~ConnectionController" resolve="ConnectionController" />
-                <node concept="3uibUv" id="38k27IRLtKQ" role="11_B2D">
-                  <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+                <ref role="3uigEE" to="tamd:~ConnectionController" resolve="ConnectionController" />
+                <node concept="3uibUv" id="6SLp5w3LSlX" role="11_B2D">
+                  <ref role="3uigEE" to="56zl:~ECTransitionCursor" resolve="ECTransitionCursor" />
                 </node>
-                <node concept="3uibUv" id="38k27IRLtKS" role="11_B2D">
-                  <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+                <node concept="3uibUv" id="6SLp5w3LSHn" role="11_B2D">
+                  <ref role="3uigEE" to="56zl:~ECTransitionPath" resolve="ECTransitionPath" />
                 </node>
               </node>
               <node concept="37vLTG" id="38k27IRLtKD" role="3clF46">
@@ -5685,13 +5683,13 @@
                 <node concept="3cpWs6" id="38k27IRLBB7" role="3cqZAp">
                   <node concept="2ShNRf" id="38k27IRLBSa" role="3cqZAk">
                     <node concept="1pGfFk" id="38k27IRLDhY" role="2ShVmc">
-                      <ref role="37wK5l" to="4n2q:38k27IRB5VM" resolve="ECTransitionController" />
+                      <ref role="37wK5l" to="56zl:~ECTransitionController.&lt;init&gt;(org.fbme.ide.richediting.adapters.ecc.ECTransitionConditionCellHandle)" resolve="ECTransitionController" />
                       <node concept="2ShNRf" id="38k27IRLDQl" role="37wK5m">
                         <node concept="YeOm9" id="38k27IRLFjl" role="2ShVmc">
                           <node concept="1Y3b0j" id="38k27IRLFjo" role="YeSDq">
                             <property role="2bfB8j" value="true" />
-                            <ref role="1Y3XeK" to="4n2q:38k27IRB1QW" resolve="ECTransitionConditionCellHandle" />
                             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+                            <ref role="1Y3XeK" to="56zl:~ECTransitionConditionCellHandle" resolve="ECTransitionConditionCellHandle" />
                             <node concept="3Tm1VV" id="38k27IRLFjp" role="1B3o_S" />
                             <node concept="3clFb_" id="38k27IRLFjr" role="jymVt">
                               <property role="TrG5h" value="getCell" />
@@ -5810,11 +5808,11 @@
             <node concept="3uibUv" id="4Hbpy_fGGtV" role="2Ghqu4">
               <ref role="3uigEE" to="g136:~StateTransition" resolve="StateTransition" />
             </node>
-            <node concept="3uibUv" id="38k27IRLtKP" role="2Ghqu4">
-              <ref role="3uigEE" to="4n2q:38k27IRy1n0" resolve="ECTransitionCursor" />
+            <node concept="3uibUv" id="6SLp5w3LQlx" role="2Ghqu4">
+              <ref role="3uigEE" to="56zl:~ECTransitionCursor" resolve="ECTransitionCursor" />
             </node>
-            <node concept="3uibUv" id="38k27IRLtKR" role="2Ghqu4">
-              <ref role="3uigEE" to="4n2q:38k27IRy0tz" resolve="ECTransitionPath" />
+            <node concept="3uibUv" id="6SLp5w3LRme" role="2Ghqu4">
+              <ref role="3uigEE" to="56zl:~ECTransitionPath" resolve="ECTransitionPath" />
             </node>
           </node>
         </node>
@@ -5833,7 +5831,7 @@
                 <node concept="1Y3b0j" id="5jb5jNC5$88" role="YeSDq">
                   <property role="2bfB8j" value="true" />
                   <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                  <ref role="1Y3XeK" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+                  <ref role="1Y3XeK" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
                   <node concept="3Tm1VV" id="5jb5jNC5$89" role="1B3o_S" />
                   <node concept="3clFb_" id="5jb5jNC5$8a" role="jymVt">
                     <property role="TrG5h" value="getMatchingText" />
@@ -5968,7 +5966,7 @@
               </node>
             </node>
             <node concept="3uibUv" id="2yJZQx2va37" role="3PaCim">
-              <ref role="3uigEE" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+              <ref role="3uigEE" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
             </node>
           </node>
         </node>
@@ -5991,7 +5989,7 @@
       <node concept="3uibUv" id="1R4IoyQId4x" role="3clF45">
         <ref role="3uigEE" to="33ny:~List" resolve="List" />
         <node concept="3uibUv" id="1R4IoyQIdJM" role="11_B2D">
-          <ref role="3uigEE" to="br90:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
+          <ref role="3uigEE" to="gl2l:~PositionalCompletionItem" resolve="PositionalCompletionItem" />
         </node>
       </node>
     </node>
@@ -6090,8 +6088,8 @@
                           </node>
                           <node concept="pncrf" id="2hWn4IdU$0B" role="37wK5m" />
                           <node concept="Rm8GO" id="3tHZ0yHyb$9" role="37wK5m">
-                            <ref role="Rm8GQ" to="d1s5:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
-                            <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                           </node>
                         </node>
                       </node>
@@ -6145,8 +6143,8 @@
                           </node>
                           <node concept="pncrf" id="1XSQy8A5tid" role="37wK5m" />
                           <node concept="Rm8GO" id="3tHZ0yHwVWs" role="37wK5m">
-                            <ref role="Rm8GQ" to="d1s5:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
-                            <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                           </node>
                         </node>
                       </node>
@@ -6200,8 +6198,8 @@
                           </node>
                           <node concept="pncrf" id="1_XvODPLcf4" role="37wK5m" />
                           <node concept="Rm8GO" id="3tHZ0yHxztm" role="37wK5m">
-                            <ref role="Rm8GQ" to="d1s5:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
-                            <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                           </node>
                         </node>
                       </node>
@@ -6292,10 +6290,22 @@
           <node concept="3clFbF" id="1_XvODPLphP" role="3cqZAp">
             <node concept="3clFbC" id="1_XvODPLpze" role="3clFbG">
               <node concept="12_Ws6" id="1_XvODPLpJt" role="3uHU7w" />
-              <node concept="2YIFZM" id="4dM3MZ7pu4H" role="3uHU7B">
-                <ref role="37wK5l" to="xxkc:4dM3MZ7pqM4" resolve="contextAlogithm" />
-                <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
-                <node concept="1Q80Hx" id="4dM3MZ7pu6$" role="37wK5m" />
+              <node concept="2OqwBi" id="6SLp5w3Lu$Z" role="3uHU7B">
+                <node concept="1eOMI4" id="6SLp5w3LtW_" role="2Oq$k0">
+                  <node concept="10QFUN" id="6SLp5w3LtXG" role="1eOMHV">
+                    <node concept="3uibUv" id="6SLp5w3LujR" role="10QFUM">
+                      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                    </node>
+                    <node concept="2YIFZM" id="4dM3MZ7pu4H" role="10QFUP">
+                      <ref role="1Pybhc" to="je9f:~RichEditorDataKeys" resolve="RichEditorDataKeys" />
+                      <ref role="37wK5l" to="je9f:~RichEditorDataKeys.contextAlogithm(jetbrains.mps.openapi.editor.EditorContext)" resolve="contextAlogithm" />
+                      <node concept="1Q80Hx" id="4dM3MZ7pu6$" role="37wK5m" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="6SLp5w3LuO_" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                </node>
               </node>
             </node>
           </node>
@@ -6711,8 +6721,8 @@
               </node>
               <node concept="3clFbF" id="2yJZQx2whsh" role="3cqZAp">
                 <node concept="2YIFZM" id="2yJZQx2whsi" role="3clFbG">
-                  <ref role="1Pybhc" to="xxkc:2CiAywA9Mz5" resolve="NetworkInstanceNavigationSupport" />
-                  <ref role="37wK5l" to="xxkc:2CiAywAbteV" resolve="getNavigationStub" />
+                  <ref role="1Pybhc" to="je9f:~NetworkInstanceNavigationSupport" resolve="NetworkInstanceNavigationSupport" />
+                  <ref role="37wK5l" to="je9f:~NetworkInstanceNavigationSupport.getNavigationStub(jetbrains.mps.project.Project,org.fbme.lib.iec61499.instances.NetworkInstance)" resolve="getNavigationStub" />
                   <node concept="37vLTw" id="2yJZQx2whsj" role="37wK5m">
                     <ref role="3cqZAo" node="2yJZQx2whs5" resolve="project" />
                   </node>
@@ -6917,8 +6927,8 @@
                           </node>
                           <node concept="pncrf" id="4gibKcMtUFg" role="37wK5m" />
                           <node concept="Rm8GO" id="3tHZ0yHxAmB" role="37wK5m">
-                            <ref role="Rm8GQ" to="d1s5:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
-                            <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                           </node>
                         </node>
                       </node>
@@ -6947,13 +6957,20 @@
             <node concept="3clFbC" id="4dM3MZ7puql" role="3clFbG">
               <node concept="12_Ws6" id="4dM3MZ7puqm" role="3uHU7w" />
               <node concept="2OqwBi" id="4gibKcMuCQ7" role="3uHU7B">
-                <node concept="2YIFZM" id="4dM3MZ7puMg" role="2Oq$k0">
-                  <ref role="37wK5l" to="xxkc:4dM3MZ7prOL" resolve="contextApplication" />
-                  <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
-                  <node concept="1Q80Hx" id="4dM3MZ7puMh" role="37wK5m" />
+                <node concept="1eOMI4" id="6SLp5w3MM7v" role="2Oq$k0">
+                  <node concept="10QFUN" id="6SLp5w3MMq$" role="1eOMHV">
+                    <node concept="3uibUv" id="6SLp5w3MMAg" role="10QFUM">
+                      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                    </node>
+                    <node concept="2YIFZM" id="4dM3MZ7puMg" role="10QFUP">
+                      <ref role="1Pybhc" to="je9f:~RichEditorDataKeys" resolve="RichEditorDataKeys" />
+                      <ref role="37wK5l" to="je9f:~RichEditorDataKeys.contextApplication(jetbrains.mps.openapi.editor.EditorContext)" resolve="contextApplication" />
+                      <node concept="1Q80Hx" id="4dM3MZ7puMh" role="37wK5m" />
+                    </node>
+                  </node>
                 </node>
                 <node concept="liA8E" id="4gibKcMuDYx" role="2OqNvi">
-                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                  <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
                 </node>
               </node>
             </node>
@@ -6976,13 +6993,20 @@
             <node concept="3clFbC" id="2SP6YJBXyXo" role="3clFbG">
               <node concept="12_Ws6" id="2SP6YJBXyXp" role="3uHU7w" />
               <node concept="2OqwBi" id="2SP6YJBXyXq" role="3uHU7B">
-                <node concept="2YIFZM" id="2SP6YJBXzb7" role="2Oq$k0">
-                  <ref role="37wK5l" to="xxkc:4dM3MZ7prg6" resolve="contextDevice" />
-                  <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
-                  <node concept="1Q80Hx" id="2SP6YJBXzb8" role="37wK5m" />
+                <node concept="1eOMI4" id="6SLp5w3MNyb" role="2Oq$k0">
+                  <node concept="10QFUN" id="6SLp5w3MNzL" role="1eOMHV">
+                    <node concept="3uibUv" id="6SLp5w3MNJt" role="10QFUM">
+                      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                    </node>
+                    <node concept="2YIFZM" id="2SP6YJBXzb7" role="10QFUP">
+                      <ref role="1Pybhc" to="je9f:~RichEditorDataKeys" resolve="RichEditorDataKeys" />
+                      <ref role="37wK5l" to="je9f:~RichEditorDataKeys.contextDevice(jetbrains.mps.openapi.editor.EditorContext)" resolve="contextDevice" />
+                      <node concept="1Q80Hx" id="2SP6YJBXzb8" role="37wK5m" />
+                    </node>
+                  </node>
                 </node>
                 <node concept="liA8E" id="2SP6YJBXyXt" role="2OqNvi">
-                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                  <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
                 </node>
               </node>
             </node>
@@ -7006,13 +7030,20 @@
             <node concept="3clFbC" id="2SP6YJBXzdH" role="3clFbG">
               <node concept="12_Ws6" id="2SP6YJBXzdI" role="3uHU7w" />
               <node concept="2OqwBi" id="2SP6YJBXzdJ" role="3uHU7B">
-                <node concept="2YIFZM" id="2SP6YJBXzrn" role="2Oq$k0">
-                  <ref role="37wK5l" to="xxkc:4dM3MZ7psx4" resolve="contextResource" />
-                  <ref role="1Pybhc" to="xxkc:3vwudsmYiwt" resolve="RichEditorDataKeys" />
-                  <node concept="1Q80Hx" id="2SP6YJBXzro" role="37wK5m" />
+                <node concept="1eOMI4" id="6SLp5w3Lwc8" role="2Oq$k0">
+                  <node concept="10QFUN" id="6SLp5w3Lwvl" role="1eOMHV">
+                    <node concept="3uibUv" id="6SLp5w3LwF1" role="10QFUM">
+                      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                    </node>
+                    <node concept="2YIFZM" id="2SP6YJBXzrn" role="10QFUP">
+                      <ref role="1Pybhc" to="je9f:~RichEditorDataKeys" resolve="RichEditorDataKeys" />
+                      <ref role="37wK5l" to="je9f:~RichEditorDataKeys.contextResource(jetbrains.mps.openapi.editor.EditorContext)" resolve="contextResource" />
+                      <node concept="1Q80Hx" id="2SP6YJBXzro" role="37wK5m" />
+                    </node>
+                  </node>
                 </node>
                 <node concept="liA8E" id="2SP6YJBXzdM" role="2OqNvi">
-                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                  <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
                 </node>
               </node>
             </node>
@@ -7060,8 +7091,8 @@
                           </node>
                           <node concept="pncrf" id="2SP6YJBXzMg" role="37wK5m" />
                           <node concept="Rm8GO" id="3tHZ0yHxAQe" role="37wK5m">
-                            <ref role="Rm8GQ" to="d1s5:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
-                            <ref role="1Px2BO" to="d1s5:~SceneLayout" resolve="SceneLayout" />
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.FULL_EDITOR" resolve="FULL_EDITOR" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
                           </node>
                         </node>
                       </node>
@@ -7124,8 +7155,8 @@
               </node>
               <node concept="3clFbF" id="1DfKejr2h6h" role="3cqZAp">
                 <node concept="2YIFZM" id="1DfKejr2h6i" role="3clFbG">
-                  <ref role="37wK5l" to="xxkc:2CiAywAbteV" resolve="getNavigationStub" />
-                  <ref role="1Pybhc" to="xxkc:2CiAywA9Mz5" resolve="NetworkInstanceNavigationSupport" />
+                  <ref role="1Pybhc" to="je9f:~NetworkInstanceNavigationSupport" resolve="NetworkInstanceNavigationSupport" />
+                  <ref role="37wK5l" to="je9f:~NetworkInstanceNavigationSupport.getNavigationStub(jetbrains.mps.project.Project,org.fbme.lib.iec61499.instances.NetworkInstance)" resolve="getNavigationStub" />
                   <node concept="37vLTw" id="2yJZQx2wc2l" role="37wK5m">
                     <ref role="3cqZAo" node="2yJZQx2wc2f" resolve="project" />
                   </node>

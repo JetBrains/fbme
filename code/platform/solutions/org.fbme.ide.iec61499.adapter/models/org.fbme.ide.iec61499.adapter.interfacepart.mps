@@ -659,8 +659,8 @@
                 <node concept="37vLTw" id="1IuIrLUqDB6" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
                 </node>
-                <node concept="3Tsc0h" id="29$Ci4mLBpf" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:75nMhMfSQRy" resolve="sockets" />
+                <node concept="3Tsc0h" id="35zEkrvLKRP" role="2OqNvi">
+                  <ref role="3TtcxE" to="xiqq:75nMhMfSQR7" resolve="plugs" />
                 </node>
               </node>
               <node concept="3VsKOn" id="29$Ci4mLBpg" role="37wK5m">
