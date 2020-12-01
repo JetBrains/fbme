@@ -8,14 +8,15 @@
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/stdlib/stdlib.msd" folder="code.4diac integration" />
       <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="code.enas" />
+      <modulePath path="$PROJECT_DIR$/code/language/buildsolution/org.fbme.language.build.msd" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/library/buildsolution/org.fbme.library.build.msd" folder="code.library" />
       <modulePath path="$PROJECT_DIR$/code/library/org.fbme.lib.msd" folder="code.library" />
       <modulePath path="$PROJECT_DIR$/code/platform/buildsolution/org.fbme.platform.build.msd" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="code.platform" />
       <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="code.platform" />
       <modulePath path="$PROJECT_DIR$/code/richediting/buildsolution/org.fbme.richediting.build.msd" folder="code.richediting" />
       <modulePath path="$PROJECT_DIR$/code/richediting/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="code.richediting" />

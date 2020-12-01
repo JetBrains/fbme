@@ -9,6 +9,7 @@
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
     <import index="ci82" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)" />
     <import index="66wk" ref="r:ca36cb90-c978-4e82-b9cd-9f3922cfc65f(org.fbme.library.build)" />
+    <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -419,20 +420,20 @@
             <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
           </node>
         </node>
-        <node concept="1SiIV0" id="Ej4tEplvBC" role="3bR37C">
-          <node concept="3bR9La" id="Ej4tEplvBD" role="1SiIV1">
-            <ref role="3bR37D" to="ci82:42vv4xsIHDZ" resolve="org.fbme.ide.st.lang" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="Ej4tEplvBE" role="3bR37C">
           <node concept="3bR9La" id="Ej4tEplvBF" role="1SiIV1">
             <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
-        <node concept="1SiIV0" id="Ej4tEplvBG" role="3bR37C">
-          <node concept="3bR9La" id="Ej4tEplvBH" role="1SiIV1">
-            <ref role="3bR37D" to="ci82:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+        <node concept="1SiIV0" id="ApHj0p4ZOu" role="3bR37C">
+          <node concept="3bR9La" id="ApHj0p4ZOv" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:42vv4xsIHDZ" resolve="org.fbme.ide.st.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="ApHj0p4ZOw" role="3bR37C">
+          <node concept="3bR9La" id="ApHj0p4ZOx" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
       </node>
@@ -445,6 +446,9 @@
     </node>
     <node concept="2sgV4H" id="Ej4tEpnai2" role="1l3spa">
       <ref role="1l3spb" to="66wk:68dTcycFmrj" resolve="fbme_library" />
+    </node>
+    <node concept="2sgV4H" id="ApHj0p4ZOh" role="1l3spa">
+      <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
     </node>
     <node concept="2sgV4H" id="Ej4tEplvBf" role="1l3spa">
       <ref role="1l3spb" to="ci82:68dTcycFmrj" resolve="fbme_platform" />

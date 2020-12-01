@@ -10,6 +10,7 @@
     <import index="ci82" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)" />
     <import index="66wk" ref="r:ca36cb90-c978-4e82-b9cd-9f3922cfc65f(org.fbme.library.build)" />
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
+    <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -272,11 +273,6 @@
             <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
           </node>
         </node>
-        <node concept="1SiIV0" id="5Z7HjgyQua8" role="3bR37C">
-          <node concept="3bR9La" id="5Z7HjgyQua9" role="1SiIV1">
-            <ref role="3bR37D" to="ci82:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
-          </node>
-        </node>
         <node concept="3rtmxn" id="5sRy4_w6JhD" role="3bR31x">
           <node concept="3LXTmp" id="5sRy4_w6JhE" role="3rtmxm">
             <node concept="55IIr" id="5sRy4_w6JhF" role="3LXTmr">
@@ -307,6 +303,11 @@
             </node>
           </node>
         </node>
+        <node concept="1SiIV0" id="ApHj0p6YpA" role="3bR37C">
+          <node concept="3bR9La" id="ApHj0p6YpB" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2sgV4H" id="68dTcycFoqk" role="1l3spa">
@@ -320,6 +321,9 @@
     </node>
     <node concept="2sgV4H" id="Ej4tEplrVd" role="1l3spa">
       <ref role="1l3spb" to="66wk:68dTcycFmrj" resolve="fbme_library" />
+    </node>
+    <node concept="2sgV4H" id="ApHj0p6Ypp" role="1l3spa">
+      <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
     </node>
   </node>
 </model>
