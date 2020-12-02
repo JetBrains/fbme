@@ -26,11 +26,6 @@ sourceSets {
     }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
 tasks.named<Copy>("mpsPrepare") {
     from(configurations.antlr.get().files.find { it.name.startsWith("antlr4-runtime") })
     from("build/libs")

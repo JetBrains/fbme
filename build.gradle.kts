@@ -10,6 +10,12 @@ allprojects {
     repositories {
         mavenCentral()
     }
+    pluginManager.withPlugin("java") {
+        extensions.configure<JavaPluginExtension> {
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
+        }
+    }
 }
 
 val mps by configurations.creating
