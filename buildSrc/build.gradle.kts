@@ -7,7 +7,7 @@ plugins {
 }
 
 val mpsMajor = "2020.2"
-val mpsMinor = "2"
+val mpsMinor = "3"
 
 
 repositories {
