@@ -17,14 +17,12 @@ import java.util.Objects;
 public class RichApplicationProjection extends SimpleEditorProjection {
 
     private final NetworkInstance myInstance;
-    private final Project myProject;
 
     public static final String PERSISTENCE_KEY = "instance-ref";
 
     public RichApplicationProjection(SNode node, EditorProjectionController controller, String name, String[] hints, NetworkInstance instance, Project project) {
-        super(node, controller, name, hints);
+        super(node, controller, project, name, hints);
         myInstance = instance;
-        myProject = project;
     }
 
     public NetworkInstance getInstance() {

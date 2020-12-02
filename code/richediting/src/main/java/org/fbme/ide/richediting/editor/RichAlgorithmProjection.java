@@ -1,5 +1,6 @@
 package org.fbme.ide.richediting.editor;
 
+import jetbrains.mps.project.Project;
 import org.fbme.ide.platform.editor.EditorProjectionController;
 import org.fbme.ide.platform.editor.SimpleEditorProjection;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
@@ -14,8 +15,8 @@ public class RichAlgorithmProjection extends SimpleEditorProjection {
 
     private final AlgorithmDeclaration myAlgorithm;
 
-    public RichAlgorithmProjection(SNode node, EditorProjectionController controller, String name, String[] hints, AlgorithmDeclaration algorithm) {
-        super(node, controller, name, hints);
+    public RichAlgorithmProjection(SNode node, EditorProjectionController controller, Project project, String name, String[] hints, AlgorithmDeclaration algorithm) {
+        super(node, controller, project, name, hints);
         myAlgorithm = algorithm;
     }
 

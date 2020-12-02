@@ -402,7 +402,7 @@
       </concept>
     </language>
     <language id="8dfbe92d-d233-4cc1-8ddb-a2863fd64843" name="org.fbme.ide.meta.editor">
-      <concept id="5118273348277656319" name="org.fbme.ide.meta.editor.structure.CellModel_BorderedRefNodeList" flags="ng" index="1ktTy1">
+      <concept id="5118273348277656319" name="org.fbme.ide.meta.editor.structure.CellModel_BorderedRefNodeList" flags="sg" stub="5118273348279960673" index="1ktTy1">
         <child id="5118273348277720092" name="footerCell" index="1ktDpy" />
         <child id="5118273348277720090" name="headerCell" index="1ktDp$" />
       </concept>

@@ -24,7 +24,7 @@ public class NetworkInstanceEditorProjection extends SimpleEditorProjection {
     public static final String PERSISTENCE_KEY = "instance-ref";
 
     public NetworkInstanceEditorProjection(SNode node, EditorProjectionController controller, String name, @NotNull NetworkInstance instance, Project project) {
-        super(node, controller, name, new String[]{"org.fbme.ide.richediting.lang.editor.Rich Editing Hint.network"});
+        super(node, controller, project, name, new String[]{"org.fbme.ide.richediting.lang.editor.Rich Editing Hint.network"});
         myInstance = instance;
         myProject = project;
     }

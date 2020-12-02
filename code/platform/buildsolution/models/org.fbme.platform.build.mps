@@ -13,6 +13,9 @@
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
       <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="9126048691955220717" name="jetbrains.mps.build.structure.BuildLayout_File" flags="ng" index="28jJK3">
+        <child id="9126048691955220762" name="path" index="28jJRO" />
+      </concept>
       <concept id="2755237150521975431" name="jetbrains.mps.build.structure.BuildVariableMacroInitWithString" flags="ng" index="aVJcg">
         <child id="2755237150521975437" name="value" index="aVJcq" />
       </concept>
@@ -124,6 +127,9 @@
         <property id="2889113830911481881" name="deployFolderName" index="3ZfqAx" />
         <child id="8137134783396676835" name="location" index="1HemKq" />
       </concept>
+      <concept id="4278635856200826393" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyJar" flags="ng" index="1BurEX">
+        <child id="4278635856200826394" name="path" index="1BurEY" />
+      </concept>
       <concept id="3189788309731840247" name="jetbrains.mps.build.mps.structure.BuildMps_Solution" flags="ng" index="1E1JtA" />
       <concept id="322010710375871467" name="jetbrains.mps.build.mps.structure.BuildMps_AbstractModule" flags="ng" index="3LEN3z">
         <property id="8369506495128725901" name="compact" index="BnDLt" />
@@ -171,13 +177,33 @@
       <node concept="m$_wl" id="42vv4xsIICZ" role="39821P">
         <ref role="m_rDy" node="68dTcycFmsQ" resolve="fbme.platform" />
         <node concept="pUk6w" id="ApHj0p3W8W" role="pUk7w" />
+        <node concept="398223" id="407BnQQiibW" role="39821P">
+          <node concept="3_J27D" id="407BnQQiibY" role="Nbhlr">
+            <node concept="3Mxwew" id="407BnQQiicb" role="3MwsjC">
+              <property role="3MwjfP" value="lib" />
+            </node>
+          </node>
+          <node concept="28jJK3" id="407BnQQiicd" role="39821P">
+            <node concept="55IIr" id="407BnQQiice" role="28jJRO">
+              <node concept="2Ry0Ak" id="407BnQQiicm" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="407BnQQiics" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="407BnQQiicv" role="2Ry0An">
+                    <property role="2Ry0Am" value="platform.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3ygNvl" id="ApHj0p3W9j" role="39821P">
           <ref role="3ygNvj" to="ci81:68dTcycFms2" />
         </node>
         <node concept="398223" id="ApHj0p3W91" role="39821P">
           <node concept="3_J27D" id="ApHj0p3W92" role="Nbhlr">
             <node concept="3Mxwew" id="ApHj0p3W95" role="3MwsjC">
-              <property role="3MwjfP" value="solutions" />
+              <property role="3MwjfP" value="languages" />
             </node>
           </node>
           <node concept="L2wRC" id="ApHj0p3W97" role="39821P">
@@ -267,11 +293,6 @@
             <ref role="3bR37D" to="ffeo:568PkTlOK5Q" resolve="jetbrains.mps.core.xml" />
           </node>
         </node>
-        <node concept="1SiIV0" id="42vv4xsIHNH" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p0DQG" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:42vv4xsIHDZ" resolve="org.fbme.ide.st.lang" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="42vv4xsIHNJ" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHNK" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
@@ -317,11 +338,6 @@
             <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
           </node>
         </node>
-        <node concept="1SiIV0" id="42vv4xsIHO3" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHO4" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:7Kfy9QB6Lg8" resolve="jetbrains.mps.runtime" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="42vv4xsIHO5" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHO6" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:7KapL9OABnm" resolve="jetbrains.mps.ide.ui" />
@@ -354,11 +370,6 @@
             <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="ApHj0p0DQJ" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p0DQK" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:1a1larLevcL" resolve="org.fbme.ide.util.lang" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="ApHj0p0DQL" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p0DQM" role="1SiIV1">
             <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
@@ -367,6 +378,21 @@
         <node concept="1SiIV0" id="ApHj0p0DQN" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p0DQO" role="1SiIV1">
             <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="407BnQQiib3" role="3bR37C">
+          <node concept="1BurEX" id="407BnQQiib4" role="1SiIV1">
+            <node concept="55IIr" id="407BnQQiiaZ" role="1BurEY">
+              <node concept="2Ry0Ak" id="407BnQQiib0" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="407BnQQiib1" role="2Ry0An">
+                  <property role="2Ry0Am" value="libs" />
+                  <node concept="2Ry0Ak" id="407BnQQiib2" role="2Ry0An">
+                    <property role="2Ry0Am" value="platform.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

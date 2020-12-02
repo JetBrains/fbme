@@ -147,17 +147,10 @@
       </node>
     </node>
     <node concept="1l3spV" id="68dTcycFms2" role="1l3spN">
-      <node concept="398223" id="ApHj0p3W9x" role="39821P">
-        <node concept="3_J27D" id="ApHj0p3W9z" role="Nbhlr">
-          <node concept="3Mxwew" id="ApHj0p3W9G" role="3MwsjC">
-            <property role="3MwjfP" value="solutions" />
-          </node>
-        </node>
+      <node concept="398223" id="ApHj0p3Wab" role="39821P">
         <node concept="L2wRC" id="ApHj0p3Lgg" role="39821P">
           <ref role="L2wRA" node="1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
         </node>
-      </node>
-      <node concept="398223" id="ApHj0p3Wab" role="39821P">
         <node concept="3_J27D" id="ApHj0p3Wad" role="Nbhlr">
           <node concept="3Mxwew" id="ApHj0p3Wap" role="3MwsjC">
             <property role="3MwjfP" value="languages" />
@@ -243,6 +236,16 @@
         <node concept="1SiIV0" id="Ej4tEplebs" role="3bR37C">
           <node concept="3bR9La" id="Ej4tEplebt" role="1SiIV1">
             <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1lhPVEAcJEd" role="3bR37C">
+          <node concept="3bR9La" id="1lhPVEAcJEe" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1lhPVEAcJEf" role="3bR37C">
+          <node concept="3bR9La" id="1lhPVEAcJEg" role="1SiIV1">
+            <ref role="3bR37D" node="1a1larLevcL" resolve="org.fbme.ide.util.lang" />
           </node>
         </node>
       </node>

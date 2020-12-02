@@ -18,14 +18,12 @@ import java.util.Objects;
 public class RichResourceProjection extends SimpleEditorProjection {
 
     private final NetworkInstance myInstance;
-    private final Project myProject;
 
     public static final String PERSISTENCE_KEY = "instance-ref";
 
     public RichResourceProjection(SNode node, EditorProjectionController controller, String name, String[] hints, NetworkInstance instance, Project project) {
-        super(node, controller, name, hints);
+        super(node, controller, project, name, hints);
         myInstance = instance;
-        myProject = project;
     }
 
     public NetworkInstance getInstance() {

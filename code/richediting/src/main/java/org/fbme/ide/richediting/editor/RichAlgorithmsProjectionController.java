@@ -7,7 +7,7 @@ import jetbrains.mps.project.MPSProject;
 import jetbrains.mps.project.Project;
 import jetbrains.mps.smodel.ModelAccessHelper;
 import jetbrains.mps.workbench.MPSDataKeys;
-import org.fbme.ide.iec61499.adapter.interfacepart.AlgorithmDeclarationByNode;
+import org.fbme.ide.iec61499.adapter.common.PlatformElement;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
 import org.fbme.ide.platform.PlatformRepositoryProvider;
 import org.fbme.ide.platform.editor.*;
@@ -51,7 +51,7 @@ public class RichAlgorithmsProjectionController implements EditorProjectionContr
                         .findFirst()
                         .orElseThrow()
         );
-        return new RichAlgorithmProjection(myNode, this, name, new String[]{"org.fbme.ide.richediting.lang.editor.Rich Editing Hint.algorithm"}, algorithm);
+        return new RichAlgorithmProjection(myNode, this, myProject, name, new String[]{"org.fbme.ide.richediting.lang.editor.Rich Editing Hint.algorithm"}, algorithm);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class RichAlgorithmsProjectionController implements EditorProjectionContr
                     myTypeDeclaration.getAlgorithms().add(algorithm);
                     editor.chooseProjection(createProjection(""));
                     NodeEditorComponent component = editor.getCurrentEditorComponent();
-                    component.changeSelection(component.findNodeCellWithRole(((AlgorithmDeclarationByNode) algorithm).getNode(), "name"));
+                    component.changeSelection(component.findNodeCellWithRole(((PlatformElement) algorithm).getNode(), "name"));
                 });
             }
         });

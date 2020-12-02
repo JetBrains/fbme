@@ -436,6 +436,16 @@
             <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
+        <node concept="1SiIV0" id="407BnQQqdnq" role="3bR37C">
+          <node concept="3bR9La" id="407BnQQqdnr" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="407BnQQqdns" role="3bR37C">
+          <node concept="3bR9La" id="407BnQQqdnt" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2sgV4H" id="68dTcycFoqk" role="1l3spa">
