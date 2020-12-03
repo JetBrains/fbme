@@ -26,18 +26,6 @@ dependencies {
     ant_lib("org.apache.ant:ant-junit:1.10.1")
 }
 
-val downloadJbrZip by tasks.registering(Download::class) {
-    src("https://jetbrains.bintray.com/intellij-jbr/jbrsdk-11_0_6-osx-x64-b520.43.tar.gz")
-    dest(file("lib/jbr.tar.gz"))
-    overwrite(false)
-}
-
-val downloadJbr by tasks.registering(Copy::class) {
-    dependsOn(downloadJbrZip)
-    from(tarTree("lib/jbr.tar.gz"))
-    into(file("lib/jbr"))
-}
-
 val buildBootstrap by tasks.registering {
     inputs.dir("buildscripts/models")
     inputs.file("build-bootstrap.xml")
@@ -80,7 +68,7 @@ fun Task.antexec(path: String, vararg tasks: String) {
     }
 }
 
-val buildRcp0 by tasks.registering {
+val buildRcp by tasks.registering {
     dependsOn(build)
     antexec("build/build-rcp.xml")
 }
@@ -98,36 +86,9 @@ val copyStartupScripts by tasks.registering(Copy::class) {
     into("build/startup")
 }
 
-val buildRcp by tasks.registering {
-    dependsOn(buildRcp0, copyStartupScripts)
+val buildRcpDistrib by tasks.registering {
+    dependsOn(buildRcp, copyStartupScripts)
     antexec("build/build-rcpdistrib.xml")
-}
-
-val buildRcpWithJbr by tasks.registering {
-    dependsOn(buildRcp0, copyStartupScripts, downloadJbr)
-    antexec("build/build-rcpdistrib-jbr.xml")
-}
-
-val macosBinaries by tasks.registering(Copy::class) {
-    dependsOn(buildRcpWithJbr)
-
-    from(zipTree(file("build/artifacts/fbme_rcp_distrib_jbr/fbme-202.SNAPSHOT.macos.zip"))) {
-        eachFile {
-            relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
-        }
-        includeEmptyDirs = false
-    }
-    into(file("build/fbme-macos.app"))
-
-    doLast {
-        delete("$projectDir/build/fbme-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib")
-        ant.withGroovyBuilder {
-            "symlink"(
-                    "resource" to "$projectDir/build/fbme-macos.app/Contents/jbr/Contents/Home/lib/jli/libjli.dylib",
-                    "link" to "$projectDir/build/fbme-macos.app/Contents/jbr/Contents/MacOS/libjli.dylib"
-            )
-        }
-    }
 }
 
 val clean by tasks.getting {
