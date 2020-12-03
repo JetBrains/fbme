@@ -87,6 +87,7 @@ class MpsPlugin : Plugin<Project> {
                 dependsOn("mpsAssemble")
             }
             tasks.register("mpsClean") {
+                enabled = file("build.xml").exists()
                 doLast {
                     executeMpsBuild(antBinaries, "clean", "cleanSources")
                 }
