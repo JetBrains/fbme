@@ -20,6 +20,6 @@ source_gen.caches
 build
 out
 
-/lib
+lib
 
 build.xml
