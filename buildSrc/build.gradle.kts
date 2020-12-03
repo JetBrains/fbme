@@ -25,24 +25,27 @@ gradlePlugin {
 
 val mps by configurations.creating
 
-val mpsFile = file("../lib/").listFiles().find { it.name.startsWith("MPS") && it.name.endsWith(".zip") }
+val teamcity = findProperty("teamcity") == "true"
 
-if (mpsFile == null) {
-    tasks.register<Download>("downloadMpsZip") {
+if (!teamcity) {
+    val downloadMpsZip by tasks.registering(Download::class) {
         src("https://download.jetbrains.com/mps/$mpsMajor/MPS-$mpsMajor.$mpsMinor.zip")
         dest("../lib")
+        overwrite(false)
+
+        doFirst {
+            file("../lib").mkdir()
+        }
     }
-}
 
-val unpackMps by tasks.registering(Copy::class) {
-    if (mpsFile == null) {
-        dependsOn("downloadMpsZip")
+    val unpackMps by tasks.registering(Copy::class) {
+        dependsOn(downloadMpsZip)
+
+        from(zipTree("../lib/MPS-$mpsMajor.$mpsMinor.zip"))
+        into("../lib")
     }
 
-    from(zipTree(mpsFile ?: "../lib/MPS-$mpsMajor.$mpsMinor.zip"))
-    into("../lib")
-}
-
-val build by tasks.getting {
-    dependsOn(unpackMps)
+    val build by tasks.getting {
+        dependsOn(unpackMps)
+    }
 }
