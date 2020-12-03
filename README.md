@@ -7,13 +7,9 @@
 
 - Pre-installed JRE 11 is required
 - Install [JetBrains MPS 2020.2.*](https://www.jetbrains.com/mps/download)
-- Run `./gradlew generate`
+- Run `./gradlew build`
 - Open project with MPS
-
-### Building the plugins
-
-- Run `./gradlew buildPlugin`
 
 ### Building the standalone IDE
 
-- Run `./gradlew buildRcp`
+- Run `./gradlew buildRcpDistrib`
