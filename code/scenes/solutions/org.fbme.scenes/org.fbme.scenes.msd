@@ -4,8 +4,8 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/code/scenes/build" type="java_classes">
-      <sourceRoot location="libs/scenes.jar" />
+    <modelRoot contentPath="${module}/../../build/libs" type="java_classes">
+      <sourceRoot location="scenes.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/code/scenes/build/libs/scenes.jar" />
+    <stubModelEntry path="${module}/../../build/libs/scenes.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

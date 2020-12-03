@@ -4,7 +4,7 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/code/platform/build/libs" type="java_classes">
+    <modelRoot contentPath="${module}/../../build/libs" type="java_classes">
       <sourceRoot location="platform.jar" />
     </modelRoot>
   </models>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/code/platform/build/libs/platform.jar" />
+    <stubModelEntry path="${module}/../../build/libs/platform.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

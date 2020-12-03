@@ -4,8 +4,8 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/code/smv-debugger/build" type="java_classes">
-      <sourceRoot location="libs/smv-debugger.jar" />
+    <modelRoot contentPath="${module}/../../build/libs" type="java_classes">
+      <sourceRoot location="smv-debugger.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/code/smv-debugger/build/libs/smv-debugger.jar" />
+    <stubModelEntry path="${module}/../../build/libs/smv-debugger.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

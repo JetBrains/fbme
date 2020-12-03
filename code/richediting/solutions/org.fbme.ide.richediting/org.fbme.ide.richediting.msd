@@ -4,8 +4,8 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/code/richediting" type="java_classes">
-      <sourceRoot location="build/libs/richediting.jar" />
+    <modelRoot contentPath="${module}/../../build/libs/" type="java_classes">
+      <sourceRoot location="richediting.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/code/richediting/build/libs/richediting.jar" />
+    <stubModelEntry path="${module}/../../build/libs/richediting.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

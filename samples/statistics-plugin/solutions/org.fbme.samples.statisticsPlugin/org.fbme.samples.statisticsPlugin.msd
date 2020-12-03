@@ -4,7 +4,7 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/radimir.sorokin/workspace/iec61499/samples/statistics-plugin/build/libs" type="java_classes">
+    <modelRoot contentPath="${module}/../../build/libs" type="java_classes">
       <sourceRoot location="statistics-plugin.jar" />
     </modelRoot>
   </models>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/radimir.sorokin/workspace/iec61499/samples/statistics-plugin/build/libs/statistics-plugin.jar" />
+    <stubModelEntry path="${module}/../../build/libs/statistics-plugin.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>
