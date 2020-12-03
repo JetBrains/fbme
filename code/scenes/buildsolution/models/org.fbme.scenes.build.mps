@@ -181,11 +181,14 @@
           <node concept="28jJK3" id="3tHZ0yHpqSb" role="39821P">
             <node concept="55IIr" id="3tHZ0yHpqSj" role="28jJRO">
               <node concept="2Ry0Ak" id="3tHZ0yHpqSt" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="3tHZ0yHpqSy" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="3tHZ0yHpqSB" role="2Ry0An">
-                    <property role="2Ry0Am" value="scenes.jar" />
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48YTOn" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.scenes" />
+                  <node concept="2Ry0Ak" id="2PLQk48YTOo" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48YTOp" role="2Ry0An">
+                      <property role="2Ry0Am" value="scenes.jar" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -302,15 +305,18 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="3tHZ0yHpqSH" role="3bR37C">
-          <node concept="1BurEX" id="3tHZ0yHpqSI" role="1SiIV1">
-            <node concept="55IIr" id="3tHZ0yHpqSD" role="1BurEY">
-              <node concept="2Ry0Ak" id="3tHZ0yHpqSE" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="3tHZ0yHpqSF" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="3tHZ0yHpqSG" role="2Ry0An">
-                    <property role="2Ry0Am" value="scenes.jar" />
+        <node concept="1SiIV0" id="2PLQk48Y$2e" role="3bR37C">
+          <node concept="1BurEX" id="2PLQk48Y$2f" role="1SiIV1">
+            <node concept="55IIr" id="2PLQk48Y$29" role="1BurEY">
+              <node concept="2Ry0Ak" id="2PLQk48Y$2a" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Y$2b" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.scenes" />
+                  <node concept="2Ry0Ak" id="2PLQk48Y$2c" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Y$2d" role="2Ry0An">
+                      <property role="2Ry0Am" value="scenes.jar" />
+                    </node>
                   </node>
                 </node>
               </node>

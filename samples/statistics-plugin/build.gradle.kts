@@ -19,3 +19,8 @@ mps {
     artifactName = "statistics-plugin"
     buildScriptName = "fbme_statistics"
 }
+
+val mpsPrepare by tasks.getting(Copy::class) {
+    from("build/libs/statistics-plugin.jar")
+    into("solutions/org.fbme.samples.statisticsPlugin/lib")
+}

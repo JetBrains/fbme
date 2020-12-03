@@ -17,3 +17,8 @@ mps {
     artifactName = "richediting"
     buildScriptName = "fbme_richediting"
 }
+
+val mpsPrepare by tasks.getting(Copy::class) {
+    from("build/libs/richediting.jar")
+    into("solutions/org.fbme.ide.richediting/lib")
+}

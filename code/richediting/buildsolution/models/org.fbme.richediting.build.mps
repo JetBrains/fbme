@@ -189,11 +189,14 @@
           <node concept="28jJK3" id="6SLp5w3L7me" role="39821P">
             <node concept="55IIr" id="6SLp5w3L7mm" role="28jJRO">
               <node concept="2Ry0Ak" id="6SLp5w3L7mw" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="6SLp5w3L7m_" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="6SLp5w3L7mE" role="2Ry0An">
-                    <property role="2Ry0Am" value="richediting.jar" />
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Z4aX" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="2PLQk48Z4aY" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Z4aZ" role="2Ry0An">
+                      <property role="2Ry0Am" value="richediting.jar" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -365,21 +368,6 @@
             <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
-        <node concept="1SiIV0" id="6SLp5w3L7lc" role="3bR37C">
-          <node concept="1BurEX" id="6SLp5w3L7ld" role="1SiIV1">
-            <node concept="55IIr" id="6SLp5w3L7l8" role="1BurEY">
-              <node concept="2Ry0Ak" id="6SLp5w3L7l9" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="6SLp5w3L7la" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="6SLp5w3L7lb" role="2Ry0An">
-                    <property role="2Ry0Am" value="richediting.jar" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="1SiIV0" id="ApHj0p5VBG" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p5VBH" role="1SiIV1">
             <ref role="3bR37D" to="ci81:1a1larLevcL" resolve="org.fbme.ide.util.lang" />
@@ -393,6 +381,24 @@
         <node concept="1SiIV0" id="ApHj0p5VBK" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p5VBL" role="1SiIV1">
             <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="2PLQk48Z4bn" role="3bR37C">
+          <node concept="1BurEX" id="2PLQk48Z4bo" role="1SiIV1">
+            <node concept="55IIr" id="2PLQk48Z4bi" role="1BurEY">
+              <node concept="2Ry0Ak" id="2PLQk48Z4bj" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Z4bk" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="2PLQk48Z4bl" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Z4bm" role="2Ry0An">
+                      <property role="2Ry0Am" value="richediting.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

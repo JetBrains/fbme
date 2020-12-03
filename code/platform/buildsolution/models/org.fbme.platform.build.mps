@@ -186,11 +186,14 @@
           <node concept="28jJK3" id="407BnQQiicd" role="39821P">
             <node concept="55IIr" id="407BnQQiice" role="28jJRO">
               <node concept="2Ry0Ak" id="407BnQQiicm" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
+                <property role="2Ry0Am" value="solutions" />
                 <node concept="2Ry0Ak" id="407BnQQiics" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="407BnQQiicv" role="2Ry0An">
-                    <property role="2Ry0Am" value="platform.jar" />
+                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                  <node concept="2Ry0Ak" id="2PLQk48YTNT" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48YTNU" role="2Ry0An">
+                      <property role="2Ry0Am" value="platform.jar" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -380,15 +383,18 @@
             <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
-        <node concept="1SiIV0" id="407BnQQiib3" role="3bR37C">
-          <node concept="1BurEX" id="407BnQQiib4" role="1SiIV1">
-            <node concept="55IIr" id="407BnQQiiaZ" role="1BurEY">
-              <node concept="2Ry0Ak" id="407BnQQiib0" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="407BnQQiib1" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="407BnQQiib2" role="2Ry0An">
-                    <property role="2Ry0Am" value="platform.jar" />
+        <node concept="1SiIV0" id="2PLQk48Y$2Y" role="3bR37C">
+          <node concept="1BurEX" id="2PLQk48Y$2Z" role="1SiIV1">
+            <node concept="55IIr" id="2PLQk48Y$2T" role="1BurEY">
+              <node concept="2Ry0Ak" id="2PLQk48Y$2U" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Y$2V" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                  <node concept="2Ry0Ak" id="2PLQk48Y$2W" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Y$2X" role="2Ry0An">
+                      <property role="2Ry0Am" value="platform.jar" />
+                    </node>
                   </node>
                 </node>
               </node>

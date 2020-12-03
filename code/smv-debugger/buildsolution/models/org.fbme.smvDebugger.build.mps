@@ -182,11 +182,14 @@
           <node concept="28jJK3" id="47ImtybUPJz" role="39821P">
             <node concept="55IIr" id="47ImtybUPJ$" role="28jJRO">
               <node concept="2Ry0Ak" id="47ImtybUPJI" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="47ImtybUPJN" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="47ImtybUPJS" role="2Ry0An">
-                    <property role="2Ry0Am" value="smv-debugger.jar" />
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48YTOW" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.smvDebugger" />
+                  <node concept="2Ry0Ak" id="2PLQk48YTOX" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48YTOY" role="2Ry0An">
+                      <property role="2Ry0Am" value="smv-debugger.jar" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -315,21 +318,6 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="47ImtybUA89" role="3bR37C">
-          <node concept="1BurEX" id="47ImtybUA8a" role="1SiIV1">
-            <node concept="55IIr" id="47ImtybUA85" role="1BurEY">
-              <node concept="2Ry0Ak" id="47ImtybUA86" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="47ImtybUA87" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="47ImtybUA88" role="2Ry0An">
-                    <property role="2Ry0Am" value="smv-debugger.jar" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="1SiIV0" id="ApHj0p88DK" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p88DL" role="1SiIV1">
             <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
@@ -338,6 +326,24 @@
         <node concept="1SiIV0" id="ApHj0p88DM" role="3bR37C">
           <node concept="3bR9La" id="ApHj0p88DN" role="1SiIV1">
             <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="2PLQk48Y$3S" role="3bR37C">
+          <node concept="1BurEX" id="2PLQk48Y$3T" role="1SiIV1">
+            <node concept="55IIr" id="2PLQk48Y$3N" role="1BurEY">
+              <node concept="2Ry0Ak" id="2PLQk48Y$3O" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Y$3P" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.smvDebugger" />
+                  <node concept="2Ry0Ak" id="2PLQk48Y$3Q" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Y$3R" role="2Ry0An">
+                      <property role="2Ry0Am" value="smv-debugger.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

@@ -4,7 +4,7 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="${module}/../../build/libs" type="java_classes">
+    <modelRoot contentPath="${module}/lib" type="java_classes">
       <sourceRoot location="platform.jar" />
     </modelRoot>
   </models>
@@ -14,7 +14,7 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="${module}/../../build/libs/platform.jar" />
+    <stubModelEntry path="${module}/lib/platform.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

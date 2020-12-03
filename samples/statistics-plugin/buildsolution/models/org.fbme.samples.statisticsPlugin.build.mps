@@ -15,6 +15,9 @@
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
       <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="9126048691955220717" name="jetbrains.mps.build.structure.BuildLayout_File" flags="ng" index="28jJK3">
+        <child id="9126048691955220762" name="path" index="28jJRO" />
+      </concept>
       <concept id="2755237150521975431" name="jetbrains.mps.build.structure.BuildVariableMacroInitWithString" flags="ng" index="aVJcg">
         <child id="2755237150521975437" name="value" index="aVJcq" />
       </concept>
@@ -27,9 +30,6 @@
       <concept id="4993211115183325728" name="jetbrains.mps.build.structure.BuildProjectDependency" flags="ng" index="2sgV4H">
         <reference id="5617550519002745380" name="script" index="1l3spb" />
         <child id="4129895186893471026" name="artifacts" index="2JcizS" />
-      </concept>
-      <concept id="2750015747481074431" name="jetbrains.mps.build.structure.BuildLayout_Files" flags="ng" index="2HvfSZ">
-        <child id="2750015747481074432" name="path" index="2HvfZ0" />
       </concept>
       <concept id="4380385936562003279" name="jetbrains.mps.build.structure.BuildString" flags="ng" index="NbPM2">
         <child id="4903714810883783243" name="parts" index="3MwsjC" />
@@ -173,19 +173,25 @@
         <ref role="m_rDy" node="42vv4xsIIHl" resolve="fbme.statistsics" />
         <node concept="pUk6x" id="42vv4xsJMAs" role="pUk7w" />
         <node concept="398223" id="2ww0H4BPcGT" role="39821P">
+          <node concept="28jJK3" id="2PLQk48Y$5b" role="39821P">
+            <node concept="55IIr" id="2PLQk48Y$5d" role="28jJRO">
+              <node concept="2Ry0Ak" id="2PLQk48Y$5r" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48YTPs" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin" />
+                  <node concept="2Ry0Ak" id="2PLQk48YTPt" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48YTPu" role="2Ry0An">
+                      <property role="2Ry0Am" value="statistics-plugin.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
           <node concept="3_J27D" id="2ww0H4BPcGU" role="Nbhlr">
             <node concept="3Mxwew" id="2ww0H4BPcH1" role="3MwsjC">
               <property role="3MwjfP" value="lib" />
-            </node>
-          </node>
-          <node concept="2HvfSZ" id="2ww0H4BPcH3" role="39821P">
-            <node concept="55IIr" id="2ww0H4BPcH4" role="2HvfZ0">
-              <node concept="2Ry0Ak" id="2ww0H4BPcHe" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="2ww0H4BPcHh" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                </node>
-              </node>
             </node>
           </node>
         </node>
@@ -288,24 +294,27 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="5sRy4_w7Ook" role="3bR37C">
-          <node concept="1BurEX" id="5sRy4_w7Ool" role="1SiIV1">
-            <node concept="55IIr" id="5sRy4_w7Oog" role="1BurEY">
-              <node concept="2Ry0Ak" id="5sRy4_w7Ooh" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="5sRy4_w7Ooi" role="2Ry0An">
-                  <property role="2Ry0Am" value="libs" />
-                  <node concept="2Ry0Ak" id="5sRy4_w7Ooj" role="2Ry0An">
-                    <property role="2Ry0Am" value="statistics-plugin.jar" />
+        <node concept="1SiIV0" id="ApHj0p6YpA" role="3bR37C">
+          <node concept="3bR9La" id="ApHj0p6YpB" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="2PLQk48Y$4A" role="3bR37C">
+          <node concept="1BurEX" id="2PLQk48Y$4B" role="1SiIV1">
+            <node concept="55IIr" id="2PLQk48Y$4x" role="1BurEY">
+              <node concept="2Ry0Ak" id="2PLQk48Y$4y" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2PLQk48Y$4z" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.samples.statisticsPlugin" />
+                  <node concept="2Ry0Ak" id="2PLQk48Y$4$" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2PLQk48Y$4_" role="2Ry0An">
+                      <property role="2Ry0Am" value="statistics-plugin.jar" />
+                    </node>
                   </node>
                 </node>
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="1SiIV0" id="ApHj0p6YpA" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p6YpB" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
           </node>
         </node>
       </node>
