@@ -18,6 +18,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -39,7 +40,10 @@ public class FBConnectionController implements ConnectionController<FBConnection
         myIsEditable = true;
         SNode associatedNode = view.getAssociatedNode();
         myFakeCell = FakeCells.createCollection(context, associatedNode);
-        myFakeCell.addEditorCell(FakeCells.create(context, SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.ConnectionPath$IA).iterator().next()));
+        Iterator<SNode> conncetionPaths = SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.ConnectionPath$IA).iterator();
+        if (conncetionPaths.hasNext()) {
+            myFakeCell.addEditorCell(FakeCells.create(context, conncetionPaths.next()));
+        }
     }
 
     public Color getHighlightColor() {
