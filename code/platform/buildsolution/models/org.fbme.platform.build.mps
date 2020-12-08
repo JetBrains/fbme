@@ -338,6 +338,7 @@
         </node>
         <node concept="1SiIV0" id="42vv4xsIHNZ" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHO0" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
           </node>
         </node>
