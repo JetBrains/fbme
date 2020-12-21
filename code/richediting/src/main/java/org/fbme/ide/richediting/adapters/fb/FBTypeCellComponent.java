@@ -11,7 +11,7 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
-import org.fbme.ide.iec61499.adapter.common.PlatformElement;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;

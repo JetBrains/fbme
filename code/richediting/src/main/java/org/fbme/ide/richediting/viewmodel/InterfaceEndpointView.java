@@ -1,6 +1,6 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.ide.iec61499.adapter.common.PlatformDeclarationBase;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +19,7 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
         myKind = kind;
         myIsSource = isSource;
         myTarget = target;
-        myAssociatedNode = ((PlatformDeclarationBase<?>) target).getNode();
+        myAssociatedNode = ((PlatformElement) target).getNode();
     }
 
     @NotNull

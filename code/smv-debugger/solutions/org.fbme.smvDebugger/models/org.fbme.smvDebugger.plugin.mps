@@ -25,6 +25,7 @@
     <import index="jrjr" ref="a88077d2-f682-49f3-8108-f00338679901/java:org.fbme.smvDebugger.execution(org.fbme.smvDebugger/)" />
     <import index="6yb" ref="a88077d2-f682-49f3-8108-f00338679901/java:org.fbme.smvDebugger.integration(org.fbme.smvDebugger/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
+    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
@@ -281,12 +282,12 @@
           <node concept="3cpWsn" id="4i$1wjaS2OQ" role="3cpWs9">
             <property role="3TUv4t" value="true" />
             <property role="TrG5h" value="platformRepository" />
-            <node concept="3uibUv" id="4i$1wjaS6E9" role="1tU5fm">
-              <ref role="3uigEE" to="1u7h:1IuIrLUoxLf" resolve="PlatformRepository" />
+            <node concept="3uibUv" id="739Y6csO3CB" role="1tU5fm">
+              <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
             </node>
             <node concept="2YIFZM" id="4i$1wjaSaxw" role="33vP2m">
-              <ref role="37wK5l" to="v900:6YcNwH3$i5x" resolve="getInstance" />
-              <ref role="1Pybhc" to="v900:6YcNwH3$7Vx" resolve="PlatformRepositoryProvider" />
+              <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+              <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <node concept="2OqwBi" id="4i$1wjaSbRK" role="37wK5m">
                 <node concept="2WthIp" id="4i$1wjaSb5i" role="2Oq$k0" />
                 <node concept="1DTwFV" id="4i$1wjaSde7" role="2OqNvi">
@@ -334,7 +335,7 @@
                 <ref role="3cqZAo" node="4i$1wjaS2OQ" resolve="platformRepository" />
               </node>
               <node concept="liA8E" id="4i$1wjaSrsq" role="2OqNvi">
-                <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
                 <node concept="37vLTw" id="3BsD8pEJ7da" role="37wK5m">
                   <ref role="3cqZAo" node="3BsD8pEJ65D" resolve="fbTypeDecl" />
                 </node>

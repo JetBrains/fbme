@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:library"))
-    implementation(project(":code:language", "mps"))
+    implementation(project(":code:language"))
     mpsImplementation(project(":code:library", "mps"))
 }
 

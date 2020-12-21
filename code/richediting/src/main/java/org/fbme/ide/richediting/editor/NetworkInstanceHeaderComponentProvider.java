@@ -10,7 +10,7 @@ import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.project.MPSProject;
 import jetbrains.mps.project.Project;
-import org.fbme.ide.platform.PlatformRepositoryProvider;
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.declarations.*;
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubapplicationDeclaration;

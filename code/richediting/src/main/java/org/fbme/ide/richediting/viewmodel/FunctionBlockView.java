@@ -1,6 +1,6 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.ide.iec61499.adapter.fbnetwork.FunctionBlockDeclarationBaseByNode;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +18,7 @@ public class FunctionBlockView implements NetworkComponentView {
 
     public FunctionBlockView(@NotNull FunctionBlockDeclarationBase functionBlock, boolean isEditable) {
         myFunctionBlock = functionBlock;
-        myAssociatedNode = ((FunctionBlockDeclarationBaseByNode<?>) functionBlock).getNode();
+        myAssociatedNode = ((PlatformElement) functionBlock).getNode();
         myTypeDescriptor = new TypeDescriptorAdapter(functionBlock.getType());
         myIsEditable = isEditable;
     }

@@ -51,6 +51,7 @@ class MpsPlugin : Plugin<Project> {
         }
 
         dependencies {
+            mpsImplementation(project(project.path))
             mpsBinaries(mpsDistribution())
         }
 
@@ -135,7 +136,7 @@ class MpsPlugin : Plugin<Project> {
 
         fun Project.mpsDistribution(): ConfigurableFileTree =
                 fileTree("../../lib/MPS 2020.2/") {
-                    include("**/*.jar")
+                    include("lib/**/*.jar")
                     exclude("**/*-src.jar")
                 }
     }

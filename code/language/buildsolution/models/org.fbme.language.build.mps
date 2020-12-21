@@ -12,6 +12,9 @@
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
       <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="9126048691955220717" name="jetbrains.mps.build.structure.BuildLayout_File" flags="ng" index="28jJK3">
+        <child id="9126048691955220762" name="path" index="28jJRO" />
+      </concept>
       <concept id="2755237150521975431" name="jetbrains.mps.build.structure.BuildVariableMacroInitWithString" flags="ng" index="aVJcg">
         <child id="2755237150521975437" name="value" index="aVJcq" />
       </concept>
@@ -97,6 +100,9 @@
         <property id="2889113830911481881" name="deployFolderName" index="3ZfqAx" />
         <child id="8137134783396676835" name="location" index="1HemKq" />
       </concept>
+      <concept id="4278635856200826393" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyJar" flags="ng" index="1BurEX">
+        <child id="4278635856200826394" name="path" index="1BurEY" />
+      </concept>
       <concept id="4278635856200794926" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyExtendLanguage" flags="ng" index="1Busua">
         <reference id="4278635856200794928" name="language" index="1Busuk" />
       </concept>
@@ -147,6 +153,29 @@
       </node>
     </node>
     <node concept="1l3spV" id="68dTcycFms2" role="1l3spN">
+      <node concept="398223" id="QE5Kxye$NK" role="39821P">
+        <node concept="3_J27D" id="QE5Kxye$NM" role="Nbhlr">
+          <node concept="3Mxwew" id="QE5Kxye$O3" role="3MwsjC">
+            <property role="3MwjfP" value="lib" />
+          </node>
+        </node>
+        <node concept="28jJK3" id="QE5Kxye$Oh" role="39821P">
+          <node concept="55IIr" id="QE5Kxye$Oi" role="28jJRO">
+            <node concept="2Ry0Ak" id="QE5Kxye$Oy" role="iGT6I">
+              <property role="2Ry0Am" value="solutions" />
+              <node concept="2Ry0Ak" id="QE5Kxye$OB" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.ide.iec61499.adapter" />
+                <node concept="2Ry0Ak" id="QE5Kxye$OG" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="QE5Kxye$OL" role="2Ry0An">
+                    <property role="2Ry0Am" value="language.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
       <node concept="398223" id="ApHj0p3Wab" role="39821P">
         <node concept="L2wRC" id="ApHj0p3Lgg" role="39821P">
           <ref role="L2wRA" node="1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
@@ -246,6 +275,29 @@
         <node concept="1SiIV0" id="1lhPVEAcJEf" role="3bR37C">
           <node concept="3bR9La" id="1lhPVEAcJEg" role="1SiIV1">
             <ref role="3bR37D" node="1a1larLevcL" resolve="org.fbme.ide.util.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="QE5KxyaQow" role="3bR37C">
+          <node concept="3bR9La" id="QE5KxyaQox" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="QE5KxyaQoB" role="3bR37C">
+          <node concept="1BurEX" id="QE5KxyaQoC" role="1SiIV1">
+            <node concept="55IIr" id="QE5KxyaQoy" role="1BurEY">
+              <node concept="2Ry0Ak" id="QE5KxyaQoz" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="QE5KxyaQo$" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.iec61499.adapter" />
+                  <node concept="2Ry0Ak" id="QE5KxyaQo_" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="QE5KxyaQoA" role="2Ry0An">
+                      <property role="2Ry0Am" value="language.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

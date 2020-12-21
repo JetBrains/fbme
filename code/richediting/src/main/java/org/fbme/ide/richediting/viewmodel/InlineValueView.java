@@ -1,6 +1,6 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.ide.iec61499.adapter.st.ExpressionByNode;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.st.expressions.Expression;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +17,7 @@ public class InlineValueView implements NetworkComponentView, NetworkPortView {
     public InlineValueView(FunctionBlockPortView opposite, Expression expression) {
         myOpposite = opposite;
         myExpression = expression;
-        myAssociatedNode = ((ExpressionByNode<?>) expression).getNode();
+        myAssociatedNode = ((PlatformElement) expression).getNode();
     }
 
     @NotNull

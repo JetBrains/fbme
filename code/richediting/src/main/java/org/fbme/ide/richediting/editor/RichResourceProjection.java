@@ -1,7 +1,7 @@
 package org.fbme.ide.richediting.editor;
 
 import jetbrains.mps.project.Project;
-import org.fbme.ide.iec61499.adapter.fbnetwork.MPSNetworkInstanceReference;
+import org.fbme.ide.iec61499.fbnetwork.MPSNetworkInstanceReference;
 import org.fbme.ide.platform.editor.EditorProjectionController;
 import org.fbme.ide.platform.editor.SimpleEditorProjection;
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration;

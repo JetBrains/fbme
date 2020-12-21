@@ -2,10 +2,10 @@ package org.fbme.ide.richediting.editor;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import jetbrains.mps.project.Project;
-import org.fbme.ide.iec61499.adapter.fbnetwork.MPSNetworkInstanceReference;
+import org.fbme.ide.iec61499.fbnetwork.MPSNetworkInstanceReference;
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
-import org.fbme.ide.platform.PlatformRepositoryProvider;
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.platform.editor.ChooseProjectionAction;
 import org.fbme.ide.platform.editor.EditorProjection;
 import org.fbme.ide.platform.editor.EditorProjectionController;

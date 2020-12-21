@@ -11,6 +11,8 @@
     <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
+    <import index="g089" ref="r:e617f9b7-4078-4f43-b620-871a161535c7(org.fbme.ide.iec61499.plugin)" />
+    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -107,12 +109,12 @@
         <node concept="3cpWs8" id="5Z7HjgyO$y8" role="3cqZAp">
           <node concept="3cpWsn" id="5Z7HjgyO$y9" role="3cpWs9">
             <property role="TrG5h" value="repository" />
-            <node concept="3uibUv" id="5Z7HjgyO$wj" role="1tU5fm">
-              <ref role="3uigEE" to="1u7h:1IuIrLUoxLf" resolve="PlatformRepository" />
+            <node concept="3uibUv" id="739Y6csO39m" role="1tU5fm">
+              <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
             </node>
             <node concept="2YIFZM" id="5Z7HjgyO$ya" role="33vP2m">
-              <ref role="37wK5l" to="v900:6YcNwH3$i5x" resolve="getInstance" />
-              <ref role="1Pybhc" to="v900:6YcNwH3$7Vx" resolve="PlatformRepositoryProvider" />
+              <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+              <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <node concept="2OqwBi" id="5Z7HjgyO$yb" role="37wK5m">
                 <node concept="2WthIp" id="5Z7HjgyO$yc" role="2Oq$k0" />
                 <node concept="1DTwFV" id="5Z7HjgyO$yd" role="2OqNvi">

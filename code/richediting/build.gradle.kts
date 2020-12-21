@@ -7,8 +7,10 @@ dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:scenes"))
     implementation(project(":code:library"))
-    implementation(project(":code:language", "mps"))
-    implementation(project(":code:platform", "mps"))
+    implementation(project(":code:language"))
+    implementation(project(":code:platform"))
+    mpsImplementation(project(":code:language", "mps"))
+    mpsImplementation(project(":code:platform", "mps"))
     mpsImplementation(project(":code:scenes", "mps"))
     mpsImplementation(project(":code:library", "mps"))
 }

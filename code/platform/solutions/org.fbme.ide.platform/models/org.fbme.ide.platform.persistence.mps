@@ -59,6 +59,7 @@
     <import index="w827" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.vfs.openapi(MPS.Core/)" />
     <import index="4it6" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel.loading(MPS.Core/)" />
     <import index="nddn" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.intentions(MPS.Editor/)" />
+    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -3908,7 +3909,7 @@
             <node concept="3cpWs6" id="1KgvZpgjMFj" role="3cqZAp">
               <node concept="2ShNRf" id="1KgvZpgkWzk" role="3cqZAk">
                 <node concept="1pGfFk" id="1KgvZpgkYsE" role="2ShVmc">
-                  <ref role="37wK5l" to="1u7h:1R0_JUQSz$o" resolve="PlatformIdentifier" />
+                  <ref role="37wK5l" to="uvki:~PlatformIdentifier.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNodeReference)" resolve="PlatformIdentifier" />
                   <node concept="2ShNRf" id="1KgvZpgkGrk" role="37wK5m">
                     <node concept="1pGfFk" id="1KgvZpgkI9Q" role="2ShVmc">
                       <ref role="37wK5l" to="w1kc:~SNodePointer.&lt;init&gt;(org.jetbrains.mps.openapi.model.SModelReference,org.jetbrains.mps.openapi.model.SNodeId)" resolve="SNodePointer" />
@@ -3996,12 +3997,12 @@
         <node concept="3cpWs8" id="43K6Fb_ZB48" role="3cqZAp">
           <node concept="3cpWsn" id="43K6Fb_ZB49" role="3cpWs9">
             <property role="TrG5h" value="owner" />
-            <node concept="3uibUv" id="43K6Fb_ZB4a" role="1tU5fm">
-              <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+            <node concept="3uibUv" id="QE5Kxys2aD" role="1tU5fm">
+              <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
             </node>
             <node concept="2ShNRf" id="43K6Fb_ZB4b" role="33vP2m">
-              <node concept="HV5vD" id="43K6Fb_ZB4c" role="2ShVmc">
-                <ref role="HV5vE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+              <node concept="1pGfFk" id="QE5Kxys4yx" role="2ShVmc">
+                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.&lt;init&gt;()" resolve="PlatformElementsOwner" />
               </node>
             </node>
           </node>
@@ -4020,7 +4021,7 @@
                     <ref role="3cqZAo" node="43K6Fb_ZB49" resolve="owner" />
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB4k" role="2OqNvi">
-                    <ref role="37wK5l" to="1u7h:6YcNwH3_69V" resolve="getIEC61499Factory" />
+                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIEC61499Factory()" resolve="getIEC61499Factory" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="43K6Fb_ZB4l" role="37wK5m">
@@ -4028,7 +4029,7 @@
                     <ref role="3cqZAo" node="43K6Fb_ZB49" resolve="owner" />
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB4n" role="2OqNvi">
-                    <ref role="37wK5l" to="1u7h:7pDjarwjt8R" resolve="getSTFactory" />
+                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getSTFactory()" resolve="getSTFactory" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="43K6Fb_ZB4o" role="37wK5m">
@@ -4060,8 +4061,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB4y" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB4z" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB4$" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB4_" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwfLQ" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB4A" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB4B" role="2Oq$k0">
@@ -4074,7 +4075,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB4D" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4090,8 +4091,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB4I" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB4J" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB4K" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB4L" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwgQX" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB4M" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB4N" role="2Oq$k0">
@@ -4104,7 +4105,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB4P" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4120,8 +4121,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB4U" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB4V" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB4W" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB4X" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwhCl" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB4Y" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB4Z" role="2Oq$k0">
@@ -4134,7 +4135,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB51" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4150,8 +4151,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB56" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB57" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB58" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB59" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwims" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB5a" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB5b" role="2Oq$k0">
@@ -4164,7 +4165,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB5d" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4180,8 +4181,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB5i" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB5j" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB5k" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB5l" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwjSZ" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB5m" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB5n" role="2Oq$k0">
@@ -4194,7 +4195,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB5p" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4210,8 +4211,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB5u" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB5v" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB5w" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB5x" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwkBC" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB5y" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB5z" role="2Oq$k0">
@@ -4224,7 +4225,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB5_" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>
@@ -4240,8 +4241,8 @@
                 <node concept="2OqwBi" id="43K6Fb_ZB5E" role="3cqZAk">
                   <node concept="1eOMI4" id="43K6Fb_ZB5F" role="2Oq$k0">
                     <node concept="10QFUN" id="43K6Fb_ZB5G" role="1eOMHV">
-                      <node concept="3uibUv" id="43K6Fb_ZB5H" role="10QFUM">
-                        <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+                      <node concept="3uibUv" id="3WC2DnYwlq4" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
                       </node>
                       <node concept="2OqwBi" id="43K6Fb_ZB5I" role="10QFUP">
                         <node concept="37vLTw" id="43K6Fb_ZB5J" role="2Oq$k0">
@@ -4254,7 +4255,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="43K6Fb_ZB5L" role="2OqNvi">
-                    <ref role="37wK5l" to="fcfa:1JYTWWzyU9A" resolve="getNode" />
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
                   </node>
                 </node>
               </node>

@@ -22,6 +22,7 @@
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
+    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -187,8 +188,8 @@
       </node>
       <node concept="37vLTG" id="3VhUp_YQv8x" role="3clF46">
         <property role="TrG5h" value="repository" />
-        <node concept="3uibUv" id="3VhUp_YQv8z" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyjkjh" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -344,8 +345,8 @@
     <node concept="3uibUv" id="_2FpOZlmQg" role="EKbjA">
       <ref role="3uigEE" to="6iyo:~SubapplicationDeclaration" resolve="SubapplicationDeclaration" />
     </node>
-    <node concept="3uibUv" id="3VhUp_YN5sD" role="EKbjA">
-      <ref role="3uigEE" to="fcfa:1JYTWWzyU94" resolve="PlatformElement" />
+    <node concept="3uibUv" id="3WC2DnYvYGJ" role="EKbjA">
+      <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
     </node>
     <node concept="3uibUv" id="3VhUp_YN5sG" role="1zkMxy">
       <ref role="3uigEE" to="rwq3:3VhUp_YMiEx" resolve="FunctionBlockDeclarationBaseByNode" />
@@ -374,7 +375,7 @@
                 <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
               </node>
               <node concept="liA8E" id="1IuIrLUuNdA" role="2OqNvi">
-                <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
                 <node concept="2OqwBi" id="1IuIrLUuNdB" role="37wK5m">
                   <node concept="37vLTw" id="1IuIrLUuNdC" role="2Oq$k0">
                     <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -465,8 +466,8 @@
       </node>
       <node concept="37vLTG" id="6YcNwH3zv2d" role="3clF46">
         <property role="TrG5h" value="repository" />
-        <node concept="3uibUv" id="6YcNwH3zv2f" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxyjkEO" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -484,7 +485,7 @@
         <node concept="3clFbF" id="6YcNwH3zv92" role="3cqZAp">
           <node concept="2ShNRf" id="6YcNwH3zv90" role="3clFbG">
             <node concept="1pGfFk" id="6YcNwH3zvjf" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="2OqwBi" id="6YcNwH3zvXi" role="37wK5m">
                 <node concept="1PxgMI" id="6YcNwH3zvEh" role="2Oq$k0">
                   <node concept="chp4Y" id="6YcNwH3zvKY" role="3oSUPX">

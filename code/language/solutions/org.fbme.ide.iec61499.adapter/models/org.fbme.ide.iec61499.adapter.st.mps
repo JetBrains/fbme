@@ -16,6 +16,7 @@
     <import index="a9j9" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.st.types(org.fbme.lib/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
+    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -297,8 +298,8 @@
       </node>
       <node concept="37vLTG" id="1KgvZpgp4Iy" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="1KgvZpgp4I$" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk5Xr" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -373,8 +374,8 @@
       </node>
       <node concept="37vLTG" id="1KgvZpgp5Lk" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="1KgvZpgp5Ll" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyka1L" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -441,8 +442,8 @@
       </node>
       <node concept="37vLTG" id="1KgvZpgp7N7" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="1KgvZpgp7N9" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxyjWwP" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -463,7 +464,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="1KgvZpgp8Oi" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="1KgvZpgp925" role="37wK5m">
                 <node concept="37vLTw" id="1KgvZpgp8Qk" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -556,7 +557,7 @@
         <node concept="3clFbF" id="6uL6kAQbv35" role="3cqZAp">
           <node concept="2ShNRf" id="6uL6kAQbvvg" role="3clFbG">
             <node concept="1pGfFk" id="6uL6kAQbwKD" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="6uL6kAQbx5S" role="1pMfVU">
                 <ref role="3uigEE" to="h353:~Expression" resolve="Expression" />
               </node>
@@ -626,8 +627,8 @@
       </node>
       <node concept="37vLTG" id="1KgvZpgp9B3" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="1KgvZpgp9B4" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxykfLb" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -659,8 +660,8 @@
       </node>
       <node concept="37vLTG" id="6uL6kAQb$D1" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="6uL6kAQb$D2" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykg0U" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="6uL6kAQb$D4" role="3clF47">
@@ -740,8 +741,8 @@
       </node>
       <node concept="37vLTG" id="6uL6kAQbDIP" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="6uL6kAQbDIQ" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk6Ay" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="6uL6kAQbDIS" role="3clF47">
@@ -1016,7 +1017,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="6uL6kAQc22q" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="6uL6kAQc2eU" role="37wK5m">
                 <node concept="37vLTw" id="6uL6kAQc240" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -1107,7 +1108,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="6uL6kAQc2WL" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="6uL6kAQc2WM" role="37wK5m">
                 <node concept="37vLTw" id="6uL6kAQc2WN" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -1207,8 +1208,8 @@
       </node>
       <node concept="37vLTG" id="6uL6kAQc7ru" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="6uL6kAQc7rv" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxykaU_" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="6uL6kAQc7rx" role="3clF47">
@@ -1301,7 +1302,7 @@
         <node concept="3clFbF" id="6uL6kAQc9rN" role="3cqZAp">
           <node concept="2ShNRf" id="6uL6kAQc9rH" role="3clFbG">
             <node concept="1pGfFk" id="6uL6kAQc9DI" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="6uL6kAQc9Zn" role="1pMfVU">
                 <ref role="3uigEE" to="h353:~Expression" resolve="Expression" />
               </node>
@@ -1352,8 +1353,8 @@
       </node>
       <node concept="37vLTG" id="6uL6kAQceeE" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="6uL6kAQceeF" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykdbv" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="6uL6kAQceeH" role="3clF47">
@@ -1386,7 +1387,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="6uL6kAQcf7h" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="6uL6kAQcfjw" role="37wK5m">
                 <node concept="37vLTw" id="6uL6kAQcf8D" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -1487,8 +1488,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5$Hsn" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5$Hso" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxykcWm" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5$Hsq" role="3clF47">
@@ -2271,8 +2272,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5_F4n" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5_F4p" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk5DQ" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
     </node>
@@ -2293,7 +2294,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="4$fK7E5_FNq" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="4$fK7E5_G0z" role="37wK5m">
                 <node concept="37vLTw" id="4$fK7E5_FOQ" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -2386,7 +2387,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="4$fK7E5_KUk" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="4$fK7E5_KUl" role="37wK5m">
                 <node concept="37vLTw" id="4$fK7E5_KUm" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -2487,8 +2488,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5_Mo9" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5_Moa" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk7hh" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5_Moc" role="3clF47">
@@ -2520,7 +2521,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="4$fK7E5_NVV" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="4$fK7E5_NVW" role="37wK5m">
                 <node concept="37vLTw" id="4$fK7E5_NVX" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -2613,7 +2614,7 @@
         <node concept="3clFbF" id="4$fK7E5A27N" role="3cqZAp">
           <node concept="2ShNRf" id="4$fK7E5A27J" role="3clFbG">
             <node concept="1pGfFk" id="4$fK7E5A3ru" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="2OqwBi" id="4$fK7E5A0HN" role="37wK5m">
                 <node concept="2OqwBi" id="4$fK7E5A0eF" role="2Oq$k0">
                   <node concept="37vLTw" id="4$fK7E5A03X" role="2Oq$k0">
@@ -2693,8 +2694,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5A8Y7" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5A8Y8" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk8fB" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5A8Ya" role="3clF47">
@@ -2726,7 +2727,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="4$fK7E5Aa2Y" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="4$fK7E5A8Nm" role="37wK5m">
                 <node concept="37vLTw" id="4$fK7E5A8C1" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -2817,7 +2818,7 @@
         <node concept="3clFbF" id="4$fK7E5Aeoo" role="3cqZAp">
           <node concept="2ShNRf" id="4$fK7E5Aeoi" role="3clFbG">
             <node concept="1pGfFk" id="4$fK7E5AeAv" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="4$fK7E5AeW7" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~CaseElement" resolve="CaseElement" />
               </node>
@@ -2872,7 +2873,7 @@
             </node>
             <node concept="2ShNRf" id="4$fK7E5AmiX" role="3K4GZi">
               <node concept="1pGfFk" id="4$fK7E5AmiY" role="2ShVmc">
-                <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+                <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
                 <node concept="3uibUv" id="4$fK7E5AmNo" role="1pMfVU">
                   <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
                 </node>
@@ -2948,7 +2949,7 @@
         <node concept="3clFbF" id="4$fK7E5Aq_y" role="3cqZAp">
           <node concept="2ShNRf" id="4$fK7E5Aq_$" role="3clFbG">
             <node concept="1pGfFk" id="4$fK7E5Aq__" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="4$fK7E5Aq_A" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>
@@ -3027,8 +3028,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5Asx9" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5Asxa" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk9IP" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5Asxc" role="3clF47">
@@ -3060,7 +3061,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="4$fK7E5AtBW" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="4$fK7E5AtBX" role="37wK5m">
                 <node concept="37vLTw" id="4$fK7E5AtBY" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -3151,7 +3152,7 @@
         <node concept="3clFbF" id="4$fK7E5Awc7" role="3cqZAp">
           <node concept="2ShNRf" id="4$fK7E5AwbX" role="3clFbG">
             <node concept="1pGfFk" id="4$fK7E5Aw_h" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="2OqwBi" id="4$fK7E5Axvx" role="37wK5m">
                 <node concept="2OqwBi" id="4$fK7E5Ax1b" role="2Oq$k0">
                   <node concept="37vLTw" id="4$fK7E5AwIi" role="2Oq$k0">
@@ -3230,8 +3231,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5A_Yw" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5A_Yx" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk9N6" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5A_Yz" role="3clF47">
@@ -3271,8 +3272,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5AA3t" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5AA3u" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk9Qx" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5AA3v" role="3clF47">
@@ -3312,8 +3313,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5AA9X" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5AA9Y" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykfkw" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5AA9Z" role="3clF47">
@@ -3353,8 +3354,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5AAqd" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5AAqe" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykav1" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5AAqg" role="3clF47">
@@ -3386,7 +3387,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="5lhaNwdnCpV" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="5lhaNwdnC_W" role="37wK5m">
                 <node concept="37vLTw" id="5lhaNwdnCrT" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -3423,7 +3424,7 @@
         <node concept="3clFbF" id="5lhaNwdnLtJ" role="3cqZAp">
           <node concept="2ShNRf" id="5lhaNwdnLSP" role="3clFbG">
             <node concept="1pGfFk" id="5lhaNwdnNcb" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="5lhaNwdnNxQ" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>
@@ -3479,8 +3480,8 @@
       </node>
       <node concept="37vLTG" id="4$fK7E5AAOg" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="4$fK7E5AAOh" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxyk944" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="4$fK7E5AAOj" role="3clF47">
@@ -3512,7 +3513,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="69Ck8LzMYV" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="69Ck8LzMYW" role="37wK5m">
                 <node concept="37vLTw" id="69Ck8LzMYX" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -3603,7 +3604,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="69Ck8LzNXy" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="69Ck8LzNXz" role="37wK5m">
                 <node concept="37vLTw" id="69Ck8LzNX$" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -3694,7 +3695,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="69Ck8LzOEQ" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="69Ck8LzOER" role="37wK5m">
                 <node concept="37vLTw" id="69Ck8LzOES" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -3967,7 +3968,7 @@
                     </node>
                     <node concept="2ShNRf" id="5F$aghxO3MZ" role="37wK5m">
                       <node concept="1pGfFk" id="5F$aghxO5fl" role="2ShVmc">
-                        <ref role="37wK5l" to="1u7h:1R0_JUQSz$o" resolve="PlatformIdentifier" />
+                        <ref role="37wK5l" to="uvki:~PlatformIdentifier.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNodeReference)" resolve="PlatformIdentifier" />
                         <node concept="2OqwBi" id="69Ck8L$dfY" role="37wK5m">
                           <node concept="2OqwBi" id="69Ck8L$dfZ" role="2Oq$k0">
                             <node concept="37vLTw" id="69Ck8L$dg0" role="2Oq$k0">
@@ -4299,8 +4300,8 @@
       </node>
       <node concept="37vLTG" id="69Ck8L$dhX" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="69Ck8L$dhY" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxyjUgu" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="37vLTG" id="69Ck8L$dhZ" role="3clF46">
@@ -5024,8 +5025,8 @@
     <node concept="312cEg" id="69Ck8LzUBw" role="jymVt">
       <property role="TrG5h" value="myOwner" />
       <property role="3TUv4t" value="true" />
-      <node concept="3uibUv" id="69Ck8LzUBa" role="1tU5fm">
-        <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+      <node concept="3uibUv" id="QE5KxyjVBc" role="1tU5fm">
+        <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
       </node>
       <node concept="3Tm6S6" id="69Ck8LzUBR" role="1B3o_S" />
     </node>
@@ -5096,8 +5097,8 @@
       </node>
       <node concept="37vLTG" id="69Ck8L$0F4" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="69Ck8L$0F3" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxyjVPQ" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="37vLTG" id="69Ck8L$0Fg" role="3clF46">
@@ -5153,7 +5154,7 @@
                   <ref role="3cqZAo" node="69Ck8LzUBw" resolve="myOwner" />
                 </node>
                 <node concept="liA8E" id="69Ck8LzYl_" role="2OqNvi">
-                  <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+                  <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
                   <node concept="2OqwBi" id="69Ck8LzX$J" role="37wK5m">
                     <node concept="1rXfSq" id="5lhaNwdpvQ7" role="2Oq$k0">
                       <ref role="37wK5l" node="69Ck8L$TQW" resolve="getReference" />
@@ -5163,8 +5164,8 @@
                       <node concept="2OqwBi" id="69Ck8LzWR6" role="37wK5m">
                         <node concept="1eOMI4" id="69Ck8LzX2A" role="2Oq$k0">
                           <node concept="10QFUN" id="69Ck8LzX6I" role="1eOMHV">
-                            <node concept="3uibUv" id="69Ck8LzXcH" role="10QFUM">
-                              <ref role="3uigEE" to="1u7h:1IuIrLUoxLf" resolve="PlatformRepository" />
+                            <node concept="3uibUv" id="5vstEPJeyfS" role="10QFUM">
+                              <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
                             </node>
                             <node concept="37vLTw" id="69Ck8LzWHA" role="10QFUP">
                               <ref role="3cqZAo" node="69Ck8LzUBw" resolve="myOwner" />
@@ -5172,7 +5173,7 @@
                           </node>
                         </node>
                         <node concept="liA8E" id="69Ck8LzXlT" role="2OqNvi">
-                          <ref role="37wK5l" to="1u7h:6YcNwH3$wj1" resolve="getMPSRepository" />
+                          <ref role="37wK5l" to="uvki:~PlatformRepository.getMPSRepository()" resolve="getMPSRepository" />
                         </node>
                       </node>
                     </node>
@@ -5186,16 +5187,16 @@
           </node>
           <node concept="1Wc70l" id="Nj1XAT$pmS" role="3clFbw">
             <node concept="2ZW3vV" id="Nj1XAT$pM4" role="3uHU7w">
-              <node concept="3uibUv" id="Nj1XAT$pSq" role="2ZW6by">
-                <ref role="3uigEE" to="1u7h:1R0_JUQSzrX" resolve="PlatformIdentifier" />
+              <node concept="3uibUv" id="5vstEPJeyf1" role="2ZW6by">
+                <ref role="3uigEE" to="uvki:~PlatformIdentifier" resolve="PlatformIdentifier" />
               </node>
               <node concept="37vLTw" id="Nj1XAT$p$P" role="2ZW6bz">
                 <ref role="3cqZAo" node="69Ck8LzUDp" resolve="myIdentifier" />
               </node>
             </node>
             <node concept="2ZW3vV" id="69Ck8LzWz5" role="3uHU7B">
-              <node concept="3uibUv" id="69Ck8LzWGR" role="2ZW6by">
-                <ref role="3uigEE" to="1u7h:1IuIrLUoxLf" resolve="PlatformRepository" />
+              <node concept="3uibUv" id="5vstEPJeyea" role="2ZW6by">
+                <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
               </node>
               <node concept="37vLTw" id="69Ck8LzWnA" role="2ZW6bz">
                 <ref role="3cqZAo" node="69Ck8LzUBw" resolve="myOwner" />
@@ -5273,20 +5274,20 @@
                     <node concept="37vLTw" id="5lhaNwdpvoX" role="10QFUP">
                       <ref role="3cqZAo" node="69Ck8LzUDp" resolve="myIdentifier" />
                     </node>
-                    <node concept="3uibUv" id="5lhaNwdpvtk" role="10QFUM">
-                      <ref role="3uigEE" to="1u7h:1R0_JUQSzrX" resolve="PlatformIdentifier" />
+                    <node concept="3uibUv" id="5vstEPJeytA" role="10QFUM">
+                      <ref role="3uigEE" to="uvki:~PlatformIdentifier" resolve="PlatformIdentifier" />
                     </node>
                   </node>
                 </node>
                 <node concept="liA8E" id="5lhaNwdpvO8" role="2OqNvi">
-                  <ref role="37wK5l" to="1u7h:1R0_JUQSzv_" resolve="getReference" />
+                  <ref role="37wK5l" to="uvki:~PlatformIdentifier.getReference()" resolve="getReference" />
                 </node>
               </node>
             </node>
           </node>
           <node concept="2ZW3vV" id="3YCCv7gcw_w" role="3clFbw">
-            <node concept="3uibUv" id="3YCCv7gcwGp" role="2ZW6by">
-              <ref role="3uigEE" to="1u7h:1R0_JUQSzrX" resolve="PlatformIdentifier" />
+            <node concept="3uibUv" id="5vstEPJeyt5" role="2ZW6by">
+              <ref role="3uigEE" to="uvki:~PlatformIdentifier" resolve="PlatformIdentifier" />
             </node>
             <node concept="37vLTw" id="3YCCv7gcwpK" role="2ZW6bz">
               <ref role="3cqZAo" node="69Ck8LzUDp" resolve="myIdentifier" />
@@ -5327,8 +5328,8 @@
       </node>
       <node concept="37vLTG" id="5lhaNwdoqYK" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="5lhaNwdoqYL" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykgx5" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="5lhaNwdoqYN" role="3clF47">
@@ -5361,7 +5362,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="5lhaNwdotqS" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="5lhaNwdotqT" role="37wK5m">
                 <node concept="37vLTw" id="5lhaNwdotqU" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -5454,7 +5455,7 @@
         <node concept="3clFbF" id="5lhaNwdovUr" role="3cqZAp">
           <node concept="2ShNRf" id="5lhaNwdovUt" role="3clFbG">
             <node concept="1pGfFk" id="5lhaNwdovUu" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="5lhaNwdovUv" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>
@@ -5510,8 +5511,8 @@
       </node>
       <node concept="37vLTG" id="5lhaNwdowqi" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="5lhaNwdowqj" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykfgz" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="5lhaNwdowqk" role="3clF47">
@@ -5543,7 +5544,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="5lhaNwdowqy" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="5lhaNwdowqz" role="37wK5m">
                 <node concept="37vLTw" id="5lhaNwdowq$" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -5636,7 +5637,7 @@
         <node concept="3clFbF" id="5lhaNwdowr8" role="3cqZAp">
           <node concept="2ShNRf" id="5lhaNwdowr9" role="3clFbG">
             <node concept="1pGfFk" id="5lhaNwdowra" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="5lhaNwdowrb" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>
@@ -5689,8 +5690,8 @@
       </node>
       <node concept="37vLTG" id="5lhaNwdpx$a" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="5lhaNwdpx$b" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5KxykfHk" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="5lhaNwdpx$d" role="3clF47">
@@ -5786,7 +5787,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="5lhaNwdp$mu" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="5lhaNwdp$mv" role="37wK5m">
                 <node concept="37vLTw" id="5lhaNwdp$mw" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -5886,8 +5887,8 @@
       </node>
       <node concept="37vLTG" id="3YCCv7gbezT" role="3clF46">
         <property role="TrG5h" value="owner" />
-        <node concept="3uibUv" id="3YCCv7gbezU" role="1tU5fm">
-          <ref role="3uigEE" to="1u7h:1R0_JUQTBak" resolve="PlatformElementsOwner" />
+        <node concept="3uibUv" id="QE5Kxykc2h" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
       </node>
       <node concept="3clFbS" id="3YCCv7gbezW" role="3clF47">
@@ -5919,7 +5920,7 @@
               <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="3YCCv7gbfQ9" role="2OqNvi">
-              <ref role="37wK5l" to="1u7h:1R0_JUQTWTF" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
               <node concept="2OqwBi" id="3YCCv7gbfQa" role="37wK5m">
                 <node concept="37vLTw" id="3YCCv7gbfQb" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
@@ -6010,7 +6011,7 @@
         <node concept="3clFbF" id="3YCCv7gbhkz" role="3cqZAp">
           <node concept="2ShNRf" id="3YCCv7gbhk$" role="3clFbG">
             <node concept="1pGfFk" id="3YCCv7gbhk_" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="3YCCv7gbjNA" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>
@@ -6057,7 +6058,7 @@
         <node concept="3clFbF" id="3YCCv7gbkA3" role="3cqZAp">
           <node concept="2ShNRf" id="3YCCv7gbkA4" role="3clFbG">
             <node concept="1pGfFk" id="3YCCv7gbkA5" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="3YCCv7gblcC" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~ElseIfClause" resolve="ElseIfClause" />
               </node>
@@ -6112,7 +6113,7 @@
             </node>
             <node concept="2ShNRf" id="3YCCv7gboJ_" role="3K4GZi">
               <node concept="1pGfFk" id="3YCCv7gboJA" role="2ShVmc">
-                <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+                <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
                 <node concept="3uibUv" id="3YCCv7gbqq8" role="1pMfVU">
                   <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
                 </node>
@@ -6188,7 +6189,7 @@
         <node concept="3clFbF" id="3YCCv7gbtDG" role="3cqZAp">
           <node concept="2ShNRf" id="3YCCv7gbtDI" role="3clFbG">
             <node concept="1pGfFk" id="3YCCv7gbtDJ" role="2ShVmc">
-              <ref role="37wK5l" to="1u7h:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
               <node concept="3uibUv" id="3YCCv7gbtDK" role="1pMfVU">
                 <ref role="3uigEE" to="x2xk:~Statement" resolve="Statement" />
               </node>

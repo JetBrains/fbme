@@ -10,7 +10,6 @@ import jetbrains.mps.nodefs.NodeVirtualFileSystem;
 import jetbrains.mps.openapi.editor.EditorState;
 import jetbrains.mps.openapi.editor.selection.SelectionManager;
 import jetbrains.mps.project.Project;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.fbme.ide.iec61499.editor.ProjectEditorSpecs;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -18,9 +17,6 @@ import org.jdom.input.SAXBuilder;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.mps.openapi.language.SConcept;
-import org.jetbrains.mps.openapi.language.SProperty;
-import org.jetbrains.mps.openapi.language.SReferenceLink;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import javax.swing.*;

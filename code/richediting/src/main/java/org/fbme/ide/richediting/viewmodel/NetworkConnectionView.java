@@ -1,6 +1,6 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.ide.iec61499.adapter.common.PlatformElement;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;

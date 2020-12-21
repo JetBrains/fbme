@@ -1,27 +1,16 @@
 package org.fbme.ide.platform.editor;
 
-import jetbrains.mps.lang.smodel.ConceptSwitchIndex;
-import jetbrains.mps.lang.smodel.ConceptSwitchIndexBuilder;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.project.Project;
-import jetbrains.mps.smodel.adapter.ids.MetaIdFactory;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
-import org.fbme.ide.platform.PlatformRepositoryProvider;
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.lib.common.Declaration;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.mps.openapi.event.SPropertyChangeEvent;
-import org.jetbrains.mps.openapi.language.SProperty;
-import org.jetbrains.mps.openapi.model.SModel;
 import org.jetbrains.mps.openapi.model.SNode;
-import org.jetbrains.mps.openapi.model.SNodeChangeListenerAdapter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.util.Map;
-import java.util.Objects;
 
 public class DefaultHeaderComponentProvider {
 

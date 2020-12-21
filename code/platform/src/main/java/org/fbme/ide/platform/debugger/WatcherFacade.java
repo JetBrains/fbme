@@ -1,14 +1,11 @@
 package org.fbme.ide.platform.debugger;
 
-import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
 import jetbrains.mps.project.Project;
-import jetbrains.mps.smodel.MPSModuleRepository;
 import jetbrains.mps.util.JDOMUtil;
-import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
-import org.fbme.ide.platform.PlatformRepositoryProvider;
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.lib.common.Identifier;
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration;
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration;
@@ -17,7 +14,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.mps.openapi.module.SRepository;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -190,7 +186,7 @@ public class WatcherFacade {
                                     }
                                 }
                             } catch (IOException e) {
-                                LoggingRuntime.logMsgView(Level.ERROR, "During readWatches", WatcherFacade.class, e, null);
+                                LOG.error("During readWatches", e);
                             }
                         }
                     });
