@@ -19,3 +19,11 @@ val mpsPrepare by tasks.getting(Copy::class) {
     from("build/libs/platform.jar")
     into("solutions/org.fbme.ide.platform/lib")
 }
+
+val mpsAssemble by tasks.getting {
+    inputs.dir("solutions/org.fbme.ide.platform/lib")
+}
+
+val test by tasks.getting(Test::class) {
+    dependsOn("mpsJar")
+}
