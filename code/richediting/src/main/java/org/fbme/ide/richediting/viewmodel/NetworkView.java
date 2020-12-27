@@ -28,7 +28,7 @@ public class NetworkView {
     private final boolean myEditable;
 
     private final Set<NetworkComponentView> myMainComponents = new HashSet<>();
-    private final Map<FunctionBlockView, Set<NetworkComponentView>> myAuxComponents = new HashMap<>();
+    private final Map<NetworkComponentView, Set<NetworkComponentView>> myAuxComponents = new HashMap<>();
 
     private final Map<NetworkComponentView, Set<NetworkPortView>> myComponentToPorts = new HashMap<>();
     private final Map<NetworkPortView, NetworkComponentView> myPorts = new HashMap<>();

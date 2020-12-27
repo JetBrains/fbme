@@ -6,6 +6,8 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public interface DeclarationsScope {
 
     @Nullable CompositeFBTypeDeclaration findCompositeFBTypeDeclaration(@NotNull Identifier identifier);
@@ -25,4 +27,6 @@ public interface DeclarationsScope {
     @Nullable ResourceDeclaration findResourceDeclaration(@NotNull Identifier identifier);
 
     @Nullable FunctionBlockDeclaration findFunctionBlockDeclaration(@NotNull Identifier identifier);
+
+    @NotNull List<FBTypeDeclaration> findAllFBTypeDeclarations();
 }

@@ -37,7 +37,7 @@ public class CompositeCellAction implements CellAction {
 
     @Override
     public boolean executeInCommand() {
-        return myActions.stream().anyMatch(it -> executeInCommand());
+        return myActions.stream().anyMatch(CellAction::executeInCommand);
     }
 
     @Override
