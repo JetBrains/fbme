@@ -6,6 +6,7 @@ import org.fbme.lib.iec61499.declarations.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface FBNetwork extends Element {
@@ -47,5 +48,16 @@ public interface FBNetwork extends Element {
             return ((ResourceTypeDeclaration) declaration).getNetwork();
         }
         return null;
+    }
+
+    default List<FunctionBlockDeclarationBase> getAllComponents() {
+        ArrayList<FunctionBlockDeclarationBase> components = new ArrayList<>();
+        components.addAll(getFunctionBlocks());
+        components.addAll(getContextComponents());
+        FBNetwork prototype = getPrototype();
+        if (prototype != null) {
+            components.addAll(prototype.getAllComponents());
+        }
+        return components;
     }
 }

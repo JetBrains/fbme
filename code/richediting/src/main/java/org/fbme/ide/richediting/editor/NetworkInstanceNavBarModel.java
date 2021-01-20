@@ -41,45 +41,47 @@ public class NetworkInstanceNavBarModel extends NavBarModel {
 
     @Override
     public void updateModel(Object object) {
-        NetworkInstance instance;
-        if (object instanceof Item) {
-            instance = ((Item) object).getInstance();
-        } else if (object instanceof NetworkInstance) {
-            instance = (NetworkInstance) object;
-        } else {
-            setModel(Collections.emptyList());
-            return;
-        }
-        ArrayList<Object> model = new ArrayList<>();
-        SystemDeclaration system = null;
-        DeviceDeclaration device = null;
-        Declaration container = instance.getRootInstance().getDeclaration();
-        if (container instanceof ApplicationDeclaration) {
-            system = ((ApplicationDeclaration) container).getContainer();
-        }
-        if (container instanceof ResourceDeclaration) {
-            device = (DeviceDeclaration) ((ResourceDeclaration) container).getContainer();
-            system = device.getContainer();
-        }
-        while (instance != null) {
-            model.add(new Item(instance, myProject));
-            Instance parentInstace = instance.getParent();
-            if (parentInstace instanceof FunctionBlockInstance) {
-                instance = ((FunctionBlockInstance) parentInstace).getParent();
+        myProject.getModelAccess().runReadAction(() -> {
+            NetworkInstance instance;
+            if (object instanceof Item) {
+                instance = ((Item) object).getInstance();
+            } else if (object instanceof NetworkInstance) {
+                instance = (NetworkInstance) object;
             } else {
-                instance = null;
+                setModel(Collections.emptyList());
+                return;
             }
-        }
+            ArrayList<Object> model = new ArrayList<>();
+            SystemDeclaration system = null;
+            DeviceDeclaration device = null;
+            Declaration container = instance.getRootInstance().getDeclaration();
+            if (container instanceof ApplicationDeclaration) {
+                system = ((ApplicationDeclaration) container).getContainer();
+            }
+            if (container instanceof ResourceDeclaration) {
+                device = (DeviceDeclaration) ((ResourceDeclaration) container).getContainer();
+                system = device.getContainer();
+            }
+            while (instance != null) {
+                model.add(new Item(instance, myProject));
+                Instance parentInstace = instance.getParent();
+                if (parentInstace instanceof FunctionBlockInstance) {
+                    instance = ((FunctionBlockInstance) parentInstace).getParent();
+                } else {
+                    instance = null;
+                }
+            }
 
-        if (device != null) {
-            model.add(new DeviceItem(device, myProject));
-        }
-        if (system != null) {
-            model.add(new SystemItem(system, myProject));
-        }
+            if (device != null) {
+                model.add(new DeviceItem(device, myProject));
+            }
+            if (system != null) {
+                model.add(new SystemItem(system, myProject));
+            }
 
-        Collections.reverse(model);
-        setModel(model);
+            Collections.reverse(model);
+            setModel(model);
+        });
     }
 
     public static class Item implements Navigatable {

@@ -40,7 +40,7 @@ public class MPSNetworkInstanceReference {
         for (final SNodeId nested : myNestedList) {
             assert networkInstance != null;
             FunctionBlockDeclarationBase component = networkInstance
-                    .getNetworkDeclaration().getContextComponents().stream()
+                    .getNetworkDeclaration().getAllComponents().stream()
                     .filter(it -> Objects.equals(((PlatformIdentifier) it.getIdentifier()).getReference().getNodeId(), nested))
                     .findFirst().orElse(null);
             assert component != null;

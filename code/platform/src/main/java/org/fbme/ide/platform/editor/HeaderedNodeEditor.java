@@ -85,8 +85,8 @@ public class HeaderedNodeEditor extends BaseNodeEditor {
     public void showNode(SNode node, boolean select) {
         NodeEditorComponent ec = getCurrentEditorComponent();
         ProjectEditorSpecs editorSpecs = ProjectEditorSpecs.getInstance(myProject);
-        node = editorSpecs.getSpecTarget(node);
         String projectState = editorSpecs.getSpecProjectionState(node);
+        node = editorSpecs.getSpecTarget(node);
         if (projectState != null) {
             SAXBuilder builder = new SAXBuilder();
             try {

@@ -168,7 +168,7 @@
       <FB Name="FB4" Type="SRSection" x="5740.0" y="280.0" />
       <FB Name="JACK1" Type="JackStation" x="4060.0" y="3640.0" />
       <FB Name="JACK2" Type="JackStation" x="4020.0" y="4400.0" />
-      <FB Name="CAMERA" Type="ColorDetect" x="1700.0" y="2340.0" />
+      <FB Name="CAMERA" Type="ColorDetect" x="1689.0" y="2340.0" />
       <FB Name="OrderConsole" Type="ProductOrder" x="2480.0" y="2380.0" />
       <FB Name="ButtonConsole" Type="ConsoleHMI" x="2560.0" y="3080.0" />
       <FB Name="FB2" Type="ConfigurationManagerC" x="2960.0" y="680.0" />
