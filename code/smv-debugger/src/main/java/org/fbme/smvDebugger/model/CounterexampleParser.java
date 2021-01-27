@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Objects;
-import jetbrains.mps.internal.collections.runtime.ListSequence;
 
 public class CounterexampleParser {
   private static final String STATE_TRASH_SYMBOLS = "-1[.]";
@@ -16,8 +15,8 @@ public class CounterexampleParser {
     final String[] emptyHeaderAndSteps = lines.get(0).replaceAll(STATE_TRASH_SYMBOLS, "").split(DATA_DELIMITER);
     final String[] steps = Arrays.copyOfRange(emptyHeaderAndSteps, 1, emptyHeaderAndSteps.length);
 
-    final List<SystemItem> items = new ArrayList<SystemItem>();
-    final List<String[]> values = new ArrayList<String[]>();
+    final List<SystemItem> items = new ArrayList<>();
+    final List<String[]> values = new ArrayList<>();
     String[] timeValues = new String[steps.length];
     for (int i = 1; i < lines.size(); i++) {
       final String[] lineData = lines.get(i).split(DATA_DELIMITER);
@@ -31,11 +30,11 @@ public class CounterexampleParser {
 
       final SystemItem item = itemParser.parse(fullName);
       if (item != null) {
-        ListSequence.fromList(items).addElement(item);
-        ListSequence.fromList(values).addElement(curValues);
+        items.add(item);
+        values.add(curValues);
       }
     }
 
-    return new Counterexample(ListSequence.fromList(items).toGenericArray(SystemItem.class), steps, ListSequence.fromList(values).toGenericArray(String[].class), timeValues);
+    return new Counterexample(items.toArray(new SystemItem[0]), steps, values.toArray(new String[0][]), timeValues);
   }
 }

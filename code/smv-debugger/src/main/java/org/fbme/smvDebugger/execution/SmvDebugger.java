@@ -1,41 +1,69 @@
 package org.fbme.smvDebugger.execution;
 
+import com.intellij.openapi.fileChooser.FileChooser;
+import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.VirtualFile;
 import jetbrains.mps.project.MPSProject;
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import org.fbme.smvDebugger.integration.ServicePathProvider;
 import org.fbme.smvDebugger.integration.SmvService;
-import org.fbme.smvDebugger.panel.DebugPanelService;
-import javax.swing.JComponent;
-import java.nio.file.Path;
-import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
-import java.util.Optional;
 import org.fbme.smvDebugger.model.Counterexample;
-import javax.swing.JOptionPane;
+import org.fbme.smvDebugger.panel.DebugPanelService;
+import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import java.nio.file.Path;
+import java.util.Optional;
 
 public class SmvDebugger {
-  private static final String FB_FILE_EXTENSION = ".xml";
-
   private final SmvService smvService;
   private final DebugPanelService debugPanelService;
+  private final Project ideaProject;
 
   public SmvDebugger(final MPSProject project) {
     smvService = new SmvService(ServicePathProvider.create(project));
-
     debugPanelService = new DebugPanelService(project);
+    ideaProject = project.getProject();
   }
 
-  public JComponent run(final Path fbPath, final CompositeFBTypeDeclaration compositeFb) {
+  public JComponent run(
+          Path fbPath,
+          CompositeFBTypeDeclaration compositeFb,
+          boolean exported
+  ) {
     try {
-      final String specification = getSpecification();
-      final Optional<Counterexample> counterexample = smvService.verify(fbPath, specification);
-      if (counterexample.isEmpty()) {
-        notifySuccess();
-        return null;
+      if (exported) {
+        return showExportedConterexample(compositeFb);
+      } else {
+        return verify(fbPath, compositeFb);
       }
-      return debugPanelService.run(compositeFb, counterexample.get());
     } catch (final Exception e) {
       JOptionPane.showMessageDialog(null, e.getMessage());
       return null;
     }
+  }
+
+  @Nullable
+  private JComponent showExportedConterexample(CompositeFBTypeDeclaration compositeFb) {
+    FileChooserDescriptor descriptor = new FileChooserDescriptor(true, false, false, false, false, false);
+    VirtualFile file = FileChooser.chooseFile(descriptor, ideaProject, null);
+    if (file == null) {
+      return null;
+    }
+    Counterexample counterexample = smvService.parseCounterexample(file.toNioPath());
+    return debugPanelService.run(compositeFb, counterexample);
+  }
+
+  @Nullable
+  private JPanel verify(Path fbPath, CompositeFBTypeDeclaration compositeFb) {
+    final String specification = getSpecification();
+    final Optional<Counterexample> counterexample = smvService.verify(fbPath, specification);
+    if (counterexample.isEmpty()) {
+      notifySuccess();
+      return null;
+    }
+    return debugPanelService.run(compositeFb, counterexample.get());
   }
 
   private static String getSpecification() {

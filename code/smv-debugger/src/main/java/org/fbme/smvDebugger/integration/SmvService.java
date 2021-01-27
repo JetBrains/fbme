@@ -46,4 +46,13 @@ public class SmvService {
       throw new RuntimeException(e);
     }
   }
+
+  public Counterexample parseCounterexample(Path exportedPath) {
+    try {
+      final List<String> lines = Files.readAllLines(exportedPath);
+      return counterexampleParser.parse(lines);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
