@@ -22,6 +22,6 @@ public class Fb2SmvService extends AbstractIntegrationService {
     if (OSUtils.getOS() == OS.MAC_OS) {
       return MAC_MONO_FRAMEWORK + " " + binaryPath + " " + fbPath;
     }
-    return "";
+    return binaryPath + " " + fbPath;
   }
 }

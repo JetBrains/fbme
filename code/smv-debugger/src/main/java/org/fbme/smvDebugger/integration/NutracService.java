@@ -23,6 +23,6 @@ public class NutracService extends AbstractIntegrationService {
     if (OSUtils.getOS() == OS.MAC_OS) {
       return MAC_MONO_FRAMEWORK + " " + binaryPath + " " + counterexamplePath;
     }
-    return "";
+    return binaryPath + " " + counterexamplePath;
   }
 }
