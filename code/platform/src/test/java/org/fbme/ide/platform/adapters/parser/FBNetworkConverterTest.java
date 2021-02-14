@@ -38,12 +38,14 @@ public class FBNetworkConverterTest extends PlatformTestBase {
 
     private RootConverter createConverter(InputStream stream) {
         try {
-            return new RootConverter(
+            RootConverter converter = new RootConverter(
                     getFactory(),
                     getStFactory(),
                     new PlatformIdentifierLocus(new jetbrains.mps.smodel.SModelReference(null, SModelId.generate(), new SModelName("testModel"))),
                     JDOMUtil.loadDocument(stream)
             );
+            converter.foo();
+            return converter;
         } catch (JDOMException | IOException e) {
             throw new IllegalStateException(e);
         }

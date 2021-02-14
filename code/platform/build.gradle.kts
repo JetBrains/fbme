@@ -1,4 +1,3 @@
-
 plugins {
     mps
 }
@@ -25,5 +24,8 @@ val mpsAssemble by tasks.getting {
 }
 
 val test by tasks.getting(Test::class) {
-    dependsOn("mpsJar")
+    dependsOn(
+        ":code:library:mpsJar",
+        "mpsJar"
+    )
 }
