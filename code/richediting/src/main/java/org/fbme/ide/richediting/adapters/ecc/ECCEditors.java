@@ -104,25 +104,7 @@ public class ECCEditors {
     public static final ComponentControllerFactory<StateDeclaration, Point> STATE_CONTROLLER_FACTORY = (context, state) -> {
         if (state instanceof PlatformElement) {
             final SNode stateNode = ((PlatformElement) state).getNode();
-            final EditorCell_Collection cell = RicheditingMpsBridge.createStateDeclarationCell(context, stateNode);
-            cell.setBig(true);
-            return new ECStateController(new ECStateCellHandle() {
-                public EditorCell_Basic getCell() {
-                    return cell;
-                }
-
-                public Rectangle getBounds(Point position) {
-                    cell.relayout();
-                    jetbrains.mps.openapi.editor.cells.EditorCell nameCell = cell.firstCell();
-                    int width = nameCell.getWidth();
-                    int height = nameCell.getHeight();
-                    return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
-                }
-
-                public Style getStateTextStyle() {
-                    return cell.firstCell().getStyle();
-                }
-            });
+            return new ECStateController(context, stateNode);
         }
         return null;
     };
