@@ -44,7 +44,6 @@ public class FBNetworkConverterTest extends PlatformTestBase {
                     new PlatformIdentifierLocus(new jetbrains.mps.smodel.SModelReference(null, SModelId.generate(), new SModelName("testModel"))),
                     JDOMUtil.loadDocument(stream)
             );
-            converter.foo();
             return converter;
         } catch (JDOMException | IOException e) {
             throw new IllegalStateException(e);
