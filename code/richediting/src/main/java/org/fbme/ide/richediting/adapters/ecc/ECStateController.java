@@ -1,5 +1,6 @@
 package org.fbme.ide.richediting.adapters.ecc;
 
+import com.intellij.ui.JBColor;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
@@ -8,6 +9,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Basic;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.nodeEditor.cells.TextLine;
 import jetbrains.mps.openapi.editor.EditorContext;
+import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.adapters.fb.DiagramColors;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.scenes.controllers.LayoutUtil;
@@ -24,16 +26,14 @@ public class ECStateController implements ComponentController<Point> {
     private static final int INNER_BORDER_PADDING = 2;
 
     private final ECStateController.MyCell myComponentCell;
-    private final SNode myNode;
 
     public ECStateController(EditorContext context, SNode view) {
-        myNode = view;
         myComponentCell = new MyCell(context, view);
     }
 
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
-        return false;
+        return true;
     }
 
     @NotNull
@@ -69,7 +69,7 @@ public class ECStateController implements ComponentController<Point> {
 
     @Override
     public void updateCellSelection(boolean selected) {
-    // do nothing
+        // do nothing
     }
 
     @Override
@@ -84,7 +84,6 @@ public class ECStateController implements ComponentController<Point> {
 
         private MyCell(@NotNull EditorContext editorContext, SNode node) {
             super(editorContext, node);
-
             myIsSource = false;
             EntryKind entryKind = EntryKind.DATA;
             getStyle().set(StyleAttributes.TEXT_COLOR, DiagramColors.getColorFor(entryKind, false));
@@ -126,10 +125,11 @@ public class ECStateController implements ComponentController<Point> {
 
             int lineSize = getLineSize();
             int textWidth = myNameText.getWidth();
-            Shape shape = myIsSource ? getInputShape(lineSize, textWidth) : getOutputShape(lineSize, textWidth);
-            int myTextX = myX + (myIsSource ? scale(INNER_BORDER_PADDING) : lineSize / 2);
-
-            myNameText.paint(graphics, myTextX, myY);
+            Shape shape = getRectangle(lineSize, textWidth);
+            myNameText.getPaddingLeft();
+            g.setPaint(new Color(179, 240, 255));
+            g.fill(shape);
+            myNameText.paint(graphics, myX, myY, JBColor.BLACK);
         }
 
         private int getLineSize() {
@@ -146,23 +146,13 @@ public class ECStateController implements ComponentController<Point> {
         }
     }
 
-    private Shape getInputShape(int lineSize, int textWidth) {
-        int x = myComponentCell.getX();
-        int y = myComponentCell.getY();
-        GeneralPath shape = new GeneralPath();
-        double width = textWidth + myComponentCell.scale(INNER_BORDER_PADDING) + lineSize / 2;
-        double height = lineSize;
-        double x2 = x + width;
-        double y2 = y + height;
-        double x3 = x + width - height / 4;
-        double y3 = y + height / 2;
-        shape.moveTo(x, y2);
-        shape.lineTo(x3, y2);
-        shape.lineTo(x2, y3);
-        shape.lineTo(x3, y);
-        shape.lineTo(x, y);
-        shape.closePath();
-        return shape;
+    private Shape getRectangle(int lineSize, int textWidth) {
+        int border = myComponentCell.scale(INNER_BORDER_PADDING);
+        int x = myComponentCell.getX() - 2 * border;
+        int y = myComponentCell.getY() + border;
+        int width = textWidth + 4 * border;
+        int height = lineSize + 2 * border;
+        return new Rectangle(x, y, width, height);
     }
 
     private Shape getOutputShape(int lineSize, int textWidth) {
