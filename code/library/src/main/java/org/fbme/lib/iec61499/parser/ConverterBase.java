@@ -63,6 +63,8 @@ public abstract class ConverterBase implements ConverterArguments {
     text = text.replace("&#39;", "'");
     text = text.replace("&#60;", "<");
     text = text.replace("&#62;", ">");
+    text = text.replace("&#xD;", "");
+    text = text.replace("&#xA;", "");
     return text;
   }
 
