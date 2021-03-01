@@ -1,16 +1,24 @@
 package org.fbme.ide.richediting.adapters.ecc;
 
 import com.intellij.ui.JBColor;
+import jetbrains.mps.editor.runtime.TextBuilderImpl;
+import jetbrains.mps.editor.runtime.style.Measure;
+import jetbrains.mps.editor.runtime.style.Padding;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
-import jetbrains.mps.nodeEditor.cells.EditorCell;
-import jetbrains.mps.nodeEditor.cells.EditorCell_Basic;
-import jetbrains.mps.nodeEditor.cells.ParentSettings;
-import jetbrains.mps.nodeEditor.cells.TextLine;
+import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
+import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
+import jetbrains.mps.openapi.editor.TextBuilder;
+import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.style.StyleAttribute;
+import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.fb.DiagramColors;
+import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
+import org.fbme.lib.iec61499.ecc.StateAction;
+import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
@@ -18,34 +26,77 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
+import java.util.Objects;
 import java.util.function.Function;
 
 public class ECStateController implements ComponentController<Point> {
+    private final StateCell myStateNameCell;
+    private final EditorCell_Collection myCellCollection;
 
-    private static final int INNER_BORDER_PADDING = 2;
+    private final StateDeclaration myState;
 
-    private final ECStateController.MyCell myComponentCell;
+    private final boolean myEditable;
 
-    public ECStateController(EditorContext context, SNode view) {
-        myComponentCell = new MyCell(context, view);
+    public ECStateController(EditorContext context, StateDeclaration state) {
+        myState = state;
+        myEditable = true;
+        SNode node = ((PlatformElement) myState).getNode();
+        myCellCollection = createRootCell(context, node);
+        myStateNameCell = createStateCell(context, node);
+        myCellCollection.addEditorCell(myStateNameCell);
+//        if (myState.getActions().size() == 1) {
+//            String text = myState.getActions().get(0).getAlgorithm().getTarget().getName();
+//            AlgorithmCell cell = new AlgorithmCell(context, node, text);
+//            myCellCollection.addEditorCell(cell);
+//        }
+//        for (StateAction action : myState.getActions()) {
+//            String text = action.getAlgorithm().getPresentation();
+//            AlgorithmCell cell = new AlgorithmCell(context, node, text);
+//            myCellCollection.addEditorCell(cell);
+//        }
+        myCellCollection.setBig(true);
+        relayout();
+    }
+
+    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
+        return new EditorCell_Collection(context, node, new AbstractCellLayout() {
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection cells) {
+                assert cells == myCellCollection;
+                relayout();
+            }
+
+            public TextBuilder doLayoutText(Iterable<jetbrains.mps.openapi.editor.cells.EditorCell> p0) {
+                return new TextBuilderImpl();
+            }
+        });
+    }
+
+    public void relayout() {
+        myStateNameCell.relayout();
+        myCellCollection.setWidth(myStateNameCell.getWidth());
+        myCellCollection.setHeight(getLineSize());
+        myStateNameCell.moveTo(myCellCollection.getX() + myStateNameCell.getWidth() / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY());
+    }
+
+    private int getLineSize() {
+        return LayoutUtil.getLineSize(myCellCollection.getStyle());
     }
 
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
-        return true;
+        return myEditable;
     }
 
     @NotNull
     @Override
     public EditorCell getComponentCell() {
-        return myComponentCell;
+        return myCellCollection;
     }
 
     @NotNull
     @Override
     public Rectangle getBounds(Point position) {
-        return myComponentCell.getBounds(position);
+        return new Rectangle(position.x, position.y, myCellCollection.getWidth(), myCellCollection.getHeight());
     }
 
     @NotNull
@@ -63,8 +114,8 @@ public class ECStateController implements ComponentController<Point> {
 
     @Override
     public void updateCellWithForm(Point position) {
-        myComponentCell.moveTo(position.x, position.y);
-        myComponentCell.relayout();
+        myCellCollection.moveTo(position.x, position.y);
+        myCellCollection.relayout();
     }
 
     @Override
@@ -77,41 +128,62 @@ public class ECStateController implements ComponentController<Point> {
         // do nothing
     }
 
-    private class MyCell extends EditorCell_Basic {
+    private StateCell createStateCell(EditorContext editorContext, SNode node) {
+        ModelAccessor modelAccessor = new ModelAccessor() {
+            public String getText() {
+                String name = myState.getName();
+                return Objects.equals(name, "") ? null : name;
+            }
 
-        private final boolean myIsSource;
+            public void setText(String text) {
+                // надо бы менять еще во всех transitions??
+                myState.setName(text == null ? "" : text);
+            }
+
+            public boolean isValidText(String text) {
+                return text != null && !text.equals("");
+            }
+        };
+        return new StateCell(editorContext, modelAccessor, node);
+    }
+
+    private class StateCell extends EditorCell_Property {
+        public StateCell(EditorContext editorContext, ModelAccessor accessor, SNode node) {
+            super(editorContext, accessor, node);
+            getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
+            getStyle().set(StyleAttributes.BACKGROUND_COLOR, new Color(196, 215, 233));
+            setPadding(0.5, Measure.SPACES);
+        }
+
+        private void setPadding(double value, Measure measure) {
+            getStyle().set(StyleAttributes.PADDING_LEFT, new Padding(value, measure));
+            getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.1 * value, measure));
+            getStyle().set(StyleAttributes.PADDING_RIGHT, new Padding(value, measure));
+        }
+    }
+
+    private class AlgorithmCell extends EditorCell_Basic {
         private final TextLine myNameText;
 
-        private MyCell(@NotNull EditorContext editorContext, SNode node) {
+        public AlgorithmCell(EditorContext editorContext, SNode node, String text) {
             super(editorContext, node);
-            myIsSource = false;
             EntryKind entryKind = EntryKind.DATA;
             getStyle().set(StyleAttributes.TEXT_COLOR, DiagramColors.getColorFor(entryKind, false));
-            myNameText = new TextLine(node.getName(), getStyle(), false);
+            getStyle().set(StyleAttributes.BACKGROUND_COLOR, new Color(159, 219, 177));
+            myNameText = new TextLine(text, getStyle(), false);
             relayoutImpl();
         }
-
-        private Point getPortCoordinates(Point position) {
-            return new Point(position.x + (myIsSource ? myWidth : 0), position.y + myHeight / 2);
-        }
-
 
         @Override
         protected void relayoutImpl() {
             int lineSize = getLineSize();
             myNameText.relayout();
-            setWidth(lineSize / 2 + scale(INNER_BORDER_PADDING) + myNameText.getWidth());
+            setWidth(myNameText.getWidth());
             setHeight(lineSize);
         }
 
         private Rectangle getBounds(Point position) {
             return new Rectangle(position.x, position.y, myWidth, myHeight);
-        }
-
-        @NotNull
-        private Dimension getDimension() {
-            int lineSize = getLineSize();
-            return new Dimension(lineSize / 2 + scale(INNER_BORDER_PADDING) + myNameText.getWidth(), lineSize);
         }
 
         @Override
@@ -123,54 +195,13 @@ public class ECStateController implements ComponentController<Point> {
         protected void paintContent(Graphics graphics, ParentSettings settings) {
             Graphics2D g = (Graphics2D) graphics.create();
 
-            int lineSize = getLineSize();
-            int textWidth = myNameText.getWidth();
-            Shape shape = getRectangle(lineSize, textWidth);
-            myNameText.getPaddingLeft();
-            g.setPaint(new Color(179, 240, 255));
-            g.fill(shape);
+//            int lineSize = getLineSize();
+//            int textWidth = myNameText.getWidth();
+//            Shape shape = getRectangle(lineSize, textWidth);
+//            myNameText.getPaddingLeft();
+//            g.setPaint(new Color(179, 240, 255));
+//            g.fill(shape);
             myNameText.paint(graphics, myX, myY, JBColor.BLACK);
         }
-
-        private int getLineSize() {
-            return LayoutUtil.getLineSize(getStyle());
-        }
-
-        private int getFontSize() {
-            return LayoutUtil.getFontSize(getStyle());
-        }
-
-
-        private int scale(int size) {
-            return size * getFontSize() / EditorSettings.getInstance().getFontSize();
-        }
-    }
-
-    private Shape getRectangle(int lineSize, int textWidth) {
-        int border = myComponentCell.scale(INNER_BORDER_PADDING);
-        int x = myComponentCell.getX() - 2 * border;
-        int y = myComponentCell.getY() + border;
-        int width = textWidth + 4 * border;
-        int height = lineSize + 2 * border;
-        return new Rectangle(x, y, width, height);
-    }
-
-    private Shape getOutputShape(int lineSize, int textWidth) {
-        int x = myComponentCell.getX();
-        int y = myComponentCell.getY();
-        GeneralPath shape = new GeneralPath();
-        double width = textWidth + myComponentCell.scale(INNER_BORDER_PADDING) + lineSize / 2;
-        double height = lineSize;
-        double x2 = x + width;
-        double y2 = y + height;
-        double x3 = x + height / 4;
-        double y3 = y + height / 2;
-        shape.moveTo(x, y3);
-        shape.lineTo(x3, y2);
-        shape.lineTo(x2, y2);
-        shape.lineTo(x2, y);
-        shape.lineTo(x3, y);
-        shape.closePath();
-        return shape;
     }
 }

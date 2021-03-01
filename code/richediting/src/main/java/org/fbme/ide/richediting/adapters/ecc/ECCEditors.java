@@ -103,8 +103,7 @@ public class ECCEditors {
 
     public static final ComponentControllerFactory<StateDeclaration, Point> STATE_CONTROLLER_FACTORY = (context, state) -> {
         if (state instanceof PlatformElement) {
-            final SNode stateNode = ((PlatformElement) state).getNode();
-            return new ECStateController(context, stateNode);
+            return new ECStateController(context, state);
         }
         return null;
     };
