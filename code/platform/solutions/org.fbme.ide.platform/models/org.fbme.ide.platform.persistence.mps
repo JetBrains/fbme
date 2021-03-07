@@ -6336,8 +6336,8 @@
           <node concept="3fqX7Q" id="1eL5bn4Qw49" role="3clFbw">
             <node concept="1eOMI4" id="1eL5bn4Qwk3" role="3fr31v">
               <node concept="2ZW3vV" id="1eL5bn4Qw4b" role="1eOMHV">
-                <node concept="3uibUv" id="1eL5bn4Qw4c" role="2ZW6by">
-                  <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+                <node concept="3uibUv" id="4anZxuv0eqC" role="2ZW6by">
+                  <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
                 </node>
                 <node concept="37vLTw" id="1eL5bn4Qw4d" role="2ZW6bz">
                   <ref role="3cqZAo" node="1eL5bn4Q_Dx" resolve="model" />
@@ -6354,12 +6354,12 @@
         <node concept="3cpWs8" id="1eL5bn4Qwmh" role="3cqZAp">
           <node concept="3cpWsn" id="1eL5bn4Qwmi" role="3cpWs9">
             <property role="TrG5h" value="cpModel" />
-            <node concept="3uibUv" id="1eL5bn4Qwmj" role="1tU5fm">
-              <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+            <node concept="3uibUv" id="4anZxuv0esj" role="1tU5fm">
+              <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
             </node>
             <node concept="10QFUN" id="1eL5bn4QwoQ" role="33vP2m">
-              <node concept="3uibUv" id="1eL5bn4Qwr4" role="10QFUM">
-                <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+              <node concept="3uibUv" id="4anZxuv0fwJ" role="10QFUM">
+                <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
               </node>
               <node concept="37vLTw" id="1eL5bn4Qwnv" role="10QFUP">
                 <ref role="3cqZAo" node="1eL5bn4Q_Dx" resolve="model" />
@@ -6370,74 +6370,26 @@
         <node concept="3cpWs8" id="1eL5bn4Qycn" role="3cqZAp">
           <node concept="3cpWsn" id="1eL5bn4Qyco" role="3cpWs9">
             <property role="TrG5h" value="source" />
-            <node concept="3uibUv" id="1eL5bn4Qybk" role="1tU5fm">
-              <ref role="3uigEE" to="dush:~StreamDataSource" resolve="StreamDataSource" />
+            <node concept="3uibUv" id="4anZxuv0fYn" role="1tU5fm">
+              <ref role="3uigEE" to="dush:~DataSource" resolve="DataSource" />
             </node>
             <node concept="2OqwBi" id="1eL5bn4Qycp" role="33vP2m">
               <node concept="37vLTw" id="1eL5bn4Qycq" role="2Oq$k0">
                 <ref role="3cqZAo" node="1eL5bn4Qwmi" resolve="cpModel" />
               </node>
               <node concept="liA8E" id="1eL5bn4Qycr" role="2OqNvi">
-                <ref role="37wK5l" to="g3l6:~CustomPersistenceSModel.getSource()" resolve="getSource" />
+                <ref role="37wK5l" to="g3l6:~SModelBase.getSource()" resolve="getSource" />
               </node>
             </node>
           </node>
         </node>
-        <node concept="3clFbJ" id="1eL5bn4Qys8" role="3cqZAp">
-          <node concept="3clFbS" id="1eL5bn4Qysa" role="3clFbx">
-            <node concept="3cpWs6" id="1eL5bn4QyUV" role="3cqZAp">
-              <node concept="3clFbT" id="1eL5bn4QAzT" role="3cqZAk" />
+        <node concept="3clFbF" id="4anZxuv0iGM" role="3cqZAp">
+          <node concept="2ZW3vV" id="4anZxuv0iGQ" role="3clFbG">
+            <node concept="3uibUv" id="4anZxuv0iGR" role="2ZW6by">
+              <ref role="3uigEE" node="6gadshXrOh5" resolve="RecursiveFolderDataSource" />
             </node>
-          </node>
-          <node concept="3fqX7Q" id="1eL5bn4QyTJ" role="3clFbw">
-            <node concept="1eOMI4" id="1eL5bn4QyTL" role="3fr31v">
-              <node concept="2ZW3vV" id="1eL5bn4QyTM" role="1eOMHV">
-                <node concept="3uibUv" id="1eL5bn4QyTN" role="2ZW6by">
-                  <ref role="3uigEE" to="ends:~FileDataSource" resolve="FileDataSource" />
-                </node>
-                <node concept="37vLTw" id="1eL5bn4QyTO" role="2ZW6bz">
-                  <ref role="3cqZAo" node="1eL5bn4Qyco" resolve="source" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="1eL5bn4QzGB" role="3cqZAp">
-          <node concept="3cpWsn" id="1eL5bn4QzGC" role="3cpWs9">
-            <property role="TrG5h" value="file" />
-            <node concept="3uibUv" id="1eL5bn4QzG7" role="1tU5fm">
-              <ref role="3uigEE" to="3ju5:~IFile" resolve="IFile" />
-            </node>
-            <node concept="2OqwBi" id="1eL5bn4QzGD" role="33vP2m">
-              <node concept="1eOMI4" id="1eL5bn4QzGE" role="2Oq$k0">
-                <node concept="10QFUN" id="1eL5bn4QzGF" role="1eOMHV">
-                  <node concept="3uibUv" id="1eL5bn4QzGG" role="10QFUM">
-                    <ref role="3uigEE" to="ends:~FileDataSource" resolve="FileDataSource" />
-                  </node>
-                  <node concept="37vLTw" id="1eL5bn4QzGH" role="10QFUP">
-                    <ref role="3cqZAo" node="1eL5bn4Qyco" resolve="source" />
-                  </node>
-                </node>
-              </node>
-              <node concept="liA8E" id="1eL5bn4QzGI" role="2OqNvi">
-                <ref role="37wK5l" to="ends:~FileDataSource.getFile()" resolve="getFile" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs6" id="1eL5bn4QB9B" role="3cqZAp">
-          <node concept="17R0WA" id="1eL5bn4Q$bJ" role="3cqZAk">
-            <node concept="10M0yZ" id="1eL5bn4Q$Sa" role="3uHU7w">
-              <ref role="3cqZAo" node="6ZZUlxDy3iw" resolve="HEADER_FILE" />
-              <ref role="1PxDUh" node="537nKv8IlHE" resolve="IEC61499ModelFactory" />
-            </node>
-            <node concept="2OqwBi" id="1eL5bn4QzNH" role="3uHU7B">
-              <node concept="37vLTw" id="1eL5bn4QzGJ" role="2Oq$k0">
-                <ref role="3cqZAo" node="1eL5bn4QzGC" resolve="file" />
-              </node>
-              <node concept="liA8E" id="1eL5bn4QzXr" role="2OqNvi">
-                <ref role="37wK5l" to="3ju5:~IFile.getName()" resolve="getName" />
-              </node>
+            <node concept="37vLTw" id="4anZxuv0iGS" role="2ZW6bz">
+              <ref role="3cqZAo" node="1eL5bn4Qyco" resolve="source" />
             </node>
           </node>
         </node>
@@ -6477,13 +6429,13 @@
         <node concept="3cpWs8" id="6NFL89TtI6P" role="3cqZAp">
           <node concept="3cpWsn" id="6NFL89TtI6Q" role="3cpWs9">
             <property role="TrG5h" value="cpModel" />
-            <node concept="3uibUv" id="6NFL89TtHWC" role="1tU5fm">
-              <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+            <node concept="3uibUv" id="4anZxuv0kFX" role="1tU5fm">
+              <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
             </node>
             <node concept="1eOMI4" id="6NFL89TtI6R" role="33vP2m">
               <node concept="10QFUN" id="6NFL89TtI6S" role="1eOMHV">
-                <node concept="3uibUv" id="6NFL89TtI6T" role="10QFUM">
-                  <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+                <node concept="3uibUv" id="4anZxuv0kNt" role="10QFUM">
+                  <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
                 </node>
                 <node concept="37vLTw" id="6NFL89TtI6U" role="10QFUP">
                   <ref role="3cqZAo" node="1eL5bn4Qva$" resolve="model" />
