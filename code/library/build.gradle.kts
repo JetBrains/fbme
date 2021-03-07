@@ -26,6 +26,10 @@ sourceSets {
     }
 }
 
+val mpsAssemble by tasks.getting {
+    inputs.dir("out")
+}
+
 tasks.named<Copy>("mpsPrepare") {
     from(configurations.antlr.get().files.find { it.name.startsWith("antlr4-runtime") })
     from("build/libs")
