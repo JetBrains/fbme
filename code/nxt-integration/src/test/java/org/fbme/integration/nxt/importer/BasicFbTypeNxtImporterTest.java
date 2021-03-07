@@ -1,4 +1,4 @@
-package org.fbme.ide.platform.adapters.parser;
+package org.fbme.integration.nxt.importer;
 
 import jetbrains.mps.smodel.SModelId;
 import jetbrains.mps.util.JDOMUtil;
@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SModelName;
 import org.jetbrains.mps.openapi.model.SModelReference;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,11 +20,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @RunWith(PlatformTestRunner.class)
-public class FBNetworkConverterTest extends PlatformTestBase {
+public class BasicFbTypeNxtImporterTest extends PlatformTestBase {
+
+    @BeforeClass
+    public static void setup() {
+        PlatformConverter.installConfigFactory(NxtImporterConfiguration.FACTORY);
+    }
 
     @Test
     public void parseTest1() {
-        InputStream stream = FBNetworkConverterTest.class.getResourceAsStream("/ParserTestFbt1.fbt");
+        InputStream stream = BasicFbTypeNxtImporterTest.class.getResourceAsStream("/ParserTestFbt1.fbt");
         FBTypeDeclaration fbType = createConverter(stream).convertFBType();
         Assert.assertNotNull(fbType);
     }

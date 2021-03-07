@@ -12,6 +12,7 @@
   <property name="artifacts.fbme_richediting" location="code/richediting/build/artifacts/fbme_richediting" />
   <property name="artifacts.fbme_fordiac" location="code/4diac-integration/build/artifacts/fbme_fordiac" />
   <property name="artifacts.fbme_smvdebugger" location="code/smv-debugger/build/artifacts/fbme_smvdebugger" />
+  <property name="artifacts.fbme_nxt" location="code/nxt-integration/build/artifacts/fbme_nxt" />
   <property file="${artifacts.mps}/build.properties" prefix="import.mps" />
   <property file="${artifacts.fbme_library}/build.properties" prefix="import.fbme_library" />
   <property file="${artifacts.fbme_scenes}/build.properties" prefix="import.fbme_scenes" />
@@ -19,6 +20,7 @@
   <property file="${artifacts.fbme_richediting}/build.properties" prefix="import.fbme_richediting" />
   <property file="${artifacts.fbme_fordiac}/build.properties" prefix="import.fbme_fordiac" />
   <property file="${artifacts.fbme_smvdebugger}/build.properties" prefix="import.fbme_smvdebugger" />
+  <property file="${artifacts.fbme_nxt}/build.properties" prefix="import.fbme_nxt" />
   <property name="mps.build.number" value="${import.mps.mps.build.number}" />
   <property name="mps.date" value="${import.mps.mps.date}" />
   <property name="mps.build.vcs.number" value="${import.mps.mps.build.vcs.number}" />
@@ -37,6 +39,7 @@
   <property name="fbme_richediting.ide-version" value="${import.fbme_richediting.fbme_richediting.ide-version}" />
   <property name="fbme_fordiac.ide-version" value="${import.fbme_fordiac.fbme_fordiac.ide-version}" />
   <property name="fbme_smvdebugger.ide-version" value="${import.fbme_smvdebugger.fbme_smvdebugger.ide-version}" />
+  <property name="fbme_nxt.ide-version" value="${import.fbme_nxt.fbme_nxt.ide-version}" />
   <property name="mps.generator.skipUnmodifiedModels" value="false" />
   
   <path id="path.mps.ant.path">
@@ -47,7 +50,7 @@
   
   <target name="assemble" depends="declare-mps-tasks">
     <mkdir dir="${build.layout}" />
-    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_library.ide-version=${fbme_library.ide-version}${line.separator}fbme_scenes.ide-version=${fbme_scenes.ide-version}${line.separator}fbme_platform.ide-version=${fbme_platform.ide-version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}</echo>
+    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_library.ide-version=${fbme_library.ide-version}${line.separator}fbme_scenes.ide-version=${fbme_scenes.ide-version}${line.separator}fbme_platform.ide-version=${fbme_platform.ide-version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}${line.separator}fbme_nxt.ide-version=${fbme_nxt.ide-version}</echo>
   </target>
   
   <target name="buildDependents">
@@ -58,6 +61,7 @@
     <ant antfile="code/richediting/build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/4diac-integration/build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/smv-debugger/build.xml" inheritAll="false" useNativeBasedir="true" />
+    <ant antfile="code/nxt-integration/build.xml" inheritAll="false" useNativeBasedir="true" />
   </target>
   
   <target name="fetchDependencies" />
@@ -162,6 +166,7 @@
       <chunk>
         <module file="${basedir}/buildscripts/org.fbme.ide.build.msd" />
         <module file="${basedir}/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" />
+        <module file="${basedir}/code/nxt-integration/buildsolution/org.fbme.integration.nxt.build.msd" />
         <module file="${basedir}/code/language/buildsolution/org.fbme.language.build.msd" />
         <module file="${basedir}/code/library/buildsolution/org.fbme.library.build.msd" />
         <module file="${basedir}/code/platform/buildsolution/org.fbme.platform.build.msd" />
@@ -211,9 +216,13 @@
       <target name="generate" />
       <target name="assemble" />
     </ant>
+    <ant antfile="code/nxt-integration/build.xml" inheritAll="false" useNativeBasedir="true">
+      <target name="generate" />
+      <target name="assemble" />
+    </ant>
   </target>
   
-  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statisticsPlugin.build, java.compile.org.fbme.scenes.build, java.compile.org.fbme.smvDebugger.build">
+  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.integration.nxt.build, java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statisticsPlugin.build, java.compile.org.fbme.scenes.build, java.compile.org.fbme.smvDebugger.build">
     <mkdir dir="${basedir}/buildscripts/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.ide.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.ide.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -223,6 +232,7 @@
       </src>
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.integration.fordiac.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.integration.nxt.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
@@ -281,6 +291,22 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
+      </classpath>
+    </javac>
+  </target>
+  
+  <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build">
+    <mkdir dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/org.fbme.integration.nxt.build" />
+    <javac destdir="${build.tmp}/java/out/org.fbme.integration.nxt.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
+      <compilerarg value="-Xlint:none" />
+      <src>
+        <path location="${basedir}/code/nxt-integration/buildsolution/source_gen" />
+      </src>
+      <classpath>
+        <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
       </classpath>
     </javac>
   </target>
@@ -356,6 +382,7 @@
   <target name="cleanSources">
     <delete dir="${basedir}/buildscripts/source_gen" />
     <delete dir="${basedir}/code/4diac-integration/buildsolution/source_gen" />
+    <delete dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
     <delete dir="${basedir}/code/language/buildsolution/source_gen" />
     <delete dir="${basedir}/code/library/buildsolution/source_gen" />
     <delete dir="${basedir}/code/platform/buildsolution/source_gen" />

@@ -5,6 +5,7 @@ include(
         "code:enas",
         "code:language",
         "code:library",
+        "code:nxt-integration",
         "code:platform",
         "code:richediting",
         "code:scenes",

@@ -42,18 +42,24 @@ public class PlatformTestRunner extends BlockJUnit4ClassRunner {
         if (ourRunnerEnvironment == null) {
             synchronized (PlatformTestRunner.class) {
                 if (ourRunnerEnvironment == null) {
+                    String[] additionalLibs = System.getProperty("org.fbme.testing.additionalLibs", "").split(";");
+                    String moduleName = System.getProperty("org.fbme.testing.module");
+
                     EnvironmentConfig config = EnvironmentConfig.defaultConfig()
-                            .addLib("build/artifacts/fbme_platform/fbme.platform/languages")
+                            .addLib(Path.of("../platform/build/artifacts/fbme_platform/fbme.platform/languages").toAbsolutePath().normalize().toString())
                             .addLib(Path.of("../library/build/artifacts/fbme_library/fbme.library/languages").toAbsolutePath().normalize().toString())
                             .setCreatePluginClassLoaders(false)
                             .withTestModeOn();
+                    for (String lib: additionalLibs) {
+                        config.addLib(lib);
+                    }
                     MpsEnvironment environment = new MpsEnvironment(config);
                     environment.init();
 
                     MPSModuleRepository repository = MPSModuleRepository.getInstance();
                     ReloadableModule parentModule = new ModelAccessHelper(repository.getModelAccess()).runReadAction(() -> {
                         ReloadableModule platformModule = (ReloadableModule) StreamSupport.stream(repository.getModules().spliterator(), false)
-                                .filter(it -> Objects.equals(it.getModuleName(), "org.fbme.ide.platform"))
+                                .filter(it -> Objects.equals(it.getModuleName(), moduleName))
                                 .findFirst().orElseThrow();
                         try {
                             platformModule.getClass("org.fbme.ide.iec61499.repository.MpsBridgeImpl").getMethod("install").invoke(null);

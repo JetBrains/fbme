@@ -21,6 +21,7 @@
     <dependency reexport="false">1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statisticsPlugin.build)</dependency>
     <dependency reexport="false">73b76635-8a63-49a1-ae16-da85b8524b49(org.fbme.smvDebugger.build)</dependency>
     <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)</dependency>
+    <dependency reexport="false">9ffd2636-8012-4730-a841-d808550cbdea(org.fbme.integration.nxt.build)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:798100da-4f0a-421a-b991-71f8c50ce5d2:jetbrains.mps.build" version="0" />
@@ -32,6 +33,7 @@
     <module reference="422c2909-59d6-41a9-b318-40e6256b250f(jetbrains.mps.ide.build)" version="0" />
     <module reference="03167fa4-d2b2-43a9-8149-2d4f4957c404(org.fbme.ide.build)" version="0" />
     <module reference="fcf1995c-acfe-4b80-88f7-7756b5a07d7a(org.fbme.integration.fordiac.build)" version="0" />
+    <module reference="9ffd2636-8012-4730-a841-d808550cbdea(org.fbme.integration.nxt.build)" version="0" />
     <module reference="ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)" version="0" />
     <module reference="5fa6114e-b864-4e52-bc3e-d77dc299a097(org.fbme.library.build)" version="0" />
     <module reference="ab2b933c-4cca-47c1-aeca-d2ac0bca990c(org.fbme.platform.build)" version="0" />

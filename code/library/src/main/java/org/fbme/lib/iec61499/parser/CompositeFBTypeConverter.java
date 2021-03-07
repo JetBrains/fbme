@@ -6,7 +6,7 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import org.jetbrains.annotations.Nullable;
 import org.fbme.lib.common.Identifier;
 
-public final class CompositeFBTypeConverter extends DeclarationConverterBase<CompositeFBTypeDeclaration> {
+public class CompositeFBTypeConverter extends DeclarationConverterBase<CompositeFBTypeDeclaration> {
 
   public CompositeFBTypeConverter(ConverterArguments arguments) {
     super(arguments);

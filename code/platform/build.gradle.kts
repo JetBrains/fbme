@@ -28,4 +28,5 @@ val test by tasks.getting(Test::class) {
         ":code:library:mpsJar",
         "mpsJar"
     )
+    systemProperty("org.fbme.testing.module", "org.fbme.ide.platform")
 }
