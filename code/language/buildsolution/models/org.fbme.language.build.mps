@@ -62,6 +62,9 @@
         <child id="7389400916848037006" name="children" index="39821P" />
       </concept>
       <concept id="841011766566059607" name="jetbrains.mps.build.structure.BuildStringNotEmpty" flags="ng" index="3_J27D" />
+      <concept id="5248329904288051100" name="jetbrains.mps.build.structure.BuildFileIncludeSelector" flags="ng" index="3LWZYx">
+        <property id="5248329904288051101" name="pattern" index="3LWZYw" />
+      </concept>
       <concept id="5248329904287794596" name="jetbrains.mps.build.structure.BuildInputFiles" flags="ng" index="3LXTmp">
         <child id="5248329904287794598" name="dir" index="3LXTmr" />
         <child id="5248329904287794679" name="selectors" index="3LXTna" />
@@ -239,6 +242,21 @@
         <node concept="1SiIV0" id="1JYTWWzvsLB" role="3bR37C">
           <node concept="3bR9La" id="1JYTWWzvsLC" role="1SiIV1">
             <ref role="3bR37D" node="68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="3rtmxn" id="3ZIdPazvNDE" role="3bR31x">
+          <node concept="3LXTmp" id="3ZIdPazvNDG" role="3rtmxm">
+            <node concept="3LWZYx" id="3ZIdPazvNE6" role="3LXTna">
+              <property role="3LWZYw" value="startup.properties" />
+            </node>
+            <node concept="55IIr" id="3ZIdPazvNDI" role="3LXTmr">
+              <node concept="2Ry0Ak" id="3ZIdPazvNEm" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="3ZIdPazvNEw" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.iec61499.adapter" />
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="1BupzO" id="6zYxdPXe67p" role="3bR31x">
@@ -422,11 +440,14 @@
                 <property role="2Ry0Am" value="languages" />
                 <node concept="2Ry0Ak" id="ApHj0p0xSB" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
+                  <node concept="2Ry0Ak" id="1M54bK80mw8" role="2Ry0An">
+                    <property role="2Ry0Am" value="source_gen" />
+                  </node>
                 </node>
               </node>
             </node>
             <node concept="3qWCbU" id="ApHj0p0xSD" role="3LXTna">
-              <property role="3qWCbO" value="icons/**, resources/**" />
+              <property role="3qWCbO" value="**/*.png" />
             </node>
           </node>
         </node>

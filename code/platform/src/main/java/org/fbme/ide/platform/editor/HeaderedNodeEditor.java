@@ -237,7 +237,7 @@ public class HeaderedNodeEditor extends BaseNodeEditor {
 
         @Override
         public void save(Element e) {
-            e.addContent(myProjectionState);
+            e.addContent(myProjectionState.clone());
         }
 
         @Override
