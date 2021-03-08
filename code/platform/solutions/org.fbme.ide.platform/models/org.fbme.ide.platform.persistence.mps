@@ -800,7 +800,7 @@
               </node>
             </node>
             <node concept="2ZW3vV" id="7OBD32HXqYu" role="3uHU7B">
-              <node concept="3uibUv" id="7OBD32HXuVp" role="2ZW6by">
+              <node concept="3uibUv" id="3Tw7RYam8D9" role="2ZW6by">
                 <ref role="3uigEE" to="ends:~FileDataSource" resolve="FileDataSource" />
               </node>
               <node concept="37vLTw" id="7OBD32HXnpz" role="2ZW6bz">
@@ -809,6 +809,7 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="3Tw7RYam2qx" role="3cqZAp" />
       </node>
       <node concept="2AHcQZ" id="537nKv8JjP9" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
@@ -887,8 +888,8 @@
                     <node concept="37vLTw" id="6gadshXPsz3" role="10QFUP">
                       <ref role="3cqZAo" node="537nKv8JjQd" resolve="model" />
                     </node>
-                    <node concept="3uibUv" id="6gadshXPsz4" role="10QFUM">
-                      <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+                    <node concept="3uibUv" id="3uYXhT8l58s" role="10QFUM">
+                      <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
                     </node>
                   </node>
                 </node>
@@ -2590,7 +2591,7 @@
                       <ref role="3cqZAo" node="6gadshXDKG5" resolve="myDataSource" />
                     </node>
                     <node concept="liA8E" id="6gadshXMOgp" role="2OqNvi">
-                      <ref role="37wK5l" to="dush:~MultiStreamDataSource.getStreamByName(java.lang.String)" resolve="getStreamByName" />
+                      <ref role="37wK5l" to="dush:~MultiStreamDataSource.getStreamByNameOrCreate(java.lang.String)" resolve="getStreamByNameOrCreate" />
                       <node concept="10M0yZ" id="6gadshXMZs9" role="37wK5m">
                         <ref role="1PxDUh" node="537nKv8IlHE" resolve="IEC61499ModelFactory" />
                         <ref role="3cqZAo" node="6ZZUlxDy3iw" resolve="HEADER_FILE" />
@@ -5415,81 +5416,10 @@
                 </node>
                 <node concept="3cpWs6" id="7OBD32Id5D3" role="3cqZAp">
                   <node concept="2ShNRf" id="7OBD32Id64s" role="3cqZAk">
-                    <node concept="YeOm9" id="6W62yTTv85X" role="2ShVmc">
-                      <node concept="1Y3b0j" id="6W62yTTv860" role="YeSDq">
-                        <property role="2bfB8j" value="true" />
-                        <ref role="37wK5l" to="ends:~FileDataSource.&lt;init&gt;(jetbrains.mps.vfs.IFile)" resolve="FileDataSource" />
-                        <ref role="1Y3XeK" to="ends:~FileDataSource" resolve="FileDataSource" />
-                        <node concept="3Tm1VV" id="6W62yTTv861" role="1B3o_S" />
-                        <node concept="37vLTw" id="7OBD32Id8OY" role="37wK5m">
-                          <ref role="3cqZAo" node="7OBD32IcF42" resolve="descendant" />
-                        </node>
-                        <node concept="3clFb_" id="6W62yTTvk0Q" role="jymVt">
-                          <property role="TrG5h" value="getTimestamp" />
-                          <node concept="3Tm1VV" id="6W62yTTvk0R" role="1B3o_S" />
-                          <node concept="3cpWsb" id="6W62yTTvk0T" role="3clF45" />
-                          <node concept="3clFbS" id="6W62yTTvk0V" role="3clF47">
-                            <node concept="3cpWs8" id="6W62yTTvmLX" role="3cqZAp">
-                              <node concept="3cpWsn" id="6W62yTTvmLY" role="3cpWs9">
-                                <property role="TrG5h" value="file" />
-                                <node concept="3uibUv" id="6W62yTTvmIW" role="1tU5fm">
-                                  <ref role="3uigEE" to="3ju5:~IFile" resolve="IFile" />
-                                </node>
-                                <node concept="1rXfSq" id="6W62yTTvmLZ" role="33vP2m">
-                                  <ref role="37wK5l" to="ends:~FileDataSource.getFile()" resolve="getFile" />
-                                </node>
-                              </node>
-                            </node>
-                            <node concept="3clFbJ" id="6W62yTTvl1g" role="3cqZAp">
-                              <node concept="3clFbS" id="6W62yTTvl1i" role="3clFbx">
-                                <node concept="3cpWs6" id="6W62yTTvmlM" role="3cqZAp">
-                                  <node concept="3cmrfG" id="6W62yTTvmmX" role="3cqZAk">
-                                    <property role="3cmrfH" value="-1" />
-                                  </node>
-                                </node>
-                              </node>
-                              <node concept="3fqX7Q" id="6W62yTTvmag" role="3clFbw">
-                                <node concept="2OqwBi" id="6W62yTTvmai" role="3fr31v">
-                                  <node concept="37vLTw" id="6W62yTTvmM1" role="2Oq$k0">
-                                    <ref role="3cqZAo" node="6W62yTTvmLY" resolve="file" />
-                                  </node>
-                                  <node concept="liA8E" id="6W62yTTvmiX" role="2OqNvi">
-                                    <ref role="37wK5l" to="3ju5:~IFile.exists()" resolve="exists" />
-                                  </node>
-                                </node>
-                              </node>
-                            </node>
-                            <node concept="3cpWs8" id="6W62yTTvjoo" role="3cqZAp">
-                              <node concept="3cpWsn" id="6W62yTTvjop" role="3cpWs9">
-                                <property role="TrG5h" value="parent" />
-                                <node concept="3uibUv" id="6W62yTTvjoq" role="1tU5fm">
-                                  <ref role="3uigEE" to="3ju5:~IFile" resolve="IFile" />
-                                </node>
-                                <node concept="2OqwBi" id="6W62yTTvjTk" role="33vP2m">
-                                  <node concept="37vLTw" id="6W62yTTvmM0" role="2Oq$k0">
-                                    <ref role="3cqZAo" node="6W62yTTvmLY" resolve="file" />
-                                  </node>
-                                  <node concept="liA8E" id="6W62yTTvjZt" role="2OqNvi">
-                                    <ref role="37wK5l" to="3ju5:~IFile.getParent()" resolve="getParent" />
-                                  </node>
-                                </node>
-                              </node>
-                            </node>
-                            <node concept="3clFbF" id="6W62yTTvndl" role="3cqZAp">
-                              <node concept="2OqwBi" id="6W62yTTvn$4" role="3clFbG">
-                                <node concept="37vLTw" id="6W62yTTvndj" role="2Oq$k0">
-                                  <ref role="3cqZAo" node="6W62yTTvjop" resolve="parent" />
-                                </node>
-                                <node concept="liA8E" id="6W62yTTvnO0" role="2OqNvi">
-                                  <ref role="37wK5l" to="3ju5:~IFile.lastModified()" resolve="lastModified" />
-                                </node>
-                              </node>
-                            </node>
-                          </node>
-                          <node concept="2AHcQZ" id="6W62yTTvk0W" role="2AJF6D">
-                            <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-                          </node>
-                        </node>
+                    <node concept="1pGfFk" id="3uYXhT8ksxA" role="2ShVmc">
+                      <ref role="37wK5l" to="ends:~FileDataSource.&lt;init&gt;(jetbrains.mps.vfs.IFile)" resolve="FileDataSource" />
+                      <node concept="37vLTw" id="3uYXhT8kq81" role="37wK5m">
+                        <ref role="3cqZAo" node="7OBD32IcF42" resolve="descendant" />
                       </node>
                     </node>
                   </node>
@@ -5840,14 +5770,14 @@
             <node concept="3cpWs8" id="13uTNv4n28E" role="3cqZAp">
               <node concept="3cpWsn" id="13uTNv4n28F" role="3cpWs9">
                 <property role="TrG5h" value="source" />
-                <node concept="3uibUv" id="13uTNv4n1qp" role="1tU5fm">
-                  <ref role="3uigEE" to="dush:~StreamDataSource" resolve="StreamDataSource" />
+                <node concept="3uibUv" id="3uYXhT8ktK3" role="1tU5fm">
+                  <ref role="3uigEE" to="dush:~DataSource" resolve="DataSource" />
                 </node>
                 <node concept="2OqwBi" id="13uTNv4n28G" role="33vP2m">
                   <node concept="1eOMI4" id="13uTNv4n28H" role="2Oq$k0">
                     <node concept="10QFUN" id="13uTNv4n28I" role="1eOMHV">
-                      <node concept="3uibUv" id="13uTNv4n28J" role="10QFUM">
-                        <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+                      <node concept="3uibUv" id="3uYXhT8ksIW" role="10QFUM">
+                        <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
                       </node>
                       <node concept="37vLTw" id="13uTNv4n28K" role="10QFUP">
                         <ref role="3cqZAo" node="13uTNv4mTO4" resolve="model" />
@@ -5855,7 +5785,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="13uTNv4n28L" role="2OqNvi">
-                    <ref role="37wK5l" to="g3l6:~CustomPersistenceSModel.getSource()" resolve="getSource" />
+                    <ref role="37wK5l" to="g3l6:~SModelBase.getSource()" resolve="getSource" />
                   </node>
                 </node>
               </node>
@@ -5869,24 +5799,19 @@
                       <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                     </node>
                     <node concept="2OqwBi" id="13uTNv4nasp" role="33vP2m">
-                      <node concept="2OqwBi" id="13uTNv4oFpH" role="2Oq$k0">
-                        <node concept="2OqwBi" id="13uTNv4nasq" role="2Oq$k0">
-                          <node concept="1eOMI4" id="13uTNv4nasr" role="2Oq$k0">
-                            <node concept="10QFUN" id="13uTNv4nass" role="1eOMHV">
-                              <node concept="3uibUv" id="13uTNv4nast" role="10QFUM">
-                                <ref role="3uigEE" to="ends:~FileDataSource" resolve="FileDataSource" />
-                              </node>
-                              <node concept="37vLTw" id="13uTNv4nasu" role="10QFUP">
-                                <ref role="3cqZAo" node="13uTNv4n28F" resolve="source" />
-                              </node>
+                      <node concept="2OqwBi" id="13uTNv4nasq" role="2Oq$k0">
+                        <node concept="1eOMI4" id="13uTNv4nasr" role="2Oq$k0">
+                          <node concept="10QFUN" id="13uTNv4nass" role="1eOMHV">
+                            <node concept="3uibUv" id="3uYXhT8kt1U" role="10QFUM">
+                              <ref role="3uigEE" node="6gadshXrOh5" resolve="RecursiveFolderDataSource" />
+                            </node>
+                            <node concept="37vLTw" id="13uTNv4nasu" role="10QFUP">
+                              <ref role="3cqZAo" node="13uTNv4n28F" resolve="source" />
                             </node>
                           </node>
-                          <node concept="liA8E" id="13uTNv4nasv" role="2OqNvi">
-                            <ref role="37wK5l" to="ends:~FileDataSource.getFile()" resolve="getFile" />
-                          </node>
                         </node>
-                        <node concept="liA8E" id="13uTNv4oFTZ" role="2OqNvi">
-                          <ref role="37wK5l" to="3ju5:~IFile.getParent()" resolve="getParent" />
+                        <node concept="liA8E" id="3uYXhT8kt_x" role="2OqNvi">
+                          <ref role="37wK5l" node="4NrFWh6BoOI" resolve="getRootFolder" />
                         </node>
                       </node>
                       <node concept="liA8E" id="13uTNv4oGb8" role="2OqNvi">
@@ -5895,30 +5820,39 @@
                     </node>
                   </node>
                 </node>
-                <node concept="3clFbH" id="13uTNv4nbYV" role="3cqZAp" />
                 <node concept="3cpWs6" id="13uTNv4nche" role="3cqZAp">
-                  <node concept="3cpWs3" id="13uTNv4ne2g" role="3cqZAk">
-                    <node concept="3cpWs3" id="13uTNv4nd0P" role="3uHU7B">
-                      <node concept="37vLTw" id="13uTNv4ncx8" role="3uHU7B">
-                        <ref role="3cqZAo" node="13uTNv4naso" resolve="root" />
-                      </node>
-                      <node concept="Xl_RD" id="13uTNv4ndjb" role="3uHU7w">
-                        <property role="Xl_RC" value="/" />
-                      </node>
-                    </node>
+                  <node concept="3cpWs3" id="3uYXhT8k_nj" role="3cqZAk">
                     <node concept="1rXfSq" id="13uTNv4mRCp" role="3uHU7w">
                       <ref role="37wK5l" node="13uTNv4o966" resolve="getExtension" />
                       <node concept="37vLTw" id="13uTNv4oay8" role="37wK5m">
                         <ref role="3cqZAo" node="13uTNv4mj3R" resolve="rootNode" />
                       </node>
                     </node>
+                    <node concept="3cpWs3" id="3uYXhT8k_Um" role="3uHU7B">
+                      <node concept="Xl_RD" id="3uYXhT8kA2Y" role="3uHU7w">
+                        <property role="Xl_RC" value="." />
+                      </node>
+                      <node concept="3cpWs3" id="13uTNv4ne2g" role="3uHU7B">
+                        <node concept="3cpWs3" id="13uTNv4nd0P" role="3uHU7B">
+                          <node concept="37vLTw" id="13uTNv4ncx8" role="3uHU7B">
+                            <ref role="3cqZAo" node="13uTNv4naso" resolve="root" />
+                          </node>
+                          <node concept="Xl_RD" id="13uTNv4ndjb" role="3uHU7w">
+                            <property role="Xl_RC" value="/" />
+                          </node>
+                        </node>
+                        <node concept="37vLTw" id="3uYXhT8k_yM" role="3uHU7w">
+                          <ref role="3cqZAo" node="4Bo2W45lRAe" resolve="fileName" />
+                        </node>
+                      </node>
+                    </node>
                   </node>
                 </node>
               </node>
               <node concept="17R0WA" id="13uTNv4n7IH" role="3clFbw">
-                <node concept="10M0yZ" id="13uTNv4n88U" role="3uHU7w">
-                  <ref role="1PxDUh" node="537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                  <ref role="3cqZAo" node="49FXEugFoZS" resolve="DST" />
+                <node concept="10M0yZ" id="3uYXhT8kzKo" role="3uHU7w">
+                  <ref role="3cqZAo" node="6gadshXAvB6" resolve="TYPE" />
+                  <ref role="1PxDUh" node="6gadshXrOh5" resolve="RecursiveFolderDataSource" />
                 </node>
                 <node concept="2OqwBi" id="13uTNv4n7j_" role="3uHU7B">
                   <node concept="37vLTw" id="13uTNv4n7d3" role="2Oq$k0">
@@ -5932,8 +5866,8 @@
             </node>
           </node>
           <node concept="2ZW3vV" id="13uTNv4mZWA" role="3clFbw">
-            <node concept="3uibUv" id="13uTNv4n0nw" role="2ZW6by">
-              <ref role="3uigEE" to="g3l6:~CustomPersistenceSModel" resolve="CustomPersistenceSModel" />
+            <node concept="3uibUv" id="3uYXhT8ksI7" role="2ZW6by">
+              <ref role="3uigEE" node="6gadshXBR2S" resolve="CustomPersistenceModelWithHeader0" />
             </node>
             <node concept="37vLTw" id="13uTNv4mZBU" role="2ZW6bz">
               <ref role="3cqZAo" node="13uTNv4mTO4" resolve="model" />
@@ -7070,6 +7004,21 @@
       </node>
       <node concept="3Tm1VV" id="6gadshXrOA$" role="1B3o_S" />
     </node>
+    <node concept="2tJIrI" id="4NrFWh6Bfk2" role="jymVt" />
+    <node concept="3clFb_" id="4NrFWh6BoOI" role="jymVt">
+      <property role="TrG5h" value="getRootFolder" />
+      <node concept="3clFbS" id="4NrFWh6BoOL" role="3clF47">
+        <node concept="3cpWs6" id="4NrFWh6BteZ" role="3cqZAp">
+          <node concept="37vLTw" id="4NrFWh6BtfR" role="3cqZAk">
+            <ref role="3cqZAo" node="6gadshXrO_$" resolve="myFolder" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="4NrFWh6Bk9y" role="1B3o_S" />
+      <node concept="3uibUv" id="4NrFWh6Bob0" role="3clF45">
+        <ref role="3uigEE" to="3ju5:~IFile" resolve="IFile" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="6gadshXxu7z" role="jymVt" />
     <node concept="3clFb_" id="6gadshXrOA_" role="jymVt">
       <property role="TrG5h" value="checkFolderExistsAndItIsFolder" />
@@ -7805,11 +7754,8 @@
       </node>
       <node concept="3clFbS" id="6gadshXrOFm" role="3clF47">
         <node concept="3cpWs6" id="6gadshXrOFn" role="3cqZAp">
-          <node concept="2OqwBi" id="6gadshXrOFo" role="3cqZAk">
-            <node concept="Xjq3P" id="6gadshXrOFp" role="2Oq$k0" />
-            <node concept="2OwXpG" id="6gadshXrOFq" role="2OqNvi">
-              <ref role="2Oxat5" node="6gadshXrO_$" resolve="myFolder" />
-            </node>
+          <node concept="37vLTw" id="4NrFWh6B7ew" role="3cqZAk">
+            <ref role="3cqZAo" node="6gadshXrO_$" resolve="myFolder" />
           </node>
         </node>
       </node>

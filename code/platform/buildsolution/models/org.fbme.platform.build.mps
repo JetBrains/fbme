@@ -259,6 +259,24 @@
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.ide.platform" />
         <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
+        <node concept="3rtmxn" id="3ZIdPazw4gS" role="3bR31x">
+          <node concept="3LXTmp" id="3ZIdPazw4gU" role="3rtmxm">
+            <node concept="55IIr" id="3ZIdPazw4gW" role="3LXTmr">
+              <node concept="2Ry0Ak" id="3ZIdPazw4hm" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="3ZIdPazw4hp" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                  <node concept="2Ry0Ak" id="3ZIdPazwoMu" role="2Ry0An">
+                    <property role="2Ry0Am" value="source_gen" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="3ZIdPazwoMA" role="3LXTna">
+              <property role="3qWCbO" value="**/*.png" />
+            </node>
+          </node>
+        </node>
         <node concept="3rtmxn" id="qjx41CDwI6" role="3bR31x">
           <node concept="3LXTmp" id="qjx41CDwI8" role="3rtmxm">
             <node concept="55IIr" id="qjx41CDwIa" role="3LXTmr">
@@ -270,7 +288,7 @@
               </node>
             </node>
             <node concept="3qWCbU" id="qjx41CDwIA" role="3LXTna">
-              <property role="3qWCbO" value="icons/**, startup.properties" />
+              <property role="3qWCbO" value="startup.properties" />
             </node>
           </node>
         </node>

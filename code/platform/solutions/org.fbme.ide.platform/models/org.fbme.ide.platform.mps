@@ -700,5 +700,30 @@
   <node concept="2DaZZR" id="4sMntFAig8l">
     <property role="3_H9TB" value="true" />
   </node>
+  <node concept="2uRRBy" id="1UP38w$52rt">
+    <property role="TrG5h" value="FBME Watchers" />
+    <node concept="2uRRBT" id="1UP38w$52ru" role="2uRRB$">
+      <node concept="3clFbS" id="1UP38w$52rv" role="2VODD2">
+        <node concept="3clFbF" id="1UP38w$52WR" role="3cqZAp">
+          <node concept="2YIFZM" id="1UP38w$52Xh" role="3clFbG">
+            <ref role="37wK5l" to="6w4o:~WatcherFacade.register(jetbrains.mps.project.Project)" resolve="register" />
+            <ref role="1Pybhc" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+            <node concept="1KvdUw" id="1UP38w$52XD" role="37wK5m" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2uRRBN" id="1UP38w$530R" role="2uRRB_">
+      <node concept="3clFbS" id="1UP38w$530S" role="2VODD2">
+        <node concept="3clFbF" id="1UP38w$537F" role="3cqZAp">
+          <node concept="2YIFZM" id="1UP38w$538d" role="3clFbG">
+            <ref role="37wK5l" to="6w4o:~WatcherFacade.unregister(jetbrains.mps.project.Project)" resolve="unregister" />
+            <ref role="1Pybhc" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+            <node concept="1KvdUw" id="1UP38w$538A" role="37wK5m" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
 </model>
 

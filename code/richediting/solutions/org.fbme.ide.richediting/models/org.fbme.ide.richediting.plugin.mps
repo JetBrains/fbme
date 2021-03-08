@@ -1926,8 +1926,8 @@
               </node>
               <node concept="liA8E" id="6Vznkw4jhHo" role="2OqNvi">
                 <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
-                <node concept="37vLTw" id="6Vznkw4jhOg" role="37wK5m">
-                  <ref role="3cqZAo" node="44qSI5$Vju$" resolve="node" />
+                <node concept="37vLTw" id="5Gh60aH$NKK" role="37wK5m">
+                  <ref role="3cqZAo" node="42vv4xsG7__" resolve="deviceNode" />
                 </node>
                 <node concept="3VsKOn" id="6Vznkw4jhXM" role="37wK5m">
                   <ref role="3VsUkX" to="cwd8:~DeviceDeclaration" resolve="DeviceDeclaration" />
