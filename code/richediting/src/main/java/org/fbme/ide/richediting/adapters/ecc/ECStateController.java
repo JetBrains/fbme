@@ -17,6 +17,8 @@ import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.fb.DiagramColors;
 import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
@@ -26,12 +28,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Function;
 
 public class ECStateController implements ComponentController<Point> {
     private final StateCell myStateNameCell;
     private final EditorCell_Collection myCellCollection;
+    private final AlgorithmCell myAlgorithmCell;
+//    private final ArrayList<AlgorithmCell> myAlgorithmCells;
 
     private final StateDeclaration myState;
 
@@ -40,15 +45,22 @@ public class ECStateController implements ComponentController<Point> {
     public ECStateController(EditorContext context, StateDeclaration state) {
         myState = state;
         myEditable = true;
+//        myAlgorithmCells = new ArrayList<AlgorithmCell>();
         SNode node = ((PlatformElement) myState).getNode();
         myCellCollection = createRootCell(context, node);
         myStateNameCell = createStateCell(context, node);
         myCellCollection.addEditorCell(myStateNameCell);
-//        if (myState.getActions().size() == 1) {
-//            String text = myState.getActions().get(0).getAlgorithm().getTarget().getName();
-//            AlgorithmCell cell = new AlgorithmCell(context, node, text);
-//            myCellCollection.addEditorCell(cell);
-//        }
+        AlgorithmCell cell = null;
+        if (myState.getActions().size() >= 1) {
+            AlgorithmDeclaration target = myState.getActions().get(0).getAlgorithm().getTarget();
+            String text = "";
+            if (target != null) {
+                text = target.getName();
+            }
+            cell = new AlgorithmCell(context, node, text);
+            myCellCollection.addEditorCell(cell);
+        }
+        myAlgorithmCell = cell;
 //        for (StateAction action : myState.getActions()) {
 //            String text = action.getAlgorithm().getPresentation();
 //            AlgorithmCell cell = new AlgorithmCell(context, node, text);
@@ -73,9 +85,22 @@ public class ECStateController implements ComponentController<Point> {
 
     public void relayout() {
         myStateNameCell.relayout();
-        myCellCollection.setWidth(myStateNameCell.getWidth());
-        myCellCollection.setHeight(getLineSize());
+
+        int padding = 2;
+        int width = myStateNameCell.getWidth();
+        int height = getLineSize();
+        if (myAlgorithmCell != null) {
+            myAlgorithmCell.relayout();
+            width =  Math.max(width, myAlgorithmCell.getWidth());
+            height += myAlgorithmCell.getHeight();
+        }
+        myCellCollection.setWidth(width);
+        myCellCollection.setHeight(height);
+
         myStateNameCell.moveTo(myCellCollection.getX() + myStateNameCell.getWidth() / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY());
+        if (myAlgorithmCell != null) {
+            myAlgorithmCell.moveTo(myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY() + myStateNameCell.getHeight() + padding);
+        }
     }
 
     private int getLineSize() {
@@ -136,7 +161,6 @@ public class ECStateController implements ComponentController<Point> {
             }
 
             public void setText(String text) {
-                // надо бы менять еще во всех transitions??
                 myState.setName(text == null ? "" : text);
             }
 
@@ -170,8 +194,15 @@ public class ECStateController implements ComponentController<Point> {
             EntryKind entryKind = EntryKind.DATA;
             getStyle().set(StyleAttributes.TEXT_COLOR, DiagramColors.getColorFor(entryKind, false));
             getStyle().set(StyleAttributes.BACKGROUND_COLOR, new Color(159, 219, 177));
+            setPadding(0.5, Measure.SPACES);
             myNameText = new TextLine(text, getStyle(), false);
             relayoutImpl();
+        }
+
+        private void setPadding(double value, Measure measure) {
+            getStyle().set(StyleAttributes.PADDING_LEFT, new Padding(value, measure));
+            getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.1 * value, measure));
+            getStyle().set(StyleAttributes.PADDING_RIGHT, new Padding(value, measure));
         }
 
         @Override
