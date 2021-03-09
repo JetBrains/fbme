@@ -5,19 +5,13 @@ import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.Measure;
 import jetbrains.mps.editor.runtime.style.Padding;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
-import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
 import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
-import jetbrains.mps.openapi.editor.cells.CellActionType;
-import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.fb.DiagramColors;
-import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
-import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
-import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
@@ -35,8 +29,7 @@ import java.util.function.Function;
 public class ECStateController implements ComponentController<Point> {
     private final StateCell myStateNameCell;
     private final EditorCell_Collection myCellCollection;
-    private final AlgorithmCell myAlgorithmCell;
-//    private final ArrayList<AlgorithmCell> myAlgorithmCells;
+    private final ArrayList<AlgorithmCell> myAlgorithmCells;
 
     private final StateDeclaration myState;
 
@@ -45,27 +38,21 @@ public class ECStateController implements ComponentController<Point> {
     public ECStateController(EditorContext context, StateDeclaration state) {
         myState = state;
         myEditable = true;
-//        myAlgorithmCells = new ArrayList<AlgorithmCell>();
+        myAlgorithmCells = new ArrayList<>();
         SNode node = ((PlatformElement) myState).getNode();
         myCellCollection = createRootCell(context, node);
         myStateNameCell = createStateCell(context, node);
         myCellCollection.addEditorCell(myStateNameCell);
-        AlgorithmCell cell = null;
-        if (myState.getActions().size() >= 1) {
-            AlgorithmDeclaration target = myState.getActions().get(0).getAlgorithm().getTarget();
+        for (StateAction action : myState.getActions()) {
+            AlgorithmDeclaration target = action.getAlgorithm().getTarget();
             String text = "";
             if (target != null) {
                 text = target.getName();
             }
-            cell = new AlgorithmCell(context, node, text);
+            AlgorithmCell cell = new AlgorithmCell(context, node, text);
+            myAlgorithmCells.add(cell);
             myCellCollection.addEditorCell(cell);
         }
-        myAlgorithmCell = cell;
-//        for (StateAction action : myState.getActions()) {
-//            String text = action.getAlgorithm().getPresentation();
-//            AlgorithmCell cell = new AlgorithmCell(context, node, text);
-//            myCellCollection.addEditorCell(cell);
-//        }
         myCellCollection.setBig(true);
         relayout();
     }
@@ -89,17 +76,19 @@ public class ECStateController implements ComponentController<Point> {
         int padding = 2;
         int width = myStateNameCell.getWidth();
         int height = getLineSize();
-        if (myAlgorithmCell != null) {
-            myAlgorithmCell.relayout();
-            width =  Math.max(width, myAlgorithmCell.getWidth());
-            height += myAlgorithmCell.getHeight();
+        for (AlgorithmCell cell: myAlgorithmCells) {
+            cell.relayout();
+            width =  Math.max(width, cell.getWidth());
+            height += cell.getHeight();
         }
         myCellCollection.setWidth(width);
         myCellCollection.setHeight(height);
 
         myStateNameCell.moveTo(myCellCollection.getX() + myStateNameCell.getWidth() / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY());
-        if (myAlgorithmCell != null) {
-            myAlgorithmCell.moveTo(myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY() + myStateNameCell.getHeight() + padding);
+        int i = 1;
+        for (AlgorithmCell cell: myAlgorithmCells) {
+            cell.moveTo(myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY() + (myStateNameCell.getHeight() + padding) * i);
+            ++i;
         }
     }
 
@@ -225,13 +214,6 @@ public class ECStateController implements ComponentController<Point> {
         @Override
         protected void paintContent(Graphics graphics, ParentSettings settings) {
             Graphics2D g = (Graphics2D) graphics.create();
-
-//            int lineSize = getLineSize();
-//            int textWidth = myNameText.getWidth();
-//            Shape shape = getRectangle(lineSize, textWidth);
-//            myNameText.getPaddingLeft();
-//            g.setPaint(new Color(179, 240, 255));
-//            g.fill(shape);
             myNameText.paint(graphics, myX, myY, JBColor.BLACK);
         }
     }
