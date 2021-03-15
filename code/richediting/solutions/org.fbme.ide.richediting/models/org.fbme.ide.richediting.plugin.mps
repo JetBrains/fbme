@@ -414,6 +414,12 @@
       <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
         <child id="1178549979242" name="visibility" index="1B3o_S" />
       </concept>
+      <concept id="1144226303539" name="jetbrains.mps.baseLanguage.structure.ForeachStatement" flags="nn" index="1DcWWT">
+        <child id="1144226360166" name="iterable" index="1DdaDG" />
+      </concept>
+      <concept id="1144230876926" name="jetbrains.mps.baseLanguage.structure.AbstractForStatement" flags="nn" index="1DupvO">
+        <child id="1144230900587" name="variable" index="1Duv9x" />
+      </concept>
       <concept id="5351203823916750322" name="jetbrains.mps.baseLanguage.structure.TryUniversalStatement" flags="nn" index="3J1_TO">
         <child id="8276990574886367510" name="catchClause" index="1zxBo5" />
         <child id="8276990574886367508" name="body" index="1zxBo7" />
@@ -11734,7 +11740,118 @@
       <node concept="1oajcY" id="4qZmOK$M3aT" role="1oa70y" />
     </node>
     <node concept="tnohg" id="4qZmOK$LL_m" role="tncku">
-      <node concept="3clFbS" id="4qZmOK$LL_n" role="2VODD2" />
+      <node concept="3clFbS" id="4qZmOK$LL_n" role="2VODD2">
+        <node concept="3cpWs8" id="7ynUKacTHZ5" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacTHZ6" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="7ynUKacTHZ7" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacTHZ8" role="33vP2m">
+              <node concept="2OqwBi" id="7ynUKacTHZ9" role="2Oq$k0">
+                <node concept="2WthIp" id="7ynUKacTHZa" role="2Oq$k0" />
+                <node concept="1DTwFV" id="7ynUKacTHZb" role="2OqNvi">
+                  <ref role="2WH_rO" node="4qZmOK$M3aS" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="7ynUKacTHZc" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="7ynUKacTHZd" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacTHZe" role="3cpWs9">
+            <property role="TrG5h" value="network" />
+            <node concept="3uibUv" id="7ynUKacTHZf" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacTHZg" role="33vP2m">
+              <node concept="37vLTw" id="7ynUKacTHZh" role="2Oq$k0">
+                <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
+              </node>
+              <node concept="liA8E" id="7ynUKacTHZi" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="7ynUKacTHZj" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="7ynUKacTHZk" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacTHZl" role="3cpWs9">
+            <property role="TrG5h" value="fb" />
+            <node concept="3uibUv" id="7ynUKacTHZm" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacTHZn" role="33vP2m">
+              <node concept="37vLTw" id="7ynUKacTHZo" role="2Oq$k0">
+                <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
+              </node>
+              <node concept="liA8E" id="7ynUKacTHZp" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="7ynUKacTHZq" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="5XIiZbikUAc" role="3cqZAp" />
+        <node concept="3cpWs8" id="5XIiZbilof7" role="3cqZAp">
+          <node concept="3cpWsn" id="5XIiZbilofa" role="3cpWs9">
+            <property role="TrG5h" value="fbNetwork" />
+            <node concept="3uibUv" id="5XIiZbilof6" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+            </node>
+            <node concept="2YIFZM" id="5XIiZbil9U6" role="33vP2m">
+              <ref role="37wK5l" to="g27j:~FBNetwork.extractNetwork(org.fbme.lib.common.Declaration)" resolve="extractNetwork" />
+              <ref role="1Pybhc" to="g27j:~FBNetwork" resolve="FBNetwork" />
+              <node concept="37vLTw" id="5XIiZbil9UG" role="37wK5m">
+                <ref role="3cqZAo" node="7ynUKacTHZl" resolve="fb" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="5XIiZbilp9P" role="3cqZAp" />
+        <node concept="3cpWs8" id="5XIiZbiluDb" role="3cqZAp">
+          <node concept="3cpWsn" id="5XIiZbiluDc" role="3cpWs9">
+            <property role="TrG5h" value="declarations" />
+            <node concept="3uibUv" id="5XIiZbiluD9" role="1tU5fm">
+              <ref role="3uigEE" to="33ny:~List" resolve="List" />
+              <node concept="3uibUv" id="5XIiZbiluQF" role="11_B2D">
+                <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
+              </node>
+            </node>
+            <node concept="2OqwBi" id="5XIiZbilv1S" role="33vP2m">
+              <node concept="37vLTw" id="5XIiZbiluSU" role="2Oq$k0">
+                <ref role="3cqZAo" node="5XIiZbilofa" resolve="fbNetwork" />
+              </node>
+              <node concept="liA8E" id="5XIiZbilveU" role="2OqNvi">
+                <ref role="37wK5l" to="g27j:~FBNetwork.getContextComponents()" resolve="getContextComponents" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="5XIiZbilxbN" role="3cqZAp" />
+        <node concept="1DcWWT" id="5XIiZbil$Y8" role="3cqZAp">
+          <node concept="3clFbS" id="5XIiZbil$Ya" role="2LFqv$">
+            <node concept="3clFbH" id="5XIiZbil$Y9" role="3cqZAp" />
+          </node>
+          <node concept="3cpWsn" id="5XIiZbil$Yb" role="1Duv9x">
+            <property role="TrG5h" value="fbDeclaration" />
+            <node concept="3uibUv" id="5XIiZbil_ku" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
+            </node>
+          </node>
+          <node concept="37vLTw" id="5XIiZbilAna" role="1DdaDG">
+            <ref role="3cqZAo" node="5XIiZbiluDc" resolve="declarations" />
+          </node>
+        </node>
+      </node>
     </node>
   </node>
   <node concept="sE7Ow" id="4qZmOK$MA52">
@@ -11746,7 +11863,67 @@
       <node concept="1oajcY" id="4qZmOK$MA5p" role="1oa70y" />
     </node>
     <node concept="tnohg" id="4qZmOK$MA53" role="tncku">
-      <node concept="3clFbS" id="4qZmOK$MA54" role="2VODD2" />
+      <node concept="3clFbS" id="4qZmOK$MA54" role="2VODD2">
+        <node concept="3cpWs8" id="7ynUKacUdtp" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacUdtq" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="7ynUKacUdtr" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacUdts" role="33vP2m">
+              <node concept="2OqwBi" id="7ynUKacUdtt" role="2Oq$k0">
+                <node concept="2WthIp" id="7ynUKacUdtu" role="2Oq$k0" />
+                <node concept="1DTwFV" id="7ynUKacUdtv" role="2OqNvi">
+                  <ref role="2WH_rO" node="4qZmOK$MA5o" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="7ynUKacUdtw" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="7ynUKacUdtx" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacUdty" role="3cpWs9">
+            <property role="TrG5h" value="network" />
+            <node concept="3uibUv" id="7ynUKacUdtz" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacUdt$" role="33vP2m">
+              <node concept="37vLTw" id="7ynUKacUdt_" role="2Oq$k0">
+                <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
+              </node>
+              <node concept="liA8E" id="7ynUKacUdtA" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="7ynUKacUdtB" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="7ynUKacUdtC" role="3cqZAp">
+          <node concept="3cpWsn" id="7ynUKacUdtD" role="3cpWs9">
+            <property role="TrG5h" value="fb" />
+            <node concept="3uibUv" id="7ynUKacUdtE" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FunctionBlockDeclarationBase" resolve="FunctionBlockDeclarationBase" />
+            </node>
+            <node concept="2OqwBi" id="7ynUKacUdtF" role="33vP2m">
+              <node concept="37vLTw" id="7ynUKacUdtG" role="2Oq$k0">
+                <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
+              </node>
+              <node concept="liA8E" id="7ynUKacUdtH" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="7ynUKacUdtI" role="37wK5m">
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
   </node>
 </model>

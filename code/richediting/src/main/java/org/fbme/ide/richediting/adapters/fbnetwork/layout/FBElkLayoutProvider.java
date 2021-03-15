@@ -7,6 +7,7 @@ import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 import org.eclipse.elk.core.IGraphLayoutEngine;
 import org.eclipse.elk.core.data.ILayoutMetaDataProvider;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
+import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.util.NullElkProgressMonitor;
 import org.eclipse.elk.graph.*;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
@@ -36,7 +37,7 @@ public class FBElkLayoutProvider {
     private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
 
     private final IGraphLayoutEngine layoutEngine = new LayeredLayoutProvider(); // use RecursiveGraphLayoutEngine() for recursive graph
-    private final List<ILayoutMetaDataProvider> layoutProviders = Collections.singletonList(new LayeredMetaDataProvider());
+    private final List<ILayoutMetaDataProvider> layoutProviders = Arrays.asList(new CoreOptions(), new LayeredMetaDataProvider());
     private final FBElkProperties layoutPropertiesProvider = new FBElkProperties();
 
     public FBElkLayoutProvider(
@@ -97,20 +98,18 @@ public class FBElkLayoutProvider {
             node.setDimensions(componentBounds.getWidth(), componentBounds.getHeight());
 
             layoutPropertiesProvider.setNodeProperties(node);
-            double mid = componentBounds.getX() + componentBounds.getWidth() / 2;
 
             for (NetworkPortView componentPort : diagramController.getPorts(component)) {
                 PortController componentPortController = diagramController.getPortController(componentPort);
                 Rectangle componentPortBounds = componentPortController.getBounds();
 
                 ElkPort port = ElkGraphUtil.createPort(node);
-                port.setLocation(componentPortBounds.getX(), componentPortBounds.getY());
+                port.setLocation(componentPortBounds.getX() - componentBounds.getX(), componentPortBounds.getY() - componentBounds.getY());
                 port.setDimensions(componentPortBounds.getWidth(), componentPortBounds.getHeight());
-
                 if (componentPort instanceof InterfaceEndpointView) {
                     layoutPropertiesProvider.setPortProperties(port, ((InterfaceEndpointView) componentPort).isSource());
                 } else if (componentPort instanceof FunctionBlockPortView) {
-                    layoutPropertiesProvider.setPortProperties(port, componentPortBounds.getX() > mid);
+                    layoutPropertiesProvider.setPortProperties(port, ((FunctionBlockPortView) componentPort).isSource());
                 }
                 mapViewPort.put(componentPort, port);
             }

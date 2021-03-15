@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     implementation("org.eclipse.elk:org.eclipse.elk.alg.layered:0.7.1")
-    implementation("org.eclipse.elk:org.eclipse.elk.alg.spore:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.core:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.graph:0.7.1")
     implementation(mpsDistribution())
