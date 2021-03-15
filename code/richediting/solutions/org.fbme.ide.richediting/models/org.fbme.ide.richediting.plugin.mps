@@ -1466,6 +1466,12 @@
       <node concept="tCFHf" id="1eQRPVAXXv5" role="ftvYc">
         <ref role="tCJdB" node="5IF$9ECWQWX" resolve="Relayout" />
       </node>
+      <node concept="tCFHf" id="5ofREoX7Eki" role="ftvYc">
+        <ref role="tCJdB" node="4qZmOK$LL_l" resolve="Expand" />
+      </node>
+      <node concept="tCFHf" id="5ofREoX7El0" role="ftvYc">
+        <ref role="tCJdB" node="4qZmOK$MA52" resolve="Collapse" />
+      </node>
       <node concept="10WQ6h" id="1DfKejr796v" role="ftvYc">
         <property role="TrG5h" value="mapper" />
       </node>
@@ -11717,6 +11723,30 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="4qZmOK$LL_l">
+    <property role="TrG5h" value="Expand" />
+    <property role="2uzpH1" value="Expand" />
+    <node concept="1DS2jV" id="4qZmOK$M3aS" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="4qZmOK$M3aT" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="4qZmOK$LL_m" role="tncku">
+      <node concept="3clFbS" id="4qZmOK$LL_n" role="2VODD2" />
+    </node>
+  </node>
+  <node concept="sE7Ow" id="4qZmOK$MA52">
+    <property role="TrG5h" value="Collapse" />
+    <property role="2uzpH1" value="Collapse" />
+    <node concept="1DS2jV" id="4qZmOK$MA5o" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="4qZmOK$MA5p" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="4qZmOK$MA53" role="tncku">
+      <node concept="3clFbS" id="4qZmOK$MA54" role="2VODD2" />
     </node>
   </node>
 </model>
