@@ -24,6 +24,7 @@ public class FBElkProperties {
     public void setNodeProperties(ElkNode node) {
         node.setProperty(CoreOptions.PORT_CONSTRAINTS, PortConstraints.FIXED_POS);
         node.setProperty(LayeredMetaDataProvider.CROSSING_MINIMIZATION_STRATEGY, CrossingMinimizationStrategy.INTERACTIVE);
+        node.setProperty(CoreOptions.INSIDE_SELF_LOOPS_ACTIVATE, true);
     }
 
     public void setPortProperties(ElkPort port, boolean isSource) {

@@ -2,9 +2,9 @@ package org.fbme.ide.richediting.adapters.fbnetwork.layout;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.elk.alg.layered.LayeredLayoutProvider;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 import org.eclipse.elk.core.IGraphLayoutEngine;
+import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
 import org.eclipse.elk.core.data.ILayoutMetaDataProvider;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
@@ -36,7 +36,7 @@ public class FBElkLayoutProvider {
     private final ComponentSynchronizer<NetworkComponentView, Point> componentSynchronizer;
     private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
 
-    private final IGraphLayoutEngine layoutEngine = new LayeredLayoutProvider(); // use RecursiveGraphLayoutEngine() for recursive graph
+    private final IGraphLayoutEngine layoutEngine = new RecursiveGraphLayoutEngine();
     private final List<ILayoutMetaDataProvider> layoutProviders = Arrays.asList(new CoreOptions(), new LayeredMetaDataProvider());
     private final FBElkProperties layoutPropertiesProvider = new FBElkProperties();
 
@@ -58,8 +58,8 @@ public class FBElkLayoutProvider {
             LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
             Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
             Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
-            ElkNode root = createElkGraph(mapViewNode, mapViewPort);
-            layoutEngine.layout(root, new NullElkProgressMonitor());
+            ElkNode node = createElkGraph(mapViewNode, mapViewPort);
+            layoutEngine.layout(node, new NullElkProgressMonitor());
             applyLayout(mapViewNode, mapViewPort);
         } catch (Throwable t) {
             LOG.error("error when relayout");
@@ -67,13 +67,15 @@ public class FBElkLayoutProvider {
     }
 
     private ElkNode createElkGraph(Map<NetworkComponentView, ElkNode> mapViewNode, Map<NetworkPortView, ElkPort> mapViewPort) {
-        ElkNode node = ElkGraphUtil.createGraph();
-        layoutPropertiesProvider.setRootProperties(node);
+        ElkNode root = ElkGraphUtil.createGraph();
+        ElkNode node = ElkGraphUtil.createNode(root);
+        layoutPropertiesProvider.setNodeProperties(node);
+        layoutPropertiesProvider.setRootProperties(root);
 
         processComponents(node, mapViewNode, mapViewPort);
         processConnections(node, mapViewPort);
 
-        return node;
+        return root;
     }
 
     private void processConnections(ElkNode parent, Map<NetworkPortView, ElkPort> mapViewPort) {
@@ -93,6 +95,16 @@ public class FBElkLayoutProvider {
             Point componentPosition = componentsFacility.getModelForm(component);
             Rectangle componentBounds = componentController.getBounds(componentPosition);
 
+            if (component instanceof InterfaceEndpointView) {
+                InterfaceEndpointView endPoint = (InterfaceEndpointView) component;
+                ElkPort port = ElkGraphUtil.createPort(parent);
+                port.setLocation(endPoint.isSource() ? 0 : parent.getWidth(), endPoint.getPosition() * 10);
+                port.setDimensions(componentBounds.getWidth(), componentBounds.getHeight());
+                layoutPropertiesProvider.setPortProperties(port, !endPoint.isSource());
+                mapViewPort.put(endPoint, port);
+                continue;
+            }
+
             ElkNode node = ElkGraphUtil.createNode(parent);
             node.setLocation(componentBounds.getX(), componentBounds.getY());
             node.setDimensions(componentBounds.getWidth(), componentBounds.getHeight());
@@ -106,9 +118,7 @@ public class FBElkLayoutProvider {
                 ElkPort port = ElkGraphUtil.createPort(node);
                 port.setLocation(componentPortBounds.getX() - componentBounds.getX(), componentPortBounds.getY() - componentBounds.getY());
                 port.setDimensions(componentPortBounds.getWidth(), componentPortBounds.getHeight());
-                if (componentPort instanceof InterfaceEndpointView) {
-                    layoutPropertiesProvider.setPortProperties(port, ((InterfaceEndpointView) componentPort).isSource());
-                } else if (componentPort instanceof FunctionBlockPortView) {
+                if (componentPort instanceof FunctionBlockPortView) {
                     layoutPropertiesProvider.setPortProperties(port, ((FunctionBlockPortView) componentPort).isSource());
                 }
                 mapViewPort.put(componentPort, port);
@@ -124,8 +134,10 @@ public class FBElkLayoutProvider {
 
     private void applyNodeLayout(Map<NetworkComponentView, ElkNode> mapViewNode) {
         for (NetworkComponentView component : diagramController.getComponents()) {
-            ElkNode node = mapViewNode.get(component);
-            componentSynchronizer.setForm(component, new Point((int) node.getX(), (int) node.getY()));
+            if (component instanceof FunctionBlockView) {
+                ElkNode node = mapViewNode.get(component);
+                componentSynchronizer.setForm(component, new Point((int) node.getX(), (int) node.getY()));
+            }
         }
     }
 
