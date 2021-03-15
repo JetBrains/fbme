@@ -116,6 +116,8 @@ public final class FBNetworkEditors {
             DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<NetworkComponentView>(context.getRepository());
             final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<NetworkComponentView, Point>(scene, networkView.getComponentsView(), COMPONENT_CONTROLLER_FACTORY, new FBNetworkComponentSynhcronizer(viewpoint, scale), componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer);
 
+            style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility);
+
             DeclarationsScope completionScope = repository.getDeclarationScopeFor(model);
             IEC61499Factory factory = repository.getIEC61499Factory();
             SceneCompletionProvider provider = new CompletionProviderByViewpoint(viewpoint, () -> getCompletion(completionScope, factory, networkDeclaration, scale));
@@ -154,6 +156,8 @@ public final class FBNetworkEditors {
             DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility =
                     new DiagramFacility<>(networkView.getDiagramView(), portSettings, diagramComponentSettings);
 
+            style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility);
+
             ROLayoutModel<NetworkComponentView> extendedLayout = new ExtendedLayoutModel<>(
                     componentsLayout,
                     (view, compPosition) -> ((InlineValueController) inlineValuesFacility.getController(view)).getCoordinates(compPosition),
@@ -166,6 +170,7 @@ public final class FBNetworkEditors {
                             scene, CONNECTION_CONTROLLER_FACTORY, FBConnectionUtils.getPathFactory(style), FBConnectionUtils.getPathPainter(style),
                             new FBConnectionPathSyncronizer(viewpoint, scale), extendedLayout, componentsSelection, diagramFacility.getDiagramController(), connectionsLayer, tracesLayer, focus
                     );
+            style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility);
 
             Function<NetworkConnectionView, FBConnectionController> connectionProvider = it -> (FBConnectionController) connectionsFacility.getController(it);
 

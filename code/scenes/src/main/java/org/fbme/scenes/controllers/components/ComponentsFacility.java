@@ -131,6 +131,10 @@ public class ComponentsFacility<CompT, FormT> {
         return myComponents.get(component).myTransformedForm;
     }
 
+    public ComponentSynchronizer<CompT, FormT> getComponentSyncronizer() {
+        return myComponentSyncronizer;
+    }
+
     private class MyLayouter implements SceneLayouter {
 
         @Override
