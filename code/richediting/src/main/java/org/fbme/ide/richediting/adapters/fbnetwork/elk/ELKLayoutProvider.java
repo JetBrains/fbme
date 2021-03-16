@@ -1,5 +1,6 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
@@ -67,6 +68,32 @@ public class ELKLayoutProvider {
             applyLayout(mapViewNode, mapViewPort);
         } catch (Throwable t) {
             LOG.error("error when relayout");
+        }
+    }
+
+    public void expand(Set<NetworkComponentView> selectedComponents) {
+        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
+        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
+        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
+        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
+
+        for (NetworkComponentView selectedComponent : selectedComponents) {
+            if (selectedComponent instanceof FunctionBlockView) {
+                ((EditorCell_Collection) componentsFacility.getController(selectedComponent).getComponentCell()).unfold();
+            }
+        }
+    }
+
+    public void collapse(Set<NetworkComponentView> selectedComponents) {
+        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
+        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
+        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
+        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
+
+        for (NetworkComponentView selectedComponent : selectedComponents) {
+            if (selectedComponent instanceof FunctionBlockView) {
+                ((EditorCell_Collection) componentsFacility.getController(selectedComponent).getComponentCell()).fold();
+            }
         }
     }
 
