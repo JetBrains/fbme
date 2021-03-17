@@ -1,11 +1,13 @@
 package org.fbme.ide.richediting.adapters.fbnetwork;
 
-import com.intellij.ui.JBColor;
 import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
-import jetbrains.mps.nodeEditor.cells.*;
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
+import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
+import jetbrains.mps.nodeEditor.cells.ModelAccessor;
+import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
@@ -21,7 +23,6 @@ import org.fbme.scenes.controllers.components.ComponentController;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 import java.util.function.Function;
@@ -36,7 +37,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     private final boolean myEditable;
 
-    public FunctionBlockController(EditorContext context, final FunctionBlockView view) { //
+    public FunctionBlockController(EditorContext context, final FunctionBlockView view) {
         myView = view;
         myEditable = myView.isEditable();
         SNode node = view.getAssociatedNode();
@@ -58,18 +59,20 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
         myCellCollection = createRootCell(context, node);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
+        myCellCollection.setBig(true);
         relayout();
     }
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
         EditorCell_Collection foldedCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection cells) {
-                // assert cells == myCellCollection;
+            @Override
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {
                 relayout();
             }
 
-            public TextBuilder doLayoutText(Iterable<EditorCell> p0) {
-                return new TextBuilderImpl("folded");
+            @Override
+            public TextBuilder doLayoutText(Iterable<EditorCell> iterable) {
+                return new TextBuilderImpl();
             }
         }) {
 
@@ -85,41 +88,43 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
         EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
             @Override
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCell_collection) {
+            public boolean canBeFolded() {
+                return true;
+            }
+
+            @Override
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {
                 relayout();
             }
 
             @Override
             public TextBuilder doLayoutText(Iterable<EditorCell> iterable) {
-                return new TextBuilderImpl("foldable");
+                return new TextBuilderImpl();
+            }
+        }) {
+        };
+
+        foldableCell.setFoldable(true);
+        foldableCell.setFoldedCell(foldedCell);
+        foldableCell.setInitiallyCollapsed(true);
+
+        EditorCell_Collection expandedCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
+            @Override
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {}
+
+            @Override
+            public TextBuilder doLayoutText(Iterable<EditorCell> iterable) {
+                return new TextBuilderImpl();
             }
         }) {
             @Override
-            public boolean isInitiallyCollapsed() {
-                return true;
-            }
-
-            @Override
-            public boolean isFoldable() {
-                return true;
+            protected void paintContent(Graphics g, ParentSettings parentSettings) {
+                EditorCell_Collection parent = getParent();
+                g.drawRect(parent.getX(), parent.getY(), parent.getWidth(), parent.getHeight());
+                g.drawString("Node", parent.getX(), parent.getY());
             }
         };
-        foldableCell.setFoldedCell(foldedCell);
-
-        foldableCell.addEditorCell(new EditorCell_ComponentBase(context, node) {
-
-            @NotNull
-            @Override
-            public JComponent getComponent() {
-                return new JComponent() {
-                    @Override
-                    public void paint(Graphics g) {
-                        g.setColor(JBColor.GREEN);
-                        g.fillRect(30, 30, 100, 100);
-                    }
-                };
-            }
-        });
+        foldableCell.addEditorCell(expandedCell);
 
         return foldableCell;
     }
@@ -249,9 +254,5 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     private int getLineSize() {
         return LayoutUtil.getLineSize(myCellCollection.getStyle());
-    }
-
-    public void expandCell() {
-        myCellCollection.fold();
     }
 }
