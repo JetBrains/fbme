@@ -15,6 +15,7 @@ import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.richediting.RicheditingMpsBridge;
+import org.fbme.ide.richediting.adapters.fb.FBNetworkCellCreator;
 import org.fbme.ide.richediting.editor.RichEditorDataKeys;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility;
@@ -176,6 +177,8 @@ public final class FBNetworkEditors {
 
             new NetworkInspectionsFacility(networkView, networkInstance, scene, componentProvider, connectionProvider, extendedLayout, inspectionsLayer);
 
+            FBNetworkCellCreator networkCellCreator = new FBNetworkCellCreator(diagramFacility, componentsFacility, connectionsFacility);
+            networkCellCreator.createNetworkCellComponents();
         } catch (RuntimeException e) {
             LOG.error("Error during cell creation", e);
         }

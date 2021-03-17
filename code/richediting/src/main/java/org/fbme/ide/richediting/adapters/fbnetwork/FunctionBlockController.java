@@ -7,7 +7,6 @@ import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
 import jetbrains.mps.nodeEditor.cells.ModelAccessor;
-import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
@@ -107,24 +106,6 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         foldableCell.setFoldable(true);
         foldableCell.setFoldedCell(foldedCell);
         foldableCell.setInitiallyCollapsed(true);
-
-        EditorCell_Collection expandedCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
-            @Override
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {}
-
-            @Override
-            public TextBuilder doLayoutText(Iterable<EditorCell> iterable) {
-                return new TextBuilderImpl();
-            }
-        }) {
-            @Override
-            protected void paintContent(Graphics g, ParentSettings parentSettings) {
-                EditorCell_Collection parent = getParent();
-                g.drawRect(parent.getX(), parent.getY(), parent.getWidth(), parent.getHeight());
-                g.drawString("Node", parent.getX(), parent.getY());
-            }
-        };
-        foldableCell.addEditorCell(expandedCell);
 
         return foldableCell;
     }
