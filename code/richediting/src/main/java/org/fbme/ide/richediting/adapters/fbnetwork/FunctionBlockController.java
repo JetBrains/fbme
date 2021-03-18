@@ -11,14 +11,16 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import org.fbme.ide.richediting.adapters.fb.FBNetworkCellCreator;
 import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
-import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
-import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
-import org.fbme.ide.richediting.viewmodel.NetworkPortView;
+import org.fbme.ide.richediting.viewmodel.*;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
+import org.fbme.scenes.controllers.components.ComponentsFacility;
+import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
+import org.fbme.scenes.controllers.diagram.DiagramFacility;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -101,6 +103,18 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
                 return new TextBuilderImpl();
             }
         }) {
+            @Override
+            public void unfold() {
+                DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
+                ComponentsFacility<NetworkComponentView, Point> componentsFacility = getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
+                ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = getStyle().get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
+                FBNetworkCellCreator networkCellCreator = new FBNetworkCellCreator(diagramFacility, componentsFacility, connectionsFacility);
+
+                EditorCell_Collection networkCell = networkCellCreator.createNetworkCellComponent(context, node, myView);
+                addEditorCell(networkCell);
+
+                super.unfold();
+            }
         };
 
         foldableCell.setFoldable(true);
