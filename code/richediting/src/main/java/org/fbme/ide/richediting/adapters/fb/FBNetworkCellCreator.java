@@ -52,9 +52,8 @@ public class FBNetworkCellCreator {
         }) {
             @Override
             protected void paintContent(Graphics g, ParentSettings parentSettings) {
-                EditorCell_Collection parent = getParent();
-                g.drawRect(parent.getX(), parent.getY(), parent.getWidth(), parent.getHeight());
-                g.drawString("Node", parent.getX(), parent.getY());
+                g.drawRect(getX(), getY(), getWidth(), getHeight());
+                g.drawString("Node", getX(), getY());
             }
         };
 
