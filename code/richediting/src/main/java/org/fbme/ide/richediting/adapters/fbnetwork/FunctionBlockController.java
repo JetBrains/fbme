@@ -4,6 +4,7 @@ import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
+import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
 import jetbrains.mps.nodeEditor.cells.ModelAccessor;
@@ -80,40 +81,42 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             @Override
             public void onAdd() {
                 super.onAdd();
-                EditorCell_Collection parent = getParent();
+                EditorCell_Collection parent = getParent().getParent();
                 myFBCellComponent.getRootCell().setAction(CellActionType.BACKSPACE, parent.getAction(CellActionType.BACKSPACE));
             }
         };
         foldedCell.addEditorCell(myFBCellComponent.getRootCell());
         foldedCell.addEditorCell(myNameProperty);
 
-        EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
-            @Override
-            public boolean canBeFolded() {
-                return true;
-            }
+        EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
 
-            @Override
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {
-                relayout();
-            }
+            private boolean myNetworkCellInitialized = false;
 
-            @Override
-            public TextBuilder doLayoutText(Iterable<EditorCell> iterable) {
-                return new TextBuilderImpl();
-            }
-        }) {
             @Override
             public void unfold() {
+                if (myNetworkCellInitialized) {
+                    // unfolded cell already initialized
+                    return;
+                }
+
                 DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
                 ComponentsFacility<NetworkComponentView, Point> componentsFacility = getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
                 ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = getStyle().get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
                 FBNetworkCellCreator networkCellCreator = new FBNetworkCellCreator(diagramFacility, componentsFacility, connectionsFacility);
 
                 EditorCell_Collection networkCell = networkCellCreator.createNetworkCellComponent(context, node, myView);
+                networkCell.setWidth(foldedCell.getWidth());
+                networkCell.setHeight(foldedCell.getHeight());
+
                 addEditorCell(networkCell);
 
+                myNetworkCellInitialized = true;
                 super.unfold();
+            }
+
+            @Override
+            protected boolean isUnderFolded() {
+                return true;
             }
         };
 
@@ -240,8 +243,9 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         int width = Math.max(myNameProperty.getWidth(), fbCell.getWidth());
         int height = getLineSize() + fbCell.getHeight();
 
-        myCellCollection.setWidth(width);
-        myCellCollection.setHeight(height);
+        EditorCell foldedCell = myCellCollection.getCells()[0];
+        foldedCell.setWidth(width);
+        foldedCell.setHeight(height);
 
         myNameProperty.moveTo(myCellCollection.getX() + width / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
         fbCell.moveTo(myCellCollection.getX() + width / 2 - fbCell.getWidth() / 2, myCellCollection.getY() + getLineSize());
