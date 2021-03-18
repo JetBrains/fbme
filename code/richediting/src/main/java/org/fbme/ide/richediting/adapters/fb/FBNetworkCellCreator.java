@@ -9,7 +9,6 @@ import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
-import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
@@ -39,24 +38,7 @@ public class FBNetworkCellCreator {
         this.diagramController = diagramFacility.getDiagramController();
     }
 
-    public void createNetworkCellComponents() {
-        for (NetworkComponentView component : diagramController.getComponents()) {
-            if (component instanceof FunctionBlockView) {
-                FunctionBlockController controller = (FunctionBlockController) componentsFacility.getController(component);
-                EditorCell_Collection cell = (EditorCell_Collection) controller.getComponentCell();
-
-                EditorContext context = cell.getContext();
-                FunctionBlockView view = (FunctionBlockView) component;
-                SNode node = view.getAssociatedNode();
-
-                EditorCell_Collection networkCell = createNetworkCellComponent(context, node, view);
-
-                cell.addEditorCell(networkCell);
-            }
-        }
-    }
-
-    private EditorCell_Collection createNetworkCellComponent(EditorContext editorContext, SNode node, FunctionBlockView view) {
+    public EditorCell_Collection createNetworkCellComponent(EditorContext editorContext, SNode node, FunctionBlockView view) {
         EditorCell_Collection networkCell = new EditorCell_Collection(editorContext, node, new AbstractCellLayout() {
             @Override
             public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCell_collection) {
