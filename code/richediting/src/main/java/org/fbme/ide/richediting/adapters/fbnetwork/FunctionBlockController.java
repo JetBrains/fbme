@@ -96,6 +96,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             public void unfold() {
                 if (myNetworkCellInitialized) {
                     // unfolded cell already initialized
+                    super.unfold();
                     return;
                 }
 

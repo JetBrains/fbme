@@ -359,8 +359,12 @@ public class FBConnectionController implements ConnectionController<FBConnection
             int x2 = myOriginalPath.getX2();
 
             ConnectionPath.Kind kind = myOriginalPath.getPathKind();
+            if (kind == ConnectionPath.Kind.Straight) {
+                x1 = (t.x + s.x) /2;
+            }
 
             switch (kind) {
+                case Straight:
                 case TwoAngles:
                     if (ntx >= s.x + 2 * scale(ENDPOINTS_PADDING)) {
                         kind = ConnectionPath.Kind.TwoAngles;
@@ -420,7 +424,12 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
             ConnectionPath.Kind kind = myOriginalPath.getPathKind();
 
+            if (kind == ConnectionPath.Kind.Straight) {
+                x1 = (t.x + s.x) /2;
+            }
+
             switch (kind) {
+                case Straight:
                 case TwoAngles:
                     if (nsx <= t.x - 2 * scale(ENDPOINTS_PADDING)) {
                         kind = ConnectionPath.Kind.TwoAngles;
