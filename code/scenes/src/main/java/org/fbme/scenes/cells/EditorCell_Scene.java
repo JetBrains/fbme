@@ -582,7 +582,7 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
 
                 if (scene.myLayout == SceneLayout.WINDOWED) {
                     doRelayout(scene);
-                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
+//                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
                 } else {
                     Rectangle bounds = calculateBounds(scene);
                     updateViewport(scene, bounds);
@@ -646,7 +646,7 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
                 }
 
                 if (scene.myLayout == SceneLayout.WINDOWED) {
-                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
+//                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
                 }
             }
 
