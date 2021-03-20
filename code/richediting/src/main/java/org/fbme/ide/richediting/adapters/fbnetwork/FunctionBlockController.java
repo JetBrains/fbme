@@ -93,6 +93,12 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             private boolean myNetworkCellInitialized = false;
 
             @Override
+            protected void relayoutImpl() {
+                super.relayoutImpl();
+                FunctionBlockController.this.relayout();
+            }
+
+            @Override
             public void unfold() {
                 if (myNetworkCellInitialized) {
                     // unfolded cell already initialized
@@ -106,8 +112,8 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
                 FBNetworkCellCreator networkCellCreator = new FBNetworkCellCreator(diagramFacility, componentsFacility, connectionsFacility);
 
                 EditorCell_Collection networkCell = networkCellCreator.createNetworkCellComponent(context, node, myView);
-                networkCell.setWidth(foldedCell.getWidth());
-                networkCell.setHeight(foldedCell.getHeight());
+                networkCell.setWidth(500);
+                networkCell.setHeight(500);
 
                 addEditorCell(networkCell);
 
@@ -240,6 +246,13 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
         myNameProperty.relayout();
         fbCell.relayout();
+
+        if (!myCellCollection.isCollapsed()) {
+            fbCell.setX(myCellCollection.getX());
+            fbCell.setY(myCellCollection.getY());
+            fbCell.setWidth(myCellCollection.getWidth());
+            fbCell.setHeight(myCellCollection.getHeight());
+        }
 
         int width = Math.max(myNameProperty.getWidth(), fbCell.getWidth());
         int height = getLineSize() + fbCell.getHeight();

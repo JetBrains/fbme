@@ -13,16 +13,20 @@ import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.richediting.RicheditingMpsBridge;
 import org.fbme.ide.richediting.inspections.ECCInspectionsFacility;
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.IEC61499Factory;
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
+import org.fbme.lib.iec61499.instances.ECCInstance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.*;
 import org.fbme.scenes.controllers.components.ComponentControllerFactory;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.*;
+import org.fbme.scenes.controllers.diagram.ConnectionControllerFactory;
+import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
+import org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider;
+import org.fbme.scenes.controllers.diagram.DiagramFacility;
 import org.fbme.scenes.controllers.scene.*;
 import org.fbme.scenes.viewmodel.PositionalCompletionItem;
 import org.jetbrains.annotations.NotNull;
@@ -62,7 +66,9 @@ public class ECCEditors {
             DefaultLayoutModel<StateDeclaration> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
 
             final IEC61499Factory declarationFactory = repository.getIEC61499Factory();
-            final ECC ecc = repository.getAdapter(node, BasicFBTypeDeclaration.class).getEcc();
+            Declaration declaration = repository.getAdapter(node, Declaration.class);
+            @NotNull ECCInstance eccInstance = ECCInstance.createForDeclaration(declaration);
+            final ECC ecc = eccInstance.getECCDeclaration();
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
