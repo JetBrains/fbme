@@ -1,13 +1,16 @@
 package org.fbme.ide.richediting.adapters.fb;
 
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.EditorContext;
+import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
@@ -35,9 +38,16 @@ public class FBNetworkCellCreator {
         this.diagramController = diagramFacility.getDiagramController();
     }
 
-    public EditorCell_Collection createNetworkCellComponent(EditorContext editorContext, SNode node, FunctionBlockView view) {
-        EditorCell_Collection networkCell = new EditorCell_Scene(editorContext, node, SceneLayout.WINDOWED);
+    public EditorCell_Scene createNetworkCellComponent(EditorContext context, SNode node, FunctionBlockView view) {
+        Declaration fbTypeDeclaration = view.getComponent().getType().getDeclaration();
+        EditorCell_Scene scene = null;
+        if (fbTypeDeclaration instanceof BasicFBTypeDeclaration) {
+            scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED);
+        } else {
+            scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED);
+        }
+        scene.setCellId(scene.getSNode().getNodeId().toString());
 
-        return networkCell;
+        return scene;
     }
 }
