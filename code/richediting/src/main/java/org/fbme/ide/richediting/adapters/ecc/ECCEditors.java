@@ -19,6 +19,7 @@ import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
 import org.fbme.lib.iec61499.instances.ECCInstance;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.*;
 import org.fbme.scenes.controllers.components.ComponentControllerFactory;
@@ -40,7 +41,7 @@ import java.util.List;
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
 
-    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
+    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout, @Nullable Instance parent) {
         try {
             PlatformElementsOwner repository = PlatformRepositoryProvider.getInstance(context.getOperationContext().getProject());
             context.getOperationContext().getProject();
@@ -67,7 +68,7 @@ public class ECCEditors {
 
             final IEC61499Factory declarationFactory = repository.getIEC61499Factory();
             Declaration declaration = repository.getAdapter(node, Declaration.class);
-            @NotNull ECCInstance eccInstance = ECCInstance.createForDeclaration(declaration);
+            @NotNull ECCInstance eccInstance = ECCInstance.createForDeclaration(declaration, parent);
             final ECC ecc = eccInstance.getECCDeclaration();
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
@@ -105,6 +106,10 @@ public class ECCEditors {
             LOG.error("Error during cell creation", e);
             throw e;
         }
+    }
+
+    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
+        return createEccEditor(context, node, layout, null);
     }
 
     public static final ComponentControllerFactory<StateDeclaration, Point> STATE_CONTROLLER_FACTORY = (context, state) -> {

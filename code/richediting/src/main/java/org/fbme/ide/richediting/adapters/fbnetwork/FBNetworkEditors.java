@@ -26,6 +26,7 @@ import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.ParameterAssignment;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.cells.SceneStyleAttributes;
@@ -70,11 +71,17 @@ public final class FBNetworkEditors {
         return scene;
     }
 
-    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout) {
+    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout, @Nullable Instance parent) {
         EditorCell_Scene scene = new EditorCell_Scene(context, node, layout);
         PlatformElementsOwner repository = PlatformRepositoryProvider.getInstance(context.getOperationContext().getProject());
-        initializeSceneCell(scene, NetworkInstance.createForDeclaration(repository.getAdapter(node, Declaration.class)), context, layout);
+        Declaration declaration = repository.getAdapter(node, Declaration.class);
+        @NotNull NetworkInstance networkInstance = NetworkInstance.createForDeclaration(declaration, parent);
+        initializeSceneCell(scene, networkInstance, context, layout);
         return scene;
+    }
+
+    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout) {
+        return createFBNetworkCell(context, node, layout, null);
     }
 
     private static void initializeSceneCell(EditorCell_Scene scene, final NetworkInstance networkInstance, EditorContext context, SceneLayout layout) {
