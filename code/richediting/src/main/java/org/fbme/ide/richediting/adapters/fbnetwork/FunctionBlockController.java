@@ -12,16 +12,20 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
-import org.fbme.ide.richediting.adapters.fb.FBNetworkCellCreator;
+import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
-import org.fbme.ide.richediting.viewmodel.*;
+import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
+import org.fbme.ide.richediting.viewmodel.NetworkPortView;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
+import org.fbme.lib.iec61499.instances.NetworkInstance;
+import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
-import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
-import org.fbme.scenes.controllers.diagram.DiagramFacility;
+import org.fbme.scenes.controllers.scene.SceneLayout;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -90,7 +94,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
         EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
 
-            private boolean myNetworkCellInitialized = false;
+            private boolean myUnfoldedCellInitialized = false;
 
             @Override
             protected void relayoutImpl() {
@@ -100,25 +104,31 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
             @Override
             public void unfold() {
-                if (myNetworkCellInitialized) {
+                if (myUnfoldedCellInitialized) {
                     // unfolded cell already initialized
                     super.unfold();
                     return;
                 }
+                addEditorCell(createUnfoldedCell());
+                myUnfoldedCellInitialized = true;
 
-                DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
-                ComponentsFacility<NetworkComponentView, Point> componentsFacility = getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
-                ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = getStyle().get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
-                FBNetworkCellCreator networkCellCreator = new FBNetworkCellCreator(diagramFacility, componentsFacility, connectionsFacility);
-
-                EditorCell_Collection networkCell = networkCellCreator.createNetworkCellComponent(context, node, myView);
-                networkCell.setWidth(500);
-                networkCell.setHeight(500);
-
-                addEditorCell(networkCell);
-
-                myNetworkCellInitialized = true;
                 super.unfold();
+            }
+
+            private EditorCell_Scene createUnfoldedCell() {
+                NetworkInstance networkInstance = getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
+                EditorCell_Scene scene = null;
+                Declaration fbTypeDeclaration = myView.getComponent().getType().getDeclaration();
+                if (fbTypeDeclaration instanceof BasicFBTypeDeclaration) {
+                    scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, networkInstance);
+                } else {
+                    scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, networkInstance);
+                }
+                scene.setCellId(scene.getSNode().getNodeId().toString());
+                scene.setWidth(500);
+                scene.setHeight(500);
+
+                return scene;
             }
 
             @Override
