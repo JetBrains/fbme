@@ -38,6 +38,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     private final EditorCell_Property myNameProperty;
     private final FBTypeCellComponent myFBCellComponent;
     private final EditorCell_Collection myCellCollection;
+    private final EditorCell_Collection myFoldedCell;
 
     private final FunctionBlockView myView;
 
@@ -47,7 +48,17 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         myView = view;
         myEditable = myView.isEditable();
         SNode node = view.getAssociatedNode();
-        myFBCellComponent = new FBTypeCellComponent(context, view.getType(), node, myEditable);
+        myFBCellComponent = new FBTypeCellComponent(context, view.getType(), node, myEditable) {
+            @Override
+            public void calculateSizes() {
+                if (myCellCollection.isCollapsed()) {
+                    super.calculateSizes();
+                } else {
+                    getRootCell().setWidth(myCellCollection.getWidth());
+                    getRootCell().setHeight(myCellCollection.getHeight());
+                }
+            }
+        };
         myNameProperty = new EditorCell_Property(context, new ModelAccessor() {
             public String getText() {
                 String name = view.getComponent().getName();
@@ -63,13 +74,14 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             }
         }, node);
         myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
-        myCellCollection = createRootCell(context, node);
+        myFoldedCell = createFoldedCell(context, node);
+        myCellCollection = createRootCell(context, node, myFoldedCell);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
         myCellCollection.setBig(true);
         relayout();
     }
 
-    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
+    private EditorCell_Collection createFoldedCell(EditorContext context, SNode node) {
         EditorCell_Collection foldedCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
             @Override
             public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {
@@ -92,6 +104,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         foldedCell.addEditorCell(myFBCellComponent.getRootCell());
         foldedCell.addEditorCell(myNameProperty);
 
+        return foldedCell;
+    }
+
+    private EditorCell_Collection createRootCell(EditorContext context, SNode node, EditorCell foldedCell) {
         EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
 
             private boolean myUnfoldedCellInitialized = false;
@@ -257,19 +273,13 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         myNameProperty.relayout();
         fbCell.relayout();
 
-        if (!myCellCollection.isCollapsed()) {
-            fbCell.setX(myCellCollection.getX());
-            fbCell.setY(myCellCollection.getY());
-            fbCell.setWidth(myCellCollection.getWidth());
-            fbCell.setHeight(myCellCollection.getHeight());
-        }
+        myFBCellComponent.calculateSizes();
 
         int width = Math.max(myNameProperty.getWidth(), fbCell.getWidth());
         int height = getLineSize() + fbCell.getHeight();
 
-        EditorCell foldedCell = myCellCollection.getCells()[0];
-        foldedCell.setWidth(width);
-        foldedCell.setHeight(height);
+        myFoldedCell.setWidth(width);
+        myFoldedCell.setHeight(height);
 
         myNameProperty.moveTo(myCellCollection.getX() + width / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
         fbCell.moveTo(myCellCollection.getX() + width / 2 - fbCell.getWidth() / 2, myCellCollection.getY() + getLineSize());

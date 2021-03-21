@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public final class FBTypeCellComponent {
+public class FBTypeCellComponent {
 
     private static final int PORT_SIZE = 4;
 
@@ -73,7 +73,7 @@ public final class FBTypeCellComponent {
         initPorts(context, node, myPlugPortTexts, fbType.getPlugPorts());
     }
 
-    private void calculateSizes() {
+    public void calculateSizes() {
         myCellCollection.setWidth(calculateWidth());
         myCellCollection.setHeight(calculateHeight());
     }
