@@ -212,10 +212,15 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         getRootCell().setHeight(calculateHeight());
     }
 
-    private void paint(Graphics2D g) {
+    private void paint(Graphics2D graphics) {
         Color background = getBackgroundColor();
         Color foreground = getForegroundColor();
 
+        drawComponentShape(graphics, background, foreground);
+        drawAllPortIcons(graphics, foreground);
+    }
+
+    private void drawComponentShape(Graphics2D graphics, Color background, Color foreground) {
         int x = getRootCell().getX();
         int y = getRootCell().getY();
         int lineSize = getLineSize();
@@ -223,30 +228,15 @@ public final class FBTypeCellComponent extends AbstractFBCell {
 
         GeneralPath shape = getComponentShape(x, y);
         Shape shadowShape = shape.createTransformedShape(AffineTransform.getTranslateInstance(2, 2));
-        g.setPaint(new Color(0xEEEEEE));
-        g.fill(shadowShape);
-        g.setPaint(DiagramColors.createGradientPaint(background, new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
-        g.fill(shape);
-        g.setPaint(DiagramColors.createGradientPaint(getTypeBackgroundColor(), new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
-        g.fill(new Rectangle(x + scale(PORT_SIZE), typeNameY, getRootCell().getWidth() - 2 * scale(PORT_SIZE), lineSize));
-        g.setStroke(new BasicStroke(scale(1)));
-        g.setColor(foreground);
-        g.draw(shape);
-
-        int topEventsY = y;
-        drawPortIcons(inputEventPorts, g, x, topEventsY, foreground);
-        drawPortIcons(outputEventPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, foreground);
-
-        int topDatasY = typeNameY + lineSize;
-        drawPortIcons(inputDataPorts, g, x, topDatasY, foreground);
-        drawPortIcons(outputDataPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, foreground);
-
-        int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
-        int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
-
-        drawPortIcons(socketPorts, g, x, topSocketY, foreground);
-        drawPortIcons(plugPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, foreground);
-        g.setStroke(new BasicStroke());
+        graphics.setPaint(new Color(0xEEEEEE));
+        graphics.fill(shadowShape);
+        graphics.setPaint(DiagramColors.createGradientPaint(background, new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
+        graphics.fill(shape);
+        graphics.setPaint(DiagramColors.createGradientPaint(getTypeBackgroundColor(), new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
+        graphics.fill(new Rectangle(x + scale(PORT_SIZE), typeNameY, getRootCell().getWidth() - 2 * scale(PORT_SIZE), lineSize));
+        graphics.setStroke(new BasicStroke(scale(1)));
+        graphics.setColor(foreground);
+        graphics.draw(shape);
     }
 
     private GeneralPath getComponentShape(int x, int y) {

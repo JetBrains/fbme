@@ -48,26 +48,7 @@ public final class FBSceneCell extends AbstractFBCell {
         Layer layer = scene.createLayer(5f);
         scene.addPainter(layer, graphics -> {
             Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
-
-            int x = getRootCell().getX();
-            int y = getRootCell().getY();
-            int lineSize = getLineSize();
-            int typeNameY = y + (getEventPortsCount() + 1) * lineSize;
-
-            int topEventsY = y;
-            drawPortIcons(inputEventPorts, graphics, x, topEventsY, foreground);
-            drawPortIcons(outputEventPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, foreground);
-
-            int topDatasY = typeNameY + lineSize;
-            drawPortIcons(inputDataPorts, graphics, x, topDatasY, foreground);
-            drawPortIcons(outputDataPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, foreground);
-
-            int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
-            int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
-
-            drawPortIcons(socketPorts, graphics, x, topSocketY, foreground);
-            drawPortIcons(plugPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, foreground);
-            graphics.setStroke(new BasicStroke());
+            drawAllPortIcons(graphics, foreground);
         });
 
         scene.setCellId(scene.getSNode().getNodeId().toString());
