@@ -187,7 +187,7 @@ public class FBTypeTemplateCellComponent {
         }
 
         private int getBottomPortsCount(boolean input) {
-            return input ? myFBCellComponent.getInputBottomPortsCount() : myFBCellComponent.getOutputBootomPortsCount();
+            return input ? myFBCellComponent.getInputBottomPortsCount() : myFBCellComponent.getOutputBottomPortsCount();
         }
 
         private int getDataPortPosition(boolean input, int number, int offsetY) {

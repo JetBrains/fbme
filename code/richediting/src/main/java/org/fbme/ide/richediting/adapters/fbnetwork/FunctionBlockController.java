@@ -12,20 +12,17 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
-import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
+import org.fbme.ide.richediting.adapters.fb.FBCell;
+import org.fbme.ide.richediting.adapters.fb.FBSceneCell;
 import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
-import org.fbme.lib.common.Declaration;
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
-import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
-import org.fbme.scenes.controllers.scene.SceneLayout;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -34,31 +31,21 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public class FunctionBlockController implements ComponentController<Point>, FBNetworkComponentController {
-
     private final EditorCell_Property myNameProperty;
-    private final FBTypeCellComponent myFBCellComponent;
     private final EditorCell_Collection myCellCollection;
     private final EditorCell_Collection myFoldedCell;
-
     private final FunctionBlockView myView;
-
     private final boolean myEditable;
+    private FBCell myFBCell;
+    private FBTypeCellComponent myFoldedFBCell;
+    private FBSceneCell myUnfoldedFBCell;
 
     public FunctionBlockController(EditorContext context, final FunctionBlockView view) {
         myView = view;
         myEditable = myView.isEditable();
         SNode node = view.getAssociatedNode();
-        myFBCellComponent = new FBTypeCellComponent(context, view.getType(), node, myEditable) {
-            @Override
-            public void calculateSizes() {
-                if (myCellCollection.isCollapsed()) {
-                    super.calculateSizes();
-                } else {
-                    getRootCell().setWidth(myCellCollection.getWidth());
-                    getRootCell().setHeight(myCellCollection.getHeight());
-                }
-            }
-        };
+        myFoldedFBCell = new FBTypeCellComponent(context, myView.getType(), node, myEditable);
+        myFBCell = myFoldedFBCell;
         myNameProperty = new EditorCell_Property(context, new ModelAccessor() {
             public String getText() {
                 String name = view.getComponent().getName();
@@ -75,7 +62,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         }, node);
         myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
         myFoldedCell = createFoldedCell(context, node);
-        myCellCollection = createRootCell(context, node, myFoldedCell);
+        myCellCollection = createRootCell(context, node);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
         myCellCollection.setBig(true);
         relayout();
@@ -93,58 +80,45 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
                 return new TextBuilderImpl();
             }
         }) {
-
             @Override
             public void onAdd() {
                 super.onAdd();
                 EditorCell_Collection parent = getParent().getParent();
-                myFBCellComponent.getRootCell().setAction(CellActionType.BACKSPACE, parent.getAction(CellActionType.BACKSPACE));
+                myFBCell.getRootCell().setAction(CellActionType.BACKSPACE, parent.getAction(CellActionType.BACKSPACE));
             }
         };
-        foldedCell.addEditorCell(myFBCellComponent.getRootCell());
+        foldedCell.addEditorCell(myFBCell.getRootCell());
         foldedCell.addEditorCell(myNameProperty);
 
         return foldedCell;
     }
 
-    private EditorCell_Collection createRootCell(EditorContext context, SNode node, EditorCell foldedCell) {
+    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
         EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
-
             private boolean myUnfoldedCellInitialized = false;
 
             @Override
-            protected void relayoutImpl() {
-                super.relayoutImpl();
-                FunctionBlockController.this.relayout();
+            public void fold() {
+                myFBCell = myFoldedFBCell;
+                super.fold();
             }
 
             @Override
             public void unfold() {
                 if (myUnfoldedCellInitialized) {
                     // unfolded cell already initialized
+                    myFBCell = myUnfoldedFBCell;
                     super.unfold();
                     return;
                 }
-                addEditorCell(createUnfoldedCell());
+
+                NetworkInstance networkInstance = getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
+                myUnfoldedFBCell = new FBSceneCell(context, myView.getType(), node, myEditable, networkInstance);
+                myFBCell = myUnfoldedFBCell;
+                addEditorCell(myFBCell.getRootCell());
                 myUnfoldedCellInitialized = true;
 
                 super.unfold();
-            }
-
-            private EditorCell_Scene createUnfoldedCell() {
-                NetworkInstance networkInstance = getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
-                EditorCell_Scene scene = null;
-                Declaration fbTypeDeclaration = myView.getComponent().getType().getDeclaration();
-                if (fbTypeDeclaration instanceof BasicFBTypeDeclaration) {
-                    scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, networkInstance);
-                } else {
-                    scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, networkInstance);
-                }
-                scene.setCellId(scene.getSNode().getNodeId().toString());
-                scene.setWidth(500);
-                scene.setHeight(500);
-
-                return scene;
             }
 
             @Override
@@ -154,7 +128,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         };
 
         foldableCell.setFoldable(true);
-        foldableCell.setFoldedCell(foldedCell);
+        foldableCell.setFoldedCell(myFoldedCell);
         foldableCell.setInitiallyCollapsed(true);
 
         return foldableCell;
@@ -168,7 +142,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     @NotNull
     @Override
     public Rectangle getBounds(@NotNull Point position) {
-        return new Rectangle(position.x, position.y, myCellCollection.getWidth(), myCellCollection.getHeight());
+        return new Rectangle(position.x, position.y, myFBCell.getWidth(), myFBCell.getHeight());
     }
 
     @NotNull
@@ -184,20 +158,20 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         int index = functonBlockPort.getPosition();
         EntryKind kind = functonBlockPort.getKind();
         boolean isSource = functonBlockPort.isSource();
-        int lineSize = getLineSize();
 
         Point coordinates;
         if (kind == EntryKind.EVENT) {
-            coordinates = isSource ? myFBCellComponent.getOutputEventPortPosition(index) : myFBCellComponent.getInputEventPortPosition(index);
+            coordinates = isSource ? myFBCell.getOutputEventPortPosition(index) : myFBCell.getInputEventPortPosition(index);
         } else if (kind == EntryKind.DATA) {
-            coordinates = isSource ? myFBCellComponent.getOutputDataPortPosition(index) : myFBCellComponent.getInputDataPortPosition(index);
+            coordinates = isSource ? myFBCell.getOutputDataPortPosition(index) : myFBCell.getInputDataPortPosition(index);
         } else if (kind == EntryKind.ADAPTER) {
-            coordinates = isSource ? myFBCellComponent.getPlugPortPosition(index) : myFBCellComponent.getSocketPortPosition(index);
+            coordinates = isSource ? myFBCell.getPlugPortPosition(index) : myFBCell.getSocketPortPosition(index);
         } else {
             return null;
         }
-        int shift = (myCellCollection.getWidth() - myFBCellComponent.getWidth()) / 2;
-        coordinates.translate(position.x + shift, position.y + lineSize);
+        int shiftX = (myCellCollection.getWidth() - myFBCell.getWidth()) / 2;
+        int shiftY = myCellCollection.getHeight() - myFBCell.getHeight();
+        coordinates.translate(position.x + shiftX, position.y + shiftY);
         return coordinates;
     }
 
@@ -208,26 +182,27 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         int index = functonBlockPort.getPosition();
         EntryKind kind = functonBlockPort.getKind();
         boolean isSource = functonBlockPort.isSource();
-        int lineSize = getLineSize();
 
         Rectangle bounds;
         if (kind == EntryKind.EVENT) {
-            bounds = isSource ? myFBCellComponent.getOutputEventPortBounds(index) : myFBCellComponent.getInputEventPortBounds(index);
+            bounds = isSource ? myFBCell.getOutputEventPortBounds(index) : myFBCell.getInputEventPortBounds(index);
         } else if (kind == EntryKind.DATA) {
-            bounds = isSource ? myFBCellComponent.getOutputDataPortBounds(index) : myFBCellComponent.getInputDataPortBounds(index);
+            bounds = isSource ? myFBCell.getOutputDataPortBounds(index) : myFBCell.getInputDataPortBounds(index);
         } else if (kind == EntryKind.ADAPTER) {
-            bounds = isSource ? myFBCellComponent.getPlugPortBounds(index) : myFBCellComponent.getSocketPortBounds(index);
+            bounds = isSource ? myFBCell.getPlugPortBounds(index) : myFBCell.getSocketPortBounds(index);
         } else {
             return null;
         }
-        bounds.translate(position.x, position.y + lineSize);
+        int shiftX = (myCellCollection.getWidth() - myFBCell.getWidth()) / 2;
+        int shiftY = myCellCollection.getHeight() - myFBCell.getHeight();
+        bounds.translate(position.x + shiftX, position.y + shiftY);
         return bounds;
     }
 
     @Override
     public boolean isSource(@NotNull NetworkPortView port) {
-        FunctionBlockPortView functonBlockPort = assertMine(port);
-        return functonBlockPort.isSource();
+        FunctionBlockPortView functionBlockPort = assertMine(port);
+        return functionBlockPort.isSource();
     }
 
     private FunctionBlockPortView assertMine(NetworkPortView port) {
@@ -263,20 +238,17 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     @Override
     public void paintTrace(Graphics g, Point position) {
-        int traceCenterX = position.x + myCellCollection.getWidth() / 2;
-        myFBCellComponent.paintTrace((Graphics2D) g.create(), traceCenterX - myFBCellComponent.getWidth() / 2, position.y + getLineSize());
+        myFBCell.paintTrace((Graphics2D) g.create(), position.x, position.y + (myCellCollection.isCollapsed() ? getLineSize() : 0));
     }
 
     public void relayout() {
-        EditorCell_Collection fbCell = myFBCellComponent.getRootCell();
+        EditorCell_Collection fbCell = myFBCell.getRootCell();
 
         myNameProperty.relayout();
         fbCell.relayout();
 
-        myFBCellComponent.calculateSizes();
-
-        int width = Math.max(myNameProperty.getWidth(), fbCell.getWidth());
-        int height = getLineSize() + fbCell.getHeight();
+        int width = Math.max(myNameProperty.getWidth(), myFBCell.getWidth());
+        int height = myFBCell.getHeight() + (myCellCollection.isCollapsed() ? getLineSize() : 0);
 
         myFoldedCell.setWidth(width);
         myFoldedCell.setHeight(height);

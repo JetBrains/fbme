@@ -2,7 +2,6 @@ package org.fbme.ide.richediting.adapters.fb;
 
 import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
-import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
@@ -18,74 +17,64 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
-import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
-import org.fbme.scenes.controllers.LayoutUtil;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class FBTypeCellComponent {
-
-    private static final int PORT_SIZE = 4;
-
+public final class FBTypeCellComponent extends AbstractFBCell {
     private static final int CENTER_PADDING = 20;
-
     private static final int INNER_BORDER_PADDING = 2;
-
     private static final int COLUMNS_PADDING = INNER_BORDER_PADDING + PORT_SIZE;
+    private static final Comparator<FBPort> PORT_LABEL_WIDTH_COMPARATOR =
+            Comparator.comparing(port -> ((FBPortWithLabel) port).getLabel().getWidth());
 
-    private final EditorCell_SceneLabel myTypeNameLabel;
-
-    private final EditorCell_Collection myCellCollection;
-
-    private final boolean myIsEditable;
-
-    private final List<FBPortData> myEventInputPortTexts = new ArrayList<>();
-    private final List<FBPortData> myEventOutputPortTexts = new ArrayList<>();
-    private final List<FBPortData> myDataInputPortTexts = new ArrayList<>();
-    private final List<FBPortData> myDataOutputPortTexts = new ArrayList<>();
-    private final List<FBPortData> mySocketPortTexts = new ArrayList<>();
-    private final List<FBPortData> myPlugPortTexts = new ArrayList<>();
+    private final EditorCell_SceneLabel typeNameLabel;
+    private final EditorCell_Collection cellCollection;
 
     public FBTypeCellComponent(EditorContext context, FBTypeDescriptor fbType, SNode node, boolean isEditable) {
-        myCellCollection = createRootCell(context, node);
-        myCellCollection.getStyle().set(RichEditorStyleAttributes.TYPE, fbType);
-        myTypeNameLabel = createTypeNameLabel(fbType, context, node);
-        myCellCollection.addEditorCell(myTypeNameLabel);
-        myIsEditable = isEditable;
-        myCellCollection.getStyle().set(StyleAttributes.TEXT_COLOR, myIsEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
+        super(context, fbType, node, isEditable);
 
-        initPorts(context, node, myEventInputPortTexts, fbType.getEventInputPorts());
-        initPorts(context, node, myEventOutputPortTexts, fbType.getEventOutputPorts());
-        initPorts(context, node, myDataInputPortTexts, fbType.getDataInputPorts());
-        initPorts(context, node, myDataOutputPortTexts, fbType.getDataOutputPorts());
-        initPorts(context, node, mySocketPortTexts, fbType.getSocketPorts());
-        initPorts(context, node, myPlugPortTexts, fbType.getPlugPorts());
+        cellCollection = createRootCell();
+        cellCollection.getStyle().set(RichEditorStyleAttributes.TYPE, fbType);
+        typeNameLabel = createTypeNameLabel();
+        cellCollection.addEditorCell(typeNameLabel);
+        cellCollection.getStyle().set(StyleAttributes.TEXT_COLOR, isEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
+
+        initPorts();
     }
 
-    public void calculateSizes() {
-        myCellCollection.setWidth(calculateWidth());
-        myCellCollection.setHeight(calculateHeight());
+    private static int portsColumnWidth(List<FBPort> ports) {
+        if (ports.isEmpty()) {
+            return 0;
+        }
+
+        return ((FBPortWithLabel) Collections.max(ports, PORT_LABEL_WIDTH_COMPARATOR)).getLabel().getWidth();
     }
 
-    public int getWidth() {
-        return myCellCollection.getWidth();
+    @Override
+    protected void initPorts(List<FBPort> ports, List<FBPortDescriptor> portDescriptors) {
+        for (FBPortDescriptor portDescriptor : portDescriptors) {
+            FBPortWithLabel portWithLabel = new FBPortWithLabel(context, node, portDescriptor);
+            ports.add(portWithLabel);
+            getRootCell().addEditorCell(portWithLabel.getLabel());
+        }
     }
 
-    public int getHeight() {
-        return myCellCollection.getHeight();
+    @Override
+    public EditorCell_Collection getRootCell() {
+        return cellCollection;
     }
 
+    @Override
     public void paintTrace(Graphics2D g, int x, int y) {
         GeneralPath shape = getComponentShape(x, y);
         g.setPaint(MPSColors.GRAY);
@@ -93,78 +82,142 @@ public class FBTypeCellComponent {
         g.draw(shape);
     }
 
+    @Override
     public void relayout() {
-        for (EditorCell cell : myCellCollection) {
-            cell.relayout();
-        }
+        super.relayout();
         calculateSizes();
-
-        int leftX = myCellCollection.getX() + scale(PORT_SIZE + INNER_BORDER_PADDING);
-        int topY = myCellCollection.getY();
         int lineSize = getLineSize();
+        relayoutPortLabels(lineSize);
+        relayoutLabel(lineSize);
+    }
+
+    @Override
+    public Rectangle getInputEventPortBounds(int eventNumber) {
+        int lineSize = getLineSize();
+        FBPort port = inputEventPorts.get(eventNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = eventNumber * lineSize;
+        return new Rectangle(0, y, width, lineSize);
+    }
+
+    @Override
+    public Rectangle getOutputEventPortBounds(int eventNumber) {
+        int lineSize = getLineSize();
+        FBPort port = outputEventPorts.get(eventNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = eventNumber * lineSize;
+        return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
+    }
+
+    @Override
+    public Rectangle getInputDataPortBounds(int dataNumber) {
+        int lineSize = getLineSize();
+        FBPort port = inputDataPorts.get(dataNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
+        return new Rectangle(0, y, width, lineSize);
+    }
+
+    @Override
+    public Rectangle getOutputDataPortBounds(int dataNumber) {
+        int lineSize = getLineSize();
+        FBPort port = outputDataPorts.get(dataNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
+        return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
+    }
+
+    @Override
+    public Rectangle getSocketPortBounds(int socketNumber) {
+        int lineSize = getLineSize();
+        FBPort port = socketPorts.get(socketNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = (getEventPortsCount() + getInputDataPortsCount() + 2 + socketNumber) * lineSize;
+        return new Rectangle(0, y, width, lineSize);
+    }
+
+    @Override
+    public Rectangle getPlugPortBounds(int plugNumber) {
+        int lineSize = getLineSize();
+        FBPort port = plugPorts.get(plugNumber);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int y = (getEventPortsCount() + 2 + getOutputDataPortsCount() + plugNumber) * lineSize;
+        return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
+    }
+
+    private void relayoutPortLabels(int lineSize) {
+        int leftX = getRootCell().getX() + scale(COLUMNS_PADDING);
+        int topY = getRootCell().getY();
         int dataY = topY + (getEventPortsCount() + 2) * lineSize;
-        int rightX = myCellCollection.getX() + myCellCollection.getWidth() - scale(PORT_SIZE + INNER_BORDER_PADDING);
+        int rightX = getRootCell().getX() + getRootCell().getWidth() - scale(COLUMNS_PADDING);
 
-        int x;
-        int y;
+        relayoutEventInputPortLabels(leftX, topY, lineSize);
+        relayoutEventOutputPortLabels(rightX, topY, lineSize);
+        relayoutDataInputPortLabels(leftX, dataY, lineSize);
+        relayoutSocketPortLabels(leftX, dataY + lineSize * inputDataPorts.size(), lineSize);
+        relayoutDataOutputPortLabels(rightX, dataY, lineSize);
+        relayoutPlugPortLabels(rightX, dataY + lineSize * outputDataPorts.size(), lineSize);
+    }
 
-        x = leftX;
-        y = topY;
-        for (FBPortData portData : myEventInputPortTexts) {
-            portData.myLabel.moveTo(x, y);
+    private void relayoutDataOutputPortLabels(int x, int y, int lineSize) {
+        relayoutOutputPortLabels(x, y, lineSize, outputDataPorts);
+    }
 
-            y += lineSize;
-        }
+    private void relayoutEventOutputPortLabels(int x, int y, int lineSize) {
+        relayoutOutputPortLabels(x, y, lineSize, outputEventPorts);
+    }
 
-        x = rightX;
-        y = topY;
+    private void relayoutPlugPortLabels(int x, int y, int lineSize) {
+        relayoutOutputPortLabels(x, y, lineSize, plugPorts);
+    }
 
-        for (FBPortData portData : myEventOutputPortTexts) {
-            EditorCell_SceneLabel label = portData.myLabel;
+    private void relayoutOutputPortLabels(int x, int y, int lineSize, List<FBPort> outputPorts) {
+        for (FBPort port : outputPorts) {
+            EditorCell_SceneLabel label = ((FBPortWithLabel) port).getLabel();
             label.moveTo(x - label.getWidth(), y);
 
             y += lineSize;
         }
+    }
 
-        y = dataY;
-        x = leftX;
+    private void relayoutDataInputPortLabels(int x, int y, int lineSize) {
+        relayoutInputPortLabels(x, y, lineSize, inputDataPorts);
+    }
 
-        for (FBPortData portData : myDataInputPortTexts) {
-            portData.myLabel.moveTo(x, y);
+    private void relayoutEventInputPortLabels(int x, int y, int lineSize) {
+        relayoutInputPortLabels(x, y, lineSize, inputEventPorts);
+    }
 
-            y += lineSize;
-        }
-        for (FBPortData portData : mySocketPortTexts) {
-            portData.myLabel.moveTo(x, y);
+    private void relayoutSocketPortLabels(int x, int y, int lineSize) {
+        relayoutInputPortLabels(x, y, lineSize, socketPorts);
+    }
 
-            y += lineSize;
-        }
-
-        x = rightX;
-        y = dataY;
-
-        for (FBPortData portData : myDataOutputPortTexts) {
-            EditorCell_SceneLabel label = portData.myLabel;
-            label.moveTo(x - label.getWidth(), y);
+    private void relayoutInputPortLabels(int x, int y, int lineSize, List<FBPort> inputPorts) {
+        for (FBPort port : inputPorts) {
+            ((FBPortWithLabel) port).getLabel().moveTo(x, y);
 
             y += lineSize;
         }
-        for (FBPortData portData : myPlugPortTexts) {
-            EditorCell_SceneLabel label = portData.myLabel;
-            label.moveTo(x - label.getWidth(), y);
+    }
 
-            y += lineSize;
-        }
+    private void relayoutLabel(int lineSize) {
+        typeNameLabel.moveTo(
+                getRootCell().getX() + getRootCell().getWidth() / 2 - typeNameLabel.getWidth() / 2,
+                getRootCell().getY() + (getEventPortsCount() + 1) * lineSize
+        );
+    }
 
-        myTypeNameLabel.moveTo(myCellCollection.getX() + myCellCollection.getWidth() / 2 - myTypeNameLabel.getWidth() / 2, topY + (getEventPortsCount() + 1) * lineSize);
+    private void calculateSizes() {
+        getRootCell().setWidth(calculateWidth());
+        getRootCell().setHeight(calculateHeight());
     }
 
     private void paint(Graphics2D g) {
         Color background = getBackgroundColor();
         Color foreground = getForegroundColor();
 
-        int x = myCellCollection.getX();
-        int y = myCellCollection.getY();
+        int x = getRootCell().getX();
+        int y = getRootCell().getY();
         int lineSize = getLineSize();
         int typeNameY = y + (getEventPortsCount() + 1) * lineSize;
 
@@ -172,27 +225,27 @@ public class FBTypeCellComponent {
         Shape shadowShape = shape.createTransformedShape(AffineTransform.getTranslateInstance(2, 2));
         g.setPaint(new Color(0xEEEEEE));
         g.fill(shadowShape);
-        g.setPaint(DiagramColors.createGradientPaint(background, new Rectangle(x, y, myCellCollection.getWidth(), myCellCollection.getHeight())));
+        g.setPaint(DiagramColors.createGradientPaint(background, new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
         g.fill(shape);
-        g.setPaint(DiagramColors.createGradientPaint(getTypeBackgroundColor(), new Rectangle(x, y, myCellCollection.getWidth(), myCellCollection.getHeight())));
-        g.fill(new Rectangle(x + scale(PORT_SIZE), typeNameY, myCellCollection.getWidth() - 2 * scale(PORT_SIZE), lineSize));
+        g.setPaint(DiagramColors.createGradientPaint(getTypeBackgroundColor(), new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
+        g.fill(new Rectangle(x + scale(PORT_SIZE), typeNameY, getRootCell().getWidth() - 2 * scale(PORT_SIZE), lineSize));
         g.setStroke(new BasicStroke(scale(1)));
         g.setColor(foreground);
         g.draw(shape);
 
         int topEventsY = y;
-        drawPortIcons(myEventInputPortTexts, g, x, topEventsY);
-        drawPortIcons(myEventOutputPortTexts, g, x + myCellCollection.getWidth() - scale(PORT_SIZE), topEventsY);
+        drawPortIcons(inputEventPorts, g, x, topEventsY, foreground);
+        drawPortIcons(outputEventPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, foreground);
 
         int topDatasY = typeNameY + lineSize;
-        drawPortIcons(myDataInputPortTexts, g, x, topDatasY);
-        drawPortIcons(myDataOutputPortTexts, g, x + myCellCollection.getWidth() - scale(PORT_SIZE), topDatasY);
+        drawPortIcons(inputDataPorts, g, x, topDatasY, foreground);
+        drawPortIcons(outputDataPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, foreground);
 
         int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
         int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
 
-        drawPortIcons(mySocketPortTexts, g, x, topSocketY);
-        drawPortIcons(myPlugPortTexts, g, x + myCellCollection.getWidth() - scale(PORT_SIZE), topPlugY);
+        drawPortIcons(socketPorts, g, x, topSocketY, foreground);
+        drawPortIcons(plugPorts, g, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, foreground);
         g.setStroke(new BasicStroke());
     }
 
@@ -203,8 +256,8 @@ public class FBTypeCellComponent {
         int lineSize = getLineSize();
         int halfLineSize = lineSize / 2;
 
-        int width = myCellCollection.getWidth() - 2 * scale(PORT_SIZE);
-        int height = myCellCollection.getHeight();
+        int width = getRootCell().getWidth() - 2 * scale(PORT_SIZE);
+        int height = getRootCell().getHeight();
         int xLeft = x + scale(PORT_SIZE);
         int xRight = xLeft + width;
         int yBottom = y;
@@ -232,25 +285,8 @@ public class FBTypeCellComponent {
         return shape;
     }
 
-    private void drawPortIcons(List<FBPortData> portsColumn, Graphics2D g, int x, int y) {
-        Color foregroundColor = getForegroundColor();
-
-        int lineSize = getLineSize();
-        y += getShift() - scale(PORT_SIZE) / 2;
-        for (FBPortData port : portsColumn) {
-
-            Rectangle rect = new Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE));
-            g.setColor(DiagramColors.getColorFor(port.myConnecitonKind, myIsEditable));
-            g.fill(rect);
-            g.setColor(foregroundColor);
-            g.draw(rect);
-
-            y += lineSize;
-        }
-    }
-
     private Color getBackgroundColor() {
-        Color background = myCellCollection.getStyle().get(StyleAttributes.BACKGROUND_COLOR);
+        Color background = getRootCell().getStyle().get(StyleAttributes.BACKGROUND_COLOR);
         return background == null ? MPSColors.LIGHT_GRAY : background;
     }
 
@@ -259,16 +295,7 @@ public class FBTypeCellComponent {
     }
 
     private Color getForegroundColor() {
-        return myCellCollection.getStyle().get(StyleAttributes.TEXT_COLOR);
-    }
-
-    private void initPorts(EditorContext context, SNode node, List<FBPortData> portsColumn, List<FBPortDescriptor> ports) {
-
-        for (FBPortDescriptor port : ports) {
-            FBPortData portData = new FBPortData(context, port, node);
-            portsColumn.add(portData);
-            myCellCollection.addEditorCell(portData.myLabel);
-        }
+        return getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
     }
 
     private int calculateHeight() {
@@ -279,158 +306,20 @@ public class FBTypeCellComponent {
     }
 
     private int calculateWidth() {
-        int typeNameRowWidth = myTypeNameLabel.getWidth();
+        int typeNameRowWidth = typeNameLabel.getWidth();
 
-        int inputsWidth = Math.max(portsColumnWidth(myEventInputPortTexts), Math.max(portsColumnWidth(myDataInputPortTexts), portsColumnWidth(mySocketPortTexts)));
-        int outputsWidth = Math.max(portsColumnWidth(myEventOutputPortTexts), Math.max(portsColumnWidth(myDataOutputPortTexts), portsColumnWidth(myPlugPortTexts)));
+        int inputsWidth = Math.max(portsColumnWidth(inputEventPorts), Math.max(portsColumnWidth(inputDataPorts), portsColumnWidth(socketPorts)));
+        int outputsWidth = Math.max(portsColumnWidth(outputEventPorts), Math.max(portsColumnWidth(outputDataPorts), portsColumnWidth(plugPorts)));
         int regularRowsWidth = inputsWidth + outputsWidth + scale(CENTER_PADDING + 2 * INNER_BORDER_PADDING);
 
-        return Math.max(regularRowsWidth, typeNameRowWidth) + scale(2 * PORT_SIZE + 2 * INNER_BORDER_PADDING);
+        return Math.max(regularRowsWidth, typeNameRowWidth) + scale(2 * COLUMNS_PADDING);
     }
 
-    private static final Comparator<FBPortData> PORTNAME_WIDTH_COMPARATOR = Comparator.comparing(port -> port.myLabel.getWidth());
-
-    private static int portsColumnWidth(List<FBPortData> textColumn) {
-        if (textColumn.isEmpty()) {
-            return 0;
-        }
-        return Collections.max(textColumn, PORTNAME_WIDTH_COMPARATOR).myLabel.getWidth();
-    }
-
-    public int getBottomPortsCount() {
-        return Math.max(getInputBottomPortsCount(), getOutputBootomPortsCount());
-    }
-
-    public int getInputBottomPortsCount() {
-        return myDataInputPortTexts.size() + mySocketPortTexts.size();
-    }
-
-    public int getOutputBootomPortsCount() {
-        return myDataOutputPortTexts.size() + myPlugPortTexts.size();
-    }
-
-    public int getInputDataPortsCount() {
-        return myDataInputPortTexts.size();
-    }
-
-    public int getOutputDataPortsCount() {
-        return myDataOutputPortTexts.size();
-    }
-
-    public int getSocketPortsCount() {
-        return mySocketPortTexts.size();
-    }
-
-    public int getPlugPortsCount() {
-        return myPlugPortTexts.size();
-    }
-
-    public int getEventPortsCount() {
-        return Math.max(getInputEventPortsCount(), getOutputEventPortsCount());
-    }
-
-    public int getInputEventPortsCount() {
-        return myEventInputPortTexts.size();
-    }
-
-    public int getOutputEventPortsCount() {
-        return myEventOutputPortTexts.size();
-    }
-
-    public Point getInputEventPortPosition(int eventNumber) {
-        int lineSize = getLineSize();
-        return new Point(-1, eventNumber * lineSize + getShift());
-    }
-
-    public Point getOutputEventPortPosition(int eventNumber) {
-        int lineSize = getLineSize();
-        return new Point(myCellCollection.getWidth() + 1, eventNumber * lineSize + getShift());
-    }
-
-    public Point getInputDataPortPosition(int dataNumber) {
-        int lineSize = getLineSize();
-        return new Point(-1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
-    }
-
-    public Point getOutputDataPortPosition(int dataNumber) {
-        int lineSize = getLineSize();
-        return new Point(myCellCollection.getWidth() + 1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
-    }
-
-    public Point getSocketPortPosition(int dataNumber) {
-        int lineSize = getLineSize();
-        return new Point(-1, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
-    }
-
-    public Point getPlugPortPosition(int dataNumber) {
-        int lineSize = getLineSize();
-        return new Point(myCellCollection.getWidth() + 1, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
-    }
-
-    public Rectangle getInputEventPortBounds(int eventNumber) {
-        int lineSize = getLineSize();
-        int width = myEventInputPortTexts.get(eventNumber).myLabel.getWidth() + scale(COLUMNS_PADDING);
-        int y = eventNumber * lineSize;
-        return new Rectangle(0, y, width, lineSize);
-    }
-
-    public Rectangle getOutputEventPortBounds(int eventNumber) {
-        int lineSize = getLineSize();
-        int width = myEventOutputPortTexts.get(eventNumber).myLabel.getWidth() + scale(COLUMNS_PADDING);
-        int y = eventNumber * lineSize;
-        return new Rectangle(myCellCollection.getWidth() - width, y, width, lineSize);
-    }
-
-    public Rectangle getInputDataPortBounds(int dataNumber) {
-        int lineSize = getLineSize();
-        int width = myDataInputPortTexts.get(dataNumber).myLabel.getWidth() + COLUMNS_PADDING;
-        int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
-        return new Rectangle(0, y, width, lineSize);
-    }
-
-    public Rectangle getOutputDataPortBounds(int dataNumber) {
-        int lineSize = getLineSize();
-        int width = myDataOutputPortTexts.get(dataNumber).myLabel.getWidth() + COLUMNS_PADDING;
-        int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
-        return new Rectangle(myCellCollection.getWidth() - width, y, width, lineSize);
-    }
-
-    public Rectangle getSocketPortBounds(int socketNumber) {
-        int lineSize = getLineSize();
-        int width = mySocketPortTexts.get(socketNumber).myLabel.getWidth() + COLUMNS_PADDING;
-        int y = (getEventPortsCount() + getInputDataPortsCount() + 2 + socketNumber) * lineSize;
-        return new Rectangle(0, y, width, lineSize);
-    }
-
-    public Rectangle getPlugPortBounds(int plugNubmer) {
-        int lineSize = getLineSize();
-        int width = myPlugPortTexts.get(plugNubmer).myLabel.getWidth() + COLUMNS_PADDING;
-        int y = (getEventPortsCount() + 2 + getOutputDataPortsCount() + plugNubmer) * lineSize;
-        return new Rectangle(myCellCollection.getWidth() - width, y, width, lineSize);
-    }
-
-    private int getLineSize() {
-        return LayoutUtil.getLineSize(myCellCollection.getStyle());
-    }
-
-    private int getFontSize() {
-        return LayoutUtil.getFontSize(myCellCollection.getStyle());
-    }
-
-    private int getShift() {
-        return getLineSize() - getFontSize() / 2;
-    }
-
-    private int scale(int size) {
-        return size * getFontSize() / EditorSettings.getInstance().getFontSize();
-    }
-
-    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
+    private EditorCell_Collection createRootCell() {
         return new EditorCell_Collection(context, node, new AbstractCellLayout() {
-
             @Override
             public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection collection) {
-                assert collection == myCellCollection;
+                assert collection == getRootCell();
                 relayout();
             }
 
@@ -439,7 +328,6 @@ public class FBTypeCellComponent {
                 return new TextBuilderImpl();
             }
         }) {
-
             @Override
             protected void paintContent(Graphics g, ParentSettings parentSettings) {
                 FBTypeCellComponent.this.paint((Graphics2D) g.create());
@@ -465,24 +353,20 @@ public class FBTypeCellComponent {
             @Override
             public void onAdd() {
                 super.onAdd();
-                installNavigateable();
+                installNavigatable();
             }
         };
     }
 
-    public EditorCell_Collection getRootCell() {
-        return myCellCollection;
-    }
-
-    private void installNavigateable() {
-        Style style = myTypeNameLabel.getStyle();
+    private void installNavigatable() {
+        Style style = typeNameLabel.getStyle();
         NetworkInstance instance = style.get(RichEditorStyleAttributes.NETWORK_INSTANCE);
         if (instance != null) {
             FunctionBlockDeclarationBase functionBlock = style.get(RichEditorStyleAttributes.FB);
             FunctionBlockInstance child = instance.getChild(functionBlock);
 
             if (child != null && child.getContainedNetwork() != null) {
-                SNode navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(myCellCollection.getContext().getOperationContext().getProject(), child.getContainedNetwork());
+                SNode navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(getRootCell().getContext().getOperationContext().getProject(), child.getContainedNetwork());
                 if (navigationStub != null) {
                     style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub);
                     return;
@@ -496,19 +380,8 @@ public class FBTypeCellComponent {
         }
     }
 
-    private EditorCell_SceneLabel createTypeNameLabel(FBTypeDescriptor fbType, EditorContext context, SNode node) {
+    private EditorCell_SceneLabel createTypeNameLabel() {
         Declaration typeDeclaration = fbType.getDeclaration();
         return new EditorCell_SceneLabel(context, node, fbType.getTypeName(), typeDeclaration == null);
-    }
-
-    private static class FBPortData {
-        private final EditorCell_SceneLabel myLabel;
-        private final EntryKind myConnecitonKind;
-
-        public FBPortData(EditorContext context, FBPortDescriptor port, SNode node) {
-            myLabel = new EditorCell_SceneLabel(context, node, port.getName(), !port.isValid());
-            myLabel.getStyle().set(RichEditorStyleAttributes.PORT, port);
-            myConnecitonKind = port.getConnectionKind();
-        }
     }
 }
