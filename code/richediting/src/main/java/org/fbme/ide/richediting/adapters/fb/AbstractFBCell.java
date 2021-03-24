@@ -154,18 +154,40 @@ public abstract class AbstractFBCell implements FBCell {
         }
     }
 
-    protected void drawPortIcons(List<FBPort> ports, Graphics2D g, int x, int y, Color borderColor) {
+    protected void drawPortIcons(List<FBPort> ports, Graphics2D graphics, int x, int y, Color borderColor) {
         int lineSize = getLineSize();
         y += getShift() - scale(PORT_SIZE) / 2;
         for (FBPort port : ports) {
             Rectangle rect = new Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE));
-            g.setColor(DiagramColors.getColorFor(port.getConnectionKind(), isEditable));
-            g.fill(rect);
-            g.setColor(borderColor);
-            g.draw(rect);
+            graphics.setColor(DiagramColors.getColorFor(port.getConnectionKind(), isEditable));
+            graphics.fill(rect);
+            graphics.setColor(borderColor);
+            graphics.draw(rect);
 
             y += lineSize;
         }
+    }
+
+    protected void drawAllPortIcons(Graphics2D graphics, Color color) {
+        int x = getRootCell().getX();
+        int y = getRootCell().getY();
+        int lineSize = getLineSize();
+        int typeNameY = y + (getEventPortsCount() + 1) * lineSize;
+
+        int topEventsY = y;
+        drawPortIcons(inputEventPorts, graphics, x, topEventsY, color);
+        drawPortIcons(outputEventPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, color);
+
+        int topDatasY = typeNameY + lineSize;
+        drawPortIcons(inputDataPorts, graphics, x, topDatasY, color);
+        drawPortIcons(outputDataPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, color);
+
+        int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
+        int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
+
+        drawPortIcons(socketPorts, graphics, x, topSocketY, color);
+        drawPortIcons(plugPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, color);
+        graphics.setStroke(new BasicStroke());
     }
 
     protected int getShift() {
