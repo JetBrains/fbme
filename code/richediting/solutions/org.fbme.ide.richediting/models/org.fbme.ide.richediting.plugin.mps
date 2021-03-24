@@ -11932,14 +11932,19 @@
             <node concept="3uibUv" id="7ynUKacUdtr" role="1tU5fm">
               <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
             </node>
-            <node concept="2OqwBi" id="7ynUKacUdts" role="33vP2m">
-              <node concept="2OqwBi" id="7ynUKacUdtt" role="2Oq$k0">
-                <node concept="2WthIp" id="7ynUKacUdtu" role="2Oq$k0" />
-                <node concept="1DTwFV" id="7ynUKacUdtv" role="2OqNvi">
-                  <ref role="2WH_rO" node="4qZmOK$MA5o" resolve="cell" />
+            <node concept="2OqwBi" id="2K29Y0LfqO_" role="33vP2m">
+              <node concept="2OqwBi" id="2K29Y0LfpUl" role="2Oq$k0">
+                <node concept="2OqwBi" id="7ynUKacUdtt" role="2Oq$k0">
+                  <node concept="2WthIp" id="7ynUKacUdtu" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7ynUKacUdtv" role="2OqNvi">
+                    <ref role="2WH_rO" node="4qZmOK$MA5o" resolve="cell" />
+                  </node>
+                </node>
+                <node concept="liA8E" id="2K29Y0Lfql8" role="2OqNvi">
+                  <ref role="37wK5l" to="f4zo:~EditorCell.getParent()" resolve="getParent" />
                 </node>
               </node>
-              <node concept="liA8E" id="7ynUKacUdtw" role="2OqNvi">
+              <node concept="liA8E" id="2K29Y0Lfrst" role="2OqNvi">
                 <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
               </node>
             </node>
