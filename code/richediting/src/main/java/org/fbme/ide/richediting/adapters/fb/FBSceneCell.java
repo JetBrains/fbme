@@ -7,16 +7,22 @@ import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
+import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
+import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_Scene;
+import org.fbme.scenes.controllers.components.ComponentController;
+import org.fbme.scenes.controllers.components.ComponentsFacility;
+import org.fbme.scenes.controllers.diagram.DiagramFacility;
 import org.fbme.scenes.controllers.scene.Layer;
 import org.fbme.scenes.controllers.scene.SceneLayout;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
+import java.util.Set;
 
 public final class FBSceneCell extends AbstractFBCell {
     private final EditorCell_Scene sceneCell;
@@ -45,17 +51,51 @@ public final class FBSceneCell extends AbstractFBCell {
         } else {
             scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, networkInstance);
         }
+        addScenePortsLayer(scene);
+
+        scene.setCellId(scene.getSNode().getNodeId().toString());
+        setSceneSizes(scene);
+
+        return scene;
+    }
+
+    private void addScenePortsLayer(EditorCell_Scene scene) {
         Layer layer = scene.createLayer(5f);
         scene.addPainter(layer, graphics -> {
             Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
             drawAllPortIcons(graphics, foreground);
         });
+    }
 
-        scene.setCellId(scene.getSNode().getNodeId().toString());
-        scene.setWidth(500);
-        scene.setHeight(500);
+    private void setSceneSizes(EditorCell_Scene scene) {
+        DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = scene.getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
+        ComponentsFacility<NetworkComponentView, Point> componentsFacility = scene.getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
 
-        return scene;
+        Set<NetworkComponentView> components = diagramFacility.getDiagramController().getComponents();
+
+        int minX = (int) 1e9;
+        int minY = (int) 1e9;
+        int maxX = (int) -1e9;
+        int maxY = (int) -1e9;
+
+        for (NetworkComponentView component : components) {
+            ComponentController<Point> componentController = componentsFacility.getController(component);
+            Point componentPosition = componentsFacility.getModelForm(component);
+            Rectangle componentBounds = componentController.getBounds(componentPosition);
+
+            int x1 = (int) componentBounds.getX();
+            int y1 = (int) componentBounds.getY();
+            int x2 = (int) (x1 + componentBounds.getWidth());
+            int y2 = (int) (y1 + componentBounds.getHeight());
+
+            minX = Math.min(minX, x1);
+            minY = Math.min(minY, y1);
+            maxX = Math.max(maxX, x2);
+            maxY = Math.max(maxY, y2);
+        }
+
+        scene.setWidth(maxX - minX);
+        scene.setHeight(maxY - minY);
     }
 
     @Override
