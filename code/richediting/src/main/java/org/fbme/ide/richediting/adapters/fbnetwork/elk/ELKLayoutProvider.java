@@ -15,6 +15,7 @@ import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
 import org.fbme.ide.richediting.viewmodel.*;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
+import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.components.ComponentSynchronizer;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
@@ -35,6 +36,7 @@ public class ELKLayoutProvider {
     private final DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController;
     private final ComponentSynchronizer<NetworkComponentView, Point> componentSynchronizer;
     private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
+    private final SceneViewpoint viewpoint;
 
     private final IGraphLayoutEngine layoutEngine = new RecursiveGraphLayoutEngine();
     private final List<ILayoutMetaDataProvider> layoutProviders = Arrays.asList(new CoreOptions(), new LayeredMetaDataProvider());
@@ -43,7 +45,8 @@ public class ELKLayoutProvider {
     public ELKLayoutProvider(
             DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility,
             ComponentsFacility<NetworkComponentView, Point> componentsFacility,
-            ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility
+            ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility,
+            SceneViewpoint viewpoint
     ) {
         this.diagramFacility = diagramFacility;
         this.componentsFacility = componentsFacility;
@@ -51,6 +54,7 @@ public class ELKLayoutProvider {
         this.diagramController = diagramFacility.getDiagramController();
         this.componentSynchronizer = componentsFacility.getComponentSyncronizer();
         this.connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
+        this.viewpoint = viewpoint;
     }
 
     public void relayout() {
@@ -94,30 +98,38 @@ public class ELKLayoutProvider {
             ComponentController<Point> componentController = componentsFacility.getController(component);
             Point componentPosition = componentsFacility.getModelForm(component);
             Rectangle componentBounds = componentController.getBounds(componentPosition);
+            int x = viewpoint.translateFromEditorX(componentBounds.x);
+            int y = viewpoint.translateFromEditorY(componentBounds.y);
+            int width = viewpoint.fromEditorDimension(componentBounds.width);
+            int height = viewpoint.fromEditorDimension(componentBounds.height);
 
             if (component instanceof InterfaceEndpointView) {
                 InterfaceEndpointView endPoint = (InterfaceEndpointView) component;
                 ElkPort port = ElkGraphUtil.createPort(parent);
                 port.setLocation(endPoint.isSource() ? 0 : parent.getWidth(), endPoint.getPosition() * 10);
-                port.setDimensions(componentBounds.getWidth(), componentBounds.getHeight());
+                port.setDimensions(width, height);
                 layoutPropertiesProvider.setPortProperties(port, !endPoint.isSource());
                 mapViewPort.put(endPoint, port);
                 continue;
             }
 
             ElkNode node = ElkGraphUtil.createNode(parent);
-            node.setLocation(componentBounds.getX(), componentBounds.getY());
-            node.setDimensions(componentBounds.getWidth(), componentBounds.getHeight());
+            node.setLocation(x, y);
+            node.setDimensions(width, height);
 
             layoutPropertiesProvider.setNodeProperties(node);
 
             for (NetworkPortView componentPort : diagramController.getPorts(component)) {
                 PortController componentPortController = diagramController.getPortController(componentPort);
                 Rectangle componentPortBounds = componentPortController.getBounds();
+                int portX = viewpoint.translateFromEditorX(componentPortBounds.x);
+                int portY = viewpoint.translateFromEditorY(componentPortBounds.y);
+                int portWidth = viewpoint.fromEditorDimension(componentPortBounds.width);
+                int portHeight = viewpoint.fromEditorDimension(componentPortBounds.height);
 
                 ElkPort port = ElkGraphUtil.createPort(node);
-                port.setLocation(componentPortBounds.getX() - componentBounds.getX(), componentPortBounds.getY() - componentBounds.getY());
-                port.setDimensions(componentPortBounds.getWidth(), componentPortBounds.getHeight());
+                port.setLocation(portX - x, portY - y);
+                port.setDimensions(portWidth, portHeight);
                 if (componentPort instanceof FunctionBlockPortView) {
                     layoutPropertiesProvider.setPortProperties(port, ((FunctionBlockPortView) componentPort).isSource());
                 }
@@ -136,7 +148,10 @@ public class ELKLayoutProvider {
         for (NetworkComponentView component : diagramController.getComponents()) {
             if (component instanceof FunctionBlockView) {
                 ElkNode node = mapViewNode.get(component);
-                componentSynchronizer.setForm(component, new Point((int) node.getX(), (int) node.getY()));
+                int x = viewpoint.translateToEditorX((int) node.getX());
+                int y = viewpoint.translateToEditorY((int) node.getY());
+
+                componentSynchronizer.setForm(component, new Point(x, y));
             }
         }
     }
@@ -156,11 +171,17 @@ public class ELKLayoutProvider {
     private ArrayList<Point> getPointsFromEdge(ElkEdge elkEdge) {
         ArrayList<Point> points = new ArrayList<>();
         for (ElkEdgeSection section : elkEdge.getSections()) {
-            points.add(new Point((int) section.getStartX(), (int) section.getStartY()));
+            int startX = viewpoint.translateToEditorX((int) section.getStartX());
+            int startY = viewpoint.translateToEditorY((int) section.getStartY());
+            points.add(new Point(startX, startY));
             for (ElkBendPoint bendPoint : section.getBendPoints()) {
-                points.add(new Point((int) bendPoint.getX(), (int) bendPoint.getY()));
+                int x = viewpoint.translateToEditorX((int) bendPoint.getX());
+                int y = viewpoint.translateToEditorY((int) bendPoint.getY());
+                points.add(new Point(x, y));
             }
-            points.add(new Point((int) section.getEndX(), (int) section.getEndY()));
+            int endX = viewpoint.translateToEditorX((int) section.getEndX());
+            int endY = viewpoint.translateToEditorY((int) section.getEndY());
+            points.add(new Point(endX, endY));
         }
         return points;
     }

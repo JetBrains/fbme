@@ -109,6 +109,8 @@ public final class FBNetworkEditors {
             final float scale = RicheditingMpsBridge.getEditorScale(project);
 
             SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getImplicitViewpoint());
+            style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint);
+
             SceneFocusModel focus = new DefaultFocusModel();
             if (layout == SceneLayout.WINDOWED) {
                 new WindowedBackgroundDragFacility(scene, (SceneViewpointByCell) viewpoint, backgroundLayer);

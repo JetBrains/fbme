@@ -9,6 +9,7 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
+import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
 import org.fbme.scenes.controllers.diagram.DiagramFacility;
@@ -23,8 +24,9 @@ public class RelayoutAction {
         DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
         ComponentsFacility<NetworkComponentView, Point> componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
         ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
+        SceneViewpoint viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
 
-        layoutProvider = new ELKLayoutProvider(diagramFacility, componentsFacility, connectionsFacility);
+        layoutProvider = new ELKLayoutProvider(diagramFacility, componentsFacility, connectionsFacility, viewpoint);
     }
 
     public void apply() {
