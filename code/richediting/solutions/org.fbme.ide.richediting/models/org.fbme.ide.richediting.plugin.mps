@@ -66,8 +66,9 @@
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
     <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
     <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
-    <import index="qsqy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.layout(org.fbme.ide.richediting/)" />
+    <import index="ws78" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.elk(org.fbme.ide.richediting/)" />
     <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
+    <import index="mrrx" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.actions(org.fbme.ide.richediting/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -11580,150 +11581,21 @@
     </node>
     <node concept="tnohg" id="5IF$9ECWQWY" role="tncku">
       <node concept="3clFbS" id="5IF$9ECWQWZ" role="2VODD2">
-        <node concept="3cpWs8" id="5DrWYyHjYQS" role="3cqZAp">
-          <node concept="3cpWsn" id="5DrWYyHjYQT" role="3cpWs9">
-            <property role="TrG5h" value="style" />
-            <node concept="3uibUv" id="5DrWYyHjYQU" role="1tU5fm">
-              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
-            </node>
-            <node concept="2OqwBi" id="5DrWYyHjZzy" role="33vP2m">
-              <node concept="2OqwBi" id="5DrWYyHjZ9W" role="2Oq$k0">
-                <node concept="2WthIp" id="5DrWYyHjYRY" role="2Oq$k0" />
-                <node concept="1DTwFV" id="5DrWYyHjZsj" role="2OqNvi">
-                  <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
-                </node>
-              </node>
-              <node concept="liA8E" id="5DrWYyHjZGv" role="2OqNvi">
-                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="2Lm0lTUrrbe" role="3cqZAp" />
-        <node concept="3cpWs8" id="6oARSA1DepT" role="3cqZAp">
-          <node concept="3cpWsn" id="6oARSA1DepS" role="3cpWs9">
-            <property role="TrG5h" value="diagramFacility" />
-            <node concept="3uibUv" id="6oARSA1DepU" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~DiagramFacility" resolve="DiagramFacility" />
-              <node concept="3uibUv" id="6oARSA1DepV" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1DepW" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1DepX" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1DepY" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="6oARSA1DiEb" role="33vP2m">
-              <node concept="37vLTw" id="6oARSA1DiEa" role="2Oq$k0">
-                <ref role="3cqZAo" node="5DrWYyHjYQT" resolve="style" />
-              </node>
-              <node concept="liA8E" id="6oARSA1DiEc" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6oARSA1DiEd" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.DIAGRAM_FACILITY" resolve="DIAGRAM_FACILITY" />
+        <node concept="3clFbF" id="7s8ro$mQ5WY" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ7zQ" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mQ5WW" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ6Rc" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~RelayoutAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="RelayoutAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ79Q" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ6RK" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ7tH" role="2OqNvi">
+                    <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                  </node>
                 </node>
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="6oARSA1Deq2" role="3cqZAp">
-          <node concept="3cpWsn" id="6oARSA1Deq1" role="3cpWs9">
-            <property role="TrG5h" value="componentsFacility" />
-            <node concept="3uibUv" id="6oARSA1Deq3" role="1tU5fm">
-              <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
-              <node concept="3uibUv" id="6oARSA1Deq4" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1Deq5" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="6oARSA1DiBU" role="33vP2m">
-              <node concept="37vLTw" id="6oARSA1DiBT" role="2Oq$k0">
-                <ref role="3cqZAo" node="5DrWYyHjYQT" resolve="style" />
-              </node>
-              <node concept="liA8E" id="6oARSA1DiBV" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6oARSA1DiBW" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.COMPONENTS_FACILITY" resolve="COMPONENTS_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="6oARSA1Deq9" role="3cqZAp">
-          <node concept="3cpWsn" id="6oARSA1Deq8" role="3cpWs9">
-            <property role="TrG5h" value="connectionsFacility" />
-            <node concept="3uibUv" id="6oARSA1Deqa" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~ConnectionsFacility" resolve="ConnectionsFacility" />
-              <node concept="3uibUv" id="6oARSA1Deqb" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1Deqc" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1Deqd" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1Deqe" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionCursor" resolve="FBConnectionCursor" />
-              </node>
-              <node concept="3uibUv" id="6oARSA1Deqf" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionPath" resolve="FBConnectionPath" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="6oARSA1DiD5" role="33vP2m">
-              <node concept="37vLTw" id="6oARSA1DiD4" role="2Oq$k0">
-                <ref role="3cqZAo" node="5DrWYyHjYQT" resolve="style" />
-              </node>
-              <node concept="liA8E" id="6oARSA1DiD6" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6oARSA1DiD7" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.CONNECTIONS_FACILITY" resolve="CONNECTIONS_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="6oARSA1DcXr" role="3cqZAp" />
-        <node concept="3cpWs8" id="7daK1hHXg8x" role="3cqZAp">
-          <node concept="3cpWsn" id="7daK1hHXg8y" role="3cpWs9">
-            <property role="TrG5h" value="fbElkLayoutProvider" />
-            <node concept="3uibUv" id="7daK1hHXg8z" role="1tU5fm">
-              <ref role="3uigEE" to="qsqy:~FBElkLayoutProvider" resolve="FBElkLayoutProvider" />
-            </node>
-            <node concept="2ShNRf" id="7daK1hHXgnw" role="33vP2m">
-              <node concept="1pGfFk" id="7daK1hHXgnj" role="2ShVmc">
-                <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramFacility,org.fbme.scenes.controllers.components.ComponentsFacility,org.fbme.scenes.controllers.diagram.ConnectionsFacility)" resolve="FBElkLayoutProvider" />
-                <node concept="37vLTw" id="7daK1hHXgok" role="37wK5m">
-                  <ref role="3cqZAo" node="6oARSA1DepS" resolve="diagramFacility" />
-                </node>
-                <node concept="37vLTw" id="7daK1hHXgrV" role="37wK5m">
-                  <ref role="3cqZAo" node="6oARSA1Deq1" resolve="componentsFacility" />
-                </node>
-                <node concept="37vLTw" id="7daK1hHXgx1" role="37wK5m">
-                  <ref role="3cqZAo" node="6oARSA1Deq8" resolve="connectionsFacility" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="7daK1hHXgzs" role="3cqZAp" />
-        <node concept="3clFbF" id="7daK1hHXgXV" role="3cqZAp">
-          <node concept="2OqwBi" id="7daK1hHXhkL" role="3clFbG">
-            <node concept="37vLTw" id="7daK1hHXgXT" role="2Oq$k0">
-              <ref role="3cqZAo" node="7daK1hHXg8y" resolve="fbElkLayoutProvider" />
-            </node>
-            <node concept="liA8E" id="7daK1hHXhtA" role="2OqNvi">
-              <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.relayout()" resolve="relayout" />
+            <node concept="liA8E" id="7s8ro$mQ7GZ" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~RelayoutAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>
@@ -11740,181 +11612,21 @@
     </node>
     <node concept="tnohg" id="4qZmOK$LL_m" role="tncku">
       <node concept="3clFbS" id="4qZmOK$LL_n" role="2VODD2">
-        <node concept="3cpWs8" id="7ynUKacTHZ5" role="3cqZAp">
-          <node concept="3cpWsn" id="7ynUKacTHZ6" role="3cpWs9">
-            <property role="TrG5h" value="style" />
-            <node concept="3uibUv" id="7ynUKacTHZ7" role="1tU5fm">
-              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
-            </node>
-            <node concept="2OqwBi" id="7ynUKacTHZ8" role="33vP2m">
-              <node concept="2OqwBi" id="7ynUKacTHZ9" role="2Oq$k0">
-                <node concept="2WthIp" id="7ynUKacTHZa" role="2Oq$k0" />
-                <node concept="1DTwFV" id="7ynUKacTHZb" role="2OqNvi">
-                  <ref role="2WH_rO" node="4qZmOK$M3aS" resolve="cell" />
-                </node>
-              </node>
-              <node concept="liA8E" id="7ynUKacTHZc" role="2OqNvi">
-                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="7ynUKacTHZk" role="3cqZAp">
-          <node concept="3cpWsn" id="7ynUKacTHZl" role="3cpWs9">
-            <property role="TrG5h" value="selectedFBs" />
-            <node concept="2OqwBi" id="3zipaEz5qIY" role="33vP2m">
-              <node concept="2OqwBi" id="3zipaEz5dg6" role="2Oq$k0">
-                <node concept="37vLTw" id="3zipaEz5cI_" role="2Oq$k0">
-                  <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
-                </node>
-                <node concept="liA8E" id="3zipaEz5dMJ" role="2OqNvi">
-                  <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                  <node concept="10M0yZ" id="3zipaEz5f7E" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
-                    <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+        <node concept="3clFbF" id="7s8ro$mQ3vL" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ5Df" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mQ3vJ" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ4QU" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~ExpandAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="ExpandAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ59$" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ4Ru" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ5u8" role="2OqNvi">
+                    <ref role="2WH_rO" node="4qZmOK$M3aS" resolve="cell" />
                   </node>
                 </node>
               </node>
-              <node concept="liA8E" id="3zipaEz5rvT" role="2OqNvi">
-                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
-              </node>
             </node>
-            <node concept="3uibUv" id="3zipaEz5p9i" role="1tU5fm">
-              <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
-              <node concept="3uibUv" id="3zipaEz5pJR" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="5XIiZbilxbN" role="3cqZAp" />
-        <node concept="3cpWs8" id="3zipaEz5u_w" role="3cqZAp">
-          <node concept="3cpWsn" id="3zipaEz5u_x" role="3cpWs9">
-            <property role="TrG5h" value="diagramFacility" />
-            <node concept="3uibUv" id="3zipaEz5u_y" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~DiagramFacility" resolve="DiagramFacility" />
-              <node concept="3uibUv" id="3zipaEz5u_z" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_$" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u__" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_A" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="3zipaEz5u_B" role="33vP2m">
-              <node concept="37vLTw" id="3zipaEz5u_C" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
-              </node>
-              <node concept="liA8E" id="3zipaEz5u_D" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="3zipaEz5u_E" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.DIAGRAM_FACILITY" resolve="DIAGRAM_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="3zipaEz5u_F" role="3cqZAp">
-          <node concept="3cpWsn" id="3zipaEz5u_G" role="3cpWs9">
-            <property role="TrG5h" value="componentsFacility" />
-            <node concept="3uibUv" id="3zipaEz5u_H" role="1tU5fm">
-              <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
-              <node concept="3uibUv" id="3zipaEz5u_I" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_J" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="3zipaEz5u_K" role="33vP2m">
-              <node concept="37vLTw" id="3zipaEz5u_L" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
-              </node>
-              <node concept="liA8E" id="3zipaEz5u_M" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="3zipaEz5u_N" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.COMPONENTS_FACILITY" resolve="COMPONENTS_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="3zipaEz5u_O" role="3cqZAp">
-          <node concept="3cpWsn" id="3zipaEz5u_P" role="3cpWs9">
-            <property role="TrG5h" value="connectionsFacility" />
-            <node concept="3uibUv" id="3zipaEz5u_Q" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~ConnectionsFacility" resolve="ConnectionsFacility" />
-              <node concept="3uibUv" id="3zipaEz5u_R" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_S" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_T" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_U" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionCursor" resolve="FBConnectionCursor" />
-              </node>
-              <node concept="3uibUv" id="3zipaEz5u_V" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionPath" resolve="FBConnectionPath" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="3zipaEz5u_W" role="33vP2m">
-              <node concept="37vLTw" id="3zipaEz5u_X" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacTHZ6" resolve="style" />
-              </node>
-              <node concept="liA8E" id="3zipaEz5u_Y" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="3zipaEz5u_Z" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.CONNECTIONS_FACILITY" resolve="CONNECTIONS_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="3zipaEz5uA0" role="3cqZAp" />
-        <node concept="3cpWs8" id="3zipaEz5uA1" role="3cqZAp">
-          <node concept="3cpWsn" id="3zipaEz5uA2" role="3cpWs9">
-            <property role="TrG5h" value="fbElkLayoutProvider" />
-            <node concept="3uibUv" id="3zipaEz5uA3" role="1tU5fm">
-              <ref role="3uigEE" to="qsqy:~FBElkLayoutProvider" resolve="FBElkLayoutProvider" />
-            </node>
-            <node concept="2ShNRf" id="3zipaEz5uA4" role="33vP2m">
-              <node concept="1pGfFk" id="3zipaEz5uA5" role="2ShVmc">
-                <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramFacility,org.fbme.scenes.controllers.components.ComponentsFacility,org.fbme.scenes.controllers.diagram.ConnectionsFacility)" resolve="FBElkLayoutProvider" />
-                <node concept="37vLTw" id="3zipaEz5uA6" role="37wK5m">
-                  <ref role="3cqZAo" node="3zipaEz5u_x" resolve="diagramFacility" />
-                </node>
-                <node concept="37vLTw" id="3zipaEz5uA7" role="37wK5m">
-                  <ref role="3cqZAo" node="3zipaEz5u_G" resolve="componentsFacility" />
-                </node>
-                <node concept="37vLTw" id="3zipaEz5uA8" role="37wK5m">
-                  <ref role="3cqZAo" node="3zipaEz5u_P" resolve="connectionsFacility" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="3zipaEz5urS" role="3cqZAp" />
-        <node concept="3clFbF" id="3zipaEz5vDk" role="3cqZAp">
-          <node concept="2OqwBi" id="3zipaEz5w4Y" role="3clFbG">
-            <node concept="37vLTw" id="3zipaEz5vDi" role="2Oq$k0">
-              <ref role="3cqZAo" node="3zipaEz5uA2" resolve="fbElkLayoutProvider" />
-            </node>
-            <node concept="liA8E" id="3zipaEz5wfR" role="2OqNvi">
-              <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.expand(java.util.Set)" resolve="expand" />
-              <node concept="37vLTw" id="3zipaEz5wgS" role="37wK5m">
-                <ref role="3cqZAo" node="7ynUKacTHZl" resolve="selectedFBs" />
-              </node>
+            <node concept="liA8E" id="7s8ro$mQ5QJ" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~ExpandAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>
@@ -11931,186 +11643,21 @@
     </node>
     <node concept="tnohg" id="4qZmOK$MA53" role="tncku">
       <node concept="3clFbS" id="4qZmOK$MA54" role="2VODD2">
-        <node concept="3cpWs8" id="7ynUKacUdtp" role="3cqZAp">
-          <node concept="3cpWsn" id="7ynUKacUdtq" role="3cpWs9">
-            <property role="TrG5h" value="style" />
-            <node concept="3uibUv" id="7ynUKacUdtr" role="1tU5fm">
-              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
-            </node>
-            <node concept="2OqwBi" id="2K29Y0LfqO_" role="33vP2m">
-              <node concept="2OqwBi" id="2K29Y0LfpUl" role="2Oq$k0">
-                <node concept="2OqwBi" id="7ynUKacUdtt" role="2Oq$k0">
-                  <node concept="2WthIp" id="7ynUKacUdtu" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="7ynUKacUdtv" role="2OqNvi">
+        <node concept="3clFbF" id="7s8ro$mPNth" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ3c2" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mPNtf" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ2qX" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~CollapseAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="CollapseAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ2HN" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ2rH" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ32Z" role="2OqNvi">
                     <ref role="2WH_rO" node="4qZmOK$MA5o" resolve="cell" />
                   </node>
                 </node>
-                <node concept="liA8E" id="2K29Y0Lfql8" role="2OqNvi">
-                  <ref role="37wK5l" to="f4zo:~EditorCell.getParent()" resolve="getParent" />
-                </node>
-              </node>
-              <node concept="liA8E" id="2K29Y0Lfrst" role="2OqNvi">
-                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="2WFxg0qJ7Mz" role="3cqZAp">
-          <node concept="3cpWsn" id="2WFxg0qJ7M$" role="3cpWs9">
-            <property role="TrG5h" value="selectedFBs" />
-            <node concept="2OqwBi" id="2WFxg0qJ7M_" role="33vP2m">
-              <node concept="2OqwBi" id="2WFxg0qJ7MA" role="2Oq$k0">
-                <node concept="37vLTw" id="2WFxg0qJ7MB" role="2Oq$k0">
-                  <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
-                </node>
-                <node concept="liA8E" id="2WFxg0qJ7MC" role="2OqNvi">
-                  <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                  <node concept="10M0yZ" id="2WFxg0qJ7MD" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
-                    <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  </node>
-                </node>
-              </node>
-              <node concept="liA8E" id="2WFxg0qJ7ME" role="2OqNvi">
-                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
-              </node>
-            </node>
-            <node concept="3uibUv" id="2WFxg0qJ7MF" role="1tU5fm">
-              <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
-              <node concept="3uibUv" id="2WFxg0qJ7MG" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="2WFxg0qJ7MH" role="3cqZAp" />
-        <node concept="3cpWs8" id="2WFxg0qJ7MI" role="3cqZAp">
-          <node concept="3cpWsn" id="2WFxg0qJ7MJ" role="3cpWs9">
-            <property role="TrG5h" value="diagramFacility" />
-            <node concept="3uibUv" id="2WFxg0qJ7MK" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~DiagramFacility" resolve="DiagramFacility" />
-              <node concept="3uibUv" id="2WFxg0qJ7ML" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7MM" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7MN" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7MO" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="2WFxg0qJ7MP" role="33vP2m">
-              <node concept="37vLTw" id="2WFxg0qJ7MQ" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
-              </node>
-              <node concept="liA8E" id="2WFxg0qJ7MR" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2WFxg0qJ7MS" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.DIAGRAM_FACILITY" resolve="DIAGRAM_FACILITY" />
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="2WFxg0qJ7MT" role="3cqZAp">
-          <node concept="3cpWsn" id="2WFxg0qJ7MU" role="3cpWs9">
-            <property role="TrG5h" value="componentsFacility" />
-            <node concept="3uibUv" id="2WFxg0qJ7MV" role="1tU5fm">
-              <ref role="3uigEE" to="2w4:~ComponentsFacility" resolve="ComponentsFacility" />
-              <node concept="3uibUv" id="2WFxg0qJ7MW" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7MX" role="11_B2D">
-                <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="2WFxg0qJ7MY" role="33vP2m">
-              <node concept="37vLTw" id="2WFxg0qJ7MZ" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
-              </node>
-              <node concept="liA8E" id="2WFxg0qJ7N0" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2WFxg0qJ7N1" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.COMPONENTS_FACILITY" resolve="COMPONENTS_FACILITY" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="2WFxg0qJ7N2" role="3cqZAp">
-          <node concept="3cpWsn" id="2WFxg0qJ7N3" role="3cpWs9">
-            <property role="TrG5h" value="connectionsFacility" />
-            <node concept="3uibUv" id="2WFxg0qJ7N4" role="1tU5fm">
-              <ref role="3uigEE" to="tamd:~ConnectionsFacility" resolve="ConnectionsFacility" />
-              <node concept="3uibUv" id="2WFxg0qJ7N5" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7N6" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkPortView" resolve="NetworkPortView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7N7" role="11_B2D">
-                <ref role="3uigEE" to="1hzy:~NetworkConnectionView" resolve="NetworkConnectionView" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7N8" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionCursor" resolve="FBConnectionCursor" />
-              </node>
-              <node concept="3uibUv" id="2WFxg0qJ7N9" role="11_B2D">
-                <ref role="3uigEE" to="p24u:~FBConnectionPath" resolve="FBConnectionPath" />
-              </node>
-            </node>
-            <node concept="2OqwBi" id="2WFxg0qJ7Na" role="33vP2m">
-              <node concept="37vLTw" id="2WFxg0qJ7Nb" role="2Oq$k0">
-                <ref role="3cqZAo" node="7ynUKacUdtq" resolve="style" />
-              </node>
-              <node concept="liA8E" id="2WFxg0qJ7Nc" role="2OqNvi">
-                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2WFxg0qJ7Nd" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.CONNECTIONS_FACILITY" resolve="CONNECTIONS_FACILITY" />
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="2WFxg0qJ7Ne" role="3cqZAp" />
-        <node concept="3cpWs8" id="2WFxg0qJ7Nf" role="3cqZAp">
-          <node concept="3cpWsn" id="2WFxg0qJ7Ng" role="3cpWs9">
-            <property role="TrG5h" value="fbElkLayoutProvider" />
-            <node concept="3uibUv" id="2WFxg0qJ7Nh" role="1tU5fm">
-              <ref role="3uigEE" to="qsqy:~FBElkLayoutProvider" resolve="FBElkLayoutProvider" />
-            </node>
-            <node concept="2ShNRf" id="2WFxg0qJ7Ni" role="33vP2m">
-              <node concept="1pGfFk" id="2WFxg0qJ7Nj" role="2ShVmc">
-                <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.&lt;init&gt;(org.fbme.scenes.controllers.diagram.DiagramFacility,org.fbme.scenes.controllers.components.ComponentsFacility,org.fbme.scenes.controllers.diagram.ConnectionsFacility)" resolve="FBElkLayoutProvider" />
-                <node concept="37vLTw" id="2WFxg0qJ7Nk" role="37wK5m">
-                  <ref role="3cqZAo" node="2WFxg0qJ7MJ" resolve="diagramFacility" />
-                </node>
-                <node concept="37vLTw" id="2WFxg0qJ7Nl" role="37wK5m">
-                  <ref role="3cqZAo" node="2WFxg0qJ7MU" resolve="componentsFacility" />
-                </node>
-                <node concept="37vLTw" id="2WFxg0qJ7Nm" role="37wK5m">
-                  <ref role="3cqZAo" node="2WFxg0qJ7N3" resolve="connectionsFacility" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="2WFxg0qJ7Nn" role="3cqZAp" />
-        <node concept="3clFbF" id="2WFxg0qJkii" role="3cqZAp">
-          <node concept="2OqwBi" id="2WFxg0qJkEt" role="3clFbG">
-            <node concept="37vLTw" id="2WFxg0qJkig" role="2Oq$k0">
-              <ref role="3cqZAo" node="2WFxg0qJ7Ng" resolve="fbElkLayoutProvider" />
-            </node>
-            <node concept="liA8E" id="2WFxg0qJkPM" role="2OqNvi">
-              <ref role="37wK5l" to="qsqy:~FBElkLayoutProvider.collapse(java.util.Set)" resolve="collapse" />
-              <node concept="37vLTw" id="2WFxg0qJkQN" role="37wK5m">
-                <ref role="3cqZAo" node="2WFxg0qJ7M$" resolve="selectedFBs" />
-              </node>
+            <node concept="liA8E" id="7s8ro$mQ3py" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~CollapseAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>
