@@ -57,7 +57,6 @@ public final class FBSceneCell extends AbstractFBCell {
         addScenePortsLayer(scene);
 
         scene.setCellId(scene.getSNode().getNodeId().toString());
-        setSceneSizes(scene);
 
         return scene;
     }
@@ -68,74 +67,6 @@ public final class FBSceneCell extends AbstractFBCell {
             Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
             drawAllPortIcons(graphics, foreground);
         });
-    }
-
-    private void setSceneSizes(EditorCell_Scene scene) {
-        DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = scene.getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
-        ComponentsFacility<NetworkComponentView, Point> componentsFacility = scene.getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
-        ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = scene.getStyle().get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
-
-        DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController = diagramFacility.getDiagramController();
-
-        Set<NetworkComponentView> components = diagramController.getComponents();
-        Set<NetworkConnectionView> connections = diagramController.getConnections();
-
-        int minX = (int) 1e9;
-        int minY = (int) 1e9;
-        int maxX = (int) -1e9;
-        int maxY = (int) -1e9;
-
-        for (NetworkComponentView component : components) {
-            ComponentController<Point> componentController = componentsFacility.getController(component);
-            Point componentPosition = componentsFacility.getModelForm(component);
-            Rectangle componentBounds = componentController.getBounds(componentPosition);
-
-            int x1 = (int) componentBounds.getX();
-            int y1 = (int) componentBounds.getY();
-            int x2 = (int) (x1 + componentBounds.getWidth());
-            int y2 = (int) (y1 + componentBounds.getHeight());
-
-            minX = Math.min(minX, x1);
-            minY = Math.min(minY, y1);
-            maxX = Math.max(maxX, x2);
-            maxY = Math.max(maxY, y2);
-        }
-
-        for (NetworkConnectionView connection : connections) {
-            ConnectionPath connectionPath = connection.getConnectionPath();
-            if (connectionPath.getKind() == ConnectionPath.Kind.FourAngles) {
-                NetworkPortView source = diagramController.getSource(connection);
-                NetworkPortView target = diagramController.getTarget(connection);
-
-                PortController sourcePortController = diagramController.getPortController(source);
-                PortController targetPortController = diagramController.getPortController(target);
-
-                Point sourcePosition = sourcePortController.getModelEndpointPosition();
-                Point targetPosition = targetPortController.getModelEndpointPosition();
-
-                ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
-
-                FBConnectionPath path = connectionSynchronizer.getPath(connection).apply(sourcePosition, targetPosition);
-
-                // TODO: use scale
-                int x1 = path.getX1();
-//                int x1 = sourcePosition.x + connectionPath.getDX1();
-                int x2 = path.getX2();
-//                int x2 = targetPosition.x - connectionPath.getDX2();
-
-                int y = path.getY();
-//                int y = sourcePosition.y + connectionPath.getDY();
-
-                minX = Math.min(Math.min(minX, x1), x2);
-                maxX = Math.max(Math.max(maxX, x1), x2);
-
-                minY = Math.min(minY, y);
-                maxY = Math.max(maxY, y);
-            }
-        }
-
-        scene.setWidth(maxX - minX);
-        scene.setHeight(maxY - minY);
     }
 
     @Override
