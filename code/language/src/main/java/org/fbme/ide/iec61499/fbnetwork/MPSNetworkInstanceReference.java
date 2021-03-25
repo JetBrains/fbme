@@ -3,7 +3,6 @@ package org.fbme.ide.iec61499.fbnetwork;
 import org.fbme.ide.iec61499.repository.PlatformIdentifier;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
 import org.fbme.lib.common.Declaration;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
@@ -73,7 +72,7 @@ public class MPSNetworkInstanceReference {
         List<SNodeId> nestedList = new ArrayList<>();
         FunctionBlockInstance parentInstance = (FunctionBlockInstance) networInstance.getParent();
         while (parentInstance != null) {
-            FunctionBlockDeclaration functionBlock = parentInstance.getDeclaration();
+            FunctionBlockDeclarationBase functionBlock = parentInstance.getDeclaration();
             nestedList.add(((PlatformIdentifier) functionBlock.getIdentifier()).getReference().getNodeId());
             networInstance = parentInstance.getParent();
             parentInstance = (FunctionBlockInstance) networInstance.getParent();

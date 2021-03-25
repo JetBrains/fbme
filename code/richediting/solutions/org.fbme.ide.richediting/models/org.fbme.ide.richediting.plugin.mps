@@ -3507,12 +3507,17 @@
                 <node concept="3uibUv" id="6Vznkw4g9Uy" role="1tU5fm">
                   <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
                 </node>
-                <node concept="2OqwBi" id="74jd4DVyRre" role="33vP2m">
-                  <node concept="37vLTw" id="74jd4DVyRrf" role="2Oq$k0">
-                    <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                <node concept="10QFUN" id="5qqUv$9yxIS" role="33vP2m">
+                  <node concept="3uibUv" id="5qqUv$9yy1Z" role="10QFUM">
+                    <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
                   </node>
-                  <node concept="liA8E" id="74jd4DVyRrg" role="2OqNvi">
-                    <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getDeclaration()" resolve="getDeclaration" />
+                  <node concept="2OqwBi" id="74jd4DVyRre" role="10QFUP">
+                    <node concept="37vLTw" id="74jd4DVyRrf" role="2Oq$k0">
+                      <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                    </node>
+                    <node concept="liA8E" id="74jd4DVyRrg" role="2OqNvi">
+                      <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getDeclaration()" resolve="getDeclaration" />
+                    </node>
                   </node>
                 </node>
               </node>
