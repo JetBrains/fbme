@@ -1,11 +1,11 @@
-package org.fbme.ide.richediting.adapters.fbnetwork.layout;
+package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
 import org.eclipse.elk.alg.layered.options.*;
 import org.eclipse.elk.core.options.*;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.ElkPort;
 
-public class FBElkProperties {
+public class ELKProperties {
     public void setRootProperties(ElkNode node) {
         node.setProperty(CoreOptions.ALGORITHM, "org.eclipse.elk.layered");
         node.setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);

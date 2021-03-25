@@ -1,6 +1,5 @@
-package org.fbme.ide.richediting.adapters.fbnetwork.layout;
+package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
@@ -14,7 +13,6 @@ import org.eclipse.elk.graph.*;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
-import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.*;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.scenes.controllers.components.ComponentController;
@@ -28,8 +26,8 @@ import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
-public class FBElkLayoutProvider {
-    private static final Logger LOG = LogManager.getLogger(FBElkLayoutProvider.class);
+public class ELKLayoutProvider {
+    private static final Logger LOG = LogManager.getLogger(ELKLayoutProvider.class);
 
     private final DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility;
     private final ComponentsFacility<NetworkComponentView, Point> componentsFacility;
@@ -40,9 +38,9 @@ public class FBElkLayoutProvider {
 
     private final IGraphLayoutEngine layoutEngine = new RecursiveGraphLayoutEngine();
     private final List<ILayoutMetaDataProvider> layoutProviders = Arrays.asList(new CoreOptions(), new LayeredMetaDataProvider());
-    private final FBElkProperties layoutPropertiesProvider = new FBElkProperties();
+    private final ELKProperties layoutPropertiesProvider = new ELKProperties();
 
-    public FBElkLayoutProvider(
+    public ELKLayoutProvider(
             DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility,
             ComponentsFacility<NetworkComponentView, Point> componentsFacility,
             ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility
@@ -65,34 +63,6 @@ public class FBElkLayoutProvider {
             applyLayout(mapViewNode, mapViewPort);
         } catch (Throwable t) {
             LOG.error("error when relayout");
-        }
-    }
-
-    public void expand(Set<NetworkComponentView> selectedComponents) {
-//        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
-//        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
-//        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
-//        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
-
-        for (NetworkComponentView selectedComponent : selectedComponents) {
-            if (selectedComponent instanceof FunctionBlockView) {
-                FunctionBlockController controller = (FunctionBlockController) componentsFacility.getController(selectedComponent);
-                ((EditorCell_Collection) controller.getComponentCell()).unfold();
-            }
-        }
-    }
-
-    public void collapse(Set<NetworkComponentView> selectedComponents) {
-//        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
-//        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
-//        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
-//        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
-
-        for (NetworkComponentView selectedComponent : selectedComponents) {
-            if (selectedComponent instanceof FunctionBlockView) {
-                FunctionBlockController controller = (FunctionBlockController) componentsFacility.getController(selectedComponent);
-                ((EditorCell_Collection) controller.getComponentCell()).fold();
-            }
         }
     }
 
