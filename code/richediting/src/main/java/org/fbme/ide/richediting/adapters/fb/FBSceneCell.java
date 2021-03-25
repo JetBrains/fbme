@@ -4,6 +4,8 @@ import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.openapi.editor.EditorContext;
 import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
@@ -12,11 +14,12 @@ import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.DiagramFacility;
+import org.fbme.scenes.controllers.diagram.*;
 import org.fbme.scenes.controllers.scene.Layer;
 import org.fbme.scenes.controllers.scene.SceneLayout;
 import org.jetbrains.mps.openapi.model.SNode;
@@ -70,8 +73,12 @@ public final class FBSceneCell extends AbstractFBCell {
     private void setSceneSizes(EditorCell_Scene scene) {
         DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = scene.getStyle().get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
         ComponentsFacility<NetworkComponentView, Point> componentsFacility = scene.getStyle().get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
+        ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = scene.getStyle().get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
 
-        Set<NetworkComponentView> components = diagramFacility.getDiagramController().getComponents();
+        DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController = diagramFacility.getDiagramController();
+
+        Set<NetworkComponentView> components = diagramController.getComponents();
+        Set<NetworkConnectionView> connections = diagramController.getConnections();
 
         int minX = (int) 1e9;
         int minY = (int) 1e9;
@@ -92,6 +99,39 @@ public final class FBSceneCell extends AbstractFBCell {
             minY = Math.min(minY, y1);
             maxX = Math.max(maxX, x2);
             maxY = Math.max(maxY, y2);
+        }
+
+        for (NetworkConnectionView connection : connections) {
+            ConnectionPath connectionPath = connection.getConnectionPath();
+            if (connectionPath.getKind() == ConnectionPath.Kind.FourAngles) {
+                NetworkPortView source = diagramController.getSource(connection);
+                NetworkPortView target = diagramController.getTarget(connection);
+
+                PortController sourcePortController = diagramController.getPortController(source);
+                PortController targetPortController = diagramController.getPortController(target);
+
+                Point sourcePosition = sourcePortController.getModelEndpointPosition();
+                Point targetPosition = targetPortController.getModelEndpointPosition();
+
+                ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
+
+                FBConnectionPath path = connectionSynchronizer.getPath(connection).apply(sourcePosition, targetPosition);
+
+                // TODO: use scale
+                int x1 = path.getX1();
+//                int x1 = sourcePosition.x + connectionPath.getDX1();
+                int x2 = path.getX2();
+//                int x2 = targetPosition.x - connectionPath.getDX2();
+
+                int y = path.getY();
+//                int y = sourcePosition.y + connectionPath.getDY();
+
+                minX = Math.min(Math.min(minX, x1), x2);
+                maxX = Math.max(Math.max(maxX, x1), x2);
+
+                minY = Math.min(minY, y);
+                maxY = Math.max(maxY, y);
+            }
         }
 
         scene.setWidth(maxX - minX);
