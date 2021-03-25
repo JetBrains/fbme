@@ -13,6 +13,7 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
+import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.SelectionModel;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
@@ -30,6 +31,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>> DIAGRAM_FACILITY = new InheritableStyleAttribute<>("diagram-facility");
     public static final StyleAttribute<ComponentsFacility<NetworkComponentView, Point>> COMPONENTS_FACILITY = new InheritableStyleAttribute<>("components-facility");
     public static final StyleAttribute<ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>> CONNECTIONS_FACILITY = new InheritableStyleAttribute<>("connections-facility");
+    public static final StyleAttribute<SceneViewpoint> VIEWPOINT = new InheritableStyleAttribute<>("viewpoint");
 
     static {
         NETWORK.register();
@@ -41,5 +43,6 @@ public class RichEditorStyleAttributes {
         DIAGRAM_FACILITY.register();
         COMPONENTS_FACILITY.register();
         CONNECTIONS_FACILITY.register();
+        VIEWPOINT.register();
     }
 }
