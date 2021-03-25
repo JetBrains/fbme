@@ -20,6 +20,7 @@ import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
@@ -113,7 +114,11 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
                 }
 
                 NetworkInstance networkInstance = getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
-                myUnfoldedFBCell = new FBSceneCell(context, myView.getType(), node, myEditable, networkInstance);
+                FunctionBlockInstance childInstance = networkInstance.getChild(myView.getComponent());
+                assert childInstance != null;
+                NetworkInstance childNetworkInstance = childInstance.getContainedNetwork();
+                assert childNetworkInstance != null;
+                myUnfoldedFBCell = new FBSceneCell(context, myView.getType(), node, myEditable, childNetworkInstance);
                 myFBCell = myUnfoldedFBCell;
                 addEditorCell(myFBCell.getRootCell());
                 myUnfoldedCellInitialized = true;
