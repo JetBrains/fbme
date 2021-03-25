@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
@@ -14,7 +13,6 @@ import org.eclipse.elk.graph.*;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
-import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.*;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.scenes.controllers.SceneViewpoint;
@@ -69,34 +67,6 @@ public class ELKLayoutProvider {
             applyLayout(mapViewNode, mapViewPort);
         } catch (Throwable t) {
             LOG.error("error when relayout");
-        }
-    }
-
-    public void expand(Set<NetworkComponentView> selectedComponents) {
-//        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
-//        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
-//        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
-//        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
-
-        for (NetworkComponentView selectedComponent : selectedComponents) {
-            if (selectedComponent instanceof FunctionBlockView) {
-                FunctionBlockController controller = (FunctionBlockController) componentsFacility.getController(selectedComponent);
-                ((EditorCell_Collection) controller.getComponentCell()).unfold();
-            }
-        }
-    }
-
-    public void collapse(Set<NetworkComponentView> selectedComponents) {
-//        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(layoutProviders.toArray(new ILayoutMetaDataProvider[0]));
-//        Map<NetworkComponentView, ElkNode> mapViewNode = new HashMap<>();
-//        Map<NetworkPortView, ElkPort> mapViewPort = new HashMap<>();
-//        ElkNode root = createElkGraph(mapViewNode, mapViewPort);
-
-        for (NetworkComponentView selectedComponent : selectedComponents) {
-            if (selectedComponent instanceof FunctionBlockView) {
-                FunctionBlockController controller = (FunctionBlockController) componentsFacility.getController(selectedComponent);
-                ((EditorCell_Collection) controller.getComponentCell()).fold();
-            }
         }
     }
 
