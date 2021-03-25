@@ -28,7 +28,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
     private static final int ENDPOINTS_PADDING = FBConnectionUtils.ENDPOINTS_PADDING;
 
     private final EntryKind myKind;
-    private boolean myIsEditable;
+    private final boolean myIsEditable;
 
     private final EditorCell_Collection myFakeCell;
 
@@ -37,7 +37,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
     public FBConnectionController(EditorContext context, NetworkConnectionView view) {
         myKind = view.getKind();
         myIsEditable = view.isEditable();
-        myIsEditable = true;
         SNode associatedNode = view.getAssociatedNode();
         myFakeCell = FakeCells.createCollection(context, associatedNode);
         Iterator<SNode> conncetionPaths = SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.ConnectionPath$IA).iterator();
