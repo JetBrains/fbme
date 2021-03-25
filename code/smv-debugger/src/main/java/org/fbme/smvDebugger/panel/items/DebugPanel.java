@@ -6,6 +6,8 @@ import org.fbme.smvDebugger.panel.mvc.DebugPanelModel;
 import org.fbme.smvDebugger.model.Counterexample;
 import org.fbme.smvDebugger.visualization.SystemHighlighter;
 import org.fbme.smvDebugger.visualization.BacktraceService;
+import org.jdesktop.swingx.HorizontalLayout;
+
 import java.awt.FlowLayout;
 
 public class DebugPanel extends JPanel implements DebugPanelMVCItem {
@@ -28,7 +30,7 @@ public class DebugPanel extends JPanel implements DebugPanelMVCItem {
     controlPanel.initView();
     counterexampleTable.initView();
 
-    setLayout(new FlowLayout());
+    setLayout(new HorizontalLayout());
     add(controlPanel);
     add(counterexampleTable);
   }

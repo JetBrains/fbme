@@ -44,13 +44,16 @@
       <ECTransition Source="INIT" Destination="OFF" Condition="REQ" x="1619.0" y="786.0" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="Pressed := FALSE;&#38;#10;" />
+      <ST Text="Pressed := FALSE;
+&#38;#10;" />
     </Algorithm>
     <Algorithm Name="aOFF">
-      <ST Text="Pressed := FALSE;&#38;#10;" />
+      <ST Text="Pressed := FALSE;
+&#38;#10;" />
     </Algorithm>
     <Algorithm Name="aPRESS">
-      <ST Text="Pressed := TRUE;&#38;#10;" />
+      <ST Text="Pressed := TRUE;
+&#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

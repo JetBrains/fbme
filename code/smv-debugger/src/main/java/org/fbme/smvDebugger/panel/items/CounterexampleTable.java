@@ -28,8 +28,8 @@ public class CounterexampleTable extends JPanel implements DebugPanelMVCItem {
   private static final Color HIGHLIGHT_CELL_COLOR = new Color(128, 189, 128);
   private static final Color CURRENT_COLUMN_COLOR = new Color(236, 236, 236);
   private static final int COLUMN_WIDTH = 80;
-  private static final int FIRST_COLUMN_WIDTH = 360;
-  private static final int SCROLL_PANE_WIDTH = 780;
+  private static final int FIRST_COLUMN_WIDTH = 160;
+  private static final int SCROLL_PANE_WIDTH = 480;
   private static final int SCROLL_PANE_HEIGHT = 360;
   private static final String MODEL_NAME = "model";
   private static final String SELECTION_MODEL_NAME = "selectionModel";

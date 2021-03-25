@@ -37,7 +37,7 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
             final boolean source = interfaceEndpoint.isSource();
             final int pos = interfaceEndpoint.getPosition();
-            return () -> new Point(myViewpoint.translateToEditorX(source ? 0 : (int) (myScale * 5000)), myViewpoint.translateToEditorY(pos * 100));
+            return () -> new Point(myViewpoint.translateToEditorX(source ? 0 : (int) (myScale * 3000)), myViewpoint.translateToEditorY(pos * 100));
         }
         throw new IllegalArgumentException("unknown network component");
     }
