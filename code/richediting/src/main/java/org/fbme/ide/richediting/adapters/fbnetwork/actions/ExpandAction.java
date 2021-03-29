@@ -71,7 +71,7 @@ public class ExpandAction implements Action {
 
         Pair<ArrayList<NetworkComponentView>, Integer> p = getAffectedComponentsAndGap(component, scene);
         ArrayList<NetworkComponentView> affectedComponents = p.first;
-        int gap = p.second;
+        int gap = p.second + 50;
 
         int dx = gap + scene.getWidth();
         shiftComponents(affectedComponents, dx);
@@ -97,7 +97,7 @@ public class ExpandAction implements Action {
                 .collect(Collectors.toList());
 
         ArrayList<NetworkComponentView> affectedComponents = new ArrayList<>();
-        int gap = 50;
+        int gap = 0;
 
         for (NetworkComponentView component : components) {
             FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
