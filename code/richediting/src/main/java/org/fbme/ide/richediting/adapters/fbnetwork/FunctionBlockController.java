@@ -4,6 +4,7 @@ import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
+import jetbrains.mps.nodeEditor.cellLayout.CellLayout;
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
@@ -40,6 +41,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     private FBCell myFBCell;
     private FBTypeCellComponent myFoldedFBCell;
     private FBSceneCell myUnfoldedFBCell;
+    private boolean myUnfoldedCellInitialized = false;
 
     public FunctionBlockController(EditorContext context, final FunctionBlockView view) {
         myView = view;
@@ -69,6 +71,14 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         relayout();
     }
 
+    public FBSceneCell getUnfoldedFBCell() {
+        return myUnfoldedFBCell;
+    }
+
+    public boolean isUnfoldedCellInitialized() {
+        return myUnfoldedCellInitialized;
+    }
+
     private EditorCell_Collection createFoldedCell(EditorContext context, SNode node) {
         EditorCell_Collection foldedCell = new EditorCell_Collection(context, node, new AbstractCellLayout() {
             @Override
@@ -96,8 +106,6 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
         EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
-            private boolean myUnfoldedCellInitialized = false;
-
             @Override
             public void fold() {
                 myFBCell = myFoldedFBCell;
@@ -106,23 +114,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
             @Override
             public void unfold() {
-                if (myUnfoldedCellInitialized) {
-                    // unfolded cell already initialized
-                    myFBCell = myUnfoldedFBCell;
-                    super.unfold();
-                    return;
+                if (!isUnfoldedCellInitialized()) {
+                    initializeUnfoldedCell();
                 }
-
-                NetworkInstance networkInstance = getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
-                FunctionBlockInstance childInstance = networkInstance.getChild(myView.getComponent());
-                assert childInstance != null;
-                NetworkInstance childNetworkInstance = childInstance.getContainedNetwork();
-                assert childNetworkInstance != null;
-                myUnfoldedFBCell = new FBSceneCell(context, myView.getType(), node, myEditable, childNetworkInstance);
                 myFBCell = myUnfoldedFBCell;
-                addEditorCell(myFBCell.getRootCell());
-                myUnfoldedCellInitialized = true;
-
                 super.unfold();
             }
 
@@ -137,6 +132,17 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         foldableCell.setInitiallyCollapsed(true);
 
         return foldableCell;
+    }
+
+    public void initializeUnfoldedCell() {
+        NetworkInstance networkInstance = myCellCollection.getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
+        FunctionBlockInstance childInstance = networkInstance.getChild(myView.getComponent());
+        assert childInstance != null;
+        NetworkInstance childNetworkInstance = childInstance.getContainedNetwork();
+        assert childNetworkInstance != null;
+        myUnfoldedFBCell = new FBSceneCell(myCellCollection.getContext(), myView.getType(), myView.getAssociatedNode(), myEditable, childNetworkInstance);
+        myCellCollection.addEditorCell(myUnfoldedFBCell.getRootCell());
+        myUnfoldedCellInitialized = true;
     }
 
     @Override
