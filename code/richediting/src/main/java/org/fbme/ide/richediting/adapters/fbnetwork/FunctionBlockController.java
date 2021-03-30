@@ -105,7 +105,14 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     }
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
-        EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical()) {
+        EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical() {
+            @Override
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCells) {
+                super.doLayout(editorCells);
+                myFBCell.getRootCell().moveTo(myCellCollection.getX(), myCellCollection.getY() + getLineSize());
+                myNameProperty.moveTo(myCellCollection.getX() + myFBCell.getWidth() / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
+            }
+        }) {
             @Override
             public void fold() {
                 myFBCell = myFoldedFBCell;
@@ -141,6 +148,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         NetworkInstance childNetworkInstance = childInstance.getContainedNetwork();
         assert childNetworkInstance != null;
         myUnfoldedFBCell = new FBSceneCell(myCellCollection.getContext(), myView.getType(), myView.getAssociatedNode(), myEditable, childNetworkInstance);
+        myCellCollection.addEditorCell(myNameProperty);
         myCellCollection.addEditorCell(myUnfoldedFBCell.getRootCell());
         myUnfoldedCellInitialized = true;
     }
@@ -180,9 +188,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         } else {
             return null;
         }
-        int shiftX = (myCellCollection.getWidth() - myFBCell.getWidth()) / 2;
-        int shiftY = myCellCollection.getHeight() - myFBCell.getHeight();
-        coordinates.translate(position.x + shiftX, position.y + shiftY);
+        coordinates.translate(position.x, position.y + getLineSize());
         return coordinates;
     }
 
@@ -263,9 +269,6 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
         myFoldedCell.setWidth(width);
         myFoldedCell.setHeight(height);
-
-        myNameProperty.moveTo(myCellCollection.getX() + width / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
-        fbCell.moveTo(myCellCollection.getX() + width / 2 - fbCell.getWidth() / 2, myCellCollection.getY() + getLineSize());
     }
 
     private int getLineSize() {

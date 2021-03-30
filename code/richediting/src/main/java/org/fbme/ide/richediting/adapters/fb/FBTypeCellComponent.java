@@ -239,42 +239,6 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         graphics.draw(shape);
     }
 
-    private GeneralPath getComponentShape(int x, int y) {
-        GeneralPath shape = new GeneralPath();
-
-        int eventPortsCount = getEventPortsCount();
-        int lineSize = getLineSize();
-        int halfLineSize = lineSize / 2;
-
-        int width = getRootCell().getWidth() - 2 * scale(PORT_SIZE);
-        int height = getRootCell().getHeight();
-        int xLeft = x + scale(PORT_SIZE);
-        int xRight = xLeft + width;
-        int yBottom = y;
-        int yTop = yBottom + height - halfLineSize;
-
-        double yCenterB = yBottom + lineSize * eventPortsCount + halfLineSize;
-        double yCenterT = yCenterB + halfLineSize;
-        double xLeftS = xLeft + lineSize;
-        double xRightS = xRight - lineSize;
-
-        shape.moveTo(xLeft, yBottom);
-        shape.lineTo(xLeft, yCenterB);
-        shape.lineTo(xLeftS, yCenterB);
-        shape.lineTo(xLeftS, yCenterT);
-        shape.lineTo(xLeft, yCenterT);
-        shape.lineTo(xLeft, yTop);
-        shape.lineTo(xRight, yTop);
-        shape.lineTo(xRight, yCenterT);
-        shape.lineTo(xRightS, yCenterT);
-        shape.lineTo(xRightS, yCenterB);
-        shape.lineTo(xRight, yCenterB);
-        shape.lineTo(xRight, yBottom);
-        shape.closePath();
-
-        return shape;
-    }
-
     private Color getBackgroundColor() {
         Color background = getRootCell().getStyle().get(StyleAttributes.BACKGROUND_COLOR);
         return background == null ? MPSColors.LIGHT_GRAY : background;
@@ -368,10 +332,5 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         if (typeDeclaration instanceof PlatformElement) {
             style.set(StyleAttributes.NAVIGATABLE_NODE, ((PlatformElement) typeDeclaration).getNode());
         }
-    }
-
-    private EditorCell_SceneLabel createTypeNameLabel() {
-        Declaration typeDeclaration = fbType.getDeclaration();
-        return new EditorCell_SceneLabel(context, node, fbType.getTypeName(), typeDeclaration == null);
     }
 }

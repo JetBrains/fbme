@@ -3,12 +3,15 @@ package org.fbme.ide.richediting.adapters.fb;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.fbme.scenes.cells.EditorCell_SceneLabel;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,6 +207,47 @@ public abstract class AbstractFBCell implements FBCell {
 
     protected int scale(int size) {
         return size * getFontSize() / EditorSettings.getInstance().getFontSize();
+    }
+
+    protected EditorCell_SceneLabel createTypeNameLabel() {
+        Declaration typeDeclaration = fbType.getDeclaration();
+        return new EditorCell_SceneLabel(context, node, fbType.getTypeName(), typeDeclaration == null);
+    }
+
+    protected GeneralPath getComponentShape(int x, int y) {
+        GeneralPath shape = new GeneralPath();
+
+        int eventPortsCount = getEventPortsCount();
+        int lineSize = getLineSize();
+        int halfLineSize = lineSize / 2;
+
+        int width = getRootCell().getWidth() - 2 * scale(PORT_SIZE);
+        int height = getRootCell().getHeight();
+        int xLeft = x + scale(PORT_SIZE);
+        int xRight = xLeft + width;
+        int yBottom = y;
+        int yTop = yBottom + height - halfLineSize;
+
+        double yCenterB = yBottom + lineSize * eventPortsCount + halfLineSize;
+        double yCenterT = yCenterB + halfLineSize;
+        double xLeftS = xLeft + lineSize;
+        double xRightS = xRight - lineSize;
+
+        shape.moveTo(xLeft, yBottom);
+        shape.lineTo(xLeft, yCenterB);
+        shape.lineTo(xLeftS, yCenterB);
+        shape.lineTo(xLeftS, yCenterT);
+        shape.lineTo(xLeft, yCenterT);
+        shape.lineTo(xLeft, yTop);
+        shape.lineTo(xRight, yTop);
+        shape.lineTo(xRight, yCenterT);
+        shape.lineTo(xRightS, yCenterT);
+        shape.lineTo(xRightS, yCenterB);
+        shape.lineTo(xRight, yCenterB);
+        shape.lineTo(xRight, yBottom);
+        shape.closePath();
+
+        return shape;
     }
 
     private void relayoutChildren() {
