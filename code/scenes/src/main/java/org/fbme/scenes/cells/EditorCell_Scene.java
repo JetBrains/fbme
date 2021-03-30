@@ -286,10 +286,12 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = ((Graphics2D) graphics.create());
         if (myLayout == SceneLayout.WINDOWED) {
-            g.setColor(MPSColors.BLACK);
-            Rectangle bounds = getBounds();
-            g.draw(bounds);
-            g.setClip(bounds.intersection(g.getClip().getBounds()));
+            if (isDrawBorder()) {
+                g.setColor(MPSColors.BLACK);
+                Rectangle bounds = getBounds();
+                g.draw(bounds);
+                g.setClip(bounds.intersection(g.getClip().getBounds()));
+            }
         }
 
         for (LayerImpl layer : myLayers) {
@@ -582,8 +584,8 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
                 if (scene.myLayout == SceneLayout.WINDOWED) {
                     doRelayout(scene);
                     Rectangle bounds = calculateBounds(scene);
-                    scene.myWidth = bounds.width + bounds.x - scene.myX + 15;
-                    scene.myHeight = bounds.height + bounds.y - scene.myY + 10;
+                    scene.myWidth = bounds.width + bounds.x - scene.myX + 15; // to remove + 15?
+                    scene.myHeight = bounds.height + bounds.y - scene.myY + 10; // to remove + 10?
                 } else {
                     Rectangle bounds = calculateBounds(scene);
                     updateViewport(scene, bounds);
