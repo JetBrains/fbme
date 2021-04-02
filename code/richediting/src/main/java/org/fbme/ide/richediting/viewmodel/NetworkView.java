@@ -86,11 +86,11 @@ public class NetworkView {
         int events = Math.max(contextEventSources.size(), contextEventDestinations.size());
         List<ParameterDeclaration> contextDataSources = network.getContextDataSources();
         for (int i = 0; i < contextDataSources.size(); i++) {
-            addInterfaceEndpoint(events + i, EntryKind.DATA, true, contextDataSources.get(i));
+            addInterfaceEndpoint(events + i + 2, EntryKind.DATA, true, contextDataSources.get(i));
         }
         List<ParameterDeclaration> contextDataDestinations = network.getContextDataDestinations();
         for (int i = 0; i < contextDataDestinations.size(); i++) {
-            addInterfaceEndpoint(events + i, EntryKind.DATA, false, contextDataDestinations.get(i));
+            addInterfaceEndpoint(events + i + 2, EntryKind.DATA, false, contextDataDestinations.get(i));
         }
     }
 

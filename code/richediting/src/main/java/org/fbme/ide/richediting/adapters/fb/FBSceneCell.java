@@ -89,7 +89,7 @@ public final class FBSceneCell extends AbstractFBCell {
 
     @Override
     public void paintTrace(Graphics2D g, int x, int y) {
-        GeneralPath shape = getComponentShape(x, y);
+        GeneralPath shape = getComponentShape(x, y + getLineSize());
         g.setPaint(MPSColors.GRAY);
         FBConnectionPathPainter.setupShadowPathPaint(g, scale(1));
         g.draw(shape);

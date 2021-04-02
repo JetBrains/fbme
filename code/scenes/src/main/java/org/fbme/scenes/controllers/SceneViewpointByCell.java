@@ -36,8 +36,8 @@ public class SceneViewpointByCell implements ModifiableSceneViewpoint {
 
     @Override
     public float getEditorScale() {
-        int fontSize = LayoutUtil.getFontSize(myCell.getStyle());
-        return scale(fontSize);
+        int lineSize = LayoutUtil.getLineSize(myCell.getStyle());
+        return scale(lineSize);
     }
 
     private float scale(int lineSize) {
