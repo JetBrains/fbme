@@ -4,7 +4,6 @@ import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
-import jetbrains.mps.nodeEditor.cellLayout.CellLayout;
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
@@ -39,7 +38,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     private final FunctionBlockView myView;
     private final boolean myEditable;
     private FBCell myFBCell;
-    private FBTypeCellComponent myFoldedFBCell;
+    private final FBTypeCellComponent myFoldedFBCell;
     private FBSceneCell myUnfoldedFBCell;
     private boolean myUnfoldedCellInitialized = false;
 
@@ -69,6 +68,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
         myCellCollection.setBig(true);
         relayout();
+    }
+
+    public FBTypeCellComponent getFoldedFBCell() {
+        return myFoldedFBCell;
     }
 
     public FBSceneCell getUnfoldedFBCell() {
@@ -173,10 +176,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     @NotNull
     @Override
     public Point getPortCoordinates(@NotNull NetworkPortView fbPort, @NotNull Point position) {
-        FunctionBlockPortView functonBlockPort = assertMine(fbPort);
-        int index = functonBlockPort.getPosition();
-        EntryKind kind = functonBlockPort.getKind();
-        boolean isSource = functonBlockPort.isSource();
+        FunctionBlockPortView functionBlockPort = assertMine(fbPort);
+        int index = functionBlockPort.getPosition();
+        EntryKind kind = functionBlockPort.getKind();
+        boolean isSource = functionBlockPort.isSource();
 
         Point coordinates;
         if (kind == EntryKind.EVENT) {
