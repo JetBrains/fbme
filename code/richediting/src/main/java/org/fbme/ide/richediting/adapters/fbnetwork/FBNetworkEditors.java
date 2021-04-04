@@ -123,7 +123,7 @@ public final class FBNetworkEditors {
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection);
 
             DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<NetworkComponentView>(context.getRepository());
-            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<NetworkComponentView, Point>(scene, networkView.getComponentsView(), COMPONENT_CONTROLLER_FACTORY, new FBNetworkComponentSynhcronizer(viewpoint, scale), componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer);
+            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<NetworkComponentView, Point>(scene, networkView.getComponentsView(), getComponentControllerFactory(networkInstance), new FBNetworkComponentSynhcronizer(viewpoint, scale), componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer);
 
             style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility);
 
@@ -226,15 +226,17 @@ public final class FBNetworkEditors {
         return new InlineValueController(context, (InlineValueView) extView, (FunctionBlockController) compController, (EditorCell) cell);
     };
 
-    public static final ComponentControllerFactory<NetworkComponentView, Point> COMPONENT_CONTROLLER_FACTORY = (context, view) -> {
-        if (view instanceof FunctionBlockView) {
-            return new FunctionBlockController(context, (FunctionBlockView) view);
-        }
-        if (view instanceof InterfaceEndpointView) {
-            return new InterfaceEndpointController(context, (InterfaceEndpointView) view);
-        }
-        return null;
-    };
+    public static ComponentControllerFactory<NetworkComponentView, Point> getComponentControllerFactory(@NotNull NetworkInstance instance) {
+        return (context, view) -> {
+            if (view instanceof FunctionBlockView) {
+                return new FunctionBlockController(context, (FunctionBlockView) view, instance);
+            }
+            if (view instanceof InterfaceEndpointView) {
+                return new InterfaceEndpointController(context, (InterfaceEndpointView) view);
+            }
+            return null;
+        };
+    }
 
     private static List<PositionalCompletionItem> getCompletion(
             final DeclarationsScope scope,

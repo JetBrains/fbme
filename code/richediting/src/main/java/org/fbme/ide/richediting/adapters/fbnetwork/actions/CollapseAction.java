@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
@@ -29,9 +28,7 @@ public class CollapseAction extends ExpandOrCollapseAction {
     private void collapse(FunctionBlockView component) {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
 
-        preparing(componentController.getFoldedFBCell(), component, componentController);
-
-        EditorCell_Collection componentCell = (EditorCell_Collection) componentController.getComponentCell();
-        componentCell.fold();
+        preparing(componentController.getFbCell(), component, componentController);
+        componentController.expandBlock(false);
     }
 }

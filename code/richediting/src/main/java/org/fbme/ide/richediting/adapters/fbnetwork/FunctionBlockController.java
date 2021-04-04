@@ -12,6 +12,7 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import jetbrains.mps.openapi.editor.update.Updater;
 import org.fbme.ide.richediting.adapters.fb.FBCell;
 import org.fbme.ide.richediting.adapters.fb.FBSceneCell;
 import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
@@ -26,28 +27,37 @@ import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import org.jetbrains.mps.openapi.model.SNodeReference;
 
 import java.awt.*;
 import java.util.Objects;
 import java.util.function.Function;
 
 public class FunctionBlockController implements ComponentController<Point>, FBNetworkComponentController {
+
+    private static final String EXPAND_FB_HINT = "org.fbme.ide.richediting.adapters.fbnetwork.ExpandFbHint";
+
     private final EditorCell_Property myNameProperty;
     private final EditorCell_Collection myCellCollection;
     private final EditorCell_Collection myFoldedCell;
     private final FunctionBlockView myView;
     private final boolean myEditable;
-    private FBCell myFBCell;
-    private final FBTypeCellComponent myFoldedFBCell;
-    private FBSceneCell myUnfoldedFBCell;
-    private boolean myUnfoldedCellInitialized = false;
+    private final FBCell myFBCell;
+    private final NetworkInstance myNetworkInstance;
 
-    public FunctionBlockController(EditorContext context, final FunctionBlockView view) {
+    public FunctionBlockController(
+            final EditorContext context,
+            final FunctionBlockView view,
+            final NetworkInstance networkInstance
+    ) {
         myView = view;
         myEditable = myView.isEditable();
         SNode node = view.getAssociatedNode();
-        myFoldedFBCell = new FBTypeCellComponent(context, myView.getType(), node, myEditable);
-        myFBCell = myFoldedFBCell;
+
+        myCellCollection = createRootCell(context, node);
+        myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
+        myCellCollection.setBig(true);
+        myNetworkInstance = networkInstance;
         myNameProperty = new EditorCell_Property(context, new ModelAccessor() {
             public String getText() {
                 String name = view.getComponent().getName();
@@ -63,23 +73,23 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             }
         }, node);
         myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
-        myFoldedCell = createFoldedCell(context, node);
-        myCellCollection = createRootCell(context, node);
-        myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
-        myCellCollection.setBig(true);
-        relayout();
+        if (shouldFbExpanded(context, view)) {
+            myFBCell = initializeUnfoldedCell();
+            myFoldedCell = null;
+        } else {
+            myFBCell = new FBTypeCellComponent(context, myView.getType(), node, myEditable);
+            myFoldedCell = createFoldedCell(context, node);
+            myCellCollection.addEditorCell(myFoldedCell);
+            relayout();
+        }
     }
 
-    public FBTypeCellComponent getFoldedFBCell() {
-        return myFoldedFBCell;
+    public FBCell getFbCell() {
+        return myFBCell;
     }
 
-    public FBSceneCell getUnfoldedFBCell() {
-        return myUnfoldedFBCell;
-    }
-
-    public boolean isUnfoldedCellInitialized() {
-        return myUnfoldedCellInitialized;
+    public void expandBlock(boolean expand) {
+        setShouldFbExpanded(myCellCollection.getContext(), myView, expand);
     }
 
     private EditorCell_Collection createFoldedCell(EditorContext context, SNode node) {
@@ -108,52 +118,25 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     }
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
-        EditorCell_Collection foldableCell = new EditorCell_Collection(context, node, new CellLayout_Vertical() {
+        return new EditorCell_Collection(context, node, new CellLayout_Vertical() {
             @Override
             public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCells) {
                 super.doLayout(editorCells);
                 myFBCell.getRootCell().moveTo(myCellCollection.getX(), myCellCollection.getY() + getLineSize());
                 myNameProperty.moveTo(myCellCollection.getX() + myFBCell.getWidth() / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
             }
-        }) {
-            @Override
-            public void fold() {
-                myFBCell = myFoldedFBCell;
-                super.fold();
-            }
-
-            @Override
-            public void unfold() {
-                if (!isUnfoldedCellInitialized()) {
-                    initializeUnfoldedCell();
-                }
-                myFBCell = myUnfoldedFBCell;
-                super.unfold();
-            }
-
-            @Override
-            protected boolean isUnderFolded() {
-                return true;
-            }
-        };
-
-        foldableCell.setFoldable(true);
-        foldableCell.setFoldedCell(myFoldedCell);
-        foldableCell.setInitiallyCollapsed(true);
-
-        return foldableCell;
+        });
     }
 
-    public void initializeUnfoldedCell() {
-        NetworkInstance networkInstance = myCellCollection.getStyle().get(RichEditorStyleAttributes.NETWORK_INSTANCE);
-        FunctionBlockInstance childInstance = networkInstance.getChild(myView.getComponent());
+    public FBCell initializeUnfoldedCell() {
+        FunctionBlockInstance childInstance = myNetworkInstance.getChild(myView.getComponent());
         assert childInstance != null;
         NetworkInstance childNetworkInstance = childInstance.getContainedNetwork();
         assert childNetworkInstance != null;
-        myUnfoldedFBCell = new FBSceneCell(myCellCollection.getContext(), myView.getType(), myView.getAssociatedNode(), myEditable, childNetworkInstance);
+        FBCell fbCell = new FBSceneCell(myCellCollection.getContext(), myView.getType(), myView.getAssociatedNode(), myEditable, childNetworkInstance);
         myCellCollection.addEditorCell(myNameProperty);
-        myCellCollection.addEditorCell(myUnfoldedFBCell.getRootCell());
-        myUnfoldedCellInitialized = true;
+        myCellCollection.addEditorCell(fbCell.getRootCell());
+        return fbCell;
     }
 
     @Override
@@ -258,7 +241,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     @Override
     public void paintTrace(Graphics g, Point position) {
-        myFBCell.paintTrace((Graphics2D) g.create(), position.x, position.y + (myCellCollection.isCollapsed() ? getLineSize() : 0));
+        myFBCell.paintTrace((Graphics2D) g.create(), position.x, position.y + (myFBCell instanceof FBTypeCellComponent ? getLineSize() : 0));
     }
 
     public void relayout() {
@@ -267,14 +250,42 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         myNameProperty.relayout();
         fbCell.relayout();
 
-        int width = Math.max(myNameProperty.getWidth(), myFBCell.getWidth());
-        int height = myFBCell.getHeight() + (myCellCollection.isCollapsed() ? getLineSize() : 0);
+        if (myFBCell instanceof FBTypeCellComponent) {
+            int width = Math.max(myNameProperty.getWidth(), myFBCell.getWidth());
+            int height = myFBCell.getHeight() + getLineSize();
 
-        myFoldedCell.setWidth(width);
-        myFoldedCell.setHeight(height);
+            myFoldedCell.setWidth(width);
+            myFoldedCell.setHeight(height);
+        }
     }
 
     private int getLineSize() {
         return LayoutUtil.getLineSize(myCellCollection.getStyle());
+    }
+
+    private static boolean shouldFbExpanded(EditorContext editorContext, FunctionBlockView view) {
+        SNodeReference reference = view.getAssociatedNode().getReference();
+        Updater updater = editorContext.getEditorComponent().getUpdater();
+        String[] hints = updater.getExplicitEditorHintsForNode(reference);
+        if (hints == null) {
+            return false;
+        }
+        for (String hint : hints) {
+            if (hint.equals(EXPAND_FB_HINT)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void setShouldFbExpanded(EditorContext editorContext, FunctionBlockView view, boolean expand) {
+        SNodeReference reference = view.getAssociatedNode().getReference();
+        Updater updater = editorContext.getEditorComponent().getUpdater();
+        if (expand) {
+            updater.addExplicitEditorHintsForNode(reference, EXPAND_FB_HINT);
+        } else {
+            updater.removeExplicitEditorHintsForNode(reference, EXPAND_FB_HINT);
+        }
+        updater.update();
     }
 }
