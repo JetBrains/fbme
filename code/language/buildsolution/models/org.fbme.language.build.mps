@@ -200,6 +200,9 @@
         <node concept="L2wRC" id="ApHj0p3Lgv" role="39821P">
           <ref role="L2wRA" node="1a1larLevcL" resolve="org.fbme.ide.util.lang" />
         </node>
+        <node concept="L2wRC" id="723cCDWLyQm" role="39821P">
+          <ref role="L2wRA" node="723cCDWLyJu" resolve="org.fbme.ide.attributes" />
+        </node>
       </node>
     </node>
     <node concept="2G$12M" id="68dTcycFmt7" role="3989C9">
@@ -295,11 +298,6 @@
             <ref role="3bR37D" node="1a1larLevcL" resolve="org.fbme.ide.util.lang" />
           </node>
         </node>
-        <node concept="1SiIV0" id="QE5KxyaQow" role="3bR37C">
-          <node concept="3bR9La" id="QE5KxyaQox" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="QE5KxyaQoB" role="3bR37C">
           <node concept="1BurEX" id="QE5KxyaQoC" role="1SiIV1">
             <node concept="55IIr" id="QE5KxyaQoy" role="1BurEY">
@@ -316,6 +314,11 @@
                 </node>
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="723cCDWSRrG" role="3bR37C">
+          <node concept="3bR9La" id="723cCDWSRrH" role="1SiIV1">
+            <ref role="3bR37D" node="723cCDWLyJu" resolve="org.fbme.ide.attributes" />
           </node>
         </node>
       </node>
@@ -734,6 +737,96 @@
               </node>
             </node>
             <node concept="3qWCbU" id="ApHj0p0xRi" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1E1JtD" id="723cCDWLyJu" role="2G$12L">
+        <property role="BnDLt" value="true" />
+        <property role="TrG5h" value="org.fbme.ide.attributes" />
+        <property role="3LESm3" value="491a88b6-52bd-4c4e-a61a-8496046b69aa" />
+        <node concept="55IIr" id="723cCDWLyJx" role="3LF7KH">
+          <node concept="2Ry0Ak" id="723cCDWLyMR" role="iGT6I">
+            <property role="2Ry0Am" value="languages" />
+            <node concept="2Ry0Ak" id="723cCDWLyNb" role="2Ry0An">
+              <property role="2Ry0Am" value="org.fbme.ide.attributes" />
+              <node concept="2Ry0Ak" id="723cCDWLyNl" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.ide.attributes.mpl" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="723cCDWLyO0" role="3bR37C">
+          <node concept="3bR9La" id="723cCDWLyO1" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="723cCDWLyO2" role="3bR37C">
+          <node concept="3bR9La" id="723cCDWLyO3" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:568PkTlOK5Q" resolve="jetbrains.mps.core.xml" />
+          </node>
+        </node>
+        <node concept="1BupzO" id="723cCDWLyO8" role="3bR31x">
+          <property role="3ZfqAx" value="models" />
+          <property role="1Hdu6h" value="true" />
+          <property role="1HemKv" value="true" />
+          <node concept="3LXTmp" id="723cCDWLyO9" role="1HemKq">
+            <node concept="55IIr" id="723cCDWLyO4" role="3LXTmr">
+              <node concept="2Ry0Ak" id="723cCDWLyO5" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="723cCDWLyO6" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.attributes" />
+                  <node concept="2Ry0Ak" id="723cCDWLyO7" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="723cCDWLyOa" role="3LXTna">
+              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="1yeLz9" id="723cCDWLyOb" role="1TViLv">
+          <property role="TrG5h" value="org.fbme.ide.attributes.generator" />
+          <property role="3LESm3" value="4ad4b816-d563-495e-8bc7-f4dfa08fa19b" />
+          <node concept="1BupzO" id="723cCDWLyOh" role="3bR31x">
+            <property role="3ZfqAx" value="generator/templates" />
+            <property role="1Hdu6h" value="true" />
+            <property role="1HemKv" value="true" />
+            <node concept="3LXTmp" id="723cCDWLyOi" role="1HemKq">
+              <node concept="55IIr" id="723cCDWLyOc" role="3LXTmr">
+                <node concept="2Ry0Ak" id="723cCDWLyOd" role="iGT6I">
+                  <property role="2Ry0Am" value="languages" />
+                  <node concept="2Ry0Ak" id="723cCDWLyOe" role="2Ry0An">
+                    <property role="2Ry0Am" value="org.fbme.ide.attributes" />
+                    <node concept="2Ry0Ak" id="723cCDWLyOf" role="2Ry0An">
+                      <property role="2Ry0Am" value="generator" />
+                      <node concept="2Ry0Ak" id="723cCDWLyOg" role="2Ry0An">
+                        <property role="2Ry0Am" value="templates" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3qWCbU" id="723cCDWLyOj" role="3LXTna">
+                <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="723cCDWLyPC" role="3bR31x">
+          <node concept="3LXTmp" id="723cCDWLyPD" role="3rtmxm">
+            <node concept="55IIr" id="723cCDWLyPE" role="3LXTmr">
+              <node concept="2Ry0Ak" id="723cCDWLyPF" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="723cCDWLyPG" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.attributes" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="723cCDWLyPI" role="3LXTna">
               <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
           </node>
