@@ -787,8 +787,8 @@
                 <node concept="37vLTw" id="1IuIrLUpRU8" role="2Oq$k0">
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
                 </node>
-                <node concept="3Tsc0h" id="6bsr$eapTJ9" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                <node concept="3Tsc0h" id="3qWNnbt9Jab" role="2OqNvi">
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYFAL" resolve="internalVariables" />
                 </node>
               </node>
               <node concept="3VsKOn" id="6bsr$eapSa$" role="37wK5m">
