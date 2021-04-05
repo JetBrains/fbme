@@ -19,8 +19,10 @@ import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
@@ -318,12 +320,15 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         if (instance != null) {
             FunctionBlockDeclarationBase functionBlock = style.get(RichEditorStyleAttributes.FB);
             FunctionBlockInstance child = instance.getChild(functionBlock);
+            if (child != null) {
+                @Nullable Instance childNetworkInstance = child.getContainedNetwork();
 
-            if (child != null && child.getContainedNetwork() != null) {
-                SNode navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(getRootCell().getContext().getOperationContext().getProject(), child.getContainedNetwork());
-                if (navigationStub != null) {
-                    style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub);
-                    return;
+                if (childNetworkInstance instanceof NetworkInstance){
+                    SNode navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(getRootCell().getContext().getOperationContext().getProject(), (NetworkInstance) childNetworkInstance);
+                    if (navigationStub != null) {
+                        style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub);
+                        return;
+                    }
                 }
             }
         }

@@ -1,8 +1,9 @@
 package org.fbme.lib.iec61499.instances;
 
 
-import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import org.fbme.lib.common.Declaration;
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import org.fbme.lib.iec61499.declarations.SubapplicationTypeDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +15,7 @@ import java.util.Objects;
 
     private final FunctionBlockDeclarationBase myDeclaration;
     private final NetworkInstance myParent;
-    private final NetworkInstance myNetwork;
+    private final Instance myNetwork;
 
     public RegularFunctionBlockInstance(NetworkInstance parent, FunctionBlockDeclarationBase declaration) {
         myParent = parent;
@@ -25,6 +26,8 @@ import java.util.Objects;
             myNetwork = new RegularNetworkInstance(this, ((CompositeFBTypeDeclaration) typeDeclaration).getNetwork(), typeDeclaration);
         } else if (typeDeclaration instanceof SubapplicationTypeDeclaration) {
             myNetwork = new RegularNetworkInstance(this, ((SubapplicationTypeDeclaration) typeDeclaration).getNetwork(), typeDeclaration);
+        } else if (typeDeclaration instanceof BasicFBTypeDeclaration) {
+            myNetwork = new RegularECCInstance(this, ((BasicFBTypeDeclaration) typeDeclaration).getEcc(), typeDeclaration);
         } else {
             myNetwork = null;
         }
@@ -44,7 +47,7 @@ import java.util.Objects;
 
     @Nullable
     @Override
-    public NetworkInstance getContainedNetwork() {
+    public Instance getContainedNetwork() {
         return myNetwork;
     }
 

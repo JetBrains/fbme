@@ -1918,20 +1918,25 @@
           </node>
         </node>
         <node concept="3clFbF" id="1DfKejr8VFR" role="3cqZAp">
-          <node concept="2OqwBi" id="1DfKejr9bqR" role="3clFbG">
-            <node concept="2OqwBi" id="1DfKejr8WM$" role="2Oq$k0">
-              <node concept="37vLTw" id="1DfKejr98nS" role="2Oq$k0">
-                <ref role="3cqZAo" node="1DfKejr98nM" resolve="parentNetwork" />
-              </node>
-              <node concept="liA8E" id="1DfKejr8WZG" role="2OqNvi">
-                <ref role="37wK5l" to="74cb:~NetworkInstance.getChild(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase)" resolve="getChild" />
-                <node concept="37vLTw" id="1DfKejr9b4e" role="37wK5m">
-                  <ref role="3cqZAo" node="1DfKejr9aRT" resolve="subapp" />
+          <node concept="10QFUN" id="10KwHzWxt_k" role="3clFbG">
+            <node concept="3uibUv" id="10KwHzWxtIo" role="10QFUM">
+              <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
+            </node>
+            <node concept="2OqwBi" id="1DfKejr9bqR" role="10QFUP">
+              <node concept="2OqwBi" id="1DfKejr8WM$" role="2Oq$k0">
+                <node concept="37vLTw" id="1DfKejr98nS" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1DfKejr98nM" resolve="parentNetwork" />
+                </node>
+                <node concept="liA8E" id="1DfKejr8WZG" role="2OqNvi">
+                  <ref role="37wK5l" to="74cb:~NetworkInstance.getChild(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase)" resolve="getChild" />
+                  <node concept="37vLTw" id="1DfKejr9b4e" role="37wK5m">
+                    <ref role="3cqZAo" node="1DfKejr9aRT" resolve="subapp" />
+                  </node>
                 </node>
               </node>
-            </node>
-            <node concept="liA8E" id="1DfKejr9bNL" role="2OqNvi">
-              <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getContainedNetwork()" resolve="getContainedNetwork" />
+              <node concept="liA8E" id="1DfKejr9bNL" role="2OqNvi">
+                <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getContainedNetwork()" resolve="getContainedNetwork" />
+              </node>
             </node>
           </node>
         </node>

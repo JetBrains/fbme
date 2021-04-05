@@ -9,10 +9,9 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
-import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
-import org.fbme.lib.iec61499.instances.NetworkInstance;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
 import org.fbme.scenes.controllers.scene.Layer;
@@ -32,15 +31,13 @@ public final class FBSceneCell extends AbstractFBCell {
             FBTypeDescriptor fbType,
             SNode node,
             boolean isEditable,
-            NetworkInstance networkInstance
+            Instance networkInstance
     ) {
         super(context, fbType, node, isEditable);
 
         collection = createCollection();
         typeNameLabel = createTypeNameLabel();
         sceneCell = createSceneCell(networkInstance);
-        sceneCell.getStyle().set(RichEditorStyleAttributes.NETWORK_INSTANCE, networkInstance);
-        sceneCell.getStyle().set(RichEditorStyleAttributes.TYPE, fbType);
         sceneCell.getStyle().set(StyleAttributes.TEXT_COLOR, isEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
         sceneCell.getStyle().set(StyleAttributes.DRAW_BORDER, false);
         collection.addEditorCell(sceneCell);
@@ -66,12 +63,12 @@ public final class FBSceneCell extends AbstractFBCell {
         graphics.draw(shape);
     }
 
-    private EditorCell_Scene createSceneCell(NetworkInstance networkInstance) {
+    private EditorCell_Scene createSceneCell(Instance instance) {
         EditorCell_Scene scene;
         if (fbType.getDeclaration() instanceof BasicFBTypeDeclaration) {
-            scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, networkInstance);
+            scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, instance);
         } else {
-            scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, networkInstance);
+            scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance);
         }
         addScenePortsLayer(scene);
         scene.setCellId(scene.getSNode().getNodeId().toString());

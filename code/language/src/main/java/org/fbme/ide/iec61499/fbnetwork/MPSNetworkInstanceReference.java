@@ -45,7 +45,7 @@ public class MPSNetworkInstanceReference {
             assert component != null;
             FunctionBlockInstance fbInstance = networkInstance.getChild(component);
             assert fbInstance != null;
-            networkInstance = fbInstance.getContainedNetwork();
+            networkInstance = (NetworkInstance) fbInstance.getContainedNetwork();
         }
         return networkInstance;
     }

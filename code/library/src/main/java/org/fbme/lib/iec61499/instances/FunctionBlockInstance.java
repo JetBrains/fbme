@@ -11,5 +11,5 @@ public interface FunctionBlockInstance extends Instance {
 
     @NotNull FunctionBlockDeclarationBase getDeclaration();
 
-    @Nullable NetworkInstance getContainedNetwork();
+    @Nullable Instance getContainedNetwork();
 }
