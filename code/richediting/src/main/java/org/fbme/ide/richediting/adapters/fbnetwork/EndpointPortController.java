@@ -56,11 +56,7 @@ public class EndpointPortController implements ComponentController<Point>, FBNet
     @NotNull
     @Override
     public Rectangle getBounds(@NotNull Point position) {
-        int x = getComponentCell().getX();
-        int y = getComponentCell().getY();
-        int width = portCell.getWidth();
-        int height = portCell.getHeight();
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(position.x, position.y, portCell.getWidth(), portCell.getHeight());
     }
 
     @Override

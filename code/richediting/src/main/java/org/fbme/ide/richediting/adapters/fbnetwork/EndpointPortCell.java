@@ -107,7 +107,7 @@ public class EndpointPortCell implements PortCell {
     private void relayoutLabel() {
         int x = getRootCell().getX();
         int y = getRootCell().getY();
-        int xLeft = x + (isSource ? 0 : scale(PORT_SIZE));
+        int xLeft = x + (isSource ? scale(SPACE_FOR_DND) : scale(PORT_SIZE));
         label.moveTo(xLeft, y);
     }
 
@@ -121,7 +121,7 @@ public class EndpointPortCell implements PortCell {
     }
 
     private int calculateHeight() {
-        return label.getHeight();
+        return getLineSize();
     }
 
     @Override
@@ -137,10 +137,10 @@ public class EndpointPortCell implements PortCell {
         GeneralPath shape = getEndpointShape(x, y);
         graphics.draw(shape);
         Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
-        drawPortIcon(graphics, foreground, x, y);
+        drawPortIcon(graphics, foreground);
     }
 
-    private void drawPortIcon(Graphics2D graphics, Color borderColor, int x, int y) {
+    private void drawPortIcon(Graphics2D graphics, Color borderColor) {
         Rectangle portBounds = getPortBounds();
         graphics.setColor(DiagramColors.getColorFor(connectionKind, isEditable));
         graphics.fill(portBounds);
