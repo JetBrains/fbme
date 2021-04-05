@@ -1,8 +1,10 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork.fb;
 
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import org.fbme.ide.richediting.adapters.fbnetwork.Port;
+import org.fbme.ide.richediting.adapters.fbnetwork.PortBase;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
@@ -16,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractFBCell implements FBCell {
-    protected static final int PORT_SIZE = 4;
+    public static final int PORT_SIZE = 4;
     protected final boolean isEditable;
-    protected final List<FBPort> inputEventPorts = new ArrayList<>();
-    protected final List<FBPort> inputDataPorts = new ArrayList<>();
-    protected final List<FBPort> outputEventPorts = new ArrayList<>();
-    protected final List<FBPort> outputDataPorts = new ArrayList<>();
-    protected final List<FBPort> socketPorts = new ArrayList<>();
-    protected final List<FBPort> plugPorts = new ArrayList<>();
+    protected final List<Port> inputEventPorts = new ArrayList<>();
+    protected final List<Port> inputDataPorts = new ArrayList<>();
+    protected final List<Port> outputEventPorts = new ArrayList<>();
+    protected final List<Port> outputDataPorts = new ArrayList<>();
+    protected final List<Port> socketPorts = new ArrayList<>();
+    protected final List<Port> plugPorts = new ArrayList<>();
     protected EditorContext context;
     protected FBTypeDescriptor fbType;
     protected SNode node;
@@ -150,17 +152,17 @@ public abstract class AbstractFBCell implements FBCell {
         initPorts(plugPorts, fbType.getPlugPorts());
     }
 
-    protected void initPorts(List<FBPort> ports, List<FBPortDescriptor> portDescriptors) {
+    protected void initPorts(List<Port> ports, List<FBPortDescriptor> portDescriptors) {
         for (FBPortDescriptor portDescriptor : portDescriptors) {
-            FBPort portBase = new FBPortBase(portDescriptor);
+            Port portBase = new PortBase(portDescriptor);
             ports.add(portBase);
         }
     }
 
-    protected void drawPortIcons(List<FBPort> ports, Graphics2D graphics, int x, int y, Color borderColor) {
+    protected void drawPortIcons(List<Port> ports, Graphics2D graphics, int x, int y, Color borderColor) {
         int lineSize = getLineSize();
         y += getShift() - scale(PORT_SIZE) / 2;
-        for (FBPort port : ports) {
+        for (Port port : ports) {
             Rectangle rect = new Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE));
             graphics.setColor(DiagramColors.getColorFor(port.getConnectionKind(), isEditable));
             graphics.fill(rect);

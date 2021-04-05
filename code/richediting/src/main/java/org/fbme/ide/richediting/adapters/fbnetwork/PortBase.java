@@ -1,12 +1,12 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork;
 
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 
-public class FBPortBase implements FBPort {
+public class PortBase implements Port {
     private final EntryKind connectionKind;
 
-    protected FBPortBase(FBPortDescriptor port) {
+    public PortBase(FBPortDescriptor port) {
         this.connectionKind = port.getConnectionKind();
     }
 

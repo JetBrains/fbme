@@ -13,12 +13,14 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
     private final SNode myAssociatedNode;
     @NotNull
     private final Declaration myTarget;
+    private final String myName;
 
     public InterfaceEndpointView(int position, EntryKind kind, boolean isSource, @NotNull Declaration target) {
         myPosition = position;
         myKind = kind;
         myIsSource = isSource;
         myTarget = target;
+        myName = target.getName();
         myAssociatedNode = ((PlatformElement) target).getNode();
     }
 
@@ -30,7 +32,7 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
 
     @Override
     public boolean isEditable() {
-        return false;
+        return true;
     }
 
     @NotNull
@@ -40,6 +42,10 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
 
     public int getPosition() {
         return myPosition;
+    }
+
+    public String getName() {
+        return myName;
     }
 
     public boolean isSource() {

@@ -1,7 +1,7 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork;
 
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 
-public interface FBPort {
+public interface Port {
     EntryKind getConnectionKind();
 }

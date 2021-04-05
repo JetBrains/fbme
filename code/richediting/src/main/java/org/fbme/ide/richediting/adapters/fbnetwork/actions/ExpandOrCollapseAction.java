@@ -2,10 +2,10 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
-import org.fbme.ide.richediting.adapters.fb.FBCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
