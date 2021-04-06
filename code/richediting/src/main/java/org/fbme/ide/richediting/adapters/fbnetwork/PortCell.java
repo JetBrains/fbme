@@ -5,6 +5,8 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import java.awt.*;
 
 public interface PortCell {
+    Point getPosition();
+
     int getWidth();
 
     int getHeight();
@@ -13,9 +15,13 @@ public interface PortCell {
 
     void relayout();
 
+    Point getPortCoordinate();
+
     Point getPortPosition();
 
     Rectangle getPortBounds();
+
+    Rectangle getDNDBounds();
 
     EditorCell_Collection getRootCell();
 }

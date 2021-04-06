@@ -32,25 +32,21 @@ public class EndpointPortController implements ComponentController<Point>, FBNet
 
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
-        return isEditable;
+        return isEditable && getDNDBounds().contains(x, y);
     }
 
     @NotNull
     @Override
     public Point getPortCoordinates(@NotNull NetworkPortView port, @NotNull Point position) {
         assertSelf(port);
-        Point portPosition = portCell.getPortPosition();
-        portPosition.translate(position.x, position.y);
-        return portPosition;
+        return translatePoint(portCell.getPortCoordinate(), position);
     }
 
     @NotNull
     @Override
     public Rectangle getPortBounds(@NotNull NetworkPortView port, @NotNull Point position) {
         assertSelf(port);
-        Rectangle portBounds = portCell.getPortBounds();
-        portBounds.translate(position.x, position.y);
-        return portBounds;
+        return translateRectangle(portCell.getPortBounds(), position);
     }
 
     @NotNull
@@ -97,6 +93,40 @@ public class EndpointPortController implements ComponentController<Point>, FBNet
     public Point translateForm(Point position, int dx, int dy) {
         Point point = new Point(position);
         point.translate(dx, dy);
+        return point;
+    }
+
+    @Override
+    public boolean canBeSourcedAt(@NotNull NetworkPortView port, @NotNull Point position) {
+        if (!getPortBounds().contains(position) || getDNDBounds().contains(position)) {
+            return false;
+        }
+        return FBNetworkComponentController.super.canBeSourcedAt(port, position);
+    }
+
+    @Override
+    public boolean canBeTargetedAt(@NotNull NetworkPortView port, @NotNull Point position) {
+        if (!getPortBounds().contains(position) || getDNDBounds().contains(position)) {
+            return false;
+        }
+        return FBNetworkComponentController.super.canBeTargetedAt(port, position);
+    }
+
+    private Rectangle getPortBounds() {
+        return translateRectangle(portCell.getPortBounds(), portCell.getPosition());
+    }
+
+    private Rectangle getDNDBounds() {
+        return translateRectangle(portCell.getDNDBounds(), portCell.getPosition());
+    }
+
+    private Rectangle translateRectangle(Rectangle rectangle, Point position) {
+        rectangle.translate(position.x, position.y);
+        return rectangle;
+    }
+
+    private Point translatePoint(Point point, Point position) {
+        point.translate(position.x, position.y);
         return point;
     }
 }

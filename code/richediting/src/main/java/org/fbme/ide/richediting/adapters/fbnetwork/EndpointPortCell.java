@@ -2,6 +2,7 @@ package org.fbme.ide.richediting.adapters.fbnetwork;
 
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorSettings;
+import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Horizontal;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
@@ -16,12 +17,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 
 import static org.fbme.ide.richediting.adapters.fbnetwork.fb.AbstractFBCell.PORT_SIZE;
 
 public class EndpointPortCell implements PortCell {
     private static final int SPACE_FOR_DND = 20;
+    private static final int INNER_BORDER_PADDING = 2;
 
     private final EditorCell_SceneLabel label;
     private final EditorCell_Collection collection;
@@ -59,23 +62,39 @@ public class EndpointPortCell implements PortCell {
     }
 
     @Override
+    public Rectangle getDNDBounds() {
+        int x = isSource ? 0 : (getRootCell().getWidth() - scale(SPACE_FOR_DND));
+        return new Rectangle(x, 0, scale(SPACE_FOR_DND), getRootCell().getHeight());
+    }
+
+    @Override
     public int getHeight() {
         return getRootCell().getHeight();
     }
 
     @Override
+    public Point getPortCoordinate() {
+        Point portPosition = getPortPosition();
+        portPosition.translate(scale(PORT_SIZE) / 2, scale(PORT_SIZE) / 2);
+        return portPosition;
+    }
+
+    @Override
     public Point getPortPosition() {
-        int x = getRootCell().getX();
-        int y = getRootCell().getY();
-        int width = getRootCell().getWidth() - scale(PORT_SIZE);
-        int xLeft = x + (isSource ? width : 0);
-        return new Point(xLeft, y);
+        int x = isSource ? getRootCell().getWidth() - scale(PORT_SIZE) : 0;
+        int y = getRootCell().getHeight() / 2 - scale(PORT_SIZE) / 2;
+        return new Point(x, y);
     }
 
     @Override
     public Rectangle getPortBounds() {
-        Point portPosition = getPortPosition();
-        return new Rectangle(portPosition.x, portPosition.y, scale(PORT_SIZE), scale(PORT_SIZE));
+        int x = isSource ? scale(SPACE_FOR_DND) : scale(PORT_SIZE);
+        return new Rectangle(x, 0, getRootCell().getWidth() - scale(PORT_SIZE + SPACE_FOR_DND), getRootCell().getHeight());
+    }
+
+    @Override
+    public Point getPosition() {
+        return new Point(getRootCell().getX(), getRootCell().getY());
     }
 
     @Override
@@ -105,10 +124,9 @@ public class EndpointPortCell implements PortCell {
     }
 
     private void relayoutLabel() {
-        int x = getRootCell().getX();
-        int y = getRootCell().getY();
-        int xLeft = x + (isSource ? scale(SPACE_FOR_DND) : scale(PORT_SIZE));
-        label.moveTo(xLeft, y);
+        int x = getRootCell().getX() + (isSource ? scale(SPACE_FOR_DND) : scale(PORT_SIZE + INNER_BORDER_PADDING));
+        int y = getRootCell().getY() - getLineSize() / 4;
+        label.moveTo(x, y);
     }
 
     private void calculateSizes() {
@@ -117,7 +135,7 @@ public class EndpointPortCell implements PortCell {
     }
 
     private int calculateWidth() {
-        return label.getWidth() + scale(SPACE_FOR_DND + PORT_SIZE);
+        return label.getWidth() + scale(SPACE_FOR_DND + PORT_SIZE + INNER_BORDER_PADDING);
     }
 
     private int calculateHeight() {
@@ -127,6 +145,8 @@ public class EndpointPortCell implements PortCell {
     @Override
     public void paintTrace(Graphics2D g, int x, int y) {
         GeneralPath shape = getEndpointShape(x, y);
+        g.setPaint(MPSColors.GRAY);
+        FBConnectionPathPainter.setupShadowPathPaint(g, scale(1));
         g.draw(shape);
     }
 
@@ -135,13 +155,23 @@ public class EndpointPortCell implements PortCell {
         int y = getRootCell().getY();
 
         GeneralPath shape = getEndpointShape(x, y);
+
+        Shape shadowShape = shape.createTransformedShape(AffineTransform.getTranslateInstance(2, 2));
+        graphics.setPaint(new Color(0xEEEEEE));
+        graphics.fill(shadowShape);
+
+        graphics.setStroke(new BasicStroke(scale(1)));
+        graphics.setColor(MPSColors.BLACK);
         graphics.draw(shape);
+
         Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
         drawPortIcon(graphics, foreground);
     }
 
     private void drawPortIcon(Graphics2D graphics, Color borderColor) {
-        Rectangle portBounds = getPortBounds();
+        Point portPosition = getPortPosition();
+        portPosition.translate(getRootCell().getX(), getRootCell().getY());
+        Rectangle portBounds = new Rectangle(portPosition.x, portPosition.y, scale(PORT_SIZE), scale(PORT_SIZE));
         graphics.setColor(DiagramColors.getColorFor(connectionKind, isEditable));
         graphics.fill(portBounds);
         graphics.setColor(borderColor);
