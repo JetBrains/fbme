@@ -8,5 +8,6 @@ public enum LiteralKind {
     HEX_INT,
     OCT_INT,
     STRING,
+    WSTRING,
     TIME
 }

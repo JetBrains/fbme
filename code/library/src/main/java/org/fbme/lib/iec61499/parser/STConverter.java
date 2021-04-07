@@ -247,6 +247,13 @@ public class STConverter {
             literal.setValue(text.substring(1, text.length() - 1));
             return literal;
         }
+        if (literalCtx instanceof STParser.WstringContext) {
+            Literal<String> literal = (Literal<String>) factory.createLiteral(LiteralKind.WSTRING);
+            String text = literalCtx.getText();
+            // TODO unescape parsed string
+            literal.setValue(text.substring(1, text.length() - 1));
+            return literal;
+        }
         if (literalCtx instanceof STParser.BooleanContext) {
             Literal<Boolean> literal = (Literal<Boolean>) factory.createLiteral(LiteralKind.BOOL);
             literal.setValue(Objects.equals(literalCtx.getText(), "TRUE"));

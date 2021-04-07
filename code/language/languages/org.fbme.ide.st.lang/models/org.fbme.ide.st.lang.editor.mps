@@ -9845,5 +9845,39 @@
     <ref role="aqKnT" to="gpgy:23XkovWwrcP" resolve="ArrayVariable" />
     <node concept="22hDWj" id="6pYQ4mCjF2q" role="22hAXT" />
   </node>
+  <node concept="24kQdi" id="3cys4Y4onen">
+    <property role="3GE5qa" value="expressions" />
+    <ref role="1XX52x" to="gpgy:3cys4Y4ondw" resolve="WStringLiteral" />
+    <node concept="3EZMnI" id="3cys4Y4onep" role="2wV5jI">
+      <node concept="3F0ifn" id="3cys4Y4onew" role="3EZMnx">
+        <property role="3F0ifm" value="&quot;" />
+        <node concept="VechU" id="3cys4Y4oneN" role="3F10Kt">
+          <property role="Vb096" value="g1_qRwE/darkGreen" />
+        </node>
+        <node concept="11LMrY" id="3cys4Y4oneO" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0A7n" id="3cys4Y4oneI" role="3EZMnx">
+        <ref role="1NtTu8" to="gpgy:3cys4Y4ondV" resolve="value" />
+        <node concept="VechU" id="3cys4Y4oneZ" role="3F10Kt">
+          <property role="Vb096" value="g1_qRwE/darkGreen" />
+        </node>
+        <node concept="Vb9p2" id="3cys4Y4onf3" role="3F10Kt">
+          <property role="Vbekb" value="g1_k_vY/BOLD" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="3cys4Y4oneA" role="3EZMnx">
+        <property role="3F0ifm" value="&quot;" />
+        <node concept="VechU" id="3cys4Y4oneR" role="3F10Kt">
+          <property role="Vb096" value="g1_qRwE/darkGreen" />
+        </node>
+        <node concept="11L4FC" id="3cys4Y4oneV" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="l2Vlx" id="3cys4Y4ones" role="2iSdaV" />
+    </node>
+  </node>
 </model>
 

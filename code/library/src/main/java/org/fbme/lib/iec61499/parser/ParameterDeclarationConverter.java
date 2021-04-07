@@ -20,6 +20,10 @@ public class ParameterDeclarationConverter extends DeclarationConverterBase<Para
 
         ParameterDeclaration parameter = myFactory.createParameterDeclaration(identifier);
         parameter.setType(STConverter.parseType(myStFactory, myElement.getAttributeValue("Type")));
+        String initialValueText = myElement.getAttributeValue("InitialValue");
+        if (initialValueText != null) {
+            parameter.setInitialValue(STConverter.parseLiteral(myStFactory, initialValueText));
+        }
         return parameter;
     }
 
