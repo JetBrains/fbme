@@ -35,7 +35,6 @@ import java.util.List;
 public final class FBTypeCellComponent extends AbstractFBCell {
     private static final int CENTER_PADDING = 20;
     private static final int INNER_BORDER_PADDING = 2;
-    private static final int COLUMNS_PADDING = INNER_BORDER_PADDING + PORT_SIZE;
     private static final Comparator<FBPort> PORT_LABEL_WIDTH_COMPARATOR =
             Comparator.comparing(port -> ((FBPortWithLabel) port).getLabel().getWidth());
 
@@ -97,7 +96,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getInputEventPortBounds(int eventNumber) {
         int lineSize = getLineSize();
         FBPort port = inputEventPorts.get(eventNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = eventNumber * lineSize;
         return new Rectangle(0, y, width, lineSize);
     }
@@ -106,7 +105,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getOutputEventPortBounds(int eventNumber) {
         int lineSize = getLineSize();
         FBPort port = outputEventPorts.get(eventNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = eventNumber * lineSize;
         return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
     }
@@ -115,7 +114,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getInputDataPortBounds(int dataNumber) {
         int lineSize = getLineSize();
         FBPort port = inputDataPorts.get(dataNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
         return new Rectangle(0, y, width, lineSize);
     }
@@ -124,7 +123,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getOutputDataPortBounds(int dataNumber) {
         int lineSize = getLineSize();
         FBPort port = outputDataPorts.get(dataNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = (getEventPortsCount() + 2 + dataNumber) * lineSize;
         return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
     }
@@ -133,7 +132,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getSocketPortBounds(int socketNumber) {
         int lineSize = getLineSize();
         FBPort port = socketPorts.get(socketNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = (getEventPortsCount() + getInputDataPortsCount() + 2 + socketNumber) * lineSize;
         return new Rectangle(0, y, width, lineSize);
     }
@@ -142,16 +141,16 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     public Rectangle getPlugPortBounds(int plugNumber) {
         int lineSize = getLineSize();
         FBPort port = plugPorts.get(plugNumber);
-        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(COLUMNS_PADDING);
+        int width = ((FBPortWithLabel) port).getLabel().getWidth() + scale(INNER_BORDER_PADDING);
         int y = (getEventPortsCount() + 2 + getOutputDataPortsCount() + plugNumber) * lineSize;
         return new Rectangle(getRootCell().getWidth() - width, y, width, lineSize);
     }
 
     private void relayoutPortLabels(int lineSize) {
-        int leftX = getRootCell().getX() + scale(COLUMNS_PADDING);
+        int leftX = getRootCell().getX() + scale(INNER_BORDER_PADDING);
         int topY = getRootCell().getY();
         int dataY = topY + (getEventPortsCount() + 2) * lineSize;
-        int rightX = getRootCell().getX() + getRootCell().getWidth() - scale(COLUMNS_PADDING);
+        int rightX = getRootCell().getX() + getRootCell().getWidth() - scale(INNER_BORDER_PADDING);
 
         relayoutEventInputPortLabels(leftX, topY, lineSize);
         relayoutEventOutputPortLabels(rightX, topY, lineSize);
@@ -235,7 +234,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         graphics.setPaint(DiagramColors.createGradientPaint(background, new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
         graphics.fill(shape);
         graphics.setPaint(DiagramColors.createGradientPaint(getTypeBackgroundColor(), new Rectangle(x, y, getRootCell().getWidth(), getRootCell().getHeight())));
-        graphics.fill(new Rectangle(x + scale(PORT_SIZE), typeNameY, getRootCell().getWidth() - 2 * scale(PORT_SIZE), lineSize));
+        graphics.fill(new Rectangle(x, typeNameY, getRootCell().getWidth(), lineSize));
         graphics.setStroke(new BasicStroke(scale(1)));
         graphics.setColor(foreground);
         graphics.draw(shape);
@@ -268,7 +267,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         int outputsWidth = Math.max(portsColumnWidth(outputEventPorts), Math.max(portsColumnWidth(outputDataPorts), portsColumnWidth(plugPorts)));
         int regularRowsWidth = inputsWidth + outputsWidth + scale(CENTER_PADDING + 2 * INNER_BORDER_PADDING);
 
-        return Math.max(regularRowsWidth, typeNameRowWidth) + scale(2 * COLUMNS_PADDING);
+        return Math.max(regularRowsWidth, typeNameRowWidth) + scale(2 * INNER_BORDER_PADDING);
     }
 
     private EditorCell_Collection createRootCell() {

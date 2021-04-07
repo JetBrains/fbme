@@ -108,37 +108,37 @@ public abstract class AbstractFBCell implements FBCell {
     @Override
     public Point getInputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(-1, eventNumber * lineSize + getShift());
+        return new Point(-scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
     }
 
     @Override
     public Point getOutputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + 1, eventNumber * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
     }
 
     @Override
     public Point getInputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getOutputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + 1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getSocketPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-1, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
+        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getPlugPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + 1, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
     }
 
     protected void initPorts() {
@@ -173,23 +173,25 @@ public abstract class AbstractFBCell implements FBCell {
 
     protected void drawAllPortIcons(Graphics2D graphics, Color color) {
         int x = getRootCell().getX();
+        int xLeft = x - scale(PORT_SIZE);
+        int xRight = x + getRootCell().getWidth();
         int y = getRootCell().getY();
         int lineSize = getLineSize();
         int typeNameY = y + (getEventPortsCount() + 1) * lineSize;
 
         int topEventsY = y;
-        drawPortIcons(inputEventPorts, graphics, x, topEventsY, color);
-        drawPortIcons(outputEventPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, color);
+        drawPortIcons(inputEventPorts, graphics, xLeft, topEventsY, color);
+        drawPortIcons(outputEventPorts, graphics, xRight, topEventsY, color);
 
         int topDatasY = typeNameY + lineSize;
-        drawPortIcons(inputDataPorts, graphics, x, topDatasY, color);
-        drawPortIcons(outputDataPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, color);
+        drawPortIcons(inputDataPorts, graphics, xLeft, topDatasY, color);
+        drawPortIcons(outputDataPorts, graphics, xRight, topDatasY, color);
 
         int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
         int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
 
-        drawPortIcons(socketPorts, graphics, x, topSocketY, color);
-        drawPortIcons(plugPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, color);
+        drawPortIcons(socketPorts, graphics, xLeft, topSocketY, color);
+        drawPortIcons(plugPorts, graphics, xRight, topPlugY, color);
         graphics.setStroke(new BasicStroke());
     }
 
@@ -221,9 +223,9 @@ public abstract class AbstractFBCell implements FBCell {
         int lineSize = getLineSize();
         int halfLineSize = lineSize / 2;
 
-        int width = getRootCell().getWidth() - 2 * scale(PORT_SIZE);
+        int width = getRootCell().getWidth();
         int height = getRootCell().getHeight();
-        int xLeft = x + scale(PORT_SIZE);
+        int xLeft = x;
         int xRight = xLeft + width;
         int yBottom = y;
         int yTop = yBottom + height - halfLineSize;

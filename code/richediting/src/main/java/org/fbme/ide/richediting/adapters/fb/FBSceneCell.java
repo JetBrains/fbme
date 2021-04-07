@@ -14,11 +14,11 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
-import org.fbme.scenes.controllers.scene.Layer;
 import org.fbme.scenes.controllers.scene.SceneLayout;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 
 public final class FBSceneCell extends AbstractFBCell {
@@ -60,7 +60,17 @@ public final class FBSceneCell extends AbstractFBCell {
         int y = getRootCell().getY();
 
         GeneralPath shape = getComponentShape(x, y);
+
+        Shape shadowShape = shape.createTransformedShape(AffineTransform.getTranslateInstance(2, 2));
+        graphics.setPaint(new Color(0xEEEEEE));
+        graphics.fill(shadowShape);
+
+        graphics.setStroke(new BasicStroke(scale(1)));
+        graphics.setColor(MPSColors.BLACK);
         graphics.draw(shape);
+
+        Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
+        drawAllPortIcons(graphics, foreground);
     }
 
     private EditorCell_Scene createSceneCell(Instance instance) {
@@ -70,18 +80,9 @@ public final class FBSceneCell extends AbstractFBCell {
         } else {
             scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance);
         }
-        addScenePortsLayer(scene);
         scene.setCellId(scene.getSNode().getNodeId().toString());
 
         return scene;
-    }
-
-    private void addScenePortsLayer(EditorCell_Scene scene) {
-        Layer layer = scene.createLayer(5f);
-        scene.addPainter(layer, graphics -> {
-            Color foreground = getRootCell().getStyle().get(StyleAttributes.TEXT_COLOR);
-            drawAllPortIcons(graphics, foreground);
-        });
     }
 
     @Override
@@ -143,18 +144,5 @@ public final class FBSceneCell extends AbstractFBCell {
     @Override
     public EditorCell_Collection getRootCell() {
         return collection;
-    }
-
-    @Override
-    public void relayout() {
-        super.relayout();
-        relayoutLabel();
-    }
-
-    private void relayoutLabel() {
-        typeNameLabel.moveTo(
-                getRootCell().getX() + getRootCell().getWidth() / 2 - typeNameLabel.getWidth() / 2,
-                getRootCell().getY() + getRootCell().getHeight() - 2 * getLineSize()
-        );
     }
 }
