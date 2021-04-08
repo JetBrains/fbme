@@ -123,7 +123,7 @@ public final class FBNetworkEditors {
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection);
 
             DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
-            ExpandedComponentsController expandedComponentsController = new ExpandedComponentsController(networkView, context);
+            ExpandedComponentsController expandedComponentsController = new ExpandedComponentsController(scene, context);
             final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<>(
                     scene,
                     networkView.getComponentsView(),

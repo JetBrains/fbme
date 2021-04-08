@@ -1,6 +1,7 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import org.fbme.ide.richediting.adapters.fbnetwork.ExpandedComponentsController;
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
@@ -27,8 +28,8 @@ public class CollapseAction extends ExpandOrCollapseAction {
 
     private void collapse(FunctionBlockView component) {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
-
-        processAffectedComponents(componentController.getFbCell(), component, componentController);
-        componentController.collapse();
+        ExpandedComponentsController expandedComponentsController = componentController.getExpandedComponentsController();
+        expandedComponentsController.removeAffectedComponents(component);
+        expandedComponentsController.collapse(component);
     }
 }

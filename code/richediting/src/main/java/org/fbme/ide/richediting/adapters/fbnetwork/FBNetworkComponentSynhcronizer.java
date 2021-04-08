@@ -31,8 +31,11 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
     public Supplier<Point> getForm(@NotNull NetworkComponentView component) {
         if (component instanceof FunctionBlockView) {
             FunctionBlockView fb = (FunctionBlockView) component;
-            final int x = (int) (scale * fb.getComponent().getX());
-            final int y = (int) (scale * fb.getComponent().getY());
+            final Point fbOffset = expandedComponentsController.getOffsetFor(fb);
+            final int dx = (fbOffset != null ? viewpoint.fromEditorDimension(fbOffset.x) : 0);
+            final int dy = (fbOffset != null ? viewpoint.fromEditorDimension(fbOffset.y) : 0);
+            final int x = (int) (scale * (fb.getComponent().getX() + dx));
+            final int y = (int) (scale * (fb.getComponent().getY() + dy));
             return () -> new Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y));
         }
         if (component instanceof InterfaceEndpointView) {

@@ -207,12 +207,8 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         fbCell.paintTrace((Graphics2D) g.create(), position.x, position.y + (fbCell instanceof FBTypeCellComponent ? getLineSize() : 0));
     }
 
-    public void expand() {
-        expandedComponentsController.expand(view);
-    }
-
-    public void collapse() {
-        expandedComponentsController.collapse(view);
+    public ExpandedComponentsController getExpandedComponentsController() {
+        return expandedComponentsController;
     }
 
     private int getLineSize() {
