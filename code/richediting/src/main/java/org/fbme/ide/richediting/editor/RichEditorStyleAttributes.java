@@ -6,6 +6,7 @@ import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
@@ -18,6 +19,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<FBTypeDescriptor> TYPE = new InheritableStyleAttribute<>("fb-type");
     public static final StyleAttribute<FunctionBlockDeclarationBase> FB = new InheritableStyleAttribute<>("fb-inst");
     public static final StyleAttribute<SelectionModel<NetworkComponentView>> SELECTED_FBS = new InheritableStyleAttribute<>("selected-fbs");
+    public static final StyleAttribute<StateAction> ALGORITHMS = new InheritableStyleAttribute<>("algo");
 
     static {
         NETWORK.register();
@@ -26,5 +28,6 @@ public class RichEditorStyleAttributes {
         TYPE.register();
         FB.register();
         SELECTED_FBS.register();
+        ALGORITHMS.register();
     }
 }

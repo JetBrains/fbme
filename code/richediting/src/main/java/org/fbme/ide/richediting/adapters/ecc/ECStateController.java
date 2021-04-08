@@ -11,6 +11,7 @@ import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
@@ -54,16 +55,16 @@ public class ECStateController implements ComponentController<Point> {
             PortPath<EventDeclaration> outputTarget = action.getEvent().getTarget();
             AlgorithmCellStatic actionCell;
             if (target != null) {
-                actionCell = new AlgorithmCellStatic(context, node, target.getName(), ALGORITHM_COLOR);
+                actionCell = new AlgorithmCellStatic(context, node, target.getName(), ALGORITHM_COLOR, action);
             } else {
-                actionCell = new AlgorithmCellStatic(context, node, "", ALGORITHM_COLOR);
+                actionCell = new AlgorithmCellStatic(context, node, "", ALGORITHM_COLOR, action);
             }
             myCellCollection.addEditorCell(actionCell);
             AlgorithmCellStatic outputCell;
             if (outputTarget != null) {
-                outputCell = new AlgorithmCellStatic(context, node, action.getEvent().getPresentation(), OUTPUT_COLOR);
+                outputCell = new AlgorithmCellStatic(context, node, action.getEvent().getPresentation(), OUTPUT_COLOR, action);
             } else {
-                outputCell = new AlgorithmCellStatic(context, node, "", OUTPUT_COLOR);
+                outputCell = new AlgorithmCellStatic(context, node, "", OUTPUT_COLOR, action);
             }
             myCellCollection.addEditorCell(outputCell);
             myAlgorithmCells.add(new AlgorithmBlock(actionCell, outputCell));
@@ -97,14 +98,14 @@ public class ECStateController implements ComponentController<Point> {
             if (block.getAction().getText().isEmpty()) {
                 block.getAction().setHeight(block.getAction().getHeight() / 2);
             }
-            height += block.getAction().getHeight();
+            height += (block.getAction().getActiveHeight() + padding);
 
             block.getOutput().relayout();
             width = Math.max(width, block.getOutput().getWidth());
             if (block.getOutput().getText().isEmpty()) {
                 block.getOutput().setHeight(block.getOutput().getHeight() / 2);
             }
-            height += block.getOutput().getHeight();
+            height += (block.getOutput().getActiveHeight() + padding);
         }
         myCellCollection.setWidth(width);
         myCellCollection.setHeight(height);
@@ -217,9 +218,16 @@ public class ECStateController implements ComponentController<Point> {
         private static final int SHIFT_X = 5;
         private static final int SHIFT_Y = -2;
 
-        public AlgorithmCellStatic(EditorContext editorContext, SNode node, String text, Color color) {
+        public AlgorithmCellStatic(
+                EditorContext editorContext,
+                SNode node,
+                String text,
+                Color color,
+                StateAction action
+        ) {
             super(editorContext, node);
             getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
+            getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
             backgroundColor = color;
             myNameText = new TextLine(text, getStyle(), false);
             relayoutImpl();

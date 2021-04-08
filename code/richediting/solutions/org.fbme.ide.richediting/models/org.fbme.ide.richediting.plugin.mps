@@ -1459,6 +1459,9 @@
       <node concept="tCFHf" id="uP0FLzWYpv" role="ftvYc">
         <ref role="tCJdB" node="uP0FLzNOoL" resolve="AddConstantToPort" />
       </node>
+      <node concept="tCFHf" id="4oKGIowNMSU" role="ftvYc">
+        <ref role="tCJdB" node="1qTIX84P77q" resolve="ChangeAction" />
+      </node>
       <node concept="10WQ6h" id="1DfKejr796v" role="ftvYc">
         <property role="TrG5h" value="mapper" />
       </node>
@@ -11546,6 +11549,70 @@
           <node concept="2YIFZM" id="2k00pzqCgIT" role="3clFbG">
             <ref role="37wK5l" node="5vstEPJdnqL" resolve="uninstall" />
             <ref role="1Pybhc" node="2k00pzqAsoA" resolve="RicheditingMpsBridgeImpl" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="1qTIX84P77q">
+    <property role="TrG5h" value="ChangeAction" />
+    <property role="2uzpH1" value="Change Action" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="tnohg" id="1qTIX84P77r" role="tncku">
+      <node concept="3clFbS" id="1qTIX84P77s" role="2VODD2" />
+    </node>
+    <node concept="1DS2jV" id="1qTIX84QidA" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="1qTIX84QidB" role="1oa70y" />
+    </node>
+    <node concept="2ScWuX" id="1qTIX84Qihq" role="tmbBb">
+      <node concept="3clFbS" id="1qTIX84Qihr" role="2VODD2">
+        <node concept="3cpWs8" id="1qTIX84QiwR" role="3cqZAp">
+          <node concept="3cpWsn" id="1qTIX84QiwS" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="1qTIX84QiwT" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="1qTIX84QjDS" role="33vP2m">
+              <node concept="2OqwBi" id="1qTIX84QiYn" role="2Oq$k0">
+                <node concept="2WthIp" id="1qTIX84QiCW" role="2Oq$k0" />
+                <node concept="1DTwFV" id="1qTIX84Qjh3" role="2OqNvi">
+                  <ref role="2WH_rO" node="1qTIX84QidA" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="1qTIX84QjUd" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="1qTIX84Qkbd" role="3cqZAp">
+          <node concept="3cpWsn" id="1qTIX84Qkbe" role="3cpWs9">
+            <property role="TrG5h" value="action" />
+            <node concept="3uibUv" id="1qTIX84Qkbf" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~StateAction" resolve="StateAction" />
+            </node>
+            <node concept="2OqwBi" id="1qTIX84QkwM" role="33vP2m">
+              <node concept="37vLTw" id="1qTIX84Qkld" role="2Oq$k0">
+                <ref role="3cqZAo" node="1qTIX84QiwS" resolve="style" />
+              </node>
+              <node concept="liA8E" id="1qTIX84QkHG" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="1qTIX84Ql1v" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="1qTIX84QlmR" role="3cqZAp">
+          <node concept="3y3z36" id="1qTIX84QlHh" role="3clFbG">
+            <node concept="10Nm6u" id="1qTIX84QlSm" role="3uHU7w" />
+            <node concept="37vLTw" id="1qTIX84QlmP" role="3uHU7B">
+              <ref role="3cqZAo" node="1qTIX84Qkbe" resolve="action" />
+            </node>
           </node>
         </node>
       </node>
