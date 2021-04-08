@@ -96,16 +96,16 @@ public class ECStateController implements ComponentController<Point> {
             block.getAction().relayout();
             width = Math.max(width, block.getAction().getWidth());
             if (block.getAction().getText().isEmpty()) {
-                block.getAction().setHeight(block.getAction().getHeight() / 2);
+                block.getAction().setHeight(block.getAction().getHeight() / 3 * 2);
             }
-            height += (block.getAction().getActiveHeight() + padding);
+            height += (block.getAction().getHeight() + padding);
 
             block.getOutput().relayout();
             width = Math.max(width, block.getOutput().getWidth());
             if (block.getOutput().getText().isEmpty()) {
-                block.getOutput().setHeight(block.getOutput().getHeight() / 2);
+                block.getOutput().setHeight(block.getOutput().getHeight() / 3 * 2);
             }
-            height += (block.getOutput().getActiveHeight() + padding);
+            height += (block.getOutput().getHeight() + padding);
         }
         myCellCollection.setWidth(width);
         myCellCollection.setHeight(height);
@@ -121,9 +121,9 @@ public class ECStateController implements ComponentController<Point> {
 
         for (AlgorithmBlock algorithmBlock : myAlgorithmCells) {
             algorithmBlock.getAction().moveTo(myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY() + currentHight);
-            currentHight += (algorithmBlock.getAction().getActiveHeight() + padding);
+            currentHight += (algorithmBlock.getAction().getHeight() + padding);
             algorithmBlock.getOutput().moveTo(myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2, myCellCollection.getY() + currentHight);
-            currentHight += (algorithmBlock.getOutput().getActiveHeight() + padding);
+            currentHight += (algorithmBlock.getOutput().getHeight() + padding);
         }
     }
 
@@ -213,7 +213,7 @@ public class ECStateController implements ComponentController<Point> {
     private class AlgorithmCellStatic extends EditorCell_Basic {
         private final TextLine myNameText;
         private final Color backgroundColor;
-        private static final int ACTIVE_HEIGHT_PADDING = 8;
+        private static final int ACTIVE_HEIGHT_PADDING = 6;
         public static final int ACTIVE_WEIGHT_PADDING = 10;
         private static final int SHIFT_X = 5;
         private static final int SHIFT_Y = -2;
@@ -244,16 +244,12 @@ public class ECStateController implements ComponentController<Point> {
             return myNameText.getText();
         }
 
-        public int getActiveHeight() {
-            return myHeight + ACTIVE_HEIGHT_PADDING;
-        }
-
         @Override
         protected void relayoutImpl() {
             int lineSize = getLineSize();
             myNameText.relayout();
             setWidth(myNameText.getWidth());
-            setHeight(lineSize);
+            setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
         }
 
         private Rectangle getBounds(Point position) {
@@ -269,8 +265,10 @@ public class ECStateController implements ComponentController<Point> {
         protected void paintContent(Graphics graphics, ParentSettings settings) {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(backgroundColor);
-            g.fillRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight + ACTIVE_HEIGHT_PADDING);
-            myNameText.paint(graphics, myX + SHIFT_X, myY + SHIFT_Y, JBColor.BLACK);
+            g.fillRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight);
+            if (!myNameText.getText().isEmpty()) {
+                myNameText.paint(graphics, myX + SHIFT_X, myY + SHIFT_Y, JBColor.BLACK);
+            }
         }
     }
 
