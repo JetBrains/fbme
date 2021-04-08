@@ -119,11 +119,22 @@ public final class FBNetworkEditors {
             }
             new BackgroundFocusLossFacility(scene, focus, backgroundLayer);
 
-            DefaultSelectionModel<NetworkComponentView> componentsSelection = new DefaultSelectionModel<NetworkComponentView>();
+            DefaultSelectionModel<NetworkComponentView> componentsSelection = new DefaultSelectionModel<>();
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection);
 
-            DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<NetworkComponentView>(context.getRepository());
-            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<NetworkComponentView, Point>(scene, networkView.getComponentsView(), getComponentControllerFactory(networkInstance), new FBNetworkComponentSynhcronizer(viewpoint, scale), componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer);
+            DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
+            ExpandedComponentsController expandedComponentsController = new ExpandedComponentsController(networkView, context);
+            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<>(
+                    scene,
+                    networkView.getComponentsView(),
+                    getComponentControllerFactory(networkInstance, expandedComponentsController),
+                    new FBNetworkComponentSynhcronizer(viewpoint, scale, expandedComponentsController),
+                    componentsLayout,
+                    componentsSelection,
+                    focus,
+                    componentsLayer,
+                    tracesLayer
+            );
 
             style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility);
 
@@ -226,10 +237,13 @@ public final class FBNetworkEditors {
         return new InlineValueController(context, (InlineValueView) extView, (FunctionBlockController) compController, (EditorCell) cell);
     };
 
-    public static ComponentControllerFactory<NetworkComponentView, Point> getComponentControllerFactory(@NotNull NetworkInstance instance) {
+    public static ComponentControllerFactory<NetworkComponentView, Point> getComponentControllerFactory(
+            @NotNull NetworkInstance instance,
+            ExpandedComponentsController expandedComponentsController
+    ) {
         return (context, view) -> {
             if (view instanceof FunctionBlockView) {
-                return new FunctionBlockController(context, (FunctionBlockView) view, instance);
+                return new FunctionBlockController(context, (FunctionBlockView) view, instance, expandedComponentsController);
             }
             if (view instanceof InterfaceEndpointView) {
                 return new InterfaceEndpointController(context, (InterfaceEndpointView) view);

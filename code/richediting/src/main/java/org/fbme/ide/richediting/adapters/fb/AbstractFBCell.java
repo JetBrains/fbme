@@ -1,13 +1,23 @@
 package org.fbme.ide.richediting.adapters.fb;
 
+import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
+import jetbrains.mps.openapi.editor.style.Style;
+import org.fbme.ide.iec61499.repository.PlatformElement;
+import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
+import org.fbme.lib.iec61499.instances.Instance;
+import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
 import org.fbme.scenes.controllers.LayoutUtil;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;

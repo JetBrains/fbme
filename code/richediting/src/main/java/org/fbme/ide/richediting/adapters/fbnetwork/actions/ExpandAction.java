@@ -28,7 +28,7 @@ public class ExpandAction extends ExpandOrCollapseAction {
     private void expand(FunctionBlockView component) {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
 
-        preparing(componentController.getFbCell(), component, componentController);
-        componentController.expandBlock(true);
+        processAffectedComponents(componentController.getFbCell(), component, componentController);
+        componentController.expand();
     }
 }

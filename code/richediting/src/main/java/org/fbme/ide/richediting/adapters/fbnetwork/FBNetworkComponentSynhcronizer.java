@@ -16,12 +16,14 @@ import java.util.function.Supplier;
 public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<NetworkComponentView, Point> {
     private static final Logger LOG = LogManager.getLogger(FBNetworkComponentSynhcronizer.class);
 
-    private final SceneViewpoint myViewpoint;
-    private final float myScale;
+    private final SceneViewpoint viewpoint;
+    private final float scale;
+    private final ExpandedComponentsController expandedComponentsController;
 
-    public FBNetworkComponentSynhcronizer(SceneViewpoint viewpoint, float scale) {
-        myViewpoint = viewpoint;
-        myScale = scale;
+    public FBNetworkComponentSynhcronizer(SceneViewpoint viewpoint, float scale, ExpandedComponentsController expandedComponentsController) {
+        this.viewpoint = viewpoint;
+        this.scale = scale;
+        this.expandedComponentsController = expandedComponentsController;
     }
 
     @NotNull
@@ -29,15 +31,15 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
     public Supplier<Point> getForm(@NotNull NetworkComponentView component) {
         if (component instanceof FunctionBlockView) {
             FunctionBlockView fb = (FunctionBlockView) component;
-            final int x = (int) (myScale * fb.getComponent().getX());
-            final int y = (int) (myScale * fb.getComponent().getY());
-            return () -> new Point(myViewpoint.translateToEditorX(x), myViewpoint.translateToEditorY(y));
+            final int x = (int) (scale * fb.getComponent().getX());
+            final int y = (int) (scale * fb.getComponent().getY());
+            return () -> new Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y));
         }
         if (component instanceof InterfaceEndpointView) {
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
             final boolean source = interfaceEndpoint.isSource();
             final int pos = interfaceEndpoint.getPosition();
-            return () -> new Point(myViewpoint.translateToEditorX(source ? 0 : (int) (myScale * 5000)), myViewpoint.translateToEditorY(pos * 100));
+            return () -> new Point(viewpoint.translateToEditorX(source ? 0 : (int) (scale * 5000)), viewpoint.translateToEditorY(pos * 100));
         }
         throw new IllegalArgumentException("unknown network component");
     }
@@ -46,8 +48,8 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
     public void setForm(@NotNull NetworkComponentView component, @NotNull Point position) {
         if (component instanceof FunctionBlockView) {
             FunctionBlockView fb = (FunctionBlockView) component;
-            fb.getComponent().setX((int) (myViewpoint.translateFromEditorX(position.x) / myScale));
-            fb.getComponent().setY((int) (myViewpoint.translateFromEditorY(position.y) / myScale));
+            fb.getComponent().setX((int) (viewpoint.translateFromEditorX(position.x) / scale));
+            fb.getComponent().setY((int) (viewpoint.translateFromEditorY(position.y) / scale));
             return;
         }
         if (component instanceof InterfaceEndpointView) {

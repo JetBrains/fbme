@@ -8,6 +8,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
+import jetbrains.mps.openapi.editor.cells.CellActionType;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
 import org.fbme.ide.iec61499.repository.PlatformElement;
@@ -309,6 +310,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
             public void onAdd() {
                 super.onAdd();
                 installNavigatable();
+                setAction(CellActionType.BACKSPACE, getParent().getParent().getAction(CellActionType.BACKSPACE));
             }
         };
     }

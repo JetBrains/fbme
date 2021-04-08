@@ -44,12 +44,12 @@ public abstract class ExpandOrCollapseAction implements Action {
         componentsSynchronizer = componentsFacility.getComponentSyncronizer();
     }
 
-    protected void preparing(FBCell fbCell, FunctionBlockView component, FunctionBlockController componentController) {
+    protected void processAffectedComponents(FBCell fbCell, FunctionBlockView component, FunctionBlockController componentController) {
         fbCell.getRootCell().relayout();
 
         ArrayList<NetworkComponentView> affectedComponentsByX = new ArrayList<>();
         ArrayList<NetworkComponentView> affectedComponentsByY = new ArrayList<>();
-        processAffectedComponents(component, affectedComponentsByX, affectedComponentsByY);
+        collectAffectedComponents(component, affectedComponentsByX, affectedComponentsByY);
 
         Point position = componentsFacility.getModelForm(component);
         Rectangle oldBounds = componentController.getBounds(position);
@@ -71,10 +71,9 @@ public abstract class ExpandOrCollapseAction implements Action {
         }
 
         translateTo.forEach(componentsSynchronizer::setForm);
-        componentController.relayout();
     }
 
-    private void processAffectedComponents(FunctionBlockView component, ArrayList<NetworkComponentView> affectedComponentsByX, ArrayList<NetworkComponentView> affectedComponentsByY) {
+    private void collectAffectedComponents(FunctionBlockView component, ArrayList<NetworkComponentView> affectedComponentsByX, ArrayList<NetworkComponentView> affectedComponentsByY) {
         Point position = componentsFacility.getModelForm(component);
         Rectangle oldBounds = componentsFacility.getController(component).getBounds(position);
 

@@ -6,6 +6,7 @@ import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
+import jetbrains.mps.openapi.editor.cells.CellActionType;
 import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
@@ -51,6 +52,11 @@ public final class FBSceneCell extends AbstractFBCell {
             @Override
             protected void paintContent(Graphics g, ParentSettings parentSettings) {
                 FBSceneCell.this.paint((Graphics2D) g.create());
+            }
+
+            @Override
+            public void paintSelection(Graphics g, Color c, boolean drawBorder, ParentSettings parentSettings) {
+                // do nothing
             }
         };
     }

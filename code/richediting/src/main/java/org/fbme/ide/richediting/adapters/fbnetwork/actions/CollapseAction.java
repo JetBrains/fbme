@@ -28,7 +28,7 @@ public class CollapseAction extends ExpandOrCollapseAction {
     private void collapse(FunctionBlockView component) {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
 
-        preparing(componentController.getFbCell(), component, componentController);
-        componentController.expandBlock(false);
+        processAffectedComponents(componentController.getFbCell(), component, componentController);
+        componentController.collapse();
     }
 }
