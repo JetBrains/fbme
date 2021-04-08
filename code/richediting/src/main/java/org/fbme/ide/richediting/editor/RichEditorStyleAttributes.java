@@ -20,6 +20,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<FunctionBlockDeclarationBase> FB = new InheritableStyleAttribute<>("fb-inst");
     public static final StyleAttribute<SelectionModel<NetworkComponentView>> SELECTED_FBS = new InheritableStyleAttribute<>("selected-fbs");
     public static final StyleAttribute<StateAction> ALGORITHMS = new InheritableStyleAttribute<>("algo");
+    public static final StyleAttribute<StateAction> OUTPUTS = new InheritableStyleAttribute<>("outputs");
 
     static {
         NETWORK.register();
@@ -29,5 +30,6 @@ public class RichEditorStyleAttributes {
         FB.register();
         SELECTED_FBS.register();
         ALGORITHMS.register();
+        OUTPUTS.register();
     }
 }

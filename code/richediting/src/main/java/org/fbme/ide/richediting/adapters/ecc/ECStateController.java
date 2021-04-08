@@ -227,7 +227,11 @@ public class ECStateController implements ComponentController<Point> {
         ) {
             super(editorContext, node);
             getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
-            getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
+            if (color.equals(ALGORITHM_COLOR)) {
+                getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
+            } else {
+                getStyle().set(RichEditorStyleAttributes.OUTPUTS, action);
+            }
             backgroundColor = color;
             myNameText = new TextLine(text, getStyle(), false);
             relayoutImpl();
