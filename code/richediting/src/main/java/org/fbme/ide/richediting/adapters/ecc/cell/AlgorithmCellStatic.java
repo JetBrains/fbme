@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.ecc.cells;
+package org.fbme.ide.richediting.adapters.ecc.cell;
 
 import com.intellij.ui.JBColor;
 import jetbrains.mps.editor.runtime.style.Measure;
@@ -76,6 +76,9 @@ public class AlgorithmCellStatic extends EditorCell_Basic {
         }
         setWidth(myNameText.getWidth());
         setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
+        if (myNameText.getText().isEmpty()) {
+            setHeight(getHeight() / 2);
+        }
     }
 
     private Rectangle getBounds(Point position) {

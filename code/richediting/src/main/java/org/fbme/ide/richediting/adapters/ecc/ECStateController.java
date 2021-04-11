@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.adapters.ecc;
 
-import com.intellij.ui.JBColor;
 import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.Measure;
 import jetbrains.mps.editor.runtime.style.Padding;
@@ -11,8 +10,7 @@ import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
-import org.fbme.ide.richediting.adapters.ecc.cells.AlgorithmCellStatic;
-import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.ide.richediting.adapters.ecc.cell.AlgorithmCellStatic;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
@@ -96,16 +94,10 @@ public class ECStateController implements ComponentController<Point> {
         for (AlgorithmBlock block: myAlgorithmCells) {
             block.getAction().relayout();
             width = Math.max(width, block.getAction().getWidth());
-            if (block.getAction().getText().isEmpty()) {
-                block.getAction().setHeight(block.getAction().getHeight() / 3 * 2);
-            }
             height += (block.getAction().getHeight() + padding);
 
             block.getOutput().relayout();
             width = Math.max(width, block.getOutput().getWidth());
-            if (block.getOutput().getText().isEmpty()) {
-                block.getOutput().setHeight(block.getOutput().getHeight() / 3 * 2);
-            }
             height += (block.getOutput().getHeight() + padding);
         }
         myCellCollection.setWidth(width);
