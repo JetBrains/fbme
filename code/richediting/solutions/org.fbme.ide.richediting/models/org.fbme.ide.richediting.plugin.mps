@@ -533,10 +533,6 @@
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
-      <concept id="4222318806802425298" name="jetbrains.mps.lang.core.structure.SuppressErrorsAnnotation" flags="ng" index="15s5l7">
-        <property id="8575328350543493365" name="message" index="huDt6" />
-        <property id="2423417345669755629" name="filter" index="1eyWvh" />
-      </concept>
       <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
         <property id="709746936026609031" name="linkId" index="3V$3ak" />
         <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
@@ -11571,7 +11567,7 @@
   </node>
   <node concept="sE7Ow" id="1qTIX84P77q">
     <property role="TrG5h" value="ChangeAlgorithm" />
-    <property role="2uzpH1" value="Hello" />
+    <property role="2uzpH1" value="Map Change Algorithm" />
     <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
     <node concept="tnohg" id="1qTIX84P77r" role="tncku">
       <node concept="3clFbS" id="1qTIX84P77s" role="2VODD2">
@@ -11631,7 +11627,7 @@
                   <node concept="2OqwBi" id="2oE2GKqNn2_" role="37wK5m">
                     <node concept="2WthIp" id="2oE2GKqNmJZ" role="2Oq$k0" />
                     <node concept="2BZ7hE" id="2oE2GKqNnpC" role="2OqNvi">
-                      <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                      <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="algorithm" />
                     </node>
                   </node>
                 </node>
@@ -11643,7 +11639,7 @@
             <node concept="2OqwBi" id="2oE2GKqNkzV" role="3uHU7B">
               <node concept="2WthIp" id="2oE2GKqNkhe" role="2Oq$k0" />
               <node concept="2BZ7hE" id="2oE2GKqNkT6" role="2OqNvi">
-                <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="algorithm" />
               </node>
             </node>
           </node>
@@ -11735,7 +11731,7 @@
                     <node concept="2OqwBi" id="2kpNSw3kYKw" role="2Oq$k0">
                       <node concept="2WthIp" id="2kpNSw3kYKz" role="2Oq$k0" />
                       <node concept="2BZ7hE" id="2kpNSw3kYK_" role="2OqNvi">
-                        <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                        <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="algorithm" />
                       </node>
                     </node>
                     <node concept="liA8E" id="6$59cn$LLkT" role="2OqNvi">
@@ -11757,7 +11753,7 @@
               <node concept="2OqwBi" id="2kpNSw3kUzf" role="3uHU7B">
                 <node concept="2WthIp" id="2kpNSw3kUzi" role="2Oq$k0" />
                 <node concept="2BZ7hE" id="2kpNSw3kUzk" role="2OqNvi">
-                  <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                  <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="algorithm" />
                 </node>
               </node>
             </node>
@@ -11783,7 +11779,7 @@
                 <node concept="2OqwBi" id="6lq4AXkpN_K" role="3uHU7B">
                   <node concept="2WthIp" id="6lq4AXkpN8R" role="2Oq$k0" />
                   <node concept="2BZ7hE" id="6lq4AXkpOci" role="2OqNvi">
-                    <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                    <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="algorithm" />
                   </node>
                 </node>
               </node>
@@ -11837,15 +11833,11 @@
       </node>
     </node>
     <node concept="2JriF1" id="3WBO6L0t7kt" role="2JrayB">
-      <property role="TrG5h" value="strVal" />
+      <property role="TrG5h" value="algorithm" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3WBO6L0t7ku" role="1B3o_S" />
       <node concept="3uibUv" id="6$59cn$LKbi" role="1tU5fm">
         <ref role="3uigEE" to="cwd8:~AlgorithmDeclaration" resolve="AlgorithmDeclaration" />
-      </node>
-      <node concept="15s5l7" id="46jJrYAHUnM" role="lGtFl">
-        <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;" />
-        <property role="huDt6" value="all typesystem messages" />
       </node>
     </node>
   </node>

@@ -1,8 +1,6 @@
 package org.fbme.ide.richediting.adapters.ecc.cell;
 
 import com.intellij.ui.JBColor;
-import jetbrains.mps.editor.runtime.style.Measure;
-import jetbrains.mps.editor.runtime.style.Padding;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Basic;
@@ -10,7 +8,6 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.nodeEditor.cells.TextLine;
 import jetbrains.mps.openapi.editor.EditorContext;
-import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.scenes.controllers.LayoutUtil;
@@ -18,21 +15,20 @@ import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
 
-public class AlgorithmCellStatic extends EditorCell_Basic {
-    private final TextLine myNameText;
+public abstract class ActionCell extends EditorCell_Basic {
+    protected final TextLine myNameText;
     private final Color backgroundColor;
-    private final StateAction myAction;
-    private final EditorCell_Collection myCellCollection;
-    private static final int ACTIVE_HEIGHT_PADDING = 6;
+    protected final StateAction myAction;
+    protected final EditorCell_Collection myCellCollection;
+
+    public static final int ACTIVE_HEIGHT_PADDING = 6;
     public static final int ACTIVE_WEIGHT_PADDING = 10;
     private static final int SHIFT_X = 5;
     private static final int SHIFT_Y = -2;
-    private static final Color ALGORITHM_COLOR = new Color(199, 222, 193);
 
-    public AlgorithmCellStatic(
+    public ActionCell(
             EditorContext editorContext,
             SNode node,
-            String text,
             Color color,
             StateAction action,
             EditorCell_Collection cellCollection
@@ -41,39 +37,19 @@ public class AlgorithmCellStatic extends EditorCell_Basic {
         myAction = action;
         myCellCollection = cellCollection;
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
-        if (color.equals(ALGORITHM_COLOR)) {
-            getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
-        } else {
-            getStyle().set(RichEditorStyleAttributes.OUTPUTS, action);
-        }
         backgroundColor = color;
-        myNameText = new TextLine(text, getStyle(), false);
+        myNameText = new TextLine("", getStyle(), false);
         relayoutImpl();
-    }
-
-    private void setPadding(double value, Measure measure) {
-        getStyle().set(StyleAttributes.PADDING_LEFT, new Padding(value, measure));
-        getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(1.5 * value, measure));
-        getStyle().set(StyleAttributes.PADDING_TOP, new Padding(value, measure));
-        getStyle().set(StyleAttributes.PADDING_RIGHT, new Padding(value, measure));
     }
 
     public String getText() {
         return myNameText.getText();
     }
 
-    @Override
     protected void relayoutImpl() {
         int lineSize = getLineSize();
         myNameText.relayout();
-        if (backgroundColor.equals(ALGORITHM_COLOR)) {
-            AlgorithmDeclaration target = myAction.getAlgorithm().getTarget();
-            if (target != null) {
-                myNameText.setText(target.getName());
-            } else {
-                myNameText.setText("");
-            }
-        }
+        setTextFromAction();
         setWidth(myNameText.getWidth());
         setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
         if (myNameText.getText().isEmpty()) {
@@ -100,12 +76,14 @@ public class AlgorithmCellStatic extends EditorCell_Basic {
         }
     }
 
+    abstract protected void setTextFromAction();
+
     public void changeAlgorithm(AlgorithmDeclaration newAlgorithm) {
         myNameText.setText(newAlgorithm.getName());
         myAction.getAlgorithm().setTarget(newAlgorithm);
     }
 
-    private int getLineSize() {
+    protected int getLineSize() {
         return LayoutUtil.getLineSize(myCellCollection.getStyle());
     }
 }
