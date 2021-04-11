@@ -12,7 +12,10 @@ import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.richediting.RicheditingMpsBridge;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.inspections.ECCInspectionsFacility;
+import org.fbme.lib.common.Declaration;
+import org.fbme.lib.common.Element;
 import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
@@ -30,8 +33,11 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
@@ -45,7 +51,6 @@ public class ECCEditors {
             Layer tracesLayer = scene.createLayer(1.f);
             Layer componentsLayer = scene.createLayer(3.f);
             Layer connectionsLayer = scene.createLayer(2.f);
-
 
             EditorComponent editorComponent = (EditorComponent) context.getEditorComponent();
 
@@ -63,6 +68,9 @@ public class ECCEditors {
 
             final IEC61499Factory declarationFactory = repository.getIEC61499Factory();
             final ECC ecc = repository.getAdapter(node, BasicFBTypeDeclaration.class).getEcc();
+
+//            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, new ArrayList<>(Arrays. asList("London", "Tokyo", "New York")));
+            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsNameFromDeclarationFactory(ecc));
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
@@ -143,5 +151,15 @@ public class ECCEditors {
                 ecc.getStates().add(state);
             }
         });
+    }
+
+    private static List<String> getAllAlgorithmsNameFromDeclarationFactory(ECC ecc) {
+        Element element = ecc.getContainer();
+        if (element instanceof BasicFBTypeDeclaration) {
+            BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
+            return declaration.getAlgorithms().stream().map(Declaration::getName).collect(Collectors.toList());
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

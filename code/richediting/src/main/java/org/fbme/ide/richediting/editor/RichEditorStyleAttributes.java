@@ -12,6 +12,8 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.controllers.SelectionModel;
 
+import java.util.List;
+
 public class RichEditorStyleAttributes {
     public static final StyleAttribute<FBNetwork> NETWORK = new InheritableStyleAttribute<>("fb-network");
     public static final StyleAttribute<NetworkInstance> NETWORK_INSTANCE = new InheritableStyleAttribute<>("fb-network-instance");
@@ -21,6 +23,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<SelectionModel<NetworkComponentView>> SELECTED_FBS = new InheritableStyleAttribute<>("selected-fbs");
     public static final StyleAttribute<StateAction> ALGORITHMS = new InheritableStyleAttribute<>("algo");
     public static final StyleAttribute<StateAction> OUTPUTS = new InheritableStyleAttribute<>("outputs");
+    public static final StyleAttribute<List<String>> ALL_ALGORITHMS = new InheritableStyleAttribute<>("all-outputs");
 
     static {
         NETWORK.register();
@@ -31,5 +34,6 @@ public class RichEditorStyleAttributes {
         SELECTED_FBS.register();
         ALGORITHMS.register();
         OUTPUTS.register();
+        ALL_ALGORITHMS.register();
     }
 }
