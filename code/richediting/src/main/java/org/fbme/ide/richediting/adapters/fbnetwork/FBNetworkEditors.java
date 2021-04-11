@@ -58,7 +58,7 @@ public final class FBNetworkEditors {
     private FBNetworkEditors() {
     }
 
-    public static EditorCell createCellForetworkInstance(EditorContext context, SNode node, SceneLayout layout) {
+    public static EditorCell createCellForNetworkInstance(EditorContext context, SNode node, SceneLayout layout) {
         EditorCell_Scene scene = new EditorCell_Scene(context, node, layout);
 
         NetworkInstance networkInstance = RichEditorDataKeys.contextNetworkInstance(context);
@@ -128,7 +128,7 @@ public final class FBNetworkEditors {
                     scene,
                     networkView.getComponentsView(),
                     getComponentControllerFactory(networkInstance, expandedComponentsController),
-                    new FBNetworkComponentSynhcronizer(viewpoint, scale, expandedComponentsController),
+                    new FBNetworkComponentSynchronizer(viewpoint, scale, expandedComponentsController),
                     componentsLayout,
                     componentsSelection,
                     focus,

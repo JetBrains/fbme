@@ -77,10 +77,6 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         }, node);
     }
 
-    public FBCell getFbCell() {
-        return fbCell;
-    }
-
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
         return new EditorCell_Collection(context, node, new CellLayout_Vertical() {
             @Override
@@ -92,7 +88,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         });
     }
 
-    private FBCell initializeFBSceneCell() {
+    public FBCell initializeFBSceneCell() {
         FunctionBlockInstance childInstance = networkInstance.getChild(view.getComponent());
         assert childInstance != null;
         Instance childNetworkInstance = childInstance.getContainedNetwork();

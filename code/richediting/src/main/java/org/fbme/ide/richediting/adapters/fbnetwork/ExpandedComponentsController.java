@@ -10,23 +10,22 @@ import org.fbme.scenes.controllers.scene.SceneStateKey;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class ExpandedComponentsController {
-    private static final SceneStateKey<Set<NetworkComponentView>> EXPANDED_COMPONENTS_KEY = new SceneStateKey<>("expanded-components");
+    private static final SceneStateKey<Map<NetworkComponentView, Point>> EXPANDED_COMPONENTS_KEY = new SceneStateKey<>("expanded-components");
     private static final SceneStateKey<Map<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>>> AFFECTED_COMPONENTS_KEY = new SceneStateKey<>("affected-components");
 
     private final EditorContext editorContext;
-    private final Set<NetworkComponentView> expandedComponents;
+    private final Map<NetworkComponentView, Point> expandedComponents;
     private final Map<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>> affectedComponents;
     private final Map<NetworkComponentView, Point> offset;
 
     public ExpandedComponentsController(EditorCell_Scene scene, EditorContext editorContext) {
         this.editorContext = editorContext;
-        Set<NetworkComponentView> expandedComponentsState = scene.loadState(EXPANDED_COMPONENTS_KEY);
-        expandedComponents = (expandedComponentsState != null ? expandedComponentsState : new HashSet<>());
+        Map<NetworkComponentView, Point> expandedComponentsState = scene.loadState(EXPANDED_COMPONENTS_KEY);
+        expandedComponents = (expandedComponentsState != null ? expandedComponentsState : new HashMap<>());
         Map<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>> affectedComponentsState = scene.loadState(AFFECTED_COMPONENTS_KEY);
         affectedComponents = (affectedComponentsState != null ? affectedComponentsState : new HashMap<>());
         scene.storeState(EXPANDED_COMPONENTS_KEY, expandedComponents);
@@ -45,8 +44,8 @@ public class ExpandedComponentsController {
             Set<NetworkComponentView> affectedByX = p.first;
             Set<NetworkComponentView> affectedByY = p.second;
 
-            int dx = 100; // TODO: fix me
-            int dy = 100; // TODO: fix me
+            int dx = expandedComponents.get(view).x;
+            int dy = expandedComponents.get(view).y;
 
             processOffset(offsetMap, affectedByX, dx, Direction.X);
             processOffset(offsetMap, affectedByY, dy, Direction.Y);
@@ -69,8 +68,8 @@ public class ExpandedComponentsController {
         }
     }
 
-    public void expand(FunctionBlockView view) {
-        expandedComponents.add(view);
+    public void expand(FunctionBlockView view, int dx, int dy) {
+        expandedComponents.put(view, new Point(dx, dy));
         updateFB(editorContext);
     }
 
@@ -80,7 +79,7 @@ public class ExpandedComponentsController {
     }
 
     public boolean isExpanded(FunctionBlockView view) {
-        return expandedComponents.contains(view);
+        return expandedComponents.containsKey(view);
     }
 
     public void addAffectedComponents(FunctionBlockView view, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>> affectedComponents) {

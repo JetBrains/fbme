@@ -13,14 +13,14 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.function.Supplier;
 
-public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<NetworkComponentView, Point> {
-    private static final Logger LOG = LogManager.getLogger(FBNetworkComponentSynhcronizer.class);
+public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<NetworkComponentView, Point> {
+    private static final Logger LOG = LogManager.getLogger(FBNetworkComponentSynchronizer.class);
 
     private final SceneViewpoint viewpoint;
     private final float scale;
     private final ExpandedComponentsController expandedComponentsController;
 
-    public FBNetworkComponentSynhcronizer(SceneViewpoint viewpoint, float scale, ExpandedComponentsController expandedComponentsController) {
+    public FBNetworkComponentSynchronizer(SceneViewpoint viewpoint, float scale, ExpandedComponentsController expandedComponentsController) {
         this.viewpoint = viewpoint;
         this.scale = scale;
         this.expandedComponentsController = expandedComponentsController;
@@ -32,10 +32,10 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
         if (component instanceof FunctionBlockView) {
             FunctionBlockView fb = (FunctionBlockView) component;
             final Point fbOffset = expandedComponentsController.getOffsetFor(fb);
-            final int dx = (fbOffset != null ? viewpoint.fromEditorDimension(fbOffset.x) : 0);
-            final int dy = (fbOffset != null ? viewpoint.fromEditorDimension(fbOffset.y) : 0);
-            final int x = (int) (scale * (fb.getComponent().getX() + dx));
-            final int y = (int) (scale * (fb.getComponent().getY() + dy));
+            final int dx = (fbOffset != null ? fbOffset.x : 0);
+            final int dy = (fbOffset != null ? fbOffset.y : 0);
+            final int x = (int) (scale * fb.getComponent().getX()) + dx;
+            final int y = (int) (scale * fb.getComponent().getY()) + dy;
             return () -> new Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y));
         }
         if (component instanceof InterfaceEndpointView) {
@@ -51,8 +51,13 @@ public class FBNetworkComponentSynhcronizer implements ComponentSynchronizer<Net
     public void setForm(@NotNull NetworkComponentView component, @NotNull Point position) {
         if (component instanceof FunctionBlockView) {
             FunctionBlockView fb = (FunctionBlockView) component;
-            fb.getComponent().setX((int) (viewpoint.translateFromEditorX(position.x) / scale));
-            fb.getComponent().setY((int) (viewpoint.translateFromEditorY(position.y) / scale));
+            final Point fbOffset = expandedComponentsController.getOffsetFor(fb);
+            final int dx = (fbOffset != null ? fbOffset.x : 0);
+            final int dy = (fbOffset != null ? fbOffset.y : 0);
+            final int x = (int) ((viewpoint.translateFromEditorX(position.x) - dx) / scale);
+            final int y = (int) ((viewpoint.translateFromEditorY(position.y) - dy) / scale);
+            fb.getComponent().setX(x);
+            fb.getComponent().setY(y);
             return;
         }
         if (component instanceof InterfaceEndpointView) {
