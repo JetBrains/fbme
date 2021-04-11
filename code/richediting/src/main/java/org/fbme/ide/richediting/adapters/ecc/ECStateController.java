@@ -11,6 +11,7 @@ import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
+import org.fbme.ide.richediting.adapters.ecc.cells.AlgorithmCellStatic;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
@@ -55,16 +56,16 @@ public class ECStateController implements ComponentController<Point> {
             PortPath<EventDeclaration> outputTarget = action.getEvent().getTarget();
             AlgorithmCellStatic actionCell;
             if (target != null) {
-                actionCell = new AlgorithmCellStatic(context, node, target.getName(), ALGORITHM_COLOR, action);
+                actionCell = new AlgorithmCellStatic(context, node, target.getName(), ALGORITHM_COLOR, action, myCellCollection);
             } else {
-                actionCell = new AlgorithmCellStatic(context, node, "", ALGORITHM_COLOR, action);
+                actionCell = new AlgorithmCellStatic(context, node, "", ALGORITHM_COLOR, action, myCellCollection);
             }
             myCellCollection.addEditorCell(actionCell);
             AlgorithmCellStatic outputCell;
             if (outputTarget != null) {
-                outputCell = new AlgorithmCellStatic(context, node, action.getEvent().getPresentation(), OUTPUT_COLOR, action);
+                outputCell = new AlgorithmCellStatic(context, node, action.getEvent().getPresentation(), OUTPUT_COLOR, action, myCellCollection);
             } else {
-                outputCell = new AlgorithmCellStatic(context, node, "", OUTPUT_COLOR, action);
+                outputCell = new AlgorithmCellStatic(context, node, "", OUTPUT_COLOR, action, myCellCollection);
             }
             myCellCollection.addEditorCell(outputCell);
             myAlgorithmCells.add(new AlgorithmBlock(actionCell, outputCell));
@@ -210,73 +211,7 @@ public class ECStateController implements ComponentController<Point> {
         }
     }
 
-    private class AlgorithmCellStatic extends EditorCell_Basic {
-        private final TextLine myNameText;
-        private final Color backgroundColor;
-        private static final int ACTIVE_HEIGHT_PADDING = 6;
-        public static final int ACTIVE_WEIGHT_PADDING = 10;
-        private static final int SHIFT_X = 5;
-        private static final int SHIFT_Y = -2;
-
-        public AlgorithmCellStatic(
-                EditorContext editorContext,
-                SNode node,
-                String text,
-                Color color,
-                StateAction action
-        ) {
-            super(editorContext, node);
-            getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
-            if (color.equals(ALGORITHM_COLOR)) {
-                getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
-            } else {
-                getStyle().set(RichEditorStyleAttributes.OUTPUTS, action);
-            }
-            backgroundColor = color;
-            myNameText = new TextLine(text, getStyle(), false);
-            relayoutImpl();
-        }
-
-        private void setPadding(double value, Measure measure) {
-            getStyle().set(StyleAttributes.PADDING_LEFT, new Padding(value, measure));
-            getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(1.5 * value, measure));
-            getStyle().set(StyleAttributes.PADDING_TOP, new Padding(value, measure));
-            getStyle().set(StyleAttributes.PADDING_RIGHT, new Padding(value, measure));
-        }
-
-        public String getText() {
-            return myNameText.getText();
-        }
-
-        @Override
-        protected void relayoutImpl() {
-            int lineSize = getLineSize();
-            myNameText.relayout();
-            setWidth(myNameText.getWidth());
-            setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
-        }
-
-        private Rectangle getBounds(Point position) {
-            return new Rectangle(position.x, position.y, myWidth, myHeight);
-        }
-
-        @Override
-        protected void paintSelectionIfRequired(Graphics g, ParentSettings parentSettings) {
-            // do nothing
-        }
-
-        @Override
-        protected void paintContent(Graphics graphics, ParentSettings settings) {
-            Graphics2D g = (Graphics2D) graphics.create();
-            g.setColor(backgroundColor);
-            g.fillRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight);
-            if (!myNameText.getText().isEmpty()) {
-                myNameText.paint(graphics, myX + SHIFT_X, myY + SHIFT_Y, JBColor.BLACK);
-            }
-        }
-    }
-
-    private class AlgorithmBlock {
+    private static class AlgorithmBlock {
         private final AlgorithmCellStatic action;
         private final AlgorithmCellStatic output;
         AlgorithmBlock(AlgorithmCellStatic action, AlgorithmCellStatic output) {
