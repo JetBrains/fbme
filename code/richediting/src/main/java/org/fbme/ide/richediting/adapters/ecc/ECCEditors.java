@@ -17,6 +17,7 @@ import org.fbme.ide.richediting.inspections.ECCInspectionsFacility;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.common.Element;
 import org.fbme.lib.iec61499.IEC61499Factory;
+import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
@@ -153,11 +154,11 @@ public class ECCEditors {
         });
     }
 
-    private static List<String> getAllAlgorithmsNameFromDeclarationFactory(ECC ecc) {
+    private static List<AlgorithmDeclaration> getAllAlgorithmsNameFromDeclarationFactory(ECC ecc) {
         Element element = ecc.getContainer();
         if (element instanceof BasicFBTypeDeclaration) {
             BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
-            return declaration.getAlgorithms().stream().map(Declaration::getName).collect(Collectors.toList());
+            return declaration.getAlgorithms();//.stream().map(Declaration::getName).collect(Collectors.toList());
         } else {
             return new ArrayList<>();
         }

@@ -528,6 +528,10 @@
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
+      <concept id="4222318806802425298" name="jetbrains.mps.lang.core.structure.SuppressErrorsAnnotation" flags="ng" index="15s5l7">
+        <property id="8575328350543493365" name="message" index="huDt6" />
+        <property id="2423417345669755629" name="filter" index="1eyWvh" />
+      </concept>
       <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
         <property id="709746936026609031" name="linkId" index="3V$3ak" />
         <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
@@ -11618,7 +11622,9 @@
             <property role="TrG5h" value="allVals" />
             <node concept="3uibUv" id="3z9JIK7il2h" role="1tU5fm">
               <ref role="3uigEE" to="33ny:~List" resolve="List" />
-              <node concept="17QB3L" id="7qUD3D_UVmv" role="11_B2D" />
+              <node concept="3uibUv" id="46jJrYAHUBg" role="11_B2D">
+                <ref role="3uigEE" to="cwd8:~AlgorithmDeclaration" resolve="AlgorithmDeclaration" />
+              </node>
             </node>
             <node concept="2OqwBi" id="3z9JIK7ilyS" role="33vP2m">
               <node concept="37vLTw" id="3z9JIK7ilo6" role="2Oq$k0">
@@ -11646,10 +11652,15 @@
                 </node>
                 <node concept="liA8E" id="2kpNSw3kYEK" role="2OqNvi">
                   <ref role="37wK5l" to="qkt:~Presentation.setText(java.lang.String)" resolve="setText" />
-                  <node concept="2OqwBi" id="2kpNSw3kYKw" role="37wK5m">
-                    <node concept="2WthIp" id="2kpNSw3kYKz" role="2Oq$k0" />
-                    <node concept="2BZ7hE" id="2kpNSw3kYK_" role="2OqNvi">
-                      <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                  <node concept="2OqwBi" id="6$59cn$LKP8" role="37wK5m">
+                    <node concept="2OqwBi" id="2kpNSw3kYKw" role="2Oq$k0">
+                      <node concept="2WthIp" id="2kpNSw3kYKz" role="2Oq$k0" />
+                      <node concept="2BZ7hE" id="2kpNSw3kYK_" role="2OqNvi">
+                        <ref role="2WH_rO" node="3WBO6L0t7kt" resolve="strVal" />
+                      </node>
+                    </node>
+                    <node concept="liA8E" id="6$59cn$LLkT" role="2OqNvi">
+                      <ref role="37wK5l" to="7adg:~Declaration.getName()" resolve="getName" />
                     </node>
                   </node>
                 </node>
@@ -11698,8 +11709,15 @@
     </node>
     <node concept="2JriF1" id="3WBO6L0t7kt" role="2JrayB">
       <property role="TrG5h" value="strVal" />
+      <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="3WBO6L0t7ku" role="1B3o_S" />
-      <node concept="17QB3L" id="3WBO6L0tdKG" role="1tU5fm" />
+      <node concept="3uibUv" id="6$59cn$LKbi" role="1tU5fm">
+        <ref role="3uigEE" to="cwd8:~AlgorithmDeclaration" resolve="AlgorithmDeclaration" />
+      </node>
+      <node concept="15s5l7" id="46jJrYAHUnM" role="lGtFl">
+        <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;" />
+        <property role="huDt6" value="all typesystem messages" />
+      </node>
     </node>
   </node>
   <node concept="sE7Ow" id="5RbtmxCv9oO">
@@ -11867,7 +11885,9 @@
                   <property role="TrG5h" value="allVals" />
                   <node concept="3uibUv" id="2WvzrPn98Lq" role="1tU5fm">
                     <ref role="3uigEE" to="33ny:~List" resolve="List" />
-                    <node concept="17QB3L" id="2WvzrPn98Vt" role="11_B2D" />
+                    <node concept="3uibUv" id="46jJrYAHQik" role="11_B2D">
+                      <ref role="3uigEE" to="cwd8:~AlgorithmDeclaration" resolve="AlgorithmDeclaration" />
+                    </node>
                   </node>
                   <node concept="2OqwBi" id="2WvzrPn99_d" role="33vP2m">
                     <node concept="2OqwBi" id="2WvzrPn99iJ" role="2Oq$k0">
@@ -11903,7 +11923,9 @@
                     </node>
                     <node concept="3cpWsn" id="55bXahwpegC" role="1Duv9x">
                       <property role="TrG5h" value="value" />
-                      <node concept="17QB3L" id="55bXahwpeuq" role="1tU5fm" />
+                      <node concept="3uibUv" id="46jJrYAHRsk" role="1tU5fm">
+                        <ref role="3uigEE" to="cwd8:~AlgorithmDeclaration" resolve="AlgorithmDeclaration" />
+                      </node>
                     </node>
                     <node concept="37vLTw" id="55bXahwpeR4" role="1DdaDG">
                       <ref role="3cqZAo" node="2WvzrPn98Lt" resolve="allVals" />
