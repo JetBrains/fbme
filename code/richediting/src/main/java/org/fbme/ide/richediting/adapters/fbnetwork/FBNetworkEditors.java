@@ -246,7 +246,7 @@ public final class FBNetworkEditors {
                 return new FunctionBlockController(context, (FunctionBlockView) view, instance, expandedComponentsController);
             }
             if (view instanceof InterfaceEndpointView) {
-                return new InterfaceEndpointController(context, (InterfaceEndpointView) view);
+                return new EndpointPortController(context, (InterfaceEndpointView) view);
             }
             return null;
         };

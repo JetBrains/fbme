@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork.fb;
 
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 

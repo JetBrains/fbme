@@ -40,6 +40,7 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
         }
         if (component instanceof InterfaceEndpointView) {
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
+            // TODO: read endpoints positions from the model
             final boolean source = interfaceEndpoint.isSource();
             final int pos = interfaceEndpoint.getPosition();
             return () -> new Point(viewpoint.translateToEditorX(source ? 0 : (int) (scale * 5000)), viewpoint.translateToEditorY(pos * 100));
@@ -61,6 +62,7 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
             return;
         }
         if (component instanceof InterfaceEndpointView) {
+            // TODO: write endpoints positions to the model
             if (LOG.isEnabledFor(Level.WARN)) {
                 LOG.warn("InterfaceEndpointView location modification triggered", new Throwable());
             }

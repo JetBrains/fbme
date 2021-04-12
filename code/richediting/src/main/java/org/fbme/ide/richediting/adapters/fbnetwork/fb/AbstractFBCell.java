@@ -1,23 +1,15 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork.fb;
 
-import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
-import jetbrains.mps.openapi.editor.style.Style;
-import org.fbme.ide.iec61499.repository.PlatformElement;
-import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport;
-import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.ide.richediting.adapters.fbnetwork.Port;
+import org.fbme.ide.richediting.adapters.fbnetwork.PortBase;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
-import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
-import org.fbme.lib.iec61499.instances.Instance;
-import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
 import org.fbme.scenes.controllers.LayoutUtil;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
@@ -26,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractFBCell implements FBCell {
-    protected static final int PORT_SIZE = 4;
+    public static final int PORT_SIZE = 4;
     protected final boolean isEditable;
-    protected final List<FBPort> inputEventPorts = new ArrayList<>();
-    protected final List<FBPort> inputDataPorts = new ArrayList<>();
-    protected final List<FBPort> outputEventPorts = new ArrayList<>();
-    protected final List<FBPort> outputDataPorts = new ArrayList<>();
-    protected final List<FBPort> socketPorts = new ArrayList<>();
-    protected final List<FBPort> plugPorts = new ArrayList<>();
+    protected final List<Port> inputEventPorts = new ArrayList<>();
+    protected final List<Port> inputDataPorts = new ArrayList<>();
+    protected final List<Port> outputEventPorts = new ArrayList<>();
+    protected final List<Port> outputDataPorts = new ArrayList<>();
+    protected final List<Port> socketPorts = new ArrayList<>();
+    protected final List<Port> plugPorts = new ArrayList<>();
     protected EditorContext context;
     protected FBTypeDescriptor fbType;
     protected SNode node;
@@ -118,37 +110,37 @@ public abstract class AbstractFBCell implements FBCell {
     @Override
     public Point getInputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
+        return new Point(-1, eventNumber * lineSize + getShift());
     }
 
     @Override
     public Point getOutputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + 1, eventNumber * lineSize + getShift());
     }
 
     @Override
     public Point getInputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        return new Point(-1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getOutputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + 1, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getSocketPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
+        return new Point(-1, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
     }
 
     @Override
     public Point getPlugPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
+        return new Point(getRootCell().getWidth() + 1, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
     }
 
     protected void initPorts() {
@@ -160,17 +152,17 @@ public abstract class AbstractFBCell implements FBCell {
         initPorts(plugPorts, fbType.getPlugPorts());
     }
 
-    protected void initPorts(List<FBPort> ports, List<FBPortDescriptor> portDescriptors) {
+    protected void initPorts(List<Port> ports, List<FBPortDescriptor> portDescriptors) {
         for (FBPortDescriptor portDescriptor : portDescriptors) {
-            FBPort portBase = new FBPortBase(portDescriptor);
+            Port portBase = new PortBase(portDescriptor);
             ports.add(portBase);
         }
     }
 
-    protected void drawPortIcons(List<FBPort> ports, Graphics2D graphics, int x, int y, Color borderColor) {
+    protected void drawPortIcons(List<Port> ports, Graphics2D graphics, int x, int y, Color borderColor) {
         int lineSize = getLineSize();
         y += getShift() - scale(PORT_SIZE) / 2;
-        for (FBPort port : ports) {
+        for (Port port : ports) {
             Rectangle rect = new Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE));
             graphics.setColor(DiagramColors.getColorFor(port.getConnectionKind(), isEditable));
             graphics.fill(rect);
@@ -183,25 +175,23 @@ public abstract class AbstractFBCell implements FBCell {
 
     protected void drawAllPortIcons(Graphics2D graphics, Color color) {
         int x = getRootCell().getX();
-        int xLeft = x - scale(PORT_SIZE);
-        int xRight = x + getRootCell().getWidth();
         int y = getRootCell().getY();
         int lineSize = getLineSize();
         int typeNameY = y + (getEventPortsCount() + 1) * lineSize;
 
         int topEventsY = y;
-        drawPortIcons(inputEventPorts, graphics, xLeft, topEventsY, color);
-        drawPortIcons(outputEventPorts, graphics, xRight, topEventsY, color);
+        drawPortIcons(inputEventPorts, graphics, x, topEventsY, color);
+        drawPortIcons(outputEventPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topEventsY, color);
 
         int topDatasY = typeNameY + lineSize;
-        drawPortIcons(inputDataPorts, graphics, xLeft, topDatasY, color);
-        drawPortIcons(outputDataPorts, graphics, xRight, topDatasY, color);
+        drawPortIcons(inputDataPorts, graphics, x, topDatasY, color);
+        drawPortIcons(outputDataPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topDatasY, color);
 
         int topSocketY = topDatasY + getInputDataPortsCount() * lineSize;
         int topPlugY = topDatasY + getOutputDataPortsCount() * lineSize;
 
-        drawPortIcons(socketPorts, graphics, xLeft, topSocketY, color);
-        drawPortIcons(plugPorts, graphics, xRight, topPlugY, color);
+        drawPortIcons(socketPorts, graphics, x, topSocketY, color);
+        drawPortIcons(plugPorts, graphics, x + getRootCell().getWidth() - scale(PORT_SIZE), topPlugY, color);
         graphics.setStroke(new BasicStroke());
     }
 
@@ -233,9 +223,9 @@ public abstract class AbstractFBCell implements FBCell {
         int lineSize = getLineSize();
         int halfLineSize = lineSize / 2;
 
-        int width = getRootCell().getWidth();
+        int width = getRootCell().getWidth() - 2 * scale(PORT_SIZE);
         int height = getRootCell().getHeight();
-        int xLeft = x;
+        int xLeft = x + scale(PORT_SIZE);
         int xRight = xLeft + width;
         int yBottom = y;
         int yTop = yBottom + height - halfLineSize;

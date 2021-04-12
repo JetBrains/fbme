@@ -55,7 +55,6 @@ import java.util.Objects;
                     for (FunctionBlockDeclarationBase component : myNetwork.getAllComponents()) {
                         myChildren.put(component, new RegularFunctionBlockInstance(this, component));
                     }
-
                 }
             }
         }

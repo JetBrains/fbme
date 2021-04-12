@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork.fb;
 
 import jetbrains.mps.nodeEditor.MPSColors;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
