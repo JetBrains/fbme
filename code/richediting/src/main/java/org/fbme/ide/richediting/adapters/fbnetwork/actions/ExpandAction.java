@@ -2,9 +2,9 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import com.intellij.openapi.util.Pair;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
-import org.fbme.ide.richediting.adapters.fb.FBCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.ExpandedComponentsController;
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.scenes.controllers.LayoutUtil;
