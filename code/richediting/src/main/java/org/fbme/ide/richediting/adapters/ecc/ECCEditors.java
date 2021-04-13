@@ -5,7 +5,6 @@ import jetbrains.mps.nodeEditor.cells.EditorCell;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Basic;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.EditorContext;
-import jetbrains.mps.openapi.editor.style.Style;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.fbme.ide.iec61499.repository.PlatformElement;
@@ -14,11 +13,11 @@ import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.richediting.RicheditingMpsBridge;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.inspections.ECCInspectionsFacility;
-import org.fbme.lib.common.Declaration;
 import org.fbme.lib.common.Element;
 import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
@@ -35,10 +34,8 @@ import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
@@ -70,8 +67,8 @@ public class ECCEditors {
             final IEC61499Factory declarationFactory = repository.getIEC61499Factory();
             final ECC ecc = repository.getAdapter(node, BasicFBTypeDeclaration.class).getEcc();
 
-//            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, new ArrayList<>(Arrays. asList("London", "Tokyo", "New York")));
-            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsNameFromDeclarationFactory(ecc));
+            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc));
+            scene.getStyle().set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc));
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
@@ -154,11 +151,21 @@ public class ECCEditors {
         });
     }
 
-    private static List<AlgorithmDeclaration> getAllAlgorithmsNameFromDeclarationFactory(ECC ecc) {
+    private static List<AlgorithmDeclaration> getAllAlgorithmsFromDeclarationFactory(ECC ecc) {
         Element element = ecc.getContainer();
         if (element instanceof BasicFBTypeDeclaration) {
             BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
-            return declaration.getAlgorithms();//.stream().map(Declaration::getName).collect(Collectors.toList());
+            return declaration.getAlgorithms();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    private static List<EventDeclaration> getAllOutputsFromDeclarationFactory(ECC ecc) {
+        Element element = ecc.getContainer();
+        if (element instanceof BasicFBTypeDeclaration) {
+            BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
+            return declaration.getOutputEvents();
         } else {
             return new ArrayList<>();
         }

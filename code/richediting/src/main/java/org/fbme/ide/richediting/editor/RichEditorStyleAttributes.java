@@ -5,6 +5,7 @@ import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute;
 import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.ecc.StateAction;
@@ -25,6 +26,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<StateAction> ALGORITHMS = new InheritableStyleAttribute<>("algo");
     public static final StyleAttribute<StateAction> OUTPUTS = new InheritableStyleAttribute<>("outputs");
     public static final StyleAttribute<List<AlgorithmDeclaration>> ALL_ALGORITHMS = new InheritableStyleAttribute<>("all-outputs");
+    public static final StyleAttribute<List<EventDeclaration>> ALL_OUTPUTS = new InheritableStyleAttribute<>("all-outputs");
 
     static {
         NETWORK.register();
@@ -36,5 +38,6 @@ public class RichEditorStyleAttributes {
         ALGORITHMS.register();
         OUTPUTS.register();
         ALL_ALGORITHMS.register();
+        ALL_OUTPUTS.register();
     }
 }
