@@ -157,7 +157,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         } else {
             return null;
         }
-        bounds.translate(position.x, position.y);
+        bounds.translate(position.x, position.y + getLineSize());
         return bounds;
     }
 
