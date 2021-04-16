@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="CompositeFB2">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT"></Event>
+      <Event Name="REQ"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO"></Event>
+      <Event Name="CNF"></Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="CFB3" Type="CompositeFB3" x="823.0" y="346.0" />
+    <FB Name="BFB1" Type="DisableConveyor" x="2830.0" y="296.0" />
+    <FB Name="BFB2" Type="SimpleMove_E" x="1616.0" y="829.0" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="CFB3.INIT" dx1="356.0" />
+      <Connection Source="REQ" Destination="CFB3.REQ" dx1="336.0" />
+      <Connection Source="CFB3.INITO" Destination="BFB1.INIT" dx1="850.0" />
+      <Connection Source="REQ" Destination="BFB1.REQ" dx1="2360.0" />
+      <Connection Source="CFB3.CNF" Destination="BFB2.RESET" dx1="143.0" />
+      <Connection Source="BFB2.DONE" Destination="BFB1.REQ" dx1="232.0" />
+      <Connection Source="CFB3.INITO" Destination="BFB2.TRIGGER" dx1="236.0" />
+      <Connection Source="BFB1.INITO" Destination="INITO" dx1="799.0" />
+      <Connection Source="BFB1.CNF" Destination="CNF" dx1="846.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="QI" Destination="CFB3.QI" dx1="233.0" />
+      <Connection Source="BFB1.ConvOut" Destination="QO" dx1="1000.0" />
+      <Connection Source="QI" Destination="BFB1.QI" dx1="1306.0" />
+      <Connection Source="CFB3.QO" Destination="BFB1.ConvIn" dx1="809.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
