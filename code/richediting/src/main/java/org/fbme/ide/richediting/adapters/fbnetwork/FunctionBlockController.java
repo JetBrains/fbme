@@ -93,7 +93,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         assert childInstance != null;
         Instance childNetworkInstance = childInstance.getContainedNetwork();
         assert childNetworkInstance != null;
-        return new FBSceneCell(cellCollection.getContext(), view.getType(), view.getAssociatedNode(), isEditable, childNetworkInstance);
+        return new FBSceneCell(cellCollection.getContext(), view.getType(), view.getAssociatedNode(), isEditable, childInstance);
     }
 
     private FBCell initializeFBCell() {

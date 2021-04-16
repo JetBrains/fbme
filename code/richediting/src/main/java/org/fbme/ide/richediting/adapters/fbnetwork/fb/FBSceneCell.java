@@ -6,12 +6,12 @@ import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
-import jetbrains.mps.openapi.editor.cells.CellActionType;
 import org.fbme.ide.richediting.adapters.ecc.ECCEditors;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkEditors;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
 import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.cells.EditorCell_SceneLabel;
@@ -32,13 +32,13 @@ public final class FBSceneCell extends AbstractFBCell {
             FBTypeDescriptor fbType,
             SNode node,
             boolean isEditable,
-            Instance networkInstance
+            FunctionBlockInstance parent
     ) {
         super(context, fbType, node, isEditable);
 
         collection = createCollection();
         typeNameLabel = createTypeNameLabel();
-        sceneCell = createSceneCell(networkInstance);
+        sceneCell = createSceneCell(parent);
         sceneCell.getStyle().set(StyleAttributes.TEXT_COLOR, isEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
         sceneCell.getStyle().set(StyleAttributes.DRAW_BORDER, false);
         collection.addEditorCell(sceneCell);
