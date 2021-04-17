@@ -42,11 +42,23 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.addEditorCell(myStateNameCell);
 
         for (StateAction action : myState.getActions()) {
-            ActionCell actionCell = new AlgorithmCell(context, node, action, myCellCollection);
-            myCellCollection.addEditorCell(actionCell);
+            AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();
+            jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = null;
+            ActionCell actionCell;
+            if (algorithmDeclaration != null) {
+                SNode algorithmNode = ((PlatformElement) algorithmDeclaration.getBody()).getNode();
+                bodyCell = context.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
+                actionCell = new AlgorithmCell(context, node, action, myCellCollection, bodyCell);
+                myCellCollection.addEditorCell(actionCell);
+                myCellCollection.addEditorCell(bodyCell);
+            } else {
+                actionCell = new AlgorithmCell(context, node, action, myCellCollection, null);
+                myCellCollection.addEditorCell(actionCell);
+            }
+
             ActionCell outputCell = new OutputCell(context, node, action, myCellCollection);
             myCellCollection.addEditorCell(outputCell);
-            myAlgorithmCells.add(new AlgorithmBlock(actionCell, outputCell));
+            myAlgorithmCells.add(new AlgorithmBlock(actionCell, outputCell, bodyCell));
         }
         myCellCollection.setBig(true);
         relayout();
@@ -83,8 +95,7 @@ public class ECStateController implements ComponentController<Point> {
 
         myStateNameCell.setWidth(width + ActionCell.ACTIVE_WEIGHT_PADDING);
         for (AlgorithmBlock block: myAlgorithmCells) {
-            block.getAction().setWidth(width);
-            block.getOutput().setWidth(width);
+            block.setWidth(width);
         }
 
         int dx = myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2;
@@ -168,9 +179,15 @@ public class ECStateController implements ComponentController<Point> {
     private static class AlgorithmBlock {
         private final ActionCell action;
         private final ActionCell output;
-        AlgorithmBlock(ActionCell action, ActionCell output) {
+        private final EditorCell_Collection bodyCell;
+        AlgorithmBlock(ActionCell action, ActionCell output, jetbrains.mps.openapi.editor.cells.EditorCell bodyCell) {
             this.action = action;
             this.output = output;
+            if (bodyCell instanceof EditorCell_Collection) {
+                this.bodyCell = (EditorCell_Collection) bodyCell;
+            } else {
+                this.bodyCell = null;
+            }
         }
 
         public ActionCell getAction() {
@@ -183,21 +200,46 @@ public class ECStateController implements ComponentController<Point> {
 
         public void relayout() {
             action.relayout();
+            if (bodyCell != null) {
+                bodyCell.relayout();
+                for (jetbrains.mps.openapi.editor.cells.EditorCell editorCell : bodyCell) {
+                    editorCell.relayout();
+                }
+            }
             output.relayout();
         }
 
         public int newWidth(int oldWidth) {
             int maxTmp = Math.max(action.getWidth(), output.getWidth());
+            if (bodyCell != null) {
+                maxTmp = Math.max(bodyCell.getWidth(), maxTmp);
+            }
             return Math.max(oldWidth, maxTmp);
         }
 
+        public void setWidth(int width) {
+            action.setWidth(width);
+            output.setWidth(width);
+            if (bodyCell != null) {
+                bodyCell.setWidth(width);
+            }
+        }
+
         public int getHeight(int padding) {
-            return action.getHeight() + output.getHeight() + 2 * padding;
+            int x = 0;
+            if (bodyCell != null) {
+                x = bodyCell.getHeight();
+            }
+            return action.getHeight() + output.getHeight() + 3 * padding + x;
         }
 
         public int moveTo(int dx, int dy, int padding, int currentHeight) {
             action.moveTo(dx, dy + currentHeight);
             currentHeight += (action.getHeight() + padding);
+            if (bodyCell != null) {
+                bodyCell.moveTo(dx, dy + currentHeight);
+                currentHeight += (bodyCell.getHeight() + padding);
+            }
             output.moveTo(dx, dy + currentHeight);
             currentHeight += (output.getHeight() + padding);
             return currentHeight;
