@@ -73,8 +73,9 @@ public class ELKLayoutProvider {
     private ElkNode createElkGraph(Map<NetworkComponentView, ElkNode> mapViewNode, Map<NetworkPortView, ElkPort> mapViewPort) {
         ElkNode root = ElkGraphUtil.createGraph();
         ElkNode node = ElkGraphUtil.createNode(root);
+        node.setLocation(0.0, 0.0);
+        layoutPropertiesProvider.setRootProperties(node);
         layoutPropertiesProvider.setNodeProperties(node);
-        layoutPropertiesProvider.setRootProperties(root);
 
         processComponents(node, mapViewNode, mapViewPort);
         processConnections(node, mapViewPort);
