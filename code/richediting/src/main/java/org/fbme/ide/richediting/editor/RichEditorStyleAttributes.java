@@ -9,6 +9,7 @@ import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor;
 import org.fbme.lib.iec61499.ecc.StateAction;
+import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
@@ -27,6 +28,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<StateAction> OUTPUTS = new InheritableStyleAttribute<>("outputs");
     public static final StyleAttribute<List<AlgorithmDeclaration>> ALL_ALGORITHMS = new InheritableStyleAttribute<>("all-outputs");
     public static final StyleAttribute<List<EventDeclaration>> ALL_OUTPUTS = new InheritableStyleAttribute<>("all-outputs");
+    public static final StyleAttribute<StateDeclaration> STATE = new InheritableStyleAttribute<>("state");
 
     static {
         NETWORK.register();
@@ -39,5 +41,6 @@ public class RichEditorStyleAttributes {
         OUTPUTS.register();
         ALL_ALGORITHMS.register();
         ALL_OUTPUTS.register();
+        STATE.register();
     }
 }

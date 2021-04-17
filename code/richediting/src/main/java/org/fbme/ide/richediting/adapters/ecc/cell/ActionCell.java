@@ -8,8 +8,10 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.nodeEditor.cells.TextLine;
 import jetbrains.mps.openapi.editor.EditorContext;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
+import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -31,9 +33,11 @@ public abstract class ActionCell extends EditorCell_Basic {
             SNode node,
             Color color,
             StateAction action,
-            EditorCell_Collection cellCollection
+            EditorCell_Collection cellCollection,
+            StateDeclaration state
     ) {
         super(editorContext, node);
+        getStyle().set(RichEditorStyleAttributes.STATE, state);
         myAction = action;
         myCellCollection = cellCollection;
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);

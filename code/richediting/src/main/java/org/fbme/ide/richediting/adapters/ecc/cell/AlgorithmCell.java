@@ -7,6 +7,7 @@ import jetbrains.mps.openapi.editor.cells.EditorCell;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
+import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
@@ -15,8 +16,15 @@ public class AlgorithmCell extends ActionCell {
     private static final Color ALGORITHM_COLOR = new Color(199, 222, 193);
     private final EditorCell myAlgorithmBody;
 
-    public AlgorithmCell(EditorContext editorContext, SNode node, StateAction action, EditorCell_Collection cellCollection, EditorCell body) {
-        super(editorContext, node, ALGORITHM_COLOR, action, cellCollection);
+    public AlgorithmCell(
+            EditorContext editorContext,
+            SNode node,
+            StateAction action,
+            EditorCell_Collection cellCollection,
+            EditorCell body,
+            StateDeclaration state
+    ) {
+        super(editorContext, node, ALGORITHM_COLOR, action, cellCollection, state);
         getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
         this.myAlgorithmBody = body;
     }
