@@ -1470,8 +1470,11 @@
       <node concept="tCFHf" id="uP0FLzWYpv" role="ftvYc">
         <ref role="tCJdB" node="uP0FLzNOoL" resolve="AddConstantToPort" />
       </node>
-      <node concept="tCFHf" id="58z1EhOUgk6" role="ftvYc">
-        <ref role="tCJdB" node="5RbtmxCv9oO" resolve="ChangeOutput" />
+      <node concept="tCFHf" id="6WRWHxEgEh9" role="ftvYc">
+        <ref role="tCJdB" node="3U82p1mus8o" resolve="AddStateAction" />
+      </node>
+      <node concept="tCFHf" id="vrSA8DeNf2" role="ftvYc">
+        <ref role="tCJdB" node="vrSA8DdOmr" resolve="DeleteStateAction" />
       </node>
       <node concept="10WQ6h" id="1DfKejr796v" role="ftvYc">
         <property role="TrG5h" value="mapper" />
@@ -12373,6 +12376,216 @@
     <node concept="tT9cl" id="7hqzVzGwQc6" role="2f5YQi">
       <ref role="tU$_T" node="3DiEZ8TON84" resolve="IEC61499Actions" />
       <ref role="2f8Tey" node="1DfKejr796v" resolve="mapper" />
+    </node>
+  </node>
+  <node concept="sE7Ow" id="3U82p1mus8o">
+    <property role="TrG5h" value="AddStateAction" />
+    <property role="2uzpH1" value="Add Action" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="tnohg" id="3U82p1mus8p" role="tncku">
+      <node concept="3clFbS" id="3U82p1mus8q" role="2VODD2" />
+    </node>
+    <node concept="1DS2jV" id="3U82p1mvcHd" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="3U82p1mvcHe" role="1oa70y" />
+    </node>
+    <node concept="2ScWuX" id="3U82p1mvcHA" role="tmbBb">
+      <node concept="3clFbS" id="3U82p1mvcHB" role="2VODD2">
+        <node concept="3cpWs8" id="3U82p1mvcZP" role="3cqZAp">
+          <node concept="3cpWsn" id="3U82p1mvcZQ" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="3U82p1mvcZR" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="3U82p1mvdN0" role="33vP2m">
+              <node concept="2OqwBi" id="3U82p1mvdnl" role="2Oq$k0">
+                <node concept="2WthIp" id="3U82p1mvd1I" role="2Oq$k0" />
+                <node concept="1DTwFV" id="3U82p1mvdFs" role="2OqNvi">
+                  <ref role="2WH_rO" node="3U82p1mvcHd" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="3U82p1mve3o" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4$gAgkLgyv" role="3cqZAp">
+          <node concept="3cpWsn" id="4$gAgkLgyw" role="3cpWs9">
+            <property role="TrG5h" value="stateDeclaration" />
+            <node concept="3uibUv" id="4$gAgkLgyx" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
+            </node>
+            <node concept="2OqwBi" id="4$gAgkLgN7" role="33vP2m">
+              <node concept="37vLTw" id="4$gAgkLgED" role="2Oq$k0">
+                <ref role="3cqZAo" node="3U82p1mvcZQ" resolve="style" />
+              </node>
+              <node concept="liA8E" id="4$gAgkLh0h" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="4$gAgkLhgg" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE" resolve="STATE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4$gAgkLhws" role="3cqZAp">
+          <node concept="3clFbS" id="4$gAgkLhwu" role="3clFbx">
+            <node concept="3cpWs6" id="4$gAgkLik$" role="3cqZAp">
+              <node concept="3clFbT" id="4$gAgkLitX" role="3cqZAk">
+                <property role="3clFbU" value="true" />
+              </node>
+            </node>
+          </node>
+          <node concept="3y3z36" id="4$gAgkLhX_" role="3clFbw">
+            <node concept="10Nm6u" id="4$gAgkLi6z" role="3uHU7w" />
+            <node concept="37vLTw" id="4$gAgkLhzt" role="3uHU7B">
+              <ref role="3cqZAo" node="4$gAgkLgyw" resolve="stateDeclaration" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs6" id="3U82p1mvfXl" role="3cqZAp">
+          <node concept="3clFbT" id="3U82p1mvg25" role="3cqZAk" />
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="vrSA8DdOmr">
+    <property role="TrG5h" value="DeleteStateAction" />
+    <property role="2uzpH1" value="Delete Action" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="tnohg" id="vrSA8DdOms" role="tncku">
+      <node concept="3clFbS" id="vrSA8DdOmt" role="2VODD2" />
+    </node>
+    <node concept="1DS2jV" id="vrSA8DeDpf" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="vrSA8DeDpg" role="1oa70y" />
+    </node>
+    <node concept="2ScWuX" id="vrSA8DeDpT" role="tmbBb">
+      <node concept="3clFbS" id="vrSA8DeDpU" role="2VODD2">
+        <node concept="3cpWs8" id="vrSA8DeDB7" role="3cqZAp">
+          <node concept="3cpWsn" id="vrSA8DeDB8" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="vrSA8DeDB9" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="vrSA8DeEoR" role="33vP2m">
+              <node concept="2OqwBi" id="vrSA8DeDYB" role="2Oq$k0">
+                <node concept="2WthIp" id="vrSA8DeDD0" role="2Oq$k0" />
+                <node concept="1DTwFV" id="vrSA8DeEhj" role="2OqNvi">
+                  <ref role="2WH_rO" node="vrSA8DeDpf" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="vrSA8DeEKl" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="vrSA8DeF0K" role="3cqZAp">
+          <node concept="3cpWsn" id="vrSA8DeF0L" role="3cpWs9">
+            <property role="TrG5h" value="stateDeclaration" />
+            <node concept="3uibUv" id="vrSA8DeF0M" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~StateDeclaration" resolve="StateDeclaration" />
+            </node>
+            <node concept="2OqwBi" id="vrSA8DeFjs" role="33vP2m">
+              <node concept="37vLTw" id="vrSA8DeF5C" role="2Oq$k0">
+                <ref role="3cqZAo" node="vrSA8DeDB8" resolve="style" />
+              </node>
+              <node concept="liA8E" id="vrSA8DeFsN" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="vrSA8DeFCz" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE" resolve="STATE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="vrSA8DeFUg" role="3cqZAp">
+          <node concept="3cpWsn" id="vrSA8DeFUh" role="3cpWs9">
+            <property role="TrG5h" value="algorithmAction" />
+            <node concept="3uibUv" id="vrSA8DeFUi" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~StateAction" resolve="StateAction" />
+            </node>
+            <node concept="2OqwBi" id="vrSA8DeGCw" role="33vP2m">
+              <node concept="37vLTw" id="vrSA8DeGpG" role="2Oq$k0">
+                <ref role="3cqZAo" node="vrSA8DeDB8" resolve="style" />
+              </node>
+              <node concept="liA8E" id="vrSA8DeGNt" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="vrSA8DeH1A" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="vrSA8DeHqf" role="3cqZAp">
+          <node concept="3cpWsn" id="vrSA8DeHqg" role="3cpWs9">
+            <property role="TrG5h" value="ouputAction" />
+            <node concept="3uibUv" id="vrSA8DeHqh" role="1tU5fm">
+              <ref role="3uigEE" to="g136:~StateAction" resolve="StateAction" />
+            </node>
+            <node concept="2OqwBi" id="vrSA8DeHTo" role="33vP2m">
+              <node concept="37vLTw" id="vrSA8DeHEU" role="2Oq$k0">
+                <ref role="3cqZAo" node="vrSA8DeDB8" resolve="style" />
+              </node>
+              <node concept="liA8E" id="vrSA8DeI59" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="vrSA8DeIou" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="vrSA8DeII5" role="3cqZAp">
+          <node concept="3clFbS" id="vrSA8DeII7" role="3clFbx">
+            <node concept="3cpWs6" id="vrSA8DeL_3" role="3cqZAp">
+              <node concept="3clFbT" id="vrSA8DeLHm" role="3cqZAk">
+                <property role="3clFbU" value="true" />
+              </node>
+            </node>
+          </node>
+          <node concept="1Wc70l" id="vrSA8DeJxs" role="3clFbw">
+            <node concept="1eOMI4" id="vrSA8DeJ_m" role="3uHU7w">
+              <node concept="22lmx$" id="vrSA8DeKoe" role="1eOMHV">
+                <node concept="3y3z36" id="vrSA8DeKOD" role="3uHU7w">
+                  <node concept="10Nm6u" id="vrSA8DeKYh" role="3uHU7w" />
+                  <node concept="37vLTw" id="vrSA8DeKsD" role="3uHU7B">
+                    <ref role="3cqZAo" node="vrSA8DeHqg" resolve="ouputAction" />
+                  </node>
+                </node>
+                <node concept="3y3z36" id="vrSA8DeK13" role="3uHU7B">
+                  <node concept="37vLTw" id="vrSA8DeJJD" role="3uHU7B">
+                    <ref role="3cqZAo" node="vrSA8DeFUh" resolve="algorithmAction" />
+                  </node>
+                  <node concept="10Nm6u" id="vrSA8DeKao" role="3uHU7w" />
+                </node>
+              </node>
+            </node>
+            <node concept="3y3z36" id="vrSA8DeJd8" role="3uHU7B">
+              <node concept="37vLTw" id="vrSA8DeIMj" role="3uHU7B">
+                <ref role="3cqZAo" node="vrSA8DeF0L" resolve="stateDeclaration" />
+              </node>
+              <node concept="10Nm6u" id="vrSA8DeJnu" role="3uHU7w" />
+            </node>
+          </node>
+          <node concept="9aQIb" id="vrSA8DeM0m" role="9aQIa">
+            <node concept="3clFbS" id="vrSA8DeM0n" role="9aQI4">
+              <node concept="3cpWs6" id="vrSA8DeMUo" role="3cqZAp">
+                <node concept="3clFbT" id="vrSA8DeMYY" role="3cqZAk" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
   </node>
 </model>
