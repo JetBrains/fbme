@@ -7,6 +7,7 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
@@ -45,42 +46,11 @@ public class ECStateController implements ComponentController<Point> {
         relayout();
     }
 
-    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
-        return new EditorCell_Collection(context, node, new AbstractCellLayout() {
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection cells) {
-                assert cells == myCellCollection;
-                relayout();
-            }
-
-            public TextBuilder doLayoutText(Iterable<jetbrains.mps.openapi.editor.cells.EditorCell> p0) {
-                return new TextBuilderImpl();
-            }
-        });
-    }
-
-    private void initializeActions() {
-        for (StateAction action : myState.getActions()) {
-            AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();
-            jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = null;
-            ActionCell actionCell;
-            if (algorithmDeclaration != null) {
-                SNode algorithmNode = ((PlatformElement) algorithmDeclaration.getBody()).getNode();
-                bodyCell = myContext.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
-                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, bodyCell, myState);
-                myCellCollection.addEditorCell(actionCell);
-                myCellCollection.addEditorCell(bodyCell);
-            } else {
-                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, myState);
-                myCellCollection.addEditorCell(actionCell);
-            }
-
-            ActionCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, myState);
-            myCellCollection.addEditorCell(outputCell);
-            myStateActionBlocks.add(new ActionBlock(actionCell, outputCell, bodyCell));
-        }
-    }
-
     public void relayout() {
+        if (myCellCollection.getStyle().get(RichEditorStyleAttributes.DELETED_STATE) != null) {
+            deleteActionFromList(myCellCollection.getStyle().get(RichEditorStyleAttributes.DELETED_STATE));
+            myCellCollection.getStyle().set(RichEditorStyleAttributes.DELETED_STATE, null);
+        }
         myStateNameCell.relayout();
 
         int padding = 2;
@@ -97,6 +67,7 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.setHeight(height);
 
         myStateNameCell.setWidth(width + ActionCell.ACTIVE_WEIGHT_PADDING);
+
         for (ActionBlock block: myStateActionBlocks) {
             block.setWidth(width);
         }
@@ -159,5 +130,44 @@ public class ECStateController implements ComponentController<Point> {
     @Override
     public void paintTrace(Graphics g, Point position) {
         // do nothing
+    }
+
+    private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
+        return new EditorCell_Collection(context, node, new AbstractCellLayout() {
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection cells) {
+                assert cells == myCellCollection;
+                relayout();
+            }
+
+            public TextBuilder doLayoutText(Iterable<jetbrains.mps.openapi.editor.cells.EditorCell> p0) {
+                return new TextBuilderImpl();
+            }
+        });
+    }
+
+    private void initializeActions() {
+        for (StateAction action : myState.getActions()) {
+            AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();
+            jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = null;
+            ActionCell actionCell;
+            if (algorithmDeclaration != null) {
+                SNode algorithmNode = ((PlatformElement) algorithmDeclaration.getBody()).getNode();
+                bodyCell = myContext.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
+                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, bodyCell, myState);
+                myCellCollection.addEditorCell(actionCell);
+                myCellCollection.addEditorCell(bodyCell);
+            } else {
+                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, myState);
+                myCellCollection.addEditorCell(actionCell);
+            }
+
+            ActionCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, myState);
+            myCellCollection.addEditorCell(outputCell);
+            myStateActionBlocks.add(new ActionBlock(actionCell, outputCell, bodyCell, action));
+        }
+    }
+
+    private void deleteActionFromList(StateAction action) {
+        myStateActionBlocks.removeIf(it -> it.getAction() == action);
     }
 }

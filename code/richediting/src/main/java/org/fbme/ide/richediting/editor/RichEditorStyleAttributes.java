@@ -2,6 +2,7 @@ package org.fbme.ide.richediting.editor;
 
 import jetbrains.mps.editor.runtime.style.InheritableStyleAttribute;
 import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute;
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
@@ -29,6 +30,8 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<List<AlgorithmDeclaration>> ALL_ALGORITHMS = new InheritableStyleAttribute<>("all-outputs");
     public static final StyleAttribute<List<EventDeclaration>> ALL_OUTPUTS = new InheritableStyleAttribute<>("all-outputs");
     public static final StyleAttribute<StateDeclaration> STATE = new InheritableStyleAttribute<>("state");
+    public static final StyleAttribute<EditorCell_Collection> STATE_COLLECTION = new InheritableStyleAttribute<>("state-collecton");
+    public static final StyleAttribute<StateAction> DELETED_STATE = new InheritableStyleAttribute<>("deleted-state");
 
     static {
         NETWORK.register();
@@ -42,5 +45,7 @@ public class RichEditorStyleAttributes {
         ALL_ALGORITHMS.register();
         ALL_OUTPUTS.register();
         STATE.register();
+        STATE_COLLECTION.register();
+        DELETED_STATE.register();
     }
 }

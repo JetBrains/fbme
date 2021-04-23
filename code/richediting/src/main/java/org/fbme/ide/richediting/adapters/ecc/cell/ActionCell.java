@@ -25,8 +25,8 @@ public abstract class ActionCell extends EditorCell_Basic {
 
     public static final int ACTIVE_HEIGHT_PADDING = 6;
     public static final int ACTIVE_WEIGHT_PADDING = 10;
-    private static final int SHIFT_X = 5;
-    private static final int SHIFT_Y = -2;
+    protected static final int SHIFT_X = 5;
+    protected static final int SHIFT_Y = -2;
 
     public ActionCell(
             EditorContext editorContext,
@@ -37,12 +37,13 @@ public abstract class ActionCell extends EditorCell_Basic {
             StateDeclaration state
     ) {
         super(editorContext, node);
-        getStyle().set(RichEditorStyleAttributes.STATE, state);
-        myAction = action;
         myCellCollection = cellCollection;
-        getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
+        myAction = action;
         backgroundColor = color;
         myNameText = new TextLine("", getStyle(), false);
+        getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
+        getStyle().set(RichEditorStyleAttributes.STATE, state);
+        getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
         relayoutImpl();
     }
 
@@ -50,6 +51,7 @@ public abstract class ActionCell extends EditorCell_Basic {
         return myNameText.getText();
     }
 
+    @Override
     protected void relayoutImpl() {
         int lineSize = getLineSize();
         myNameText.relayout();
@@ -74,9 +76,9 @@ public abstract class ActionCell extends EditorCell_Basic {
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = (Graphics2D) graphics.create();
         g.setColor(backgroundColor);
-        g.fillRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight);
+        g.fillRoundRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
         if (!myNameText.getText().isEmpty()) {
-            myNameText.paint(graphics, myX + SHIFT_X, myY + SHIFT_Y, JBColor.BLACK);
+            myNameText.paint(graphics, myX + SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + SHIFT_Y, JBColor.BLACK);
         }
     }
 

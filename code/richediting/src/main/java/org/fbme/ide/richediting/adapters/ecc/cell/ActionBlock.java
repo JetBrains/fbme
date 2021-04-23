@@ -1,74 +1,83 @@
 package org.fbme.ide.richediting.adapters.ecc.cell;
 
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
+import jetbrains.mps.openapi.editor.cells.EditorCell;
+import org.fbme.lib.iec61499.ecc.StateAction;
 
 public class ActionBlock {
-    private final ActionCell action;
-    private final ActionCell output;
-    private final EditorCell_Collection bodyCell;
+    private final ActionCell myAlgorithm;
+    private final ActionCell myOutput;
+    private final EditorCell_Collection myBodyCell;
+    private final StateAction myAction;
 
-    public ActionBlock(ActionCell action, ActionCell output, jetbrains.mps.openapi.editor.cells.EditorCell bodyCell) {
-        this.action = action;
-        this.output = output;
+    public ActionBlock(ActionCell algorithm, ActionCell output, EditorCell bodyCell, StateAction action) {
+        this.myAlgorithm = algorithm;
+        this.myOutput = output;
         if (bodyCell instanceof EditorCell_Collection) {
-            this.bodyCell = (EditorCell_Collection) bodyCell;
+            this.myBodyCell = (EditorCell_Collection) bodyCell;
         } else {
-            this.bodyCell = null;
+            this.myBodyCell = null;
         }
+        this.myAction = action;
     }
 
-    public ActionCell getAction() {
-        return action;
+    public ActionCell getAlgorithm() {
+        return myAlgorithm;
     }
 
     public ActionCell getOutput() {
-        return output;
+        return myOutput;
     }
 
     public void relayout() {
-        action.relayout();
-        if (bodyCell != null) {
-            bodyCell.relayout();
-            for (jetbrains.mps.openapi.editor.cells.EditorCell editorCell : bodyCell) {
+        myAlgorithm.relayout();
+        if (myBodyCell != null) {
+            myBodyCell.relayout();
+            for (jetbrains.mps.openapi.editor.cells.EditorCell editorCell : myBodyCell) {
                 editorCell.relayout();
             }
         }
-        output.relayout();
+        myOutput.relayout();
     }
 
     public int newWidth(int oldWidth) {
-        int maxTmp = Math.max(action.getWidth(), output.getWidth());
-        if (bodyCell != null) {
-            maxTmp = Math.max(bodyCell.getWidth(), maxTmp);
+        int maxTmp = Math.max(myAlgorithm.getWidth(), myOutput.getWidth());
+        if (myBodyCell != null) {
+            maxTmp = Math.max(myBodyCell.getWidth(), maxTmp);
         }
         return Math.max(oldWidth, maxTmp);
     }
 
     public void setWidth(int width) {
-        action.setWidth(width);
-        output.setWidth(width);
-        if (bodyCell != null) {
-            bodyCell.setWidth(width);
+        myAlgorithm.setWidth(width);
+        myOutput.setWidth(width);
+        if (myBodyCell != null) {
+            myBodyCell.setWidth(width);
         }
     }
 
     public int getHeight(int padding) {
         int x = 0;
-        if (bodyCell != null) {
-            x = bodyCell.getHeight();
+        if (myBodyCell != null) {
+            x = myBodyCell.getHeight();
         }
-        return action.getHeight() + output.getHeight() + 3 * padding + x;
+        return myAlgorithm.getHeight() + myOutput.getHeight() + 3 * padding + x;
     }
 
     public int moveTo(int dx, int dy, int padding, int currentHeight) {
-        action.moveTo(dx, dy + currentHeight);
-        currentHeight += (action.getHeight() + padding);
-        if (bodyCell != null) {
-            bodyCell.moveTo(dx, dy + currentHeight);
-            currentHeight += (bodyCell.getHeight() + padding);
+        myAlgorithm.moveTo(dx, dy + currentHeight);
+        currentHeight += (myAlgorithm.getHeight() + padding);
+        if (myBodyCell != null) {
+            currentHeight -= padding;
+            myBodyCell.moveTo(dx + 10, dy + currentHeight);
+            currentHeight += (myBodyCell.getHeight() + padding + 5);
         }
-        output.moveTo(dx, dy + currentHeight);
-        currentHeight += (output.getHeight() + padding);
+        myOutput.moveTo(dx, dy + currentHeight);
+        currentHeight += (myOutput.getHeight() + padding);
         return currentHeight;
+    }
+
+    public StateAction getAction() {
+        return myAction;
     }
 }
