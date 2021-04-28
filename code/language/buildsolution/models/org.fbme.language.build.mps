@@ -321,6 +321,11 @@
             <ref role="3bR37D" node="723cCDWLyJu" resolve="org.fbme.ide.attributes" />
           </node>
         </node>
+        <node concept="1SiIV0" id="6_LJHgTyPs$" role="3bR37C">
+          <node concept="3bR9La" id="6_LJHgTyPs_" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="68dTcycFmt8" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -829,6 +834,11 @@
             <node concept="3qWCbU" id="723cCDWLyPI" role="3LXTna">
               <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6_LJHgTyPte" role="3bR37C">
+          <node concept="3bR9La" id="6_LJHgTyPtf" role="1SiIV1">
+            <ref role="3bR37D" node="68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
       </node>

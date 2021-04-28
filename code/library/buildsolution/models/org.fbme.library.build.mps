@@ -200,9 +200,9 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="4Hbpy_fMSp_" role="3bR37C">
-          <node concept="3bR9La" id="4Hbpy_fMSpA" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+        <node concept="1SiIV0" id="6_LJHgTyOCI" role="3bR37C">
+          <node concept="3bR9La" id="6_LJHgTyOCJ" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
           </node>
         </node>
       </node>
