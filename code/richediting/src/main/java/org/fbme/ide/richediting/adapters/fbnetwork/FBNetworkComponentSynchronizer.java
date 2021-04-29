@@ -40,10 +40,9 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
         }
         if (component instanceof InterfaceEndpointView) {
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
-            // TODO: read endpoints positions from the model
-            final boolean source = interfaceEndpoint.isSource();
-            final int pos = interfaceEndpoint.getPosition();
-            return () -> new Point(viewpoint.translateToEditorX(source ? 0 : (int) (scale * 5000)), viewpoint.translateToEditorY(pos * 100));
+            final int x = (int) (scale * interfaceEndpoint.getX());
+            final int y = (int) (scale * interfaceEndpoint.getY());
+            return () -> new Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y));
         }
         throw new IllegalArgumentException("unknown network component");
     }
@@ -62,10 +61,11 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
             return;
         }
         if (component instanceof InterfaceEndpointView) {
-            // TODO: write endpoints positions to the model
-            if (LOG.isEnabledFor(Level.WARN)) {
-                LOG.warn("InterfaceEndpointView location modification triggered", new Throwable());
-            }
+            InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
+            final int x = (int) (viewpoint.translateFromEditorX(position.x) / scale);
+            final int y = (int) (viewpoint.translateFromEditorY(position.y) / scale);
+            interfaceEndpoint.setX(x);
+            interfaceEndpoint.setY(y);
             return;
         }
         throw new IllegalArgumentException("unknown network component");

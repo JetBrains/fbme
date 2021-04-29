@@ -922,6 +922,13 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="37fub3vlA5$" resolve="AdapterConnection" />
     </node>
+    <node concept="1TJgyj" id="7VgNZDXJvWy" role="1TKVEi">
+      <property role="IQ2ns" value="9138032318693113634" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="endpointCoordinates" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="1fUwyp9CzsN" resolve="EndpointCoordinate" />
+    </node>
     <node concept="PrWs8" id="4s7KBSjc3IU" role="PrDN$">
       <ref role="PrY4T" node="4s7KBSjc3Il" resolve="IContext" />
     </node>
@@ -1602,6 +1609,26 @@
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="6z_cCa7Nnwf" role="PzmwI">
       <ref role="PrY4T" node="6z_cCa7Nl5h" resolve="Endpoint" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="1fUwyp9CzsN">
+    <property role="EcuMT" value="1439606131854030643" />
+    <property role="3GE5qa" value="network" />
+    <property role="TrG5h" value="EndpointCoordinate" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="1fUwyp9CX6A" role="1TKVEi">
+      <property role="IQ2ns" value="1439606131854135718" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="endpoint" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="6z_cCa7NnvN" resolve="ContextEndpoint" />
+    </node>
+    <node concept="1TJgyj" id="1fUwyp9CBZM" role="1TKVEi">
+      <property role="IQ2ns" value="1439606131854049266" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="position" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
     </node>
   </node>
 </model>

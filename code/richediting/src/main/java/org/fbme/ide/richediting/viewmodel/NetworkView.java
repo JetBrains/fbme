@@ -76,22 +76,49 @@ public class NetworkView {
             addFunctionBlock(component, false);
         }
         List<EventDeclaration> contextEventSources = network.getContextEventSources();
+
+        List<EndpointCoordinate> endpointCoordinates = network.getEndpointCoordinates();
+        Map<String, EndpointCoordinate> endpointCoordinateMap = new HashMap<>();
+        for (EndpointCoordinate endpointCoordinate : endpointCoordinates) {
+            String portName = endpointCoordinate.getPortReference().getPresentation();
+            endpointCoordinateMap.put(portName, endpointCoordinate);
+        }
+
         for (int i = 0; i < contextEventSources.size(); i++) {
-            addInterfaceEndpoint(i, EntryKind.EVENT, true, contextEventSources.get(i));
+            EventDeclaration eventDeclaration = contextEventSources.get(i);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, true));
+//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(eventDeclaration.getName());
+            addInterfaceEndpoint(endpointCoordinate, i, EntryKind.EVENT, true, eventDeclaration);
         }
         List<EventDeclaration> contextEventDestinations = network.getContextEventDestinations();
         for (int i = 0; i < contextEventDestinations.size(); i++) {
-            addInterfaceEndpoint(i, EntryKind.EVENT, false, contextEventDestinations.get(i));
+            EventDeclaration eventDeclaration = contextEventDestinations.get(i);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, false));
+//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(eventDeclaration.getName());
+            addInterfaceEndpoint(endpointCoordinate, i, EntryKind.EVENT, false, eventDeclaration);
         }
         int events = Math.max(contextEventSources.size(), contextEventDestinations.size());
         List<ParameterDeclaration> contextDataSources = network.getContextDataSources();
         for (int i = 0; i < contextDataSources.size(); i++) {
-            addInterfaceEndpoint(events + i + 2, EntryKind.DATA, true, contextDataSources.get(i));
+            ParameterDeclaration parameterDeclaration = contextDataSources.get(i);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, true));
+//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(parameterDeclaration.getName());
+            addInterfaceEndpoint(endpointCoordinate, events + i + 2, EntryKind.DATA, true, parameterDeclaration);
         }
         List<ParameterDeclaration> contextDataDestinations = network.getContextDataDestinations();
         for (int i = 0; i < contextDataDestinations.size(); i++) {
-            addInterfaceEndpoint(events + i + 2, EntryKind.DATA, false, contextDataDestinations.get(i));
+            ParameterDeclaration parameterDeclaration = contextDataDestinations.get(i);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, false));
+//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(parameterDeclaration.getName());
+            addInterfaceEndpoint(endpointCoordinate, events + i + 2, EntryKind.DATA, false, parameterDeclaration);
         }
+    }
+
+    private EndpointCoordinate createDefaultEndpointCoordinate(int position, boolean isSource) {
+        @NotNull EndpointCoordinate endpointCoordinate = myFactory.createEndpointCoordinate();
+        endpointCoordinate.setX(isSource ? 0 : 5000);
+        endpointCoordinate.setY(position * 100);
+        return endpointCoordinate;
     }
 
     private void initConnections(FBNetwork network, boolean editable) {
@@ -106,8 +133,8 @@ public class NetworkView {
         }
     }
 
-    private void addInterfaceEndpoint(int position, EntryKind kind, boolean source, Declaration declaration) {
-        InterfaceEndpointView view = new InterfaceEndpointView(position, kind, source, declaration);
+    private void addInterfaceEndpoint(EndpointCoordinate endpointCoordinate, int position, EntryKind kind, boolean source, Declaration declaration) {
+        InterfaceEndpointView view = new InterfaceEndpointView(endpointCoordinate, position, kind, source, declaration);
         myElementModelMap.put(declaration, view);
         myMainComponents.add(view);
         myPorts.put(view, view);

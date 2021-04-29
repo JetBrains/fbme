@@ -36,6 +36,8 @@ public interface FBNetwork extends Element {
 
     @Nullable FBNetwork getPrototype();
 
+    List<EndpointCoordinate> getEndpointCoordinates();
+
     static @Nullable FBNetwork extractNetwork(@Nullable Declaration declaration) {
         if (declaration instanceof CompositeFBTypeDeclaration) {
             return ((CompositeFBTypeDeclaration) declaration).getNetwork();

@@ -1920,6 +1920,42 @@
       </node>
     </node>
     <node concept="2tJIrI" id="634IrDRwFMl" role="jymVt" />
+    <node concept="3clFb_" id="7VgNZDXPgc0" role="jymVt">
+      <property role="TrG5h" value="createEndpointCoordinate" />
+      <node concept="3Tm1VV" id="7VgNZDXPgc1" role="1B3o_S" />
+      <node concept="2AHcQZ" id="7VgNZDXPgc3" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="7VgNZDXPgc4" role="3clF45">
+        <ref role="3uigEE" to="g27j:~EndpointCoordinate" resolve="EndpointCoordinate" />
+      </node>
+      <node concept="3clFbS" id="7VgNZDXPgc5" role="3clF47">
+        <node concept="3clFbF" id="7VgNZDXPkLq" role="3cqZAp">
+          <node concept="2OqwBi" id="7VgNZDXPlvq" role="3clFbG">
+            <node concept="37vLTw" id="7VgNZDXPkLp" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="7VgNZDXPuCU" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="7VgNZDXPuMA" role="37wK5m">
+                <node concept="3zrR0B" id="7VgNZDXP$$A" role="2ShVmc">
+                  <node concept="3Tqbb2" id="7VgNZDXP$$C" role="3zrR0E">
+                    <ref role="ehGHo" to="xiqq:1fUwyp9CzsN" resolve="EndpointCoordinate" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="7VgNZDXP_h0" role="37wK5m">
+                <ref role="3VsUkX" to="g27j:~EndpointCoordinate" resolve="EndpointCoordinate" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="7VgNZDXPgc6" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="7VgNZDXPHkt" role="jymVt" />
     <node concept="3clFb_" id="634IrDRwHCB" role="jymVt">
       <property role="TrG5h" value="create" />
       <node concept="3clFbS" id="634IrDRwHCE" role="3clF47">
@@ -5471,6 +5507,38 @@
             <node concept="1mIQ4w" id="3C2U2IPH1b$" role="2OqNvi">
               <node concept="chp4Y" id="3C2U2IPH2j_" role="cj9EA">
                 <ref role="cht4Q" to="gpgy:7GyesCpj6w6" resolve="WhileStatement" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="5PNKLYHSNU" role="3cqZAp">
+          <node concept="3clFbS" id="5PNKLYHSNW" role="3clFbx">
+            <node concept="3cpWs6" id="5PNKLYIsyB" role="3cqZAp">
+              <node concept="2ShNRf" id="5PNKLYIzrU" role="3cqZAk">
+                <node concept="1pGfFk" id="5PNKLYIR2e" role="2ShVmc">
+                  <ref role="37wK5l" to="rwq3:7VgNZDXOWBa" resolve="EndpointCoordinateByNode" />
+                  <node concept="1PxgMI" id="5PNKLYJ4Uf" role="37wK5m">
+                    <node concept="37vLTw" id="5PNKLYIXZJ" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="5PNKLYJjRs" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:1fUwyp9CzsN" resolve="EndpointCoordinate" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="5PNKLYJrlT" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="5PNKLYI6fS" role="3clFbw">
+            <node concept="37vLTw" id="5PNKLYHZSo" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="5PNKLYIcC7" role="2OqNvi">
+              <node concept="chp4Y" id="5PNKLYIsmH" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:1fUwyp9CzsN" resolve="EndpointCoordinate" />
               </node>
             </node>
           </node>
