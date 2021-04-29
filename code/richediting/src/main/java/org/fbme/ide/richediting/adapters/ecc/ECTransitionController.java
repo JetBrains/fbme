@@ -65,8 +65,12 @@ public class ECTransitionController implements ConnectionController<ECTransition
         int oldY = path.target.y - path.source.y;
         int newX = nt.x - ns.x;
         int newY = nt.y - ns.y;
-        double scale = Math.sqrt((newX * newX + newY * newY) / ((double) oldX * oldX + oldY * oldY));
-
+        double scale;
+        if (oldX == 0 && oldY == 0) {
+            scale = 1;
+        } else {
+            scale = Math.sqrt((newX * newX + newY * newY) / ((double) oldX * oldX + oldY * oldY));
+        }
         at.translate(ns.x, ns.y);
         at.rotate(-Math.atan2(newX * oldY - newY * oldX, newX * oldX + newY * oldY));
         at.scale(scale, scale);
