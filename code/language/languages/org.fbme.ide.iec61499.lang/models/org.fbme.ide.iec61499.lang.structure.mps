@@ -1616,19 +1616,18 @@
     <property role="3GE5qa" value="network" />
     <property role="TrG5h" value="EndpointCoordinate" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="1fUwyp9CX6A" role="1TKVEi">
-      <property role="IQ2ns" value="1439606131854135718" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="endpoint" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="6z_cCa7NnvN" resolve="ContextEndpoint" />
-    </node>
     <node concept="1TJgyj" id="1fUwyp9CBZM" role="1TKVEi">
       <property role="IQ2ns" value="1439606131854049266" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="position" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
+    <node concept="1TJgyj" id="_yMviEJHiZ" role="1TKVEi">
+      <property role="IQ2ns" value="676324946732831935" />
+      <property role="20kJfa" value="endpoint" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" to="tpck:gw2VY9q" resolve="BaseConcept" />
     </node>
   </node>
 </model>

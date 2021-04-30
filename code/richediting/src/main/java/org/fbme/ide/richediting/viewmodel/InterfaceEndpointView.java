@@ -4,10 +4,14 @@ import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.fbnetwork.EndpointCoordinate;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
+import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
+import java.util.List;
+
 public class InterfaceEndpointView implements NetworkComponentView, NetworkPortView {
+    private final FBNetwork network;
     private final EndpointCoordinate endpointCoordinate;
     private final int myPosition;
     private final EntryKind myKind;
@@ -17,7 +21,8 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
     private final Declaration myTarget;
     private final String myName;
 
-    public InterfaceEndpointView(EndpointCoordinate endpointCoordinate, int position, EntryKind kind, boolean isSource, @NotNull Declaration target) {
+    public InterfaceEndpointView(FBNetwork network, EndpointCoordinate endpointCoordinate, int position, EntryKind kind, boolean isSource, @NotNull Declaration target) {
+        this.network = network;
         this.endpointCoordinate = endpointCoordinate;
         myPosition = position;
         myKind = kind;
@@ -37,10 +42,20 @@ public class InterfaceEndpointView implements NetworkComponentView, NetworkPortV
 
     public void setX(int x) {
         endpointCoordinate.setX(x);
+        if (endpointCoordinate.getContainer() == null) {
+            endpointCoordinate.getPortReference().setPath(List.of(myTarget.getIdentifier()));
+//            endpointCoordinate.getPortReference().setFQName(myName);
+            network.getEndpointCoordinates().add(endpointCoordinate);
+        }
     }
 
     public void setY(int y) {
         endpointCoordinate.setY(y);
+        if (endpointCoordinate.getContainer() == null) {
+            endpointCoordinate.getPortReference().setPath(List.of(myTarget.getIdentifier()));
+//            endpointCoordinate.getPortReference().setFQName(myName);
+            network.getEndpointCoordinates().add(endpointCoordinate);
+        }
     }
 
     @NotNull

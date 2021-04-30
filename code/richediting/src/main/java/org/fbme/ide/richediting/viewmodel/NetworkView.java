@@ -1,8 +1,7 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.lib.common.CompositeReference;
-import org.fbme.lib.common.Declaration;
-import org.fbme.lib.common.Element;
+import org.fbme.ide.iec61499.repository.PlatformIdentifier;
+import org.fbme.lib.common.*;
 import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration;
@@ -18,6 +17,7 @@ import org.fbme.scenes.viewmodel.ComponentExtsView;
 import org.fbme.scenes.viewmodel.ComponentsView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.mps.openapi.model.SNodeId;
 
 import java.util.*;
 
@@ -86,31 +86,27 @@ public class NetworkView {
 
         for (int i = 0; i < contextEventSources.size(); i++) {
             EventDeclaration eventDeclaration = contextEventSources.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, true));
-//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(eventDeclaration.getName());
-            addInterfaceEndpoint(endpointCoordinate, i, EntryKind.EVENT, true, eventDeclaration);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(i, true));
+            addInterfaceEndpoint(network, endpointCoordinate, i, EntryKind.EVENT, true, eventDeclaration);
         }
         List<EventDeclaration> contextEventDestinations = network.getContextEventDestinations();
         for (int i = 0; i < contextEventDestinations.size(); i++) {
             EventDeclaration eventDeclaration = contextEventDestinations.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, false));
-//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(eventDeclaration.getName());
-            addInterfaceEndpoint(endpointCoordinate, i, EntryKind.EVENT, false, eventDeclaration);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(i, false));
+            addInterfaceEndpoint(network, endpointCoordinate, i, EntryKind.EVENT, false, eventDeclaration);
         }
         int events = Math.max(contextEventSources.size(), contextEventDestinations.size());
         List<ParameterDeclaration> contextDataSources = network.getContextDataSources();
         for (int i = 0; i < contextDataSources.size(); i++) {
             ParameterDeclaration parameterDeclaration = contextDataSources.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, true));
-//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(parameterDeclaration.getName());
-            addInterfaceEndpoint(endpointCoordinate, events + i + 2, EntryKind.DATA, true, parameterDeclaration);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(events + i + 2, true));
+            addInterfaceEndpoint(network, endpointCoordinate, events + i + 2, EntryKind.DATA, true, parameterDeclaration);
         }
         List<ParameterDeclaration> contextDataDestinations = network.getContextDataDestinations();
         for (int i = 0; i < contextDataDestinations.size(); i++) {
             ParameterDeclaration parameterDeclaration = contextDataDestinations.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, false));
-//            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.get(parameterDeclaration.getName());
-            addInterfaceEndpoint(endpointCoordinate, events + i + 2, EntryKind.DATA, false, parameterDeclaration);
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(events + i + 2, false));
+            addInterfaceEndpoint(network, endpointCoordinate, events + i + 2, EntryKind.DATA, false, parameterDeclaration);
         }
     }
 
@@ -133,8 +129,8 @@ public class NetworkView {
         }
     }
 
-    private void addInterfaceEndpoint(EndpointCoordinate endpointCoordinate, int position, EntryKind kind, boolean source, Declaration declaration) {
-        InterfaceEndpointView view = new InterfaceEndpointView(endpointCoordinate, position, kind, source, declaration);
+    private void addInterfaceEndpoint(FBNetwork network, EndpointCoordinate endpointCoordinate, int position, EntryKind kind, boolean source, Declaration declaration) {
+        InterfaceEndpointView view = new InterfaceEndpointView(network, endpointCoordinate, position, kind, source, declaration);
         myElementModelMap.put(declaration, view);
         myMainComponents.add(view);
         myPorts.put(view, view);

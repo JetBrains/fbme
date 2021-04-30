@@ -48,6 +48,7 @@ public class FBNetworkConverter extends ConverterBase {
     int x = (int) Float.parseFloat(element.getAttributeValue("x"));
     int y = (int) Float.parseFloat(element.getAttributeValue("y"));
     @NotNull EndpointCoordinate endpointCoordinate = myFactory.createEndpointCoordinate();
+    endpointCoordinate.getPortReference().setFQName(name);
     endpointCoordinate.setX(x);
     endpointCoordinate.setY(y);
     return endpointCoordinate;
