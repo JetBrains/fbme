@@ -2,9 +2,9 @@ package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.elk.alg.layered.LayeredLayoutProvider;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 import org.eclipse.elk.core.IGraphLayoutEngine;
-import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
 import org.eclipse.elk.core.data.ILayoutMetaDataProvider;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
@@ -38,7 +38,7 @@ public class ELKLayoutProvider {
     private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
     private final SceneViewpoint viewpoint;
 
-    private final IGraphLayoutEngine layoutEngine = new RecursiveGraphLayoutEngine();
+    private final IGraphLayoutEngine layoutEngine = new LayeredLayoutProvider();
     private final List<ILayoutMetaDataProvider> layoutProviders = Arrays.asList(new CoreOptions(), new LayeredMetaDataProvider());
     private final ELKProperties layoutPropertiesProvider = new ELKProperties();
 
@@ -72,13 +72,10 @@ public class ELKLayoutProvider {
 
     private ElkNode createElkGraph(Map<NetworkComponentView, ElkNode> mapViewNode, Map<NetworkPortView, ElkPort> mapViewPort) {
         ElkNode root = ElkGraphUtil.createGraph();
-        ElkNode node = ElkGraphUtil.createNode(root);
-        node.setLocation(0.0, 0.0);
-        layoutPropertiesProvider.setRootProperties(node);
-        layoutPropertiesProvider.setNodeProperties(node);
+        layoutPropertiesProvider.setRootProperties(root);
 
-        processComponents(node, mapViewNode, mapViewPort);
-        processConnections(node, mapViewPort);
+        processComponents(root, mapViewNode, mapViewPort);
+        processConnections(root, mapViewPort);
 
         return root;
     }
@@ -104,21 +101,22 @@ public class ELKLayoutProvider {
             int width = viewpoint.fromEditorDimension(componentBounds.width);
             int height = viewpoint.fromEditorDimension(componentBounds.height);
 
-            if (component instanceof InterfaceEndpointView) {
-                InterfaceEndpointView endPoint = (InterfaceEndpointView) component;
-                ElkPort port = ElkGraphUtil.createPort(parent);
-                port.setLocation(endPoint.isSource() ? 0 : parent.getWidth(), endPoint.getPosition() * 10);
-                port.setDimensions(width, height);
-                layoutPropertiesProvider.setPortProperties(port, !endPoint.isSource());
-                mapViewPort.put(endPoint, port);
-                continue;
-            }
-
             ElkNode node = ElkGraphUtil.createNode(parent);
             node.setLocation(x, y);
             node.setDimensions(width, height);
-
-            layoutPropertiesProvider.setNodeProperties(node);
+            if (component instanceof FunctionBlockView) {
+                layoutPropertiesProvider.setNodeProperties(node);
+            } else if (component instanceof InterfaceEndpointView) {
+                layoutPropertiesProvider.setEndpointProperties(node);
+                InterfaceEndpointView endpoint = (InterfaceEndpointView) component;
+                ElkPort port = ElkGraphUtil.createPort(node);
+                port.setLocation(0, 0);
+                port.setDimensions(width, height);
+                layoutPropertiesProvider.setPortProperties(port, endpoint.isSource());
+                mapViewPort.put(endpoint, port);
+                mapViewNode.put(endpoint, node);
+                continue;
+            }
 
             for (NetworkPortView componentPort : diagramController.getPorts(component)) {
                 PortController componentPortController = diagramController.getPortController(componentPort);
@@ -147,7 +145,7 @@ public class ELKLayoutProvider {
 
     private void applyNodeLayout(Map<NetworkComponentView, ElkNode> mapViewNode) {
         for (NetworkComponentView component : diagramController.getComponents()) {
-            if (component instanceof FunctionBlockView) {
+            if (component instanceof FunctionBlockView || component instanceof InterfaceEndpointView) {
                 ElkNode node = mapViewNode.get(component);
                 int x = viewpoint.translateToEditorX((int) node.getX());
                 int y = viewpoint.translateToEditorY((int) node.getY());

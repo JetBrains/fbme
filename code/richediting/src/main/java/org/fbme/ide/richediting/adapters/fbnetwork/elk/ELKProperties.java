@@ -1,6 +1,7 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.elk;
 
 import org.eclipse.elk.alg.layered.options.*;
+import org.eclipse.elk.core.math.ElkMargin;
 import org.eclipse.elk.core.math.ElkPadding;
 import org.eclipse.elk.core.options.*;
 import org.eclipse.elk.graph.ElkNode;
@@ -14,18 +15,26 @@ public class ELKProperties {
             .setProperty(CoreOptions.SEPARATE_CONNECTED_COMPONENTS, false)
             .setProperty(LayeredMetaDataProvider.NODE_PLACEMENT_STRATEGY, NodePlacementStrategy.NETWORK_SIMPLEX)
             .setProperty(LayeredMetaDataProvider.CROSSING_MINIMIZATION_STRATEGY,CrossingMinimizationStrategy.INTERACTIVE)
-            .setProperty(LayeredMetaDataProvider.THOROUGHNESS, 5000)
-            .setProperty(CoreOptions.PADDING, new ElkPadding(100.0, 20.0));
+            .setProperty(LayeredMetaDataProvider.THOROUGHNESS, 5000);
 
-        node.setProperty(CoreOptions.SPACING_NODE_NODE, 400.0)
-            .setProperty(CoreOptions.SPACING_EDGE_NODE, 100.0)
-            .setProperty(CoreOptions.SPACING_EDGE_EDGE, 100.0)
-            .setProperty(LayeredMetaDataProvider.SPACING_NODE_NODE_BETWEEN_LAYERS, 320.0)
+        node.setProperty(CoreOptions.SPACING_EDGE_NODE, 100.0)
+            .setProperty(CoreOptions.SPACING_EDGE_EDGE, 100.0);
+        node.setProperty(LayeredMetaDataProvider.SPACING_NODE_NODE_BETWEEN_LAYERS, 320.0)
             .setProperty(LayeredMetaDataProvider.SPACING_EDGE_NODE_BETWEEN_LAYERS, 80.0)
             .setProperty(LayeredMetaDataProvider.SPACING_EDGE_EDGE_BETWEEN_LAYERS, 60.0);
     }
 
     public void setNodeProperties(ElkNode node) {
+        setCommonNodeProperties(node);
+        node.setProperty(CoreOptions.PADDING, new ElkPadding(400.0));
+    }
+
+    public void setEndpointProperties(ElkNode node) {
+        setCommonNodeProperties(node);
+        node.setProperty(CoreOptions.PADDING, new ElkPadding());
+    }
+
+    private void setCommonNodeProperties(ElkNode node) {
         node.setProperty(CoreOptions.PORT_CONSTRAINTS, PortConstraints.FIXED_POS);
     }
 
