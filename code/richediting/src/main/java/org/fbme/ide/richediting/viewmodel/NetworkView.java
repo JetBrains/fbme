@@ -113,7 +113,7 @@ public class NetworkView {
     private EndpointCoordinate createDefaultEndpointCoordinate(int position, boolean isSource) {
         @NotNull EndpointCoordinate endpointCoordinate = myFactory.createEndpointCoordinate();
         endpointCoordinate.setX(isSource ? 0 : 5000);
-        endpointCoordinate.setY(position * 100);
+        endpointCoordinate.setY(position * 50);
         return endpointCoordinate;
     }
 
