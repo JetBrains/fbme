@@ -46,32 +46,32 @@ public class ECTransitionPathPainter {
         Point s = myPath.source;
         Point t = myPath.target;
         Point c = myPath.centre;
+        g.setStroke(new BasicStroke((float) 2.5));
 
         // от такого надо избавляться, иначе координата поедет
         if (!(s.equals(t) && s.equals(c))) {
-
             if (s.equals(t)) {
-                double cx = (c.x + s.x) / 2.0;
-                double cy = (c.y + s.y) / 2.0;
-                double x1 = (cx - 30 - 0.25 * s.x - 0.25 * c.x) / 0.5;
-                double y1 = (cy - 30 - 0.25 * s.y - 0.25 * c.y) / 0.5;
-                QuadCurve2D curve1 = new QuadCurve2D.Double(s.x, s.y, x1, y1, c.x, c.y);
-                g.draw(curve1);
+                double cx1 = (c.x + s.x) / 2.0 - 30;
+                double cy1 = (c.y + s.y) / 2.0 - 30;
+                g.draw(ECTransitionUtils.fromPath(s, t, cx1, cy1));
 
-                double x2 = (cx + 30 - 0.25 * s.x - 0.25 * c.x) / 0.5;
-                double y2 = (cy + 30 - 0.25 * s.y - 0.25 * c.y) / 0.5;
-                QuadCurve2D curve2 = new QuadCurve2D.Double(s.x, s.y, x2, y2, c.x, c.y);
-                g.draw(curve2);
+                double cx2 = (c.x + s.x) / 2.0 + 30;
+                double cy2 = (c.y + s.y) / 2.0 + 30;
+                g.draw(ECTransitionUtils.fromPath(s, t, cx2, cy2));
             } else {
-                double x = (c.x - 0.25 * s.x - 0.25 * t.x) / 0.5;
-                double y = (c.y - 0.25 * s.y - 0.25 * t.y) / 0.5;
-                QuadCurve2D curve = new QuadCurve2D.Double(s.x, s.y, x, y, t.x, t.y);
+                QuadCurve2D curve = ECTransitionUtils.fromPath(s, t, c.x, c.y);
                 g.draw(curve);
+
+                Graphics2D hoverGraphics = (Graphics2D) graphics.create();
+                hoverGraphics.setColor(MPSColors.YELLOW.darker());
+                if (myCursor == ECTransitionCursor.SOURCE || myCursor == ECTransitionCursor.TARGET) {
+                    hoverGraphics.draw(curve);
+                }
+
                 // или тут можно так:
 //                drawEdgesFromCircle(graphics, g, s, c, t);
             }
         }
-
 
 
 //        graphics.drawLine(s.x, s.y, c.x, c.y);
@@ -80,6 +80,7 @@ public class ECTransitionPathPainter {
 //        Graphics hoverGraphics = graphics.create();
 //        hoverGraphics.setColor(MPSColors.YELLOW.darker());
 //        if (myCursor == ECTransitionCursor.SOURCE) {
+//            QuadCurve2D curve = new QuadCurve2D.Double(s.x, s.y, x, y, t.x, t.y);
 //            hoverGraphics.drawLine(s.x, s.y, s.x + (c.x - s.x) / 2, s.y + (c.y - s.y) / 2);
 //        }
 //        if (myCursor == ECTransitionCursor.TARGET) {

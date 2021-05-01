@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
+import java.awt.geom.QuadCurve2D;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -85,24 +85,20 @@ public class ECTransitionController implements ConnectionController<ECTransition
 
     @Override
     public boolean isSourceTransformableAt(ECTransitionPath path, int x, int y) {
-        return sourceEndpointLine(path).intersects(boundary(x, y));
+        QuadCurve2D.Double curve = ECTransitionUtils.fromPath(path.source, path.target, path.centre.x, path.centre.y);
+        return curve.intersects(boundary(x, y))
+                && boundary(path.source.x, path.source.y).intersects(boundary(x, y));
     }
 
     @Override
     public boolean isTargetTransformableAt(ECTransitionPath path, int x, int y) {
-        return targetEndpointLine(path).intersects(boundary(x, y));
+        QuadCurve2D.Double curve = ECTransitionUtils.fromPath(path.source, path.target, path.centre.x, path.centre.y);
+        return curve.intersects(boundary(x, y))
+                && boundary(path.target.x, path.target.y).intersects(boundary(x, y));
     }
 
     private Rectangle boundary(int x, int y) {
         return new Rectangle(x - 4, y - 4, 8, 8);
-    }
-
-    private Line2D.Float sourceEndpointLine(ECTransitionPath path) {
-        return new Line2D.Float(path.source.x, path.source.y, (path.centre.x + path.source.x) / 2, (path.centre.y + path.source.y) / 2);
-    }
-
-    private Line2D.Float targetEndpointLine(ECTransitionPath path) {
-        return new Line2D.Float(path.target.x, path.target.y, (path.centre.x + path.target.x) / 2, (path.centre.y + path.target.y) / 2);
     }
 
     @Override
