@@ -53,11 +53,11 @@ public class ECTransitionPathPainter {
             if (s.equals(t)) {
                 double cx1 = (c.x + s.x) / 2.0 - 30;
                 double cy1 = (c.y + s.y) / 2.0 - 30;
-                g.draw(ECTransitionUtils.fromPath(s, t, cx1, cy1));
+                g.draw(ECTransitionUtils.fromPath(s, c, cx1, cy1));
 
                 double cx2 = (c.x + s.x) / 2.0 + 30;
                 double cy2 = (c.y + s.y) / 2.0 + 30;
-                g.draw(ECTransitionUtils.fromPath(s, t, cx2, cy2));
+                g.draw(ECTransitionUtils.fromPath(s, c, cx2, cy2));
             } else {
                 QuadCurve2D curve = ECTransitionUtils.fromPath(s, t, c.x, c.y);
                 g.draw(curve);
