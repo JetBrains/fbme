@@ -72,7 +72,7 @@ public class ECCEditors {
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
-                    scene, eccAdapter, STATE_CONTROLLER_FACTORY, new ECCSynchronizer(viewpoint),
+                    scene, eccAdapter, getStateControllerFactory(scene), new ECCSynchronizer(viewpoint),
                     componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             );
 
@@ -107,12 +107,14 @@ public class ECCEditors {
         }
     }
 
-    public static final ComponentControllerFactory<StateDeclaration, Point> STATE_CONTROLLER_FACTORY = (context, state) -> {
-        if (state instanceof PlatformElement) {
-            return new ECStateController(context, state);
-        }
-        return null;
-    };
+    private static ComponentControllerFactory<StateDeclaration, Point> getStateControllerFactory(EditorCell_Scene scene) {
+        return ((context, state) -> {
+            if (state instanceof PlatformElement) {
+                return new ECStateController(scene, context, state);
+            }
+            return null;
+        });
+    }
 
     public static final ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> TRANSITION_CONTROLLER_FACTORY = (context, transition) -> {
         final SNode transitionNode = ((PlatformElement) transition).getNode();

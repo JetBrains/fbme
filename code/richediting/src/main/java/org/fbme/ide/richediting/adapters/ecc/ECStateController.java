@@ -11,29 +11,37 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
+import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
+import org.fbme.scenes.controllers.scene.SceneStateKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.function.Function;
 
 public class ECStateController implements ComponentController<Point> {
+    private static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
     private final EditorContext myContext;
     private final StateDeclaration myState;
     private final StateCell myStateNameCell;
     private final SNode myNode;
     private final EditorCell_Collection myCellCollection;
     private final List<ActionBlock> myStateActionBlocks;
+    private Map<StateAction, Boolean> isOpenAlgorithmBody;
 
-    public ECStateController(EditorContext context, StateDeclaration state) {
+    public ECStateController(EditorCell_Scene scene, EditorContext context, StateDeclaration state) {
         myContext = context;
         myState = state;
         myStateActionBlocks = new ArrayList<>();
         myNode = ((PlatformElement) state).getNode();
+        isOpenAlgorithmBody = scene.loadState(IS_OPEN_ALGORITHM_BODY);
+        isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
 
         myCellCollection = createRootCell(myContext, myNode);
 
@@ -41,6 +49,7 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.addEditorCell(myStateNameCell);
 
         initializeActions();
+        scene.storeState(IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
         myCellCollection.setBig(true);
 
         relayout();
@@ -148,22 +157,22 @@ public class ECStateController implements ComponentController<Point> {
     private void initializeActions() {
         for (StateAction action : myState.getActions()) {
             AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();
-            jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = null;
-            ActionCell actionCell;
+            AlgorithmCell algorithmCell;
             if (algorithmDeclaration != null) {
                 SNode algorithmNode = ((PlatformElement) algorithmDeclaration.getBody()).getNode();
-                bodyCell = myContext.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
-                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, bodyCell, myState);
-                myCellCollection.addEditorCell(actionCell);
+                jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = myContext.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
+                isOpenAlgorithmBody.putIfAbsent(action, true);
+                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, (EditorCell_Collection) bodyCell, myState, isOpenAlgorithmBody);
+                myCellCollection.addEditorCell(algorithmCell);
                 myCellCollection.addEditorCell(bodyCell);
             } else {
-                actionCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, myState);
-                myCellCollection.addEditorCell(actionCell);
+                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, myState, isOpenAlgorithmBody);
+                myCellCollection.addEditorCell(algorithmCell);
             }
 
-            ActionCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, myState);
+            OutputCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, myState);
             myCellCollection.addEditorCell(outputCell);
-            myStateActionBlocks.add(new ActionBlock(actionCell, outputCell, bodyCell, action));
+            myStateActionBlocks.add(new ActionBlock(algorithmCell, outputCell, action));
         }
     }
 

@@ -49,12 +49,12 @@ public class SceneStateManager {
 
     private static class StateId {
         private final SNodeReference myNodeRef;
-        private final String myCellId;
+//        private final String myCellId;
         private final SceneStateKey<?> myKey;
 
         private StateId(SNodeReference nodeRef, String cellId, SceneStateKey<?> key) {
             myNodeRef = nodeRef;
-            myCellId = cellId;
+//            myCellId = cellId;
             myKey = key;
         }
 
@@ -68,14 +68,15 @@ public class SceneStateManager {
             }
 
             StateId that = (StateId) o;
-            return myNodeRef.equals(that.myNodeRef) && myCellId.equals(that.myCellId) && myKey.equals(that.myKey);
+//            return myNodeRef.equals(that.myNodeRef) && myCellId.equals(that.myCellId) && myKey.equals(that.myKey);
+            return myNodeRef.equals(that.myNodeRef) && myKey.equals(that.myKey);
         }
 
         @Override
         public int hashCode() {
             int result = 0;
             result = 31 * result + myNodeRef.hashCode();
-            result = 31 * result + myCellId.hashCode();
+//            result = 31 * result + myCellId.hashCode();
             result = 31 * result + myKey.hashCode();
             return result;
         }
