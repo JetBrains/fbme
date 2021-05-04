@@ -22,6 +22,7 @@ public class AlgorithmCell extends ActionCell {
     private final EditorCell_Collection myAlgorithmBody;
     private boolean isOpenBody;
     private final Map<StateAction, Boolean> isOpenAlgorithmBody;
+    private final EditorContext myEditorContext;
 
     public AlgorithmCell(
             EditorContext editorContext,
@@ -34,10 +35,12 @@ public class AlgorithmCell extends ActionCell {
     ) {
         super(editorContext, node, ALGORITHM_COLOR, action, cellCollection, state);
         getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
+        this.myEditorContext = editorContext;
         this.myAlgorithmBody = body;
         isOpenAlgorithmBody.putIfAbsent(action, true);
         this.isOpenAlgorithmBody = isOpenAlgorithmBody;
         this.isOpenBody = isOpenAlgorithmBody.get(action);
+
     }
 
     @Override
@@ -96,6 +99,7 @@ public class AlgorithmCell extends ActionCell {
         } else {
             cell.myCellCollection.addEditorCellAfter(cell.myAlgorithmBody, cell);
         }
+        cell.myEditorContext.getEditorComponent().getUpdater().update();
     }
 
     public boolean getIsOpenBody() {
