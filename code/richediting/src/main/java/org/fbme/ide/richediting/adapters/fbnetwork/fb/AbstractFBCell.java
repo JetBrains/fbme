@@ -110,37 +110,61 @@ public abstract class AbstractFBCell implements FBCell {
     @Override
     public Point getInputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
+        Rectangle bounds = getInputEventPortBounds(eventNumber);
+        int x = bounds.x - scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     @Override
     public Point getOutputEventPortPosition(int eventNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, eventNumber * lineSize + getShift());
+        Rectangle bounds = getOutputEventPortBounds(eventNumber);
+        int x = bounds.x + bounds.width + scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     @Override
     public Point getInputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        Rectangle bounds = getInputDataPortBounds(dataNumber);
+        int x = bounds.x - scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     @Override
     public Point getOutputDataPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + dataNumber) * lineSize + getShift());
+        Rectangle bounds = getOutputDataPortBounds(dataNumber);
+        int x = bounds.x + bounds.width + scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     @Override
     public Point getSocketPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(-scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getInputDataPortsCount() + dataNumber) * lineSize + getShift());
+        Rectangle bounds = getSocketPortBounds(dataNumber);
+        int x = bounds.x - scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     @Override
     public Point getPlugPortPosition(int dataNumber) {
         int lineSize = getLineSize();
-        return new Point(getRootCell().getWidth() + scale(PORT_SIZE) / 2, (getEventPortsCount() + 2 + getOutputDataPortsCount() + dataNumber) * lineSize + getShift());
+        Rectangle bounds = getPlugPortBounds(dataNumber);
+        int x = bounds.x + bounds.width + scale(PORT_SIZE) / 2;
+        int y = bounds.y + lineSize / 2;
+
+        return new Point(x, y);
     }
 
     protected void initPorts() {
@@ -161,7 +185,7 @@ public abstract class AbstractFBCell implements FBCell {
 
     protected void drawPortIcons(List<Port> ports, Graphics2D graphics, int x, int y, Color borderColor) {
         int lineSize = getLineSize();
-        y += getShift() - scale(PORT_SIZE) / 2;
+        y += lineSize / 2 - scale(PORT_SIZE) / 2;
         for (Port port : ports) {
             Rectangle rect = new Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE));
             graphics.setColor(DiagramColors.getColorFor(port.getConnectionKind(), isEditable));
@@ -230,7 +254,7 @@ public abstract class AbstractFBCell implements FBCell {
         int xLeft = x;
         int xRight = xLeft + width;
         int yBottom = y;
-        int yTop = yBottom + height - halfLineSize;
+        int yTop = yBottom + height;
 
         double yCenterB = yBottom + lineSize * eventPortsCount + halfLineSize;
         double yCenterT = yCenterB + halfLineSize;

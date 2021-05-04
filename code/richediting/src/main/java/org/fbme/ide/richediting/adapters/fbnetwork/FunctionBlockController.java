@@ -83,7 +83,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
             public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCells) {
                 super.doLayout(editorCells);
                 fbCell.getRootCell().moveTo(cellCollection.getX(), cellCollection.getY() + getLineSize());
-                myNameProperty.moveTo(cellCollection.getX() + fbCell.getWidth() / 2 - myNameProperty.getWidth() / 2, cellCollection.getY());
+                myNameProperty.moveTo(cellCollection.getX() + fbCell.getWidth() / 2 - myNameProperty.getWidth() / 2, cellCollection.getY() - getLineSize() / 4);
             }
         });
     }
@@ -108,7 +108,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     @NotNull
     @Override
     public Rectangle getBounds(@NotNull Point position) {
-        return new Rectangle(position.x, position.y, fbCell.getWidth(), fbCell.getHeight());
+        return new Rectangle(position.x, position.y, cellCollection.getWidth(), cellCollection.getHeight());
     }
 
     @NotNull

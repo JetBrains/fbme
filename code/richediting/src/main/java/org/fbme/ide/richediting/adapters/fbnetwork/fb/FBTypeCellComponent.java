@@ -151,7 +151,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
 
     private void relayoutPortLabels(int lineSize) {
         int leftX = getRootCell().getX() + scale(INNER_BORDER_PADDING);
-        int topY = getRootCell().getY();
+        int topY = getRootCell().getY() - lineSize / 4;
         int dataY = topY + (getEventPortsCount() + 2) * lineSize;
         int rightX = getRootCell().getX() + getRootCell().getWidth() - scale(INNER_BORDER_PADDING);
 
@@ -207,7 +207,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
     private void relayoutLabel(int lineSize) {
         typeNameLabel.moveTo(
                 getRootCell().getX() + getRootCell().getWidth() / 2 - typeNameLabel.getWidth() / 2,
-                getRootCell().getY() + (getEventPortsCount() + 1) * lineSize
+                getRootCell().getY() + (getEventPortsCount() + 1) * lineSize - lineSize / 4
         );
     }
 
@@ -260,7 +260,7 @@ public final class FBTypeCellComponent extends AbstractFBCell {
         int eventPortsCount = getEventPortsCount();
         int dataPortsCount = getBottomPortsCount();
 
-        return (eventPortsCount + dataPortsCount + 3) * getLineSize();
+        return (eventPortsCount + dataPortsCount + 2) * getLineSize();
     }
 
     private int calculateWidth() {
