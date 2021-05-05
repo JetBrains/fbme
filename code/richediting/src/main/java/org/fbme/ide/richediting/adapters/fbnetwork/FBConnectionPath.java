@@ -4,6 +4,8 @@ import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FBConnectionPath {
 
@@ -20,6 +22,18 @@ public class FBConnectionPath {
     private final int myY;
     private final int myX2;
 
+    private final List<Point> bendPoints;
+
+    public FBConnectionPath(@NotNull Point sourcePosition, @NotNull Point targetPosition, @NotNull ConnectionPath.Kind pathKind, int x1, int y, int x2, List<Point> bendPoints) {
+        mySourcePosition = sourcePosition;
+        myTargetPosition = targetPosition;
+        myPathKind = pathKind;
+        myX1 = x1;
+        myY = y;
+        myX2 = x2;
+        this.bendPoints = bendPoints;
+    }
+
     public FBConnectionPath(@NotNull Point sourcePosition, @NotNull Point targetPosition, @NotNull ConnectionPath.Kind pathKind, int x1, int y, int x2) {
         mySourcePosition = sourcePosition;
         myTargetPosition = targetPosition;
@@ -27,6 +41,20 @@ public class FBConnectionPath {
         myX1 = x1;
         myY = y;
         myX2 = x2;
+        bendPoints = new ArrayList<>();
+        switch (pathKind) {
+            case Straight:
+                break;
+            case TwoAngles:
+                bendPoints.add(new Point(x1, mySourcePosition.y));
+                bendPoints.add(new Point(x1, myTargetPosition.y));
+                break;
+            case FourAngles:
+                bendPoints.add(new Point(x1, mySourcePosition.y));
+                bendPoints.add(new Point(x1, y));
+                bendPoints.add(new Point(x2, y));
+                bendPoints.add(new Point(x1, myTargetPosition.y));
+        }
     }
 
     @NotNull
@@ -54,5 +82,9 @@ public class FBConnectionPath {
 
     public int getX2() {
         return myX2;
+    }
+
+    public List<Point> getBendPoints() {
+        return bendPoints;
     }
 }

@@ -5,6 +5,10 @@ import org.fbme.lib.common.ContainedElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public interface FBNetworkConnection extends ContainedElement {
 
     @Nullable FBNetwork getContainer();

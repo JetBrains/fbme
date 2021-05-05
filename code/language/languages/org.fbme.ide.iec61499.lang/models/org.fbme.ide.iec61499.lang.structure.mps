@@ -1630,5 +1630,34 @@
       <ref role="20lvS9" to="tpck:gw2VY9q" resolve="BaseConcept" />
     </node>
   </node>
+  <node concept="1TIwiD" id="1z_G68ePL7">
+    <property role="EcuMT" value="28031780652801095" />
+    <property role="3GE5qa" value="canvas" />
+    <property role="TrG5h" value="MoreThanFourAngleConnectionPath" />
+    <property role="34LRSv" value="more-than-four-angles" />
+    <ref role="1TJDcQ" node="3IX4BsKohXi" resolve="ConnectionPath" />
+    <node concept="1TJgyi" id="1z_G68ePL8" role="1TKVEl">
+      <property role="IQ2nx" value="28031780652801096" />
+      <property role="TrG5h" value="dx1" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="1z_G68ePL9" role="1TKVEl">
+      <property role="IQ2nx" value="28031780652801097" />
+      <property role="TrG5h" value="dy" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="1z_G68ePLa" role="1TKVEl">
+      <property role="IQ2nx" value="28031780652801098" />
+      <property role="TrG5h" value="dx2" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyj" id="1z_G68ePLe" role="1TKVEi">
+      <property role="IQ2ns" value="28031780652801102" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="bendPoints" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
+  </node>
 </model>
 

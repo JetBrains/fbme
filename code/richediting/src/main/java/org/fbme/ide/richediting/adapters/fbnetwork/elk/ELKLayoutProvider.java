@@ -197,10 +197,16 @@ public class ELKLayoutProvider {
     }
 
     private FBConnectionPath getConnectionPathFromPoints(List<Point> points) {
-        assertTrue(points.size() >= 2 && points.size() % 2 == 0);
+        int count = points.size();
+        assertTrue(count >= 2 && count % 2 == 0);
+        if (count > 6) {
+            ConnectionPath.Kind pathKind = ConnectionPath.Kind.MoreThanFour;
+            points.subList(1, points.size() - 1);
+            return new FBConnectionPath(points.get(0), points.get(points.size() - 1), pathKind, points.get(1).x, points.get(2).y, points.get(points.size() - 2).x, points);
+        }
+
         int x1 = 0, y = 0, x2 = 0;
         ConnectionPath.Kind pathKind = ConnectionPath.Kind.Straight;
-        int count = points.size();
         if (count > 2) {
             x1 = points.get(1).x;
             pathKind = ConnectionPath.Kind.TwoAngles;
