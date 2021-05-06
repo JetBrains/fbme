@@ -3491,14 +3491,78 @@
                   </node>
                 </node>
               </node>
+              <node concept="3cpWs8" id="26C$6FZDh$z" role="3cqZAp">
+                <node concept="3cpWsn" id="26C$6FZDh$$" role="3cpWs9">
+                  <property role="TrG5h" value="bendPoints" />
+                  <node concept="3uibUv" id="26C$6FZDbBT" role="1tU5fm">
+                    <ref role="3uigEE" to="33ny:~ArrayList" resolve="ArrayList" />
+                    <node concept="3uibUv" id="26C$6FZDbBW" role="11_B2D">
+                      <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
+                    </node>
+                  </node>
+                  <node concept="2ShNRf" id="26C$6FZDh$_" role="33vP2m">
+                    <node concept="1pGfFk" id="26C$6FZDh$A" role="2ShVmc">
+                      <ref role="37wK5l" to="33ny:~ArrayList.&lt;init&gt;()" resolve="ArrayList" />
+                      <node concept="3uibUv" id="26C$6FZDh$B" role="1pMfVU">
+                        <ref role="3uigEE" to="z60i:~Point" resolve="Point" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="1DcWWT" id="26C$6FZDsz$" role="3cqZAp">
+                <node concept="3clFbS" id="26C$6FZDszA" role="2LFqv$">
+                  <node concept="3clFbF" id="26C$6FZD_g6" role="3cqZAp">
+                    <node concept="2OqwBi" id="26C$6FZDAk2" role="3clFbG">
+                      <node concept="37vLTw" id="26C$6FZD_g4" role="2Oq$k0">
+                        <ref role="3cqZAo" node="26C$6FZDh$$" resolve="bendPoints" />
+                      </node>
+                      <node concept="liA8E" id="26C$6FZDBGb" role="2OqNvi">
+                        <ref role="37wK5l" to="33ny:~ArrayList.add(java.lang.Object)" resolve="add" />
+                        <node concept="2ShNRf" id="26C$6FZDBQV" role="37wK5m">
+                          <node concept="1pGfFk" id="26C$6FZDCBe" role="2ShVmc">
+                            <ref role="37wK5l" to="z60i:~Point.&lt;init&gt;(int,int)" resolve="Point" />
+                            <node concept="2OqwBi" id="26C$6FZDDlp" role="37wK5m">
+                              <node concept="37vLTw" id="26C$6FZDCTy" role="2Oq$k0">
+                                <ref role="3cqZAo" node="26C$6FZDszB" resolve="position" />
+                              </node>
+                              <node concept="2qgKlT" id="26C$6FZDDJf" role="2OqNvi">
+                                <ref role="37wK5l" to="t4dg:5fP$Xwj3isp" resolve="getX" />
+                              </node>
+                            </node>
+                            <node concept="2OqwBi" id="26C$6FZDEBi" role="37wK5m">
+                              <node concept="37vLTw" id="26C$6FZDEba" role="2Oq$k0">
+                                <ref role="3cqZAo" node="26C$6FZDszB" resolve="position" />
+                              </node>
+                              <node concept="2qgKlT" id="26C$6FZDEV7" role="2OqNvi">
+                                <ref role="37wK5l" to="t4dg:5fP$Xwj3iXb" resolve="getY" />
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3cpWsn" id="26C$6FZDszB" role="1Duv9x">
+                  <property role="TrG5h" value="position" />
+                  <node concept="3Tqbb2" id="26C$6FZDyx_" role="1tU5fm">
+                    <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
+                  </node>
+                </node>
+                <node concept="2OqwBi" id="26C$6FZDzEf" role="1DdaDG">
+                  <node concept="37vLTw" id="26C$6FZDziZ" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1z_G68f_U5" resolve="moreThanFourAngle" />
+                  </node>
+                  <node concept="3Tsc0h" id="26C$6FZDzVK" role="2OqNvi">
+                    <ref role="3TtcxE" to="xiqq:1z_G68ePLe" resolve="bendPoints" />
+                  </node>
+                </node>
+              </node>
               <node concept="3cpWs6" id="1z_G68fAlA" role="3cqZAp">
                 <node concept="2ShNRf" id="1z_G68fApu" role="3cqZAk">
                   <node concept="1pGfFk" id="1z_G68fIj4" role="2ShVmc">
-                    <ref role="37wK5l" to="g27j:~ConnectionPath.&lt;init&gt;(org.fbme.lib.iec61499.fbnetwork.ConnectionPath$Kind,int,int,int)" resolve="ConnectionPath" />
-                    <node concept="Rm8GO" id="1z_G68gq0C" role="37wK5m">
-                      <ref role="Rm8GQ" to="g27j:~ConnectionPath$Kind.MoreThanFour" resolve="MoreThanFour" />
-                      <ref role="1Px2BO" to="g27j:~ConnectionPath$Kind" resolve="ConnectionPath.Kind" />
-                    </node>
+                    <ref role="37wK5l" to="g27j:~LongConnectionPath.&lt;init&gt;(int,int,int,java.util.List)" resolve="LongConnectionPath" />
                     <node concept="2OqwBi" id="1z_G68gD3r" role="37wK5m">
                       <node concept="37vLTw" id="1z_G68gzZR" role="2Oq$k0">
                         <ref role="3cqZAo" node="1z_G68f_U5" resolve="moreThanFourAngle" />
@@ -3522,6 +3586,9 @@
                       <node concept="2qgKlT" id="1z_G68hEFe" role="2OqNvi">
                         <ref role="37wK5l" to="t4dg:1z_G68h2_X" resolve="getDX2" />
                       </node>
+                    </node>
+                    <node concept="37vLTw" id="26C$6FZE03g" role="37wK5m">
+                      <ref role="3cqZAo" node="26C$6FZDh$$" resolve="bendPoints" />
                     </node>
                   </node>
                 </node>

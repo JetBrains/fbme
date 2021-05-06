@@ -53,7 +53,7 @@ public class FBConnectionPath {
                 bendPoints.add(new Point(x1, mySourcePosition.y));
                 bendPoints.add(new Point(x1, y));
                 bendPoints.add(new Point(x2, y));
-                bendPoints.add(new Point(x1, myTargetPosition.y));
+                bendPoints.add(new Point(x2, myTargetPosition.y));
         }
     }
 

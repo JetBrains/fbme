@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.util.List;
 
 public class FBConnectionPathPainter {
     private static final int DL = 8;
@@ -107,36 +108,40 @@ public class FBConnectionPathPainter {
         Point s = myPath.getSourcePosition();
         Point t = myPath.getTargetPosition();
         ConnectionPath.Kind kind = myPath.getPathKind();
-        int x1 = myPath.getX1();
-        int y = myPath.getY();
-        int x2 = myPath.getX2();
 
-        switch (kind) {
-            case Straight:
-                graphics.drawLine(s.x, s.y, t.x, t.y);
-                break;
-            case TwoAngles:
-                int ymed = (s.y + t.y) / 2;
-                drawCorner(graphics, s.x, s.y, x1, ymed, true, selected);
-                drawCorner(graphics, x1, ymed, t.x, t.y, false, selected);
-                break;
-            case FourAngles:
-                int ymed1 = (s.y + y) / 2;
-                int xmed = (x1 + x2) / 2;
-                int ymed2 = (y + t.y) / 2;
-                drawCorner(graphics, s.x, s.y, x1, ymed1, true, selected);
-                drawCorner(graphics, x1, ymed1, xmed, y, false, selected);
-                drawCorner(graphics, xmed, y, x2, ymed2, true, selected);
-                drawCorner(graphics, x2, ymed2, t.x, t.y, false, selected);
-                break;
+        List<Point> bendPoints = myPath.getBendPoints();
+
+        if (bendPoints.isEmpty()) {
+            graphics.drawLine(s.x, s.y, t.x, t.y);
+        } else {
+            int x1 = s.x;
+            int y1 = s.y;
+            int x2 = (bendPoints.get(0).x + bendPoints.get(1).x) / 2;
+            int y2 = (bendPoints.get(0).y + bendPoints.get(1).y) / 2;
+            drawCorner(graphics, x1, y1, x2, y2, true, selected);
+            for (int i = 2; i < bendPoints.size(); i++) {
+                x1 = x2;
+                y1 = y2;
+                x2 = (bendPoints.get(i - 1).x + bendPoints.get(i).x) / 2;
+                y2 = (bendPoints.get(i - 1).y + bendPoints.get(i).y) / 2;
+                drawCorner(graphics, x1, y1, x2, y2, (i % 2) != 0, selected);
+            }
+            x1 = x2;
+            y1 = y2;
+            x2 = t.x;
+            y2 = t.y;
+            drawCorner(graphics, x1, y1, x2, y2, false, selected);
         }
+
         Graphics hoverGraphics = graphics.create();
         hoverGraphics.setColor(MPSColors.YELLOW.darker());
         if (myCursor == FBConnectionCursor.SOURCE_ENDPOINT) {
-            hoverGraphics.drawLine(s.x, s.y, Math.max(s.x, Math.min(s.x + myHoverLength, x1)), s.y);
+            int xHover = Math.min(s.x + myHoverLength, kind == ConnectionPath.Kind.Straight ? (s.x + t.x) / 2 : bendPoints.get(0).x);
+            hoverGraphics.drawLine(s.x, s.y, xHover, s.y);
         }
         if (myCursor == FBConnectionCursor.TARGET_ENDPOINT) {
-            hoverGraphics.drawLine(t.x, t.y, Math.min(t.x, Math.max(t.x - myHoverLength, kind == ConnectionPath.Kind.TwoAngles ? x1 : x2)), t.y);
+            int xHover = Math.max(t.x - myHoverLength, kind == ConnectionPath.Kind.Straight ? (s.x + t.x) / 2 : bendPoints.get(bendPoints.size() - 1).x);
+            hoverGraphics.drawLine(t.x, t.y, xHover, t.y);
         }
     }
 }

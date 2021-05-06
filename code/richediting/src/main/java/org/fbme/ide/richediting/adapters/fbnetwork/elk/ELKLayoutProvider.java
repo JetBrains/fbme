@@ -200,9 +200,15 @@ public class ELKLayoutProvider {
         int count = points.size();
         assertTrue(count >= 2 && count % 2 == 0);
         if (count > 6) {
-            ConnectionPath.Kind pathKind = ConnectionPath.Kind.MoreThanFour;
-            points.subList(1, points.size() - 1);
-            return new FBConnectionPath(points.get(0), points.get(points.size() - 1), pathKind, points.get(1).x, points.get(2).y, points.get(points.size() - 2).x, points);
+            return new FBConnectionPath(
+                    points.get(0),
+                    points.get(points.size() - 1),
+                    ConnectionPath.Kind.MoreThanFour,
+                    points.get(1).x,
+                    points.get(2).y,
+                    points.get(points.size() - 2).x,
+                    points.subList(1, points.size() - 1)
+            );
         }
 
         int x1 = 0, y = 0, x2 = 0;
