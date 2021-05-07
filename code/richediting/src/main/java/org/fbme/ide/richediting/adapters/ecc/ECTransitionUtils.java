@@ -19,4 +19,11 @@ public class ECTransitionUtils {
         double y = (cy - 0.25 * s.y - 0.25 * t.y) / 0.5;
         return new QuadCurve2D.Double(s.x, s.y, x, y, t.x, t.y);
     }
+
+    public static Point getPointFromParameter(double t, QuadCurve2D curve) {
+        Point result = new Point(0, 0);
+        result.x = (int) ((1.0 - t) * (1.0 - t) * curve.getX1() + 2 * (1 - t) * t * curve.getCtrlX() + t * t * curve.getX2());
+        result.y = (int) ((1.0 - t) * (1.0 - t) * curve.getY1() + 2 * (1 - t) * t * curve.getCtrlY() + t * t * curve.getY2());
+        return result;
+    }
 }

@@ -68,10 +68,19 @@ public class ECTransitionPathPainter {
                     hoverGraphics.draw(curve);
                 }
 
+                AffineTransform sat = new AffineTransform();
+                Point arrowPoint = ECTransitionUtils.getPointFromParameter(0.98, curve);
+                sat.translate(arrowPoint.x, arrowPoint.y);
+                sat.rotate(t.x - arrowPoint.x, t.y - arrowPoint.y);
+                ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
+
                 // или тут можно так:
 //                drawEdgesFromCircle(graphics, g, s, c, t);
             }
         }
+
+
+
 
 
 //        graphics.drawLine(s.x, s.y, c.x, c.y);

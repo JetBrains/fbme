@@ -72,7 +72,7 @@ public class ECStateController implements ComponentController<Point> {
             height += block.getHeight(padding);
         }
 
-        myCellCollection.setWidth(width);
+        myCellCollection.setWidth(width + 7);
         myCellCollection.setHeight(height);
 
         myStateNameCell.setWidth(width + ActionCell.ACTIVE_WEIGHT_PADDING);
