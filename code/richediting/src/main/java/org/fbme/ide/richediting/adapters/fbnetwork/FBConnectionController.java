@@ -130,33 +130,10 @@ public class FBConnectionController implements ConnectionController<FBConnection
             Point v = newBendPoints.get(index);
             if (isHorizontal) {
                 u.y = v.y = eventPosition.y;
-                Point uPrev = newBendPoints.get(index - 2);
-                Point vNext = newBendPoints.get(index + 1);
-                if (Math.abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
-                    u.y = vNext.y;
-                    newBendPoints.remove(index + 1);
-                    newBendPoints.remove(index);
-                }
-                if (Math.abs(u.y - uPrev.y) < scale(SELECTION_PADDING)) {
-                    v.y = uPrev.y;
-                    newBendPoints.remove(index - 1);
-                    newBendPoints.remove(index - 2);
-                }
             } else {
                 u.x = v.x = eventPosition.x;
-                Point uPrev = index - 2 >= 0 ? newBendPoints.get(index - 2) : null;
-                Point vNext = index + 1 < newBendPoints.size() ? newBendPoints.get(index + 1) : null;
-                if (vNext != null && Math.abs(vNext.x - v.x) < scale(SELECTION_PADDING)) {
-                    u.x = vNext.x;
-                    newBendPoints.remove(index + 1);
-                    newBendPoints.remove(index);
-                }
-                if (uPrev != null && Math.abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
-                    v.x = uPrev.x;
-                    newBendPoints.remove(index - 1);
-                    newBendPoints.remove(index - 2);
-                }
             }
+            magnetize(index, newBendPoints);
 
             return new FBConnectionPath(
                     path.getSourcePosition(),
@@ -164,6 +141,78 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     newBendPoints
             );
         };
+    }
+
+    private FBConnectionPath magnetized(FBConnectionPath path) {
+        List<Point> bendPoints = path.getBendPoints();
+
+        if (bendPoints.isEmpty()) {
+            return path;
+        }
+
+        if (bendPoints.size() == 2) {
+            Point u = bendPoints.get(0);
+            Point v = bendPoints.get(1);
+
+            if (u.y == v.y) {
+                return new FBConnectionPath(path.getSourcePosition(), path.getTargetPosition());
+            }
+        }
+
+        List<Point> newBendPoints = deepCopy(bendPoints);
+
+        for (int i = 1; i < newBendPoints.size(); i++) {
+            magnetize(i, newBendPoints);
+        }
+
+        return new FBConnectionPath(
+                path.getSourcePosition(),
+                path.getTargetPosition(),
+                newBendPoints
+        );
+    }
+
+    private void magnetize(int index, List<Point> bendPoints) {
+        boolean isHorizontal = index % 2 == 0;
+        if (isHorizontal) {
+            magnetizeHorizontal(index, bendPoints);
+        } else {
+            magnetizeVertical(index, bendPoints);
+        }
+    }
+
+    private void magnetizeHorizontal(int index, List<Point> bendPoints) {
+        Point u = bendPoints.get(index - 1);
+        Point v = bendPoints.get(index);
+        Point uPrev = bendPoints.get(index - 2);
+        Point vNext = bendPoints.get(index + 1);
+        if (Math.abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
+            u.y = vNext.y;
+            bendPoints.remove(index + 1);
+            bendPoints.remove(index);
+        }
+        if (Math.abs(u.y - uPrev.y) < scale(SELECTION_PADDING)) {
+            v.y = uPrev.y;
+            bendPoints.remove(index - 1);
+            bendPoints.remove(index - 2);
+        }
+    }
+
+    private void magnetizeVertical(int index, List<Point> bendPoints) {
+        Point u = bendPoints.get(index - 1);
+        Point v = bendPoints.get(index);
+        Point uPrev = index - 2 >= 0 ? bendPoints.get(index - 2) : null;
+        Point vNext = index + 1 < bendPoints.size() ? bendPoints.get(index + 1) : null;
+        if (vNext != null && Math.abs(vNext.x - v.x) < scale(SELECTION_PADDING)) {
+            u.x = vNext.x;
+            bendPoints.remove(index + 1);
+            bendPoints.remove(index);
+        }
+        if (uPrev != null && Math.abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
+            v.x = uPrev.x;
+            bendPoints.remove(index - 1);
+            bendPoints.remove(index - 2);
+        }
     }
 
     @NotNull
@@ -397,7 +446,9 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
             }
-            return new FBConnectionPath(s, newTarget, kind, x1, y, x2);
+            FBConnectionPath newConnectionPath = new FBConnectionPath(s, newTarget, kind, x1, y, x2);
+
+            return magnetized(newConnectionPath);
         }
     }
 
@@ -462,7 +513,9 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
             }
-            return new FBConnectionPath(newSource, t, kind, x1, y, x2);
+            FBConnectionPath newConnectionPath = new FBConnectionPath(newSource, t, kind, x1, y, x2);
+
+            return magnetized(newConnectionPath);
         }
     }
 

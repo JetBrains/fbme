@@ -76,6 +76,10 @@ public class FBConnectionPath {
         }
     }
 
+    public FBConnectionPath(Point sourcePosition, Point targetPosition) {
+        this(sourcePosition, targetPosition, new ArrayList<>());
+    }
+
     @NotNull
     public Point getSourcePosition() {
         return new Point(mySourcePosition);
