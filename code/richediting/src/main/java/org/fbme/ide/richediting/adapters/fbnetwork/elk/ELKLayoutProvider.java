@@ -203,10 +203,6 @@ public class ELKLayoutProvider {
             return new FBConnectionPath(
                     points.get(0),
                     points.get(points.size() - 1),
-                    ConnectionPath.Kind.MoreThanFour,
-                    points.get(1).x,
-                    points.get(2).y,
-                    points.get(points.size() - 2).x,
                     points.subList(1, points.size() - 1)
             );
         }

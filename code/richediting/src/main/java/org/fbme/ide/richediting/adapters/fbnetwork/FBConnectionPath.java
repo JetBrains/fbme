@@ -24,14 +24,33 @@ public class FBConnectionPath {
 
     private final List<Point> bendPoints;
 
-    public FBConnectionPath(@NotNull Point sourcePosition, @NotNull Point targetPosition, @NotNull ConnectionPath.Kind pathKind, int x1, int y, int x2, List<Point> bendPoints) {
+    public FBConnectionPath(@NotNull Point sourcePosition, @NotNull Point targetPosition, List<Point> bendPoints) {
         mySourcePosition = sourcePosition;
         myTargetPosition = targetPosition;
-        myPathKind = pathKind;
-        myX1 = x1;
-        myY = y;
-        myX2 = x2;
         this.bendPoints = bendPoints;
+
+        switch (bendPoints.size()) {
+            case 0:
+                myPathKind = ConnectionPath.Kind.Straight;
+                myX1 = myY = myX2 = 0;
+                break;
+            case 2:
+                myPathKind = ConnectionPath.Kind.TwoAngles;
+                myX1 = bendPoints.get(0).x;
+                myY = myX2 = 0;
+                break;
+            case 4:
+                myPathKind = ConnectionPath.Kind.FourAngles;
+                myX1 = bendPoints.get(0).x;
+                myY = bendPoints.get(1).y;
+                myX2 = bendPoints.get(bendPoints.size() - 1).x;
+                break;
+            default:
+                myPathKind = ConnectionPath.Kind.MoreThanFour;
+                myX1 = bendPoints.get(0).x;
+                myY = bendPoints.get(1).y;
+                myX2 = bendPoints.get(bendPoints.size() - 1).x;
+        }
     }
 
     public FBConnectionPath(@NotNull Point sourcePosition, @NotNull Point targetPosition, @NotNull ConnectionPath.Kind pathKind, int x1, int y, int x2) {

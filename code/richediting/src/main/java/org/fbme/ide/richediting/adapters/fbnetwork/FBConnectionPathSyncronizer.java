@@ -39,10 +39,6 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
             return (sourcePosition, targetPosition) -> new FBConnectionPath(
                     sourcePosition,
                     targetPosition,
-                    longPath.getKind(),
-                    editorBendPoints.get(0).x,
-                    editorBendPoints.get(1).y,
-                    editorBendPoints.get(editorBendPoints.size() - 1).x,
                     editorBendPoints
             );
         }

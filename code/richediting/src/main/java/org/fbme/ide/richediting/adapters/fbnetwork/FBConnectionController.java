@@ -132,38 +132,35 @@ public class FBConnectionController implements ConnectionController<FBConnection
                 u.y = v.y = eventPosition.y;
                 Point uPrev = newBendPoints.get(index - 2);
                 Point vNext = newBendPoints.get(index + 1);
+                if (Math.abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
+                    u.y = vNext.y;
+                    newBendPoints.remove(index + 1);
+                    newBendPoints.remove(index);
+                }
                 if (Math.abs(u.y - uPrev.y) < scale(SELECTION_PADDING)) {
                     v.y = uPrev.y;
                     newBendPoints.remove(index - 1);
                     newBendPoints.remove(index - 2);
-                } else if (Math.abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
-                    u.y = vNext.y;
-                    newBendPoints.remove(index + 1);
-                    newBendPoints.remove(index);
                 }
             } else {
                 u.x = v.x = eventPosition.x;
                 Point uPrev = index - 2 >= 0 ? newBendPoints.get(index - 2) : null;
                 Point vNext = index + 1 < newBendPoints.size() ? newBendPoints.get(index + 1) : null;
-                if (uPrev != null && Math.abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
-                    v.x = uPrev.x;
-                    newBendPoints.remove(index - 1);
-                    newBendPoints.remove(index - 2);
-                }
                 if (vNext != null && Math.abs(vNext.x - v.x) < scale(SELECTION_PADDING)) {
                     u.x = vNext.x;
                     newBendPoints.remove(index + 1);
                     newBendPoints.remove(index);
+                }
+                if (uPrev != null && Math.abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
+                    v.x = uPrev.x;
+                    newBendPoints.remove(index - 1);
+                    newBendPoints.remove(index - 2);
                 }
             }
 
             return new FBConnectionPath(
                     path.getSourcePosition(),
                     path.getTargetPosition(),
-                    path.getPathKind(),
-                    newBendPoints.get(0).x,
-                    newBendPoints.get(1).y,
-                    newBendPoints.get(newBendPoints.size() - 1).x,
                     newBendPoints
             );
         };
