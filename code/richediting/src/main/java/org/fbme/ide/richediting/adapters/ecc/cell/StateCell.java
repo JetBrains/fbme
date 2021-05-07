@@ -22,7 +22,7 @@ public class StateCell extends EditorCell_Property {
         super(editorContext, accessor, node);
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
         getStyle().set(RichEditorStyleAttributes.STATE, state);
-        setPadding(0.5, Measure.SPACES);
+        getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.05, Measure.SPACES));
     }
 
     public static StateCell createStateCell(EditorContext editorContext, SNode node, StateDeclaration state) {
@@ -52,11 +52,5 @@ public class StateCell extends EditorCell_Property {
         myX += dx;
         super.paintContent(graphics, settings);
         myX -= dx;
-    }
-
-    private void setPadding(double value, Measure measure) {
-        getStyle().set(StyleAttributes.PADDING_LEFT, new Padding(value, measure));
-        getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.1 * value, measure));
-        getStyle().set(StyleAttributes.PADDING_RIGHT, new Padding(value, measure));
     }
 }

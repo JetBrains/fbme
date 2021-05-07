@@ -16,20 +16,30 @@ public class ECTransitionController implements ConnectionController<ECTransition
     public static final float HOVER_SIZE = 0.2f;
 
     private final ECTransitionConditionCellHandle myHandle;
+    private final ECStateCellHandle mySourceHandle;
+    private final ECStateCellHandle myTargetHandle;
 
     private Color myHighlightColor;
 
-    public ECTransitionController(ECTransitionConditionCellHandle handle) {
+    public ECTransitionController(ECTransitionConditionCellHandle handle, ECStateCellHandle sourceHandle, ECStateCellHandle targetHandle) {
         myHandle = handle;
+        mySourceHandle = sourceHandle;
+        myTargetHandle = targetHandle;
     }
 
     @Override
     public Function<Point, ECTransitionPath> getEdgeTransformation(final ECTransitionPath path, final int x, final int y) {
         if (myHandle.getBounds(path.centre).contains(x, y)) {
             return p -> {
+                Rectangle sourceBound = mySourceHandle.getBounds();
+                Rectangle targetBound = myTargetHandle.getBounds();
                 Point centre = new Point(path.centre);
                 centre.translate(p.x - x, p.y - y);
-                return new ECTransitionPath(path.source, centre, path.target);
+                Point sp = new Point(sourceBound.x + sourceBound.width / 2, sourceBound.y + sourceBound.height / 2);
+                Point tp = new Point(targetBound.x + targetBound.width / 2, targetBound.y + targetBound.height / 2);
+                Point sourcePoint = ECTransitionPathSynchronizer.crossBound(centre, sp, sourceBound);
+                Point targetPoint = ECTransitionPathSynchronizer.crossBound(centre, tp, targetBound);
+                return new ECTransitionPath(sourcePoint, centre, targetPoint);
             };
         }
         return null;

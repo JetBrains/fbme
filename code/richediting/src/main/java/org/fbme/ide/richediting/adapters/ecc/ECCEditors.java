@@ -93,8 +93,8 @@ public class ECCEditors {
             DiagramFacility<StateDeclaration, StateDeclaration, StateTransition, Point> diagramFacility = new DiagramFacility<>(eccAdapter, portSettings, settingProvider);
             final ConnectionsFacility<StateDeclaration, StateDeclaration, StateTransition, ECTransitionCursor, ECTransitionPath> connectionsFacility =
                     new ConnectionsFacility<>(
-                            scene, TRANSITION_CONTROLLER_FACTORY, ECTransitionUtils.PATH_FACTORY, ECTransitionUtils.PATH_PAINTER,
-                            new ECTransitionPathSynchronizer(viewpoint), componentsLayout, componentsSelection, diagramFacility.getDiagramController(),
+                            scene, getTransitionControllerFactory(componentsFacility), ECTransitionUtils.PATH_FACTORY, ECTransitionUtils.PATH_PAINTER,
+                            new ECTransitionPathSynchronizer(viewpoint, componentsFacility), componentsLayout, componentsSelection, diagramFacility.getDiagramController(),
                             connectionsLayer, tracesLayer, focus
                     );
 
@@ -116,20 +116,34 @@ public class ECCEditors {
         });
     }
 
-    public static final ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> TRANSITION_CONTROLLER_FACTORY = (context, transition) -> {
-        final SNode transitionNode = ((PlatformElement) transition).getNode();
-        final EditorCell_Collection cell = RicheditingMpsBridge.createTransitionCell(context, transitionNode);
-        cell.setBig(true);
-        return new ECTransitionController(new ECTransitionConditionCellHandle() {
-            public EditorCell_Basic getCell() {
-                return cell;
-            }
+    public static Rectangle getBoundsFromDeclaration(StateDeclaration declaration, ComponentsFacility<StateDeclaration, Point> componentsFacility) {
+        Point ps = componentsFacility.getModelForm(declaration); // крайний левый угол
+        return componentsFacility.getController(declaration).getBounds(ps);
+    }
 
-            public Rectangle getBounds(Point position) {
-                int width = cell.getWidth();
-                int height = cell.getHeight();
-                return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
-            }
+    public static ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> getTransitionControllerFactory(ComponentsFacility<StateDeclaration, Point> componentsFacility) {
+
+        return ((context, transition) -> {
+            final SNode transitionNode = ((PlatformElement) transition).getNode();
+            final EditorCell_Collection cell = RicheditingMpsBridge.createTransitionCell(context, transitionNode);
+            cell.setBig(true);
+            StateDeclaration sourceDeclaration = transition.getSourceReference().getTarget();
+            StateDeclaration targetDeclaration = transition.getTargetReference().getTarget();
+
+            return new ECTransitionController(
+                    new ECTransitionConditionCellHandle() {
+                        public EditorCell_Basic getCell() {
+                            return cell;
+                        }
+
+                        public Rectangle getBounds(Point position) {
+                            int width = cell.getWidth();
+                            int height = cell.getHeight();
+                            return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
+                        }
+                    },
+                    () -> getBoundsFromDeclaration(sourceDeclaration, componentsFacility),
+                    () -> getBoundsFromDeclaration(targetDeclaration, componentsFacility));
         });
     };
 

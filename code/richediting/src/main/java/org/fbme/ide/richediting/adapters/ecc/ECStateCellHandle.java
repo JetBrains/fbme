@@ -7,9 +7,9 @@ import java.awt.*;
 
 public interface ECStateCellHandle {
 
-    EditorCell_Basic getCell();
+//    EditorCell_Basic getCell();
 
-    Rectangle getBounds(Point position);
+    Rectangle getBounds();
 
-    Style getStateTextStyle();
+//    Style getStateTextStyle();
 }
