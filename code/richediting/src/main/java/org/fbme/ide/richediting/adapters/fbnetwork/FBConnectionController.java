@@ -97,20 +97,27 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
         List<Point> bendPoints = path.getBendPoints();
         for (int i = 1; i < bendPoints.size(); i++) {
-            if (canPathSectionBeTransformed(ex, ey, bendPoints, i)) {
+            Point u = bendPoints.get(i - 1);
+            Point v = bendPoints.get(i);
+            boolean isHorizontal = i % 2 == 0;
+
+            if (hasIntersection(ex, ey, u, v, isHorizontal)) {
                 return getPathSectionTransformation(path, i);
             }
         }
         return null;
     }
 
-    private boolean canPathSectionBeTransformed(int ex, int ey, List<Point> bendPoints, int i) {
-        Point u = bendPoints.get(i - 1);
-        Point v = bendPoints.get(i);
-        boolean isHorizontal = i % 2 == 0;
+    private boolean hasIntersection(int ex, int ey, Point u, Point v, boolean isHorizontal) {
+        return isHorizontal ? hasHorizontalIntersection(ex, ey, u, v) : hasVerticalIntersection(ex, ey, u, v);
+    }
 
-        return (isHorizontal && (Math.abs(ey - u.y) < scale(SELECTION_PADDING) && (Math.min(u.x, v.x) < ex && ex < Math.max(u.x, v.x))))
-                || (!(isHorizontal) && (Math.abs(ex - u.x) < scale(SELECTION_PADDING) && (Math.min(u.y, v.y) < ey && ey < Math.max(u.y, v.y))));
+    private boolean hasVerticalIntersection(int ex, int ey, Point u, Point v) {
+        return Math.abs(ex - u.x) < scale(SELECTION_PADDING) && (Math.min(u.y, v.y) < ey && ey < Math.max(u.y, v.y));
+    }
+
+    private boolean hasHorizontalIntersection(int ex, int ey, Point u, Point v) {
+        return Math.abs(ey - u.y) < scale(SELECTION_PADDING) && (Math.min(u.x, v.x) < ex && ex < Math.max(u.x, v.x));
     }
 
     private Function<Point, FBConnectionPath> getPathSectionTransformation(FBConnectionPath path, int index) {
@@ -253,17 +260,26 @@ public class FBConnectionController implements ConnectionController<FBConnection
     public boolean isSelectableAt(FBConnectionPath path, int ex, int ey) {
         Point s = path.getSourcePosition();
         Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
 
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                return checkLineSelection(ex, ey, s.x, s.y, x1) || checkLineSelection(ey, ex, s.y, x1, t.y) || checkLineSelection(ex, ey, x1, t.y, t.x);
-            case FourAngles:
-                return checkLineSelection(ex, ey, s.x, s.y, x1) || checkLineSelection(ey, ex, s.y, x1, y) || checkLineSelection(ex, ey, x1, y, x2) || checkLineSelection(ey, ex, y, x2, t.y) || checkLineSelection(ex, ey, x2, t.y, t.x);
+        List<Point> bendPoints = path.getBendPoints();
+
+        if (bendPoints.isEmpty()) {
+            return hasHorizontalIntersection(ex, ey, s, t);
+        } else {
+            if (hasHorizontalIntersection(ex, ey, s, bendPoints.get(0))) {
+                return true;
+            }
+            for (int i = 1; i < bendPoints.size(); i++) {
+                Point u = bendPoints.get(i - 1);
+                Point v = bendPoints.get(i);
+                boolean isHorizontal = (i % 2) == 0;
+
+                if (hasIntersection(ex, ey, u, v, isHorizontal)) {
+                    return true;
+                }
+            }
+            return hasHorizontalIntersection(ex, ey, bendPoints.get(bendPoints.size() - 1), t);
         }
-        return false;
     }
 
     @Override
@@ -274,81 +290,42 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
         Point s = path.getSourcePosition();
         Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
 
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                if (checkLineSelection(ex, ey, s.x, s.y, x1)) {
-                    if (s.x + scale(ENDPOINT_HOVER_LENGTH) < x1) {
-                        return FBConnectionCursor.SOURCE_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.SOURCE_EDGE;
-                    }
-                } else if (checkLineSelection(ey, ex, s.y, x1, t.y)) {
-                    return FBConnectionCursor.X1_EDGE;
-                } else if (checkLineSelection(ex, ey, x1, t.y, t.x)) {
-                    if (t.x - scale(ENDPOINT_HOVER_LENGTH) > x1) {
-                        return FBConnectionCursor.TARGET_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.TARGET_EDGE;
-                    }
-                }
-            case FourAngles:
-                if (checkLineSelection(ex, ey, s.x, s.y, x1)) {
-                    if (s.x + scale(ENDPOINT_HOVER_LENGTH) < x1) {
-                        return FBConnectionCursor.SOURCE_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.SOURCE_EDGE;
-                    }
-                } else if (checkLineSelection(ey, ex, s.y, x1, y)) {
-                    return FBConnectionCursor.X1_EDGE;
-                } else if (checkLineSelection(ex, ey, x1, y, x2)) {
-                    return FBConnectionCursor.Y_EDGE;
-                } else if (checkLineSelection(ey, ex, y, x2, t.y)) {
-                    return FBConnectionCursor.X2_EDGE;
-                } else if (checkLineSelection(ex, ey, x2, t.y, t.x)) {
-                    if (t.x - scale(ENDPOINT_HOVER_LENGTH) > x2) {
-                        return FBConnectionCursor.TARGET_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.TARGET_EDGE;
-                    }
-                }
+        List<Point> bendPoints = path.getBendPoints();
+
+        if (onSourceHoverArea(ex, ey, s, t, bendPoints)) {
+            return FBConnectionCursor.SOURCE_ENDPOINT;
+        } else if (onTargetHoverArea(ex, ey, s, t, bendPoints)) {
+            return FBConnectionCursor.TARGET_ENDPOINT;
         }
         return null;
+    }
+
+    private boolean onTargetHoverArea(int ex, int ey, Point s, Point t, List<Point> bendPoints) {
+        return hasHorizontalIntersection(ex, ey, new Point(getTargetHover(s, t, bendPoints), t.y), t);
+    }
+
+    private boolean onSourceHoverArea(int ex, int ey, Point s, Point t, List<Point> bendPoints) {
+        return hasHorizontalIntersection(ex, ey, s, new Point(getSourceHover(s, t, bendPoints), s.y));
     }
 
     @Override
     public Rectangle getBounds(FBConnectionPath path) {
         Point s = path.getSourcePosition();
         Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
 
-        int xmin = 0;
-        int xmax = -1;
-        int ymin = 0;
-        int ymax = -1;
-        switch (path.getPathKind()) {
-            case Straight:
-                xmin = Math.min(s.x, t.x);
-                xmax = Math.max(s.x, t.x);
-                ymin = Math.min(s.y, t.y);
-                ymax = Math.max(s.y, t.y);
-                break;
-            case TwoAngles:
-                xmin = Math.min(Math.min(s.x, t.x), x1);
-                xmax = Math.max(Math.max(s.x, t.x), x1);
-                ymin = Math.min(s.y, t.y);
-                ymax = Math.max(s.y, t.y);
-                break;
-            case FourAngles:
-                xmin = Math.min(Math.min(s.x, t.x), Math.min(x1, x2));
-                xmax = Math.max(Math.max(s.x, t.x), Math.max(x1, x2));
-                ymin = Math.min(Math.min(s.y, t.y), y);
-                ymax = Math.max(Math.max(s.y, t.y), y);
+        int xmin = Math.min(s.x, t.x);
+        int xmax = Math.max(s.x, t.x);
+        int ymin = Math.min(s.y, t.y);
+        int ymax = Math.max(s.y, t.y);
+
+        List<Point> bendPoints = path.getBendPoints();
+
+        for (Point bendPoint : bendPoints) {
+            xmin = Math.min(xmin, bendPoint.x);
+            xmax = Math.max(xmax, bendPoint.x);
+            ymin = Math.min(ymin, bendPoint.y);
+            ymax = Math.max(ymax, bendPoint.y);
         }
         return new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
     }
@@ -498,6 +475,14 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
     private int scale(int size) {
         return size * getFontSize() / EditorSettings.getInstance().getFontSize();
+    }
+
+    private int getTargetHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(bendPoints.size() - 1).x);
+    }
+
+    private int getSourceHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.min(s.x + scale(ENDPOINT_HOVER_LENGTH), bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(0).x);
     }
 
     private static final class CONCEPTS {

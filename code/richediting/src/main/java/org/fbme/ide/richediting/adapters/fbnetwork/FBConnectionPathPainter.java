@@ -136,12 +136,20 @@ public class FBConnectionPathPainter {
         Graphics hoverGraphics = graphics.create();
         hoverGraphics.setColor(MPSColors.YELLOW.darker());
         if (myCursor == FBConnectionCursor.SOURCE_ENDPOINT) {
-            int xHover = Math.min(s.x + myHoverLength, kind == ConnectionPath.Kind.Straight ? (s.x + t.x) / 2 : bendPoints.get(0).x);
+            int xHover = getSourceHover(s, t, bendPoints);
             hoverGraphics.drawLine(s.x, s.y, xHover, s.y);
         }
         if (myCursor == FBConnectionCursor.TARGET_ENDPOINT) {
-            int xHover = Math.max(t.x - myHoverLength, kind == ConnectionPath.Kind.Straight ? (s.x + t.x) / 2 : bendPoints.get(bendPoints.size() - 1).x);
+            int xHover = getTargetHover(s, t, bendPoints);
             hoverGraphics.drawLine(t.x, t.y, xHover, t.y);
         }
+    }
+
+    private int getSourceHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.min(s.x + myHoverLength, bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(0).x);
+    }
+
+    private int getTargetHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.max(t.x - myHoverLength, bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(bendPoints.size() - 1).x);
     }
 }
