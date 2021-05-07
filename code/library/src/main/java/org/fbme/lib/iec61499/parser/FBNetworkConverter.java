@@ -153,7 +153,7 @@ public class FBNetworkConverter extends ConverterBase {
     Attribute dx2Attriubte = connecitonElement.getAttribute("dx2");
     try {
       if (dx1Attriubte != null && dyAttriubte != null && dx2Attriubte != null) {
-        return new ConnectionPath((int) dx1Attriubte.getFloatValue(), (int) dyAttriubte.getFloatValue(), (int) dx1Attriubte.getFloatValue());
+        return new ConnectionPath((int) dx1Attriubte.getFloatValue(), (int) dyAttriubte.getFloatValue(), (int) dx2Attriubte.getFloatValue());
       }
       if (dx1Attriubte != null) {
         return new ConnectionPath((int) dx1Attriubte.getFloatValue());
