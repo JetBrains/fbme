@@ -229,12 +229,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return false;
         }
-
-        Point s = path.getSourcePosition();
-        int x1 = path.getX1();
-
-        return checkLineSelection(ex, ey, s.x, s.y, Math.max(s.x, Math.min(s.x + scale(ENDPOINT_HOVER_LENGTH), x1)));
-
+        return isOnSourceHoverArea(ex, ey, path);
     }
 
     @Override
@@ -242,18 +237,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return false;
         }
-
-        Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int x2 = path.getX2();
-
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                return checkLineSelection(ex, ey, t.x, t.y, Math.min(t.x, Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), x1)));
-            case FourAngles:
-                return checkLineSelection(ex, ey, t.x, t.y, Math.min(t.x, Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), x2)));
-        }
-        return false;
+        return isOnTargetHoverArea(ex, ey, path);
     }
 
     @Nullable
@@ -262,7 +246,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return null;
         }
-
         return getConnectionSourceTransformation(path);
     }
 
@@ -272,7 +255,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return null;
         }
-
         return getConnectionTargetTransformation(path);
     }
 
@@ -283,23 +265,21 @@ public class FBConnectionController implements ConnectionController<FBConnection
             return null;
         }
 
+        List<Point> bendPoints = path.getBendPoints();
+
         return (sourcePosition, targetPosition) -> {
             Point originalSourcePosition = path.getSourcePosition();
             int dx = sourcePosition.x - originalSourcePosition.x;
             int dy = sourcePosition.y - originalSourcePosition.y;
-            return new FBConnectionPath(sourcePosition, targetPosition, path.getPathKind(), path.getX1() + dx, path.getY() + dy, path.getX2() + dx);
-        };
-    }
 
-    private boolean checkLineSelection(int sx, int sy, int lx1, int ly, int lx2) {
-        if (Math.abs(sy - ly) < scale(SELECTION_PADDING)) {
-            if (lx1 < lx2) {
-                return lx1 < sx && sx < lx2;
-            } else {
-                return lx1 > sx && sx > lx2;
+            List<Point> newBendPoints = new ArrayList<>();
+
+            for (Point bendPoint : bendPoints) {
+                newBendPoints.add(new Point(bendPoint.x + dx, bendPoint.y + dy));
             }
-        }
-        return false;
+
+            return new FBConnectionPath(sourcePosition, targetPosition, newBendPoints);
+        };
     }
 
     @Override
@@ -334,24 +314,29 @@ public class FBConnectionController implements ConnectionController<FBConnection
             return null;
         }
 
-        Point s = path.getSourcePosition();
-        Point t = path.getTargetPosition();
-
-        List<Point> bendPoints = path.getBendPoints();
-
-        if (onSourceHoverArea(ex, ey, s, t, bendPoints)) {
+        if (isOnSourceHoverArea(ex, ey, path)) {
             return FBConnectionCursor.SOURCE_ENDPOINT;
-        } else if (onTargetHoverArea(ex, ey, s, t, bendPoints)) {
+        } else if (isOnTargetHoverArea(ex, ey, path)) {
             return FBConnectionCursor.TARGET_ENDPOINT;
         }
         return null;
     }
 
-    private boolean onTargetHoverArea(int ex, int ey, Point s, Point t, List<Point> bendPoints) {
+    private boolean isOnTargetHoverArea(int ex, int ey, FBConnectionPath path) {
+        Point s = path.getSourcePosition();
+        Point t = path.getTargetPosition();
+
+        List<Point> bendPoints = path.getBendPoints();
+
         return hasHorizontalIntersection(ex, ey, new Point(getTargetHover(s, t, bendPoints), t.y), t);
     }
 
-    private boolean onSourceHoverArea(int ex, int ey, Point s, Point t, List<Point> bendPoints) {
+    private boolean isOnSourceHoverArea(int ex, int ey, FBConnectionPath path) {
+        Point s = path.getSourcePosition();
+        Point t = path.getTargetPosition();
+
+        List<Point> bendPoints = path.getBendPoints();
+
         return hasHorizontalIntersection(ex, ey, s, new Point(getSourceHover(s, t, bendPoints), s.y));
     }
 
@@ -433,6 +418,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
                 case FourAngles:
+                case MoreThanFour:
                     if (ntx >= x1 + t.x - x2) {
                         kind = ConnectionPath.Kind.TwoAngles;
                         if (t.x - x2 != x1 - s.x) {
@@ -500,6 +486,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
                 case FourAngles:
+                case MoreThanFour:
                     if (nsx <= x2 + s.x - x1) {
                         kind = ConnectionPath.Kind.TwoAngles;
                         if (t.x - s.x != x2 - x1) {
