@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="TestTransition">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="IN"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="OUT"></Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT1" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars></InternalVars>
+    <ECC>
+      <ECState Name="SOURCE" x="2054.0" y="1437.0"></ECState>
+      <ECState Name="TARGET" x="2816.0" y="1066.0"></ECState>
+      <ECTransition Source="SOURCE" Destination="TARGET" Condition="1" x="2475.0" y="1075.0" />
+    </ECC>
+  </BasicFB>
+</FBType>

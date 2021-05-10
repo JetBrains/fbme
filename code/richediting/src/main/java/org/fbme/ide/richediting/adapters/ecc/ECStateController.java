@@ -73,7 +73,7 @@ public class ECStateController implements ComponentController<Point> {
         }
 
         myCellCollection.setWidth(width + 7);
-        myCellCollection.setHeight(height);
+        myCellCollection.setHeight(height + 7);
 
         myStateNameCell.setWidth(width + ActionCell.ACTIVE_WEIGHT_PADDING);
 
@@ -138,7 +138,8 @@ public class ECStateController implements ComponentController<Point> {
 
     @Override
     public void paintTrace(Graphics g, Point position) {
-        // do nothing
+        ((Graphics2D) g).setStroke(new BasicStroke(1.f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 3, new float[]{3}, 3));
+        ((Graphics2D) g).draw(getBounds(position));
     }
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {

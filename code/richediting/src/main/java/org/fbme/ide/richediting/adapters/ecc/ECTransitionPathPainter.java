@@ -57,7 +57,21 @@ public class ECTransitionPathPainter {
 
                 double cx2 = (c.x + s.x) / 2.0 + 30;
                 double cy2 = (c.y + s.y) / 2.0 + 30;
+                QuadCurve2D curve = ECTransitionUtils.fromPath(c, t, cx2, cy2);
                 g.draw(ECTransitionUtils.fromPath(s, c, cx2, cy2));
+
+                AffineTransform sat = new AffineTransform();
+                double parameter = 0.6;
+                Point arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                parameter += 0.01;
+                Point arrowPoint2 = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                while (findDistance(arrowPoint, arrowPoint2) < 10) {
+                    parameter += 0.01;
+                    arrowPoint2 = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+                sat.translate(arrowPoint.x, arrowPoint.y);
+                sat.rotate(arrowPoint2.x - arrowPoint.x, arrowPoint2.y - arrowPoint.y);
+                ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
             } else {
                 QuadCurve2D curve = ECTransitionUtils.fromPath(s, t, c.x, c.y);
                 g.draw(curve);
@@ -69,10 +83,20 @@ public class ECTransitionPathPainter {
                 }
 
                 AffineTransform sat = new AffineTransform();
-                Point arrowPoint = ECTransitionUtils.getPointFromParameter(0.98, curve);
+                double parameter = 0.96;
+                Point arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                while (parameter < 0.995 && findDistance(arrowPoint, t) > 30) {
+                    parameter += 0.005;
+                    arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+                while (parameter > 0.5 && findDistance(arrowPoint, t) < 15) {
+                    parameter -= 0.01;
+                    arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+
                 sat.translate(arrowPoint.x, arrowPoint.y);
                 sat.rotate(t.x - arrowPoint.x, t.y - arrowPoint.y);
-                ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
+                ((Graphics2D) graphics).fill(createArrow(findDistance(arrowPoint, t)).createTransformedShape(sat));
 
                 // или тут можно так:
 //                drawEdgesFromCircle(graphics, g, s, c, t);
@@ -84,9 +108,18 @@ public class ECTransitionPathPainter {
 
     static {
         ARROW_SHAPE.moveTo(0, -5);
-        ARROW_SHAPE.lineTo(10, 0);
+        ARROW_SHAPE.lineTo(15, 0);
         ARROW_SHAPE.lineTo(0, 5);
         ARROW_SHAPE.closePath();
+    }
+
+    private static GeneralPath createArrow(double s) {
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(0, -5);
+        shape.lineTo(s, 0);
+        shape.lineTo(0, 5);
+        shape.closePath();
+        return shape;
     }
 
     private void drawEdgesFromCircle(Graphics graphics, Graphics2D g, Point s, Point c, Point t) {
@@ -96,7 +129,7 @@ public class ECTransitionPathPainter {
         }
 
         Point center = findCenter(s, c, t);
-        int r = findDistance(center, s);
+        int r = (int) findDistance(center, s);
         double startAng = Math.toDegrees(-Math.atan2(s.y - center.y, s.x - center.x));
         if (startAng < 0) {
             startAng += 360;
@@ -187,7 +220,7 @@ public class ECTransitionPathPainter {
         return new Point((int) new_x, (int) (k1 * new_x + b1));
     }
 
-    private int findDistance(Point x1, Point x2) {
-        return (int) Math.sqrt((x1.x - x2.x) * (x1.x - x2.x) + (x1.y - x2.y) * (x1.y - x2.y));
+    private double findDistance(Point x1, Point x2) {
+        return Math.sqrt((x1.x - x2.x) * (x1.x - x2.x) + (x1.y - x2.y) * (x1.y - x2.y));
     }
 }
