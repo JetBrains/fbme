@@ -30,17 +30,19 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
         if (path instanceof LongConnectionPath) {
             LongConnectionPath longPath = (LongConnectionPath) path;
 
-            List<Point> editorBendPoints = longPath.getBendPoints().stream().map(point -> {
-                int x = myViewpoint.translateToEditorX((int) (point.x * myScale));
-                int y = myViewpoint.translateToEditorY((int) (point.y * myScale));
-                return new Point(x, y);
-            }).collect(Collectors.toList());
+            return (sourcePosition, targetPosition) -> {
+                List<Point> editorBendPoints = longPath.getBendPoints().stream().map(point -> {
+                    int x = myViewpoint.translateToEditorX((int) (point.x * myScale));
+                    int y = myViewpoint.translateToEditorY((int) (point.y * myScale));
+                    return new Point(x, y);
+                }).collect(Collectors.toList());
 
-            return (sourcePosition, targetPosition) -> new FBConnectionPath(
-                    sourcePosition,
-                    targetPosition,
-                    editorBendPoints
-            );
+                return new FBConnectionPath(
+                        sourcePosition,
+                        targetPosition,
+                        editorBendPoints
+                );
+            };
         }
 
         final int dx1 = (int) (myScale * path.getDX1());
