@@ -78,36 +78,6 @@ public class ECTransitionPathPainter {
 //                drawEdgesFromCircle(graphics, g, s, c, t);
             }
         }
-
-
-
-
-
-//        graphics.drawLine(s.x, s.y, c.x, c.y);
-//        graphics.drawLine(c.x, c.y, t.x, t.y);
-//
-//        Graphics hoverGraphics = graphics.create();
-//        hoverGraphics.setColor(MPSColors.YELLOW.darker());
-//        if (myCursor == ECTransitionCursor.SOURCE) {
-//            QuadCurve2D curve = new QuadCurve2D.Double(s.x, s.y, x, y, t.x, t.y);
-//            hoverGraphics.drawLine(s.x, s.y, s.x + (c.x - s.x) / 2, s.y + (c.y - s.y) / 2);
-//        }
-//        if (myCursor == ECTransitionCursor.TARGET) {
-//            hoverGraphics.drawLine(t.x, t.y, t.x + (c.x - t.x) / 2, t.y + (c.y - t.y) / 2);
-//        }
-//
-//        if (drawArrow) {
-//            AffineTransform sat = new AffineTransform();
-//            sat.translate((s.x + c.x) / 2, (s.y + c.y) / 2);
-//            sat.rotate(c.x - s.x, c.y - s.y);
-//            ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
-//
-//            AffineTransform tat = new AffineTransform();
-//            tat.translate((t.x + c.x) / 2, (t.y + c.y) / 2);
-//            tat.rotate(t.x - c.x, t.y - c.y);
-//            ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(tat));
-//        }
-
     }
 
     private static final GeneralPath ARROW_SHAPE = new GeneralPath();

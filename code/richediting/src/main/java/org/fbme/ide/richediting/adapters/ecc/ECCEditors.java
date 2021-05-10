@@ -116,11 +116,6 @@ public class ECCEditors {
         });
     }
 
-    public static Rectangle getBoundsFromDeclaration(StateDeclaration declaration, ComponentsFacility<StateDeclaration, Point> componentsFacility) {
-        Point ps = componentsFacility.getModelForm(declaration); // крайний левый угол
-        return componentsFacility.getController(declaration).getBounds(ps);
-    }
-
     public static ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> getTransitionControllerFactory(ComponentsFacility<StateDeclaration, Point> componentsFacility) {
 
         return ((context, transition) -> {
@@ -142,8 +137,8 @@ public class ECCEditors {
                             return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
                         }
                     },
-                    () -> getBoundsFromDeclaration(sourceDeclaration, componentsFacility),
-                    () -> getBoundsFromDeclaration(targetDeclaration, componentsFacility));
+                    () -> ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, componentsFacility),
+                    () -> ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, componentsFacility));
         });
     };
 
