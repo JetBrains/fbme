@@ -13,11 +13,11 @@ public class ActionBlock {
         this.myAction = action;
     }
 
-    public ActionCell getAlgorithm() {
+    public AlgorithmCell getAlgorithm() {
         return myAlgorithm;
     }
 
-    public ActionCell getOutput() {
+    public OutputCell getOutput() {
         return myOutput;
     }
 

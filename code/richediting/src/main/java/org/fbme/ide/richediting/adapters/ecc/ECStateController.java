@@ -19,13 +19,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.function.Function;
 
 public class ECStateController implements ComponentController<Point> {
+    public static final int PADDING = 2;
     private static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
     private final EditorContext myContext;
     private final StateDeclaration myState;
@@ -62,14 +61,13 @@ public class ECStateController implements ComponentController<Point> {
         }
         myStateNameCell.relayout();
 
-        int padding = 2;
         int width = myStateNameCell.getWidth();
         int height = getLineSize();
 
         for (ActionBlock block: myStateActionBlocks) {
             block.relayout();
             width = block.newWidth(width);
-            height += block.getHeight(padding);
+            height += block.getHeight(PADDING);
         }
 
         myCellCollection.setWidth(width + 7);
@@ -84,10 +82,10 @@ public class ECStateController implements ComponentController<Point> {
         int dx = myCellCollection.getX() + width / 2 - myStateNameCell.getWidth() / 2;
         myStateNameCell.moveTo(dx, myCellCollection.getY());
 
-        int currentHeight = myStateNameCell.getHeight() + padding;
+        int currentHeight = myStateNameCell.getHeight() + PADDING;
         for (ActionBlock ActionBlock : myStateActionBlocks) {
             int dy = myCellCollection.getY();
-            currentHeight = ActionBlock.moveTo(dx, dy, padding, currentHeight);
+            currentHeight = ActionBlock.moveTo(dx, dy, PADDING, currentHeight);
         }
     }
 
@@ -117,6 +115,20 @@ public class ECStateController implements ComponentController<Point> {
     public Point translateForm(Point originalPosition, int dx, int dy) {
         Point point = new Point(originalPosition);
         point.translate(dx, dy);
+        for (ActionBlock it : myStateActionBlocks) {
+            AlgorithmCell algo = it.getAlgorithm();
+            if (algo == null) {
+                continue;
+            }
+            EditorCell_Collection body = algo.getAlgorithmBody();
+            if (body == null) {
+                continue;
+            }
+            for (EditorCell cell: body.getCells()) {
+                Point shiftPoint = algo.getAlgorithmBodyPoint();
+                cell.moveTo(shiftPoint.x, shiftPoint.y);
+            }
+        }
         return point;
     }
 

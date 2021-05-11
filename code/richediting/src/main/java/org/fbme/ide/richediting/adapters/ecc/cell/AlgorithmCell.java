@@ -118,6 +118,14 @@ public class AlgorithmCell extends ActionCell {
         }
     }
 
+    public Point getAlgorithmBodyPoint() {
+        return new Point(getX() + LEFT_ALGORITHM_BODY_PADDING, getY() + getHeight());
+    }
+
+    public EditorCell_Collection getAlgorithmBody() {
+        return myAlgorithmBody;
+    }
+
     @Override
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         if (myAlgorithmBody != null && isOpenBody) {
