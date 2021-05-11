@@ -37,7 +37,7 @@
       <ECState Name="GO_DOWN2" x="2291.0" y="3100.0">
         <ECAction Output="DOWN" />
       </ECState>
-      <ECState Name="RELEASE" x="650.0" y="2808.0">
+      <ECState Name="RELEASE" x="716.0" y="2741.0">
         <ECAction Output="VAC_OFF" />
         <ECAction Output="UP" />
       </ECState>
@@ -54,14 +54,14 @@
       <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="BOTTOM" x="3591.0" y="354.0" />
       <ECTransition Source="GRAB" Destination="EXTEND" Condition="TOP" x="4275.0" y="1516.0" />
       <ECTransition Source="EXTEND" Destination="GO_DOWN2" Condition="EXTENDED" x="3587.0" y="3050.0" />
-      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1725.0" y="3237.0" />
-      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="441.0" y="2387.0" />
+      <ECTransition Source="GO_DOWN2" Destination="RELEASE" Condition="BOTTOM" x="1725.0" y="3233.0" />
+      <ECTransition Source="RELEASE" Destination="RETRACT" Condition="TOP" x="437.0" y="2383.0" />
       <ECTransition Source="RETRACT" Destination="START" Condition="1" x="575.0" y="962.0" />
       <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="2725.0" y="929.0" />
       <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="3754.0" y="1129.0" />
       <ECTransition Source="EXTEND" Destination="RESET" Condition="RESET" x="3550.0" y="1916.0" />
       <ECTransition Source="GO_DOWN2" Destination="RESET" Condition="RESET" x="2683.0" y="2554.0" />
-      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1737.0" y="2079.0" />
+      <ECTransition Source="RELEASE" Destination="RESET" Condition="RESET" x="1733.0" y="2075.0" />
       <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="1508.0" y="1608.0" />
       <ECTransition Source="RESET" Destination="START" Condition="1" x="1591.0" y="1062.0" />
     </ECC>

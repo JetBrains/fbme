@@ -8,14 +8,20 @@ import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.lib.common.CompositeReference;
+import org.fbme.lib.common.Reference;
+import org.fbme.lib.common.Role;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.PortPath;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.scene.SceneStateKey;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
@@ -55,10 +61,6 @@ public class ECStateController implements ComponentController<Point> {
     }
 
     public void relayout() {
-        if (myCellCollection.getStyle().get(RichEditorStyleAttributes.DELETED_STATE) != null) {
-            deleteActionFromList(myCellCollection.getStyle().get(RichEditorStyleAttributes.DELETED_STATE));
-            myCellCollection.getStyle().set(RichEditorStyleAttributes.DELETED_STATE, null);
-        }
         myStateNameCell.relayout();
 
         int width = myStateNameCell.getWidth();
@@ -147,6 +149,40 @@ public class ECStateController implements ComponentController<Point> {
     public void updateCellSelection(boolean selected) {
         // do nothing
     }
+
+    public void removeAction(StateAction action) {
+        AlgorithmCell deleteAlgo = null;
+        EditorCell deleteBody = null;
+        OutputCell deleteOutput = null;
+        ActionBlock deleteBlock = null;
+        for (ActionBlock block: myStateActionBlocks) {
+            if (block.getAction() == action) {
+                deleteBlock = block;
+                deleteAlgo = block.getAlgorithm();
+                if (deleteAlgo != null) {
+                    deleteBody = deleteAlgo.getAlgorithmBody();
+                }
+                deleteOutput = block.getOutput();
+                break;
+            }
+        }
+        if (deleteBlock == null) return;
+        myStateActionBlocks.remove(deleteBlock);
+        if (deleteAlgo != null) {
+            myCellCollection.removeCell(deleteAlgo);
+        }
+        if (deleteBody != null) {
+            myCellCollection.removeCell(deleteBody);
+        }
+        if (deleteOutput != null) {
+            myCellCollection.removeCell(deleteOutput);
+        }
+    }
+
+//    public void addNewAction() {
+////        StateAction newStateAction = new StateActionByNode();
+//        myState.getActions().add();
+//    }
 
     @Override
     public void paintTrace(Graphics g, Point position) {

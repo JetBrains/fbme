@@ -21,7 +21,6 @@ public class StateCell extends EditorCell_Property {
     public StateCell(EditorContext editorContext, ModelAccessor accessor, SNode node, StateDeclaration state) {
         super(editorContext, accessor, node);
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
-        getStyle().set(RichEditorStyleAttributes.STATE, state);
         getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.05, Measure.SPACES));
     }
 

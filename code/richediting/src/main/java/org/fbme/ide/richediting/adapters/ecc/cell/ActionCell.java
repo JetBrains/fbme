@@ -42,7 +42,6 @@ public abstract class ActionCell extends EditorCell_Basic {
         backgroundColor = color;
         myNameText = new TextLine("", getStyle(), false);
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
-        getStyle().set(RichEditorStyleAttributes.STATE, state);
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
         relayoutImpl();
     }

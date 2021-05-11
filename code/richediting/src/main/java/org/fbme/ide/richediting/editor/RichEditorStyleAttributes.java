@@ -44,8 +44,6 @@ public class RichEditorStyleAttributes {
         OUTPUTS.register();
         ALL_ALGORITHMS.register();
         ALL_OUTPUTS.register();
-        STATE.register();
         STATE_COLLECTION.register();
-        DELETED_STATE.register();
     }
 }
