@@ -40,8 +40,11 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
         }
         if (component instanceof InterfaceEndpointView) {
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
-            final int x = (int) (scale * interfaceEndpoint.getX());
-            final int y = (int) (scale * interfaceEndpoint.getY());
+            final Point fbOffset = expandedComponentsController.getOffsetFor(interfaceEndpoint);
+            final int dx = (fbOffset != null ? fbOffset.x : 0);
+            final int dy = (fbOffset != null ? fbOffset.y : 0);
+            final int x = (int) (scale * interfaceEndpoint.getX()) + dx;
+            final int y = (int) (scale * interfaceEndpoint.getY()) + dy;
             return () -> new Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y));
         }
         throw new IllegalArgumentException("unknown network component");
@@ -62,8 +65,11 @@ public class FBNetworkComponentSynchronizer implements ComponentSynchronizer<Net
         }
         if (component instanceof InterfaceEndpointView) {
             InterfaceEndpointView interfaceEndpoint = (InterfaceEndpointView) component;
-            final int x = (int) (viewpoint.translateFromEditorX(position.x) / scale);
-            final int y = (int) (viewpoint.translateFromEditorY(position.y) / scale);
+            final Point fbOffset = expandedComponentsController.getOffsetFor(interfaceEndpoint);
+            final int dx = (fbOffset != null ? fbOffset.x : 0);
+            final int dy = (fbOffset != null ? fbOffset.y : 0);
+            final int x = (int) ((viewpoint.translateFromEditorX(position.x) - dx) / scale);
+            final int y = (int) ((viewpoint.translateFromEditorY(position.y) - dy) / scale);
             interfaceEndpoint.setX(x);
             interfaceEndpoint.setY(y);
             return;
