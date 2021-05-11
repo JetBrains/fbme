@@ -8,7 +8,8 @@ plugins {
 dependencies {
     antlr("org.antlr:antlr4:4.5")
     implementation("org.jetbrains:annotations:19.0.0")
-    implementation("org.jdom:jdom:1.1.3")
+    // TODO use real JDOM and somehow bridge it in the intellij platform environment?
+    implementation("org.jetbrains.intellij.deps:jdom:2.0.6")
 }
 
 mps {

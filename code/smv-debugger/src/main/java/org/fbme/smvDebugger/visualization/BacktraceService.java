@@ -8,6 +8,8 @@ import jetbrains.mps.project.MPSProject;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
 import java.util.List;
 
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase;
+import org.fbme.lib.iec61499.fbnetwork.PortPath;
 import org.fbme.lib.st.expressions.VariableReference;
 import org.fbme.smvDebugger.model.SystemItemValue;
 import org.fbme.smvDebugger.model.SystemItem;
@@ -46,7 +48,7 @@ public class BacktraceService {
       case DATA_PORT:
         backtraceData(item.getFbName(), item.getItemName());
       case ECC:
-        backtraceEccState(item.getItemName(), itemValue.getValue());
+        backtraceEccState(item.getFbName(), item.getItemName());
     }
 
     final Set<String> relatedItemSimpleNames = new HashSet<>();
@@ -122,14 +124,17 @@ public class BacktraceService {
       final List<StateTransition> transitions = curFb.getEcc().getTransitions();
       transitions.stream().filter(transition -> Objects.equals(transition.getTargetReference().getTarget().getName(), state)).forEach(transition -> {
         final ECTransitionCondition condition = transition.getCondition();
-        final String fbName = condition.getEventReference().getTarget().getFunctionBlock().getName();
-        final String eventName = condition.getEventReference().getTarget().getPortTarget().getName();
-        final String fullName = fbName + "." + eventName;
-        if (!(visited.contains(fullName))) {
-          visited.add(fullName);
-          graph.putIfAbsent(fullName, new HashSet<>());
-          graph.get(fullName).add(curFbName + "." + state);
-          backtraceEvent(fbName, eventName);
+        PortPath<EventDeclaration> target = condition.getEventReference().getTarget();
+        if (target != null) {
+          FunctionBlockDeclarationBase functionBlock = target.getFunctionBlock();
+          final String eventName = target.getPortTarget().getName();
+          final String fullName = functionBlock == null ? eventName : functionBlock.getName() + "." + eventName;
+          if (!(visited.contains(fullName))) {
+            visited.add(fullName);
+            graph.putIfAbsent(fullName, new HashSet<>());
+            graph.get(fullName).add(curFbName + "." + state);
+            backtraceEvent(curFbName, fullName);
+          }
         }
       });
     });

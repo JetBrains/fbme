@@ -9,6 +9,7 @@
       <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/language/buildsolution/org.fbme.language.build.msd" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.attributes/org.fbme.ide.attributes.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.language" />

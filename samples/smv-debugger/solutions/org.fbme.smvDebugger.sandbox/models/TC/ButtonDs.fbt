@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<FBType Name="ButtonDs">
+  <Identification Standard="61499-2" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="LightOn" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="LightOn" />
+      </Event>
+      <Event Name="NDT"></Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="Pressed" />
+      </Event>
+      <Event Name="CHG">
+        <With Var="Pressed" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LightOn" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Pressed" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars></InternalVars>
+    <ECC>
+      <ECState Name="START" x="633.0" y="99.0"></ECState>
+      <ECState Name="INIT" x="1606.0" y="453.0">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="OFF" x="1626.0" y="1106.0">
+        <ECAction Algorithm="aPRESS" Output="CHG" />
+      </ECState>
+      <ECState Name="PRESSED" x="1666.0" y="1480.0">
+        <ECAction Algorithm="aPRESS" Output="CHG" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1133.0" y="313.0" />
+      <ECTransition Source="INIT" Destination="OFF" Condition="REQ" x="1619.0" y="786.0" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="Pressed := FALSE;
+&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="aOFF">
+      <ST Text="Pressed := FALSE;
+&#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="aPRESS">
+      <ST Text="Pressed := TRUE;
+&#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
