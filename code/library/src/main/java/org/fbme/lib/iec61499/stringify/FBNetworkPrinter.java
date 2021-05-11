@@ -1,10 +1,7 @@
 package org.fbme.lib.iec61499.stringify;
 
 
-import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
-import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
-import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.*;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +24,13 @@ public class FBNetworkPrinter<NetworkT extends FBNetwork> extends PrinterElement
         addNullableContent(element, printDataConnections());
         addNullableContent(element, printEventConnections());
         addNullableContent(element, printAdapterConnections());
+        printEndpointCoordinates(element);
+    }
+
+    private void printEndpointCoordinates(Element element) {
+        for (EndpointCoordinate endpointCoordinate : myElement.getEndpointCoordinates()) {
+            element.addContent(printEndpointCoordinate(endpointCoordinate));
+        }
     }
 
     private void printFunctionBlocks(Element element) {
@@ -83,6 +87,14 @@ public class FBNetworkPrinter<NetworkT extends FBNetwork> extends PrinterElement
             element.setAttribute("x", "" + myElement.getX());
             element.setAttribute("y", "" + myElement.getY());
         }
+    }
+
+    private Element printEndpointCoordinate(EndpointCoordinate endpointCoordinate) {
+        Element element =  new Element("EndpointCoordinate");
+        element.setAttribute("Name", endpointCoordinate.getPortReference().getPresentation());
+        element.setAttribute("x", "" + endpointCoordinate.getX());
+        element.setAttribute("y", "" + endpointCoordinate.getY());
+        return element;
     }
 
     private Element printConnection(FBNetworkConnection connection) {

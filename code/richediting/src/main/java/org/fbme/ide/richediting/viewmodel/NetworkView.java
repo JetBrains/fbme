@@ -86,26 +86,26 @@ public class NetworkView {
 
         for (int i = 0; i < contextEventSources.size(); i++) {
             EventDeclaration eventDeclaration = contextEventSources.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(i, true));
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, true));
             addInterfaceEndpoint(network, endpointCoordinate, i, EntryKind.EVENT, true, eventDeclaration);
         }
         List<EventDeclaration> contextEventDestinations = network.getContextEventDestinations();
         for (int i = 0; i < contextEventDestinations.size(); i++) {
             EventDeclaration eventDeclaration = contextEventDestinations.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(i, false));
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(eventDeclaration.getName(), createDefaultEndpointCoordinate(i, false));
             addInterfaceEndpoint(network, endpointCoordinate, i, EntryKind.EVENT, false, eventDeclaration);
         }
         int events = Math.max(contextEventSources.size(), contextEventDestinations.size());
         List<ParameterDeclaration> contextDataSources = network.getContextDataSources();
         for (int i = 0; i < contextDataSources.size(); i++) {
             ParameterDeclaration parameterDeclaration = contextDataSources.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(events + i + 2, true));
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, true));
             addInterfaceEndpoint(network, endpointCoordinate, events + i + 2, EntryKind.DATA, true, parameterDeclaration);
         }
         List<ParameterDeclaration> contextDataDestinations = network.getContextDataDestinations();
         for (int i = 0; i < contextDataDestinations.size(); i++) {
             ParameterDeclaration parameterDeclaration = contextDataDestinations.get(i);
-            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getIdentifier().toString(), createDefaultEndpointCoordinate(events + i + 2, false));
+            EndpointCoordinate endpointCoordinate = endpointCoordinateMap.getOrDefault(parameterDeclaration.getName(), createDefaultEndpointCoordinate(events + i + 2, false));
             addInterfaceEndpoint(network, endpointCoordinate, events + i + 2, EntryKind.DATA, false, parameterDeclaration);
         }
     }
