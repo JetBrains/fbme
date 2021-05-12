@@ -8,6 +8,7 @@ import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.lib.common.Declaration;
 import org.fbme.lib.common.Element;
 import org.fbme.lib.common.StringIdentifier;
 import org.fbme.lib.iec61499.IEC61499Factory;
@@ -29,6 +30,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ECStateController implements ComponentController<Point> {
     public static final int PADDING = 2;
@@ -199,15 +201,27 @@ public class ECStateController implements ComponentController<Point> {
     }
 
     public static void addNewAlgorithm(EditorCell_Collection collection, StateAction action) {
+        final String prefixName = "NewAlgorithm";
         IEC61499Factory factory = collection.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
-        AlgorithmDeclaration algorithmDeclaration = factory.createAlgorithmDeclaration(new StringIdentifier("New Algorithm"));
-        algorithmDeclaration.setName("New Algorithm");
+        List<AlgorithmDeclaration> allAlgorithms = collection.getStyle().get(RichEditorStyleAttributes.ALL_ALGORITHMS);
+
+        List<String> allAlgorithmNames = allAlgorithms.stream().map(Declaration::getName).collect(Collectors.toList());
+        int number = allAlgorithmNames.stream()
+                .filter(it -> it.startsWith(prefixName) && (it.length() > prefixName.length()))
+                .map(it -> it.substring(prefixName.length()))
+                .filter(it -> it.matches("^[0-9]+$"))
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(0);
+
+        String algorithmName = prefixName + (number + 1);
+
+        AlgorithmDeclaration algorithmDeclaration = factory.createAlgorithmDeclaration(new StringIdentifier(algorithmName));
+        algorithmDeclaration.setName(algorithmName);
         AlgorithmBody body = factory.createAlgorithmBody(AlgorithmLanguage.ST);
         algorithmDeclaration.setBody(body);
-        ECC ecc = collection.getStyle().get(RichEditorStyleAttributes.ECC_DECLARATION);
-        Element element = ecc.getContainer();
-        BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
-        declaration.getAlgorithms().add(algorithmDeclaration);
+
+        allAlgorithms.add(algorithmDeclaration);
         action.getAlgorithm().setTarget(algorithmDeclaration);
     }
 

@@ -70,7 +70,6 @@ public class ECCEditors {
             scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc));
             scene.getStyle().set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc));
             scene.getStyle().set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory);
-            scene.getStyle().set(RichEditorStyleAttributes.ECC_DECLARATION, ecc);
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
