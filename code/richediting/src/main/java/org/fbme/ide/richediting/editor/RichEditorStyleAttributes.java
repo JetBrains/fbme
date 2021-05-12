@@ -3,7 +3,9 @@ package org.fbme.ide.richediting.editor;
 import jetbrains.mps.editor.runtime.style.InheritableStyleAttribute;
 import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
+import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.style.StyleAttribute;
+import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
@@ -29,9 +31,10 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<StateAction> OUTPUTS = new InheritableStyleAttribute<>("outputs");
     public static final StyleAttribute<List<AlgorithmDeclaration>> ALL_ALGORITHMS = new InheritableStyleAttribute<>("all-outputs");
     public static final StyleAttribute<List<EventDeclaration>> ALL_OUTPUTS = new InheritableStyleAttribute<>("all-outputs");
-    public static final StyleAttribute<StateDeclaration> STATE = new InheritableStyleAttribute<>("state");
-    public static final StyleAttribute<EditorCell_Collection> STATE_COLLECTION = new InheritableStyleAttribute<>("state-collecton");
-    public static final StyleAttribute<StateAction> DELETED_STATE = new InheritableStyleAttribute<>("deleted-state");
+    public static final StyleAttribute<EditorCell_Collection> STATE_COLLECTION = new InheritableStyleAttribute<>("state-collection");
+    public static final StyleAttribute<List<ActionBlock>> ACTIONS = new InheritableStyleAttribute<>("action-block");
+    public static final StyleAttribute<StateDeclaration> STATE_DECLARATION = new InheritableStyleAttribute<>("state-declaration");
+    public static final StyleAttribute<EditorContext> EDITOR_CONTEXT = new InheritableStyleAttribute<>("editor-context");
 
     static {
         NETWORK.register();
@@ -45,5 +48,8 @@ public class RichEditorStyleAttributes {
         ALL_ALGORITHMS.register();
         ALL_OUTPUTS.register();
         STATE_COLLECTION.register();
+        ACTIONS.register();
+        STATE_DECLARATION.register();
+        EDITOR_CONTEXT.register();
     }
 }

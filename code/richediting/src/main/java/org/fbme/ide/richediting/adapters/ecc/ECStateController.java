@@ -56,6 +56,9 @@ public class ECStateController implements ComponentController<Point> {
         initializeActions();
         scene.storeState(IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
         myCellCollection.setBig(true);
+        myCellCollection.getStyle().set(RichEditorStyleAttributes.ACTIONS, myStateActionBlocks);
+        myCellCollection.getStyle().set(RichEditorStyleAttributes.STATE_DECLARATION, myState);
+        myCellCollection.getStyle().set(RichEditorStyleAttributes.EDITOR_CONTEXT, myContext);
 
         relayout();
     }
@@ -150,12 +153,13 @@ public class ECStateController implements ComponentController<Point> {
         // do nothing
     }
 
-    public void removeAction(StateAction action) {
+    public static void removeAction(StateAction action, EditorCell_Collection collection) {
         AlgorithmCell deleteAlgo = null;
         EditorCell deleteBody = null;
         OutputCell deleteOutput = null;
         ActionBlock deleteBlock = null;
-        for (ActionBlock block: myStateActionBlocks) {
+        List<ActionBlock> actionBlocks = collection.getStyle().get(RichEditorStyleAttributes.ACTIONS);
+        for (ActionBlock block: actionBlocks) {
             if (block.getAction() == action) {
                 deleteBlock = block;
                 deleteAlgo = block.getAlgorithm();
@@ -167,16 +171,23 @@ public class ECStateController implements ComponentController<Point> {
             }
         }
         if (deleteBlock == null) return;
-        myStateActionBlocks.remove(deleteBlock);
+        actionBlocks.remove(deleteBlock);
         if (deleteAlgo != null) {
-            myCellCollection.removeCell(deleteAlgo);
+            collection.removeCell(deleteAlgo);
         }
         if (deleteBody != null) {
-            myCellCollection.removeCell(deleteBody);
+            collection.removeCell(deleteBody);
         }
         if (deleteOutput != null) {
-            myCellCollection.removeCell(deleteOutput);
+            collection.removeCell(deleteOutput);
         }
+    }
+
+    public static void removeActionWithState(StateAction action, EditorCell_Collection collection) {
+        StateDeclaration declaration = collection.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+        EditorContext context = collection.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+        declaration.getActions().remove(action);
+        context.getEditorComponent().getUpdater().update();
     }
 
 //    public void addNewAction() {
