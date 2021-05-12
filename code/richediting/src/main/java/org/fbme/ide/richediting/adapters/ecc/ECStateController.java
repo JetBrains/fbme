@@ -8,8 +8,14 @@ import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
+import org.fbme.lib.common.Element;
+import org.fbme.lib.common.StringIdentifier;
 import org.fbme.lib.iec61499.IEC61499Factory;
+import org.fbme.lib.iec61499.declarations.AlgorithmBody;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
+import org.fbme.lib.iec61499.declarations.AlgorithmLanguage;
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
+import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.scenes.cells.EditorCell_Scene;
@@ -190,6 +196,19 @@ public class ECStateController implements ComponentController<Point> {
         IEC61499Factory factory = collection.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
         StateAction action = factory.createStateAction();
         declaration.getActions().add(action);
+    }
+
+    public static void addNewAlgorithm(EditorCell_Collection collection, StateAction action) {
+        IEC61499Factory factory = collection.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
+        AlgorithmDeclaration algorithmDeclaration = factory.createAlgorithmDeclaration(new StringIdentifier("New Algorithm"));
+        algorithmDeclaration.setName("New Algorithm");
+        AlgorithmBody body = factory.createAlgorithmBody(AlgorithmLanguage.ST);
+        algorithmDeclaration.setBody(body);
+        ECC ecc = collection.getStyle().get(RichEditorStyleAttributes.ECC_DECLARATION);
+        Element element = ecc.getContainer();
+        BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
+        declaration.getAlgorithms().add(algorithmDeclaration);
+        action.getAlgorithm().setTarget(algorithmDeclaration);
     }
 
     @Override
