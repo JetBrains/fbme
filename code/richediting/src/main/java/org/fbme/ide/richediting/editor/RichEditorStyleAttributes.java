@@ -7,6 +7,7 @@ import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
+import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor;
@@ -35,6 +36,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<List<ActionBlock>> ACTIONS = new InheritableStyleAttribute<>("action-block");
     public static final StyleAttribute<StateDeclaration> STATE_DECLARATION = new InheritableStyleAttribute<>("state-declaration");
     public static final StyleAttribute<EditorContext> EDITOR_CONTEXT = new InheritableStyleAttribute<>("editor-context");
+    public static final StyleAttribute<IEC61499Factory> FACTORY_DECLARATION = new InheritableStyleAttribute<>("factory-declaration");
 
     static {
         NETWORK.register();
@@ -51,5 +53,6 @@ public class RichEditorStyleAttributes {
         ACTIONS.register();
         STATE_DECLARATION.register();
         EDITOR_CONTEXT.register();
+        FACTORY_DECLARATION.register();
     }
 }

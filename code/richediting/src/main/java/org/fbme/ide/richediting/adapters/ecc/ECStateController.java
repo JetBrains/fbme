@@ -8,20 +8,15 @@ import jetbrains.mps.openapi.editor.TextBuilder;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
-import org.fbme.lib.common.CompositeReference;
-import org.fbme.lib.common.Reference;
-import org.fbme.lib.common.Role;
+import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
-import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
-import org.fbme.lib.iec61499.fbnetwork.PortPath;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.scene.SceneStateKey;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
@@ -50,7 +45,7 @@ public class ECStateController implements ComponentController<Point> {
 
         myCellCollection = createRootCell(myContext, myNode);
 
-        myStateNameCell = StateCell.createStateCell(myContext, myNode, myState);
+        myStateNameCell = StateCell.createStateCell(myContext, myNode, myState, myCellCollection);
         myCellCollection.addEditorCell(myStateNameCell);
 
         initializeActions();
@@ -190,10 +185,12 @@ public class ECStateController implements ComponentController<Point> {
         context.getEditorComponent().getUpdater().update();
     }
 
-//    public void addNewAction() {
-////        StateAction newStateAction = new StateActionByNode();
-//        myState.getActions().add();
-//    }
+    public static void addAction(EditorCell_Collection collection) {
+        StateDeclaration declaration = collection.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+        IEC61499Factory factory = collection.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
+        StateAction action = factory.createStateAction();
+        declaration.getActions().add(action);
+    }
 
     @Override
     public void paintTrace(Graphics g, Point position) {
@@ -234,9 +231,5 @@ public class ECStateController implements ComponentController<Point> {
             myCellCollection.addEditorCell(outputCell);
             myStateActionBlocks.add(new ActionBlock(algorithmCell, outputCell, action));
         }
-    }
-
-    private void deleteActionFromList(StateAction action) {
-        myStateActionBlocks.removeIf(it -> it.getAction() == action);
     }
 }
