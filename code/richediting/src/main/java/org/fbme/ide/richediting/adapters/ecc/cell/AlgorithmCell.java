@@ -30,10 +30,9 @@ public class AlgorithmCell extends ActionCell {
             StateAction action,
             EditorCell_Collection cellCollection,
             EditorCell_Collection body,
-            StateDeclaration state,
             Map<StateAction, Boolean> isOpenAlgorithmBody
     ) {
-        super(editorContext, node, ALGORITHM_COLOR, action, cellCollection, state);
+        super(editorContext, node, ALGORITHM_COLOR, action, cellCollection);
         getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
         this.myEditorContext = editorContext;
         this.myAlgorithmBody = body;

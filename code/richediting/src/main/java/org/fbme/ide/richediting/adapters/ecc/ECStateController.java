@@ -252,15 +252,15 @@ public class ECStateController implements ComponentController<Point> {
                 SNode algorithmNode = ((PlatformElement) algorithmDeclaration.getBody()).getNode();
                 jetbrains.mps.openapi.editor.cells.EditorCell bodyCell = myContext.getEditorComponent().getUpdater().getCurrentUpdateSession().updateChildNodeCell(algorithmNode);
                 isOpenAlgorithmBody.putIfAbsent(action, true);
-                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, (EditorCell_Collection) bodyCell, myState, isOpenAlgorithmBody);
+                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, (EditorCell_Collection) bodyCell, isOpenAlgorithmBody);
                 myCellCollection.addEditorCell(algorithmCell);
                 myCellCollection.addEditorCell(bodyCell);
             } else {
-                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, myState, isOpenAlgorithmBody);
+                algorithmCell = new AlgorithmCell(myContext, myNode, action, myCellCollection, null, isOpenAlgorithmBody);
                 myCellCollection.addEditorCell(algorithmCell);
             }
 
-            OutputCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, myState);
+            OutputCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection);
             myCellCollection.addEditorCell(outputCell);
             myStateActionBlocks.add(new ActionBlock(algorithmCell, outputCell, action));
         }

@@ -33,8 +33,7 @@ public abstract class ActionCell extends EditorCell_Basic {
             SNode node,
             Color color,
             StateAction action,
-            EditorCell_Collection cellCollection,
-            StateDeclaration state
+            EditorCell_Collection cellCollection
     ) {
         super(editorContext, node);
         myCellCollection = cellCollection;

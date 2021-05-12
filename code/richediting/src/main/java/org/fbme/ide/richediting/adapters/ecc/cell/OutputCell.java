@@ -18,10 +18,9 @@ public class OutputCell extends ActionCell {
             EditorContext editorContext,
             SNode node,
             StateAction action,
-            EditorCell_Collection cellCollection,
-            StateDeclaration state
+            EditorCell_Collection cellCollection
     ) {
-        super(editorContext, node,OUTPUT_COLOR, action, cellCollection, state);
+        super(editorContext, node,OUTPUT_COLOR, action, cellCollection);
         getStyle().set(RichEditorStyleAttributes.OUTPUTS, action);
     }
 
