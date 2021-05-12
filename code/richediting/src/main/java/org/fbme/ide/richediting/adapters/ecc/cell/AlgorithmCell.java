@@ -2,6 +2,8 @@ package org.fbme.ide.richediting.adapters.ecc.cell;
 
 import com.intellij.ui.JBColor;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
+import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
+import jetbrains.mps.nodeEditor.cells.ModelAccessor;
 import jetbrains.mps.nodeEditor.cells.ParentSettings;
 import jetbrains.mps.openapi.editor.EditorContext;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
@@ -12,8 +14,11 @@ import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
 import java.util.Map;
+import java.util.Objects;
 
-public class AlgorithmCell extends ActionCell {
+public class AlgorithmCell extends EditorCell_Property {
+    public static final int ACTIVE_HEIGHT_PADDING = 6;
+    public static final int ACTIVE_WEIGHT_PADDING = 10;
     private static final Color ALGORITHM_COLOR = new Color(199, 222, 193);
     private static final Color HIDDEN_ALGORITHM_COLOR = new Color(154, 167, 150);
     private static final int ROUNDED = 10;
@@ -23,36 +28,93 @@ public class AlgorithmCell extends ActionCell {
     private boolean isOpenBody;
     private final Map<StateAction, Boolean> isOpenAlgorithmBody;
     private final EditorContext myEditorContext;
+    private final StateAction myAction;
+    private final EditorCell_Collection myCellCollection;
 
     public AlgorithmCell(
             EditorContext editorContext,
+            ModelAccessor accessor,
             SNode node,
             StateAction action,
             EditorCell_Collection cellCollection,
             EditorCell_Collection body,
             Map<StateAction, Boolean> isOpenAlgorithmBody
     ) {
-        super(editorContext, node, ALGORITHM_COLOR, action, cellCollection);
+        super(editorContext, accessor, node);
         getStyle().set(RichEditorStyleAttributes.ALGORITHMS, action);
         this.myEditorContext = editorContext;
         this.myAlgorithmBody = body;
         isOpenAlgorithmBody.putIfAbsent(action, true);
         this.isOpenAlgorithmBody = isOpenAlgorithmBody;
         this.isOpenBody = isOpenAlgorithmBody.get(action);
-
+        this.myAction = action;
+        this.myCellCollection = cellCollection;
+        getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
     }
 
-    @Override
-    protected void setTextFromAction() {
-        AlgorithmDeclaration target = myAction.getAlgorithm().getTarget();
-        if (target != null) {
-            myNameText.setText(target.getName());
-        } else {
-            myNameText.setText("");
-        }
+    public static AlgorithmCell createAlgorithmCell(
+            EditorContext editorContext,
+            AlgorithmDeclaration algorithmDeclaration,
+            SNode node,
+            StateAction action,
+            EditorCell_Collection cellCollection,
+            EditorCell_Collection body,
+            Map<StateAction, Boolean> isOpenAlgorithmBody
+    ) {
+        ModelAccessor modelAccessor = new ModelAccessor() {
+            public String getText() {
+                if (algorithmDeclaration == null) {
+                    return "";
+                }
+                String name = algorithmDeclaration.getName();
+                return Objects.equals(name, "") ? null : name;
+            }
+
+            public void setText(String text) {
+                algorithmDeclaration.setName(text == null ? "" : text);
+            }
+
+            public boolean isValidText(String text) {
+                return true;
+            }
+        };
+        return new AlgorithmCell(editorContext, modelAccessor, node, action, cellCollection, body, isOpenAlgorithmBody);
     }
+
+//    @Override
+//    protected void setTextFromAction() {
+//        AlgorithmDeclaration target = myAction.getAlgorithm().getTarget();
+//        if (target != null) {
+//            myNameText.setText(target.getName());
+//        } else {
+//            myNameText.setText("");
+//        }
+//    }
+//    @Override
+//    public void relayoutImpl() {
+////        int lineSize = getLineSize();
+////        myNameText.relayout();
+////        setTextFromAction();
+////        setWidth(myNameText.getWidth());
+////        setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
+////        if (myNameText.getText().isEmpty()) {
+////            setHeight(getHeight() / 2);
+////        }
+//        if (myAction.getAlgorithm().getTarget() == null) {
+//            setHeight(getHeight() / 2);
+//            setEditable(false);
+//        } else {
+//            setEditable(true);
+//        }
+//    }
 
     public void relayoutAll() {
+        if (myAction.getAlgorithm().getTarget() == null) {
+            setHeight(getHeight() / 2);
+            setEditable(false);
+        } else {
+            setEditable(true);
+        }
         relayout();
         if (myAlgorithmBody != null && isOpenBody) {
             myAlgorithmBody.relayout();
@@ -131,18 +193,29 @@ public class AlgorithmCell extends ActionCell {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(ALGORITHM_COLOR);
             g.fillRoundRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, getAllHeight(), ROUNDED, ROUNDED);
-            if (!myNameText.getText().isEmpty()) {
-                myNameText.paint(graphics, myX + SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + SHIFT_Y, JBColor.BLACK);
-            }
-        } else if (myAlgorithmBody != null && !isOpenBody) {
+            int dx = (myWidth - myTextLine.getWidth()) / 2;
+            myX += dx;
+            super.paintContent(graphics, settings);
+            myX -= dx;
+        } else if (myAlgorithmBody != null) {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(HIDDEN_ALGORITHM_COLOR);
             g.fillRoundRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
-            if (!myNameText.getText().isEmpty()) {
-                myNameText.paint(graphics, myX + SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + SHIFT_Y, JBColor.BLACK);
-            }
-        } else {
+            int dx = (myWidth - myTextLine.getWidth()) / 2;
+            myX += dx;
             super.paintContent(graphics, settings);
+            myX -= dx;
+        } else {
+            Graphics2D g = (Graphics2D) graphics.create();
+            g.setColor(ALGORITHM_COLOR);
+            g.fillRoundRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
+            int dx = (myWidth - myTextLine.getWidth()) / 2;
+            if (isEditable()) {
+                myX += dx;
+                super.paintContent(graphics, settings);
+                myX -= dx;
+            }
+//            super.paintContent(graphics, settings);
         }
     }
 }
