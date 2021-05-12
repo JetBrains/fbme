@@ -188,7 +188,7 @@ public final class FBNetworkEditors {
             final ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility =
                     new ConnectionsFacility<>(
                             scene, CONNECTION_CONTROLLER_FACTORY, FBConnectionUtils.getPathFactory(style), FBConnectionUtils.getPathPainter(style),
-                            new FBConnectionPathSyncronizer(viewpoint, scale), extendedLayout, componentsSelection, diagramFacility.getDiagramController(), connectionsLayer, tracesLayer, focus
+                            new FBConnectionPathSyncronizer(viewpoint, scale, expandedComponentsController), extendedLayout, componentsSelection, diagramFacility.getDiagramController(), connectionsLayer, tracesLayer, focus
                     );
             style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility);
 

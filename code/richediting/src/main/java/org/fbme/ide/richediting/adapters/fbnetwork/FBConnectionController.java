@@ -216,7 +216,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
     }
 
     @NotNull
-    private List<Point> deepCopy(List<Point> bendPoints) {
+    public static List<Point> deepCopy(List<Point> bendPoints) {
         List<Point> newBendPoints = new ArrayList<>();
         for (Point bendPoint : bendPoints) {
             newBendPoints.add(new Point(bendPoint.x, bendPoint.y));

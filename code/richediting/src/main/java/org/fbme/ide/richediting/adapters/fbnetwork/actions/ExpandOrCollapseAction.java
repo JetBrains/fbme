@@ -11,6 +11,7 @@ import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentSynchronizer;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
+import org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer;
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
 import org.fbme.scenes.controllers.diagram.DiagramController;
 import org.fbme.scenes.controllers.diagram.DiagramFacility;
@@ -26,6 +27,7 @@ public abstract class ExpandOrCollapseAction implements Action {
     protected final ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility;
     protected final DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController;
     protected final ComponentSynchronizer<NetworkComponentView, Point> componentsSynchronizer;
+    protected final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
 
     protected ExpandOrCollapseAction(EditorCell cell) {
         Style style = cell.getStyle();
@@ -37,5 +39,6 @@ public abstract class ExpandOrCollapseAction implements Action {
 
         diagramController = diagramFacility.getDiagramController();
         componentsSynchronizer = componentsFacility.getComponentSyncronizer();
+        connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
     }
 }

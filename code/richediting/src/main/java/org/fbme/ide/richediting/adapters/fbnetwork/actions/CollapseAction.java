@@ -30,6 +30,8 @@ public class CollapseAction extends ExpandOrCollapseAction {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
         ExpandedComponentsController expandedComponentsController = componentController.getExpandedComponentsController();
         expandedComponentsController.removeAffectedComponents(component);
-        expandedComponentsController.collapse(component);
+        expandedComponentsController.removeExpandedComponent(component);
+        expandedComponentsController.removeAffectedSections(component);
+        expandedComponentsController.update();
     }
 }
