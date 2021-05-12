@@ -4,6 +4,8 @@ package org.fbme.lib.iec61499.parser;
 
 import org.fbme.lib.iec61499.fbnetwork.*;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom.Element;
@@ -151,14 +153,38 @@ public class FBNetworkConverter extends ConverterBase {
     Attribute dx1Attriubte = connecitonElement.getAttribute("dx1");
     Attribute dyAttriubte = connecitonElement.getAttribute("dy");
     Attribute dx2Attriubte = connecitonElement.getAttribute("dx2");
+
     try {
+      ConnectionPath.Kind kind = ConnectionPath.Kind.Straight;
+      int dx1, dy, dx2;
+      dx1 = dy = dx2 = 0;
       if (dx1Attriubte != null && dyAttriubte != null && dx2Attriubte != null) {
-        return new ConnectionPath((int) dx1Attriubte.getFloatValue(), (int) dyAttriubte.getFloatValue(), (int) dx2Attriubte.getFloatValue());
+        kind = ConnectionPath.Kind.FourAngles;
+        dx1 = (int) dx1Attriubte.getFloatValue();
+        dy = (int) dyAttriubte.getFloatValue();
+        dx2 = (int) dx2Attriubte.getFloatValue();
+      } else if (dx1Attriubte != null) {
+        kind = ConnectionPath.Kind.TwoAngles;
+        dx1 = (int) dx1Attriubte.getFloatValue();
       }
-      if (dx1Attriubte != null) {
-        return new ConnectionPath((int) dx1Attriubte.getFloatValue());
+
+      Element bendPointsElement = connecitonElement.getChild("BendPoints");
+      if (bendPointsElement != null) {
+        List<Element> bendPointsElementChildren = bendPointsElement.getChildren("BendPoint");
+        try {
+          List<Point> bendPoints = new ArrayList<>();
+          for (Element bendPointElement : bendPointsElementChildren) {
+            int x = (int) Float.parseFloat(bendPointElement.getAttributeValue("x"));
+            int y = (int) Float.parseFloat(bendPointElement.getAttributeValue("y"));
+            Point bendPoint = new Point(x, y);
+            bendPoints.add(bendPoint);
+          }
+          return new LongConnectionPath(dx1, dy, dx2, bendPoints);
+        } catch (NumberFormatException e) {
+          // ignore
+        }
       }
-      return new ConnectionPath();
+      return new ConnectionPath(kind, dx1, dy, dx2);
     } catch (DataConversionException e) {
       return new ConnectionPath();
     }
