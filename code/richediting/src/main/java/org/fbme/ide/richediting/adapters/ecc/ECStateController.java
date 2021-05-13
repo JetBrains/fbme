@@ -9,14 +9,11 @@ import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.richediting.adapters.ecc.cell.*;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.common.Declaration;
-import org.fbme.lib.common.Element;
 import org.fbme.lib.common.StringIdentifier;
 import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.AlgorithmBody;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage;
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
-import org.fbme.lib.iec61499.ecc.ECC;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.scenes.cells.EditorCell_Scene;
@@ -81,7 +78,7 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.setWidth(width + 7);
         myCellCollection.setHeight(height + 7);
 
-        myStateNameCell.setWidth(width + AlgorithmCell.ACTIVE_WEIGHT_PADDING);
+        myStateNameCell.setWidth(width + CellConstants.ACTIVE_WEIGHT_PADDING);
 
         for (ActionBlock block: myStateActionBlocks) {
             block.setWidth(width);

@@ -24,13 +24,6 @@ public class OutputCell extends EditorCell_Basic {
     protected final StateAction myAction;
     protected final EditorCell_Collection myCellCollection;
 
-    public static final int ACTIVE_HEIGHT_PADDING = 6;
-    public static final int ACTIVE_WEIGHT_PADDING = 10;
-    protected static final int SHIFT_X = 5;
-    protected static final int SHIFT_Y = -2;
-
-    private static final Color OUTPUT_COLOR = new Color(235, 221, 185);
-
     public OutputCell(
             EditorContext editorContext,
             SNode node,
@@ -40,7 +33,7 @@ public class OutputCell extends EditorCell_Basic {
         super(editorContext, node);
         myCellCollection = cellCollection;
         myAction = action;
-        backgroundColor = OUTPUT_COLOR;
+        backgroundColor = CellConstants.OUTPUT_COLOR;
         myNameText = new TextLine("", getStyle(), false);
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
@@ -58,7 +51,7 @@ public class OutputCell extends EditorCell_Basic {
         myNameText.relayout();
         setTextFromAction();
         setWidth(myNameText.getWidth());
-        setHeight(lineSize + ACTIVE_HEIGHT_PADDING);
+        setHeight(lineSize + CellConstants.ACTIVE_HEIGHT_PADDING);
         if (myNameText.getText().isEmpty()) {
             setHeight(getHeight() / 2);
         }
@@ -77,9 +70,9 @@ public class OutputCell extends EditorCell_Basic {
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = (Graphics2D) graphics.create();
         g.setColor(backgroundColor);
-        g.fillRoundRect(myX, myY, myWidth + ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
+        g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
         if (!myNameText.getText().isEmpty()) {
-            myNameText.paint(graphics, myX + SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + SHIFT_Y, JBColor.BLACK);
+            myNameText.paint(graphics, myX + CellConstants.SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + CellConstants.SHIFT_Y, JBColor.BLACK);
         }
     }
 

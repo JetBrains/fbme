@@ -17,8 +17,6 @@ import java.awt.*;
 import java.util.Objects;
 
 public class StateCell extends EditorCell_Property {
-    private static final Color STATE_COLOR = new Color(196, 215, 233);
-
     public StateCell(EditorContext editorContext, ModelAccessor accessor, SNode node, EditorCell_Collection collection) {
         super(editorContext, accessor, node);
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
@@ -47,7 +45,7 @@ public class StateCell extends EditorCell_Property {
     @Override
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = (Graphics2D) graphics.create();
-        g.setColor(STATE_COLOR);
+        g.setColor(CellConstants.STATE_COLOR);
         g.fillRoundRect(myX, myY, myWidth, myHeight, 10, 10);
         int dx = (myWidth - myTextLine.getWidth()) / 2;
         myX += dx;
