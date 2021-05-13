@@ -81,7 +81,7 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.setWidth(width + 7);
         myCellCollection.setHeight(height + 7);
 
-        myStateNameCell.setWidth(width + ActionCell.ACTIVE_WEIGHT_PADDING);
+        myStateNameCell.setWidth(width + AlgorithmCell.ACTIVE_WEIGHT_PADDING);
 
         for (ActionBlock block: myStateActionBlocks) {
             block.setWidth(width);
