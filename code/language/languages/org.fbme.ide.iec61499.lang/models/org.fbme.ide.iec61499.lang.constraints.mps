@@ -1817,5 +1817,23 @@
       </node>
     </node>
   </node>
+  <node concept="1M2fIO" id="3hdyZKs8YDq">
+    <property role="3GE5qa" value="network" />
+    <ref role="1M2myG" to="xiqq:1fUwyp9CzsN" resolve="EndpointCoordinate" />
+    <node concept="1N5Pfh" id="3hdyZKs8YDr" role="1Mr941">
+      <ref role="1N5Vy1" to="xiqq:_yMviEJHiZ" resolve="endpoint" />
+      <node concept="3dgokm" id="3hdyZKs8YDv" role="1N6uqs">
+        <node concept="3clFbS" id="3hdyZKs8YDx" role="2VODD2">
+          <node concept="3cpWs6" id="3hdyZKs8YIq" role="3cqZAp">
+            <node concept="2YIFZM" id="3hdyZKs8YIr" role="3cqZAk">
+              <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
+              <ref role="37wK5l" node="75nMhMfYWrA" resolve="contextDataSources" />
+              <node concept="2rP1CM" id="3hdyZKs8YIs" role="37wK5m" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
 </model>
 
