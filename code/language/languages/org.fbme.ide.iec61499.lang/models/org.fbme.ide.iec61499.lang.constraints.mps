@@ -1825,10 +1825,29 @@
       <node concept="3dgokm" id="3hdyZKs8YDv" role="1N6uqs">
         <node concept="3clFbS" id="3hdyZKs8YDx" role="2VODD2">
           <node concept="3cpWs6" id="3hdyZKs8YIq" role="3cqZAp">
-            <node concept="2YIFZM" id="3hdyZKs8YIr" role="3cqZAk">
-              <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
-              <ref role="37wK5l" node="75nMhMfYWrA" resolve="contextDataSources" />
-              <node concept="2rP1CM" id="3hdyZKs8YIs" role="37wK5m" />
+            <node concept="2YIFZM" id="40_VC_36W1w" role="3cqZAk">
+              <ref role="1Pybhc" to="o8zo:7ipADkTevLt" resolve="CompositeScope" />
+              <ref role="37wK5l" to="o8zo:7ipADkTevQ_" resolve="createComposite" />
+              <node concept="2YIFZM" id="3hdyZKs8YIr" role="37wK5m">
+                <ref role="37wK5l" node="75nMhMfYWrA" resolve="contextDataSources" />
+                <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
+                <node concept="2rP1CM" id="3hdyZKs8YIs" role="37wK5m" />
+              </node>
+              <node concept="2YIFZM" id="40_VC_36WlF" role="37wK5m">
+                <ref role="37wK5l" node="75nMhMfYXaa" resolve="contextDataDestinations" />
+                <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
+                <node concept="2rP1CM" id="40_VC_36WlG" role="37wK5m" />
+              </node>
+              <node concept="2YIFZM" id="40_VC_36Wpl" role="37wK5m">
+                <ref role="37wK5l" node="75nMhMfYXd4" resolve="contextEventSources" />
+                <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
+                <node concept="2rP1CM" id="40_VC_36Wpm" role="37wK5m" />
+              </node>
+              <node concept="2YIFZM" id="40_VC_36WsZ" role="37wK5m">
+                <ref role="37wK5l" node="75nMhMfYXuq" resolve="contextEventDestinations" />
+                <ref role="1Pybhc" node="75nMhMfYJQt" resolve="EndpointScopes" />
+                <node concept="2rP1CM" id="40_VC_36Wt0" role="37wK5m" />
+              </node>
             </node>
           </node>
         </node>
