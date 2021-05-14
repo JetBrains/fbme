@@ -29,29 +29,28 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="995.0" y="1662.0"></ECState>
-      <ECState Name="INIT" x="2883.0" y="1116.0">
+      <ECState Name="START" x="552.0" y="429.0"></ECState>
+      <ECState Name="INIT" x="923.0" y="141.0">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="RESET" x="600.0" y="2887.0">
+      <ECState Name="RESET" x="1380.0" y="660.0">
         <ECAction Algorithm="RESET" Output="CNF" />
         <ECAction Output="E_RESET" />
       </ECState>
-      <ECState Name="PAUSED" x="4070.0" y="2020.0">
+      <ECState Name="PAUSED" x="1400.0" y="1256.0">
         <ECAction Algorithm="PAUSED" Output="CNF" />
         <ECAction Output="E_PAUSE" />
       </ECState>
-      <ECState Name="RUN" x="2262.0" y="4400.0">
+      <ECState Name="RUN" x="1516.0" y="1868.0">
         <ECAction Algorithm="RUN" Output="CNF" />
         <ECAction Output="E_START" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2125.0" y="1350.0" />
-      <ECTransition Source="INIT" Destination="RESET" Condition="1" x="2083.0" y="2141.0" />
-      <ECTransition Source="RESET" Destination="PAUSED" Condition="RESET_DONE" x="2787.0" y="3137.0" />
-      <ECTransition Source="PAUSED" Destination="RUN" Condition="START" x="3083.0" y="3616.0" />
-      <ECTransition Source="RUN" Destination="PAUSED" Condition="PAUSE" x="4087.0" y="3962.0" />
-      <ECTransition Source="PAUSED" Destination="RESET" Condition="RESET" x="2758.0" y="2541.0" />
-      <ECTransition Source="INIT" Destination="INIT" Condition="1" x="3362.0" y="1491.0" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.0" y="204.0" />
+      <ECTransition Source="INIT" Destination="RESET" Condition="1" x="1217.0" y="350.0" />
+      <ECTransition Source="RESET" Destination="PAUSED" Condition="RESET_DONE" x="1895.0" y="959.0" />
+      <ECTransition Source="PAUSED" Destination="RUN" Condition="START" x="1822.0" y="1568.0" />
+      <ECTransition Source="RUN" Destination="PAUSED" Condition="PAUSE" x="977.0" y="1606.0" />
+      <ECTransition Source="PAUSED" Destination="RESET" Condition="RESET" x="920.0" y="966.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="startLED := FALSE;&#38;#10;pauseLED := FALSE;&#38;#10;resetLED := TRUE;&#38;#10;" />

@@ -37,55 +37,52 @@
   <BasicFB>
     <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="145.0" y="158.0"></ECState>
-      <ECState Name="INIT" x="1712.0" y="-150.0">
+      <ECState Name="START" x="1169.0" y="438.0"></ECState>
+      <ECState Name="INIT" x="2338.0" y="930.0">
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="HOME" x="-329.0" y="1116.0">
+      <ECState Name="HOME" x="507.0" y="1484.0">
         <ECAction Output="S5_GATE_CLOSE" />
         <ECAction Algorithm="HOME" Output="CNF" />
       </ECState>
-      <ECState Name="FEED" x="4275.0" y="-229.0">
+      <ECState Name="FEED" x="4038.0" y="446.0">
         <ECAction Output="S5_GATE_CLOSE" />
         <ECAction Algorithm="FEED" Output="CNF" />
       </ECState>
-      <ECState Name="COLLECT" x="3287.0" y="3100.0">
+      <ECState Name="COLLECT" x="2776.0" y="3576.0">
         <ECAction Output="S5_GATE_OPEN" />
         <ECAction Algorithm="COLLECT" Output="CNF" />
       </ECState>
-      <ECState Name="REJECT" x="4870.0" y="2350.0">
+      <ECState Name="REJECT" x="5376.0" y="2353.0">
         <ECAction Output="S5_GATE_CLOSE" />
         <ECAction Algorithm="REJECT" />
       </ECState>
-      <ECState Name="READY" x="3525.0" y="1479.0">
+      <ECState Name="READY" x="3315.0" y="1707.0">
         <ECAction Output="READY" />
       </ECState>
-      <ECState Name="COLL_CONFIRM" x="991.0" y="2512.0">
+      <ECState Name="COLL_CONFIRM" x="1315.0" y="3038.0">
         <ECAction Output="REQ_CONFIRMATION" />
       </ECState>
-      <ECState Name="FEED_CONFIRM" x="5475.0" y="1362.0">
+      <ECState Name="FEED_CONFIRM" x="5400.0" y="1261.0">
         <ECAction Output="REQ_CONFIRMATION" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1133.0" y="-16.0" />
-      <ECTransition Source="INIT" Destination="READY" Condition="1" x="3200.0" y="825.0" />
-      <ECTransition Source="HOME" Destination="READY" Condition="[robotinoPos = &#39;HOME&#39;]" x="2000.0" y="800.0" />
-      <ECTransition Source="READY" Destination="HOME" Condition="REQ_HOME" x="2175.0" y="1708.0" />
-      <ECTransition Source="READY" Destination="COLLECT" Condition="REQ_COLLECT" x="3512.0" y="2787.0" />
-      <ECTransition Source="COLLECT" Destination="COLL_CONFIRM" Condition="[(robotinoPos = &#39;COLLECT&#39;) OR (robotinoPos = &#39;COLL&#39;)]" x="1791.0" y="3308.0" />
-      <ECTransition Source="READY" Destination="REJECT" Condition="REQ_REJECT" x="4600.0" y="1945.0" />
-      <ECTransition Source="REJECT" Destination="READY" Condition="1" x="4308.0" y="2108.0" />
-      <ECTransition Source="READY" Destination="FEED" Condition="REQ_FEED" x="3908.0" y="616.0" />
-      <ECTransition Source="FEED" Destination="FEED_CONFIRM" Condition="[robotinoPos = &#39;FEED&#39;]" x="5716.0" y="904.0" />
-      <ECTransition Source="COLLECT" Destination="READY" Condition="RESET" x="3833.0" y="2545.0" />
-      <ECTransition Source="FEED" Destination="READY" Condition="RESET" x="4475.0" y="975.0" />
-      <ECTransition Source="HOME" Destination="READY" Condition="RESET" x="1970.0" y="1270.0" />
-      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="CONFIRM" x="2816.0" y="2375.0" />
-      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="RESET" x="2545.0" y="2025.0" />
-      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="CONFIRM" x="4804.0" y="1350.0" />
-      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="RESET" x="4825.0" y="1691.0" />
-      <ECTransition Source="HOME" Destination="HOME" Condition="1" x="304.0" y="1466.0" />
-      <ECTransition Source="HOME" Destination="HOME" Condition="1" x="345.0" y="1470.0" />
-      <ECTransition Source="COLLECT" Destination="COLLECT" Condition="1" x="4029.0" y="3454.0" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1730.0" y="669.0" />
+      <ECTransition Source="INIT" Destination="READY" Condition="1" x="2846.0" y="1307.0" />
+      <ECTransition Source="HOME" Destination="READY" Condition="[robotinoPos = &#39;HOME&#39;]" x="1830.0" y="1207.0" />
+      <ECTransition Source="READY" Destination="HOME" Condition="REQ_HOME" x="1661.0" y="2038.0" />
+      <ECTransition Source="READY" Destination="COLLECT" Condition="REQ_COLLECT" x="3369.0" y="2807.0" />
+      <ECTransition Source="COLLECT" Destination="COLL_CONFIRM" Condition="[(robotinoPos = &#39;COLLECT&#39;) OR (robotinoPos = &#39;COLL&#39;)]" x="1530.0" y="3376.0" />
+      <ECTransition Source="READY" Destination="REJECT" Condition="REQ_REJECT" x="4653.0" y="1776.0" />
+      <ECTransition Source="REJECT" Destination="READY" Condition="1" x="4392.0" y="2323.0" />
+      <ECTransition Source="READY" Destination="FEED" Condition="REQ_FEED" x="3353.0" y="807.0" />
+      <ECTransition Source="FEED" Destination="FEED_CONFIRM" Condition="[robotinoPos = &#39;FEED&#39;]" x="5823.0" y="753.0" />
+      <ECTransition Source="COLLECT" Destination="READY" Condition="RESET" x="3069.0" y="2492.0" />
+      <ECTransition Source="FEED" Destination="READY" Condition="RESET" x="3630.0" y="1046.0" />
+      <ECTransition Source="HOME" Destination="READY" Condition="RESET" x="1976.0" y="1723.0" />
+      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="CONFIRM" x="2476.0" y="2838.0" />
+      <ECTransition Source="COLL_CONFIRM" Destination="READY" Condition="RESET" x="2353.0" y="2361.0" />
+      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="CONFIRM" x="4576.0" y="869.0" />
+      <ECTransition Source="FEED_CONFIRM" Destination="READY" Condition="RESET" x="4507.0" y="1192.0" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="configurationID := &#39;NONE&#39;;&#38;#10;" />

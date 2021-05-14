@@ -51,7 +51,6 @@
       <Connection Source="DETECT" Destination="REND_DETECT.EI1" dx1="780.0" />
       <Connection Source="REND_DETECT.EO" Destination="FB9.EI" dx1="150.0" dy="300.0" dx2="150.0" />
       <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="284.0" />
-      <Connection Source="INIT" Destination="REND_DETECT.R" dx1="847.0" />
     </EventConnections>
     <DataConnections>
       <Connection Source="COLOR.RD_1" Destination="color" dx1="369.0" />
