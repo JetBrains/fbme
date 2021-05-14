@@ -19,6 +19,7 @@ import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
+import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
 import org.fbme.scenes.cells.EditorCell_Scene;
@@ -33,12 +34,12 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
+    public static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
 
     public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
         try {
@@ -161,6 +162,36 @@ public class ECCEditors {
                 ecc.getStates().add(state);
             }
         });
+    }
+
+    public static void hideAllAlgorithms(EditorCell_Scene scene) {
+        setHideOrOpenForAllStates(scene, false);
+    }
+
+    public static void showAllAlgorithms(EditorCell_Scene scene) {
+        setHideOrOpenForAllStates(scene, true);
+    }
+
+    private static void setHideOrOpenForAllStates(EditorCell_Scene scene, boolean isOpen) {
+        Map<StateAction, Boolean> isOpenAlgorithmBody = scene.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY);
+        isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
+        EditorContext context = null;
+        for (EditorCell cell: scene.getCells()) {
+            StateDeclaration declaration = cell.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+            EditorContext cellContext = cell.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+            if (cellContext != null) {
+                context = cellContext;
+            }
+            if (declaration != null) {
+                for (StateAction action: declaration.getActions()) {
+                    isOpenAlgorithmBody.put(action, isOpen);
+                }
+            }
+        }
+        scene.storeState(ECCEditors.IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
+        if (context != null) {
+            context.getEditorComponent().getUpdater().update();
+        }
     }
 
     private static List<AlgorithmDeclaration> getAllAlgorithmsFromDeclarationFactory(ECC ecc) {

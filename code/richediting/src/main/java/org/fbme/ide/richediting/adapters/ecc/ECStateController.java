@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
 
 public class ECStateController implements ComponentController<Point> {
     public static final int PADDING = 2;
-    private static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
     private final EditorContext myContext;
     private final StateDeclaration myState;
     private final StateCell myStateNameCell;
@@ -45,7 +44,7 @@ public class ECStateController implements ComponentController<Point> {
         myState = state;
         myStateActionBlocks = new ArrayList<>();
         myNode = ((PlatformElement) state).getNode();
-        isOpenAlgorithmBody = scene.loadState(IS_OPEN_ALGORITHM_BODY);
+        isOpenAlgorithmBody = scene.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY);
         isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
 
         myCellCollection = createRootCell(myContext, myNode);
@@ -54,7 +53,7 @@ public class ECStateController implements ComponentController<Point> {
         myCellCollection.addEditorCell(myStateNameCell);
 
         initializeActions();
-        scene.storeState(IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
+        scene.storeState(ECCEditors.IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
         myCellCollection.setBig(true);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.ACTIONS, myStateActionBlocks);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.STATE_DECLARATION, myState);
@@ -243,6 +242,7 @@ public class ECStateController implements ComponentController<Point> {
 
     private void initializeActions() {
         for (StateAction action : myState.getActions()) {
+            boolean isOpenBody = isOpenAlgorithmBody.getOrDefault(action, true);
             AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();
             AlgorithmCell algorithmCell;
             if (algorithmDeclaration != null) {
@@ -251,7 +251,9 @@ public class ECStateController implements ComponentController<Point> {
                 isOpenAlgorithmBody.putIfAbsent(action, true);
                 algorithmCell = AlgorithmCell.createAlgorithmCell(myContext, algorithmDeclaration, myNode, action, myCellCollection, (EditorCell_Collection) bodyCell, isOpenAlgorithmBody);
                 myCellCollection.addEditorCell(algorithmCell);
-                myCellCollection.addEditorCell(bodyCell);
+                if (isOpenBody) {
+                    myCellCollection.addEditorCell(bodyCell);
+                }
             } else {
                 algorithmCell = AlgorithmCell.createAlgorithmCell(myContext, algorithmDeclaration, myNode, action, myCellCollection, null, isOpenAlgorithmBody);
                 myCellCollection.addEditorCell(algorithmCell);
