@@ -278,6 +278,13 @@ public abstract class AbstractFBCell implements FBCell {
         return shape;
     }
 
+    @Override
+    public boolean canStartMoveAt(int x, int y) {
+        GeneralPath componentShape = getComponentShape(getRootCell().getX(), getRootCell().getY());
+
+        return componentShape.contains(x, y);
+    }
+
     private void relayoutChildren() {
         for (EditorCell cell : getRootCell()) {
             cell.relayout();

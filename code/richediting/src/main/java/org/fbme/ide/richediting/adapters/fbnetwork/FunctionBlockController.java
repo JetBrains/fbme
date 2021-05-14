@@ -102,7 +102,11 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
-        return isEditable;
+        if (!isEditable) {
+            return false;
+        }
+
+        return fbCell.canStartMoveAt(x, y);
     }
 
     @NotNull

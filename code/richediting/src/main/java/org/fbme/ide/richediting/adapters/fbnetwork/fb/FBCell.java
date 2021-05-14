@@ -59,4 +59,6 @@ public interface FBCell {
     Rectangle getPlugPortBounds(int plugNumber);
 
     EditorCell_Collection getRootCell();
+
+    boolean canStartMoveAt(int x, int y);
 }
