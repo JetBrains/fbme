@@ -285,6 +285,11 @@ public abstract class AbstractFBCell implements FBCell {
         return componentShape.contains(x, y);
     }
 
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle(getRootCell().getX(), getRootCell().getY(), getWidth(), getHeight());
+    }
+
     private void relayoutChildren() {
         for (EditorCell cell : getRootCell()) {
             cell.relayout();

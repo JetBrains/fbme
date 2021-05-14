@@ -2,9 +2,8 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import com.intellij.openapi.util.Pair;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
-import org.fbme.ide.richediting.adapters.fbnetwork.ExpandedComponentsController;
-import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
-import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
+import jetbrains.mps.openapi.editor.style.Style;
+import org.fbme.ide.richediting.adapters.fbnetwork.*;
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
@@ -14,12 +13,12 @@ import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.fbnetwork.LongConnectionPath;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.diagram.PortController;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ExpandAction extends ExpandOrCollapseAction {
     public ExpandAction(EditorCell cell) {
@@ -41,137 +40,113 @@ public class ExpandAction extends ExpandOrCollapseAction {
 
     private void expand(FunctionBlockView component) {
         FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
+
+        Point editorComponentPosition = componentsFacility.getModelForm(component);
+        Rectangle oldBounds = componentController.getFBCellBounds(editorComponentPosition);
+
+        FBCell sceneCell = createExpandedSceneCell(componentController);
+        Rectangle newBounds = new Rectangle(oldBounds.x, oldBounds.y, sceneCell.getWidth(), sceneCell.getHeight());
+
+        int dx = newBounds.width - oldBounds.width;
+        int dy = newBounds.height - oldBounds.height;
+
         ExpandedComponentsController expandedComponentsController = componentController.getExpandedComponentsController();
-        Pair<Set<NetworkComponentView>, Set<NetworkComponentView>> affectedComponents = getAffectedComponents(component);
-
-        int width = componentController.getComponentCell().getWidth();
-        int height = componentController.getComponentCell().getHeight();
-
-        FBCell sceneCell = componentController.initializeFBSceneCell();
-        int fontSize = LayoutUtil.getFontSize(componentController.getComponentCell().getStyle());
-        LayoutUtil.setFontSize(sceneCell.getRootCell().getStyle(), fontSize);
-        sceneCell.relayout();
-
-        int dx = viewpoint.fromEditorDimension(sceneCell.getRootCell().firstCell().getWidth() - width);
-        int dy = viewpoint.fromEditorDimension(sceneCell.getRootCell().firstCell().getHeight() - height);
-
-        expandedComponentsController.addExpandedComponent(component, dx, dy);
-        expandedComponentsController.addAffectedComponents(component, affectedComponents);
-
-        Set<Pair<NetworkConnectionView, Integer>> affectedLongPathSections = getAffectedLongPathSections(component);
-        expandedComponentsController.addAffectedSections(component, affectedLongPathSections);
-
-        Set<Pair<NetworkConnectionView, Integer>> affectedSections = getAffectedSections(component, dx, dy);
-
-        expandedComponentsController.addAffectedSections(component, affectedSections);
+        expandedComponentsController.addExpandedComponent(component, viewpoint.fromEditorDimension(dx), viewpoint.fromEditorDimension(dy));
+        expandedComponentsController.addAffectedSections(component, getAffectedSections(oldBounds, component));
+        expandedComponentsController.addAffectedComponents(component, getAffectedComponents(oldBounds));
 
         expandedComponentsController.update();
     }
 
-    private Set<Pair<NetworkConnectionView, Integer>> getAffectedLongPathSections(FunctionBlockView component) {
+    private Set<Pair<NetworkConnectionView, Integer>> getAffectedSections(Rectangle bounds, FunctionBlockView component) {
         Set<Pair<NetworkConnectionView, Integer>> affectedSections = new HashSet<>();
 
-        Point position = componentsFacility.getModelForm(component);
-        Rectangle oldBounds = componentsFacility.getController(component).getBounds(position);
+        int rightBound = bounds.x + bounds.width;
+        int bottomBound = bounds.y + bounds.height;
 
-        int oldRightBound = position.x + oldBounds.width;
-        int oldBottomBound = position.y + oldBounds.height;
-
-        Set<NetworkConnectionView> connections = diagramController.getConnections();
-        for (NetworkConnectionView connection : connections) {
-            ConnectionPath path = connection.getConnectionPath();
-            if (path instanceof LongConnectionPath) {
-                LongConnectionPath longPath = ((LongConnectionPath) path);
-                List<Point> bendPoints = longPath.getBendPoints();
-                for (int i = 1; i < bendPoints.size(); i++) {
-                    Point v = bendPoints.get(i);
-
-                    boolean isHorizontal = i % 2 == 0;
-
-                    if (isHorizontal && v.y > oldBottomBound) {
-                        affectedSections.add(new Pair<>(connection, i));
-                    }
-
-                    if ((!isHorizontal) && v.x > oldRightBound) {
-                        affectedSections.add(new Pair<>(connection, i));
-                    }
-                }
-            }
-        }
-        return affectedSections;
-    }
-
-    private Set<Pair<NetworkConnectionView, Integer>> getAffectedSections(FunctionBlockView component, int dx, int dy) {
-        Set<Pair<NetworkConnectionView, Integer>> affectedSections = new HashSet<>();
-
-        Point position = componentsFacility.getModelForm(component);
-
-        FunctionBlockController componentController = (FunctionBlockController) componentsFacility.getController(component);
-        ExpandedComponentsController expandedComponentsController = componentController.getExpandedComponentsController();
         Set<NetworkConnectionView> connections = diagramController.getConnections();
         for (NetworkConnectionView connection : connections) {
             NetworkPortView source = diagramController.getSource(connection);
             NetworkPortView target = diagramController.getTarget(connection);
+
             PortController sourcePortController = diagramController.getPortController(source);
             PortController targetPortController = diagramController.getPortController(target);
-            Point sourceModelPosition = sourcePortController.getModelEndpointPosition();
-            Point targetModelPosition = targetPortController.getModelEndpointPosition();
+
+            Point sourcePortPosition = sourcePortController.getModelEndpointPosition();
+            Point targetPortPosition = targetPortController.getModelEndpointPosition();
+
             NetworkComponentView sourceComponent = diagramController.getComponent(source);
             NetworkComponentView targetComponent = diagramController.getComponent(target);
-            Point offsetForSource = expandedComponentsController.getOffsetFor(sourceComponent);
-            Point offsetForTarget = expandedComponentsController.getOffsetFor(targetComponent);
-            int sourceDx = (offsetForSource != null ? offsetForSource.x : 0) + (sourceComponent == component ? dx : 0);
-            int sourceDy = offsetForSource != null ? offsetForSource.y : 0;
-            int targetDx = offsetForTarget != null ? offsetForTarget.x : 0;
-            int targetDy = offsetForTarget != null ? offsetForTarget.y : 0;
-            Point sourcePosition = new Point(sourceModelPosition.x + sourceDx, sourceModelPosition.y + sourceDy);
-            Point targetPosition = new Point(targetModelPosition.x + targetDx, targetModelPosition.y + targetDy);
-            FBConnectionPath path = connectionSynchronizer.getPath(connection).apply(sourcePosition, targetPosition);
+
+            Point sourceComponentPosition = componentsFacility.getModelForm(sourceComponent);
+            Point targetComponentPosition = componentsFacility.getModelForm(targetComponent);
+
+            FBConnectionPath path = connectionSynchronizer.getPath(connection).apply(sourcePortPosition, targetPortPosition);
             List<Point> bendPoints = path.getBendPoints();
+            ConnectionPath.Kind pathKind = path.getPathKind();
 
-            for (int i = 1; i < bendPoints.size(); i++) {
-                Point u = bendPoints.get(i - 1);
-                Point v = bendPoints.get(i);
+            if (pathKind == ConnectionPath.Kind.MoreThanFour) {
+                for (int i = 1; i < bendPoints.size(); i++) {
+                    Point v = bendPoints.get(i);
 
-                boolean isHorizontal = i % 2 == 0;
+                    boolean isHorizontal = i % 2 == 0;
+                    if ((isHorizontal && v.y > bottomBound) || ((!isHorizontal) && v.x > rightBound)) {
+                        affectedSections.add(new Pair<>(connection, i));
+                    }
+                }
+            } else if (pathKind == ConnectionPath.Kind.TwoAngles) {
+                int x1 = path.getX1();
 
-                if (hasIntersection(dx, dy, position, u, v, isHorizontal)) {
-                    affectedSections.add(new Pair<>(connection, i));
+                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && rightBound < x1) {
+                    affectedSections.add(new Pair<>(connection, 1));
+                }
+            } else if (pathKind == ConnectionPath.Kind.FourAngles) {
+                int x1 = path.getX1();
+                int y = path.getY();
+                int x2 = path.getX2();
+
+                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && rightBound < x1) {
+                    affectedSections.add(new Pair<>(connection, 1));
+                }
+                if (Math.min(sourcePortPosition.y, y) < bottomBound && bottomBound < Math.max(sourcePortPosition.y, y)) {
+                    affectedSections.add(new Pair<>(connection, (sourcePortPosition.y < y ? 2 : -2)));
+                }
+                if (x2 < rightBound && rightBound < targetComponentPosition.x) {
+                    affectedSections.add(new Pair<>(connection, -3));
                 }
             }
         }
         return affectedSections;
     }
 
-    private boolean hasIntersection(int dx, int dy, Point position, Point u, Point v, boolean isHorizontal) {
-        return isHorizontal && (position.y < v.y && v.y < position.y + dy) && (Math.min(u.x, v.x) < position.x + dx && Math.max(u.x, v.x) > position.x) || (!isHorizontal) && (position.x < v.x && v.x < position.x + dx) && (Math.min(u.y, v.y) < position.y + dy && Math.max(u.y, v.y) > position.y);
+    @NotNull
+    private FBCell createExpandedSceneCell(FunctionBlockController componentController) {
+        FBCell sceneCell = componentController.initializeFBSceneCell();
+        Style style = componentController.getComponentCell().getStyle();
+        int fontSize = LayoutUtil.getFontSize(style);
+        LayoutUtil.setFontSize(sceneCell.getRootCell().getStyle(), fontSize);
+        sceneCell.getRootCell().relayout();
+        return sceneCell;
     }
 
-    private Pair<Set<NetworkComponentView>, Set<NetworkComponentView>> getAffectedComponents(FunctionBlockView component) {
+    private Pair<Set<NetworkComponentView>, Set<NetworkComponentView>> getAffectedComponents(Rectangle bounds) {
         Set<NetworkComponentView> affectedComponentsByX = new HashSet<>();
         Set<NetworkComponentView> affectedComponentsByY = new HashSet<>();
 
-        Point position = componentsFacility.getModelForm(component);
-        Rectangle oldBounds = componentsFacility.getController(component).getBounds(position);
+        int rightBound = bounds.x + bounds.width;
+        int bottomBound = bounds.y + bounds.height;
 
-        int oldRightBound = position.x + oldBounds.width;
-        int oldBottomBound = position.y + oldBounds.height;
+        Set<NetworkComponentView> components = diagramController.getComponents();
+        for (NetworkComponentView component : components) {
+            Point modelComponentPosition = componentsFacility.getModelForm(component);
 
-        List<NetworkComponentView> components = diagramController.getComponents().stream()
-                .filter(comp -> !comp.equals(component))
-                .collect(Collectors.toList());
-
-        for (NetworkComponentView comp : components) {
-            Point pos = componentsFacility.getModelForm(comp);
-
-            if (pos.x > oldRightBound) {
-                affectedComponentsByX.add(comp);
+            if (modelComponentPosition.x > rightBound) {
+                affectedComponentsByX.add(component);
             }
-            if (pos.y > oldBottomBound) {
-                affectedComponentsByY.add(comp);
+            if (modelComponentPosition.y > bottomBound) {
+                affectedComponentsByY.add(component);
             }
         }
-
         return new Pair<>(affectedComponentsByX, affectedComponentsByY);
     }
 }

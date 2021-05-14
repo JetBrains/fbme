@@ -45,7 +45,7 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
                         targetPosition,
                         editorBendPoints
                 );
-                return getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath);
+                return getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath, false);
             };
         }
 
@@ -62,12 +62,12 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
                     sourcePosition.y + myViewpoint.toEditorDimension(dy),
                     targetPosition.x - myViewpoint.toEditorDimension(dx2)
             );
-            return getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath);
+            return getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath, false);
         };
     }
 
     @NotNull
-    private FBConnectionPath getFBConnectionPathWithOffset(@NotNull NetworkConnectionView connection, Point sourcePosition, Point targetPosition, FBConnectionPath fbConnectionPath) {
+    private FBConnectionPath getFBConnectionPathWithOffset(@NotNull NetworkConnectionView connection, Point sourcePosition, Point targetPosition, FBConnectionPath fbConnectionPath, boolean inverted) {
         List<Point> bendPoints = fbConnectionPath.getBendPoints();
         List<Point> newBendPoints = FBConnectionController.deepCopy(bendPoints);
         for (int i = 1; i < newBendPoints.size(); i++) {
@@ -78,7 +78,7 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
             Integer offset = expandedComponentsController.getOffsetForSection(section);
 
             if (offset != null) {
-                offset = myViewpoint.toEditorDimension(offset);
+                offset = (inverted ? -((int) (offset / myScale)) : myViewpoint.toEditorDimension(offset));
                 boolean isHorizontal = i % 2 == 0;
                 if (isHorizontal) {
                     u.translate(0, offset);
@@ -97,41 +97,28 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
     public void setPath(@NotNull NetworkConnectionView connection, @NotNull FBConnectionPath path) {
         Point sourcePosition = path.getSourcePosition();
         Point targetPosition = path.getTargetPosition();
-        int dx1 = (int) (myViewpoint.fromEditorDimension(path.getX1() - sourcePosition.x) / myScale);
-        int dy = (int) (myViewpoint.fromEditorDimension(path.getY() - sourcePosition.y) / myScale);
-        int dx2 = (int) (myViewpoint.fromEditorDimension(targetPosition.x - path.getX2()) / myScale);
+        Point modelSourcePosition = new Point((int) (myViewpoint.translateFromEditorX(sourcePosition.x) / myScale), (int) (myViewpoint.translateFromEditorY(sourcePosition.y) / myScale));
+        Point modelTargetPosition = new Point((int) (myViewpoint.translateFromEditorX(targetPosition.x) / myScale), (int) (myViewpoint.translateFromEditorY(targetPosition.y) / myScale));
+
+        List<Point> bendPoints = path.getBendPoints();
+        List<Point> newBendPoints = bendPoints.stream().map(point -> {
+            int x = (int) (myViewpoint.translateFromEditorX(point.x) / myScale);
+            int y = (int) (myViewpoint.translateFromEditorY(point.y) / myScale);
+            return new Point(x, y);
+        }).collect(Collectors.toList());
+
+        FBConnectionPath fbConnectionPath = new FBConnectionPath(modelSourcePosition, modelTargetPosition, newBendPoints);
+
+        FBConnectionPath fbConnectionPathWithOffset = getFBConnectionPathWithOffset(connection, modelSourcePosition, modelTargetPosition, fbConnectionPath, true);
+
+        int dx1 = fbConnectionPathWithOffset.getX1() - modelSourcePosition.x;
+        int dy = fbConnectionPathWithOffset.getY() - modelSourcePosition.y;
+        int dx2 = modelTargetPosition.x - fbConnectionPathWithOffset.getX2();
 
         if (path.getPathKind() == ConnectionPath.Kind.MoreThanFour) {
-            List<Point> bendPoints = path.getBendPoints();
-            List<Point> newBendPoints = bendPoints.stream().map(point -> {
-                int x = (int) (myViewpoint.translateFromEditorX(point.x) / myScale);
-                int y = (int) (myViewpoint.translateFromEditorY(point.y) / myScale);
-                return new Point(x, y);
-            }).collect(Collectors.toList());
-
-            for (int i = 1; i < newBendPoints.size(); i++) {
-                Point u = newBendPoints.get(i - 1);
-                Point v = newBendPoints.get(i);
-
-                Pair<NetworkConnectionView, Integer> section = new Pair<>(connection, i);
-                Integer offset = expandedComponentsController.getOffsetForSection(section);
-                if (offset != null) {
-                    boolean isHorizontal = i % 2 == 0;
-
-                    float scaledOffset = offset / myScale;
-
-                    if (isHorizontal) {
-                        u.y -= scaledOffset;
-                        v.y -= scaledOffset;
-                    } else {
-                        u.x -= scaledOffset;
-                        v.x -= scaledOffset;
-                    }
-                }
-            }
-            connection.setPath(new LongConnectionPath(dx1, dy, dx2, newBendPoints));
+            connection.setPath(new LongConnectionPath(dx1, dy, dx2, fbConnectionPathWithOffset.getBendPoints()));
         } else {
-            connection.setPath(new ConnectionPath(path.getPathKind(), dx1, dy, dx2));
+            connection.setPath(new ConnectionPath(fbConnectionPathWithOffset.getPathKind(), dx1, dy, dx2));
         }
     }
 }

@@ -61,4 +61,6 @@ public interface FBCell {
     EditorCell_Collection getRootCell();
 
     boolean canStartMoveAt(int x, int y);
+
+    Rectangle getBounds();
 }

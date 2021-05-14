@@ -11,6 +11,11 @@ public interface FBNetworkComponentController {
     Rectangle getBounds(@NotNull Point position);
 
     @NotNull
+    default Rectangle getFBCellBounds(@NotNull Point position) {
+        return getBounds(position);
+    };
+
+    @NotNull
     Point getPortCoordinates(@NotNull NetworkPortView port, @NotNull Point position);
 
     @NotNull

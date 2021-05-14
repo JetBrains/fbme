@@ -4,14 +4,14 @@ import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSyncronizer;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkComponentSynchronizer;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.scenes.controllers.SceneViewpoint;
-import org.fbme.scenes.controllers.components.ComponentSynchronizer;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer;
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
 import org.fbme.scenes.controllers.diagram.DiagramController;
 import org.fbme.scenes.controllers.diagram.DiagramFacility;
@@ -26,8 +26,8 @@ public abstract class ExpandOrCollapseAction implements Action {
     protected final SceneViewpoint viewpoint;
     protected final ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility;
     protected final DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController;
-    protected final ComponentSynchronizer<NetworkComponentView, Point> componentsSynchronizer;
-    protected final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
+    protected final FBNetworkComponentSynchronizer componentsSynchronizer;
+    protected final FBConnectionPathSyncronizer connectionSynchronizer;
 
     protected ExpandOrCollapseAction(EditorCell cell) {
         Style style = cell.getStyle();
@@ -38,7 +38,7 @@ public abstract class ExpandOrCollapseAction implements Action {
         viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
 
         diagramController = diagramFacility.getDiagramController();
-        componentsSynchronizer = componentsFacility.getComponentSyncronizer();
-        connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
+        componentsSynchronizer = (FBNetworkComponentSynchronizer) componentsFacility.getComponentSyncronizer();
+        connectionSynchronizer = (FBConnectionPathSyncronizer) connectionsFacility.getConnectionSynchronizer();
     }
 }

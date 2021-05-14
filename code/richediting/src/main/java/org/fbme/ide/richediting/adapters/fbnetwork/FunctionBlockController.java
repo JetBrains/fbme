@@ -36,6 +36,12 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     private final FBCell fbCell;
     private final NetworkInstance networkInstance;
 
+    @NotNull
+    @Override
+    public Rectangle getFBCellBounds(@NotNull Point position) {
+        return fbCell.getBounds();
+    }
+
     public FunctionBlockController(
             final EditorContext context,
             final FunctionBlockView view,

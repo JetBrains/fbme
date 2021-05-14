@@ -59,10 +59,12 @@ public class ExpandedComponentsController {
         int dy = expandedComponents.get(view).y;
 
         for (Pair<NetworkConnectionView, Integer> section : sections) {
-            int sectionOffset = offsetMap.getOrDefault(section, 0);
-            boolean isHorizontal = section.second % 2 == 0;
+            int index = Math.abs(section.second);
+            Pair<NetworkConnectionView, Integer> validSection = new Pair<>(section.first, index);
+            int sectionOffset = offsetMap.getOrDefault(validSection, 0);
+            boolean isHorizontal = index % 2 == 0;
 
-            offsetMap.put(section, sectionOffset + (isHorizontal ? dy : dx));
+            offsetMap.put(validSection, sectionOffset + (section.second > 0 ? 1 : (-1)) * (isHorizontal ? dy : dx));
         }
     }
 
