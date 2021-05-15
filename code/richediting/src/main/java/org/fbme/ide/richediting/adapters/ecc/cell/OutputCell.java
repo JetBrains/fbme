@@ -17,24 +17,28 @@ import org.fbme.scenes.controllers.LayoutUtil;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.Map;
 
 public class OutputCell extends EditorCell_Basic {
-    protected final TextLine myNameText;
+    private final TextLine myNameText;
     private final Color backgroundColor;
-    protected final StateAction myAction;
-    protected final EditorCell_Collection myCellCollection;
+    private final StateAction myAction;
+    private final EditorCell_Collection myCellCollection;
+    private final Map<StateAction, Boolean> isOpenAlgorithmBody;
 
     public OutputCell(
             EditorContext editorContext,
             SNode node,
             StateAction action,
-            EditorCell_Collection cellCollection
+            EditorCell_Collection cellCollection,
+            Map<StateAction, Boolean> isOpenAlgorithmBody
     ) {
         super(editorContext, node);
         myCellCollection = cellCollection;
         myAction = action;
         backgroundColor = CellConstants.OUTPUT_COLOR;
         myNameText = new TextLine("", getStyle(), false);
+        this.isOpenAlgorithmBody = isOpenAlgorithmBody;
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
         relayoutImpl();
@@ -55,6 +59,10 @@ public class OutputCell extends EditorCell_Basic {
         if (myNameText.getText().isEmpty()) {
             setHeight(getHeight() / 2);
         }
+    }
+
+    public Map<StateAction, Boolean> getIsOpenAlgorithmBody() {
+        return isOpenAlgorithmBody;
     }
 
     private Rectangle getBounds(Point position) {

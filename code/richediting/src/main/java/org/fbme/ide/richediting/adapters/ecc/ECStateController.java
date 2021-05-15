@@ -14,8 +14,10 @@ import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.AlgorithmBody;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.PortPath;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
@@ -197,9 +199,7 @@ public class ECStateController implements ComponentController<Point> {
 
     public static void addAction(EditorCell_Collection collection) {
         StateDeclaration declaration = collection.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
-        IEC61499Factory factory = collection.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
-        StateAction action = factory.createStateAction();
-        declaration.getActions().add(action);
+        declaration.getActions().add(createEmptyAction(collection));
     }
 
     public static void addNewAlgorithm(EditorCell_Collection collection, StateAction action) {
@@ -225,6 +225,45 @@ public class ECStateController implements ComponentController<Point> {
 
         allAlgorithms.add(algorithmDeclaration);
         action.getAlgorithm().setTarget(algorithmDeclaration);
+    }
+
+    public static void setAlgorithmToNone(AlgorithmCell cell) {
+        EditorCell_Collection collection = cell.getStyle().get(RichEditorStyleAttributes.STATE_COLLECTION);
+        StateAction stateAction = cell.getStyle().get(RichEditorStyleAttributes.ALGORITHMS);
+        EditorContext context = collection.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+        StateAction newStateAction = createEmptyAction(collection);
+        PortPath<EventDeclaration> outputDeclaration = stateAction.getEvent().getTarget();
+        if (outputDeclaration != null) {
+            newStateAction.getEvent().setTarget(outputDeclaration);
+        }
+        StateDeclaration stateDeclaration = collection.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+        int indexInArray = stateDeclaration.getActions().indexOf(stateAction);
+        stateDeclaration.getActions().set(indexInArray, newStateAction);
+        context.getEditorComponent().getUpdater().update();
+    }
+
+    public static void setOutputToNone(OutputCell cell) {
+        EditorCell_Collection collection = cell.getStyle().get(RichEditorStyleAttributes.STATE_COLLECTION);
+        StateAction stateAction = cell.getStyle().get(RichEditorStyleAttributes.OUTPUTS);
+        EditorContext context = collection.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+        StateAction newStateAction = createEmptyAction(collection);
+        AlgorithmDeclaration algorithmDeclaration = stateAction.getAlgorithm().getTarget();
+        if (algorithmDeclaration != null) {
+            newStateAction.getAlgorithm().setTarget(algorithmDeclaration);
+        }
+        Map<StateAction, Boolean> isOpenAlgorithmBody = cell.getIsOpenAlgorithmBody();
+        boolean status = isOpenAlgorithmBody.getOrDefault(stateAction, true);
+        isOpenAlgorithmBody.remove(stateAction);
+        isOpenAlgorithmBody.put(newStateAction, status);
+        StateDeclaration stateDeclaration = collection.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+        int indexInArray = stateDeclaration.getActions().indexOf(stateAction);
+        stateDeclaration.getActions().set(indexInArray, newStateAction);
+        context.getEditorComponent().getUpdater().update();
+    }
+
+    private static StateAction createEmptyAction(EditorCell_Collection cell) {
+        IEC61499Factory iec61499Factory = cell.getStyle().get(RichEditorStyleAttributes.FACTORY_DECLARATION);
+        return iec61499Factory.createStateAction();
     }
 
     @Override
@@ -269,7 +308,7 @@ public class ECStateController implements ComponentController<Point> {
                 myCellCollection.addEditorCell(algorithmCell);
             }
 
-            OutputCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection);
+            OutputCell outputCell = new OutputCell(myContext, myNode, action, myCellCollection, isOpenAlgorithmBody);
             myCellCollection.addEditorCell(outputCell);
             myStateActionBlocks.add(new ActionBlock(algorithmCell, outputCell, action));
         }
