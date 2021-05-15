@@ -40,6 +40,7 @@ import java.util.List;
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
     public static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
+    public static final SceneStateKey<Map<StateDeclaration, Boolean>> IS_OPEN_ACTIONS = new SceneStateKey<>("is-open-actions");
 
     public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
         try {
@@ -118,8 +119,10 @@ public class ECCEditors {
         });
     }
 
-    public static ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> getTransitionControllerFactory(ComponentsFacility<StateDeclaration, Point> componentsFacility) {
-
+    public static ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath>
+    getTransitionControllerFactory(
+            ComponentsFacility<StateDeclaration, Point> componentsFacility
+    ) {
         return ((context, transition) -> {
             final SNode transitionNode = ((PlatformElement) transition).getNode();
             final EditorCell_Collection cell = RicheditingMpsBridge.createTransitionCell(context, transitionNode);
@@ -142,7 +145,7 @@ public class ECCEditors {
                     () -> ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, componentsFacility),
                     () -> ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, componentsFacility));
         });
-    };
+    }
 
     public static List<PositionalCompletionItem> getCompletion(final ECC ecc, final IEC61499Factory factory) {
         return Collections.singletonList(new PositionalCompletionItem() {
@@ -165,14 +168,14 @@ public class ECCEditors {
     }
 
     public static void hideAllAlgorithms(EditorCell_Scene scene) {
-        setHideOrOpenForAllStates(scene, false);
+        setHideOrOpenAlgorithmBodyForAllStates(scene, false);
     }
 
     public static void showAllAlgorithms(EditorCell_Scene scene) {
-        setHideOrOpenForAllStates(scene, true);
+        setHideOrOpenAlgorithmBodyForAllStates(scene, true);
     }
 
-    private static void setHideOrOpenForAllStates(EditorCell_Scene scene, boolean isOpen) {
+    private static void setHideOrOpenAlgorithmBodyForAllStates(EditorCell_Scene scene, boolean isOpen) {
         Map<StateAction, Boolean> isOpenAlgorithmBody = scene.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY);
         isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
         EditorContext context = null;
@@ -189,6 +192,36 @@ public class ECCEditors {
             }
         }
         scene.storeState(ECCEditors.IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
+        if (context != null) {
+            context.getEditorComponent().getUpdater().update();
+        }
+    }
+
+    public static void hideAllActions(EditorCell_Scene scene) {
+        setHideOrOpenActionsForAllStates(scene, false);
+    }
+
+    public static void showAllActions(EditorCell_Scene scene) {
+        setHideOrOpenActionsForAllStates(scene, true);
+    }
+
+    private static void setHideOrOpenActionsForAllStates(EditorCell_Scene scene, boolean isOpen) {
+        Map<StateDeclaration, Boolean> isOpenActions = scene.loadState(ECCEditors.IS_OPEN_ACTIONS);
+        isOpenActions = (isOpenActions != null ? isOpenActions : new HashMap<>());
+        EditorContext context = null;
+        for (EditorCell cell: scene.getCells()) {
+            StateDeclaration declaration = cell.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+            if (declaration != null) {
+                isOpenActions.put(declaration, isOpen);
+            }
+            if (context == null) {
+                EditorContext cellContext = cell.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+                if (cellContext != null) {
+                    context = cellContext;
+                }
+            }
+        }
+        scene.storeState(ECCEditors.IS_OPEN_ACTIONS, isOpenActions);
         if (context != null) {
             context.getEditorComponent().getUpdater().update();
         }

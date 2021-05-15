@@ -19,7 +19,6 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
-import org.fbme.scenes.controllers.scene.SceneStateKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -38,6 +37,7 @@ public class ECStateController implements ComponentController<Point> {
     private final EditorCell_Collection myCellCollection;
     private final List<ActionBlock> myStateActionBlocks;
     private Map<StateAction, Boolean> isOpenAlgorithmBody;
+    private Map<StateDeclaration, Boolean> isOpenActions;
 
     public ECStateController(EditorCell_Scene scene, EditorContext context, StateDeclaration state) {
         myContext = context;
@@ -47,13 +47,19 @@ public class ECStateController implements ComponentController<Point> {
         isOpenAlgorithmBody = scene.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY);
         isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
 
+        isOpenActions = scene.loadState(ECCEditors.IS_OPEN_ACTIONS);
+        isOpenActions = (isOpenActions != null ? isOpenActions: new HashMap<>());
+
         myCellCollection = createRootCell(myContext, myNode);
 
-        myStateNameCell = StateCell.createStateCell(myContext, myNode, myState, myCellCollection);
+        myStateNameCell = StateCell.createStateCell(myContext, myNode, myState, myCellCollection, isOpenActions);
         myCellCollection.addEditorCell(myStateNameCell);
 
         initializeActions();
+
         scene.storeState(ECCEditors.IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
+        scene.storeState(ECCEditors.IS_OPEN_ACTIONS, isOpenActions);
+
         myCellCollection.setBig(true);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.ACTIONS, myStateActionBlocks);
         myCellCollection.getStyle().set(RichEditorStyleAttributes.STATE_DECLARATION, myState);
@@ -241,6 +247,10 @@ public class ECStateController implements ComponentController<Point> {
     }
 
     private void initializeActions() {
+        boolean isOpenActionBlock = isOpenActions.getOrDefault(myState, true);
+        if (!isOpenActionBlock) {
+            return;
+        }
         for (StateAction action : myState.getActions()) {
             boolean isOpenBody = isOpenAlgorithmBody.getOrDefault(action, true);
             AlgorithmDeclaration algorithmDeclaration = action.getAlgorithm().getTarget();

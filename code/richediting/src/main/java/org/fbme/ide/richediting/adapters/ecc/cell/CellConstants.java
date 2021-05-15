@@ -6,6 +6,7 @@ public class CellConstants {
     public static final Color ALGORITHM_COLOR = new Color(199, 222, 193);
     public static final Color HIDDEN_ALGORITHM_COLOR = new Color(154, 167, 150);
     public static final Color STATE_COLOR = new Color(196, 215, 233);
+    public static final Color HIDDEN_STATE_COLOR = new Color(141, 170, 197);
     public static final Color OUTPUT_COLOR = new Color(235, 221, 185);
 
     public static final int ACTIVE_HEIGHT_PADDING = 6;

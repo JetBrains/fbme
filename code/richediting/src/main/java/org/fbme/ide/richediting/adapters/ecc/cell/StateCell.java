@@ -14,17 +14,41 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.Map;
 import java.util.Objects;
 
 public class StateCell extends EditorCell_Property {
-    public StateCell(EditorContext editorContext, ModelAccessor accessor, SNode node, EditorCell_Collection collection) {
+    private final boolean isOpen;
+    private final Map<StateDeclaration, Boolean> isOpenActions;
+    private final EditorContext myContext;
+    private final StateDeclaration myStateDeclaration;
+
+    public StateCell(
+            EditorContext editorContext,
+            ModelAccessor accessor,
+            SNode node,
+            EditorCell_Collection collection,
+            Map<StateDeclaration, Boolean> isOpenActions,
+            StateDeclaration stateDeclaration
+    ) {
         super(editorContext, accessor, node);
+        this.isOpen = isOpenActions.getOrDefault(stateDeclaration, true);
+        myContext = editorContext;
+        this.isOpenActions = isOpenActions;
+        myStateDeclaration = stateDeclaration;
+
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
         getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.05, Measure.SPACES));
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, collection);
     }
 
-    public static StateCell createStateCell(EditorContext editorContext, SNode node, StateDeclaration state, EditorCell_Collection cellCollection) {
+    public static StateCell createStateCell(
+            EditorContext editorContext,
+            SNode node,
+            StateDeclaration state,
+            EditorCell_Collection cellCollection,
+            Map<StateDeclaration, Boolean> isOpenActions
+    ) {
         ModelAccessor modelAccessor = new ModelAccessor() {
             public String getText() {
                 String name = state.getName();
@@ -39,17 +63,31 @@ public class StateCell extends EditorCell_Property {
                 return text != null && !text.equals("");
             }
         };
-        return new StateCell(editorContext, modelAccessor, node, cellCollection);
+        return new StateCell(editorContext, modelAccessor, node, cellCollection, isOpenActions, state);
     }
 
     @Override
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = (Graphics2D) graphics.create();
-        g.setColor(CellConstants.STATE_COLOR);
-        g.fillRoundRect(myX, myY, myWidth, myHeight, 10, 10);
+        if (isOpen) {
+            g.setColor(CellConstants.STATE_COLOR);
+        } else {
+            g.setColor(CellConstants.HIDDEN_STATE_COLOR);
+        }
+        g.fillRoundRect(myX, myY, myWidth, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED);
         int dx = (myWidth - myTextLine.getWidth()) / 2;
         myX += dx;
         super.paintContent(graphics, settings);
         myX -= dx;
+    }
+
+    public static boolean isOpenBody(StateCell cell) {
+        return cell.isOpenActions.getOrDefault(cell.myStateDeclaration, true);
+    }
+
+    public static void changeHideStateActionsInState(StateCell cell) {
+        boolean nowIsOpen = cell.isOpenActions.getOrDefault(cell.myStateDeclaration, true);
+        cell.isOpenActions.put(cell.myStateDeclaration, !nowIsOpen);
+        cell.myContext.getEditorComponent().getUpdater().update();
     }
 }
