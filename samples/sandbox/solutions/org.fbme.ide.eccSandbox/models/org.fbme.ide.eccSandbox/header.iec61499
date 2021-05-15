@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iec61499-model ref="r:12e74b4a-dbbe-461d-befc-80337254ab0f(org.fbme.ide.sandbox.eccStandard)">
+  <import ref="r:fa98296a-e4fa-4f84-b917-968f5f770c4b(iec61499.4diac.stdlib)" />
+</iec61499-model>
+
