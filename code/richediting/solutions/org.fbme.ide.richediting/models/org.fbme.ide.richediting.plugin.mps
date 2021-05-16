@@ -64,6 +64,11 @@
     <import index="alof" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.project(MPS.Platform/)" />
     <import index="4nm9" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.project(MPS.IDEA/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
+    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
+    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
+    <import index="ws78" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.elk(org.fbme.ide.richediting/)" />
+    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
+    <import index="mrrx" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.actions(org.fbme.ide.richediting/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -1458,6 +1463,15 @@
       </node>
       <node concept="tCFHf" id="uP0FLzWYpv" role="ftvYc">
         <ref role="tCJdB" node="uP0FLzNOoL" resolve="AddConstantToPort" />
+      </node>
+      <node concept="tCFHf" id="1eQRPVAXXv5" role="ftvYc">
+        <ref role="tCJdB" node="5IF$9ECWQWX" resolve="Relayout" />
+      </node>
+      <node concept="tCFHf" id="5ofREoX7Eki" role="ftvYc">
+        <ref role="tCJdB" node="4qZmOK$LL_l" resolve="Expand" />
+      </node>
+      <node concept="tCFHf" id="5ofREoX7El0" role="ftvYc">
+        <ref role="tCJdB" node="4qZmOK$MA52" resolve="Collapse" />
       </node>
       <node concept="10WQ6h" id="1DfKejr796v" role="ftvYc">
         <property role="TrG5h" value="mapper" />
@@ -3494,12 +3508,17 @@
                 <node concept="3uibUv" id="6Vznkw4g9Uy" role="1tU5fm">
                   <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
                 </node>
-                <node concept="2OqwBi" id="74jd4DVyRre" role="33vP2m">
-                  <node concept="37vLTw" id="74jd4DVyRrf" role="2Oq$k0">
-                    <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                <node concept="10QFUN" id="5qqUv$9yxIS" role="33vP2m">
+                  <node concept="3uibUv" id="5qqUv$9yy1Z" role="10QFUM">
+                    <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
                   </node>
-                  <node concept="liA8E" id="74jd4DVyRrg" role="2OqNvi">
-                    <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getDeclaration()" resolve="getDeclaration" />
+                  <node concept="2OqwBi" id="74jd4DVyRre" role="10QFUP">
+                    <node concept="37vLTw" id="74jd4DVyRrf" role="2Oq$k0">
+                      <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                    </node>
+                    <node concept="liA8E" id="74jd4DVyRrg" role="2OqNvi">
+                      <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getDeclaration()" resolve="getDeclaration" />
+                    </node>
                   </node>
                 </node>
               </node>
@@ -11546,6 +11565,100 @@
           <node concept="2YIFZM" id="2k00pzqCgIT" role="3clFbG">
             <ref role="37wK5l" node="5vstEPJdnqL" resolve="uninstall" />
             <ref role="1Pybhc" node="2k00pzqAsoA" resolve="RicheditingMpsBridgeImpl" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="5IF$9ECWQWX">
+    <property role="TrG5h" value="Relayout" />
+    <property role="2uzpH1" value="Relayout" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="1DS2jV" id="5IF$9ECXGXB" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="5IF$9ECXGXC" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="5IF$9ECWQWY" role="tncku">
+      <node concept="3clFbS" id="5IF$9ECWQWZ" role="2VODD2">
+        <node concept="3clFbF" id="7s8ro$mQ5WY" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ7zQ" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mQ5WW" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ6Rc" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~RelayoutAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="RelayoutAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ79Q" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ6RK" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ7tH" role="2OqNvi">
+                    <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="7s8ro$mQ7GZ" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~RelayoutAction.apply()" resolve="apply" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="4qZmOK$LL_l">
+    <property role="TrG5h" value="Expand" />
+    <property role="2uzpH1" value="Expand" />
+    <node concept="1DS2jV" id="4qZmOK$M3aS" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="4qZmOK$M3aT" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="4qZmOK$LL_m" role="tncku">
+      <node concept="3clFbS" id="4qZmOK$LL_n" role="2VODD2">
+        <node concept="3clFbF" id="7s8ro$mQ3vL" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ5Df" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mQ3vJ" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ4QU" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~ExpandAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="ExpandAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ59$" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ4Ru" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ5u8" role="2OqNvi">
+                    <ref role="2WH_rO" node="4qZmOK$M3aS" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="7s8ro$mQ5QJ" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~ExpandAction.apply()" resolve="apply" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="4qZmOK$MA52">
+    <property role="TrG5h" value="Collapse" />
+    <property role="2uzpH1" value="Collapse" />
+    <node concept="1DS2jV" id="4qZmOK$MA5o" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="4qZmOK$MA5p" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="4qZmOK$MA53" role="tncku">
+      <node concept="3clFbS" id="4qZmOK$MA54" role="2VODD2">
+        <node concept="3clFbF" id="7s8ro$mPNth" role="3cqZAp">
+          <node concept="2OqwBi" id="7s8ro$mQ3c2" role="3clFbG">
+            <node concept="2ShNRf" id="7s8ro$mPNtf" role="2Oq$k0">
+              <node concept="1pGfFk" id="7s8ro$mQ2qX" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~CollapseAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="CollapseAction" />
+                <node concept="2OqwBi" id="7s8ro$mQ2HN" role="37wK5m">
+                  <node concept="2WthIp" id="7s8ro$mQ2rH" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7s8ro$mQ32Z" role="2OqNvi">
+                    <ref role="2WH_rO" node="4qZmOK$MA5o" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="7s8ro$mQ3py" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~CollapseAction.apply()" resolve="apply" />
+            </node>
           </node>
         </node>
       </node>

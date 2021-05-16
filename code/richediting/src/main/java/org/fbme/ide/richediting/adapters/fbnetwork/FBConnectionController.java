@@ -7,18 +7,21 @@ import jetbrains.mps.nodeEditor.cells.EditorCell;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
-import org.fbme.ide.richediting.adapters.fb.DiagramColors;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.diagram.ConnectionController;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.language.SConcept;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -28,7 +31,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
     private static final int ENDPOINTS_PADDING = FBConnectionUtils.ENDPOINTS_PADDING;
 
     private final EntryKind myKind;
-    private boolean myIsEditable;
+    private final boolean myIsEditable;
 
     private final EditorCell_Collection myFakeCell;
 
@@ -37,7 +40,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
     public FBConnectionController(EditorContext context, NetworkConnectionView view) {
         myKind = view.getKind();
         myIsEditable = view.isEditable();
-        myIsEditable = true;
         SNode associatedNode = view.getAssociatedNode();
         myFakeCell = FakeCells.createCollection(context, associatedNode);
         Iterator<SNode> conncetionPaths = SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.ConnectionPath$IA).iterator();
@@ -93,29 +95,133 @@ public class FBConnectionController implements ConnectionController<FBConnection
             return null;
         }
 
-        Point s = path.getSourcePosition();
-        Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
+        List<Point> bendPoints = path.getBendPoints();
+        for (int i = 1; i < bendPoints.size(); i++) {
+            Point u = bendPoints.get(i - 1);
+            Point v = bendPoints.get(i);
+            boolean isHorizontal = i % 2 == 0;
 
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                if (checkLineSelection(ey, ex, s.y, x1, t.y)) {
-                    return getX1EdgePathTransformation(path);
-                }
-                break;
-            case FourAngles:
-                if (Math.abs(ex - x1) < scale(SELECTION_PADDING) && ey > Math.min(s.y, y) && ey < Math.max(s.y, y)) {
-                    return getX1EdgePathTransformation(path);
-                } else if (Math.abs(ey - y) < scale(SELECTION_PADDING) && ex > Math.min(x1, x2) && ex < Math.max(x1, x2)) {
-                    return getYEdgePathTransformation(path);
-                } else if (Math.abs(ex - x2) < scale(SELECTION_PADDING) && ey > Math.min(y, t.y) && ey < Math.max(y, t.y)) {
-                    return getX2EdgePathTransformation(path);
-                }
-                break;
+            if (hasIntersection(ex, ey, u, v, isHorizontal)) {
+                return getPathSectionTransformation(path, i);
+            }
         }
         return null;
+    }
+
+    private boolean hasIntersection(int ex, int ey, Point u, Point v, boolean isHorizontal) {
+        return isHorizontal ? hasHorizontalIntersection(ex, ey, u, v) : hasVerticalIntersection(ex, ey, u, v);
+    }
+
+    private boolean hasVerticalIntersection(int ex, int ey, Point u, Point v) {
+        return Math.abs(ex - u.x) < scale(SELECTION_PADDING) && (Math.min(u.y, v.y) < ey && ey < Math.max(u.y, v.y));
+    }
+
+    private boolean hasHorizontalIntersection(int ex, int ey, Point u, Point v) {
+        return Math.abs(ey - u.y) < scale(SELECTION_PADDING) && (Math.min(u.x, v.x) < ex && ex < Math.max(u.x, v.x));
+    }
+
+    private Function<Point, FBConnectionPath> getPathSectionTransformation(FBConnectionPath path, int index) {
+        List<Point> bendPoints = path.getBendPoints();
+        boolean isHorizontal = index % 2 == 0;
+
+        return eventPosition -> {
+            List<Point> newBendPoints = deepCopy(bendPoints);
+            Point u = newBendPoints.get(index - 1);
+            Point v = newBendPoints.get(index);
+            if (isHorizontal) {
+                u.y = v.y = eventPosition.y;
+            } else {
+                u.x = v.x = eventPosition.x;
+            }
+            magnetize(index, newBendPoints);
+
+            return new FBConnectionPath(
+                    path.getSourcePosition(),
+                    path.getTargetPosition(),
+                    newBendPoints
+            );
+        };
+    }
+
+    private FBConnectionPath magnetized(FBConnectionPath path) {
+        List<Point> bendPoints = path.getBendPoints();
+
+        if (bendPoints.isEmpty()) {
+            return path;
+        }
+
+        if (bendPoints.size() == 2) {
+            Point u = bendPoints.get(0);
+            Point v = bendPoints.get(1);
+
+            if (u.y == v.y) {
+                return new FBConnectionPath(path.getSourcePosition(), path.getTargetPosition());
+            }
+        }
+
+        List<Point> newBendPoints = deepCopy(bendPoints);
+
+        for (int i = 1; i < newBendPoints.size(); i++) {
+            magnetize(i, newBendPoints);
+        }
+
+        return new FBConnectionPath(
+                path.getSourcePosition(),
+                path.getTargetPosition(),
+                newBendPoints
+        );
+    }
+
+    private void magnetize(int index, List<Point> bendPoints) {
+        boolean isHorizontal = index % 2 == 0;
+        if (isHorizontal) {
+            magnetizeHorizontal(index, bendPoints);
+        } else {
+            magnetizeVertical(index, bendPoints);
+        }
+    }
+
+    private void magnetizeHorizontal(int index, List<Point> bendPoints) {
+        Point u = bendPoints.get(index - 1);
+        Point v = bendPoints.get(index);
+        Point uPrev = bendPoints.get(index - 2);
+        Point vNext = bendPoints.get(index + 1);
+        if (Math.abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
+            u.y = vNext.y;
+            bendPoints.remove(index + 1);
+            bendPoints.remove(index);
+        }
+        if (Math.abs(u.y - uPrev.y) < scale(SELECTION_PADDING)) {
+            v.y = uPrev.y;
+            bendPoints.remove(index - 1);
+            bendPoints.remove(index - 2);
+        }
+    }
+
+    private void magnetizeVertical(int index, List<Point> bendPoints) {
+        Point u = bendPoints.get(index - 1);
+        Point v = bendPoints.get(index);
+        Point uPrev = index - 2 >= 0 ? bendPoints.get(index - 2) : null;
+        Point vNext = index + 1 < bendPoints.size() ? bendPoints.get(index + 1) : null;
+        if (vNext != null && Math.abs(vNext.x - v.x) < scale(SELECTION_PADDING)) {
+            u.x = vNext.x;
+            bendPoints.remove(index + 1);
+            bendPoints.remove(index);
+        }
+        if (uPrev != null && Math.abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
+            v.x = uPrev.x;
+            bendPoints.remove(index - 1);
+            bendPoints.remove(index - 2);
+        }
+    }
+
+    @NotNull
+    public static List<Point> deepCopy(List<Point> bendPoints) {
+        List<Point> newBendPoints = new ArrayList<>();
+        for (Point bendPoint : bendPoints) {
+            newBendPoints.add(new Point(bendPoint.x, bendPoint.y));
+        }
+        return newBendPoints;
     }
 
     @Override
@@ -123,12 +229,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return false;
         }
-
-        Point s = path.getSourcePosition();
-        int x1 = path.getX1();
-
-        return checkLineSelection(ex, ey, s.x, s.y, Math.max(s.x, Math.min(s.x + scale(ENDPOINT_HOVER_LENGTH), x1)));
-
+        return isOnSourceHoverArea(ex, ey, path);
     }
 
     @Override
@@ -136,18 +237,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return false;
         }
-
-        Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int x2 = path.getX2();
-
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                return checkLineSelection(ex, ey, t.x, t.y, Math.min(t.x, Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), x1)));
-            case FourAngles:
-                return checkLineSelection(ex, ey, t.x, t.y, Math.min(t.x, Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), x2)));
-        }
-        return false;
+        return isOnTargetHoverArea(ex, ey, path);
     }
 
     @Nullable
@@ -156,7 +246,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return null;
         }
-
         return getConnectionSourceTransformation(path);
     }
 
@@ -166,7 +255,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
         if (!myIsEditable) {
             return null;
         }
-
         return getConnectionTargetTransformation(path);
     }
 
@@ -177,40 +265,47 @@ public class FBConnectionController implements ConnectionController<FBConnection
             return null;
         }
 
+        List<Point> bendPoints = path.getBendPoints();
+
         return (sourcePosition, targetPosition) -> {
             Point originalSourcePosition = path.getSourcePosition();
             int dx = sourcePosition.x - originalSourcePosition.x;
             int dy = sourcePosition.y - originalSourcePosition.y;
-            return new FBConnectionPath(sourcePosition, targetPosition, path.getPathKind(), path.getX1() + dx, path.getY() + dy, path.getX2() + dx);
-        };
-    }
 
-    private boolean checkLineSelection(int sx, int sy, int lx1, int ly, int lx2) {
-        if (Math.abs(sy - ly) < scale(SELECTION_PADDING)) {
-            if (lx1 < lx2) {
-                return lx1 < sx && sx < lx2;
-            } else {
-                return lx1 > sx && sx > lx2;
+            List<Point> newBendPoints = new ArrayList<>();
+
+            for (Point bendPoint : bendPoints) {
+                newBendPoints.add(new Point(bendPoint.x + dx, bendPoint.y + dy));
             }
-        }
-        return false;
+
+            return new FBConnectionPath(sourcePosition, targetPosition, newBendPoints);
+        };
     }
 
     @Override
     public boolean isSelectableAt(FBConnectionPath path, int ex, int ey) {
         Point s = path.getSourcePosition();
         Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
 
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                return checkLineSelection(ex, ey, s.x, s.y, x1) || checkLineSelection(ey, ex, s.y, x1, t.y) || checkLineSelection(ex, ey, x1, t.y, t.x);
-            case FourAngles:
-                return checkLineSelection(ex, ey, s.x, s.y, x1) || checkLineSelection(ey, ex, s.y, x1, y) || checkLineSelection(ex, ey, x1, y, x2) || checkLineSelection(ey, ex, y, x2, t.y) || checkLineSelection(ex, ey, x2, t.y, t.x);
+        List<Point> bendPoints = path.getBendPoints();
+
+        if (bendPoints.isEmpty()) {
+            return hasHorizontalIntersection(ex, ey, s, t);
+        } else {
+            if (hasHorizontalIntersection(ex, ey, s, bendPoints.get(0))) {
+                return true;
+            }
+            for (int i = 1; i < bendPoints.size(); i++) {
+                Point u = bendPoints.get(i - 1);
+                Point v = bendPoints.get(i);
+                boolean isHorizontal = (i % 2) == 0;
+
+                if (hasIntersection(ex, ey, u, v, isHorizontal)) {
+                    return true;
+                }
+            }
+            return hasHorizontalIntersection(ex, ey, bendPoints.get(bendPoints.size() - 1), t);
         }
-        return false;
     }
 
     @Override
@@ -219,83 +314,49 @@ public class FBConnectionController implements ConnectionController<FBConnection
             return null;
         }
 
-        Point s = path.getSourcePosition();
-        Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
-
-        switch (path.getPathKind()) {
-            case TwoAngles:
-                if (checkLineSelection(ex, ey, s.x, s.y, x1)) {
-                    if (s.x + scale(ENDPOINT_HOVER_LENGTH) < x1) {
-                        return FBConnectionCursor.SOURCE_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.SOURCE_EDGE;
-                    }
-                } else if (checkLineSelection(ey, ex, s.y, x1, t.y)) {
-                    return FBConnectionCursor.X1_EDGE;
-                } else if (checkLineSelection(ex, ey, x1, t.y, t.x)) {
-                    if (t.x - scale(ENDPOINT_HOVER_LENGTH) > x1) {
-                        return FBConnectionCursor.TARGET_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.TARGET_EDGE;
-                    }
-                }
-            case FourAngles:
-                if (checkLineSelection(ex, ey, s.x, s.y, x1)) {
-                    if (s.x + scale(ENDPOINT_HOVER_LENGTH) < x1) {
-                        return FBConnectionCursor.SOURCE_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.SOURCE_EDGE;
-                    }
-                } else if (checkLineSelection(ey, ex, s.y, x1, y)) {
-                    return FBConnectionCursor.X1_EDGE;
-                } else if (checkLineSelection(ex, ey, x1, y, x2)) {
-                    return FBConnectionCursor.Y_EDGE;
-                } else if (checkLineSelection(ey, ex, y, x2, t.y)) {
-                    return FBConnectionCursor.X2_EDGE;
-                } else if (checkLineSelection(ex, ey, x2, t.y, t.x)) {
-                    if (t.x - scale(ENDPOINT_HOVER_LENGTH) > x2) {
-                        return FBConnectionCursor.TARGET_ENDPOINT;
-                    } else {
-                        return FBConnectionCursor.TARGET_EDGE;
-                    }
-                }
+        if (isOnSourceHoverArea(ex, ey, path)) {
+            return FBConnectionCursor.SOURCE_ENDPOINT;
+        } else if (isOnTargetHoverArea(ex, ey, path)) {
+            return FBConnectionCursor.TARGET_ENDPOINT;
         }
         return null;
+    }
+
+    private boolean isOnTargetHoverArea(int ex, int ey, FBConnectionPath path) {
+        Point s = path.getSourcePosition();
+        Point t = path.getTargetPosition();
+
+        List<Point> bendPoints = path.getBendPoints();
+
+        return hasHorizontalIntersection(ex, ey, new Point(getTargetHover(s, t, bendPoints), t.y), t);
+    }
+
+    private boolean isOnSourceHoverArea(int ex, int ey, FBConnectionPath path) {
+        Point s = path.getSourcePosition();
+        Point t = path.getTargetPosition();
+
+        List<Point> bendPoints = path.getBendPoints();
+
+        return hasHorizontalIntersection(ex, ey, s, new Point(getSourceHover(s, t, bendPoints), s.y));
     }
 
     @Override
     public Rectangle getBounds(FBConnectionPath path) {
         Point s = path.getSourcePosition();
         Point t = path.getTargetPosition();
-        int x1 = path.getX1();
-        int y = path.getY();
-        int x2 = path.getX2();
 
-        int xmin = 0;
-        int xmax = -1;
-        int ymin = 0;
-        int ymax = -1;
-        switch (path.getPathKind()) {
-            case Straight:
-                xmin = Math.min(s.x, t.x);
-                xmax = Math.max(s.x, t.x);
-                ymin = Math.min(s.y, t.y);
-                ymax = Math.max(s.y, t.y);
-                break;
-            case TwoAngles:
-                xmin = Math.min(Math.min(s.x, t.x), x1);
-                xmax = Math.max(Math.max(s.x, t.x), x1);
-                ymin = Math.min(s.y, t.y);
-                ymax = Math.max(s.y, t.y);
-                break;
-            case FourAngles:
-                xmin = Math.min(Math.min(s.x, t.x), Math.min(x1, x2));
-                xmax = Math.max(Math.max(s.x, t.x), Math.max(x1, x2));
-                ymin = Math.min(Math.min(s.y, t.y), y);
-                ymax = Math.max(Math.max(s.y, t.y), y);
+        int xmin = Math.min(s.x, t.x);
+        int xmax = Math.max(s.x, t.x);
+        int ymin = Math.min(s.y, t.y);
+        int ymax = Math.max(s.y, t.y);
+
+        List<Point> bendPoints = path.getBendPoints();
+
+        for (Point bendPoint : bendPoints) {
+            xmin = Math.min(xmin, bendPoint.x);
+            xmax = Math.max(xmax, bendPoint.x);
+            ymin = Math.min(ymin, bendPoint.y);
+            ymax = Math.max(ymax, bendPoint.y);
         }
         return new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
     }
@@ -308,36 +369,6 @@ public class FBConnectionController implements ConnectionController<FBConnection
     private Function<Point, FBConnectionPath> getConnectionTargetTransformation(FBConnectionPath originalPath) {
         final PathTargetChangeDiffCalculator calculator = new PathTargetChangeDiffCalculator(originalPath);
         return calculator::calculatePath;
-    }
-
-    private Function<Point, FBConnectionPath> getX1EdgePathTransformation(final FBConnectionPath originalPath) {
-        return eventPosition -> {
-            if (originalPath.getPathKind() == ConnectionPath.Kind.FourAngles) {
-                int x2 = originalPath.getX2();
-                if (Math.abs(eventPosition.x - x2) < scale(SELECTION_PADDING)) {
-
-                    return new FBConnectionPath(originalPath.getSourcePosition(), originalPath.getTargetPosition(), ConnectionPath.Kind.TwoAngles, x2, 0, 0);
-                }
-            }
-            return new FBConnectionPath(originalPath.getSourcePosition(), originalPath.getTargetPosition(), originalPath.getPathKind(), eventPosition.x, originalPath.getY(), originalPath.getX2());
-        };
-    }
-
-    private Function<Point, FBConnectionPath> getX2EdgePathTransformation(final FBConnectionPath originalPath) {
-        return eventPosition -> {
-            if (originalPath.getPathKind() == ConnectionPath.Kind.FourAngles) {
-                int x1 = originalPath.getX1();
-                if (Math.abs(eventPosition.x - x1) < scale(SELECTION_PADDING)) {
-
-                    return new FBConnectionPath(originalPath.getSourcePosition(), originalPath.getTargetPosition(), ConnectionPath.Kind.TwoAngles, x1, 0, 0);
-                }
-            }
-            return new FBConnectionPath(originalPath.getSourcePosition(), originalPath.getTargetPosition(), originalPath.getPathKind(), originalPath.getX1(), originalPath.getY(), eventPosition.x);
-        };
-    }
-
-    private static Function<Point, FBConnectionPath> getYEdgePathTransformation(final FBConnectionPath originalPath) {
-        return eventPosition -> new FBConnectionPath(originalPath.getSourcePosition(), originalPath.getTargetPosition(), originalPath.getPathKind(), originalPath.getX1(), eventPosition.y, originalPath.getX2());
     }
 
     private class PathTargetChangeDiffCalculator {
@@ -359,8 +390,12 @@ public class FBConnectionController implements ConnectionController<FBConnection
             int x2 = myOriginalPath.getX2();
 
             ConnectionPath.Kind kind = myOriginalPath.getPathKind();
+            if (kind == ConnectionPath.Kind.Straight) {
+                x1 = (t.x + s.x) / 2;
+            }
 
             switch (kind) {
+                case Straight:
                 case TwoAngles:
                     if (ntx >= s.x + 2 * scale(ENDPOINTS_PADDING)) {
                         kind = ConnectionPath.Kind.TwoAngles;
@@ -383,6 +418,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
                 case FourAngles:
+                case MoreThanFour:
                     if (ntx >= x1 + t.x - x2) {
                         kind = ConnectionPath.Kind.TwoAngles;
                         if (t.x - x2 != x1 - s.x) {
@@ -396,7 +432,9 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
             }
-            return new FBConnectionPath(s, newTarget, kind, x1, y, x2);
+            FBConnectionPath newConnectionPath = new FBConnectionPath(s, newTarget, kind, x1, y, x2);
+
+            return magnetized(newConnectionPath);
         }
     }
 
@@ -420,7 +458,12 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
             ConnectionPath.Kind kind = myOriginalPath.getPathKind();
 
+            if (kind == ConnectionPath.Kind.Straight) {
+                x1 = (t.x + s.x) / 2;
+            }
+
             switch (kind) {
+                case Straight:
                 case TwoAngles:
                     if (nsx <= t.x - 2 * scale(ENDPOINTS_PADDING)) {
                         kind = ConnectionPath.Kind.TwoAngles;
@@ -443,6 +486,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
                 case FourAngles:
+                case MoreThanFour:
                     if (nsx <= x2 + s.x - x1) {
                         kind = ConnectionPath.Kind.TwoAngles;
                         if (t.x - s.x != x2 - x1) {
@@ -456,7 +500,9 @@ public class FBConnectionController implements ConnectionController<FBConnection
                     }
                     break;
             }
-            return new FBConnectionPath(newSource, t, kind, x1, y, x2);
+            FBConnectionPath newConnectionPath = new FBConnectionPath(newSource, t, kind, x1, y, x2);
+
+            return magnetized(newConnectionPath);
         }
     }
 
@@ -466,6 +512,14 @@ public class FBConnectionController implements ConnectionController<FBConnection
 
     private int scale(int size) {
         return size * getFontSize() / EditorSettings.getInstance().getFontSize();
+    }
+
+    private int getTargetHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.max(t.x - scale(ENDPOINT_HOVER_LENGTH), bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(bendPoints.size() - 1).x);
+    }
+
+    private int getSourceHover(Point s, Point t, List<Point> bendPoints) {
+        return Math.min(s.x + scale(ENDPOINT_HOVER_LENGTH), bendPoints.isEmpty() ? (s.x + t.x) / 2 : bendPoints.get(0).x);
     }
 
     private static final class CONCEPTS {

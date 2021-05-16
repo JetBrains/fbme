@@ -14,57 +14,77 @@ public interface NetworkInstance extends Instance {
 
     @Nullable FunctionBlockInstance getChild(@NotNull FunctionBlockDeclarationBase component);
 
+    static @NotNull NetworkInstance createForCompositeFBType(@NotNull CompositeFBTypeDeclaration compositeFBType, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, compositeFBType.getNetwork(), compositeFBType);
+    }
+
     static @NotNull NetworkInstance createForCompositeFBType(@NotNull CompositeFBTypeDeclaration compositeFBType) {
-        return new RegularNetworkInstance(null, compositeFBType.getNetwork(), compositeFBType);
+        return createForCompositeFBType(compositeFBType, null);
     }
 
-    static @NotNull NetworkInstance createForSubapplicationType(@NotNull SubapplicationTypeDeclaration subapplicationType) {
-        return new RegularNetworkInstance(null, subapplicationType.getNetwork(), subapplicationType);
+    static @NotNull NetworkInstance createForSubapplicationType(@NotNull SubapplicationTypeDeclaration subapplicationType, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, subapplicationType.getNetwork(), subapplicationType);
     }
 
-    static @NotNull NetworkInstance createForResourceType(@NotNull ResourceTypeDeclaration resourceType) {
-        return new RegularNetworkInstance(null, resourceType.getNetwork(), resourceType);
+    static @NotNull NetworkInstance createForResourceType(@NotNull ResourceTypeDeclaration resourceType, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, resourceType.getNetwork(), resourceType);
     }
 
-    static @NotNull NetworkInstance createForImplicitResourceOfDeviceType(@NotNull DeviceTypeDeclaration deviceType) {
-        return new RegularNetworkInstance(null, deviceType.getNetwork(), deviceType);
+    static @NotNull NetworkInstance createForImplicitResourceOfDeviceType(@NotNull DeviceTypeDeclaration deviceType, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, deviceType.getNetwork(), deviceType);
+    }
+
+    static @NotNull NetworkInstance createForApplication(@NotNull ApplicationDeclaration application, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, application.getNetwork(), application);
     }
 
     static @NotNull NetworkInstance createForApplication(@NotNull ApplicationDeclaration application) {
-        return new RegularNetworkInstance(null, application.getNetwork(), application);
+        return createForApplication(application, null);
+    }
+
+    static @NotNull NetworkInstance createForResource(@NotNull ResourceDeclaration resource, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, resource.getNetwork(), resource);
     }
 
     static @NotNull NetworkInstance createForResource(@NotNull ResourceDeclaration resource) {
-        return new RegularNetworkInstance(null, resource.getNetwork(), resource);
+        return createForResource(resource, null);
     }
 
-    static @NotNull NetworkInstance createForImplicitResourceOfDevice(@NotNull DeviceDeclaration device) {
-        return new RegularNetworkInstance(null, device.getNetwork(), device);
+    static @NotNull NetworkInstance createForImplicitResourceOfDevice(@NotNull DeviceDeclaration device, @Nullable Instance parent) {
+        return new RegularNetworkInstance(parent, device.getNetwork(), device);
+    }
+
+    static @NotNull NetworkInstance createForDeclaration(@NotNull Declaration declaration, @Nullable Instance parent) {
+        Declaration decl = declaration;
+        if (declaration instanceof FunctionBlockDeclarationBase) {
+            decl = ((FunctionBlockDeclarationBase) declaration).getType().getDeclaration();
+        }
+        if (decl instanceof CompositeFBTypeDeclaration) {
+            CompositeFBTypeDeclaration compositeFBType = ((CompositeFBTypeDeclaration) decl);
+            return createForCompositeFBType(compositeFBType, parent);
+        } else if (decl instanceof SubapplicationTypeDeclaration) {
+            SubapplicationTypeDeclaration subappType = ((SubapplicationTypeDeclaration) decl);
+            return createForSubapplicationType(subappType, parent);
+        } else if (decl instanceof ResourceTypeDeclaration) {
+            ResourceTypeDeclaration resourceType = ((ResourceTypeDeclaration) decl);
+            return createForResourceType(resourceType, parent);
+        } else if (decl instanceof DeviceTypeDeclaration) {
+            DeviceTypeDeclaration deviceType = ((DeviceTypeDeclaration) decl);
+            return createForImplicitResourceOfDeviceType(deviceType, parent);
+        } else if (decl instanceof ApplicationDeclaration) {
+            ApplicationDeclaration app = ((ApplicationDeclaration) decl);
+            return createForApplication(app, parent);
+        } else if (decl instanceof ResourceDeclaration) {
+            ResourceDeclaration resource = ((ResourceDeclaration) decl);
+            return createForResource(resource, parent);
+        } else if (decl instanceof DeviceDeclaration) {
+            DeviceDeclaration device = ((DeviceDeclaration) decl);
+            return createForImplicitResourceOfDevice(device, parent);
+        }
+        throw new IllegalArgumentException("Unknown kind of declaration: " + decl.getClass());
     }
 
     static @NotNull NetworkInstance createForDeclaration(@NotNull Declaration declaration) {
-        if (declaration instanceof CompositeFBTypeDeclaration) {
-            CompositeFBTypeDeclaration compositeFBType = ((CompositeFBTypeDeclaration) declaration);
-            return createForCompositeFBType(compositeFBType);
-        } else if (declaration instanceof SubapplicationTypeDeclaration) {
-            SubapplicationTypeDeclaration subappType = ((SubapplicationTypeDeclaration) declaration);
-            return createForSubapplicationType(subappType);
-        } else if (declaration instanceof ResourceTypeDeclaration) {
-            ResourceTypeDeclaration resourceType = ((ResourceTypeDeclaration) declaration);
-            return createForResourceType(resourceType);
-        } else if (declaration instanceof DeviceTypeDeclaration) {
-            DeviceTypeDeclaration deviceType = ((DeviceTypeDeclaration) declaration);
-            return createForImplicitResourceOfDeviceType(deviceType);
-        } else if (declaration instanceof ApplicationDeclaration) {
-            ApplicationDeclaration app = ((ApplicationDeclaration) declaration);
-            return createForApplication(app);
-        } else if (declaration instanceof ResourceDeclaration) {
-            ResourceDeclaration resource = ((ResourceDeclaration) declaration);
-            return createForResource(resource);
-        } else if (declaration instanceof DeviceDeclaration) {
-            DeviceDeclaration device = ((DeviceDeclaration) declaration);
-            return createForImplicitResourceOfDevice(device);
-        }
-        throw new IllegalArgumentException("Unknown kind of declaration: " + declaration.getClass());
+        return createForDeclaration(declaration, null);
     }
 }

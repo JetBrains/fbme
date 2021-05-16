@@ -188,6 +188,10 @@ public class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT> {
         }
     }
 
+    public ConnectionPathSyncronizer<ConnT, PathT> getConnectionSynchronizer() {
+        return myConnectionSynchronizer;
+    }
+
     public class MySelectionInitializer implements SceneInitializer {
 
         @Override

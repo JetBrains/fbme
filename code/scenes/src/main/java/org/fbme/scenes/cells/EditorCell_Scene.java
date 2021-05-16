@@ -5,7 +5,6 @@ import com.intellij.util.ui.MouseEventAdapter;
 import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorComponent;
-import jetbrains.mps.nodeEditor.EditorSettings;
 import jetbrains.mps.nodeEditor.MPSColors;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
 import jetbrains.mps.nodeEditor.cellMenu.AbstractNodeSubstituteInfo;
@@ -287,10 +286,12 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
     protected void paintContent(Graphics graphics, ParentSettings settings) {
         Graphics2D g = ((Graphics2D) graphics.create());
         if (myLayout == SceneLayout.WINDOWED) {
-            g.setColor(MPSColors.BLACK);
-            Rectangle bounds = getBounds();
-            g.draw(bounds);
-            g.setClip(bounds.intersection(g.getClip().getBounds()));
+            if (isDrawBorder()) {
+                g.setColor(MPSColors.BLACK);
+                Rectangle bounds = getBounds();
+                g.draw(bounds);
+                g.setClip(bounds.intersection(g.getClip().getBounds()));
+            }
         }
 
         for (LayerImpl layer : myLayers) {
@@ -582,7 +583,9 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
 
                 if (scene.myLayout == SceneLayout.WINDOWED) {
                     doRelayout(scene);
-                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
+                    Rectangle bounds = calculateBounds(scene);
+                    scene.myWidth = bounds.width + bounds.x - scene.myX + 15; // to remove + 15?
+                    scene.myHeight = bounds.height + bounds.y - scene.myY + 10; // to remove + 10?
                 } else {
                     Rectangle bounds = calculateBounds(scene);
                     updateViewport(scene, bounds);
@@ -626,13 +629,13 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
         }
 
         private void doRelayout(EditorCell_Scene scene) {
-            for (SceneLayouter layouter : scene.myLayouters) {
-                layouter.relayout();
-            }
             for (LayerImpl layer : scene.myLayers) {
                 for (EditorCellProvider provider : layer.getCellProviders()) {
                     provider.relayoutCells();
                 }
+            }
+            for (SceneLayouter layouter : scene.myLayouters) {
+                layouter.relayout();
             }
         }
 
@@ -646,7 +649,7 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
                 }
 
                 if (scene.myLayout == SceneLayout.WINDOWED) {
-                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
+//                    scene.myWidth = EditorSettings.getInstance().getVerticalBoundWidth() - scene.myX;
                 }
             }
 

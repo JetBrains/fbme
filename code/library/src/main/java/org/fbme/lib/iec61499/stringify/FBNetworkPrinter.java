@@ -1,13 +1,11 @@
 package org.fbme.lib.iec61499.stringify;
 
 
-import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
-import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
-import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.fbnetwork.*;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,6 +25,13 @@ public class FBNetworkPrinter<NetworkT extends FBNetwork> extends PrinterElement
         addNullableContent(element, printDataConnections());
         addNullableContent(element, printEventConnections());
         addNullableContent(element, printAdapterConnections());
+        printEndpointCoordinates(element);
+    }
+
+    private void printEndpointCoordinates(Element element) {
+        for (EndpointCoordinate endpointCoordinate : myElement.getEndpointCoordinates()) {
+            element.addContent(printEndpointCoordinate(endpointCoordinate));
+        }
     }
 
     private void printFunctionBlocks(Element element) {
@@ -85,12 +90,31 @@ public class FBNetworkPrinter<NetworkT extends FBNetwork> extends PrinterElement
         }
     }
 
+    private Element printEndpointCoordinate(EndpointCoordinate endpointCoordinate) {
+        Element element =  new Element("EndpointCoordinate");
+        element.setAttribute("Name", endpointCoordinate.getPortReference().getPresentation());
+        element.setAttribute("x", "" + endpointCoordinate.getX());
+        element.setAttribute("y", "" + endpointCoordinate.getY());
+        return element;
+    }
+
     private Element printConnection(FBNetworkConnection connection) {
         Element element = new Element("Connection");
         element.setAttribute("Source", connection.getSourceReference().getPresentation());
         element.setAttribute("Destination", connection.getTargetReference().getPresentation());
         ConnectionPath path = Objects.requireNonNull(connection.getPath());
         switch (path.getKind()) {
+            case MoreThanFour:
+                LongConnectionPath longPath = (LongConnectionPath) path;
+                Element bendPointsElement = new Element("BendPoints");
+                List<Point> bendPoints = longPath.getBendPoints();
+                for (Point bendPoint : bendPoints) {
+                    Element bendPointElement = new Element("BendPoint");
+                    bendPointElement.setAttribute("x", "" + bendPoint.x);
+                    bendPointElement.setAttribute("y", "" + bendPoint.y);
+                    bendPointsElement.addContent(bendPointElement);
+                }
+                element.addContent(bendPointsElement);
             case FourAngles:
                 element.setAttribute("dy", "" + path.getDY());
                 element.setAttribute("dx2", "" + path.getDX2());

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public interface FBNetwork extends Element {
@@ -23,6 +24,10 @@ public interface FBNetwork extends Element {
 
     @NotNull List<FunctionBlockDeclaration> getFunctionBlocks();
 
+    default @NotNull /*readonly*/ List<FunctionBlockDeclarationBase> getContainedComponents() {
+        return Collections.unmodifiableList(getFunctionBlocks());
+    };
+
     @NotNull List<FBNetworkConnection> getDataConnections();
 
     @NotNull List<FBNetworkConnection> getEventConnections();
@@ -30,6 +35,8 @@ public interface FBNetwork extends Element {
     @NotNull List<FBNetworkConnection> getAdapterConnections();
 
     @Nullable FBNetwork getPrototype();
+
+    List<EndpointCoordinate> getEndpointCoordinates();
 
     static @Nullable FBNetwork extractNetwork(@Nullable Declaration declaration) {
         if (declaration instanceof CompositeFBTypeDeclaration) {
@@ -52,7 +59,7 @@ public interface FBNetwork extends Element {
 
     default List<FunctionBlockDeclarationBase> getAllComponents() {
         ArrayList<FunctionBlockDeclarationBase> components = new ArrayList<>();
-        components.addAll(getFunctionBlocks());
+        components.addAll(getContainedComponents());
         components.addAll(getContextComponents());
         FBNetwork prototype = getPrototype();
         if (prototype != null) {

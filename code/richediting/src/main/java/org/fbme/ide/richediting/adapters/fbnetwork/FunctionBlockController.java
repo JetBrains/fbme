@@ -1,22 +1,23 @@
 package org.fbme.ide.richediting.adapters.fbnetwork;
 
-import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.MPSColors;
-import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
+import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
 import jetbrains.mps.nodeEditor.cells.ModelAccessor;
 import jetbrains.mps.openapi.editor.EditorContext;
-import jetbrains.mps.openapi.editor.TextBuilder;
-import jetbrains.mps.openapi.editor.cells.CellActionType;
-import jetbrains.mps.openapi.editor.cells.EditorCell;
-import org.fbme.ide.richediting.adapters.fb.FBTypeCellComponent;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBSceneCell;
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
+import org.fbme.lib.iec61499.instances.Instance;
+import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.jetbrains.annotations.NotNull;
@@ -27,23 +28,46 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public class FunctionBlockController implements ComponentController<Point>, FBNetworkComponentController {
-
     private final EditorCell_Property myNameProperty;
-    private final FBTypeCellComponent myFBCellComponent;
-    private final EditorCell_Collection myCellCollection;
+    private final EditorCell_Collection cellCollection;
+    private final FunctionBlockView view;
+    private final ExpandedComponentsController expandedComponentsController;
+    private final boolean isEditable;
+    private final FBCell fbCell;
+    private final NetworkInstance networkInstance;
 
-    private final FunctionBlockView myView;
+    @NotNull
+    @Override
+    public Rectangle getFBCellBounds(@NotNull Point position) {
+        return fbCell.getBounds();
+    }
 
-    private final boolean myEditable;
-
-    public FunctionBlockController(EditorContext context, final FunctionBlockView view) {
-        myView = view;
-        myEditable = myView.isEditable();
+    public FunctionBlockController(
+            final EditorContext context,
+            final FunctionBlockView view,
+            final NetworkInstance networkInstance,
+            ExpandedComponentsController expandedComponentsController) {
+        this.view = view;
+        this.expandedComponentsController = expandedComponentsController;
+        isEditable = view.isEditable();
         SNode node = view.getAssociatedNode();
-        myCellCollection = createRootCell(context, node);
-        myCellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
-        myFBCellComponent = new FBTypeCellComponent(context, view.getType(), node, myEditable);
-        myNameProperty = new EditorCell_Property(context, new ModelAccessor() {
+
+        cellCollection = createRootCell(context, node);
+        cellCollection.getStyle().set(RichEditorStyleAttributes.FB, view.getComponent());
+        cellCollection.setBig(true);
+        this.networkInstance = networkInstance;
+        myNameProperty = getNameProperty(context, view, node);
+        myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, isEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
+        cellCollection.addEditorCell(myNameProperty);
+        boolean isExpanded = this.expandedComponentsController.isExpanded(view);
+        fbCell = isExpanded ? initializeFBSceneCell() : initializeFBCell();
+        cellCollection.addEditorCell(fbCell.getRootCell());
+        fbCell.relayout();
+    }
+
+    @NotNull
+    private EditorCell_Property getNameProperty(EditorContext context, FunctionBlockView view, SNode node) {
+        return new EditorCell_Property(context, new ModelAccessor() {
             public String getText() {
                 String name = view.getComponent().getName();
                 return Objects.equals(name, "") ? null : name;
@@ -57,73 +81,71 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
                 return true;
             }
         }, node);
-        myNameProperty.getStyle().set(StyleAttributes.TEXT_COLOR, myEditable ? MPSColors.BLACK : MPSColors.DARK_GRAY);
-        myCellCollection.addEditorCell(myFBCellComponent.getRootCell());
-        myCellCollection.addEditorCell(myNameProperty);
-        myCellCollection.setBig(true);
-        relayout();
     }
 
     private EditorCell_Collection createRootCell(EditorContext context, SNode node) {
-        return new EditorCell_Collection(context, node, new AbstractCellLayout() {
-            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection cells) {
-                assert cells == myCellCollection;
-                relayout();
-            }
-
-            public TextBuilder doLayoutText(Iterable<EditorCell> p0) {
-                return new TextBuilderImpl();
-            }
-        }) {
-
+        return new EditorCell_Collection(context, node, new CellLayout_Vertical() {
             @Override
-            public void onAdd() {
-                super.onAdd();
-                EditorCell_Collection parent = getParent();
-                myFBCellComponent.getRootCell().setAction(CellActionType.BACKSPACE, parent.getAction(CellActionType.BACKSPACE));
+            public void doLayout(jetbrains.mps.openapi.editor.cells.EditorCell_Collection editorCells) {
+                super.doLayout(editorCells);
+                fbCell.getRootCell().moveTo(cellCollection.getX(), cellCollection.getY() + getLineSize());
+                myNameProperty.moveTo(cellCollection.getX() + fbCell.getWidth() / 2 - myNameProperty.getWidth() / 2, cellCollection.getY() - getLineSize() / 4);
             }
-        };
+        });
+    }
 
+    public FBCell initializeFBSceneCell() {
+        FunctionBlockInstance childInstance = networkInstance.getChild(view.getComponent());
+        assert childInstance != null;
+        Instance childNetworkInstance = childInstance.getContainedNetwork();
+        assert childNetworkInstance != null;
+        return new FBSceneCell(cellCollection.getContext(), view.getType(), view.getAssociatedNode(), isEditable, childInstance);
+    }
+
+    private FBCell initializeFBCell() {
+        return new FBTypeCellComponent(cellCollection.getContext(), view.getType(), view.getAssociatedNode(), isEditable);
     }
 
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
-        return myEditable;
+        if (!isEditable) {
+            return false;
+        }
+
+        return fbCell.canStartMoveAt(x, y);
     }
 
     @NotNull
     @Override
     public Rectangle getBounds(@NotNull Point position) {
-        return new Rectangle(position.x, position.y, myCellCollection.getWidth(), myCellCollection.getHeight());
+        return new Rectangle(position.x, position.y, cellCollection.getWidth(), cellCollection.getHeight());
     }
 
     @NotNull
     @Override
     public jetbrains.mps.nodeEditor.cells.EditorCell getComponentCell() {
-        return myCellCollection;
+        return cellCollection;
     }
 
     @NotNull
     @Override
     public Point getPortCoordinates(@NotNull NetworkPortView fbPort, @NotNull Point position) {
-        FunctionBlockPortView functonBlockPort = assertMine(fbPort);
-        int index = functonBlockPort.getPosition();
-        EntryKind kind = functonBlockPort.getKind();
-        boolean isSource = functonBlockPort.isSource();
-        int lineSize = getLineSize();
+        FunctionBlockPortView functionBlockPort = assertMine(fbPort);
+        int index = functionBlockPort.getPosition();
+        EntryKind kind = functionBlockPort.getKind();
+        boolean isSource = functionBlockPort.isSource();
 
         Point coordinates;
         if (kind == EntryKind.EVENT) {
-            coordinates = isSource ? myFBCellComponent.getOutputEventPortPosition(index) : myFBCellComponent.getInputEventPortPosition(index);
+            coordinates = isSource ? fbCell.getOutputEventPortPosition(index) : fbCell.getInputEventPortPosition(index);
         } else if (kind == EntryKind.DATA) {
-            coordinates = isSource ? myFBCellComponent.getOutputDataPortPosition(index) : myFBCellComponent.getInputDataPortPosition(index);
+            coordinates = isSource ? fbCell.getOutputDataPortPosition(index) : fbCell.getInputDataPortPosition(index);
         } else if (kind == EntryKind.ADAPTER) {
-            coordinates = isSource ? myFBCellComponent.getPlugPortPosition(index) : myFBCellComponent.getSocketPortPosition(index);
+            coordinates = isSource ? fbCell.getPlugPortPosition(index) : fbCell.getSocketPortPosition(index);
         } else {
             return null;
         }
-        int shift = (myCellCollection.getWidth() - myFBCellComponent.getWidth()) / 2;
-        coordinates.translate(position.x + shift, position.y + lineSize);
+        coordinates.translate(position.x, position.y + getLineSize());
         return coordinates;
     }
 
@@ -134,30 +156,29 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         int index = functonBlockPort.getPosition();
         EntryKind kind = functonBlockPort.getKind();
         boolean isSource = functonBlockPort.isSource();
-        int lineSize = getLineSize();
 
         Rectangle bounds;
         if (kind == EntryKind.EVENT) {
-            bounds = isSource ? myFBCellComponent.getOutputEventPortBounds(index) : myFBCellComponent.getInputEventPortBounds(index);
+            bounds = isSource ? fbCell.getOutputEventPortBounds(index) : fbCell.getInputEventPortBounds(index);
         } else if (kind == EntryKind.DATA) {
-            bounds = isSource ? myFBCellComponent.getOutputDataPortBounds(index) : myFBCellComponent.getInputDataPortBounds(index);
+            bounds = isSource ? fbCell.getOutputDataPortBounds(index) : fbCell.getInputDataPortBounds(index);
         } else if (kind == EntryKind.ADAPTER) {
-            bounds = isSource ? myFBCellComponent.getPlugPortBounds(index) : myFBCellComponent.getSocketPortBounds(index);
+            bounds = isSource ? fbCell.getPlugPortBounds(index) : fbCell.getSocketPortBounds(index);
         } else {
             return null;
         }
-        bounds.translate(position.x, position.y + lineSize);
+        bounds.translate(position.x, position.y + getLineSize());
         return bounds;
     }
 
     @Override
     public boolean isSource(@NotNull NetworkPortView port) {
-        FunctionBlockPortView functonBlockPort = assertMine(port);
-        return functonBlockPort.isSource();
+        FunctionBlockPortView functionBlockPort = assertMine(port);
+        return functionBlockPort.isSource();
     }
 
     private FunctionBlockPortView assertMine(NetworkPortView port) {
-        if (!Objects.equals(port.getComponent(), myView) || !(port instanceof FunctionBlockPortView)) {
+        if (!Objects.equals(port.getComponent(), view) || !(port instanceof FunctionBlockPortView)) {
             throw new IllegalArgumentException("invalid port");
         }
         return (FunctionBlockPortView) port;
@@ -178,8 +199,8 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     @Override
     public void updateCellWithForm(Point position) {
-        myCellCollection.moveTo(position.x, position.y);
-        myCellCollection.relayout();
+        cellCollection.moveTo(position.x, position.y);
+        cellCollection.relayout();
     }
 
     @Override
@@ -189,27 +210,14 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     @Override
     public void paintTrace(Graphics g, Point position) {
-        int traceCenterX = position.x + myCellCollection.getWidth() / 2;
-        myFBCellComponent.paintTrace((Graphics2D) g.create(), traceCenterX - myFBCellComponent.getWidth() / 2, position.y + getLineSize());
+        fbCell.paintTrace((Graphics2D) g.create(), position.x, position.y + (fbCell instanceof FBTypeCellComponent ? getLineSize() : 0));
     }
 
-    public void relayout() {
-        EditorCell_Collection fbCell = myFBCellComponent.getRootCell();
-
-        myNameProperty.relayout();
-        fbCell.relayout();
-
-        int width = Math.max(myNameProperty.getWidth(), fbCell.getWidth());
-        int height = getLineSize() + fbCell.getHeight();
-
-        myCellCollection.setWidth(width);
-        myCellCollection.setHeight(height);
-
-        myNameProperty.moveTo(myCellCollection.getX() + width / 2 - myNameProperty.getWidth() / 2, myCellCollection.getY());
-        fbCell.moveTo(myCellCollection.getX() + width / 2 - fbCell.getWidth() / 2, myCellCollection.getY() + getLineSize());
+    public ExpandedComponentsController getExpandedComponentsController() {
+        return expandedComponentsController;
     }
 
     private int getLineSize() {
-        return LayoutUtil.getLineSize(myCellCollection.getStyle());
+        return LayoutUtil.getLineSize(cellCollection.getStyle());
     }
 }

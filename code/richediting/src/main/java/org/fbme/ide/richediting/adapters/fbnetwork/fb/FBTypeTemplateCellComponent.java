@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fb;
+package org.fbme.ide.richediting.adapters.fbnetwork.fb;
 
 import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
@@ -187,7 +187,7 @@ public class FBTypeTemplateCellComponent {
         }
 
         private int getBottomPortsCount(boolean input) {
-            return input ? myFBCellComponent.getInputBottomPortsCount() : myFBCellComponent.getOutputBootomPortsCount();
+            return input ? myFBCellComponent.getInputBottomPortsCount() : myFBCellComponent.getOutputBottomPortsCount();
         }
 
         private int getDataPortPosition(boolean input, int number, int offsetY) {
