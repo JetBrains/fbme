@@ -5,17 +5,22 @@ import jetbrains.mps.nodeEditor.cells.EditorCell;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Basic;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.openapi.editor.EditorContext;
-import jetbrains.mps.openapi.editor.style.Style;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner;
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider;
 import org.fbme.ide.richediting.RicheditingMpsBridge;
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.ide.richediting.inspections.ECCInspectionsFacility;
+import org.fbme.lib.common.Element;
 import org.fbme.lib.common.Declaration;
 import org.fbme.lib.iec61499.IEC61499Factory;
+import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
+import org.fbme.lib.iec61499.declarations.EventDeclaration;
 import org.fbme.lib.iec61499.ecc.ECC;
+import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
 import org.fbme.lib.iec61499.instances.ECCInstance;
@@ -35,11 +40,13 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
 import java.awt.*;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
 public class ECCEditors {
     private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
+    public static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
+    public static final SceneStateKey<Map<StateDeclaration, Boolean>> IS_OPEN_ACTIONS = new SceneStateKey<>("is-open-actions");
 
     public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout, @Nullable Instance parent) {
         try {
@@ -50,7 +57,6 @@ public class ECCEditors {
             Layer tracesLayer = scene.createLayer(1.f);
             Layer componentsLayer = scene.createLayer(3.f);
             Layer connectionsLayer = scene.createLayer(2.f);
-
 
             EditorComponent editorComponent = (EditorComponent) context.getEditorComponent();
 
@@ -70,10 +76,14 @@ public class ECCEditors {
             Declaration declaration = repository.getAdapter(node, Declaration.class);
             @NotNull ECCInstance eccInstance = ECCInstance.createForDeclaration(declaration, parent);
             final ECC ecc = eccInstance.getECCDeclaration();
+
+            scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc));
+            scene.getStyle().set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc));
+            scene.getStyle().set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory);
             ECCViewAdapter eccAdapter = new ECCViewAdapter(ecc, declarationFactory);
 
             final ComponentsFacility<StateDeclaration, Point> componentsFacility = new ComponentsFacility<>(
-                    scene, eccAdapter, STATE_CONTROLLER_FACTORY, new ECCSynchronizer(viewpoint),
+                    scene, eccAdapter, getStateControllerFactory(scene), new ECCSynchronizer(viewpoint),
                     componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             );
 
@@ -94,8 +104,8 @@ public class ECCEditors {
             DiagramFacility<StateDeclaration, StateDeclaration, StateTransition, Point> diagramFacility = new DiagramFacility<>(eccAdapter, portSettings, settingProvider);
             final ConnectionsFacility<StateDeclaration, StateDeclaration, StateTransition, ECTransitionCursor, ECTransitionPath> connectionsFacility =
                     new ConnectionsFacility<>(
-                            scene, TRANSITION_CONTROLLER_FACTORY, ECTransitionUtils.PATH_FACTORY, ECTransitionUtils.PATH_PAINTER,
-                            new ECTransitionPathSynchronizer(viewpoint), componentsLayout, componentsSelection, diagramFacility.getDiagramController(),
+                            scene, getTransitionControllerFactory(componentsFacility), ECTransitionUtils.PATH_FACTORY, ECTransitionUtils.PATH_PAINTER,
+                            new ECTransitionPathSynchronizer(viewpoint, componentsFacility), componentsLayout, componentsSelection, diagramFacility.getDiagramController(),
                             connectionsLayer, tracesLayer, focus
                     );
 
@@ -112,48 +122,42 @@ public class ECCEditors {
         return createEccEditor(context, node, layout, null);
     }
 
-    public static final ComponentControllerFactory<StateDeclaration, Point> STATE_CONTROLLER_FACTORY = (context, state) -> {
-        if (state instanceof PlatformElement) {
-            final SNode stateNode = ((PlatformElement) state).getNode();
-            final EditorCell_Collection cell = RicheditingMpsBridge.createStateDeclarationCell(context, stateNode);
-            cell.setBig(true);
-            return new ECStateController(new ECStateCellHandle() {
-                public EditorCell_Basic getCell() {
-                    return cell;
-                }
-
-                public Rectangle getBounds(Point position) {
-                    cell.relayout();
-                    jetbrains.mps.openapi.editor.cells.EditorCell nameCell = cell.firstCell();
-                    int width = nameCell.getWidth();
-                    int height = nameCell.getHeight();
-                    return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
-                }
-
-                public Style getStateTextStyle() {
-                    return cell.firstCell().getStyle();
-                }
-            });
-        }
-        return null;
-    };
-
-    public static final ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> TRANSITION_CONTROLLER_FACTORY = (context, transition) -> {
-        final SNode transitionNode = ((PlatformElement) transition).getNode();
-        final EditorCell_Collection cell = RicheditingMpsBridge.createTransitionCell(context, transitionNode);
-        cell.setBig(true);
-        return new ECTransitionController(new ECTransitionConditionCellHandle() {
-            public EditorCell_Basic getCell() {
-                return cell;
+    private static ComponentControllerFactory<StateDeclaration, Point> getStateControllerFactory(EditorCell_Scene scene) {
+        return ((context, state) -> {
+            if (state instanceof PlatformElement) {
+                return new ECStateController(scene, context, state);
             }
-
-            public Rectangle getBounds(Point position) {
-                int width = cell.getWidth();
-                int height = cell.getHeight();
-                return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
-            }
+            return null;
         });
-    };
+    }
+
+    public static ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath>
+    getTransitionControllerFactory(
+            ComponentsFacility<StateDeclaration, Point> componentsFacility
+    ) {
+        return ((context, transition) -> {
+            final SNode transitionNode = ((PlatformElement) transition).getNode();
+            final EditorCell_Collection cell = RicheditingMpsBridge.createTransitionCell(context, transitionNode);
+            cell.setBig(true);
+            StateDeclaration sourceDeclaration = transition.getSourceReference().getTarget();
+            StateDeclaration targetDeclaration = transition.getTargetReference().getTarget();
+
+            return new ECTransitionController(
+                    new ECTransitionConditionCellHandle() {
+                        public EditorCell_Basic getCell() {
+                            return cell;
+                        }
+
+                        public Rectangle getBounds(Point position) {
+                            int width = cell.getWidth();
+                            int height = cell.getHeight();
+                            return new Rectangle(position.x - width / 2, position.y - height / 2, width, height);
+                        }
+                    },
+                    () -> ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, componentsFacility),
+                    () -> ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, componentsFacility));
+        });
+    }
 
     public static List<PositionalCompletionItem> getCompletion(final ECC ecc, final IEC61499Factory factory) {
         return Collections.singletonList(new PositionalCompletionItem() {
@@ -173,5 +177,85 @@ public class ECCEditors {
                 ecc.getStates().add(state);
             }
         });
+    }
+
+    public static void hideAllAlgorithms(EditorCell_Scene scene) {
+        setHideOrOpenAlgorithmBodyForAllStates(scene, false);
+    }
+
+    public static void showAllAlgorithms(EditorCell_Scene scene) {
+        setHideOrOpenAlgorithmBodyForAllStates(scene, true);
+    }
+
+    private static void setHideOrOpenAlgorithmBodyForAllStates(EditorCell_Scene scene, boolean isOpen) {
+        Map<StateAction, Boolean> isOpenAlgorithmBody = scene.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY);
+        isOpenAlgorithmBody = (isOpenAlgorithmBody != null ? isOpenAlgorithmBody : new HashMap<>());
+        EditorContext context = null;
+        for (EditorCell cell: scene.getCells()) {
+            StateDeclaration declaration = cell.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+            EditorContext cellContext = cell.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+            if (cellContext != null) {
+                context = cellContext;
+            }
+            if (declaration != null) {
+                for (StateAction action: declaration.getActions()) {
+                    isOpenAlgorithmBody.put(action, isOpen);
+                }
+            }
+        }
+        scene.storeState(ECCEditors.IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody);
+        if (context != null) {
+            context.getEditorComponent().getUpdater().update();
+        }
+    }
+
+    public static void hideAllActions(EditorCell_Scene scene) {
+        setHideOrOpenActionsForAllStates(scene, false);
+    }
+
+    public static void showAllActions(EditorCell_Scene scene) {
+        setHideOrOpenActionsForAllStates(scene, true);
+    }
+
+    private static void setHideOrOpenActionsForAllStates(EditorCell_Scene scene, boolean isOpen) {
+        Map<StateDeclaration, Boolean> isOpenActions = scene.loadState(ECCEditors.IS_OPEN_ACTIONS);
+        isOpenActions = (isOpenActions != null ? isOpenActions : new HashMap<>());
+        EditorContext context = null;
+        for (EditorCell cell: scene.getCells()) {
+            StateDeclaration declaration = cell.getStyle().get(RichEditorStyleAttributes.STATE_DECLARATION);
+            if (declaration != null) {
+                isOpenActions.put(declaration, isOpen);
+            }
+            if (context == null) {
+                EditorContext cellContext = cell.getStyle().get(RichEditorStyleAttributes.EDITOR_CONTEXT);
+                if (cellContext != null) {
+                    context = cellContext;
+                }
+            }
+        }
+        scene.storeState(ECCEditors.IS_OPEN_ACTIONS, isOpenActions);
+        if (context != null) {
+            context.getEditorComponent().getUpdater().update();
+        }
+    }
+
+    private static List<AlgorithmDeclaration> getAllAlgorithmsFromDeclarationFactory(ECC ecc) {
+        Element element = ecc.getContainer();
+        if (element instanceof BasicFBTypeDeclaration) {
+            BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
+            return declaration.getAlgorithms();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    private static List<EventDeclaration> getAllOutputsFromDeclarationFactory(ECC ecc) {
+        Element element = ecc.getContainer();
+        if (element instanceof BasicFBTypeDeclaration) {
+            BasicFBTypeDeclaration declaration = (BasicFBTypeDeclaration) element;
+            return declaration.getOutputEvents();
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

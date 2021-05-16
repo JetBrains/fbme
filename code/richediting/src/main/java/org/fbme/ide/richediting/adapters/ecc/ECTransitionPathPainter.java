@@ -1,12 +1,15 @@
 package org.fbme.ide.richediting.adapters.ecc;
 
+import com.intellij.openapi.util.Pair;
 import jetbrains.mps.nodeEditor.MPSColors;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Arc2D;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.QuadCurve2D;
 
 public class ECTransitionPathPainter {
     private static final float HOVER_SIZE = ECTransitionController.HOVER_SIZE;
@@ -39,43 +42,185 @@ public class ECTransitionPathPainter {
     }
 
     public void paint(Graphics graphics, boolean drawArrow) {
+        Graphics2D g = (Graphics2D) graphics;
         Point s = myPath.source;
         Point t = myPath.target;
         Point c = myPath.centre;
+        g.setStroke(new BasicStroke((float) 2.5));
 
-        graphics.drawLine(s.x, s.y, c.x, c.y);
-        graphics.drawLine(c.x, c.y, t.x, t.y);
+        // от такого надо избавляться, иначе координата поедет
+        if (!(s.equals(t) && s.equals(c))) {
+            if (s.equals(t)) {
+                double cx1 = (c.x + s.x) / 2.0 - 30;
+                double cy1 = (c.y + s.y) / 2.0 - 30;
+                g.draw(ECTransitionUtils.fromPath(s, c, cx1, cy1));
 
-        Graphics hoverGraphics = graphics.create();
-        hoverGraphics.setColor(MPSColors.YELLOW.darker());
-        if (myCursor == ECTransitionCursor.SOURCE) {
-            hoverGraphics.drawLine(s.x, s.y, s.x + (c.x - s.x) / 2, s.y + (c.y - s.y) / 2);
+                double cx2 = (c.x + s.x) / 2.0 + 30;
+                double cy2 = (c.y + s.y) / 2.0 + 30;
+                QuadCurve2D curve = ECTransitionUtils.fromPath(c, t, cx2, cy2);
+                g.draw(ECTransitionUtils.fromPath(s, c, cx2, cy2));
+
+                AffineTransform sat = new AffineTransform();
+                double parameter = 0.6;
+                Point arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                parameter += 0.01;
+                Point arrowPoint2 = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                while (findDistance(arrowPoint, arrowPoint2) < 10) {
+                    parameter += 0.01;
+                    arrowPoint2 = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+                sat.translate(arrowPoint.x, arrowPoint.y);
+                sat.rotate(arrowPoint2.x - arrowPoint.x, arrowPoint2.y - arrowPoint.y);
+                ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
+            } else {
+                QuadCurve2D curve = ECTransitionUtils.fromPath(s, t, c.x, c.y);
+                g.draw(curve);
+
+                Graphics2D hoverGraphics = (Graphics2D) graphics.create();
+                hoverGraphics.setColor(MPSColors.YELLOW.darker());
+                if (myCursor == ECTransitionCursor.SOURCE || myCursor == ECTransitionCursor.TARGET) {
+                    hoverGraphics.draw(curve);
+                }
+
+                AffineTransform sat = new AffineTransform();
+                double parameter = 0.96;
+                Point arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                while (parameter < 0.995 && findDistance(arrowPoint, t) > 30) {
+                    parameter += 0.005;
+                    arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+                while (parameter > 0.5 && findDistance(arrowPoint, t) < 15) {
+                    parameter -= 0.01;
+                    arrowPoint = ECTransitionUtils.getPointFromParameter(parameter, curve);
+                }
+
+                sat.translate(arrowPoint.x, arrowPoint.y);
+                sat.rotate(t.x - arrowPoint.x, t.y - arrowPoint.y);
+                ((Graphics2D) graphics).fill(createArrow(findDistance(arrowPoint, t)).createTransformedShape(sat));
+
+                // или тут можно так:
+//                drawEdgesFromCircle(graphics, g, s, c, t);
+            }
         }
-        if (myCursor == ECTransitionCursor.TARGET) {
-            hoverGraphics.drawLine(t.x, t.y, t.x + (c.x - t.x) / 2, t.y + (c.y - t.y) / 2);
-        }
-
-        if (drawArrow) {
-            AffineTransform sat = new AffineTransform();
-            sat.translate((s.x + c.x) / 2, (s.y + c.y) / 2);
-            sat.rotate(c.x - s.x, c.y - s.y);
-            ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(sat));
-
-            AffineTransform tat = new AffineTransform();
-            tat.translate((t.x + c.x) / 2, (t.y + c.y) / 2);
-            tat.rotate(t.x - c.x, t.y - c.y);
-            ((Graphics2D) graphics).fill(ARROW_SHAPE.createTransformedShape(tat));
-        }
-
     }
 
     private static final GeneralPath ARROW_SHAPE = new GeneralPath();
 
     static {
         ARROW_SHAPE.moveTo(0, -5);
-        ARROW_SHAPE.lineTo(10, 0);
+        ARROW_SHAPE.lineTo(15, 0);
         ARROW_SHAPE.lineTo(0, 5);
         ARROW_SHAPE.closePath();
     }
 
+    private static GeneralPath createArrow(double s) {
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(0, -5);
+        shape.lineTo(s, 0);
+        shape.lineTo(0, 5);
+        shape.closePath();
+        return shape;
+    }
+
+    private void drawEdgesFromCircle(Graphics graphics, Graphics2D g, Point s, Point c, Point t) {
+        if ((s.y - c.y) * (c.x - t.x) == (c.y - t.y) * (s.x - c.x)) {
+            graphics.drawLine(s.x, s.y, t.x, t.y);
+            return;
+        }
+
+        Point center = findCenter(s, c, t);
+        int r = (int) findDistance(center, s);
+        double startAng = Math.toDegrees(-Math.atan2(s.y - center.y, s.x - center.x));
+        if (startAng < 0) {
+            startAng += 360;
+        }
+        double cAng = Math.toDegrees(-Math.atan2(c.y - center.y, c.x - center.x));
+        if (cAng < 0) {
+            cAng += 360;
+        }
+        double finishAng = Math.toDegrees(-Math.atan2(t.y - center.y, t.x - center.x));
+        if (finishAng < 0) {
+            finishAng += 360;
+        }
+        Arc2D arc1 = new Arc2D.Double( center.x - r, center.y - r, 2.0 * r, 2.0 * r, startAng, finishAng - startAng, Arc2D.OPEN);
+        Arc2D arc2 = new Arc2D.Double( center.x - r, center.y - r, 2.0 * r, 2.0 * r, finishAng, startAng - finishAng, Arc2D.OPEN);
+
+        // TODO: не всегда верно определяется нужная дуга
+        if (arc1.intersects(c.x - 5, c.y - 5, 10, 10)) {
+            g.draw(arc1);
+        } else {
+            g.draw(arc2);
+        }
+    }
+
+
+    // знаем, что k1 != k2
+    private static Point findCenter(Point x1, Point x2, Point x3) {
+        // уравнение прямой1 x = const
+        if (x1.x == x2.x) {
+            double y1 = (x1.y + x2.y) / 2.0; // уравнение перпендикуляра к прямой1
+            // y2 = kx + b или y = const, x = const быть не может, так как k1 != k2
+            if (x2.y == x3.y) {
+                double x_const_2 = (x2.x + x3.x) / 2.0;
+                return new Point((int) x_const_2, (int) y1);
+            } else {
+                double k = - 1 / ((x3.y - x2.y) / ((x3.x - x2.x) * 1.0)); // k для перпендикуляра
+                double mx = (x2.x + x3.x) / 2.0;
+                double my = (x2.y + x3.y) / 2.0;
+                double b = my - k * mx;
+                return new Point((int) ((y1 - b) / k), (int) y1);
+            }
+        }
+        // уравнение прямой1 y = const
+        if (x1.y == x2.y) {
+            double x1_const = (x1.x + x2.x) / 2.0; // перпендикуляр к прямой1
+            // прямая2 либо y2 = kx + b, либо y = const
+            if (x2.x == x3.x) {
+                double y_const_2 = (x2.y + x3.y) / 2.0;
+                return new Point((int) x1_const, (int) y_const_2);
+            } else {
+                double k = - 1 / ((x3.y - x2.y) / ((x3.x - x2.x) * 1.0)); // k для перпендикуляра
+                double mx = (x2.x + x3.x) / 2.0;
+                double my = (x2.y + x3.y) / 2.0;
+                double b = my - k * mx;
+                return new Point((int) x1_const, (int) (k * x1_const + b));
+            }
+        }
+        // уравнение прямой2 x = const
+        if (x2.x == x3.x) {
+            double y2 = Math.abs(x2.y + x3.y) / 2.0;
+            // y1 = kx1 + b
+            double k = - 1 / ((x1.y - x2.y) / ((x1.x - x2.x) * 1.0));
+            double mx = (x1.x + x2.x) / 2.0;
+            double my = (x1.y + x2.y) / 2.0;
+            double b = my - k * mx;
+            return new Point((int)((y2 - b) / k), (int) y2);
+        }
+        // уравнение прямой2 y = const
+        if (x2.y == x3.y) {
+            double x2_const = Math.abs(x2.x + x3.x) / 2.0;
+            // y1 = kx1 + b
+            double k = - 1 / ((x1.y - x2.y) / ((x1.x - x2.x) * 1.0));
+            double mx = (x1.x + x2.x) / 2.0;
+            double my = (x1.y + x2.y) / 2.0;
+            double b = my - k * mx;
+            return new Point((int) x2_const, (int) (x2_const * k + b));
+        }
+        double k1 = - 1 / ((x1.y - x2.y) / ((x1.x - x2.x) * 1.0));
+        double mx1 = (x1.x + x2.x) / 2.0;
+        double my1 = (x1.y + x2.y) / 2.0;
+        double b1 = my1 - k1 * mx1;
+
+        double k2 = - ((x3.x - x2.x) / ((x3.y - x2.y) * 1.0)); // k для перпендикуляра
+        double mx2 = (x2.x + x3.x) / 2.0;
+        double my2 = (x2.y + x3.y) / 2.0;
+        double b2 = my2 - k2 * mx2;
+
+        double new_x = (b2 - b1) / (k1 - k2);
+        return new Point((int) new_x, (int) (k1 * new_x + b1));
+    }
+
+    private double findDistance(Point x1, Point x2) {
+        return Math.sqrt((x1.x - x2.x) * (x1.x - x2.x) + (x1.y - x2.y) * (x1.y - x2.y));
+    }
 }

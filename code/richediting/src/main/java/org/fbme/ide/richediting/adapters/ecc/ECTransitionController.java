@@ -7,8 +7,7 @@ import org.fbme.scenes.controllers.diagram.ConnectionController;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
+import java.awt.geom.QuadCurve2D;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -16,20 +15,30 @@ public class ECTransitionController implements ConnectionController<ECTransition
     public static final float HOVER_SIZE = 0.2f;
 
     private final ECTransitionConditionCellHandle myHandle;
+    private final ECStateCellHandle mySourceHandle;
+    private final ECStateCellHandle myTargetHandle;
 
     private Color myHighlightColor;
 
-    public ECTransitionController(ECTransitionConditionCellHandle handle) {
+    public ECTransitionController(ECTransitionConditionCellHandle handle, ECStateCellHandle sourceHandle, ECStateCellHandle targetHandle) {
         myHandle = handle;
+        mySourceHandle = sourceHandle;
+        myTargetHandle = targetHandle;
     }
 
     @Override
     public Function<Point, ECTransitionPath> getEdgeTransformation(final ECTransitionPath path, final int x, final int y) {
         if (myHandle.getBounds(path.centre).contains(x, y)) {
             return p -> {
+                Rectangle sourceBound = mySourceHandle.getBounds();
+                Rectangle targetBound = myTargetHandle.getBounds();
                 Point centre = new Point(path.centre);
                 centre.translate(p.x - x, p.y - y);
-                return new ECTransitionPath(path.source, centre, path.target);
+                Point sp = new Point(sourceBound.x + sourceBound.width / 2, sourceBound.y + sourceBound.height / 2);
+                Point tp = new Point(targetBound.x + targetBound.width / 2, targetBound.y + targetBound.height / 2);
+                Point sourcePoint = ECTransitionUtils.crossBound(centre, sp, sourceBound);
+                Point targetPoint = ECTransitionUtils.crossBound(centre, tp, targetBound);
+                return new ECTransitionPath(sourcePoint, centre, targetPoint);
             };
         }
         return null;
@@ -37,12 +46,12 @@ public class ECTransitionController implements ConnectionController<ECTransition
 
     @Override
     public Function<Point, ECTransitionPath> getSourceTransformation(final ECTransitionPath path) {
-        return ns -> transform(path, ns, path.target);
+        return ns -> transformSource(path, ns);
     }
 
     @Override
     public Function<Point, ECTransitionPath> getTargetTransformation(final ECTransitionPath path) {
-        return nt -> transform(path, path.source, nt);
+        return nt -> transformTarget(path, nt);
     }
 
     @Override
@@ -58,47 +67,49 @@ public class ECTransitionController implements ConnectionController<ECTransition
         myHighlightColor = highlightColor;
     }
 
-    public ECTransitionPath transform(ECTransitionPath path, Point ns, Point nt) {
-        AffineTransform at = new AffineTransform();
-
-        int oldX = path.target.x - path.source.x;
-        int oldY = path.target.y - path.source.y;
-        int newX = nt.x - ns.x;
-        int newY = nt.y - ns.y;
-        double scale = Math.sqrt((newX * newX + newY * newY) / ((double) oldX * oldX + oldY * oldY));
-
-        at.translate(ns.x, ns.y);
-        at.rotate(-Math.atan2(newX * oldY - newY * oldX, newX * oldX + newY * oldY));
-        at.scale(scale, scale);
-        at.translate(-path.source.x, -path.source.y);
-
-        Point nc = new Point();
+    private ECTransitionPath transformSource(ECTransitionPath path, Point ns) {
+        Rectangle sourceBound = mySourceHandle.getBounds();
         Point centre = new Point(path.centre);
-        at.transform(centre, nc);
+        Point sp = new Point(sourceBound.x + sourceBound.width / 2, sourceBound.y + sourceBound.height / 2);
+        int dxSource = ns.x - sp.x ;
+        int dySource = ns.y - sp.y;
+        sourceBound.translate(dxSource, dySource);
+        Point newSource = ECTransitionUtils.crossBound(centre, ns, sourceBound);
+        return new ECTransitionPath(newSource, centre, path.target);
+    }
 
-        return new ECTransitionPath(ns, nc, nt);
+    private ECTransitionPath transformTarget(ECTransitionPath path, Point nt) {
+        Rectangle targetBound = myTargetHandle.getBounds();
+        Point centre = new Point(path.centre);
+        Point tp = new Point(targetBound.x + targetBound.width / 2, targetBound.y + targetBound.height / 2);
+        int dxTarget = nt.x - tp.x;
+        int dyTarget = nt.y - tp.y;
+        targetBound.translate(dxTarget, dyTarget);
+        Point newTarget = ECTransitionUtils.crossBound(centre, nt, targetBound);
+        return new ECTransitionPath(path.source, centre, newTarget);
+    }
+
+    public ECTransitionPath transform(ECTransitionPath path, Point ns, Point nt) {
+        ECTransitionPath transformSourcePath = transformSource(path, ns);
+        return transformTarget(transformSourcePath, nt);
     }
 
     @Override
     public boolean isSourceTransformableAt(ECTransitionPath path, int x, int y) {
-        return sourceEndpointLine(path).intersects(boundary(x, y));
+        QuadCurve2D.Double curve = ECTransitionUtils.fromPath(path.source, path.target, path.centre.x, path.centre.y);
+        return curve.intersects(boundary(x, y))
+                && boundary(path.source.x, path.source.y).intersects(boundary(x, y));
     }
 
     @Override
     public boolean isTargetTransformableAt(ECTransitionPath path, int x, int y) {
-        return targetEndpointLine(path).intersects(boundary(x, y));
+        QuadCurve2D.Double curve = ECTransitionUtils.fromPath(path.source, path.target, path.centre.x, path.centre.y);
+        return curve.intersects(boundary(x, y))
+                && boundary(path.target.x, path.target.y).intersects(boundary(x, y));
     }
 
     private Rectangle boundary(int x, int y) {
         return new Rectangle(x - 4, y - 4, 8, 8);
-    }
-
-    private Line2D.Float sourceEndpointLine(ECTransitionPath path) {
-        return new Line2D.Float(path.source.x, path.source.y, (path.centre.x + path.source.x) / 2, (path.centre.y + path.source.y) / 2);
-    }
-
-    private Line2D.Float targetEndpointLine(ECTransitionPath path) {
-        return new Line2D.Float(path.target.x, path.target.y, (path.centre.x + path.target.x) / 2, (path.centre.y + path.target.y) / 2);
     }
 
     @Override
