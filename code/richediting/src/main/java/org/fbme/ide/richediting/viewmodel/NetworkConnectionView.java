@@ -1,6 +1,7 @@
 package org.fbme.ide.richediting.viewmodel;
 
 import org.fbme.ide.iec61499.repository.PlatformElement;
+import org.fbme.lib.iec61499.declarations.ParameterAssignment;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
@@ -8,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.model.SNode;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class NetworkConnectionView {
@@ -19,12 +23,20 @@ public class NetworkConnectionView {
     private final SNode myAssociatedNode;
     private final EntryKind myKind;
 
-    public NetworkConnectionView(@NotNull Object connection, boolean editable) {
+    public NetworkConnectionView(@NotNull FBNetworkConnection connection, boolean editable) {
         myConnection = connection;
-        myConnectionPath = connection instanceof FBNetworkConnection ? ((FBNetworkConnection) connection).getPath() : new ConnectionPath();
-        myKind = connection instanceof FBNetworkConnection ? ((FBNetworkConnection) connection).getKind() : EntryKind.DATA;
+        myConnectionPath = connection.getPath();
+        myKind = connection.getKind();
         myEditable = editable;
         myAssociatedNode = ((PlatformElement) connection).getNode();
+    }
+
+    public NetworkConnectionView(@NotNull ParameterAssignment parameter, boolean editable) {
+        myConnection = parameter;
+        myConnectionPath = new ConnectionPath();
+        myKind = EntryKind.DATA;
+        myEditable = editable;
+        myAssociatedNode = ((PlatformElement) parameter).getNode();
     }
 
     public SNode getAssociatedNode() {

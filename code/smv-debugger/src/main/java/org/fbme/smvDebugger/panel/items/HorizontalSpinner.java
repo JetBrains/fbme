@@ -1,10 +1,10 @@
 package org.fbme.smvDebugger.panel.items;
 
-import javax.swing.JSpinner;
+import javax.swing.*;
 
 public class HorizontalSpinner extends JSpinner {
-  public HorizontalSpinner() {
-    super();
-    setUI(new HorizontalSpinnerUI());
-  }
+    public HorizontalSpinner() {
+        super();
+        setUI(new HorizontalSpinnerUI());
+    }
 }

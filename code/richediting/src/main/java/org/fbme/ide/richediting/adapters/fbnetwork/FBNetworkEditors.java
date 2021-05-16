@@ -26,6 +26,7 @@ import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.ParameterAssignment;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.cells.EditorCell_Scene;
 import org.fbme.scenes.cells.SceneStyleAttributes;
@@ -57,7 +58,7 @@ public final class FBNetworkEditors {
     private FBNetworkEditors() {
     }
 
-    public static EditorCell createCellForetworkInstance(EditorContext context, SNode node, SceneLayout layout) {
+    public static EditorCell createCellForNetworkInstance(EditorContext context, SNode node, SceneLayout layout) {
         EditorCell_Scene scene = new EditorCell_Scene(context, node, layout);
 
         NetworkInstance networkInstance = RichEditorDataKeys.contextNetworkInstance(context);
@@ -70,11 +71,17 @@ public final class FBNetworkEditors {
         return scene;
     }
 
-    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout) {
+    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout, @Nullable Instance parent) {
         EditorCell_Scene scene = new EditorCell_Scene(context, node, layout);
         PlatformElementsOwner repository = PlatformRepositoryProvider.getInstance(context.getOperationContext().getProject());
-        initializeSceneCell(scene, NetworkInstance.createForDeclaration(repository.getAdapter(node, Declaration.class)), context, layout);
+        Declaration declaration = repository.getAdapter(node, Declaration.class);
+        @NotNull NetworkInstance networkInstance = NetworkInstance.createForDeclaration(declaration, parent);
+        initializeSceneCell(scene, networkInstance, context, layout);
         return scene;
+    }
+
+    public static EditorCell createFBNetworkCell(EditorContext context, SNode node, SceneLayout layout) {
+        return createFBNetworkCell(context, node, layout, null);
     }
 
     private static void initializeSceneCell(EditorCell_Scene scene, final NetworkInstance networkInstance, EditorContext context, SceneLayout layout) {
@@ -102,6 +109,8 @@ public final class FBNetworkEditors {
             final float scale = RicheditingMpsBridge.getEditorScale(project);
 
             SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getImplicitViewpoint());
+            style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint);
+
             SceneFocusModel focus = new DefaultFocusModel();
             if (layout == SceneLayout.WINDOWED) {
                 new WindowedBackgroundDragFacility(scene, (SceneViewpointByCell) viewpoint, backgroundLayer);
@@ -110,11 +119,24 @@ public final class FBNetworkEditors {
             }
             new BackgroundFocusLossFacility(scene, focus, backgroundLayer);
 
-            DefaultSelectionModel<NetworkComponentView> componentsSelection = new DefaultSelectionModel<NetworkComponentView>();
+            DefaultSelectionModel<NetworkComponentView> componentsSelection = new DefaultSelectionModel<>();
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection);
 
-            DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<NetworkComponentView>(context.getRepository());
-            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<NetworkComponentView, Point>(scene, networkView.getComponentsView(), COMPONENT_CONTROLLER_FACTORY, new FBNetworkComponentSynhcronizer(viewpoint, scale), componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer);
+            DefaultLayoutModel<NetworkComponentView> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
+            ExpandedComponentsController expandedComponentsController = new ExpandedComponentsController(scene, context);
+            final ComponentsFacility<NetworkComponentView, Point> componentsFacility = new ComponentsFacility<>(
+                    scene,
+                    networkView.getComponentsView(),
+                    getComponentControllerFactory(networkInstance, expandedComponentsController),
+                    new FBNetworkComponentSynchronizer(viewpoint, scale, expandedComponentsController),
+                    componentsLayout,
+                    componentsSelection,
+                    focus,
+                    componentsLayer,
+                    tracesLayer
+            );
+
+            style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility);
 
             DeclarationsScope completionScope = repository.getDeclarationScopeFor(model);
             IEC61499Factory factory = repository.getIEC61499Factory();
@@ -154,6 +176,8 @@ public final class FBNetworkEditors {
             DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility =
                     new DiagramFacility<>(networkView.getDiagramView(), portSettings, diagramComponentSettings);
 
+            style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility);
+
             ROLayoutModel<NetworkComponentView> extendedLayout = new ExtendedLayoutModel<>(
                     componentsLayout,
                     (view, compPosition) -> ((InlineValueController) inlineValuesFacility.getController(view)).getCoordinates(compPosition),
@@ -164,13 +188,13 @@ public final class FBNetworkEditors {
             final ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility =
                     new ConnectionsFacility<>(
                             scene, CONNECTION_CONTROLLER_FACTORY, FBConnectionUtils.getPathFactory(style), FBConnectionUtils.getPathPainter(style),
-                            new FBConnectionPathSyncronizer(viewpoint, scale), extendedLayout, componentsSelection, diagramFacility.getDiagramController(), connectionsLayer, tracesLayer, focus
+                            new FBConnectionPathSyncronizer(viewpoint, scale, expandedComponentsController), extendedLayout, componentsSelection, diagramFacility.getDiagramController(), connectionsLayer, tracesLayer, focus
                     );
+            style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility);
 
             Function<NetworkConnectionView, FBConnectionController> connectionProvider = it -> (FBConnectionController) connectionsFacility.getController(it);
 
             new NetworkInspectionsFacility(networkView, networkInstance, scene, componentProvider, connectionProvider, extendedLayout, inspectionsLayer);
-
         } catch (RuntimeException e) {
             LOG.error("Error during cell creation", e);
         }
@@ -213,15 +237,20 @@ public final class FBNetworkEditors {
         return new InlineValueController(context, (InlineValueView) extView, (FunctionBlockController) compController, (EditorCell) cell);
     };
 
-    public static final ComponentControllerFactory<NetworkComponentView, Point> COMPONENT_CONTROLLER_FACTORY = (context, view) -> {
-        if (view instanceof FunctionBlockView) {
-            return new FunctionBlockController(context, (FunctionBlockView) view);
-        }
-        if (view instanceof InterfaceEndpointView) {
-            return new InterfaceEndpointController(context, (InterfaceEndpointView) view);
-        }
-        return null;
-    };
+    public static ComponentControllerFactory<NetworkComponentView, Point> getComponentControllerFactory(
+            @NotNull NetworkInstance instance,
+            ExpandedComponentsController expandedComponentsController
+    ) {
+        return (context, view) -> {
+            if (view instanceof FunctionBlockView) {
+                return new FunctionBlockController(context, (FunctionBlockView) view, instance, expandedComponentsController);
+            }
+            if (view instanceof InterfaceEndpointView) {
+                return new EndpointPortController(context, (InterfaceEndpointView) view);
+            }
+            return null;
+        };
+    }
 
     private static List<PositionalCompletionItem> getCompletion(
             final DeclarationsScope scope,

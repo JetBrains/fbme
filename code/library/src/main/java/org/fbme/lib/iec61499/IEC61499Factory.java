@@ -5,6 +5,7 @@ import org.fbme.lib.iec61499.declarations.*;
 import org.fbme.lib.iec61499.ecc.StateAction;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
+import org.fbme.lib.iec61499.fbnetwork.EndpointCoordinate;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
@@ -75,4 +76,6 @@ public interface IEC61499Factory {
     @NotNull SocketDeclaration createSocketDeclaration(@Nullable Identifier identifier);
 
     @NotNull FBNetworkConnection createFBNetworkConnection(@NotNull EntryKind connectionKind);
+
+    @NotNull EndpointCoordinate createEndpointCoordinate();
 }

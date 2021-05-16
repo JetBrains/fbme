@@ -7,7 +7,6 @@ plugins {
 mps {
     artifactName = "scenes"
     buildScriptName = "fbme_scenes"
-    skipGeneration = true
 }
 
 dependencies {

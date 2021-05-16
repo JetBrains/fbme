@@ -157,7 +157,7 @@ public class NetworkInspectionsFacility {
 
             myColor = inspection.getColor();
             StyleImpl style = new StyleImpl();
-            style.set(StyleAttributes.FONT_SIZE, EditorSettings.getInstance().getFontSize() * 3 / 4);
+            style.set(StyleAttributes.FONT_SIZE, EditorSettings.getInstance().getFontSize() / 2);
             style.set(StyleAttributes.TEXT_COLOR, myColor);
             style.set(StyleAttributes.FONT_STYLE, MPSFonts.BOLD);
             myTextline = new TextLine(inspection.getText(), style, false);
@@ -266,7 +266,7 @@ public class NetworkInspectionsFacility {
         FBNetworkComponentController controller = myComponentProvider.apply(view);
         Rectangle bounds = controller.getBounds(myLayoutModel.getActivePosition(view));
         data.myTextline.relayout();
-        data.myY = bounds.y + bounds.height + COMPONENT_TEXT_Y_OFFSET + data.myTextline.getHeight();
+        data.myY = bounds.y + bounds.height + data.myTextline.getHeight();
         data.myX = bounds.x + bounds.width / 2 - data.myTextline.getWidth() / 2;
     }
 

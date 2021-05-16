@@ -11,9 +11,9 @@ public interface CaseElement extends ContainedElement {
 
     @Nullable CaseStatement getContainer();
 
-    @Nullable Literal getLiteral();
+    @Nullable Literal<?> getLiteral();
 
-    void setLiteral(@Nullable Literal literal);
+    void setLiteral(@Nullable Literal<?> literal);
 
     @NotNull List<Statement> getStatements();
 }

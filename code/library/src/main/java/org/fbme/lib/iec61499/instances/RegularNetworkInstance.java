@@ -52,13 +52,9 @@ import java.util.Objects;
             synchronized (this) {
                 if (myChildren == null) {
                     myChildren = new HashMap<>();
-                    for (Declaration component : myNetwork.getFunctionBlocks()) {
-                        if (component instanceof FunctionBlockDeclaration) {
-                            FunctionBlockDeclaration innerFunctionBlock = (FunctionBlockDeclaration) component;
-                            myChildren.put(innerFunctionBlock, new RegularFunctionBlockInstance(this, innerFunctionBlock));
-                        }
+                    for (FunctionBlockDeclarationBase component : myNetwork.getAllComponents()) {
+                        myChildren.put(component, new RegularFunctionBlockInstance(this, component));
                     }
-
                 }
             }
         }

@@ -13,6 +13,7 @@ import org.fbme.lib.iec61499.declarations.ResourceDeclaration;
 import org.fbme.lib.iec61499.declarations.SystemDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -70,9 +71,14 @@ public class NetworkInstanceNavBarExtension extends AbstractNavBarModelExtension
             project.getModelAccess().runReadAction(() -> {
                 for (FunctionBlockDeclaration component : instance.getNetworkDeclaration().getFunctionBlocks()) {
                     FunctionBlockInstance child = instance.getChild(component);
-                    if (child != null && child.getContainedNetwork() != null) {
-                        processor.process(new NetworkInstanceNavBarModel.Item(child.getContainedNetwork(), project));
+                    if (child != null) {
+                        @Nullable Instance childNetwork = child.getContainedNetwork();
+
+                        if (childNetwork instanceof NetworkInstance) {
+                            processor.process(new NetworkInstanceNavBarModel.Item((NetworkInstance) childNetwork, project));
+                        }
                     }
+
                 }
             });
         }

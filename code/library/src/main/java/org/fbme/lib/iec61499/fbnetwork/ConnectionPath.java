@@ -59,6 +59,7 @@ public class ConnectionPath {
     public enum Kind {
         Straight(),
         TwoAngles(),
-        FourAngles()
+        FourAngles(),
+        MoreThanFour()
     }
 }
