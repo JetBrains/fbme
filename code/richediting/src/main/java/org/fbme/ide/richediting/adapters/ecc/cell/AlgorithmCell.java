@@ -24,6 +24,7 @@ public class AlgorithmCell extends EditorCell_Property {
     private final EditorContext myEditorContext;
     private final StateAction myAction;
     private final EditorCell_Collection myCellCollection;
+    private final boolean myHasTarget;
 
     public AlgorithmCell(
             EditorContext editorContext,
@@ -43,6 +44,7 @@ public class AlgorithmCell extends EditorCell_Property {
         this.isOpenBody = isOpenAlgorithmBody.get(action);
         this.myAction = action;
         this.myCellCollection = cellCollection;
+        this.myHasTarget = action.getAlgorithm().getTarget() != null;;
         getStyle().set(StyleAttributes.PADDING_BOTTOM, new Padding(0.05, Measure.SPACES));
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
     }
@@ -77,7 +79,7 @@ public class AlgorithmCell extends EditorCell_Property {
     }
 
     public void relayoutAll() {
-        if (myAction.getAlgorithm().getTarget() == null) {
+        if (!myHasTarget) {
             setHeight(getHeight() / 2);
             setEditable(false);
         } else {
