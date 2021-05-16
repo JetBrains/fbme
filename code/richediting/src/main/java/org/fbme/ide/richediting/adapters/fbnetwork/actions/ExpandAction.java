@@ -1,19 +1,25 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import com.intellij.openapi.util.Pair;
+import jetbrains.mps.editor.runtime.HeadlessEditorComponent;
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
-import org.fbme.ide.richediting.adapters.fbnetwork.*;
-import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
+import org.fbme.ide.iec61499.repository.PlatformElement;
+import org.fbme.ide.richediting.adapters.fbnetwork.ExpandedComponentsController;
+import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
+import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController;
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
-import org.fbme.lib.iec61499.fbnetwork.LongConnectionPath;
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
+import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.scenes.controllers.LayoutUtil;
 import org.fbme.scenes.controllers.diagram.PortController;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.mps.openapi.model.SNode;
+import org.jetbrains.mps.openapi.module.SRepository;
 
 import java.awt.*;
 import java.util.HashSet;
@@ -21,6 +27,9 @@ import java.util.List;
 import java.util.Set;
 
 public class ExpandAction extends ExpandOrCollapseAction {
+
+    private final String EXPANDED_FB_INSTANCE_KEY = "org.fbme.ide.richediting.lang.editor.Rich Editing Hint.expanded_fb_instance";
+
     public ExpandAction(EditorCell cell) {
         super(cell);
     }
@@ -44,7 +53,7 @@ public class ExpandAction extends ExpandOrCollapseAction {
         Point editorComponentPosition = componentsFacility.getModelForm(component);
         Rectangle oldBounds = componentController.getFBCellBounds(editorComponentPosition);
 
-        FBCell sceneCell = createExpandedSceneCell(componentController);
+        EditorCell sceneCell = createExpandedSceneCell(componentController);
         Rectangle newBounds = new Rectangle(oldBounds.x, oldBounds.y, sceneCell.getWidth(), sceneCell.getHeight());
 
         int dx = newBounds.width - oldBounds.width;
@@ -120,12 +129,25 @@ public class ExpandAction extends ExpandOrCollapseAction {
     }
 
     @NotNull
-    private FBCell createExpandedSceneCell(FunctionBlockController componentController) {
-        FBCell sceneCell = componentController.initializeFBSceneCell();
+    private EditorCell createExpandedSceneCell(FunctionBlockController componentController) {
+
+        FunctionBlockInstance childInstance = componentController.getFbInstance();
+        assert childInstance != null;
+        Instance childNetworkInstance = childInstance.getContainedNetwork();
+        assert childNetworkInstance != null;
+        SNode node = ((PlatformElement) childInstance.getDeclaration()).getNode();
+        SRepository repository = componentController.getComponentCell().getContext().getRepository();
+
+        HeadlessEditorComponent editorComponent = new HeadlessEditorComponent(repository);
+        editorComponent.getUpdater().setInitialEditorHints(new String[]{EXPANDED_FB_INSTANCE_KEY});
+        editorComponent.editNode(node);
+        EditorCell sceneCell = editorComponent.getRootCell();
+
         Style style = componentController.getComponentCell().getStyle();
         int fontSize = LayoutUtil.getFontSize(style);
-        LayoutUtil.setFontSize(sceneCell.getRootCell().getStyle(), fontSize);
-        sceneCell.getRootCell().relayout();
+        LayoutUtil.setFontSize(sceneCell.getStyle(), fontSize);
+        sceneCell.relayout();
+
         return sceneCell;
     }
 

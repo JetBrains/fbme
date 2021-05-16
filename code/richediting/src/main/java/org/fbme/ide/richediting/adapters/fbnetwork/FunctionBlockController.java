@@ -106,6 +106,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         return new FBTypeCellComponent(cellCollection.getContext(), view.getType(), view.getAssociatedNode(), isEditable);
     }
 
+    public FunctionBlockInstance getFbInstance() {
+        return networkInstance.getChild(view.getComponent());
+    }
+
     @Override
     public boolean canStartMoveAt(Point position, int x, int y) {
         if (!isEditable) {

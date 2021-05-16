@@ -62,7 +62,10 @@ public class ECCInspectionsFacility {
             if (inspectionsData != null) {
                 loadState(inspectionsData);
             }
-            InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent()).registerECC(myECC, ECCInspectionsFacility.this);
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            if (manager != null) {
+                manager.registerECC(myECC, ECCInspectionsFacility.this);
+            }
         }
 
         @Override

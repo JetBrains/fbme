@@ -6,6 +6,7 @@ import jetbrains.mps.editor.runtime.TextBuilderImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
 import jetbrains.mps.nodeEditor.EditorComponent;
 import jetbrains.mps.nodeEditor.MPSColors;
+import jetbrains.mps.nodeEditor.NodeEditorComponent;
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout;
 import jetbrains.mps.nodeEditor.cellMenu.AbstractNodeSubstituteInfo;
 import jetbrains.mps.nodeEditor.cellMenu.NodeSubstitutePatternEditor;
@@ -344,14 +345,16 @@ public class EditorCell_Scene extends EditorCell_Collection implements SceneEdit
         if (parentScrollPane != null) {
             uninstallMouseWheelListener();
         }
-        parentScrollPane = (JScrollPane) editor.getViewport().getParent();
-        MouseWheelListener[] mouseWheelListeners = parentScrollPane.getMouseWheelListeners();
-        for (MouseWheelListener l : mouseWheelListeners) {
-            parentScrollPane.removeMouseWheelListener(l);
-        }
-        parentScrollPane.addMouseWheelListener(myMouseWheelListener);
-        for (MouseWheelListener l : mouseWheelListeners) {
-            parentScrollPane.addMouseWheelListener(l);
+        if (editor instanceof NodeEditorComponent) {
+            parentScrollPane = (JScrollPane) editor.getViewport().getParent();
+            MouseWheelListener[] mouseWheelListeners = parentScrollPane.getMouseWheelListeners();
+            for (MouseWheelListener l : mouseWheelListeners) {
+                parentScrollPane.removeMouseWheelListener(l);
+            }
+            parentScrollPane.addMouseWheelListener(myMouseWheelListener);
+            for (MouseWheelListener l : mouseWheelListeners) {
+                parentScrollPane.addMouseWheelListener(l);
+            }
         }
     }
 

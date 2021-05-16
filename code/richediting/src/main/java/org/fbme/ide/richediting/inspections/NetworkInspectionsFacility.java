@@ -216,7 +216,10 @@ public class NetworkInspectionsFacility {
             if (inspectionsData != null) {
                 loadState(inspectionsData);
             }
-            InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent()).registerNetwork(myInstance, NetworkInspectionsFacility.this);
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            if (manager != null) {
+                manager.registerNetwork(myInstance, NetworkInspectionsFacility.this);
+            }
         }
 
         @Override
