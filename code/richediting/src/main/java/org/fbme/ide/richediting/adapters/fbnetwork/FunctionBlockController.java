@@ -94,7 +94,7 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         });
     }
 
-    public FBCell initializeFBSceneCell() {
+    private FBCell initializeFBSceneCell() {
         FunctionBlockInstance childInstance = networkInstance.getChild(view.getComponent());
         assert childInstance != null;
         Instance childNetworkInstance = childInstance.getContainedNetwork();

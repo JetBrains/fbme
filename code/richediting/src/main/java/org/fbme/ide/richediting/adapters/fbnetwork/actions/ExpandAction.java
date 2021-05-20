@@ -53,8 +53,9 @@ public class ExpandAction extends ExpandOrCollapseAction {
         Point editorComponentPosition = componentsFacility.getModelForm(component);
         Rectangle oldBounds = componentController.getFBCellBounds(editorComponentPosition);
 
+        int lineSize = LayoutUtil.getLineSize(componentController.getComponentCell().getStyle());
         EditorCell sceneCell = createExpandedSceneCell(componentController);
-        Rectangle newBounds = new Rectangle(oldBounds.x, oldBounds.y, sceneCell.getWidth(), sceneCell.getHeight());
+        Rectangle newBounds = new Rectangle(oldBounds.x, oldBounds.y, sceneCell.getWidth(), sceneCell.getHeight() + lineSize);
 
         int dx = newBounds.width - oldBounds.width;
         int dy = newBounds.height - oldBounds.height;
@@ -106,7 +107,7 @@ public class ExpandAction extends ExpandOrCollapseAction {
             } else if (pathKind == ConnectionPath.Kind.TwoAngles) {
                 int x1 = path.getX1();
 
-                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && rightBound < x1) {
+                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && bounds.x < x1) {
                     affectedSections.add(new Pair<>(connection, 1));
                 }
             } else if (pathKind == ConnectionPath.Kind.FourAngles) {
@@ -114,7 +115,7 @@ public class ExpandAction extends ExpandOrCollapseAction {
                 int y = path.getY();
                 int x2 = path.getX2();
 
-                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && rightBound < x1) {
+                if (sourceComponent != component && sourceComponentPosition.x <= rightBound && bounds.x < x1) {
                     affectedSections.add(new Pair<>(connection, 1));
                 }
                 if (Math.min(sourcePortPosition.y, y) < bottomBound && bottomBound < Math.max(sourcePortPosition.y, y)) {
