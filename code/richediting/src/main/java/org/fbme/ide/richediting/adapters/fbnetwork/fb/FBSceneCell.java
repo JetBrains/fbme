@@ -82,7 +82,7 @@ public final class FBSceneCell extends AbstractFBCell {
     private EditorCell_Scene createSceneCell(Instance instance) {
         EditorCell_Scene scene;
         if (fbType.getDeclaration() instanceof BasicFBTypeDeclaration) {
-            scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, instance);
+            scene = (EditorCell_Scene) ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED);
         } else {
             scene = (EditorCell_Scene) FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance);
         }

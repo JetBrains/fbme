@@ -11,10 +11,10 @@ public class CellConstants {
 
     public static final int ACTIVE_HEIGHT_PADDING = 6;
     public static final int ACTIVE_WEIGHT_PADDING = 10;
-    public static final int LEFT_ALGORITHM_BODY_PADDING = 10;
+    public static final int LEFT_ALGORITHM_BODY_PADDING = 5;
     public static final int BOTTOM_PADDING = 5;
 
     public static final int ROUNDED = 10;
-    public static final int SHIFT_X = 5;
+    public static final int SHIFT_X = ACTIVE_WEIGHT_PADDING / 2;
     public static final int SHIFT_Y = -2;
 }

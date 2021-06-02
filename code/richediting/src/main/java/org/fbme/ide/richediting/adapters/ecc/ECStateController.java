@@ -82,10 +82,10 @@ public class ECStateController implements ComponentController<Point> {
             height += block.getHeight(PADDING);
         }
 
-        myCellCollection.setWidth(width + 7);
+        myCellCollection.setWidth(width + CellConstants.ACTIVE_WEIGHT_PADDING);
         myCellCollection.setHeight(height + 7);
 
-        myStateNameCell.setWidth(width + CellConstants.ACTIVE_WEIGHT_PADDING);
+        myStateNameCell.setWidth(width);
 
         for (ActionBlock block: myStateActionBlocks) {
             block.setWidth(width);
@@ -158,36 +158,6 @@ public class ECStateController implements ComponentController<Point> {
     @Override
     public void updateCellSelection(boolean selected) {
         // do nothing
-    }
-
-    public static void removeAction(StateAction action, EditorCell_Collection collection) {
-        AlgorithmCell deleteAlgo = null;
-        EditorCell deleteBody = null;
-        OutputCell deleteOutput = null;
-        ActionBlock deleteBlock = null;
-        List<ActionBlock> actionBlocks = collection.getStyle().get(RichEditorStyleAttributes.ACTIONS);
-        for (ActionBlock block: actionBlocks) {
-            if (block.getAction() == action) {
-                deleteBlock = block;
-                deleteAlgo = block.getAlgorithm();
-                if (deleteAlgo != null) {
-                    deleteBody = deleteAlgo.getAlgorithmBody();
-                }
-                deleteOutput = block.getOutput();
-                break;
-            }
-        }
-        if (deleteBlock == null) return;
-        actionBlocks.remove(deleteBlock);
-        if (deleteAlgo != null) {
-            collection.removeCell(deleteAlgo);
-        }
-        if (deleteBody != null) {
-            collection.removeCell(deleteBody);
-        }
-        if (deleteOutput != null) {
-            collection.removeCell(deleteOutput);
-        }
     }
 
     public static void removeActionWithState(StateAction action, EditorCell_Collection collection) {

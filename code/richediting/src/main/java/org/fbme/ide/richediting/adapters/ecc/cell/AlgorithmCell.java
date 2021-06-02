@@ -3,10 +3,7 @@ package org.fbme.ide.richediting.adapters.ecc.cell;
 import jetbrains.mps.editor.runtime.style.Measure;
 import jetbrains.mps.editor.runtime.style.Padding;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
-import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
-import jetbrains.mps.nodeEditor.cells.ModelAccessor;
-import jetbrains.mps.nodeEditor.cells.ParentSettings;
+import jetbrains.mps.nodeEditor.cells.*;
 import jetbrains.mps.openapi.editor.EditorContext;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration;
@@ -85,12 +82,26 @@ public class AlgorithmCell extends EditorCell_Property {
         } else {
             setEditable(true);
         }
+        this.myTextLine.relayout();
+        setWidth(this.myTextLine.getWidth());
         relayout();
         if (myAlgorithmBody != null && isOpenBody) {
-            myAlgorithmBody.relayout();
-            for (jetbrains.mps.openapi.editor.cells.EditorCell editorCell : myAlgorithmBody) {
-                editorCell.relayout();
+            relayoutCell(myAlgorithmBody);
+//            myAlgorithmBody.relayout();
+//            for (jetbrains.mps.openapi.editor.cells.EditorCell editorCell : myAlgorithmBody) {
+//                editorCell.relayout();
+//            }
+        }
+    }
+
+    private void relayoutCell (EditorCell cell) {
+        if (cell instanceof EditorCell_Collection) {
+            cell.relayout();
+            for (EditorCell innerCell: ((EditorCell_Collection) cell).getCells()) {
+                relayoutCell(innerCell);
             }
+        } else {
+            cell.relayout();
         }
     }
 
@@ -110,9 +121,9 @@ public class AlgorithmCell extends EditorCell_Property {
     }
 
     public void setAllWidth(int width) {
-        setWidth(width + CellConstants.ACTIVE_WEIGHT_PADDING);
+        setWidth(width);
         if (myAlgorithmBody != null && isOpenBody) {
-            myAlgorithmBody.setWidth(width);
+            myAlgorithmBody.setWidth(width - CellConstants.ACTIVE_WEIGHT_PADDING);
         }
     }
 
@@ -162,17 +173,17 @@ public class AlgorithmCell extends EditorCell_Property {
         if (myAlgorithmBody != null && isOpenBody) {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(CellConstants.ALGORITHM_COLOR);
-            g.fillRoundRect(myX, myY, myWidth, getAllHeight(), CellConstants.ROUNDED, CellConstants.ROUNDED);
+            g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, getAllHeight(), CellConstants.ROUNDED, CellConstants.ROUNDED);
             drawText(graphics, settings);
         } else if (myAlgorithmBody != null) {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(CellConstants.HIDDEN_ALGORITHM_COLOR);
-            g.fillRoundRect(myX, myY, myWidth, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED);
+            g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED);
             drawText(graphics, settings);
         } else {
             Graphics2D g = (Graphics2D) graphics.create();
             g.setColor(CellConstants.ALGORITHM_COLOR);
-            g.fillRoundRect(myX, myY, myWidth, myHeight, 10, 10);
+            g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
             if (isEditable()) {
                 drawText(graphics, settings);
             }
@@ -180,7 +191,7 @@ public class AlgorithmCell extends EditorCell_Property {
     }
 
     private void drawText(Graphics graphics, ParentSettings settings) {
-        int dx = (myWidth - myTextLine.getWidth()) / 2;
+        int dx = (myWidth - myTextLine.getWidth() + CellConstants.ACTIVE_WEIGHT_PADDING) / 2;
         myX += dx;
         super.paintContent(graphics, settings);
         myX -= dx;

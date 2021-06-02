@@ -18,8 +18,8 @@ public class ECTransitionUtils {
     };
 
     public static QuadCurve2D.Double fromPath(Point s, Point t, double cx, double cy) {
-        double x = (cx - 0.25 * s.x - 0.25 * t.x) / 0.5;
-        double y = (cy - 0.25 * s.y - 0.25 * t.y) / 0.5;
+        double x = (2 * cx - 0.5 * s.x - 0.5 * t.x);
+        double y = (2 * cy - 0.5 * s.y - 0.5 * t.y);
         return new QuadCurve2D.Double(s.x, s.y, x, y, t.x, t.y);
     }
 

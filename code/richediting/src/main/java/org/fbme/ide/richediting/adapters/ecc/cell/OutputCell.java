@@ -25,6 +25,7 @@ public class OutputCell extends EditorCell_Basic {
     private final StateAction myAction;
     private final EditorCell_Collection myCellCollection;
     private final Map<StateAction, Boolean> isOpenAlgorithmBody;
+    private final boolean isNullTarget;
 
     public OutputCell(
             EditorContext editorContext,
@@ -39,8 +40,11 @@ public class OutputCell extends EditorCell_Basic {
         backgroundColor = CellConstants.OUTPUT_COLOR;
         myNameText = new TextLine("", getStyle(), false);
         this.isOpenAlgorithmBody = isOpenAlgorithmBody;
+        PortPath<EventDeclaration> outputTarget = myAction.getEvent().getTarget();
+        this.isNullTarget = outputTarget == null;
         getStyle().set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK);
         getStyle().set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection);
+        setTextFromAction();
         relayoutImpl();
         getStyle().set(RichEditorStyleAttributes.OUTPUTS, action);
     }
@@ -53,10 +57,9 @@ public class OutputCell extends EditorCell_Basic {
     protected void relayoutImpl() {
         int lineSize = getLineSize();
         myNameText.relayout();
-        setTextFromAction();
         setWidth(myNameText.getWidth());
         setHeight(lineSize + CellConstants.ACTIVE_HEIGHT_PADDING);
-        if (myNameText.getText().isEmpty()) {
+        if (isNullTarget) {
             setHeight(getHeight() / 2);
         }
     }
@@ -80,7 +83,7 @@ public class OutputCell extends EditorCell_Basic {
         g.setColor(backgroundColor);
         g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
         if (!myNameText.getText().isEmpty()) {
-            myNameText.paint(graphics, myX + CellConstants.SHIFT_X + (myWidth - myNameText.getWidth()) / 2, myY + CellConstants.SHIFT_Y, JBColor.BLACK);
+            myNameText.paint(graphics, myX + CellConstants.SHIFT_X + (myWidth - myNameText.getWidth() + CellConstants.ACTIVE_WEIGHT_PADDING) / 2, myY + CellConstants.SHIFT_Y, JBColor.BLACK);
         }
     }
 

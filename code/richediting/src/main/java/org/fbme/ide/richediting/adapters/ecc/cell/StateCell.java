@@ -74,8 +74,8 @@ public class StateCell extends EditorCell_Property {
         } else {
             g.setColor(CellConstants.HIDDEN_STATE_COLOR);
         }
-        g.fillRoundRect(myX, myY, myWidth, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED);
-        int dx = (myWidth - myTextLine.getWidth()) / 2;
+        g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED);
+        int dx = (myWidth - myTextLine.getWidth() + CellConstants.ACTIVE_WEIGHT_PADDING) / 2;
         myX += dx;
         super.paintContent(graphics, settings);
         myX -= dx;

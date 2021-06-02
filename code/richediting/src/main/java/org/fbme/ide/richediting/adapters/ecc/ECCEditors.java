@@ -48,7 +48,7 @@ public class ECCEditors {
     public static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
     public static final SceneStateKey<Map<StateDeclaration, Boolean>> IS_OPEN_ACTIONS = new SceneStateKey<>("is-open-actions");
 
-    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout, @Nullable Instance parent) {
+    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
         try {
             PlatformElementsOwner repository = PlatformRepositoryProvider.getInstance(context.getOperationContext().getProject());
             context.getOperationContext().getProject();
@@ -73,9 +73,7 @@ public class ECCEditors {
             DefaultLayoutModel<StateDeclaration> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
 
             final IEC61499Factory declarationFactory = repository.getIEC61499Factory();
-            Declaration declaration = repository.getAdapter(node, Declaration.class);
-            @NotNull ECCInstance eccInstance = ECCInstance.createForDeclaration(declaration, parent);
-            final ECC ecc = eccInstance.getECCDeclaration();
+            final ECC ecc = repository.getAdapter(node, BasicFBTypeDeclaration.class).getEcc();
 
             scene.getStyle().set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc));
             scene.getStyle().set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc));
@@ -116,10 +114,6 @@ public class ECCEditors {
             LOG.error("Error during cell creation", e);
             throw e;
         }
-    }
-
-    public static EditorCell createEccEditor(EditorContext context, SNode node, SceneLayout layout) {
-        return createEccEditor(context, node, layout, null);
     }
 
     private static ComponentControllerFactory<StateDeclaration, Point> getStateControllerFactory(EditorCell_Scene scene) {
