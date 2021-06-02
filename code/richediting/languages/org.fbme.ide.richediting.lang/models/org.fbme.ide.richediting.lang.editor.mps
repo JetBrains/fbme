@@ -3130,5 +3130,80 @@
       <ref role="2$4xQ3" node="6lA3BsRsf7A" resolve="expanded_fb_instance" />
     </node>
   </node>
+  <node concept="24kQdi" id="5zr7wBanChv">
+    <ref role="1XX52x" to="xiqq:uLhTRQWVWQ" resolve="SubapplicationDeclaration" />
+    <node concept="gc7cB" id="5zr7wBanChw" role="2wV5jI">
+      <node concept="3VJUX4" id="5zr7wBanChx" role="3YsKMw">
+        <node concept="3clFbS" id="5zr7wBanChy" role="2VODD2">
+          <node concept="3cpWs8" id="5zr7wBanChz" role="3cqZAp">
+            <node concept="3cpWsn" id="5zr7wBanCh$" role="3cpWs9">
+              <property role="TrG5h" value="type" />
+              <property role="3TUv4t" value="true" />
+              <node concept="3Tqbb2" id="5zr7wBanCh_" role="1tU5fm">
+                <ref role="ehGHo" to="xiqq:uLhTRQWVWT" resolve="SubapplicationTypeDeclaration" />
+              </node>
+              <node concept="2OqwBi" id="5zr7wBanChA" role="33vP2m">
+                <node concept="pncrf" id="5zr7wBanChB" role="2Oq$k0" />
+                <node concept="3TrEf2" id="5zr7wBao6r1" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:uLhTRQWVWR" resolve="type" />
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3cpWs6" id="5zr7wBanCi8" role="3cqZAp">
+            <node concept="2ShNRf" id="5zr7wBanCi9" role="3cqZAk">
+              <node concept="YeOm9" id="5zr7wBanCia" role="2ShVmc">
+                <node concept="1Y3b0j" id="5zr7wBanCib" role="YeSDq">
+                  <property role="2bfB8j" value="true" />
+                  <ref role="37wK5l" to="exr9:~AbstractCellProvider.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode)" resolve="AbstractCellProvider" />
+                  <ref role="1Y3XeK" to="exr9:~AbstractCellProvider" resolve="AbstractCellProvider" />
+                  <node concept="2tJIrI" id="5zr7wBanCic" role="jymVt" />
+                  <node concept="3Tm1VV" id="5zr7wBanCid" role="1B3o_S" />
+                  <node concept="3clFb_" id="5zr7wBanCie" role="jymVt">
+                    <property role="TrG5h" value="createEditorCell" />
+                    <node concept="3Tm1VV" id="5zr7wBanCif" role="1B3o_S" />
+                    <node concept="3uibUv" id="5zr7wBanCig" role="3clF45">
+                      <ref role="3uigEE" to="f4zo:~EditorCell" resolve="EditorCell" />
+                    </node>
+                    <node concept="37vLTG" id="5zr7wBanCih" role="3clF46">
+                      <property role="TrG5h" value="context" />
+                      <node concept="3uibUv" id="5zr7wBanCii" role="1tU5fm">
+                        <ref role="3uigEE" to="cj4x:~EditorContext" resolve="EditorContext" />
+                      </node>
+                    </node>
+                    <node concept="3clFbS" id="5zr7wBanCij" role="3clF47">
+                      <node concept="3clFbF" id="5zr7wBanCik" role="3cqZAp">
+                        <node concept="2YIFZM" id="5zr7wBanCil" role="3clFbG">
+                          <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
+                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createFBNetworkCell(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createFBNetworkCell" />
+                          <node concept="37vLTw" id="5zr7wBanCim" role="37wK5m">
+                            <ref role="3cqZAo" node="5zr7wBanCih" resolve="context" />
+                          </node>
+                          <node concept="37vLTw" id="5zr7wBanCin" role="37wK5m">
+                            <ref role="3cqZAo" node="5zr7wBanCh$" resolve="type" />
+                          </node>
+                          <node concept="Rm8GO" id="5zr7wBanCio" role="37wK5m">
+                            <ref role="Rm8GQ" to="ar7i:~SceneLayout.WINDOWED" resolve="WINDOWED" />
+                            <ref role="1Px2BO" to="ar7i:~SceneLayout" resolve="SceneLayout" />
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                    <node concept="2AHcQZ" id="5zr7wBanCip" role="2AJF6D">
+                      <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+                    </node>
+                  </node>
+                  <node concept="pncrf" id="5zr7wBanCiq" role="37wK5m" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2aJ2om" id="5zr7wBanCit" role="CpUAK">
+      <ref role="2$4xQ3" node="6lA3BsRsf7A" resolve="expanded_fb_instance" />
+    </node>
+  </node>
 </model>
 
