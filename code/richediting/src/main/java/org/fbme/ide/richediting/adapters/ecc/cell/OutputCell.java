@@ -83,7 +83,7 @@ public class OutputCell extends EditorCell_Basic {
         g.setColor(backgroundColor);
         g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10);
         if (!myNameText.getText().isEmpty()) {
-            myNameText.paint(graphics, myX + CellConstants.SHIFT_X + (myWidth - myNameText.getWidth() + CellConstants.ACTIVE_WEIGHT_PADDING) / 2, myY + CellConstants.SHIFT_Y, JBColor.BLACK);
+            myNameText.paint(graphics, myX + (myWidth - myNameText.getWidth() + CellConstants.ACTIVE_WEIGHT_PADDING) / 2, myY + CellConstants.SHIFT_Y, JBColor.BLACK);
         }
     }
 
