@@ -10,16 +10,14 @@ import org.eclipse.elk.core.data.ILayoutMetaDataProvider;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.util.NullElkProgressMonitor;
-import org.eclipse.elk.graph.*;
+import org.eclipse.elk.graph.ElkEdge;
+import org.eclipse.elk.graph.ElkLabel;
+import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
-import org.eclipse.emf.common.util.EList;
 import org.fbme.ide.richediting.adapters.ecc.ECTransitionCursor;
 import org.fbme.ide.richediting.adapters.ecc.ECTransitionPath;
-import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
-import org.fbme.lib.iec61499.ecc.ECTransitionCondition;
 import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
-import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.components.ComponentSynchronizer;
@@ -27,10 +25,8 @@ import org.fbme.scenes.controllers.components.ComponentsFacility;
 import org.fbme.scenes.controllers.diagram.*;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
+import java.util.*;
 
 public class ELKLayoutProvider {
     private static final Logger LOG = LogManager.getLogger(ELKLayoutProvider.class);
@@ -114,8 +110,16 @@ public class ELKLayoutProvider {
             ElkEdge elkEdge = ElkGraphUtil.createSimpleEdge(nodes.get(source), nodes.get(target));
             elkEdge.setContainingNode(parent);
 
-            ECTransitionCondition condition = connection.getCondition();
-            ElkLabel elkLabel = ElkGraphUtil.createLabel("helllllooooooooo", elkEdge);
+            ConnectionController<ECTransitionCursor, ECTransitionPath> controller = connectionsFacility.getController(connection);
+            Rectangle bounds = controller.getBounds(new ECTransitionPath(
+                    new Point(source.getX(), source.getY()),
+                    new Point(connection.getCenterX(), connection.getCenterY()),
+                    new Point(target.getX(), target.getY())
+            ));
+
+            ElkLabel elkLabel = ElkGraphUtil.createLabel("condition-text".repeat(10), elkEdge);
+            elkLabel.setHeight(viewpoint.fromEditorDimension((int) bounds.getHeight()));
+            elkLabel.setWidth(viewpoint.fromEditorDimension((int) bounds.getWidth()));
 
             edges.add(new Pair<>(connection, elkEdge));
         }
@@ -140,8 +144,8 @@ public class ELKLayoutProvider {
             ElkEdge elkEdge = edge.second;
             ElkLabel label = elkEdge.getLabels().get(0);
 
-            int x = viewpoint.translateToEditorX((int) label.getX());
-            int y = viewpoint.translateToEditorY((int) label.getY());
+            int x = viewpoint.translateToEditorX((int) (label.getX() + label.getWidth() / 2));
+            int y = viewpoint.translateToEditorY((int) (label.getY() + label.getHeight() / 2));
 
             connectionSynchronizer.setPath(edge.first, new ECTransitionPath(
                     null,
