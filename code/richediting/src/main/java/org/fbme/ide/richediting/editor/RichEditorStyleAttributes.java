@@ -48,9 +48,9 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<StateDeclaration> STATE_DECLARATION = new InheritableStyleAttribute<>("state-declaration");
     public static final StyleAttribute<EditorContext> EDITOR_CONTEXT = new InheritableStyleAttribute<>("editor-context");
     public static final StyleAttribute<IEC61499Factory> FACTORY_DECLARATION = new InheritableStyleAttribute<>("factory-declaration");
-    public static final StyleAttribute<DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>> DIAGRAM_FACILITY = new InheritableStyleAttribute<>("diagram-facility");
-    public static final StyleAttribute<ComponentsFacility<NetworkComponentView, Point>> COMPONENTS_FACILITY = new InheritableStyleAttribute<>("components-facility");
-    public static final StyleAttribute<ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>> CONNECTIONS_FACILITY = new InheritableStyleAttribute<>("connections-facility");
+    public static final StyleAttribute<DiagramFacility<?, ?, ?, ?>> DIAGRAM_FACILITY = new InheritableStyleAttribute<>("diagram-facility");
+    public static final StyleAttribute<ComponentsFacility<?, ?>> COMPONENTS_FACILITY = new InheritableStyleAttribute<>("components-facility");
+    public static final StyleAttribute<ConnectionsFacility<?, ?, ?, ?, ?>> CONNECTIONS_FACILITY = new InheritableStyleAttribute<>("connections-facility");
     public static final StyleAttribute<SceneViewpoint> VIEWPOINT = new InheritableStyleAttribute<>("viewpoint");
 
     static {

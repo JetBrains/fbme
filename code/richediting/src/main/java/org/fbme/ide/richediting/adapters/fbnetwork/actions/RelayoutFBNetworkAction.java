@@ -2,6 +2,7 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
+import org.fbme.ide.richediting.adapters.common.actions.Action;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
 import org.fbme.ide.richediting.adapters.fbnetwork.elk.ELKLayoutProvider;
@@ -16,19 +17,21 @@ import org.fbme.scenes.controllers.diagram.DiagramFacility;
 
 import java.awt.*;
 
-public class RelayoutAction {
+public class RelayoutFBNetworkAction implements Action {
     private final ELKLayoutProvider layoutProvider;
 
-    public RelayoutAction(EditorCell cell) {
+    public RelayoutFBNetworkAction(EditorCell cell) {
         Style style = cell.getStyle();
-        DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
-        ComponentsFacility<NetworkComponentView, Point> componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
-        ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
+        DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = (DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>) style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
+        ComponentsFacility<NetworkComponentView, Point> componentsFacility = (ComponentsFacility<NetworkComponentView, Point>) style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
+        ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = (ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>) style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
         SceneViewpoint viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
 
         layoutProvider = new ELKLayoutProvider(diagramFacility, componentsFacility, connectionsFacility, viewpoint);
     }
 
+
+    @Override
     public void apply() {
         layoutProvider.relayout();
     }

@@ -2,6 +2,7 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions;
 
 import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.style.Style;
+import org.fbme.ide.richediting.adapters.common.actions.Action;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSyncronizer;
@@ -32,9 +33,9 @@ public abstract class ExpandOrCollapseAction implements Action {
     protected ExpandOrCollapseAction(EditorCell cell) {
         Style style = cell.getStyle();
         selectedFBs = style.get(RichEditorStyleAttributes.SELECTED_FBS).getSelectedComponents();
-        componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
-        connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
-        diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
+        componentsFacility = (ComponentsFacility<NetworkComponentView, Point>) style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
+        connectionsFacility = (ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>) style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
+        diagramFacility = (DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>) style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
         viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
 
         diagramController = diagramFacility.getDiagramController();

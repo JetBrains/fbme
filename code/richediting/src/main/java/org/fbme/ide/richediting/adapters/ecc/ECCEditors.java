@@ -68,6 +68,7 @@ public class ECCEditors {
                 new FullEditorBackgroundDragFacility(scene, scene, editorComponent.getViewport(), backgroundLayer);
             }
             new BackgroundFocusLossFacility(scene, focus, backgroundLayer);
+            scene.getStyle().set(RichEditorStyleAttributes.VIEWPOINT, viewpoint);
 
             DefaultSelectionModel<StateDeclaration> componentsSelection = new DefaultSelectionModel<>();
             DefaultLayoutModel<StateDeclaration> componentsLayout = new DefaultLayoutModel<>(context.getRepository());
@@ -86,6 +87,7 @@ public class ECCEditors {
                     scene, eccAdapter, getStateControllerFactory(scene), new ECCSynchronizer(viewpoint),
                     componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             );
+            scene.getStyle().set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility);
 
             scene.addCompletionProvider(new CompletionProviderByViewpoint(viewpoint, () -> getCompletion(ecc, declarationFactory)));
 
@@ -102,13 +104,14 @@ public class ECCEditors {
                 }
             };
             DiagramFacility<StateDeclaration, StateDeclaration, StateTransition, Point> diagramFacility = new DiagramFacility<>(eccAdapter, portSettings, settingProvider);
+            scene.getStyle().set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility);
             final ConnectionsFacility<StateDeclaration, StateDeclaration, StateTransition, ECTransitionCursor, ECTransitionPath> connectionsFacility =
                     new ConnectionsFacility<>(
                             scene, getTransitionControllerFactory(componentsFacility), ECTransitionUtils.PATH_FACTORY, ECTransitionUtils.PATH_PAINTER,
                             new ECTransitionPathSynchronizer(viewpoint, componentsFacility), componentsLayout, componentsSelection, diagramFacility.getDiagramController(),
                             connectionsLayer, tracesLayer, focus
                     );
-
+            scene.getStyle().set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility);
             new ECCInspectionsFacility(ecc, scene, it -> (ECTransitionController) connectionsFacility.getController(it));
 
             return scene;
