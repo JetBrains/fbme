@@ -1482,6 +1482,9 @@
       <node concept="tCFHf" id="1eQRPVAXXv5" role="ftvYc">
         <ref role="tCJdB" node="5IF$9ECWQWX" resolve="Relayout" />
       </node>
+      <node concept="tCFHf" id="7SIbD$dg4CG" role="ftvYc">
+        <ref role="tCJdB" node="5uTolnbq4Oc" resolve="RouteEdges" />
+      </node>
       <node concept="tCFHf" id="5ofREoX7Eki" role="ftvYc">
         <ref role="tCJdB" node="4qZmOK$LL_l" resolve="Expand" />
       </node>
@@ -13709,6 +13712,38 @@
             </node>
             <node concept="liA8E" id="7s8ro$mQ7GZ" role="2OqNvi">
               <ref role="37wK5l" to="mrrx:~RelayoutAction.apply()" resolve="apply" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="5uTolnbq4Oc">
+    <property role="TrG5h" value="RouteEdges" />
+    <property role="2uzpH1" value="RouteEdges" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="1DS2jV" id="5uTolnbq6Wn" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="5uTolnbq6Wo" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="5uTolnbq4Od" role="tncku">
+      <node concept="3clFbS" id="5uTolnbq4Oe" role="2VODD2">
+        <node concept="3clFbF" id="5uTolnbr6Xb" role="3cqZAp">
+          <node concept="2OqwBi" id="5uTolnbrcXb" role="3clFbG">
+            <node concept="2ShNRf" id="5uTolnbr7vD" role="2Oq$k0">
+              <node concept="1pGfFk" id="5uTolnbrcb8" role="2ShVmc">
+                <ref role="37wK5l" to="mrrx:~EdgeRoutingAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="EdgeRoutingAction" />
+                <node concept="2OqwBi" id="5uTolnbrctz" role="37wK5m">
+                  <node concept="2WthIp" id="5uTolnbrcbG" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="5uTolnbrcM7" role="2OqNvi">
+                    <ref role="2WH_rO" node="5uTolnbq6Wn" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="5uTolnbrdaF" role="2OqNvi">
+              <ref role="37wK5l" to="mrrx:~EdgeRoutingAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>

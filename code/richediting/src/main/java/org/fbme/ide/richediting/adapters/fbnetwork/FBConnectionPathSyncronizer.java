@@ -53,11 +53,13 @@ public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<Ne
         final int dy = (int) (myScale * path.getDY());
         final int dx2 = (int) (myScale * path.getDX2());
 
+        ConnectionPath.Kind pathKind = path.getKind();
+
         return (sourcePosition, targetPosition) -> {
             FBConnectionPath fbConnectionPath = new FBConnectionPath(
                     sourcePosition,
                     targetPosition,
-                    path.getKind(),
+                    pathKind,
                     sourcePosition.x + myViewpoint.toEditorDimension(dx1),
                     sourcePosition.y + myViewpoint.toEditorDimension(dy),
                     targetPosition.x - myViewpoint.toEditorDimension(dx2)
