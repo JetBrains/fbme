@@ -193,6 +193,17 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     public Point translateForm(Point originalPosition, int dx, int dy) {
         Point position = new Point(originalPosition);
         position.translate(dx, dy);
+        MagneticNetworkManager magneticNetworkManager = getMagneticNetworkManager();
+
+        Rectangle bounds = getBounds(originalPosition);
+        int width = bounds.width;
+        int height = bounds.height;
+
+        position = magneticNetworkManager.getMagnetizedPosition(position, getFontSize());
+        position = magneticNetworkManager.getMagnetizedPosition(new Point(position.x + width, position.y + height), getFontSize());
+
+        position.translate(-width, -height);
+
         return position;
     }
 
@@ -223,5 +234,13 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
 
     private int getLineSize() {
         return LayoutUtil.getLineSize(cellCollection.getStyle());
+    }
+
+    private int getFontSize() {
+        return LayoutUtil.getFontSize(cellCollection.getStyle());
+    }
+
+    private MagneticNetworkManager getMagneticNetworkManager() {
+        return cellCollection.getStyle().get(RichEditorStyleAttributes.MAGNETIC_NETWORK_MANAGER);
     }
 }

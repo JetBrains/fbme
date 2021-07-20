@@ -8,6 +8,7 @@ import jetbrains.mps.openapi.editor.style.StyleAttribute;
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor;
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath;
+import org.fbme.ide.richediting.adapters.fbnetwork.MagneticNetworkManager;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
@@ -52,6 +53,7 @@ public class RichEditorStyleAttributes {
     public static final StyleAttribute<ComponentsFacility<NetworkComponentView, Point>> COMPONENTS_FACILITY = new InheritableStyleAttribute<>("components-facility");
     public static final StyleAttribute<ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>> CONNECTIONS_FACILITY = new InheritableStyleAttribute<>("connections-facility");
     public static final StyleAttribute<SceneViewpoint> VIEWPOINT = new InheritableStyleAttribute<>("viewpoint");
+    public static final StyleAttribute<MagneticNetworkManager> MAGNETIC_NETWORK_MANAGER = new InheritableStyleAttribute<>("magnetic-network-manager");
 
     static {
         NETWORK.register();
@@ -73,5 +75,6 @@ public class RichEditorStyleAttributes {
         COMPONENTS_FACILITY.register();
         CONNECTIONS_FACILITY.register();
         VIEWPOINT.register();
+        MAGNETIC_NETWORK_MANAGER.register();
     }
 }
