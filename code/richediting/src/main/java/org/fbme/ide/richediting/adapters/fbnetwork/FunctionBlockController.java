@@ -7,19 +7,22 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property;
 import jetbrains.mps.nodeEditor.cells.ModelAccessor;
 import jetbrains.mps.openapi.editor.EditorContext;
+import jetbrains.mps.openapi.editor.style.Style;
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBSceneCell;
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent;
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes;
-import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView;
-import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
-import org.fbme.ide.richediting.viewmodel.NetworkPortView;
+import org.fbme.ide.richediting.viewmodel.*;
 import org.fbme.lib.iec61499.fbnetwork.EntryKind;
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance;
 import org.fbme.lib.iec61499.instances.Instance;
 import org.fbme.lib.iec61499.instances.NetworkInstance;
 import org.fbme.scenes.controllers.LayoutUtil;
+import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentController;
+import org.fbme.scenes.controllers.components.ComponentsFacility;
+import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
+import org.fbme.scenes.controllers.diagram.DiagramFacility;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 
@@ -194,17 +197,10 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
         Point position = new Point(originalPosition);
         position.translate(dx, dy);
         MagneticNetworkManager magneticNetworkManager = getMagneticNetworkManager();
+        Rectangle bounds = getBounds(position);
+        Point newPosition = magneticNetworkManager.getMagnetizedRectanglePosition(bounds, getFontSize());
 
-        Rectangle bounds = getBounds(originalPosition);
-        int width = bounds.width;
-        int height = bounds.height;
-
-        position = magneticNetworkManager.getMagnetizedPosition(position, getFontSize());
-        position = magneticNetworkManager.getMagnetizedPosition(new Point(position.x + width, position.y + height), getFontSize());
-
-        position.translate(-width, -height);
-
-        return position;
+        return newPosition;
     }
 
     @Override
@@ -241,6 +237,14 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     }
 
     private MagneticNetworkManager getMagneticNetworkManager() {
-        return cellCollection.getStyle().get(RichEditorStyleAttributes.MAGNETIC_NETWORK_MANAGER);
+        Style style = cellCollection.getStyle();
+
+        DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY);
+        ComponentsFacility<NetworkComponentView, Point> componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY);
+        ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY);
+        SceneViewpoint viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
+        MagneticNetworkManager magneticNetworkManager = new MagneticNetworkManager(diagramFacility, componentsFacility, connectionsFacility, viewpoint);
+
+        return magneticNetworkManager;
     }
 }

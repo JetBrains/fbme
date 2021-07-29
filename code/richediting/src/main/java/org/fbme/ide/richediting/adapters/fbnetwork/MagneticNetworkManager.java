@@ -1,6 +1,7 @@
 package org.fbme.ide.richediting.adapters.fbnetwork;
 
 import jetbrains.mps.nodeEditor.EditorSettings;
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView;
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView;
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.ide.richediting.viewmodel.NetworkPortView;
@@ -8,15 +9,19 @@ import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentController;
 import org.fbme.scenes.controllers.components.ComponentSynchronizer;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.*;
+import org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer;
+import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
+import org.fbme.scenes.controllers.diagram.DiagramController;
+import org.fbme.scenes.controllers.diagram.DiagramFacility;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MagneticNetworkManager {
-    private static final int MAGNETIC_PADDING = 4;
+    private static final int MAGNETIC_PADDING = 20;
 
     private final DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility;
     private final ComponentsFacility<NetworkComponentView, Point> componentsFacility;
@@ -26,8 +31,8 @@ public class MagneticNetworkManager {
     private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
     private final SceneViewpoint viewpoint;
 
-    private final Set<Integer> xLines = new HashSet<>();
-    private final Set<Integer> yLines = new HashSet<>();
+    private final Map<Integer, Set<Integer>> xLines = new HashMap<>();
+    private final Map<Integer, Set<Integer>> yLines = new HashMap<>();
 
     public MagneticNetworkManager(
             DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility,
@@ -47,31 +52,6 @@ public class MagneticNetworkManager {
 
     private void createMagneticLines() {
         processComponents();
-        int x = 5;
-//        processConnections();
-    }
-
-    private void processConnections() {
-        Set<NetworkConnectionView> connections = diagramController.getConnections();
-        for (NetworkConnectionView connection : connections) {
-            NetworkPortView source = diagramController.getSource(connection);
-            NetworkPortView target = diagramController.getTarget(connection);
-
-            PortController sourcePortController = diagramController.getPortController(source);
-            PortController targetPortController = diagramController.getPortController(target);
-
-            Point sourcePortPosition = sourcePortController.getModelEndpointPosition();
-            Point targetPortPosition = targetPortController.getModelEndpointPosition();
-
-            FBConnectionPath path = connectionSynchronizer.getPath(connection).apply(sourcePortPosition, targetPortPosition);
-            List<Point> bendPoints = path.getBendPoints();
-
-            for (int i = 1; i < bendPoints.size(); i += 2) {
-                Point bendPoint = bendPoints.get(i);
-                xLines.add(bendPoint.x);
-                yLines.add(bendPoint.y);
-            }
-        }
     }
 
     private void processComponents() {
@@ -79,20 +59,66 @@ public class MagneticNetworkManager {
         for (NetworkComponentView component : components) {
             ComponentController<Point> componentController = componentsFacility.getController(component);
             Point componentPosition = componentsFacility.getModelForm(component);
-            Rectangle componentBounds = componentController.getBounds(componentPosition);
-            int x = componentBounds.x;
-            int y = componentBounds.y;
-            int width = componentBounds.width;
-            int height = componentBounds.height;
+            Rectangle componentBounds;
+//            if (component instanceof FunctionBlockView) {
+//                componentBounds = ((FunctionBlockController) componentController).getFBCellBounds(componentPosition);
+//            } else {
+                componentBounds = componentController.getBounds(componentPosition);
+//            }
+            int x = viewpoint.translateFromEditorX(componentBounds.x);
+            int y = viewpoint.translateFromEditorY(componentBounds.y);
+            int width = viewpoint.fromEditorDimension(componentBounds.width);
+            int height = viewpoint.fromEditorDimension(componentBounds.height);
 
-            xLines.add(x);
-            xLines.add(x + width);
+            processXLine(x, y, height);
+            processXLine(x + width, y, height);
 
-            yLines.add(y);
-            yLines.add(y + height);
+            processYLine(x, y, width);
+            processYLine(x, y + height, width);
         }
     }
 
+    private void processYLine(int x, int y, int width) {
+        if (!yLines.containsKey(y)) {
+            Set<Integer> xs = new HashSet<>();
+            xs.add(x);
+            xs.add(x + width);
+            yLines.put(y, xs);
+        } else {
+            Set<Integer> xs = yLines.get(y);
+            xs.add(x);
+            xs.add(x + width);
+        }
+    }
+
+    private void processXLine(int x, int y, int height) {
+        if (!xLines.containsKey(x)) {
+            Set<Integer> ys = new HashSet<>();
+            ys.add(y);
+            ys.add(y + height);
+            xLines.put(x, ys);
+        } else {
+            Set<Integer> ys = xLines.get(x);
+            ys.add(y);
+            ys.add(y + height);
+        }
+    }
+
+    public Point getMagnetizedRectanglePosition(Rectangle rect, int fontSize) {
+        int x = viewpoint.translateFromEditorX(rect.x);
+        int y = viewpoint.translateFromEditorY(rect.y);
+        int width = viewpoint.fromEditorDimension(rect.width);
+        int height = viewpoint.fromEditorDimension(rect.height);
+
+        Point position = new Point(x, y);
+
+        position = getMagnetizedPosition(position, fontSize);
+        position = getMagnetizedPosition(new Point(position.x + width, position.y + height), fontSize);
+
+        position.translate(-width, -height);
+
+        return new Point(viewpoint.translateToEditorX(position.x), viewpoint.translateToEditorY(position.y));
+    }
 
     public Point getMagnetizedPosition(Point position, int fontSize) {
         int x = position.x;
@@ -102,23 +128,54 @@ public class MagneticNetworkManager {
         int magnetizedY = y;
 
         int padding = scale(MAGNETIC_PADDING, fontSize);
+//        int padding = MAGNETIC_PADDING;
         for (int i = 0; i <= padding; ++i) {
             if (magnetizedX == x) {
-                if (xLines.contains(x + i)) {
-                    magnetizedX = x + i;
-                } else if (xLines.contains(x - i)) {
-                    magnetizedX = x - i;
+                if (xLines.containsKey(x + i)) {
+                    int dy = getDy(x + i, y);
+                    if (dy < 1000) {
+                        magnetizedX = x + i;
+                    }
+                } else if (xLines.containsKey(x - i)) {
+                    int dy = getDy(x - i, y);
+                    if (dy < 1000) {
+                        magnetizedX = x - i;
+                    }
                 }
             }
             if (magnetizedY == y) {
-                if (yLines.contains(y - i)) {
-                    magnetizedY = y - i;
-                } else if (yLines.contains(y + i)) {
-                    magnetizedY = y + i;
+                if (yLines.containsKey(y - i)) {
+                    int dx = getDx(x, y - i);
+                    if (dx < 1000) {
+                        magnetizedY = y - i;
+                    }
+                } else if (yLines.containsKey(y + i)) {
+                    int dx = getDx(x, y + i);
+                    if (dx < 1000) {
+                        magnetizedY = y + i;
+                    }
                 }
             }
         }
         return new Point(magnetizedX, magnetizedY);
+    }
+
+    private int getDx(int x, int y) {
+        Set<Integer> xs = yLines.get(y);
+        int dx = (int) 1e9;
+        for (Integer xi : xs) {
+            dx = Math.min(dx, Math.abs(xi - x));
+        }
+        return dx;
+    }
+
+    private int getDy(int x, int y) {
+        Set<Integer> ys = xLines.get(x);
+        int dy = (int) 1e9;
+        for (Integer yi : ys) {
+            dy = Math.min(dy, Math.abs(yi - y));
+        }
+        return dy;
     }
 
     private int scale(int size, int fontSize) {

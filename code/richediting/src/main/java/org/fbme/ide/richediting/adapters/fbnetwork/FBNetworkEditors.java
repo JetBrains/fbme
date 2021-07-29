@@ -192,9 +192,6 @@ public final class FBNetworkEditors {
                     );
             style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility);
 
-            MagneticNetworkManager magneticNetworkManager = new MagneticNetworkManager(diagramFacility, componentsFacility, connectionsFacility, viewpoint);
-            style.set(RichEditorStyleAttributes.MAGNETIC_NETWORK_MANAGER, magneticNetworkManager);
-
             Function<NetworkConnectionView, FBConnectionController> connectionProvider = it -> (FBConnectionController) connectionsFacility.getController(it);
 
             new NetworkInspectionsFacility(networkView, networkInstance, scene, componentProvider, connectionProvider, extendedLayout, inspectionsLayer);
