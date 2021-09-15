@@ -45,7 +45,7 @@ subprojects {
 
         repositories {
             maven {
-                url = uri("https://dl.bintray.com/jetbrains/intellij-third-party-dependencies/")
+                url = uri("https://cache-redirector.jetbrains.com/intellij-dependencies")
             }
         }
 
