@@ -1,6 +1,7 @@
 
 plugins {
     mps
+    kotlin
 }
 
 dependencies {

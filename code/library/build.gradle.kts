@@ -3,6 +3,7 @@ plugins {
     java
     antlr
     mps
+    kotlin
 }
 
 dependencies {
