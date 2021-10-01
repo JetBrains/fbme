@@ -123,7 +123,7 @@ public class FBTypeTemplateCellComponent {
 
     private class EventsAssociationsPainter {
         private final List<EventAssociation> myAsociations;
-        private final int myLineSize = LayoutUtil.getLineSize(myCellCollection.getStyle());
+        private final int myLineSize = LayoutUtil.INSTANCE.getLineSize(myCellCollection.getStyle());
         private final int myGapWidth = GAP_SPACES * myLineSize;
         private final int myAssociationsWidth;
 

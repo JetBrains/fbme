@@ -81,7 +81,7 @@ public class NetworkInspectionsFacility {
                 // do nothing
             }
 
-            public void onComponentsMoved(@NotNull Set<NetworkComponentView> components, int dx, int dy, boolean completed) {
+            public void onComponentsMoved(@NotNull Set<? extends NetworkComponentView> components, int dx, int dy, boolean completed) {
                 myLayouter.relayout();
             }
         });
@@ -216,7 +216,7 @@ public class NetworkInspectionsFacility {
             if (inspectionsData != null) {
                 loadState(inspectionsData);
             }
-            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getEditorContext().getEditorComponent());
             if (manager != null) {
                 manager.registerNetwork(myInstance, NetworkInspectionsFacility.this);
             }
@@ -227,7 +227,7 @@ public class NetworkInspectionsFacility {
             NetworkInspectionsData data = new NetworkInspectionsData();
             storeState(data);
             myEditor.storeState(NetworkInspectionsData.KEY, data);
-            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getEditorContext().getEditorComponent());
             if (manager != null) {
                 manager.unregisterNetwork(myInstance);
             }

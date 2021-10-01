@@ -222,6 +222,6 @@ public class FunctionBlockController implements ComponentController<Point>, FBNe
     }
 
     private int getLineSize() {
-        return LayoutUtil.getLineSize(cellCollection.getStyle());
+        return LayoutUtil.INSTANCE.getLineSize(cellCollection.getStyle());
     }
 }

@@ -90,7 +90,7 @@ public class OutputCell extends EditorCell_Basic {
     }
 
     protected int getLineSize() {
-        return LayoutUtil.getLineSize(myCellCollection.getStyle());
+        return LayoutUtil.INSTANCE.getLineSize(myCellCollection.getStyle());
     }
 
     protected void setTextFromAction() {

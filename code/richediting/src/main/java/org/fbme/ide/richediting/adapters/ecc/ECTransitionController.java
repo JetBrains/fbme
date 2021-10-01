@@ -146,7 +146,7 @@ public class ECTransitionController implements ConnectionController<ECTransition
     }
 
     @Override
-    public void paintConnection(ECTransitionPath path, ECTransitionCursor cursor, boolean selected, Graphics graphics) {
+    public void paintConnection(ECTransitionPath path, @Nullable ECTransitionCursor cursor, boolean selected, Graphics graphics) {
         Graphics g = graphics.create();
 
         ECTransitionPathPainter painter = new ECTransitionPathPainter(path, cursor);
@@ -183,5 +183,10 @@ public class ECTransitionController implements ConnectionController<ECTransition
         graphics = graphics.create();
         ECTransitionPathPainter.setupShadowPathPaint(graphics);
         new ECTransitionPathPainter(path, null).paint(graphics, false);
+    }
+
+    @Override
+    public void updateCellSelection(boolean selected) {
+//        ConnectionController.super.updateCellSelection(selected);
     }
 }

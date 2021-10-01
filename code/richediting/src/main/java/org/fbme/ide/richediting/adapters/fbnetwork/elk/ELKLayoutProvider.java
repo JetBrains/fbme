@@ -29,14 +29,14 @@ import java.util.*;
 import static org.junit.Assert.assertTrue;
 
 public class ELKLayoutProvider {
-    private static final Logger LOG = LogManager.getLogger(ELKLayoutProvider.class);
+//    private static final Logger LOG = LogManager.getLogger(ELKLayoutProvider.class);
 
     private final DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point> diagramFacility;
     private final ComponentsFacility<NetworkComponentView, Point> componentsFacility;
     private final ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath> connectionsFacility;
     private final DiagramController<NetworkComponentView, NetworkPortView, NetworkConnectionView> diagramController;
     private final ComponentSynchronizer<NetworkComponentView, Point> componentSynchronizer;
-    private final ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
+    private final ConnectionPathSynchronizer<NetworkConnectionView, FBConnectionPath> connectionSynchronizer;
     private final SceneViewpoint viewpoint;
 
     private final IGraphLayoutEngine layoutEngine = new RecursiveGraphLayoutEngine();
@@ -53,7 +53,7 @@ public class ELKLayoutProvider {
         this.componentsFacility = componentsFacility;
         this.connectionsFacility = connectionsFacility;
         this.diagramController = diagramFacility.getDiagramController();
-        this.componentSynchronizer = componentsFacility.getComponentSyncronizer();
+        this.componentSynchronizer = componentsFacility.getComponentSynchronizer();
         this.connectionSynchronizer = connectionsFacility.getConnectionSynchronizer();
         this.viewpoint = viewpoint;
     }
@@ -69,7 +69,7 @@ public class ELKLayoutProvider {
             layoutEngine.layout(root, new NullElkProgressMonitor());
             applyLayout(nodes, endpoints, edges);
         } catch (Throwable t) {
-            LOG.error("error when relayout");
+//            LOG.error("error when relayout");
         }
     }
 

@@ -371,6 +371,16 @@ public class FBConnectionController implements ConnectionController<FBConnection
         return calculator::calculatePath;
     }
 
+    @Override
+    public void updateCellWithPath(FBConnectionPath path) {
+//        ConnectionController.super.updateCellWithPath(path);
+    }
+
+    @Override
+    public void updateCellSelection(boolean selected) {
+//        ConnectionController.super.updateCellSelection(selected);
+    }
+
     private class PathTargetChangeDiffCalculator {
         private final FBConnectionPath myOriginalPath;
 
@@ -507,7 +517,7 @@ public class FBConnectionController implements ConnectionController<FBConnection
     }
 
     private int getFontSize() {
-        return LayoutUtil.getFontSize(myFakeCell.getStyle());
+        return LayoutUtil.INSTANCE.getFontSize(myFakeCell.getStyle());
     }
 
     private int scale(int size) {

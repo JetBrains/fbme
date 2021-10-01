@@ -4,14 +4,14 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration;
 import org.fbme.lib.iec61499.ecc.StateTransition;
 import org.fbme.scenes.controllers.SceneViewpoint;
 import org.fbme.scenes.controllers.components.ComponentsFacility;
-import org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer;
+import org.fbme.scenes.controllers.diagram.ConnectionPathSynchronizer;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.function.BiFunction;
 
-public class ECTransitionPathSynchronizer implements ConnectionPathSyncronizer<StateTransition, ECTransitionPath> {
+public class ECTransitionPathSynchronizer implements ConnectionPathSynchronizer<StateTransition, ECTransitionPath> {
 
     private final SceneViewpoint myViewpoint;
     private final ComponentsFacility<StateDeclaration, Point> myComponentsFacility;

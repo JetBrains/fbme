@@ -44,7 +44,7 @@ import java.util.*;
 import java.util.List;
 
 public class ECCEditors {
-    private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
+//    private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
     public static final SceneStateKey<Map<StateAction, Boolean>> IS_OPEN_ALGORITHM_BODY = new SceneStateKey<>("is-open-body");
     public static final SceneStateKey<Map<StateDeclaration, Boolean>> IS_OPEN_ACTIONS = new SceneStateKey<>("is-open-actions");
 
@@ -60,7 +60,7 @@ public class ECCEditors {
 
             EditorComponent editorComponent = (EditorComponent) context.getEditorComponent();
 
-            SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getImplicitViewpoint());
+            SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getViewpoint());
             SceneFocusModel focus = new DefaultFocusModel();
             if (layout == SceneLayout.WINDOWED) {
                 new WindowedBackgroundDragFacility(scene, (SceneViewpointByCell) viewpoint, backgroundLayer);
@@ -113,7 +113,7 @@ public class ECCEditors {
 
             return scene;
         } catch (RuntimeException e) {
-            LOG.error("Error during cell creation", e);
+//            LOG.error("Error during cell creation", e);
             throw e;
         }
     }

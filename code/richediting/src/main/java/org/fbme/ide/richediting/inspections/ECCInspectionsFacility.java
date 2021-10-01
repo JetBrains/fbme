@@ -62,7 +62,7 @@ public class ECCInspectionsFacility {
             if (inspectionsData != null) {
                 loadState(inspectionsData);
             }
-            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getEditorContext().getEditorComponent());
             if (manager != null) {
                 manager.registerECC(myECC, ECCInspectionsFacility.this);
             }
@@ -73,7 +73,7 @@ public class ECCInspectionsFacility {
             ECCInspectionsData data = new ECCInspectionsData();
             storeState(data);
             myEditor.storeState(ECCInspectionsData.KEY, data);
-            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getContext().getEditorComponent());
+            InspectionManager manager = InspectionManagerImpl.getInstance(myEditor.getEditorContext().getEditorComponent());
             if (manager != null) {
                 manager.unregisterECC(myECC);
             }

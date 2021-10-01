@@ -53,7 +53,7 @@ public class ExpandAction extends ExpandOrCollapseAction {
         Point editorComponentPosition = componentsFacility.getModelForm(component);
         Rectangle oldBounds = componentController.getFBCellBounds(editorComponentPosition);
 
-        int lineSize = LayoutUtil.getLineSize(componentController.getComponentCell().getStyle());
+        int lineSize = LayoutUtil.INSTANCE.getLineSize(componentController.getComponentCell().getStyle());
         EditorCell sceneCell = createExpandedSceneCell(componentController);
         Rectangle newBounds = new Rectangle(oldBounds.x, oldBounds.y, sceneCell.getWidth(), sceneCell.getHeight() + lineSize);
 
@@ -145,8 +145,8 @@ public class ExpandAction extends ExpandOrCollapseAction {
         EditorCell sceneCell = editorComponent.getRootCell();
 
         Style style = componentController.getComponentCell().getStyle();
-        int fontSize = LayoutUtil.getFontSize(style);
-        LayoutUtil.setFontSize(sceneCell.getStyle(), fontSize);
+        int fontSize = LayoutUtil.INSTANCE.getFontSize(style);
+        LayoutUtil.INSTANCE.setFontSize(sceneCell.getStyle(), fontSize);
         sceneCell.relayout();
 
         return sceneCell;

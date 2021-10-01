@@ -37,15 +37,15 @@ public class FBConnectionUtils {
     }
 
     private static int padding(Style style) {
-        return LayoutUtil.getFontSize(style) * ENDPOINTS_PADDING / EditorSettings.getInstance().getFontSize();
+        return LayoutUtil.INSTANCE.getFontSize(style) * ENDPOINTS_PADDING / EditorSettings.getInstance().getFontSize();
     }
 
     private static int hoverLength(Style style) {
-        return LayoutUtil.getFontSize(style) * ENDPOINT_HOVER_LENGTH / EditorSettings.getInstance().getFontSize();
+        return LayoutUtil.INSTANCE.getFontSize(style) * ENDPOINT_HOVER_LENGTH / EditorSettings.getInstance().getFontSize();
     }
 
     private static int width(Style style) {
-        return LayoutUtil.getFontSize(style) / EditorSettings.getInstance().getFontSize();
+        return LayoutUtil.INSTANCE.getFontSize(style) / EditorSettings.getInstance().getFontSize();
     }
 
 }

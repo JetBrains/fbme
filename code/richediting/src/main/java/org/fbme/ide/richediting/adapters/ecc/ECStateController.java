@@ -102,7 +102,7 @@ public class ECStateController implements ComponentController<Point> {
     }
 
     private int getLineSize() {
-        return LayoutUtil.getLineSize(myCellCollection.getStyle());
+        return LayoutUtil.INSTANCE.getLineSize(myCellCollection.getStyle());
     }
 
     @Override

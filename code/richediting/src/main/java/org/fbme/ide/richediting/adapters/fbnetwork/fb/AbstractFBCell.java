@@ -226,11 +226,11 @@ public abstract class AbstractFBCell implements FBCell {
     }
 
     protected int getLineSize() {
-        return LayoutUtil.getLineSize(getRootCell().getStyle());
+        return LayoutUtil.INSTANCE.getLineSize(getRootCell().getStyle());
     }
 
     protected int getFontSize() {
-        return LayoutUtil.getFontSize(getRootCell().getStyle());
+        return LayoutUtil.INSTANCE.getFontSize(getRootCell().getStyle());
     }
 
     protected int scale(int size) {

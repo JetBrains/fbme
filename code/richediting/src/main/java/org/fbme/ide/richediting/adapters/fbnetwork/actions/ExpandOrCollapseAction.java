@@ -38,7 +38,7 @@ public abstract class ExpandOrCollapseAction implements Action {
         viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT);
 
         diagramController = diagramFacility.getDiagramController();
-        componentsSynchronizer = (FBNetworkComponentSynchronizer) componentsFacility.getComponentSyncronizer();
+        componentsSynchronizer = (FBNetworkComponentSynchronizer) componentsFacility.getComponentSynchronizer();
         connectionSynchronizer = (FBConnectionPathSyncronizer) connectionsFacility.getConnectionSynchronizer();
     }
 }

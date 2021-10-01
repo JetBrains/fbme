@@ -40,7 +40,7 @@ import org.fbme.scenes.controllers.diagram.ConnectionsFacility;
 import org.fbme.scenes.controllers.diagram.DiagramComponentSettingProvider;
 import org.fbme.scenes.controllers.diagram.DiagramFacility;
 import org.fbme.scenes.controllers.scene.*;
-import org.fbme.scenes.viewmodel.ComponentExtsView;
+import org.fbme.scenes.viewmodel.ComponentExtensionsView;
 import org.fbme.scenes.viewmodel.PositionalCompletionItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -53,7 +53,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class FBNetworkEditors {
-    private static final Logger LOG = LogManager.getLogger(FBNetworkEditors.class);
+//    private static final Logger LOG = LogManager.getLogger(FBNetworkEditors.class);
 
     private FBNetworkEditors() {
     }
@@ -91,7 +91,7 @@ public final class FBNetworkEditors {
         Style style = scene.getStyle();
         style.set(RichEditorStyleAttributes.NETWORK, networkDeclaration);
         style.set(RichEditorStyleAttributes.NETWORK_INSTANCE, networkInstance);
-        style.set(SceneStyleAttributes.SCENE_BACKGROUND, MPSColors.WHITE);
+        style.set(SceneStyleAttributes.INSTANCE.getSCENE_BACKGROUND(), MPSColors.WHITE);
 
         EditorComponent component = (EditorComponent) context.getEditorComponent();
         Project project = context.getOperationContext().getProject();
@@ -108,7 +108,7 @@ public final class FBNetworkEditors {
 
             final float scale = RicheditingMpsBridge.getEditorScale(project);
 
-            SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getImplicitViewpoint());
+            SceneViewpoint viewpoint = (layout == SceneLayout.WINDOWED ? new SceneViewpointByCell(scene, scene) : scene.getViewpoint());
             style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint);
 
             SceneFocusModel focus = new DefaultFocusModel();
@@ -143,7 +143,7 @@ public final class FBNetworkEditors {
             SceneCompletionProvider provider = new CompletionProviderByViewpoint(viewpoint, () -> getCompletion(completionScope, factory, networkDeclaration, scale));
             scene.addCompletionProvider(provider);
 
-            final ComponentExtsView<NetworkComponentView, NetworkComponentView> inlineValuesView = networkView.getExtensionsView();
+            final ComponentExtensionsView<NetworkComponentView, NetworkComponentView> inlineValuesView = networkView.getExtensionsView();
 
             final ComponentsExtensionsFacility<NetworkComponentView, NetworkComponentView, Point> inlineValuesFacility = new ComponentsExtensionsFacility<NetworkComponentView, NetworkComponentView, Point>(inlineValuesView, componentsFacility, INLINE_VALUE_CONTROLLER_FACTORY, componentsLayer, tracesLayer);
 
@@ -181,7 +181,6 @@ public final class FBNetworkEditors {
             ROLayoutModel<NetworkComponentView> extendedLayout = new ExtendedLayoutModel<>(
                     componentsLayout,
                     (view, compPosition) -> ((InlineValueController) inlineValuesFacility.getController(view)).getCoordinates(compPosition),
-                    (view, compPosition) -> ((InlineValueController) inlineValuesFacility.getController(view)).getBounds(compPosition),
                     inlineValuesView::getExtensions
             );
 
@@ -196,7 +195,7 @@ public final class FBNetworkEditors {
 
             new NetworkInspectionsFacility(networkView, networkInstance, scene, componentProvider, connectionProvider, extendedLayout, inspectionsLayer);
         } catch (RuntimeException e) {
-            LOG.error("Error during cell creation", e);
+//            LOG.error("Error during cell creation", e);
         }
     }
 

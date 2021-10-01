@@ -103,11 +103,11 @@ public class EndpointPortCell implements PortCell {
     }
 
     private int getLineSize() {
-        return LayoutUtil.getLineSize(getRootCell().getStyle());
+        return LayoutUtil.INSTANCE.getLineSize(getRootCell().getStyle());
     }
 
     private int getFontSize() {
-        return LayoutUtil.getFontSize(getRootCell().getStyle());
+        return LayoutUtil.INSTANCE.getFontSize(getRootCell().getStyle());
     }
 
     private int scale(int size) {

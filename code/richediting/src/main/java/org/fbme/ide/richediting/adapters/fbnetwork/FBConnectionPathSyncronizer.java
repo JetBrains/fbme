@@ -5,7 +5,7 @@ import org.fbme.ide.richediting.viewmodel.NetworkConnectionView;
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath;
 import org.fbme.lib.iec61499.fbnetwork.LongConnectionPath;
 import org.fbme.scenes.controllers.SceneViewpoint;
-import org.fbme.scenes.controllers.diagram.ConnectionPathSyncronizer;
+import org.fbme.scenes.controllers.diagram.ConnectionPathSynchronizer;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-public class FBConnectionPathSyncronizer implements ConnectionPathSyncronizer<NetworkConnectionView, FBConnectionPath> {
+public class FBConnectionPathSyncronizer implements ConnectionPathSynchronizer<NetworkConnectionView, FBConnectionPath> {
 
     private final SceneViewpoint myViewpoint;
     private final float myScale;

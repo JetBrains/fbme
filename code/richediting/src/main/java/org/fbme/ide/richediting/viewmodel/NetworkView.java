@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.viewmodel;
 
-import org.fbme.ide.iec61499.repository.PlatformIdentifier;
 import org.fbme.lib.common.*;
 import org.fbme.lib.iec61499.IEC61499Factory;
 import org.fbme.lib.iec61499.declarations.EventDeclaration;
@@ -13,11 +12,10 @@ import org.fbme.lib.iec61499.fbnetwork.*;
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork;
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubapplicationDeclaration;
 import org.fbme.scenes.controllers.diagram.DiagramView;
-import org.fbme.scenes.viewmodel.ComponentExtsView;
+import org.fbme.scenes.viewmodel.ComponentExtensionsView;
 import org.fbme.scenes.viewmodel.ComponentsView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.mps.openapi.model.SNodeId;
 
 import java.util.*;
 
@@ -364,7 +362,7 @@ public class NetworkView {
         }
     };
 
-    private final ComponentExtsView<NetworkComponentView, NetworkComponentView> myExtensionsView = component -> myAuxComponents.getOrDefault(component, Collections.emptySet());
+    private final ComponentExtensionsView<NetworkComponentView, NetworkComponentView> myExtensionsView = component -> myAuxComponents.getOrDefault(component, Collections.emptySet());
 
 
     public DiagramView<NetworkComponentView, NetworkPortView, NetworkConnectionView> getDiagramView() {
@@ -375,7 +373,7 @@ public class NetworkView {
         return myComponentsView;
     }
 
-    public ComponentExtsView<NetworkComponentView, NetworkComponentView> getExtensionsView() {
+    public ComponentExtensionsView<NetworkComponentView, NetworkComponentView> getExtensionsView() {
         return myExtensionsView;
     }
 
