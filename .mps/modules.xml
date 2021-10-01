@@ -26,6 +26,8 @@
       <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="code.scenes" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" folder="code.smv debugger" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger/org.fbme.smvDebugger.msd" folder="code.smv debugger" />
+      <modulePath path="$PROJECT_DIR$/code/formalfb/buildsolution/org.fbme.formalfb.build.msd" folder="code.formalfb" />
+      <modulePath path="$PROJECT_DIR$/code/formalfb/solutions/org.fbme.formalfb/org.fbme.formalfb.msd" folder="code.formalfb" />
       <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.eccSandbox/org.fbme.ide.eccSandbox.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.eccSandbox/org.fbme.ide.eccSandbox.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.sandbox.enasDSL/org.fbme.ide.sandbox.enasDSL.msd" folder="samples.sandbox" />
