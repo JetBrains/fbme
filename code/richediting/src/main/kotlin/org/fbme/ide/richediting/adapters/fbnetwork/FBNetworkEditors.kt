@@ -134,8 +134,8 @@ object FBNetworkEditors {
         val project = context.operationContext.project
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
-            val networkView =
-                NetworkView(repository.ieC61499Factory, networkDeclaration, networkInstance.parent == null)
+            val isEditable = networkInstance.parent == null
+            val networkView = NetworkView(repository.ieC61499Factory, networkDeclaration, isEditable)
             val backgroundLayer = scene.createLayer(0f)
             val tracesLayer = scene.createLayer(1f)
             val componentsLayer = scene.createLayer(2f)

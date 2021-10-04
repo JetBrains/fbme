@@ -48,7 +48,7 @@ class EditorCell_Scene(
     private val layouters: MutableSet<SceneLayouter> = LinkedHashSet()
     private val completionProviders: MutableSet<SceneCompletionProvider> = LinkedHashSet()
     private val initializers: MutableSet<SceneInitializer> = LinkedHashSet()
-    override val viewpoint: SceneViewpoint?
+    override val viewpoint: MyViewpoint?
 
     override fun createLayer(priority: Float): Layer {
         val layer = LayerImpl(priority)
@@ -368,6 +368,7 @@ class EditorCell_Scene(
             dragEventHandler!!.dragTo(event.x, event.y)
         }
     }
+
     private val bounds: Rectangle
         get() = Rectangle(myX, myY, myWidth, myHeight)
 
@@ -389,26 +390,26 @@ class EditorCell_Scene(
         }
     }
 
-    private inner class MySubstituteInfo(editorContext: EditorContext?) :
-        AbstractNodeSubstituteInfo(editorContext) {
+    private inner class MySubstituteInfo(editorContext: EditorContext) : AbstractNodeSubstituteInfo(editorContext) {
         override fun createActions(): List<SubstituteAction> {
             val result: MutableList<SubstituteAction> = ArrayList()
             for (provider in completionProviders) {
                 for (action in provider.actions) {
-                    result.add(object : AbstractSubstituteAction(sNode) {
-                        override fun getMatchingText(pattern: String): String? {
-                            return action.getMatchingText(pattern)
-                        }
+                    result.add(
+                        object : AbstractSubstituteAction(sNode) {
+                            override fun getMatchingText(pattern: String): String? {
+                                return action.getMatchingText(pattern)
+                            }
 
-                        override fun getDescriptionText(pattern: String): String? {
-                            return action.descriptionText
-                        }
+                            override fun getDescriptionText(pattern: String): String? {
+                                return action.descriptionText
+                            }
 
-                        override fun doSubstitute(editorContext: EditorContext?, pattern: String): SNode? {
-                            action.invoke(pattern, completionPositionX, completionPositionY)
-                            return null
-                        }
-                    })
+                            override fun doSubstitute(editorContext: EditorContext?, pattern: String): SNode? {
+                                action.invoke(pattern, completionPositionX, completionPositionY)
+                                return null
+                            }
+                        })
                 }
             }
             return result
@@ -452,8 +453,17 @@ class EditorCell_Scene(
     }
 
     inner class MyViewpoint : SceneViewpoint {
-        override val editorShift: Point = Point()
-        override val editorScale: Float = LayoutUtil.getScale(style)
+        var shiftX: Int = 0
+        var shiftY: Int = 0
+
+        override val editorShift: Point
+        get() {
+            return Point(shiftX, shiftY)
+        }
+        override val editorScale: Float
+            get() {
+                return LayoutUtil.getScale(style)
+            }
     }
 
     companion object {
@@ -486,11 +496,11 @@ class EditorCell_Scene(
                 checkNotNull(scene.viewpoint)
                 if (bounds.x < scene.myX) {
                     val deltaX = scene.myX - bounds.x
-                    scene.viewpoint.editorShift.x += deltaX
+                    scene.viewpoint.shiftX += deltaX
                 }
                 if (bounds.y < scene.myY) {
                     val deltaY = scene.myY - bounds.y
-                    scene.viewpoint.editorShift.y += deltaY
+                    scene.viewpoint.shiftY += deltaY
                 }
             }
 
@@ -556,7 +566,7 @@ class EditorCell_Scene(
                 override fun onAdd() {
                     val data = loadState(ViewpointAndScaleData.KEY)
                     if (data != null) {
-                        LayoutUtil.setFontSize(style, data.lineSize)
+                        LayoutUtil.setFontSize(style, data.fontSize)
                     }
                 }
 

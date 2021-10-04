@@ -31,7 +31,7 @@ class FBNetworkComponentSynchronizer(
                 )
             }
         }
-        throw IllegalArgumentException("unknown network component")
+        error("Unknown network component")
     }
 
     private fun getComponentPositionWithOffset(functionBlock: FunctionBlockView): Point {
@@ -47,8 +47,8 @@ class FBNetworkComponentSynchronizer(
     }
 
     private fun getPositionWithOffset(position: Point, offset: Point): Point {
-        val dx = offset?.x ?: 0
-        val dy = offset?.y ?: 0
+        val dx = offset.x
+        val dy = offset.y
         val x = (scale * position.x).toInt() + dx
         val y = (scale * position.y).toInt() + dy
         return Point(x, y)
@@ -68,7 +68,7 @@ class FBNetworkComponentSynchronizer(
             interfaceEndpoint.y = componentPositionWithoutOffset.y
             return
         }
-        throw IllegalArgumentException("unknown network component")
+        error("Unknown network component")
     }
 
     private fun getComponentPositionWithoutOffset(functionBlock: FunctionBlockView, position: Point): Point {

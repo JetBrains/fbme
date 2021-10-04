@@ -15,8 +15,7 @@ object LayoutUtil {
     }
 
     fun getLineSize(style: Style): Int {
-        return (getFontSize(style) * EditorSettings.getInstance()
-            .lineSpacing).toInt()
+        return (getFontSize(style) * EditorSettings.getInstance().lineSpacing).toInt()
     }
 
     fun getFontSize(style: Style): Int {
@@ -26,9 +25,7 @@ object LayoutUtil {
 
     fun setFontSize(style: Style, fontSize: Int) {
         val validFontSize = if (fontSize < 1) 1 else fontSize
-        val currentOrDefault = Objects.requireNonNullElseGet(
-            style.get(StyleAttributes.FONT_SIZE)
-        ) { EditorSettings.getInstance().fontSize }
+        val currentOrDefault = style.get(StyleAttributes.FONT_SIZE) ?: EditorSettings.getInstance().fontSize
         if (currentOrDefault == validFontSize) {
             return
         }

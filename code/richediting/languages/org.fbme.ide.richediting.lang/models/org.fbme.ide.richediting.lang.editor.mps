@@ -758,8 +758,8 @@
                               </node>
                             </node>
                           </node>
-                          <node concept="liA8E" id="1cTKxMSaDDD" role="2OqNvi">
-                            <ref role="37wK5l" to="3rto:~FBTypeTemplateCellComponent.getRootCell()" resolve="getRootCell" />
+                          <node concept="liA8E" id="XRfY9Qo5SL" role="2OqNvi">
+                            <ref role="37wK5l" to="3rto:~FBTypeTemplateCellComponent.getCellCollection()" resolve="getCellCollection" />
                           </node>
                         </node>
                       </node>

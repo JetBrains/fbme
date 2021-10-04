@@ -11,7 +11,9 @@ class SceneViewpointByCell(private val myEditor: SceneEditor, val cell: EditorCe
     private var shiftY = 0
 
     override var editorShift: Point = Point(cell.x, cell.y)
-        get() = Point(cell.x + shiftX, cell.y + shiftY)
+        get() {
+            return Point(cell.x + shiftX, cell.y + shiftY)
+        }
         set(value) {
             field.x = value.x - cell.x
             field.y = value.y - cell.y
@@ -21,14 +23,9 @@ class SceneViewpointByCell(private val myEditor: SceneEditor, val cell: EditorCe
 
     override val editorScale: Float
         get() {
-            val lineSize = LayoutUtil.getLineSize(cell.style)
-            return scale(lineSize)
+            return LayoutUtil.getScale(cell.style)
         }
 
-
-    private fun scale(lineSize: Int): Float {
-        return lineSize.toFloat() / 100
-    }
 
     inner class MyInitializer : SceneInitializer {
         override fun onAdd() {
@@ -36,7 +33,7 @@ class SceneViewpointByCell(private val myEditor: SceneEditor, val cell: EditorCe
             if (data != null) {
                 shiftX = data.shiftX
                 shiftY = data.shiftY
-                LayoutUtil.setFontSize(cell.style, data.lineSize)
+                LayoutUtil.setFontSize(cell.style, data.fontSize)
             }
         }
 

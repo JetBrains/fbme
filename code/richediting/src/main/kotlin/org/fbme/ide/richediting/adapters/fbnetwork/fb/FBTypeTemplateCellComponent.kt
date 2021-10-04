@@ -13,18 +13,19 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.jetbrains.mps.openapi.model.SNode
-import java.awt.*
-import java.util.*
+import java.awt.Color
+import java.awt.Graphics
 
 class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, private val myFBType: FBTypeDescriptor) {
     private val myFBCellComponent: FBTypeCellComponent
-    val rootCell: EditorCell_Collection
+    val cellCollection: EditorCell_Collection
     private val myInputAssociations: MutableList<EventAssociation> = ArrayList()
     private val myOutputAssociations: MutableList<EventAssociation> = ArrayList()
+
     private fun createRootCell(editorContext: EditorContext, node: SNode): EditorCell_Collection {
         return object : EditorCell_Collection(editorContext, node, object : AbstractCellLayout() {
             override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                assert(cells === rootCell)
+                assert(cells === cellCollection)
                 relayout()
             }
 
@@ -33,18 +34,17 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
             }
         }) {
             override fun paintContent(graphics: Graphics, settings: ParentSettings) {
-                var graphics = graphics
-                graphics = graphics.create()
-                graphics.color = foregroundColor
+                var g = graphics
+                g = g.create()
+                g.color = foregroundColor
                 var x = x
                 val y = y
-                val inputAssociationPainter: EventsAssociationsPainter = EventsAssociationsPainter(myInputAssociations)
-                val outputAssociationPainter: EventsAssociationsPainter =
-                    EventsAssociationsPainter(myOutputAssociations)
-                inputAssociationPainter.paint(graphics, true, x, y)
+                val inputAssociationPainter = EventsAssociationsPainter(myInputAssociations)
+                val outputAssociationPainter = EventsAssociationsPainter(myOutputAssociations)
+                inputAssociationPainter.paint(g, true, x, y)
                 x += inputAssociationPainter.width
                 x += myFBCellComponent.width
-                outputAssociationPainter.paint(graphics, false, x, y)
+                outputAssociationPainter.paint(g, false, x, y)
             }
         }
     }
@@ -54,38 +54,36 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
         rootCell.relayout()
         val inputsWidth: Int = EventsAssociationsPainter(myInputAssociations).width
         val outputsWidth: Int = EventsAssociationsPainter(myOutputAssociations).width
-        rootCell.moveTo(rootCell.x + inputsWidth, rootCell.y)
-        rootCell.width = inputsWidth + myFBCellComponent.width + outputsWidth
-        rootCell.height = myFBCellComponent.height
+        rootCell.moveTo(cellCollection.x + inputsWidth, cellCollection.y)
+        cellCollection.width = inputsWidth + myFBCellComponent.width + outputsWidth
+        cellCollection.height = myFBCellComponent.height
     }
 
     fun init() {
         for (inputEvent in myFBType.eventInputPorts.indices) {
             val inputVariables = myFBType.getAssociatedVariablesForInputEvent(inputEvent)
-            if (!inputVariables.isEmpty()) {
-                val sortedInputVariables = ArrayList(inputVariables)
-                Collections.sort(sortedInputVariables)
+            if (inputVariables.isNotEmpty()) {
+                val sortedInputVariables = inputVariables.sorted()
                 myInputAssociations.add(EventAssociation(inputEvent, sortedInputVariables))
             }
         }
         for (outputEvent in myFBType.eventOutputPorts.indices) {
             val outputVariables = myFBType.getAssociatedVariablesForOutputEvent(outputEvent)
-            if (!outputVariables.isEmpty()) {
-                val sortedOutputVariables = ArrayList(outputVariables)
-                Collections.sort(sortedOutputVariables)
+            if (outputVariables.isNotEmpty()) {
+                val sortedOutputVariables = outputVariables.sorted()
                 myOutputAssociations.add(EventAssociation(outputEvent, sortedOutputVariables))
             }
         }
-        rootCell.height = myFBCellComponent.height
-        val inputAssocationsWidth: Int = EventsAssociationsPainter(myInputAssociations).width
-        val outputAssocationsWidth: Int = EventsAssociationsPainter(myOutputAssociations).width
-        rootCell.width = inputAssocationsWidth + myFBCellComponent.width + outputAssocationsWidth
+        cellCollection.height = myFBCellComponent.height
+        val inputAssociationsWidth: Int = EventsAssociationsPainter(myInputAssociations).width
+        val outputAssociationsWidth: Int = EventsAssociationsPainter(myOutputAssociations).width
+        cellCollection.width = inputAssociationsWidth + myFBCellComponent.width + outputAssociationsWidth
     }
 
     class EventAssociation(val eventNumber: Int, val variableNumbers: List<Int>)
 
     private inner class EventsAssociationsPainter(private val associations: List<EventAssociation>) {
-        private val myLineSize = getLineSize(rootCell.style)
+        private val myLineSize = getLineSize(cellCollection.style)
         private val myGapWidth = GAP_SPACES * myLineSize
         private val myAssociationsWidth: Int = associations.size * myLineSize
         val width: Int
@@ -155,8 +153,8 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
     }
 
     private val foregroundColor: Color
-        private get() {
-            val foreground = rootCell.style.get(StyleAttributes.TEXT_COLOR)
+        get() {
+            val foreground = cellCollection.style.get(StyleAttributes.TEXT_COLOR)
             return foreground ?: MPSColors.BLACK
         }
 
@@ -165,9 +163,9 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
     }
 
     init {
-        rootCell = createRootCell(editorContext, node)
+        cellCollection = createRootCell(editorContext, node)
         myFBCellComponent = FBTypeCellComponent(editorContext, myFBType, node, true)
-        rootCell.addEditorCell(myFBCellComponent.rootCell)
+        cellCollection.addEditorCell(myFBCellComponent.rootCell)
         init()
     }
 }
