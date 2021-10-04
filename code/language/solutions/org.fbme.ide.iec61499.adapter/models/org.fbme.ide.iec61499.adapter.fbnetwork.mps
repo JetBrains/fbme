@@ -5664,13 +5664,13 @@
                       </node>
                     </node>
                     <node concept="3cpWs6" id="5PNKLYLw3k" role="3cqZAp">
-                      <node concept="2YIFZM" id="5PNKLYLA3v" role="3cqZAk">
+                      <node concept="2YIFZM" id="6oV02hYqEyD" role="3cqZAk">
+                        <ref role="37wK5l" to="33ny:~List.of(java.lang.Object)" resolve="of" />
                         <ref role="1Pybhc" to="33ny:~List" resolve="List" />
-                        <ref role="37wK5l" to="33ny:~List.of()" resolve="of" />
-                        <node concept="37vLTw" id="5PNKLYLB71" role="37wK5m">
+                        <node concept="37vLTw" id="6oV02hYqEyE" role="37wK5m">
                           <ref role="3cqZAo" node="5PNKLYLcUO" resolve="identifier" />
                         </node>
-                        <node concept="3uibUv" id="5PNKLYLE2B" role="3PaCim">
+                        <node concept="3uibUv" id="6oV02hYqEyF" role="3PaCim">
                           <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
                         </node>
                       </node>

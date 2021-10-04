@@ -10,7 +10,7 @@ class SceneViewpointByCell(private val myEditor: SceneEditor, val cell: EditorCe
     private var shiftX = 0
     private var shiftY = 0
 
-    override var editorShift: Point = Point()
+    override var editorShift: Point = Point(cell.x, cell.y)
         get() = Point(cell.x + shiftX, cell.y + shiftY)
         set(value) {
             field.x = value.x - cell.x

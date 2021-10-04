@@ -19,7 +19,7 @@ class SceneStateManager {
     private class StateId
         (
         private val nodeRef: SNodeReference,
-        private val cellId: String,
+        private val cellId: String?,
         private val key: SceneStateKey<*>
     ) {
         override fun equals(other: Any?): Boolean {

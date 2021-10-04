@@ -13037,8 +13037,8 @@
                       <node concept="37vLTw" id="5WX0kdGtuJJ" role="2Oq$k0">
                         <ref role="3cqZAo" node="1p1S1dsDqR4" resolve="algo" />
                       </node>
-                      <node concept="liA8E" id="5WX0kdGtwhE" role="2OqNvi">
-                        <ref role="37wK5l" to="jnz:~AlgorithmCell.getIsOpenBody()" resolve="getIsOpenBody" />
+                      <node concept="liA8E" id="6oV02hYpEkp" role="2OqNvi">
+                        <ref role="37wK5l" to="jnz:~AlgorithmCell.isOpenBody()" resolve="isOpenBody" />
                       </node>
                     </node>
                   </node>

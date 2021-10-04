@@ -46,7 +46,7 @@ class ComponentEntry<CompT, FormT>(facility: ComponentsFacility<CompT, FormT>, v
     init {
         layoutSetting = MyLayoutSetting()
         this.facility = facility
-        controller = this.facility.controllerFactory.create(this.facility.editor.editorContext, myComponent)
+        controller = this.facility.controllerFactory.create(this.facility.editor.editorContext, myComponent) ?: error("Can't get controller")
         formProvider = this.facility.componentSynchronizer.getForm(myComponent)
         modelForm = formProvider.get()
         layoutSetting.bounds = controller.getBounds(modelForm)
