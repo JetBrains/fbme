@@ -20,18 +20,43 @@ import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
 import java.util.stream.Collectors
 
-class RichApplicationProjectionController(private val myNode: SNode, private val myProject: Project) :
-    EditorProjectionController {
-
+class RichApplicationProjectionController(
+    private val myNode: SNode,
+    private val myProject: Project
+) : EditorProjectionController {
     private val mySystem: SystemDeclaration
     private val myRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(myProject)
+    override val id: String
+        get() = "Application"
+    override val chooseProjectionActions: List<AnAction>
+        get() {
+            return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
+                mySystem.applications.stream()
+                    .map { ChooseProjectionAction(this, it.name) }
+                    .collect(Collectors.toList())
+            }
+        }
+    override val createProjectionActions: List<AnAction>
+        get() {
+            return listOf<AnAction>(object : AnAction("New Application") {
+                override fun actionPerformed(event: AnActionEvent) {
+                    val project = event.getData(MPSDataKeys.MPS_PROJECT)
+                    val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
+                    if (project == null || editor == null) {
+                        return
+                    }
+                    project.modelAccess.executeCommand {
+                        val application =
+                            myRepository.ieC61499Factory.createApplicationDeclaration(StringIdentifier(""))
+                        mySystem.applications.add(application)
+                        editor.chooseProjection(createProjection(""))
+                    }
+                }
+            })
+        }
 
     init {
         mySystem = myRepository.getAdapter(myNode, SystemDeclaration::class.java)
-    }
-
-    override fun getId(): String {
-        return "Application"
     }
 
     override fun createProjection(name: String): EditorProjection {
@@ -61,30 +86,5 @@ class RichApplicationProjectionController(private val myNode: SNode, private val
             instance,
             myProject
         )
-    }
-
-    override fun getChooseProjectionActions(): List<AnAction> {
-        return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
-            mySystem.applications.stream()
-                .map { it: ApplicationDeclaration -> ChooseProjectionAction(this, it.name) }
-                .collect(Collectors.toList())
-        }
-    }
-
-    override fun getCreateProjectionActions(): List<AnAction> {
-        return listOf<AnAction>(object : AnAction("New Application") {
-            override fun actionPerformed(event: AnActionEvent) {
-                val project = event.getData(MPSDataKeys.MPS_PROJECT)
-                val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
-                if (project == null || editor == null) {
-                    return
-                }
-                project.modelAccess.executeCommand {
-                    val application = myRepository.ieC61499Factory.createApplicationDeclaration(StringIdentifier(""))
-                    mySystem.applications.add(application)
-                    editor.chooseProjection(createProjection(""))
-                }
-            }
-        })
     }
 }

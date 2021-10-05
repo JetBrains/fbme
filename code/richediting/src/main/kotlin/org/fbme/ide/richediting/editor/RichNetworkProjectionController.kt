@@ -13,11 +13,20 @@ import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
 
-class RichNetworkProjectionController(private val myNode: SNode, private val myProject: Project) :
-    EditorProjectionController {
-    override fun getId(): String {
-        return "Network"
-    }
+class RichNetworkProjectionController(
+    private val myNode: SNode,
+    private val myProject: Project
+) : EditorProjectionController {
+    override val id: String
+        get() = "Network"
+    override val chooseProjectionActions: List<AnAction>
+        get() {
+            return listOf<AnAction>(ChooseProjectionAction(this, "Network"))
+        }
+    override val createProjectionActions: List<AnAction>
+        get() {
+            return emptyList()
+        }
 
     override fun createProjection(name: String): EditorProjection {
         return if (name == id) {
@@ -50,13 +59,5 @@ class RichNetworkProjectionController(private val myNode: SNode, private val myP
         val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(myProject)
         val instance = NetworkInstance.createForDeclaration(repository.getAdapter(myNode, Declaration::class.java))
         return NetworkInstanceEditorProjection(myNode, this, name, instance, myProject)
-    }
-
-    override fun getChooseProjectionActions(): List<AnAction> {
-        return listOf<AnAction>(ChooseProjectionAction(this, "Network"))
-    }
-
-    override fun getCreateProjectionActions(): List<AnAction> {
-        return emptyList()
     }
 }

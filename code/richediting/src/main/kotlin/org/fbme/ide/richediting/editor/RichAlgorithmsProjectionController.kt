@@ -16,15 +16,49 @@ import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.jetbrains.mps.openapi.model.SNode
-import java.util.stream.Collectors
 
-class RichAlgorithmsProjectionController(private val myNode: SNode, private val myProject: Project) :
-    EditorProjectionController {
+class RichAlgorithmsProjectionController(
+    private val myNode: SNode,
+    private val myProject: Project
+) : EditorProjectionController {
     private val myTypeDeclaration: BasicFBTypeDeclaration
     private val myPlatformRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(myProject)
+    override val id: String
+        get() = "Algorithm"
+    override val chooseProjectionActions: List<AnAction>
+        get() {
+            return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
+                myTypeDeclaration.algorithms.map { ChooseProjectionAction(this, it.name) }
+            }
+        }
+    override val createProjectionActions: List<AnAction>
+        get() {
+            return listOf<AnAction>(object : AnAction("New Algorithm") {
+                override fun actionPerformed(event: AnActionEvent) {
+                    val project = event.getData(MPSDataKeys.MPS_PROJECT)
+                    val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
+                    if (project == null || editor == null) {
+                        return
+                    }
+                    project.modelAccess.executeCommand {
+                        val algorithm =
+                            myPlatformRepository.ieC61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
+                        myTypeDeclaration.algorithms.add(algorithm)
+                        editor.chooseProjection(createProjection(""))
+                        val component = editor.currentEditorComponent
+                        component.changeSelection(
+                            component.findNodeCellWithRole(
+                                (algorithm as PlatformElement).node,
+                                "name"
+                            )!!
+                        )
+                    }
+                }
+            })
+        }
 
-    override fun getId(): String {
-        return "Algorithm"
+    init {
+        myTypeDeclaration = myPlatformRepository.getAdapter(myNode, BasicFBTypeDeclaration::class.java)
     }
 
     override fun createProjection(name: String): EditorProjection {
@@ -43,43 +77,5 @@ class RichAlgorithmsProjectionController(private val myNode: SNode, private val 
             arrayOf("org.fbme.ide.richediting.lang.editor.Rich Editing Hint.algorithm"),
             algorithm
         )
-    }
-
-    override fun getChooseProjectionActions(): List<AnAction> {
-        return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
-            myTypeDeclaration.algorithms
-                .stream()
-                .map { it: AlgorithmDeclaration -> ChooseProjectionAction(this, it.name) }
-                .collect(Collectors.toList())
-        }
-    }
-
-    override fun getCreateProjectionActions(): List<AnAction> {
-        return java.util.List.of<AnAction>(object : AnAction("New Algorithm") {
-            override fun actionPerformed(event: AnActionEvent) {
-                val project = event.getData(MPSDataKeys.MPS_PROJECT)
-                val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
-                if (project == null || editor == null) {
-                    return
-                }
-                project.modelAccess.executeCommand {
-                    val algorithm =
-                        myPlatformRepository.ieC61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
-                    myTypeDeclaration.algorithms.add(algorithm)
-                    editor.chooseProjection(createProjection(""))
-                    val component = editor.currentEditorComponent
-                    component.changeSelection(
-                        component.findNodeCellWithRole(
-                            (algorithm as PlatformElement).node,
-                            "name"
-                        )!!
-                    )
-                }
-            }
-        })
-    }
-
-    init {
-        myTypeDeclaration = myPlatformRepository.getAdapter(myNode, BasicFBTypeDeclaration::class.java)
     }
 }

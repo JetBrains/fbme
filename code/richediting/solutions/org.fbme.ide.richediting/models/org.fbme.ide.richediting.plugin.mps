@@ -2038,9 +2038,14 @@
                                           <ref role="3uigEE" to="6w4o:~DeviceConnection" resolve="DeviceConnection" />
                                         </node>
                                         <node concept="2OqwBi" id="42vv4xsG1VN" role="33vP2m">
-                                          <node concept="2YIFZM" id="4WS_6wCCWBP" role="2Oq$k0">
-                                            <ref role="37wK5l" to="6w4o:~DevicesFacade.getInstance()" resolve="getInstance" />
-                                            <ref role="1Pybhc" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
+                                          <node concept="2OqwBi" id="5EF1Nu6MiAi" role="2Oq$k0">
+                                            <node concept="10M0yZ" id="5EF1Nu6Mitd" role="2Oq$k0">
+                                              <ref role="3cqZAo" to="6w4o:~DevicesFacade.Companion" resolve="Companion" />
+                                              <ref role="1PxDUh" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
+                                            </node>
+                                            <node concept="liA8E" id="5EF1Nu6MiRu" role="2OqNvi">
+                                              <ref role="37wK5l" to="6w4o:~DevicesFacade$Companion.getInstance()" resolve="getInstance" />
+                                            </node>
                                           </node>
                                           <node concept="liA8E" id="42vv4xsG54M" role="2OqNvi">
                                             <ref role="37wK5l" to="6w4o:~DevicesFacade.attach(org.fbme.lib.iec61499.declarations.DeviceDeclaration)" resolve="attach" />
@@ -2108,9 +2113,14 @@
                                     <node concept="3clFbS" id="4uvvnUOsm5n" role="1zc67A">
                                       <node concept="3clFbF" id="k3FE8isJoP" role="3cqZAp">
                                         <node concept="2OqwBi" id="k3FE8isJBZ" role="3clFbG">
-                                          <node concept="2YIFZM" id="4WS_6wCCXpV" role="2Oq$k0">
-                                            <ref role="37wK5l" to="6w4o:~DevicesFacade.getInstance()" resolve="getInstance" />
-                                            <ref role="1Pybhc" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
+                                          <node concept="2OqwBi" id="5EF1Nu6MjqQ" role="2Oq$k0">
+                                            <node concept="10M0yZ" id="5EF1Nu6MjcI" role="2Oq$k0">
+                                              <ref role="3cqZAo" to="6w4o:~DevicesFacade.Companion" resolve="Companion" />
+                                              <ref role="1PxDUh" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
+                                            </node>
+                                            <node concept="liA8E" id="5EF1Nu6MjLg" role="2OqNvi">
+                                              <ref role="37wK5l" to="6w4o:~DevicesFacade$Companion.getInstance()" resolve="getInstance" />
+                                            </node>
                                           </node>
                                           <node concept="liA8E" id="k3FE8isOrm" role="2OqNvi">
                                             <ref role="37wK5l" to="6w4o:~DevicesFacade.invalidate(org.fbme.lib.iec61499.declarations.DeviceDeclaration)" resolve="invalidate" />
@@ -11010,9 +11020,14 @@
             <node concept="3uibUv" id="3kxbdDirz0U" role="1tU5fm">
               <ref role="3uigEE" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
             </node>
-            <node concept="2YIFZM" id="3kxbdDirz0X" role="33vP2m">
-              <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.getInstance()" resolve="getInstance" />
-              <ref role="1Pybhc" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+            <node concept="2OqwBi" id="5EF1Nu6MOCL" role="33vP2m">
+              <node concept="10M0yZ" id="5EF1Nu6MOwa" role="2Oq$k0">
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+              </node>
+              <node concept="liA8E" id="5EF1Nu6MONM" role="2OqNvi">
+                <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
           </node>
         </node>
@@ -11138,9 +11153,14 @@
             <node concept="3uibUv" id="3kxbdDir$6w" role="1tU5fm">
               <ref role="3uigEE" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
             </node>
-            <node concept="2YIFZM" id="3kxbdDir$6x" role="33vP2m">
-              <ref role="1Pybhc" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
-              <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.getInstance()" resolve="getInstance" />
+            <node concept="2OqwBi" id="5EF1Nu6MOZJ" role="33vP2m">
+              <node concept="10M0yZ" id="5EF1Nu6MOR4" role="2Oq$k0">
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+              </node>
+              <node concept="liA8E" id="5EF1Nu6MP9C" role="2OqNvi">
+                <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
           </node>
         </node>

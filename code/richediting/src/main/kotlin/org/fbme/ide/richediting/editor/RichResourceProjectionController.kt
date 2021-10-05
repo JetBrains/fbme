@@ -8,7 +8,6 @@ import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.editor.ChooseProjectionAction
 import org.fbme.ide.platform.editor.EditorProjection
 import org.fbme.ide.platform.editor.EditorProjectionController
-import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.SystemDeclaration
 import org.fbme.lib.iec61499.instances.NetworkInstance
@@ -16,17 +15,30 @@ import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
 import java.util.stream.Collectors
 
-class RichResourceProjectionController(private val myNode: SNode, private val myProject: Project) :
-    EditorProjectionController {
+class RichResourceProjectionController(
+    private val myNode: SNode,
+    private val myProject: Project
+) : EditorProjectionController {
     private val mySystem: SystemDeclaration =
         PlatformRepositoryProvider.getInstance(myProject).getAdapter(myNode, SystemDeclaration::class.java)
-
-    override fun getId(): String {
-        return "Resource"
-    }
+    override val id: String
+        get() = "Resource"
+    override val chooseProjectionActions: List<AnAction>
+        get() {
+            return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
+                mySystem.devices.stream()
+                    .flatMap { it.resources.stream() }
+                    .map { ChooseProjectionAction(this, it.container.name + "." + it.name) }
+                    .collect(Collectors.toList())
+            }
+        }
+    override val createProjectionActions: List<AnAction>
+        get() {
+            return emptyList()
+        }
 
     override fun createProjection(name: String): EditorProjection {
-        val names = name.split("\\.").toTypedArray()
+        val names = name.split('.').toTypedArray()
         val deviceName = names[0]
         val resourceName = names[1]
         val resource = ModelAccessHelper(myProject.modelAccess).runReadAction<ResourceDeclaration> {
@@ -60,18 +72,4 @@ class RichResourceProjectionController(private val myNode: SNode, private val my
             myProject
         )
     }
-
-    override fun getChooseProjectionActions(): List<AnAction> {
-        return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
-            mySystem.devices.stream()
-                .flatMap { it: DeviceDeclaration -> it.resources.stream() }
-                .map { it: ResourceDeclaration -> ChooseProjectionAction(this, it.container.name + "." + it.name) }
-                .collect(Collectors.toList())
-        }
-    }
-
-    override fun getCreateProjectionActions(): List<AnAction> {
-        return emptyList()
-    }
-
 }

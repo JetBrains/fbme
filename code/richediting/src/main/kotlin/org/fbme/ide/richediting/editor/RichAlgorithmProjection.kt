@@ -9,10 +9,10 @@ import org.jetbrains.mps.openapi.model.SNode
 
 class RichAlgorithmProjection(
     node: SNode,
-    controller: EditorProjectionController?,
-    project: Project?,
-    name: String?,
-    hints: Array<String>?,
+    controller: EditorProjectionController,
+    project: Project,
+    name: String,
+    hints: Array<String>,
     private val myAlgorithm: AlgorithmDeclaration
 ) : SimpleEditorProjection(node, controller, project, name, hints) {
     override fun getData(@NonNls string: String): Any? {

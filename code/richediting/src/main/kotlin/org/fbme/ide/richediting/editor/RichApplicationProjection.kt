@@ -11,12 +11,12 @@ import org.jetbrains.mps.openapi.model.SNode
 import javax.swing.JComponent
 
 class RichApplicationProjection(
-    node: SNode?,
-    controller: EditorProjectionController?,
-    name: String?,
-    hints: Array<String>?,
+    node: SNode,
+    controller: EditorProjectionController,
+    name: String,
+    hints: Array<String>,
     val instance: NetworkInstance,
-    project: Project?
+    project: Project
 ) : SimpleEditorProjection(node, controller, project, name, hints) {
     override fun createHeaderComponent(): JComponent {
         return NetworkInstanceHeaderComponentProvider(myNode, instance, myProject).component
