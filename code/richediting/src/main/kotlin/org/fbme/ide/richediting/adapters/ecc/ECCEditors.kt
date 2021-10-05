@@ -71,7 +71,7 @@ object ECCEditors {
             BackgroundFocusLossFacility(scene, focus, backgroundLayer)
             val componentsSelection = DefaultSelectionModel<StateDeclaration>()
             val componentsLayout = DefaultLayoutModel<StateDeclaration>(context.repository)
-            val declarationFactory = repository.ieC61499Factory
+            val declarationFactory = repository.iec61499Factory
             val declaration = repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
             val eccInstance = ECCInstance.createForDeclaration(declaration, parent)
             val ecc = eccInstance.eccDeclaration

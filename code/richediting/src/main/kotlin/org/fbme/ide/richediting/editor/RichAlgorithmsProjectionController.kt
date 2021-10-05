@@ -42,7 +42,7 @@ class RichAlgorithmsProjectionController(
                     }
                     project.modelAccess.executeCommand {
                         val algorithm =
-                            myPlatformRepository.ieC61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
+                            myPlatformRepository.iec61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
                         myTypeDeclaration.algorithms.add(algorithm)
                         editor.chooseProjection(createProjection(""))
                         val component = editor.currentEditorComponent
@@ -59,6 +59,7 @@ class RichAlgorithmsProjectionController(
 
     init {
         myTypeDeclaration = myPlatformRepository.getAdapter(myNode, BasicFBTypeDeclaration::class.java)
+            ?: error("BasicFBTypeDeclaration is null")
     }
 
     override fun createProjection(name: String): EditorProjection {

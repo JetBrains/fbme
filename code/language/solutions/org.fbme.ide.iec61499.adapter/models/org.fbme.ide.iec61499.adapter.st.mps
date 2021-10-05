@@ -5280,8 +5280,8 @@
                             </node>
                           </node>
                         </node>
-                        <node concept="liA8E" id="69Ck8LzXlT" role="2OqNvi">
-                          <ref role="37wK5l" to="uvki:~PlatformRepository.getMPSRepository()" resolve="getMPSRepository" />
+                        <node concept="liA8E" id="7sg$MFETCTJ" role="2OqNvi">
+                          <ref role="37wK5l" to="uvki:~PlatformRepository.getMpsRepository()" resolve="getMpsRepository" />
                         </node>
                       </node>
                     </node>

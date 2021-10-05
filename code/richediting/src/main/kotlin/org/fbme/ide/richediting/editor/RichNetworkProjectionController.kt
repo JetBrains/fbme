@@ -43,10 +43,7 @@ class RichNetworkProjectionController(
             var instance = if (ref != null) MPSNetworkInstanceReference.deserialize(ref).resolve(repository) else null
             if (instance == null) {
                 instance = NetworkInstance.createForDeclaration(
-                    repository.getAdapter(
-                        myNode,
-                        Declaration::class.java
-                    )
+                    repository.getAdapter(myNode, Declaration::class.java) ?: error("Declaration is null")
                 )
             }
             NetworkInstanceEditorProjection(myNode, this, name, instance, myProject)
@@ -57,7 +54,9 @@ class RichNetworkProjectionController(
 
     private fun createProjectionInternal(name: String): NetworkInstanceEditorProjection {
         val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(myProject)
-        val instance = NetworkInstance.createForDeclaration(repository.getAdapter(myNode, Declaration::class.java))
+        val instance = NetworkInstance.createForDeclaration(
+            repository.getAdapter(myNode, Declaration::class.java) ?: error("Declaration is null")
+        )
         return NetworkInstanceEditorProjection(myNode, this, name, instance, myProject)
     }
 }

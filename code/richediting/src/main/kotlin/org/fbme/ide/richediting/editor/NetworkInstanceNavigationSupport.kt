@@ -22,15 +22,15 @@ object NetworkInstanceNavigationSupport {
     }
 
     @JvmStatic
-    fun canNavigate(project: Project?, instance: NetworkInstance): Boolean {
+    fun canNavigate(project: Project, instance: NetworkInstance): Boolean {
         return getNavigationStub(project, instance) != null
     }
 
     @JvmStatic
-    fun getNavigationStub(project: Project?, instance: NetworkInstance): SNode? {
+    fun getNavigationStub(project: Project, instance: NetworkInstance): SNode? {
         val container = instance.rootInstance.declaration
         if (container is PlatformElement) {
-            var targetNode: SNode? = (container as PlatformElement).node
+            var targetNode: SNode = (container as PlatformElement).node
             val element = Element(HeaderedNodeEditor.PROJECTION_DATA_KEY)
             when (container) {
                 is ApplicationDeclaration -> {

@@ -56,7 +56,7 @@ class HeaderedNodeEditor(baseNode: SNode, mpsProject: Project) : BaseNodeEditor(
     }
 
     override fun showNode(node: SNode, select: Boolean) {
-        var node: SNode? = node
+        var node: SNode = node
         val ec = currentEditorComponent
         val editorSpecs = ProjectEditorSpecs.getInstance(myProject)
         val projectState = editorSpecs.getSpecProjectionState(node)

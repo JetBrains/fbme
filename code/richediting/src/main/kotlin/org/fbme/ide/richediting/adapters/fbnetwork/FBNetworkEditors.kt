@@ -63,6 +63,7 @@ object FBNetworkEditors {
                     PlatformRepositoryProvider.getInstance(context.operationContext.project)
                 val node = extView.associatedNode.parent
                 val parameter = repository.getAdapter(node, ParameterAssignment::class.java)
+                    ?: error("Parameter assignment is null")
                 val cell = RicheditingMpsBridge.createInlineValueCell(context, node!!)
                 if (parameter.value == null) {
                     val action: CellAction = object : CellAction {
@@ -113,6 +114,7 @@ object FBNetworkEditors {
         val scene = EditorCell_Scene(context, node!!, layout)
         val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(context.operationContext.project)
         val declaration = repository.getAdapter(node, Declaration::class.java)
+            ?: error("Error when creating NetworkCell: Declaration is null")
         val networkInstance = NetworkInstance.createForDeclaration(declaration, parent)
         initializeSceneCell(scene, networkInstance, context, layout)
         return scene
@@ -135,7 +137,7 @@ object FBNetworkEditors {
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
             val isEditable = networkInstance.parent == null
-            val networkView = NetworkView(repository.ieC61499Factory, networkDeclaration, isEditable)
+            val networkView = NetworkView(repository.iec61499Factory, networkDeclaration, isEditable)
             val backgroundLayer = scene.createLayer(0f)
             val tracesLayer = scene.createLayer(1f)
             val componentsLayer = scene.createLayer(2f)
@@ -169,7 +171,7 @@ object FBNetworkEditors {
             )
             style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility)
             val completionScope = repository.getDeclarationScopeFor(model)
-            val factory = repository.ieC61499Factory
+            val factory = repository.iec61499Factory
             val provider: SceneCompletionProvider = CompletionProviderByViewpoint(viewpoint) {
                 getCompletion(completionScope, factory, networkDeclaration, scale)
             }

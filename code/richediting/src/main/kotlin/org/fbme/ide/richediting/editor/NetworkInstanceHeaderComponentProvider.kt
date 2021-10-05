@@ -70,6 +70,7 @@ class NetworkInstanceHeaderComponentProvider(baseNode: SNode, instance: NetworkI
 
     init {
         val declaration = PlatformRepositoryProvider.getInstance(project).getAdapter(baseNode, Declaration::class.java)
+            ?: error("Declaration is null")
         val aliasLabel = JLabel(chooseAliasFor(declaration))
         val defaultFont = EditorSettings.getInstance().defaultEditorFont
         val attributes = defaultFont.attributes as MutableMap<TextAttribute, Number?>

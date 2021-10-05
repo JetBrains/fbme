@@ -47,7 +47,7 @@ class RichApplicationProjectionController(
                     }
                     project.modelAccess.executeCommand {
                         val application =
-                            myRepository.ieC61499Factory.createApplicationDeclaration(StringIdentifier(""))
+                            myRepository.iec61499Factory.createApplicationDeclaration(StringIdentifier(""))
                         mySystem.applications.add(application)
                         editor.chooseProjection(createProjection(""))
                     }
@@ -57,6 +57,7 @@ class RichApplicationProjectionController(
 
     init {
         mySystem = myRepository.getAdapter(myNode, SystemDeclaration::class.java)
+            ?: error("SystemDeclaration is null")
     }
 
     override fun createProjection(name: String): EditorProjection {

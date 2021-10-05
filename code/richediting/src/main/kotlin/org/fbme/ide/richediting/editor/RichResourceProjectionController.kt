@@ -19,8 +19,10 @@ class RichResourceProjectionController(
     private val myNode: SNode,
     private val myProject: Project
 ) : EditorProjectionController {
-    private val mySystem: SystemDeclaration =
-        PlatformRepositoryProvider.getInstance(myProject).getAdapter(myNode, SystemDeclaration::class.java)
+    private val mySystem: SystemDeclaration = PlatformRepositoryProvider
+        .getInstance(myProject)
+        .getAdapter(myNode, SystemDeclaration::class.java)
+        ?: error("System declaration is null")
     override val id: String
         get() = "Resource"
     override val chooseProjectionActions: List<AnAction>

@@ -13,16 +13,16 @@ abstract class PlatformTestBase {
     var environment: Environment? = null
     protected var project: Project? = null
     protected val repository: PlatformRepository
-        get() = PlatformRepositoryProvider.getInstance(project)
+        get() = PlatformRepositoryProvider.getInstance(project!!)
     protected val factory: IEC61499Factory
-        get() = repository.ieC61499Factory
+        get() = repository.iec61499Factory
     protected val stFactory: STFactory
         get() = repository.stFactory
 
     @Before
     fun initProject() {
         project = environment!!.createEmptyProject()
-        PlatformRepositoryProvider.init(project)
+        PlatformRepositoryProvider.init(project!!)
     }
 
     @After

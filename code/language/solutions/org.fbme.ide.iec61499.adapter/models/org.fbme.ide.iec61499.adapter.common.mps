@@ -1466,8 +1466,8 @@
                           </node>
                         </node>
                       </node>
-                      <node concept="liA8E" id="1VyPeINM9Qs" role="2OqNvi">
-                        <ref role="37wK5l" to="uvki:~PlatformRepository.getMPSRepository()" resolve="getMPSRepository" />
+                      <node concept="liA8E" id="7sg$MFETHwm" role="2OqNvi">
+                        <ref role="37wK5l" to="uvki:~PlatformRepository.getMpsRepository()" resolve="getMpsRepository" />
                       </node>
                     </node>
                   </node>

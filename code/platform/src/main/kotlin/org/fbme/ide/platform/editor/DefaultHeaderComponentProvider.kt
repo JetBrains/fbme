@@ -47,6 +47,7 @@ class DefaultHeaderComponentProvider(baseNode: SNode, project: Project) {
     //    }
     init {
         val declaration = PlatformRepositoryProvider.getInstance(project).getAdapter(baseNode, Declaration::class.java)
+            ?: error("Declaration is null")
         myComponent = JPanel(FlowLayout())
         val aliasLabel = JLabel(HeaderedEditorAlias.getAlias(declaration))
         val defaultFont = EditorSettings.getInstance().defaultEditorFont

@@ -78,9 +78,7 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
 
         override fun canNavigate(): Boolean {
             return ModelAccessHelper(project!!.modelAccess).runReadAction<Boolean> {
-                NetworkInstanceNavigationSupport.canNavigate(
-                    project, instance
-                )
+                NetworkInstanceNavigationSupport.canNavigate(project, instance)
             }
         }
 
@@ -108,7 +106,7 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
                     val element = Element(HeaderedNodeEditor.PROJECTION_DATA_KEY)
                     element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Overview")
                     element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, "Overview")
-                    val specs = ProjectEditorSpecs.getInstance(project)
+                    val specs = ProjectEditorSpecs.getInstance(project!!)
                     return specs.getSpec((system as PlatformElement).node, XMLOutputter().outputString(element))
                 }
                 return null
