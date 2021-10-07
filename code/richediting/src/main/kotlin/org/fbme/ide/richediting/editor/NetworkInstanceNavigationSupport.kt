@@ -35,7 +35,7 @@ object NetworkInstanceNavigationSupport {
             when (container) {
                 is ApplicationDeclaration -> {
                     element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Application")
-                    element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, container.getName())
+                    element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, container.name)
                     element.setAttribute(
                         RichApplicationProjection.PERSISTENCE_KEY,
                         MPSNetworkInstanceReference.create(instance).serialize()
@@ -46,7 +46,7 @@ object NetworkInstanceNavigationSupport {
                     element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Resource")
                     element.setAttribute(
                         HeaderedNodeEditor.PROJECTION_NAME_KEY,
-                        (container as ResourceDeclaration).container.name + "." + container.getName()
+                        (container as ResourceDeclaration).container!!.name + "." + container.name
                     )
                     element.setAttribute(
                         RichResourceProjection.PERSISTENCE_KEY,

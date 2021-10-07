@@ -41,18 +41,18 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
             var device: DeviceDeclaration? = null
             val container = instance.rootInstance.declaration
             if (container is ApplicationDeclaration) {
-                system = container.container
+                system = container.container as SystemDeclaration?
             }
             if (container is ResourceDeclaration) {
                 device = container.container as DeviceDeclaration
-                system = device.container
+                system = device.container as SystemDeclaration?
             }
             while (instance != null) {
                 model.add(Item(instance, project))
                 val parentInstace = instance.parent
-                instance = if (parentInstace is FunctionBlockInstance) {
+                instance = if (parentInstace is FunctionBlockInstance) ({
                     parentInstace.parent
-                } else {
+                }) as NetworkInstance? else {
                     null
                 }
             }

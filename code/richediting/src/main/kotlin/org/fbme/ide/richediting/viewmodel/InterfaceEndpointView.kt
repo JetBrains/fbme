@@ -6,7 +6,6 @@ import org.fbme.lib.iec61499.fbnetwork.EndpointCoordinate
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.jetbrains.mps.openapi.model.SNode
-import java.util.List
 
 class InterfaceEndpointView(
     private val network: FBNetwork,
@@ -25,7 +24,7 @@ class InterfaceEndpointView(
         set(x) {
             endpointCoordinate.x = x
             if (endpointCoordinate.container == null) {
-                endpointCoordinate.portReference.path = List.of(target.identifier)
+                endpointCoordinate.portReference.setPath(listOf(target.identifier))
                 //            endpointCoordinate.getPortReference().setFQName(myName);
                 network.endpointCoordinates.add(endpointCoordinate)
             }
@@ -37,7 +36,7 @@ class InterfaceEndpointView(
         set(y) {
             endpointCoordinate.y = y
             if (endpointCoordinate.container == null) {
-                endpointCoordinate.portReference.path = List.of(target.identifier)
+                endpointCoordinate.portReference.setPath(listOf(target.identifier))
                 //            endpointCoordinate.getPortReference().setFQName(myName);
                 network.endpointCoordinates.add(endpointCoordinate)
             }
@@ -54,8 +53,7 @@ class InterfaceEndpointView(
         if (other !is InterfaceEndpointView) {
             return false
         }
-        val that = other
-        return position == that.position && kind == that.kind && isSource == that.isSource
+        return position == other.position && kind == other.kind && isSource == other.isSource
     }
 
     override fun hashCode(): Int {

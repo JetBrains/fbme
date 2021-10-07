@@ -161,6 +161,9 @@
         <child id="5375687026011219971" name="member" index="jymVt" unordered="true" />
       </concept>
       <concept id="1171903607971" name="jetbrains.mps.baseLanguage.structure.WildCardType" flags="in" index="3qTvmN" />
+      <concept id="1171903916106" name="jetbrains.mps.baseLanguage.structure.UpperBoundType" flags="in" index="3qUE_q">
+        <child id="1171903916107" name="bound" index="3qUE_r" />
+      </concept>
       <concept id="7812454656619025412" name="jetbrains.mps.baseLanguage.structure.LocalMethodCall" flags="nn" index="1rXfSq" />
       <concept id="1107535904670" name="jetbrains.mps.baseLanguage.structure.ClassifierType" flags="in" index="3uibUv">
         <reference id="1107535924139" name="classifier" index="3uigEE" />
@@ -1306,8 +1309,10 @@
                     <property role="TrG5h" value="path" />
                     <node concept="3uibUv" id="1KgvZpg7b2q" role="1tU5fm">
                       <ref role="3uigEE" to="33ny:~List" resolve="List" />
-                      <node concept="3uibUv" id="1KgvZpg7b2r" role="11_B2D">
-                        <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                      <node concept="3qUE_q" id="3dz4YurgCn8" role="11_B2D">
+                        <node concept="3uibUv" id="3dz4YurgDQt" role="3qUE_r">
+                          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                        </node>
                       </node>
                     </node>
                     <node concept="2AHcQZ" id="1KgvZpg7b2s" role="2AJF6D">
@@ -2821,8 +2826,10 @@
                     <property role="TrG5h" value="path" />
                     <node concept="3uibUv" id="1KgvZpgeSvw" role="1tU5fm">
                       <ref role="3uigEE" to="33ny:~List" resolve="List" />
-                      <node concept="3uibUv" id="1KgvZpgeSvx" role="11_B2D">
-                        <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                      <node concept="3qUE_q" id="3dz4YurgxK_" role="11_B2D">
+                        <node concept="3uibUv" id="3dz4Yurg$0K" role="3qUE_r">
+                          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                        </node>
                       </node>
                     </node>
                     <node concept="2AHcQZ" id="1KgvZpgeSvy" role="2AJF6D">
@@ -5734,8 +5741,10 @@
                     <property role="TrG5h" value="path" />
                     <node concept="3uibUv" id="7VgNZDXLgVt" role="1tU5fm">
                       <ref role="3uigEE" to="33ny:~List" resolve="List" />
-                      <node concept="3uibUv" id="7VgNZDXLgVu" role="11_B2D">
-                        <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                      <node concept="3qUE_q" id="3dz4YurgflV" role="11_B2D">
+                        <node concept="3uibUv" id="3dz4YurgfBQ" role="3qUE_r">
+                          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+                        </node>
                       </node>
                     </node>
                     <node concept="2AHcQZ" id="7VgNZDXLgVv" role="2AJF6D">

@@ -15,8 +15,8 @@ class ECTransitionPathSynchronizer(
     override fun getPath(transition: StateTransition): BiFunction<Point, Point, ECTransitionPath> {
         val cx = transition.centerX
         val cy = transition.centerY
-        val sourceDeclaration = transition.sourceReference.target ?: error("Source declaration is null")
-        val targetDeclaration = transition.targetReference.target ?: error("Target declaration is null")
+        val sourceDeclaration = transition.sourceReference.getTarget() ?: error("Source declaration is null")
+        val targetDeclaration = transition.targetReference.getTarget() ?: error("Target declaration is null")
         return BiFunction { sp: Point, tp: Point ->
             val sourceBound = ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, myComponentsFacility)
             val targetBound = ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, myComponentsFacility)

@@ -42,7 +42,7 @@ class ECCViewAdapter(private val ecc: ECC, private val factory: IEC61499Factory)
     }
 
     override fun sourcePort(transition: StateTransition): StateDeclaration {
-        return requireNotNull(transition.sourceReference.target)
+        return requireNotNull(transition.sourceReference.getTarget())
     }
 
     override fun setSourcePort(transition: StateTransition, state: StateDeclaration) {
@@ -50,7 +50,7 @@ class ECCViewAdapter(private val ecc: ECC, private val factory: IEC61499Factory)
     }
 
     override fun targetPort(transition: StateTransition): StateDeclaration {
-        return requireNotNull(transition.targetReference.target)
+        return requireNotNull(transition.targetReference.getTarget())
     }
 
     override fun setTargetPort(transition: StateTransition, state: StateDeclaration) {

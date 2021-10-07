@@ -148,7 +148,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         val exts = HashSet<NetworkComponentView>()
         myAuxComponents[view] = exts
         for (parameter in functionBlock.parameters) {
-            val parameterDeclaration = parameter.parameterReference.target
+            val parameterDeclaration = parameter.parameterReference.getTarget()
                 ?: // TODO handle broken parameters 
                 continue
             val declaration = parameterDeclaration.container as FBInterfaceDeclaration?
@@ -212,8 +212,8 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     fun addConnection(connection: FBNetworkConnection, editable: Boolean): NetworkConnectionView? {
         val view = NetworkConnectionView(connection, editable)
         myConnectionModelMap[connection] = view
-        val source = connection.sourceReference.target
-        val target = connection.targetReference.target
+        val source = connection.sourceReference.getTarget()
+        val target = connection.targetReference.getTarget()
         val sourceView: NetworkPortView?
         val targetView: NetworkPortView?
         sourceView = if (source != null) {

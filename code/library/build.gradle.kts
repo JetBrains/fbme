@@ -37,3 +37,7 @@ tasks.named<Copy>("mpsPrepare") {
     from("build/libs")
     into("out")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+
+compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")

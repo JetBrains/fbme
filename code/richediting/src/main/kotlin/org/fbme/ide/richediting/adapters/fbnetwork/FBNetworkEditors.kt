@@ -268,7 +268,7 @@ object FBNetworkEditors {
     ): List<PositionalCompletionItem> {
         return scope.findAllFBTypeDeclarations().map { type: FBTypeDeclaration ->
             object : PositionalCompletionItem {
-                override fun getMatchingText(pattern: String?): String? {
+                override fun getMatchingText(pattern: String?): String {
                     return type.name
                 }
 

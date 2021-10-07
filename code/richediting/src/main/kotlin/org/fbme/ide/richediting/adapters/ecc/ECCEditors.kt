@@ -74,7 +74,7 @@ object ECCEditors {
             val declarationFactory = repository.iec61499Factory
             val declaration = repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
             val eccInstance = ECCInstance.createForDeclaration(declaration, parent)
-            val ecc = eccInstance.eccDeclaration
+            val ecc = eccInstance.eCCDeclaration
             scene.style.set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory)
@@ -148,9 +148,9 @@ object ECCEditors {
                 val cell = createTransitionCell(context, transitionNode)
                 cell.isBig = true
                 val sourceDeclaration: StateDeclaration =
-                    transition.sourceReference.target ?: error("Source declaration is null")
+                    transition.sourceReference.getTarget() ?: error("Source declaration is null")
                 val targetDeclaration: StateDeclaration =
-                    transition.targetReference.target ?: error("Target declaration is null")
+                    transition.targetReference.getTarget() ?: error("Target declaration is null")
 
                 return ECTransitionController(
                     object : ECTransitionConditionCellHandle {

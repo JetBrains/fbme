@@ -70,7 +70,7 @@ class OutputCell(
         get() = getLineSize(cellCollection.style)
 
     private fun setTextFromAction() {
-        val outputTarget = action.event.target
+        val outputTarget = action.event.getTarget()
         if (outputTarget != null) {
             nameText.text = action.event.presentation
         } else {

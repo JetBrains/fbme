@@ -33,7 +33,7 @@ class FBConnectionPathSynchronizer(
             }
         }
         val dx1 = (myScale * path.dX1).toInt()
-        val dy = (myScale * path.dy).toInt()
+        val dy = (myScale * path.dY).toInt()
         val dx2 = (myScale * path.dX2).toInt()
         return BiFunction { sourcePosition: Point, targetPosition: Point ->
             val fbConnectionPath = FBConnectionPath(

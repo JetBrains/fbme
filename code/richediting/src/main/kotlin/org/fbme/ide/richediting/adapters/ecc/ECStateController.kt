@@ -128,7 +128,7 @@ class ECStateController(
         }
         for (action in state.actions) {
             val isOpenBody = isOpenAlgorithmBody.getOrDefault(action, true)
-            val algorithmDeclaration = action.algorithm.target
+            val algorithmDeclaration = action.algorithm.getTarget()
             var algorithmCell: AlgorithmCell?
             if (algorithmDeclaration != null) {
                 val algorithmNode = (algorithmDeclaration.body as? PlatformElement)?.node
@@ -241,7 +241,7 @@ class ECStateController(
             val stateAction = cell.style.get(RichEditorStyleAttributes.ALGORITHMS)
             val context = collection!!.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
             val newStateAction = createEmptyAction(collection)
-            val outputDeclaration = stateAction!!.event.target
+            val outputDeclaration = stateAction!!.event.getTarget()
             if (outputDeclaration != null) {
                 newStateAction.event.setTarget(outputDeclaration)
             }
@@ -257,7 +257,7 @@ class ECStateController(
             val stateAction = cell.style.get(RichEditorStyleAttributes.OUTPUTS)
             val context = collection!!.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
             val newStateAction = createEmptyAction(collection)
-            val algorithmDeclaration = stateAction!!.algorithm.target
+            val algorithmDeclaration = stateAction!!.algorithm.getTarget()
             if (algorithmDeclaration != null) {
                 newStateAction.algorithm.setTarget(algorithmDeclaration)
             }

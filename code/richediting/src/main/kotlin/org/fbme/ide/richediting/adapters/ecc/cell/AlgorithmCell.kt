@@ -33,7 +33,7 @@ class AlgorithmCell(
         style.set(RichEditorStyleAttributes.ALGORITHMS, action)
         isOpenAlgorithmBody.putIfAbsent(action, true)
         isOpenBody = isOpenAlgorithmBody[action]!!
-        hasTarget = action.algorithm.target != null
+        hasTarget = action.algorithm.getTarget() != null
         style.set(StyleAttributes.PADDING_BOTTOM, Padding(0.05, Measure.SPACES))
         style.set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection)
     }
