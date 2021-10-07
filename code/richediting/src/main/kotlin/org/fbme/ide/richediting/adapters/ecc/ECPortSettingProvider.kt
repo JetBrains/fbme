@@ -9,9 +9,9 @@ import java.util.function.Function
 
 class ECPortSettingProvider(private val mapper: Function<StateDeclaration, ECStateController>) :
     PortSettingProvider<StateDeclaration, Point> {
-    override fun getBounds(position: Point, state: StateDeclaration): Rectangle {
-        val controller = mapper.apply(state)
-        val bounds = Rectangle(controller.getBounds(position))
+    override fun getBounds(componentForm: Point, port: StateDeclaration): Rectangle {
+        val controller = mapper.apply(port)
+        val bounds = Rectangle(controller.getBounds(componentForm))
         bounds.x -= bounds.width / 4
         bounds.width += bounds.width / 2
         bounds.y -= bounds.height / 4
@@ -19,20 +19,20 @@ class ECPortSettingProvider(private val mapper: Function<StateDeclaration, ECSta
         return bounds
     }
 
-    override fun getEndpointPosition(position: Point, state: StateDeclaration): Point {
-        val controller = mapper.apply(state)
-        val bounds = controller.getBounds(position)
+    override fun getEndpointPosition(componentForm: Point, port: StateDeclaration): Point {
+        val controller = mapper.apply(port)
+        val bounds = controller.getBounds(componentForm)
         return Point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
     }
 
-    override fun canBeSourcedAt(position: Point, state: StateDeclaration, x: Int, y: Int): Boolean {
-        val controller = mapper.apply(state)
-        return !controller.getBounds(position).contains(x, y)
+    override fun canBeSourcedAt(componentForm: Point, port: StateDeclaration, x: Int, y: Int): Boolean {
+        val controller = mapper.apply(port)
+        return !controller.getBounds(componentForm).contains(x, y)
     }
 
-    override fun canBeTargetedAt(position: Point, state: StateDeclaration, x: Int, y: Int): Boolean {
-        val controller = mapper.apply(state)
-        return !controller.getBounds(position).contains(x, y)
+    override fun canBeTargetedAt(componentForm: Point, port: StateDeclaration, x: Int, y: Int): Boolean {
+        val controller = mapper.apply(port)
+        return !controller.getBounds(componentForm).contains(x, y)
     }
 
     companion object {

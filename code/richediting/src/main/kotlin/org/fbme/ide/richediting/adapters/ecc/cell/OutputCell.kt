@@ -51,7 +51,7 @@ class OutputCell(
         val g = graphics.create() as Graphics2D
         g.color = backgroundColor
         g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10)
-        if (!nameText.text.isEmpty()) {
+        if (nameText.text.isNotEmpty()) {
             nameText.paint(
                 graphics,
                 myX + CellConstants.SHIFT_X + (myWidth - nameText.width) / 2,

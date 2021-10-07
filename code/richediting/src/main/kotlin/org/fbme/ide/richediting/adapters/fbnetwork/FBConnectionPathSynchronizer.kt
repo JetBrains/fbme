@@ -11,8 +11,8 @@ import java.util.function.BiFunction
 import java.util.stream.Collectors
 
 class FBConnectionPathSynchronizer(
-    private val myViewpoint: SceneViewpoint,
-    private val myScale: Float,
+    private val viewpoint: SceneViewpoint,
+    private val scale: Float,
     private val expandedComponentsController: ExpandedComponentsController
 ) : ConnectionPathSynchronizer<NetworkConnectionView, FBConnectionPath> {
     override fun getPath(connection: NetworkConnectionView): BiFunction<Point, Point, FBConnectionPath> {
@@ -20,8 +20,8 @@ class FBConnectionPathSynchronizer(
         if (path is LongConnectionPath) {
             return BiFunction { sourcePosition: Point, targetPosition: Point ->
                 val editorBendPoints = path.bendPoints.stream().map { point: Point ->
-                    val x = myViewpoint.translateToEditorX((point.x * myScale).toInt())
-                    val y = myViewpoint.translateToEditorY((point.y * myScale).toInt())
+                    val x = viewpoint.translateToEditorX((point.x * scale).toInt())
+                    val y = viewpoint.translateToEditorY((point.y * scale).toInt())
                     Point(x, y)
                 }.collect(Collectors.toList())
                 val fbConnectionPath = FBConnectionPath(
@@ -32,17 +32,17 @@ class FBConnectionPathSynchronizer(
                 getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath, false)
             }
         }
-        val dx1 = (myScale * path.dX1).toInt()
-        val dy = (myScale * path.dY).toInt()
-        val dx2 = (myScale * path.dX2).toInt()
+        val dx1 = (scale * path.dX1).toInt()
+        val dy = (scale * path.dY).toInt()
+        val dx2 = (scale * path.dX2).toInt()
         return BiFunction { sourcePosition: Point, targetPosition: Point ->
             val fbConnectionPath = FBConnectionPath(
                 sourcePosition,
                 targetPosition,
                 path.kind,
-                sourcePosition.x + myViewpoint.toEditorDimension(dx1),
-                sourcePosition.y + myViewpoint.toEditorDimension(dy),
-                targetPosition.x - myViewpoint.toEditorDimension(dx2)
+                sourcePosition.x + viewpoint.toEditorDimension(dx1),
+                sourcePosition.y + viewpoint.toEditorDimension(dy),
+                targetPosition.x - viewpoint.toEditorDimension(dx2)
             )
             getFBConnectionPathWithOffset(connection, sourcePosition, targetPosition, fbConnectionPath, false)
         }
@@ -62,7 +62,7 @@ class FBConnectionPathSynchronizer(
             val v = newBendPoints[i]
             val section = Pair(connection, i)
             var offset = expandedComponentsController.getOffsetForSection(section)
-            offset = if (inverted) -(offset / myScale).toInt() else myViewpoint.toEditorDimension(offset)
+            offset = if (inverted) -(offset / scale).toInt() else viewpoint.toEditorDimension(offset)
             val isHorizontal = i % 2 == 0
             if (isHorizontal) {
                 u.translate(0, offset)
@@ -79,17 +79,17 @@ class FBConnectionPathSynchronizer(
         val sourcePosition = path.sourcePosition
         val targetPosition = path.targetPosition
         val modelSourcePosition = Point(
-            (myViewpoint.translateFromEditorX(sourcePosition.x) / myScale).toInt(),
-            (myViewpoint.translateFromEditorY(sourcePosition.y) / myScale).toInt()
+            (viewpoint.translateFromEditorX(sourcePosition.x) / scale).toInt(),
+            (viewpoint.translateFromEditorY(sourcePosition.y) / scale).toInt()
         )
         val modelTargetPosition = Point(
-            (myViewpoint.translateFromEditorX(targetPosition.x) / myScale).toInt(),
-            (myViewpoint.translateFromEditorY(targetPosition.y) / myScale).toInt()
+            (viewpoint.translateFromEditorX(targetPosition.x) / scale).toInt(),
+            (viewpoint.translateFromEditorY(targetPosition.y) / scale).toInt()
         )
         val bendPoints = path.bendPoints
         val newBendPoints = bendPoints.stream().map { point: Point? ->
-            val x = (myViewpoint.translateFromEditorX(point!!.x) / myScale).toInt()
-            val y = (myViewpoint.translateFromEditorY(point.y) / myScale).toInt()
+            val x = (viewpoint.translateFromEditorX(point!!.x) / scale).toInt()
+            val y = (viewpoint.translateFromEditorY(point.y) / scale).toInt()
             Point(x, y)
         }.collect(Collectors.toList())
         val fbConnectionPath = FBConnectionPath(modelSourcePosition, modelTargetPosition, newBendPoints)

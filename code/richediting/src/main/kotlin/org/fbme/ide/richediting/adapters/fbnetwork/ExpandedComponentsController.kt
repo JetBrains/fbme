@@ -8,6 +8,7 @@ import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.scene.SceneStateKey
 import java.awt.Point
+import kotlin.math.abs
 
 class ExpandedComponentsController(scene: EditorCell_Scene, private val editorContext: EditorContext) {
     private val expandedComponents: MutableMap<NetworkComponentView, Point>
@@ -35,7 +36,7 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         val dx = expandedComponents[view]!!.x
         val dy = expandedComponents[view]!!.y
         for (section in sections) {
-            val index = Math.abs(section.second)
+            val index = abs(section.second)
             val validSection = Pair(section.first, index)
             val sectionOffset = offsetMap.getOrDefault(validSection, 0)
             val isHorizontal = index % 2 == 0

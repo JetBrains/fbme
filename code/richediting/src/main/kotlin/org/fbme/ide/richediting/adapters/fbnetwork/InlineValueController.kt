@@ -18,7 +18,7 @@ class InlineValueController(
     valueCell: EditorCell
 ) : ComponentExtController<Point>, FBNetworkComponentController {
     override val componentCell: EditorCell
-    private val myOpposite: FunctionBlockPortView
+    private val myOpposite: FunctionBlockPortView = myView.opposite
 
     override fun getPortCoordinates(port: NetworkPortView, position: Point): Point {
         assertSelf(port)
@@ -52,8 +52,8 @@ class InlineValueController(
         require(port == myView) { "invalid port" }
     }
 
-    override fun updateCellWithForm(position: Point) {
-        val oppositePortCoordinates = myComponentController.getPortCoordinates(myOpposite, position)
+    override fun updateCellWithForm(form: Point) {
+        val oppositePortCoordinates = myComponentController.getPortCoordinates(myOpposite, form)
         componentCell.moveTo(
             oppositePortCoordinates.x - OPPOSITE_PORT_PADDING - INNER_BORDER_PADDING - componentCell.width,
             oppositePortCoordinates.y - componentCell.height / 2
@@ -64,12 +64,12 @@ class InlineValueController(
         // do nothing
     }
 
-    override fun paintTrace(g: Graphics, position: Point) {
+    override fun paintTrace(g: Graphics, form: Point) {
         // do nothing
     }
 
     private val dimension: Dimension
-        private get() = Dimension(2 * INNER_BORDER_PADDING + componentCell.width, componentCell.height)
+        get() = Dimension(2 * INNER_BORDER_PADDING + componentCell.width, componentCell.height)
 
     override fun canBeSourcedAt(port: NetworkPortView, position: Point): Boolean {
         return false
@@ -81,7 +81,6 @@ class InlineValueController(
     }
 
     init {
-        myOpposite = myView.opposite
         componentCell = valueCell
     }
 }

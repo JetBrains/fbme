@@ -67,9 +67,9 @@ class EndpointPortCell(
     override val width: Int
         get() = rootCell.width
     private val lineSize: Int
-        private get() = getLineSize(rootCell.style)
+        get() = getLineSize(rootCell.style)
     private val fontSize: Int
-        private get() = getFontSize(rootCell.style)
+        get() = getFontSize(rootCell.style)
 
     private fun scale(size: Int): Int {
         return size * fontSize / EditorSettings.getInstance().fontSize

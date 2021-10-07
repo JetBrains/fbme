@@ -5,6 +5,7 @@ import java.awt.BasicStroke
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.Point
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
@@ -14,29 +15,29 @@ class FBConnectionPathPainter(
     private val myHoverLength: Int
 ) {
     private fun drawCorner(graphics: Graphics, x1: Int, y1: Int, x2: Int, y2: Int) {
-        var diffx = Math.abs(x1 - x2)
-        var diffy = Math.abs(y1 - y2)
-        if (diffx < DL && diffy < DL) {
+        var diffX = abs(x1 - x2)
+        var diffY = abs(y1 - y2)
+        if (diffX < DL && diffY < DL) {
             graphics.drawLine(x1, y1, x2, y2)
             return
         }
-        if (diffx < DL) {
-            val diff = if (y1 < y2) diffx else -diffx
+        if (diffX < DL) {
+            val diff = if (y1 < y2) diffX else -diffX
             graphics.drawLine(x1, y1, x2, y1 + diff)
             graphics.drawLine(x2, y1 + diff, x2, y2)
             return
         }
-        if (diffy < DL) {
-            val diff = if (x1 < x2) diffy else -diffy
+        if (diffY < DL) {
+            val diff = if (x1 < x2) diffY else -diffY
             graphics.drawLine(x1, y1, x2 - diff, y1)
             graphics.drawLine(x2 - diff, y1, x2, y2)
             return
         }
-        diffy = if (y1 < y2) DL else -DL
-        diffx = if (x1 < x2) DL else -DL
-        graphics.drawLine(x1, y1, x2 - diffx, y1)
-        graphics.drawLine(x2 - diffx, y1, x2, y1 + diffy)
-        graphics.drawLine(x2, y1 + diffy, x2, y2)
+        diffY = if (y1 < y2) DL else -DL
+        diffX = if (x1 < x2) DL else -DL
+        graphics.drawLine(x1, y1, x2 - diffX, y1)
+        graphics.drawLine(x2 - diffX, y1, x2, y1 + diffY)
+        graphics.drawLine(x2, y1 + diffY, x2, y2)
     }
 
     private fun drawCorner(
@@ -45,10 +46,10 @@ class FBConnectionPathPainter(
         y1: Int,
         x2: Int,
         y2: Int,
-        horizontalFisrt: Boolean,
+        horizontalFirst: Boolean,
         selected: Boolean
     ) {
-        if (horizontalFisrt) {
+        if (horizontalFirst) {
             drawCorner(graphics, x1, y1, x2, y2)
             if (selected) {
                 drawPoint(

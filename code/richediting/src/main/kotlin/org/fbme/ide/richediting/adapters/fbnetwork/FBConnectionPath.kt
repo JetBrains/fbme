@@ -65,6 +65,9 @@ class FBConnectionPath {
                 bendPoints.add(Point(x2, y))
                 bendPoints.add(Point(x2, myTargetPosition.y))
             }
+            ConnectionPath.Kind.MoreThanFour -> {
+                // do nothing
+            }
         }
     }
 

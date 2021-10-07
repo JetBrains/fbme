@@ -22,12 +22,12 @@ import kotlin.math.min
 
 class FBConnectionController(context: EditorContext, view: NetworkConnectionView) :
     ConnectionController<FBConnectionCursor, FBConnectionPath> {
-    private val myKind: EntryKind
-    private val myIsEditable: Boolean
-    private val myFakeCell: EditorCell_Collection
+    private val kind: EntryKind
+    private val isEditable: Boolean
+    private val fakeCell: EditorCell_Collection
     var highlightColor: Color? = null
     override val connectionCell: EditorCell
-        get() = myFakeCell
+        get() = fakeCell
 
     override fun paintConnection(
         path: FBConnectionPath,
@@ -43,7 +43,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
             g.color = highlightColor
             painter.paint(g, false)
         }
-        g.color = DiagramColors.getColorFor(myKind, myIsEditable)
+        g.color = DiagramColors.getColorFor(kind, isEditable)
         if (selected) {
             FBConnectionPathPainter.setupSelectedPathPaint(g, scale(1).toFloat())
         } else {
@@ -59,7 +59,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     override fun getEdgeTransformation(path: FBConnectionPath, x: Int, y: Int): Function<Point, FBConnectionPath>? {
-        if (!myIsEditable) {
+        if (!isEditable) {
             return null
         }
         val bendPoints = path.bendPoints
@@ -176,31 +176,31 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     override fun isSourceTransformableAt(path: FBConnectionPath, x: Int, y: Int): Boolean {
-        return if (!myIsEditable) {
+        return if (!isEditable) {
             false
         } else isOnSourceHoverArea(x, y, path)
     }
 
     override fun isTargetTransformableAt(path: FBConnectionPath, x: Int, y: Int): Boolean {
-        return if (!myIsEditable) {
+        return if (!isEditable) {
             false
         } else isOnTargetHoverArea(x, y, path)
     }
 
     override fun getSourceTransformation(path: FBConnectionPath): Function<Point, FBConnectionPath>? {
-        return if (!myIsEditable) {
+        return if (!isEditable) {
             null
         } else getConnectionSourceTransformation(path)
     }
 
     override fun getTargetTransformation(path: FBConnectionPath): Function<Point, FBConnectionPath>? {
-        return if (!myIsEditable) {
+        return if (!isEditable) {
             null
         } else getConnectionTargetTransformation(path)
     }
 
     override fun getEndpointsTransformation(path: FBConnectionPath): BiFunction<Point, Point, FBConnectionPath>? {
-        if (!myIsEditable) {
+        if (!isEditable) {
             return null
         }
         val bendPoints = path.bendPoints
@@ -239,7 +239,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     override fun getCursorAt(path: FBConnectionPath, x: Int, y: Int): FBConnectionCursor? {
-        if (!myIsEditable) {
+        if (!isEditable) {
             return null
         }
         if (isOnSourceHoverArea(x, y, path)) {
@@ -267,18 +267,18 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     override fun getBounds(path: FBConnectionPath): Rectangle {
         val s = path.sourcePosition
         val t = path.targetPosition
-        var xmin = min(s.x, t.x)
-        var xmax = max(s.x, t.x)
-        var ymin = min(s.y, t.y)
-        var ymax = max(s.y, t.y)
+        var xMin = min(s.x, t.x)
+        var xMax = max(s.x, t.x)
+        var yMin = min(s.y, t.y)
+        var yMax = max(s.y, t.y)
         val bendPoints = path.bendPoints
         for (bendPoint in bendPoints) {
-            xmin = min(xmin, bendPoint.x)
-            xmax = max(xmax, bendPoint.x)
-            ymin = min(ymin, bendPoint.y)
-            ymax = max(ymax, bendPoint.y)
+            xMin = min(xMin, bendPoint.x)
+            xMax = max(xMax, bendPoint.x)
+            yMin = min(yMin, bendPoint.y)
+            yMax = max(yMax, bendPoint.y)
         }
-        return Rectangle(xmin, ymin, xmax - xmin, ymax - ymin)
+        return Rectangle(xMin, yMin, xMax - xMin, yMax - yMin)
     }
 
     private fun getConnectionSourceTransformation(originalPath: FBConnectionPath): Function<Point, FBConnectionPath> {
@@ -396,7 +396,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     private val fontSize: Int
-        get() = getFontSize(myFakeCell.style)
+        get() = getFontSize(fakeCell.style)
 
     private fun scale(size: Int): Int {
         return size * fontSize / EditorSettings.getInstance().fontSize
@@ -443,15 +443,15 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     init {
-        myKind = view.kind
-        myIsEditable = view.isEditable
+        kind = view.kind
+        isEditable = view.isEditable
         val associatedNode = view.associatedNode
-        myFakeCell = FakeCells.createCollection(context, associatedNode)
+        fakeCell = FakeCells.createCollection(context, associatedNode)
         val connectionPaths: Iterator<SNode> =
             SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.`ConnectionPath$IA`)
                 .iterator()
         if (connectionPaths.hasNext()) {
-            myFakeCell.addEditorCell(FakeCells.create(context, connectionPaths.next()))
+            fakeCell.addEditorCell(FakeCells.create(context, connectionPaths.next()))
         }
     }
 }

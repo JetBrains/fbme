@@ -59,15 +59,15 @@ object DiagramColors {
     }
 
     private fun setBrightness(c: Color, brightness: Float): Color {
-        var brightness = brightness
+        var validBrightness = brightness
         val hsb = FloatArray(3)
         Color.RGBtoHSB(c.red, c.green, c.blue, hsb)
-        if (brightness < 0.0f) {
-            brightness = 0.0f
+        if (validBrightness < 0.0f) {
+            validBrightness = 0.0f
         }
-        if (brightness > 1.0f) {
-            brightness = 1.0f
+        if (validBrightness > 1.0f) {
+            validBrightness = 1.0f
         }
-        return Color(Color.HSBtoRGB(hsb[0], hsb[1], brightness))
+        return Color(Color.HSBtoRGB(hsb[0], hsb[1], validBrightness))
     }
 }

@@ -9,26 +9,26 @@ import java.awt.Point
 import java.util.function.BiFunction
 
 class ECTransitionPathSynchronizer(
-    private val myViewpoint: SceneViewpoint,
-    private val myComponentsFacility: ComponentsFacility<StateDeclaration, Point>
+    private val viewpoint: SceneViewpoint,
+    private val componentsFacility: ComponentsFacility<StateDeclaration, Point>
 ) : ConnectionPathSynchronizer<StateTransition, ECTransitionPath> {
-    override fun getPath(transition: StateTransition): BiFunction<Point, Point, ECTransitionPath> {
-        val cx = transition.centerX
-        val cy = transition.centerY
-        val sourceDeclaration = transition.sourceReference.getTarget() ?: error("Source declaration is null")
-        val targetDeclaration = transition.targetReference.getTarget() ?: error("Target declaration is null")
+    override fun getPath(connection: StateTransition): BiFunction<Point, Point, ECTransitionPath> {
+        val cx = connection.centerX
+        val cy = connection.centerY
+        val sourceDeclaration = connection.sourceReference.getTarget() ?: error("Source declaration is null")
+        val targetDeclaration = connection.targetReference.getTarget() ?: error("Target declaration is null")
         return BiFunction { sp: Point, tp: Point ->
-            val sourceBound = ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, myComponentsFacility)
-            val targetBound = ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, myComponentsFacility)
-            val center = Point(myViewpoint.translateToEditorX(cx), myViewpoint.translateToEditorY(cy))
+            val sourceBound = ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, componentsFacility)
+            val targetBound = ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, componentsFacility)
+            val center = Point(viewpoint.translateToEditorX(cx), viewpoint.translateToEditorY(cy))
             val sourcePoint = ECTransitionUtils.crossBound(center, sp, sourceBound)
             val targetPoint = ECTransitionUtils.crossBound(center, tp, targetBound)
             ECTransitionPath(sourcePoint, center, targetPoint)
         }
     }
 
-    override fun setPath(transition: StateTransition, path: ECTransitionPath) {
-        transition.centerX = myViewpoint.translateFromEditorX(path.centre.x)
-        transition.centerY = myViewpoint.translateFromEditorY(path.centre.y)
+    override fun setPath(connection: StateTransition, path: ECTransitionPath) {
+        connection.centerX = viewpoint.translateFromEditorX(path.centre.x)
+        connection.centerY = viewpoint.translateFromEditorY(path.centre.y)
     }
 }

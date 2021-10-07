@@ -10,12 +10,12 @@ import java.awt.geom.Arc2D
 import java.awt.geom.GeneralPath
 import java.awt.geom.QuadCurve2D
 
-class ECTransitionPathPainter(private val myPath: ECTransitionPath, private val myCursor: ECTransitionCursor?) {
+class ECTransitionPathPainter(private val path: ECTransitionPath, private val cursor: ECTransitionCursor?) {
     fun paint(graphics: Graphics, drawArrow: Boolean) {
         val g = graphics as Graphics2D
-        val s = myPath.source
-        val t = myPath.target
-        val c = myPath.centre
+        val s = path.source
+        val t = path.target
+        val c = path.centre
         g.stroke = BasicStroke(2.5.toFloat())
 
         // от такого надо избавляться, иначе координата поедет
@@ -45,7 +45,7 @@ class ECTransitionPathPainter(private val myPath: ECTransitionPath, private val 
                 g.draw(curve)
                 val hoverGraphics = graphics.create() as Graphics2D
                 hoverGraphics.color = MPSColors.YELLOW.darker()
-                if (myCursor == ECTransitionCursor.SOURCE || myCursor == ECTransitionCursor.TARGET) {
+                if (cursor == ECTransitionCursor.SOURCE || cursor == ECTransitionCursor.TARGET) {
                     hoverGraphics.draw(curve)
                 }
                 val sat = AffineTransform()

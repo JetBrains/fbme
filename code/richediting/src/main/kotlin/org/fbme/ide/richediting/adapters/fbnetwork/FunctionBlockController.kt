@@ -30,7 +30,7 @@ class FunctionBlockController(
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
     private val cellCollection: jetbrains.mps.nodeEditor.cells.EditorCell_Collection
-    private val isEditable: Boolean
+    private val isEditable: Boolean = view.isEditable
     private val fbCell: FBCell
     private val networkInstance: NetworkInstance
 
@@ -83,7 +83,7 @@ class FunctionBlockController(
     val fbInstance: FunctionBlockInstance?
         get() = networkInstance.getChild(view.component)
 
-    override fun canStartMoveAt(position: Point, x: Int, y: Int): Boolean {
+    override fun canStartMoveAt(form: Point, x: Int, y: Int): Boolean {
         return if (!isEditable) {
             false
         } else fbCell.canStartMoveAt(x, y)
@@ -96,8 +96,8 @@ class FunctionBlockController(
     override val componentCell: EditorCell
         get() = cellCollection
 
-    override fun getPortCoordinates(fbPort: NetworkPortView, position: Point): Point {
-        val functionBlockPort = assertMine(fbPort)
+    override fun getPortCoordinates(port: NetworkPortView, position: Point): Point {
+        val functionBlockPort = assertMine(port)
         val index = functionBlockPort.position
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
@@ -111,8 +111,8 @@ class FunctionBlockController(
         return coordinates
     }
 
-    override fun getPortBounds(fbPort: NetworkPortView, position: Point): Rectangle {
-        val functionBlockPort = assertMine(fbPort)
+    override fun getPortBounds(port: NetworkPortView, position: Point): Rectangle {
+        val functionBlockPort = assertMine(port)
         val index = functionBlockPort.position
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
@@ -136,8 +136,8 @@ class FunctionBlockController(
         return port
     }
 
-    override fun translateForm(originalPosition: Point, dx: Int, dy: Int): Point {
-        val position = Point(originalPosition)
+    override fun translateForm(originalForm: Point, dx: Int, dy: Int): Point {
+        val position = Point(originalForm)
         position.translate(dx, dy)
         return position
     }
@@ -146,8 +146,8 @@ class FunctionBlockController(
         return Function { it }
     }
 
-    override fun updateCellWithForm(position: Point) {
-        cellCollection.moveTo(position.x, position.y)
+    override fun updateCellWithForm(form: Point) {
+        cellCollection.moveTo(form.x, form.y)
         cellCollection.relayout()
     }
 
@@ -155,19 +155,18 @@ class FunctionBlockController(
         myNameProperty.style.set(StyleAttributes.FONT_STYLE, if (selected) Font.BOLD else Font.PLAIN)
     }
 
-    override fun paintTrace(g: Graphics?, position: Point) {
+    override fun paintTrace(g: Graphics?, form: Point) {
         fbCell.paintTrace(
             g!!.create() as Graphics2D,
-            position.x,
-            position.y + if (fbCell is FBTypeCellComponent) lineSize else 0
+            form.x,
+            form.y + if (fbCell is FBTypeCellComponent) lineSize else 0
         )
     }
 
     private val lineSize: Int
-        private get() = getLineSize(cellCollection.style)
+        get() = getLineSize(cellCollection.style)
 
     init {
-        isEditable = view.isEditable
         val node = view.associatedNode
         cellCollection = createRootCell(context, node)
         cellCollection.style.set(RichEditorStyleAttributes.FB, view.component)

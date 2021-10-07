@@ -57,21 +57,10 @@ class FBSceneCell(
     }
 
     private fun createSceneCell(instance: Instance?): EditorCell_Scene {
-        val scene: EditorCell_Scene
-        scene = if (fbType.declaration is BasicFBTypeDeclaration) {
-            ECCEditors.createEccEditor(
-                context,
-                node,
-                SceneLayout.WINDOWED,
-                instance
-            ) as EditorCell_Scene
+        val scene: EditorCell_Scene = if (fbType.declaration is BasicFBTypeDeclaration) {
+            ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, instance) as EditorCell_Scene
         } else {
-            FBNetworkEditors.createFBNetworkCell(
-                context,
-                node,
-                SceneLayout.WINDOWED,
-                instance
-            ) as EditorCell_Scene
+            FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance) as EditorCell_Scene
         }
         scene.cellId = scene.sNode.nodeId.toString()
         return scene

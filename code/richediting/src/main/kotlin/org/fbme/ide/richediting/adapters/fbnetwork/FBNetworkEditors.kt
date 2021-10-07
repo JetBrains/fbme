@@ -35,7 +35,6 @@ import java.awt.Point
 import java.util.function.Function
 
 object FBNetworkEditors {
-
     @JvmField
     val CONNECTION_CONTROLLER_FACTORY: ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> =
         object : ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
@@ -263,7 +262,7 @@ object FBNetworkEditors {
     private fun getCompletion(
         scope: DeclarationsScope,
         factory: IEC61499Factory,
-        fbnetwork: FBNetwork,
+        fbNetwork: FBNetwork,
         scale: Float
     ): List<PositionalCompletionItem> {
         return scope.findAllFBTypeDeclarations().map { type: FBTypeDeclaration ->
@@ -282,7 +281,7 @@ object FBNetworkEditors {
                     declaration.x = (x / scale).toInt()
                     declaration.y = (y / scale).toInt()
                     declaration.typeReference.setTarget(type)
-                    fbnetwork.functionBlocks.add(declaration)
+                    fbNetwork.functionBlocks.add(declaration)
                 }
             }
         }

@@ -37,7 +37,7 @@ class ECTransitionController(
         return Function { nt: Point -> transformTarget(path, nt) }
     }
 
-    override fun getEndpointsTransformation(path: ECTransitionPath): BiFunction<Point, Point, ECTransitionPath>? {
+    override fun getEndpointsTransformation(path: ECTransitionPath): BiFunction<Point, Point, ECTransitionPath> {
         return BiFunction { ns: Point, nt: Point -> transform(path, ns, nt) }
     }
 
@@ -63,7 +63,7 @@ class ECTransitionController(
         return ECTransitionPath(path.source, centre, newTarget)
     }
 
-    fun transform(path: ECTransitionPath, ns: Point, nt: Point): ECTransitionPath {
+    private fun transform(path: ECTransitionPath, ns: Point, nt: Point): ECTransitionPath {
         val transformSourcePath = transformSource(path, ns)
         return transformTarget(transformSourcePath, nt)
     }
@@ -90,7 +90,7 @@ class ECTransitionController(
         return isSourceTransformableAt(path, x, y) || isTargetTransformableAt(path, x, y)
     }
 
-    override val connectionCell: EditorCell?
+    override val connectionCell: EditorCell
         get() = handle.cell
 
     override fun updateCellWithPath(path: ECTransitionPath) {
@@ -144,10 +144,10 @@ class ECTransitionController(
     }
 
     override fun paintTrace(path: ECTransitionPath, graphics: Graphics) {
-        var graphics = graphics
-        graphics = graphics.create()
-        ECTransitionPathPainter.setupShadowPathPaint(graphics)
-        ECTransitionPathPainter(path, null).paint(graphics, false)
+        var g = graphics
+        g = g.create()
+        ECTransitionPathPainter.setupShadowPathPaint(g)
+        ECTransitionPathPainter(path, null).paint(g, false)
     }
 
     companion object {

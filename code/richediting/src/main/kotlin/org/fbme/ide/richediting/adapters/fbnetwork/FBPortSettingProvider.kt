@@ -10,16 +10,16 @@ import java.util.function.Function
 
 class FBPortSettingProvider(private val myMapper: Function<NetworkComponentView, FBNetworkComponentController>) :
     PortSettingProvider<NetworkPortView, Point> {
-    override fun getBounds(position: Point, port: NetworkPortView): Rectangle {
+    override fun getBounds(componentForm: Point, port: NetworkPortView): Rectangle {
         val component = port.component
         val controller = myMapper.apply(component)
-        return controller.getPortBounds(port, position)
+        return controller.getPortBounds(port, componentForm)
     }
 
-    override fun getEndpointPosition(position: Point, port: NetworkPortView): Point {
+    override fun getEndpointPosition(componentForm: Point, port: NetworkPortView): Point {
         val component = port.component
         val controller = myMapper.apply(component)
-        return controller.getPortCoordinates(port, position)
+        return controller.getPortCoordinates(port, componentForm)
     }
 
     override fun canBeSourcedAt(componentForm: Point, port: NetworkPortView, x: Int, y: Int): Boolean {

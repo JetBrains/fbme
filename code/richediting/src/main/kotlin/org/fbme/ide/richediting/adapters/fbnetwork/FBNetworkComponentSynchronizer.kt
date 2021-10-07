@@ -56,16 +56,14 @@ class FBNetworkComponentSynchronizer(
 
     override fun setForm(component: NetworkComponentView, position: Point) {
         if (component is FunctionBlockView) {
-            val functionBlock = component
-            val componentPositionWithoutOffset = getComponentPositionWithoutOffset(functionBlock, position)
-            functionBlock.component.x = componentPositionWithoutOffset.x
-            functionBlock.component.y = componentPositionWithoutOffset.y
+            val componentPositionWithoutOffset = getComponentPositionWithoutOffset(component, position)
+            component.component.x = componentPositionWithoutOffset.x
+            component.component.y = componentPositionWithoutOffset.y
             return
         } else if (component is InterfaceEndpointView) {
-            val interfaceEndpoint = component
-            val componentPositionWithoutOffset = getComponentPositionWithoutOffset(interfaceEndpoint, position)
-            interfaceEndpoint.x = componentPositionWithoutOffset.x
-            interfaceEndpoint.y = componentPositionWithoutOffset.y
+            val componentPositionWithoutOffset = getComponentPositionWithoutOffset(component, position)
+            component.x = componentPositionWithoutOffset.x
+            component.y = componentPositionWithoutOffset.y
             return
         }
         error("Unknown network component")

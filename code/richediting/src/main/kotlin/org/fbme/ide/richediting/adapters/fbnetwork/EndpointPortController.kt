@@ -19,7 +19,7 @@ class EndpointPortController(context: EditorContext, private val view: Interface
     override val componentCell: EditorCell
         get() = portCell.rootCell
 
-    override fun canStartMoveAt(position: Point, x: Int, y: Int): Boolean {
+    override fun canStartMoveAt(form: Point, x: Int, y: Int): Boolean {
         return isEditable && dNDBounds.contains(x, y)
     }
 
@@ -50,8 +50,8 @@ class EndpointPortController(context: EditorContext, private val view: Interface
         return Function { it }
     }
 
-    override fun updateCellWithForm(position: Point) {
-        componentCell.moveTo(position.x, position.y)
+    override fun updateCellWithForm(form: Point) {
+        componentCell.moveTo(form.x, form.y)
         portCell.relayout()
     }
 
@@ -59,12 +59,12 @@ class EndpointPortController(context: EditorContext, private val view: Interface
         // do nothing
     }
 
-    override fun paintTrace(g: Graphics?, position: Point) {
-        portCell.paintTrace(g!!.create() as Graphics2D, position.x, position.y)
+    override fun paintTrace(g: Graphics?, form: Point) {
+        portCell.paintTrace(g!!.create() as Graphics2D, form.x, form.y)
     }
 
-    override fun translateForm(position: Point, dx: Int, dy: Int): Point {
-        val point = Point(position)
+    override fun translateForm(originalForm: Point, dx: Int, dy: Int): Point {
+        val point = Point(originalForm)
         point.translate(dx, dy)
         return point
     }

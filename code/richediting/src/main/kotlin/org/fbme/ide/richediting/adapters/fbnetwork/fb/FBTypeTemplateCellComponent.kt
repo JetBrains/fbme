@@ -106,27 +106,27 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
         }
 
         private fun paintAssociations(graphics: Graphics, inputPorts: Boolean, x: Int, y: Int) {
-            var x = x
-            x += myGapWidth / 2
-            x += myLineSize / 2
+            var curX = x
+            curX += myGapWidth / 2
+            curX += myLineSize / 2
             for (association in associations) {
                 val eventNumber = association.eventNumber
                 val dataNumbers = association.variableNumbers
                 val lastVariableNumber = dataNumbers[dataNumbers.size - 1]
                 val eventY = getEventPortPosition(inputPorts, eventNumber, y)
-                graphics.drawLine(x, eventY, x, getDataPortPosition(inputPorts, lastVariableNumber, y))
+                graphics.drawLine(curX, eventY, curX, getDataPortPosition(inputPorts, lastVariableNumber, y))
                 graphics.color = DiagramColors.getColorFor(EntryKind.EVENT)
-                graphics.fillRect(x - 2, eventY - 2, 4, 4)
+                graphics.fillRect(curX - 2, eventY - 2, 4, 4)
                 graphics.color = foregroundColor
-                graphics.drawRect(x - 2, eventY - 2, 4, 4)
+                graphics.drawRect(curX - 2, eventY - 2, 4, 4)
                 for (dataNumber in dataNumbers) {
                     val dataY = getDataPortPosition(inputPorts, dataNumber, y)
                     graphics.color = DiagramColors.getColorFor(EntryKind.DATA)
-                    graphics.fillRect(x - 2, dataY - 2, 4, 4)
+                    graphics.fillRect(curX - 2, dataY - 2, 4, 4)
                     graphics.color = foregroundColor
-                    graphics.drawRect(x - 2, dataY - 2, 4, 4)
+                    graphics.drawRect(curX - 2, dataY - 2, 4, 4)
                 }
-                x += myLineSize
+                curX += myLineSize
             }
         }
 

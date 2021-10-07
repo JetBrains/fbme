@@ -31,11 +31,13 @@ import org.fbme.scenes.controllers.diagram.*
 import org.fbme.scenes.controllers.scene.*
 import org.fbme.scenes.viewmodel.PositionalCompletionItem
 import org.jetbrains.mps.openapi.model.SNode
+import org.slf4j.LoggerFactory
 import java.awt.Point
 import java.awt.Rectangle
 
 object ECCEditors {
-    //    private static final Logger LOG = LogManager.getLogger(ECCEditors.class);
+    private val LOG = LoggerFactory.getLogger(ECCEditors.javaClass)
+
     @JvmField
     val IS_OPEN_ALGORITHM_BODY = SceneStateKey<MutableMap<StateAction, Boolean>>("is-open-body")
 
@@ -120,7 +122,7 @@ object ECCEditors {
             ) { connectionsFacility.getController(it) as ECTransitionController }
             scene
         } catch (e: RuntimeException) {
-//            LOG.error("Error during cell creation", e);
+            LOG.error("Error during cell creation", e)
             throw e
         }
     }
@@ -142,15 +144,15 @@ object ECCEditors {
         return object : ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> {
             override fun create(
                 context: EditorContext,
-                transition: StateTransition
+                view: StateTransition
             ): ConnectionController<ECTransitionCursor, ECTransitionPath> {
-                val transitionNode = (transition as PlatformElement).node
+                val transitionNode = (view as PlatformElement).node
                 val cell = createTransitionCell(context, transitionNode)
                 cell.isBig = true
                 val sourceDeclaration: StateDeclaration =
-                    transition.sourceReference.getTarget() ?: error("Source declaration is null")
+                    view.sourceReference.getTarget() ?: error("Source declaration is null")
                 val targetDeclaration: StateDeclaration =
-                    transition.targetReference.getTarget() ?: error("Target declaration is null")
+                    view.targetReference.getTarget() ?: error("Target declaration is null")
 
                 return ECTransitionController(
                     object : ECTransitionConditionCellHandle {

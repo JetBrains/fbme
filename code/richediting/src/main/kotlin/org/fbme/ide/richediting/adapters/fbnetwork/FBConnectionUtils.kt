@@ -11,7 +11,7 @@ import java.util.function.BiFunction
 
 object FBConnectionUtils {
     const val ENDPOINTS_PADDING = 40
-    const val ENDPOINT_HOVER_LENGTH = 20
+    private const val ENDPOINT_HOVER_LENGTH = 20
 
     @JvmStatic
     fun getPathFactory(style: Style): BiFunction<Point, Point, FBConnectionPath> {
