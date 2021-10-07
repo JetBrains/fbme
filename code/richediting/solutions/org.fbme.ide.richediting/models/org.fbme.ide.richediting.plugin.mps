@@ -3586,12 +3586,17 @@
             </node>
             <node concept="3clFbF" id="74jd4DVyRrp" role="3cqZAp">
               <node concept="37vLTI" id="74jd4DVyRrq" role="3clFbG">
-                <node concept="2OqwBi" id="74jd4DVyRrr" role="37vLTx">
-                  <node concept="37vLTw" id="74jd4DVyRrs" role="2Oq$k0">
-                    <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                <node concept="0kSF2" id="15cpAM83yxj" role="37vLTx">
+                  <node concept="3uibUv" id="15cpAM83yxm" role="0kSFW">
+                    <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
                   </node>
-                  <node concept="liA8E" id="74jd4DVyRrt" role="2OqNvi">
-                    <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+                  <node concept="2OqwBi" id="74jd4DVyRrr" role="0kSFX">
+                    <node concept="37vLTw" id="74jd4DVyRrs" role="2Oq$k0">
+                      <ref role="3cqZAo" node="74jd4DVyRr0" resolve="parentInstance" />
+                    </node>
+                    <node concept="liA8E" id="15cpAM83xqR" role="2OqNvi">
+                      <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+                    </node>
                   </node>
                 </node>
                 <node concept="37vLTw" id="74jd4DVyRru" role="37vLTJ">

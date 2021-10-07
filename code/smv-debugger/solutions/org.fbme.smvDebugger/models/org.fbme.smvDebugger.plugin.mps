@@ -224,7 +224,6 @@
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
-      <concept id="1146644641414" name="jetbrains.mps.baseLanguage.structure.ProtectedVisibility" flags="nn" index="3Tmbuc" />
       <concept id="1116615150612" name="jetbrains.mps.baseLanguage.structure.ClassifierClassExpression" flags="nn" index="3VsKOn">
         <reference id="1116615189566" name="classifier" index="3VsUkX" />
       </concept>
@@ -1104,7 +1103,6 @@
     <node concept="2tJIrI" id="47ImtybUfV5" role="jymVt" />
     <node concept="3clFb_" id="47ImtybUfWh" role="jymVt">
       <property role="TrG5h" value="create" />
-      <node concept="3Tmbuc" id="47ImtybUfWi" role="1B3o_S" />
       <node concept="3uibUv" id="47ImtybUfWk" role="3clF45">
         <ref role="3uigEE" to="6yb:~ServicePathProvider" resolve="ServicePathProvider" />
       </node>
@@ -1302,16 +1300,21 @@
       <node concept="2AHcQZ" id="47ImtybUfWp" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
+      <node concept="3Tm1VV" id="4K4Qd0pAfp2" role="1B3o_S" />
     </node>
     <node concept="2tJIrI" id="47ImtybUfFH" role="jymVt" />
     <node concept="3clFb_" id="47ImtybUtaM" role="jymVt">
       <property role="TrG5h" value="init" />
       <node concept="3clFbS" id="47ImtybUtaP" role="3clF47">
         <node concept="3clFbF" id="47ImtybUtpe" role="3cqZAp">
-          <node concept="37vLTI" id="47ImtybUtv9" role="3clFbG">
-            <node concept="Xjq3P" id="47ImtybUtvt" role="37vLTx" />
-            <node concept="37vLTw" id="47ImtybUtpd" role="37vLTJ">
-              <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.INSTANCE" resolve="INSTANCE" />
+          <node concept="2OqwBi" id="4K4Qd0pA2yP" role="3clFbG">
+            <node concept="10M0yZ" id="4K4Qd0p_QYq" role="2Oq$k0">
+              <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
+            </node>
+            <node concept="liA8E" id="4K4Qd0pA2IP" role="2OqNvi">
+              <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
+              <node concept="Xjq3P" id="4K4Qd0pAcO1" role="37wK5m" />
             </node>
           </node>
         </node>
@@ -1326,10 +1329,14 @@
       <node concept="3Tm1VV" id="47ImtybUfJX" role="1B3o_S" />
       <node concept="3clFbS" id="47ImtybUfJY" role="3clF47">
         <node concept="3clFbF" id="47ImtybUfPd" role="3cqZAp">
-          <node concept="37vLTI" id="47ImtybUfTV" role="3clFbG">
-            <node concept="10Nm6u" id="47ImtybUfUr" role="37vLTx" />
-            <node concept="37vLTw" id="47ImtybUfPc" role="37vLTJ">
-              <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.INSTANCE" resolve="INSTANCE" />
+          <node concept="2OqwBi" id="4K4Qd0pAddw" role="3clFbG">
+            <node concept="10M0yZ" id="4K4Qd0pAd1h" role="2Oq$k0">
+              <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
+            </node>
+            <node concept="liA8E" id="4K4Qd0pAdpc" role="2OqNvi">
+              <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
+              <node concept="10Nm6u" id="4K4Qd0pAdqD" role="37wK5m" />
             </node>
           </node>
         </node>
