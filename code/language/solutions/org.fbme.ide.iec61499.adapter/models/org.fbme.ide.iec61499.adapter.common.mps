@@ -146,6 +146,9 @@
       <concept id="1107461130800" name="jetbrains.mps.baseLanguage.structure.Classifier" flags="ng" index="3pOWGL">
         <child id="5375687026011219971" name="member" index="jymVt" unordered="true" />
       </concept>
+      <concept id="1171903916106" name="jetbrains.mps.baseLanguage.structure.UpperBoundType" flags="in" index="3qUE_q">
+        <child id="1171903916107" name="bound" index="3qUE_r" />
+      </concept>
       <concept id="7812454656619025412" name="jetbrains.mps.baseLanguage.structure.LocalMethodCall" flags="nn" index="1rXfSq" />
       <concept id="1107535904670" name="jetbrains.mps.baseLanguage.structure.ClassifierType" flags="in" index="3uibUv">
         <reference id="1107535924139" name="classifier" index="3uigEE" />
@@ -949,8 +952,10 @@
         <property role="TrG5h" value="list" />
         <node concept="3uibUv" id="723cCDWM03Y" role="1tU5fm">
           <ref role="3uigEE" to="33ny:~List" resolve="List" />
-          <node concept="3uibUv" id="723cCDWM03Z" role="11_B2D">
-            <ref role="3uigEE" to="mmaq:~Content" resolve="Content" />
+          <node concept="3qUE_q" id="7Kh6vnY6gRH" role="11_B2D">
+            <node concept="3uibUv" id="7Kh6vnY6hiA" role="3qUE_r">
+              <ref role="3uigEE" to="mmaq:~Content" resolve="Content" />
+            </node>
           </node>
         </node>
         <node concept="2AHcQZ" id="723cCDWM040" role="2AJF6D">
@@ -1466,8 +1471,8 @@
                           </node>
                         </node>
                       </node>
-                      <node concept="liA8E" id="1VyPeINM9Qs" role="2OqNvi">
-                        <ref role="37wK5l" to="uvki:~PlatformRepository.getMPSRepository()" resolve="getMPSRepository" />
+                      <node concept="liA8E" id="7sg$MFETHwm" role="2OqNvi">
+                        <ref role="37wK5l" to="uvki:~PlatformRepository.getMpsRepository()" resolve="getMpsRepository" />
                       </node>
                     </node>
                   </node>

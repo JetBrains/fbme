@@ -49,6 +49,10 @@
       <concept id="1225194691553" name="jetbrains.mps.lang.behavior.structure.ThisNodeExpression" flags="nn" index="13iPFW" />
     </language>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
+      <concept id="1224071154655" name="jetbrains.mps.baseLanguage.structure.AsExpression" flags="nn" index="0kSF2">
+        <child id="1224071154657" name="classifierType" index="0kSFW" />
+        <child id="1224071154656" name="expression" index="0kSFX" />
+      </concept>
       <concept id="1080223426719" name="jetbrains.mps.baseLanguage.structure.OrExpression" flags="nn" index="22lmx$" />
       <concept id="1082485599095" name="jetbrains.mps.baseLanguage.structure.BlockStatement" flags="nn" index="9aQIb">
         <child id="1082485599096" name="statements" index="9aQI4" />
@@ -2858,12 +2862,17 @@
             <node concept="3uibUv" id="1DfKejr9LHi" role="1tU5fm">
               <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
             </node>
-            <node concept="2OqwBi" id="1DfKejr9LHu" role="33vP2m">
-              <node concept="37vLTw" id="1DfKejr9LHv" role="2Oq$k0">
-                <ref role="3cqZAo" node="1DfKejr9Lk4" resolve="fbi" />
+            <node concept="0kSF2" id="15cpAM83_J3" role="33vP2m">
+              <node concept="3uibUv" id="15cpAM83_J6" role="0kSFW">
+                <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
               </node>
-              <node concept="liA8E" id="1DfKejr9LHw" role="2OqNvi">
-                <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+              <node concept="2OqwBi" id="1DfKejr9LHu" role="0kSFX">
+                <node concept="37vLTw" id="1DfKejr9LHv" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1DfKejr9Lk4" resolve="fbi" />
+                </node>
+                <node concept="liA8E" id="1DfKejr9LHw" role="2OqNvi">
+                  <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+                </node>
               </node>
             </node>
           </node>
@@ -3363,12 +3372,17 @@
             <node concept="3uibUv" id="1DfKejra6dZ" role="1tU5fm">
               <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
             </node>
-            <node concept="2OqwBi" id="1DfKejra6e0" role="33vP2m">
-              <node concept="37vLTw" id="1DfKejra6e1" role="2Oq$k0">
-                <ref role="3cqZAo" node="1DfKejra6gd" resolve="fbi" />
+            <node concept="0kSF2" id="15cpAM896tm" role="33vP2m">
+              <node concept="3uibUv" id="15cpAM896tp" role="0kSFW">
+                <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
               </node>
-              <node concept="liA8E" id="1DfKejra6e2" role="2OqNvi">
-                <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+              <node concept="2OqwBi" id="1DfKejra6e0" role="0kSFX">
+                <node concept="37vLTw" id="1DfKejra6e1" role="2Oq$k0">
+                  <ref role="3cqZAo" node="1DfKejra6gd" resolve="fbi" />
+                </node>
+                <node concept="liA8E" id="1DfKejra6e2" role="2OqNvi">
+                  <ref role="37wK5l" to="74cb:~FunctionBlockInstance.getParent()" resolve="getParent" />
+                </node>
               </node>
             </node>
           </node>

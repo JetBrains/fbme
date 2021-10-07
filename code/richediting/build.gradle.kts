@@ -29,3 +29,7 @@ val mpsPrepare by tasks.getting(Copy::class) {
     from(configurations.runtimeClasspath.get().files.filter { it.name.startsWith("org.eclipse") })
     into("solutions/org.fbme.ide.richediting/lib")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+
+compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")

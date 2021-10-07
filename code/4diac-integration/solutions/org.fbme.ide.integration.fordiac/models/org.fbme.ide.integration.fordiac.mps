@@ -198,6 +198,9 @@
         <child id="1081256993305" name="classType" index="2ZW6by" />
         <child id="1081256993304" name="leftExpression" index="2ZW6bz" />
       </concept>
+      <concept id="1070533707846" name="jetbrains.mps.baseLanguage.structure.StaticFieldReference" flags="nn" index="10M0yZ">
+        <reference id="1144433057691" name="classifier" index="1PxDUh" />
+      </concept>
       <concept id="1070533982221" name="jetbrains.mps.baseLanguage.structure.ShortType" flags="in" index="10N3zO" />
       <concept id="1070534058343" name="jetbrains.mps.baseLanguage.structure.NullLiteral" flags="nn" index="10Nm6u" />
       <concept id="1070534370425" name="jetbrains.mps.baseLanguage.structure.IntegerType" flags="in" index="10Oyi0" />
@@ -801,7 +804,7 @@
       <node concept="2ShNRf" id="4sMntFA6YG1" role="33vP2m">
         <node concept="yHkDB" id="4sMntFA70aU" role="2ShVmc">
           <ref role="yHkDA" node="7byHRlLC1PU" resolve="Device" />
-          <node concept="2WthIp" id="407BnQQph11" role="yHkDD" />
+          <node concept="2WthIp" id="79xpUtvgoCk" role="yHkDD" />
         </node>
       </node>
     </node>
@@ -899,8 +902,8 @@
               <node concept="37vLTw" id="407BnQQkG0B" role="2Oq$k0">
                 <ref role="3cqZAo" node="407BnQQkEmA" resolve="platformRepository" />
               </node>
-              <node concept="liA8E" id="407BnQQkG0C" role="2OqNvi">
-                <ref role="37wK5l" to="uvki:~PlatformRepository.getMPSRepository()" resolve="getMPSRepository" />
+              <node concept="liA8E" id="7U8zpIsewJh" role="2OqNvi">
+                <ref role="37wK5l" to="uvki:~PlatformRepository.getMpsRepository()" resolve="getMpsRepository" />
               </node>
             </node>
           </node>
@@ -4107,9 +4110,14 @@
       <node concept="3clFbS" id="1UP38w$4004" role="2VODD2">
         <node concept="3clFbF" id="1UP38w$4fJf" role="3cqZAp">
           <node concept="2OqwBi" id="1UP38w$4fPG" role="3clFbG">
-            <node concept="2YIFZM" id="1UP38w$4fJY" role="2Oq$k0">
-              <ref role="1Pybhc" to="6w4o:~DeviceConnectorRegistry" resolve="DeviceConnectorRegistry" />
-              <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry.getInstance()" resolve="getInstance" />
+            <node concept="2OqwBi" id="7x_B4h7aNiC" role="2Oq$k0">
+              <node concept="10M0yZ" id="7x_B4h7aNaJ" role="2Oq$k0">
+                <ref role="3cqZAo" to="6w4o:~DeviceConnectorRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="6w4o:~DeviceConnectorRegistry" resolve="DeviceConnectorRegistry" />
+              </node>
+              <node concept="liA8E" id="7x_B4h7aOc3" role="2OqNvi">
+                <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
             <node concept="liA8E" id="1UP38w$4kGu" role="2OqNvi">
               <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry.register(org.fbme.ide.platform.debugger.DeviceConnector)" resolve="register" />
@@ -4128,9 +4136,14 @@
       <node concept="3clFbS" id="1UP38w$4kIk" role="2VODD2">
         <node concept="3clFbF" id="1UP38w$4kPI" role="3cqZAp">
           <node concept="2OqwBi" id="1UP38w$4kPJ" role="3clFbG">
-            <node concept="2YIFZM" id="1UP38w$4kPK" role="2Oq$k0">
-              <ref role="1Pybhc" to="6w4o:~DeviceConnectorRegistry" resolve="DeviceConnectorRegistry" />
-              <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry.getInstance()" resolve="getInstance" />
+            <node concept="2OqwBi" id="7x_B4h7aOmw" role="2Oq$k0">
+              <node concept="10M0yZ" id="7x_B4h7aOev" role="2Oq$k0">
+                <ref role="3cqZAo" to="6w4o:~DeviceConnectorRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="6w4o:~DeviceConnectorRegistry" resolve="DeviceConnectorRegistry" />
+              </node>
+              <node concept="liA8E" id="7x_B4h7aOvZ" role="2OqNvi">
+                <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
             <node concept="liA8E" id="1UP38w$4kPL" role="2OqNvi">
               <ref role="37wK5l" to="6w4o:~DeviceConnectorRegistry.unregister(org.fbme.ide.platform.debugger.DeviceConnector)" resolve="unregister" />

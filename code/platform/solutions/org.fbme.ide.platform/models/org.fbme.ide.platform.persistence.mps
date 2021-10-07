@@ -3544,16 +3544,16 @@
                   <node concept="37vLTw" id="43K6Fb_ZB4j" role="2Oq$k0">
                     <ref role="3cqZAo" node="43K6Fb_ZB49" resolve="owner" />
                   </node>
-                  <node concept="liA8E" id="43K6Fb_ZB4k" role="2OqNvi">
-                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIEC61499Factory()" resolve="getIEC61499Factory" />
+                  <node concept="liA8E" id="1uht5M0S55p" role="2OqNvi">
+                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIec61499Factory()" resolve="getIec61499Factory" />
                   </node>
                 </node>
                 <node concept="2OqwBi" id="43K6Fb_ZB4l" role="37wK5m">
                   <node concept="37vLTw" id="43K6Fb_ZB4m" role="2Oq$k0">
                     <ref role="3cqZAo" node="43K6Fb_ZB49" resolve="owner" />
                   </node>
-                  <node concept="liA8E" id="43K6Fb_ZB4n" role="2OqNvi">
-                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getSTFactory()" resolve="getSTFactory" />
+                  <node concept="liA8E" id="1uht5M0S72M" role="2OqNvi">
+                    <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getStFactory()" resolve="getStFactory" />
                   </node>
                 </node>
                 <node concept="2ShNRf" id="43K6Fb_ZB4o" role="37wK5m">

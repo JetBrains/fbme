@@ -658,9 +658,14 @@
       <node concept="3clFbS" id="1lhPVEAdJly" role="2VODD2">
         <node concept="3clFbF" id="1lhPVEAdJwk" role="3cqZAp">
           <node concept="2OqwBi" id="1lhPVEAdJBK" role="3clFbG">
-            <node concept="2YIFZM" id="1lhPVEAdJwI" role="2Oq$k0">
-              <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.getInstance()" resolve="getInstance" />
-              <ref role="1Pybhc" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+            <node concept="2OqwBi" id="1r7YWVUoAKl" role="2Oq$k0">
+              <node concept="10M0yZ" id="1r7YWVUoACv" role="2Oq$k0">
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+              </node>
+              <node concept="liA8E" id="1r7YWVUoAYG" role="2OqNvi">
+                <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
             <node concept="liA8E" id="1lhPVEAdJPQ" role="2OqNvi">
               <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.register(org.fbme.ide.platform.editor.EditorProjectionController$Factory)" resolve="register" />
@@ -679,9 +684,14 @@
       <node concept="3clFbS" id="1lhPVEAdKsd" role="2VODD2">
         <node concept="3clFbF" id="1lhPVEAdKzS" role="3cqZAp">
           <node concept="2OqwBi" id="1lhPVEAdKzT" role="3clFbG">
-            <node concept="2YIFZM" id="1lhPVEAdKzU" role="2Oq$k0">
-              <ref role="1Pybhc" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
-              <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.getInstance()" resolve="getInstance" />
+            <node concept="2OqwBi" id="1r7YWVUoB15" role="2Oq$k0">
+              <node concept="10M0yZ" id="1r7YWVUoAZN" role="2Oq$k0">
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+              </node>
+              <node concept="liA8E" id="1r7YWVUoB2s" role="2OqNvi">
+                <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
+              </node>
             </node>
             <node concept="liA8E" id="1lhPVEAdKzV" role="2OqNvi">
               <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry.unregister(org.fbme.ide.platform.editor.EditorProjectionController$Factory)" resolve="unregister" />
