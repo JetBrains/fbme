@@ -6,7 +6,7 @@ import org.fbme.lib.st.statements.Statement
 
 interface AlgorithmBody : ContainedElement {
     val language: AlgorithmLanguage<*>
-    override val container: Element?
+    override val container: AlgorithmDeclaration?
 
     interface ST : AlgorithmBody {
         override val language: AlgorithmLanguage<ST>

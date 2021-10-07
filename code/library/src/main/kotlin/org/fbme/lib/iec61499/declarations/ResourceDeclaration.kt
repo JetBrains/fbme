@@ -8,7 +8,7 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 
 interface ResourceDeclaration : Declaration, ContainedElement {
-    override val container: Declaration?
+    override val container: Declaration
     val network: FBNetwork
     val typeReference: Reference<ResourceTypeDeclaration>
     val parameters: MutableList<ParameterAssignment>

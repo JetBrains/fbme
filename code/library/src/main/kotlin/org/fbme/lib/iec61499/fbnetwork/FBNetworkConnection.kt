@@ -5,7 +5,7 @@ import org.fbme.lib.common.ContainedElement
 import org.fbme.lib.common.Element
 
 interface FBNetworkConnection : ContainedElement {
-    override val container: Element?
+    override val container: FBNetwork?
     var path: ConnectionPath?
     val sourceReference: CompositeReference<PortPath<*>>
     val targetReference: CompositeReference<PortPath<*>>

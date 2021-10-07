@@ -6,5 +6,5 @@ import org.fbme.lib.common.Element
 
 interface EventDeclaration : Declaration, ContainedElement {
     val associations: MutableList<EventAssociation>
-    override val container: Element?
+    override val container: Declaration?
 }

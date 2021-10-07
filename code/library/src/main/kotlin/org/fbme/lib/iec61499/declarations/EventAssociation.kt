@@ -5,6 +5,6 @@ import org.fbme.lib.common.Element
 import org.fbme.lib.common.Reference
 
 interface EventAssociation : ContainedElement {
-    override val container: Element?
+    override val container: EventDeclaration?
     val parameterReference: Reference<ParameterDeclaration>
 }

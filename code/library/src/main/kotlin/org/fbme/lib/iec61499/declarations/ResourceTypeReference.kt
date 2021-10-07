@@ -6,5 +6,5 @@ import org.fbme.lib.common.Reference
 
 interface ResourceTypeReference : ContainedElement {
     val resourceType: Reference<ResourceTypeDeclaration>
-    override val container: Element?
+    override val container: DeviceTypeDeclaration?
 }

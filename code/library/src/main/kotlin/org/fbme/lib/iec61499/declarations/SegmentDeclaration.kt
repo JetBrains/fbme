@@ -6,7 +6,7 @@ import org.fbme.lib.common.Element
 import org.fbme.lib.common.Reference
 
 interface SegmentDeclaration : Declaration, ContainedElement {
-    override val container: Element?
+    override val container: SystemDeclaration?
     val parameters: MutableList<ParameterAssignment>
     val typeReference: Reference<SegmentTypeDeclaration>
 }

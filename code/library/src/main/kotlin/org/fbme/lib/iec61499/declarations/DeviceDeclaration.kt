@@ -7,7 +7,7 @@ import org.fbme.lib.common.Reference
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 
 interface DeviceDeclaration : Declaration, ContainedElement {
-    override val container: Element?
+    override val container: SystemDeclaration?
     val typeReference: Reference<DeviceTypeDeclaration>
     val parameters: MutableList<ParameterAssignment>
     val resources: MutableList<ResourceDeclaration>

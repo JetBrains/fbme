@@ -7,5 +7,5 @@ import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork
 
 interface ApplicationDeclaration : Declaration, ContainedElement {
     val network: SubappNetwork
-    override val container: Element?
+    override val container: SystemDeclaration
 }

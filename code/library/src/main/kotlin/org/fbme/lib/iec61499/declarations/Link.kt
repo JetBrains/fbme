@@ -7,7 +7,7 @@ import org.fbme.lib.common.Reference
 import org.fbme.lib.iec61499.declarations.hierarchies.ResourceHierarchy
 
 interface Link : ContainedElement {
-    override val container: Element?
+    override val container: SystemDeclaration?
     val parameters: MutableList<ParameterAssignment>
     val resourceReference: CompositeReference<ResourceHierarchy>
     val segmentReference: Reference<SegmentDeclaration>

@@ -5,7 +5,7 @@ import org.fbme.lib.common.Element
 import org.fbme.lib.common.Reference
 
 interface StateTransition : ContainedElement {
-    override val container: Element?
+    override val container: ECC?
     val sourceReference: Reference<StateDeclaration>
     val targetReference: Reference<StateDeclaration>
     val condition: ECTransitionCondition

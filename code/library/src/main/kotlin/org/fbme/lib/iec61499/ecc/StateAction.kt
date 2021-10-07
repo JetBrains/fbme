@@ -9,7 +9,7 @@ import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.fbnetwork.PortPath
 
 interface StateAction : ContainedElement {
-    override val container: Element?
+    override val container: StateDeclaration?
     val event: CompositeReference<PortPath<EventDeclaration>>
     val algorithm: Reference<AlgorithmDeclaration>
 }

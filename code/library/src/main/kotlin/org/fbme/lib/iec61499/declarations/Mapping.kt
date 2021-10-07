@@ -7,7 +7,7 @@ import org.fbme.lib.iec61499.declarations.hierarchies.ApplicationFunctionBlockHi
 import org.fbme.lib.iec61499.declarations.hierarchies.ResourceFunctionBlockHierarchy
 
 interface Mapping : ContainedElement {
-    override val container: Element?
+    override val container: SystemDeclaration?
     val applicationFBReference: CompositeReference<ApplicationFunctionBlockHierarchy>
     val resourceFBReference: CompositeReference<ResourceFunctionBlockHierarchy>
 }

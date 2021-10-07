@@ -6,5 +6,5 @@ import org.fbme.lib.common.Reference
 
 interface FBTypeReference : ContainedElement {
     val fBType: Reference<FBTypeDeclaration>
-    override val container: Element?
+    override val container: ResourceTypeDeclaration?
 }

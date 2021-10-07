@@ -5,7 +5,7 @@ import org.fbme.lib.common.Element
 import org.fbme.lib.st.expressions.Literal
 
 interface CaseElement : ContainedElement {
-    override val container: Element?
+    override val container: CaseStatement?
     var literal: Literal<*>?
     val statements: MutableList<Statement>
 }
