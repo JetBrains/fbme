@@ -71,6 +71,7 @@ object ECCEditors {
                 FullEditorBackgroundDragFacility(scene, scene, editorComponent.viewport, backgroundLayer)
             }
             BackgroundFocusLossFacility(scene, focus, backgroundLayer)
+            scene.style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint)
             val componentsSelection = DefaultSelectionModel<StateDeclaration>()
             val componentsLayout = DefaultLayoutModel<StateDeclaration>(context.repository)
             val declarationFactory = repository.iec61499Factory
@@ -86,10 +87,10 @@ object ECCEditors {
                 scene, eccAdapter, getStateControllerFactory(scene, isEditable), ECCSynchronizer(viewpoint),
                 componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             )
+            scene.style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility)
             scene.addCompletionProvider(CompletionProviderByViewpoint(viewpoint) {
                 getCompletion(ecc, declarationFactory)
             })
-
             val portSettings = ECPortSettingProvider.create(componentsFacility)
             val settingProvider: DiagramComponentSettingProvider<StateDeclaration, Point> =
                 object : DiagramComponentSettingProvider<StateDeclaration, Point> {
@@ -104,6 +105,7 @@ object ECCEditors {
             val diagramFacility = DiagramFacility(
                 eccAdapter, portSettings, settingProvider
             )
+            scene.style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val connectionsFacility = ConnectionsFacility(
                 scene,
                 getTransitionControllerFactory(componentsFacility, isEditable),
@@ -117,6 +119,7 @@ object ECCEditors {
                 tracesLayer,
                 focus
             )
+            scene.style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility)
             ECCInspectionsFacility(
                 ecc,
                 scene

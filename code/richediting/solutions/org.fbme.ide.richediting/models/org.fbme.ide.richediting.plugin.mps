@@ -73,6 +73,7 @@
     <import index="jnz" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc.cell(org.fbme.ide.richediting/)" />
     <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
     <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
+    <import index="eo9q" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.common.actions(org.fbme.ide.richediting/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -13719,21 +13720,21 @@
     </node>
     <node concept="tnohg" id="5IF$9ECWQWY" role="tncku">
       <node concept="3clFbS" id="5IF$9ECWQWZ" role="2VODD2">
-        <node concept="3clFbF" id="7s8ro$mQ5WY" role="3cqZAp">
-          <node concept="2OqwBi" id="7s8ro$mQ7zQ" role="3clFbG">
-            <node concept="2ShNRf" id="7s8ro$mQ5WW" role="2Oq$k0">
-              <node concept="1pGfFk" id="7s8ro$mQ6Rc" role="2ShVmc">
-                <ref role="37wK5l" to="mrrx:~RelayoutAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="RelayoutAction" />
-                <node concept="2OqwBi" id="7s8ro$mQ79Q" role="37wK5m">
-                  <node concept="2WthIp" id="7s8ro$mQ6RK" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="7s8ro$mQ7tH" role="2OqNvi">
+        <node concept="3clFbF" id="1rnBDwvYMu" role="3cqZAp">
+          <node concept="2OqwBi" id="1rnBDww1J0" role="3clFbG">
+            <node concept="2ShNRf" id="1rnBDwvYMs" role="2Oq$k0">
+              <node concept="1pGfFk" id="1rnBDww0Kd" role="2ShVmc">
+                <ref role="37wK5l" to="eo9q:~RelayoutAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="RelayoutAction" />
+                <node concept="2OqwBi" id="1rnBDww12R" role="37wK5m">
+                  <node concept="2WthIp" id="1rnBDww0KL" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="1rnBDww1_X" role="2OqNvi">
                     <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="liA8E" id="7s8ro$mQ7GZ" role="2OqNvi">
-              <ref role="37wK5l" to="mrrx:~RelayoutAction.apply()" resolve="apply" />
+            <node concept="liA8E" id="1rnBDww1Ww" role="2OqNvi">
+              <ref role="37wK5l" to="eo9q:~RelayoutAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>

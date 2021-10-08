@@ -75,15 +75,15 @@ object RichEditorStyleAttributes {
     val FACTORY_DECLARATION: StyleAttribute<IEC61499Factory> = InheritableStyleAttribute("factory-declaration")
 
     @JvmField
-    val DIAGRAM_FACILITY: StyleAttribute<DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>> =
+    val DIAGRAM_FACILITY: StyleAttribute<DiagramFacility<*, *, *, *>> =
         InheritableStyleAttribute("diagram-facility")
 
     @JvmField
-    val COMPONENTS_FACILITY: StyleAttribute<ComponentsFacility<NetworkComponentView, Point>> =
+    val COMPONENTS_FACILITY: StyleAttribute<ComponentsFacility<*, *>> =
         InheritableStyleAttribute("components-facility")
 
     @JvmField
-    val CONNECTIONS_FACILITY: StyleAttribute<ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>> =
+    val CONNECTIONS_FACILITY: StyleAttribute<ConnectionsFacility<*, *, *, *, *>> =
         InheritableStyleAttribute("connections-facility")
 
     @JvmField
