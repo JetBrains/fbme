@@ -13,6 +13,16 @@ class ECTransitionController(
     private val targetHandle: ECStateCellHandle
 ) : ConnectionController<ECTransitionCursor, ECTransitionPath> {
     var highlightColor: Color? = null
+
+    override val connectionCell: EditorCell
+        get() = handle.cell
+
+    val isEditable: Boolean = handle.idEditable
+
+    init {
+        connectionCell.isSelectable = isEditable
+    }
+
     override fun getEdgeTransformation(path: ECTransitionPath, x: Int, y: Int): Function<Point, ECTransitionPath>? {
         return if (handle.getBounds(path.centre).contains(x, y)) {
             Function { p: Point ->
@@ -69,6 +79,9 @@ class ECTransitionController(
     }
 
     override fun isSourceTransformableAt(path: ECTransitionPath, x: Int, y: Int): Boolean {
+        if (!isEditable) {
+            return false
+        }
         val curve =
             ECTransitionUtils.fromPath(path.source, path.target, path.centre.x.toDouble(), path.centre.y.toDouble())
         return (curve.intersects(boundary(x, y))
@@ -76,6 +89,9 @@ class ECTransitionController(
     }
 
     override fun isTargetTransformableAt(path: ECTransitionPath, x: Int, y: Int): Boolean {
+        if (!isEditable) {
+            return false
+        }
         val curve =
             ECTransitionUtils.fromPath(path.source, path.target, path.centre.x.toDouble(), path.centre.y.toDouble())
         return (curve.intersects(boundary(x, y))
@@ -87,11 +103,11 @@ class ECTransitionController(
     }
 
     override fun isSelectableAt(path: ECTransitionPath, x: Int, y: Int): Boolean {
+        if (!isEditable) {
+            return false
+        }
         return isSourceTransformableAt(path, x, y) || isTargetTransformableAt(path, x, y)
     }
-
-    override val connectionCell: EditorCell
-        get() = handle.cell
 
     override fun updateCellWithPath(path: ECTransitionPath) {
         val x = path.centre.x

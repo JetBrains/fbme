@@ -39,12 +39,8 @@ class AlgorithmCell(
     }
 
     fun relayoutAll() {
-        if (!hasTarget) {
-            height /= 2
-            isEditable = false
-        } else {
-            isEditable = true
-        }
+        this.myTextLine.relayout()
+        width = this.myTextLine.width
         relayout()
         if (isOpenBody && algorithmBody != null) {
             algorithmBody.relayout()
@@ -57,9 +53,9 @@ class AlgorithmCell(
     var totalWidth: Int
         get() = if (isOpenBody && algorithmBody != null) max(width, algorithmBody.width) else width
         set(width) {
-            setWidth(width + CellConstants.ACTIVE_WEIGHT_PADDING)
+            setWidth(width)
             if (isOpenBody && algorithmBody != null) {
-                algorithmBody.width = width
+                algorithmBody.width = width - CellConstants.ACTIVE_WEIGHT_PADDING
             }
         }
     val totalHeight: Int
@@ -81,17 +77,31 @@ class AlgorithmCell(
         if (isOpenBody && algorithmBody != null) {
             val g = graphics.create() as Graphics2D
             g.color = CellConstants.ALGORITHM_COLOR
-            g.fillRoundRect(myX, myY, myWidth, totalHeight, CellConstants.ROUNDED, CellConstants.ROUNDED)
+            g.fillRoundRect(
+                myX,
+                myY,
+                myWidth + CellConstants.ACTIVE_WEIGHT_PADDING,
+                totalHeight,
+                CellConstants.ROUNDED,
+                CellConstants.ROUNDED
+            )
             drawText(graphics, settings)
         } else if (algorithmBody != null) {
             val g = graphics.create() as Graphics2D
             g.color = CellConstants.HIDDEN_ALGORITHM_COLOR
-            g.fillRoundRect(myX, myY, myWidth, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED)
+            g.fillRoundRect(
+                myX,
+                myY,
+                myWidth + CellConstants.ACTIVE_WEIGHT_PADDING,
+                myHeight,
+                CellConstants.ROUNDED,
+                CellConstants.ROUNDED
+            )
             drawText(graphics, settings)
         } else {
             val g = graphics.create() as Graphics2D
             g.color = CellConstants.ALGORITHM_COLOR
-            g.fillRoundRect(myX, myY, myWidth, myHeight, 10, 10)
+            g.fillRoundRect(myX, myY, myWidth + CellConstants.ACTIVE_WEIGHT_PADDING, myHeight, 10, 10)
             if (isEditable) {
                 drawText(graphics, settings)
             }
@@ -99,7 +109,7 @@ class AlgorithmCell(
     }
 
     private fun drawText(graphics: Graphics, settings: ParentSettings) {
-        val dx = (myWidth - myTextLine.width) / 2
+        val dx = (myWidth - myTextLine.width + CellConstants.ACTIVE_WEIGHT_PADDING) / 2
         myX += dx
         super.paintContent(graphics, settings)
         myX -= dx

@@ -6,13 +6,12 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.scenes.controllers.diagram.DiagramView
 import org.fbme.scenes.viewmodel.ComponentsView
-import java.util.*
 
-class ECCViewAdapter(private val ecc: ECC, private val factory: IEC61499Factory) :
-    DiagramView<StateDeclaration, StateDeclaration, StateTransition>, ComponentsView<StateDeclaration> {
+class ECCViewAdapter(
+    private val ecc: ECC,
+    private val factory: IEC61499Factory,
     override val isEditable: Boolean
-        get() = true
-
+) : DiagramView<StateDeclaration, StateDeclaration, StateTransition>, ComponentsView<StateDeclaration> {
     override fun components(): Set<StateDeclaration> {
         return HashSet(ecc.states)
     }

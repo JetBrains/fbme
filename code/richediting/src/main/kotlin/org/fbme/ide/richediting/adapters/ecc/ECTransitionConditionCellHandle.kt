@@ -6,5 +6,6 @@ import java.awt.Rectangle
 
 interface ECTransitionConditionCellHandle {
     val cell: EditorCell_Basic
+    val idEditable: Boolean
     fun getBounds(position: Point): Rectangle
 }

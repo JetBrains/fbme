@@ -20,21 +20,21 @@ class OutputCell(
     node: SNode,
     private val action: StateAction,
     private val cellCollection: EditorCell_Collection,
-    isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
+    val isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
 ) : EditorCell_Basic(editorContext, node) {
     private val nameText: TextLine = TextLine("", style, false)
     private val backgroundColor: Color = CellConstants.OUTPUT_COLOR
-    val isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
+    private val outputTarget = action.event.getTarget()
+    private val isNullTarget = outputTarget == null
     val text: String
         get() = nameText.text
 
     override fun relayoutImpl() {
         val lineSize = lineSize
         nameText.relayout()
-        setTextFromAction()
         width = nameText.width
         height = lineSize + CellConstants.ACTIVE_HEIGHT_PADDING
-        if (nameText.text.isEmpty()) {
+        if (isNullTarget) {
             height /= 2
         }
     }
@@ -54,7 +54,7 @@ class OutputCell(
         if (nameText.text.isNotEmpty()) {
             nameText.paint(
                 graphics,
-                myX + CellConstants.SHIFT_X + (myWidth - nameText.width) / 2,
+                myX + (myWidth - nameText.width + CellConstants.ACTIVE_WEIGHT_PADDING) / 2,
                 myY + CellConstants.SHIFT_Y,
                 JBColor.BLACK
             )
@@ -79,9 +79,9 @@ class OutputCell(
     }
 
     init {
-        this.isOpenAlgorithmBody = isOpenAlgorithmBody
         style.set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK)
         style.set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection)
+        setTextFromAction()
         relayoutImpl()
         style.set(RichEditorStyleAttributes.OUTPUTS, action)
     }

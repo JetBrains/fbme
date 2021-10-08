@@ -27,8 +27,8 @@ object ECTransitionUtils {
 
     @JvmStatic
     fun fromPath(s: Point, t: Point, cx: Double, cy: Double): QuadCurve2D.Double {
-        val x = (cx - 0.25 * s.x - 0.25 * t.x) / 0.5
-        val y = (cy - 0.25 * s.y - 0.25 * t.y) / 0.5
+        val x = 2 * cx - 0.5 * s.x - 0.5 * t.x
+        val y = 2 * cy - 0.5 * s.y - 0.5 * t.y
         return QuadCurve2D.Double(s.x.toDouble(), s.y.toDouble(), x, y, t.x.toDouble(), t.y.toDouble())
     }
 

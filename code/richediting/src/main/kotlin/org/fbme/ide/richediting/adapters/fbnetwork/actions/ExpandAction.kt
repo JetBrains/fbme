@@ -14,7 +14,8 @@ import org.fbme.scenes.controllers.LayoutUtil.getFontSize
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.LayoutUtil.setFontSize
 import org.jetbrains.mps.openapi.module.SRepository
-import java.awt.*
+import java.awt.Rectangle
+import kotlin.math.max
 import kotlin.math.min
 
 class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
@@ -51,7 +52,10 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
         expandedComponentsController.update()
     }
 
-    private fun getAffectedSections(bounds: Rectangle, component: FunctionBlockView): Set<Pair<NetworkConnectionView, Int>> {
+    private fun getAffectedSections(
+        bounds: Rectangle,
+        component: FunctionBlockView
+    ): Set<Pair<NetworkConnectionView, Int>> {
         val affectedSections: MutableSet<Pair<NetworkConnectionView, Int>> = HashSet()
         val rightBound = bounds.x + bounds.width
         val bottomBound = bounds.y + bounds.height
@@ -90,11 +94,7 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
                 if (sourceComponent !== component && sourceComponentPosition.x <= rightBound && bounds.x < x1) {
                     affectedSections.add(Pair(connection, 1))
                 }
-                if (min(sourcePortPosition.y, y) < bottomBound && bottomBound < Math.max(
-                        sourcePortPosition.y,
-                        y
-                    )
-                ) {
+                if (min(sourcePortPosition.y, y) < bottomBound && bottomBound < max(sourcePortPosition.y, y)) {
                     affectedSections.add(Pair(connection, if (sourcePortPosition.y < y) 2 else -2))
                 }
                 if (x2 < rightBound && rightBound < targetComponentPosition.x) {

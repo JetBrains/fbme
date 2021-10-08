@@ -73,7 +73,7 @@ class FunctionBlockController(
 
     private fun initializeFBSceneCell(): FBCell {
         val childInstance = networkInstance.getChild(view.component)!!
-        return FBSceneCell(cellCollection.context, view.type, view.associatedNode, isEditable, childInstance)
+        return FBSceneCell(cellCollection.context, view.type, view.associatedNode, false, childInstance)
     }
 
     private fun initializeFBCell(): FBCell {
@@ -84,9 +84,7 @@ class FunctionBlockController(
         get() = networkInstance.getChild(view.component)
 
     override fun canStartMoveAt(form: Point, x: Int, y: Int): Boolean {
-        return if (!isEditable) {
-            false
-        } else fbCell.canStartMoveAt(x, y)
+        return isEditable && fbCell.canStartMoveAt(x, y)
     }
 
     override fun getBounds(position: Point): Rectangle {
@@ -102,8 +100,12 @@ class FunctionBlockController(
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
         val coordinates: Point = when (kind) {
-            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(index)
-            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(index)
+            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(
+                index
+            )
+            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(
+                index
+            )
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortPosition(index) else fbCell.getSocketPortPosition(index)
             else -> error("")
         }
@@ -117,8 +119,12 @@ class FunctionBlockController(
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
         val bounds: Rectangle = when (kind) {
-            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(index)
-            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(index)
+            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(
+                index
+            )
+            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(
+                index
+            )
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
             else -> error("Unknown port kind")
         }

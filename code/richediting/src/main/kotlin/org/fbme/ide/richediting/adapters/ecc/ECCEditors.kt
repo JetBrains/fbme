@@ -80,9 +80,10 @@ object ECCEditors {
             scene.style.set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory)
-            val eccAdapter = ECCViewAdapter(ecc, declarationFactory)
+            val isEditable = parent == null
+            val eccAdapter = ECCViewAdapter(ecc, declarationFactory, isEditable)
             val componentsFacility = ComponentsFacility(
-                scene, eccAdapter, getStateControllerFactory(scene), ECCSynchronizer(viewpoint),
+                scene, eccAdapter, getStateControllerFactory(scene, isEditable), ECCSynchronizer(viewpoint),
                 componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             )
             scene.addCompletionProvider(CompletionProviderByViewpoint(viewpoint) {
@@ -105,7 +106,7 @@ object ECCEditors {
             )
             val connectionsFacility = ConnectionsFacility(
                 scene,
-                getTransitionControllerFactory(componentsFacility),
+                getTransitionControllerFactory(componentsFacility, isEditable),
                 ECTransitionUtils.PATH_FACTORY,
                 ECTransitionUtils.PATH_PAINTER,
                 ECTransitionPathSynchronizer(viewpoint, componentsFacility),
@@ -127,11 +128,14 @@ object ECCEditors {
         }
     }
 
-    private fun getStateControllerFactory(scene: EditorCell_Scene): ComponentControllerFactory<StateDeclaration, Point> {
+    private fun getStateControllerFactory(
+        scene: EditorCell_Scene,
+        isEditable: Boolean
+    ): ComponentControllerFactory<StateDeclaration, Point> {
         return object : ComponentControllerFactory<StateDeclaration, Point> {
             override fun create(context: EditorContext, view: StateDeclaration): ComponentController<Point>? {
                 return if (view is PlatformElement)
-                    ECStateController(scene, context, view)
+                    ECStateController(scene, context, view, isEditable)
                 else null
             }
         }
@@ -139,7 +143,8 @@ object ECCEditors {
 
     @JvmStatic
     fun getTransitionControllerFactory(
-        componentsFacility: ComponentsFacility<StateDeclaration, Point>
+        componentsFacility: ComponentsFacility<StateDeclaration, Point>,
+        isEditable: Boolean
     ): ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> {
         return object : ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> {
             override fun create(
@@ -158,6 +163,9 @@ object ECCEditors {
                     object : ECTransitionConditionCellHandle {
                         override val cell: EditorCell_Basic
                             get() = cell
+
+                        override val idEditable: Boolean
+                            get() = isEditable
 
                         override fun getBounds(position: Point): Rectangle {
                             val width = cell.width

@@ -19,9 +19,9 @@ object CellConstants {
     val OUTPUT_COLOR = Color(235, 221, 185)
     const val ACTIVE_HEIGHT_PADDING = 6
     const val ACTIVE_WEIGHT_PADDING = 10
-    const val LEFT_ALGORITHM_BODY_PADDING = 10
+    const val LEFT_ALGORITHM_BODY_PADDING = 5
     const val BOTTOM_PADDING = 5
     const val ROUNDED = 10
-    const val SHIFT_X = 5
+    const val SHIFT_X = ACTIVE_WEIGHT_PADDING / 2
     const val SHIFT_Y = -2
 }

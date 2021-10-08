@@ -2,7 +2,8 @@ package org.fbme.ide.richediting.adapters.ecc
 
 import jetbrains.mps.editor.runtime.TextBuilderImpl
 import jetbrains.mps.nodeEditor.cellLayout.AbstractCellLayout
-import jetbrains.mps.nodeEditor.cells.*
+import jetbrains.mps.nodeEditor.cells.EditorCell
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.TextBuilder
 import org.fbme.ide.iec61499.repository.PlatformElement
@@ -25,7 +26,8 @@ import java.util.stream.Collectors
 class ECStateController(
     scene: EditorCell_Scene,
     private val context: EditorContext,
-    private val state: StateDeclaration
+    private val state: StateDeclaration,
+    val isEditable: Boolean = true
 ) : ComponentController<Point> {
     private val stateNameCell: StateCell
     private val node: SNode
@@ -43,18 +45,18 @@ class ECStateController(
             width = block.newWidth(width)
             height += block.getHeight(PADDING)
         }
-        cellCollection.width = width + 7
+        cellCollection.width = width + CellConstants.ACTIVE_WEIGHT_PADDING
         cellCollection.height = height + 7
-        stateNameCell.width = width + CellConstants.ACTIVE_WEIGHT_PADDING
+        stateNameCell.width = width
         for (block in stateActionBlocks) {
             block.setWidth(width)
         }
         val dx = cellCollection.x + width / 2 - stateNameCell.width / 2
         stateNameCell.moveTo(dx, cellCollection.y)
         var currentHeight = stateNameCell.height + PADDING
-        for (ActionBlock in stateActionBlocks) {
+        for (actionBlock in stateActionBlocks) {
             val dy = cellCollection.y
-            currentHeight = ActionBlock.moveTo(dx, dy, PADDING, currentHeight)
+            currentHeight = actionBlock.moveTo(dx, dy, PADDING, currentHeight)
         }
     }
 
@@ -62,7 +64,7 @@ class ECStateController(
         get() = getLineSize(cellCollection.style)
 
     override fun canStartMoveAt(position: Point, x: Int, y: Int): Boolean {
-        return true
+        return isEditable
     }
 
     override val componentCell: EditorCell
@@ -76,7 +78,7 @@ class ECStateController(
         val point = Point(originalPosition)
         point.translate(dx, dy)
         for (it in stateActionBlocks) {
-            val algo = it.algorithm ?: continue
+            val algo = it.algorithm
             val body = algo.algorithmBody ?: continue
             for (cell in body.cells) {
                 val shiftPoint = algo.algorithmBodyPoint
@@ -167,35 +169,8 @@ class ECStateController(
 
     companion object {
         const val PADDING = 2
-        fun removeAction(action: StateAction, collection: EditorCell_Collection) {
-            var deleteAlgo: AlgorithmCell? = null
-            var deleteBody: EditorCell? = null
-            var deleteOutput: OutputCell? = null
-            var deleteBlock: ActionBlock? = null
-            val actionBlocks = collection.style.get(RichEditorStyleAttributes.ACTIONS)
-            for (block in actionBlocks!!) {
-                if (block.action === action) {
-                    deleteBlock = block
-                    deleteAlgo = block.algorithm
-                    deleteBody = deleteAlgo.algorithmBody
-                    deleteOutput = block.output
-                    break
-                }
-            }
-            if (deleteBlock == null) return
-            actionBlocks.remove(deleteBlock)
-            if (deleteAlgo != null) {
-                collection.removeCell(deleteAlgo)
-            }
-            if (deleteBody != null) {
-                collection.removeCell(deleteBody)
-            }
-            if (deleteOutput != null) {
-                collection.removeCell(deleteOutput)
-            }
-        }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun removeActionWithState(
             action: StateAction?,
             collection: EditorCell_Collection
@@ -206,13 +181,13 @@ class ECStateController(
             context!!.editorComponent.updater.update()
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun addAction(collection: EditorCell_Collection) {
             val declaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
             declaration!!.actions.add(createEmptyAction(collection))
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun addNewAlgorithm(collection: EditorCell_Collection, action: StateAction) {
             val prefixName = "NewAlgorithm"
             val factory = collection.style.get(RichEditorStyleAttributes.FACTORY_DECLARATION)
@@ -235,7 +210,7 @@ class ECStateController(
             action.algorithm.setTarget(algorithmDeclaration)
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setAlgorithmToNone(cell: AlgorithmCell) {
             val collection = cell.style.get(RichEditorStyleAttributes.STATE_COLLECTION)
             val stateAction = cell.style.get(RichEditorStyleAttributes.ALGORITHMS)
@@ -251,7 +226,7 @@ class ECStateController(
             context!!.editorComponent.updater.update()
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setOutputToNone(cell: OutputCell) {
             val collection = cell.style.get(RichEditorStyleAttributes.STATE_COLLECTION)
             val stateAction = cell.style.get(RichEditorStyleAttributes.OUTPUTS)
@@ -262,7 +237,7 @@ class ECStateController(
                 newStateAction.algorithm.setTarget(algorithmDeclaration)
             }
             val isOpenAlgorithmBody = cell.isOpenAlgorithmBody
-            val status = isOpenAlgorithmBody!!.getOrDefault(stateAction, true)
+            val status = isOpenAlgorithmBody.getOrDefault(stateAction, true)
             isOpenAlgorithmBody.remove(stateAction)
             isOpenAlgorithmBody[newStateAction] = status
             val stateDeclaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)

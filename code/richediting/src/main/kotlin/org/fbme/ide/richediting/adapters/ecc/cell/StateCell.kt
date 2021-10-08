@@ -32,8 +32,15 @@ class StateCell(
         } else {
             g.color = CellConstants.HIDDEN_STATE_COLOR
         }
-        g.fillRoundRect(myX, myY, myWidth, myHeight, CellConstants.ROUNDED, CellConstants.ROUNDED)
-        val dx = (myWidth - myTextLine.width) / 2
+        g.fillRoundRect(
+            myX,
+            myY,
+            myWidth + CellConstants.ACTIVE_WEIGHT_PADDING,
+            myHeight,
+            CellConstants.ROUNDED,
+            CellConstants.ROUNDED
+        )
+        val dx = (myWidth - myTextLine.width + CellConstants.ACTIVE_WEIGHT_PADDING) / 2
         myX += dx
         super.paintContent(graphics, settings)
         myX -= dx
