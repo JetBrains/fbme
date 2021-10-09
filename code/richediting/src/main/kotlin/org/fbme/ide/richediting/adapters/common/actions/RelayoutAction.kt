@@ -9,7 +9,7 @@ class RelayoutAction(private val cell: EditorCell) : Action {
         val typeName = cell.sNode.concept.name
         if (typeName == "BasicFBTypeDeclaration") {
             RelayoutECCAction(cell).apply()
-        } else if (typeName == "CompositeFBTypeDeclaration") {
+        } else if (typeName in listOf("CompositeFBTypeDeclaration", "ApplicationDeclaration", "ResourceDeclaration")) {
             RelayoutFBNetworkAction(cell).apply()
         }
     }
