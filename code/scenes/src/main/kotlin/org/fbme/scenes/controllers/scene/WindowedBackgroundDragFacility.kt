@@ -16,7 +16,7 @@ class WindowedBackgroundDragFacility(
     inner class MyInitializer : SceneInitializer {
         private val mouseWheelListener: MouseWheelListener = object : MouseWheelListener {
             override fun mouseWheelMoved(event: MouseWheelEvent) {
-                if (event.isMetaDown) {
+                if (MouseEvents.isMetaDown(event)) {
                     val unitsToScroll = event.unitsToScroll
                     val style = viewpoint.cell.style
                     val currentFontSize = LayoutUtil.getFontSize(style)
@@ -41,7 +41,7 @@ class WindowedBackgroundDragFacility(
         }
         private val dragListener = object : DragEventListener {
             override fun onDragStarted(event: DragEvent) {
-                if (event.awt.isMetaDown) {
+                if (MouseEvents.isMetaDown(event.awt)) {
                     val origin = viewpoint.editorShift
                     event.consume(MyViewpointModifier(event.awt.x - origin.x, event.awt.y - origin.y))
                 }

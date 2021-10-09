@@ -174,7 +174,7 @@ class ComponentsFacility<CompT, FormT>(
             if (component != null) {
                 val movingComponents: MutableSet<CompT> = HashSet()
                 movingComponents.add(component)
-                if (event.awt.isMetaDown) {
+                if (MouseEvents.isMetaDown(event.awt)) {
                     movingComponents.addAll(selection.selectedComponents)
                 } else {
                     sceneFocus.clearFocus()

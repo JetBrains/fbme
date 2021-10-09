@@ -9,7 +9,7 @@ class BackgroundFocusLossFacility(
 ) {
     inner class MyClickListener : ClickEventListener {
         override fun onMouseClicked(event: ClickEvent) {
-            if (!event.awt.isMetaDown) {
+            if (!MouseEvents.isMetaDown(event.awt)) {
                 focus.clearFocus()
                 scene.fireRepaint()
             }

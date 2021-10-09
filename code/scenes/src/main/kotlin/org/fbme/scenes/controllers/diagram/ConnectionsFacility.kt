@@ -222,7 +222,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
             var focusCleared = false
             for (connection in connections.values) {
                 if (connection.controller.isSelectableAt(connection.modelPath, event.awt.x, event.awt.y)) {
-                    if (!focusCleared && !event.awt.isMetaDown) {
+                    if (!focusCleared && !MouseEvents.isMetaDown(event.awt)) {
                         connectionsSelection.clear()
                         sceneFocus.clearFocus()
                         focusCleared = true
