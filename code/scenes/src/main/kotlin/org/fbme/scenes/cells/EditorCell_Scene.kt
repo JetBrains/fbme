@@ -33,6 +33,7 @@ import java.awt.event.MouseWheelEvent
 import java.awt.event.MouseWheelListener
 import java.util.*
 import javax.swing.JScrollPane
+import javax.swing.SwingUtilities
 
 class EditorCell_Scene(
     override val editorContext: EditorContext,
@@ -311,7 +312,7 @@ class EditorCell_Scene(
 
     private val myMouseListener: MouseAdapter = object : MouseAdapter() {
         override fun mousePressed(event: MouseEvent) {
-            if (event.isPopupTrigger) {
+            if (event.isPopupTrigger || SwingUtilities.isRightMouseButton(event)) {
                 return
             }
             if (dragEventHandler != null) {
@@ -335,7 +336,7 @@ class EditorCell_Scene(
             if (!bounds.contains(event.x, event.y)) {
                 return
             }
-            if (event.isPopupTrigger) {
+            if (event.isPopupTrigger || SwingUtilities.isRightMouseButton(event)) {
                 return
             }
             val clickEvent = ClickEvent(event) {}
@@ -362,7 +363,7 @@ class EditorCell_Scene(
         }
 
         override fun mouseReleased(event: MouseEvent) {
-            if (event.isPopupTrigger) {
+            if (event.isPopupTrigger || SwingUtilities.isRightMouseButton(event)) {
                 return
             }
             if (dragEventHandler == null) {

@@ -9,11 +9,12 @@ import jetbrains.mps.openapi.editor.selection.Selection
 import jetbrains.mps.openapi.editor.selection.SingularSelection
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
+import javax.swing.SwingUtilities
 
 class CellSelectionOnPopupTrigger(private val editorComponent: EditorComponent) {
     private val mouseListener: MouseAdapter = object : MouseAdapter() {
         override fun mousePressed(event: MouseEvent) {
-            if (!event.isPopupTrigger) {
+            if (!(event.isPopupTrigger || SwingUtilities.isRightMouseButton(event))) {
                 return
             }
             val selectionManager = editorComponent.selectionManager
