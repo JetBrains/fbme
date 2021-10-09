@@ -193,6 +193,17 @@ class EditorCell_Scene(
         initializers.remove(initializer)
     }
 
+    fun calculateBounds(): Rectangle {
+        var bounds = Rectangle(-1, -1)
+        for (layouter in layouters) {
+            bounds = bounds.union(layouter.layoutBounds)
+        }
+        for (c in cells) {
+            bounds = bounds.union(Rectangle(c.x, c.y, c.width, c.height))
+        }
+        return bounds
+    }
+
     override fun <T> storeState(key: SceneStateKey<T>, state: T) {
         SceneStateManager.getInstance(editorComponent)?.storeState(this, key, state)
     }
@@ -472,14 +483,14 @@ class EditorCell_Scene(
                 if (cell is EditorCell_Scene) {
                     if (cell.layout == SceneLayout.WINDOWED) {
                         doRelayout(cell)
-                        val bounds = calculateBounds(cell)
+                        val bounds = cell.calculateBounds()
                         cell.myWidth = bounds.width + bounds.x - cell.myX + 15 // to remove + 15?
                         cell.myHeight = bounds.height + bounds.y - cell.myY + 10 // to remove + 10?
                     } else {
-                        var bounds = calculateBounds(cell)
+                        var bounds = cell.calculateBounds()
                         updateViewport(cell, bounds)
                         doRelayout(cell)
-                        bounds = calculateBounds(cell)
+                        bounds = cell.calculateBounds()
                         cell.myWidth = bounds.width + bounds.x - cell.myX + 15
                         cell.myHeight = bounds.height + bounds.y - cell.myY + 10
                         if (cell.myWidth < 900) {
@@ -502,17 +513,6 @@ class EditorCell_Scene(
                     val deltaY = scene.myY - bounds.y
                     scene.viewpoint.shiftY += deltaY
                 }
-            }
-
-            private fun calculateBounds(scene: EditorCell_Scene): Rectangle {
-                var bounds = Rectangle(-1, -1)
-                for (layouter in scene.layouters) {
-                    bounds = bounds.union(layouter.layoutBounds)
-                }
-                for (c in scene.cells) {
-                    bounds = bounds.union(Rectangle(c.x, c.y, c.width, c.height))
-                }
-                return bounds
             }
 
             private fun doRelayout(scene: EditorCell_Scene) {

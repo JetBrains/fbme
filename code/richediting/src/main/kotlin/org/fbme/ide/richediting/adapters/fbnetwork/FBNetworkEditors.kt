@@ -108,14 +108,15 @@ object FBNetworkEditors {
         context: EditorContext,
         node: SNode?,
         layout: SceneLayout,
-        parent: Instance? = null
+        parent: Instance? = null,
+        editorShift: Point = Point()
     ): EditorCell {
         val scene = EditorCell_Scene(context, node!!, layout)
         val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(context.operationContext.project)
         val declaration = repository.getAdapter(node, Declaration::class.java)
             ?: error("Error when creating NetworkCell: Declaration is null")
         val networkInstance = NetworkInstance.createForDeclaration(declaration, parent)
-        initializeSceneCell(scene, networkInstance, context, layout)
+        initializeSceneCell(scene, networkInstance, context, layout, editorShift)
         return scene
     }
 
@@ -123,7 +124,8 @@ object FBNetworkEditors {
         scene: EditorCell_Scene,
         networkInstance: NetworkInstance,
         context: EditorContext,
-        layout: SceneLayout
+        layout: SceneLayout,
+        editorShift: Point = Point()
     ) {
         val networkDeclaration = networkInstance.networkDeclaration
         val model = (networkDeclaration as PlatformElement).node.model
@@ -143,8 +145,9 @@ object FBNetworkEditors {
             val connectionsLayer = scene.createLayer(3f)
             val inspectionsLayer = scene.createLayer(4f)
             val scale = RicheditingMpsBridge.getEditorScale(project)
-            val viewpoint =
-                if (layout === SceneLayout.WINDOWED) SceneViewpointByCell(scene, scene) else scene.viewpoint!!
+            val viewpoint = if (layout === SceneLayout.WINDOWED)
+                SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
+            else scene.viewpoint!!
             style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint)
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {

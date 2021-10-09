@@ -8,10 +8,11 @@ import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.scene.SceneStateKey
 import java.awt.Point
+import java.awt.Rectangle
 import kotlin.math.abs
 
 class ExpandedComponentsController(scene: EditorCell_Scene, private val editorContext: EditorContext) {
-    private val expandedComponents: MutableMap<NetworkComponentView, Point>
+    private val expandedComponents: MutableMap<NetworkComponentView, Rectangle>
     private val affectedComponents: MutableMap<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>>
     private val affectedSections: MutableMap<NetworkComponentView, Set<Pair<NetworkConnectionView, Int>>>
     private val componentOffsetMap: MutableMap<NetworkComponentView, Point>
@@ -33,8 +34,8 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         view: NetworkComponentView,
         sections: Set<Pair<NetworkConnectionView, Int>>
     ) {
-        val dx = expandedComponents[view]!!.x
-        val dy = expandedComponents[view]!!.y
+        val dx = expandedComponents[view]!!.width
+        val dy = expandedComponents[view]!!.height
         for (section in sections) {
             val index = abs(section.second)
             val validSection = Pair(section.first, index)
@@ -47,11 +48,7 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
     private fun getComponentOffsetMap(): MutableMap<NetworkComponentView, Point> {
         val offsetMap = HashMap<NetworkComponentView, Point>()
         affectedComponents.forEach { (view: NetworkComponentView, p: Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>) ->
-            processComponents(
-                offsetMap,
-                view,
-                p
-            )
+            processComponents(offsetMap, view, p)
         }
         return offsetMap
     }
@@ -63,8 +60,8 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
     ) {
         val affectedByX = p.first
         val affectedByY = p.second
-        val dx = expandedComponents[view]!!.x
-        val dy = expandedComponents[view]!!.y
+        val dx = expandedComponents[view]!!.width
+        val dy = expandedComponents[view]!!.height
         processComponentOffset(offsetMap, affectedByX, dx, Direction.X)
         processComponentOffset(offsetMap, affectedByY, dy, Direction.Y)
     }
@@ -89,8 +86,8 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         }
     }
 
-    fun addExpandedComponent(view: FunctionBlockView, dx: Int, dy: Int) {
-        expandedComponents[view] = Point(dx, dy)
+    fun addExpandedComponent(view: FunctionBlockView, shiftX: Int, shiftY: Int, dx: Int, dy: Int) {
+        expandedComponents[view] = Rectangle(shiftX, shiftY, dx, dy)
     }
 
     fun removeExpandedComponent(view: FunctionBlockView) {
@@ -134,13 +131,17 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         affectedSections.remove(component)
     }
 
+    fun getEditorShift(component: FunctionBlockView): Point {
+        return expandedComponents[component]?.location ?: Point()
+    }
+
     private enum class Direction {
         X, Y
     }
 
     companion object {
         private val EXPANDED_COMPONENTS_KEY =
-            SceneStateKey<MutableMap<NetworkComponentView, Point>>("expanded-components")
+            SceneStateKey<MutableMap<NetworkComponentView, Rectangle>>("expanded-components")
         private val AFFECTED_COMPONENTS_KEY =
             SceneStateKey<MutableMap<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>>>(
                 "affected-components"

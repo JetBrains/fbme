@@ -50,7 +50,8 @@ object ECCEditors {
         context: EditorContext,
         node: SNode,
         layout: SceneLayout,
-        parent: Instance? = null
+        parent: Instance? = null,
+        editorShift: Point = Point()
     ): EditorCell {
         return try {
             val repository: PlatformElementsOwner =
@@ -62,8 +63,9 @@ object ECCEditors {
             val componentsLayer = scene.createLayer(3f)
             val connectionsLayer = scene.createLayer(2f)
             val editorComponent = context.editorComponent as EditorComponent
-            val viewpoint =
-                if (layout === SceneLayout.WINDOWED) SceneViewpointByCell(scene, scene) else scene.viewpoint!!
+            val viewpoint = if (layout === SceneLayout.WINDOWED)
+                SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
+            else scene.viewpoint!!
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {
                 WindowedBackgroundDragFacility(scene, (viewpoint as SceneViewpointByCell), backgroundLayer)

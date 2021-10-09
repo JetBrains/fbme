@@ -71,9 +71,15 @@ class FunctionBlockController(
         })
     }
 
-    private fun initializeFBSceneCell(): FBCell {
-        val childInstance = networkInstance.getChild(view.component)!!
-        return FBSceneCell(cellCollection.context, view.type, view.associatedNode, false, childInstance)
+    private fun initializeFBSceneCell(editorShift: Point = Point()): FBCell {
+        return FBSceneCell(
+            cellCollection.context,
+            view.type,
+            view.associatedNode,
+            false,
+            networkInstance.getChild(view.component)!!,
+            editorShift
+        )
     }
 
     private fun initializeFBCell(): FBCell {
@@ -182,7 +188,8 @@ class FunctionBlockController(
         myNameProperty.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
         cellCollection.addEditorCell(myNameProperty)
         val isExpanded = expandedComponentsController.isExpanded(view)
-        fbCell = if (isExpanded) initializeFBSceneCell() else initializeFBCell()
+        val editorShift = expandedComponentsController.getEditorShift(view)
+        fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else initializeFBCell()
         cellCollection.addEditorCell(fbCell.rootCell)
         fbCell.relayout()
     }

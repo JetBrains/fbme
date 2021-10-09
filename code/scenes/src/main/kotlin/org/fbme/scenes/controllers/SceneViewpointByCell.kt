@@ -6,11 +6,13 @@ import org.fbme.scenes.controllers.scene.SceneInitializer
 import org.fbme.scenes.controllers.scene.ViewpointAndScaleData
 import java.awt.Point
 
-class SceneViewpointByCell(private val myEditor: SceneEditor, val cell: EditorCell) : SceneViewpoint {
-    private var shiftX = 0
-    private var shiftY = 0
-
-    override var editorShift: Point = Point(cell.x, cell.y)
+class SceneViewpointByCell(
+    private val myEditor: SceneEditor,
+    val cell: EditorCell,
+    private var shiftX: Int = 0,
+    private var shiftY: Int = 0
+) : SceneViewpoint {
+    override var editorShift: Point = Point(cell.x + shiftX, cell.y + shiftY)
         get() {
             return Point(cell.x + shiftX, cell.y + shiftY)
         }

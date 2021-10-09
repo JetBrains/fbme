@@ -25,7 +25,8 @@ class FBSceneCell(
     fbType: FBTypeDescriptor,
     node: SNode,
     isEditable: Boolean,
-    parent: FunctionBlockInstance?
+    parent: FunctionBlockInstance?,
+    editorShift: Point = Point()
 ) : AbstractFBCell(context, fbType, node, isEditable) {
     private val typeNameLabel: EditorCell_SceneLabel?
     private val sceneCell: EditorCell_Scene?
@@ -56,11 +57,11 @@ class FBSceneCell(
         drawAllPortIcons(graphics, foreground)
     }
 
-    private fun createSceneCell(instance: Instance?): EditorCell_Scene {
+    private fun createSceneCell(instance: Instance?, editorShift: Point = Point()): EditorCell_Scene {
         val scene: EditorCell_Scene = if (fbType.declaration is BasicFBTypeDeclaration) {
-            ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, instance) as EditorCell_Scene
+            ECCEditors.createEccEditor(context, node, SceneLayout.WINDOWED, instance, editorShift) as EditorCell_Scene
         } else {
-            FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance) as EditorCell_Scene
+            FBNetworkEditors.createFBNetworkCell(context, node, SceneLayout.WINDOWED, instance, editorShift) as EditorCell_Scene
         }
         scene.cellId = scene.sNode.nodeId.toString()
         return scene
@@ -118,7 +119,7 @@ class FBSceneCell(
     init {
         rootCell = createCollection()
         typeNameLabel = createTypeNameLabel()
-        sceneCell = createSceneCell(parent)
+        sceneCell = createSceneCell(parent, editorShift)
         sceneCell.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
         sceneCell.style.set(StyleAttributes.DRAW_BORDER, false)
         rootCell.addEditorCell(sceneCell)

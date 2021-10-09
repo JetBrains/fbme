@@ -10,6 +10,7 @@ import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
+import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.LayoutUtil.getFontSize
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.LayoutUtil.setFontSize
@@ -38,12 +39,15 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
         val oldBounds = componentController.getFBCellBounds(editorComponentPosition)
         val lineSize = getLineSize(componentController.componentCell.style)
         val sceneCell = createExpandedSceneCell(componentController)
-        val newBounds = Rectangle(oldBounds.x, oldBounds.y, sceneCell.width, sceneCell.height + lineSize)
-        val dx = newBounds.width - oldBounds.width
-        val dy = newBounds.height - oldBounds.height
+        val bounds = (sceneCell as EditorCell_Scene).calculateBounds()
+        val newBounds = Rectangle(oldBounds.x, oldBounds.y, bounds.width, bounds.height + lineSize)
+        val dx = newBounds.width - oldBounds.width + 25
+        val dy = newBounds.height - oldBounds.height + 25
         val expandedComponentsController = componentController.expandedComponentsController
         expandedComponentsController.addExpandedComponent(
             component,
+            10 + -bounds.x + 15,
+            15 + -bounds.y + 10,
             viewpoint.fromEditorDimension(dx),
             viewpoint.fromEditorDimension(dy)
         )
