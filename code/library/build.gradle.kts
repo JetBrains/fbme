@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
@@ -32,12 +33,15 @@ val mpsAssemble by tasks.getting {
     inputs.dir("out")
 }
 
+val generateGrammarSource by tasks.getting
+
+val compileKotlin by tasks.getting(KotlinCompile::class) {
+    dependsOn(generateGrammarSource)
+    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
+}
+
 tasks.named<Copy>("mpsPrepare") {
     from(configurations.antlr.get().files.find { it.name.startsWith("antlr4-runtime") })
     from("build/libs")
     into("out")
 }
-
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
-
-compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
