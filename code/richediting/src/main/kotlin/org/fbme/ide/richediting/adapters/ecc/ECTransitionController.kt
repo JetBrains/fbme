@@ -113,8 +113,8 @@ class ECTransitionController(
         val x = path.centre.x
         val y = path.centre.y
         val cell = handle.cell
-        cell.relayout()
         cell.moveTo(x - cell.width / 2, y - cell.height / 2)
+        cell.relayout()
     }
 
     override fun getCursorAt(path: ECTransitionPath, x: Int, y: Int): ECTransitionCursor? {
