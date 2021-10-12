@@ -1,7 +1,7 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="ButtonDs">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
@@ -10,7 +10,7 @@
       <Event Name="REQ">
         <With Var="LightOn" />
       </Event>
-      <Event Name="NDT"></Event>
+      <Event Name="NDT" />
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO">
@@ -28,32 +28,29 @@
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="633.0" y="99.0"></ECState>
-      <ECState Name="INIT" x="1606.0" y="453.0">
-        <ECAction Algorithm="INIT" Output="INITO" />
+      <ECState Name="START" x="580" y="1006" />
+      <ECState Name="INIT" x="1926" y="773">
+        <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="OFF" x="1626.0" y="1106.0">
-        <ECAction Algorithm="aPRESS" Output="CHG" />
+      <ECState Name="OFF" x="3859" y="773">
+        <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
-      <ECState Name="PRESSED" x="1666.0" y="1480.0">
-        <ECAction Algorithm="aPRESS" Output="CHG" />
+      <ECState Name="PRESSED" x="0" y="0">
+        <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1133.0" y="313.0" />
-      <ECTransition Source="INIT" Destination="OFF" Condition="REQ" x="1619.0" y="786.0" />
+      <ECTransition Source="START" Destination="INIT" x="1420" y="1153" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="OFF" x="3379" y="1153" Condition="REQ" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="Pressed := FALSE;
-&#38;#10;" />
+      <ST Text="Pressed := FALSE;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="aOFF">
-      <ST Text="Pressed := FALSE;
-&#38;#10;" />
+      <ST Text="Pressed := FALSE;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="aPRESS">
-      <ST Text="Pressed := TRUE;
-&#38;#10;" />
+      <ST Text="Pressed := TRUE;&amp;#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
+

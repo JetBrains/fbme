@@ -1,15 +1,15 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="ProductOrder">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
         <With Var="QI" />
       </Event>
-      <Event Name="CHECK_J1"></Event>
-      <Event Name="CHECK_J2"></Event>
-      <Event Name="READY"></Event>
+      <Event Name="CHECK_J1" />
+      <Event Name="CHECK_J2" />
+      <Event Name="READY" />
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO">
@@ -18,8 +18,8 @@
       <Event Name="PRODUCE_RED">
         <With Var="QO" />
       </Event>
-      <Event Name="PRODUCE_GREEN"></Event>
-      <Event Name="CLEAR"></Event>
+      <Event Name="PRODUCE_GREEN" />
+      <Event Name="CLEAR" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="QI" Type="BOOL" />
@@ -29,20 +29,21 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="IThis1" Type="ProductOrder_HMI" x="1020.0" y="240.0" />
-    <EventConnections>
-      <Connection Source="INIT" Destination="IThis1.INIT" dx1="89.0" />
-      <Connection Source="CHECK_J1" Destination="IThis1.CHECK_J1" dx1="40.0" />
-      <Connection Source="READY" Destination="IThis1.READY" dx1="103.0" />
-      <Connection Source="IThis1.INITO" Destination="INITO" dx1="58.0" />
-      <Connection Source="IThis1.PRODUCE_RED" Destination="PRODUCE_RED" dx1="78.0" />
-      <Connection Source="IThis1.PRODUCE_GREEN" Destination="PRODUCE_GREEN" dx1="98.0" />
-      <Connection Source="IThis1.CLEAR" Destination="CLEAR" dx1="118.0" />
-      <Connection Source="CHECK_J2" Destination="IThis1.CHECK_J2" dx1="40.0" />
-    </EventConnections>
+    <FB Name="IThis1" Type="ProductOrder_HMI" x="1020" y="240" />
     <DataConnections>
-      <Connection Source="QI" Destination="IThis1.QI" dx1="63.0" />
-      <Connection Source="IThis1.QO" Destination="QO" dx1="138.0" />
+      <Connection Source="QI" Destination="IThis1.QI" dx1="63" />
+      <Connection Source="IThis1.QO" Destination="QO" dx1="138" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis1.INIT" dx1="89" />
+      <Connection Source="CHECK_J1" Destination="IThis1.CHECK_J1" dx1="40" />
+      <Connection Source="READY" Destination="IThis1.READY" dx1="103" />
+      <Connection Source="IThis1.INITO" Destination="INITO" dx1="58" />
+      <Connection Source="IThis1.PRODUCE_RED" Destination="PRODUCE_RED" dx1="78" />
+      <Connection Source="IThis1.PRODUCE_GREEN" Destination="PRODUCE_GREEN" dx1="98" />
+      <Connection Source="IThis1.CLEAR" Destination="CLEAR" dx1="118" />
+      <Connection Source="CHECK_J2" Destination="IThis1.CHECK_J2" dx1="40" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

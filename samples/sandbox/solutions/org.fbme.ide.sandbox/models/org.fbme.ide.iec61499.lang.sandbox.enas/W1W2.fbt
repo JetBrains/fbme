@@ -1,73 +1,72 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="W1W2">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER"></Event>
-      <Event Name="S3_DELIVERED"></Event>
-      <Event Name="S1_SENSOR"></Event>
-      <Event Name="S2_SENSOR"></Event>
-      <Event Name="SR_SENSOR"></Event>
+      <Event Name="TRIGGER" />
+      <Event Name="S3_DELIVERED" />
+      <Event Name="S1_SENSOR" />
+      <Event Name="S2_SENSOR" />
+      <Event Name="SR_SENSOR" />
       <Event Name="CONFIG">
         <With Var="configurationID" />
       </Event>
-      <Event Name="RESET"></Event>
+      <Event Name="RESET" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="DONE"></Event>
-      <Event Name="S1_ON"></Event>
-      <Event Name="S1_OFF"></Event>
-      <Event Name="S2_ON"></Event>
-      <Event Name="S2_OFF"></Event>
-      <Event Name="S3_DELIVERY"></Event>
-      <Event Name="SR_OUTPUT"></Event>
-      <Event Name="SR_OFF"></Event>
-      <Event Name="REQ_CONFIG"></Event>
+      <Event Name="DONE" />
+      <Event Name="S1_ON" />
+      <Event Name="S1_OFF" />
+      <Event Name="S2_ON" />
+      <Event Name="S2_OFF" />
+      <Event Name="S3_DELIVERY" />
+      <Event Name="SR_OUTPUT" />
+      <Event Name="SR_OFF" />
+      <Event Name="REQ_CONFIG" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="configurationID" Type="STRING" />
     </InputVars>
   </InterfaceList>
   <BasicFB>
-    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="848.0" y="477.0"></ECState>
-      <ECState Name="SR_OUTPUT" x="2592.0" y="832.0">
+      <ECState Name="START" x="848" y="477" />
+      <ECState Name="SR_OUTPUT" x="2592" y="832">
         <ECAction Output="SR_OUTPUT" />
       </ECState>
-      <ECState Name="S1_TRANSPORT" x="2384.0" y="1280.0">
+      <ECState Name="S1_TRANSPORT" x="2384" y="1280">
         <ECAction Output="S1_ON" />
       </ECState>
-      <ECState Name="S2_TRANSPORT" x="2428.0" y="1876.0">
+      <ECState Name="S2_TRANSPORT" x="2428" y="1876">
         <ECAction Output="S2_ON" />
         <ECAction Output="SR_OFF" />
       </ECState>
-      <ECState Name="S3_DELIVER" x="1884.0" y="2412.0">
+      <ECState Name="S3_DELIVER" x="1884" y="2412">
         <ECAction Output="S3_DELIVERY" />
         <ECAction Output="S1_OFF" />
       </ECState>
-      <ECState Name="DONE" x="836.0" y="1768.0">
+      <ECState Name="DONE" x="836" y="1768">
         <ECAction Output="DONE" />
         <ECAction Output="S2_OFF" />
       </ECState>
-      <ECState Name="READY" x="1092.0" y="952.0"></ECState>
-      <ECState Name="SET_CONFIGURATION" x="2276.0" y="444.0">
+      <ECState Name="READY" x="1092" y="952" />
+      <ECState Name="SET_CONFIGURATION" x="2276" y="444">
         <ECAction Output="REQ_CONFIG" />
       </ECState>
-      <ECTransition Source="START" Destination="READY" Condition="1" x="839.0" y="718.0" />
-      <ECTransition Source="SR_OUTPUT" Destination="S1_TRANSPORT" Condition="SR_SENSOR" x="2569.0" y="1043.0" />
-      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" Condition="S1_SENSOR" x="2486.0" y="1567.0" />
-      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" Condition="S2_SENSOR" x="2319.0" y="2207.0" />
-      <ECTransition Source="S3_DELIVER" Destination="DONE" Condition="S3_DELIVERED" x="1177.0" y="2197.0" />
-      <ECTransition Source="READY" Destination="SET_CONFIGURATION" Condition="TRIGGER" x="1530.0" y="415.0" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" Condition="[configurationID = &#39;FEED&#39;]" x="2527.0" y="634.0" />
-      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.0" y="1297.0" />
-      <ECTransition Source="SET_CONFIGURATION" Destination="READY" Condition="RESET" x="1721.0" y="770.0" />
-      <ECTransition Source="SR_OUTPUT" Destination="READY" Condition="RESET" x="1813.0" y="977.0" />
-      <ECTransition Source="S1_TRANSPORT" Destination="READY" Condition="RESET" x="1693.0" y="1188.0" />
-      <ECTransition Source="S2_TRANSPORT" Destination="READY" Condition="RESET" x="1753.0" y="1489.0" />
-      <ECTransition Source="S3_DELIVER" Destination="READY" Condition="RESET" x="1486.0" y="1757.0" />
+      <ECTransition Source="START" Destination="READY" x="839" y="718" Condition="1" />
+      <ECTransition Source="SR_OUTPUT" Destination="S1_TRANSPORT" x="2569" y="1043" Condition="SR_SENSOR" />
+      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" x="2486" y="1567" Condition="S1_SENSOR" />
+      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" x="2319" y="2207" Condition="S2_SENSOR" />
+      <ECTransition Source="S3_DELIVER" Destination="DONE" x="1177" y="2197" Condition="S3_DELIVERED" />
+      <ECTransition Source="READY" Destination="SET_CONFIGURATION" x="1530" y="415" Condition="TRIGGER" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="SR_OUTPUT" x="2527" y="634" Condition="[configurationID = &amp;#39;FEED&amp;#39;]" />
+      <ECTransition Source="DONE" Destination="READY" x="805" y="1297" Condition="1" />
+      <ECTransition Source="SET_CONFIGURATION" Destination="READY" x="1721" y="770" Condition="RESET" />
+      <ECTransition Source="SR_OUTPUT" Destination="READY" x="1813" y="977" Condition="RESET" />
+      <ECTransition Source="S1_TRANSPORT" Destination="READY" x="1693" y="1188" Condition="RESET" />
+      <ECTransition Source="S2_TRANSPORT" Destination="READY" x="1753" y="1489" Condition="RESET" />
+      <ECTransition Source="S3_DELIVER" Destination="READY" x="1486" y="1757" Condition="RESET" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />
@@ -77,3 +76,4 @@
     </Algorithm>
   </BasicFB>
 </FBType>
+

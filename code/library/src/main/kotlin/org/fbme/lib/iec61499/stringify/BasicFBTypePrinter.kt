@@ -35,6 +35,8 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
     private class StatePrinter(stateDeclaration: StateDeclaration) :
         DeclarationPrinterBase<StateDeclaration>(stateDeclaration, "ECState") {
         override fun printDeclarationBody(element: Element) {
+            element.setAttribute("x", "" + this.element.x)
+            element.setAttribute("y", "" + this.element.y)
             for (action in this.element.actions) {
                 val actionElement = Element("ECAction")
                 val eventOutput = action.event.presentation
@@ -45,9 +47,8 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
                 if (algorithm.isNotEmpty()) {
                     actionElement.setAttribute("Algorithm", algorithm)
                 }
+                element.addContent(actionElement)
             }
-            element.setAttribute("x", "" + this.element.x)
-            element.setAttribute("y", "" + this.element.y)
         }
     }
 

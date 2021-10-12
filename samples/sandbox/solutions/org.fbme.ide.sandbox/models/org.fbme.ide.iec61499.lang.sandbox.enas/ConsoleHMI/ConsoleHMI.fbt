@@ -1,48 +1,49 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="ConsoleHMI">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="RESET_DONE"></Event>
+      <Event Name="INIT" />
+      <Event Name="RESET_DONE" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO"></Event>
-      <Event Name="START"></Event>
-      <Event Name="PAUSE"></Event>
-      <Event Name="RESET"></Event>
+      <Event Name="INITO" />
+      <Event Name="START" />
+      <Event Name="PAUSE" />
+      <Event Name="RESET" />
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="StartPauseResetButtons" x="1853.0" y="573.0" />
-    <FB Name="FB2" Type="E_R_TRIG" x="3046.0" y="653.0" />
-    <FB Name="FB3" Type="E_R_TRIG" x="3042.0" y="1065.0" />
-    <FB Name="FB4" Type="E_R_TRIG" x="3046.0" y="1496.0" />
-    <FB Name="FB5" Type="ConsoleControl" x="834.0" y="1615.0" />
-    <EventConnections>
-      <Connection Source="INIT" Destination="FB5.INIT" dx1="384.0" />
-      <Connection Source="FB1.INITO" Destination="INITO" dx1="1138.0" />
-      <Connection Source="FB1.CNF" Destination="FB2.EI" dx1="350.0" />
-      <Connection Source="FB1.CNF" Destination="FB3.EI" dx1="234.0" />
-      <Connection Source="FB1.CNF" Destination="FB4.EI" dx1="288.0" />
-      <Connection Source="FB5.INITO" Destination="FB1.INIT" dx1="15.0" />
-      <Connection Source="FB5.CNF" Destination="FB1.REQ" dx1="100.0" />
-      <Connection Source="FB2.EO" Destination="FB5.START" dx1="130.0" dy="350.0" dx2="130.0" />
-      <Connection Source="FB3.EO" Destination="FB5.PAUSE" dx1="26.0" dy="203.0" dx2="26.0" />
-      <Connection Source="FB4.EO" Destination="FB5.RESET" dx1="7.0" dy="-184.0" dx2="7.0" />
-      <Connection Source="RESET_DONE" Destination="FB5.RESET_DONE" dx1="496.0" />
-      <Connection Source="FB5.E_START" Destination="START" dx1="2219.0" />
-      <Connection Source="FB5.E_PAUSE" Destination="PAUSE" dx1="2261.0" />
-      <Connection Source="FB5.E_RESET" Destination="RESET" dx1="2315.0" />
-    </EventConnections>
+    <FB Name="FB1" Type="StartPauseResetButtons" x="1853" y="573" />
+    <FB Name="FB2" Type="E_R_TRIG" x="3046" y="653" />
+    <FB Name="FB3" Type="E_R_TRIG" x="3042" y="1065" />
+    <FB Name="FB4" Type="E_R_TRIG" x="3046" y="1496" />
+    <FB Name="FB5" Type="ConsoleControl" x="834" y="1615" />
     <DataConnections>
-      <Connection Source="FB1.StartOut" Destination="FB2.QI" dx1="61.0" />
-      <Connection Source="FB1.PauseOut" Destination="FB3.QI" dx1="200.0" />
-      <Connection Source="FB1.ResetOut" Destination="FB4.QI" dx1="146.0" />
-      <Connection Source="FB5.resetLED" Destination="FB1.ResetIn" dx1="246.0" />
-      <Connection Source="FB5.pauseLED" Destination="FB1.PauseIn" dx1="276.0" />
-      <Connection Source="FB5.startLED" Destination="FB1.StartIn" dx1="230.0" />
+      <Connection Source="FB1.StartOut" Destination="FB2.QI" dx1="61" />
+      <Connection Source="FB1.PauseOut" Destination="FB3.QI" dx1="200" />
+      <Connection Source="FB1.ResetOut" Destination="FB4.QI" dx1="146" />
+      <Connection Source="FB5.resetLED" Destination="FB1.ResetIn" dx1="246" />
+      <Connection Source="FB5.pauseLED" Destination="FB1.PauseIn" dx1="276" />
+      <Connection Source="FB5.startLED" Destination="FB1.StartIn" dx1="230" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB5.INIT" dx1="384" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="1138" />
+      <Connection Source="FB1.CNF" Destination="FB2.EI" dx1="350" />
+      <Connection Source="FB1.CNF" Destination="FB3.EI" dx1="234" />
+      <Connection Source="FB1.CNF" Destination="FB4.EI" dx1="288" />
+      <Connection Source="FB5.INITO" Destination="FB1.INIT" dx1="15" />
+      <Connection Source="FB5.CNF" Destination="FB1.REQ" dx1="100" />
+      <Connection Source="FB2.EO" Destination="FB5.START" dy="350" dx2="130" dx1="130" />
+      <Connection Source="FB3.EO" Destination="FB5.PAUSE" dy="203" dx2="26" dx1="26" />
+      <Connection Source="FB4.EO" Destination="FB5.RESET" dy="-184" dx2="7" dx1="7" />
+      <Connection Source="RESET_DONE" Destination="FB5.RESET_DONE" dx1="496" />
+      <Connection Source="FB5.E_START" Destination="START" dx1="2219" />
+      <Connection Source="FB5.E_PAUSE" Destination="PAUSE" dx1="2261" />
+      <Connection Source="FB5.E_RESET" Destination="RESET" dx1="2315" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

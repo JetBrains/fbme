@@ -1,59 +1,60 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="StandardSection">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="DRIVE_ON"></Event>
-      <Event Name="DRIVE_OFF"></Event>
-      <Event Name="DELIVERY"></Event>
-      <Event Name="PAUSE"></Event>
-      <Event Name="START"></Event>
+      <Event Name="INIT" />
+      <Event Name="DRIVE_ON" />
+      <Event Name="DRIVE_OFF" />
+      <Event Name="DELIVERY" />
+      <Event Name="PAUSE" />
+      <Event Name="START" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO"></Event>
-      <Event Name="SENSOR_ON"></Event>
-      <Event Name="SENSOR_OFF"></Event>
-      <Event Name="DELIVERED"></Event>
+      <Event Name="INITO" />
+      <Event Name="SENSOR_ON" />
+      <Event Name="SENSOR_OFF" />
+      <Event Name="DELIVERED" />
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="DRIVER" Type="PUBLISH_1" x="4260.0" y="220.0" />
-    <FB Name="SENSOR" Type="SUBSCRIBE_1" x="540.0" y="220.0" />
-    <FB Name="ADAPT_DRIVER" Type="E_SR" x="3040.0" y="860.0" />
-    <FB Name="ADAPT_SENSOR_ON" Type="E_R_TRIG" x="1234.0" y="411.0" />
-    <FB Name="ADAPT_SENSOR_OFF" Type="E_F_TRIG" x="1300.0" y="1057.0" />
-    <FB Name="SectionDelivery" Type="SectionDelivery" x="1184.0" y="1365.0" />
-    <FB Name="AND" Type="F_AND" x="3540.0" y="760.0" />
-    <FB Name="RUN" Type="E_SR" x="3020.0" y="1720.0" />
-    <EventConnections>
-      <Connection Source="INIT" Destination="SENSOR.INIT" dx1="334.0" />
-      <Connection Source="DRIVER.INITO" Destination="INITO" dx1="0.0" />
-      <Connection Source="SENSOR.INITO" Destination="DRIVER.INIT" dx1="0.0" />
-      <Connection Source="ADAPT_DRIVER.EO" Destination="AND.REQ" dx1="50.0" />
-      <Connection Source="DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="184.0" />
-      <Connection Source="DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="96.0" />
-      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_ON.EI" dx1="153.0" />
-      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SENSOR_ON" dx1="42.0" />
-      <Connection Source="ADAPT_SENSOR_OFF.EO" Destination="SENSOR_OFF" dx1="38.0" />
-      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_OFF.EI" dx1="103.0" />
-      <Connection Source="DELIVERY" Destination="SectionDelivery.TRIGGER" dx1="38.0" />
-      <Connection Source="SectionDelivery.DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="146.0" />
-      <Connection Source="SectionDelivery.DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="215.0" />
-      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SectionDelivery.SENSOR" dx1="34.0" dy="292.0" dx2="34.0" />
-      <Connection Source="SectionDelivery.DONE" Destination="DELIVERED" dx1="53.0" />
-      <Connection Source="PAUSE" Destination="RUN.R" dx1="80.0" />
-      <Connection Source="START" Destination="RUN.S" dx1="46.0" />
-      <Connection Source="RUN.EO" Destination="AND.REQ" dx1="68.0" />
-      <Connection Source="AND.CNF" Destination="DRIVER.REQ" dx1="42.0" />
-    </EventConnections>
+    <FB Name="DRIVER" Type="PUBLISH_1" x="4260" y="220" />
+    <FB Name="SENSOR" Type="SUBSCRIBE_1" x="540" y="220" />
+    <FB Name="ADAPT_DRIVER" Type="E_SR" x="3040" y="860" />
+    <FB Name="ADAPT_SENSOR_ON" Type="E_R_TRIG" x="1234" y="411" />
+    <FB Name="ADAPT_SENSOR_OFF" Type="E_F_TRIG" x="1300" y="1057" />
+    <FB Name="SectionDelivery" Type="SectionDelivery" x="1184" y="1365" />
+    <FB Name="AND" Type="F_AND" x="3540" y="760" />
+    <FB Name="RUN" Type="E_SR" x="3020" y="1720" />
     <DataConnections>
-      <Connection Source="ADAPT_DRIVER.Q" Destination="AND.IN1" dx1="70.0" />
-      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_ON.QI" dx1="157.0" />
-      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_OFF.QI" dx1="61.0" />
-      <Connection Source="RUN.Q" Destination="AND.IN2" dx1="70.0" />
-      <Connection Source="AND.OUT" Destination="DRIVER.SD_1" dx1="70.0" />
+      <Connection Source="ADAPT_DRIVER.Q" Destination="AND.IN1" dx1="70" />
+      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_ON.QI" dx1="157" />
+      <Connection Source="SENSOR.RD_1" Destination="ADAPT_SENSOR_OFF.QI" dx1="61" />
+      <Connection Source="RUN.Q" Destination="AND.IN2" dx1="70" />
+      <Connection Source="AND.OUT" Destination="DRIVER.SD_1" dx1="70" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="SENSOR.INIT" dx1="334" />
+      <Connection Source="DRIVER.INITO" Destination="INITO" dx1="0" />
+      <Connection Source="SENSOR.INITO" Destination="DRIVER.INIT" dx1="0" />
+      <Connection Source="ADAPT_DRIVER.EO" Destination="AND.REQ" dx1="50" />
+      <Connection Source="DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="184" />
+      <Connection Source="DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="96" />
+      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_ON.EI" dx1="153" />
+      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SENSOR_ON" dx1="42" />
+      <Connection Source="ADAPT_SENSOR_OFF.EO" Destination="SENSOR_OFF" dx1="38" />
+      <Connection Source="SENSOR.IND" Destination="ADAPT_SENSOR_OFF.EI" dx1="103" />
+      <Connection Source="DELIVERY" Destination="SectionDelivery.TRIGGER" dx1="38" />
+      <Connection Source="SectionDelivery.DRIVE_ON" Destination="ADAPT_DRIVER.S" dx1="146" />
+      <Connection Source="SectionDelivery.DRIVE_OFF" Destination="ADAPT_DRIVER.R" dx1="215" />
+      <Connection Source="ADAPT_SENSOR_ON.EO" Destination="SectionDelivery.SENSOR" dy="292" dx2="34" dx1="34" />
+      <Connection Source="SectionDelivery.DONE" Destination="DELIVERED" dx1="53" />
+      <Connection Source="PAUSE" Destination="RUN.R" dx1="80" />
+      <Connection Source="START" Destination="RUN.S" dx1="46" />
+      <Connection Source="RUN.EO" Destination="AND.REQ" dx1="68" />
+      <Connection Source="AND.CNF" Destination="DRIVER.REQ" dx1="42" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

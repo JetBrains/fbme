@@ -1,31 +1,31 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="SimpleMove_E">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER"></Event>
-      <Event Name="AT_POSITION"></Event>
-      <Event Name="RESET"></Event>
+      <Event Name="TRIGGER" />
+      <Event Name="AT_POSITION" />
+      <Event Name="RESET" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="DONE"></Event>
-      <Event Name="TO_POSITION"></Event>
+      <Event Name="DONE" />
+      <Event Name="TO_POSITION" />
     </EventOutputs>
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="552.0" y="429.0"></ECState>
-      <ECState Name="OPERATE" x="1336.0" y="664.0">
+      <ECState Name="START" x="552" y="429" />
+      <ECState Name="OPERATE" x="1336" y="664">
         <ECAction Output="TO_POSITION" />
       </ECState>
-      <ECState Name="DONE" x="896.0" y="1144.0">
+      <ECState Name="DONE" x="896" y="1144">
         <ECAction Output="DONE" />
       </ECState>
-      <ECTransition Source="START" Destination="OPERATE" Condition="TRIGGER" x="957.0" y="463.0" />
-      <ECTransition Source="OPERATE" Destination="DONE" Condition="AT_POSITION" x="1182.0" y="954.0" />
-      <ECTransition Source="DONE" Destination="START" Condition="1" x="477.0" y="885.0" />
-      <ECTransition Source="OPERATE" Destination="START" Condition="RESET" x="918.0" y="623.0" />
+      <ECTransition Source="START" Destination="OPERATE" x="957" y="463" Condition="TRIGGER" />
+      <ECTransition Source="OPERATE" Destination="DONE" x="1182" y="954" Condition="AT_POSITION" />
+      <ECTransition Source="DONE" Destination="START" x="477" y="885" Condition="1" />
+      <ECTransition Source="OPERATE" Destination="START" x="918" y="623" Condition="RESET" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />
@@ -35,3 +35,4 @@
     </Algorithm>
   </BasicFB>
 </FBType>
+

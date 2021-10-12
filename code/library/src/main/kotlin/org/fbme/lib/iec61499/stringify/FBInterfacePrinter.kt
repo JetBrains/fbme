@@ -5,7 +5,7 @@ import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.jdom.Element
 
 class FBInterfacePrinter(declaration: FBInterfaceDeclaration, private val mySubApp: Boolean) :
-    PrinterElementBase<FBInterfaceDeclaration>(declaration, "InterfaceList") {
+    PrinterElementBase<FBInterfaceDeclaration>(declaration, if (mySubApp) "SubAppInterfaceList" else "InterfaceList") {
     override fun printElementBody(element: Element) {
         if (mySubApp) {
             printInterfaceWithSubAppEvents(element)

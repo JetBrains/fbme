@@ -1,7 +1,7 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="CylControl">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
@@ -36,42 +36,42 @@
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="1100.0" y="481.0"></ECState>
-      <ECState Name="INIT" x="1235.0" y="113.0">
-        <ECAction Algorithm="INIT" Output="INITO" />
+      <ECState Name="START" x="0" y="540" />
+      <ECState Name="INIT" x="1659" y="346">
+        <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="GO" x="1240.0" y="859.0">
-        <ECAction Algorithm="FWD" Output="CNF" />
+      <ECState Name="GO" x="1659" y="1493">
+        <ECAction Output="CNF" Algorithm="FWD" />
       </ECState>
-      <ECState Name="S_RETURN" x="1093.0" y="1266.0">
-        <ECAction Algorithm="BACK" Output="CNF" />
+      <ECState Name="S_RETURN" x="4126" y="346">
+        <ECAction Output="CNF" Algorithm="BACK" />
       </ECState>
-      <ECState Name="NOMOVE" x="886.0" y="1759.0">
-        <ECAction Algorithm="STOP" Output="CNF" />
+      <ECState Name="NOMOVE" x="6619" y="0">
+        <ECAction Output="CNF" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="946.0" y="266.0" />
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="1246.0" y="300.0" />
-      <ECTransition Source="START" Destination="GO" Condition="REQ[START]" x="1306.0" y="666.0" />
-      <ECTransition Source="GO" Destination="S_RETURN" Condition="REQ[Extended]" x="1300.0" y="1093.0" />
-      <ECTransition Source="S_RETURN" Destination="NOMOVE" Condition="REQ[Retracted]" x="1273.0" y="1546.0" />
-      <ECTransition Source="NOMOVE" Destination="START" Condition="1" x="580.0" y="826.0" />
+      <ECTransition Source="START" Destination="INIT" x="993" y="526" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="START" x="993" y="713" Condition="1" />
+      <ECTransition Source="START" Destination="GO" x="993" y="899" Condition="REQ[START]" />
+      <ECTransition Source="GO" Destination="S_RETURN" x="3379" y="786" Condition="REQ[Extended]" />
+      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="5846" y="560" Condition="REQ[Retracted]" />
+      <ECTransition Source="NOMOVE" Destination="START" x="3379" y="173" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="EXTEND := FALSE;&#38;#10;RETRACT := FALSE;&#38;#10;" />
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="REQ">
       <ST Text="" />
     </Algorithm>
     <Algorithm Name="FWD">
-      <ST Text="EXTEND := TRUE;&#38;#10;RETRACT := FALSE;&#38;#10;" />
+      <ST Text="EXTEND := TRUE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="BACK">
-      <ST Text="EXTEND := FALSE;&#38;#10;RETRACT := TRUE;&#38;#10;" />
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := TRUE;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="STOP">
-      <ST Text="EXTEND := FALSE;&#38;#10;RETRACT := FALSE;&#38;#10;" />
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
+

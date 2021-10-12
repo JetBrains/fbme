@@ -1,15 +1,15 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="CompositeFB3">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="REQ"></Event>
+      <Event Name="INIT" />
+      <Event Name="REQ" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO"></Event>
-      <Event Name="CNF"></Event>
+      <Event Name="INITO" />
+      <Event Name="CNF" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="QI" Type="BOOL" />
@@ -19,26 +19,27 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="BFB3" Type="SectionDelivery" x="939.0" y="310.0" />
-    <FB Name="BFB4" Type="ConsoleControl" x="3083.0" y="813.0" />
-    <FB Name="BFB1" Type="DisableConveyor" x="1993.0" y="963.0" />
-    <EventConnections>
-      <Connection Source="INIT" Destination="BFB3.TRIGGER" dx1="406.0" />
-      <Connection Source="REQ" Destination="BFB3.SENSOR" dx1="383.0" />
-      <Connection Source="BFB3.DONE" Destination="BFB1.INIT" dx1="193.0" />
-      <Connection Source="BFB3.DRIVE_ON" Destination="BFB4.START" dx1="1250.0" />
-      <Connection Source="BFB3.DRIVE_OFF" Destination="BFB4.PAUSE" dx1="1200.0" />
-      <Connection Source="BFB1.CNF" Destination="BFB4.RESET_DONE" dx1="310.0" />
-      <Connection Source="BFB1.INITO" Destination="BFB4.INIT" dx1="173.0" />
-      <Connection Source="BFB3.DONE" Destination="BFB4.RESET" dx1="286.0" />
-      <Connection Source="REQ" Destination="BFB1.REQ" dx1="323.0" />
-      <Connection Source="BFB4.CNF" Destination="CNF" dx1="723.0" />
-      <Connection Source="BFB4.INITO" Destination="INITO" dx1="673.0" />
-    </EventConnections>
+    <FB Name="BFB3" Type="SectionDelivery" x="939" y="310" />
+    <FB Name="BFB4" Type="ConsoleControl" x="3083" y="813" />
+    <FB Name="BFB1" Type="DisableConveyor" x="1993" y="963" />
     <DataConnections>
-      <Connection Source="QI" Destination="BFB1.QI" dx1="209.0" />
-      <Connection Source="BFB4.pauseLED" Destination="BFB1.ConvIn" dx1="130.0" dy="150.0" dx2="333.0" />
-      <Connection Source="BFB1.ConvOut" Destination="QO" dx1="336.0" />
+      <Connection Source="QI" Destination="BFB1.QI" dx1="209" />
+      <Connection Source="BFB4.pauseLED" Destination="BFB1.ConvIn" dy="150" dx2="333" dx1="130" />
+      <Connection Source="BFB1.ConvOut" Destination="QO" dx1="336" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="BFB3.TRIGGER" dx1="406" />
+      <Connection Source="REQ" Destination="BFB3.SENSOR" dx1="383" />
+      <Connection Source="BFB3.DONE" Destination="BFB1.INIT" dx1="193" />
+      <Connection Source="BFB3.DRIVE_ON" Destination="BFB4.START" dx1="1250" />
+      <Connection Source="BFB3.DRIVE_OFF" Destination="BFB4.PAUSE" dx1="1200" />
+      <Connection Source="BFB1.CNF" Destination="BFB4.RESET_DONE" dx1="310" />
+      <Connection Source="BFB1.INITO" Destination="BFB4.INIT" dx1="173" />
+      <Connection Source="BFB3.DONE" Destination="BFB4.RESET" dx1="286" />
+      <Connection Source="REQ" Destination="BFB1.REQ" dx1="323" />
+      <Connection Source="BFB4.CNF" Destination="CNF" dx1="723" />
+      <Connection Source="BFB4.INITO" Destination="INITO" dx1="673" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+
