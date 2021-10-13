@@ -58,6 +58,7 @@ class InlineValueController(
             oppositePortCoordinates.x - OPPOSITE_PORT_PADDING - INNER_BORDER_PADDING - componentCell.width,
             oppositePortCoordinates.y - componentCell.height / 2
         )
+        componentCell.relayout()
     }
 
     override fun updateCellSelection(selected: Boolean) {
