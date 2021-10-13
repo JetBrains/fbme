@@ -336,9 +336,6 @@ class EditorCell_Scene(
             if (!bounds.contains(event.x, event.y)) {
                 return
             }
-            if (event.isPopupTrigger || SwingUtilities.isRightMouseButton(event)) {
-                return
-            }
             val clickEvent = ClickEvent(event) {}
             for (layer in reversedLayers) {
                 for (listener in layer.clickListeners) {
@@ -347,6 +344,9 @@ class EditorCell_Scene(
                         return
                     }
                 }
+            }
+            if (event.isPopupTrigger || SwingUtilities.isRightMouseButton(event)) {
+                return
             }
             if (event.clickCount == 2) {
                 val ec = editorContext.editorComponent as? EditorComponent
