@@ -77,8 +77,8 @@ class InlineValueController(
     }
 
     companion object {
-        private const val OPPOSITE_PORT_PADDING = 20
-        private const val INNER_BORDER_PADDING = 2
+        const val OPPOSITE_PORT_PADDING = 20
+        const val INNER_BORDER_PADDING = 2
     }
 
     init {

@@ -18,16 +18,19 @@ import org.fbme.lib.iec61499.fbnetwork.PortPath
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.controllers.ROLayoutModel
 import org.fbme.scenes.controllers.scene.*
-import java.awt.*
+import java.awt.Color
+import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.Rectangle
 import java.util.function.Function
 
 class NetworkInspectionsFacility(
     private val myNetworkView: NetworkView,
     private val myInstance: NetworkInstance,
     private val myEditor: SceneEditor,
-    private val myComponentProvider: Function<NetworkComponentView, FBNetworkComponentController>,
+    val myComponentProvider: Function<NetworkComponentView, FBNetworkComponentController>,
     private val myConnectionProvider: Function<NetworkConnectionView, FBConnectionController>,
-    private val myLayoutModel: ROLayoutModel<NetworkComponentView>,
+    val myLayoutModel: ROLayoutModel<NetworkComponentView>,
     private val myLayer: Layer
 ) {
     private val myPortInspections = HashMap<PortPath<out Declaration>?, InspectionData>()

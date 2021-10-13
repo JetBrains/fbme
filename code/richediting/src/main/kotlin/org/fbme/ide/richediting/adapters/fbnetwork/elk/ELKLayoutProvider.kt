@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.elk
 
-import com.intellij.openapi.util.Pair
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider
 import org.eclipse.elk.core.IGraphLayoutEngine
 import org.eclipse.elk.core.RecursiveGraphLayoutEngine
@@ -13,6 +12,9 @@ import org.eclipse.elk.graph.ElkPort
 import org.eclipse.elk.graph.util.ElkGraphUtil
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
+import org.fbme.ide.richediting.adapters.fbnetwork.InlineValueController.Companion.INNER_BORDER_PADDING
+import org.fbme.ide.richediting.adapters.fbnetwork.InlineValueController.Companion.OPPOSITE_PORT_PADDING
+import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
 import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
 import org.fbme.scenes.controllers.SceneViewpoint
@@ -21,144 +23,175 @@ import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramFacility
 import org.junit.Assert
 import java.awt.Point
+import java.awt.Rectangle
 
 class ELKLayoutProvider(
     diagramFacility: DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>,
     private val componentsFacility: ComponentsFacility<NetworkComponentView, Point>,
     connectionsFacility: ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>,
+    private val inspectionsFacility: NetworkInspectionsFacility,
     private val viewpoint: SceneViewpoint
 ) {
-    //    private static final Logger LOG = LogManager.getLogger(ELKLayoutProvider.class);
     private val diagramController = diagramFacility.diagramController
     private val componentSynchronizer = componentsFacility.componentSynchronizer
     private val connectionSynchronizer = connectionsFacility.connectionSynchronizer
     private val layoutEngine: IGraphLayoutEngine = RecursiveGraphLayoutEngine()
     private val layoutProviders = listOf(CoreOptions(), LayeredMetaDataProvider())
     private val layoutPropertiesProvider = ELKProperties()
+
     fun relayout() {
-        try {
-            LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(*layoutProviders.toTypedArray())
-            val nodes: MutableList<Pair<NetworkComponentView, ElkNode>> = ArrayList()
-            val mapViewPort: MutableMap<NetworkPortView, ElkPort> = HashMap()
-            val edges: MutableList<Pair<NetworkConnectionView, ElkEdge>> = ArrayList()
-            val endpoints: MutableList<Pair<InterfaceEndpointView, ElkPort>> = ArrayList()
-            val root = createElkGraph(nodes, edges, endpoints, mapViewPort)
-            layoutEngine.layout(root, NullElkProgressMonitor())
-            applyLayout(nodes, endpoints, edges)
-        } catch (t: Throwable) {
-//            LOG.error("error when relayout");
-        }
+        LayoutMetaDataService.getInstance().registerLayoutMetaDataProviders(*layoutProviders.toTypedArray())
+        val nodesMap: MutableMap<FunctionBlockView, ElkNode> = mutableMapOf()
+        val mapViewPort: MutableMap<NetworkPortView, ElkPort> = HashMap()
+        val edgesMap: MutableMap<NetworkConnectionView, ElkEdge> = mutableMapOf()
+        val endpointsMap: MutableMap<InterfaceEndpointView, ElkPort> = mutableMapOf()
+        val root = createElkGraph(nodesMap, edgesMap, endpointsMap, mapViewPort)
+        layoutEngine.layout(root, NullElkProgressMonitor())
+        applyLayout(nodesMap, endpointsMap, edgesMap)
     }
 
     private fun createElkGraph(
-        nodes: MutableList<Pair<NetworkComponentView, ElkNode>>,
-        edges: MutableList<Pair<NetworkConnectionView, ElkEdge>>,
-        endpoints: MutableList<Pair<InterfaceEndpointView, ElkPort>>,
+        nodesMap: MutableMap<FunctionBlockView, ElkNode>,
+        edgesMap: MutableMap<NetworkConnectionView, ElkEdge>,
+        endpointsMap: MutableMap<InterfaceEndpointView, ElkPort>,
         mapViewPort: MutableMap<NetworkPortView, ElkPort>
     ): ElkNode {
         val root = ElkGraphUtil.createGraph()
         val node = ElkGraphUtil.createNode(root)
         node.setLocation(0.0, 0.0)
         layoutPropertiesProvider.setRootProperties(node)
-        processComponents(node, nodes, endpoints, mapViewPort)
-        processConnections(node, mapViewPort, edges)
+        processComponents(node, nodesMap, endpointsMap, mapViewPort)
+        processConnections(node, mapViewPort, edgesMap)
         return root
     }
 
     private fun processConnections(
         parent: ElkNode,
         mapViewPort: Map<NetworkPortView, ElkPort>,
-        edges: MutableList<Pair<NetworkConnectionView, ElkEdge>>
+        edges: MutableMap<NetworkConnectionView, ElkEdge>
     ) {
-        for (connection in diagramController.connections) {
+        val connections = diagramController.connections
+        for (connection in connections) {
             val sourceElkPort = mapViewPort[diagramController.getSource(connection)]
             val targetElkPort = mapViewPort[diagramController.getTarget(connection)]
             val elkEdge = ElkGraphUtil.createSimpleEdge(sourceElkPort, targetElkPort)
             elkEdge.containingNode = parent
-            edges.add(Pair(connection, elkEdge))
+            edges[connection] = elkEdge
         }
     }
 
     private fun processComponents(
         parent: ElkNode,
-        nodes: MutableList<Pair<NetworkComponentView, ElkNode>>,
-        endpoints: MutableList<Pair<InterfaceEndpointView, ElkPort>>,
+        nodesMap: MutableMap<FunctionBlockView, ElkNode>,
+        endpointsMap: MutableMap<InterfaceEndpointView, ElkPort>,
         mapViewPort: MutableMap<NetworkPortView, ElkPort>
     ) {
-        for (component in diagramController.components) {
-            val componentController = componentsFacility.getController(component)
-            val componentPosition = componentsFacility.getModelForm(component)
-            val componentBounds = componentController.getBounds(componentPosition)
-            val x = viewpoint.translateFromEditorX(componentBounds.x)
-            val y = viewpoint.translateFromEditorY(componentBounds.y)
-            val width = viewpoint.fromEditorDimension(componentBounds.width)
-            val height = viewpoint.fromEditorDimension(componentBounds.height)
-            if (component is InterfaceEndpointView) {
-                val port = ElkGraphUtil.createPort(parent)
-                port.setDimensions(width.toDouble(), height.toDouble())
-                layoutPropertiesProvider.setPortProperties(port, component.isSource)
-                mapViewPort[component] = port
-                endpoints.add(Pair(component, port))
-                continue
+        val components = diagramController.components
+        val endpoints = components.filterIsInstance<InterfaceEndpointView>()
+        val functionBlocks = components.filterIsInstance<FunctionBlockView>()
+        val inlineValues = components.filterIsInstance<InlineValueView>()
+
+        for (endpoint in endpoints) {
+            val bounds = getBounds(endpoint)
+            val port = ElkGraphUtil.createPort(parent)
+            port.setDimensions(bounds.getWidth(), bounds.getHeight())
+            layoutPropertiesProvider.setPortProperties(port, endpoint.isSource)
+            mapViewPort[endpoint] = port
+            endpointsMap[endpoint] = port
+        }
+
+        for (functionBlock in functionBlocks) {
+            val bounds = getBounds(functionBlock)
+            val elkNode = ElkGraphUtil.createNode(parent)
+            elkNode.setLocation(bounds.getX(), bounds.getY())
+            elkNode.setDimensions(bounds.getWidth(), bounds.getHeight())
+            layoutPropertiesProvider.setNodeProperties(elkNode)
+            val ports = diagramController.getPorts(functionBlock) as Set<FunctionBlockPortView>
+            for (port in ports) {
+                val portBounds = getBounds(port)
+                val elkPort = ElkGraphUtil.createPort(elkNode)
+                elkPort.setLocation((portBounds.x - bounds.x).toDouble(), (portBounds.y - bounds.y).toDouble())
+                elkPort.setDimensions(portBounds.getWidth(), portBounds.getHeight())
+                layoutPropertiesProvider.setPortProperties(elkPort, port.isSource)
+                mapViewPort[port] = elkPort
             }
-            val node = ElkGraphUtil.createNode(parent)
-            node.setLocation(x.toDouble(), y.toDouble())
-            node.setDimensions(width.toDouble(), height.toDouble())
-            layoutPropertiesProvider.setNodeProperties(node)
-            for (componentPort in diagramController.getPorts(component)) {
-                val componentPortController = diagramController.getPortController(componentPort)
-                val componentPortBounds = componentPortController.bounds
-                val portX = viewpoint.translateFromEditorX(componentPortBounds.x)
-                val portY = viewpoint.translateFromEditorY(componentPortBounds.y)
-                val portWidth = viewpoint.fromEditorDimension(componentPortBounds.width)
-                val portHeight = viewpoint.fromEditorDimension(componentPortBounds.height)
-                val port = ElkGraphUtil.createPort(node)
-                port.setLocation((portX - x).toDouble(), (portY - y).toDouble())
-                port.setDimensions(portWidth.toDouble(), portHeight.toDouble())
-                if (componentPort is FunctionBlockPortView) {
-                    layoutPropertiesProvider.setPortProperties(port, componentPort.isSource)
-                }
-                mapViewPort[componentPort] = port
-            }
-            nodes.add(Pair(component, node))
+            nodesMap[functionBlock] = elkNode
+        }
+
+        for (inlineValue in inlineValues) {
+            val bounds = getBounds(inlineValue)
+            val functionBlock = inlineValue.opposite.component
+            val elkNode = nodesMap[functionBlock]
+            val port = ElkGraphUtil.createPort(elkNode)
+            val padding = OPPOSITE_PORT_PADDING + 2 * INNER_BORDER_PADDING
+            port.setDimensions(bounds.getWidth() + padding, bounds.getHeight())
+            val fbBounds = getBounds(functionBlock)
+            port.setLocation(bounds.getX() - fbBounds.getX(), bounds.getY() - fbBounds.getY())
+            layoutPropertiesProvider.setPortProperties(port, true)
+            mapViewPort[inlineValue] = port
         }
     }
 
+    private fun getBounds(port: FunctionBlockPortView): Rectangle {
+        val componentPortController = diagramController.getPortController(port)
+        val componentPortBounds = componentPortController.bounds
+        return viewpoint.fromEditor(componentPortBounds)
+    }
+
+    private fun getBounds(endpoint: InterfaceEndpointView): Rectangle {
+        val componentController = componentsFacility.getController(endpoint)
+        val componentPosition = componentsFacility.getModelForm(endpoint)
+        val componentBounds = componentController.getBounds(componentPosition)
+        return viewpoint.fromEditor(componentBounds)
+    }
+
+    private fun getBounds(functionBlock: FunctionBlockView): Rectangle {
+        val componentController = componentsFacility.getController(functionBlock)
+        val componentPosition = componentsFacility.getModelForm(functionBlock)
+        val componentBounds = componentController.getBounds(componentPosition)
+        return viewpoint.fromEditor(componentBounds)
+    }
+
+    private fun getBounds(inlineValue: InlineValueView): Rectangle {
+        val componentController = inspectionsFacility.myComponentProvider.apply(inlineValue)
+        val componentPosition = inspectionsFacility.myLayoutModel.getActivePosition(inlineValue)
+        val componentBounds = componentController.getBounds(componentPosition)
+        return viewpoint.fromEditor(componentBounds)
+    }
+
+
     private fun applyLayout(
-        nodes: List<Pair<NetworkComponentView, ElkNode>>,
-        endpoints: List<Pair<InterfaceEndpointView, ElkPort>>,
-        edges: List<Pair<NetworkConnectionView, ElkEdge>>
+        nodes: Map<FunctionBlockView, ElkNode>,
+        endpoints: Map<InterfaceEndpointView, ElkPort>,
+        edges: Map<NetworkConnectionView, ElkEdge>
     ) {
         applyNodeLayout(nodes)
         applyEndpointLayout(endpoints)
         applyEdgeLayout(edges)
     }
 
-    private fun applyEndpointLayout(endpoints: List<Pair<InterfaceEndpointView, ElkPort>>) {
-        for (endpoint in endpoints) {
-            val elkPort = endpoint.second
+    private fun applyEndpointLayout(endpointsMap: Map<InterfaceEndpointView, ElkPort>) {
+        for ((endpoint, elkPort) in endpointsMap) {
             val x = viewpoint.translateToEditorX(elkPort.x.toInt())
             val y = viewpoint.translateToEditorY(elkPort.y.toInt())
-            componentSynchronizer.setForm(endpoint.first, Point(x, y))
+            componentSynchronizer.setForm(endpoint, Point(x, y))
         }
     }
 
-    private fun applyNodeLayout(nodes: List<Pair<NetworkComponentView, ElkNode>>) {
-        for (node in nodes) {
-            val elkNode = node.second
+    private fun applyNodeLayout(nodesMap: Map<FunctionBlockView, ElkNode>) {
+        for ((functionBlock, elkNode) in nodesMap) {
             val x = viewpoint.translateToEditorX(elkNode.x.toInt())
             val y = viewpoint.translateToEditorY(elkNode.y.toInt())
-            componentSynchronizer.setForm(node.first, Point(x, y))
+            componentSynchronizer.setForm(functionBlock, Point(x, y))
         }
     }
 
-    private fun applyEdgeLayout(edges: List<Pair<NetworkConnectionView, ElkEdge>>) {
-        for (edge in edges) {
-            val elkEdge = edge.second
+    private fun applyEdgeLayout(edgesMap: Map<NetworkConnectionView, ElkEdge>) {
+        for ((connection, elkEdge) in edgesMap) {
             val points: List<Point> = getPointsFromEdge(elkEdge)
-            Assert.assertTrue(points.size >= 2 && points.size % 2 == 0)
+            assert(points.size >= 2 && points.size % 2 == 0)
             val connectionPath = getConnectionPathFromPoints(points)
-            connectionSynchronizer.setPath(edge.first, connectionPath)
+            connectionSynchronizer.setPath(connection, connectionPath)
         }
     }
 

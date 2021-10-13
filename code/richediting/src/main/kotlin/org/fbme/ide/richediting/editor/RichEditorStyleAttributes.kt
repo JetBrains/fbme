@@ -6,11 +6,8 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock
-import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor
-import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
+import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
-import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
-import org.fbme.ide.richediting.viewmodel.NetworkPortView
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
@@ -26,7 +23,6 @@ import org.fbme.scenes.controllers.SelectionModel
 import org.fbme.scenes.controllers.components.ComponentsFacility
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramFacility
-import java.awt.Point
 
 object RichEditorStyleAttributes {
     @JvmField
@@ -87,6 +83,10 @@ object RichEditorStyleAttributes {
         InheritableStyleAttribute("connections-facility")
 
     @JvmField
+    val INSPECTIONS_FACILITY: StyleAttribute<NetworkInspectionsFacility> =
+        InheritableStyleAttribute("inspections-facility")
+
+    @JvmField
     val VIEWPOINT: StyleAttribute<SceneViewpoint> = InheritableStyleAttribute("viewpoint")
 
     init {
@@ -108,6 +108,7 @@ object RichEditorStyleAttributes {
         DIAGRAM_FACILITY.register()
         COMPONENTS_FACILITY.register()
         CONNECTIONS_FACILITY.register()
+        INSPECTIONS_FACILITY.register()
         VIEWPOINT.register()
     }
 }

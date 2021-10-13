@@ -1,6 +1,7 @@
 package org.fbme.scenes.controllers
 
 import java.awt.Point
+import java.awt.Rectangle
 
 interface SceneViewpoint {
     val editorShift: Point
@@ -29,4 +30,11 @@ interface SceneViewpoint {
     fun translateFromEditorY(y: Int): Int {
         return fromEditorDimension(y - editorShift.y)
     }
+
+    fun fromEditor(bounds: Rectangle) = Rectangle(
+        translateFromEditorX(bounds.x),
+        translateFromEditorY(bounds.y),
+        fromEditorDimension(bounds.width),
+        fromEditorDimension(bounds.height)
+    )
 }

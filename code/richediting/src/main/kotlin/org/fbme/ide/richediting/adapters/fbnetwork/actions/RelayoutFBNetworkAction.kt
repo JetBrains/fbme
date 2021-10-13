@@ -26,6 +26,7 @@ class RelayoutFBNetworkAction(cell: EditorCell) {
             style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY) as DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>,
             style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY) as ComponentsFacility<NetworkComponentView, Point>,
             style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY) as ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>,
+            style.get(RichEditorStyleAttributes.INSPECTIONS_FACILITY),
             style.get(RichEditorStyleAttributes.VIEWPOINT)
         )
     }

@@ -230,7 +230,7 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility)
             val connectionProvider =
                 Function { it: NetworkConnectionView -> connectionsFacility.getController(it) as FBConnectionController }
-            NetworkInspectionsFacility(
+            val networkInspectionsFacility = NetworkInspectionsFacility(
                 networkView,
                 networkInstance,
                 scene,
@@ -239,6 +239,7 @@ object FBNetworkEditors {
                 extendedLayout,
                 inspectionsLayer
             )
+            style.set(RichEditorStyleAttributes.INSPECTIONS_FACILITY, networkInspectionsFacility)
         } catch (e: RuntimeException) {
 //            LOG.error("Error during cell creation", e);
         }
