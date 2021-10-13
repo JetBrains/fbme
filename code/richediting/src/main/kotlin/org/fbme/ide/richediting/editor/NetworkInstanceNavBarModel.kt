@@ -52,7 +52,7 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
                 val parentInstace = instance.parent
                 instance = if (parentInstace is FunctionBlockInstance) ({
                     parentInstace.parent
-                }) as NetworkInstance? else {
+                }) as? NetworkInstance else {
                     null
                 }
             }
