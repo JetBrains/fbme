@@ -7,6 +7,7 @@ import jetbrains.mps.openapi.editor.style.Style
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
+import org.fbme.ide.richediting.viewmodel.InlineValueView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
@@ -72,6 +73,9 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
             val sourcePortPosition = sourcePortController.modelEndpointPosition
             val targetPortPosition = targetPortController.modelEndpointPosition
             val sourceComponent = diagramController.getComponent(source)
+            if (sourceComponent is InlineValueView) {
+                continue
+            }
             val targetComponent = diagramController.getComponent(target)
             val sourceComponentPosition = componentsFacility.getModelForm(sourceComponent)
             val targetComponentPosition = componentsFacility.getModelForm(targetComponent)
@@ -131,6 +135,9 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
         val bottomBound = bounds.y + bounds.height
         val components = diagramController.components
         for (component in components) {
+            if (component is InlineValueView) {
+                continue
+            }
             val modelComponentPosition = componentsFacility.getModelForm(component)
             if (modelComponentPosition.x > rightBound) {
                 affectedComponentsByX.add(component)
