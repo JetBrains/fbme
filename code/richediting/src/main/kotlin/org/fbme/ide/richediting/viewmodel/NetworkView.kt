@@ -159,7 +159,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
             myComponentToPorts[inlineValueView] = java.util.Set.of<NetworkPortView>(inlineValueView)
             myPorts[inlineValueView] = inlineValueView
             exts.add(inlineValueView)
-            val parameterConnectionView = NetworkConnectionView(parameter, false)
+            val parameterConnectionView = NetworkConnectionView(parameter, true)
             myConnectionSources[parameterConnectionView] = inlineValueView
             myConnectionDestinations[parameterConnectionView] = oppositePortView
         }
