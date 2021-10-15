@@ -1,6 +1,7 @@
 
 plugins {
     mps
+    kotlin
 }
 
 dependencies {
@@ -20,4 +21,11 @@ mps {
 val mpsPrepare by tasks.getting(Copy::class) {
     from("build/libs/formalfb.jar")
     into("solutions/org.fbme.formalfb/lib")
+}
+
+val test by tasks.getting(Test::class) {
+    dependsOn(
+        ":code:library:mpsJar",
+        "mpsJar"
+    )
 }
