@@ -1,4 +1,5 @@
 import org.fbme.formalfb.generation.SpinGenerator
+import org.fbme.ide.platform.testing.LoadFrom
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.lib.common.StringIdentifier
@@ -7,6 +8,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(PlatformTestRunner::class)
+@LoadFrom("org.fbme.formalfb")
 class GeneratorTest : PlatformTestBase() {
 
     @Test
