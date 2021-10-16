@@ -16,17 +16,19 @@ import java.lang.reflect.Field
 import java.net.MalformedURLException
 import java.net.URLClassLoader
 import java.nio.file.Path
-import java.util.stream.StreamSupport
+import java.util.concurrent.ConcurrentHashMap
 
 class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCustomClassloader(clazz)) {
+
+    private val runnerEnvironment = runnerEnvironments.getValue(loadFromModuleName(clazz))
+
     override fun withBefores(method: FrameworkMethod, target: Any, statement: Statement): Statement {
         val original = super.withBefores(method, target, statement)
         return object : Statement() {
             @Throws(Throwable::class)
             override fun evaluate() {
-                if (ourRunnerEnvironment!!.platformTestClass.isInstance(target)) {
-                    ourRunnerEnvironment!!.platformTestEnvironmentField[target] =
-                        ourRunnerEnvironment!!.environment
+                if (runnerEnvironment.platformTestClass.isInstance(target)) {
+                    runnerEnvironment.platformTestEnvironmentField[target] = runnerEnvironment.environment
                 }
                 original.evaluate()
             }
@@ -37,7 +39,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
     override fun run(notifier: RunNotifier) {
         val runnable = Runnable { super.run(notifier) }
         val thread = Thread(runnable)
-        thread.contextClassLoader = ourRunnerEnvironment!!.classLoader
+        thread.contextClassLoader = runnerEnvironment.classLoader
         thread.start()
         try {
             thread.join()
@@ -56,6 +58,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
     private class PlatformTestClassloader(private val myParentModule: ReloadableModule) : URLClassLoader(
         arrayOf(
             File("build/classes/java/test").toURI().toURL(),
+            File("build/classes/kotlin/test").toURI().toURL(),
             File("build/resources/test").toURI().toURL()
         ),
         null
@@ -71,14 +74,14 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
     }
 
     companion object {
-        @Volatile
-        private var ourRunnerEnvironment: RunnerEnvironment? = null
+        private val runnerEnvironments = ConcurrentHashMap<String, RunnerEnvironment>()
 
         @Throws(InitializationError::class)
         private fun loadFromCustomClassloader(clazz: Class<*>): Class<*> {
             return try {
-                initializeRunnerEnvironment()
-                Class.forName(clazz.name, true, ourRunnerEnvironment!!.classLoader)
+                val moduleName = loadFromModuleName(clazz)
+                initializeRunnerEnvironment(moduleName)
+                Class.forName(clazz.name, true, runnerEnvironments.getValue(moduleName).classLoader)
             } catch (e: ClassNotFoundException) {
                 throw InitializationError(e)
             } catch (e: MalformedURLException) {
@@ -88,46 +91,49 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
             }
         }
 
+        private fun loadFromModuleName(clazz: Class<*>): String {
+            val loadFrom = clazz.getAnnotation(LoadFrom::class.java)
+            val moduleName = loadFrom?.module ?: "org.fbme.ide.platform"
+            return moduleName
+        }
+
         @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class)
-        private fun initializeRunnerEnvironment() {
-            if (ourRunnerEnvironment == null) {
-                synchronized(PlatformTestRunner::class.java) {
-                    if (ourRunnerEnvironment == null) {
-                        val config = EnvironmentConfig.defaultConfig()
-                            .addLib("build/artifacts/fbme_platform/fbme.platform/languages")
-                            .addLib(
-                                Path.of("../library/build/artifacts/fbme_library/fbme.library/languages")
-                                    .toAbsolutePath().normalize().toString()
-                            )
-                            .setCreatePluginClassLoaders(false)
-                            .withTestModeOn()
-                        val environment = MpsEnvironment(config)
-                        environment.init()
-                        val repository = MPSModuleRepository.getInstance()
-                        val parentModule = ModelAccessHelper(repository.modelAccess).runReadAction<ReloadableModule> {
-                            val platformModule = StreamSupport.stream(repository.modules.spliterator(), false)
-                                .filter { it.moduleName == "org.fbme.ide.platform" }
-                                .findFirst().orElseThrow() as ReloadableModule
-                            try {
-                                platformModule.getClass("org.fbme.ide.iec61499.repository.MpsBridgeImpl")
-                                    .getMethod("install").invoke(null)
-                            } catch (e: Exception) {
-                                throw RuntimeException("Bridge not installed", e)
-                            }
-                            platformModule
-                        }
-                        val classloader = PlatformTestClassloader(parentModule)
-                        val platformTestClass =
-                            Class.forName("org.fbme.ide.platform.testing.PlatformTestBase", true, classloader)
-                        ourRunnerEnvironment = RunnerEnvironment(
-                            environment,
-                            classloader,
-                            platformTestClass,
-                            platformTestClass.getField("environment")
-                        )
+        private fun initializeRunnerEnvironment(moduleName: String) {
+            runnerEnvironments.getOrPut(moduleName) {
+                val config = EnvironmentConfig.defaultConfig()
+                    .addLib(libPath("../library/build/artifacts/fbme_library/fbme.library/languages"))
+                    .addLib(libPath("../language/build/artifacts/fbme_language/fbme.language/languages"))
+                    .addLib(libPath("../platform/build/artifacts/fbme_platform/fbme.platform/languages"))
+                    .addLib(libPath("../richediting/build/artifacts/fbme_richediting/fbme.richediting/languages"))
+                    .addLib(libPath("../scenes/build/artifacts/fbme_scenes/fbme.scenes/languages"))
+                    .addLib(libPath("../formalfb/build/artifacts/fbme_formalfb/fbme.formalfb/languages"))
+                    .withTestModeOn()
+                val environment = MpsEnvironment(config)
+                environment.init()
+                val repository = MPSModuleRepository.getInstance()
+                val parentModule = ModelAccessHelper(repository.modelAccess).runReadAction<ReloadableModule> {
+                    val platformModule = repository.modules.first { it.moduleName == moduleName } as ReloadableModule
+                    try {
+                        platformModule.getClass("org.fbme.ide.iec61499.repository.MpsBridgeImpl")
+                            .getMethod("install").invoke(null)
+                    } catch (e: Exception) {
+                        throw RuntimeException("Bridge not installed", e)
                     }
+                    platformModule
                 }
+                val classloader = PlatformTestClassloader(parentModule)
+                val platformTestClass =
+                    Class.forName("org.fbme.ide.platform.testing.PlatformTestBase", true, classloader)
+                RunnerEnvironment(
+                    environment,
+                    classloader,
+                    platformTestClass,
+                    platformTestClass.getField("environment")
+                )
             }
         }
+
+        private fun libPath(relative: String) = Path.of(relative)
+            .toAbsolutePath().normalize().toString()
     }
 }

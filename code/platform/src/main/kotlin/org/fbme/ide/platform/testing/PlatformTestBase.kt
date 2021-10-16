@@ -10,6 +10,7 @@ import org.junit.After
 import org.junit.Before
 
 abstract class PlatformTestBase {
+    @JvmField
     var environment: Environment? = null
     protected var project: Project? = null
     protected val repository: PlatformRepository

@@ -170,7 +170,7 @@
     </node>
     <node concept="1l3spV" id="Ej4tEplrOi" role="1l3spN">
       <node concept="m$_wl" id="42vv4xsJMzh" role="39821P">
-        <ref role="m_rDy" node="42vv4xsIJ5y" resolve="scenes" />
+        <ref role="m_rDy" node="42vv4xsIJ5y" resolve="fbme.scenes" />
         <node concept="pUk6x" id="42vv4xsJM$j" role="pUk7w" />
         <node concept="398223" id="3tHZ0yHpqR9" role="39821P">
           <node concept="3_J27D" id="3tHZ0yHpqRa" role="Nbhlr">
@@ -198,7 +198,7 @@
       </node>
     </node>
     <node concept="m$_wf" id="42vv4xsIJ5y" role="3989C9">
-      <property role="m$_wk" value="scenes" />
+      <property role="m$_wk" value="fbme.scenes" />
       <node concept="3_J27D" id="42vv4xsIJ5$" role="m$_yQ">
         <node concept="3Mxwew" id="42vv4xsIJhF" role="3MwsjC">
           <property role="3MwjfP" value="Scenes" />
@@ -206,7 +206,7 @@
       </node>
       <node concept="3_J27D" id="42vv4xsIJ5A" role="m_cZH">
         <node concept="3Mxwew" id="42vv4xsIJhH" role="3MwsjC">
-          <property role="3MwjfP" value="scenes" />
+          <property role="3MwjfP" value="fbme.scenes" />
         </node>
       </node>
       <node concept="3_J27D" id="42vv4xsIJ5C" role="m$_w8">
@@ -220,14 +220,14 @@
         </node>
       </node>
       <node concept="m$f5U" id="42vv4xsIJjP" role="m$_yh">
-        <ref role="m$f5T" node="42vv4xsIJd4" resolve="scenes" />
+        <ref role="m$f5T" node="42vv4xsIJd4" resolve="fbme-scenes" />
       </node>
       <node concept="m$_yC" id="42vv4xsJqp_" role="m$_yJ">
         <ref role="m$_y1" to="ffeo:4k71ibbKLe8" resolve="jetbrains.mps.core" />
       </node>
     </node>
     <node concept="2G$12M" id="42vv4xsIJd4" role="3989C9">
-      <property role="TrG5h" value="scenes" />
+      <property role="TrG5h" value="fbme-scenes" />
       <node concept="1E1JtA" id="42vv4xsIJiX" role="2G$12L">
         <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.scenes" />
