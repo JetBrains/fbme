@@ -1,250 +1,243 @@
-package org.fbme.ide.platform.adapters;
+package org.fbme.ide.platform.adapters
 
-import org.fbme.ide.platform.testing.PlatformTestBase;
-import org.fbme.ide.platform.testing.PlatformTestRunner;
-import org.fbme.lib.common.StringIdentifier;
-import org.fbme.lib.iec61499.declarations.*;
-import org.fbme.lib.iec61499.ecc.StateAction;
-import org.fbme.lib.iec61499.ecc.StateDeclaration;
-import org.fbme.lib.iec61499.ecc.StateTransition;
-import org.fbme.lib.iec61499.fbnetwork.EntryKind;
-import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
-import org.fbme.lib.iec61499.fbnetwork.subapp.SubapplicationDeclaration;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.fbme.ide.platform.testing.PlatformTestRunner
+import org.fbme.ide.platform.testing.PlatformTestBase
+import org.fbme.lib.common.StringIdentifier
+import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
+import org.fbme.lib.iec61499.fbnetwork.EntryKind
+import org.junit.Assert
+import org.junit.Test
+import org.junit.runner.RunWith
 
-@RunWith(PlatformTestRunner.class)
-public class IEC61499FactoryTest extends PlatformTestBase {
-
+@RunWith(PlatformTestRunner::class)
+class IEC61499FactoryTest : PlatformTestBase() {
     @Test
-    public void createAdapterTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestAdapterTypeDeclaration");
-        AdapterTypeDeclaration element = getFactory().createAdapterTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestAdapterTypeDeclaration", element.getName());
+    fun createAdapterTypeDeclaration() {
+        val identifier = StringIdentifier("TestAdapterTypeDeclaration")
+        val element = factory.createAdapterTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestAdapterTypeDeclaration", element.name)
     }
 
     @Test
-    public void createAlgorithmDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestAlgorithmDeclaration");
-        AlgorithmDeclaration element = getFactory().createAlgorithmDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestAlgorithmDeclaration", element.getName());
+    fun createAlgorithmDeclaration() {
+        val identifier = StringIdentifier("TestAlgorithmDeclaration")
+        val element = factory.createAlgorithmDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestAlgorithmDeclaration", element.name)
     }
 
     @Test
-    public void createStAlgorithmBody() {
-        AlgorithmBody.ST element = getFactory().createAlgorithmBody(AlgorithmLanguage.ST);
-        Assert.assertNotNull(element);
-        Assert.assertSame(AlgorithmLanguage.ST, element.getLanguage());
+    fun createStAlgorithmBody() {
+        val element = factory.createAlgorithmBody(AlgorithmLanguage.ST)
+        Assert.assertNotNull(element)
+        Assert.assertSame(AlgorithmLanguage.ST, element.language)
     }
 
     @Test
-    public void createApplicationDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestApplicationDeclaration");
-        ApplicationDeclaration element = getFactory().createApplicationDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestApplicationDeclaration", element.getName());
+    fun createApplicationDeclaration() {
+        val identifier = StringIdentifier("TestApplicationDeclaration")
+        val element = factory.createApplicationDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestApplicationDeclaration", element.name)
     }
 
     @Test
-    public void createBasicFBTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestBasicFBTypeDeclaration");
-        BasicFBTypeDeclaration element = getFactory().createBasicFBTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestBasicFBTypeDeclaration", element.getName());
+    fun createBasicFBTypeDeclaration() {
+        val identifier = StringIdentifier("TestBasicFBTypeDeclaration")
+        val element = factory.createBasicFBTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestBasicFBTypeDeclaration", element.name)
     }
 
     @Test
-    public void createCompositeFBTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestCompositeFBTypeDeclaration");
-        CompositeFBTypeDeclaration element = getFactory().createCompositeFBTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestCompositeFBTypeDeclaration", element.getName());
+    fun createCompositeFBTypeDeclaration() {
+        val identifier = StringIdentifier("TestCompositeFBTypeDeclaration")
+        val element = factory.createCompositeFBTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestCompositeFBTypeDeclaration", element.name)
     }
 
     @Test
-    public void createDeviceDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestDeviceDeclaration");
-        DeviceDeclaration element = getFactory().createDeviceDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestDeviceDeclaration", element.getName());
+    fun createDeviceDeclaration() {
+        val identifier = StringIdentifier("TestDeviceDeclaration")
+        val element = factory.createDeviceDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestDeviceDeclaration", element.name)
     }
 
     @Test
-    public void createDeviceTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestDeviceTypeDeclaration");
-        DeviceTypeDeclaration element = getFactory().createDeviceTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestDeviceTypeDeclaration", element.getName());
+    fun createDeviceTypeDeclaration() {
+        val identifier = StringIdentifier("TestDeviceTypeDeclaration")
+        val element = factory.createDeviceTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestDeviceTypeDeclaration", element.name)
     }
 
     @Test
-    public void createParameterAssignment() {
-        ParameterAssignment element = getFactory().createParameterAssignment();
-        Assert.assertNotNull(element);
+    fun createParameterAssignment() {
+        val element = factory.createParameterAssignment()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createEventAssociation() {
-        EventAssociation element = getFactory().createEventAssociation();
-        Assert.assertNotNull(element);
+    fun createEventAssociation() {
+        val element = factory.createEventAssociation()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createEventDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestEventDeclaration");
-        EventDeclaration element = getFactory().createEventDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestEventDeclaration", element.getName());
+    fun createEventDeclaration() {
+        val identifier = StringIdentifier("TestEventDeclaration")
+        val element = factory.createEventDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestEventDeclaration", element.name)
     }
 
     @Test
-    public void createFBTypeReference() {
-        FBTypeReference element = getFactory().createFBTypeReference();
-        Assert.assertNotNull(element);
+    fun createFBTypeReference() {
+        val element = factory.createFBTypeReference()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createLink() {
-        Link element = getFactory().createLink();
-        Assert.assertNotNull(element);
+    fun createLink() {
+        val element = factory.createLink()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createMapping() {
-        Mapping element = getFactory().createMapping();
-        Assert.assertNotNull(element);
+    fun createMapping() {
+        val element = factory.createMapping()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createParameterDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestParameterDeclaration");
-        ParameterDeclaration element = getFactory().createParameterDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestParameterDeclaration", element.getName());
+    fun createParameterDeclaration() {
+        val identifier = StringIdentifier("TestParameterDeclaration")
+        val element = factory.createParameterDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestParameterDeclaration", element.name)
     }
 
     @Test
-    public void createResourceDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestResourceDeclaration");
-        ResourceDeclaration element = getFactory().createResourceDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestResourceDeclaration", element.getName());
+    fun createResourceDeclaration() {
+        val identifier = StringIdentifier("TestResourceDeclaration")
+        val element = factory.createResourceDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestResourceDeclaration", element.name)
     }
 
     @Test
-    public void createResourceTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestResourceTypeDeclaration");
-        ResourceTypeDeclaration element = getFactory().createResourceTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestResourceTypeDeclaration", element.getName());
+    fun createResourceTypeDeclaration() {
+        val identifier = StringIdentifier("TestResourceTypeDeclaration")
+        val element = factory.createResourceTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestResourceTypeDeclaration", element.name)
     }
 
     @Test
-    public void createResourceTypeReference() {
-        ResourceTypeReference element = getFactory().createResourceTypeReference();
-        Assert.assertNotNull(element);
+    fun createResourceTypeReference() {
+        val element = factory.createResourceTypeReference()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createSegmentDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSegmentDeclaration");
-        SegmentDeclaration element = getFactory().createSegmentDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSegmentDeclaration", element.getName());
+    fun createSegmentDeclaration() {
+        val identifier = StringIdentifier("TestSegmentDeclaration")
+        val element = factory.createSegmentDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSegmentDeclaration", element.name)
     }
 
     @Test
-    public void createSegmentTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSegmentTypeDeclaration");
-        SegmentTypeDeclaration element = getFactory().createSegmentTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSegmentTypeDeclaration", element.getName());
+    fun createSegmentTypeDeclaration() {
+        val identifier = StringIdentifier("TestSegmentTypeDeclaration")
+        val element = factory.createSegmentTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSegmentTypeDeclaration", element.name)
     }
 
     @Test
-    public void createServiceInterfaceFBTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestServiceInterfaceFBTypeDeclaration");
-        ServiceInterfaceFBTypeDeclaration element = getFactory().createServiceInterfaceFBTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestServiceInterfaceFBTypeDeclaration", element.getName());
+    fun createServiceInterfaceFBTypeDeclaration() {
+        val identifier = StringIdentifier("TestServiceInterfaceFBTypeDeclaration")
+        val element = factory.createServiceInterfaceFBTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestServiceInterfaceFBTypeDeclaration", element.name)
     }
 
     @Test
-    public void createSubapplicationTypeDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSubapplicationTypeDeclaration");
-        SubapplicationTypeDeclaration element = getFactory().createSubapplicationTypeDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSubapplicationTypeDeclaration", element.getName());
+    fun createSubapplicationTypeDeclaration() {
+        val identifier = StringIdentifier("TestSubapplicationTypeDeclaration")
+        val element = factory.createSubapplicationTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSubapplicationTypeDeclaration", element.name)
     }
 
     @Test
-    public void createSystemDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSystemDeclaration");
-        SystemDeclaration element = getFactory().createSystemDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSystemDeclaration", element.getName());
+    fun createSystemDeclaration() {
+        val identifier = StringIdentifier("TestSystemDeclaration")
+        val element = factory.createSystemDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSystemDeclaration", element.name)
     }
 
     @Test
-    public void createStateAction() {
-        StateAction element = getFactory().createStateAction();
-        Assert.assertNotNull(element);
+    fun createStateAction() {
+        val element = factory.createStateAction()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createStateDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestStateDeclaration");
-        StateDeclaration element = getFactory().createStateDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestStateDeclaration", element.getName());
+    fun createStateDeclaration() {
+        val identifier = StringIdentifier("TestStateDeclaration")
+        val element = factory.createStateDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestStateDeclaration", element.name)
     }
 
     @Test
-    public void createStateTransition() {
-        StateTransition element = getFactory().createStateTransition();
-        Assert.assertNotNull(element);
+    fun createStateTransition() {
+        val element = factory.createStateTransition()
+        Assert.assertNotNull(element)
     }
 
     @Test
-    public void createFunctionBlockDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestFunctionBlockDeclaration");
-        FunctionBlockDeclaration element = getFactory().createFunctionBlockDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestFunctionBlockDeclaration", element.getName());
+    fun createFunctionBlockDeclaration() {
+        val identifier = StringIdentifier("TestFunctionBlockDeclaration")
+        val element = factory.createFunctionBlockDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestFunctionBlockDeclaration", element.name)
     }
 
     @Test
-    public void createSubapplicationDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSubapplicationDeclaration");
-        SubapplicationDeclaration element = getFactory().createSubapplicationDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSubapplicationDeclaration", element.getName());
+    fun createSubapplicationDeclaration() {
+        val identifier = StringIdentifier("TestSubapplicationDeclaration")
+        val element = factory.createSubapplicationDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSubapplicationDeclaration", element.name)
     }
 
     @Test
-    public void createPlugDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestPlugDeclaration");
-        PlugDeclaration element = getFactory().createPlugDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestPlugDeclaration", element.getName());
+    fun createPlugDeclaration() {
+        val identifier = StringIdentifier("TestPlugDeclaration")
+        val element = factory.createPlugDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestPlugDeclaration", element.name)
     }
 
     @Test
-    public void createSocketDeclaration() {
-        StringIdentifier identifier = new StringIdentifier("TestSocketDeclaration");
-        SocketDeclaration element = getFactory().createSocketDeclaration(identifier);
-        Assert.assertNotNull(element);
-        Assert.assertEquals("TestSocketDeclaration", element.getName());
+    fun createSocketDeclaration() {
+        val identifier = StringIdentifier("TestSocketDeclaration")
+        val element = factory.createSocketDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestSocketDeclaration", element.name)
     }
 
     @Test
-    public void createFBNetworkConnection() {
-        FBNetworkConnection element = getFactory().createFBNetworkConnection(EntryKind.DATA);
-        Assert.assertNotNull(element);
-        Assert.assertSame(EntryKind.DATA, element.getKind());
+    fun createFBNetworkConnection() {
+        val element = factory.createFBNetworkConnection(EntryKind.DATA)
+        Assert.assertNotNull(element)
+        Assert.assertSame(EntryKind.DATA, element.kind)
     }
 }

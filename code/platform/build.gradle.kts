@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     mps
     kotlin
@@ -22,6 +24,10 @@ val mpsPrepare by tasks.getting(Copy::class) {
 
 val mpsAssemble by tasks.getting {
     inputs.dir("solutions/org.fbme.ide.platform/lib")
+}
+
+val compileKotlin by tasks.getting(KotlinCompile::class) {
+    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
 }
 
 val test by tasks.getting(Test::class) {
