@@ -51,3 +51,9 @@ class Formulas : SpinElement {
 
     }
 }
+
+fun spinFile(init: SpinFile.() -> Unit): SpinFile {
+    val file = SpinFile()
+    file.init()
+    return file
+}

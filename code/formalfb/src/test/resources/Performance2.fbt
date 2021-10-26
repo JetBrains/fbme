@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="Performance2" Comment="Composite Function Block Type">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="jetbrains" Date="2020-12-26">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="CNF" Type="Event" Comment="Execution Confirmation">
+				<With Var="RES"/>
+			</Event>
+		</EventOutputs>
+		<OutputVars>
+			<VarDeclaration Name="RES" Type="DINT" Comment="Output event qualifier"/>
+		</OutputVars>
+	</InterfaceList>
+	<FBNetwork>
+		<FB Name="ALU_2" Type="ALU" Comment="" x="1142.8571428571427" y="142.85714285714283">
+			<Parameter Name="B" Value="1"/>
+		</FB>
+		<FB Name="ALU_1" Type="ALU" Comment="" x="285.71428571428567" y="142.85714285714283">
+			<Parameter Name="A" Value="0"/>
+			<Parameter Name="B" Value="1"/>
+		</FB>
+		<EventConnections>
+			<Connection Source="ALU_2.CNF" Destination="CNF" Comment="" dx1="149.99999999999997"/>
+			<Connection Source="REQ" Destination="ALU_1.SUM" Comment="" dx1="-21.428571428571427"/>
+			<Connection Source="ALU_1.CNF" Destination="ALU_2.SUM" Comment="" dx1="221.42857142857142"/>
+		</EventConnections>
+		<DataConnections>
+			<Connection Source="ALU_2.RES" Destination="RES" Comment="" dx1="178.57142857142856"/>
+			<Connection Source="ALU_1.RES" Destination="ALU_2.A" Comment="" dx1="121.42857142857142"/>
+		</DataConnections>
+	</FBNetwork>
+</FBType>

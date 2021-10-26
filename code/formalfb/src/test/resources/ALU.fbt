@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="ALU" Comment="Template for a simple Basic Function Block Type">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="jetbrains" Date="2020-12-24">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="SUM" Type="Event" Comment="Event inputs">
+				<With Var="A"/>
+				<With Var="B"/>
+			</Event>
+			<Event Name="DIFF" Type="Event" Comment="">
+				<With Var="A"/>
+				<With Var="B"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="CNF" Type="Event" Comment="Execution Confirmation">
+				<With Var="RES"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="A" Type="DINT" Comment="Input event qualifier"/>
+			<VarDeclaration Name="B" Type="DINT" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="RES" Type="DINT" Comment="Output event qualifier"/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="1428.5714285714284" y="1571.4285714285713">
+			</ECState>
+			<ECState Name="SumOp" Comment="Normal execution" x="1428.5714285714284" y="857.1428571428571">
+				<ECAction Algorithm="sumOperation" Output="CNF"/>
+			</ECState>
+			<ECState Name="DiffOp" Comment="" x="1428.5714285714284" y="2285.7142857142853">
+				<ECAction Algorithm="diffOperation" Output="CNF"/>
+			</ECState>
+			<ECTransition Source="START" Destination="SumOp" Condition="SUM" Comment="" x="1271.4285714285713" y="1307.142857142857"/>
+			<ECTransition Source="SumOp" Destination="START" Condition="1" Comment="" x="1921.4285714285713" y="1292.8571428571427"/>
+			<ECTransition Source="START" Destination="DiffOp" Condition="DIFF" Comment="" x="1307.142857142857" y="1971.4285714285713"/>
+			<ECTransition Source="DiffOp" Destination="START" Condition="1" Comment="" x="1857.1428571428569" y="2007.1428571428569"/>
+		</ECC>
+		<Algorithm Name="sumOperation" Comment="new algorithm">
+			<ST><![CDATA[RES := A + B;
+]]></ST>
+		</Algorithm>
+		<Algorithm Name="diffOperation" Comment="">
+			<ST><![CDATA[RES := A - B;
+]]></ST>
+		</Algorithm>
+	</BasicFB>
+</FBType>
