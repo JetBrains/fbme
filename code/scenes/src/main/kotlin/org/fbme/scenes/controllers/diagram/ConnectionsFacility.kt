@@ -84,8 +84,8 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
             if (sourceMoved && targetMoved) {
                 val endpointsTransformation = entry.controller.getEndpointsTransformation(entry.modelPath)
                     ?: error("Endpoints transformation failed")
-                val sourcePosition = diagramController.getPortController(sourcePort).modelEndpointPosition
-                val targetPosition = diagramController.getPortController(targetPort).modelEndpointPosition
+                val sourcePosition = diagramController.getPortController(sourcePort!!).modelEndpointPosition
+                val targetPosition = diagramController.getPortController(targetPort!!).modelEndpointPosition
                 sourcePosition.translate(dx, dy)
                 targetPosition.translate(dx, dy)
                 val translatedPath = endpointsTransformation.apply(sourcePosition, targetPosition)
@@ -95,7 +95,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
             if (targetMoved) {
                 val targetTransformation = entry.controller.getTargetTransformation(entry.modelPath)
                     ?: error("Target endpoint transformation failed")
-                val targetPosition = diagramController.getPortController(targetPort).modelEndpointPosition
+                val targetPosition = diagramController.getPortController(targetPort!!).modelEndpointPosition
                 targetPosition.translate(dx, dy)
                 val translatedPath = targetTransformation.apply(targetPosition)
                 changePath(entry, connectionView, translatedPath, completed)
@@ -104,7 +104,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
             if (sourceMoved) {
                 val sourceTransformation = entry.controller.getSourceTransformation(entry.modelPath)
                     ?: error("Source endpoint transformation failed")
-                val sourcePosition = diagramController.getPortController(sourcePort).modelEndpointPosition
+                val sourcePosition = diagramController.getPortController(sourcePort!!).modelEndpointPosition
                 sourcePosition.translate(dx, dy)
                 val translatedPath = sourceTransformation.apply(sourcePosition)
                 changePath(entry, connectionView, translatedPath, completed)

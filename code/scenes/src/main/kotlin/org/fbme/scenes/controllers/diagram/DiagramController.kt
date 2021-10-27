@@ -8,9 +8,9 @@ interface DiagramController<CompT, PortT, ConnT> {
     val connections: Set<ConnT>
     fun getPorts(component: CompT): Set<PortT>
     fun getComponent(port: PortT): CompT
-    fun getSource(edge: ConnT): PortT
+    fun getSource(edge: ConnT): PortT?
     fun setSource(edge: ConnT, port: PortT)
-    fun getTarget(edge: ConnT): PortT
+    fun getTarget(edge: ConnT): PortT?
     fun setTarget(edge: ConnT, port: PortT)
     fun removeEdge(edge: ConnT)
     fun addEdge(sourcePort: PortT, targetPort: PortT): ConnT?

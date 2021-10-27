@@ -1,116 +1,88 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions
 
-import com.intellij.openapi.util.Pair
 import jetbrains.mps.editor.runtime.HeadlessEditorComponent
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.openapi.editor.style.Style
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
-import org.fbme.ide.richediting.viewmodel.FunctionBlockView
-import org.fbme.ide.richediting.viewmodel.InlineValueView
-import org.fbme.ide.richediting.viewmodel.NetworkComponentView
-import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
+import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.LayoutUtil.getFontSize
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.LayoutUtil.setFontSize
 import org.jetbrains.mps.openapi.module.SRepository
+import java.awt.Point
 import java.awt.Rectangle
 import kotlin.math.max
 import kotlin.math.min
 
 class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
-    private val EXPANDED_FB_INSTANCE_KEY = "org.fbme.ide.richediting.lang.editor.Rich Editing Hint.expanded_fb_instance"
     override fun apply() {
-        expand(selectedFBs)
+        val functionBlock = selectedFBs.filterIsInstance<FunctionBlockView>().last()
+        functionBlock.expand()
     }
 
-    private fun expand(selectedComponents: Set<NetworkComponentView>) {
-        for (selectedComponent in selectedComponents) {
-            if (selectedComponent is FunctionBlockView) {
-                expand(selectedComponent)
-            }
-        }
-    }
-
-    private fun expand(component: FunctionBlockView) {
-        val componentController = componentsFacility.getController(component) as FunctionBlockController
-        val editorComponentPosition = componentsFacility.getModelForm(component)
+    private fun FunctionBlockView.expand() {
+        val componentController = componentsFacility.getController(this) as FunctionBlockController
+        val editorComponentPosition = componentsFacility.getModelForm(this)
         val oldBounds = componentController.getFBCellBounds(editorComponentPosition)
         val lineSize = getLineSize(componentController.componentCell.style)
         val sceneCell = createExpandedSceneCell(componentController)
         val bounds = (sceneCell as EditorCell_Scene).calculateBounds()
-        val newBounds = Rectangle(oldBounds.x, oldBounds.y, bounds.width, bounds.height + lineSize)
-        val dx = newBounds.width - oldBounds.width + 25
-        val dy = newBounds.height - oldBounds.height + 25
-        val expandedComponentsController = componentController.expandedComponentsController
-        expandedComponentsController.addExpandedComponent(
-            component,
-            10 + -bounds.x + 15,
-            15 + -bounds.y + 10,
-            viewpoint.fromEditorDimension(dx),
-            viewpoint.fromEditorDimension(dy)
+
+        val newBounds = Rectangle(
+            oldBounds.x,
+            oldBounds.y,
+            EDITOR_SHIFT_X + bounds.width,
+            EDITOR_SHIFT_Y + bounds.height + (1.5 * lineSize).toInt()
         )
-        expandedComponentsController.addAffectedSections(component, getAffectedSections(oldBounds, component))
-        expandedComponentsController.addAffectedComponents(component, getAffectedComponents(oldBounds))
+
+        val dx = viewpoint.fromEditorDimension(newBounds.width - oldBounds.width)
+        val dy = viewpoint.fromEditorDimension(newBounds.height - oldBounds.height)
+
+        val expandedComponentsController = componentController.expandedComponentsController
+
+        expandedComponentsController.addFB(
+            functionBlock = this,
+            editorShift = Point(EDITOR_SHIFT_X - bounds.x, EDITOR_SHIFT_Y - bounds.y),
+            dx = dx,
+            dy = dy,
+            componentShifts(oldBounds, newBounds)
+        )
         expandedComponentsController.update()
     }
 
-    private fun getAffectedSections(
-        bounds: Rectangle,
-        component: FunctionBlockView
-    ): Set<Pair<NetworkConnectionView, Int>> {
-        val affectedSections: MutableSet<Pair<NetworkConnectionView, Int>> = HashSet()
-        val rightBound = bounds.x + bounds.width
-        val bottomBound = bounds.y + bounds.height
-        val connections = diagramController.connections
-        for (connection in connections) {
-            val source = diagramController.getSource(connection)
-            val target = diagramController.getTarget(connection)
-            val sourcePortController = diagramController.getPortController(source)
-            val targetPortController = diagramController.getPortController(target)
-            val sourcePortPosition = sourcePortController.modelEndpointPosition
-            val targetPortPosition = targetPortController.modelEndpointPosition
-            val sourceComponent = diagramController.getComponent(source)
-            if (sourceComponent is InlineValueView) {
-                continue
+    private fun NetworkComponentView.componentShifts(
+        oldBounds: Rectangle,
+        newBounds: Rectangle
+    ): MutableMap<NetworkComponentView, Point> {
+        val componentShifts = mutableMapOf<NetworkComponentView, Point>()
+
+        val rightBound = oldBounds.x + oldBounds.width
+        val bottomBound = oldBounds.y + oldBounds.height
+        val dx = viewpoint.fromEditorDimension(newBounds.width - oldBounds.width)
+        val dy = viewpoint.fromEditorDimension(newBounds.height - oldBounds.height)
+
+        val components = diagramController
+            .components
+            .filter { (it is FunctionBlockView || it is InterfaceEndpointView) && it != this }
+        for (component in components) {
+            val controller = componentsFacility.getController(component)
+            val bounds = controller.getBounds(componentsFacility.getModelForm(component))
+
+            val shift = Point()
+            if (bounds.x > rightBound) {
+                shift.translate(dx, 0)
             }
-            val targetComponent = diagramController.getComponent(target)
-            val sourceComponentPosition = componentsFacility.getModelForm(sourceComponent)
-            val targetComponentPosition = componentsFacility.getModelForm(targetComponent)
-            val path = connectionSynchronizer.getPath(connection).apply(sourcePortPosition, targetPortPosition)
-            val bendPoints = path.bendPoints
-            val pathKind = path.pathKind
-            if (pathKind == ConnectionPath.Kind.MoreThanFour) {
-                for (i in 1 until bendPoints.size) {
-                    val v = bendPoints[i]
-                    val isHorizontal = i % 2 == 0
-                    if (isHorizontal && v.y > bottomBound || !isHorizontal && v.x > rightBound) {
-                        affectedSections.add(Pair(connection, i))
-                    }
-                }
-            } else if (pathKind == ConnectionPath.Kind.TwoAngles) {
-                val x1 = path.x1
-                if (sourceComponent !== component && sourceComponentPosition.x <= rightBound && bounds.x < x1) {
-                    affectedSections.add(Pair(connection, 1))
-                }
-            } else if (pathKind == ConnectionPath.Kind.FourAngles) {
-                val x1 = path.x1
-                val y = path.y
-                val x2 = path.x2
-                if (sourceComponent !== component && sourceComponentPosition.x <= rightBound && bounds.x < x1) {
-                    affectedSections.add(Pair(connection, 1))
-                }
-                if (min(sourcePortPosition.y, y) < bottomBound && bottomBound < max(sourcePortPosition.y, y)) {
-                    affectedSections.add(Pair(connection, if (sourcePortPosition.y < y) 2 else -2))
-                }
-                if (x2 < rightBound && rightBound < targetComponentPosition.x) {
-                    affectedSections.add(Pair(connection, -3))
-                }
+            if (bounds.y > bottomBound) {
+                shift.translate(0, dy)
+            }
+            if (shift != Point()) {
+                componentShifts[component] = shift
             }
         }
-        return affectedSections
+        return componentShifts
     }
 
     private fun createExpandedSceneCell(componentController: FunctionBlockController): EditorCell {
@@ -128,24 +100,11 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
         return sceneCell
     }
 
-    private fun getAffectedComponents(bounds: Rectangle): Pair<Set<NetworkComponentView>, Set<NetworkComponentView>> {
-        val affectedComponentsByX: MutableSet<NetworkComponentView> = HashSet()
-        val affectedComponentsByY: MutableSet<NetworkComponentView> = HashSet()
-        val rightBound = bounds.x + bounds.width
-        val bottomBound = bounds.y + bounds.height
-        val components = diagramController.components
-        for (component in components) {
-            if (component is InlineValueView) {
-                continue
-            }
-            val modelComponentPosition = componentsFacility.getModelForm(component)
-            if (modelComponentPosition.x > rightBound) {
-                affectedComponentsByX.add(component)
-            }
-            if (modelComponentPosition.y > bottomBound) {
-                affectedComponentsByY.add(component)
-            }
-        }
-        return Pair(affectedComponentsByX, affectedComponentsByY)
+    companion object {
+        private const val EXPANDED_FB_INSTANCE_KEY =
+            "org.fbme.ide.richediting.lang.editor.Rich Editing Hint.expanded_fb_instance"
+
+        private const val EDITOR_SHIFT_X = 30
+        private const val EDITOR_SHIFT_Y = 30
     }
 }

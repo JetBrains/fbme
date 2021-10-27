@@ -3,27 +3,24 @@ package org.fbme.ide.richediting.adapters.fbnetwork.actions
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
-import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 
 class CollapseAction(cell: EditorCell) : ExpandOrCollapseAction(cell.parent) {
     override fun apply() {
-        collapse(selectedFBs)
+        collapse(selectedFBs.filterIsInstance<FunctionBlockView>())
     }
 
-    private fun collapse(selectedComponents: Set<NetworkComponentView>) {
+    private fun collapse(selectedComponents: List<FunctionBlockView>) {
         for (selectedComponent in selectedComponents) {
-            if (selectedComponent is FunctionBlockView) {
-                collapse(selectedComponent)
-            }
+            collapse(selectedComponent)
         }
     }
 
-    private fun collapse(component: FunctionBlockView) {
-        val componentController = componentsFacility.getController(component) as FunctionBlockController
+    private fun collapse(functionBlock: FunctionBlockView) {
+        val componentController = componentsFacility.getController(functionBlock) as FunctionBlockController
         val expandedComponentsController = componentController.expandedComponentsController
-        expandedComponentsController.removeAffectedComponents(component)
-        expandedComponentsController.removeExpandedComponent(component)
-        expandedComponentsController.removeAffectedSections(component)
+//        expandedComponentsController.removeAffectedComponents(component)
+        expandedComponentsController.removeFB(functionBlock)
+//        expandedComponentsController.removeAffectedSections(component)
         expandedComponentsController.update()
     }
 }

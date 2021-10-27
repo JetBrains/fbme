@@ -1,171 +1,73 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
-import com.intellij.openapi.util.Pair
 import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
-import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.scene.SceneStateKey
 import java.awt.Point
-import java.awt.Rectangle
-import kotlin.math.abs
 
 class ExpandedComponentsController(scene: EditorCell_Scene, private val editorContext: EditorContext) {
-    private val expandedComponents: MutableMap<NetworkComponentView, Rectangle>
-    private val affectedComponents: MutableMap<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>>
-    private val affectedSections: MutableMap<NetworkComponentView, Set<Pair<NetworkConnectionView, Int>>>
-    private val componentOffsetMap: MutableMap<NetworkComponentView, Point>
-    private val sectionOffsetMap: MutableMap<Pair<NetworkConnectionView, Int>, Int>
-    private fun getSectionOffsetMap(): MutableMap<Pair<NetworkConnectionView, Int>, Int> {
-        val offsetMap = HashMap<Pair<NetworkConnectionView, Int>, Int>()
-        affectedSections.forEach { (view: NetworkComponentView, sections: Set<Pair<NetworkConnectionView, Int>>) ->
-            processSections(
-                offsetMap,
-                view,
-                sections
-            )
-        }
-        return offsetMap
+    val expandedFBs: MutableMap<FunctionBlockView, ExpandingData>
+
+    init {
+        expandedFBs = scene.loadState(EXPANDED_FBS_KEY) ?: mutableMapOf()
+        scene.storeState(EXPANDED_FBS_KEY, expandedFBs)
     }
 
-    private fun processSections(
-        offsetMap: MutableMap<Pair<NetworkConnectionView, Int>, Int>,
-        view: NetworkComponentView,
-        sections: Set<Pair<NetworkConnectionView, Int>>
+    fun addFB(
+        functionBlock: FunctionBlockView,
+        editorShift: Point,
+        dx: Int,
+        dy: Int,
+        componentShifts: MutableMap<NetworkComponentView, Point>,
     ) {
-        val dx = expandedComponents[view]!!.width
-        val dy = expandedComponents[view]!!.height
-        for (section in sections) {
-            val index = abs(section.second)
-            val validSection = Pair(section.first, index)
-            val sectionOffset = offsetMap.getOrDefault(validSection, 0)
-            val isHorizontal = index % 2 == 0
-            offsetMap[validSection] = sectionOffset + (if (section.second > 0) 1 else -1) * if (isHorizontal) dy else dx
-        }
+        expandedFBs[functionBlock] = ExpandingData(
+            editorShift,
+            dx,
+            dy,
+            componentShifts
+        )
     }
 
-    private fun getComponentOffsetMap(): MutableMap<NetworkComponentView, Point> {
-        val offsetMap = HashMap<NetworkComponentView, Point>()
-        affectedComponents.forEach { (view: NetworkComponentView, p: Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>) ->
-            processComponents(offsetMap, view, p)
-        }
-        return offsetMap
-    }
-
-    private fun processComponents(
-        offsetMap: MutableMap<NetworkComponentView, Point>,
-        view: NetworkComponentView,
-        p: Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>
-    ) {
-        val affectedByX = p.first
-        val affectedByY = p.second
-        val dx = expandedComponents[view]!!.width
-        val dy = expandedComponents[view]!!.height
-        processComponentOffset(offsetMap, affectedByX, dx, Direction.X)
-        processComponentOffset(offsetMap, affectedByY, dy, Direction.Y)
-    }
-
-    private fun processComponentOffset(
-        offsetMap: MutableMap<NetworkComponentView, Point>,
-        affectedComponents: Set<NetworkComponentView>,
-        delta: Int,
-        direction: Direction
-    ) {
-        for (affectedComponent in affectedComponents) {
-            var componentOffset = offsetMap[affectedComponent]
-            if (componentOffset == null) {
-                componentOffset = Point()
-            }
-            if (direction == Direction.X) {
-                componentOffset.translate(delta, 0)
-            } else {
-                componentOffset.translate(0, delta)
-            }
-            offsetMap[affectedComponent] = componentOffset
-        }
-    }
-
-    fun addExpandedComponent(view: FunctionBlockView, shiftX: Int, shiftY: Int, dx: Int, dy: Int) {
-        expandedComponents[view] = Rectangle(shiftX, shiftY, dx, dy)
-    }
-
-    fun removeExpandedComponent(view: FunctionBlockView) {
-        expandedComponents.remove(view)
+    fun removeFB(functionBlock: FunctionBlockView) {
+        expandedFBs.remove(functionBlock)
     }
 
     fun update() {
         updateFB(editorContext)
     }
 
-    fun isExpanded(view: FunctionBlockView): Boolean {
-        return expandedComponents.containsKey(view)
+    fun isExpanded(functionBlock: FunctionBlockView): Boolean {
+        return expandedFBs.containsKey(functionBlock)
     }
 
-    fun addAffectedComponents(
-        view: FunctionBlockView,
-        affectedComponents: Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>
-    ) {
-        this.affectedComponents[view] = affectedComponents
-        processComponents(componentOffsetMap, view, affectedComponents)
+    fun getOffsetFor(component: NetworkComponentView): Point {
+        val totalShift = Point()
+        for (expandingData in expandedFBs.values) {
+            val shift = expandingData.componentShifts[component] ?: continue
+            totalShift.translate(shift.x, shift.y)
+        }
+        return totalShift
     }
 
-    fun removeAffectedComponents(view: FunctionBlockView) {
-        affectedComponents.remove(view)
+    fun getEditorShift(functionBlock: FunctionBlockView): Point {
+        return expandedFBs[functionBlock]?.editorShift ?: Point()
     }
 
-    fun getOffsetFor(view: NetworkComponentView): Point {
-        return componentOffsetMap[view] ?: Point()
-    }
-
-    fun getOffsetForSection(section: Pair<NetworkConnectionView, Int>): Int {
-        return sectionOffsetMap[section] ?: 0
-    }
-
-    fun addAffectedSections(view: FunctionBlockView, affectedSections: Set<Pair<NetworkConnectionView, Int>>) {
-        this.affectedSections[view] = affectedSections
-        processSections(sectionOffsetMap, view, affectedSections)
-    }
-
-    fun removeAffectedSections(component: FunctionBlockView) {
-        affectedSections.remove(component)
-    }
-
-    fun getEditorShift(component: FunctionBlockView): Point {
-        return expandedComponents[component]?.location ?: Point()
-    }
-
-    private enum class Direction {
-        X, Y
-    }
+    data class ExpandingData(
+        val editorShift: Point,
+        val dx: Int,
+        val dy: Int,
+        val componentShifts: MutableMap<NetworkComponentView, Point>,
+    )
 
     companion object {
-        private val EXPANDED_COMPONENTS_KEY =
-            SceneStateKey<MutableMap<NetworkComponentView, Rectangle>>("expanded-components")
-        private val AFFECTED_COMPONENTS_KEY =
-            SceneStateKey<MutableMap<NetworkComponentView, Pair<Set<NetworkComponentView>, Set<NetworkComponentView>>>>(
-                "affected-components"
-            )
-        private val AFFECTED_SECTIONS_KEY =
-            SceneStateKey<MutableMap<NetworkComponentView, Set<Pair<NetworkConnectionView, Int>>>>("affected-sections")
+        private val EXPANDED_FBS_KEY = SceneStateKey<MutableMap<FunctionBlockView, ExpandingData>>("expanded-fbs")
 
         private fun updateFB(editorContext: EditorContext) {
             val updater = editorContext.editorComponent.updater
             updater.update()
         }
-    }
-
-    init {
-        val expandedComponentsState = scene.loadState(EXPANDED_COMPONENTS_KEY)
-        expandedComponents = expandedComponentsState ?: HashMap()
-        val affectedComponentsState = scene.loadState(AFFECTED_COMPONENTS_KEY)
-        affectedComponents = affectedComponentsState ?: HashMap()
-        val affectedSectionsState = scene.loadState(AFFECTED_SECTIONS_KEY)
-        affectedSections = affectedSectionsState ?: HashMap()
-        scene.storeState(EXPANDED_COMPONENTS_KEY, expandedComponents)
-        scene.storeState(AFFECTED_COMPONENTS_KEY, affectedComponents)
-        scene.storeState(AFFECTED_SECTIONS_KEY, affectedSections)
-        componentOffsetMap = getComponentOffsetMap()
-        sectionOffsetMap = getSectionOffsetMap()
     }
 }

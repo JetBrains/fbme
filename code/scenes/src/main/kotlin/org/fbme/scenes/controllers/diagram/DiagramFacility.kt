@@ -63,12 +63,12 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
             return componentToPorts[component] ?: error("Ports not found")
         }
 
-        override fun getSource(edge: ConnT): PortT {
-            return connectionToSource[edge] ?: error("Source not found")
+        override fun getSource(edge: ConnT): PortT? {
+            return connectionToSource[edge]
         }
 
-        override fun getTarget(edge: ConnT): PortT {
-            return connectionToTarget[edge] ?: error("Target not found")
+        override fun getTarget(edge: ConnT): PortT? {
+            return connectionToTarget[edge]
         }
 
         override fun setSource(edge: ConnT, port: PortT) {

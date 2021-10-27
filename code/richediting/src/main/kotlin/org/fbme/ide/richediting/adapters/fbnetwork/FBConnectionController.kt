@@ -3,7 +3,8 @@ package org.fbme.ide.richediting.adapters.fbnetwork
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations
 import jetbrains.mps.nodeEditor.EditorSettings
 import jetbrains.mps.nodeEditor.MPSColors
-import jetbrains.mps.nodeEditor.cells.*
+import jetbrains.mps.nodeEditor.cells.EditorCell
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors
@@ -13,7 +14,10 @@ import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.scenes.controllers.LayoutUtil.getFontSize
 import org.fbme.scenes.controllers.diagram.ConnectionController
 import org.jetbrains.mps.openapi.model.SNode
-import java.awt.*
+import java.awt.Color
+import java.awt.Graphics
+import java.awt.Point
+import java.awt.Rectangle
 import java.util.function.BiFunction
 import java.util.function.Function
 import kotlin.math.abs
@@ -32,7 +36,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     override fun paintConnection(
         path: FBConnectionPath,
         cursor: FBConnectionCursor?,
-        selected: Boolean, 
+        selected: Boolean,
         graphics: Graphics
     ) {
         var g = graphics
@@ -142,6 +146,9 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     private fun magnetizeHorizontal(index: Int, bendPoints: MutableList<Point>) {
+        if (index >= bendPoints.size) {
+            return
+        }
         val u = bendPoints[index - 1]
         val v = bendPoints[index]
         val uPrev = bendPoints[index - 2]
@@ -159,6 +166,9 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     private fun magnetizeVertical(index: Int, bendPoints: MutableList<Point>) {
+        if (index >= bendPoints.size) {
+            return
+        }
         val u = bendPoints[index - 1]
         val v = bendPoints[index]
         val uPrev = if (index - 2 >= 0) bendPoints[index - 2] else null

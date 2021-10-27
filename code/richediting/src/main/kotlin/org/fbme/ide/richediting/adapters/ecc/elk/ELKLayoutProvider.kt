@@ -91,8 +91,8 @@ class ELKLayoutProvider(
         nodes: Map<StateDeclaration, ElkNode>
     ) {
         for (connection in diagramController.connections) {
-            val source = diagramController.getSource(connection)
-            val target = diagramController.getTarget(connection)
+            val source = diagramController.getSource(connection) ?: continue
+            val target = diagramController.getTarget(connection) ?: continue
             val elkEdge = ElkGraphUtil.createSimpleEdge(nodes[source], nodes[target])
             elkEdge.containingNode = parent
             val controller = connectionsFacility.getController(connection)

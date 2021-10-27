@@ -6,14 +6,14 @@ import java.util.function.Supplier
 
 class ComponentEntry<CompT, FormT>(facility: ComponentsFacility<CompT, FormT>, val myComponent: CompT) {
     val layoutSetting: MyLayoutSetting
-    private var formProvider: Supplier<FormT>
+    private var formProvider: () -> FormT
     var modelForm: FormT
     var transformedForm: FormT? = null
     val controller: ComponentController<FormT>
     private val facility: ComponentsFacility<CompT, FormT>
 
     fun relayout() {
-        modelForm = formProvider.get()
+        modelForm = formProvider()
         layoutSetting.bounds = controller.getBounds(modelForm)
         controller.updateCellWithForm(transformedForm ?: modelForm)
         controller.updateCellSelection(isSelected)
@@ -48,7 +48,7 @@ class ComponentEntry<CompT, FormT>(facility: ComponentsFacility<CompT, FormT>, v
         this.facility = facility
         controller = this.facility.controllerFactory.create(this.facility.editor.editorContext, myComponent) ?: error("Can't get controller")
         formProvider = this.facility.componentSynchronizer.getForm(myComponent)
-        modelForm = formProvider.get()
+        modelForm = formProvider()
         layoutSetting.bounds = controller.getBounds(modelForm)
     }
 }

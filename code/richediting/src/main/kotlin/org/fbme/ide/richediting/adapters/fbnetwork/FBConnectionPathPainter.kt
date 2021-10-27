@@ -1,10 +1,8 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
 import jetbrains.mps.nodeEditor.MPSColors
-import java.awt.BasicStroke
-import java.awt.Graphics
-import java.awt.Graphics2D
-import java.awt.Point
+import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
+import java.awt.*
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -51,22 +49,22 @@ class FBConnectionPathPainter(
     ) {
         if (horizontalFirst) {
             drawCorner(graphics, x1, y1, x2, y2)
-            if (selected) {
+//            if (selected) {
                 drawPoint(
                     graphics,
                     x2 + (if (x1 - x2 > 0) 1 else -1) * DL / 2,
                     y1 - (if (y1 - y2 > 0) 1 else -1) * DL / 2
                 )
-            }
+//            }
         } else {
             drawCorner(graphics, x2, y2, x1, y1)
-            if (selected) {
+//            if (selected) {
                 drawPoint(
                     graphics,
                     x1 - (if (x1 - x2 > 0) 1 else -1) * DL / 2,
                     y2 + (if (y1 - y2 > 0) 1 else -1) * DL / 2
                 )
-            }
+//            }
         }
     }
 
@@ -84,6 +82,12 @@ class FBConnectionPathPainter(
         val s = myPath.sourcePosition
         val t = myPath.targetPosition
         val bendPoints = myPath.bendPoints
+        when (myPath.pathKind) {
+            ConnectionPath.Kind.Straight -> graphics.color = Color.MAGENTA
+            ConnectionPath.Kind.TwoAngles -> graphics.color = Color.CYAN
+            ConnectionPath.Kind.FourAngles -> graphics.color = Color.ORANGE
+            ConnectionPath.Kind.MoreThanFour -> graphics.color = Color.RED
+        }
         if (bendPoints.isEmpty()) {
             graphics.drawLine(s.x, s.y, t.x, t.y)
         } else {

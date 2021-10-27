@@ -13,10 +13,10 @@ class FBNetworkComponentSynchronizer(
     private val scale: Float,
     private val expandedComponentsController: ExpandedComponentsController
 ) : ComponentSynchronizer<NetworkComponentView, Point> {
-    override fun getForm(component: NetworkComponentView): Supplier<Point> {
+    override fun getForm(component: NetworkComponentView): () -> Point {
         if (component is FunctionBlockView) {
             val componentPositionWithOffset = getComponentPositionWithOffset(component)
-            return Supplier {
+            return {
                 Point(
                     viewpoint.translateToEditorX(componentPositionWithOffset.x),
                     viewpoint.translateToEditorY(componentPositionWithOffset.y)
@@ -24,7 +24,7 @@ class FBNetworkComponentSynchronizer(
             }
         } else if (component is InterfaceEndpointView) {
             val componentPositionWithOffset = getComponentPositionWithOffset(component)
-            return Supplier {
+            return {
                 Point(
                     viewpoint.translateToEditorX(componentPositionWithOffset.x),
                     viewpoint.translateToEditorY(componentPositionWithOffset.y)

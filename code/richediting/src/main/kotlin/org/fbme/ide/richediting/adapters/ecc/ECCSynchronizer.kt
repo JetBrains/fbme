@@ -7,10 +7,10 @@ import java.awt.Point
 import java.util.function.Supplier
 
 class ECCSynchronizer(private val viewpoint: SceneViewpoint) : ComponentSynchronizer<StateDeclaration, Point> {
-    override fun getForm(component: StateDeclaration): Supplier<Point> {
+    override fun getForm(component: StateDeclaration): () -> Point {
         val x = component.x
         val y = component.y
-        return Supplier { Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y)) }
+        return { Point(viewpoint.translateToEditorX(x), viewpoint.translateToEditorY(y)) }
     }
 
     override fun setForm(component: StateDeclaration, form: Point) {

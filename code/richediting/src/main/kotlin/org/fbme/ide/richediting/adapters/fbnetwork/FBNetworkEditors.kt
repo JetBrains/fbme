@@ -219,7 +219,13 @@ object FBNetworkEditors {
                 CONNECTION_CONTROLLER_FACTORY,
                 FBConnectionUtils.getPathFactory(style),
                 FBConnectionUtils.getPathPainter(style),
-                FBConnectionPathSynchronizer(viewpoint, scale, expandedComponentsController),
+                FBConnectionPathSynchronizer(
+                    viewpoint,
+                    scale,
+                    expandedComponentsController,
+                    componentsFacility,
+                    diagramFacility.diagramController
+                ),
                 extendedLayout,
                 componentsSelection,
                 diagramFacility.diagramController,

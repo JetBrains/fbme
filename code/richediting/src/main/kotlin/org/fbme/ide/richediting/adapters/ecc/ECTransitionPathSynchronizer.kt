@@ -12,12 +12,12 @@ class ECTransitionPathSynchronizer(
     private val viewpoint: SceneViewpoint,
     private val componentsFacility: ComponentsFacility<StateDeclaration, Point>
 ) : ConnectionPathSynchronizer<StateTransition, ECTransitionPath> {
-    override fun getPath(connection: StateTransition): BiFunction<Point, Point, ECTransitionPath> {
+    override fun getPath(connection: StateTransition): (Point, Point) -> ECTransitionPath {
         val cx = connection.centerX
         val cy = connection.centerY
         val sourceDeclaration = connection.sourceReference.getTarget() ?: error("Source declaration is null")
         val targetDeclaration = connection.targetReference.getTarget() ?: error("Target declaration is null")
-        return BiFunction { sp: Point, tp: Point ->
+        return { sp: Point, tp: Point ->
             val sourceBound = ECTransitionUtils.getBoundsFromDeclaration(sourceDeclaration, componentsFacility)
             val targetBound = ECTransitionUtils.getBoundsFromDeclaration(targetDeclaration, componentsFacility)
             val center = Point(viewpoint.translateToEditorX(cx), viewpoint.translateToEditorY(cy))
