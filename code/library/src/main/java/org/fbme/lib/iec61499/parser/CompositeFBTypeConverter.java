@@ -19,8 +19,12 @@ public class CompositeFBTypeConverter extends DeclarationConverterBase<Composite
     CompositeFBTypeDeclaration fbtd = myFactory.createCompositeFBTypeDeclaration(identifier);
     new FBInterfaceConverter(this, fbtd).extractInterface();
     new FBInterfaceAdaptersConverter(this, fbtd).extractAdapters();
-    new FBNetworkConverter(with(myElement.getChild("FBNetwork")), fbtd.getNetwork()).extractNetwork();
+    FBNetworkConverter fbNetworkConverter = this.createFBNetworkConverter(fbtd);
+    fbNetworkConverter.extractNetwork();
     return fbtd;
   }
 
+  protected FBNetworkConverter createFBNetworkConverter(CompositeFBTypeDeclaration fbtd) {
+    return new FBNetworkConverter(with(myElement.getChild("FBNetwork")), fbtd.getNetwork());
+  }
 }
