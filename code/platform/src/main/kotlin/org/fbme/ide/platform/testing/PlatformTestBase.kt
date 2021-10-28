@@ -28,9 +28,9 @@ import java.util.ArrayList
 abstract class PlatformTestBase {
     @JvmField
     var environment: Environment? = null
-    protected var project: Project? = null
+    protected lateinit var project: Project
     protected val repository: PlatformRepository
-        get() = PlatformRepositoryProvider.getInstance(project!!)
+        get() = PlatformRepositoryProvider.getInstance(project)
     protected val factory: IEC61499Factory
         get() = repository.iec61499Factory
     protected val stFactory: STFactory
@@ -39,12 +39,12 @@ abstract class PlatformTestBase {
     @Before
     fun initProject() {
         project = environment!!.createEmptyProject()
-        PlatformRepositoryProvider.init(project!!)
+        PlatformRepositoryProvider.init(project)
     }
 
     @After
     fun disposeProject() {
-        environment!!.closeProject(project!!)
+        environment!!.closeProject(project)
     }
 
     fun rootConverterByPath(input: String) =
