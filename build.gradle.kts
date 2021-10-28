@@ -1,4 +1,3 @@
-import de.undercouch.gradle.tasks.download.Download
 import org.fbme.gradle.MpsExtension
 
 plugins {
@@ -43,6 +42,13 @@ val build by tasks.getting {
 
 subprojects {
     pluginManager.withPlugin("org.fbme.gradle.mps") {
+
+        repositories {
+            maven {
+                url = uri("https://cache-redirector.jetbrains.com/intellij-dependencies")
+            }
+        }
+
         if (the<MpsExtension>().hasBuildSolution) {
             buildBootstrap.get().inputs.dir("$projectDir/buildsolution/models")
             dependencies {

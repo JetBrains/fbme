@@ -64,7 +64,7 @@ public final class PlatformConverter {
     }
 
     public static final DefaultConfigurationFactory STANDARD_CONFIG_FACTORY = (@NotNull PlatformElementsOwner owner) ->
-            new StandardIec61499ConverterConfiguration(owner.getIEC61499Factory(), owner.getSTFactory());
+            new StandardIec61499ConverterConfiguration(owner.getIec61499Factory(), owner.getStFactory());
 
     private static DefaultConfigurationFactory ourConfigFactory = STANDARD_CONFIG_FACTORY;
 

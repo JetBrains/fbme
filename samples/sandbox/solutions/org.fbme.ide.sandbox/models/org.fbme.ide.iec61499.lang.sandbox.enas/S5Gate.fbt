@@ -1,29 +1,30 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="S5Gate">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="OPEN"></Event>
-      <Event Name="CLOSE"></Event>
+      <Event Name="INIT" />
+      <Event Name="OPEN" />
+      <Event Name="CLOSE" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO"></Event>
+      <Event Name="INITO" />
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="SR" Type="E_SR" x="1360.0" y="380.0" />
-    <FB Name="GATE" Type="PUBLISH_1" x="3269.0" y="184.0" />
-    <EventConnections>
-      <Connection Source="OPEN" Destination="SR.S" dx1="234.0" />
-      <Connection Source="CLOSE" Destination="SR.R" dx1="45.0" />
-      <Connection Source="INIT" Destination="GATE.INIT" dx1="2700.0" />
-      <Connection Source="SR.EO" Destination="GATE.REQ" dx1="615.0" />
-      <Connection Source="GATE.INITO" Destination="INITO" dx1="330.0" />
-    </EventConnections>
+    <FB Name="SR" Type="E_SR" x="1360" y="380" />
+    <FB Name="GATE" Type="PUBLISH_1" x="3269" y="184" />
     <DataConnections>
-      <Connection Source="SR.Q" Destination="GATE.SD_1" dx1="700.0" />
+      <Connection Source="SR.Q" Destination="GATE.SD_1" dx1="700" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="OPEN" Destination="SR.S" dx1="234" />
+      <Connection Source="CLOSE" Destination="SR.R" dx1="45" />
+      <Connection Source="INIT" Destination="GATE.INIT" dx1="2700" />
+      <Connection Source="SR.EO" Destination="GATE.REQ" dx1="615" />
+      <Connection Source="GATE.INITO" Destination="INITO" dx1="330" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

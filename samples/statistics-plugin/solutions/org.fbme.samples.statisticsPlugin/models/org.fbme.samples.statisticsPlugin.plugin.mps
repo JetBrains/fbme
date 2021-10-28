@@ -135,7 +135,7 @@
               </node>
               <node concept="2ShNRf" id="5Z7HjgyO$Cn" role="33vP2m">
                 <node concept="1pGfFk" id="5Z7HjgyO$Co" role="2ShVmc">
-                  <ref role="37wK5l" to="597t:~ApplicationStatisticsReporter.&lt;init&gt;(org.fbme.ide.iec61499.repository.PlatformRepository)" resolve="ApplicationStatisticsReporter" />
+                  <ref role="37wK5l" to="597t:~ApplicationStatisticsReporter.&lt;init&gt;(org.fbme.ide.PlatformRepository)" resolve="ApplicationStatisticsReporter" />
                   <node concept="37vLTw" id="5Z7HjgyO$Cp" role="37wK5m">
                     <ref role="3cqZAo" node="5Z7HjgyO$y9" resolve="repository" />
                   </node>

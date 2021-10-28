@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CylControl">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="Retracted" />
+        <With Var="Extended" />
+        <With Var="START" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="Retracted" />
+        <With Var="Extended" />
+        <With Var="START" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="EXTEND" />
+        <With Var="RETRACT" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="EXTEND" />
+        <With Var="RETRACT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Retracted" Type="BOOL" />
+      <VarDeclaration Name="Extended" Type="BOOL" />
+      <VarDeclaration Name="START" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="EXTEND" Type="BOOL" />
+      <VarDeclaration Name="RETRACT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="540" />
+      <ECState Name="INIT" x="1659" y="346">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="GO" x="1659" y="1493">
+        <ECAction Output="CNF" Algorithm="FWD" />
+      </ECState>
+      <ECState Name="S_RETURN" x="4126" y="346">
+        <ECAction Output="CNF" Algorithm="BACK" />
+      </ECState>
+      <ECState Name="NOMOVE" x="6619" y="0">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="993" y="526" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="START" x="993" y="713" Condition="1" />
+      <ECTransition Source="START" Destination="GO" x="993" y="899" Condition="REQ[START]" />
+      <ECTransition Source="GO" Destination="S_RETURN" x="3379" y="786" Condition="REQ[Extended]" />
+      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="5846" y="560" Condition="REQ[Retracted]" />
+      <ECTransition Source="NOMOVE" Destination="START" x="3379" y="173" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="REQ">
+      <ST Text="" />
+    </Algorithm>
+    <Algorithm Name="FWD">
+      <ST Text="EXTEND := TRUE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="BACK">
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

@@ -1,0 +1,6 @@
+<FBType Name="ResolveTestCompFbt">
+    <InterfaceList/>
+    <FBNetwork>
+        <FB Name="TestFb" Type="ResolveTestBasicFbt" x="0" y="0"/>
+    </FBNetwork>
+</FBType>

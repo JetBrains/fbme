@@ -2,6 +2,7 @@
 plugins {
     java
     mps
+    kotlin
 }
 
 mps {

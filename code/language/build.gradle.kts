@@ -1,6 +1,7 @@
 
 plugins {
     mps
+    kotlin
 }
 
 dependencies {
@@ -18,3 +19,7 @@ val mpsPrepare by tasks.getting(Copy::class) {
     from("build/libs/language.jar")
     into("solutions/org.fbme.ide.iec61499.adapter/lib")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+
+compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")

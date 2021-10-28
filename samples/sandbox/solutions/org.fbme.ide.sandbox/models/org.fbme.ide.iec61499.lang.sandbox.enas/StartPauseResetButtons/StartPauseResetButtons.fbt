@@ -1,7 +1,7 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="StartPauseResetButtons">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
@@ -42,21 +42,22 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="IThis" Type="StartPauseResetButtons_HMI" x="1288.0" y="-3.0" />
-    <EventConnections>
-      <Connection Source="INIT" Destination="IThis.INIT" dx1="442.0" />
-      <Connection Source="REQ" Destination="IThis.INID" dx1="407.0" />
-      <Connection Source="IThis.INITO" Destination="INITO" dx1="26.0" />
-      <Connection Source="IThis.INIDO" Destination="CNF" dx1="50.0" />
-    </EventConnections>
+    <FB Name="IThis" Type="StartPauseResetButtons_HMI" x="1288" y="-3" />
     <DataConnections>
-      <Connection Source="QI" Destination="IThis.QI" dx1="334.0" />
-      <Connection Source="StartIn" Destination="IThis.StartIn" dx1="100.0" />
-      <Connection Source="PauseIn" Destination="IThis.PauseIn" dx1="53.0" />
-      <Connection Source="ResetIn" Destination="IThis.ResetIn" dx1="0.0" />
-      <Connection Source="IThis.StartOut" Destination="StartOut" dx1="38.0" />
-      <Connection Source="IThis.PauseOut" Destination="PauseOut" dx1="80.0" />
-      <Connection Source="IThis.ResetOut" Destination="ResetOut" dx1="119.0" />
+      <Connection Source="QI" Destination="IThis.QI" dx1="334" />
+      <Connection Source="StartIn" Destination="IThis.StartIn" dx1="100" />
+      <Connection Source="PauseIn" Destination="IThis.PauseIn" dx1="53" />
+      <Connection Source="ResetIn" Destination="IThis.ResetIn" dx1="0" />
+      <Connection Source="IThis.StartOut" Destination="StartOut" dx1="38" />
+      <Connection Source="IThis.PauseOut" Destination="PauseOut" dx1="80" />
+      <Connection Source="IThis.ResetOut" Destination="ResetOut" dx1="119" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" dx1="442" />
+      <Connection Source="REQ" Destination="IThis.INID" dx1="407" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="26" />
+      <Connection Source="IThis.INIDO" Destination="CNF" dx1="50" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

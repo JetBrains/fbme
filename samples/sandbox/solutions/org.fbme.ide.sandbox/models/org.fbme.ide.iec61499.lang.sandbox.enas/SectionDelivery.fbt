@@ -1,33 +1,33 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="SectionDelivery">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER"></Event>
-      <Event Name="SENSOR"></Event>
+      <Event Name="TRIGGER" />
+      <Event Name="SENSOR" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="DONE"></Event>
-      <Event Name="DRIVE_ON"></Event>
-      <Event Name="DRIVE_OFF"></Event>
+      <Event Name="DONE" />
+      <Event Name="DRIVE_ON" />
+      <Event Name="DRIVE_OFF" />
     </EventOutputs>
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="552.0" y="429.0"></ECState>
-      <ECState Name="MOVING" x="1612.0" y="768.0">
+      <ECState Name="START" x="552" y="429" />
+      <ECState Name="MOVING" x="1612" y="768">
         <ECAction Output="DRIVE_ON" />
       </ECState>
-      <ECState Name="WAIT" x="568.0" y="796.0"></ECState>
-      <ECState Name="DONE" x="912.0" y="1312.0">
+      <ECState Name="WAIT" x="568" y="796" />
+      <ECState Name="DONE" x="912" y="1312">
         <ECAction Output="DRIVE_OFF" />
         <ECAction Output="DONE" />
       </ECState>
-      <ECTransition Source="START" Destination="WAIT" Condition="1" x="626.0" y="591.0" />
-      <ECTransition Source="WAIT" Destination="MOVING" Condition="TRIGGER" x="1081.0" y="607.0" />
-      <ECTransition Source="MOVING" Destination="DONE" Condition="SENSOR" x="1405.0" y="1203.0" />
-      <ECTransition Source="DONE" Destination="WAIT" Condition="1" x="609.0" y="1125.0" />
+      <ECTransition Source="START" Destination="WAIT" x="626" y="591" Condition="1" />
+      <ECTransition Source="WAIT" Destination="MOVING" x="1081" y="607" Condition="TRIGGER" />
+      <ECTransition Source="MOVING" Destination="DONE" x="1405" y="1203" Condition="SENSOR" />
+      <ECTransition Source="DONE" Destination="WAIT" x="609" y="1125" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />
@@ -37,3 +37,4 @@
     </Algorithm>
   </BasicFB>
 </FBType>
+

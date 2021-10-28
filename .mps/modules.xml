@@ -9,6 +9,7 @@
       <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/language/buildsolution/org.fbme.language.build.msd" folder="code.language" />
+      <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.attributes/org.fbme.ide.attributes.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.iec61499.lang/org.fbme.ide.iec61499.lang.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.meta.editor/org.fbme.ide.meta.editor.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.language" />
@@ -27,6 +28,8 @@
       <modulePath path="$PROJECT_DIR$/code/scenes/solutions/org.fbme.scenes/org.fbme.scenes.msd" folder="code.scenes" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" folder="code.smv debugger" />
       <modulePath path="$PROJECT_DIR$/code/smv-debugger/solutions/org.fbme.smvDebugger/org.fbme.smvDebugger.msd" folder="code.smv debugger" />
+      <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.eccSandbox/org.fbme.ide.eccSandbox.msd" folder="samples.sandbox" />
+      <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.eccSandbox/org.fbme.ide.eccSandbox.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.sandbox.enasDSL/org.fbme.ide.sandbox.enasDSL.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/sandbox/solutions/org.fbme.ide.sandbox/org.fbme.ide.sandbox.msd" folder="samples.sandbox" />
       <modulePath path="$PROJECT_DIR$/samples/smv-debugger/solutions/org.fbme.smvDebugger.sandbox/org.fbme.smvDebugger.sandbox.msd" folder="samples.smv debugger" />

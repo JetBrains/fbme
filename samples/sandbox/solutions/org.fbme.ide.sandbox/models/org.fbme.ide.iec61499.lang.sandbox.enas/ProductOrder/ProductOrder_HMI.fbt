@@ -1,24 +1,24 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="ProductOrder_HMI">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT">
         <With Var="QI" />
       </Event>
-      <Event Name="CHECK_J1"></Event>
-      <Event Name="READY"></Event>
-      <Event Name="CHECK_J2"></Event>
+      <Event Name="CHECK_J1" />
+      <Event Name="READY" />
+      <Event Name="CHECK_J2" />
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO">
         <With Var="QO" />
         <With Var="STATUS" />
       </Event>
-      <Event Name="PRODUCE_RED"></Event>
-      <Event Name="PRODUCE_GREEN"></Event>
-      <Event Name="CLEAR"></Event>
+      <Event Name="PRODUCE_RED" />
+      <Event Name="PRODUCE_GREEN" />
+      <Event Name="CLEAR" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="QI" Type="BOOL" />
@@ -29,3 +29,4 @@
     </OutputVars>
   </InterfaceList>
 </FBType>
+

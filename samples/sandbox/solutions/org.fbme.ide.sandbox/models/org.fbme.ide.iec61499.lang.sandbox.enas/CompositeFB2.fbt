@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeFB2">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="CFB3" Type="CompositeFB3" x="819" y="343" />
+    <FB Name="BFB1" Type="DisableConveyor" x="2830" y="296" />
+    <FB Name="BFB2" Type="SimpleMove_E" x="1616" y="829" />
+    <DataConnections>
+      <Connection Source="QI" Destination="CFB3.QI" dx1="230" />
+      <Connection Source="BFB1.ConvOut" Destination="QO" dx1="157" />
+      <Connection Source="QI" Destination="BFB1.QI" dy="77" dx2="143" dx1="447">
+        <BendPoints>
+          <BendPoint x="580" y="190" />
+          <BendPoint x="580" y="300" />
+          <BendPoint x="1313" y="300" />
+          <BendPoint x="1313" y="819" />
+          <BendPoint x="469" y="819" />
+          <BendPoint x="469" y="1370" />
+          <BendPoint x="2540" y="1370" />
+          <BendPoint x="2540" y="160" />
+          <BendPoint x="3449" y="160" />
+          <BendPoint x="3449" y="903" />
+          <BendPoint x="2680" y="903" />
+          <BendPoint x="2680" y="570" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="CFB3.QO" Destination="BFB1.ConvIn" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="CFB3.INIT" dx1="354" />
+      <Connection Source="REQ" Destination="CFB3.REQ" dx1="333" />
+      <Connection Source="CFB3.INITO" Destination="BFB1.INIT" dx1="850" />
+      <Connection Source="REQ" Destination="BFB1.REQ" dx1="2347" />
+      <Connection Source="CFB3.CNF" Destination="BFB2.RESET" dx1="317" />
+      <Connection Source="BFB2.DONE" Destination="BFB1.REQ" dx1="232" />
+      <Connection Source="CFB3.INITO" Destination="BFB2.TRIGGER" dx1="233" />
+      <Connection Source="BFB1.INITO" Destination="INITO" dx1="793" />
+      <Connection Source="BFB1.CNF" Destination="CNF" dx1="837" />
+    </EventConnections>
+    <EndpointCoordinate Name="INITO" x="4993" y="0" />
+    <EndpointCoordinate Name="CNF" x="4990" y="50" />
+    <EndpointCoordinate Name="QO" x="3586" y="546" />
+  </FBNetwork>
+</FBType>
+

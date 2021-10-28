@@ -202,6 +202,166 @@
               </node>
             </node>
           </node>
+          <node concept="28jJK3" id="5ExLLqlGXpA" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGXpC" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGXqG" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGXqL" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGXqO" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZci" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.alg.common-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZcx" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZcy" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZcz" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZc$" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZc_" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZdK" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.alg.layered-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZfO" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZfP" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZfQ" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZfR" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZfS" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZha" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.core-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZi3" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZi4" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZi5" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZi6" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZi7" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZjv" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.graph-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZko" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZkp" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZkq" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZkr" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZks" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZlU" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.common-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZmN" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZmO" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZmP" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZmQ" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZmR" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZor" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.ecore-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZpk" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZpl" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZpm" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZpn" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZpo" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZr2" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.ecore.xmi-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZrV" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZrW" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZrX" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZrY" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZrZ" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZtJ" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtend.lib-2.17.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlGZuC" role="39821P">
+            <node concept="55IIr" id="5ExLLqlGZuD" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlGZuE" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlGZuF" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlGZuG" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlGZwy" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtend.lib.macro-2.17.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="5ExLLqlH0jE" role="39821P">
+            <node concept="55IIr" id="5ExLLqlH0jF" role="28jJRO">
+              <node concept="2Ry0Ak" id="5ExLLqlH0jG" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlH0jH" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlH0jI" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlH0lE" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtext.xbase.lib-2.17.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
         </node>
       </node>
     </node>
@@ -394,6 +554,186 @@
                     <property role="2Ry0Am" value="lib" />
                     <node concept="2Ry0Ak" id="2PLQk48Z4bm" role="2Ry0An">
                       <property role="2Ry0Am" value="richediting.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1j" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1k" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1e" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1f" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1g" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1h" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1i" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.alg.common-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1q" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1r" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1l" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1m" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1n" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1o" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1p" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.alg.layered-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1x" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1y" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1s" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1t" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1u" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1v" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1w" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.core-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1C" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1D" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1z" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1$" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1_" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1A" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1B" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.elk.graph-0.7.1.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1J" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1K" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1E" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1F" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1G" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1H" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1I" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.common-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1Q" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1R" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1L" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1M" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1N" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1O" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1P" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.ecore-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK1X" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK1Y" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1S" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK1T" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK1U" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK1V" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK1W" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.emf.ecore.xmi-2.12.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK24" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK25" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK1Z" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK20" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK21" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK22" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK23" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtend.lib-2.17.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK2b" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK2c" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK26" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK27" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK28" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK29" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK2a" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtend.lib.macro-2.17.0.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5ExLLqlFK2i" role="3bR37C">
+          <node concept="1BurEX" id="5ExLLqlFK2j" role="1SiIV1">
+            <node concept="55IIr" id="5ExLLqlFK2d" role="1BurEY">
+              <node concept="2Ry0Ak" id="5ExLLqlFK2e" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="5ExLLqlFK2f" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.ide.richediting" />
+                  <node concept="2Ry0Ak" id="5ExLLqlFK2g" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="5ExLLqlFK2h" role="2Ry0An">
+                      <property role="2Ry0Am" value="org.eclipse.xtext.xbase.lib-2.17.0.jar" />
                     </node>
                   </node>
                 </node>

@@ -8,9 +8,9 @@
   <imports>
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
-    <import index="n0ip" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
-    <import index="tnxt" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.ext.contextMenu(org.fbme.scenes/)" />
-    <import index="d1s5" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
+    <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
+    <import index="ks6i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.ext.contextMenu(org.fbme.scenes/)" />
+    <import index="ar7i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" implicit="true" />
   </imports>
   <registry>
@@ -108,9 +108,14 @@
             </node>
             <node concept="liA8E" id="7eBFChAbzFr" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
-              <node concept="10M0yZ" id="3tHZ0yHpqLR" role="37wK5m">
-                <ref role="3cqZAo" to="d1s5:~SceneStateManager.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="d1s5:~SceneStateManager" resolve="SceneStateManager" />
+              <node concept="2OqwBi" id="6oV02hYpKnX" role="37wK5m">
+                <node concept="10M0yZ" id="6oV02hYpKhm" role="2Oq$k0">
+                  <ref role="3cqZAo" to="ar7i:~SceneStateManager.Companion" resolve="Companion" />
+                  <ref role="1PxDUh" to="ar7i:~SceneStateManager" resolve="SceneStateManager" />
+                </node>
+                <node concept="liA8E" id="6oV02hYpKwP" role="2OqNvi">
+                  <ref role="37wK5l" to="ar7i:~SceneStateManager$Companion.getEDITOR_EXTENSION()" resolve="getEDITOR_EXTENSION" />
+                </node>
               </node>
             </node>
           </node>
@@ -143,9 +148,14 @@
             </node>
             <node concept="liA8E" id="7eBFChAbzUR" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
-              <node concept="10M0yZ" id="3tHZ0yHpqQ6" role="37wK5m">
-                <ref role="3cqZAo" to="d1s5:~SceneStateManager.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="d1s5:~SceneStateManager" resolve="SceneStateManager" />
+              <node concept="2OqwBi" id="6oV02hYpKCx" role="37wK5m">
+                <node concept="10M0yZ" id="6oV02hYpKxU" role="2Oq$k0">
+                  <ref role="3cqZAo" to="ar7i:~SceneStateManager.Companion" resolve="Companion" />
+                  <ref role="1PxDUh" to="ar7i:~SceneStateManager" resolve="SceneStateManager" />
+                </node>
+                <node concept="liA8E" id="6oV02hYpKKd" role="2OqNvi">
+                  <ref role="37wK5l" to="ar7i:~SceneStateManager$Companion.getEDITOR_EXTENSION()" resolve="getEDITOR_EXTENSION" />
+                </node>
               </node>
             </node>
           </node>
@@ -184,9 +194,14 @@
             </node>
             <node concept="liA8E" id="1KzgIApPMta" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
-              <node concept="10M0yZ" id="3tHZ0yHphF7" role="37wK5m">
-                <ref role="3cqZAo" to="tnxt:~CellSelectionOnPopupTrigger.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="tnxt:~CellSelectionOnPopupTrigger" resolve="CellSelectionOnPopupTrigger" />
+              <node concept="2OqwBi" id="6oV02hYpJVD" role="37wK5m">
+                <node concept="10M0yZ" id="6oV02hYpJP5" role="2Oq$k0">
+                  <ref role="3cqZAo" to="ks6i:~CellSelectionOnPopupTrigger.Companion" resolve="Companion" />
+                  <ref role="1PxDUh" to="ks6i:~CellSelectionOnPopupTrigger" resolve="CellSelectionOnPopupTrigger" />
+                </node>
+                <node concept="liA8E" id="6oV02hYpK4u" role="2OqNvi">
+                  <ref role="37wK5l" to="ks6i:~CellSelectionOnPopupTrigger$Companion.getEDITOR_EXTENSION()" resolve="getEDITOR_EXTENSION" />
+                </node>
               </node>
             </node>
           </node>
@@ -219,9 +234,14 @@
             </node>
             <node concept="liA8E" id="1KzgIApPMGZ" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
-              <node concept="10M0yZ" id="3tHZ0yHphHQ" role="37wK5m">
-                <ref role="3cqZAo" to="tnxt:~CellSelectionOnPopupTrigger.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
-                <ref role="1PxDUh" to="tnxt:~CellSelectionOnPopupTrigger" resolve="CellSelectionOnPopupTrigger" />
+              <node concept="2OqwBi" id="6oV02hYpK6_" role="37wK5m">
+                <node concept="10M0yZ" id="6oV02hYpK5t" role="2Oq$k0">
+                  <ref role="3cqZAo" to="ks6i:~CellSelectionOnPopupTrigger.Companion" resolve="Companion" />
+                  <ref role="1PxDUh" to="ks6i:~CellSelectionOnPopupTrigger" resolve="CellSelectionOnPopupTrigger" />
+                </node>
+                <node concept="liA8E" id="6oV02hYpK82" role="2OqNvi">
+                  <ref role="37wK5l" to="ks6i:~CellSelectionOnPopupTrigger$Companion.getEDITOR_EXTENSION()" resolve="getEDITOR_EXTENSION" />
+                </node>
               </node>
             </node>
           </node>
@@ -235,9 +255,14 @@
       <node concept="3clFbS" id="2SU8oJe1fQa" role="2VODD2">
         <node concept="3clFbF" id="2SU8oJe1g2M" role="3cqZAp">
           <node concept="2OqwBi" id="2SU8oJe1gmC" role="3clFbG">
-            <node concept="10M0yZ" id="3tHZ0yHphz6" role="2Oq$k0">
-              <ref role="3cqZAo" to="n0ip:~SceneStyleAttributes.SCENE_BACKGROUND" resolve="SCENE_BACKGROUND" />
-              <ref role="1PxDUh" to="n0ip:~SceneStyleAttributes" resolve="SceneStyleAttributes" />
+            <node concept="2OqwBi" id="6oV02hYpKVv" role="2Oq$k0">
+              <node concept="10M0yZ" id="6oV02hYpKNA" role="2Oq$k0">
+                <ref role="3cqZAo" to="sli2:~SceneStyleAttributes.INSTANCE" resolve="INSTANCE" />
+                <ref role="1PxDUh" to="sli2:~SceneStyleAttributes" resolve="SceneStyleAttributes" />
+              </node>
+              <node concept="liA8E" id="6oV02hYpL2P" role="2OqNvi">
+                <ref role="37wK5l" to="sli2:~SceneStyleAttributes.getSCENE_BACKGROUND()" resolve="getSCENE_BACKGROUND" />
+              </node>
             </node>
             <node concept="liA8E" id="2SU8oJe1gyc" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />

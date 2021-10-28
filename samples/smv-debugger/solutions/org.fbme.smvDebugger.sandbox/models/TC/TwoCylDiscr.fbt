@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="TwoCylDiscr">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="FB1" Type="CylControl" x="2070" y="160" />
+    <FB Name="FB2" Type="CylControl" x="1976" y="765" />
+    <FB Name="FB3" Type="ButtonDs" x="280" y="546" />
+    <FB Name="FB4" Type="LinearDA" x="1040" y="75" />
+    <FB Name="FB5" Type="LinearDA" x="1250" y="695" />
+    <DataConnections>
+      <Connection Source="FB4.HOME" Destination="FB1.Retracted" dx1="305" />
+      <Connection Source="FB4.END" Destination="FB1.Extended" dx1="250" />
+      <Connection Source="FB3.Pressed" Destination="FB1.START" dx1="25" />
+      <Connection Source="FB1.EXTEND" Destination="FB4.FWD" dy="-410" dx2="125" dx1="125" />
+      <Connection Source="FB1.RETRACT" Destination="FB4.BACK" dy="140" dx2="40" dx1="40" />
+      <Connection Source="FB5.HOME" Destination="FB2.Retracted" dx1="90" />
+      <Connection Source="FB5.END" Destination="FB2.Extended" dx1="65" />
+      <Connection Source="FB2.RETRACT" Destination="FB5.BACK" dy="125" dx2="30" dx1="30" />
+      <Connection Source="FB2.EXTEND" Destination="FB5.FWD" dy="240" dx2="80" dx1="80" />
+      <Connection Source="FB3.Pressed" Destination="FB2.START" dx1="25" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="FB3.INITO" Destination="FB4.INIT" dx1="135" />
+      <Connection Source="FB4.INITO" Destination="FB5.INIT" dy="425" dx2="80" dx1="80" />
+      <Connection Source="FB5.INITO" Destination="FB1.INIT" dx1="230" />
+      <Connection Source="FB1.CNF" Destination="FB4.REQ" dy="-199" dx2="49" dx1="40" />
+      <Connection Source="FB4.CHG" Destination="FB1.REQ" dx1="210" />
+      <Connection Source="FB5.CHG" Destination="FB2.REQ" dx1="15" />
+      <Connection Source="FB1.INITO" Destination="FB2.INIT" dy="503" dx2="80" dx1="80" />
+      <Connection Source="FB2.CNF" Destination="FB5.REQ" dy="-190" dx2="20" dx1="20" />
+      <Connection Source="FB3.CHG" Destination="FB2.REQ" dx1="946" />
+      <Connection Source="INIT" Destination="FB3.INIT" dx1="25" />
+      <Connection Source="FB2.INITO" Destination="INITO" dx1="365" />
+      <Connection Source="FB3.CHG" Destination="FB1.REQ" dx1="1046" />
+      <Connection Source="FB2.INITO" Destination="FB3.REQ" dy="492" dx2="150" dx1="150" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeFB1">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="CFB2" Type="CompositeFB2" x="2413" y="433" />
+    <FB Name="CFB3" Type="CompositeFB3" x="1403" y="296" />
+    <DataConnections>
+      <Connection Source="QI" Destination="CFB3.QI" dx1="556" />
+      <Connection Source="CFB3.QO" Destination="CFB2.QI" dx1="203" />
+      <Connection Source="CFB2.QO" Destination="QO" dx1="879" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="CFB3.INIT" dx1="696" />
+      <Connection Source="REQ" Destination="CFB3.REQ" dx1="673" />
+      <Connection Source="CFB3.INITO" Destination="CFB2.INIT" dx1="356" />
+      <Connection Source="CFB3.CNF" Destination="CFB2.REQ" dx1="316" />
+      <Connection Source="CFB2.INITO" Destination="INITO" dx1="660" />
+      <Connection Source="CFB2.CNF" Destination="CNF" dx1="713" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

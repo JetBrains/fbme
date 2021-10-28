@@ -6,6 +6,11 @@
     </modelRoot>
     <modelRoot contentPath="${module}/lib" type="java_classes">
       <sourceRoot location="richediting.jar" />
+      <sourceRoot location="org.eclipse.elk.alg.layered-0.7.1.jar" />
+      <sourceRoot location="org.eclipse.elk.alg.common-0.7.1.jar" />
+      <sourceRoot location="org.eclipse.elk.core-0.7.1.jar" />
+      <sourceRoot location="org.eclipse.elk.graph-0.7.1.jar" />
+      <sourceRoot location="org.eclipse.elk.alg.spore-0.7.1.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -14,6 +19,16 @@
     </facet>
   </facets>
   <stubModelEntries>
+    <stubModelEntry path="${module}/lib/org.eclipse.elk.alg.common-0.7.1.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.elk.alg.layered-0.7.1.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.elk.core-0.7.1.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.elk.graph-0.7.1.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.emf.common-2.12.0.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.emf.ecore-2.12.0.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.emf.ecore.xmi-2.12.0.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.xtend.lib-2.17.0.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.xtend.lib.macro-2.17.0.jar" />
+    <stubModelEntry path="${module}/lib/org.eclipse.xtext.xbase.lib-2.17.0.jar" />
     <stubModelEntry path="${module}/lib/richediting.jar" />
   </stubModelEntries>
   <sourcePath />

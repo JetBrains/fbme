@@ -1,60 +1,60 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="W4W2">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="TRIGGER"></Event>
-      <Event Name="S6_SENSOR"></Event>
-      <Event Name="S1_SENSOR"></Event>
-      <Event Name="S2_SENSOR"></Event>
-      <Event Name="S3_DELIVERED"></Event>
-      <Event Name="RESET"></Event>
+      <Event Name="TRIGGER" />
+      <Event Name="S6_SENSOR" />
+      <Event Name="S1_SENSOR" />
+      <Event Name="S2_SENSOR" />
+      <Event Name="S3_DELIVERED" />
+      <Event Name="RESET" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="S6_ON"></Event>
-      <Event Name="S6_OFF"></Event>
-      <Event Name="S1_ON"></Event>
-      <Event Name="S1_OFF"></Event>
-      <Event Name="S2_ON"></Event>
-      <Event Name="S2_OFF"></Event>
-      <Event Name="S3_DELIVERY"></Event>
-      <Event Name="DONE"></Event>
+      <Event Name="S6_ON" />
+      <Event Name="S6_OFF" />
+      <Event Name="S1_ON" />
+      <Event Name="S1_OFF" />
+      <Event Name="S2_ON" />
+      <Event Name="S2_OFF" />
+      <Event Name="S3_DELIVERY" />
+      <Event Name="DONE" />
     </EventOutputs>
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="848.0" y="477.0"></ECState>
-      <ECState Name="S6_TRANSPORT" x="2609.0" y="876.0">
+      <ECState Name="START" x="848" y="477" />
+      <ECState Name="S6_TRANSPORT" x="2609" y="876">
         <ECAction Output="S6_ON" />
       </ECState>
-      <ECState Name="S1_TRANSPORT" x="2761.0" y="1342.0">
+      <ECState Name="S1_TRANSPORT" x="2761" y="1342">
         <ECAction Output="S1_ON" />
       </ECState>
-      <ECState Name="S3_DELIVER" x="1884.0" y="2412.0">
+      <ECState Name="S3_DELIVER" x="1884" y="2412">
         <ECAction Output="S3_DELIVERY" />
         <ECAction Output="S1_OFF" />
       </ECState>
-      <ECState Name="DONE" x="836.0" y="1768.0">
+      <ECState Name="DONE" x="836" y="1768">
         <ECAction Output="DONE" />
         <ECAction Output="S2_OFF" />
       </ECState>
-      <ECState Name="READY" x="1092.0" y="952.0"></ECState>
-      <ECState Name="S2_TRANSPORT" x="2665.0" y="2010.0">
+      <ECState Name="READY" x="1092" y="952" />
+      <ECState Name="S2_TRANSPORT" x="2665" y="2010">
         <ECAction Output="S2_ON" />
         <ECAction Output="S6_OFF" />
       </ECState>
-      <ECTransition Source="START" Destination="READY" Condition="1" x="839.0" y="718.0" />
-      <ECTransition Source="S6_TRANSPORT" Destination="S1_TRANSPORT" Condition="S6_SENSOR" x="2746.0" y="1066.0" />
-      <ECTransition Source="S3_DELIVER" Destination="DONE" Condition="S3_DELIVERED" x="1177.0" y="2197.0" />
-      <ECTransition Source="READY" Destination="S6_TRANSPORT" Condition="TRIGGER" x="1807.0" y="741.0" />
-      <ECTransition Source="DONE" Destination="READY" Condition="1" x="805.0" y="1297.0" />
-      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" Condition="S1_SENSOR" x="3067.0" y="1678.0" />
-      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" Condition="S2_SENSOR" x="2327.0" y="2279.0" />
-      <ECTransition Source="S6_TRANSPORT" Destination="READY" Condition="RESET" x="1795.0" y="1000.0" />
-      <ECTransition Source="S1_TRANSPORT" Destination="READY" Condition="RESET" x="1877.0" y="1218.0" />
-      <ECTransition Source="S2_TRANSPORT" Destination="READY" Condition="RESET" x="1873.0" y="1556.0" />
-      <ECTransition Source="S3_DELIVER" Destination="READY" Condition="RESET" x="1486.0" y="1757.0" />
+      <ECTransition Source="START" Destination="READY" x="839" y="718" Condition="1" />
+      <ECTransition Source="S6_TRANSPORT" Destination="S1_TRANSPORT" x="2746" y="1066" Condition="S6_SENSOR" />
+      <ECTransition Source="S3_DELIVER" Destination="DONE" x="1177" y="2197" Condition="S3_DELIVERED" />
+      <ECTransition Source="READY" Destination="S6_TRANSPORT" x="1807" y="741" Condition="TRIGGER" />
+      <ECTransition Source="DONE" Destination="READY" x="805" y="1297" Condition="1" />
+      <ECTransition Source="S1_TRANSPORT" Destination="S2_TRANSPORT" x="3067" y="1678" Condition="S1_SENSOR" />
+      <ECTransition Source="S2_TRANSPORT" Destination="S3_DELIVER" x="2327" y="2279" Condition="S2_SENSOR" />
+      <ECTransition Source="S6_TRANSPORT" Destination="READY" x="1795" y="1000" Condition="RESET" />
+      <ECTransition Source="S1_TRANSPORT" Destination="READY" x="1877" y="1218" Condition="RESET" />
+      <ECTransition Source="S2_TRANSPORT" Destination="READY" x="1873" y="1556" Condition="RESET" />
+      <ECTransition Source="S3_DELIVER" Destination="READY" x="1486" y="1757" Condition="RESET" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />
@@ -64,3 +64,4 @@
     </Algorithm>
   </BasicFB>
 </FBType>
+

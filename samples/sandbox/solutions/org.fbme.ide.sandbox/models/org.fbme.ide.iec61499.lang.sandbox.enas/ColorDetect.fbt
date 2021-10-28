@@ -1,16 +1,16 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="ColorDetect">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="DETECT"></Event>
+      <Event Name="INIT" />
+      <Event Name="DETECT" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO"></Event>
-      <Event Name="RED"></Event>
-      <Event Name="GREEN"></Event>
+      <Event Name="INITO" />
+      <Event Name="RED" />
+      <Event Name="GREEN" />
       <Event Name="OTHER">
         <With Var="color" />
       </Event>
@@ -20,49 +20,50 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="COLOR" Type="SUBSCRIBE_1" x="742.0" y="861.0" />
-    <FB Name="IS_RED" Type="F_EQ" x="3040.0" y="720.0" />
-    <FB Name="IS_GREEN" Type="F_EQ" x="3040.0" y="1600.0" />
-    <FB Name="AND" Type="F_AND" x="5307.0" y="1342.0" />
-    <FB Name="REND_OTHER" Type="E_REND" x="3680.0" y="1057.0" />
-    <FB Name="PERMIT_RED" Type="E_PERMIT" x="3734.0" y="653.0" />
-    <FB Name="PERMIT_GREEN" Type="E_PERMIT" x="3673.0" y="1888.0" />
-    <FB Name="FB8" Type="E_PERMIT" x="6026.0" y="1196.0" />
-    <FB Name="FB9" Type="E_PERMIT" x="2292.0" y="1153.0" />
-    <FB Name="NOT1" Type="F_NOT" x="4500.0" y="1250.0" />
-    <FB Name="NOT2" Type="F_NOT" x="4500.0" y="1592.0" />
-    <FB Name="REND_DETECT" Type="E_REND" x="1792.0" y="523.0" />
-    <EventConnections>
-      <Connection Source="COLOR.INITO" Destination="INITO" dx1="57.0" />
-      <Connection Source="INIT" Destination="COLOR.INIT" dx1="426.0" />
-      <Connection Source="FB9.EO" Destination="IS_RED.REQ" dx1="80.0" />
-      <Connection Source="FB9.EO" Destination="IS_GREEN.REQ" dx1="80.0" />
-      <Connection Source="IS_RED.CNF" Destination="REND_OTHER.EI1" dx1="142.0" />
-      <Connection Source="IS_GREEN.CNF" Destination="REND_OTHER.EI2" dx1="153.0" />
-      <Connection Source="REND_OTHER.EO" Destination="NOT1.REQ" dx1="226.0" />
-      <Connection Source="IS_RED.CNF" Destination="PERMIT_RED.EI" dx1="365.0" />
-      <Connection Source="PERMIT_RED.EO" Destination="RED" dx1="69.0" />
-      <Connection Source="IS_GREEN.CNF" Destination="PERMIT_GREEN.EI" dx1="234.0" />
-      <Connection Source="PERMIT_GREEN.EO" Destination="GREEN" dx1="238.0" />
-      <Connection Source="AND.CNF" Destination="FB8.EI" dx1="369.0" />
-      <Connection Source="FB8.EO" Destination="OTHER" dx1="150.0" dy="-534.0" dx2="150.0" />
-      <Connection Source="NOT1.CNF" Destination="AND.REQ" dx1="230.0" />
-      <Connection Source="NOT2.CNF" Destination="AND.REQ" dx1="230.0" />
-      <Connection Source="DETECT" Destination="REND_DETECT.EI1" dx1="780.0" />
-      <Connection Source="REND_DETECT.EO" Destination="FB9.EI" dx1="150.0" dy="300.0" dx2="150.0" />
-      <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="284.0" />
-    </EventConnections>
+    <FB Name="COLOR" Type="SUBSCRIBE_1" x="742" y="861" />
+    <FB Name="IS_RED" Type="F_EQ" x="3040" y="720" />
+    <FB Name="IS_GREEN" Type="F_EQ" x="3040" y="1600" />
+    <FB Name="AND" Type="F_AND" x="5307" y="1342" />
+    <FB Name="REND_OTHER" Type="E_REND" x="3680" y="1057" />
+    <FB Name="PERMIT_RED" Type="E_PERMIT" x="3734" y="653" />
+    <FB Name="PERMIT_GREEN" Type="E_PERMIT" x="3673" y="1888" />
+    <FB Name="FB8" Type="E_PERMIT" x="6026" y="1196" />
+    <FB Name="FB9" Type="E_PERMIT" x="2292" y="1153" />
+    <FB Name="NOT1" Type="F_NOT" x="4500" y="1250" />
+    <FB Name="NOT2" Type="F_NOT" x="4500" y="1592" />
+    <FB Name="REND_DETECT" Type="E_REND" x="1792" y="523" />
     <DataConnections>
-      <Connection Source="COLOR.RD_1" Destination="color" dx1="369.0" />
-      <Connection Source="COLOR.RD_1" Destination="IS_RED.IN2" dx1="457.0" />
-      <Connection Source="COLOR.RD_1" Destination="IS_GREEN.IN2" dx1="565.0" />
-      <Connection Source="IS_RED.OUT" Destination="NOT1.IN" dx1="226.0" />
-      <Connection Source="IS_GREEN.OUT" Destination="NOT2.IN" dx1="188.0" />
-      <Connection Source="IS_RED.OUT" Destination="PERMIT_RED.PERMIT" dx1="365.0" />
-      <Connection Source="IS_GREEN.OUT" Destination="PERMIT_GREEN.PERMIT" dx1="176.0" />
-      <Connection Source="AND.OUT" Destination="FB8.PERMIT" dx1="369.0" />
-      <Connection Source="NOT1.OUT" Destination="AND.IN1" dx1="319.0" />
-      <Connection Source="NOT2.OUT" Destination="AND.IN2" dx1="311.0" />
+      <Connection Source="COLOR.RD_1" Destination="color" dx1="369" />
+      <Connection Source="COLOR.RD_1" Destination="IS_RED.IN2" dx1="457" />
+      <Connection Source="COLOR.RD_1" Destination="IS_GREEN.IN2" dx1="565" />
+      <Connection Source="IS_RED.OUT" Destination="NOT1.IN" dx1="226" />
+      <Connection Source="IS_GREEN.OUT" Destination="NOT2.IN" dx1="188" />
+      <Connection Source="IS_RED.OUT" Destination="PERMIT_RED.PERMIT" dx1="365" />
+      <Connection Source="IS_GREEN.OUT" Destination="PERMIT_GREEN.PERMIT" dx1="176" />
+      <Connection Source="AND.OUT" Destination="FB8.PERMIT" dx1="369" />
+      <Connection Source="NOT1.OUT" Destination="AND.IN1" dx1="319" />
+      <Connection Source="NOT2.OUT" Destination="AND.IN2" dx1="311" />
     </DataConnections>
+    <EventConnections>
+      <Connection Source="COLOR.INITO" Destination="INITO" dx1="57" />
+      <Connection Source="INIT" Destination="COLOR.INIT" dx1="426" />
+      <Connection Source="FB9.EO" Destination="IS_RED.REQ" dx1="80" />
+      <Connection Source="FB9.EO" Destination="IS_GREEN.REQ" dx1="80" />
+      <Connection Source="IS_RED.CNF" Destination="REND_OTHER.EI1" dx1="142" />
+      <Connection Source="IS_GREEN.CNF" Destination="REND_OTHER.EI2" dx1="153" />
+      <Connection Source="REND_OTHER.EO" Destination="NOT1.REQ" dx1="226" />
+      <Connection Source="IS_RED.CNF" Destination="PERMIT_RED.EI" dx1="365" />
+      <Connection Source="PERMIT_RED.EO" Destination="RED" dx1="69" />
+      <Connection Source="IS_GREEN.CNF" Destination="PERMIT_GREEN.EI" dx1="234" />
+      <Connection Source="PERMIT_GREEN.EO" Destination="GREEN" dx1="238" />
+      <Connection Source="AND.CNF" Destination="FB8.EI" dx1="369" />
+      <Connection Source="FB8.EO" Destination="OTHER" dy="-534" dx2="150" dx1="150" />
+      <Connection Source="NOT1.CNF" Destination="AND.REQ" dx1="230" />
+      <Connection Source="NOT2.CNF" Destination="AND.REQ" dx1="230" />
+      <Connection Source="DETECT" Destination="REND_DETECT.EI1" dx1="780" />
+      <Connection Source="REND_DETECT.EO" Destination="FB9.EI" dy="300" dx2="150" dx1="150" />
+      <Connection Source="COLOR.IND" Destination="REND_DETECT.EI2" dx1="284" />
+    </EventConnections>
   </FBNetwork>
 </FBType>
+

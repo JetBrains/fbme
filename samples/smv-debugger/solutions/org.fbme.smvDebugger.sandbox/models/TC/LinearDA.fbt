@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="LinearDA">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="FWD" />
+        <With Var="BACK" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="FWD" />
+        <With Var="BACK" />
+      </Event>
+      <Event Name="NDT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="HOME" />
+        <With Var="END" />
+      </Event>
+      <Event Name="CHG">
+        <With Var="HOME" />
+        <With Var="END" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="FWD" Type="BOOL" />
+      <VarDeclaration Name="BACK" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="HOME" Type="BOOL" />
+      <VarDeclaration Name="END" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="844" y="401" />
+      <ECState Name="INIT" x="1631" y="398">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="stHOME" x="1636" y="776">
+        <ECAction Output="CHG" Algorithm="POS1" />
+      </ECState>
+      <ECState Name="stEND" x="1645" y="1894">
+        <ECAction Output="CHG" Algorithm="POS2" />
+      </ECState>
+      <ECState Name="ddMOVETO" x="239" y="1493">
+        <ECAction Output="CHG" Algorithm="MOV" />
+      </ECState>
+      <ECState Name="ddRETURN" x="3053" y="1599">
+        <ECAction Output="CHG" Algorithm="MOV" />
+      </ECState>
+      <ECState Name="stSTOP" x="1613" y="1346">
+        <ECAction Output="CHG" Algorithm="STOP" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="1243" y="399" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="stHOME" x="1636" y="594" Condition="NDT" />
+      <ECTransition Source="stHOME" Destination="ddMOVETO" x="653" y="1019" Condition="[FWD]" />
+      <ECTransition Source="stEND" Destination="ddRETURN" x="2426" y="1899" Condition="[BACK]" />
+      <ECTransition Source="ddMOVETO" Destination="stEND" x="733" y="1886" Condition="NDT" />
+      <ECTransition Source="ddRETURN" Destination="stHOME" x="2560" y="1046" Condition="NDT" />
+      <ECTransition Source="ddRETURN" Destination="stSTOP" x="2373" y="1180" Condition="[NOT FWD AND NOT BACK]" />
+      <ECTransition Source="stSTOP" Destination="ddRETURN" x="2233" y="1659" Condition="[BACK]" />
+      <ECTransition Source="stSTOP" Destination="ddMOVETO" x="973" y="1613" Condition="[FWD]" />
+      <ECTransition Source="ddMOVETO" Destination="stSTOP" x="906" y="1186" Condition="[NOT FWD AND NOT BACK]" />
+      <ECTransition Source="INIT" Destination="stSTOP" x="1846" y="966" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="stEND" x="3332" y="1294" Condition="NDT" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="HOME := TRUE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="POS1">
+      <ST Text="HOME := TRUE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="POS2">
+      <ST Text="HOME := FALSE;&amp;#38;#10;END := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="MOV">
+      <ST Text="HOME := FALSE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="HOME := FALSE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+
