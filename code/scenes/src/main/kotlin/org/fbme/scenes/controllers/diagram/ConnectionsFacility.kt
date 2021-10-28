@@ -88,16 +88,16 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                 val targetPosition = diagramController.getPortController(targetPort!!).modelEndpointPosition
                 sourcePosition.translate(dx, dy)
                 targetPosition.translate(dx, dy)
-                val translatedPath = endpointsTransformation.apply(sourcePosition, targetPosition)
+                val translatedPath = endpointsTransformation(sourcePosition, targetPosition)
                 changePath(entry, connectionView, translatedPath, completed)
                 continue
             }
             if (targetMoved) {
-                val targetTransformation = entry.controller.getTargetTransformation(entry.modelPath)
+                val targetTransformation = entry.controller.getTargetTransformation(entry.modelPath, false)
                     ?: error("Target endpoint transformation failed")
                 val targetPosition = diagramController.getPortController(targetPort!!).modelEndpointPosition
                 targetPosition.translate(dx, dy)
-                val translatedPath = targetTransformation.apply(targetPosition)
+                val translatedPath = targetTransformation(targetPosition)
                 changePath(entry, connectionView, translatedPath, completed)
                 continue
             }
@@ -106,7 +106,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                     ?: error("Source endpoint transformation failed")
                 val sourcePosition = diagramController.getPortController(sourcePort!!).modelEndpointPosition
                 sourcePosition.translate(dx, dy)
-                val translatedPath = sourceTransformation.apply(sourcePosition)
+                val translatedPath = sourceTransformation(sourcePosition)
                 changePath(entry, connectionView, translatedPath, completed)
             }
         }
@@ -276,7 +276,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                     }
                 }
                 if (controller.isTargetTransformableAt(connection.modelPath, x, y)) {
-                    pathTransformation = controller.getTargetTransformation(connection.modelPath)
+                    pathTransformation = controller.getTargetTransformation(connection.modelPath, true)
                     if (pathTransformation != null) {
                         event.consume(ConnectionTargetChangeDragEventHandler(x, y, pathTransformation, connection))
                         return

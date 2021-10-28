@@ -23,9 +23,9 @@ class ECTransitionController(
         connectionCell.isSelectable = isEditable
     }
 
-    override fun getEdgeTransformation(path: ECTransitionPath, x: Int, y: Int): Function<Point, ECTransitionPath>? {
+    override fun getEdgeTransformation(path: ECTransitionPath, x: Int, y: Int): ((Point) -> ECTransitionPath)? {
         return if (handle.getBounds(path.centre).contains(x, y)) {
-            Function { p: Point ->
+            { p: Point ->
                 val sourceBound = sourceHandle.bounds
                 val targetBound = targetHandle.bounds
                 val centre = Point(path.centre)
@@ -39,16 +39,16 @@ class ECTransitionController(
         } else null
     }
 
-    override fun getSourceTransformation(path: ECTransitionPath): Function<Point, ECTransitionPath> {
-        return Function { ns: Point -> transformSource(path, ns) }
+    override fun getSourceTransformation(path: ECTransitionPath): (Point) -> ECTransitionPath {
+        return { ns: Point -> transformSource(path, ns) }
     }
 
-    override fun getTargetTransformation(path: ECTransitionPath): Function<Point, ECTransitionPath> {
-        return Function { nt: Point -> transformTarget(path, nt) }
+    override fun getTargetTransformation(path: ECTransitionPath, isSmart: Boolean): (Point) -> ECTransitionPath {
+        return { nt: Point -> transformTarget(path, nt) }
     }
 
-    override fun getEndpointsTransformation(path: ECTransitionPath): BiFunction<Point, Point, ECTransitionPath> {
-        return BiFunction { ns: Point, nt: Point -> transform(path, ns, nt) }
+    override fun getEndpointsTransformation(path: ECTransitionPath): (Point, Point) -> ECTransitionPath {
+        return { ns: Point, nt: Point -> transform(path, ns, nt) }
     }
 
     private fun transformSource(path: ECTransitionPath, ns: Point): ECTransitionPath {

@@ -8,10 +8,13 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors
+import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.scenes.controllers.LayoutUtil.getFontSize
+import org.fbme.scenes.controllers.SceneViewpoint
+import org.fbme.scenes.controllers.components.ComponentsFacility
 import org.fbme.scenes.controllers.diagram.ConnectionController
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Color
@@ -24,8 +27,12 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class FBConnectionController(context: EditorContext, view: NetworkConnectionView) :
-    ConnectionController<FBConnectionCursor, FBConnectionPath> {
+class FBConnectionController(
+    context: EditorContext,
+    view: NetworkConnectionView,
+    private val componentsFacility: ComponentsFacility<NetworkComponentView, Point>,
+    private val viewpoint: SceneViewpoint
+) : ConnectionController<FBConnectionCursor, FBConnectionPath> {
     private val kind: EntryKind
     private val isEditable: Boolean
     private val fakeCell: EditorCell_Collection
@@ -62,7 +69,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
         FBConnectionPathPainter(path, null, scale(ENDPOINT_HOVER_LENGTH)).paint(graphics, false)
     }
 
-    override fun getEdgeTransformation(path: FBConnectionPath, x: Int, y: Int): Function<Point, FBConnectionPath>? {
+    override fun getEdgeTransformation(path: FBConnectionPath, x: Int, y: Int): ((Point) -> FBConnectionPath)? {
         if (!isEditable) {
             return null
         }
@@ -90,10 +97,10 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
         return abs(ey - u.y) < scale(SELECTION_PADDING) && min(u.x, v.x) < ex && ex < max(u.x, v.x)
     }
 
-    private fun getPathSectionTransformation(path: FBConnectionPath, index: Int): Function<Point, FBConnectionPath> {
+    private fun getPathSectionTransformation(path: FBConnectionPath, index: Int): (Point) -> FBConnectionPath {
         val bendPoints = path.bendPoints
         val isHorizontal = index % 2 == 0
-        return Function { eventPosition: Point ->
+        return { eventPosition: Point ->
             val newBendPoints = deepCopy(bendPoints)
             val u = newBendPoints[index - 1]
             val v = newBendPoints[index]
@@ -197,24 +204,30 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
         } else isOnTargetHoverArea(x, y, path)
     }
 
-    override fun getSourceTransformation(path: FBConnectionPath): Function<Point, FBConnectionPath>? {
+    override fun getSourceTransformation(path: FBConnectionPath): ((Point) -> FBConnectionPath)? {
         return if (!isEditable) {
             null
         } else getConnectionSourceTransformation(path)
     }
 
-    override fun getTargetTransformation(path: FBConnectionPath): Function<Point, FBConnectionPath>? {
+    override fun getTargetTransformation(path: FBConnectionPath, isSmart: Boolean): ((Point) -> FBConnectionPath)? {
         return if (!isEditable) {
             null
-        } else getConnectionTargetTransformation(path)
+        } else {
+            if (isSmart) {
+                return getSmartTargetTransformation(path)
+            } else {
+                return getConnectionTargetTransformation(path)
+            }
+        }
     }
 
-    override fun getEndpointsTransformation(path: FBConnectionPath): BiFunction<Point, Point, FBConnectionPath>? {
+    override fun getEndpointsTransformation(path: FBConnectionPath): ((Point, Point) -> FBConnectionPath)? {
         if (!isEditable) {
             return null
         }
         val bendPoints = path.bendPoints
-        return BiFunction { sourcePosition: Point, targetPosition: Point ->
+        return { sourcePosition: Point, targetPosition: Point ->
             val originalSourcePosition = path.sourcePosition
             val dx = sourcePosition.x - originalSourcePosition.x
             val dy = sourcePosition.y - originalSourcePosition.y
@@ -291,15 +304,22 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
         return Rectangle(xMin, yMin, xMax - xMin, yMax - yMin)
     }
 
-    private fun getConnectionSourceTransformation(originalPath: FBConnectionPath): Function<Point, FBConnectionPath> {
+    private fun getConnectionSourceTransformation(originalPath: FBConnectionPath): (Point) -> FBConnectionPath {
         val calculator = PathSourceChangeDiffCalculator(originalPath)
-        return Function { newSource: Point -> calculator.calculatePath(newSource) }
+        return { newSource: Point -> calculator.calculatePath(newSource) }
     }
 
-    private fun getConnectionTargetTransformation(originalPath: FBConnectionPath): Function<Point, FBConnectionPath> {
+    private fun getConnectionTargetTransformation(originalPath: FBConnectionPath): (Point) -> FBConnectionPath {
         val calculator = PathTargetChangeDiffCalculator(originalPath)
-        return Function { newTarget: Point -> calculator.calculatePath(newTarget) }
+        return { newTarget: Point -> calculator.calculatePath(newTarget) }
     }
+
+    private data class PointNode(
+        val point: Point,
+        val cost: Int,
+        var value: Int,
+        var prev: PointNode?
+    )
 
     private inner class PathTargetChangeDiffCalculator(private val myOriginalPath: FBConnectionPath) {
         fun calculatePath(newTarget: Point): FBConnectionPath {
@@ -315,10 +335,8 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
                 x1 = (t.x + s.x) / 2
             }
             when (kind) {
-                ConnectionPath.Kind.Straight, ConnectionPath.Kind.TwoAngles -> if (ntx >= s.x + 2 * scale(
-                        ENDPOINTS_PADDING
-                    )
-                ) {
+                ConnectionPath.Kind.Straight,
+                ConnectionPath.Kind.TwoAngles -> if (ntx >= s.x + 2 * scale(ENDPOINTS_PADDING)) {
                     kind = ConnectionPath.Kind.TwoAngles
                     if (t.x != s.x) {
                         x1 = s.x + (ntx - s.x) * (x1 - s.x) / (t.x - s.x)
@@ -424,6 +442,87 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
             s.x + scale(ENDPOINT_HOVER_LENGTH),
             if (bendPoints.isEmpty()) (s.x + t.x) / 2 else bendPoints[0].x
         )
+    }
+
+    private fun getSmartTargetTransformation(myOriginalPath: FBConnectionPath): (Point) -> FBConnectionPath {
+        return { newTargetPosition ->
+            val sourcePosition = myOriginalPath.sourcePosition
+            val targetPosition = myOriginalPath.targetPosition
+            val padding = viewpoint.toEditorDimension(50)
+
+            val allXs = sortedSetOf(sourcePosition.x, sourcePosition.x + padding, newTargetPosition.x, newTargetPosition.x - padding)
+            val allYs = sortedSetOf(sourcePosition.y, newTargetPosition.y)
+            for ((_, componentEntry) in componentsFacility.components) {
+                val bounds = componentEntry.layoutBounds
+                allXs.add(bounds.left - padding)
+                allXs.add(bounds.right + padding)
+
+                allYs.add(bounds.top - padding)
+                allYs.add(bounds.bottom + padding)
+            }
+
+            val iStart = allYs.indexOf(sourcePosition.y)
+            val jStart = allXs.indexOf(sourcePosition.x + padding)
+
+            val iFinish = allYs.indexOf(newTargetPosition.y)
+            val jFinish = allXs.indexOf(newTargetPosition.x - padding)
+
+            val matrix = allYs.map { y ->
+                allXs.map { x ->
+                    val point = Point(x, y)
+                    val isOnComponent = componentsFacility.components.values.any { componentEntry ->
+                        componentEntry.layoutBounds.contains(point)
+                    }
+                    val isSource = x == sourcePosition.x && y == sourcePosition.y
+                    val isTarget = x == newTargetPosition.x && y == newTargetPosition.y
+                    val cost = if (isOnComponent && !isSource && !isTarget) 1000000 else 0
+                    PointNode(point, cost, 10000000, null)
+                }
+            }
+
+            val start = matrix[iStart][jStart]
+            val finish = matrix[iFinish][jFinish]
+
+            val set = sortedSetOf(tripleIntComparator)
+            start.value = 0
+            set.add(Triple(0, iStart, jStart))
+
+            val transitions = listOf(Pair(-1, 0), Pair(0, -1), Pair(0, 1), Pair(1, 0))
+
+            while (set.isNotEmpty()) {
+                val (_, iCur, jCur) = set.pollFirst()!!
+                val cur = matrix[iCur][jCur]
+
+                for (transition in transitions) {
+                    val iNext = iCur + transition.first
+                    val jNext = jCur + transition.second
+                    if (iNext !in matrix.indices || jNext !in matrix[iNext].indices) {
+                        continue
+                    }
+                    val next = matrix[iNext][jNext]
+                    val nextValue =
+                        cur.value + abs(next.point.x - cur.point.x) + abs(next.point.y - cur.point.y) + next.cost
+                    if (nextValue < next.value) {
+                        set.remove(Triple(next.value, iNext, jNext))
+                        next.value = nextValue
+                        next.prev = cur
+                        set.add(Triple(nextValue, iNext, jNext))
+                    }
+                }
+            }
+
+            val ans = mutableListOf<PointNode>()
+            var cur = finish
+            while (cur != start) {
+                ans.add(cur)
+                cur = cur.prev ?: error("Prev is null")
+            }
+            ans.add(start)
+
+            val bendPoints = ans.map { it.point }.reversed().toMutableList()
+
+            FBConnectionPath(sourcePosition, newTargetPosition, bendPoints)
+        }
     }
 
     private object CONCEPTS {

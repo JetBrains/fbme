@@ -36,20 +36,6 @@ import java.util.function.Function
 
 object FBNetworkEditors {
     @JvmField
-    val CONNECTION_CONTROLLER_FACTORY: ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> =
-        object : ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
-            override fun create(
-                context: EditorContext,
-                view: NetworkConnectionView
-            ): ConnectionController<FBConnectionCursor, FBConnectionPath> {
-                return FBConnectionController(
-                    context,
-                    view
-                )
-            }
-        }
-
-    @JvmField
     val INLINE_VALUE_CONTROLLER_FACTORY: ComponentExtControllerFactory<NetworkComponentView, Point> =
         object : ComponentExtControllerFactory<NetworkComponentView, Point> {
             override fun create(
@@ -216,7 +202,7 @@ object FBNetworkEditors {
                 }) { inlineValuesView.getExtensions(it) }
             val connectionsFacility = ConnectionsFacility(
                 scene,
-                CONNECTION_CONTROLLER_FACTORY,
+                getConnectionControllerFactory(componentsFacility, viewpoint),
                 FBConnectionUtils.getPathFactory(style),
                 FBConnectionUtils.getPathPainter(style),
                 FBConnectionPathSynchronizer(
@@ -248,6 +234,25 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.INSPECTIONS_FACILITY, networkInspectionsFacility)
         } catch (e: RuntimeException) {
 //            LOG.error("Error during cell creation", e);
+        }
+    }
+
+    private fun getConnectionControllerFactory(
+        componentsFacility: ComponentsFacility<NetworkComponentView, Point>,
+        viewpoint: SceneViewpoint
+    ): ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
+        return object : ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
+            override fun create(
+                context: EditorContext,
+                view: NetworkConnectionView
+            ): ConnectionController<FBConnectionCursor, FBConnectionPath> {
+                return FBConnectionController(
+                    context,
+                    view,
+                    componentsFacility,
+                    viewpoint
+                )
+            }
         }
     }
 

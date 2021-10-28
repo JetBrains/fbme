@@ -8,10 +8,10 @@ import java.util.function.BiFunction
 import java.util.function.Function
 
 interface ConnectionController<CursorT, PathT> {
-    fun getEdgeTransformation(path: PathT, x: Int, y: Int): Function<Point, PathT>?
-    fun getSourceTransformation(path: PathT): Function<Point, PathT>?
-    fun getTargetTransformation(path: PathT): Function<Point, PathT>?
-    fun getEndpointsTransformation(path: PathT): BiFunction<Point, Point, PathT>?
+    fun getEdgeTransformation(path: PathT, x: Int, y: Int): ((Point) -> PathT)?
+    fun getSourceTransformation(path: PathT): ((Point) -> PathT)?
+    fun getTargetTransformation(path: PathT, isSmart: Boolean): ((Point) -> PathT)?
+    fun getEndpointsTransformation(path: PathT): ((Point, Point) -> PathT)?
     fun isSourceTransformableAt(path: PathT, x: Int, y: Int): Boolean
     fun isTargetTransformableAt(path: PathT, x: Int, y: Int): Boolean
     fun isSelectableAt(path: PathT, x: Int, y: Int): Boolean

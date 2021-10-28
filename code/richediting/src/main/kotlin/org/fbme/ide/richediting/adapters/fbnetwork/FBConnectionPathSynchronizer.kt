@@ -510,16 +510,4 @@ class FBConnectionPathSynchronizer(
             targetComponentY = targetComponentY
         ).block()
     }
-
-    private val Rectangle.left: Int
-        get() = x
-
-    private val Rectangle.right: Int
-        get() = x + width
-
-    private val Rectangle.top: Int
-        get() = y
-
-    private val Rectangle.bottom: Int
-        get() = y + height
 }
