@@ -3,7 +3,7 @@
   <property name="build.dir" location="build" />
   <property name="build.tmp" location="${build.dir}/tmp/fbme_bootstrap" />
   <property name="build.layout" location="${build.dir}/artifacts/fbme_bootstrap" />
-  <property name="mps_home" location="${basedir}/lib/MPS 2020.2" />
+  <property name="mps_home" location="${basedir}/lib/MPS 2021.2" />
   <property name="artifacts.mps" location="${mps_home}" />
   <property name="artifacts.fbme_library" location="code/library/build/artifacts/fbme_library" />
   <property name="artifacts.fbme_scenes" location="code/scenes/build/artifacts/fbme_scenes" />
@@ -38,11 +38,11 @@
   <property name="fbme_fordiac.ide-version" value="${import.fbme_fordiac.fbme_fordiac.ide-version}" />
   <property name="fbme_smvdebugger.ide-version" value="${import.fbme_smvdebugger.fbme_smvdebugger.ide-version}" />
   <property name="mps.generator.skipUnmodifiedModels" value="false" />
+  <property name="mps.ant.log" value="warn" />
   
   <path id="path.mps.ant.path">
     <pathelement location="${mps_home}/lib/ant/lib/ant-mps.jar" />
-    <pathelement location="${mps_home}/lib/jdom.jar" />
-    <pathelement location="${mps_home}/lib/log4j.jar" />
+    <pathelement location="${mps_home}/lib/util.jar" />
   </path>
   
   <target name="assemble" depends="declare-mps-tasks">
@@ -71,7 +71,7 @@
   
   <target name="generate" depends="declare-mps-tasks, fetchDependencies">
     <echo message="generating" />
-    <generate strictMode="true" parallelMode="true" parallelThreads="8" useInplaceTransform="false" hideWarnings="false" createStaticRefs="true" fork="true" skipUnmodifiedModels="${mps.generator.skipUnmodifiedModels}">
+    <generate strictMode="true" parallelMode="true" parallelThreads="8" useInplaceTransform="false" hideWarnings="false" createStaticRefs="true" fork="true" skipUnmodifiedModels="${mps.generator.skipUnmodifiedModels}" logLevel="${mps.ant.log}">
       <plugin path="${artifacts.mps}/plugins/mps-build" />
       <plugin path="${artifacts.mps}/plugins/mps-core" />
       <library file="${artifacts.mps}/languages/baseLanguage/closures.runtime.jar" />
@@ -100,6 +100,11 @@
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.behavior.jar" />
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.checkedName.jar" />
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.constraints.jar" />
+      <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.constraints.rules.jar" />
+      <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.constraints.rules.kinds.jar" />
+      <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.constraints.rules.skeleton.jar" />
+      <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.context.defs.jar" />
+      <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.context.jar" />
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.core.jar" />
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.dataFlow.jar" />
       <library file="${artifacts.mps}/languages/languageDesign/jetbrains.mps.lang.editor.jar" />
@@ -139,7 +144,6 @@
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.dataFlow.runtime.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.findUsages.runtime.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.lang.behavior.api.jar" />
-      <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.lang.feedback.context.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.lang.migration.runtime.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.lang.smodel.query.runtime.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.refactoring.runtime.jar" />
@@ -153,12 +157,6 @@
       <library file="${artifacts.mps}/languages/util/jetbrains.mps.refactoring.jar" />
       <library file="${artifacts.mps}/languages/util/jetbrains.mps.runtime.jar" />
       <library file="${artifacts.mps}/languages/xml/jetbrains.mps.core.xml.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.mps.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.startup.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.workflow.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.build.workflow.preset.jar" />
-      <library file="${artifacts.mps}/plugins/mps-build/languages/build/jetbrains.mps.ide.build.jar" />
       <chunk>
         <module file="${basedir}/buildscripts/org.fbme.ide.build.msd" />
         <module file="${basedir}/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" />

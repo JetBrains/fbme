@@ -371,8 +371,8 @@
       <property role="TrG5h" value="build.number" />
       <node concept="aVJcg" id="1mPaNys5H5F" role="aVJcv">
         <node concept="NbPM2" id="1mPaNys5H5G" role="aVJcq">
-          <node concept="3Mxwew" id="1mPaNys5H5H" role="3MwsjC">
-            <property role="3MwjfP" value="202.SNAPSHOT" />
+          <node concept="3Mxwew" id="60wxHLH9ueP" role="3MwsjC">
+            <property role="3MwjfP" value="211.SNAPSHOT" />
           </node>
         </node>
       </node>
@@ -382,8 +382,8 @@
       <node concept="55IIr" id="1mPaNys6fxP" role="398pKh">
         <node concept="2Ry0Ak" id="1mPaNys6fxS" role="iGT6I">
           <property role="2Ry0Am" value="lib" />
-          <node concept="2Ry0Ak" id="1mPaNys6fxX" role="2Ry0An">
-            <property role="2Ry0Am" value="MPS 2020.2" />
+          <node concept="2Ry0Ak" id="60wxHLH9ueR" role="2Ry0An">
+            <property role="2Ry0Am" value="MPS 2021.2" />
           </node>
         </node>
       </node>
@@ -637,12 +637,6 @@
         </node>
         <node concept="28u9K_" id="42vv4xsJOrw" role="39821P">
           <property role="28hIV_" value="mps" />
-        </node>
-        <node concept="3_I8Xc" id="1mPaNys5H78" role="39821P">
-          <ref role="3_I8Xa" to="ffeo:3nGzrDEfcNJ" resolve="svn4idea" />
-        </node>
-        <node concept="3_I8Xc" id="1mPaNys5H79" role="39821P">
-          <ref role="3_I8Xa" to="ffeo:I6XuqH2zYV" resolve="git4idea" />
         </node>
         <node concept="3_I8Xc" id="1mPaNys5H7a" role="39821P">
           <ref role="3_I8Xa" to="ffeo:4EdAnGErOtx" resolve="mps-core" />
@@ -1293,8 +1287,8 @@
       <node concept="55IIr" id="1mPaNys5SDE" role="398pKh">
         <node concept="2Ry0Ak" id="1mPaNys5SDJ" role="iGT6I">
           <property role="2Ry0Am" value="lib" />
-          <node concept="2Ry0Ak" id="1mPaNys5SDO" role="2Ry0An">
-            <property role="2Ry0Am" value="MPS 2020.2" />
+          <node concept="2Ry0Ak" id="60wxHLH9ueT" role="2Ry0An">
+            <property role="2Ry0Am" value="MPS 2021.2" />
           </node>
         </node>
       </node>
@@ -1303,8 +1297,8 @@
       <property role="TrG5h" value="version" />
       <node concept="aVJcg" id="1mPaNys5H7w" role="aVJcv">
         <node concept="NbPM2" id="1mPaNys5H7x" role="aVJcq">
-          <node concept="3Mxwew" id="1mPaNys5H7y" role="3MwsjC">
-            <property role="3MwjfP" value="202.SNAPSHOT" />
+          <node concept="3Mxwew" id="60wxHLH9ueV" role="3MwsjC">
+            <property role="3MwjfP" value="211.SNAPSHOT" />
           </node>
         </node>
       </node>
@@ -1337,9 +1331,6 @@
     </node>
     <node concept="26EafG" id="1mPaNys5Hbi" role="26Ea7d">
       <property role="26EafJ" value="lib/util.jar" />
-    </node>
-    <node concept="26EafG" id="1mPaNys5Hbj" role="26Ea7d">
-      <property role="26EafJ" value="lib/jdom.jar" />
     </node>
     <node concept="26EafG" id="1mPaNys5Hbk" role="26Ea7d">
       <property role="26EafJ" value="lib/log4j.jar" />
@@ -1972,8 +1963,8 @@
       <node concept="55IIr" id="6kvdbYtXYkK" role="398pKh">
         <node concept="2Ry0Ak" id="6kvdbYtXYkL" role="iGT6I">
           <property role="2Ry0Am" value="lib" />
-          <node concept="2Ry0Ak" id="6_lerJ3jVZp" role="2Ry0An">
-            <property role="2Ry0Am" value="MPS 2020.2" />
+          <node concept="2Ry0Ak" id="60wxHLH9ueK" role="2Ry0An">
+            <property role="2Ry0Am" value="MPS 2021.2" />
           </node>
         </node>
       </node>
