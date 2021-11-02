@@ -15,6 +15,10 @@ class WatchablePath(val root: ResourceDeclaration, vararg path: FunctionBlockDec
         return WatchablePathData(root.identifier, *path.map { it.identifier }.toTypedArray())
     }
 
+    override fun toString(): String {
+        return root.name + "." + path.joinToString(".") { it.name }
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true

@@ -1,8 +1,14 @@
 package org.fbme.ide.platform.debugger
 
 class Watchable(val path: WatchablePath, val port: String) {
+    val name = toString()
+
     fun serialize(): WatchableData {
         return WatchableData(path.serialize(), port)
+    }
+
+    override fun toString(): String {
+        return "$path.$port"
     }
 
     override fun equals(other: Any?): Boolean {
