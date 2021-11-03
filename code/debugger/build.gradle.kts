@@ -43,3 +43,7 @@ val mpsPrepare by tasks.getting(Copy::class) {
     })
     into("solutions/org.fbme.debugger/lib")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+
+compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")

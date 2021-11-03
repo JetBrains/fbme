@@ -153,7 +153,7 @@ class WatcherFacade private constructor(project: Project) {
             INSTANCES.remove(project)!!.stop()
         }
 
-        private fun resolveWatches(device: DeviceDeclaration, watch: String): Map<WatchableData, String> {
+        fun resolveWatches(device: DeviceDeclaration, watch: String): Map<WatchableData, String> {
             return try {
                 val doc = JDOMUtil.loadDocument(ByteArrayInputStream(watch.toByteArray()))
                 val watches: MutableMap<WatchableData, String> = HashMap()

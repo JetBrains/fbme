@@ -5,6 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -13,6 +15,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.fbme.ide.platform.debugger.Watchable
 
-fun debuggerPanel(watchables: MutableList<Watchable>, searchWatchables: MutableState<TextFieldValue>): ComposePanel {
+fun debuggerPanel(watchables: MutableMap<Watchable, String>, searchWatchables: MutableState<TextFieldValue>): ComposePanel {
     val composePanel = ComposePanel()
 
     composePanel.setContent {
@@ -36,7 +39,7 @@ fun debuggerPanel(watchables: MutableList<Watchable>, searchWatchables: MutableS
 }
 
 @Composable
-fun DebuggerContent(watchables: MutableList<Watchable>, searchWatchables: MutableState<TextFieldValue>) {
+fun DebuggerContent(watchables: MutableMap<Watchable, String>, searchWatchables: MutableState<TextFieldValue>) {
     Row(
         modifier = Modifier
             .background(MaterialTheme.colors.tableBackground)
@@ -62,7 +65,7 @@ fun StepsColumn() {
 @Composable
 fun WatchablesColumn(
     searchWatchables: MutableState<TextFieldValue>,
-    watchables: MutableList<Watchable>
+    watchables: MutableMap<Watchable, String>
 ) {
     Column(
         modifier = Modifier
@@ -142,7 +145,7 @@ fun SearchView(search: MutableState<TextFieldValue>) {
 }
 
 @Composable
-fun WatchableItem(watchable: Watchable, onItemClick: (Watchable) -> Unit) {
+fun WatchableItem(watchable: Watchable, value: String, onItemClick: (Watchable) -> Unit) {
     Row(
         modifier = Modifier
             .clickable(onClick = { onItemClick(watchable) })
@@ -152,17 +155,16 @@ fun WatchableItem(watchable: Watchable, onItemClick: (Watchable) -> Unit) {
             .padding(20.dp, 2.dp)
     ) {
         Text(
-            text = watchable.name,
+            text = watchable.name + "                   --> " + value,
             fontSize = 14.sp,
             color = MaterialTheme.colors.listForeground
-
         )
     }
 }
 
 @Composable
-fun WatchableList(watchables: MutableList<Watchable>, state: MutableState<TextFieldValue>) {
-    var filteredWatchables: MutableList<Watchable>
+fun WatchableList(watchables: MutableMap<Watchable, String>, state: MutableState<TextFieldValue>) {
+    var filteredWatchables: MutableMap<Watchable, String>
     LazyColumn(
         modifier = Modifier
             .background(MaterialTheme.colors.listBackground)
@@ -172,13 +174,18 @@ fun WatchableList(watchables: MutableList<Watchable>, state: MutableState<TextFi
         filteredWatchables = if (search.isEmpty()) {
             watchables
         } else {
-            watchables.filter { watchable ->
-                watchable.name.lowercase().contains(search.lowercase())
-            }.toMutableStateList()
+            val filtered = mutableStateMapOf<Watchable, String>()
+            for ((watchable, value) in watchables) {
+                if (watchable.name.lowercase().contains(search.lowercase())) {
+                    filtered[watchable] = value
+                }
+            }
+            filtered
         }
-        items(filteredWatchables, null) { watchable ->
+        items(filteredWatchables, null) { (watchable, value) ->
             WatchableItem(
                 watchable = watchable,
+                value = value,
                 onItemClick = {}
             )
         }
