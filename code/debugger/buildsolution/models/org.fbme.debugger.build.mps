@@ -7,7 +7,6 @@
   </languages>
   <imports>
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
-    <import index="bco3" ref="r:4904ab70-42df-49dd-8218-a04fff347a01(org.fbme.richediting.build)" />
     <import index="ci82" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)" />
     <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
@@ -181,9 +180,6 @@
     <node concept="2sgV4H" id="ApHj0p88Dx" role="1l3spa">
       <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
     </node>
-    <node concept="2sgV4H" id="1b51meRU439" role="1l3spa">
-      <ref role="1l3spb" to="bco3:68dTcycFmrj" resolve="fbme_richediting" />
-    </node>
     <node concept="2sgV4H" id="1b51meRUDDi" role="1l3spa">
       <ref role="1l3spb" to="jh3g:Ej4tEplrN$" resolve="fbme_scenes" />
     </node>
@@ -192,6 +188,22 @@
         <ref role="m_rDy" node="7ZpdjDjcHi_" resolve="fbme.debugger" />
         <node concept="pUk6x" id="7ZpdjDjcHiR" role="pUk7w" />
         <node concept="398223" id="7ZpdjDjcLBC" role="39821P">
+          <node concept="28jJK3" id="7ZpdjDjcLBP" role="39821P">
+            <node concept="55IIr" id="7ZpdjDjcLBT" role="28jJRO">
+              <node concept="2Ry0Ak" id="7ZpdjDjcLBZ" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="7ZpdjDjcLC4" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.debugger" />
+                  <node concept="2Ry0Ak" id="7ZpdjDjcLC7" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="7ZpdjDjcLCd" role="2Ry0An">
+                      <property role="2Ry0Am" value="debugger.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
           <node concept="28jJK3" id="48WAbeCXV2w" role="39821P">
             <node concept="55IIr" id="48WAbeCXV2y" role="28jJRO">
               <node concept="2Ry0Ak" id="48WAbeCXV4B" role="iGT6I">
@@ -223,22 +235,6 @@
                     <property role="2Ry0Am" value="lib" />
                     <node concept="2Ry0Ak" id="48WAbeCXVn5" role="2Ry0An">
                       <property role="2Ry0Am" value="animation-desktop-1.0.0-beta5.jar" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="28jJK3" id="7ZpdjDjcLBP" role="39821P">
-            <node concept="55IIr" id="7ZpdjDjcLBT" role="28jJRO">
-              <node concept="2Ry0Ak" id="7ZpdjDjcLBZ" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="7ZpdjDjcLC4" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="7ZpdjDjcLC7" role="2Ry0An">
-                    <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="7ZpdjDjcLCd" role="2Ry0An">
-                      <property role="2Ry0Am" value="debugger.jar" />
                     </node>
                   </node>
                 </node>
@@ -309,22 +305,6 @@
               </node>
             </node>
           </node>
-          <node concept="28jJK3" id="48WAbeCXVTD" role="39821P">
-            <node concept="55IIr" id="48WAbeCXVTE" role="28jJRO">
-              <node concept="2Ry0Ak" id="48WAbeCXVTF" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="48WAbeCXVTG" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="48WAbeCXVTH" role="2Ry0An">
-                    <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="48WAbeCXWcp" role="2Ry0An">
-                      <property role="2Ry0Am" value="kotlinx-coroutines-jdk8.jar" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
           <node concept="28jJK3" id="48WAbeCXWej" role="39821P">
             <node concept="55IIr" id="48WAbeCXWek" role="28jJRO">
               <node concept="2Ry0Ak" id="48WAbeCXWel" role="iGT6I">
@@ -335,22 +315,6 @@
                     <property role="2Ry0Am" value="lib" />
                     <node concept="2Ry0Ak" id="48WAbeCXWh7" role="2Ry0An">
                       <property role="2Ry0Am" value="kotlinx-coroutines-swing-1.5.2.jar" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="28jJK3" id="48WAbeCXWj1" role="39821P">
-            <node concept="55IIr" id="48WAbeCXWj2" role="28jJRO">
-              <node concept="2Ry0Ak" id="48WAbeCXWj3" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="48WAbeCXWj4" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="48WAbeCXWj5" role="2Ry0An">
-                    <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="48WAbeCXWlV" role="2Ry0An">
-                      <property role="2Ry0Am" value="kotlinx-serialization-json-jvm-1.1.0.jar" />
                     </node>
                   </node>
                 </node>
@@ -602,8 +566,11 @@
       <node concept="m$_yC" id="2ww0H4BOCwh" role="m$_yJ">
         <ref role="m$_y1" to="ci82:68dTcycFmsQ" resolve="fbme.platform" />
       </node>
-      <node concept="m$_yC" id="1b51meRU43L" role="m$_yJ">
-        <ref role="m$_y1" to="bco3:42vv4xsIIHl" resolve="fbme.richediting" />
+      <node concept="m$_yC" id="6NYBTcTrtab" role="m$_yJ">
+        <ref role="m$_y1" to="66wk:42vv4xsIHQK" resolve="fbme.library" />
+      </node>
+      <node concept="m$_yC" id="6NYBTcTrtdw" role="m$_yJ">
+        <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="fbme.scenes" />
       </node>
       <node concept="3_J27D" id="7ZpdjDjcHiG" role="m_cZH">
         <node concept="3Mxwew" id="7ZpdjDjcLB2" role="3MwsjC">
@@ -659,47 +626,14 @@
             <ref role="3bR37D" to="ffeo:mXGwHwhVPj" resolve="JDK" />
           </node>
         </node>
-        <node concept="1SiIV0" id="5FNCztzn89l" role="3bR37C">
-          <node concept="1BurEX" id="5FNCztzn89m" role="1SiIV1">
-            <node concept="55IIr" id="5FNCztzn89g" role="1BurEY">
-              <node concept="2Ry0Ak" id="5FNCztzn89h" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="5FNCztzn89i" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="5FNCztzn89j" role="2Ry0An">
-                    <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="5FNCztzn89k" role="2Ry0An">
-                      <property role="2Ry0Am" value="debugger.jar" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="1SiIV0" id="5RHICbZmUjt" role="3bR37C">
           <node concept="3bR9La" id="5RHICbZmUju" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
           </node>
         </node>
-        <node concept="1SiIV0" id="5RHICbZmUjv" role="3bR37C">
-          <node concept="3bR9La" id="5RHICbZmUjw" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbIZ" resolve="MPS.Editor" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="5RHICbZmUjx" role="3bR37C">
           <node concept="3bR9La" id="5RHICbZmUjy" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="5RHICbZmUjz" role="3bR37C">
-          <node concept="3bR9La" id="5RHICbZmUj$" role="1SiIV1">
-            <ref role="3bR37D" to="bco3:42vv4xsIIT7" resolve="org.fbme.ide.richediting" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="5RHICbZmUj_" role="3bR37C">
-          <node concept="3bR9La" id="5RHICbZmUjA" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
         <node concept="1SiIV0" id="5RHICbZmUjL" role="3bR37C">
@@ -1080,17 +1014,17 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="5RHICbZrwWT" role="3bR37C">
-          <node concept="1BurEX" id="5RHICbZrwWU" role="1SiIV1">
-            <node concept="55IIr" id="5RHICbZrwWO" role="1BurEY">
-              <node concept="2Ry0Ak" id="5RHICbZrwWP" role="iGT6I">
+        <node concept="1SiIV0" id="78JiGmJJGix" role="3bR37C">
+          <node concept="1BurEX" id="78JiGmJJGiy" role="1SiIV1">
+            <node concept="55IIr" id="78JiGmJJGis" role="1BurEY">
+              <node concept="2Ry0Ak" id="78JiGmJJGit" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="5RHICbZrwWQ" role="2Ry0An">
+                <node concept="2Ry0Ak" id="78JiGmJJGiu" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="5RHICbZrwWR" role="2Ry0An">
+                  <node concept="2Ry0Ak" id="78JiGmJJGiv" role="2Ry0An">
                     <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="5RHICbZrwWS" role="2Ry0An">
-                      <property role="2Ry0Am" value="kotlinx-coroutines-jdk8.jar" />
+                    <node concept="2Ry0Ak" id="78JiGmJJGiw" role="2Ry0An">
+                      <property role="2Ry0Am" value="debugger.jar" />
                     </node>
                   </node>
                 </node>
@@ -1098,32 +1032,9 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="5RHICbZrwX5" role="3bR37C">
-          <node concept="1BurEX" id="5RHICbZrwX6" role="1SiIV1">
-            <node concept="55IIr" id="5RHICbZrwX0" role="1BurEY">
-              <node concept="2Ry0Ak" id="5RHICbZrwX1" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="5RHICbZrwX2" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.debugger" />
-                  <node concept="2Ry0Ak" id="5RHICbZrwX3" role="2Ry0An">
-                    <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="5RHICbZrwX4" role="2Ry0An">
-                      <property role="2Ry0Am" value="kotlinx-serialization-json-jvm-1.1.0.jar" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="1SiIV0" id="1B$NuJoaK4E" role="3bR37C">
-          <node concept="3bR9La" id="1B$NuJoaK4F" role="1SiIV1">
-            <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="1B$NuJoaK4G" role="3bR37C">
-          <node concept="3bR9La" id="1B$NuJoaK4H" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+        <node concept="1SiIV0" id="3_hdbcJ6bki" role="3bR37C">
+          <node concept="3bR9La" id="3_hdbcJ6bkj" role="1SiIV1">
+            <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
       </node>

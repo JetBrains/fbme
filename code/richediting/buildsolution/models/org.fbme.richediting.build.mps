@@ -11,6 +11,7 @@
     <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
     <import index="66wk" ref="r:ca36cb90-c978-4e82-b9cd-9f3922cfc65f(org.fbme.library.build)" />
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
+    <import index="recy" ref="r:8c25bb6d-a5ff-4b85-a0e5-d5a94a24a533(org.fbme.debugger.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -367,11 +368,17 @@
     </node>
     <node concept="m$_wf" id="42vv4xsIIHl" role="3989C9">
       <property role="m$_wk" value="fbme.richediting" />
+      <node concept="m$_yC" id="2DkaXgJ5aAC" role="m$_yJ">
+        <ref role="m$_y1" to="recy:7ZpdjDjcHi_" resolve="fbme.debugger" />
+      </node>
       <node concept="m$_yC" id="Ej4tEplrU$" role="m$_yJ">
         <ref role="m$_y1" to="ci82:68dTcycFmsQ" resolve="fbme.platform" />
       </node>
       <node concept="m$_yC" id="Ej4tEplrUA" role="m$_yJ">
         <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="scenes" />
+      </node>
+      <node concept="m$_yC" id="5AasUgojObC" role="m$_yJ">
+        <ref role="m$_y1" to="66wk:42vv4xsIHQK" resolve="fbme.library" />
       </node>
       <node concept="3_J27D" id="42vv4xsIIHn" role="m$_yQ">
         <node concept="3Mxwew" id="42vv4xsIILY" role="3MwsjC">
@@ -741,6 +748,11 @@
             </node>
           </node>
         </node>
+        <node concept="1SiIV0" id="5AasUgojOiZ" role="3bR37C">
+          <node concept="3bR9La" id="5AasUgojOj0" role="1SiIV1">
+            <ref role="3bR37D" to="recy:7ZpdjDjcHiz" resolve="org.fbme.debugger" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="42vv4xsIIUH" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -877,6 +889,9 @@
     </node>
     <node concept="2sgV4H" id="ApHj0p5VBk" role="1l3spa">
       <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
+    </node>
+    <node concept="2sgV4H" id="5AasUgojOaC" role="1l3spa">
+      <ref role="1l3spb" to="recy:7ZpdjDjcHim" resolve="fbme_debugger" />
     </node>
   </node>
 </model>

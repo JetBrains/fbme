@@ -1557,25 +1557,6 @@
         <property role="3ZfqAx" value="models" />
         <property role="1Hdu6h" value="true" />
         <property role="1HemKv" value="true" />
-        <node concept="3LXTmp" id="ApHj0p70XC" role="1HemKq">
-          <node concept="55IIr" id="ApHj0p70XD" role="3LXTmr">
-            <node concept="2Ry0Ak" id="ApHj0p70XE" role="iGT6I">
-              <property role="2Ry0Am" value="code" />
-              <node concept="2Ry0Ak" id="ApHj0p70XF" role="2Ry0An">
-                <property role="2Ry0Am" value="platform" />
-                <node concept="2Ry0Ak" id="ApHj0p70XG" role="2Ry0An">
-                  <property role="2Ry0Am" value="buildsolution" />
-                  <node concept="2Ry0Ak" id="ApHj0p70XH" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="3qWCbU" id="ApHj0p70XI" role="3LXTna">
-            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-          </node>
-        </node>
         <node concept="3LXTmp" id="ApHj0p714d" role="1HemKq">
           <node concept="55IIr" id="ApHj0p7148" role="3LXTmr">
             <node concept="2Ry0Ak" id="ApHj0p7149" role="iGT6I">
@@ -1727,6 +1708,11 @@
           <ref role="3bR37D" node="Ej4tEpnfCS" resolve="org.fbme.platform.build" />
         </node>
       </node>
+      <node concept="1SiIV0" id="5C7IyptUJMM" role="3bR37C">
+        <node concept="3bR9La" id="5C7IyptUJMN" role="1SiIV1">
+          <ref role="3bR37D" node="5FNCztzn4vq" resolve="org.fbme.debugger.build" />
+        </node>
+      </node>
     </node>
     <node concept="1E1JtA" id="5FNCztzn4vq" role="3989C9">
       <property role="BnDLt" value="true" />
@@ -1744,11 +1730,6 @@
               </node>
             </node>
           </node>
-        </node>
-      </node>
-      <node concept="1SiIV0" id="5FNCztzn5zB" role="3bR37C">
-        <node concept="3bR9La" id="5FNCztzn5zC" role="1SiIV1">
-          <ref role="3bR37D" node="Ej4tEpnfDM" resolve="org.fbme.richediting.build" />
         </node>
       </node>
       <node concept="1SiIV0" id="5FNCztzn5zD" role="3bR37C">
@@ -1974,44 +1955,6 @@
         <property role="3ZfqAx" value="models" />
         <property role="1Hdu6h" value="true" />
         <property role="1HemKv" value="true" />
-        <node concept="3LXTmp" id="2ww0H4BOLbY" role="1HemKq">
-          <node concept="55IIr" id="2ww0H4BOLbS" role="3LXTmr">
-            <node concept="2Ry0Ak" id="2ww0H4BOLbT" role="iGT6I">
-              <property role="2Ry0Am" value="samples" />
-              <node concept="2Ry0Ak" id="2ww0H4BOLbU" role="2Ry0An">
-                <property role="2Ry0Am" value="statistics" />
-                <node concept="2Ry0Ak" id="2ww0H4BOLbV" role="2Ry0An">
-                  <property role="2Ry0Am" value="buildsolution" />
-                  <node concept="2Ry0Ak" id="2ww0H4BOLbW" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="3qWCbU" id="2ww0H4BOLbZ" role="3LXTna">
-            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-          </node>
-        </node>
-        <node concept="3LXTmp" id="5sRy4_w5mAH" role="1HemKq">
-          <node concept="55IIr" id="5sRy4_w5mAC" role="3LXTmr">
-            <node concept="2Ry0Ak" id="5sRy4_w5mAD" role="iGT6I">
-              <property role="2Ry0Am" value="samples" />
-              <node concept="2Ry0Ak" id="5sRy4_w5mAE" role="2Ry0An">
-                <property role="2Ry0Am" value="statisticsPlugin" />
-                <node concept="2Ry0Ak" id="5sRy4_w5mAF" role="2Ry0An">
-                  <property role="2Ry0Am" value="buildsolution" />
-                  <node concept="2Ry0Ak" id="5sRy4_w5mAG" role="2Ry0An">
-                    <property role="2Ry0Am" value="models" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="3qWCbU" id="5sRy4_w5mAI" role="3LXTna">
-            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
-          </node>
-        </node>
         <node concept="3LXTmp" id="5sRy4_w6Jh8" role="1HemKq">
           <node concept="55IIr" id="5sRy4_w6Jh3" role="3LXTmr">
             <node concept="2Ry0Ak" id="5sRy4_w6Jh4" role="iGT6I">

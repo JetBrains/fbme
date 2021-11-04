@@ -12,20 +12,30 @@ import javax.swing.JComponent
 
 class Debugger private constructor(private val project: Project) {
     private val watchables = mutableStateMapOf<Watchable, String>()
-    private val searchWatchables = mutableStateOf<TextFieldValue>(TextFieldValue())
+    private val searchWatchables = mutableStateOf(TextFieldValue())
 
     fun watch(watchable: Watchable) {
         if (!watchables.contains(watchable)) {
-            val listener = object : WatchedValueListener {
-                override fun onValueChanged(newValue: String) {
-                    watchables[watchable] = newValue
-                }
-            }
-            val watcherFacade = WatcherFacade.getInstance(project) ?: error("No instance WatcherFacade for project")
-            watcherFacade.addWatchedValueListener(watchable.serialize(), listener)
-
             watchables[watchable] = "???"
         }
+    }
+
+    fun stopWatch(watchable: Watchable) {
+        if (watchables.contains(watchable)) {
+            watchables.remove(watchable)
+        }
+    }
+
+    fun isWatched(watchable: Watchable): Boolean {
+        return watchables.contains(watchable)
+    }
+
+    fun setValueForWatchable(watchable: Watchable, value: String) {
+        watchables[watchable] = value
+    }
+
+    fun getWatched(): Set<Watchable> {
+        return watchables.keys
     }
 
     fun getComponent(): JComponent {

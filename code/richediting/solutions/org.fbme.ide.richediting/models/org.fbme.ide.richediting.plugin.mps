@@ -48,8 +48,6 @@
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
@@ -65,15 +63,12 @@
     <import index="alof" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.project(MPS.Platform/)" />
     <import index="4nm9" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.project(MPS.IDEA/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
-    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
-    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
-    <import index="ws78" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.elk(org.fbme.ide.richediting/)" />
-    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
     <import index="mrrx" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.actions(org.fbme.ide.richediting/)" />
     <import index="jnz" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc.cell(org.fbme.ide.richediting/)" />
     <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
     <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
     <import index="eo9q" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.common.actions(org.fbme.ide.richediting/)" />
+    <import index="flkh" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger(org.fbme.debugger/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -2072,6 +2067,76 @@
                                             </node>
                                           </node>
                                         </node>
+                                        <node concept="3cpWs8" id="6nsMCnk3LlN" role="3cqZAp">
+                                          <node concept="3cpWsn" id="6nsMCnk3LlO" role="3cpWs9">
+                                            <property role="TrG5h" value="debugger" />
+                                            <node concept="3uibUv" id="6nsMCnk3LlP" role="1tU5fm">
+                                              <ref role="3uigEE" to="flkh:~Debugger" resolve="Debugger" />
+                                            </node>
+                                            <node concept="2OqwBi" id="6nsMCnk3OhV" role="33vP2m">
+                                              <node concept="10M0yZ" id="6nsMCnk3NUQ" role="2Oq$k0">
+                                                <ref role="3cqZAo" to="flkh:~Debugger.Companion" resolve="Companion" />
+                                                <ref role="1PxDUh" to="flkh:~Debugger" resolve="Debugger" />
+                                              </node>
+                                              <node concept="liA8E" id="6nsMCnk3OBv" role="2OqNvi">
+                                                <ref role="37wK5l" to="flkh:~Debugger$Companion.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
+                                                <node concept="2OqwBi" id="6nsMCnk3QWB" role="37wK5m">
+                                                  <node concept="2WthIp" id="6nsMCnk3QWE" role="2Oq$k0">
+                                                    <ref role="32nkFo" node="44qSI5$V0ef" resolve="DeployResource" />
+                                                  </node>
+                                                  <node concept="1DTwFV" id="6nsMCnk3QWG" role="2OqNvi">
+                                                    <ref role="2WH_rO" node="7i6W9OfhgHN" resolve="mpsProject" />
+                                                  </node>
+                                                </node>
+                                              </node>
+                                            </node>
+                                          </node>
+                                        </node>
+                                        <node concept="3cpWs8" id="5ZMLlsR2asA" role="3cqZAp">
+                                          <node concept="3cpWsn" id="5ZMLlsR2asB" role="3cpWs9">
+                                            <property role="TrG5h" value="watchables" />
+                                            <node concept="3uibUv" id="5ZMLlsR2as$" role="1tU5fm">
+                                              <ref role="3uigEE" to="33ny:~Set" resolve="Set" />
+                                              <node concept="3uibUv" id="5ZMLlsR2bNJ" role="11_B2D">
+                                                <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
+                                              </node>
+                                            </node>
+                                            <node concept="2OqwBi" id="5ZMLlsR238L" role="33vP2m">
+                                              <node concept="37vLTw" id="5ZMLlsR22pu" role="2Oq$k0">
+                                                <ref role="3cqZAo" node="6nsMCnk3LlO" resolve="debugger" />
+                                              </node>
+                                              <node concept="liA8E" id="4BK6uMGt463" role="2OqNvi">
+                                                <ref role="37wK5l" to="flkh:~Debugger.getWatched()" resolve="getWatched" />
+                                              </node>
+                                            </node>
+                                          </node>
+                                        </node>
+                                        <node concept="1DcWWT" id="5ZMLlsR2fGM" role="3cqZAp">
+                                          <node concept="3clFbS" id="5ZMLlsR2fGO" role="2LFqv$">
+                                            <node concept="3clFbF" id="5ZMLlsR2mC2" role="3cqZAp">
+                                              <node concept="2OqwBi" id="5ZMLlsR2nPm" role="3clFbG">
+                                                <node concept="37vLTw" id="5ZMLlsR2mC0" role="2Oq$k0">
+                                                  <ref role="3cqZAo" node="4uvvnUOsgMU" resolve="connection" />
+                                                </node>
+                                                <node concept="liA8E" id="5ZMLlsR2p4i" role="2OqNvi">
+                                                  <ref role="37wK5l" to="6w4o:~DeviceConnection.addWatch(org.fbme.ide.platform.debugger.Watchable)" resolve="addWatch" />
+                                                  <node concept="37vLTw" id="5ZMLlsR2qHx" role="37wK5m">
+                                                    <ref role="3cqZAo" node="5ZMLlsR2fGP" resolve="watchable" />
+                                                  </node>
+                                                </node>
+                                              </node>
+                                            </node>
+                                          </node>
+                                          <node concept="3cpWsn" id="5ZMLlsR2fGP" role="1Duv9x">
+                                            <property role="TrG5h" value="watchable" />
+                                            <node concept="3uibUv" id="5ZMLlsR2gTK" role="1tU5fm">
+                                              <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
+                                            </node>
+                                          </node>
+                                          <node concept="37vLTw" id="5ZMLlsR2jrg" role="1DdaDG">
+                                            <ref role="3cqZAo" node="5ZMLlsR2asB" resolve="watchables" />
+                                          </node>
+                                        </node>
                                       </node>
                                       <node concept="3y3z36" id="42vv4xsG6Bg" role="3clFbw">
                                         <node concept="10Nm6u" id="42vv4xsG6Ch" role="3uHU7w" />
@@ -2245,6 +2310,14 @@
         <ref role="3uigEE" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
       </node>
     </node>
+    <node concept="312cEg" id="6rYUj1P6T8d" role="jymVt">
+      <property role="TrG5h" value="debugger" />
+      <property role="3TUv4t" value="true" />
+      <node concept="3Tm6S6" id="6rYUj1P6LKF" role="1B3o_S" />
+      <node concept="3uibUv" id="6rYUj1P6T2b" role="1tU5fm">
+        <ref role="3uigEE" to="flkh:~Debugger" resolve="Debugger" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="19RKY2xEUb1" role="jymVt" />
     <node concept="3clFbW" id="19RKY2xF00g" role="jymVt">
       <node concept="3cqZAl" id="19RKY2xF00h" role="3clF45" />
@@ -2295,6 +2368,25 @@
             </node>
             <node concept="37vLTw" id="6Vznkw4g7Dk" role="37vLTJ">
               <ref role="3cqZAo" node="4WS_6wCD2tY" resolve="myWatchers" />
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6rYUj1P6Yen" role="3cqZAp">
+          <node concept="37vLTI" id="6rYUj1P6YAJ" role="3clFbG">
+            <node concept="37vLTw" id="6rYUj1P6Yel" role="37vLTJ">
+              <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+            </node>
+            <node concept="2OqwBi" id="6rYUj1P70jo" role="37vLTx">
+              <node concept="10M0yZ" id="6rYUj1P705C" role="2Oq$k0">
+                <ref role="3cqZAo" to="flkh:~Debugger.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="flkh:~Debugger" resolve="Debugger" />
+              </node>
+              <node concept="liA8E" id="6rYUj1P70_v" role="2OqNvi">
+                <ref role="37wK5l" to="flkh:~Debugger$Companion.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
+                <node concept="37vLTw" id="6rYUj1P7196" role="37wK5m">
+                  <ref role="3cqZAo" node="4WS_6wCD2Lw" resolve="project" />
+                </node>
+              </node>
             </node>
           </node>
         </node>
@@ -3123,6 +3215,19 @@
                 </node>
               </node>
             </node>
+            <node concept="3clFbF" id="7CWhMkU9K19" role="3cqZAp">
+              <node concept="2OqwBi" id="7CWhMkU9NrO" role="3clFbG">
+                <node concept="37vLTw" id="7CWhMkU9K17" role="2Oq$k0">
+                  <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+                </node>
+                <node concept="liA8E" id="7CWhMkU9QZO" role="2OqNvi">
+                  <ref role="37wK5l" to="flkh:~Debugger.stopWatch(org.fbme.ide.platform.debugger.Watchable)" resolve="stopWatch" />
+                  <node concept="37vLTw" id="7CWhMkU9Ubb" role="37wK5m">
+                    <ref role="3cqZAo" node="1S4cYrOQ3Yl" resolve="watchable" />
+                  </node>
+                </node>
+              </node>
+            </node>
             <node concept="3clFbF" id="1S4cYrOQ3Yw" role="3cqZAp">
               <node concept="2OqwBi" id="1S4cYrOQ3Yx" role="3clFbG">
                 <node concept="37vLTw" id="6Vznkw4g8Lc" role="2Oq$k0">
@@ -3309,6 +3414,7 @@
             <node concept="3cpWs8" id="1S4cYrOPZOq" role="3cqZAp">
               <node concept="3cpWsn" id="1S4cYrOPZOr" role="3cpWs9">
                 <property role="TrG5h" value="watchable" />
+                <property role="3TUv4t" value="true" />
                 <node concept="3uibUv" id="IHtTBFkeT0" role="1tU5fm">
                   <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
                 </node>
@@ -3377,6 +3483,22 @@
                               </node>
                             </node>
                           </node>
+                          <node concept="3clFbF" id="6nsMCnk2wpz" role="3cqZAp">
+                            <node concept="2OqwBi" id="6nsMCnk2$1q" role="3clFbG">
+                              <node concept="37vLTw" id="6nsMCnk2wpx" role="2Oq$k0">
+                                <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+                              </node>
+                              <node concept="liA8E" id="6nsMCnk2BBr" role="2OqNvi">
+                                <ref role="37wK5l" to="flkh:~Debugger.setValueForWatchable(org.fbme.ide.platform.debugger.Watchable,java.lang.String)" resolve="setValueForWatchable" />
+                                <node concept="37vLTw" id="6nsMCnk2Fmr" role="37wK5m">
+                                  <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                                </node>
+                                <node concept="37vLTw" id="6nsMCnk2MW7" role="37wK5m">
+                                  <ref role="3cqZAo" node="1S4cYrOPZOJ" resolve="newValue" />
+                                </node>
+                              </node>
+                            </node>
+                          </node>
                         </node>
                       </node>
                     </node>
@@ -3387,7 +3509,20 @@
                 </node>
               </node>
             </node>
-            <node concept="3clFbH" id="1S4cYrOPZOV" role="3cqZAp" />
+            <node concept="3clFbH" id="6nsMCnk2oOl" role="3cqZAp" />
+            <node concept="3clFbF" id="6nsMCnk24h0" role="3cqZAp">
+              <node concept="2OqwBi" id="6nsMCnk27FE" role="3clFbG">
+                <node concept="37vLTw" id="6nsMCnk24gY" role="2Oq$k0">
+                  <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+                </node>
+                <node concept="liA8E" id="6nsMCnk2bcQ" role="2OqNvi">
+                  <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+                  <node concept="37vLTw" id="6nsMCnk2eLL" role="37wK5m">
+                    <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                </node>
+              </node>
+            </node>
             <node concept="3clFbF" id="1S4cYrOPZOW" role="3cqZAp">
               <node concept="2OqwBi" id="1S4cYrOPZOX" role="3clFbG">
                 <node concept="37vLTw" id="6Vznkw4g9mf" role="2Oq$k0">
@@ -3884,6 +4019,22 @@
                           </node>
                         </node>
                       </node>
+                      <node concept="3clFbF" id="5AasUgolgx4" role="3cqZAp">
+                        <node concept="2OqwBi" id="5AasUgoljAU" role="3clFbG">
+                          <node concept="37vLTw" id="5AasUgolgx2" role="2Oq$k0">
+                            <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+                          </node>
+                          <node concept="liA8E" id="5AasUgolmxF" role="2OqNvi">
+                            <ref role="37wK5l" to="flkh:~Debugger.setValueForWatchable(org.fbme.ide.platform.debugger.Watchable,java.lang.String)" resolve="setValueForWatchable" />
+                            <node concept="37vLTw" id="5AasUgolpeZ" role="37wK5m">
+                              <ref role="3cqZAo" node="19RKY2xFNdd" resolve="watchable" />
+                            </node>
+                            <node concept="37vLTw" id="5AasUgolv4B" role="37wK5m">
+                              <ref role="3cqZAo" node="19RKY2xFNdE" resolve="newValue" />
+                            </node>
+                          </node>
+                        </node>
+                      </node>
                     </node>
                   </node>
                 </node>
@@ -3891,7 +4042,20 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="19RKY2xFNdP" role="3cqZAp" />
+        <node concept="3clFbH" id="16hezL$bdHz" role="3cqZAp" />
+        <node concept="3clFbF" id="16hezL$9ReL" role="3cqZAp">
+          <node concept="2OqwBi" id="16hezL$9UFW" role="3clFbG">
+            <node concept="37vLTw" id="16hezL$9ReJ" role="2Oq$k0">
+              <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="16hezL$a4Jg" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+              <node concept="37vLTw" id="16hezL$a8aL" role="37wK5m">
+                <ref role="3cqZAo" node="19RKY2xFNdd" resolve="watchable" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="19RKY2xFNdQ" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xFNdR" role="3clFbG">
             <node concept="37vLTw" id="6Vznkw4hud$" role="2Oq$k0">
@@ -3982,6 +4146,19 @@
           </node>
         </node>
         <node concept="3clFbH" id="19RKY2xFM23" role="3cqZAp" />
+        <node concept="3clFbF" id="7CWhMkUa1bf" role="3cqZAp">
+          <node concept="2OqwBi" id="7CWhMkUa4H8" role="3clFbG">
+            <node concept="37vLTw" id="7CWhMkUa1bd" role="2Oq$k0">
+              <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="7CWhMkUa7YC" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~Debugger.stopWatch(org.fbme.ide.platform.debugger.Watchable)" resolve="stopWatch" />
+              <node concept="37vLTw" id="7CWhMkUabf5" role="37wK5m">
+                <ref role="3cqZAo" node="19RKY2xFM1L" resolve="watchable" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="19RKY2xFM24" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xFM25" role="3clFbG">
             <node concept="37vLTw" id="6Vznkw4huJs" role="2Oq$k0">
@@ -4362,7 +4539,19 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="19RKY2xFC6V" role="3cqZAp" />
+        <node concept="3clFbF" id="6nsMCnk1QzK" role="3cqZAp">
+          <node concept="2OqwBi" id="6nsMCnk1TJt" role="3clFbG">
+            <node concept="37vLTw" id="6nsMCnk1QzI" role="2Oq$k0">
+              <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="6nsMCnk1Xi1" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+              <node concept="37vLTw" id="6nsMCnk20vh" role="37wK5m">
+                <ref role="3cqZAo" node="5uVbEkjJeDb" resolve="watchable" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="19RKY2xFC6W" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xFC6X" role="3clFbG">
             <node concept="37vLTw" id="6Vznkw4hvpi" role="2Oq$k0">
@@ -4478,6 +4667,19 @@
           </node>
         </node>
         <node concept="3clFbH" id="19RKY2xFzsM" role="3cqZAp" />
+        <node concept="3clFbF" id="7CWhMkUaiBf" role="3cqZAp">
+          <node concept="2OqwBi" id="7CWhMkUalOZ" role="3clFbG">
+            <node concept="37vLTw" id="7CWhMkUaiBd" role="2Oq$k0">
+              <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="7CWhMkUap9_" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~Debugger.stopWatch(org.fbme.ide.platform.debugger.Watchable)" resolve="stopWatch" />
+              <node concept="37vLTw" id="7CWhMkUasqJ" role="37wK5m">
+                <ref role="3cqZAo" node="5uVbEkjJifs" resolve="watchable" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="19RKY2xFzsN" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xFzsO" role="3clFbG">
             <node concept="37vLTw" id="6Vznkw4hvVs" role="2Oq$k0">

@@ -179,10 +179,7 @@ class WatcherFacade private constructor(project: Project) {
                     }
                 }
                 watches
-            } catch (e: JDOMException) {
-                LOG.error("can't resolve watches", e)
-                emptyMap()
-            } catch (e: IOException) {
+            } catch (e: Throwable) {
                 LOG.error("can't resolve watches", e)
                 emptyMap()
             }
