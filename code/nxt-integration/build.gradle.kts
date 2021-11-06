@@ -31,6 +31,4 @@ val test by tasks.getting(Test::class) {
         ":code:platform:mpsJar",
         "mpsJar"
     )
-    systemProperty("org.fbme.testing.module", "org.fbme.integration.nxt")
-    systemProperty("org.fbme.testing.additionalLibs", file("build/artifacts/fbme_nxt/fbme.integration.nxt/languages").absolutePath)
 }

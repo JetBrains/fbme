@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.parser
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
-class CompositeFBTypeConverter(arguments: ConverterArguments) :
+open class CompositeFBTypeConverter(arguments: ConverterArguments) :
         DeclarationConverterBase<CompositeFBTypeDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): CompositeFBTypeDeclaration {
         val fbtd = factory.createCompositeFBTypeDeclaration(identifier)
@@ -14,8 +14,8 @@ class CompositeFBTypeConverter(arguments: ConverterArguments) :
         return fbtd
     }
 
-    protected fun createFBNetworkConverter(fbtd: CompositeFBTypeDeclaration): FBNetworkConverter {
+    protected open fun createFBNetworkConverter(fbtd: CompositeFBTypeDeclaration): FBNetworkConverter {
         checkNotNull(element)
-        return FBNetworkConverter(with(element.getChild("FBNetwork")), fbtd.network)
+        return FBNetworkConverter(with(element!!.getChild("FBNetwork")), fbtd.network)
     }
 }

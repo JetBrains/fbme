@@ -8,6 +8,7 @@ import org.fbme.lib.iec61499.parser.ConverterArguments;
 import org.fbme.lib.iec61499.parser.STConverter;
 import org.fbme.lib.st.STFactory;
 import org.fbme.lib.st.expressions.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -19,9 +20,9 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
 
     @Override
     protected void parseCondition(
-            ECTransitionCondition condition,
-            String rawCondition,
-            BasicFBTypeDeclaration fbtd
+            @NotNull ECTransitionCondition condition,
+            @NotNull String rawCondition,
+            @NotNull BasicFBTypeDeclaration fbtd
     ) {
         rawCondition = rawCondition.trim();
         if (Objects.equals(rawCondition, "1")) {
@@ -29,6 +30,7 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
         }
         int openBracketIndex = rawCondition.indexOf('[');
         int closeBracketIndex = rawCondition.lastIndexOf(']');
+        var myStFactory = getStFactory();
         if (openBracketIndex == -1) {
             Expression guardCondition = STConverter.parseExpression(myStFactory, unescapeXML(rawCondition));
             TransitionImportChecker checker = new TransitionImportChecker(myStFactory, fbtd);
@@ -51,7 +53,7 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
             condition.getEventReference().setFQName(rawCondition.substring(0, openBracketIndex));
         }
         String guardConditionText = unescapeXML(rawCondition.substring(openBracketIndex + 1, closeBracketIndex));
-        condition.setGuardCondition(STConverter.parseExpression(myStFactory, guardConditionText));
+        condition.setGuardCondition(Objects.requireNonNull(STConverter.parseExpression(myStFactory, guardConditionText)));
     }
 
     private static class TransitionImportChecker {
@@ -78,7 +80,8 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
         public void checkTransition(Expression guardCondition) {
             if (guardCondition instanceof VariableReference) {
                 String variableName = ((StringIdentifier) (((VariableReference) guardCondition).getReference().getIdentifier())).getValue();
-                if (this.fbtd.getInputParameters().stream().anyMatch(x -> x.getName().equals(variableName))) {
+                if (this.fbtd.getInputParameters().stream().anyMatch(x -> x.getName().equals(variableName)) ||
+                    this.fbtd.getInternalVariables().stream().anyMatch(x -> x.getName().equals(variableName))) {
                     setDefaultBraces(guardCondition);
                     return;
                 }

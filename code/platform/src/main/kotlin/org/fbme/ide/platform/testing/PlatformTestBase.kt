@@ -23,8 +23,6 @@ import org.junit.After
 import org.junit.Before
 import java.io.IOException
 import java.io.InputStream
-import java.lang.IllegalStateException
-import java.util.ArrayList
 
 abstract class PlatformTestBase {
     @JvmField
@@ -51,12 +49,23 @@ abstract class PlatformTestBase {
     fun rootConverterByPath(input: String) =
         createConverter(requireNotNull(this::class.java.getResourceAsStream(input)))
 
+    fun rootConverterByPath(input: String, config: PlatformConverter.DefaultConfigurationFactory) =
+            createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
+
     private fun createConverter(stream: InputStream): RootConverter {
+        return createConverter(stream, null)
+    }
+
+    private fun createConverter(stream: InputStream, config: PlatformConverter.DefaultConfigurationFactory?): RootConverter {
         return try {
             val reference = SModelReference(null, SModelId.generate(), SModelName("testModel"))
             val locus = PlatformIdentifierLocus(reference)
             val doc = JDOMUtil.loadDocument(stream)
-            RootConverter(PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(repository), locus, doc)
+            if (config != null) {
+                RootConverter(config.createConfiguration(repository), locus, doc)
+            } else {
+                RootConverter(PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(repository), locus, doc)
+            }
         } catch (e: JDOMException) {
             throw IllegalStateException(e)
         } catch (e: IOException) {

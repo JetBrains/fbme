@@ -99,7 +99,6 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
 
         @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class) fun initializeRunnerEnvironment(moduleName: String) {
             runnerEnvironments.getOrPut(moduleName) {
-                val additionalLibs = System.getProperty("org.fbme.testing.additionalLibs", "").split(";").toTypedArray()
                 val config = EnvironmentConfig.defaultConfig()
                     .addLib(libPath("../library/build/artifacts/fbme_library/fbme.library/languages"))
                     .addLib(libPath("../language/build/artifacts/fbme_language/fbme.language/languages"))
@@ -107,10 +106,8 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                     .addLib(libPath("../richediting/build/artifacts/fbme_richediting/fbme.richediting/languages"))
                     .addLib(libPath("../scenes/build/artifacts/fbme_scenes/fbme.scenes/languages"))
                     .addLib(libPath("../formalfb/build/artifacts/fbme_formalfb/fbme.formalfb/languages"))
+                    .addLib(libPath("../nxt-integration/build/artifacts/fbme_nxt/fbme.integration.nxt/languages"))
                     .withTestModeOn()
-                for (lib in additionalLibs) {
-                    config.addLib(lib)
-                }
                 val environment = MpsEnvironment(config)
                 environment.init()
                 val repository = MPSModuleRepository.getInstance()

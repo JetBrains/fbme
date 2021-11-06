@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public class NxtImporterConfiguration implements Iec61499ConverterConfiguration {
 
     public static final PlatformConverter.DefaultConfigurationFactory FACTORY = owner ->
-            new NxtImporterConfiguration(owner.getIEC61499Factory(), owner.getSTFactory());
+            new NxtImporterConfiguration(owner.getIec61499Factory(), owner.getStFactory());
 
     @NotNull
     private final IEC61499Factory myEntryFactory;
