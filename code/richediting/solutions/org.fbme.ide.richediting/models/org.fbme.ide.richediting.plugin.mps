@@ -329,6 +329,9 @@
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
       </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
+      </concept>
       <concept id="1092119917967" name="jetbrains.mps.baseLanguage.structure.MulExpression" flags="nn" index="17qRlL" />
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
@@ -3410,7 +3413,7 @@
                 <node concept="10Nm6u" id="1S4cYrOPZOo" role="3uHU7w" />
               </node>
             </node>
-            <node concept="3clFbH" id="1S4cYrOPZOp" role="3cqZAp" />
+            <node concept="3clFbH" id="13KqhPh9NV8" role="3cqZAp" />
             <node concept="3cpWs8" id="1S4cYrOPZOq" role="3cqZAp">
               <node concept="3cpWsn" id="1S4cYrOPZOr" role="3cpWs9">
                 <property role="TrG5h" value="watchable" />
@@ -3483,17 +3486,17 @@
                               </node>
                             </node>
                           </node>
-                          <node concept="3clFbF" id="6nsMCnk2wpz" role="3cqZAp">
-                            <node concept="2OqwBi" id="6nsMCnk2$1q" role="3clFbG">
-                              <node concept="37vLTw" id="6nsMCnk2wpx" role="2Oq$k0">
+                          <node concept="3clFbF" id="7JLYUMNThEh" role="3cqZAp">
+                            <node concept="2OqwBi" id="7JLYUMNThEi" role="3clFbG">
+                              <node concept="37vLTw" id="7JLYUMNThEj" role="2Oq$k0">
                                 <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
                               </node>
-                              <node concept="liA8E" id="6nsMCnk2BBr" role="2OqNvi">
+                              <node concept="liA8E" id="7JLYUMNThEk" role="2OqNvi">
                                 <ref role="37wK5l" to="flkh:~Debugger.setValueForWatchable(org.fbme.ide.platform.debugger.Watchable,java.lang.String)" resolve="setValueForWatchable" />
-                                <node concept="37vLTw" id="6nsMCnk2Fmr" role="37wK5m">
+                                <node concept="37vLTw" id="7JLYUMNThEl" role="37wK5m">
                                   <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
                                 </node>
-                                <node concept="37vLTw" id="6nsMCnk2MW7" role="37wK5m">
+                                <node concept="37vLTw" id="7JLYUMNThEm" role="37wK5m">
                                   <ref role="3cqZAo" node="1S4cYrOPZOJ" resolve="newValue" />
                                 </node>
                               </node>
@@ -3510,15 +3513,78 @@
               </node>
             </node>
             <node concept="3clFbH" id="6nsMCnk2oOl" role="3cqZAp" />
+            <node concept="3cpWs8" id="13KqhPhasyw" role="3cqZAp">
+              <node concept="3cpWsn" id="13KqhPhasyx" role="3cpWs9">
+                <property role="TrG5h" value="inspectionProvider" />
+                <node concept="3uibUv" id="13KqhPhasyy" role="1tU5fm">
+                  <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+                </node>
+                <node concept="2ShNRf" id="13KqhPha_$E" role="33vP2m">
+                  <node concept="YeOm9" id="13KqhPhb8WI" role="2ShVmc">
+                    <node concept="1Y3b0j" id="13KqhPhb8WL" role="YeSDq">
+                      <property role="2bfB8j" value="true" />
+                      <property role="373rjd" value="true" />
+                      <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+                      <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" />
+                      <node concept="3Tm1VV" id="13KqhPhb8WM" role="1B3o_S" />
+                      <node concept="3clFb_" id="13KqhPhb8X0" role="jymVt">
+                        <property role="TrG5h" value="setInspection" />
+                        <node concept="3Tm1VV" id="13KqhPhb8X1" role="1B3o_S" />
+                        <node concept="3cqZAl" id="13KqhPhb8X3" role="3clF45" />
+                        <node concept="37vLTG" id="13KqhPhb8X4" role="3clF46">
+                          <property role="TrG5h" value="newValue" />
+                          <node concept="3uibUv" id="13KqhPhb8X5" role="1tU5fm">
+                            <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+                          </node>
+                          <node concept="2AHcQZ" id="13KqhPhb8X6" role="2AJF6D">
+                            <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                          </node>
+                        </node>
+                        <node concept="3clFbS" id="13KqhPhb8X7" role="3clF47">
+                          <node concept="3clFbF" id="13KqhPhbld9" role="3cqZAp">
+                            <node concept="2OqwBi" id="13KqhPhboLO" role="3clFbG">
+                              <node concept="37vLTw" id="13KqhPhbld8" role="2Oq$k0">
+                                <ref role="3cqZAo" node="1S4cYrOPZO4" resolve="provider" />
+                              </node>
+                              <node concept="liA8E" id="13KqhPhbsuV" role="2OqNvi">
+                                <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
+                                <node concept="2GrUjf" id="13KqhPhbxcr" role="37wK5m">
+                                  <ref role="2Gs0qQ" node="1S4cYrOPZO9" resolve="port" />
+                                </node>
+                                <node concept="2ShNRf" id="13KqhPhbCKF" role="37wK5m">
+                                  <node concept="1pGfFk" id="13KqhPhbCwj" role="2ShVmc">
+                                    <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                    <node concept="37vLTw" id="13KqhPhbOva" role="37wK5m">
+                                      <ref role="3cqZAo" node="13KqhPhb8X4" resolve="newValue" />
+                                    </node>
+                                  </node>
+                                </node>
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                        <node concept="2AHcQZ" id="13KqhPhb8X9" role="2AJF6D">
+                          <ref role="2AI5Lk" to="wyt6:~Override" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbH" id="13KqhPhajVw" role="3cqZAp" />
             <node concept="3clFbF" id="6nsMCnk24h0" role="3cqZAp">
               <node concept="2OqwBi" id="6nsMCnk27FE" role="3clFbG">
                 <node concept="37vLTw" id="6nsMCnk24gY" role="2Oq$k0">
                   <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
                 </node>
                 <node concept="liA8E" id="6nsMCnk2bcQ" role="2OqNvi">
-                  <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+                  <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable,org.fbme.debugger.InspectionProvider)" resolve="watch" />
                   <node concept="37vLTw" id="6nsMCnk2eLL" role="37wK5m">
                     <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                  <node concept="37vLTw" id="13KqhPhbSin" role="37wK5m">
+                    <ref role="3cqZAo" node="13KqhPhasyx" resolve="inspectionProvider" />
                   </node>
                 </node>
               </node>
@@ -4019,22 +4085,82 @@
                           </node>
                         </node>
                       </node>
-                      <node concept="3clFbF" id="5AasUgolgx4" role="3cqZAp">
-                        <node concept="2OqwBi" id="5AasUgoljAU" role="3clFbG">
-                          <node concept="37vLTw" id="5AasUgolgx2" role="2Oq$k0">
+                      <node concept="3clFbF" id="7JLYUMNT6f4" role="3cqZAp">
+                        <node concept="2OqwBi" id="7JLYUMNT6f5" role="3clFbG">
+                          <node concept="37vLTw" id="7JLYUMNT6f6" role="2Oq$k0">
                             <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
                           </node>
-                          <node concept="liA8E" id="5AasUgolmxF" role="2OqNvi">
+                          <node concept="liA8E" id="7JLYUMNT6f7" role="2OqNvi">
                             <ref role="37wK5l" to="flkh:~Debugger.setValueForWatchable(org.fbme.ide.platform.debugger.Watchable,java.lang.String)" resolve="setValueForWatchable" />
-                            <node concept="37vLTw" id="5AasUgolpeZ" role="37wK5m">
+                            <node concept="37vLTw" id="7JLYUMNT6f8" role="37wK5m">
                               <ref role="3cqZAo" node="19RKY2xFNdd" resolve="watchable" />
                             </node>
-                            <node concept="37vLTw" id="5AasUgolv4B" role="37wK5m">
+                            <node concept="37vLTw" id="7JLYUMNT6f9" role="37wK5m">
                               <ref role="3cqZAo" node="19RKY2xFNdE" resolve="newValue" />
                             </node>
                           </node>
                         </node>
                       </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="13KqhPhbVw0" role="3cqZAp" />
+        <node concept="3cpWs8" id="13KqhPhc1PK" role="3cqZAp">
+          <node concept="3cpWsn" id="13KqhPhc1PL" role="3cpWs9">
+            <property role="TrG5h" value="inspectionProvider" />
+            <node concept="3uibUv" id="13KqhPhc1PM" role="1tU5fm">
+              <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+            </node>
+            <node concept="2ShNRf" id="13KqhPhc1PN" role="33vP2m">
+              <node concept="YeOm9" id="13KqhPhc1PO" role="2ShVmc">
+                <node concept="1Y3b0j" id="13KqhPhc1PP" role="YeSDq">
+                  <property role="2bfB8j" value="true" />
+                  <property role="373rjd" value="true" />
+                  <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+                  <node concept="3Tm1VV" id="13KqhPhc1PQ" role="1B3o_S" />
+                  <node concept="3clFb_" id="13KqhPhc1PR" role="jymVt">
+                    <property role="TrG5h" value="setInspection" />
+                    <node concept="3Tm1VV" id="13KqhPhc1PS" role="1B3o_S" />
+                    <node concept="3cqZAl" id="13KqhPhc1PT" role="3clF45" />
+                    <node concept="37vLTG" id="13KqhPhc1PU" role="3clF46">
+                      <property role="TrG5h" value="newValue" />
+                      <node concept="3uibUv" id="13KqhPhc1PV" role="1tU5fm">
+                        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+                      </node>
+                      <node concept="2AHcQZ" id="13KqhPhc1PW" role="2AJF6D">
+                        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                      </node>
+                    </node>
+                    <node concept="3clFbS" id="13KqhPhc1PX" role="3clF47">
+                      <node concept="3clFbF" id="13KqhPhc1PY" role="3cqZAp">
+                        <node concept="2OqwBi" id="13KqhPhc1PZ" role="3clFbG">
+                          <node concept="37vLTw" id="13KqhPhc1Q0" role="2Oq$k0">
+                            <ref role="3cqZAo" node="19RKY2xFNcz" resolve="provider" />
+                          </node>
+                          <node concept="liA8E" id="13KqhPhc1Q1" role="2OqNvi">
+                            <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForPort(org.fbme.lib.iec61499.fbnetwork.PortPath,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForPort" />
+                            <node concept="37vLTw" id="13KqhPhc9Nn" role="37wK5m">
+                              <ref role="3cqZAo" node="19RKY2xFNdp" resolve="port" />
+                            </node>
+                            <node concept="2ShNRf" id="13KqhPhc1Q3" role="37wK5m">
+                              <node concept="1pGfFk" id="13KqhPhc1Q4" role="2ShVmc">
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                <node concept="37vLTw" id="13KqhPhc1Q5" role="37wK5m">
+                                  <ref role="3cqZAo" node="13KqhPhc1PU" resolve="newValue" />
+                                </node>
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                    <node concept="2AHcQZ" id="13KqhPhc1Q6" role="2AJF6D">
+                      <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
                     </node>
                   </node>
                 </node>
@@ -4049,9 +4175,12 @@
               <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
             </node>
             <node concept="liA8E" id="16hezL$a4Jg" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable,org.fbme.debugger.InspectionProvider)" resolve="watch" />
               <node concept="37vLTw" id="16hezL$a8aL" role="37wK5m">
                 <ref role="3cqZAo" node="19RKY2xFNdd" resolve="watchable" />
+              </node>
+              <node concept="37vLTw" id="13KqhPhcj8f" role="37wK5m">
+                <ref role="3cqZAo" node="13KqhPhc1PL" resolve="inspectionProvider" />
               </node>
             </node>
           </node>
@@ -4437,6 +4566,7 @@
         <node concept="3cpWs8" id="5uVbEkjJeDa" role="3cqZAp">
           <node concept="3cpWsn" id="5uVbEkjJeDb" role="3cpWs9">
             <property role="TrG5h" value="watchable" />
+            <property role="3TUv4t" value="true" />
             <node concept="3uibUv" id="IHtTBFkjQP" role="1tU5fm">
               <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
             </node>
@@ -4532,6 +4662,22 @@
                           </node>
                         </node>
                       </node>
+                      <node concept="3clFbF" id="7kkar62ulMU" role="3cqZAp">
+                        <node concept="2OqwBi" id="7kkar62ulMV" role="3clFbG">
+                          <node concept="37vLTw" id="7kkar62ulMW" role="2Oq$k0">
+                            <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
+                          </node>
+                          <node concept="liA8E" id="7kkar62ulMX" role="2OqNvi">
+                            <ref role="37wK5l" to="flkh:~Debugger.setValueForWatchable(org.fbme.ide.platform.debugger.Watchable,java.lang.String)" resolve="setValueForWatchable" />
+                            <node concept="37vLTw" id="7kkar62ulMY" role="37wK5m">
+                              <ref role="3cqZAo" node="5uVbEkjJeDb" resolve="watchable" />
+                            </node>
+                            <node concept="37vLTw" id="7kkar62ulMZ" role="37wK5m">
+                              <ref role="3cqZAo" node="19RKY2xFC6I" resolve="newValue" />
+                            </node>
+                          </node>
+                        </node>
+                      </node>
                     </node>
                   </node>
                 </node>
@@ -4539,15 +4685,84 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="13KqhPhcmDP" role="3cqZAp" />
+        <node concept="3cpWs8" id="13KqhPhctyU" role="3cqZAp">
+          <node concept="3cpWsn" id="13KqhPhctyV" role="3cpWs9">
+            <property role="TrG5h" value="inspectionProvider" />
+            <node concept="3uibUv" id="13KqhPhctyW" role="1tU5fm">
+              <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+            </node>
+            <node concept="2ShNRf" id="13KqhPhctyX" role="33vP2m">
+              <node concept="YeOm9" id="13KqhPhctyY" role="2ShVmc">
+                <node concept="1Y3b0j" id="13KqhPhctyZ" role="YeSDq">
+                  <property role="2bfB8j" value="true" />
+                  <property role="373rjd" value="true" />
+                  <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
+                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+                  <node concept="3Tm1VV" id="13KqhPhctz0" role="1B3o_S" />
+                  <node concept="3clFb_" id="13KqhPhctz1" role="jymVt">
+                    <property role="TrG5h" value="setInspection" />
+                    <node concept="3Tm1VV" id="13KqhPhctz2" role="1B3o_S" />
+                    <node concept="3cqZAl" id="13KqhPhctz3" role="3clF45" />
+                    <node concept="37vLTG" id="13KqhPhctz4" role="3clF46">
+                      <property role="TrG5h" value="newValue" />
+                      <node concept="3uibUv" id="13KqhPhctz5" role="1tU5fm">
+                        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+                      </node>
+                      <node concept="2AHcQZ" id="13KqhPhctz6" role="2AJF6D">
+                        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                      </node>
+                    </node>
+                    <node concept="3clFbS" id="13KqhPhctz7" role="3clF47">
+                      <node concept="3clFbF" id="13KqhPhctz8" role="3cqZAp">
+                        <node concept="2OqwBi" id="13KqhPhctz9" role="3clFbG">
+                          <node concept="37vLTw" id="13KqhPhctza" role="2Oq$k0">
+                            <ref role="3cqZAo" node="19RKY2xFC5H" resolve="inspector" />
+                          </node>
+                          <node concept="liA8E" id="13KqhPhctzb" role="2OqNvi">
+                            <ref role="37wK5l" to="ek6x:~NetworkInspector.setInspectionForComponent(org.fbme.lib.common.Declaration,org.fbme.ide.richediting.inspections.Inspection)" resolve="setInspectionForComponent" />
+                            <node concept="37vLTw" id="13KqhPhcDgX" role="37wK5m">
+                              <ref role="3cqZAo" node="5uVbEkjJgzI" resolve="fb" />
+                            </node>
+                            <node concept="2ShNRf" id="13KqhPhctzd" role="37wK5m">
+                              <node concept="1pGfFk" id="13KqhPhctze" role="2ShVmc">
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                <node concept="3cpWs3" id="13KqhPhcN_a" role="37wK5m">
+                                  <node concept="Xl_RD" id="13KqhPhcRtq" role="3uHU7B">
+                                    <property role="Xl_RC" value="State: " />
+                                  </node>
+                                  <node concept="37vLTw" id="13KqhPhctzf" role="3uHU7w">
+                                    <ref role="3cqZAo" node="13KqhPhctz4" resolve="newValue" />
+                                  </node>
+                                </node>
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                    <node concept="2AHcQZ" id="13KqhPhctzg" role="2AJF6D">
+                      <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="13KqhPhcqgh" role="3cqZAp" />
         <node concept="3clFbF" id="6nsMCnk1QzK" role="3cqZAp">
           <node concept="2OqwBi" id="6nsMCnk1TJt" role="3clFbG">
             <node concept="37vLTw" id="6nsMCnk1QzI" role="2Oq$k0">
               <ref role="3cqZAo" node="6rYUj1P6T8d" resolve="debugger" />
             </node>
             <node concept="liA8E" id="6nsMCnk1Xi1" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable)" resolve="watch" />
+              <ref role="37wK5l" to="flkh:~Debugger.watch(org.fbme.ide.platform.debugger.Watchable,org.fbme.debugger.InspectionProvider)" resolve="watch" />
               <node concept="37vLTw" id="6nsMCnk20vh" role="37wK5m">
                 <ref role="3cqZAo" node="5uVbEkjJeDb" resolve="watchable" />
+              </node>
+              <node concept="37vLTw" id="13KqhPhdcJT" role="37wK5m">
+                <ref role="3cqZAo" node="13KqhPhctyV" resolve="inspectionProvider" />
               </node>
             </node>
           </node>
