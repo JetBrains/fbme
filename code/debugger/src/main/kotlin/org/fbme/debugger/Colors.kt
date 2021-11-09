@@ -34,6 +34,13 @@ val Colors.textFieldForeground: Color
 val Colors.textFieldInactiveForeground: Color
     get() = UIManager.getColor("TextField.inactiveForeground").compose
 
+val Colors.textHighlight: Color
+    get() = UIManager.getColor("textHighlight").compose
+
+// for using from not-composable functions
+val textHighlight: java.awt.Color
+    get() = UIManager.getColor("textHighlight")
+
 val Colors.textFieldCaretForeground: Color
     get() = UIManager.getColor("TextField.caretForeground").compose
 

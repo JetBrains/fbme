@@ -3520,27 +3520,36 @@
                   <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
                 </node>
                 <node concept="2ShNRf" id="13KqhPha_$E" role="33vP2m">
-                  <node concept="YeOm9" id="13KqhPhb8WI" role="2ShVmc">
-                    <node concept="1Y3b0j" id="13KqhPhb8WL" role="YeSDq">
+                  <node concept="YeOm9" id="2mfqR9AGcGB" role="2ShVmc">
+                    <node concept="1Y3b0j" id="2mfqR9AGcGE" role="YeSDq">
                       <property role="2bfB8j" value="true" />
                       <property role="373rjd" value="true" />
                       <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
                       <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" />
-                      <node concept="3Tm1VV" id="13KqhPhb8WM" role="1B3o_S" />
-                      <node concept="3clFb_" id="13KqhPhb8X0" role="jymVt">
+                      <node concept="3Tm1VV" id="2mfqR9AGcGF" role="1B3o_S" />
+                      <node concept="3clFb_" id="2mfqR9AGcGT" role="jymVt">
                         <property role="TrG5h" value="setInspection" />
-                        <node concept="3Tm1VV" id="13KqhPhb8X1" role="1B3o_S" />
-                        <node concept="3cqZAl" id="13KqhPhb8X3" role="3clF45" />
-                        <node concept="37vLTG" id="13KqhPhb8X4" role="3clF46">
+                        <node concept="3Tm1VV" id="2mfqR9AGcGU" role="1B3o_S" />
+                        <node concept="3cqZAl" id="2mfqR9AGcGW" role="3clF45" />
+                        <node concept="37vLTG" id="2mfqR9AGcGX" role="3clF46">
                           <property role="TrG5h" value="newValue" />
-                          <node concept="3uibUv" id="13KqhPhb8X5" role="1tU5fm">
+                          <node concept="3uibUv" id="2mfqR9AGcGY" role="1tU5fm">
                             <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                           </node>
-                          <node concept="2AHcQZ" id="13KqhPhb8X6" role="2AJF6D">
+                          <node concept="2AHcQZ" id="2mfqR9AGcGZ" role="2AJF6D">
                             <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
                           </node>
                         </node>
-                        <node concept="3clFbS" id="13KqhPhb8X7" role="3clF47">
+                        <node concept="37vLTG" id="2mfqR9AGcH0" role="3clF46">
+                          <property role="TrG5h" value="valueColor" />
+                          <node concept="3uibUv" id="2mfqR9AGcH1" role="1tU5fm">
+                            <ref role="3uigEE" to="z60i:~Color" resolve="Color" />
+                          </node>
+                          <node concept="2AHcQZ" id="2mfqR9AGcH2" role="2AJF6D">
+                            <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                          </node>
+                        </node>
+                        <node concept="3clFbS" id="2mfqR9AGcH3" role="3clF47">
                           <node concept="3clFbF" id="13KqhPhbld9" role="3cqZAp">
                             <node concept="2OqwBi" id="13KqhPhboLO" role="3clFbG">
                               <node concept="37vLTw" id="13KqhPhbld8" role="2Oq$k0">
@@ -3553,9 +3562,12 @@
                                 </node>
                                 <node concept="2ShNRf" id="13KqhPhbCKF" role="37wK5m">
                                   <node concept="1pGfFk" id="13KqhPhbCwj" role="2ShVmc">
-                                    <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                    <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String,java.awt.Color)" resolve="Inspection" />
                                     <node concept="37vLTw" id="13KqhPhbOva" role="37wK5m">
-                                      <ref role="3cqZAo" node="13KqhPhb8X4" resolve="newValue" />
+                                      <ref role="3cqZAo" node="2mfqR9AGcGX" resolve="newValue" />
+                                    </node>
+                                    <node concept="37vLTw" id="2mfqR9AGwug" role="37wK5m">
+                                      <ref role="3cqZAo" node="2mfqR9AGcH0" resolve="valueColor" />
                                     </node>
                                   </node>
                                 </node>
@@ -3563,7 +3575,7 @@
                             </node>
                           </node>
                         </node>
-                        <node concept="2AHcQZ" id="13KqhPhb8X9" role="2AJF6D">
+                        <node concept="2AHcQZ" id="2mfqR9AGcH5" role="2AJF6D">
                           <ref role="2AI5Lk" to="wyt6:~Override" />
                         </node>
                       </node>
@@ -4116,27 +4128,36 @@
               <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
             </node>
             <node concept="2ShNRf" id="13KqhPhc1PN" role="33vP2m">
-              <node concept="YeOm9" id="13KqhPhc1PO" role="2ShVmc">
-                <node concept="1Y3b0j" id="13KqhPhc1PP" role="YeSDq">
+              <node concept="YeOm9" id="2mfqR9AHbbd" role="2ShVmc">
+                <node concept="1Y3b0j" id="2mfqR9AHbbg" role="YeSDq">
                   <property role="2bfB8j" value="true" />
                   <property role="373rjd" value="true" />
                   <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
-                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                  <node concept="3Tm1VV" id="13KqhPhc1PQ" role="1B3o_S" />
-                  <node concept="3clFb_" id="13KqhPhc1PR" role="jymVt">
+                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" />
+                  <node concept="3Tm1VV" id="2mfqR9AHbbh" role="1B3o_S" />
+                  <node concept="3clFb_" id="2mfqR9AHbbv" role="jymVt">
                     <property role="TrG5h" value="setInspection" />
-                    <node concept="3Tm1VV" id="13KqhPhc1PS" role="1B3o_S" />
-                    <node concept="3cqZAl" id="13KqhPhc1PT" role="3clF45" />
-                    <node concept="37vLTG" id="13KqhPhc1PU" role="3clF46">
+                    <node concept="3Tm1VV" id="2mfqR9AHbbw" role="1B3o_S" />
+                    <node concept="3cqZAl" id="2mfqR9AHbby" role="3clF45" />
+                    <node concept="37vLTG" id="2mfqR9AHbbz" role="3clF46">
                       <property role="TrG5h" value="newValue" />
-                      <node concept="3uibUv" id="13KqhPhc1PV" role="1tU5fm">
+                      <node concept="3uibUv" id="2mfqR9AHbb$" role="1tU5fm">
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
-                      <node concept="2AHcQZ" id="13KqhPhc1PW" role="2AJF6D">
+                      <node concept="2AHcQZ" id="2mfqR9AHbb_" role="2AJF6D">
                         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
                       </node>
                     </node>
-                    <node concept="3clFbS" id="13KqhPhc1PX" role="3clF47">
+                    <node concept="37vLTG" id="2mfqR9AHbbA" role="3clF46">
+                      <property role="TrG5h" value="valueColor" />
+                      <node concept="3uibUv" id="2mfqR9AHbbB" role="1tU5fm">
+                        <ref role="3uigEE" to="z60i:~Color" resolve="Color" />
+                      </node>
+                      <node concept="2AHcQZ" id="2mfqR9AHbbC" role="2AJF6D">
+                        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                      </node>
+                    </node>
+                    <node concept="3clFbS" id="2mfqR9AHbbD" role="3clF47">
                       <node concept="3clFbF" id="13KqhPhc1PY" role="3cqZAp">
                         <node concept="2OqwBi" id="13KqhPhc1PZ" role="3clFbG">
                           <node concept="37vLTw" id="13KqhPhc1Q0" role="2Oq$k0">
@@ -4149,9 +4170,12 @@
                             </node>
                             <node concept="2ShNRf" id="13KqhPhc1Q3" role="37wK5m">
                               <node concept="1pGfFk" id="13KqhPhc1Q4" role="2ShVmc">
-                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String,java.awt.Color)" resolve="Inspection" />
                                 <node concept="37vLTw" id="13KqhPhc1Q5" role="37wK5m">
-                                  <ref role="3cqZAo" node="13KqhPhc1PU" resolve="newValue" />
+                                  <ref role="3cqZAo" node="2mfqR9AHbbz" resolve="newValue" />
+                                </node>
+                                <node concept="37vLTw" id="2mfqR9AHuaT" role="37wK5m">
+                                  <ref role="3cqZAo" node="2mfqR9AHbbA" resolve="valueColor" />
                                 </node>
                               </node>
                             </node>
@@ -4159,8 +4183,8 @@
                         </node>
                       </node>
                     </node>
-                    <node concept="2AHcQZ" id="13KqhPhc1Q6" role="2AJF6D">
-                      <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+                    <node concept="2AHcQZ" id="2mfqR9AHbbF" role="2AJF6D">
+                      <ref role="2AI5Lk" to="wyt6:~Override" />
                     </node>
                   </node>
                 </node>
@@ -4693,27 +4717,36 @@
               <ref role="3uigEE" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
             </node>
             <node concept="2ShNRf" id="13KqhPhctyX" role="33vP2m">
-              <node concept="YeOm9" id="13KqhPhctyY" role="2ShVmc">
-                <node concept="1Y3b0j" id="13KqhPhctyZ" role="YeSDq">
+              <node concept="YeOm9" id="2mfqR9AF7F8" role="2ShVmc">
+                <node concept="1Y3b0j" id="2mfqR9AF7Fb" role="YeSDq">
                   <property role="2bfB8j" value="true" />
                   <property role="373rjd" value="true" />
                   <ref role="1Y3XeK" to="flkh:~InspectionProvider" resolve="InspectionProvider" />
-                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-                  <node concept="3Tm1VV" id="13KqhPhctz0" role="1B3o_S" />
-                  <node concept="3clFb_" id="13KqhPhctz1" role="jymVt">
+                  <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" />
+                  <node concept="3Tm1VV" id="2mfqR9AF7Fc" role="1B3o_S" />
+                  <node concept="3clFb_" id="2mfqR9AF7Fq" role="jymVt">
                     <property role="TrG5h" value="setInspection" />
-                    <node concept="3Tm1VV" id="13KqhPhctz2" role="1B3o_S" />
-                    <node concept="3cqZAl" id="13KqhPhctz3" role="3clF45" />
-                    <node concept="37vLTG" id="13KqhPhctz4" role="3clF46">
+                    <node concept="3Tm1VV" id="2mfqR9AF7Fr" role="1B3o_S" />
+                    <node concept="3cqZAl" id="2mfqR9AF7Ft" role="3clF45" />
+                    <node concept="37vLTG" id="2mfqR9AF7Fu" role="3clF46">
                       <property role="TrG5h" value="newValue" />
-                      <node concept="3uibUv" id="13KqhPhctz5" role="1tU5fm">
+                      <node concept="3uibUv" id="2mfqR9AF7Fv" role="1tU5fm">
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
-                      <node concept="2AHcQZ" id="13KqhPhctz6" role="2AJF6D">
+                      <node concept="2AHcQZ" id="2mfqR9AF7Fw" role="2AJF6D">
                         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
                       </node>
                     </node>
-                    <node concept="3clFbS" id="13KqhPhctz7" role="3clF47">
+                    <node concept="37vLTG" id="2mfqR9AF7Fx" role="3clF46">
+                      <property role="TrG5h" value="valueColor" />
+                      <node concept="3uibUv" id="2mfqR9AF7Fy" role="1tU5fm">
+                        <ref role="3uigEE" to="z60i:~Color" resolve="Color" />
+                      </node>
+                      <node concept="2AHcQZ" id="2mfqR9AF7Fz" role="2AJF6D">
+                        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+                      </node>
+                    </node>
+                    <node concept="3clFbS" id="2mfqR9AF7F$" role="3clF47">
                       <node concept="3clFbF" id="13KqhPhctz8" role="3cqZAp">
                         <node concept="2OqwBi" id="13KqhPhctz9" role="3clFbG">
                           <node concept="37vLTw" id="13KqhPhctza" role="2Oq$k0">
@@ -4726,14 +4759,17 @@
                             </node>
                             <node concept="2ShNRf" id="13KqhPhctzd" role="37wK5m">
                               <node concept="1pGfFk" id="13KqhPhctze" role="2ShVmc">
-                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String)" resolve="Inspection" />
+                                <ref role="37wK5l" to="ek6x:~Inspection.&lt;init&gt;(java.lang.String,java.awt.Color)" resolve="Inspection" />
                                 <node concept="3cpWs3" id="13KqhPhcN_a" role="37wK5m">
                                   <node concept="Xl_RD" id="13KqhPhcRtq" role="3uHU7B">
                                     <property role="Xl_RC" value="State: " />
                                   </node>
                                   <node concept="37vLTw" id="13KqhPhctzf" role="3uHU7w">
-                                    <ref role="3cqZAo" node="13KqhPhctz4" resolve="newValue" />
+                                    <ref role="3cqZAo" node="2mfqR9AF7Fu" resolve="newValue" />
                                   </node>
+                                </node>
+                                <node concept="37vLTw" id="2mfqR9AFOdC" role="37wK5m">
+                                  <ref role="3cqZAo" node="2mfqR9AF7Fx" resolve="valueColor" />
                                 </node>
                               </node>
                             </node>
@@ -4741,7 +4777,7 @@
                         </node>
                       </node>
                     </node>
-                    <node concept="2AHcQZ" id="13KqhPhctzg" role="2AJF6D">
+                    <node concept="2AHcQZ" id="2mfqR9AF7FA" role="2AJF6D">
                       <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
                     </node>
                   </node>
@@ -4750,6 +4786,7 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="2mfqR9AFbcg" role="3cqZAp" />
         <node concept="3clFbH" id="13KqhPhcqgh" role="3cqZAp" />
         <node concept="3clFbF" id="6nsMCnk1QzK" role="3cqZAp">
           <node concept="2OqwBi" id="6nsMCnk1TJt" role="3clFbG">

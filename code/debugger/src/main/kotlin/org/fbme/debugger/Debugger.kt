@@ -21,7 +21,11 @@ class Debugger private constructor(private val project: Project) {
         for ((watchable, value) in watchables) {
             val inspectionProvider = inspections[watchable]
             checkNotNull(inspectionProvider)
-            inspectionProvider.setInspection(value)
+            if (watchable === state.watchable) {
+                inspectionProvider.setInspection(value, textHighlight)
+            } else {
+                inspectionProvider.setInspection(value)
+            }
         }
     }
 
