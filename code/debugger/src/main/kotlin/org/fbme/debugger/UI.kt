@@ -13,12 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.key.*
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.*
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,7 +29,7 @@ fun debuggerPanel(
     states: MutableList<Debugger.StateData>,
     searchStates: MutableState<TextFieldValue>,
     onState: (Debugger.StateData) -> Unit,
-    watchables: MutableMap<Watchable, String>,
+    watchables: MutableMap<Watchable, AnnotatedString>,
     searchWatchables: MutableState<TextFieldValue>
 ): ComposePanel {
     val composePanel = ComposePanel()
@@ -47,7 +46,7 @@ fun DebuggerContent(
     states: MutableList<Debugger.StateData>,
     searchStates: MutableState<TextFieldValue>,
     onState: (Debugger.StateData) -> Unit,
-    watchables: MutableMap<Watchable, String>,
+    watchables: MutableMap<Watchable, AnnotatedString>,
     searchWatchables: MutableState<TextFieldValue>
 ) {
     Row(
@@ -177,7 +176,7 @@ private fun StateItem(
 
 @Composable
 fun WatchablesColumn(
-    watchables: MutableMap<Watchable, String>,
+    watchables: MutableMap<Watchable, AnnotatedString>,
     searchWatchables: MutableState<TextFieldValue>
 ) {
     Column(
@@ -259,7 +258,7 @@ fun SearchView(search: MutableState<TextFieldValue>) {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun WatchableItem(watchable: Watchable, value: String, onItemClick: (Watchable) -> Unit) {
+fun WatchableItem(watchable: Watchable, value: AnnotatedString, onItemClick: (Watchable) -> Unit) {
     Row(
         modifier = Modifier
             .clickable(onClick = { onItemClick(watchable) })
@@ -269,15 +268,20 @@ fun WatchableItem(watchable: Watchable, value: String, onItemClick: (Watchable) 
             .padding(20.dp, 2.dp)
     ) {
         Text(
-            text = watchable.name + "                   --> " + value,
-            fontSize = 14.sp,
-            color = MaterialTheme.colors.listForeground
+            text = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = MaterialTheme.colors.listForeground)) {
+                    append(watchable.name)
+                    append("                   --> ")
+                }
+                append(value)
+            },
+            fontSize = 14.sp
         )
     }
 }
 
 @Composable
-fun WatchableList(watchables: MutableMap<Watchable, String>, state: MutableState<TextFieldValue>) {
+fun WatchableList(watchables: MutableMap<Watchable, AnnotatedString>, state: MutableState<TextFieldValue>) {
     LazyColumn(
         modifier = Modifier
             .background(MaterialTheme.colors.listBackground)
@@ -287,7 +291,7 @@ fun WatchableList(watchables: MutableMap<Watchable, String>, state: MutableState
         val filteredWatchables = if (search.isEmpty()) {
             watchables
         } else {
-            val filtered = mutableStateMapOf<Watchable, String>()
+            val filtered = mutableStateMapOf<Watchable, AnnotatedString>()
             for ((watchable, value) in watchables) {
                 if (watchable.name.lowercase().contains(search.lowercase())) {
                     filtered[watchable] = value
