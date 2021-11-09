@@ -41,6 +41,13 @@ val Colors.textHighlight: Color
 val textHighlight: java.awt.Color
     get() = UIManager.getColor("textHighlight")
 
+val Colors.buttonSelect: Color
+    get() = UIManager.getColor("Button.select").compose
+
+// for using from not-composable functions
+val buttonSelect: java.awt.Color
+    get() = UIManager.getColor("Button.select")
+
 val Colors.textFieldCaretForeground: Color
     get() = UIManager.getColor("TextField.caretForeground").compose
 

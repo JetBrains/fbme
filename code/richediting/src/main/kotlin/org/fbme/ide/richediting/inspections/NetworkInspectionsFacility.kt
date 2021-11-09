@@ -99,7 +99,7 @@ class NetworkInspectionsFacility(
 
         init {
             setTextColor(inspection.color)
-            setFontStyle(MPSFonts.PLAIN)
+            setFontStyle(if (inspection.bold) MPSFonts.BOLD else MPSFonts.PLAIN)
             textLine = TextLine(inspection.text, style, false, editor.editorComponentSettings)
         }
 

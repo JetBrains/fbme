@@ -1,17 +1,11 @@
 package org.fbme.debugger
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.withStyle
 import jetbrains.mps.project.Project
 import org.fbme.ide.platform.debugger.Watchable
 import javax.swing.JComponent
@@ -22,24 +16,6 @@ class Debugger private constructor(private val project: Project) {
     private val states = mutableStateListOf<StateData>()
     private val searchStates = mutableStateOf(TextFieldValue())
     private val inspections = mutableMapOf<Watchable, InspectionProvider>()
-
-    private val onState: (StateData) -> Unit = { state: StateData ->
-        watchables.putAll(state.watchables)
-        for ((watchable, value) in watchables) {
-            val inspectionProvider = inspections[watchable]
-            checkNotNull(inspectionProvider)
-            if (watchable === state.watchable) {
-                inspectionProvider.setInspection(value.text, textHighlight)
-                watchables[watchable] = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = textHighlight.compose)) {
-                        append(state.newValue)
-                    }
-                }
-            } else {
-                inspectionProvider.setInspection(value.text)
-            }
-        }
-    }
 
     data class StateData(
         val watchable: Watchable,
@@ -92,7 +68,7 @@ class Debugger private constructor(private val project: Project) {
     }
 
     fun getComponent(): JComponent {
-        return debuggerPanel(states, searchStates, onState, watchables, searchWatchables)
+        return debuggerPanel(states, searchStates, inspections, watchables, searchWatchables)
     }
 
     companion object {

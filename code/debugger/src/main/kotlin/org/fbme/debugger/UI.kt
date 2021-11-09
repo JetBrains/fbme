@@ -2,7 +2,6 @@ package org.fbme.debugger
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,10 +16,13 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.key.*
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import jetbrains.mps.nodeEditor.MPSColors
 import org.fbme.ide.platform.debugger.Watchable
 import kotlin.math.max
 import kotlin.math.min
@@ -28,14 +30,14 @@ import kotlin.math.min
 fun debuggerPanel(
     states: MutableList<Debugger.StateData>,
     searchStates: MutableState<TextFieldValue>,
-    onState: (Debugger.StateData) -> Unit,
+    inspections: MutableMap<Watchable, InspectionProvider>,
     watchables: MutableMap<Watchable, AnnotatedString>,
     searchWatchables: MutableState<TextFieldValue>
 ): ComposePanel {
     val composePanel = ComposePanel()
 
     composePanel.setContent {
-        DebuggerContent(states, searchStates, onState, watchables, searchWatchables)
+        DebuggerContent(states, searchStates, inspections, watchables, searchWatchables)
     }
 
     return composePanel
@@ -45,25 +47,28 @@ fun debuggerPanel(
 fun DebuggerContent(
     states: MutableList<Debugger.StateData>,
     searchStates: MutableState<TextFieldValue>,
-    onState: (Debugger.StateData) -> Unit,
+    inspections: MutableMap<Watchable, InspectionProvider>,
     watchables: MutableMap<Watchable, AnnotatedString>,
     searchWatchables: MutableState<TextFieldValue>
 ) {
+    val selectedState = remember { mutableStateOf<Debugger.StateData?>(null) }
     Row(
         modifier = Modifier
             .background(MaterialTheme.colors.tableBackground)
     ) {
-        StatesColumn(states, searchStates, onState)
+        StatesColumn(states, selectedState, searchStates, watchables, inspections)
         VerticalDivider()
-        WatchablesColumn(watchables, searchWatchables)
+        WatchablesColumn(watchables, searchWatchables, inspections, selectedState)
     }
 }
 
 @Composable
 fun StatesColumn(
     states: MutableList<Debugger.StateData>,
+    selectedState: MutableState<Debugger.StateData?>,
     searchStates: MutableState<TextFieldValue>,
-    onState: (Debugger.StateData) -> Unit
+    watchables: MutableMap<Watchable, AnnotatedString>,
+    inspections: MutableMap<Watchable, InspectionProvider>
 ) {
     Column(
         modifier = Modifier
@@ -81,15 +86,17 @@ fun StatesColumn(
             SearchView(searchStates)
         }
         HorizontalDivider()
-        StatesList(states, searchStates, onState)
+        StatesList(states, selectedState, watchables, searchStates, inspections)
     }
 }
 
 @Composable
 fun StatesList(
     states: MutableList<Debugger.StateData>,
+    selectedState: MutableState<Debugger.StateData?>,
+    watchables: MutableMap<Watchable, AnnotatedString>,
     searchStates: MutableState<TextFieldValue>,
-    onState: (Debugger.StateData) -> Unit,
+    inspections: MutableMap<Watchable, InspectionProvider>
 ) {
     val search = searchStates.value.text
     val filteredStates = if (search.isEmpty()) {
@@ -103,7 +110,6 @@ fun StatesList(
         }
         filtered
     }
-    val selectedItem = remember { mutableStateOf(filteredStates.getOrNull(0)) }
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -112,7 +118,7 @@ fun StatesList(
             .fillMaxWidth()
     ) {
         for (state in filteredStates) {
-            StateItem(state, selectedItem, onState, filteredStates, scrollState)
+            StateItem(state, selectedState, watchables, inspections, filteredStates, scrollState)
         }
     }
 }
@@ -122,7 +128,8 @@ fun StatesList(
 private fun StateItem(
     state: Debugger.StateData,
     selectedItem: MutableState<Debugger.StateData?>,
-    onState: (Debugger.StateData) -> Unit,
+    watchables: MutableMap<Watchable, AnnotatedString>,
+    inspections: MutableMap<Watchable, InspectionProvider>,
     filteredStates: MutableList<Debugger.StateData>,
     scrollState: ScrollState
 ) {
@@ -131,7 +138,7 @@ private fun StateItem(
             .focusRequester(state.focusRequester)
             .clickable(onClick = {
                 selectedItem.value = state
-                onState(state)
+                onState(state, watchables, inspections)
                 state.focusRequester.requestFocus()
             })
             .onKeyEvent { keyEvent: KeyEvent ->
@@ -143,7 +150,7 @@ private fun StateItem(
                         val prevIndex = max(0, selectedIndex - 1)
                         val prev = filteredStates[prevIndex]
                         selectedItem.value = prev
-                        onState(prev)
+                        onState(prev, watchables, inspections)
                         scrollState.value
                         prev.focusRequester.requestFocus()
                         return@onKeyEvent true
@@ -154,7 +161,7 @@ private fun StateItem(
                         val nextIndex = min(filteredStates.lastIndex, selectedIndex + 1)
                         val next = filteredStates[nextIndex]
                         selectedItem.value = next
-                        onState(next)
+                        onState(next, watchables, inspections)
                         next.focusRequester.requestFocus()
                         return@onKeyEvent true
                     }
@@ -174,10 +181,34 @@ private fun StateItem(
     }
 }
 
+private fun onState(
+    state: Debugger.StateData,
+    watchables: MutableMap<Watchable, AnnotatedString>,
+    inspections: MutableMap<Watchable, InspectionProvider>
+) {
+    watchables.putAll(state.watchables)
+    for ((watchable, value) in watchables) {
+        val inspectionProvider = inspections[watchable]
+        checkNotNull(inspectionProvider)
+        if (watchable === state.watchable) {
+            inspectionProvider.setInspection(value.text, textHighlight)
+            watchables[watchable] = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = textHighlight.compose)) {
+                    append(state.newValue)
+                }
+            }
+        } else {
+            inspectionProvider.setInspection(value.text)
+        }
+    }
+}
+
 @Composable
 fun WatchablesColumn(
     watchables: MutableMap<Watchable, AnnotatedString>,
-    searchWatchables: MutableState<TextFieldValue>
+    searchWatchables: MutableState<TextFieldValue>,
+    inspections: MutableMap<Watchable, InspectionProvider>,
+    selectedState: MutableState<Debugger.StateData?>
 ) {
     Column(
         modifier = Modifier
@@ -195,7 +226,7 @@ fun WatchablesColumn(
             SearchView(searchWatchables)
         }
         HorizontalDivider()
-        WatchableList(watchables, searchWatchables)
+        WatchableList(watchables, searchWatchables, inspections, selectedState)
     }
 }
 
@@ -256,12 +287,32 @@ fun SearchView(search: MutableState<TextFieldValue>) {
     )
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun WatchableItem(watchable: Watchable, value: AnnotatedString, onItemClick: (Watchable) -> Unit) {
+fun WatchableItem(
+    watchable: Watchable,
+    value: AnnotatedString,
+    inspections: MutableMap<Watchable, InspectionProvider>,
+    selectedState: MutableState<Debugger.StateData?>
+) {
     Row(
         modifier = Modifier
-            .clickable(onClick = { onItemClick(watchable) })
+            .clickable { }
+            .pointerInput(watchable, value, inspections, selectedState) {
+                while (true) {
+                    val event = awaitPointerEventScope { awaitPointerEvent() }
+                    val awtEvent = event.mouseEvent
+                    when (event.type) {
+                        PointerEventType.Press -> {
+                            val valueColor = buttonSelect
+                            inspections[watchable]?.setInspection(value.text, valueColor, true)
+                        }
+                        PointerEventType.Release -> {
+                            val valueColor = if (watchable === selectedState.value?.watchable) textHighlight else MPSColors.GRAY
+                            inspections[watchable]?.setInspection(value.text, valueColor)
+                        }
+                    }
+                }
+            }
             .background(MaterialTheme.colors.listBackground)
             .height(20.dp)
             .fillMaxWidth()
@@ -269,20 +320,24 @@ fun WatchableItem(watchable: Watchable, value: AnnotatedString, onItemClick: (Wa
     ) {
         Text(
             text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = MaterialTheme.colors.listForeground)) {
-                    append(watchable.name)
-                    append("                   --> ")
-                }
+                append(watchable.name)
+                append("                   --> ")
                 append(value)
             },
+            color = MaterialTheme.colors.listForeground,
             fontSize = 14.sp
         )
     }
 }
 
 @Composable
-fun WatchableList(watchables: MutableMap<Watchable, AnnotatedString>, state: MutableState<TextFieldValue>) {
-    LazyColumn(
+fun WatchableList(
+    watchables: MutableMap<Watchable, AnnotatedString>,
+    state: MutableState<TextFieldValue>,
+    inspections: MutableMap<Watchable, InspectionProvider>,
+    selectedState: MutableState<Debugger.StateData?>
+) {
+    Column(
         modifier = Modifier
             .background(MaterialTheme.colors.listBackground)
             .fillMaxWidth()
@@ -299,11 +354,12 @@ fun WatchableList(watchables: MutableMap<Watchable, AnnotatedString>, state: Mut
             }
             filtered
         }
-        items(filteredWatchables, null) { (watchable, value) ->
+        for ((watchable, value) in filteredWatchables) {
             WatchableItem(
                 watchable = watchable,
                 value = value,
-                onItemClick = {}
+                inspections,
+                selectedState
             )
         }
     }
