@@ -293,7 +293,8 @@ fun WatchableItem(
     watchable: Watchable,
     value: AnnotatedString,
     inspections: MutableMap<Watchable, InspectionProvider>,
-    selectedState: MutableState<Debugger.StateData?>
+    selectedState: MutableState<Debugger.StateData?>,
+    indent: Int
 ) {
     Row(
         modifier = Modifier
@@ -322,7 +323,8 @@ fun WatchableItem(
         Text(
             modifier = Modifier.padding(start = 24.dp),
             text = buildAnnotatedString {
-                append(watchable.name)
+                append("        ".repeat(indent))
+                append(watchable.port)
                 append("                   --> ")
                 append(value)
             },
@@ -339,8 +341,10 @@ fun WatchableList(
     inspections: MutableMap<Watchable, InspectionProvider>,
     selectedState: MutableState<Debugger.StateData?>
 ) {
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
+            .verticalScroll(state = scrollState)
             .background(MaterialTheme.colors.listBackground)
             .fillMaxWidth()
     ) {
@@ -356,14 +360,67 @@ fun WatchableList(
             }
             filtered
         }
-        for ((watchable, value) in filteredWatchables) {
+        val sortedWatchables = filteredWatchables
+            .toList()
+            .sortedWith(Comparator { (watchable1, value1), (watchable2, value2) ->
+                val path1 = watchable1.name.split('.')
+                val path2 = watchable2.name.split('.')
+                if (path1.size != path2.size) {
+                    path1.size - path2.size
+                } else {
+                    var res = 0
+                    var i = 0
+                    while (i < path1.size && res == 0) {
+                        res = path1[i].compareTo(path2[i])
+                        i++
+                    }
+                    res
+                }
+            })
+        val parents = mutableListOf<String>()
+        for ((watchable, value) in sortedWatchables) {
+            val watchableParents = watchable.name.split('.').dropLast(1)
+            var i = 0
+            while (i < watchableParents.size) {
+                if (i >= parents.size || parents[i] != watchableParents[i]) {
+                    ParentItem(watchableParents, i)
+                    if (i < parents.size) {
+                        parents[i] = watchableParents[i]
+                    } else {
+                        parents.add(watchableParents[i])
+                    }
+                }
+                i++
+            }
             WatchableItem(
                 watchable = watchable,
                 value = value,
-                inspections,
-                selectedState
+                inspections = inspections,
+                selectedState = selectedState,
+                indent = i
             )
         }
+    }
+}
+
+@Composable
+private fun ParentItem(
+    watchableParents: List<String>,
+    indent: Int
+) {
+    Row(
+        modifier = Modifier
+            .clickable { }
+            .background(MaterialTheme.colors.listBackground)
+            .height(20.dp)
+            .fillMaxWidth()
+    ) {
+        Text(
+            modifier = Modifier.padding(start = 24.dp),
+            text = "        ".repeat(indent) + watchableParents[indent],
+            color = MaterialTheme.colors.listForeground,
+            fontSize = 14.sp
+        )
     }
 }
 
