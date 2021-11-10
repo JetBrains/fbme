@@ -1,9 +1,14 @@
 package org.fbme.debugger
 
 import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -13,8 +18,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
@@ -79,7 +83,7 @@ fun StatesColumn(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .background(MaterialTheme.colors.tableBackground)
+                .background(MaterialTheme.colors.tableHeaderBackground)
                 .fillMaxWidth()
                 .padding(4.dp)
         ) {
@@ -173,7 +177,7 @@ private fun StateItem(
             .background(color = if (selectedItem.value !== state) MaterialTheme.colors.listBackground else MaterialTheme.colors.listSelectionBackground),
     ) {
         Text(
-            modifier = Modifier.padding(horizontal = 20.dp),
+            modifier = Modifier.padding(start = 24.dp),
             text = state.toString(),
             color = if (selectedItem.value !== state) MaterialTheme.colors.listForeground else MaterialTheme.colors.listSelectionForeground,
             fontSize = 14.sp
@@ -219,7 +223,7 @@ fun WatchablesColumn(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .background(MaterialTheme.colors.tableBackground)
+                .background(MaterialTheme.colors.tableHeaderBackground)
                 .fillMaxWidth()
                 .padding(4.dp)
         ) {
@@ -232,59 +236,56 @@ fun WatchablesColumn(
 
 @Composable
 fun SearchView(search: MutableState<TextFieldValue>) {
-    TextField(
-        value = search.value,
-        onValueChange = { value ->
-            search.value = value
-        },
+    Row(
         modifier = Modifier
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colors.tableHeaderSeparatorColor,
                 shape = RoundedCornerShape(6.dp)
             )
-            .width(300.dp),
-        textStyle = TextStyle(fontSize = 14.sp),
-        leadingIcon = {
+            .width(300.dp)
+            .height(26.dp)
+            .background(color = MaterialTheme.colors.tableBackground, shape = RoundedCornerShape(6.dp)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            Icons.Default.Search,
+            contentDescription = "Search",
+            modifier = Modifier
+                .size(22.dp)
+                .padding(start = 5.dp),
+            tint = MaterialTheme.colors.tableForeground
+        )
+        BasicTextField(
+            value = search.value,
+            onValueChange = { value ->
+                search.value = value
+            },
+            modifier = Modifier
+                .padding(horizontal = 5.dp)
+                .weight(1f)
+                .fillMaxWidth(),
+            cursorBrush = SolidColor(MaterialTheme.colors.textFieldCaretForeground),
+            textStyle = TextStyle(color = MaterialTheme.colors.tableForeground, fontSize = 14.sp),
+            singleLine = true
+        )
+        if (search.value != TextFieldValue("")) {
             Icon(
-                Icons.Default.Search,
-                contentDescription = "",
+                Icons.Default.Close,
+                contentDescription = "Clear",
                 modifier = Modifier
-                    .padding(2.dp)
-                    .size(18.dp)
-            )
-        },
-        trailingIcon = {
-            if (search.value != TextFieldValue("")) {
-                IconButton(
-                    onClick = {
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null
+                    ) {
                         search.value = TextFieldValue("")
                     }
-                ) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .padding(2.dp)
-                            .size(18.dp)
-                    )
-                }
-            }
-        },
-        singleLine = true,
-        shape = RectangleShape,
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = MaterialTheme.colors.textFieldForeground,
-            disabledTextColor = MaterialTheme.colors.textFieldForeground,
-            cursorColor = MaterialTheme.colors.textFieldCaretForeground,
-            leadingIconColor = MaterialTheme.colors.tableHeaderForeground,
-            trailingIconColor = MaterialTheme.colors.tableHeaderForeground,
-            backgroundColor = MaterialTheme.colors.tableHeaderBackground,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        )
-    )
+                    .size(22.dp)
+                    .padding(end = 5.dp),
+                tint = MaterialTheme.colors.tableForeground
+            )
+        }
+    }
 }
 
 @Composable
@@ -307,7 +308,8 @@ fun WatchableItem(
                             inspections[watchable]?.setInspection(value.text, valueColor, true)
                         }
                         PointerEventType.Release -> {
-                            val valueColor = if (watchable === selectedState.value?.watchable) textHighlight else MPSColors.GRAY
+                            val valueColor =
+                                if (watchable === selectedState.value?.watchable) textHighlight else MPSColors.GRAY
                             inspections[watchable]?.setInspection(value.text, valueColor)
                         }
                     }
@@ -316,9 +318,9 @@ fun WatchableItem(
             .background(MaterialTheme.colors.listBackground)
             .height(20.dp)
             .fillMaxWidth()
-            .padding(20.dp, 2.dp)
     ) {
         Text(
+            modifier = Modifier.padding(start = 24.dp),
             text = buildAnnotatedString {
                 append(watchable.name)
                 append("                   --> ")
