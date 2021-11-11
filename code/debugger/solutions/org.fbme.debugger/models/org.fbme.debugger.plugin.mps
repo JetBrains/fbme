@@ -28,6 +28,7 @@
       <concept id="1203083511112" name="jetbrains.mps.lang.plugin.structure.ExecuteBlock" flags="in" index="tnohg" />
       <concept id="1214307303872" name="jetbrains.mps.lang.plugin.structure.GetComponentBlock" flags="in" index="2UmK3q" />
       <concept id="6547237850567458268" name="jetbrains.mps.lang.plugin.structure.BaseToolDeclaration" flags="ng" index="2XNcJY">
+        <property id="6547237850567462620" name="caption" index="2XNbzY" />
         <child id="6547237850567462848" name="methodDeclaration" index="2XNbBy" />
         <child id="6547237850567462849" name="fieldDeclaration" index="2XNbBz" />
       </concept>
@@ -139,6 +140,7 @@
   <node concept="2DaZZR" id="4jcZaGcGIN2" />
   <node concept="sEfby" id="4w1gZTMnY9f">
     <property role="TrG5h" value="Debugger" />
+    <property role="2XNbzY" value="FBME Debugger" />
     <node concept="2XrIbr" id="7l78cIM8SQv" role="2XNbBy">
       <property role="TrG5h" value="setProject" />
       <node concept="3cqZAl" id="7l78cIM8T1N" role="3clF45" />
@@ -201,7 +203,7 @@
   </node>
   <node concept="sE7Ow" id="62iAs64L7s7">
     <property role="TrG5h" value="DebuggerAction" />
-    <property role="2uzpH1" value="Invoke Debugger" />
+    <property role="2uzpH1" value="Invoke FBME Debugger" />
     <node concept="1DS2jV" id="2iJMYskfKmp" role="1NuT2Z">
       <property role="TrG5h" value="project" />
       <ref role="1DUlNI" to="qkt:~CommonDataKeys.PROJECT" resolve="PROJECT" />
