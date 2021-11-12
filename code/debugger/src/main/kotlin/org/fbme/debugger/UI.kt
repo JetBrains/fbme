@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jetbrains.mps.nodeEditor.MPSColors
 import org.fbme.ide.platform.debugger.Watchable
+import org.fbme.lib.common.Declaration
 import kotlin.math.max
 import kotlin.math.min
 
@@ -102,28 +104,37 @@ fun StatesList(
     searchStates: MutableState<TextFieldValue>,
     inspections: MutableMap<Watchable, InspectionProvider>
 ) {
-    val search = searchStates.value.text
-    val filteredStates = if (search.isEmpty()) {
-        states
-    } else {
-        val filtered = mutableStateListOf<Debugger.StateData>()
-        for (state in states) {
-            if (state.toString().lowercase().contains(search.lowercase())) {
-                filtered.add(state)
+    Box {
+        val search = searchStates.value.text
+        val filteredStates = if (search.isEmpty()) {
+            states
+        } else {
+            val filtered = mutableStateListOf<Debugger.StateData>()
+            for (state in states) {
+                if (state.toString().lowercase().contains(search.lowercase())) {
+                    filtered.add(state)
+                }
+            }
+            filtered
+        }
+        val scrollState = rememberScrollState()
+        Column(
+            modifier = Modifier
+                .verticalScroll(state = scrollState)
+                .background(MaterialTheme.colors.listBackground)
+                .fillMaxWidth()
+        ) {
+            for (state in filteredStates) {
+                StateItem(state, selectedState, watchables, inspections, filteredStates, scrollState)
             }
         }
-        filtered
-    }
-    val scrollState = rememberScrollState()
-    Column(
-        modifier = Modifier
-            .verticalScroll(state = scrollState)
-            .background(MaterialTheme.colors.listBackground)
-            .fillMaxWidth()
-    ) {
-        for (state in filteredStates) {
-            StateItem(state, selectedState, watchables, inspections, filteredStates, scrollState)
-        }
+        val scrollbarAdapter = rememberScrollbarAdapter(scrollState = scrollState)
+        VerticalScrollbar(
+            adapter = scrollbarAdapter,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .fillMaxHeight()
+        )
     }
 }
 
@@ -159,7 +170,7 @@ private fun StateItem(
                         prev.focusRequester.requestFocus()
                         return@onKeyEvent true
                     }
-                    key == Key.DirectionDown && keyEvent.type == KeyEventType.KeyDown -> {
+                    (key == Key.DirectionDown || key == Key.DirectionRight) && keyEvent.type == KeyEventType.KeyDown -> {
                         val selected = selectedItem.value ?: return@onKeyEvent true
                         val selectedIndex = filteredStates.indexOf(selected)
                         val nextIndex = min(filteredStates.lastIndex, selectedIndex + 1)
@@ -288,47 +299,93 @@ fun SearchView(search: MutableState<TextFieldValue>) {
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun WatchableItem(
-    watchable: Watchable,
-    value: AnnotatedString,
+    watchablePort: WatchablePort,
     inspections: MutableMap<Watchable, InspectionProvider>,
     selectedState: MutableState<Debugger.StateData?>,
-    indent: Int
+    selectedWatchableNode: MutableState<WatchableNode?>,
+    nodes: SnapshotStateList<WatchableNode>,
 ) {
     Row(
         modifier = Modifier
-            .clickable { }
-            .pointerInput(watchable, value, inspections, selectedState) {
+            .focusRequester(watchablePort.focusRequester)
+            .clickable {
+                selectedWatchableNode.value = watchablePort
+                watchablePort.focusRequester.requestFocus()
+            }
+            .pointerInput(watchablePort, inspections, selectedState) {
                 while (true) {
                     val event = awaitPointerEventScope { awaitPointerEvent() }
                     val awtEvent = event.mouseEvent
                     when (event.type) {
                         PointerEventType.Press -> {
                             val valueColor = buttonSelect
-                            inspections[watchable]?.setInspection(value.text, valueColor, true)
+                            inspections[watchablePort.watchable]?.setInspection(
+                                watchablePort.value.text,
+                                valueColor,
+                                true
+                            )
                         }
                         PointerEventType.Release -> {
-                            val valueColor =
-                                if (watchable === selectedState.value?.watchable) textHighlight else MPSColors.GRAY
-                            inspections[watchable]?.setInspection(value.text, valueColor)
+                            val valueColor = if (watchablePort.watchable === selectedState.value?.watchable)
+                                textHighlight
+                            else MPSColors.GRAY
+                            inspections[watchablePort.watchable]?.setInspection(watchablePort.value.text, valueColor)
                         }
                     }
                 }
             }
-            .background(MaterialTheme.colors.listBackground)
+            .onKeyEvent { keyEvent: KeyEvent ->
+                val key = keyEvent.key
+                when {
+                    key == Key.DirectionUp && keyEvent.type == KeyEventType.KeyDown -> {
+                        val selected = selectedWatchableNode.value as? WatchablePort ?: return@onKeyEvent true
+                        val selectedIndex = nodes.indexOf(selected)
+                        val prevIndex = max(0, selectedIndex - 1)
+                        val prev = nodes[prevIndex]
+                        selectedWatchableNode.value = prev
+                        prev.focusRequester.requestFocus()
+                        return@onKeyEvent true
+                    }
+                    (key == Key.DirectionDown || key == Key.DirectionRight) && keyEvent.type == KeyEventType.KeyDown -> {
+                        val selected = selectedWatchableNode.value as? WatchablePort ?: return@onKeyEvent true
+                        val selectedIndex = nodes.indexOf(selected)
+                        val nextIndex = min(nodes.lastIndex, selectedIndex + 1)
+                        val next = nodes[nextIndex]
+                        selectedWatchableNode.value = next
+                        next.focusRequester.requestFocus()
+                        return@onKeyEvent true
+                    }
+                    key == Key.DirectionLeft && keyEvent.type == KeyEventType.KeyDown -> {
+                        val selected = selectedWatchableNode.value as? WatchablePort ?: return@onKeyEvent true
+                        val parentIndex = selected.parent?.let { nodes.indexOf(it) } ?: 0
+                        val parent = nodes[parentIndex]
+                        selectedWatchableNode.value = parent
+                        parent.focusRequester.requestFocus()
+                        return@onKeyEvent true
+                    }
+                }
+                return@onKeyEvent false
+            }
+            .background(
+                color = if (selectedWatchableNode.value !== watchablePort) MaterialTheme.colors.listBackground
+                else MaterialTheme.colors.listSelectionBackground
+            )
             .height(20.dp)
             .fillMaxWidth()
     ) {
         Text(
             modifier = Modifier.padding(start = 24.dp),
             text = buildAnnotatedString {
-                append("        ".repeat(indent))
-                append(watchable.port)
+                append("        ".repeat(watchablePort.depth))
+                append(watchablePort.watchable.port)
                 append("                   --> ")
-                append(value)
+                append(watchablePort.value)
             },
-            color = MaterialTheme.colors.listForeground,
+            color = if (selectedWatchableNode.value !== watchablePort) MaterialTheme.colors.listForeground
+            else MaterialTheme.colors.listSelectionForeground,
             fontSize = 14.sp
         )
     }
@@ -341,84 +398,191 @@ fun WatchableList(
     inspections: MutableMap<Watchable, InspectionProvider>,
     selectedState: MutableState<Debugger.StateData?>
 ) {
-    val scrollState = rememberScrollState()
-    Column(
-        modifier = Modifier
-            .verticalScroll(state = scrollState)
-            .background(MaterialTheme.colors.listBackground)
-            .fillMaxWidth()
-    ) {
-        val search = state.value.text
-        val filteredWatchables = if (search.isEmpty()) {
-            watchables
-        } else {
-            val filtered = mutableStateMapOf<Watchable, AnnotatedString>()
-            for ((watchable, value) in watchables) {
-                if (watchable.name.lowercase().contains(search.lowercase())) {
-                    filtered[watchable] = value
-                }
-            }
-            filtered
-        }
-        val sortedWatchables = filteredWatchables
-            .toList()
-            .sortedWith(Comparator { (watchable1, value1), (watchable2, value2) ->
-                val path1 = watchable1.name.split('.')
-                val path2 = watchable2.name.split('.')
-                if (path1.size != path2.size) {
-                    path1.size - path2.size
-                } else {
-                    var res = 0
-                    var i = 0
-                    while (i < path1.size && res == 0) {
-                        res = path1[i].compareTo(path2[i])
-                        i++
+    Box {
+        val scrollState = rememberScrollState()
+        val selectedWatchableNode = remember { mutableStateOf<WatchableNode?>(null) }
+        Column(
+            modifier = Modifier
+                .verticalScroll(state = scrollState)
+                .background(MaterialTheme.colors.listBackground)
+                .fillMaxWidth()
+        ) {
+            val search = state.value.text
+            val filteredWatchables = if (search.isEmpty()) {
+                watchables
+            } else {
+                val filtered = mutableStateMapOf<Watchable, AnnotatedString>()
+                for ((watchable, value) in watchables) {
+                    if (watchable.name.lowercase().contains(search.lowercase())) {
+                        filtered[watchable] = value
                     }
-                    res
                 }
-            })
-        val parents = mutableListOf<String>()
-        for ((watchable, value) in sortedWatchables) {
-            val watchableParents = watchable.name.split('.').dropLast(1)
-            var i = 0
-            while (i < watchableParents.size) {
-                if (i >= parents.size || parents[i] != watchableParents[i]) {
-                    ParentItem(watchableParents, i)
-                    if (i < parents.size) {
-                        parents[i] = watchableParents[i]
+                filtered
+            }
+            val sortedWatchables = filteredWatchables
+                .toList()
+                .sortedWith { (watchable1, value1), (watchable2, value2) ->
+                    val path1 = watchable1.name.split('.')
+                    val path2 = watchable2.name.split('.')
+                    if (path1.size != path2.size) {
+                        path1.size - path2.size
                     } else {
-                        parents.add(watchableParents[i])
+                        var res = 0
+                        var i = 0
+                        while (i < path1.size && res == 0) {
+                            res = path1[i].compareTo(path2[i])
+                            i++
+                        }
+                        res
                     }
                 }
-                i++
+
+            val nodes = remember { mutableStateListOf<WatchableNode>() }
+
+            val currentParents = mutableListOf<WatchableTree>()
+            for ((watchable, value) in sortedWatchables) {
+                val watchableParents: List<Declaration> = listOf(watchable.path.root, *watchable.path.path)
+                val watchableParentNames: List<String> = watchable.name.split('.').dropLast(1)
+                var i = 0
+                while (i < watchableParents.size) {
+                    if (i >= currentParents.size || currentParents[i].declaration !== watchableParents[i]) {
+                        val parentNode: WatchableTree
+                        if (nodes.filterIsInstance<WatchableTree>().all { it.declaration !== watchableParents[i] }) {
+                            parentNode = WatchableTree(
+                                declaration = watchableParents[i],
+                                name = watchableParentNames[i],
+                                parent = if (i == 0) null else currentParents[i - 1],
+                                depth = i,
+                            )
+                            nodes += parentNode
+                        } else {
+                            parentNode = nodes.filterIsInstance<WatchableTree>()
+                                .find { it.declaration === watchableParents[i] }!!
+                        }
+                        parentNode.isCollapsed.value = parentNode.isCollapsed.value || isUnderCollapse(parentNode)
+                        if (i < currentParents.size) {
+                            currentParents[i] = parentNode
+                        } else {
+                            currentParents.add(parentNode)
+                        }
+                    }
+                    i++
+                }
+                if (nodes.filterIsInstance<WatchablePort>().all { it.watchable !== watchable }) {
+                    val node = WatchablePort(
+                        parent = if (i == 0) null else currentParents[i - 1],
+                        depth = i,
+                        watchable = watchable,
+                        value = value
+                    )
+                    nodes += node
+                } else {
+                    val node = nodes.filterIsInstance<WatchablePort>().find { it.watchable === watchable }!!
+                    if (node.value != value) {
+                        node.value = value
+                    }
+                }
             }
-            WatchableItem(
-                watchable = watchable,
-                value = value,
-                inspections = inspections,
-                selectedState = selectedState,
-                indent = i
-            )
+
+            val filteredNodes = nodes.filter { node ->
+                !isUnderCollapse(node)
+                        && (node is WatchablePort && (filteredWatchables.keys.any { it === node.watchable })
+                        || node is WatchableTree && (filteredWatchables.keys.any {
+                    it.path.root == node.declaration || it.path.path.toList().any { it === node.declaration }
+                }))
+            }.toMutableStateList()
+
+            for (node in filteredNodes) {
+                when (node) {
+                    is WatchablePort -> WatchableItem(
+                        node,
+                        inspections,
+                        selectedState,
+                        selectedWatchableNode,
+                        filteredNodes
+                    )
+                    is WatchableTree -> ParentItem(node, selectedWatchableNode, filteredNodes)
+                }
+            }
         }
+        val scrollbarAdapter = rememberScrollbarAdapter(scrollState = scrollState)
+        VerticalScrollbar(
+            adapter = scrollbarAdapter,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .fillMaxHeight()
+        )
     }
 }
 
+private fun isUnderCollapse(node: WatchableNode): Boolean {
+    val parent = node.parent ?: return false
+    return parent.isCollapsed.value || isUnderCollapse(parent)
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun ParentItem(
-    watchableParents: List<String>,
-    indent: Int
+    watchableTree: WatchableTree,
+    selectedWatchableNode: MutableState<WatchableNode?>,
+    nodes: SnapshotStateList<WatchableNode>
 ) {
     Row(
         modifier = Modifier
-            .clickable { }
-            .background(MaterialTheme.colors.listBackground)
+            .focusRequester(watchableTree.focusRequester)
+            .clickable {
+                selectedWatchableNode.value = watchableTree
+                watchableTree.focusRequester.requestFocus()
+            }
+            .onKeyEvent { keyEvent: KeyEvent ->
+                val key = keyEvent.key
+                val selected = selectedWatchableNode.value as? WatchableTree ?: return@onKeyEvent true
+                val selectedIndex = nodes.indexOf(selected)
+                when {
+                    key == Key.DirectionUp && keyEvent.type == KeyEventType.KeyDown -> {
+                        val prevIndex = max(0, selectedIndex - 1)
+                        val prev = nodes[prevIndex]
+                        selectedWatchableNode.value = prev
+                        prev.focusRequester.requestFocus()
+                        return@onKeyEvent true
+                    }
+                    (key == Key.DirectionDown || key == Key.DirectionRight && !selected.isCollapsed.value) && keyEvent.type == KeyEventType.KeyDown -> {
+                        val nextIndex = min(nodes.lastIndex, selectedIndex + 1)
+                        val next = nodes[nextIndex]
+                        selectedWatchableNode.value = next
+                        next.focusRequester.requestFocus()
+                        return@onKeyEvent true
+                    }
+                    key == Key.DirectionLeft && keyEvent.type == KeyEventType.KeyDown -> {
+                        if (selected.isCollapsed.value) {
+                            val parentIndex = selected.parent?.let { nodes.indexOf(it) } ?: 0
+                            val parent = nodes[parentIndex]
+                            selectedWatchableNode.value = parent
+                            parent.focusRequester.requestFocus()
+                        } else {
+                            selected.isCollapsed.value = true
+                        }
+                        return@onKeyEvent true
+                    }
+                    (key == Key.DirectionRight && selected.isCollapsed.value) && keyEvent.type == KeyEventType.KeyDown -> {
+                        selected.isCollapsed.value = false
+                        return@onKeyEvent true
+                    }
+                }
+                return@onKeyEvent false
+            }
+            .background(
+                color = if (selectedWatchableNode.value !== watchableTree) MaterialTheme.colors.listBackground
+                else MaterialTheme.colors.listSelectionBackground
+            )
             .height(20.dp)
             .fillMaxWidth()
     ) {
         Text(
             modifier = Modifier.padding(start = 24.dp),
-            text = "        ".repeat(indent) + watchableParents[indent],
-            color = MaterialTheme.colors.listForeground,
+            text = "        ".repeat(watchableTree.depth) + watchableTree.name,
+            color = if (selectedWatchableNode.value !== watchableTree) MaterialTheme.colors.listForeground
+            else MaterialTheme.colors.listSelectionForeground,
             fontSize = 14.sp
         )
     }

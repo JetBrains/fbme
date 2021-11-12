@@ -106,7 +106,7 @@ class WatcherFacade private constructor(project: Project) {
                                 val device = repository.declarationsScope.findDeviceDeclaration(deviceIdentifier)
                                 requireNotNull(device)
                                 val connection = DevicesFacade.instance?.attach(device)
-                                if (connection != null) {
+                                if (connection != null && connection.isAlive) {
                                     for ((key, value) in resolveWatches(device, connection.readWatches())) {
                                         val listeners: Set<WatchedValueListener> = watchedValueListeners[key]!!
                                         for (listener in listeners) {
@@ -114,8 +114,8 @@ class WatcherFacade private constructor(project: Project) {
                                         }
                                     }
                                 }
-                            } catch (e: IOException) {
-                                LOG.error("During readWatches", e)
+                            } catch (e: Throwable) {
+
                             }
                         }
                     }
@@ -180,7 +180,6 @@ class WatcherFacade private constructor(project: Project) {
                 }
                 watches
             } catch (e: Throwable) {
-                LOG.error("can't resolve watches", e)
                 emptyMap()
             }
         }
