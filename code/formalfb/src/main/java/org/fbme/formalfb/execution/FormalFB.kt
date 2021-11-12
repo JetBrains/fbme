@@ -2,7 +2,7 @@ package org.fbme.formalfb.execution
 
 import com.intellij.util.io.write
 import jetbrains.mps.project.MPSProject
-import org.fbme.formalfb.generation.SpinGenerator
+import org.fbme.formalfb.generation.spin.SpinGenerator
 import org.fbme.formalfb.ui.FormalPanel
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import java.nio.file.Files
