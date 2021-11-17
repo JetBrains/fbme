@@ -130,7 +130,6 @@
       </concept>
       <concept id="3189788309731840247" name="jetbrains.mps.build.mps.structure.BuildMps_Solution" flags="ng" index="1E1JtA" />
       <concept id="322010710375871467" name="jetbrains.mps.build.mps.structure.BuildMps_AbstractModule" flags="ng" index="3LEN3z">
-        <property id="8369506495128725901" name="compact" index="BnDLt" />
         <property id="322010710375892619" name="uuid" index="3LESm3" />
         <child id="322010710375956261" name="path" index="3LF7KH" />
       </concept>
@@ -248,7 +247,6 @@
     <node concept="2G$12M" id="68dTcycFmt7" role="3989C9">
       <property role="TrG5h" value="fbme-platform" />
       <node concept="1E1JtA" id="42vv4xsIHLX" role="2G$12L">
-        <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.integration.nxt" />
         <property role="3LESm3" value="a4712a21-b0bb-4e62-8857-e1c5ecf8c0ea" />
         <node concept="3rtmxn" id="qjx41CDwI6" role="3bR31x">
@@ -334,6 +332,21 @@
         <node concept="1SiIV0" id="5rownaaWE8L" role="3bR37C">
           <node concept="3bR9La" id="5rownaaWE8M" role="1SiIV1">
             <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJeslY" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJeslZ" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIZ" resolve="MPS.Editor" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJesm0" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJesm1" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJesm2" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJesm3" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
           </node>
         </node>
       </node>
