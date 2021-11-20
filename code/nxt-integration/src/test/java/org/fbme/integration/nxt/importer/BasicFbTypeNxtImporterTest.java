@@ -6,6 +6,7 @@ import jetbrains.mps.smodel.tempmodel.TemporaryModels;
 import jetbrains.mps.util.JDOMUtil;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.platform.converter.PlatformConverter;
+import org.fbme.ide.platform.testing.LoadFrom;
 import org.fbme.ide.platform.testing.PlatformTestBase;
 import org.fbme.ide.platform.testing.PlatformTestRunner;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
@@ -27,33 +28,33 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(PlatformTestRunner.class)
+@LoadFrom(module = "org.fbme.integration.nxt")
 public class BasicFbTypeNxtImporterTest extends PlatformTestBase {
 
     @BeforeClass
     public static void setup() {
-        PlatformConverter.installConfigFactory(NxtImporterConfiguration.FACTORY);
+//        PlatformConverter.installConfigFactory(NxtImporterConfiguration.FACTORY);
     }
 
     @Test
     public void parseTest1() {
-        /*InputStream stream = BasicFbTypeNxtImporterTest.class.getResourceAsStream("/CSWI_Agent.fbt" );
         getProject().getModelAccess().executeCommand(() -> {
             org.jetbrains.mps.openapi.model.SModel model = TemporaryModels.getInstance().create(false, false, null, TempModuleOptions.forDefaultModule());
-            FBTypeDeclaration fbType = createConverter(stream, model.getReference()).convertFBType();
-            Assert.assertNotNull(fbType);
-            model.addRootNode(((PlatformElement) fbType).getNode());
-
             modelSetup(model);
+
+            var fbType = rootConverterByPath("/CSWI_Agent.fbt", NxtImporterConfiguration.FACTORY).convertFBType();
+            Assert.assertNotNull(fbType);
+
+            model.addRootNode(((PlatformElement) fbType).getNode());
 
             var network = ((CompositeFBTypeDeclaration) fbType).getNetwork();
             var factory = getFactory();
             CompositeCreator creator = new CompositeCreator();
-            creator.launch(network, model, factory);
-        });*/
+            creator.testLaunch(network, model, factory);
+        });
 
-
-//        InputStream stream = BasicFbTypeNxtImporterTest.class.getResourceAsStream("/CSWI_Agent.fbt");
-//        FBTypeDeclaration fbType = createConverter(stream).convertFBType();
+//        var fbType = rootConverterByPath("/CSWI_Interpreter.fbt", NxtImporterConfiguration.FACTORY).convertFBType();
+//        Assert.assertNotNull(fbType);
     }
 
     private void modelSetup(SModel model) {
@@ -73,8 +74,7 @@ public class BasicFbTypeNxtImporterTest extends PlatformTestBase {
     }
 
     private void addNodeToModel(SModel model, String filename) {
-        InputStream stream = BasicFbTypeNxtImporterTest.class.getResourceAsStream(filename);
-        FBTypeDeclaration fbType = createConverter(stream, model.getReference()).convertFBType();
+        FBTypeDeclaration fbType = rootConverterByPath(filename, NxtImporterConfiguration.FACTORY).convertFBType();
         model.addRootNode(((PlatformElement) fbType).getNode());
     }
 

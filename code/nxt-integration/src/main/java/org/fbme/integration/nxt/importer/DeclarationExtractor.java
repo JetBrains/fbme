@@ -18,10 +18,11 @@ public class DeclarationExtractor {
     private final List<FBNetworkConnection> oldNetworkEventConnections;
     private final List<FBNetworkConnection> oldNetworkParameterConnections;
     private final Set<String> innerFBs;
-    private HashMap<Declaration, PortPath<?>> declarationPortPathMap;
-    private HashSet<FBNetworkConnection> internalConnectionsSet;
-    private HashMap<Declaration, List<FBNetworkConnection>> externalConnectionsInputMap;
-    private HashMap<Declaration, List<FBNetworkConnection>> externalConnectionsOutputMap;
+    private final HashMap<Declaration, PortPath<?>> declarationPortPathMap;
+    private final Set<FBNetworkConnection> internalConnectionsSet;
+    private final Map<Declaration, List<FBNetworkConnection>> externalConnectionsInputMap;
+    private final Map<Declaration, List<FBNetworkConnection>> externalConnectionsOutputMap;
+    private final Map<ParameterDeclaration, ParameterDeclaration> parameterDeclarationCopyMap;
 
     public DeclarationExtractor(
             List<FBNetworkConnection> oldNetworkEventConnections,
@@ -35,22 +36,27 @@ public class DeclarationExtractor {
         this.internalConnectionsSet = new HashSet<>();
         this.externalConnectionsInputMap = new HashMap<>();
         this.externalConnectionsOutputMap = new HashMap<>();
+        this.parameterDeclarationCopyMap = new HashMap<>();
     }
 
-    public HashMap<Declaration, List<FBNetworkConnection>> getExternalConnectionsInputMap() {
+    public Map<Declaration, List<FBNetworkConnection>> getExternalConnectionsInputMap() {
         return externalConnectionsInputMap;
     }
 
-    public HashMap<Declaration, List<FBNetworkConnection>> getExternalConnectionsOutputMap() {
+    public Map<Declaration, List<FBNetworkConnection>> getExternalConnectionsOutputMap() {
         return externalConnectionsOutputMap;
     }
 
-    public HashSet<FBNetworkConnection> getInternalConnectionsSet() {
+    public Set<FBNetworkConnection> getInternalConnectionsSet() {
         return internalConnectionsSet;
     }
 
-    public HashMap<Declaration, PortPath<?>> getDeclarationPortPathMap() {
+    public Map<Declaration, PortPath<?>> getDeclarationPortPathMap() {
         return declarationPortPathMap;
+    }
+
+    public Map<ParameterDeclaration, ParameterDeclaration> getParameterDeclarationCopyMap() {
+        return parameterDeclarationCopyMap;
     }
 
     public List<EventDeclaration> extractEvents(
@@ -83,6 +89,7 @@ public class DeclarationExtractor {
             if (!externalConnections.isEmpty()) {
                 ParameterDeclaration copyParameter = (ParameterDeclaration) parameter.copy();
                 declarationPortPathMap.put(copyParameter, PortPath.createDataPortPath(functionBlockDeclaration, parameter));
+                parameterDeclarationCopyMap.put(parameter, copyParameter);
                 saveExternalConnections(type, copyParameter, externalConnections);
 
                 externalParameters.add(copyParameter);

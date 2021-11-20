@@ -19,6 +19,7 @@
     <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
+    <import index="r3nk" ref="a4712a21-b0bb-4e62-8857-e1c5ecf8c0ea/java:org.fbme.integration.nxt.importer(org.fbme.integration.nxt/)" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -45,6 +46,7 @@
       </concept>
       <concept id="1205679047295" name="jetbrains.mps.lang.plugin.structure.ActionParameterDeclaration" flags="ig" index="2S4$dB" />
       <concept id="1205681243813" name="jetbrains.mps.lang.plugin.structure.IsApplicableBlock" flags="in" index="2ScWuX" />
+      <concept id="1206092561075" name="jetbrains.mps.lang.plugin.structure.ActionParameterReferenceOperation" flags="nn" index="3gHZIF" />
       <concept id="5538333046911348654" name="jetbrains.mps.lang.plugin.structure.RequiredCondition" flags="ng" index="1oajcY" />
       <concept id="1217252042208" name="jetbrains.mps.lang.plugin.structure.ActionDataParameterDeclaration" flags="ng" index="1DS2jV">
         <reference id="1217252646389" name="key" index="1DUlNI" />
@@ -74,7 +76,6 @@
         <child id="1197027771414" name="operand" index="2Oq$k0" />
         <child id="1197027833540" name="operation" index="2OqNvi" />
       </concept>
-      <concept id="1145552809883" name="jetbrains.mps.baseLanguage.structure.AbstractCreator" flags="nn" index="2ShaUh" />
       <concept id="1145552977093" name="jetbrains.mps.baseLanguage.structure.GenericNewExpression" flags="nn" index="2ShNRf">
         <child id="1145553007750" name="creator" index="2ShVmc" />
       </concept>
@@ -120,6 +121,9 @@
         <child id="1068581242865" name="localVariableDeclaration" index="3cpWs9" />
       </concept>
       <concept id="1068581242863" name="jetbrains.mps.baseLanguage.structure.LocalVariableDeclaration" flags="nr" index="3cpWsn" />
+      <concept id="1079359253375" name="jetbrains.mps.baseLanguage.structure.ParenthesizedExpression" flags="nn" index="1eOMI4">
+        <child id="1079359253376" name="expression" index="1eOMHV" />
+      </concept>
       <concept id="1204053956946" name="jetbrains.mps.baseLanguage.structure.IMethodCall" flags="ng" index="1ndlxa">
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
@@ -152,8 +156,18 @@
       <concept id="1143226024141" name="jetbrains.mps.lang.smodel.structure.SModelType" flags="in" index="H_c77" />
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
+      <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
+      </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
+      </concept>
+      <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
+        <property id="709746936026609031" name="linkId" index="3V$3ak" />
+        <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
+      </concept>
+      <concept id="4452961908202556907" name="jetbrains.mps.lang.core.structure.BaseCommentAttribute" flags="ng" index="1X3_iC">
+        <child id="3078666699043039389" name="commentedNode" index="8Wnug" />
       </concept>
     </language>
     <language id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections">
@@ -327,29 +341,97 @@
             </node>
           </node>
           <node concept="3clFbS" id="6wb8cxJemiw" role="2LFqv$">
-            <node concept="3clFbJ" id="6wb8cxJenba" role="3cqZAp">
-              <node concept="2ZW3vV" id="6wb8cxJenyf" role="3clFbw">
-                <node concept="3uibUv" id="6wb8cxJenOa" role="2ZW6by">
-                  <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
+            <node concept="3clFbJ" id="15Dc3O5c4ja" role="3cqZAp">
+              <node concept="3clFbS" id="15Dc3O5c4jc" role="3clFbx">
+                <node concept="3clFbF" id="15Dc3O5c5nD" role="3cqZAp">
+                  <node concept="2OqwBi" id="15Dc3O5c5Tu" role="3clFbG">
+                    <node concept="37vLTw" id="15Dc3O5c5nB" role="2Oq$k0">
+                      <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
+                    </node>
+                    <node concept="liA8E" id="15Dc3O5c6Cw" role="2OqNvi">
+                      <ref role="37wK5l" to="33ny:~List.add(java.lang.Object)" resolve="add" />
+                      <node concept="10QFUN" id="15Dc3O5c8JC" role="37wK5m">
+                        <node concept="3uibUv" id="15Dc3O5c994" role="10QFUM">
+                          <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
+                        </node>
+                        <node concept="2OqwBi" id="15Dc3O5c7YP" role="10QFUP">
+                          <node concept="1eOMI4" id="15Dc3O5c7HI" role="2Oq$k0">
+                            <node concept="10QFUN" id="15Dc3O5c6VX" role="1eOMHV">
+                              <node concept="3uibUv" id="15Dc3O5c7hP" role="10QFUM">
+                                <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
+                              </node>
+                              <node concept="2GrUjf" id="15Dc3O5c6JK" role="10QFUP">
+                                <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
+                              </node>
+                            </node>
+                          </node>
+                          <node concept="liA8E" id="15Dc3O5c8pB" role="2OqNvi">
+                            <ref role="37wK5l" to="1hzy:~FunctionBlockView.getComponent()" resolve="getComponent" />
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
                 </node>
-                <node concept="2GrUjf" id="6wb8cxJencb" role="2ZW6bz">
+              </node>
+              <node concept="2ZW3vV" id="15Dc3O5c4Ql" role="3clFbw">
+                <node concept="3uibUv" id="15Dc3O5c57t" role="2ZW6by">
+                  <ref role="3uigEE" to="1hzy:~FunctionBlockView" resolve="FunctionBlockView" />
+                </node>
+                <node concept="2GrUjf" id="15Dc3O5c4sw" role="2ZW6bz">
                   <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
                 </node>
               </node>
-              <node concept="3clFbS" id="6wb8cxJenbc" role="3clFbx">
-                <node concept="3clFbF" id="6wb8cxJeo5m" role="3cqZAp">
-                  <node concept="2OqwBi" id="6wb8cxJeoB8" role="3clFbG">
-                    <node concept="37vLTw" id="6wb8cxJeo5l" role="2Oq$k0">
-                      <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
+            </node>
+            <node concept="1X3_iC" id="15Dc3O5c9nJ" role="lGtFl">
+              <property role="3V$3am" value="statement" />
+              <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
+              <node concept="3clFbF" id="1qXw8gQje2m" role="8Wnug">
+                <node concept="2OqwBi" id="1qXw8gQjeyq" role="3clFbG">
+                  <node concept="37vLTw" id="1qXw8gQje2k" role="2Oq$k0">
+                    <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
+                  </node>
+                  <node concept="liA8E" id="1qXw8gQjfpP" role="2OqNvi">
+                    <ref role="37wK5l" to="33ny:~List.add(java.lang.Object)" resolve="add" />
+                    <node concept="10QFUN" id="1qXw8gQjfGX" role="37wK5m">
+                      <node concept="3uibUv" id="1qXw8gQjg3a" role="10QFUM">
+                        <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
+                      </node>
+                      <node concept="2GrUjf" id="1qXw8gQjfwK" role="10QFUP">
+                        <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
+                      </node>
                     </node>
-                    <node concept="liA8E" id="6wb8cxJeqfL" role="2OqNvi">
-                      <ref role="37wK5l" to="33ny:~List.add(java.lang.Object)" resolve="add" />
-                      <node concept="10QFUN" id="6wb8cxJeqxP" role="37wK5m">
-                        <node concept="3uibUv" id="6wb8cxJerpf" role="10QFUM">
-                          <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
-                        </node>
-                        <node concept="2GrUjf" id="6wb8cxJeqls" role="10QFUP">
-                          <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="1X3_iC" id="1qXw8gQjgS3" role="lGtFl">
+              <property role="3V$3am" value="statement" />
+              <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
+              <node concept="3clFbJ" id="6wb8cxJenba" role="8Wnug">
+                <node concept="2ZW3vV" id="6wb8cxJenyf" role="3clFbw">
+                  <node concept="3uibUv" id="6wb8cxJenOa" role="2ZW6by">
+                    <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
+                  </node>
+                  <node concept="2GrUjf" id="6wb8cxJencb" role="2ZW6bz">
+                    <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
+                  </node>
+                </node>
+                <node concept="3clFbS" id="6wb8cxJenbc" role="3clFbx">
+                  <node concept="3clFbF" id="6wb8cxJeo5m" role="3cqZAp">
+                    <node concept="2OqwBi" id="6wb8cxJeoB8" role="3clFbG">
+                      <node concept="37vLTw" id="6wb8cxJeo5l" role="2Oq$k0">
+                        <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
+                      </node>
+                      <node concept="liA8E" id="6wb8cxJeqfL" role="2OqNvi">
+                        <ref role="37wK5l" to="33ny:~List.add(java.lang.Object)" resolve="add" />
+                        <node concept="10QFUN" id="6wb8cxJeqxP" role="37wK5m">
+                          <node concept="3uibUv" id="6wb8cxJerpf" role="10QFUM">
+                            <ref role="3uigEE" to="g27j:~FunctionBlockDeclaration" resolve="FunctionBlockDeclaration" />
+                          </node>
+                          <node concept="2GrUjf" id="6wb8cxJeqls" role="10QFUP">
+                            <ref role="2Gs0qQ" node="6wb8cxJemis" resolve="component" />
+                          </node>
                         </node>
                       </node>
                     </node>
@@ -359,13 +441,39 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="6wb8cxJet4P" role="3cqZAp" />
-        <node concept="3clFbF" id="6wb8cxJeujd" role="3cqZAp">
-          <node concept="2ShNRf" id="6wb8cxJeuj9" role="3clFbG">
-            <node concept="2ShaUh" id="6wb8cxJeujb" role="2ShVmc" />
+        <node concept="3clFbH" id="3GESaPG8id8" role="3cqZAp" />
+        <node concept="3clFbF" id="3GESaPG8jAi" role="3cqZAp">
+          <node concept="2OqwBi" id="3GESaPG8tN6" role="3clFbG">
+            <node concept="2ShNRf" id="3GESaPG8jAe" role="2Oq$k0">
+              <node concept="1pGfFk" id="3GESaPG8tIE" role="2ShVmc">
+                <ref role="37wK5l" to="r3nk:~CompositeCreator.&lt;init&gt;()" resolve="CompositeCreator" />
+              </node>
+            </node>
+            <node concept="liA8E" id="3GESaPG8u1L" role="2OqNvi">
+              <ref role="37wK5l" to="r3nk:~CompositeCreator.func(org.fbme.lib.iec61499.fbnetwork.FBNetwork,java.util.List,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="func" />
+              <node concept="37vLTw" id="3GESaPG8u2K" role="37wK5m">
+                <ref role="3cqZAo" node="6wb8cxJeedD" resolve="network" />
+              </node>
+              <node concept="37vLTw" id="3GESaPG8u4C" role="37wK5m">
+                <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
+              </node>
+              <node concept="2OqwBi" id="3GESaPG8umU" role="37wK5m">
+                <node concept="2WthIp" id="3GESaPG8u7j" role="2Oq$k0" />
+                <node concept="3gHZIF" id="3GESaPG8uDt" role="2OqNvi">
+                  <ref role="2WH_rO" node="6wb8cxJe6fC" resolve="model" />
+                </node>
+              </node>
+              <node concept="2OqwBi" id="3GESaPG8uPJ" role="37wK5m">
+                <node concept="37vLTw" id="3GESaPG8uIl" role="2Oq$k0">
+                  <ref role="3cqZAo" node="6wb8cxJefk1" resolve="instance" />
+                </node>
+                <node concept="liA8E" id="3GESaPG8v2w" role="2OqNvi">
+                  <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIec61499Factory()" resolve="getIec61499Factory" />
+                </node>
+              </node>
+            </node>
           </node>
         </node>
-        <node concept="3clFbH" id="6wb8cxJevox" role="3cqZAp" />
       </node>
     </node>
     <node concept="2ScWuX" id="6wb8cxJd_RJ" role="tmbBb">

@@ -619,7 +619,7 @@
           <ref role="3_I8Xa" to="ci82:42vv4xsIICZ" resolve="fbme.platform" />
         </node>
         <node concept="3_I8Xc" id="42vv4xsJOlo" role="39821P">
-          <ref role="3_I8Xa" to="jh3g:42vv4xsJMzh" resolve="scenes" />
+          <ref role="3_I8Xa" to="jh3g:42vv4xsJMzh" resolve="fbme.scenes" />
         </node>
         <node concept="3_I8Xc" id="42vv4xsJOnm" role="39821P">
           <ref role="3_I8Xa" to="bco3:42vv4xsJM_o" resolve="fbme.richediting" />
@@ -1723,6 +1723,16 @@
       <node concept="1SiIV0" id="5rownaaWGyz" role="3bR37C">
         <node concept="3bR9La" id="5rownaaWGy$" role="1SiIV1">
           <ref role="3bR37D" node="Ej4tEpnfCS" resolve="org.fbme.platform.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="4_tC8EWGGBl" role="3bR37C">
+        <node concept="3bR9La" id="4_tC8EWGGBm" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDM" resolve="org.fbme.richediting.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="4_tC8EWGGBn" role="3bR37C">
+        <node concept="3bR9La" id="4_tC8EWGGBo" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDl" resolve="org.fbme.scenes.build" />
         </node>
       </node>
     </node>

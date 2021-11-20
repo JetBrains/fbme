@@ -295,7 +295,7 @@
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build">
+  <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.scenes.build">
     <mkdir dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.integration.nxt.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.integration.nxt.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -307,6 +307,8 @@
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.scenes.build" />
       </classpath>
     </javac>
   </target>
