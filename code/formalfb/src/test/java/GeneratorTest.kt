@@ -41,7 +41,7 @@ class GeneratorTest : PlatformTestBase() {
 
     }
 
-//    @Test
+    @Test
     fun checkBFBGeneration() {
         val testCase = "ALU"
         val bfb = rootConverterByPath("/$testCase.fbt").convertFBType()
