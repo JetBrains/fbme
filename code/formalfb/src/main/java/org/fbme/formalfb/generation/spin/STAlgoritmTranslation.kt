@@ -20,8 +20,10 @@ class STGenerator(val algo: AlgorithmDeclaration, val indent: Int, val nameMappi
 
     override fun generate(): String {
         val sb = StringBuilder()
-        for (statement in (algo.body as AlgorithmBody.ST).statements) {
-            sb.append(translateStatement(statement) + "\n${indentString(indent)}")
+        val statements = (algo.body as AlgorithmBody.ST).statements
+        sb.append("// Algorithm ${algo.name}${strEnd(-1, statements.size, indent)}")
+        for ((index, statement) in statements.withIndex()) {
+            sb.append(translateStatement(statement) + ";${strEnd(index, statements.size, indent)}")
         }
         return sb.toString()
     }

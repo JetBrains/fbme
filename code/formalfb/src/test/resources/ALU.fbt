@@ -44,12 +44,10 @@
 			<ECTransition Source="DiffOp" Destination="START" Condition="1" Comment="" x="1857.1428571428569" y="2007.1428571428569"/>
 		</ECC>
 		<Algorithm Name="sumOperation" Comment="new algorithm">
-			<ST><![CDATA[RES := A + B;
-]]></ST>
+			<ST Text="RES := A + B;"/>
 		</Algorithm>
 		<Algorithm Name="diffOperation" Comment="">
-			<ST><![CDATA[RES := A - B;
-]]></ST>
+			<ST Text="RES := A - B;"/>
 		</Algorithm>
 	</BasicFB>
 </FBType>
