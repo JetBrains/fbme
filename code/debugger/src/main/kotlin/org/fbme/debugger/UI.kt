@@ -5,10 +5,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -30,8 +27,111 @@ import androidx.compose.ui.unit.sp
 import jetbrains.mps.nodeEditor.MPSColors
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.common.Declaration
+import org.fbme.lib.iec61499.declarations.DeviceDeclaration
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import kotlin.math.max
 import kotlin.math.min
+
+fun devicesPanel(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>): ComposePanel {
+    val composePanel = ComposePanel()
+
+    composePanel.setContent {
+        DevicesContent(devices)
+    }
+
+    return composePanel
+}
+
+@Composable
+fun DevicesContent(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>) {
+    val isDeployed = remember { mutableStateMapOf<ResourceDeclaration, Boolean>() }
+
+    Row(
+        modifier = Modifier
+            .background(MaterialTheme.colors.tableBackground)
+    ) {
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colors.tableBackground)
+                .fillMaxWidth()
+                .fillMaxHeight()
+        ) {
+            Box {
+                val scrollState = rememberScrollState()
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(state = scrollState)
+                        .fillMaxWidth()
+                        .background(color = MaterialTheme.colors.listBackground)
+                ) {
+                    for ((device, deviceData) in devices) {
+                        var indent = 0
+                        val systemName = deviceData.systemName
+                        if (systemName != null) {
+                            Row(
+                                modifier = Modifier
+                                    .clickable(onClick = {})
+                                    .height(20.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                Text(
+                                    modifier = Modifier.padding(start = 24.dp),
+                                    text = "        ".repeat(indent) + systemName,
+                                    color = MaterialTheme.colors.listForeground,
+                                    fontSize = 14.sp
+                                )
+                            }
+                            indent++
+                        }
+                        Row(
+                            modifier = Modifier
+                                .clickable(onClick = {})
+                                .height(20.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                modifier = Modifier.padding(start = 24.dp),
+                                text = "        ".repeat(indent) + deviceData.name,
+                                color = MaterialTheme.colors.listForeground,
+                                fontSize = 14.sp
+                            )
+                            indent++
+                        }
+                        for ((resource, resourceData) in deviceData.resources) {
+                            Row(
+                                modifier = Modifier
+                                    .clickable(onClick = {})
+                                    .height(20.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                Text(
+                                    modifier = Modifier.padding(start = 24.dp),
+                                    text = "        ".repeat(indent) + resourceData.name,
+                                    color = MaterialTheme.colors.listForeground,
+                                    fontSize = 14.sp
+                                )
+                                Button(
+                                    onClick = {
+                                          // TODO
+                                    },
+                                ) {
+                                    Text("Deploy")
+                                }
+                            }
+                        }
+                    }
+                }
+                val scrollbarAdapter = rememberScrollbarAdapter(scrollState = scrollState)
+                VerticalScrollbar(
+                    adapter = scrollbarAdapter,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .fillMaxHeight()
+                )
+            }
+        }
+    }
+}
 
 fun debuggerPanel(
     states: MutableList<Debugger.StateData>,

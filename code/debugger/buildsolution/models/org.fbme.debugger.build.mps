@@ -1037,6 +1037,41 @@
             <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
+        <node concept="1SiIV0" id="5NJ46QcneX2" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneX3" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneX4" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneX5" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:5xa9wY2vh9z" resolve="jetbrains.mps.execution.library" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneX6" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneX7" role="1SiIV1">
+            <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneX8" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneX9" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneXa" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneXb" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneXc" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneXd" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5NJ46QcneXe" role="3bR37C">
+          <node concept="3bR9La" id="5NJ46QcneXf" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
       </node>
     </node>
   </node>
