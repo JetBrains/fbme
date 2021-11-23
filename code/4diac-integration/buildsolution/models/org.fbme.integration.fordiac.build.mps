@@ -446,6 +446,11 @@
             <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
           </node>
         </node>
+        <node concept="1SiIV0" id="7fNS1Ave7Qv" role="3bR37C">
+          <node concept="3bR9La" id="7fNS1Ave7Qw" role="1SiIV1">
+            <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2sgV4H" id="68dTcycFoqk" role="1l3spa">

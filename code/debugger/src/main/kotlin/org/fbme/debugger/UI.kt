@@ -32,18 +32,18 @@ import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import kotlin.math.max
 import kotlin.math.min
 
-fun devicesPanel(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>): ComposePanel {
+fun devicesPanel(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>, debugger: Debugger): ComposePanel {
     val composePanel = ComposePanel()
 
     composePanel.setContent {
-        DevicesContent(devices)
+        DevicesContent(devices, debugger)
     }
 
     return composePanel
 }
 
 @Composable
-fun DevicesContent(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>) {
+fun DevicesContent(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>, debugger: Debugger) {
     val isDeployed = remember { mutableStateMapOf<ResourceDeclaration, Boolean>() }
 
     Row(
@@ -110,12 +110,31 @@ fun DevicesContent(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>) 
                                     color = MaterialTheme.colors.listForeground,
                                     fontSize = 14.sp
                                 )
-                                Button(
-                                    onClick = {
-                                          // TODO
-                                    },
+                                Row(
+                                    modifier = Modifier.padding(start = 10.dp)
                                 ) {
-                                    Text("Deploy")
+                                    Row(
+                                        modifier = Modifier
+                                            .clickable(onClick = {
+                                                debugger.deployResource(device, resource)
+                                            })
+                                            .border(
+                                                width = 1.dp,
+                                                color = MaterialTheme.colors.tableHeaderSeparatorColor,
+                                                shape = RoundedCornerShape(6.dp)
+                                            )
+                                            .background(
+                                                color = MaterialTheme.colors.listBackground,
+                                                shape = RoundedCornerShape(6.dp)
+                                            ),
+                                    ) {
+                                        Text(
+                                            modifier = Modifier.padding(horizontal = 5.dp),
+                                            text = "Deploy",
+                                            color = MaterialTheme.colors.listForeground,
+                                            fontSize = 14.sp
+                                        )
+                                    }
                                 }
                             }
                         }

@@ -1,5 +1,6 @@
 package org.fbme.ide.platform.debugger
 
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.jetbrains.mps.openapi.model.SNode
 import java.io.Closeable
 import java.io.IOException
@@ -9,6 +10,9 @@ interface DeviceConnection : Closeable {
 
     @Throws(IOException::class)
     fun deployResource(resource: SNode)
+
+    @Throws(IOException::class)
+    fun deployResource(resource: ResourceDeclaration)
 
     @Throws(IOException::class)
     fun addWatch(watchable: Watchable)

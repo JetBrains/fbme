@@ -6,11 +6,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.TextFieldValue
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations
 import jetbrains.mps.project.Project
+import org.apache.log4j.Level
+import org.fbme.ide.platform.debugger.DevicesFacade
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.SystemDeclaration
+import java.io.IOException
 import javax.swing.JComponent
 
 class Debugger private constructor(private val project: Project) {
@@ -78,6 +82,27 @@ class Debugger private constructor(private val project: Project) {
         }
     }
 
+    fun deployResource(device: DeviceDeclaration, resource: ResourceDeclaration) {
+        project.modelAccess.runReadAction {
+            try {
+                val connection = DevicesFacade.instance!!.attach(device)
+                if (connection != null) {
+                    connection.deployResource(resource)
+                    val debugger = getInstance(project)
+                    val watchables = debugger!!.getWatched()
+                    for (watchable in watchables) {
+                        connection.addWatch(watchable)
+                    }
+                } else {
+                     error("Can't connect to device")
+                }
+            } catch (e: IOException) {
+                DevicesFacade.instance!!.invalidate(device)
+                error("On resource deployment: " + e.message)
+            }
+        }
+    }
+
     fun addDevices(deviceDeclarations: Set<DeviceDeclaration>) {
         for (deviceDeclaration in deviceDeclarations) {
             devices[deviceDeclaration] = DeviceData(
@@ -100,7 +125,7 @@ class Debugger private constructor(private val project: Project) {
     }
 
     fun getDevicesTab(): JComponent {
-        return devicesPanel(devices)
+        return devicesPanel(devices, this)
     }
 
     companion object {

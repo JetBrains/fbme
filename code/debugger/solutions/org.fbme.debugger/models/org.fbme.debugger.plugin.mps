@@ -367,6 +367,19 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="5oMHdxdTnUQ" role="3cqZAp">
+          <node concept="2OqwBi" id="5oMHdxdTo8U" role="3clFbG">
+            <node concept="37vLTw" id="5oMHdxdTnUO" role="2Oq$k0">
+              <ref role="3cqZAo" node="5aoGWvxN8gz" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="5oMHdxdTopI" role="2OqNvi">
+              <ref role="37wK5l" to="71xd:~BaseTool.openTool(boolean)" resolve="openTool" />
+              <node concept="3clFbT" id="5oMHdxdTorK" role="37wK5m">
+                <property role="3clFbU" value="true" />
+              </node>
+            </node>
+          </node>
+        </node>
         <node concept="3clFbF" id="6yb5souHzlj" role="3cqZAp">
           <node concept="2OqwBi" id="6yb5souHzlk" role="3clFbG">
             <node concept="37vLTw" id="6yb5souHzll" role="2Oq$k0">
@@ -402,19 +415,6 @@
                 <node concept="2XshWL" id="3iKHL5MqREn" role="2OqNvi">
                   <ref role="2WH_rO" node="3iKHL5MqOLy" resolve="getDeployTab" />
                 </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="5oMHdxdTnUQ" role="3cqZAp">
-          <node concept="2OqwBi" id="5oMHdxdTo8U" role="3clFbG">
-            <node concept="37vLTw" id="5oMHdxdTnUO" role="2Oq$k0">
-              <ref role="3cqZAo" node="5aoGWvxN8gz" resolve="debugger" />
-            </node>
-            <node concept="liA8E" id="5oMHdxdTopI" role="2OqNvi">
-              <ref role="37wK5l" to="71xd:~BaseTool.openTool(boolean)" resolve="openTool" />
-              <node concept="3clFbT" id="5oMHdxdTorK" role="37wK5m">
-                <property role="3clFbU" value="true" />
               </node>
             </node>
           </node>

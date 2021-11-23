@@ -106,7 +106,6 @@
       </concept>
       <concept id="2250044605250911586" name="org.fbme.ide.iec61499.lang.structure.DeviceDeclaration" flags="ng" index="2JYBV7">
         <reference id="2250044605250911589" name="type" index="2JYBV0" />
-        <child id="2250044605250911600" name="resources" index="2JYBVl" />
       </concept>
       <concept id="5481506291238376594" name="org.fbme.ide.iec61499.lang.structure.Connection" flags="ng" index="2RhMLZ">
         <child id="4304617121958732207" name="path" index="bPNfo" />
@@ -1230,7 +1229,6 @@
     <node concept="2JYBV7" id="uLhTRRE18Y" role="3KFA_1">
       <property role="TrG5h" value="X" />
       <ref role="2JYBV0" node="2lwHqHkC2HF" resolve="DeviceSampleType" />
-      <node concept="1LUxBN" id="2syzu7qGin7" role="2JYBVl" />
     </node>
     <node concept="3KFAOZ" id="uLhTRRBP8T" role="3KFA_7">
       <property role="TrG5h" value="XYZ" />
