@@ -9,6 +9,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations
 import jetbrains.mps.project.Project
 import org.apache.log4j.Level
+import org.fbme.ide.platform.debugger.DeviceConnection
 import org.fbme.ide.platform.debugger.DevicesFacade
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
@@ -121,11 +122,19 @@ class Debugger private constructor(private val project: Project) {
     }
 
     fun getDebuggerTab(): JComponent {
-        return debuggerPanel(states, searchStates, inspections, watchables, searchWatchables)
+        return debuggerPanel(states, searchStates, inspections, watchables, searchWatchables, this)
     }
 
     fun getDevicesTab(): JComponent {
         return devicesPanel(devices, this)
+    }
+
+    fun clear() {
+        watchables.clear()
+        searchWatchables.value = TextFieldValue()
+        states.clear()
+        searchStates.value = TextFieldValue()
+        inspections.clear()
     }
 
     companion object {

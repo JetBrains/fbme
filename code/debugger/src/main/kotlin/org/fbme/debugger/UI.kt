@@ -7,7 +7,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -52,9 +54,8 @@ fun DevicesContent(devices: MutableMap<DeviceDeclaration, Debugger.DeviceData>, 
     ) {
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .background(MaterialTheme.colors.tableBackground)
-                .fillMaxWidth()
-                .fillMaxHeight()
         ) {
             Box {
                 val scrollState = rememberScrollState()
@@ -157,12 +158,13 @@ fun debuggerPanel(
     searchStates: MutableState<TextFieldValue>,
     inspections: MutableMap<Watchable, InspectionProvider>,
     watchables: MutableMap<Watchable, AnnotatedString>,
-    searchWatchables: MutableState<TextFieldValue>
+    searchWatchables: MutableState<TextFieldValue>,
+    debugger: Debugger
 ): ComposePanel {
     val composePanel = ComposePanel()
 
     composePanel.setContent {
-        DebuggerContent(states, searchStates, inspections, watchables, searchWatchables)
+        DebuggerContent(states, searchStates, inspections, watchables, searchWatchables, debugger)
     }
 
     return composePanel
@@ -174,16 +176,53 @@ fun DebuggerContent(
     searchStates: MutableState<TextFieldValue>,
     inspections: MutableMap<Watchable, InspectionProvider>,
     watchables: MutableMap<Watchable, AnnotatedString>,
-    searchWatchables: MutableState<TextFieldValue>
+    searchWatchables: MutableState<TextFieldValue>,
+    debugger: Debugger
 ) {
     val selectedState = remember { mutableStateOf<Debugger.StateData?>(null) }
     Row(
         modifier = Modifier
-            .background(MaterialTheme.colors.tableBackground)
+            .background(MaterialTheme.colors.tableHeaderBackground)
     ) {
+        MenuColumn(debugger)
+        VerticalDivider()
         StatesColumn(states, selectedState, searchStates, watchables, inspections)
         VerticalDivider()
         WatchablesColumn(watchables, searchWatchables, inspections, selectedState)
+    }
+}
+
+@Composable
+fun MenuColumn(debugger: Debugger) {
+    val scrollState = rememberScrollState()
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .verticalScroll(state = scrollState)
+            .fillMaxHeight()
+            .background(MaterialTheme.colors.tableHeaderBackground)
+            .padding(4.dp)
+    ) {
+        Button(
+            onClick = {
+                debugger.clear()
+            },
+            modifier = Modifier.size(26.dp),
+            shape = RoundedCornerShape(6.dp),
+            elevation = null,
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = MaterialTheme.colors.tableHeaderBackground,
+                contentColor = MaterialTheme.colors.tableHeaderForeground
+            ),
+            contentPadding = PaddingValues(2.dp)
+        ) {
+            Icon(
+                Icons.Default.Refresh,
+                contentDescription = "Clear",
+                modifier = Modifier.size(22.dp),
+                tint = MaterialTheme.colors.tableHeaderForeground
+            )
+        }
     }
 }
 
@@ -197,9 +236,9 @@ fun StatesColumn(
 ) {
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colors.tableBackground)
             .width(350.dp)
             .fillMaxHeight()
+            .background(MaterialTheme.colors.tableBackground)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -240,11 +279,11 @@ fun StatesList(
         Column(
             modifier = Modifier
                 .verticalScroll(state = scrollState)
-                .background(MaterialTheme.colors.listBackground)
                 .fillMaxWidth()
+                .background(MaterialTheme.colors.listBackground)
         ) {
             for (state in filteredStates) {
-                StateItem(state, selectedState, watchables, inspections, filteredStates, scrollState)
+                StateItem(state, selectedState, watchables, inspections, filteredStates)
             }
         }
         val scrollbarAdapter = rememberScrollbarAdapter(scrollState = scrollState)
@@ -265,7 +304,6 @@ private fun StateItem(
     watchables: MutableMap<Watchable, AnnotatedString>,
     inspections: MutableMap<Watchable, InspectionProvider>,
     filteredStates: MutableList<Debugger.StateData>,
-    scrollState: ScrollState
 ) {
     Row(
         modifier = Modifier
@@ -285,7 +323,6 @@ private fun StateItem(
                         val prev = filteredStates[prevIndex]
                         selectedItem.value = prev
                         onState(prev, watchables, inspections)
-                        scrollState.value
                         prev.focusRequester.requestFocus()
                         return@onKeyEvent true
                     }
@@ -346,15 +383,14 @@ fun WatchablesColumn(
 ) {
     Column(
         modifier = Modifier
+            .fillMaxSize()
             .background(MaterialTheme.colors.tableBackground)
-            .fillMaxWidth()
-            .fillMaxHeight()
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .background(MaterialTheme.colors.tableHeaderBackground)
                 .fillMaxWidth()
+                .background(MaterialTheme.colors.tableHeaderBackground)
                 .padding(4.dp)
         ) {
             SearchView(searchWatchables)
@@ -393,8 +429,8 @@ fun SearchView(search: MutableState<TextFieldValue>) {
             },
             modifier = Modifier
                 .padding(horizontal = 5.dp)
-                .weight(1f)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .weight(1f),
             cursorBrush = SolidColor(MaterialTheme.colors.textFieldCaretForeground),
             textStyle = TextStyle(color = MaterialTheme.colors.tableForeground, fontSize = 14.sp),
             singleLine = true
@@ -488,12 +524,12 @@ fun WatchableItem(
                 }
                 return@onKeyEvent false
             }
+            .height(20.dp)
+            .fillMaxWidth()
             .background(
                 color = if (selectedWatchableNode.value !== watchablePort) MaterialTheme.colors.listBackground
                 else MaterialTheme.colors.listSelectionBackground
             )
-            .height(20.dp)
-            .fillMaxWidth()
     ) {
         Text(
             modifier = Modifier.padding(start = 24.dp),
@@ -523,8 +559,8 @@ fun WatchableList(
         Column(
             modifier = Modifier
                 .verticalScroll(state = scrollState)
-                .background(MaterialTheme.colors.listBackground)
                 .fillMaxWidth()
+                .background(MaterialTheme.colors.listBackground)
         ) {
             val search = state.value.text
             val filteredWatchables = if (search.isEmpty()) {
@@ -690,12 +726,12 @@ private fun ParentItem(
                 }
                 return@onKeyEvent false
             }
+            .height(20.dp)
+            .fillMaxWidth()
             .background(
                 color = if (selectedWatchableNode.value !== watchableTree) MaterialTheme.colors.listBackground
                 else MaterialTheme.colors.listSelectionBackground
             )
-            .height(20.dp)
-            .fillMaxWidth()
     ) {
         Text(
             modifier = Modifier.padding(start = 24.dp),
