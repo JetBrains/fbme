@@ -450,7 +450,7 @@
               </node>
             </node>
             <node concept="liA8E" id="3GESaPG8u1L" role="2OqNvi">
-              <ref role="37wK5l" to="r3nk:~CompositeCreator.func(org.fbme.lib.iec61499.fbnetwork.FBNetwork,java.util.List,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="func" />
+              <ref role="37wK5l" to="r3nk:~CompositeCreator.createComposite(org.fbme.lib.iec61499.fbnetwork.FBNetwork,java.util.List,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="createComposite" />
               <node concept="37vLTw" id="3GESaPG8u2K" role="37wK5m">
                 <ref role="3cqZAo" node="6wb8cxJeedD" resolve="network" />
               </node>

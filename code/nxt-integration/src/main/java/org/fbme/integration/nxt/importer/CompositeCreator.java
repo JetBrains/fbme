@@ -50,6 +50,7 @@ public class CompositeCreator {
         List<FBNetworkConnection> dataConnections = fbNetwork.getDataConnections();
         DeclarationExtractor declarationExtractor = new DeclarationExtractor(eventConnections, dataConnections, innerFBs);
 
+        int minX = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getX).min().orElse(0);
         for (FunctionBlockDeclaration blockDeclaration : functionBlockDeclarationList) {
             FBTypeDeclaration fbType = blockDeclaration.getTypeReference().getTarget();
             if (fbType == null) {
@@ -58,10 +59,34 @@ public class CompositeCreator {
 
             // copy events
             String fbName = blockDeclaration.getName();
-            compositeFB.getInputEvents().addAll(renameEventDeclarations(declarationExtractor.extractEvents(fbType.getInputEvents(), blockDeclaration, DeclarationExtractor.Type.INPUT), fbName));
-            compositeFB.getOutputEvents().addAll(renameEventDeclarations(declarationExtractor.extractEvents(fbType.getOutputEvents(), blockDeclaration, DeclarationExtractor.Type.OUTPUT), fbName));
-            compositeFB.getInputParameters().addAll(renameParameterDeclarations(declarationExtractor.extractParameters(fbType.getInputParameters(), blockDeclaration, DeclarationExtractor.Type.INPUT), fbName));
-            compositeFB.getOutputParameters().addAll(renameParameterDeclarations(declarationExtractor.extractParameters(fbType.getOutputParameters(), blockDeclaration, DeclarationExtractor.Type.OUTPUT), fbName));
+            CoordinateShift shift = createShift(fbName, fbType);
+            compositeFB.getInputEvents().addAll(
+                    renameEventDeclarations(
+                            declarationExtractor.extractEvents(fbType.getInputEvents(), blockDeclaration, Type.INPUT, shift),
+                            fbName
+                    )
+            );
+            compositeFB.getOutputEvents().addAll(
+                    renameEventDeclarations(
+                            declarationExtractor.extractEvents(fbType.getOutputEvents(), blockDeclaration, Type.OUTPUT, shift),
+                            fbName
+                    )
+            );
+            shift.adjustYForParameters();
+            compositeFB.getInputParameters().addAll(
+                    renameParameterDeclarations(
+                            declarationExtractor.extractParameters(fbType.getInputParameters(), blockDeclaration, Type.INPUT, shift),
+                            fbName
+                    )
+            );
+            compositeFB.getOutputParameters().addAll(
+                    renameParameterDeclarations(
+                            declarationExtractor.extractParameters(fbType.getOutputParameters(), blockDeclaration, Type.OUTPUT, shift),
+                            fbName
+                    )
+            );
+
+            minX = Math.min(minX, blockDeclaration.getX() + shift.getX(Type.INPUT));
         }
 
         // setting new associations
@@ -69,12 +94,12 @@ public class CompositeCreator {
         setEventAssociations(compositeFB.getInputEvents(), parameterDeclarationCopyMap);
         setEventAssociations(compositeFB.getOutputEvents(), parameterDeclarationCopyMap);
 
-        rehangExternalConnections(declarationExtractor.getExternalConnectionsInputMap(), compositeFunctionBlockDeclaration, DeclarationExtractor.Type.INPUT);
-        rehangExternalConnections(declarationExtractor.getExternalConnectionsOutputMap(), compositeFunctionBlockDeclaration, DeclarationExtractor.Type.OUTPUT);
+        rehangExternalConnections(declarationExtractor.getExternalConnectionsInputMap(), compositeFunctionBlockDeclaration, Type.INPUT);
+        rehangExternalConnections(declarationExtractor.getExternalConnectionsOutputMap(), compositeFunctionBlockDeclaration, Type.OUTPUT);
 
         // TODO think about optimal coordinate shifts
-        int minX = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getX).min().orElse(0);
-        int decX = minX > 500 ? minX - 500 : 0;
+//        int decX = minX > 500 ? minX - 500 : 0;
+        int decX = minX;
         int decY = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getY).min().orElse(0);
 
         // adjust paths coordinates within new network
@@ -105,48 +130,132 @@ public class CompositeCreator {
         }
 
         // add connections to external input/output based on existed external connection from inner blocks
-        createInnerIOConnections(compositeFB, declarationExtractor.getDeclarationPortPathMap(), factory);
+        createInnerIOConnections(compositeFB, declarationExtractor.getDeclarationPortPathMap(), factory, decX, decY);
 
         var c = 0;
     }
 
     private void createInnerIOConnections(
             CompositeFBTypeDeclaration compositeFB,
-            Map<Declaration, PortPath<?>> declarationPortPathMap,
-            IEC61499Factory factory
+            Map<Declaration, PortPathNetworkCoordinates> declarationPortPathMap,
+            IEC61499Factory factory,
+            int decX,
+            int decY
     ) {
         List<FBNetworkConnection> eventConnections = compositeFB.getNetwork().getEventConnections();
         List<FBNetworkConnection> dataConnections = compositeFB.getNetwork().getDataConnections();
+        List<EndpointCoordinate> endpointCoordinates = compositeFB.getNetwork().getEndpointCoordinates();
+
         for (EventDeclaration event : compositeFB.getInputEvents()) {
-            FBNetworkConnection connection = factory.createFBNetworkConnection(EntryKind.EVENT);
-            connection.getSourceReference().setTarget(PortPath.createEventPortPath(null, event));
-            connection.getTargetReference().setTarget(declarationPortPathMap.get(event));
-            eventConnections.add(connection);
+            createInnerIOConnection(
+                    factory,
+                    PortPath.createEventPortPath(null, event),
+                    declarationPortPathMap.get(event),
+                    eventConnections,
+                    endpointCoordinates,
+                    EntryKind.EVENT,
+                    Type.INPUT,
+                    decX,
+                    decY
+            );
         }
+
         for (EventDeclaration event : compositeFB.getOutputEvents()) {
-            FBNetworkConnection connection = factory.createFBNetworkConnection(EntryKind.EVENT);
-            connection.getSourceReference().setTarget(declarationPortPathMap.get(event));
-            connection.getTargetReference().setTarget(PortPath.createEventPortPath(null, event));
-            eventConnections.add(connection);
+            createInnerIOConnection(
+                    factory,
+                    PortPath.createEventPortPath(null, event),
+                    declarationPortPathMap.get(event),
+                    eventConnections,
+                    endpointCoordinates,
+                    EntryKind.EVENT,
+                    Type.OUTPUT,
+                    decX,
+                    decY
+            );
         }
+
         for (ParameterDeclaration parameter : compositeFB.getInputParameters()) {
-            FBNetworkConnection connection = factory.createFBNetworkConnection(EntryKind.DATA);
-            connection.getSourceReference().setTarget(PortPath.createDataPortPath(null, parameter));
-            connection.getTargetReference().setTarget(declarationPortPathMap.get(parameter));
-            dataConnections.add(connection);
+            createInnerIOConnection(
+                    factory,
+                    PortPath.createDataPortPath(null, parameter),
+                    declarationPortPathMap.get(parameter),
+                    dataConnections,
+                    endpointCoordinates,
+                    EntryKind.DATA,
+                    Type.INPUT,
+                    decX,
+                    decY
+            );
         }
+
         for (ParameterDeclaration parameter : compositeFB.getOutputParameters()) {
-            FBNetworkConnection connection = factory.createFBNetworkConnection(EntryKind.DATA);
-            connection.getSourceReference().setTarget(declarationPortPathMap.get(parameter));
-            connection.getTargetReference().setTarget(PortPath.createDataPortPath(null, parameter));
-            dataConnections.add(connection);
+            createInnerIOConnection(
+                    factory,
+                    PortPath.createDataPortPath(null, parameter),
+                    declarationPortPathMap.get(parameter),
+                    dataConnections,
+                    endpointCoordinates,
+                    EntryKind.DATA,
+                    Type.OUTPUT,
+                    decX,
+                    decY
+            );
         }
+    }
+
+    private void createInnerIOConnection(
+            IEC61499Factory factory,
+            PortPath<?> innerPortPath,
+            PortPathNetworkCoordinates portPathNetworkCoordinates,
+            List<FBNetworkConnection> connections,
+            List<EndpointCoordinate> endpointCoordinates,
+            EntryKind kind,
+            Type type,
+            int decX,
+            int decY
+    ) {
+        FBNetworkConnection connection = factory.createFBNetworkConnection(kind);
+        EndpointCoordinate endpointCoordinate = factory.createEndpointCoordinate();
+
+        if (type == Type.INPUT) {
+            connection.getSourceReference().setTarget(innerPortPath);
+            connection.getTargetReference().setTarget(portPathNetworkCoordinates.getPortPath());
+        } else {
+            connection.getSourceReference().setTarget(portPathNetworkCoordinates.getPortPath());
+            connection.getTargetReference().setTarget(innerPortPath);
+        }
+
+        endpointCoordinate.getPortReference().setTarget(innerPortPath);
+        endpointCoordinate.setX(portPathNetworkCoordinates.getPoint().x - decX);
+        endpointCoordinate.setY(portPathNetworkCoordinates.getPoint().y - decY);
+
+        connections.add(connection);
+        endpointCoordinates.add(endpointCoordinate);
+    }
+
+    private CoordinateShift createShift(String fbName, FBTypeDeclaration fbType) {
+        int charSize = 20;
+        int defaultShift = 300;
+        int inputCharCount = Math.max(
+                fbType.getInputEvents().stream().mapToInt(s -> s.getName().length()).max().orElse(0),
+                fbType.getInputParameters().stream().mapToInt(s -> s.getName().length()).max().orElse(0)
+        );
+        int outputCharCount = Math.max(
+                fbType.getOutputEvents().stream().mapToInt(s -> s.getName().length()).max().orElse(0),
+                fbType.getOutputParameters().stream().mapToInt(s -> s.getName().length()).max().orElse(0)
+        );
+        int blockWidthCount = Math.max(inputCharCount + outputCharCount, fbType.getName().length());
+
+        return new CoordinateShift(
+                charSize * (inputCharCount + fbName.length() + 1) + defaultShift,
+                charSize * (blockWidthCount + 15) + defaultShift
+        );
     }
 
     private void rehangExternalConnections(
             Map<Declaration, List<FBNetworkConnection>> connectionMap,
             FunctionBlockDeclaration functionBlockDeclaration,
-            DeclarationExtractor.Type type
+            Type type
     ) {
         connectionMap.forEach((declaration, connections) -> {
             for (FBNetworkConnection connection : connections) {

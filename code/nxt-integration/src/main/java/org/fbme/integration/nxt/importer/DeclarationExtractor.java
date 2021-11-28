@@ -7,18 +7,15 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection;
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.PortPath;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class DeclarationExtractor {
-    public enum Type {
-        INPUT,
-        OUTPUT
-    }
-
     private final List<FBNetworkConnection> oldNetworkEventConnections;
     private final List<FBNetworkConnection> oldNetworkParameterConnections;
     private final Set<String> innerFBs;
-    private final HashMap<Declaration, PortPath<?>> declarationPortPathMap;
+    private final HashMap<Declaration, PortPathNetworkCoordinates> declarationPortPathMap;
     private final Set<FBNetworkConnection> internalConnectionsSet;
     private final Map<Declaration, List<FBNetworkConnection>> externalConnectionsInputMap;
     private final Map<Declaration, List<FBNetworkConnection>> externalConnectionsOutputMap;
@@ -51,7 +48,7 @@ public class DeclarationExtractor {
         return internalConnectionsSet;
     }
 
-    public Map<Declaration, PortPath<?>> getDeclarationPortPathMap() {
+    public Map<Declaration, PortPathNetworkCoordinates> getDeclarationPortPathMap() {
         return declarationPortPathMap;
     }
 
@@ -62,39 +59,67 @@ public class DeclarationExtractor {
     public List<EventDeclaration> extractEvents(
             List<EventDeclaration> events,
             FunctionBlockDeclaration functionBlockDeclaration,
-            Type type
+            Type type,
+            CoordinateShift shift
     ) {
         List<EventDeclaration> externalEvents = new ArrayList<>();
+        Integer xShift = shift.getX(type);
+        Integer yShift = shift.getY(type);
         for (EventDeclaration event : events) {
             List<FBNetworkConnection> externalConnections = findConnections(event, type, oldNetworkEventConnections);
             if (!externalConnections.isEmpty()) {
                 EventDeclaration copyEvent = (EventDeclaration) event.copy();
-                declarationPortPathMap.put(copyEvent, PortPath.createEventPortPath(functionBlockDeclaration, event));
+                declarationPortPathMap.put(
+                        copyEvent,
+                        new PortPathNetworkCoordinates(
+                                PortPath.createEventPortPath(functionBlockDeclaration, event),
+                                new Point(
+                                        functionBlockDeclaration.getX() + xShift,
+                                        functionBlockDeclaration.getY() + yShift
+                                )
+                        )
+                );
                 saveExternalConnections(type, copyEvent, externalConnections);
 
                 externalEvents.add(copyEvent);
             }
+            yShift += shift.yDiff;
         }
+        shift.setY(type, yShift);
         return externalEvents;
     }
 
     public List<ParameterDeclaration> extractParameters(
             List<ParameterDeclaration> parameters,
             FunctionBlockDeclaration functionBlockDeclaration,
-            Type type
+            Type type,
+            CoordinateShift shift
     ) {
         List<ParameterDeclaration> externalParameters = new ArrayList<>();
+        Integer xShift = shift.getX(type);
+        Integer yShift = shift.getY(type);
         for (ParameterDeclaration parameter : parameters) {
             List<FBNetworkConnection> externalConnections = findConnections(parameter, type, oldNetworkParameterConnections);
             if (!externalConnections.isEmpty()) {
                 ParameterDeclaration copyParameter = (ParameterDeclaration) parameter.copy();
-                declarationPortPathMap.put(copyParameter, PortPath.createDataPortPath(functionBlockDeclaration, parameter));
+                declarationPortPathMap.put(
+                        copyParameter,
+                        new PortPathNetworkCoordinates(
+                                PortPath.createDataPortPath(functionBlockDeclaration, parameter),
+                                new Point(
+                                        functionBlockDeclaration.getX() + xShift,
+                                        functionBlockDeclaration.getY() + yShift
+                                )
+                        )
+                );
                 parameterDeclarationCopyMap.put(parameter, copyParameter);
                 saveExternalConnections(type, copyParameter, externalConnections);
 
                 externalParameters.add(copyParameter);
             }
+            yShift += shift.yDiff;
         }
+        shift.setY(type, yShift);
         return externalParameters;
     }
 
