@@ -18,7 +18,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
         val eccTypeAlias = "${blockType.name}_ECC"
         val eccTypeAliasesDeclaration = "mtype:$eccTypeAlias = $eccStates;"
         val initialEccState = mapEccState(blockType.ecc.states.first(), blockType)
-
+        //todo: make mode with all exceptions caught, to give at least some result of generation
         return """
             $eccTypeAliasesDeclaration
             proctype ${blockType.name}(chan
@@ -247,7 +247,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                 condition += mapSelectionVariable(it.portTarget, nameMappings)
             }
             transition.condition.getGuardCondition()?.let {
-                if (condition.isNotEmpty()) condition += " "
+                if (condition.isNotEmpty()) condition += " && "
                 condition += mapExpression(it)
             }
             if (condition.isEmpty()) {

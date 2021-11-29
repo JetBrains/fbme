@@ -28,49 +28,66 @@ class STGenerator(val algo: AlgorithmDeclaration, val indent: Int, val nameMappi
         return sb.toString()
     }
 
-    fun translateStatement(statement: Statement): String {
-        return when (statement) {
-            is AssignmentStatement -> {
-                translateVariable(statement.variable!!) + " = " + translateExpression(statement.expression!!)
+    companion object {
+        fun translateStatement(statement: Statement): String {
+            return when (statement) {
+                is AssignmentStatement -> {
+                    translateVariable(statement.variable!!) + " = " + translateExpression(statement.expression!!)
+                }
+                else -> ""
             }
-            else -> ""
         }
-    }
 
-    fun translateExpression(expression: Expression): String {
-        return when(expression) {
-            is Variable -> translateVariable(expression)
-            is Literal<*> -> translateLiteral(expression)
-            is BinaryExpression -> {
-                translateExpression(expression.leftExpression!!) + " " +
-                        translateOperator(expression.operation) + " " +
-                        translateExpression(expression.rightExpression!!)
+        fun translateOperator(operation: BinaryOperation): String {
+            return when(operation) {
+                BinaryOperation.AND -> Operators.AND
+                BinaryOperation.OR -> Operators.OR
+                BinaryOperation.MOD -> Operators.MOD
+                BinaryOperation.XOR -> Operators.XOR
+                else -> operation.alias
             }
-            is ParenthesisExpression -> {
-                "(" + translateExpression(expression.innerExpression) + ")"
+        }
+
+        fun translateVariable(variable: Variable): String {
+            return when(variable) {
+                is VariableReference -> mapVarName(variable.reference.getTarget()!!.name)
+                else -> throw GenerationException("Unsupported Variable type $variable")//todo: support all cases
             }
-            else -> throw GenerationException("Unsupported expression type $expression")
         }
-    }
 
-    private fun translateOperator(operation: BinaryOperation): String {
-        return when(operation) {
-            BinaryOperation.AND -> "&&"
-            BinaryOperation.OR -> "||"
-            BinaryOperation.MOD -> "%"
-            BinaryOperation.XOR -> "^"
-            else -> operation.alias
+        fun translateLiteral(expression: Literal<*>): String {
+            return when(expression.kind) {
+                LiteralKind.BINARY_INT, LiteralKind.BINARY_BOOL, LiteralKind.BOOL,
+                LiteralKind.DEC_INT-> expression.value.toString()
+                else -> throw GenerationException("Unsupported literal: ${expression.kind}:${expression.value}")
+            }
         }
-    }
 
-    private fun translateLiteral(expression: Literal<*>): String {
-        return expression.value.toString()
-    }
+        fun translateExpression(expression: Expression): String {
+            return when(expression) {
+                is Variable -> translateVariable(expression)
+                is Literal<*> -> translateLiteral(expression)
+                is BinaryExpression -> {
+                    translateExpression(expression.leftExpression!!) + " " +
+                            translateOperator(expression.operation) + " " +
+                            translateExpression(expression.rightExpression!!)
+                }
+                is ParenthesisExpression -> {
+                    "(" + translateExpression(expression.innerExpression) + ")"
+                }
+                is UnaryExpression -> {
+                    translateUnaryOperator(expression.operation) + translateExpression(expression.getInnerExpression()!!)
+                }
+                else -> throw GenerationException("Unsupported expression type $expression")
+            }
+        }
 
-    fun translateVariable(variable: Variable): String {
-        return when(variable) {
-            is VariableReference -> mapVarName(variable.reference.getTarget()!!.name)
-            else -> throw GenerationException("Unsupported Variable type $variable")//todo: support all cases
+        fun translateUnaryOperator(operation: UnaryOperation): String {
+            return when(operation) {
+                UnaryOperation.NOT -> Operators.NOT
+                UnaryOperation.NEG -> Operators.NEG
+                else -> throw GenerationException("Unsupported unary operator: ${operation.alias}")
+            }
         }
     }
 }
