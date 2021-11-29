@@ -46,6 +46,9 @@ class STGenerator(val algo: AlgorithmDeclaration, val indent: Int, val nameMappi
                         translateOperator(expression.operation) + " " +
                         translateExpression(expression.rightExpression!!)
             }
+            is ParenthesisExpression -> {
+                "(" + translateExpression(expression.innerExpression) + ")"
+            }
             else -> throw GenerationException("Unsupported expression type $expression")
         }
     }
@@ -54,6 +57,8 @@ class STGenerator(val algo: AlgorithmDeclaration, val indent: Int, val nameMappi
         return when(operation) {
             BinaryOperation.AND -> "&&"
             BinaryOperation.OR -> "||"
+            BinaryOperation.MOD -> "%"
+            BinaryOperation.XOR -> "^"
             else -> operation.alias
         }
     }

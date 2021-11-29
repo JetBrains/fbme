@@ -26,6 +26,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                 alpha, beta
                 ) {
                 ${bufferDeclarations(4)}
+                ${internalVarDeclarations(4)}
 
                 bit $existsInputEvent = 0;
                 bit $existsEnabledECTran = 0;
@@ -36,10 +37,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                 alpha?true;
                 $existsInputEvent = ${checkInputEvents()};
 
-
-                atomic {
-                    ${readInputBuffers(5)}
-                }
+                ${readInputBuffers(4)}
 
               s0_osm:
                 printf("${blockType.name}:s0_osm, Q=%d \n", Q);
@@ -266,19 +264,24 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     }
 
     private fun readInputBuffers(indent: Int): String {
+        if (blockType.inputParameters.isEmpty()) return "// No input vars to read"
+
         val sb = StringBuilder()
-        val indentStr = indentString(indent)
-        sb.append("do\n$indentStr")
+        val outerIndent = indentString(indent)
+        val largeIndent = indentString(indent + 1)
+        sb.append("atomic {\n$largeIndent")
+        sb.append("do\n$largeIndent")
         for (inputParameter in blockType.inputParameters) {
             val paramName = mapInputParameter(inputParameter, nameMappings)
             val bufferName = mapVarName(inputParameter.name)
-            sb.append(":: nempty($paramName) -> $paramName?$bufferName;\n$indentStr")
+            sb.append(":: nempty($paramName) -> $paramName?$bufferName;\n$largeIndent")
         }
         val allEmptyCheck = blockType.inputParameters.joinToString(separator = " && ") {
             "empty(${mapInputParameter(it, nameMappings)})"
         }
-        sb.append(":: $allEmptyCheck -> break;\n$indentStr")
+        sb.append(":: $allEmptyCheck -> break;\n$largeIndent")
         sb.append("od")
+        sb.append("\n$outerIndent}")
         return sb.toString()
     }
 
@@ -302,6 +305,15 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
         return sb.toString()
     }
 
+    private fun internalVarDeclarations(indent: Int): String {
+        if (blockType.internalVariables.isEmpty()) return "// No internal vars"
+        val sb = StringBuilder()
+        for ((index, parameter) in blockType.internalVariables.withIndex()) {
+            val ending = strEnd(index, blockType.internalVariables.size, indent)
+            sb.append(initializeParameter(parameter) + ending)
+        }
+        return sb.toString()
+    }
 
 
     private fun initializeParameter(parameter: ParameterDeclaration): String {
