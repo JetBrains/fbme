@@ -15,6 +15,8 @@ import java.io.InputStreamReader
 import kotlin.test.assertTrue
 
 
+private const val basicFBTestDir = "/basic"
+
 @RunWith(PlatformTestRunner::class)
 @LoadFrom("org.fbme.formalfb")
 class GeneratorTest : PlatformTestBase() {
@@ -22,10 +24,10 @@ class GeneratorTest : PlatformTestBase() {
 //    @Test
     fun createGenerator() {
         val generator = SpinGenerator()
-        val bfb = rootConverterByPath("/ALU.fbt").convertFBType()
-        val cfb = rootConverterByPath("/Performance2.fbt").convertFBType()
+        val bfb = rootConverterByPath("/complex/performance-alus/ALU.fbt").convertFBType()
+        val cfb = rootConverterByPath("/complex/performance-alus/Performance2.fbt").convertFBType()
 
-        project!!.repository.modelAccess.runWriteAction {
+        project.repository.modelAccess.runWriteAction {
             val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
             model.addRootNode((bfb as PlatformElement).node)
             model.addRootNode((cfb as PlatformElement).node)
@@ -44,10 +46,15 @@ class GeneratorTest : PlatformTestBase() {
     @Test
     fun checkBFBGeneration() {
         val testCase = "ALU"
-        val bfb = rootConverterByPath("/$testCase.fbt").convertFBType()
+        checkBasicBlock(testCase)
+    }
 
-        val reference = readReferenceFile(testCase)
-        project!!.repository.modelAccess.runWriteAction {
+    private fun checkBasicBlock(testCase: String) {
+        val fbtFile = "$basicFBTestDir/$testCase.fbt"
+        val bfb = rootConverterByPath(fbtFile).convertFBType()
+
+        val reference = readReferenceFile(fbtFile)
+        project.repository.modelAccess.runWriteAction {
             val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
             model.addRootNode((bfb as PlatformElement).node)
 
@@ -58,10 +65,9 @@ class GeneratorTest : PlatformTestBase() {
 
             Assert.assertEquals(reference, res)
         }
-
     }
 
-    private fun readReferenceFile(testCase: String) =
-        InputStreamReader(checkNotNull(this::class.java.getResourceAsStream("/ref_$testCase.pml"))).readText()
+    private fun readReferenceFile(fbtFile: String) =
+        InputStreamReader(checkNotNull(this::class.java.getResourceAsStream(fbtFile.replace(".fbt",".pml")))).readText()
 
 }
