@@ -44,14 +44,19 @@ class GeneratorTest : PlatformTestBase() {
     }
 
     @Test
-    fun testALU() {
-        checkBasicBlock("ALU")
-    }
+    fun testALU() = checkBasicBlock("ALU")
 
     @Test
-    fun testPlant() {
-        checkBasicBlock("Plant")
-    }
+    fun testPlant() = checkBasicBlock("Plant")
+
+    @Test
+    fun testDrillModel() = checkBasicBlock("DrillModel")
+
+    @Test
+    fun testCarriageController() = checkBasicBlock("CarriageController")
+
+//    @Test //disabled: FMBE has NPE while generating code for controller
+    fun testController() = checkBasicBlock("Controller")
 
     private fun checkBasicBlock(testCase: String) {
         val fbtFile = "$basicFBTestDir/$testCase.fbt"

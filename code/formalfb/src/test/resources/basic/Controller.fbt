@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FBType GUID="BCB276798E871676" Name="Controller" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="vshatrov" Date="4/23/2019" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CHG" Comment="Normal Execution Request">
+        <With Var="NUM" />
+        <With Var="SetPoint" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="PICK" Comment="Execution Confirmation" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NUM" Type="DINT" Comment="Input event qualifier" />
+      <VarDeclaration Name="SetPoint" Type="DINT" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="CHG" />
+    <InternalVars>
+      <VarDeclaration Name="match" Type="BOOL" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="CHG" Comment="Normal execution" x="1137.647" y="788.9412">
+        <ECAction Algorithm="CHG" />
+      </ECState>
+      <ECState Name="Pick" x="1032" y="1224">
+        <ECAction Output="PICK" />
+      </ECState>
+      <ECTransition Source="START" Destination="CHG" Condition="CHG" x="895.7454" y="541.8207">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="207.1276,120.3661,241.709,141.6298" />
+      </ECTransition>
+      <ECTransition Source="CHG" Destination="START" Condition="NOT match" x="838.7734" y="688.5875">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="228.6142,187.926,194.0328,166.6622" />
+      </ECTransition>
+      <ECTransition Source="Pick" Destination="START" Condition="1" x="782.0499" y="905.7171">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="213.5782,261.9201,178.2919,204.107" />
+      </ECTransition>
+      <ECTransition Source="CHG" Destination="Pick" Condition="match" x="1166.15" y="1024.169">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="298.8459,243.7381,292.1539,271.296" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="CHG" Comment="Normally executed algorithm">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;match := NUM = SetPoint;&#xD;&#xA;	" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
