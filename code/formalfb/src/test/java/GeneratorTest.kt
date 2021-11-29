@@ -44,9 +44,13 @@ class GeneratorTest : PlatformTestBase() {
     }
 
     @Test
-    fun checkBFBGeneration() {
-        val testCase = "ALU"
-        checkBasicBlock(testCase)
+    fun testALU() {
+        checkBasicBlock("ALU")
+    }
+
+    @Test
+    fun testPlant() {
+        checkBasicBlock("Plant")
     }
 
     private fun checkBasicBlock(testCase: String) {

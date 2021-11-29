@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FBType GUID="2A9D140419FBD537" Name="Plant" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="vshatrov" Date="4/23/2019" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="PICK" Comment="Normal Execution Request" />
+      <Event Name="TICK" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CHG" Comment="Execution Confirmation">
+        <With Var="NUM" />
+      </Event>
+      <Event Name="PICKED">
+        <With Var="NUM" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="NUM" Type="DINT" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,TICK,PICK" />
+    <InternalVars>
+      <VarDeclaration Name="current" Type="DINT" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" />
+      </ECState>
+      <ECState Name="TICK" Comment="Normal execution" x="805.647" y="964.9412">
+        <ECAction Algorithm="TICK" Output="CHG" />
+      </ECState>
+      <ECState Name="PICK" x="1196" y="588">
+        <ECAction Algorithm="PICK" Output="PICKED" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="TICK" Condition="TICK" x="754.8519" y="665.17">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="183.9553,145.6601,200.9102,181.5905" />
+      </ECTransition>
+      <ECTransition Source="TICK" Destination="START" Condition="1" x="676.7491" y="772.1764">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="178.9351,217.2593,161.7119,181.3289" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="PICK" Condition="PICK" x="902.6652" y="431.6314">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="209.493,100.2689,242.117,108.1217" />
+      </ECTransition>
+      <ECTransition Source="PICK" Destination="START" Condition="1" x="881.3536" y="594.7561">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="238.8226,157.1593,204.705,148.7454" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="current := 0;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="TICK" Comment="Normally executed algorithm">
+      <ST Text="&#xD;&#xA;current := (current + 1) MOD 10;&#xD;&#xA;NUM := current;" />
+    </Algorithm>
+    <Algorithm Name="PICK">
+      <ST Text="&#xD;&#xA;NUM := current;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

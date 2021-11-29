@@ -6,6 +6,7 @@ proctype ALU(chan
     int A = 0;
     int B = 0;
     int RES = 0;
+    // No internal vars
 
     bit ExistsInputEvent = 0;
     bit ExistsEnabledECTran = 0;
@@ -15,7 +16,6 @@ proctype ALU(chan
     end: // valid end state
     alpha?true;
     ExistsInputEvent = nempty(EI_SUM) || nempty(EI_DIFF);
-
 
     atomic {
         do
