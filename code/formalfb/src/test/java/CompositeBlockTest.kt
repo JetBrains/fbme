@@ -15,11 +15,11 @@ import kotlin.test.assertTrue
 
 private const val compositeFBTestDir = "/composite"
 
-@RunWith(PlatformTestRunner::class)
-@LoadFrom("org.fbme.formalfb")
+//@RunWith(PlatformTestRunner::class)
+//@LoadFrom("org.fbme.formalfb")
 class CompositeBlockTest : PlatformTestBase() {
 
-    @Test
+//    @Test
     fun testPerformanceBlock() = checkCompositeBlock("Performance2")
 
     private fun checkCompositeBlock(testCase: String) {

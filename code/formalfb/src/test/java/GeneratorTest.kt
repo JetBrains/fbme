@@ -17,8 +17,8 @@ import kotlin.test.assertTrue
 
 private const val basicFBTestDir = "/basic"
 
-@RunWith(PlatformTestRunner::class)
-@LoadFrom("org.fbme.formalfb")
+//@RunWith(PlatformTestRunner::class)
+//@LoadFrom("org.fbme.formalfb")
 class GeneratorTest : PlatformTestBase() {
 
 //    @Test

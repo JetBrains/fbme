@@ -46,7 +46,7 @@ class BasicBlockTest : PlatformTestBase() {
             assertTrue(bfb is BasicFBTypeDeclaration)
             val generator = BasicBlockGenerator(bfb)
             val res = generator.generate()
-            Assert.assertEquals(stripBlankLines(reference), stripBlankLines(res))
+            Assert.assertEquals(reference, res)
         }
     }
 

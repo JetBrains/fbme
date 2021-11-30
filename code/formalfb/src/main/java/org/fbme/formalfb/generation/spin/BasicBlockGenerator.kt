@@ -1,6 +1,8 @@
 package org.fbme.formalfb.generation.spin
 
 import org.fbme.formalfb.generation.GenerationException
+import org.fbme.formalfb.generation.TemplateEmbedder
+import org.fbme.formalfb.generation.embed
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
@@ -14,15 +16,14 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         val eccTypeAlias = "${basicType.name}_ECC"
         val eccTypeAliasesDeclaration = "mtype:$eccTypeAlias = $eccStates;"
         val initialEccState = mapEccState(basicType.ecc.states.first(), basicType)
-        //todo: make mode with all exceptions caught, to give at least some result of generation
         return """
             $eccTypeAliasesDeclaration
             proctype ${basicType.name}(chan
                 ${parameterDeclarations()}
                 alpha, beta
                 ) {
-                ${bufferDeclarations(4)}
-                ${internalVarDeclarations(4)}
+                ${embed(4) {bufferDeclarations()} }
+                ${embed(4) {internalVarDeclarations()} }
 
                 bit $existsInputEvent = 0;
                 bit $existsEnabledECTran = 0;
@@ -33,27 +34,27 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
                 alpha?true;
                 $existsInputEvent = ${checkInputEvents()};
 
-                ${readInputBuffers(4)}
+                ${embed(4) { readInputBuffers() }}
 
               s0_osm:
                 printf("${basicType.name}:s0_osm, Q=%d \n", Q);
                 bit ${selectionDeclarations()};
-                ${selectionConditions(4)}
+                ${embed(4) {selectionConditions()}}
 
                 bit ${transitionDeclarations()};
-                ${transitionConditions(4)}
+                ${embed(4) {transitionConditions()}}
 
 
                 // s0_osm select 1 event. Reset all other RuleSet1
                 if
-                ${readInputEvent(4)}
+                ${embed(4) {readInputEvent()}}
                 :: (!$existsInputEvent) -> goto done;
                 :: else -> printf("${basicType.name}: no enabled transitions");
                 fi
 
                 // RuleSet1 reset all other inputs
                 do
-                ${resetInputEvents(4)}
+                ${embed(4) {resetInputEvents()}}
                 :: else -> break;
                 od
                 goto s1_osm; // RuleSet3
@@ -61,25 +62,25 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
 
                 s1_osm:
                 $existsEnabledECTran = (
-                    ${existEnabledTransition(5)}
+                    ${embed(5) { existEnabledTransition()}}
                 );
 
                 printf("${basicType.name}: s1_osm EEC  %d \n", $existsEnabledECTran);
 
                 atomic {
                     if // RuleSet4: ECC transition. Conditions ordered by XML description
-                    ${performEccTransition(5)}
+                    ${embed(5) { performEccTransition()}}
                     :: !$existsEnabledECTran -> goto done;
                     :: else -> printf("${basicType.name}: No input events to process\n");
                     fi;
-                    ${resetSelectedEvent(5)}
+                    ${embed(5) {resetSelectedEvent()}}
                 }
 
                 printf("${basicType.name}:s2_osm, Q=%d\n", Q);
                 s2_osm:
                 atomic {
                     if
-                    ${performStateActions(5)}
+                    ${embed(5) {performStateActions()}}
                     fi
                 }
 
@@ -93,72 +94,68 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         """.trimIndent()
     }
 
-    private fun performStateActions(indent: Int): String {
-        val sb = StringBuilder()
-        val indentStr = indentString(indent + 1)
-        for ((index, state) in basicType.ecc.states.withIndex()) {
-            val ending = strEnd(index, basicType.ecc.states.size, indent)
-            sb.append(":: (Q == ${mapEccState(state, basicType)}) ->\n$indentStr")
+    private fun TemplateEmbedder.performStateActions() {
+        for (state in basicType.ecc.states) {
+            addLine(":: (Q == ${mapEccState(state, basicType)}) ->")
+            increaseIndent()
             if (state.actions.isEmpty()) {
-                sb.append("skip;$ending")
+                addLine("skip;")
+                decreaseIndent()
                 continue
             }
-            for ((index, action) in state.actions.withIndex()) {
-//                val ending = strEnd(index, state.actions, indent + 1)
+            for (action in state.actions) {
                 val hasAlgo = action.algorithm.getTarget() != null
                 val hasEvent = action.event.getTarget() != null
                 action.algorithm.getTarget()?.let { algo ->
-                    sb.append(translateSTAlgo(algo, indent + 1, nameMappings))
-                    if (!hasEvent) sb.append(ending) else sb.append("\n$indentStr")
-                 }
+                    addLine(translateSTAlgo(algo, currentIndent , nameMappings))
+                }
                 action.event.getTarget()?.portTarget?.let { event ->
-                    sb.append("//emit event\n$indentStr")
+                    addLine("//emit event")
                     for (association in event.associations) {
                         association.parameterReference.getTarget()?.let { param ->
-                            sb.append("reset(${mapOutputParameter(param, nameMappings)});\n$indentStr")
+                            addLine("reset(${mapOutputParameter(param, nameMappings)});")
                         }
                     }
-                    sb.append("reset(${mapOutputEvent(event, nameMappings)});\n$indentStr")
+                    addLine("reset(${mapOutputEvent(event, nameMappings)});")
 
                     for (association in event.associations) {
                         association.parameterReference.getTarget()?.let { param ->
-                            sb.append("${mapOutputParameter(param, nameMappings)}!${mapVarName(param.name)};\n$indentStr")
+                            addLine("${mapOutputParameter(param, nameMappings)}!${mapVarName(param.name)};")
                         }
                     }
-                    sb.append("${mapOutputEvent(event,nameMappings)}!true;$ending")
+                    addLine("${mapOutputEvent(event,nameMappings)}!true;")
                 }
                 if (!hasEvent && !hasAlgo) {
-                    sb.append("skip;$ending")
+                    addLine("skip;")
                 }
             }
-
-        }
-
-        return sb.toString()
-    }
-
-    private fun resetSelectedEvent(indent: Int): String {
-        return basicType.inputEvents.joinToString(separator = "\n${indentString(indent)}") {
-            mapSelectionVariable(it, nameMappings) + " = 0;"
+            decreaseIndent()
         }
     }
 
-    private fun performEccTransition(indent: Int): String {
-        val sb = StringBuilder()
-        for ((index, transition) in basicType.ecc.transitions.withIndex()) {
+    private fun TemplateEmbedder.resetSelectedEvent() {
+        basicType.inputEvents.forEach {
+            addLine(mapSelectionVariable(it, nameMappings) + " = 0;")
+        }
+    }
+
+    private fun TemplateEmbedder.performEccTransition() {
+        for (transition in basicType.ecc.transitions) {
             val cond = getTransitionCondition(transition)
             val target = mapEccState( transition.targetReference.getTarget()!!, basicType)
-            val ending = strEnd(index, basicType.ecc.transitions.size, indent)
-            sb.append(":: ($cond) -> Q = $target;$ending")
+            addLine(":: ($cond) -> Q = $target;")
         }
-        return sb.toString()
     }
 
-    private fun existEnabledTransition(indent: Int): String {
-        val indentStr = indentString(indent)
-        return basicType.ecc.transitions.map {
-            "(" + getTransitionCondition(it) + ")"
-        }.joinToString(separator = "\n$indentStr|| ")
+    private fun TemplateEmbedder.existEnabledTransition() {
+
+        basicType.ecc.transitions.forEachIndexed { index, it ->
+            val join = if (index != 0) {
+                "|| "
+            } else ""
+
+            addLine(join + "(" + getTransitionCondition(it) + ")")
+        }
     }
 
     private fun getTransitionCondition(transition: StateTransition): String {
@@ -168,37 +165,30 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         return "Q == ${mapEccState(currentState, basicType)} && ${mapTransitionName(transition)}"
     }
 
-    private fun resetInputEvents(indent: Int): String {
-        val sb = StringBuilder()
-        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
+    private fun TemplateEmbedder.resetInputEvents(){
+        for (inputEvent in basicType.inputEvents) {
             val ieName = mapInputEvent(inputEvent, nameMappings)
-            val ending = strEnd(index, basicType.inputEvents.size, indent)
-            sb.append(":: atomic { nempty($ieName) -> $ieName?true;}$ending")
+            addLine(":: atomic { nempty($ieName) -> $ieName?true;}")
         }
-        return sb.toString()
     }
 
-    private fun readInputEvent(indent: Int): String {
-        val sb = StringBuilder()
-        val indentStr = indentString(indent)
-        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
-            val ending = strEnd(index, basicType.inputEvents.size, indent)
-            sb.append(":: atomic { ${mapSelectionVariable(inputEvent, nameMappings)} ->\n$indentStr")
-            sb.append("    ${mapInputEvent(inputEvent, nameMappings)}?true;\n$indentStr")
-            sb.append("}$ending")
+    private fun TemplateEmbedder.readInputEvent() {
+        for (inputEvent in basicType.inputEvents) {
+            addLine(":: atomic { ${mapSelectionVariable(inputEvent, nameMappings)} ->")
+            indent {
+                addLine("${mapInputEvent(inputEvent, nameMappings)}?true;")
+            }
+            addLine("}")
         }
-        return sb.toString()
     }
 
     private fun selectionDeclarations(): String {
         return basicType.inputEvents.joinToString { mapSelectionVariable(it, nameMappings) }
     }
 
-    private fun selectionConditions(indent: Int): String {
-        val sb = StringBuilder()
+    private fun TemplateEmbedder.selectionConditions() {
         var prevCondition: String? = null
-        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
-            val ending = strEnd(index, basicType.inputEvents.size, indent)
+        for (inputEvent in basicType.inputEvents) {
             val selectionVar = mapSelectionVariable(inputEvent, nameMappings)
             var statesString = getStatesDependentOnEvent(inputEvent)
                 .joinToString(separator = " && ") { state ->
@@ -207,10 +197,9 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
             if (statesString.isEmpty()) {
                 statesString = "false"
             }
-            sb.append("$selectionVar = ${prevCondition ?: ""}nempty(${mapInputEvent(inputEvent, nameMappings)}) && $statesString;$ending")
+            addLine("$selectionVar = ${prevCondition ?: ""}nempty(${mapInputEvent(inputEvent, nameMappings)}) && $statesString;")
             prevCondition = "!$selectionVar && "
         }
-        return sb.toString()
     }
 
     private fun getStatesDependentOnEvent(event: EventDeclaration): List<StateDeclaration> {
@@ -224,10 +213,8 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         return result
     }
 
-    private fun transitionConditions(indent: Int): String {
-        val sb = StringBuilder()
-        for ((index, transition) in basicType.ecc.transitions.withIndex()) {
-            val ending = strEnd(index, basicType.ecc.transitions.size, indent)
+    private fun TemplateEmbedder.transitionConditions() {
+        for (transition in basicType.ecc.transitions) {
             var condition = ""
             transition.condition.eventReference.getTarget()?.let {
                 condition += mapSelectionVariable(it.portTarget, nameMappings)
@@ -239,36 +226,35 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
             if (condition.isEmpty()) {
                 condition = "1"
             }
-            sb.append(mapTransitionName(transition) + " = $condition;$ending")
-
+            addLine(mapTransitionName(transition) + " = $condition;")
         }
-        return sb.toString()
     }
 
     private fun transitionDeclarations(): String {
         return basicType.ecc.transitions.joinToString { mapTransitionName(it) }
     }
 
-    private fun readInputBuffers(indent: Int): String {
-        if (basicType.inputParameters.isEmpty()) return "// No input vars to read"
+    private fun TemplateEmbedder.readInputBuffers() {
+        if (basicType.inputParameters.isEmpty()) {
+            addLine("// No input vars to read")
+            return
+        }
 
-        val sb = StringBuilder()
-        val outerIndent = indentString(indent)
-        val largeIndent = indentString(indent + 1)
-        sb.append("atomic {\n$largeIndent")
-        sb.append("do\n$largeIndent")
-        for (inputParameter in basicType.inputParameters) {
-            val paramName = mapInputParameter(inputParameter, nameMappings)
-            val bufferName = mapVarName(inputParameter.name)
-            sb.append(":: nempty($paramName) -> $paramName?$bufferName;\n$largeIndent")
+        addLine("atomic {")
+        indent {
+            addLine("do")
+            for (inputParameter in basicType.inputParameters) {
+                val paramName = mapInputParameter(inputParameter, nameMappings)
+                val bufferName = mapVarName(inputParameter.name)
+                addLine(":: nempty($paramName) -> $paramName?$bufferName;")
+            }
+            val allEmptyCheck = basicType.inputParameters.joinToString(separator = " && ") {
+                "empty(${mapInputParameter(it, nameMappings)})"
+            }
+            addLine(":: $allEmptyCheck -> break;")
+            addLine("od")
         }
-        val allEmptyCheck = basicType.inputParameters.joinToString(separator = " && ") {
-            "empty(${mapInputParameter(it, nameMappings)})"
-        }
-        sb.append(":: $allEmptyCheck -> break;\n$largeIndent")
-        sb.append("od")
-        sb.append("\n$outerIndent}")
-        return sb.toString()
+        addLine("}")
     }
 
     private fun checkInputEvents(): String {
@@ -277,30 +263,21 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         }
     }
 
-    private fun bufferDeclarations(indent: Int): String {
-        val sb = StringBuilder()
-        val summarySize = basicType.inputParameters.size + basicType.outputParameters.size
-        for ((index, parameter) in basicType.inputParameters.withIndex()) {
-            val ending = strEnd(index, summarySize, indent)
-            sb.append(initializeParameter(parameter) + ending)
+    private fun TemplateEmbedder.internalVarDeclarations() {
+        if (basicType.internalVariables.isEmpty()) return addLine("// No internal vars")
+        for (parameter in basicType.internalVariables) {
+            addLine(initializeParameter(parameter))
         }
-        for ((index, param) in basicType.outputParameters.withIndex()) {
-            val ending = strEnd(index + basicType.inputParameters.size, summarySize, indent)
-            sb.append(initializeParameter(param) + ending)
-        }
-        return sb.toString()
     }
 
-    private fun internalVarDeclarations(indent: Int): String {
-        if (basicType.internalVariables.isEmpty()) return "// No internal vars"
-        val sb = StringBuilder()
-        for ((index, parameter) in basicType.internalVariables.withIndex()) {
-            val ending = strEnd(index, basicType.internalVariables.size, indent)
-            sb.append(initializeParameter(parameter) + ending)
+    private fun TemplateEmbedder.bufferDeclarations() {
+        for (parameter in basicType.inputParameters) {
+            addLine(initializeParameter(parameter))
         }
-        return sb.toString()
+        for (param in basicType.outputParameters) {
+            addLine(initializeParameter(param))
+        }
     }
-
 
     private fun initializeParameter(parameter: ParameterDeclaration): String {
         val type = map2SpinType(parameter.type!!)
@@ -309,15 +286,8 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         return "$type $name = $initialValue;"
     }
 
-
     companion object Vars {
         const val existsInputEvent = "ExistsInputEvent"
         const val existsEnabledECTran = "ExistsEnabledECTran"
     }
 }
-
-
-fun strEnd(index: Int, collectionSize: Int, indent: Int): String =
-    if (index == collectionSize - 1) "" else "\n${indentString(indent)}"
-
-fun indentString(indent: Int) = " ".repeat(indent * 4)
