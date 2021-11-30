@@ -1,6 +1,5 @@
 package org.fbme.formalfb.generation.spin
 
-import com.intellij.util.containers.BidirectionalMap
 import org.fbme.formalfb.generation.GenerationException
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
@@ -8,20 +7,17 @@ import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 
-class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator {
-
-    private val nameMappings = BidirectionalMap<String, String>()
+class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGeneratorBase(basicType) {
 
     override fun generate(): String {
-
-        val eccStates = blockType.ecc.states.joinToString(prefix = "{", postfix = "}") { mapEccState(it, blockType) }
-        val eccTypeAlias = "${blockType.name}_ECC"
+        val eccStates = basicType.ecc.states.joinToString(prefix = "{", postfix = "}") { mapEccState(it, basicType) }
+        val eccTypeAlias = "${basicType.name}_ECC"
         val eccTypeAliasesDeclaration = "mtype:$eccTypeAlias = $eccStates;"
-        val initialEccState = mapEccState(blockType.ecc.states.first(), blockType)
+        val initialEccState = mapEccState(basicType.ecc.states.first(), basicType)
         //todo: make mode with all exceptions caught, to give at least some result of generation
         return """
             $eccTypeAliasesDeclaration
-            proctype ${blockType.name}(chan
+            proctype ${basicType.name}(chan
                 ${parameterDeclarations()}
                 alpha, beta
                 ) {
@@ -40,7 +36,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                 ${readInputBuffers(4)}
 
               s0_osm:
-                printf("${blockType.name}:s0_osm, Q=%d \n", Q);
+                printf("${basicType.name}:s0_osm, Q=%d \n", Q);
                 bit ${selectionDeclarations()};
                 ${selectionConditions(4)}
 
@@ -52,7 +48,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                 if
                 ${readInputEvent(4)}
                 :: (!$existsInputEvent) -> goto done;
-                :: else -> printf("${blockType.name}: no enabled transitions");
+                :: else -> printf("${basicType.name}: no enabled transitions");
                 fi
 
                 // RuleSet1 reset all other inputs
@@ -68,18 +64,18 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
                     ${existEnabledTransition(5)}
                 );
 
-                printf("${blockType.name}: s1_osm EEC  %d \n", $existsEnabledECTran);
+                printf("${basicType.name}: s1_osm EEC  %d \n", $existsEnabledECTran);
 
                 atomic {
                     if // RuleSet4: ECC transition. Conditions ordered by XML description
                     ${performEccTransition(5)}
                     :: !$existsEnabledECTran -> goto done;
-                    :: else -> printf("${blockType.name}: No input events to process\n");
+                    :: else -> printf("${basicType.name}: No input events to process\n");
                     fi;
                     ${resetSelectedEvent(5)}
                 }
 
-                printf("${blockType.name}:s2_osm, Q=%d\n", Q);
+                printf("${basicType.name}:s2_osm, Q=%d\n", Q);
                 s2_osm:
                 atomic {
                     if
@@ -100,9 +96,9 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     private fun performStateActions(indent: Int): String {
         val sb = StringBuilder()
         val indentStr = indentString(indent + 1)
-        for ((index, state) in blockType.ecc.states.withIndex()) {
-            val ending = strEnd(index, blockType.ecc.states.size, indent)
-            sb.append(":: (Q == ${mapEccState(state, blockType)}) ->\n$indentStr")
+        for ((index, state) in basicType.ecc.states.withIndex()) {
+            val ending = strEnd(index, basicType.ecc.states.size, indent)
+            sb.append(":: (Q == ${mapEccState(state, basicType)}) ->\n$indentStr")
             if (state.actions.isEmpty()) {
                 sb.append("skip;$ending")
                 continue
@@ -142,17 +138,17 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     }
 
     private fun resetSelectedEvent(indent: Int): String {
-        return blockType.inputEvents.joinToString(separator = "\n${indentString(indent)}") {
+        return basicType.inputEvents.joinToString(separator = "\n${indentString(indent)}") {
             mapSelectionVariable(it, nameMappings) + " = 0;"
         }
     }
 
     private fun performEccTransition(indent: Int): String {
         val sb = StringBuilder()
-        for ((index, transition) in blockType.ecc.transitions.withIndex()) {
+        for ((index, transition) in basicType.ecc.transitions.withIndex()) {
             val cond = getTransitionCondition(transition)
-            val target = mapEccState( transition.targetReference.getTarget()!!, blockType)
-            val ending = strEnd(index, blockType.ecc.transitions.size, indent)
+            val target = mapEccState( transition.targetReference.getTarget()!!, basicType)
+            val ending = strEnd(index, basicType.ecc.transitions.size, indent)
             sb.append(":: ($cond) -> Q = $target;$ending")
         }
         return sb.toString()
@@ -160,23 +156,23 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
 
     private fun existEnabledTransition(indent: Int): String {
         val indentStr = indentString(indent)
-        return blockType.ecc.transitions.map {
+        return basicType.ecc.transitions.map {
             "(" + getTransitionCondition(it) + ")"
         }.joinToString(separator = "\n$indentStr|| ")
     }
 
     private fun getTransitionCondition(transition: StateTransition): String {
         val currentState = transition.sourceReference.getTarget()
-            ?: throw GenerationException("${blockType.name}: Transition has null source reference: $transition, ${mapTransitionName(transition)}")
+            ?: throw GenerationException("${basicType.name}: Transition has null source reference: $transition, ${mapTransitionName(transition)}")
 
-        return "Q == ${mapEccState(currentState, blockType)} && ${mapTransitionName(transition)}"
+        return "Q == ${mapEccState(currentState, basicType)} && ${mapTransitionName(transition)}"
     }
 
     private fun resetInputEvents(indent: Int): String {
         val sb = StringBuilder()
-        for ((index, inputEvent) in blockType.inputEvents.withIndex()) {
+        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
             val ieName = mapInputEvent(inputEvent, nameMappings)
-            val ending = strEnd(index, blockType.inputEvents.size, indent)
+            val ending = strEnd(index, basicType.inputEvents.size, indent)
             sb.append(":: atomic { nempty($ieName) -> $ieName?true;}$ending")
         }
         return sb.toString()
@@ -185,8 +181,8 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     private fun readInputEvent(indent: Int): String {
         val sb = StringBuilder()
         val indentStr = indentString(indent)
-        for ((index, inputEvent) in blockType.inputEvents.withIndex()) {
-            val ending = strEnd(index, blockType.inputEvents.size, indent)
+        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
+            val ending = strEnd(index, basicType.inputEvents.size, indent)
             sb.append(":: atomic { ${mapSelectionVariable(inputEvent, nameMappings)} ->\n$indentStr")
             sb.append("    ${mapInputEvent(inputEvent, nameMappings)}?true;\n$indentStr")
             sb.append("}$ending")
@@ -195,18 +191,18 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     }
 
     private fun selectionDeclarations(): String {
-        return blockType.inputEvents.joinToString { mapSelectionVariable(it, nameMappings) }
+        return basicType.inputEvents.joinToString { mapSelectionVariable(it, nameMappings) }
     }
 
     private fun selectionConditions(indent: Int): String {
         val sb = StringBuilder()
         var prevCondition: String? = null
-        for ((index, inputEvent) in blockType.inputEvents.withIndex()) {
-            val ending = strEnd(index, blockType.inputEvents.size, indent)
+        for ((index, inputEvent) in basicType.inputEvents.withIndex()) {
+            val ending = strEnd(index, basicType.inputEvents.size, indent)
             val selectionVar = mapSelectionVariable(inputEvent, nameMappings)
             var statesString = getStatesDependentOnEvent(inputEvent)
                 .joinToString(separator = " && ") { state ->
-                    "Q == " + mapEccState(state, blockType)
+                    "Q == " + mapEccState(state, basicType)
                 }
             if (statesString.isEmpty()) {
                 statesString = "false"
@@ -220,7 +216,7 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     private fun getStatesDependentOnEvent(event: EventDeclaration): List<StateDeclaration> {
         val result = mutableListOf<StateDeclaration>()
 
-        for (transition in blockType.ecc.transitions) {
+        for (transition in basicType.ecc.transitions) {
             if (transition.condition.eventReference.getTarget()?.portTarget == event) {
                 transition.sourceReference.getTarget()?.let { result.add(it) }
             }
@@ -228,20 +224,10 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
         return result
     }
 
-    private fun parameterDeclarations(): String {
-        val declarations = mutableListOf<String>()
-        declarations.addAll(blockType.inputEvents.map { mapInputEvent(it, nameMappings) })
-        declarations.addAll(blockType.outputEvents.map { mapOutputEvent(it, nameMappings) })
-        declarations.addAll(blockType.inputParameters.map { mapInputParameter(it, nameMappings) })
-        declarations.addAll(blockType.outputParameters.map { mapOutputParameter(it, nameMappings) })
-        val parameterDeclarationStr = declarations.joinToString() + ","
-        return parameterDeclarationStr
-    }
-
     private fun transitionConditions(indent: Int): String {
         val sb = StringBuilder()
-        for ((index, transition) in blockType.ecc.transitions.withIndex()) {
-            val ending = strEnd(index, blockType.ecc.transitions.size, indent)
+        for ((index, transition) in basicType.ecc.transitions.withIndex()) {
+            val ending = strEnd(index, basicType.ecc.transitions.size, indent)
             var condition = ""
             transition.condition.eventReference.getTarget()?.let {
                 condition += mapSelectionVariable(it.portTarget, nameMappings)
@@ -260,23 +246,23 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     }
 
     private fun transitionDeclarations(): String {
-        return blockType.ecc.transitions.joinToString { mapTransitionName(it) }
+        return basicType.ecc.transitions.joinToString { mapTransitionName(it) }
     }
 
     private fun readInputBuffers(indent: Int): String {
-        if (blockType.inputParameters.isEmpty()) return "// No input vars to read"
+        if (basicType.inputParameters.isEmpty()) return "// No input vars to read"
 
         val sb = StringBuilder()
         val outerIndent = indentString(indent)
         val largeIndent = indentString(indent + 1)
         sb.append("atomic {\n$largeIndent")
         sb.append("do\n$largeIndent")
-        for (inputParameter in blockType.inputParameters) {
+        for (inputParameter in basicType.inputParameters) {
             val paramName = mapInputParameter(inputParameter, nameMappings)
             val bufferName = mapVarName(inputParameter.name)
             sb.append(":: nempty($paramName) -> $paramName?$bufferName;\n$largeIndent")
         }
-        val allEmptyCheck = blockType.inputParameters.joinToString(separator = " && ") {
+        val allEmptyCheck = basicType.inputParameters.joinToString(separator = " && ") {
             "empty(${mapInputParameter(it, nameMappings)})"
         }
         sb.append(":: $allEmptyCheck -> break;\n$largeIndent")
@@ -286,30 +272,30 @@ class BasicBlockGenerator(val blockType: BasicFBTypeDeclaration): BlockGenerator
     }
 
     private fun checkInputEvents(): String {
-        return blockType.inputEvents.joinToString (separator = " || ") { ie ->
+        return basicType.inputEvents.joinToString (separator = " || ") { ie ->
             "nempty(${mapInputEvent(ie, nameMappings)})"
         }
     }
 
     private fun bufferDeclarations(indent: Int): String {
         val sb = StringBuilder()
-        val summarySize = blockType.inputParameters.size + blockType.outputParameters.size
-        for ((index, parameter) in blockType.inputParameters.withIndex()) {
+        val summarySize = basicType.inputParameters.size + basicType.outputParameters.size
+        for ((index, parameter) in basicType.inputParameters.withIndex()) {
             val ending = strEnd(index, summarySize, indent)
             sb.append(initializeParameter(parameter) + ending)
         }
-        for ((index, param) in blockType.outputParameters.withIndex()) {
-            val ending = strEnd(index + blockType.inputParameters.size, summarySize, indent)
+        for ((index, param) in basicType.outputParameters.withIndex()) {
+            val ending = strEnd(index + basicType.inputParameters.size, summarySize, indent)
             sb.append(initializeParameter(param) + ending)
         }
         return sb.toString()
     }
 
     private fun internalVarDeclarations(indent: Int): String {
-        if (blockType.internalVariables.isEmpty()) return "// No internal vars"
+        if (basicType.internalVariables.isEmpty()) return "// No internal vars"
         val sb = StringBuilder()
-        for ((index, parameter) in blockType.internalVariables.withIndex()) {
-            val ending = strEnd(index, blockType.internalVariables.size, indent)
+        for ((index, parameter) in basicType.internalVariables.withIndex()) {
+            val ending = strEnd(index, basicType.internalVariables.size, indent)
             sb.append(initializeParameter(parameter) + ending)
         }
         return sb.toString()

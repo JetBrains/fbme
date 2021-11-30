@@ -16,7 +16,7 @@ class CompositeBlockGenerator(val blockType: CompositeFBTypeDeclaration): BlockG
         declarations.addAll(blockType.outputParameters.map { "VO_${it.name}" })
         val declarationStr = declarations.joinToString(postfix = ", ")
         val code = """
-            proctype ${blockType.name} (chan
+            proctype ${blockType.name}(chan
              $declarationStr
             alpha, beta
             ) { 
