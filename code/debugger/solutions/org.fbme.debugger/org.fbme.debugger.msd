@@ -57,6 +57,7 @@
     <stubModelEntry path="${module}/lib/ui-unit-desktop-1.0.0-beta5.jar" />
     <stubModelEntry path="${module}/lib/ui-util-desktop-1.0.0-beta5.jar" />
     <stubModelEntry path="${module}/lib/debugger.jar" />
+    <stubModelEntry path="${module}/lib/material-icons-extended-desktop-1.0.0-beta5.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>

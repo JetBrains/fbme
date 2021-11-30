@@ -74,3 +74,30 @@ val Colors.comboBoxSelectionBackground: Color
 
 val Colors.comboBoxSelectionForeground: Color
     get() = UIManager.getColor("ComboBox.selectionForeground").compose
+
+val Colors.CFBIconBackground: Color
+    get() = Color(0, 100, 120)
+
+val Colors.BFBIconBackground: Color
+    get() = Color(0, 120, 76)
+
+val Colors.ResourceIconBackground: Color
+    get() = Color(107, 83, 34)
+
+val Colors.SystemIconBackground: Color
+    get() = Color(0, 108, 120)
+
+val Colors.DeviceIconBackground: Color
+    get() = Color(31, 47, 82)
+
+val Colors.EventPortIconBackground: Color
+    get() = Color(97, 124, 186)
+
+val Colors.DataPortIconBackground: Color
+    get() = Color(186, 150, 97)
+
+val Colors.DeployResourceIconBackground: Color
+    get() = Color(50, 200, 70)
+
+val Colors.StopResourceIconBackground: Color
+    get() = Color(200, 50, 50)

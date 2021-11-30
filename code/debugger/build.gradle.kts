@@ -21,6 +21,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.5.2")
     implementation("org.jetbrains.compose.material:material-desktop:1.0.0-beta5")
     implementation("org.jetbrains.compose.material:material-icons-core-desktop:1.0.0-beta5")
+    implementation("org.jetbrains.compose.material:material-icons-extended-desktop:1.0.0-beta5")
     implementation("org.jetbrains.compose.material:material-ripple-desktop:1.0.0-beta5")
     implementation("org.jetbrains.compose.runtime:runtime-desktop:1.0.0-beta5")
     implementation("org.jetbrains.compose.runtime:runtime-saveable-desktop:1.0.0-beta5")

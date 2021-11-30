@@ -353,6 +353,22 @@
               </node>
             </node>
           </node>
+          <node concept="28jJK3" id="2ah6dQGX8_L" role="39821P">
+            <node concept="55IIr" id="2ah6dQGX8_N" role="28jJRO">
+              <node concept="2Ry0Ak" id="2ah6dQGX8DL" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2ah6dQGX8DQ" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.debugger" />
+                  <node concept="2Ry0Ak" id="2ah6dQGX8DV" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2ah6dQGX8E0" role="2Ry0An">
+                      <property role="2Ry0Am" value="material-icons-extended-desktop-1.0.0-beta5.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
           <node concept="28jJK3" id="48WAbeCXWxJ" role="39821P">
             <node concept="55IIr" id="48WAbeCXWxK" role="28jJRO">
               <node concept="2Ry0Ak" id="48WAbeCXWxL" role="iGT6I">
@@ -1042,19 +1058,9 @@
             <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
           </node>
         </node>
-        <node concept="1SiIV0" id="5NJ46QcneX4" role="3bR37C">
-          <node concept="3bR9La" id="5NJ46QcneX5" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:5xa9wY2vh9z" resolve="jetbrains.mps.execution.library" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="5NJ46QcneX6" role="3bR37C">
           <node concept="3bR9La" id="5NJ46QcneX7" role="1SiIV1">
             <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="5NJ46QcneX8" role="3bR37C">
-          <node concept="3bR9La" id="5NJ46QcneX9" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
           </node>
         </node>
         <node concept="1SiIV0" id="5NJ46QcneXa" role="3bR37C">
@@ -1070,6 +1076,24 @@
         <node concept="1SiIV0" id="5NJ46QcneXe" role="3bR37C">
           <node concept="3bR9La" id="5NJ46QcneXf" role="1SiIV1">
             <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="2ah6dQGX8lW" role="3bR37C">
+          <node concept="1BurEX" id="2ah6dQGX8lX" role="1SiIV1">
+            <node concept="55IIr" id="2ah6dQGX8lR" role="1BurEY">
+              <node concept="2Ry0Ak" id="2ah6dQGX8lS" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="2ah6dQGX8lT" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.debugger" />
+                  <node concept="2Ry0Ak" id="2ah6dQGX8lU" role="2Ry0An">
+                    <property role="2Ry0Am" value="lib" />
+                    <node concept="2Ry0Ak" id="2ah6dQGX8lV" role="2Ry0An">
+                      <property role="2Ry0Am" value="material-icons-extended-desktop-1.0.0-beta5.jar" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
       </node>

@@ -419,6 +419,24 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="4YzaYC1jVA3" role="3cqZAp">
+          <node concept="2OqwBi" id="4YzaYC1jVPS" role="3clFbG">
+            <node concept="37vLTw" id="4YzaYC1jVA1" role="2Oq$k0">
+              <ref role="3cqZAo" node="5aoGWvxN8gz" resolve="debugger" />
+            </node>
+            <node concept="liA8E" id="4YzaYC1jVYT" role="2OqNvi">
+              <ref role="37wK5l" to="71xd:~BaseTool.setSelectedComponent(javax.swing.JComponent)" resolve="setSelectedComponent" />
+              <node concept="2OqwBi" id="4YzaYC1jWcU" role="37wK5m">
+                <node concept="37vLTw" id="4YzaYC1jW18" role="2Oq$k0">
+                  <ref role="3cqZAo" node="5aoGWvxN8gz" resolve="debugger" />
+                </node>
+                <node concept="2XshWL" id="4YzaYC1jWv0" role="2OqNvi">
+                  <ref role="2WH_rO" node="3iKHL5MqMkI" resolve="getDebugTab" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
       </node>
     </node>
   </node>

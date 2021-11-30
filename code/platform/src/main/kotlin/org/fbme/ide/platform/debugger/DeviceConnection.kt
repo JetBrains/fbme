@@ -15,6 +15,12 @@ interface DeviceConnection : Closeable {
     fun deployResource(resource: ResourceDeclaration)
 
     @Throws(IOException::class)
+    fun killResource(resource: ResourceDeclaration)
+
+    @Throws(IOException::class)
+    fun deleteResource(resource: ResourceDeclaration)
+
+    @Throws(IOException::class)
     fun addWatch(watchable: Watchable)
 
     @Throws(IOException::class)

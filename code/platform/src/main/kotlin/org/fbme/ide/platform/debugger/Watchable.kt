@@ -1,7 +1,10 @@
 package org.fbme.ide.platform.debugger
 
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
+
 class Watchable(val path: WatchablePath, val port: String) {
-    val name = toString()
+    val fqName = toString()
+    var portDescriptor: FBPortDescriptor? = null
 
     fun serialize(): WatchableData {
         return WatchableData(path.serialize(), port)

@@ -420,6 +420,7 @@
         <child id="8276990574895933172" name="throwable" index="1zc67B" />
       </concept>
       <concept id="1073239437375" name="jetbrains.mps.baseLanguage.structure.NotEqualsExpression" flags="nn" index="3y3z36" />
+      <concept id="1081855346303" name="jetbrains.mps.baseLanguage.structure.BreakStatement" flags="nn" index="3zACq4" />
       <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
         <child id="1178549979242" name="visibility" index="1B3o_S" />
       </concept>
@@ -3413,7 +3414,28 @@
                 <node concept="10Nm6u" id="1S4cYrOPZOo" role="3uHU7w" />
               </node>
             </node>
-            <node concept="3clFbH" id="13KqhPh9NV8" role="3cqZAp" />
+            <node concept="3clFbH" id="3agvPyqRTJc" role="3cqZAp" />
+            <node concept="3cpWs8" id="3agvPyqRNR7" role="3cqZAp">
+              <node concept="3cpWsn" id="3agvPyqRNR8" role="3cpWs9">
+                <property role="TrG5h" value="portName" />
+                <node concept="3uibUv" id="3agvPyqRM80" role="1tU5fm">
+                  <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+                </node>
+                <node concept="2OqwBi" id="3agvPyqRNR9" role="33vP2m">
+                  <node concept="2OqwBi" id="3agvPyqRNRa" role="2Oq$k0">
+                    <node concept="2GrUjf" id="3agvPyqRNRb" role="2Oq$k0">
+                      <ref role="2Gs0qQ" node="1S4cYrOPZO9" resolve="port" />
+                    </node>
+                    <node concept="liA8E" id="3agvPyqRNRc" role="2OqNvi">
+                      <ref role="37wK5l" to="g27j:~PortPath.getPortTarget()" resolve="getPortTarget" />
+                    </node>
+                  </node>
+                  <node concept="liA8E" id="3agvPyqRNRd" role="2OqNvi">
+                    <ref role="37wK5l" to="7adg:~Declaration.getName()" resolve="getName" />
+                  </node>
+                </node>
+              </node>
+            </node>
             <node concept="3cpWs8" id="1S4cYrOPZOq" role="3cqZAp">
               <node concept="3cpWsn" id="1S4cYrOPZOr" role="3cpWs9">
                 <property role="TrG5h" value="watchable" />
@@ -3430,23 +3452,223 @@
                         <ref role="3cqZAo" node="1S4cYrOPZPd" resolve="functionBlock" />
                       </node>
                     </node>
-                    <node concept="2OqwBi" id="1S4cYrOPZOw" role="37wK5m">
-                      <node concept="2OqwBi" id="64EP$RZ582K" role="2Oq$k0">
-                        <node concept="2GrUjf" id="1S4cYrOPZO$" role="2Oq$k0">
-                          <ref role="2Gs0qQ" node="1S4cYrOPZO9" resolve="port" />
-                        </node>
-                        <node concept="liA8E" id="64EP$RZ58yy" role="2OqNvi">
-                          <ref role="37wK5l" to="g27j:~PortPath.getPortTarget()" resolve="getPortTarget" />
-                        </node>
-                      </node>
-                      <node concept="liA8E" id="1S4cYrOPZO_" role="2OqNvi">
-                        <ref role="37wK5l" to="7adg:~Declaration.getName()" resolve="getName" />
-                      </node>
+                    <node concept="37vLTw" id="3agvPyqRNRe" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqRNR8" resolve="portName" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
+            <node concept="3clFbH" id="3agvPyqAA2e" role="3cqZAp" />
+            <node concept="3cpWs8" id="3agvPyqAyg0" role="3cqZAp">
+              <node concept="3cpWsn" id="3agvPyqAyg1" role="3cpWs9">
+                <property role="TrG5h" value="type" />
+                <node concept="3uibUv" id="3agvPyqAxIv" role="1tU5fm">
+                  <ref role="3uigEE" to="ntnl:~FBTypeDescriptor" resolve="FBTypeDescriptor" />
+                </node>
+                <node concept="2OqwBi" id="3agvPyqAyg2" role="33vP2m">
+                  <node concept="37vLTw" id="3agvPyqAyg3" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOPZPd" resolve="functionBlock" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqAyg4" role="2OqNvi">
+                    <ref role="37wK5l" to="g27j:~FunctionBlockDeclarationBase.getType()" resolve="getType" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbJ" id="3agvPyqWaki" role="3cqZAp">
+              <node concept="3clFbS" id="3agvPyqWakj" role="3clFbx">
+                <node concept="3cpWs8" id="3agvPyqB722" role="3cqZAp">
+                  <node concept="3cpWsn" id="3agvPyqB723" role="3cpWs9">
+                    <property role="TrG5h" value="eventInputPorts" />
+                    <node concept="3uibUv" id="3agvPyqB6eM" role="1tU5fm">
+                      <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                      <node concept="3uibUv" id="3agvPyqB6eP" role="11_B2D">
+                        <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+                      </node>
+                    </node>
+                    <node concept="2OqwBi" id="3agvPyqB724" role="33vP2m">
+                      <node concept="37vLTw" id="3agvPyqB725" role="2Oq$k0">
+                        <ref role="3cqZAo" node="3agvPyqAyg1" resolve="type" />
+                      </node>
+                      <node concept="liA8E" id="3agvPyqB726" role="2OqNvi">
+                        <ref role="37wK5l" to="ntnl:~FBTypeDescriptor.getEventInputPorts()" resolve="getEventInputPorts" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3clFbF" id="3agvPyqU4$L" role="3cqZAp">
+                  <node concept="1rXfSq" id="3agvPyqU4$K" role="3clFbG">
+                    <ref role="37wK5l" node="3agvPyqU4$E" resolve="findPortDescriptor" />
+                    <node concept="37vLTw" id="3agvPyqU4$H" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqB723" resolve="eventInputPorts" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqU4$I" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqRNR8" resolve="portName" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqU4$J" role="37wK5m">
+                      <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbC" id="3agvPyqWakw" role="3clFbw">
+                <node concept="2OqwBi" id="3agvPyqWakx" role="3uHU7B">
+                  <node concept="37vLTw" id="3agvPyqWaky" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqWakz" role="2OqNvi">
+                    <ref role="37wK5l" to="6w4o:~Watchable.getPortDescriptor()" resolve="getPortDescriptor" />
+                  </node>
+                </node>
+                <node concept="10Nm6u" id="3agvPyqWak$" role="3uHU7w" />
+              </node>
+            </node>
+            <node concept="3clFbJ" id="3agvPyqSSSN" role="3cqZAp">
+              <node concept="3clFbS" id="3agvPyqSSSP" role="3clFbx">
+                <node concept="3cpWs8" id="3agvPyqBEJZ" role="3cqZAp">
+                  <node concept="3cpWsn" id="3agvPyqBEK0" role="3cpWs9">
+                    <property role="TrG5h" value="eventOutputPorts" />
+                    <node concept="3uibUv" id="3agvPyqBEK1" role="1tU5fm">
+                      <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                      <node concept="3uibUv" id="3agvPyqBEK2" role="11_B2D">
+                        <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+                      </node>
+                    </node>
+                    <node concept="2OqwBi" id="3agvPyqBEK3" role="33vP2m">
+                      <node concept="37vLTw" id="3agvPyqBEK4" role="2Oq$k0">
+                        <ref role="3cqZAo" node="3agvPyqAyg1" resolve="type" />
+                      </node>
+                      <node concept="liA8E" id="3agvPyqBEK5" role="2OqNvi">
+                        <ref role="37wK5l" to="ntnl:~FBTypeDescriptor.getEventOutputPorts()" resolve="getEventOutputPorts" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3clFbF" id="3agvPyqUy5l" role="3cqZAp">
+                  <node concept="1rXfSq" id="3agvPyqUy5m" role="3clFbG">
+                    <ref role="37wK5l" node="3agvPyqU4$E" resolve="findPortDescriptor" />
+                    <node concept="37vLTw" id="3agvPyqUy5n" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqBEK0" resolve="eventOutputPorts" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqUy5o" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqRNR8" resolve="portName" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqUy5p" role="37wK5m">
+                      <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbC" id="3agvPyqVPHi" role="3clFbw">
+                <node concept="2OqwBi" id="3agvPyqTyMt" role="3uHU7B">
+                  <node concept="37vLTw" id="3agvPyqSYwN" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqTCgg" role="2OqNvi">
+                    <ref role="37wK5l" to="6w4o:~Watchable.getPortDescriptor()" resolve="getPortDescriptor" />
+                  </node>
+                </node>
+                <node concept="10Nm6u" id="3agvPyqTNx6" role="3uHU7w" />
+              </node>
+            </node>
+            <node concept="3clFbJ" id="3agvPyqULyY" role="3cqZAp">
+              <node concept="3clFbS" id="3agvPyqULyZ" role="3clFbx">
+                <node concept="3cpWs8" id="3agvPyqADs8" role="3cqZAp">
+                  <node concept="3cpWsn" id="3agvPyqADs9" role="3cpWs9">
+                    <property role="TrG5h" value="dataInputPorts" />
+                    <node concept="3uibUv" id="3agvPyqACth" role="1tU5fm">
+                      <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                      <node concept="3uibUv" id="3agvPyqACtk" role="11_B2D">
+                        <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+                      </node>
+                    </node>
+                    <node concept="2OqwBi" id="3agvPyqADsa" role="33vP2m">
+                      <node concept="37vLTw" id="3agvPyqADsb" role="2Oq$k0">
+                        <ref role="3cqZAo" node="3agvPyqAyg1" resolve="type" />
+                      </node>
+                      <node concept="liA8E" id="3agvPyqADsc" role="2OqNvi">
+                        <ref role="37wK5l" to="ntnl:~FBTypeDescriptor.getDataInputPorts()" resolve="getDataInputPorts" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3clFbF" id="3agvPyqULz0" role="3cqZAp">
+                  <node concept="1rXfSq" id="3agvPyqULz1" role="3clFbG">
+                    <ref role="37wK5l" node="3agvPyqU4$E" resolve="findPortDescriptor" />
+                    <node concept="37vLTw" id="3agvPyqULz2" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqADs9" resolve="dataInputPorts" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqULz3" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqRNR8" resolve="portName" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqULz4" role="37wK5m">
+                      <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbC" id="3agvPyqVUE6" role="3clFbw">
+                <node concept="2OqwBi" id="3agvPyqULz7" role="3uHU7B">
+                  <node concept="37vLTw" id="3agvPyqULz8" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqULz9" role="2OqNvi">
+                    <ref role="37wK5l" to="6w4o:~Watchable.getPortDescriptor()" resolve="getPortDescriptor" />
+                  </node>
+                </node>
+                <node concept="10Nm6u" id="3agvPyqULz6" role="3uHU7w" />
+              </node>
+            </node>
+            <node concept="3clFbJ" id="3agvPyqUR5V" role="3cqZAp">
+              <node concept="3clFbS" id="3agvPyqUR5W" role="3clFbx">
+                <node concept="3cpWs8" id="3agvPyqBIB2" role="3cqZAp">
+                  <node concept="3cpWsn" id="3agvPyqBIB3" role="3cpWs9">
+                    <property role="TrG5h" value="dataOutputPorts" />
+                    <node concept="3uibUv" id="3agvPyqBIB4" role="1tU5fm">
+                      <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                      <node concept="3uibUv" id="3agvPyqBIB5" role="11_B2D">
+                        <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+                      </node>
+                    </node>
+                    <node concept="2OqwBi" id="3agvPyqBIB6" role="33vP2m">
+                      <node concept="37vLTw" id="3agvPyqBIB7" role="2Oq$k0">
+                        <ref role="3cqZAo" node="3agvPyqAyg1" resolve="type" />
+                      </node>
+                      <node concept="liA8E" id="3agvPyqBIB8" role="2OqNvi">
+                        <ref role="37wK5l" to="ntnl:~FBTypeDescriptor.getDataOutputPorts()" resolve="getDataOutputPorts" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3clFbF" id="3agvPyqUR5X" role="3cqZAp">
+                  <node concept="1rXfSq" id="3agvPyqUR5Y" role="3clFbG">
+                    <ref role="37wK5l" node="3agvPyqU4$E" resolve="findPortDescriptor" />
+                    <node concept="37vLTw" id="3agvPyqUR5Z" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqBIB3" resolve="dataOutputPorts" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqUR60" role="37wK5m">
+                      <ref role="3cqZAo" node="3agvPyqRNR8" resolve="portName" />
+                    </node>
+                    <node concept="37vLTw" id="3agvPyqUR61" role="37wK5m">
+                      <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbC" id="3agvPyqVZPA" role="3clFbw">
+                <node concept="2OqwBi" id="3agvPyqUR64" role="3uHU7B">
+                  <node concept="37vLTw" id="3agvPyqUR65" role="2Oq$k0">
+                    <ref role="3cqZAo" node="1S4cYrOPZOr" resolve="watchable" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqUR66" role="2OqNvi">
+                    <ref role="37wK5l" to="6w4o:~Watchable.getPortDescriptor()" resolve="getPortDescriptor" />
+                  </node>
+                </node>
+                <node concept="10Nm6u" id="3agvPyqUR63" role="3uHU7w" />
+              </node>
+            </node>
+            <node concept="3clFbH" id="3agvPyqX9Vr" role="3cqZAp" />
             <node concept="3clFbF" id="1S4cYrOPZOA" role="3cqZAp">
               <node concept="37vLTI" id="1S4cYrOPZOB" role="3clFbG">
                 <node concept="2ShNRf" id="1S4cYrOPZOC" role="37vLTx">
@@ -3653,6 +3875,80 @@
                 </node>
               </node>
             </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="3agvPyqUbI_" role="jymVt" />
+    <node concept="3clFb_" id="3agvPyqU4$E" role="jymVt">
+      <property role="TrG5h" value="findPortDescriptor" />
+      <node concept="3Tm6S6" id="3agvPyqU4$F" role="1B3o_S" />
+      <node concept="3cqZAl" id="3agvPyqU4$G" role="3clF45" />
+      <node concept="37vLTG" id="3agvPyqU4$u" role="3clF46">
+        <property role="TrG5h" value="ports" />
+        <node concept="3uibUv" id="3agvPyqU4$v" role="1tU5fm">
+          <ref role="3uigEE" to="33ny:~List" resolve="List" />
+          <node concept="3uibUv" id="3agvPyqU4$w" role="11_B2D">
+            <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+          </node>
+        </node>
+      </node>
+      <node concept="37vLTG" id="3agvPyqU4$x" role="3clF46">
+        <property role="TrG5h" value="portName" />
+        <node concept="3uibUv" id="3agvPyqU4$y" role="1tU5fm">
+          <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="3agvPyqU4$z" role="3clF46">
+        <property role="TrG5h" value="watchable" />
+        <property role="3TUv4t" value="true" />
+        <node concept="3uibUv" id="3agvPyqU4$$" role="1tU5fm">
+          <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="3agvPyqU4$c" role="3clF47">
+        <node concept="1DcWWT" id="3agvPyqU4$d" role="3cqZAp">
+          <node concept="3clFbS" id="3agvPyqU4$e" role="2LFqv$">
+            <node concept="3clFbJ" id="3agvPyqU4$f" role="3cqZAp">
+              <node concept="3clFbC" id="3agvPyqU4$g" role="3clFbw">
+                <node concept="37vLTw" id="3agvPyqU4$A" role="3uHU7w">
+                  <ref role="3cqZAo" node="3agvPyqU4$x" resolve="portName" />
+                </node>
+                <node concept="2OqwBi" id="3agvPyqU4$i" role="3uHU7B">
+                  <node concept="37vLTw" id="3agvPyqU4$j" role="2Oq$k0">
+                    <ref role="3cqZAo" node="3agvPyqU4$r" resolve="portDescriptor" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyqU4$k" role="2OqNvi">
+                    <ref role="37wK5l" to="ntnl:~FBPortDescriptor.getName()" resolve="getName" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbS" id="3agvPyqU4$l" role="3clFbx">
+                <node concept="3clFbF" id="3agvPyqU4$m" role="3cqZAp">
+                  <node concept="2OqwBi" id="3agvPyqU4$n" role="3clFbG">
+                    <node concept="37vLTw" id="3agvPyqU4$_" role="2Oq$k0">
+                      <ref role="3cqZAo" node="3agvPyqU4$z" resolve="watchable" />
+                    </node>
+                    <node concept="liA8E" id="3agvPyqU4$p" role="2OqNvi">
+                      <ref role="37wK5l" to="6w4o:~Watchable.setPortDescriptor(org.fbme.lib.iec61499.descriptors.FBPortDescriptor)" resolve="setPortDescriptor" />
+                      <node concept="37vLTw" id="3agvPyqU4$q" role="37wK5m">
+                        <ref role="3cqZAo" node="3agvPyqU4$r" resolve="portDescriptor" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3zACq4" id="3agvPyqXqib" role="3cqZAp" />
+              </node>
+            </node>
+          </node>
+          <node concept="3cpWsn" id="3agvPyqU4$r" role="1Duv9x">
+            <property role="TrG5h" value="portDescriptor" />
+            <node concept="3uibUv" id="3agvPyqU4$s" role="1tU5fm">
+              <ref role="3uigEE" to="ntnl:~FBPortDescriptor" resolve="FBPortDescriptor" />
+            </node>
+          </node>
+          <node concept="37vLTw" id="3agvPyqU4$B" role="1DdaDG">
+            <ref role="3cqZAo" node="3agvPyqU4$u" resolve="ports" />
           </node>
         </node>
       </node>
@@ -3970,22 +4266,46 @@
           </node>
         </node>
         <node concept="3clFbH" id="5uVbEkjIU3M" role="3cqZAp" />
-        <node concept="3cpWs6" id="5uVbEkjFRc9" role="3cqZAp">
-          <node concept="2ShNRf" id="5uVbEkjFSiY" role="3cqZAk">
-            <node concept="1pGfFk" id="5uVbEkjGvvs" role="2ShVmc">
-              <ref role="37wK5l" to="6w4o:~Watchable.&lt;init&gt;(org.fbme.ide.platform.debugger.WatchablePath,java.lang.String)" resolve="Watchable" />
-              <node concept="1rXfSq" id="5uVbEkjJ1rN" role="37wK5m">
-                <ref role="37wK5l" node="5uVbEkjIKZI" resolve="createWatchablePath" />
-              </node>
-              <node concept="2OqwBi" id="5uVbEkjHJxY" role="37wK5m">
-                <node concept="37vLTw" id="5uVbEkjHGZR" role="2Oq$k0">
-                  <ref role="3cqZAo" node="5uVbEkjFHRE" resolve="portDescriptor" />
+        <node concept="3cpWs8" id="3agvPyq$XFu" role="3cqZAp">
+          <node concept="3cpWsn" id="3agvPyq$XFv" role="3cpWs9">
+            <property role="TrG5h" value="watchable" />
+            <node concept="3uibUv" id="3agvPyq$TPl" role="1tU5fm">
+              <ref role="3uigEE" to="6w4o:~Watchable" resolve="Watchable" />
+            </node>
+            <node concept="2ShNRf" id="3agvPyq$XFw" role="33vP2m">
+              <node concept="1pGfFk" id="3agvPyq$XFx" role="2ShVmc">
+                <ref role="37wK5l" to="6w4o:~Watchable.&lt;init&gt;(org.fbme.ide.platform.debugger.WatchablePath,java.lang.String)" resolve="Watchable" />
+                <node concept="1rXfSq" id="3agvPyq$XFy" role="37wK5m">
+                  <ref role="37wK5l" node="5uVbEkjIKZI" resolve="createWatchablePath" />
                 </node>
-                <node concept="liA8E" id="5uVbEkjHKOn" role="2OqNvi">
-                  <ref role="37wK5l" to="ntnl:~FBPortDescriptor.getName()" resolve="getName" />
+                <node concept="2OqwBi" id="3agvPyq$XFz" role="37wK5m">
+                  <node concept="37vLTw" id="3agvPyq$XF$" role="2Oq$k0">
+                    <ref role="3cqZAo" node="5uVbEkjFHRE" resolve="portDescriptor" />
+                  </node>
+                  <node concept="liA8E" id="3agvPyq$XF_" role="2OqNvi">
+                    <ref role="37wK5l" to="ntnl:~FBPortDescriptor.getName()" resolve="getName" />
+                  </node>
                 </node>
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="3agvPyq_4Bn" role="3cqZAp">
+          <node concept="2OqwBi" id="3agvPyq_8lu" role="3clFbG">
+            <node concept="37vLTw" id="3agvPyq_4Bl" role="2Oq$k0">
+              <ref role="3cqZAo" node="3agvPyq$XFv" resolve="watchable" />
+            </node>
+            <node concept="liA8E" id="3agvPyq_c4H" role="2OqNvi">
+              <ref role="37wK5l" to="6w4o:~Watchable.setPortDescriptor(org.fbme.lib.iec61499.descriptors.FBPortDescriptor)" resolve="setPortDescriptor" />
+              <node concept="37vLTw" id="3agvPyq_fXw" role="37wK5m">
+                <ref role="3cqZAo" node="5uVbEkjFHRE" resolve="portDescriptor" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs6" id="5uVbEkjFRc9" role="3cqZAp">
+          <node concept="37vLTw" id="3agvPyq$XFA" role="3cqZAk">
+            <ref role="3cqZAo" node="3agvPyq$XFv" resolve="watchable" />
           </node>
         </node>
       </node>
