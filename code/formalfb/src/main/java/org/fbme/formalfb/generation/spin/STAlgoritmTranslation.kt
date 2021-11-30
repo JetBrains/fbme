@@ -2,6 +2,7 @@ package org.fbme.formalfb.generation.spin
 
 import com.intellij.util.containers.BidirectionalMap
 import org.fbme.formalfb.generation.GenerationException
+import org.fbme.formalfb.generation.strEnd
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage

@@ -85,12 +85,12 @@ proctype DrillModel(chan
         :: (Q == DrillModel_START_ecc) ->
             // Algorithm UP_1
             UP = true;
-        // Algorithm DOWN_0
+            // Algorithm DOWN_0
             DOWN = false;
         :: (Q == DrillModel_DRILL_ecc) ->
             // Algorithm UP_0
             UP = false;
-        // Algorithm DOWN_1
+            // Algorithm DOWN_1
             DOWN = true;
             //emit event
             reset(VO_UP);
@@ -103,7 +103,8 @@ proctype DrillModel(chan
             EO_CHANGE!true;
         :: (Q == DrillModel_WAITING_ecc) ->
             // Algorithm UP_1
-            UP = true;// Algorithm DOWN_0
+            UP = true;
+            // Algorithm DOWN_0
             DOWN = false;
             //emit event
             reset(VO_UP);
