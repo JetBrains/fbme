@@ -6,7 +6,9 @@ import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
-import org.jdom.JDOMException
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
+import org.fbme.lib.iec61499.fbnetwork.EntryKind
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -107,7 +109,29 @@ class WatcherFacade private constructor(project: Project) {
                                 requireNotNull(device)
                                 val connection = DevicesFacade.instance?.attach(device)
                                 if (connection != null && connection.isAlive) {
-                                    for ((key, value) in resolveWatches(device, connection.readWatches())) {
+                                    val resolvedWatches: Map<WatchableData, String> =
+                                        resolveWatches(device, connection.readWatches())
+                                    val watchables = resolvedWatches.toList()
+                                    val groupedByParent = watchables.groupBy { (watchableData, _) ->
+                                        watchableData.resolve(repository).path.path.last()
+                                    }
+
+                                    val result = mutableListOf<Pair<WatchableData, String>>()
+                                    for ((parent, ports) in groupedByParent) {
+//                                        val parentType = parent.type
+                                        result += ports.sortedBy { (watchableData, _) ->
+                                            val port = findPort(parent, watchableData.port) ?: error("Why?")
+                                            var res = -1.0 / (port.position + 2)
+                                            if (port.connectionKind == EntryKind.EVENT) {
+                                                res -= 1
+                                            }
+                                            if (port.isInput) {
+                                                res -= 2
+                                            }
+                                            return@sortedBy res
+                                        }
+                                    }
+                                    for ((key, value) in result) {
                                         val listeners: Set<WatchedValueListener> = watchedValueListeners[key]!!
                                         for (listener in listeners) {
                                             listener.onValueChanged(value)
@@ -125,6 +149,16 @@ class WatcherFacade private constructor(project: Project) {
                 Thread.currentThread().interrupt()
             }
         }
+    }
+
+    private fun findPort(
+        parent: FunctionBlockDeclaration,
+        port: String
+    ): FBPortDescriptor? {
+        return parent.type.eventInputPorts.find { it.name == port }
+            ?: parent.type.eventOutputPorts.find { it.name == port }
+            ?: parent.type.dataInputPorts.find { it.name == port }
+            ?: parent.type.dataOutputPorts.find { it.name == port }
     }
 
     companion object {
