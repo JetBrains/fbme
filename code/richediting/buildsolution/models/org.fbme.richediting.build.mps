@@ -368,9 +368,6 @@
     </node>
     <node concept="m$_wf" id="42vv4xsIIHl" role="3989C9">
       <property role="m$_wk" value="fbme.richediting" />
-      <node concept="m$_yC" id="2DkaXgJ5aAC" role="m$_yJ">
-        <ref role="m$_y1" to="recy:7ZpdjDjcHi_" resolve="fbme.debugger" />
-      </node>
       <node concept="m$_yC" id="Ej4tEplrU$" role="m$_yJ">
         <ref role="m$_y1" to="ci82:68dTcycFmsQ" resolve="fbme.platform" />
       </node>
@@ -748,11 +745,6 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="5AasUgojOiZ" role="3bR37C">
-          <node concept="3bR9La" id="5AasUgojOj0" role="1SiIV1">
-            <ref role="3bR37D" to="recy:7ZpdjDjcHiz" resolve="org.fbme.debugger" />
-          </node>
-        </node>
       </node>
       <node concept="1E1JtD" id="42vv4xsIIUH" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -889,9 +881,6 @@
     </node>
     <node concept="2sgV4H" id="ApHj0p5VBk" role="1l3spa">
       <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
-    </node>
-    <node concept="2sgV4H" id="5AasUgojOaC" role="1l3spa">
-      <ref role="1l3spb" to="recy:7ZpdjDjcHim" resolve="fbme_debugger" />
     </node>
   </node>
 </model>

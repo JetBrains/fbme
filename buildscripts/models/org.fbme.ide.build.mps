@@ -1781,6 +1781,11 @@
           </node>
         </node>
       </node>
+      <node concept="1SiIV0" id="aucBW5W4vN" role="3bR37C">
+        <node concept="3bR9La" id="aucBW5W4vO" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDM" resolve="org.fbme.richediting.build" />
+        </node>
+      </node>
     </node>
     <node concept="1E1JtA" id="Ej4tEpnfBJ" role="3989C9">
       <property role="BnDLt" value="true" />

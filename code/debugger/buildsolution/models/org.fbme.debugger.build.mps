@@ -11,6 +11,7 @@
     <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
     <import index="66wk" ref="r:ca36cb90-c978-4e82-b9cd-9f3922cfc65f(org.fbme.library.build)" />
+    <import index="bco3" ref="r:4904ab70-42df-49dd-8218-a04fff347a01(org.fbme.richediting.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -113,6 +114,9 @@
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
+      <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
+        <child id="763829979718664967" name="files" index="3rtmxm" />
+      </concept>
       <concept id="4278635856200817744" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleModelRoot" flags="ng" index="1BupzO">
         <property id="8137134783396907368" name="convert2binary" index="1Hdu6h" />
         <property id="8137134783396676838" name="extracted" index="1HemKv" />
@@ -182,6 +186,9 @@
     </node>
     <node concept="2sgV4H" id="1b51meRUDDi" role="1l3spa">
       <ref role="1l3spb" to="jh3g:Ej4tEplrN$" resolve="fbme_scenes" />
+    </node>
+    <node concept="2sgV4H" id="aucBW5W4j7" role="1l3spa">
+      <ref role="1l3spb" to="bco3:68dTcycFmrj" resolve="fbme_richediting" />
     </node>
     <node concept="1l3spV" id="7ZpdjDjcHiM" role="1l3spN">
       <node concept="m$_wl" id="7ZpdjDjcHiQ" role="39821P">
@@ -587,6 +594,9 @@
       </node>
       <node concept="m$_yC" id="6NYBTcTrtdw" role="m$_yJ">
         <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="fbme.scenes" />
+      </node>
+      <node concept="m$_yC" id="aucBW5W4l3" role="m$_yJ">
+        <ref role="m$_y1" to="bco3:42vv4xsIIHl" resolve="fbme.richediting" />
       </node>
       <node concept="3_J27D" id="7ZpdjDjcHiG" role="m_cZH">
         <node concept="3Mxwew" id="7ZpdjDjcLB2" role="3MwsjC">
@@ -1094,6 +1104,46 @@
                 </node>
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="aucBW5W3Dn" role="3bR37C">
+          <node concept="3bR9La" id="aucBW5W3Do" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="aucBW5W3Dp" role="3bR37C">
+          <node concept="3bR9La" id="aucBW5W3Dq" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7Kfy9QB6KXW" resolve="jetbrains.mps.lang.core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="aucBW5W3Dr" role="3bR37C">
+          <node concept="3bR9La" id="aucBW5W3Ds" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIZ" resolve="MPS.Editor" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="aucBW5W3Dt" role="3bR37C">
+          <node concept="3bR9La" id="aucBW5W3Du" role="1SiIV1">
+            <ref role="3bR37D" to="jh3g:42vv4xsIJiX" resolve="org.fbme.scenes" />
+          </node>
+        </node>
+        <node concept="3rtmxn" id="aucBW5W4d5" role="3bR31x">
+          <node concept="3LXTmp" id="aucBW5W4d6" role="3rtmxm">
+            <node concept="55IIr" id="aucBW5W4d7" role="3LXTmr">
+              <node concept="2Ry0Ak" id="aucBW5W4d8" role="iGT6I">
+                <property role="2Ry0Am" value="solutions" />
+                <node concept="2Ry0Ak" id="aucBW5W4d9" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.debugger" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="aucBW5W4db" role="3LXTna">
+              <property role="3qWCbO" value="icons/**" />
+            </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="aucBW5W4oI" role="3bR37C">
+          <node concept="3bR9La" id="aucBW5W4oJ" role="1SiIV1">
+            <ref role="3bR37D" to="bco3:42vv4xsIIT7" resolve="org.fbme.ide.richediting" />
           </node>
         </node>
       </node>

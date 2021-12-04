@@ -10,7 +10,6 @@
       <sourceRoot location="org.eclipse.elk.alg.common-0.7.1.jar" />
       <sourceRoot location="org.eclipse.elk.core-0.7.1.jar" />
       <sourceRoot location="org.eclipse.elk.graph-0.7.1.jar" />
-      <sourceRoot location="org.eclipse.elk.alg.spore-0.7.1.jar" />
     </modelRoot>
   </models>
   <facets>
@@ -51,7 +50,6 @@
     <dependency reexport="false">c0080a47-7e37-4558-bee9-9ae18e690549(jetbrains.mps.lang.extension)</dependency>
     <dependency reexport="false">86441d7a-e194-42da-81a5-2161ec62a379(MPS.Workbench)</dependency>
     <dependency reexport="true">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
-    <dependency reexport="false">15002a50-4ccf-4200-98db-35093fe08692(org.fbme.debugger)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="11" />
@@ -93,7 +91,6 @@
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
     <module reference="c0080a47-7e37-4558-bee9-9ae18e690549(jetbrains.mps.lang.extension)" version="0" />
     <module reference="9ded098b-ad6a-4657-bfd9-48636cfe8bc3(jetbrains.mps.lang.traceable)" version="0" />
-    <module reference="15002a50-4ccf-4200-98db-35093fe08692(org.fbme.debugger)" version="0" />
     <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
