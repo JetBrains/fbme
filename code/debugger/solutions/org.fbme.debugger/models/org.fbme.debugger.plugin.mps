@@ -1406,14 +1406,14 @@
         </node>
         <node concept="3clFbF" id="1R4IoyRvaFp" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xGqWc" role="3clFbG">
-            <node concept="37vLTw" id="19RKY2xGqCa" role="2Oq$k0">
-              <ref role="3cqZAo" node="19RKY2xGpuf" resolve="actions" />
-            </node>
             <node concept="liA8E" id="19RKY2xGrau" role="2OqNvi">
               <ref role="37wK5l" node="19RKY2xFn5W" />
               <node concept="37vLTw" id="19RKY2xGtxn" role="37wK5m">
                 <ref role="3cqZAo" node="1R4IoyRvdoc" resolve="inspector" />
               </node>
+            </node>
+            <node concept="37vLTw" id="19RKY2xGqCa" role="2Oq$k0">
+              <ref role="3cqZAo" node="19RKY2xGpuf" resolve="actions" />
             </node>
           </node>
         </node>

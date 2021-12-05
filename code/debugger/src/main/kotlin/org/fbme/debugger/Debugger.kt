@@ -9,8 +9,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.TextFieldValue
 import jetbrains.mps.project.Project
 import org.fbme.debugger.ui.*
-import org.fbme.ide.platform.debugger.DevicesFacade
-import org.fbme.ide.platform.debugger.Watchable
+import org.fbme.ide.platform.debugger.*
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
@@ -31,9 +30,20 @@ class Debugger private constructor(private val project: Project) {
     val devices = mutableMapOf<DeviceDeclaration, DeviceData>()
     val deployNodes = mutableStateListOf<NavigatableNode>()
     val deploySelectedNode = mutableStateOf<NavigatableNode?>(null)
+    val watcherFacade = WatcherFacade.getInstance(project)
 
     private val debugPanel: ComposePanel by lazy { debugPanel(this) }
     private val deployPanel: ComposePanel by lazy { deployPanel(this) }
+
+    private val readWatchesListener = object : ReadWatchesListener {
+        override fun onReadWatches(watches: Map<WatchableData, String>) {
+            // TODO: add a state if watches is changed
+        }
+    }
+
+    init {
+        watcherFacade?.addReadWatchesListener(readWatchesListener)
+    }
 
     data class DeviceData(
         val system: SystemDeclaration?,

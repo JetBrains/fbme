@@ -39,10 +39,13 @@ dependencies {
     implementation(project(":code:library"))
     implementation(project(":code:language"))
     implementation(project(":code:platform"))
+    implementation(project(":code:richediting"))
 
     mpsImplementation(project(":code:library", "mps"))
-    mpsImplementation(project(":code:language", "mps"))
+    implementation(project(":code:language", "mps"))
     mpsImplementation(project(":code:platform", "mps"))
+    mpsImplementation(project(":code:richediting", "mps"))
+    implementation(project(":code:richediting", "mps"))
 
     implementation(compose.desktop.currentOs)
 }

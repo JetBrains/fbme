@@ -13,12 +13,10 @@ dependencies {
     implementation(project(":code:library"))
     implementation(project(":code:language"))
     implementation(project(":code:platform"))
-    implementation(project(":code:debugger"))
     mpsImplementation(project(":code:language", "mps"))
     mpsImplementation(project(":code:platform", "mps"))
     mpsImplementation(project(":code:scenes", "mps"))
     mpsImplementation(project(":code:library", "mps"))
-    mpsImplementation(project(":code:debugger", "mps"))
 }
 
 mps {

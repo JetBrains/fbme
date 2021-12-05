@@ -15,6 +15,7 @@ import java.io.IOException
 
 class WatcherFacade private constructor(project: Project) {
     private val devices: MutableMap<Identifier, MutableSet<WatchableData>> = HashMap()
+    private val readWatchesListeners: MutableSet<ReadWatchesListener> = mutableSetOf()
     private val watchedValueListeners: MutableMap<WatchableData, MutableSet<WatchedValueListener>> = HashMap()
     private val repository: PlatformRepository
     var thread: Thread? = null
@@ -59,6 +60,10 @@ class WatcherFacade private constructor(project: Project) {
         val device = watchable.path.root.container as DeviceDeclaration
         val identifier = device.identifier
         return devices[identifier]?.contains(watchable.serialize()) == true
+    }
+
+    fun addReadWatchesListener(listener: ReadWatchesListener) {
+        readWatchesListeners.add(listener)
     }
 
     fun addWatchedValueListener(watchable: WatchableData, listener: WatchedValueListener) {
@@ -109,29 +114,13 @@ class WatcherFacade private constructor(project: Project) {
                                 requireNotNull(device)
                                 val connection = DevicesFacade.instance?.attach(device)
                                 if (connection != null && connection.isAlive) {
-                                    val resolvedWatches: Map<WatchableData, String> =
-                                        resolveWatches(device, connection.readWatches())
-                                    val watchables = resolvedWatches.toList()
-                                    val groupedByParent = watchables.groupBy { (watchableData, _) ->
-                                        watchableData.resolve(repository).path.path.last()
+                                    val resolvedWatches: Map<WatchableData, String> = resolveWatches(device, connection.readWatches())
+
+                                    for (listener in readWatchesListeners) {
+                                        listener.onReadWatches(resolvedWatches)
                                     }
 
-                                    val result = mutableListOf<Pair<WatchableData, String>>()
-                                    for ((parent, ports) in groupedByParent) {
-//                                        val parentType = parent.type
-                                        result += ports.sortedBy { (watchableData, _) ->
-                                            val port = findPort(parent, watchableData.port) ?: error("Why?")
-                                            var res = -1.0 / (port.position + 2)
-                                            if (port.connectionKind == EntryKind.EVENT) {
-                                                res -= 1
-                                            }
-                                            if (port.isInput) {
-                                                res -= 2
-                                            }
-                                            return@sortedBy res
-                                        }
-                                    }
-                                    for ((key, value) in result) {
+                                    for ((key, value) in resolvedWatches) {
                                         val listeners: Set<WatchedValueListener> = watchedValueListeners[key]!!
                                         for (listener in listeners) {
                                             listener.onValueChanged(value)
