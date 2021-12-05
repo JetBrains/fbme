@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.TextFieldValue
 import jetbrains.mps.project.Project
 import org.fbme.debugger.ui.*
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.*
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
@@ -18,14 +18,14 @@ import java.io.IOException
 import javax.swing.JComponent
 
 class Debugger private constructor(private val project: Project) {
-    val watchables = mutableStateMapOf<Watchable, AnnotatedString>()
+    val watchables = mutableStateMapOf<Watchable, String?>()
     val watchableNodes = mutableStateListOf<NavigatableNode>()
     val searchWatchables = mutableStateOf(TextFieldValue())
     val selectedWatchableNode = mutableStateOf<NavigatableNode?>(null)
     val watchablePathTypes = mutableMapOf<FunctionBlockDeclaration, Declaration?>()
     val states = mutableStateListOf<StateData>()
     val searchStates = mutableStateOf(TextFieldValue())
-    val selectedState = mutableStateOf<Debugger.StateData?>(null)
+    val selectedState = mutableStateOf<StateData?>(null)
     val inspections = mutableMapOf<Watchable, InspectionProvider>()
     val devices = mutableMapOf<DeviceDeclaration, DeviceData>()
     val deployNodes = mutableStateListOf<NavigatableNode>()
@@ -36,8 +36,30 @@ class Debugger private constructor(private val project: Project) {
     private val deployPanel: ComposePanel by lazy { deployPanel(this) }
 
     private val readWatchesListener = object : ReadWatchesListener {
+        @Synchronized
         override fun onReadWatches(watches: Map<WatchableData, String>) {
-            // TODO: add a state if watches is changed
+            val repository = PlatformRepositoryProvider.getInstance(project)
+            val newWatches = watches.mapKeys { it.key.resolve(repository) }
+
+            val changes = mutableMapOf<Watchable, Pair<String?, String?>>()
+            val currentWatches = states.firstOrNull()?.watches ?: watchables
+            if (currentWatches.isNotEmpty()) {
+                for ((watchable, oldValue) in currentWatches) {
+                    val newValue = newWatches[watchable] ?: continue
+                    if (newValue != oldValue) {
+                        changes[watchable] = Pair(oldValue, newValue)
+                    }
+                }
+            }
+
+            if (changes.isNotEmpty()) {
+                states.add(0,
+                    StateData(
+                        changes = changes,
+                        watches = newWatches
+                    )
+                )
+            }
         }
     }
 
@@ -57,21 +79,19 @@ class Debugger private constructor(private val project: Project) {
     )
 
     data class StateData(
-        val watchable: Watchable,
-        val oldValue: String?,
-        val newValue: String,
-        val watchables: Map<Watchable, AnnotatedString>
+        val changes: Map<Watchable, Pair<String?, String?>>,
+        val watches: Map<Watchable, String?>
     ) {
+        val timestamp = getCurrentDateTime()
         internal val focusRequester = FocusRequester()
-        override fun toString(): String {
-            return watchable.fqName + ": " + (oldValue ?: "???") + " -> " + newValue
-        }
+
+        val label = "${changes.size} changes at ${timestamp.toString("dd.MM.yyyy, HH:mm:ss.SSS")}"
     }
 
     @Synchronized
     fun watch(watchable: Watchable, inspectionProvider: InspectionProvider) {
         if (!watchables.contains(watchable)) {
-            val value = AnnotatedString("???")
+            val value = null
             watchables[watchable] = value
             inspections[watchable] = inspectionProvider
 
@@ -137,7 +157,6 @@ class Debugger private constructor(private val project: Project) {
             val node = WatchablesTreeNodes.PortNode(
                 parent = parentNode,
                 watchable = watchable,
-                value = mutableStateOf(value),
                 isEvent = when (portDescriptor.connectionKind) {
                     EntryKind.EVENT -> true
                     EntryKind.DATA -> false
@@ -199,27 +218,12 @@ class Debugger private constructor(private val project: Project) {
     @Synchronized
     fun setValueForWatchable(watchable: Watchable, newValue: String) {
         val oldValue = watchables[watchable]
-        if (oldValue?.text != newValue) {
-            val newAnnotatedValue = AnnotatedString(newValue)
-            watchables[watchable] = newAnnotatedValue
-            states.add(
-                index = 0,
-                StateData(
-                    watchable = watchable,
-                    oldValue = oldValue?.text,
-                    newValue = newValue,
-                    watchables = watchables.toMap()
-                )
-            )
-            for (node in watchableNodes) {
-                if (node is WatchablesTreeNodes.PortNode && node.watchable === watchable) {
-                    node.value.value = newAnnotatedValue
-                    break
-                }
-            }
+        if (oldValue != newValue) {
+            watchables[watchable] = newValue
         }
     }
 
+    @Synchronized
     fun deployResource(device: DeviceDeclaration, resource: ResourceDeclaration) {
         project.modelAccess.runReadAction {
             try {
@@ -239,6 +243,7 @@ class Debugger private constructor(private val project: Project) {
         }
     }
 
+    @Synchronized
     fun stopResource(device: DeviceDeclaration, resource: ResourceDeclaration) {
         project.modelAccess.runReadAction {
             try {
@@ -246,9 +251,6 @@ class Debugger private constructor(private val project: Project) {
                 if (connection != null) {
                     connection.killResource(resource)
                     connection.deleteResource(resource)
-                    for (watchable in watchables.keys) {
-                        watchables[watchable] = AnnotatedString("???")
-                    }
                 } else {
                     error("Can't connect to device")
                 }
@@ -259,6 +261,7 @@ class Debugger private constructor(private val project: Project) {
         }
     }
 
+    @Synchronized
     fun killResource(device: DeviceDeclaration, resource: ResourceDeclaration) {
         project.modelAccess.runReadAction {
             try {
@@ -275,6 +278,7 @@ class Debugger private constructor(private val project: Project) {
         }
     }
 
+    @Synchronized
     fun deleteResource(device: DeviceDeclaration, resource: ResourceDeclaration) {
         project.modelAccess.runReadAction {
             try {
@@ -334,11 +338,9 @@ class Debugger private constructor(private val project: Project) {
 
     fun clear() {
         states.clear()
+        selectedState.value = null
         for (watchable in watchables.keys) {
-            watchables[watchable] = AnnotatedString("???")
-        }
-        for (portNode in watchableNodes.filterIsInstance<WatchablesTreeNodes.PortNode>()) {
-            portNode.value.value = watchables[portNode.watchable]!!
+            watchables[watchable] = null
         }
     }
 

@@ -42,9 +42,7 @@ object WatchablesTreeNodes {
     class PortNode(
         override val parent: FBNode,
         val watchable: Watchable,
-        val value: MutableState<AnnotatedString>,
         val isEvent: Boolean,
         val isInput: Boolean
-    ) : LeafNode() {
-    }
+    ) : LeafNode()
 }

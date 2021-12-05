@@ -7,7 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import org.fbme.debugger.*
 import org.fbme.debugger.ui.WatchablesTreeNodes.BasicFBNode
@@ -79,7 +81,7 @@ fun WatchablesTree(
         ItemIcon(node)
         ItemName(node, debugger.selectedWatchableNode.value === node)
         if (node is PortNode) {
-            PortValue(node)
+            PortValue(debugger, node)
         }
     }
 }
@@ -119,9 +121,19 @@ private fun ItemName(node: NavigatableNode, isSelected: Boolean = false) {
 }
 
 @Composable
-private fun PortValue(port: PortNode, isSelected: Boolean = false) {
+private fun PortValue(debugger: Debugger, port: PortNode, isSelected: Boolean = false) {
     ItemText(text = buildAnnotatedString {
+        val value = debugger.watchables[port.watchable] ?: "???"
         append("                   --> ")
-        append(port.value.value)
+        if (debugger.selectedState.value?.changes?.containsKey(port.watchable) == true) {
+            val annotatedValue = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = textHighlight.compose)) {
+                    append(value)
+                }
+            }
+            append(annotatedValue)
+        } else {
+            append(value)
+        }
     }, isSelected)
 }

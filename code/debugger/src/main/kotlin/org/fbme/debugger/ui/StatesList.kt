@@ -128,7 +128,7 @@ private fun StateItem(
     ) {
         Text(
             modifier = Modifier.padding(start = 24.dp),
-            text = state.toString(),
+            text = state.label,
             color = if (selectedItem.value !== state) MaterialTheme.colors.listForeground else MaterialTheme.colors.listSelectionForeground,
             fontSize = 14.sp
         )
@@ -139,23 +139,16 @@ private fun onState(
     debugger: Debugger,
     state: Debugger.StateData,
 ) {
-    debugger.watchables.putAll(state.watchables)
+    debugger.watchables.putAll(state.watches)
     for ((watchable, value) in debugger.watchables) {
         val inspectionProvider = debugger.inspections[watchable]
         checkNotNull(inspectionProvider)
-        if (watchable === state.watchable) {
-            inspectionProvider.setInspection(value.text, textHighlight)
-            val annotatedValue = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = textHighlight.compose)) {
-                    append(state.newValue)
-                }
-            }
-            debugger.watchables[watchable] = annotatedValue
+
+        if (state.changes.containsKey(watchable)) {
+            inspectionProvider.setInspection(value ?: ("???"), textHighlight)
+            debugger.watchables[watchable] = value
         } else {
-            inspectionProvider.setInspection(value.text)
+            inspectionProvider.setInspection(value ?: ("???"))
         }
-    }
-    for (portNode in debugger.watchableNodes.filterIsInstance<WatchablesTreeNodes.PortNode>()) {
-        portNode.value.value = debugger.watchables[portNode.watchable] ?: AnnotatedString("???")
     }
 }

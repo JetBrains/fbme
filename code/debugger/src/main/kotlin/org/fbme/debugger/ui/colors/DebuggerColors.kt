@@ -35,11 +35,11 @@ val Colors.textFieldInactiveForeground: Color
     get() = UIManager.getColor("TextField.inactiveForeground").compose
 
 val Colors.textHighlight: Color
-    get() = UIManager.getColor("textHighlight").compose
+    get() = UIManager.getColor("ProgressBar.passedColor").compose
 
 // for using from not-composable functions
 val textHighlight: java.awt.Color
-    get() = UIManager.getColor("textHighlight")
+    get() = UIManager.getColor("ProgressBar.passedColor")
 
 val Colors.buttonSelect: Color
     get() = UIManager.getColor("Button.select").compose
