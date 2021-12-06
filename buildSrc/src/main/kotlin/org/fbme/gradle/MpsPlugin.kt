@@ -135,7 +135,7 @@ class MpsPlugin : Plugin<Project> {
     companion object {
 
         fun Project.mpsDistribution(): ConfigurableFileTree =
-                fileTree("../../lib/MPS 2020.2/") {
+                fileTree("../../lib/MPS 2021.2/") {
                     include("lib/**/*.jar")
                     exclude("**/*-src.jar")
                 }

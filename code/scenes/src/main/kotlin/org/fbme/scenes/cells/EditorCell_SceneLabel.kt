@@ -40,7 +40,7 @@ class EditorCell_SceneLabel(
     }
 
     init {
-        textLine = TextLine(text, style, false, context)
+        textLine = TextLine(text, style, false, editor.editorComponentSettings)
         if (error) {
             textLine.showErrorColor()
         }
