@@ -165,7 +165,7 @@
             <node concept="2Ry0Ak" id="Ej4tEplx2w" role="2Ry0An">
               <property role="2Ry0Am" value="lib" />
               <node concept="2Ry0Ak" id="Ej4tEplx2x" role="2Ry0An">
-                <property role="2Ry0Am" value="MPS 2020.2" />
+                <property role="2Ry0Am" value="MPS 2021.2" />
               </node>
             </node>
           </node>
@@ -365,6 +365,36 @@
         <node concept="1SiIV0" id="X8OuacFwMh" role="3bR37C">
           <node concept="3bR9La" id="X8OuacFwMi" role="1SiIV1">
             <ref role="3bR37D" to="jh3g:42vv4xsIJiX" resolve="org.fbme.scenes" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK82" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK83" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK84" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK85" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK86" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK87" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7Kfy9QB6KXW" resolve="jetbrains.mps.lang.core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK88" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK89" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK8a" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK8b" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK8c" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK8d" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7KapL9OABnm" resolve="jetbrains.mps.ide.ui" />
           </node>
         </node>
       </node>

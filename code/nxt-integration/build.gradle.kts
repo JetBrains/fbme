@@ -9,6 +9,10 @@ dependencies {
     implementation(project(":code:library"))
     implementation(project(":code:language"))
     implementation(project(":code:platform"))
+    mpsImplementation(project(":code:library", "mps"))
+    mpsImplementation(project(":code:language", "mps"))
+    mpsImplementation(project(":code:platform", "mps"))
+    mpsImplementation(project(":code:richediting", "mps"))
 }
 
 mps {

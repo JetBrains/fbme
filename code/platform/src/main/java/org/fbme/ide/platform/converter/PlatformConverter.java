@@ -34,6 +34,14 @@ public final class PlatformConverter {
         return new RootConverter(configuration, new PlatformIdentifierLocus(modelReference), document);
     }
 
+    @NotNull
+    public static RootConverter create(
+            @NotNull Iec61499ConverterConfiguration configuration,
+            @NotNull SModelReference modelReference,
+            @NotNull Document document
+    ) {
+        return new RootConverter(configuration, new PlatformIdentifierLocus(modelReference), document);
+    }
 
     private static class PlatformIdentifierLocus implements IdentifierLocus {
         private final SModelReference myReference;

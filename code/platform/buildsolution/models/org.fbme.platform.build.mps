@@ -132,7 +132,6 @@
       </concept>
       <concept id="3189788309731840247" name="jetbrains.mps.build.mps.structure.BuildMps_Solution" flags="ng" index="1E1JtA" />
       <concept id="322010710375871467" name="jetbrains.mps.build.mps.structure.BuildMps_AbstractModule" flags="ng" index="3LEN3z">
-        <property id="8369506495128725901" name="compact" index="BnDLt" />
         <property id="322010710375892619" name="uuid" index="3LESm3" />
         <child id="322010710375956261" name="path" index="3LF7KH" />
       </concept>
@@ -256,7 +255,6 @@
     <node concept="2G$12M" id="68dTcycFmt7" role="3989C9">
       <property role="TrG5h" value="fbme-platform" />
       <node concept="1E1JtA" id="42vv4xsIHLX" role="2G$12L">
-        <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.ide.platform" />
         <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
         <node concept="3rtmxn" id="3ZIdPazw4gS" role="3bR31x">
