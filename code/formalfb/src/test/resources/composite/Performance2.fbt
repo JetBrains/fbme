@@ -19,11 +19,11 @@
 		</OutputVars>
 	</InterfaceList>
 	<FBNetwork>
-		<FB Name="ALU_2" Type="ALU" Comment="" x="1142.8571428571427" y="142.85714285714283">
-			<Parameter Name="B" Value="1"/>
-		</FB>
 		<FB Name="ALU_1" Type="ALU" Comment="" x="285.71428571428567" y="142.85714285714283">
 			<Parameter Name="A" Value="0"/>
+			<Parameter Name="B" Value="1"/>
+		</FB>
+		<FB Name="ALU_2" Type="ALU" Comment="" x="1142.8571428571427" y="142.85714285714283">
 			<Parameter Name="B" Value="1"/>
 		</FB>
 		<EventConnections>

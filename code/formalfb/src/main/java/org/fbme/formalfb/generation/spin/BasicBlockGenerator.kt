@@ -20,7 +20,7 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
             $eccTypeAliasesDeclaration
             proctype ${basicType.name}(chan
                 ${parameterDeclarations()}
-                alpha, beta
+                $alpha, $beta
                 ) {
                 ${embed(4) {bufferDeclarations()} }
                 ${embed(4) {internalVarDeclarations()} }
@@ -31,7 +31,7 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
 
               wait_events:
                 end: // valid end state
-                alpha?true;
+                $alpha?true;
                 $existsInputEvent = ${checkInputEvents()};
 
                 ${embed(4) { readInputBuffers() }}
@@ -88,7 +88,7 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
 
 
               done: // RuleSet10
-                beta!true;
+                $beta!true;
                 goto wait_events;
             }
         """.trimIndent()
@@ -257,12 +257,6 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         addLine("}")
     }
 
-    private fun checkInputEvents(): String {
-        return basicType.inputEvents.joinToString (separator = " || ") { ie ->
-            "nempty(${mapInputEvent(ie, nameMappings)})"
-        }
-    }
-
     private fun TemplateEmbedder.internalVarDeclarations() {
         if (basicType.internalVariables.isEmpty()) return addLine("// No internal vars")
         for (parameter in basicType.internalVariables) {
@@ -270,24 +264,7 @@ class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGenerator
         }
     }
 
-    private fun TemplateEmbedder.bufferDeclarations() {
-        for (parameter in basicType.inputParameters) {
-            addLine(initializeParameter(parameter))
-        }
-        for (param in basicType.outputParameters) {
-            addLine(initializeParameter(param))
-        }
-    }
-
-    private fun initializeParameter(parameter: ParameterDeclaration): String {
-        val type = map2SpinType(parameter.type!!)
-        val initialValue = map2SpinInitialVal(type, parameter.initialValue)
-        val name = mapVarName(parameter.name)
-        return "$type $name = $initialValue;"
-    }
-
     companion object Vars {
-        const val existsInputEvent = "ExistsInputEvent"
         const val existsEnabledECTran = "ExistsEnabledECTran"
     }
 }
