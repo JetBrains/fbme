@@ -18,12 +18,6 @@ public class CompositeCreator {
     public CompositeCreator() {
     }
 
-    public void testLaunch(FBNetwork fbNetwork, SModel sModel, IEC61499Factory factory) {
-        createComposite(fbNetwork, fbNetwork.getFunctionBlocks().stream().filter(block ->
-                block.getName().equals("FB6") || block.getName().equals("FB10"))
-                .collect(Collectors.toList()), sModel, factory);
-    }
-
     public void createComposite(
             FBNetwork fbNetwork,
             List<FunctionBlockDeclaration> functionBlockDeclarationList,
@@ -45,7 +39,6 @@ public class CompositeCreator {
         setDeclarationCoordinates(compositeFunctionBlockDeclaration, functionBlockDeclarationList); // set network coordinates
         fbNetwork.getFunctionBlocks().add(compositeFunctionBlockDeclaration);
 
-
         List<FBNetworkConnection> eventConnections = fbNetwork.getEventConnections();
         List<FBNetworkConnection> dataConnections = fbNetwork.getDataConnections();
         DeclarationExtractor declarationExtractor = new DeclarationExtractor(eventConnections, dataConnections, innerFBs);
@@ -57,34 +50,9 @@ public class CompositeCreator {
                 continue;
             }
 
-            // copy events
             String fbName = blockDeclaration.getName();
             CoordinateShift shift = createShift(fbName, fbType);
-            compositeFB.getInputEvents().addAll(
-                    renameEventDeclarations(
-                            declarationExtractor.extractEvents(fbType.getInputEvents(), blockDeclaration, Type.INPUT, shift),
-                            fbName
-                    )
-            );
-            compositeFB.getOutputEvents().addAll(
-                    renameEventDeclarations(
-                            declarationExtractor.extractEvents(fbType.getOutputEvents(), blockDeclaration, Type.OUTPUT, shift),
-                            fbName
-                    )
-            );
-            shift.adjustYForParameters();
-            compositeFB.getInputParameters().addAll(
-                    renameParameterDeclarations(
-                            declarationExtractor.extractParameters(fbType.getInputParameters(), blockDeclaration, Type.INPUT, shift),
-                            fbName
-                    )
-            );
-            compositeFB.getOutputParameters().addAll(
-                    renameParameterDeclarations(
-                            declarationExtractor.extractParameters(fbType.getOutputParameters(), blockDeclaration, Type.OUTPUT, shift),
-                            fbName
-                    )
-            );
+            copyEvents(blockDeclaration, fbType, compositeFB, declarationExtractor, fbName, shift);
 
             minX = Math.min(minX, blockDeclaration.getX() + shift.getX(Type.INPUT));
         }
@@ -98,11 +66,51 @@ public class CompositeCreator {
         rehangExternalConnections(declarationExtractor.getExternalConnectionsOutputMap(), compositeFunctionBlockDeclaration, Type.OUTPUT);
 
         // TODO think about optimal coordinate shifts
-//        int decX = minX > 500 ? minX - 500 : 0;
+        // int decX = minX > 500 ? minX - 500 : 0;
         int decX = minX;
         int decY = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getY).min().orElse(0);
 
-        // adjust paths coordinates within new network
+        adjustNetworkCoordinates(declarationExtractor, compositeFB, functionBlockDeclarationList, fbNetwork, decX, decY);
+
+        // add connections to external input/output based on existed external connection from inner blocks
+        createInnerIOConnections(compositeFB, declarationExtractor.getDeclarationPortPathMap(), factory, decX, decY);
+    }
+
+    private void copyEvents(
+            FunctionBlockDeclaration blockDeclaration,
+            FBTypeDeclaration fbType,
+            CompositeFBTypeDeclaration compositeFB,
+            DeclarationExtractor declarationExtractor,
+            String fbName,
+            CoordinateShift shift
+    ) {
+        List<EventDeclaration> inputEvents = declarationExtractor.extractEvents(fbType.getInputEvents(), blockDeclaration, Type.INPUT, shift);
+        compositeFB.getInputEvents().addAll(renameEventDeclarations(inputEvents, fbName));
+
+        List<EventDeclaration> outputEvents = declarationExtractor.extractEvents(fbType.getOutputEvents(), blockDeclaration, Type.OUTPUT, shift);
+        compositeFB.getOutputEvents().addAll(renameEventDeclarations(outputEvents, fbName));
+
+        shift.adjustYForParameters();
+
+        List<ParameterDeclaration> inputParameters = declarationExtractor.extractParameters(fbType.getInputParameters(), blockDeclaration, Type.INPUT, shift);
+        compositeFB.getInputParameters().addAll(renameParameterDeclarations(inputParameters, fbName));
+
+        List<ParameterDeclaration> outputParameters = declarationExtractor.extractParameters(fbType.getOutputParameters(), blockDeclaration, Type.OUTPUT, shift);
+        compositeFB.getOutputParameters().addAll(renameParameterDeclarations(outputParameters, fbName));
+    }
+
+    private void adjustNetworkCoordinates(
+            DeclarationExtractor declarationExtractor,
+            CompositeFBTypeDeclaration compositeFB,
+            List<FunctionBlockDeclaration> functionBlockDeclarationList,
+            FBNetwork fbNetwork,
+            int decX,
+            int decY
+    ) {
+        List<FBNetworkConnection> eventConnections = fbNetwork.getEventConnections();
+        List<FBNetworkConnection> dataConnections = fbNetwork.getDataConnections();
+
+        // adjust paths
         for (FBNetworkConnection connection : declarationExtractor.getInternalConnectionsSet()) {
             if (connection.getKind().equals(EntryKind.EVENT)) {
                 eventConnections.remove(connection);
@@ -121,18 +129,13 @@ public class CompositeCreator {
             }
         }
 
-        // adjust blockDeclaration coordinates within new network
+        // adjust blockDeclarations
         for (FunctionBlockDeclaration blockDeclaration : functionBlockDeclarationList) {
             fbNetwork.getFunctionBlocks().remove(blockDeclaration);
             blockDeclaration.setX(blockDeclaration.getX() - decX);
             blockDeclaration.setY(blockDeclaration.getY() - decY);
             compositeFB.getNetwork().getFunctionBlocks().add(blockDeclaration);
         }
-
-        // add connections to external input/output based on existed external connection from inner blocks
-        createInnerIOConnections(compositeFB, declarationExtractor.getDeclarationPortPathMap(), factory, decX, decY);
-
-        var c = 0;
     }
 
     private void createInnerIOConnections(

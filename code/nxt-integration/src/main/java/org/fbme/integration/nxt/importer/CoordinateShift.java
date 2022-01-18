@@ -2,12 +2,12 @@ package org.fbme.integration.nxt.importer;
 
 public class CoordinateShift {
     public int yDiff;
-    private Integer yInput;
-    private Integer yOutput;
-    private final Integer xInput;
-    private final Integer xOutput;
+    private int yInput;
+    private int yOutput;
+    private final int xInput;
+    private final int xOutput;
 
-    public CoordinateShift(Integer xInput, Integer xOutput) {
+    public CoordinateShift(int xInput, int xOutput) {
         yDiff = 50;
         yInput = 50;
         yOutput = 50;
@@ -15,15 +15,15 @@ public class CoordinateShift {
         this.xOutput = xOutput;
     }
 
-    public Integer getY(Type type) {
+    public int getY(Type type) {
         return type == Type.INPUT ? yInput : yOutput;
     }
 
-    public Integer getX(Type type) {
+    public int getX(Type type) {
         return type == Type.INPUT ? xInput : xOutput;
     }
 
-    public void setY(Type type, Integer value) {
+    public void setY(Type type, int value) {
         if (type == Type.INPUT) {
             yInput = value;
         } else {
