@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)">
+<model ref="r:c951fe04-0ad9-4d6c-9dc3-bae009e3b17b(org.fbme.integration.nxt.build)">
   <persistence version="9" />
+  <attribute name="doNotGenerate" value="false" />
   <languages>
     <use id="0cf935df-4699-4e9c-a132-fa109541cba3" name="jetbrains.mps.build.mps" version="7" />
     <use id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build" version="0" />
@@ -9,6 +10,9 @@
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
     <import index="66wk" ref="r:ca36cb90-c978-4e82-b9cd-9f3922cfc65f(org.fbme.library.build)" />
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
+    <import index="ci82" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)" />
+    <import index="bco3" ref="r:4904ab70-42df-49dd-8218-a04fff347a01(org.fbme.richediting.build)" />
+    <import index="jh3g" ref="r:96a6171e-d03e-4270-ab9e-fd0a743a5228(org.fbme.scenes.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -62,9 +66,6 @@
       <concept id="4701820937132344003" name="jetbrains.mps.build.structure.BuildLayout_Container" flags="ng" index="1y1bJS">
         <child id="7389400916848037006" name="children" index="39821P" />
       </concept>
-      <concept id="5610619299013057363" name="jetbrains.mps.build.structure.BuildLayout_ImportContent" flags="ng" index="3ygNvl">
-        <reference id="5610619299013057365" name="target" index="3ygNvj" />
-      </concept>
       <concept id="841011766566059607" name="jetbrains.mps.build.structure.BuildStringNotEmpty" flags="ng" index="3_J27D" />
       <concept id="5248329904287794596" name="jetbrains.mps.build.structure.BuildInputFiles" flags="ng" index="3LXTmp">
         <child id="5248329904287794598" name="dir" index="3LXTmr" />
@@ -83,9 +84,6 @@
       </concept>
     </language>
     <language id="0cf935df-4699-4e9c-a132-fa109541cba3" name="jetbrains.mps.build.mps">
-      <concept id="6592112598314586625" name="jetbrains.mps.build.mps.structure.BuildMps_IdeaPluginGroup" flags="ng" index="m$f5U">
-        <reference id="6592112598314586626" name="group" index="m$f5T" />
-      </concept>
       <concept id="6592112598314498932" name="jetbrains.mps.build.mps.structure.BuildMps_IdeaPlugin" flags="ng" index="m$_wf">
         <property id="6592112598314498927" name="id" index="m$_wk" />
         <child id="6592112598314498931" name="version" index="m$_w8" />
@@ -98,6 +96,9 @@
       <concept id="6592112598314498926" name="jetbrains.mps.build.mps.structure.BuildMpsLayout_Plugin" flags="ng" index="m$_wl">
         <reference id="6592112598314801433" name="plugin" index="m_rDy" />
         <child id="3570488090019868128" name="packagingType" index="pUk7w" />
+      </concept>
+      <concept id="6592112598314499036" name="jetbrains.mps.build.mps.structure.BuildMps_IdeaPluginModule" flags="ng" index="m$_yB">
+        <reference id="6592112598314499037" name="target" index="m$_yA" />
       </concept>
       <concept id="6592112598314499027" name="jetbrains.mps.build.mps.structure.BuildMps_IdeaPluginDependency" flags="ng" index="m$_yC">
         <reference id="6592112598314499066" name="target" index="m$_y1" />
@@ -115,7 +116,6 @@
         <child id="5253498789149547704" name="dependencies" index="3bR37C" />
       </concept>
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
-        <property id="5253498789149547713" name="reexport" index="3bR36h" />
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
       <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
@@ -141,7 +141,7 @@
     </language>
   </registry>
   <node concept="1l3spW" id="68dTcycFmrj">
-    <property role="TrG5h" value="fbme_platform" />
+    <property role="TrG5h" value="fbme_nxt" />
     <property role="2DA0ip" value="../" />
     <node concept="10PD9b" id="2H5LTAROD4A" role="10PD9s" />
     <node concept="3b7kt6" id="68dTcycFmrN" role="10PD9s" />
@@ -164,7 +164,7 @@
             <property role="2Ry0Am" value=".." />
             <node concept="2Ry0Ak" id="Ej4tEplx2w" role="2Ry0An">
               <property role="2Ry0Am" value="lib" />
-              <node concept="2Ry0Ak" id="7oR4BXKbScK" role="2Ry0An">
+              <node concept="2Ry0Ak" id="Ej4tEplx2x" role="2Ry0An">
                 <property role="2Ry0Am" value="MPS 2021.2" />
               </node>
             </node>
@@ -174,7 +174,7 @@
     </node>
     <node concept="1l3spV" id="68dTcycFms2" role="1l3spN">
       <node concept="m$_wl" id="42vv4xsIICZ" role="39821P">
-        <ref role="m_rDy" node="68dTcycFmsQ" resolve="fbme.platform" />
+        <ref role="m_rDy" node="68dTcycFmsQ" resolve="fbme.integration.nxt" />
         <node concept="pUk6w" id="ApHj0p3W8W" role="pUk7w" />
         <node concept="398223" id="407BnQQiibW" role="39821P">
           <node concept="3_J27D" id="407BnQQiibY" role="Nbhlr">
@@ -187,20 +187,17 @@
               <node concept="2Ry0Ak" id="407BnQQiicm" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
                 <node concept="2Ry0Ak" id="407BnQQiics" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                  <property role="2Ry0Am" value="org.fbme.integration.nxt" />
                   <node concept="2Ry0Ak" id="2PLQk48YTNT" role="2Ry0An">
                     <property role="2Ry0Am" value="lib" />
                     <node concept="2Ry0Ak" id="2PLQk48YTNU" role="2Ry0An">
-                      <property role="2Ry0Am" value="platform.jar" />
+                      <property role="2Ry0Am" value="nxt-integration.jar" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
           </node>
-        </node>
-        <node concept="3ygNvl" id="ApHj0p3W9j" role="39821P">
-          <ref role="3ygNvj" to="ci81:68dTcycFms2" />
         </node>
         <node concept="398223" id="ApHj0p3W91" role="39821P">
           <node concept="3_J27D" id="ApHj0p3W92" role="Nbhlr">
@@ -209,19 +206,19 @@
             </node>
           </node>
           <node concept="L2wRC" id="ApHj0p3W97" role="39821P">
-            <ref role="L2wRA" node="42vv4xsIHLX" resolve="org.fbme.ide.platform" />
+            <ref role="L2wRA" node="42vv4xsIHLX" resolve="org.fbme.integration.nxt" />
           </node>
         </node>
       </node>
     </node>
     <node concept="m$_wf" id="68dTcycFmsQ" role="3989C9">
-      <property role="m$_wk" value="fbme.platform" />
-      <node concept="m$_yC" id="Ej4tEplebq" role="m$_yJ">
-        <ref role="m$_y1" to="66wk:42vv4xsIHQK" resolve="fbme.library" />
+      <property role="m$_wk" value="fbme.integration.nxt" />
+      <node concept="m$_yC" id="5rownaaWO0_" role="m$_yJ">
+        <ref role="m$_y1" to="ci82:68dTcycFmsQ" resolve="fbme.platform" />
       </node>
       <node concept="3_J27D" id="68dTcycFmsY" role="m$_yQ">
         <node concept="3Mxwew" id="68dTcycFmsZ" role="3MwsjC">
-          <property role="3MwjfP" value="FBME - Platform" />
+          <property role="3MwjfP" value="FBME - Nxt Integration" />
         </node>
       </node>
       <node concept="3_J27D" id="68dTcycFmt0" role="m$_w8">
@@ -229,64 +226,49 @@
           <ref role="3Mxwex" node="68dTcycFmrY" resolve="ide-version" />
         </node>
       </node>
-      <node concept="m$f5U" id="68dTcycFmt2" role="m$_yh">
-        <ref role="m$f5T" node="68dTcycFmt7" resolve="fbme-platform" />
-      </node>
-      <node concept="m$f5U" id="ApHj0p0DQC" role="m$_yh">
-        <ref role="m$f5T" to="ci81:68dTcycFmt7" resolve="fbme-language" />
-      </node>
       <node concept="m$_yC" id="68dTcycFmt3" role="m$_yJ">
         <ref role="m$_y1" to="ffeo:4k71ibbKLe8" resolve="jetbrains.mps.core" />
       </node>
       <node concept="3_J27D" id="68dTcycFmt5" role="m_cZH">
         <node concept="3Mxwew" id="68dTcycFmt6" role="3MwsjC">
-          <property role="3MwjfP" value="fbme.platform" />
+          <property role="3MwjfP" value="fbme.integration.nxt" />
         </node>
       </node>
       <node concept="m$_yC" id="1_Zi$Xmosw5" role="m$_yJ">
         <ref role="m$_y1" to="ffeo:5CFKsRWV4Nl" resolve="jetbrains.mps.execution.languages" />
       </node>
+      <node concept="m$_yC" id="X8OuacFwN4" role="m$_yJ">
+        <ref role="m$_y1" to="bco3:42vv4xsIIHl" resolve="fbme.richediting" />
+      </node>
+      <node concept="m$_yC" id="X8OuacFwNq" role="m$_yJ">
+        <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="fbme.scenes" />
+      </node>
       <node concept="3_J27D" id="42vv4xsIHBP" role="3s6cr7">
         <node concept="3Mxwew" id="42vv4xsIHBR" role="3MwsjC">
-          <property role="3MwjfP" value="FBME IDE platform" />
+          <property role="3MwjfP" value="FBME Integration with NxtStudio and NxtControl" />
         </node>
+      </node>
+      <node concept="m$_yB" id="5rownaaWO0b" role="m$_yh">
+        <ref role="m$_yA" node="42vv4xsIHLX" resolve="org.fbme.integration.nxt" />
       </node>
     </node>
     <node concept="2G$12M" id="68dTcycFmt7" role="3989C9">
       <property role="TrG5h" value="fbme-platform" />
       <node concept="1E1JtA" id="42vv4xsIHLX" role="2G$12L">
-        <property role="TrG5h" value="org.fbme.ide.platform" />
-        <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
-        <node concept="3rtmxn" id="3ZIdPazw4gS" role="3bR31x">
-          <node concept="3LXTmp" id="3ZIdPazw4gU" role="3rtmxm">
-            <node concept="55IIr" id="3ZIdPazw4gW" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3ZIdPazw4hm" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="3ZIdPazw4hp" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
-                  <node concept="2Ry0Ak" id="3ZIdPazwoMu" role="2Ry0An">
-                    <property role="2Ry0Am" value="source_gen" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="3ZIdPazwoMA" role="3LXTna">
-              <property role="3qWCbO" value="**/*.png" />
-            </node>
-          </node>
-        </node>
+        <property role="TrG5h" value="org.fbme.integration.nxt" />
+        <property role="3LESm3" value="a4712a21-b0bb-4e62-8857-e1c5ecf8c0ea" />
         <node concept="3rtmxn" id="qjx41CDwI6" role="3bR31x">
           <node concept="3LXTmp" id="qjx41CDwI8" role="3rtmxm">
             <node concept="55IIr" id="qjx41CDwIa" role="3LXTmr">
               <node concept="2Ry0Ak" id="qjx41CDwIv" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="qjx41CDwI$" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
+                <node concept="2Ry0Ak" id="5rownaaWTr8" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.integration.nxt" />
                 </node>
               </node>
             </node>
             <node concept="3qWCbU" id="qjx41CDwIA" role="3LXTna">
-              <property role="3qWCbO" value="startup.properties" />
+              <property role="3qWCbO" value="icons/**, startup.properties" />
             </node>
           </node>
         </node>
@@ -294,128 +276,125 @@
           <node concept="2Ry0Ak" id="3f0ZsV2QMej" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
             <node concept="2Ry0Ak" id="3f0ZsV2QMek" role="2Ry0An">
-              <property role="2Ry0Am" value="org.fbme.ide.platform" />
-              <node concept="2Ry0Ak" id="3f0ZsV2QMel" role="2Ry0An">
-                <property role="2Ry0Am" value="org.fbme.ide.platform.msd" />
+              <property role="2Ry0Am" value="org.fbme.integration.nxt" />
+              <node concept="2Ry0Ak" id="2mxBo27MIO5" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.integration.nxt.msd" />
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHND" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNE" role="1SiIV1">
-            <property role="3bR36h" value="true" />
-            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNF" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNG" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:568PkTlOK5Q" resolve="jetbrains.mps.core.xml" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNJ" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNK" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNL" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNM" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNN" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNO" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:mXGwHwhVPj" resolve="JDK" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNP" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNQ" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNR" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNS" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:7Kfy9QB6KXW" resolve="jetbrains.mps.lang.core" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNT" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNU" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbIZ" resolve="MPS.Editor" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNV" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNW" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:7Kfy9QB6Lfi" resolve="jetbrains.mps.generator" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNX" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHNY" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHNZ" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHO0" role="1SiIV1">
-            <property role="3bR36h" value="true" />
-            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="42vv4xsIHO5" role="3bR37C">
-          <node concept="3bR9La" id="42vv4xsIHO6" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:7KapL9OABnm" resolve="jetbrains.mps.ide.ui" />
           </node>
         </node>
         <node concept="1BupzO" id="6zYxdPXe68d" role="3bR31x">
           <property role="3ZfqAx" value="models" />
           <property role="1Hdu6h" value="true" />
           <property role="1HemKv" value="true" />
-          <node concept="3LXTmp" id="3f0ZsV2YqtB" role="1HemKq">
-            <node concept="55IIr" id="3f0ZsV2Yqtx" role="3LXTmr">
-              <node concept="2Ry0Ak" id="3f0ZsV2Yqt$" role="iGT6I">
+          <node concept="3LXTmp" id="2mxBo27MIOb" role="1HemKq">
+            <node concept="55IIr" id="2mxBo27MIO7" role="3LXTmr">
+              <node concept="2Ry0Ak" id="2mxBo27MIO8" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="3f0ZsV2Yqt_" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
-                  <node concept="2Ry0Ak" id="3f0ZsV2YqtA" role="2Ry0An">
+                <node concept="2Ry0Ak" id="2mxBo27MIO9" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.integration.nxt" />
+                  <node concept="2Ry0Ak" id="2mxBo27MIOa" role="2Ry0An">
                     <property role="2Ry0Am" value="models" />
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="3f0ZsV2YqtC" role="3LXTna">
+            <node concept="3qWCbU" id="2mxBo27MIOc" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="Ej4tEplecj" role="3bR37C">
-          <node concept="3bR9La" id="Ej4tEpleck" role="1SiIV1">
-            <property role="3bR36h" value="true" />
+        <node concept="1SiIV0" id="5rownaaWE7I" role="3bR37C">
+          <node concept="3bR9La" id="5rownaaWE7J" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:mXGwHwhVPj" resolve="JDK" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5rownaaWE7K" role="3bR37C">
+          <node concept="3bR9La" id="5rownaaWE7L" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5rownaaWE7M" role="3bR37C">
+          <node concept="3bR9La" id="5rownaaWE7N" role="1SiIV1">
             <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="ApHj0p0DQL" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p0DQM" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="ApHj0p0DQN" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p0DQO" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="2PLQk48Y$2Y" role="3bR37C">
-          <node concept="1BurEX" id="2PLQk48Y$2Z" role="1SiIV1">
-            <node concept="55IIr" id="2PLQk48Y$2T" role="1BurEY">
-              <node concept="2Ry0Ak" id="2PLQk48Y$2U" role="iGT6I">
+        <node concept="1SiIV0" id="5rownaaWE7T" role="3bR37C">
+          <node concept="1BurEX" id="5rownaaWE7U" role="1SiIV1">
+            <node concept="55IIr" id="5rownaaWE7O" role="1BurEY">
+              <node concept="2Ry0Ak" id="5rownaaWE7P" role="iGT6I">
                 <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="2PLQk48Y$2V" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.ide.platform" />
-                  <node concept="2Ry0Ak" id="2PLQk48Y$2W" role="2Ry0An">
+                <node concept="2Ry0Ak" id="5rownaaWE7Q" role="2Ry0An">
+                  <property role="2Ry0Am" value="org.fbme.integration.nxt" />
+                  <node concept="2Ry0Ak" id="5rownaaWE7R" role="2Ry0An">
                     <property role="2Ry0Am" value="lib" />
-                    <node concept="2Ry0Ak" id="2PLQk48Y$2X" role="2Ry0An">
-                      <property role="2Ry0Am" value="platform.jar" />
+                    <node concept="2Ry0Ak" id="5rownaaWE7S" role="2Ry0An">
+                      <property role="2Ry0Am" value="nxt-integration.jar" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5rownaaWE8L" role="3bR37C">
+          <node concept="3bR9La" id="5rownaaWE8M" role="1SiIV1">
+            <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJeslY" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJeslZ" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIZ" resolve="MPS.Editor" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJesm0" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJesm1" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbJb" resolve="MPS.Platform" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="6wb8cxJesm2" role="3bR37C">
+          <node concept="3bR9La" id="6wb8cxJesm3" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="X8OuacFwMf" role="3bR37C">
+          <node concept="3bR9La" id="X8OuacFwMg" role="1SiIV1">
+            <ref role="3bR37D" to="bco3:42vv4xsIIT7" resolve="org.fbme.ide.richediting" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="X8OuacFwMh" role="3bR37C">
+          <node concept="3bR9La" id="X8OuacFwMi" role="1SiIV1">
+            <ref role="3bR37D" to="jh3g:42vv4xsIJiX" resolve="org.fbme.scenes" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK82" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK83" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK84" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK85" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK86" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK87" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7Kfy9QB6KXW" resolve="jetbrains.mps.lang.core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK88" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK89" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK8a" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK8b" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1Hry6ntOK8c" role="3bR37C">
+          <node concept="3bR9La" id="1Hry6ntOK8d" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:7KapL9OABnm" resolve="jetbrains.mps.ide.ui" />
           </node>
         </node>
       </node>
@@ -425,6 +404,15 @@
     </node>
     <node concept="2sgV4H" id="ApHj0p0DQy" role="1l3spa">
       <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
+    </node>
+    <node concept="2sgV4H" id="5rownaaWE8_" role="1l3spa">
+      <ref role="1l3spb" to="ci82:68dTcycFmrj" resolve="fbme_platform" />
+    </node>
+    <node concept="2sgV4H" id="X8OuacFwLx" role="1l3spa">
+      <ref role="1l3spb" to="bco3:68dTcycFmrj" resolve="fbme_richediting" />
+    </node>
+    <node concept="2sgV4H" id="X8OuacFwLY" role="1l3spa">
+      <ref role="1l3spb" to="jh3g:Ej4tEplrN$" resolve="fbme_scenes" />
     </node>
     <node concept="2sgV4H" id="Ej4tEpmvVf" role="1l3spa">
       <ref role="1l3spb" to="ffeo:3IKDaVZmzS6" resolve="mps" />

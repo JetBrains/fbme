@@ -1,23 +1,20 @@
 package org.fbme.lib.iec61499.parser
 
-import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
-import org.fbme.lib.st.STFactory
 import org.jdom.Document
 
 class RootConverter(
-    private val myFactory: IEC61499Factory,
-    private val myStFactory: STFactory,
+    private val myConfiguration: Iec61499ConverterConfiguration,
     private val myLocus: IdentifierLocus,
     private val myDocument: Document
 ) {
     fun convertFBType(): FBTypeDeclaration? {
         val root = myDocument.rootElement
         if (root.getChild("FBNetwork") != null) {
-            return CompositeFBTypeConverter(arguments()).extract()
+            return myConfiguration.createCompositeFbTypeConverter(arguments()).extract()
         }
         return if (root.getChild("BasicFB") != null) {
-            BasicFBTypeConverter(arguments()).extract()
+            myConfiguration.createBasicFbTypeConverter(arguments()).extract()
         } else ServiceInterfaceFBTypeConverter(
             arguments()
         ).extract()
@@ -48,6 +45,6 @@ class RootConverter(
     }
 
     private fun arguments(): ConverterArgumentsHolder {
-        return ConverterArgumentsHolder(myFactory, myStFactory, myLocus, myDocument.rootElement)
+        return ConverterArgumentsHolder(myConfiguration.entryFactory, myConfiguration.stEntryFactory, myLocus, myDocument.rootElement)
     }
 }

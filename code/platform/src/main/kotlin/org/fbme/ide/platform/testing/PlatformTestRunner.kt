@@ -48,14 +48,14 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
         }
     }
 
-    private class RunnerEnvironment(
+    class RunnerEnvironment(
         val environment: Environment,
         val classLoader: PlatformTestClassloader,
         val platformTestClass: Class<*>,
         val platformTestEnvironmentField: Field
     )
 
-    private class PlatformTestClassloader(private val myParentModule: ReloadableModule) : URLClassLoader(
+    class PlatformTestClassloader(private val myParentModule: ReloadableModule) : URLClassLoader(
         arrayOf(
             File("build/classes/java/test").toURI().toURL(),
             File("build/classes/kotlin/test").toURI().toURL(),
@@ -97,8 +97,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
             return moduleName
         }
 
-        @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class)
-        private fun initializeRunnerEnvironment(moduleName: String) {
+        @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class) fun initializeRunnerEnvironment(moduleName: String) {
             runnerEnvironments.getOrPut(moduleName) {
                 val config = EnvironmentConfig.defaultConfig()
                     .addLib(libPath("../library/build/artifacts/fbme_library/fbme.library/languages"))
@@ -107,6 +106,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                     .addLib(libPath("../richediting/build/artifacts/fbme_richediting/fbme.richediting/languages"))
                     .addLib(libPath("../scenes/build/artifacts/fbme_scenes/fbme.scenes/languages"))
                     .addLib(libPath("../formalfb/build/artifacts/fbme_formalfb/fbme.formalfb/languages"))
+                    .addLib(libPath("../nxt-integration/build/artifacts/fbme_nxt/fbme.integration.nxt/languages"))
                     .withTestModeOn()
                 val environment = MpsEnvironment(config)
                 environment.init()

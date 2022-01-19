@@ -9,12 +9,12 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.jdom.Element
 
-class BasicFBTypeConverter(arguments: ConverterArguments) :
+open class BasicFBTypeConverter(arguments: ConverterArguments) :
     DeclarationConverterBase<BasicFBTypeDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): BasicFBTypeDeclaration {
         checkNotNull(element)
         val fbtd = factory.createBasicFBTypeDeclaration(identifier)
-        val basicFbElement = element.getChild("BasicFB")
+        val basicFbElement = element!!.getChild("BasicFB")
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         ParameterDeclarationConverter.extractAll(with(basicFbElement.getChild("InternalVars")), fbtd.internalVariables)
@@ -27,7 +27,7 @@ class BasicFBTypeConverter(arguments: ConverterArguments) :
             }
             val ecTransitionElements = eccElement.getChildren("ECTransition")
             for (ecTransitionElement in ecTransitionElements) {
-                ecc.transitions.add(convertEcTransition(ecTransitionElement))
+                ecc.transitions.add(convertEcTransition(ecTransitionElement, fbtd))
             }
         }
         val algorithmElements = basicFbElement.getChildren("Algorithm")
@@ -61,17 +61,17 @@ class BasicFBTypeConverter(arguments: ConverterArguments) :
         }
     }
 
-    private fun convertEcTransition(ecTransitionElement: Element): StateTransition {
+    private fun convertEcTransition(ecTransitionElement: Element, fbtd: BasicFBTypeDeclaration): StateTransition {
         val transition = factory.createStateTransition()
         transition.sourceReference.setTargetName(ecTransitionElement.getAttributeValue("Source"))
         transition.targetReference.setTargetName(ecTransitionElement.getAttributeValue("Destination"))
-        parseCondition(transition.condition, ecTransitionElement.getAttributeValue("Condition"))
+        parseCondition(transition.condition, ecTransitionElement.getAttributeValue("Condition"), fbtd)
         transition.centerX = ecTransitionElement.getAttributeValue("x").toFloat().toInt()
         transition.centerY = ecTransitionElement.getAttributeValue("y").toFloat().toInt()
         return transition
     }
 
-    private fun parseCondition(condition: ECTransitionCondition, rawCondition: String) {
+    protected open fun parseCondition(condition: ECTransitionCondition, rawCondition: String, fbtd: BasicFBTypeDeclaration) {
         if (rawCondition == "1") {
             return
         }
