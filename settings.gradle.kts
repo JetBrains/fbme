@@ -10,6 +10,7 @@ include(
         "code:richediting",
         "code:scenes",
         "code:smv-debugger",
+        "code:formalfb",
 
         "docs",
 
