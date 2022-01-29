@@ -47,8 +47,11 @@ proctype Performance2(chan
     :: d_step { nempty(EI_REQ) ->
         reset(ALU_1_EI_SUM);
         ALU_1_EI_SUM!true;
-        ALU_1_VI_A!1;
-        ALU_1_VI_B!0;
+        reset(ALU_1_VI_A);
+        ALU_1_VI_A!0;
+        reset(ALU_1_VI_B);
+        ALU_1_VI_B!1;
+        EI_REQ?true;
     }
     :: (!ExistsInputEvent) -> skip;
     fi
@@ -78,21 +81,19 @@ proctype Performance2(chan
         :: nempty(ALU_1_EO_CNF) ->
             ALU_1_EO_CNF?true;
             ALU_1_VO_RES?buf_ALU_1_RES;
-
             reset(ALU_2_EI_SUM);
-            reset(ALU_2_VI_A);
-            reset(ALU_2_VI_B);
             ALU_2_EI_SUM!true;
-            ALU_2_VI_A!buf_ALU_1_RES;
+            reset(ALU_2_VI_B);
             ALU_2_VI_B!1;
+            reset(ALU_2_VI_A);
+            ALU_2_VI_A!buf_ALU_1_RES;
 
         :: nempty(ALU_2_EO_CNF) ->
             ALU_2_EO_CNF?true;
             ALU_2_VO_RES?buf_ALU_2_RES;
-
             reset(EO_CNF);
-            reset(VO_RES);
             EO_CNF!true;
+            reset(VO_RES);
             VO_RES!buf_ALU_2_RES;
 
         :: (omega && dispatch_state == DONE_turn_Performance2) -> goto done;

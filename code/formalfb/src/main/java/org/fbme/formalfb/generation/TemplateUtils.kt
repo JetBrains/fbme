@@ -14,7 +14,7 @@ class TemplateEmbedder(private val initialIndent: Int) {
             this.generator()
         } catch (e: Exception) {
             e.printStackTrace()
-            lines.add("\\ generation error occurred ${e.message?.replace("\n","")}")
+            addLine("\\\\ generation error occurred ${e.message?.replace("\n","")}")
         }
         return lines.joinToString("\n")
     }
