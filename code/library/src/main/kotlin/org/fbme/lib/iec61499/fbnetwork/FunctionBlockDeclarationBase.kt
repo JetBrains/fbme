@@ -8,7 +8,7 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 
 interface FunctionBlockDeclarationBase : Declaration, ContainedElement {
     val type: FBTypeDescriptor
-    val parameters: List<ParameterAssignment>
+    val parameters: MutableList<ParameterAssignment>
     fun getPort(descriptor: FBPortDescriptor): PortPath<out Declaration> {
         checkNotNull(descriptor.declaration)
         return PortPath.createPortPath(this, descriptor.connectionKind, descriptor.declaration)
