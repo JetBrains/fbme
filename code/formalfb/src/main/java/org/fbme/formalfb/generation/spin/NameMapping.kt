@@ -9,22 +9,31 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.st.expressions.Expression
 import org.fbme.lib.st.expressions.Literal
-import org.fbme.lib.st.expressions.LiteralKind
 import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
 
 
-fun mapInputEvent(event: EventDeclaration, nameMappings: MutableMap<String, String>): String =
-    mapDeclaration("EI", event, nameMappings)
+private const val INPUT_EVENT_PREFIX = "EI"
+private const val OUTPUT_EVENT_PREFIX = "EO"
+private const val INPUT_PARAMETER_PREFIX = "VI"
+private const val OUTPUT_PARAMETER_PREFIX = "VO"
 
-fun mapOutputEvent(event: EventDeclaration, nameMappings: MutableMap<String, String>): String =
-    mapDeclaration("EO", event, nameMappings)
+fun combinePrefixes(prefixes: Array<out String>, fixedPrefix: String): String {
+    if (prefixes.isEmpty()) return fixedPrefix
+    return prefixes.joinToString("_") + "_" + fixedPrefix
+}
 
-fun mapInputParameter(param: ParameterDeclaration, nameMappings: MutableMap<String, String>): String  =
-    mapDeclaration("VI", param, nameMappings)
+fun mapInputEvent(event: EventDeclaration, nameMappings: MutableMap<String, String>, vararg prefixes: String): String =
+    mapDeclaration(combinePrefixes(prefixes, INPUT_EVENT_PREFIX), event, nameMappings)
 
-fun mapOutputParameter(param: ParameterDeclaration, nameMappings: MutableMap<String, String>): String =
-    mapDeclaration("VO", param, nameMappings)
+fun mapOutputEvent(event: EventDeclaration, nameMappings: MutableMap<String, String>, vararg prefixes: String): String =
+    mapDeclaration(combinePrefixes(prefixes,OUTPUT_EVENT_PREFIX), event, nameMappings)
+
+fun mapInputParameter(param: ParameterDeclaration, nameMappings: MutableMap<String, String>, vararg prefixes: String): String  =
+    mapDeclaration(combinePrefixes(prefixes,INPUT_PARAMETER_PREFIX), param, nameMappings)
+
+fun mapOutputParameter(param: ParameterDeclaration, nameMappings: MutableMap<String, String>, vararg prefixes: String): String =
+    mapDeclaration(combinePrefixes(prefixes,OUTPUT_PARAMETER_PREFIX), param, nameMappings)
 
 fun mapDeclaration(prefix: String, declaration: Declaration, nameMappings: MutableMap<String, String>) : String {
     val res = prefix + "_" + declaration.name

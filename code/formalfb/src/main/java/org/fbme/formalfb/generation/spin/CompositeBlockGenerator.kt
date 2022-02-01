@@ -10,7 +10,7 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 
-class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): BlockGeneratorBase(compositeType) {
+class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): GeneratorBase(compositeType) {
 
     override fun generate(): String {
         val dispatchStates = compositeType.network.functionBlocks
@@ -35,7 +35,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
                 
                 ${embed(4) {bufferDeclarations()} }
                 
-                ${embed(4) {blockChannelsDeclarations()}}
+                ${embed(4) {componentChannelsDeclarations()}}
                 
                 atomic {
                     ${embed(5) {runChildren()}}
@@ -46,7 +46,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
                 $alpha?true;
                 dispatch_state = $firstState;
                 
-              read_input_events: 
+              read_input_events:
                 $existsInputEvent = ${checkInputEvents()};
                 
                 if
@@ -90,7 +90,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
         val events = mutableListOf<String>()
         compositeType.network.functionBlocks.forEach { fb ->
             fb.typeReference.getTarget()!!.outputEvents.forEach { ev ->
-                events.add(mapBasicOutputEvent(fb, ev))
+                events.add(mapComponentOutputEvent(fb, ev))
             }
         }
         return events.joinToString (separator = " && ") { "empty($it)" }
@@ -106,7 +106,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
         }
 
         for ((fb, event) in events) {
-            val eventRef = mapBasicOutputEvent(fb, event)
+            val eventRef = mapComponentOutputEvent(fb, event)
 
             addLine(":: nempty($eventRef) ->")
             indent {
@@ -178,7 +178,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
         }
 
         params.forEach { param ->
-            val bufferRef = basicOutputBuffer(fb, param)
+            val bufferRef = componentOutputBuffer(fb, param)
             param.connections(fb).forEach { connection ->
                 val target = connection.targetReference.getTarget()!!
                 val targetFB = (target.functionBlock as? FunctionBlockDeclaration)
@@ -191,7 +191,7 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
                             addLine("$paramRef!$bufferRef;")
                         }
                 } else {
-                    val paramRef = mapBasicInputParameter(targetFB, target.portTarget)
+                    val paramRef = mapComponentInputParameter(targetFB, target.portTarget as ParameterDeclaration)
                     addLine("reset($paramRef);")
                     addLine("$paramRef!$bufferRef;")
                 }
@@ -204,12 +204,12 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
             association.parameterReference.getTarget()!!
         }
 
-        val eventReference = mapBasicOutputEvent(fb, event)
+        val eventReference = mapComponentOutputEvent(fb, event)
         addLine("$eventReference?true;")
 
         vars.forEach { param ->
-            val paramReference = mapBasicOutputParameter(fb, param)
-            addLine(paramReference + "?" + basicOutputBuffer(fb, param) + ";")
+            val paramReference = mapComponentOutputParameter(fb, param)
+            addLine(paramReference + "?" + componentOutputBuffer(fb, param) + ";")
         }
     }
 
@@ -222,12 +222,12 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
             fb.parameters.find { param -> param.parameterReference.getTarget() == inputVar }
         }
 
-        val eventReference = mapBasicInputEvent(fb, input)
+        val eventReference = mapComponentInputEvent(fb, input)
         addLine("reset($eventReference);")
         addLine("$eventReference!true;")
 
         vars.forEach {
-            val paramReference = mapBasicInputParameter(fb, it.parameterReference.getTarget()!!)
+            val paramReference = mapComponentInputParameter(fb, it.parameterReference.getTarget()!!)
             addLine("reset($paramReference);")
             addLine(paramReference + "!" + it.value!!.value + ";")
         }
@@ -246,76 +246,16 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
 
     private fun TemplateEmbedder.runChildren() {
         compositeType.network.functionBlocks.forEach { fb ->
-            val parameterList = mutableListOf<String>()
-            val type = fb.typeReference.getTarget()!!
-            type.inputEvents.map { mapBasicInputEvent(fb, it) }
-                .forEach { parameterList.add(it) }
-            type.outputEvents.map { mapBasicOutputEvent(fb, it) }
-                .forEach { parameterList.add(it) }
-            type.inputParameters.map { mapBasicInputParameter(fb, it) }
-                .forEach { parameterList.add(it) }
-            type.outputParameters.map { mapBasicOutputParameter(fb, it) }
-                .forEach { parameterList.add(it) }
-            parameterList.add(fb.alphaChannel())
-            parameterList.add(fb.betaChannel())
-            addLine("run ${type.name}(${parameterList.joinToString()});")
+            runFB(fb.typeReference.getTarget()!!, fb.name)
         }
     }
 
-    private fun TemplateEmbedder.blockChannelsDeclarations() {
+    private fun TemplateEmbedder.componentChannelsDeclarations() {
         compositeType.network.functionBlocks.forEach { fb ->
-            val fbType = fb.typeReference.getTarget()!!
-            fbType.inputEvents.forEach {
-                val name = mapBasicInputEvent(fb, it)
-                addLine(initChannel(name, 1, "bit"))
-            }
-            fbType.outputEvents.forEach {
-                val name = mapBasicOutputEvent(fb, it)
-                addLine(initChannel(name, 1, "bit"))
-            }
-            fbType.inputParameters.forEach {
-                val name = mapBasicInputParameter(fb, it)
-                val type = map2SpinType(it.type!!)
-                addLine(initChannel(name, 1, type))
-            }
-            fbType.outputParameters.forEach {
-                val name = mapBasicOutputParameter(fb, it)
-                val type = map2SpinType(it.type!!)
-                addLine(initChannel(name, 1, type))
-                addLine("$type ${basicOutputBuffer(fb, it)};")
-            }
-            addLine(initChannel(fb.alphaChannel(), 0, "bit"))
-            addLine(initChannel(fb.betaChannel(), 0, "bit"))
-            addLine("")
+            createFBChannelDeclarations(fb.typeReference.getTarget()!!, fb.name)
         }
     }
 
-    private fun mapBasicOutputParameter(
-        fb: FunctionBlockDeclaration,
-        it: ParameterDeclaration
-    ) = mapDeclaration("${fb.name}_VO", it, nameMappings)
-
-    private fun basicOutputBuffer(fb: FunctionBlockDeclaration, it: ParameterDeclaration)
-    = "buf_${fb.name}_${it.name}"
-
-    private fun mapBasicInputParameter(
-        fb: FunctionBlockDeclaration,
-        it: Declaration
-    ) = mapDeclaration("${fb.name}_VI", it, nameMappings)
-
-    private fun mapBasicOutputEvent(
-        fb: FunctionBlockDeclaration,
-        it: EventDeclaration
-    ) = mapDeclaration("${fb.name}_EO", it, nameMappings)
-
-    private fun mapBasicInputEvent(
-        fb: FunctionBlockDeclaration,
-        it: EventDeclaration
-    ) = mapDeclaration("${fb.name}_EI", it, nameMappings)
-
-    private fun initChannel(name: String, dimension: Int, type: String): String {
-        return "chan $name = [$dimension] of {$type};"
-    }
 
     private fun doneDispatchState(compositeType: CompositeFBTypeDeclaration): String {
         return "DONE" + "_turn_" + compositeType.name
@@ -325,6 +265,3 @@ class CompositeBlockGenerator(val compositeType: CompositeFBTypeDeclaration): Bl
         return it.name + "_turn_" + compositeType.name
     }
 }
-
-private fun FunctionBlockDeclaration.alphaChannel() = "${name}_alpha"
-private fun FunctionBlockDeclaration.betaChannel() = "${name}_beta"

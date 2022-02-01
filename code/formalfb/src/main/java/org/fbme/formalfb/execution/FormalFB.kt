@@ -22,11 +22,11 @@ class FormalFB(private val mpsProject: MPSProject) {
 
     fun generate(): String? {
         if (currentFBPath != null && currentFB != null) {
-            val generator = SpinGenerator()
+            val generator = SpinGenerator(currentFB!!)
 
             var spinModel: String? = null
             mpsProject.modelAccess.runReadAction {
-                 spinModel = generator.generate(currentFB!!)
+                 spinModel = generator.generate()
             }
             if (spinModel == null) {
                 println("Error")

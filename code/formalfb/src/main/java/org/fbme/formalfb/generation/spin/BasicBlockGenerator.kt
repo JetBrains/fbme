@@ -5,11 +5,10 @@ import org.fbme.formalfb.generation.TemplateEmbedder
 import org.fbme.formalfb.generation.embed
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
-import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 
-class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): BlockGeneratorBase(basicType) {
+class BasicBlockGenerator(val basicType: BasicFBTypeDeclaration): GeneratorBase(basicType) {
 
     override fun generate(): String {
         val eccStates = basicType.ecc.states.joinToString(prefix = "{", postfix = "}") { mapEccState(it, basicType) }

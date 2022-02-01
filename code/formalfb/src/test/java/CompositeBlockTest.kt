@@ -14,7 +14,7 @@ import java.io.InputStreamReader
 import kotlin.test.assertTrue
 
 
-private const val compositeFBTestDir = "/composite"
+internal const val compositeFBTestDir = "/composite"
 
 @RunWith(PlatformTestRunner::class)
 @LoadFrom("org.fbme.formalfb")
@@ -26,7 +26,7 @@ class CompositeBlockTest : PlatformTestBase() {
     private fun checkCompositeBlock(testCase: String) {
         val fbtFile = "$compositeFBTestDir/$testCase.fbt"
         val cfb = rootConverterByPath(fbtFile).convertFBType()
-        val basicBlocks = loadBasicBlocksOfComposite(testCase)
+        val basicBlocks = loadBasicBlocksOfComposite(this, testCase)
 
         val reference = readReferenceFile(fbtFile)
         project.repository.modelAccess.runWriteAction {
@@ -37,27 +37,45 @@ class CompositeBlockTest : PlatformTestBase() {
             assertTrue(cfb is CompositeFBTypeDeclaration)
             val generator = CompositeBlockGenerator(cfb)
             val res = generator.generate()
-            Assert.assertEquals(reference, res)
+            compareWithReference(reference, res)
         }
-    }
-
-    private fun loadBasicBlocksOfComposite(testCase: String): List<FBTypeDeclaration> {
-        val result = mutableListOf<FBTypeDeclaration>()
-        var i = 1
-        while (true) {
-            val fbtFile = "$compositeFBTestDir/$testCase-basic-$i.fbt"
-            if (this::class.java.getResourceAsStream(fbtFile) == null) {
-                break
-            }
-            rootConverterByPath(fbtFile).convertFBType()?.let { bfb ->
-                result.add(bfb)
-            }
-            i++
-        }
-        return result
     }
 
     private fun readReferenceFile(fbtFile: String) =
         InputStreamReader(checkNotNull(this::class.java.getResourceAsStream(fbtFile.replace(".fbt",".pml")))).readText()
+
+    companion object {
+        private const val SPACE_TOLERANT_COMPARISON = true
+        internal fun loadBasicBlocksOfComposite(blockTest: PlatformTestBase, testCase: String): List<FBTypeDeclaration> {
+            val result = mutableListOf<FBTypeDeclaration>()
+            var i = 1
+            while (true) {
+                val fbtFile = "$compositeFBTestDir/$testCase-basic-$i.fbt"
+                if (blockTest::class.java.getResourceAsStream(fbtFile) == null) {
+                    break
+                }
+                blockTest.rootConverterByPath(fbtFile).convertFBType()?.let { bfb ->
+                    result.add(bfb)
+                }
+                i++
+            }
+            return result
+        }
+
+        internal fun compareWithReference(reference: String, res: String) {
+            if (SPACE_TOLERANT_COMPARISON) {
+                Assert.assertEquals(stripBlankLines(reference), stripBlankLines(res))
+            } else {
+                Assert.assertEquals(reference, res)
+            }
+        }
+
+        fun stripBlankLines(generatedCode: String) : String {
+            return generatedCode.lines()
+                .map { it.trimEnd() }
+                .filter { it.isNotBlank() }
+                .joinToString("\n")
+        }
+    }
 
 }

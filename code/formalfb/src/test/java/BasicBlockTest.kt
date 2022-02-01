@@ -1,3 +1,4 @@
+import CompositeBlockTest.Companion.compareWithReference
 import jetbrains.mps.smodel.tempmodel.TempModuleOptions
 import jetbrains.mps.smodel.tempmodel.TemporaryModels
 import org.fbme.formalfb.generation.spin.BasicBlockGenerator
@@ -6,7 +7,6 @@ import org.fbme.ide.platform.testing.LoadFrom
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.InputStreamReader
@@ -46,15 +46,11 @@ class BasicBlockTest : PlatformTestBase() {
             assertTrue(bfb is BasicFBTypeDeclaration)
             val generator = BasicBlockGenerator(bfb)
             val res = generator.generate()
-            Assert.assertEquals(reference, res)
+            compareWithReference(reference, res)
         }
     }
 
     private fun readReferenceFile(fbtFile: String) =
         InputStreamReader(checkNotNull(this::class.java.getResourceAsStream(fbtFile.replace(".fbt",".pml")))).readText()
 
-}
-
-fun stripBlankLines(generatedCode: String) : String {
-    return generatedCode.lines().filter { it.isNotBlank() }.joinToString("\n")
 }

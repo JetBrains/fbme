@@ -5,6 +5,12 @@ fun embed(indent: Int, generator: TemplateEmbedder.() -> Unit): String {
     return embedder.embed(generator)
 }
 
+fun embedMultiLineString(indent: Int, multiLineString: String): String {
+    return embed(indent) {
+        multiLineString.lines().forEach { addLine(it) }
+    }
+}
+
 class TemplateEmbedder(private val initialIndent: Int) {
     var currentIndent: Int = initialIndent
     private val lines = mutableListOf<String>()

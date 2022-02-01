@@ -1,33 +1,41 @@
 package org.fbme.formalfb.generation.spin
 
-import com.intellij.util.containers.BidirectionalMap
-import org.fbme.formalfb.dsl.spin.spinFile
-import org.fbme.formalfb.generation.Generator
+import org.fbme.formalfb.generation.embed
+import org.fbme.formalfb.generation.embedMultiLineString
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
-class SpinGenerator() : Generator {
+class SpinGenerator(private val rootFB: CompositeFBTypeDeclaration) : GeneratorBase(rootFB) {
 
     private val builder = StringBuilder()
-    private val nameMappings = BidirectionalMap<String, String>()
     private val typeGenerators = mutableMapOf<String, BlockGenerator>()
 
-    override fun generate(compositeFB: CompositeFBTypeDeclaration): String {
+    override fun generate(): String {
         builder.clear()
-        val nameSpace = compositeFB.name
-        collectTypes(compositeFB)
+        collectTypes(rootFB)
 
-
-        val blocksCode = typeGenerators.values.map { it.generate() }.joinToString(separator = "\n")
-
-        builder.append(blocksCode)
-        val file = spinFile {
-        }
-        file.render(builder, "")
-        return builder.toString()
+        val blocksCode = typeGenerators.values.joinToString(separator = "\n\n") { it.generate() }
+        val code = """
+            ${embedMultiLineString(3, HEADER)}
+            
+            ${embedMultiLineString(3, blocksCode)}
+            
+            init {
+                ${embed(4){ createFBChannelDeclarations(rootFB, "root") }}
+                atomic {
+                    ${embed(5) {runFB(rootFB, "root")}}
+                } 
+                
+              dispatch:
+                alpha!true;
+                beta?true;
+            }
+        """.trimIndent()
+        return code
     }
+
 
     fun collectTypes(fbType: FBTypeDeclaration) {
         val typeName = fbType.typeDescriptor.typeName
@@ -52,5 +60,11 @@ class SpinGenerator() : Generator {
     }
 
 }
+
+val HEADER = """
+#define reset(ch) d_step { do :: ch?_; :: empty(ch) -> break; od; skip }
+#define reset3(ch) d_step { do :: ch?_,_,_; :: empty(ch) -> break; od; skip }
+
+""".trimIndent()
 
 // todo: save name mappings while generating code

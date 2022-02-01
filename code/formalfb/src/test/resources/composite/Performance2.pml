@@ -31,16 +31,16 @@ proctype Performance2(chan
 
 
     atomic {
-     run ALU(ALU_1_EI_SUM, ALU_1_EI_DIFF, ALU_1_EO_CNF, ALU_1_VI_A, ALU_1_VI_B, ALU_1_VO_RES, ALU_1_alpha, ALU_1_beta);
-     run ALU(ALU_2_EI_SUM, ALU_2_EI_DIFF, ALU_2_EO_CNF, ALU_2_VI_A, ALU_2_VI_B, ALU_2_VO_RES, ALU_2_alpha, ALU_2_beta);
+        run ALU(ALU_1_EI_SUM, ALU_1_EI_DIFF, ALU_1_EO_CNF, ALU_1_VI_A, ALU_1_VI_B, ALU_1_VO_RES, ALU_1_alpha, ALU_1_beta);
+        run ALU(ALU_2_EI_SUM, ALU_2_EI_DIFF, ALU_2_EO_CNF, ALU_2_VI_A, ALU_2_VI_B, ALU_2_VO_RES, ALU_2_alpha, ALU_2_beta);
     }
 
-   wait_events:
+  wait_events:
     end:
     alpha?true;
     dispatch_state = ALU_1_turn_Performance2;
 
-   read_input_events:
+  read_input_events:
     ExistsInputEvent = nempty(EI_REQ);
 
     if
@@ -56,7 +56,7 @@ proctype Performance2(chan
     :: (!ExistsInputEvent) -> skip;
     fi
 
-   dispatch:
+  dispatch:
     if
     :: atomic { dispatch_state == ALU_1_turn_Performance2 ->
         ALU_1_alpha!true;
@@ -73,7 +73,7 @@ proctype Performance2(chan
 
     goto read_component_event_outputs;
 
-   read_component_event_outputs:
+  read_component_event_outputs:
     atomic {
         omega = empty(ALU_1_EO_CNF) && empty(ALU_2_EO_CNF);
 
@@ -102,7 +102,7 @@ proctype Performance2(chan
     }
     goto read_component_event_outputs;
 
-   done:
+  done:
     atomic {
         beta!true;
         // phi var
