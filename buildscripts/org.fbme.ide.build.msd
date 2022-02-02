@@ -21,11 +21,8 @@
     <dependency reexport="false">1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statisticsPlugin.build)</dependency>
     <dependency reexport="false">73b76635-8a63-49a1-ae16-da85b8524b49(org.fbme.smvDebugger.build)</dependency>
     <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)</dependency>
-<<<<<<< HEAD
     <dependency reexport="false">9ffd2636-8012-4730-a841-d808550cbdea(org.fbme.integration.nxt.build)</dependency>
-=======
     <dependency reexport="false">08f3333a-1705-4212-b88c-faccf3c5b228(org.fbme.formalfb.build)</dependency>
->>>>>>> bbb85b1 (FormalFB plugin: init)
   </dependencies>
   <languageVersions>
     <language slang="l:798100da-4f0a-421a-b991-71f8c50ce5d2:jetbrains.mps.build" version="0" />

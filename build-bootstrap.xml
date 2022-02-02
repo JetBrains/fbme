@@ -12,8 +12,8 @@
   <property name="artifacts.fbme_richediting" location="code/richediting/build/artifacts/fbme_richediting" />
   <property name="artifacts.fbme_fordiac" location="code/4diac-integration/build/artifacts/fbme_fordiac" />
   <property name="artifacts.fbme_smvdebugger" location="code/smv-debugger/build/artifacts/fbme_smvdebugger" />
-  <property name="artifacts.fbme_nxt" location="code/nxt-integration/build/artifacts/fbme_nxt" />
   <property name="artifacts.fbme_formalfb" location="code/formalfb/build/artifacts/fbme_formalfb" />
+  <property name="artifacts.fbme_nxt" location="code/nxt-integration/build/artifacts/fbme_nxt" />
   <property file="${artifacts.mps}/build.properties" prefix="import.mps" />
   <property file="${artifacts.fbme_library}/build.properties" prefix="import.fbme_library" />
   <property file="${artifacts.fbme_scenes}/build.properties" prefix="import.fbme_scenes" />
@@ -21,8 +21,8 @@
   <property file="${artifacts.fbme_richediting}/build.properties" prefix="import.fbme_richediting" />
   <property file="${artifacts.fbme_fordiac}/build.properties" prefix="import.fbme_fordiac" />
   <property file="${artifacts.fbme_smvdebugger}/build.properties" prefix="import.fbme_smvdebugger" />
-  <property file="${artifacts.fbme_nxt}/build.properties" prefix="import.fbme_nxt" />
   <property file="${artifacts.fbme_formalfb}/build.properties" prefix="import.fbme_formalfb" />
+  <property file="${artifacts.fbme_nxt}/build.properties" prefix="import.fbme_nxt" />
   <property name="mps.build.number" value="${import.mps.mps.build.number}" />
   <property name="mps.date" value="${import.mps.mps.date}" />
   <property name="mps.build.vcs.number" value="${import.mps.mps.build.vcs.number}" />
@@ -53,7 +53,7 @@
   
   <target name="assemble" depends="declare-mps-tasks">
     <mkdir dir="${build.layout}" />
-    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_library.ide-version=${fbme_library.ide-version}${line.separator}fbme_scenes.ide-version=${fbme_scenes.ide-version}${line.separator}fbme_platform.ide-version=${fbme_platform.ide-version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}${line.separator}fbme_formalfb.ide-version=${fbme_formalfb.ide-version}fbme_nxt.ide-version=${fbme_nxt.ide-version}</echo>
+    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_library.ide-version=${fbme_library.ide-version}${line.separator}fbme_scenes.ide-version=${fbme_scenes.ide-version}${line.separator}fbme_platform.ide-version=${fbme_platform.ide-version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}${line.separator}fbme_formalfb.ide-version=${fbme_formalfb.ide-version}${line.separator}fbme_nxt.ide-version=${fbme_nxt.ide-version}</echo>
   </target>
   
   <target name="buildDependents">
@@ -320,7 +320,7 @@
       </classpath>
     </javac>
   </target>
-
+  
   <target name="java.compile.org.fbme.richediting.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
     <mkdir dir="${basedir}/code/richediting/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.richediting.build" />
@@ -389,7 +389,7 @@
       </classpath>
     </javac>
   </target>
-
+  
   <target name="java.compile.org.fbme.samples.statisticsPlugin.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
     <mkdir dir="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" />
