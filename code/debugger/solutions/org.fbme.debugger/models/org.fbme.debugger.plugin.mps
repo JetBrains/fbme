@@ -45,6 +45,7 @@
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
+    <import index="ekie" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger.simulator.actions(org.fbme.debugger/)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
   </imports>
   <registry>
@@ -7092,6 +7093,51 @@
       </node>
       <node concept="tCFHf" id="aucBW5SZYk" role="ftvYc">
         <ref role="tCJdB" node="6kcQr5w_Vl4" resolve="Debug_UnwatchSelectedFBs" />
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="5XK6zxB$xyX">
+    <property role="TrG5h" value="SimulateExecution" />
+    <property role="2uzpH1" value="Execute in Simulator" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="1DS2jV" id="5IF$9ECXGXB" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="5IF$9ECXGXC" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="5XK6zxB$xyY" role="tncku">
+      <node concept="3clFbS" id="5XK6zxB$xyZ" role="2VODD2">
+        <node concept="3clFbF" id="5XK6zxB_xMi" role="3cqZAp">
+          <node concept="2OqwBi" id="5XK6zxB_R1D" role="3clFbG">
+            <node concept="2ShNRf" id="5XK6zxB_xRA" role="2Oq$k0">
+              <node concept="1pGfFk" id="5XK6zxB_QBj" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" to="ekie:~SimulateExecutionAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SimulateExecutionAction" />
+                <node concept="2OqwBi" id="5XK6zxB_QCs" role="37wK5m">
+                  <node concept="2WthIp" id="5XK6zxB_QCv" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="5XK6zxB_QCx" role="2OqNvi">
+                    <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="liA8E" id="5XK6zxB_Reo" role="2OqNvi">
+              <ref role="37wK5l" to="ekie:~SimulateExecutionAction.apply()" resolve="apply" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="4pceBWtd$tS">
+    <property role="TrG5h" value="SimulatorActions" />
+    <node concept="tT9cl" id="4pceBWtd$tU" role="2f5YQi">
+      <ref role="tU$_T" to="5z5t:3DiEZ8TON84" resolve="IEC61499Actions" />
+      <ref role="2f8Tey" to="5z5t:4pceBWtd$te" resolve="simulate" />
+    </node>
+    <node concept="ftmFs" id="4pceBWtd$u6" role="ftER_">
+      <node concept="tCFHf" id="4pceBWtd$u9" role="ftvYc">
+        <ref role="tCJdB" node="5XK6zxB$xyX" resolve="SimulateExecution" />
       </node>
     </node>
   </node>

@@ -2680,17 +2680,12 @@
                         <property role="Xl_RC" value="\&quot; Action=\&quot;WRITE\&quot;&gt;&lt;Connection Source=\&quot;" />
                       </node>
                     </node>
-                    <node concept="2OqwBi" id="7fNS1Av79f8" role="3uHU7w">
-                      <node concept="2OqwBi" id="7fNS1Av79f9" role="2Oq$k0">
-                        <node concept="37vLTw" id="7fNS1Av79fa" role="2Oq$k0">
-                          <ref role="3cqZAo" node="7fNS1Av79fp" resolve="resourceParameter" />
-                        </node>
-                        <node concept="liA8E" id="7fNS1Av79fb" role="2OqNvi">
-                          <ref role="37wK5l" to="cwd8:~ParameterAssignment.getValue()" resolve="getValue" />
-                        </node>
+                    <node concept="2OqwBi" id="7fNS1Av79f9" role="3uHU7w">
+                      <node concept="37vLTw" id="7fNS1Av79fa" role="2Oq$k0">
+                        <ref role="3cqZAo" node="7fNS1Av79fp" resolve="resourceParameter" />
                       </node>
-                      <node concept="liA8E" id="7fNS1Av79fc" role="2OqNvi">
-                        <ref role="37wK5l" to="h353:~Literal.getPresentation()" resolve="getPresentation" />
+                      <node concept="liA8E" id="7fNS1Av79fb" role="2OqNvi">
+                        <ref role="37wK5l" to="cwd8:~ParameterAssignment.getValue()" resolve="getValue" />
                       </node>
                     </node>
                   </node>
