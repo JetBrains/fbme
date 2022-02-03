@@ -72,15 +72,55 @@ class STInterpreter(var context: Context = Context()) {
     }
 
     private fun interpret(ifStatement: IfStatement) {
-
+        val condition = ifStatement.condition == null
+                || interpret(ifStatement.condition!!).value as? Boolean ?: error("condition must be bool")
+        if (condition) {
+            for (statement in ifStatement.thenClause) {
+                interpret(statement)
+            }
+        } else {
+            var check = false
+            for (elseIfClause in ifStatement.elseIfClauses) {
+                val elseIfCondition = interpret(elseIfClause.condition!!).value as? Boolean
+                    ?: error("condition must be bool")
+                if (elseIfCondition) {
+                    for (statement in elseIfClause.body) {
+                        interpret(statement)
+                    }
+                    check = true
+                    break
+                }
+            }
+            if (!check && ifStatement.elseClause != null) {
+                for (statement in ifStatement.elseClause!!) {
+                    interpret(statement)
+                }
+            }
+        }
     }
 
     private fun interpret(whileStatement: WhileStatement) {
-
+        val conditionExpression = whileStatement.condition
+        var condition = conditionExpression == null || interpret(conditionExpression).value as? Boolean
+                ?: error("condition must be bool")
+        while (condition) {
+            for (statement in whileStatement.body) {
+                interpret(statement)
+            }
+            condition = conditionExpression == null || interpret(conditionExpression).value as? Boolean
+                    ?: error("condition must be bool")
+        }
     }
 
     private fun interpret(repeatStatement: RepeatStatement) {
-
+        val conditionExpression = repeatStatement.condition
+        do {
+            for (statement in repeatStatement.body) {
+                interpret(statement)
+            }
+            val condition = conditionExpression == null || interpret(conditionExpression).value as? Boolean
+                    ?: error("condition must be bool")
+        } while (condition)
     }
 
     private fun interpret(assignmentStatement: AssignmentStatement) {
@@ -91,10 +131,10 @@ class STInterpreter(var context: Context = Context()) {
     }
 
     private fun interpret(forStatement: ForStatement) {
-
+        // TODO: implement for statement
     }
 
     private fun interpret(caseStatement: CaseStatement) {
-
+        // TODO: implement case statement
     }
 }
