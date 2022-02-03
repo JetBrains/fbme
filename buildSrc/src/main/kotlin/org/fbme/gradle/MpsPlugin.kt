@@ -10,7 +10,6 @@ import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
-import java.io.File
 
 class MpsPlugin : Plugin<Project> {
 
@@ -20,10 +19,14 @@ class MpsPlugin : Plugin<Project> {
 
         val sourceSets = the<SourceSetContainer>()
 
+        val languages = file("languages").listFiles() ?: emptyArray()
+        val solutions = file("solutions").listFiles() ?: emptyArray()
+        val modules = languages + solutions
+
         sourceSets {
             create("mps") {
                 java {
-                    mpsModules().forEach { moduleDir -> srcDir("${moduleDir}/source_gen") }
+                    modules.forEach { moduleDir -> srcDir("${moduleDir}/source_gen") }
                 }
             }
         }
@@ -63,8 +66,8 @@ class MpsPlugin : Plugin<Project> {
                 dependsOn("mpsPrepare")
 
                 inputs.file("$projectDir/build.xml")
-                mpsModules().forEach { moduleDir -> inputs.dir("${moduleDir}/models") }
-                mpsModules().forEach { moduleDir -> outputs.dir("${moduleDir}/source_gen") }
+                modules.forEach { moduleDir -> inputs.dir("${moduleDir}/models") }
+                modules.forEach { moduleDir -> outputs.dir("${moduleDir}/source_gen") }
 
                 doLast {
                     if (!mpsExtension.skipGeneration) {
@@ -76,7 +79,7 @@ class MpsPlugin : Plugin<Project> {
                 dependsOn("mpsGenerate")
 
                 inputs.file("$projectDir/build.xml")
-                mpsModules().forEach { module -> inputs.dir("${module.path}/source_gen/") }
+                modules.forEach { module -> inputs.dir("${module.path}/source_gen/") }
                 outputs.dir("$buildDir/artifacts/")
 
                 doLast {
@@ -98,12 +101,14 @@ class MpsPlugin : Plugin<Project> {
             }
             tasks.register<Jar>("mpsJar") {
                 dependsOn("mpsAssemble")
-                doFirst {
-                    for (module in mpsModules()) {
+                archiveBaseName.set("${project.name}-mps")
+            }
+            afterEvaluate {
+                tasks.named<Jar>("mpsJar") {
+                    for (module in modules) {
                         from("$buildDir/tmp/${mpsExtension.buildScriptName}/java/out/${module.name}/")
                     }
                 }
-                archiveBaseName.set("${project.name}-mps")
             }
             artifacts {
                 add(mps.name, provider { file("$buildDir/artifacts/${mpsExtension.artifactName}/") }) {
@@ -113,12 +118,6 @@ class MpsPlugin : Plugin<Project> {
                 add(mps.name, tasks["mpsJar"])
             }
         }
-    }
-
-    private fun Project.mpsModules(): Array<File> {
-        val langauges = file("languages").listFiles() ?: emptyArray()
-        val solutions = file("solutions").listFiles() ?: emptyArray()
-        return langauges + solutions
     }
 
     private fun Project.executeMpsBuild(antBinaries: Configuration, vararg targets: String) {
