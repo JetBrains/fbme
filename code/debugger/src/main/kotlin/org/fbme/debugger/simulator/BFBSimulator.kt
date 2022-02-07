@@ -44,7 +44,7 @@ class BFBSimulator(fbDeclaration: BasicFBTypeDeclaration) {
 
         addAssociations(typeDescriptor)
 
-        context = Context(variables, this.transitions, actions, "INIT")
+        context = Context(events, variables, this.transitions, actions, algorithms, "INIT")
         interpreter = STInterpreter(context)
         eccSimulator = ECCSimulator(context)
     }

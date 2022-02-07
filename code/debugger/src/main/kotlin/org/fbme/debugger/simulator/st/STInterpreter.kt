@@ -19,7 +19,9 @@ class STInterpreter(private var context: Context) {
 
     private fun interpret(variableReference: VariableReference): Value<*> {
         val variableName = (variableReference as VariableReferenceByNode).reference.presentation
-        return context.variables[variableName] ?: error("unexpected variable $variableName")
+        return context.variables[variableName]
+            ?: context.events[variableName]?.first?.let { Value(it) }
+            ?: error("unexpected variable $variableName")
     }
 
     private fun interpret(binaryExpression: BinaryExpression): Value<*> {

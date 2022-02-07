@@ -5,7 +5,28 @@ import org.fbme.debugger.simulator.st.STInterpreter
 class ECCSimulator(private val context: Context) {
     private val interpreter = STInterpreter(context)
 
-    fun doStep() {
-        // TODO: do d(b?)fs
+    fun doStep(from: String = context.currentState) {
+        for ((algorithmName, outputEventName) in context.actions[from]!!) {
+            for (statement in context.algorithms[algorithmName]!!) {
+                interpreter.interpret(statement)
+            }
+            val (isFire, count) = context.events[outputEventName]!!
+            context.events[outputEventName] = Pair(!isFire, count + 1)
+        }
+        val outgoingTransitions = context.transitions[from]!!
+        for (transition in outgoingTransitions) {
+            val to = transition.first
+            val (conditionEvent, conditionExpression) = transition.second
+            var conditionResult = true
+            if (conditionEvent != null) {
+                conditionResult = conditionResult && context.events[conditionEvent]!!.first
+            }
+            if (conditionExpression != null) {
+                conditionResult = conditionResult && interpreter.interpret(conditionExpression).value as Boolean
+            }
+            if (conditionResult) {
+                doStep(to)
+            }
+        }
     }
 }
