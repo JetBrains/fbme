@@ -6,6 +6,7 @@ class ECCSimulator(private val context: Context) {
     private val interpreter = STInterpreter(context)
 
     fun doStep(from: String = context.currentState) {
+        context.currentState = from
         for ((algorithmName, outputEventName) in context.actions[from]!!) {
             if (algorithmName != "") {
                 for (statement in context.algorithms[algorithmName]!!) {
