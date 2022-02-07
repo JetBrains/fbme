@@ -6,6 +6,7 @@ import org.fbme.lib.st.statements.Statement
 data class Context(
     val events: MutableMap<String, Pair<Boolean, Int>>,
     val variables: MutableMap<String, Value<*>>,
+    val associations: MutableMap<String, Set<String>>,
     val transitions: MutableMap<String, MutableList<Pair<String, Pair<String?, Expression?>>>>,
     val actions: MutableMap<String, MutableList<Pair<String, String>>>,
     val algorithms: MutableMap<String, MutableList<Statement>>,

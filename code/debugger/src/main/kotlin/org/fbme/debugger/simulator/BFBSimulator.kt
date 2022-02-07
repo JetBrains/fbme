@@ -1,6 +1,5 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.simulator.st.STInterpreter
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
@@ -24,14 +23,13 @@ class BFBSimulator(fbDeclaration: BasicFBTypeDeclaration) {
     private val algorithms: MutableMap<String, MutableList<Statement>> = mutableMapOf()
 
     private val context: Context
-    private val interpreter: STInterpreter
     private val eccSimulator: ECCSimulator
 
     init {
         addAlgorithms(fbDeclaration.algorithms)
 
         val ecc = fbDeclaration.ecc
-        addEdges(ecc.transitions)
+        addTransitions(ecc.transitions)
         addActions(ecc.states)
 
         val typeDescriptor = fbDeclaration.typeDescriptor
@@ -44,9 +42,12 @@ class BFBSimulator(fbDeclaration: BasicFBTypeDeclaration) {
 
         addAssociations(typeDescriptor)
 
-        context = Context(events, variables, this.transitions, actions, algorithms, "INIT")
-        interpreter = STInterpreter(context)
+        context = Context(events, variables, associations, transitions, actions, algorithms, "INIT")
         eccSimulator = ECCSimulator(context)
+    }
+
+    fun doStep() {
+        eccSimulator.doStep()
     }
 
     private fun addAlgorithms(algorithms: MutableList<AlgorithmDeclaration>) {
@@ -61,7 +62,7 @@ class BFBSimulator(fbDeclaration: BasicFBTypeDeclaration) {
         }
     }
 
-    private fun addEdges(transitions: MutableList<StateTransition>) {
+    private fun addTransitions(transitions: MutableList<StateTransition>) {
         for (transition in transitions) {
             val from = transition.sourceReference.presentation
             val to = transition.targetReference.presentation
@@ -127,13 +128,6 @@ class BFBSimulator(fbDeclaration: BasicFBTypeDeclaration) {
                 .map { position -> dataOutputPorts[position].name }
                 .toSet()
             associations[port.name] = associatedOutputVariables
-        }
-    }
-
-    fun interpretAlgorithm(algorithmName: String) {
-        val statements = algorithms[algorithmName] ?: return
-        for (statement in statements) {
-            interpreter.interpret(statement)
         }
     }
 }

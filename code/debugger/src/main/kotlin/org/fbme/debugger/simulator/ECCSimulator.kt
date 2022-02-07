@@ -7,8 +7,10 @@ class ECCSimulator(private val context: Context) {
 
     fun doStep(from: String = context.currentState) {
         for ((algorithmName, outputEventName) in context.actions[from]!!) {
-            for (statement in context.algorithms[algorithmName]!!) {
-                interpreter.interpret(statement)
+            if (algorithmName != "") {
+                for (statement in context.algorithms[algorithmName]!!) {
+                    interpreter.interpret(statement)
+                }
             }
             val (isFire, count) = context.events[outputEventName]!!
             context.events[outputEventName] = Pair(!isFire, count + 1)
@@ -18,7 +20,7 @@ class ECCSimulator(private val context: Context) {
             val to = transition.first
             val (conditionEvent, conditionExpression) = transition.second
             var conditionResult = true
-            if (conditionEvent != null) {
+            if (conditionEvent != null && conditionEvent != "") {
                 conditionResult = conditionResult && context.events[conditionEvent]!!.first
             }
             if (conditionExpression != null) {

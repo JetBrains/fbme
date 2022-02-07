@@ -19,12 +19,8 @@ class SimulateExecutionAction(cell: EditorCell) : Action {
 
     override fun apply() {
         when (typeDeclaration) {
-            is BasicFBTypeDeclaration -> {
-                for (algorithm in typeDeclaration.algorithms) {
-                    val algorithmName = algorithm.name
-                    BFBSimulator(typeDeclaration).interpretAlgorithm(algorithmName)
-                }
-            }
+            is BasicFBTypeDeclaration -> BFBSimulator(typeDeclaration).doStep()
+            // TODO: add case for CompositeFBType
             else -> {}
         }
     }
