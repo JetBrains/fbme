@@ -20,10 +20,10 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.fbme.debugger.listBackground
-import org.fbme.debugger.listForeground
-import org.fbme.debugger.listSelectionBackground
-import org.fbme.debugger.listSelectionForeground
+import org.fbme.debugger.ui.colors.listBackground
+import org.fbme.debugger.ui.colors.listForeground
+import org.fbme.debugger.ui.colors.listSelectionBackground
+import org.fbme.debugger.ui.colors.listSelectionForeground
 import kotlin.math.max
 import kotlin.math.min
 

@@ -2,21 +2,29 @@ package org.fbme.debugger.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme.colors
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.TipsAndUpdates
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import org.fbme.debugger.*
+import org.fbme.debugger.Debugger
+import org.fbme.debugger.HorizontalDivider
+import org.fbme.debugger.ItemButton
 import org.fbme.debugger.ui.WatchablesTreeNodes.BasicFBNode
 import org.fbme.debugger.ui.WatchablesTreeNodes.CompositeFBNode
 import org.fbme.debugger.ui.WatchablesTreeNodes.FBNode
 import org.fbme.debugger.ui.WatchablesTreeNodes.PortNode
 import org.fbme.debugger.ui.WatchablesTreeNodes.ResourceNode
+import org.fbme.debugger.ui.colors.*
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.common.Declaration
 
@@ -82,6 +90,8 @@ fun WatchablesTree(
         ItemName(node, debugger.selectedWatchableNode.value === node)
         if (node is PortNode) {
             PortValue(debugger, node)
+            Spacer(modifier = Modifier.width(10.dp))
+            ExplainButton(debugger, node)
         }
     }
 }
@@ -136,4 +146,25 @@ private fun PortValue(debugger: Debugger, port: PortNode, isSelected: Boolean = 
             append(value)
         }
     }, isSelected)
+}
+
+@Composable
+private fun ExplainButton(debugger: Debugger, port: PortNode, isSelected: Boolean = false) {
+    if (debugger.selectedState.value?.changes?.containsKey(port.watchable) == true) {
+        ItemButton(
+            onClick = {
+                // TODO: explain
+            },
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Transparent,
+                contentColor = colors.HyperlinkLinkColor
+            )
+        ) {
+            Icon(
+                Icons.Default.TipsAndUpdates,
+                contentDescription = "Why?",
+                modifier = Modifier.size(20.dp),
+            )
+        }
+    }
 }

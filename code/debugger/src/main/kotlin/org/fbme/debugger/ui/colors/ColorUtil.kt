@@ -1,4 +1,4 @@
-package org.fbme.debugger
+package org.fbme.debugger.ui.colors
 
 import androidx.compose.ui.graphics.Color
 

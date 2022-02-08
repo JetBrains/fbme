@@ -22,10 +22,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.fbme.debugger.tableBackground
-import org.fbme.debugger.tableForeground
-import org.fbme.debugger.tableHeaderSeparatorColor
-import org.fbme.debugger.textFieldCaretForeground
+import org.fbme.debugger.ui.colors.tableBackground
+import org.fbme.debugger.ui.colors.tableForeground
+import org.fbme.debugger.ui.colors.tableHeaderSeparatorColor
+import org.fbme.debugger.ui.colors.textFieldCaretForeground
 
 @Composable
 fun SearchView(search: MutableState<TextFieldValue>) {

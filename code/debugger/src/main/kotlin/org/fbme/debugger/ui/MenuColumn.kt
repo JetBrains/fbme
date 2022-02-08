@@ -10,17 +10,14 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ClearAll
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.DeleteSweep
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.fbme.debugger.Debugger
-import org.fbme.debugger.tableHeaderBackground
-import org.fbme.debugger.tableHeaderForeground
+import org.fbme.debugger.ui.colors.tableHeaderBackground
+import org.fbme.debugger.ui.colors.tableHeaderForeground
 
 @Composable
 fun MenuColumn(debugger: Debugger) {

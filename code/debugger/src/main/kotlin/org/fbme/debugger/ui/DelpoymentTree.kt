@@ -1,8 +1,12 @@
 package org.fbme.debugger.ui
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
@@ -11,10 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.fbme.debugger.*
+import org.fbme.debugger.Debugger
+import org.fbme.debugger.ItemButton
 import org.fbme.debugger.ui.DeploymentTreeNodes.DeviceNode
 import org.fbme.debugger.ui.DeploymentTreeNodes.ResourceNode
 import org.fbme.debugger.ui.DeploymentTreeNodes.SystemNode
+import org.fbme.debugger.ui.colors.*
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 
@@ -85,7 +91,7 @@ private fun DeployResourceButton(
     device: DeviceDeclaration,
     resource: ResourceDeclaration
 ) {
-    DeploymentButton(
+    ItemButton(
         onClick = {
             debugger.deployResource(device, resource)
         },
@@ -108,7 +114,7 @@ private fun StopResourceButton(
     device: DeviceDeclaration,
     resource: ResourceDeclaration
 ) {
-    DeploymentButton(
+    ItemButton(
         onClick = {
             debugger.stopResource(device, resource)
         },
@@ -122,23 +128,5 @@ private fun StopResourceButton(
             contentDescription = "Stop",
             modifier = Modifier.size(20.dp),
         )
-    }
-}
-
-@Composable
-private fun DeploymentButton(
-    onClick: () -> Unit,
-    colors: ButtonColors = ButtonDefaults.buttonColors(),
-    content: @Composable () -> Unit
-) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier.size(20.dp),
-        shape = RoundedCornerShape(6.dp),
-        elevation = null,
-        colors = colors,
-        contentPadding = PaddingValues(0.dp)
-    ) {
-        content()
     }
 }

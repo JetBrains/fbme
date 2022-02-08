@@ -53,7 +53,8 @@ class Debugger private constructor(private val project: Project) {
             }
 
             if (changes.isNotEmpty()) {
-                states.add(0,
+                states.add(
+                    0,
                     StateData(
                         changes = changes,
                         watches = newWatches

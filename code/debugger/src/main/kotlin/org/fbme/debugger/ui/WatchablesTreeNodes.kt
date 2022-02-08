@@ -1,7 +1,5 @@
 package org.fbme.debugger.ui
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.ui.text.AnnotatedString
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration

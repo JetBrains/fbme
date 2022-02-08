@@ -1,14 +1,12 @@
 package org.fbme.debugger
 
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.fbme.debugger.ui.colors.tableHeaderSeparatorColor
 
 @Composable
 fun VerticalDivider() {
@@ -28,4 +26,22 @@ fun HorizontalDivider() {
             .fillMaxWidth()
             .height(1.dp)
     )
+}
+
+@Composable
+fun ItemButton(
+    onClick: () -> Unit,
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    content: @Composable () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier.size(20.dp),
+        shape = RoundedCornerShape(6.dp),
+        elevation = null,
+        colors = colors,
+        contentPadding = PaddingValues(0.dp)
+    ) {
+        content()
+    }
 }

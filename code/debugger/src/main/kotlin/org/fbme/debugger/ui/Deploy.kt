@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import org.fbme.debugger.Debugger
-import org.fbme.debugger.tableBackground
+import org.fbme.debugger.ui.colors.tableBackground
 
 fun deployPanel(debugger: Debugger): ComposePanel {
     val composePanel = ComposePanel()

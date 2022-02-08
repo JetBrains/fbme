@@ -1,4 +1,4 @@
-package org.fbme.debugger
+package org.fbme.debugger.ui.colors
 
 import androidx.compose.material.Colors
 import androidx.compose.ui.graphics.Color
@@ -101,3 +101,6 @@ val Colors.DeployResourceIconBackground: Color
 
 val Colors.StopResourceIconBackground: Color
     get() = Color(200, 50, 50)
+
+val Colors.HyperlinkLinkColor: Color
+    get() = UIManager.getColor("Hyperlink.linkColor").compose
