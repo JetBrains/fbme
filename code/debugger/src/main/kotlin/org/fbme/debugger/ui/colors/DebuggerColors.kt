@@ -102,5 +102,5 @@ val Colors.DeployResourceIconBackground: Color
 val Colors.StopResourceIconBackground: Color
     get() = Color(200, 50, 50)
 
-val Colors.HyperlinkLinkColor: Color
-    get() = UIManager.getColor("Hyperlink.linkColor").compose
+val Colors.ExplainButtonIconBackground: Color
+    get() = Color(255, 188, 31)

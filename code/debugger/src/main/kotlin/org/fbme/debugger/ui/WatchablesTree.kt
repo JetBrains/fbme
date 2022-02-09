@@ -157,7 +157,7 @@ private fun ExplainButton(debugger: Debugger, port: PortNode, isSelected: Boolea
             },
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color.Transparent,
-                contentColor = colors.HyperlinkLinkColor
+                contentColor = colors.ExplainButtonIconBackground
             )
         ) {
             Icon(
