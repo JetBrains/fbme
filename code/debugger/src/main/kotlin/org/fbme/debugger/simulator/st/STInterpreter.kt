@@ -5,7 +5,7 @@ import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
-class STInterpreter(private var context: Context) {
+class STInterpreter(private var context: BFBContext) {
     fun interpret(expression: Expression): Value<*> = when (expression) {
         is VariableReference -> interpret(expression)
         is ArrayVariable -> error("TODO: Support ArrayVariable")

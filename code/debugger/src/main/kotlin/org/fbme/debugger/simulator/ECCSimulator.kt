@@ -2,7 +2,7 @@ package org.fbme.debugger.simulator
 
 import org.fbme.debugger.simulator.st.STInterpreter
 
-class ECCSimulator(private val context: Context) {
+class ECCSimulator(private val context: BFBContext) {
     private val interpreter = STInterpreter(context)
 
     fun doStep(from: String = context.currentState) {
