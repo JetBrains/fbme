@@ -1,5 +1,6 @@
 package org.fbme.debugger.simulator
 
 interface Simulator {
-    fun doStep()
+    fun doStep(): Set<String>
+    fun activateInterfaceEvent(port: String)
 }

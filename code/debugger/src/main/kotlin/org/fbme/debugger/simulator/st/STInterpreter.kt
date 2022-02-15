@@ -5,7 +5,7 @@ import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
-class STInterpreter(private var context: BFBContext) {
+class STInterpreter(val events: MutableMap<String, EventInfo>, val variables: MutableMap<String, Value<*>>) {
     fun interpret(expression: Expression): Value<*> = when (expression) {
         is VariableReference -> interpret(expression)
         is ArrayVariable -> error("TODO: Support ArrayVariable")
@@ -19,8 +19,8 @@ class STInterpreter(private var context: BFBContext) {
 
     private fun interpret(variableReference: VariableReference): Value<*> {
         val variableName = (variableReference as VariableReferenceByNode).reference.presentation
-        return context.variables[variableName]
-            ?: context.events[variableName]?.first?.let { Value(it) }
+        return variables[variableName]
+            ?: events[variableName]?.isActive?.let { Value(it) }
             ?: error("unexpected variable $variableName")
     }
 
@@ -129,7 +129,7 @@ class STInterpreter(private var context: BFBContext) {
         val variableName = (assignmentStatement.variable as VariableReferenceByNode).reference.presentation
         val expression = assignmentStatement.expression ?: error("expression expected in assignment $variableName")
         val value = interpret(expression)
-        context.variables[variableName] = value
+        variables[variableName] = value
     }
 
     private fun interpret(forStatement: ForStatement) {

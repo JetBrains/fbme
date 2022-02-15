@@ -8,16 +8,15 @@ import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
-import org.fbme.lib.st.expressions.Expression
 import org.fbme.lib.st.statements.Statement
 import org.fbme.lib.st.types.ElementaryType
 
 data class BFBContext(
-    val events: MutableMap<String, Pair<Boolean, Int>> = mutableMapOf(),
+    val events: MutableMap<String, EventInfo> = mutableMapOf(),
     val variables: MutableMap<String, Value<*>> = mutableMapOf(),
     val associations: MutableMap<String, Set<String>> = mutableMapOf(),
-    val transitions: MutableMap<String, MutableList<Pair<String, Pair<String?, Expression?>>>> = mutableMapOf(),
-    val actions: MutableMap<String, MutableList<Pair<String, String>>> = mutableMapOf(),
+    val transitions: MutableMap<String, MutableList<OutgoingTransition>> = mutableMapOf(),
+    val actions: MutableMap<String, MutableList<ActionData>> = mutableMapOf(),
     val algorithms: MutableMap<String, MutableList<Statement>> = mutableMapOf(),
     var currentState: String = "INIT"
 ) : Context {
@@ -29,8 +28,8 @@ data class BFBContext(
         addActions(ecc.states)
 
         val typeDescriptor = fbDeclaration.typeDescriptor
-        addEvents(typeDescriptor.eventInputPorts)
-        addEvents(typeDescriptor.eventOutputPorts)
+        addEvents(typeDescriptor.eventInputPorts, true)
+        addEvents(typeDescriptor.eventOutputPorts, false)
 
         addInternalVariables(fbDeclaration.internalVariables)
         addVariables(typeDescriptor.dataInputPorts)
@@ -53,30 +52,32 @@ data class BFBContext(
 
     private fun addTransitions(transitions: MutableList<StateTransition>) {
         for (transition in transitions) {
-            val from = transition.sourceReference.presentation
-            val to = transition.targetReference.presentation
+            val source = transition.sourceReference.presentation
+            val target = transition.targetReference.presentation
 
             val conditionEvent = transition.condition.eventReference.presentation
             val conditionExpression = transition.condition.getGuardCondition()
 
-            this.transitions.getOrPut(from) { mutableListOf() } += Pair(to, Pair(conditionEvent, conditionExpression))
+            val outgoingTransitionsFromSource = this.transitions.getOrPut(source) { mutableListOf() }
+            val outgoingTransitionFromSource = OutgoingTransition(target, TransitionCondition(conditionEvent, conditionExpression))
+            outgoingTransitionsFromSource += outgoingTransitionFromSource
         }
     }
 
     private fun addActions(states: MutableList<StateDeclaration>) {
         for (state in states) {
             val stateName = state.name
-            val stateActions = mutableListOf<Pair<String, String>>()
+            val stateActions = mutableListOf<ActionData>()
             for (action in state.actions) {
-                stateActions.add(Pair(action.algorithm.presentation, action.event.presentation))
+                stateActions.add(ActionData(action.algorithm.presentation, action.event.presentation))
             }
             actions[stateName] = stateActions
         }
     }
 
-    private fun addEvents(ports: List<FBPortDescriptor>) {
+    private fun addEvents(ports: List<FBPortDescriptor>, isInput: Boolean) {
         for (port in ports) {
-            events[port.name] = Pair(false, 0)
+            events[port.name] = EventInfo(isInput, false, 0)
         }
     }
 
