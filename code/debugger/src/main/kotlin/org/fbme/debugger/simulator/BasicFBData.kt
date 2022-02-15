@@ -11,15 +11,15 @@ import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.st.statements.Statement
 import org.fbme.lib.st.types.ElementaryType
 
-data class BFBContext(
-    val events: MutableMap<String, EventInfo> = mutableMapOf(),
-    val variables: MutableMap<String, Value<*>> = mutableMapOf(),
+data class BasicFBData(
+    override val events: MutableMap<String, EventInfo> = mutableMapOf(),
+    override val variables: MutableMap<String, Value<*>> = mutableMapOf(),
     val associations: MutableMap<String, Set<String>> = mutableMapOf(),
     val transitions: MutableMap<String, MutableList<OutgoingTransition>> = mutableMapOf(),
     val actions: MutableMap<String, MutableList<ActionData>> = mutableMapOf(),
     val algorithms: MutableMap<String, MutableList<Statement>> = mutableMapOf(),
     var currentState: String = "INIT"
-) : Context {
+) : FBData {
     constructor(fbDeclaration: BasicFBTypeDeclaration) : this() {
         addAlgorithms(fbDeclaration.algorithms)
 
@@ -28,8 +28,8 @@ data class BFBContext(
         addActions(ecc.states)
 
         val typeDescriptor = fbDeclaration.typeDescriptor
-        addEvents(typeDescriptor.eventInputPorts, true)
-        addEvents(typeDescriptor.eventOutputPorts, false)
+        addEvents(typeDescriptor.eventInputPorts)
+        addEvents(typeDescriptor.eventOutputPorts)
 
         addInternalVariables(fbDeclaration.internalVariables)
         addVariables(typeDescriptor.dataInputPorts)
@@ -75,9 +75,9 @@ data class BFBContext(
         }
     }
 
-    private fun addEvents(ports: List<FBPortDescriptor>, isInput: Boolean) {
+    private fun addEvents(ports: List<FBPortDescriptor>) {
         for (port in ports) {
-            events[port.name] = EventInfo(isInput, false, 0)
+            events[port.name] = EventInfo(false, 0)
         }
     }
 
