@@ -1,5 +1,6 @@
 package org.fbme.debugger.simulator
 
 interface FBSimulator {
-    fun triggerEvent(eventName: String): LinkedHashSet<String>
+    val fbData: FBData
+    fun triggerEvent(eventName: String)
 }

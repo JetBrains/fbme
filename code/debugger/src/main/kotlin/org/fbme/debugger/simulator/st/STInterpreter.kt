@@ -5,7 +5,7 @@ import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
-class STInterpreter(val events: MutableMap<String, EventInfo>, val variables: MutableMap<String, Value<*>>) {
+class STInterpreter(private val variables: MutableMap<String, Value<*>>) {
     fun interpret(expression: Expression): Value<*> = when (expression) {
         is VariableReference -> interpret(expression)
         is ArrayVariable -> error("TODO: Support ArrayVariable")
@@ -19,9 +19,7 @@ class STInterpreter(val events: MutableMap<String, EventInfo>, val variables: Mu
 
     private fun interpret(variableReference: VariableReference): Value<*> {
         val variableName = (variableReference as VariableReferenceByNode).reference.presentation
-        return variables[variableName]
-            ?: events[variableName]?.isActive?.let { Value(it) }
-            ?: error("unexpected variable $variableName")
+        return variables[variableName] ?: error("unexpected variable $variableName")
     }
 
     private fun interpret(binaryExpression: BinaryExpression): Value<*> {

@@ -2,37 +2,52 @@ package org.fbme.debugger.simulator
 
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
-class CompositeFBSimulator(private val fbData: CompositeFBData) : FBSimulator {
+class CompositeFBSimulator(override val fbData: CompositeFBData) : FBSimulator {
     constructor(fbDeclaration: CompositeFBTypeDeclaration) : this(CompositeFBData(fbDeclaration))
 
     @Synchronized
-    override fun triggerEvent(eventName: String): LinkedHashSet<String> {
-        val activeOutputEvents = linkedSetOf<String>()
-
-        val source = NetworkPort(fb = "", port = eventName)
+    override fun triggerEvent(eventName: String) {
+        fbData.activateEvent(eventName)
+        val source = FBPort(fb = "", port = eventName)
         val outgoingConnections = fbData.connections[source]!!
         for (target in outgoingConnections) {
             if (target.fb == "") {
-                activeOutputEvents += target.port
+                fbData.activateEvent(target.port)
             } else {
-                triggerInnerNetworkPort(target, activeOutputEvents)
+                triggerInnerFBPort(target)
             }
         }
-
-        return activeOutputEvents
+        fbData.deactivateEvent(eventName)
     }
 
-    private fun triggerInnerNetworkPort(networkPort: NetworkPort, activeOutputEvents: LinkedHashSet<String>) {
-        val fbSimulator = fbData.fbs[networkPort.fb]!!
-        val affectedEvents = fbSimulator.triggerEvent(networkPort.port)
-        for (affectedEvent in affectedEvents) {
-            val nextPorts = fbData.connections[NetworkPort(fb = networkPort.fb, port = affectedEvent)]!!
-            for (nextPort in nextPorts) {
-                if (nextPort.fb == "") {
-                    activeOutputEvents += nextPort.port
-                } else {
-                    triggerInnerNetworkPort(nextPort, activeOutputEvents)
+    private fun triggerInnerFBPort(fbPort: FBPort) {
+        val innerFBSimulator = fbData.fbs[fbPort.fb]!!
+        val innerFBData = innerFBSimulator.fbData
+        innerFBSimulator.triggerEvent(fbPort.port)
+        for ((eventName, eventInfo) in innerFBData.events) {
+            if (eventName != fbPort.port && eventInfo.isActive) {
+                val associatedDataOutputPorts = innerFBData.associations[eventName]!!
+                for (associatedDataOutputPort in associatedDataOutputPorts) {
+                    val nextPorts = fbData.connections[FBPort(fb = fbPort.fb, port = associatedDataOutputPort)]!!
+                    for (nextPort in nextPorts) {
+                        val value = innerFBData.variables[associatedDataOutputPort]!!
+                        if (nextPort.fb == "") {
+                            fbData.variables[nextPort.port] = value
+                        } else {
+                            fbData.fbs[nextPort.fb]!!.fbData.variables[nextPort.port] = value
+                        }
+                    }
                 }
+
+                val nextPorts = fbData.connections[FBPort(fb = fbPort.fb, port = eventName)]!!
+                for (nextPort in nextPorts) {
+                    if (nextPort.fb == "") {
+                        fbData.activateEvent(nextPort.port)
+                    } else {
+                        triggerInnerFBPort(nextPort)
+                    }
+                }
+                innerFBData.deactivateEvent(eventName)
             }
         }
     }

@@ -1,6 +1,6 @@
 package org.fbme.debugger.simulator
 
-data class NetworkPort(
+data class FBPort(
     val fb: String,
     val port: String
 ) {
