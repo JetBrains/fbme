@@ -5,30 +5,17 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 
-data class CompositeFBData(
-    override val events: MutableMap<String, EventInfo> = mutableMapOf(),
-    override val variables: MutableMap<String, Value<*>> = mutableMapOf(),
-    override val associations: MutableMap<String, Set<String>> = mutableMapOf(),
-    val fbs: MutableMap<String, FBSimulator> = mutableMapOf(),
-    val connections: MutableMap<FBPort, MutableList<FBPort>> = linkedMapOf(),
-) : FBDataImpl() {
-    constructor(fbDeclaration: CompositeFBTypeDeclaration) : this() {
+class CompositeFBData(fbDeclaration: CompositeFBTypeDeclaration) : FBDataImpl(fbDeclaration) {
+    val fbs: LinkedHashMap<String, FBSimulator> = linkedMapOf()
+    val connections: LinkedHashMap<FBPort, MutableList<FBPort>> = linkedMapOf()
+
+    init {
         val network = fbDeclaration.network
-
-        val typeDescriptor = fbDeclaration.typeDescriptor
-
-        addEvents(typeDescriptor.eventInputPorts)
-        addEvents(typeDescriptor.eventOutputPorts)
-
-        addVariables(typeDescriptor.dataInputPorts)
-        addVariables(typeDescriptor.dataOutputPorts)
 
         addFBs(network)
 
         addConnections(network.eventConnections)
         addConnections(network.dataConnections)
-
-        addAssociations(typeDescriptor)
     }
 
     private fun addConnections(connections: MutableList<FBNetworkConnection>) {

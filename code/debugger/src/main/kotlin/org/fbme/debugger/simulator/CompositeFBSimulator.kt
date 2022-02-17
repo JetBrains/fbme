@@ -24,23 +24,23 @@ class CompositeFBSimulator(override val fbData: CompositeFBData) : FBSimulator {
         val innerFBSimulator = fbData.fbs[fbPort.fb]!!
         val innerFBData = innerFBSimulator.fbData
         innerFBSimulator.triggerEvent(fbPort.port)
-        for ((eventName, eventInfo) in innerFBData.events) {
-            if (eventName != fbPort.port && eventInfo.isActive) {
+        for ((eventName, eventInfo) in innerFBData.outputEvents) {
+            if (eventInfo.isActive) {
                 val associatedDataOutputPorts = innerFBData.associations[eventName]!!
                 for (associatedDataOutputPort in associatedDataOutputPorts) {
-                    val nextPorts = fbData.connections[FBPort(fb = fbPort.fb, port = associatedDataOutputPort)]!!
-                    for (nextPort in nextPorts) {
-                        val value = innerFBData.variables[associatedDataOutputPort]!!
+                    val value = innerFBData.outputVariables[associatedDataOutputPort]
+                        ?: error("unknown port name $associatedDataOutputPort")
+                    val nextDataPorts = fbData.connections[FBPort(fb = fbPort.fb, port = associatedDataOutputPort)]!!
+                    for (nextPort in nextDataPorts) {
                         if (nextPort.fb == "") {
-                            fbData.variables[nextPort.port] = value
+                            fbData.outputVariables[nextPort.port] = value
                         } else {
-                            fbData.fbs[nextPort.fb]!!.fbData.variables[nextPort.port] = value
+                            fbData.fbs[nextPort.fb]!!.fbData.inputVariables[nextPort.port] = value
                         }
                     }
                 }
-
-                val nextPorts = fbData.connections[FBPort(fb = fbPort.fb, port = eventName)]!!
-                for (nextPort in nextPorts) {
+                val nextEventPorts = fbData.connections[FBPort(fb = fbPort.fb, port = eventName)]!!
+                for (nextPort in nextEventPorts) {
                     if (nextPort.fb == "") {
                         fbData.activateEvent(nextPort.port)
                     } else {

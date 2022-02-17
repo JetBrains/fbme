@@ -5,7 +5,11 @@ import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
-class STInterpreter(private val variables: MutableMap<String, Value<*>>) {
+class STInterpreter(
+    private val inputVariables: MutableMap<String, Value<*>>,
+    private val internalVariables: MutableMap<String, Value<*>>,
+    private val outputVariables: MutableMap<String, Value<*>>
+) {
     fun interpret(expression: Expression): Value<*> = when (expression) {
         is VariableReference -> interpret(expression)
         is ArrayVariable -> error("TODO: Support ArrayVariable")
@@ -19,7 +23,10 @@ class STInterpreter(private val variables: MutableMap<String, Value<*>>) {
 
     private fun interpret(variableReference: VariableReference): Value<*> {
         val variableName = (variableReference as VariableReferenceByNode).reference.presentation
-        return variables[variableName] ?: error("unexpected variable $variableName")
+        return inputVariables[variableName]
+            ?: internalVariables[variableName]
+            ?: outputVariables[variableName]
+            ?: error("unexpected variable $variableName")
     }
 
     private fun interpret(binaryExpression: BinaryExpression): Value<*> {
@@ -127,7 +134,15 @@ class STInterpreter(private val variables: MutableMap<String, Value<*>>) {
         val variableName = (assignmentStatement.variable as VariableReferenceByNode).reference.presentation
         val expression = assignmentStatement.expression ?: error("expression expected in assignment $variableName")
         val value = interpret(expression)
-        variables[variableName] = value
+        if (inputVariables.contains(variableName)) {
+            inputVariables[variableName] = value
+        } else if (internalVariables.contains(variableName)) {
+            internalVariables[variableName] = value
+        } else if (outputVariables.contains(variableName)) {
+            outputVariables[variableName] = value
+        } else {
+            error("unknown variable $variableName")
+        }
     }
 
     private fun interpret(forStatement: ForStatement) {

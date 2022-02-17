@@ -7,33 +7,23 @@ import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.st.statements.Statement
-import org.fbme.lib.st.types.ElementaryType
 
-data class BasicFBData(
-    override val events: MutableMap<String, EventInfo> = mutableMapOf(),
-    override val variables: MutableMap<String, Value<*>> = mutableMapOf(),
-    override val associations: MutableMap<String, Set<String>> = mutableMapOf(),
-    val transitions: MutableMap<String, MutableList<OutgoingTransition>> = mutableMapOf(),
-    val actions: MutableMap<String, MutableList<ActionData>> = mutableMapOf(),
-    val algorithms: MutableMap<String, MutableList<Statement>> = mutableMapOf(),
-    var currentState: String = "INIT"
-) : FBDataImpl() {
-    constructor(fbDeclaration: BasicFBTypeDeclaration) : this() {
-        addAlgorithms(fbDeclaration.algorithms)
+class BasicFBData(fbDeclaration: BasicFBTypeDeclaration) : FBDataImpl(fbDeclaration) {
+    val internalVariables: LinkedHashMap<String, Value<*>> = linkedMapOf()
+    val transitions: MutableMap<String, MutableList<OutgoingTransition>> = mutableMapOf()
+    val actions: MutableMap<String, MutableList<ActionData>> = mutableMapOf()
+    val algorithms: MutableMap<String, MutableList<Statement>> = mutableMapOf()
+    var currentState: String = "START"
+    var isFirstStep: Boolean = true
 
+    init {
         val ecc = fbDeclaration.ecc
         addTransitions(ecc.transitions)
         addActions(ecc.states)
 
-        val typeDescriptor = fbDeclaration.typeDescriptor
-        addEvents(typeDescriptor.eventInputPorts)
-        addEvents(typeDescriptor.eventOutputPorts)
+        addAlgorithms(fbDeclaration.algorithms)
 
         addInternalVariables(fbDeclaration.internalVariables)
-        addVariables(typeDescriptor.dataInputPorts)
-        addVariables(typeDescriptor.dataOutputPorts)
-
-        addAssociations(typeDescriptor)
     }
 
     private fun addAlgorithms(algorithms: MutableList<AlgorithmDeclaration>) {
@@ -74,13 +64,10 @@ data class BasicFBData(
         }
     }
 
-    private fun addInternalVariables(internalVariables: MutableList<ParameterDeclaration>) {
+    private fun addInternalVariables(internalVariables: List<ParameterDeclaration>) {
         for (internalVariable in internalVariables) {
-            val initialLiteral = internalVariable.initialValue
-            val initialValue: Value<*> =
-                if (initialLiteral != null) Value(initialLiteral.value)
-                else (internalVariable.type as? ElementaryType)?.defaultValue ?: error("smth went wrong")
-            variables[internalVariable.name] = initialValue
+            val initialValue = extractInitialValue(internalVariable)
+            this.internalVariables[internalVariable.name] = initialValue
         }
     }
 }

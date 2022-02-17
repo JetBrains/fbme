@@ -3,18 +3,27 @@ package org.fbme.debugger.simulator
 import androidx.compose.ui.awt.ComposePanel
 import jetbrains.mps.project.Project
 import org.fbme.debugger.simulator.ui.simulatePanel
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import javax.swing.JComponent
 
 class Simulator private constructor(private val project: Project) {
-    private val simulatePanel: ComposePanel by lazy { simulatePanel() }
+    private val simulatePanels: MutableMap<FBTypeDeclaration, ComposePanel> = mutableMapOf()
 
-    fun simulateFB(fbTypeDeclaration: FBTypeDeclaration) {
-
+    fun addSimulateTab(fbTypeDeclaration: FBTypeDeclaration) {
+        project.modelAccess.executeCommand {
+            val fbSimulator = when (fbTypeDeclaration) {
+                is BasicFBTypeDeclaration -> BasicFBSimulator(fbTypeDeclaration)
+                is CompositeFBTypeDeclaration -> CompositeFBSimulator(fbTypeDeclaration)
+                else -> error("Unsupported FB type to simulate execution")
+            }
+            simulatePanels[fbTypeDeclaration] = simulatePanel(fbSimulator, project)
+        }
     }
 
-    fun getSimulateTab(): JComponent {
-        return simulatePanel
+    fun getSimulateTab(fbTypeDeclaration: FBTypeDeclaration): JComponent? {
+        return simulatePanels[fbTypeDeclaration]
     }
 
     companion object {
@@ -28,8 +37,8 @@ class Simulator private constructor(private val project: Project) {
         @Synchronized
         fun register(project: Project) {
             check(!instances.containsKey(project))
-            val debugger = Simulator(project)
-            instances.putIfAbsent(project, debugger)
+            val simulator = Simulator(project)
+            instances.putIfAbsent(project, simulator)
         }
 
         @JvmStatic

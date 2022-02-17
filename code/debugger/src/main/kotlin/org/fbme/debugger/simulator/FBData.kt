@@ -1,8 +1,10 @@
 package org.fbme.debugger.simulator
 
 interface FBData {
-    val events: MutableMap<String, EventInfo>
-    val variables: MutableMap<String, Value<*>>
+    val inputEvents: LinkedHashMap<String, EventInfo>
+    val outputEvents: LinkedHashMap<String, EventInfo>
+    val inputVariables: LinkedHashMap<String, Value<*>>
+    val outputVariables: LinkedHashMap<String, Value<*>>
     val associations: MutableMap<String, Set<String>>
 
     fun activateEvent(eventName: String)

@@ -4,6 +4,7 @@ import jetbrains.mps.openapi.editor.cells.EditorCell
 import org.fbme.debugger.common.actions.Action
 import org.fbme.debugger.simulator.BasicFBSimulator
 import org.fbme.debugger.simulator.CompositeFBSimulator
+import org.fbme.debugger.simulator.Simulator
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration

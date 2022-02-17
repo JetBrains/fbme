@@ -47,6 +47,7 @@
     <import index="wvnl" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.extensions(MPS.Editor/)" />
     <import index="ekie" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger.simulator.actions(org.fbme.debugger/)" />
     <import index="80uf" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger.simulator(org.fbme.debugger/)" />
+    <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(org.fbme.ide.iec61499.adapter.fbnetwork)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
   </imports>
   <registry>
@@ -7215,6 +7216,84 @@
           </node>
         </node>
         <node concept="3clFbH" id="6V1xIBUm_rs" role="3cqZAp" />
+        <node concept="3cpWs8" id="tKUV5iFqN6" role="3cqZAp">
+          <node concept="3cpWsn" id="tKUV5iFqN7" role="3cpWs9">
+            <property role="TrG5h" value="fbTypeDeclaration" />
+            <node concept="3uibUv" id="tKUV5iFqN8" role="1tU5fm">
+              <ref role="3uigEE" to="cwd8:~FBTypeDeclaration" resolve="FBTypeDeclaration" />
+            </node>
+            <node concept="2OqwBi" id="tKUV5iFr4k" role="33vP2m">
+              <node concept="2OqwBi" id="tKUV5iFr4l" role="2Oq$k0">
+                <node concept="1eOMI4" id="tKUV5iFr4m" role="2Oq$k0">
+                  <node concept="0kSF2" id="tKUV5iFr4n" role="1eOMHV">
+                    <node concept="3uibUv" id="tKUV5iFr4o" role="0kSFW">
+                      <ref role="3uigEE" to="rwq3:6LU90BOirFi" resolve="FunctionBlockDeclarationByNode" />
+                    </node>
+                    <node concept="37vLTw" id="tKUV5iFr4p" role="0kSFX">
+                      <ref role="3cqZAo" node="uP0FLzO7Er" resolve="fb" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="tKUV5iFr4q" role="2OqNvi">
+                  <ref role="37wK5l" to="rwq3:3lxP5h48PxI" resolve="getTypeReference" />
+                </node>
+              </node>
+              <node concept="liA8E" id="tKUV5iFxG4" role="2OqNvi">
+                <ref role="37wK5l" to="7adg:~Reference.getTarget()" resolve="getTarget" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="1XMlf3X_jK3" role="3cqZAp">
+          <node concept="3cpWsn" id="1XMlf3X_jK4" role="3cpWs9">
+            <property role="TrG5h" value="fbTypeName" />
+            <node concept="3uibUv" id="1XMlf3X_jvO" role="1tU5fm">
+              <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+            </node>
+            <node concept="2OqwBi" id="1XMlf3X_jK5" role="33vP2m">
+              <node concept="37vLTw" id="1XMlf3X_jK6" role="2Oq$k0">
+                <ref role="3cqZAo" node="tKUV5iFqN7" resolve="fbTypeDeclaration" />
+              </node>
+              <node concept="liA8E" id="1XMlf3X_jK7" role="2OqNvi">
+                <ref role="37wK5l" to="7adg:~Declaration.getName()" resolve="getName" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="1XMlf3X_l9b" role="3cqZAp" />
+        <node concept="3clFbF" id="1XMlf3X_eNK" role="3cqZAp">
+          <node concept="2OqwBi" id="1XMlf3X_eNM" role="3clFbG">
+            <node concept="37vLTw" id="1XMlf3X_eNN" role="2Oq$k0">
+              <ref role="3cqZAo" node="6V1xIBUmB3X" resolve="simulatorInstance" />
+            </node>
+            <node concept="liA8E" id="1XMlf3X_eNO" role="2OqNvi">
+              <ref role="37wK5l" to="80uf:~Simulator.addSimulateTab(org.fbme.lib.iec61499.declarations.FBTypeDeclaration)" resolve="addSimulateTab" />
+              <node concept="37vLTw" id="1XMlf3X_eNP" role="37wK5m">
+                <ref role="3cqZAo" node="tKUV5iFqN7" resolve="fbTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="1XMlf3X_a_k" role="3cqZAp">
+          <node concept="3cpWsn" id="1XMlf3X_a_l" role="3cpWs9">
+            <property role="TrG5h" value="newSimulateTab" />
+            <node concept="3uibUv" id="1XMlf3X_a_m" role="1tU5fm">
+              <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
+            </node>
+            <node concept="2OqwBi" id="1XMlf3X_aXI" role="33vP2m">
+              <node concept="37vLTw" id="1XMlf3X_aSN" role="2Oq$k0">
+                <ref role="3cqZAo" node="6V1xIBUmB3X" resolve="simulatorInstance" />
+              </node>
+              <node concept="liA8E" id="1XMlf3X_bdA" role="2OqNvi">
+                <ref role="37wK5l" to="80uf:~Simulator.getSimulateTab(org.fbme.lib.iec61499.declarations.FBTypeDeclaration)" resolve="getSimulateTab" />
+                <node concept="37vLTw" id="1XMlf3X_cWX" role="37wK5m">
+                  <ref role="3cqZAo" node="tKUV5iFqN7" resolve="fbTypeDeclaration" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="1XMlf3X_k$4" role="3cqZAp" />
         <node concept="3clFbF" id="7W5tLbbXQw2" role="3cqZAp">
           <node concept="2OqwBi" id="7W5tLbbXQM7" role="3clFbG">
             <node concept="37vLTw" id="7W5tLbbXQw0" role="2Oq$k0">
@@ -7235,13 +7314,8 @@
             </node>
             <node concept="2XshWL" id="6V1xIBUmE21" role="2OqNvi">
               <ref role="2WH_rO" node="4Agr5LCcFTf" resolve="setSimulateTab" />
-              <node concept="2OqwBi" id="6V1xIBUmEae" role="2XxRq1">
-                <node concept="37vLTw" id="6V1xIBUmE5k" role="2Oq$k0">
-                  <ref role="3cqZAo" node="6V1xIBUmB3X" resolve="simulatorInstance" />
-                </node>
-                <node concept="liA8E" id="6V1xIBUmEja" role="2OqNvi">
-                  <ref role="37wK5l" to="80uf:~Simulator.getSimulateTab()" resolve="getSimulateTab" />
-                </node>
+              <node concept="37vLTw" id="1XMlf3X_fCb" role="2XxRq1">
+                <ref role="3cqZAo" node="1XMlf3X_a_l" resolve="newSimulateTab" />
               </node>
             </node>
           </node>
@@ -7253,16 +7327,11 @@
             </node>
             <node concept="2wDMaC" id="6V1xIBUmF$k" role="2OqNvi">
               <node concept="2BLXyY" id="6V1xIBUmF$m" role="11Dce$">
-                <node concept="2OqwBi" id="6V1xIBUmI4C" role="2BLOvw">
-                  <node concept="37vLTw" id="6V1xIBUmHWh" role="2Oq$k0">
-                    <ref role="3cqZAo" node="6V1xIBUmjv3" resolve="simulatorTool" />
-                  </node>
-                  <node concept="2XshWL" id="6V1xIBUmImW" role="2OqNvi">
-                    <ref role="2WH_rO" node="4Agr5LCcs2G" resolve="getSimulateTab" />
-                  </node>
+                <node concept="37vLTw" id="1XMlf3X_fKL" role="2BLOvw">
+                  <ref role="3cqZAo" node="1XMlf3X_a_l" resolve="newSimulateTab" />
                 </node>
-                <node concept="Xl_RD" id="6V1xIBUmIze" role="2BLOvx">
-                  <property role="Xl_RC" value="Simulate" />
+                <node concept="37vLTw" id="1XMlf3X_jK8" role="2BLOvx">
+                  <ref role="3cqZAo" node="1XMlf3X_jK4" resolve="name" />
                 </node>
               </node>
             </node>
@@ -7274,13 +7343,8 @@
               <ref role="3cqZAo" node="6V1xIBUmjv3" resolve="simulatorTool" />
             </node>
             <node concept="1kDqZ6" id="6V1xIBUmKBn" role="2OqNvi">
-              <node concept="2OqwBi" id="6V1xIBUmKDi" role="3PF$jx">
-                <node concept="37vLTw" id="6V1xIBUmKDj" role="2Oq$k0">
-                  <ref role="3cqZAo" node="6V1xIBUmjv3" resolve="simulatorTool" />
-                </node>
-                <node concept="2XshWL" id="6V1xIBUmKDk" role="2OqNvi">
-                  <ref role="2WH_rO" node="4Agr5LCcs2G" resolve="getSimulateTab" />
-                </node>
+              <node concept="37vLTw" id="1XMlf3X_fTi" role="3PF$jx">
+                <ref role="3cqZAo" node="1XMlf3X_a_l" resolve="newSimulateTab" />
               </node>
             </node>
           </node>
@@ -7292,34 +7356,9 @@
             </node>
             <node concept="liA8E" id="6V1xIBUmLhO" role="2OqNvi">
               <ref role="37wK5l" to="71xd:~BaseTool.setSelectedComponent(javax.swing.JComponent)" resolve="setSelectedComponent" />
-              <node concept="2OqwBi" id="6V1xIBUmLjf" role="37wK5m">
-                <node concept="37vLTw" id="6V1xIBUmLjg" role="2Oq$k0">
-                  <ref role="3cqZAo" node="6V1xIBUmjv3" resolve="simulatorTool" />
-                </node>
-                <node concept="2XshWL" id="6V1xIBUmLjh" role="2OqNvi">
-                  <ref role="2WH_rO" node="4Agr5LCcs2G" resolve="getSimulateTab" />
-                </node>
+              <node concept="37vLTw" id="1XMlf3X_g4o" role="37wK5m">
+                <ref role="3cqZAo" node="1XMlf3X_a_l" resolve="newSimulateTab" />
               </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbH" id="6V1xIBUmaH$" role="3cqZAp" />
-        <node concept="3clFbF" id="5XK6zxB_xMi" role="3cqZAp">
-          <node concept="2OqwBi" id="5XK6zxB_R1D" role="3clFbG">
-            <node concept="2ShNRf" id="5XK6zxB_xRA" role="2Oq$k0">
-              <node concept="1pGfFk" id="5XK6zxB_QBj" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="ekie:~SimulateExecutionAction.&lt;init&gt;(jetbrains.mps.openapi.editor.cells.EditorCell)" resolve="SimulateExecutionAction" />
-                <node concept="2OqwBi" id="5XK6zxB_QCs" role="37wK5m">
-                  <node concept="2WthIp" id="5XK6zxB_QCv" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="5XK6zxB_QCx" role="2OqNvi">
-                    <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="liA8E" id="5XK6zxB_Reo" role="2OqNvi">
-              <ref role="37wK5l" to="ekie:~SimulateExecutionAction.apply()" resolve="apply" />
             </node>
           </node>
         </node>
