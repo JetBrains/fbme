@@ -45,7 +45,8 @@ class BasicFBSimulator(override val fbData: BasicFBData) : FBSimulator {
                 conditionResult = conditionResult && fbData.inputEvents[conditionEvent]!!.isActive
             }
             if (conditionExpression != null) {
-                conditionResult = conditionResult && interpreter.interpret(conditionExpression).value as Boolean
+                val interpretedValue = interpreter.interpret(conditionExpression).value
+                conditionResult = conditionResult && (interpretedValue as? Int == 1 || interpretedValue as Boolean)
             }
             if (conditionResult) {
                 val target = transition.target
