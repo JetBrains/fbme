@@ -9,6 +9,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
@@ -16,8 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import jetbrains.mps.project.Project
 import org.fbme.debugger.ItemButton
+import org.fbme.debugger.simulator.FBData
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.ui.colors.tableBackground
+
+class FBDataUIHolder(val fbData: FBData)
 
 fun simulatePanel(fbSimulator: FBSimulator, project: Project): ComposePanel {
     val composePanel = ComposePanel()
@@ -49,11 +55,13 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                 .fillMaxWidth()
                 .background(MaterialTheme.colors.tableBackground)
         ) {
-            val inputEvents = fbSimulator.fbData.inputEvents
-            val outputEvents = fbSimulator.fbData.outputEvents
+            val fbDataState = remember { mutableStateOf(FBDataUIHolder(fbSimulator.fbData)) }
 
-            val inputVariables = fbSimulator.fbData.inputVariables
-            val outputVariables = fbSimulator.fbData.outputVariables
+            val inputEvents = fbDataState.value.fbData.inputEvents
+            val outputEvents = fbDataState.value.fbData.outputEvents
+
+            val inputVariables = fbDataState.value.fbData.inputVariables
+            val outputVariables = fbDataState.value.fbData.outputVariables
 
 
             Row(
@@ -67,7 +75,7 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                     modifier = Modifier.height(20.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    TriggerEventButton(fbSimulator, inputEventName, project)
+                    TriggerEventButton(fbDataState, fbSimulator, inputEventName, project)
                     Spacer(modifier = Modifier.width(10.dp))
                     Text("$inputEventName :")
                     Spacer(modifier = Modifier.width(10.dp))
@@ -109,7 +117,6 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                 }
             }
 
-
             Row(
                 modifier = Modifier.height(20.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -138,12 +145,18 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
 }
 
 @Composable
-private fun TriggerEventButton(fbSimulator: FBSimulator, inputEventName: String, project: Project) {
+private fun TriggerEventButton(
+    fbDataState: MutableState<FBDataUIHolder>,
+    fbSimulator: FBSimulator,
+    inputEventName: String,
+    project: Project
+) {
     ItemButton(
         onClick = {
             project.modelAccess.executeCommand {
                 fbSimulator.triggerEvent(inputEventName)
             }
+            fbDataState.value = FBDataUIHolder(fbSimulator.fbData)
         },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Transparent,
