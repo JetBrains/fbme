@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jetbrains.mps.project.Project
 import org.fbme.debugger.ItemButton
+import org.fbme.debugger.simulator.BasicFBData
 import org.fbme.debugger.simulator.FBData
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.Value
@@ -67,7 +68,6 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
 
             val inputVariables = fbDataState.value.fbData.inputVariables
             val outputVariables = fbDataState.value.fbData.outputVariables
-
 
             Row(
                 modifier = Modifier.height(20.dp),
@@ -158,6 +158,20 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                     Text("$outputVariableName :")
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(outputVariableValue.value.toString())
+                }
+            }
+            if (fbDataState.value.fbData is BasicFBData) {
+                Row(
+                    modifier = Modifier.height(20.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("State of ECC:")
+                }
+                Row(
+                    modifier = Modifier.height(20.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text((fbDataState.value.fbData as? BasicFBData)!!.currentState)
                 }
             }
         }
