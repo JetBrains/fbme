@@ -16,6 +16,10 @@ val Colors.tableBackground: Color
 val Colors.tableForeground: Color
     get() = UIManager.getColor("Table.foreground").compose
 
+// for using from not-composable functions
+val tableForeground: java.awt.Color
+    get() = UIManager.getColor("Table.foreground")
+
 val Colors.tableHeaderBackground: Color
     get() = UIManager.getColor("TableHeader.background").compose
 

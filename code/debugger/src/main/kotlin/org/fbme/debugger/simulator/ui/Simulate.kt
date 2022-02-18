@@ -2,6 +2,7 @@ package org.fbme.debugger.simulator.ui
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -16,12 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import jetbrains.mps.project.Project
 import org.fbme.debugger.ItemButton
 import org.fbme.debugger.simulator.FBData
 import org.fbme.debugger.simulator.FBSimulator
-import org.fbme.debugger.ui.colors.tableBackground
+import org.fbme.debugger.simulator.Value
+import org.fbme.debugger.ui.colors.*
 
 class FBDataUIHolder(val fbData: FBData)
 
@@ -113,7 +118,29 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                 ) {
                     Text("$inputVariableName :")
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(inputVariableValue.value.toString())
+                    val text = remember { mutableStateOf(inputVariableValue.value.toString()) }
+                    val textColor = remember { mutableStateOf(tableForeground) }
+                    BasicTextField(
+                        value = text.value,
+                        onValueChange = {
+                            val newValue = when (inputVariableValue.value) {
+                                is Boolean -> it.toBooleanStrictOrNull()
+                                is Int -> it.toIntOrNull()
+                                is String -> it
+                                else -> null
+                            }
+                            if (newValue == null) {
+                                textColor.value = Color.Red.awt
+                            } else {
+                                textColor.value = tableForeground
+                                fbSimulator.setVariable(inputVariableName, Value(newValue))
+                            }
+                            text.value = it
+                        },
+                        cursorBrush = SolidColor(MaterialTheme.colors.textFieldCaretForeground),
+                        textStyle = TextStyle(color = textColor.value.compose, fontSize = 14.sp),
+                        singleLine = true
+                    )
                 }
             }
 
