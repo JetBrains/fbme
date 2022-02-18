@@ -52,6 +52,7 @@ class BasicFBSimulator(override val fbData: BasicFBData) : FBSimulator {
                 val target = transition.target
                 fbData.currentState = target
                 doStep(null, runActions = true)
+                break
             }
         }
     }
