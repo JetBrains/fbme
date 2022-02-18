@@ -11,16 +11,16 @@ class BasicFBSimulator(override val fbData: BasicFBData) : FBSimulator {
     @Synchronized
     override fun triggerEvent(eventName: String) {
         fbData.activateEvent(eventName)
+        fbData.deactivateEvent(eventName)
         if (fbData.isFirstStep) {
-            doStep(runActions = true)
+            doStep(activeEvent = eventName, runActions = true)
             fbData.isFirstStep = false
         } else {
-            doStep(runActions = false)
+            doStep(activeEvent = eventName, runActions = false)
         }
-        fbData.deactivateEvent(eventName)
     }
 
-    private fun doStep(runActions: Boolean) {
+    private fun doStep(activeEvent: String?, runActions: Boolean) {
         val source = fbData.currentState
         if (runActions) {
             val actions = fbData.actions[source]!!
@@ -42,16 +42,16 @@ class BasicFBSimulator(override val fbData: BasicFBData) : FBSimulator {
             val conditionExpression = transitionCondition.conditionExpression
             var conditionResult = true
             if (conditionEvent != null && conditionEvent != "") {
-                conditionResult = conditionResult && fbData.inputEvents[conditionEvent]!!.isActive
+                conditionResult = activeEvent != null && conditionEvent == activeEvent
             }
-            if (conditionExpression != null) {
+            if (conditionResult && conditionExpression != null) {
                 val interpretedValue = interpreter.interpret(conditionExpression).value
-                conditionResult = conditionResult && (interpretedValue as? Int == 1 || interpretedValue as Boolean)
+                conditionResult = interpretedValue as? Int == 1 || interpretedValue as Boolean
             }
             if (conditionResult) {
                 val target = transition.target
                 fbData.currentState = target
-                doStep(runActions = true)
+                doStep(null, runActions = true)
             }
         }
     }
