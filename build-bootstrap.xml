@@ -41,8 +41,8 @@
   <property name="fbme_richediting.ide-version" value="${import.fbme_richediting.fbme_richediting.ide-version}" />
   <property name="fbme_fordiac.ide-version" value="${import.fbme_fordiac.fbme_fordiac.ide-version}" />
   <property name="fbme_smvdebugger.ide-version" value="${import.fbme_smvdebugger.fbme_smvdebugger.ide-version}" />
-  <property name="fbme_nxt.ide-version" value="${import.fbme_nxt.fbme_nxt.ide-version}" />
   <property name="fbme_debugger.ide-version" value="${import.fbme_debugger.fbme_debugger.ide-version}" />
+  <property name="fbme_nxt.ide-version" value="${import.fbme_nxt.fbme_nxt.ide-version}" />
   <property name="mps.generator.skipUnmodifiedModels" value="false" />
   <property name="mps.ant.log" value="warn" />
   
@@ -302,23 +302,6 @@
       </classpath>
     </javac>
   </target>
-
-  <target name="java.compile.java.modules.cycle.1" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
-    <mkdir dir="${build.tmp}/java.modules.cycle.1" />
-    <javac destdir="${build.tmp}/java.modules.cycle.1" fork="true" encoding="utf8" nowarn="true" includeantruntime="false">
-      <compilerarg value="-Xlint:none" />
-      <src>
-        <path location="${basedir}/code/richediting/buildsolution/source_gen" />
-        <path location="${basedir}/code/debugger/buildsolution/source_gen" />
-      </src>
-      <classpath>
-        <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.scenes.build" />
-      </classpath>
-    </javac>
-  </target>
   
   <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.scenes.build">
     <mkdir dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
@@ -337,8 +320,25 @@
       </classpath>
     </javac>
   </target>
-
-  <target name="java.compile.org.fbme.richediting.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
+  
+  <target name="java.compile.java.modules.cycle.1" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build">
+    <mkdir dir="${build.tmp}/java.modules.cycle.1" />
+    <javac destdir="${build.tmp}/java.modules.cycle.1" fork="true" encoding="utf8" nowarn="true" includeantruntime="false">
+      <compilerarg value="-Xlint:none" />
+      <src>
+        <path location="${basedir}/code/richediting/buildsolution/source_gen" />
+        <path location="${basedir}/code/debugger/buildsolution/source_gen" />
+      </src>
+      <classpath>
+        <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.library.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.scenes.build" />
+      </classpath>
+    </javac>
+  </target>
+  
+  <target name="java.compile.org.fbme.richediting.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build, java.compile.java.modules.cycle.1">
     <mkdir dir="${basedir}/code/richediting/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.richediting.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.richediting.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -355,7 +355,7 @@
       </classpath>
     </javac>
   </target>
-
+  
   <target name="java.compile.org.fbme.debugger.build" depends="java.compile.org.fbme.language.build, java.compile.org.fbme.library.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.scenes.build, java.compile.java.modules.cycle.1">
     <mkdir dir="${basedir}/code/debugger/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.debugger.build" />

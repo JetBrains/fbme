@@ -4,7 +4,7 @@ import androidx.compose.ui.awt.ComposePanel
 import jetbrains.mps.project.Project
 import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.CompositeFBState
-import org.fbme.debugger.simulator.ui.simulatePanel
+//import org.fbme.debugger.simulator.ui.simulatePanel
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
@@ -30,7 +30,7 @@ class Simulator private constructor(private val project: Project) {
                 )
                 else -> error("Unsupported FB type to simulate execution")
             }
-            simulatePanels[typeDeclaration] = simulatePanel(fbSimulator, project)
+//            simulatePanels[typeDeclaration] = simulatePanel(fbSimulator, project)
         }
     }
 
