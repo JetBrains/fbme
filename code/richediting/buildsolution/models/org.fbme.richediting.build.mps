@@ -372,7 +372,7 @@
         <ref role="m$_y1" to="ci82:68dTcycFmsQ" resolve="fbme.platform" />
       </node>
       <node concept="m$_yC" id="Ej4tEplrUA" role="m$_yJ">
-        <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="scenes" />
+        <ref role="m$_y1" to="jh3g:42vv4xsIJ5y" resolve="fbme.scenes" />
       </node>
       <node concept="m$_yC" id="5AasUgojObC" role="m$_yJ">
         <ref role="m$_y1" to="66wk:42vv4xsIHQK" resolve="fbme.library" />
