@@ -1,59 +1,63 @@
 package org.fbme.debugger.simulator
 
+import org.fbme.debugger.common.evaluateCondition
+import org.fbme.debugger.common.getActionsOnState
+import org.fbme.debugger.common.getAlgorithmByName
+import org.fbme.debugger.common.getOutgoingTransitionsFromState
+import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.simulator.st.STInterpreter
+import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.ecc.StateTransition
 
-class BasicFBSimulator(override val fbData: BasicFBData) : FBSimulator {
-    constructor(fbDeclaration: BasicFBTypeDeclaration) : this(BasicFBData(fbDeclaration))
+class BasicFBSimulator(
+    override val typeDeclaration: BasicFBTypeDeclaration,
+    override val state: BasicFBState,
+    override val parent: CompositeFBSimulator?,
+    override val fbInstanceName: String?
+) : FBSimulatorImpl() {
+    private val interpreter = STInterpreter(
+        state.inputVariables,
+        state.internalVariables,
+        state.outputVariables
+    )
 
-    private val interpreter = STInterpreter(fbData.inputVariables, fbData.internalVariables, fbData.outputVariables)
+    override fun triggerInputEvent(eventName: String) {
+        state.inputEvents[eventName] = state.inputEvents[eventName]!! + 1
+        setValuesToAssociatedVariablesWithInputEvent(eventName)
 
-    @Synchronized
-    override fun triggerEvent(eventName: String) {
-        fbData.activateEvent(eventName)
-        fbData.deactivateEvent(eventName)
-        if (fbData.isFirstStep) {
-            doStep(activeEvent = eventName, runActions = true)
-            fbData.isFirstStep = false
-        } else {
-            doStep(activeEvent = eventName, runActions = false)
-        }
+        var transition: StateTransition? = findTransition(activeEvent = eventName) ?: return
+
+        do {
+            val nextState = transition!!.targetReference.presentation
+            state.activeState = nextState
+            performActions()
+            transition = findTransition(activeEvent = null)
+        } while (transition != null)
+
+        triggerDeferredOutputEvents()
     }
 
-    private fun doStep(activeEvent: String?, runActions: Boolean) {
-        val source = fbData.currentState
-        if (runActions) {
-            val actions = fbData.actions[source]!!
-            for (actionData in actions) {
-                val algorithmName = actionData.algorithm
-                val outputEventName = actionData.output
-                if (algorithmName != "") {
-                    for (statement in fbData.algorithms[algorithmName]!!) {
-                        interpreter.interpret(statement)
-                    }
-                }
-                fbData.activateEvent(outputEventName)
+    private fun findTransition(activeEvent: String?): StateTransition? {
+        return typeDeclaration
+            .getOutgoingTransitionsFromState(state.activeState)
+            .firstOrNull { transition -> transition.evaluateCondition(activeEvent, interpreter) }
+    }
+
+    private fun performActions() {
+        val actions = typeDeclaration.getActionsOnState(state.activeState)
+        for (action in actions) {
+            val algorithmName = action.algorithm.presentation
+            val algorithmDeclaration = typeDeclaration.getAlgorithmByName(algorithmName)
+            val statements = (algorithmDeclaration.body as? AlgorithmBody.ST)?.statements
+                ?: error("unexpected language of algorithm $algorithmName")
+            for (statement in statements) {
+                interpreter.interpret(statement)
             }
-        }
-        val outgoingTransitions = fbData.transitions[source]!!
-        for (transition in outgoingTransitions) {
-            val transitionCondition = transition.transitionCondition
-            val conditionEvent = transitionCondition.conditionEvent
-            val conditionExpression = transitionCondition.conditionExpression
-            var conditionResult = true
-            if (conditionEvent != null && conditionEvent != "") {
-                conditionResult = activeEvent != null && conditionEvent == activeEvent
-            }
-            if (conditionResult && conditionExpression != null) {
-                val interpretedValue = interpreter.interpret(conditionExpression).value
-                conditionResult = interpretedValue as? Int == 1 || interpretedValue as Boolean
-            }
-            if (conditionResult) {
-                val target = transition.target
-                fbData.currentState = target
-                doStep(null, runActions = true)
-                break
-            }
+
+            val outputEventName = action.event.presentation
+            pushValuesOfAssociatedVariablesWithOutputEvent(outputEventName)
+            deferredTriggers.add(outputEventName)
         }
     }
 }

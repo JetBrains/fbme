@@ -133,7 +133,7 @@ fun ScrollableBox(fbSimulator: FBSimulator, project: Project) {
                                 textColor.value = Color.Red.awt
                             } else {
                                 textColor.value = tableForeground
-                                fbSimulator.setVariable(inputVariableName, Value(newValue))
+                                fbSimulator.setInputVariable(inputVariableName, Value(newValue))
                             }
                             text.value = it
                         },
@@ -195,7 +195,7 @@ private fun TriggerEventButton(
     ItemButton(
         onClick = {
             project.modelAccess.executeCommand {
-                fbSimulator.triggerEvent(inputEventName)
+                fbSimulator.triggerInputEvent(inputEventName)
             }
             fbDataState.value = FBDataUIHolder(fbSimulator.fbData)
         },

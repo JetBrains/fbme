@@ -1,13 +1,10 @@
-package org.fbme.debugger.simulator
+package org.fbme.debugger.common.state
 
-import org.fbme.lib.st.expressions.Literal
 import kotlin.math.pow
 
 class Value<V>(
     var value: V
 ) {
-    constructor(literal: Literal<V>) : this(literal.value)
-
     override fun equals(other: Any?): Boolean {
         if (other !is Value<*>) {
             return false
@@ -39,7 +36,7 @@ class Value<V>(
     }
 }
 
-operator fun Value<*>.plus(other: Value<*>): Value<*> {
+operator fun Value<Any?>.plus(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -51,7 +48,7 @@ operator fun Value<*>.plus(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.minus(other: Value<*>): Value<*> {
+operator fun Value<Any?>.minus(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -63,7 +60,7 @@ operator fun Value<*>.minus(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.times(other: Value<*>): Value<*> {
+operator fun Value<Any?>.times(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -75,7 +72,7 @@ operator fun Value<*>.times(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.div(other: Value<*>): Value<*> {
+operator fun Value<Any?>.div(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -87,7 +84,7 @@ operator fun Value<*>.div(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.rem(other: Value<*>): Value<*> {
+operator fun Value<Any?>.rem(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -99,7 +96,7 @@ operator fun Value<*>.rem(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.compareTo(other: Value<*>): Int {
+operator fun Value<Any?>.compareTo(other: Value<Any?>): Int {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -111,7 +108,7 @@ operator fun Value<*>.compareTo(other: Value<*>): Int {
     }
 }
 
-infix fun Value<*>.pow(other: Value<*>): Value<*> {
+infix fun Value<Any?>.pow(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -123,7 +120,7 @@ infix fun Value<*>.pow(other: Value<*>): Value<*> {
     }
 }
 
-infix fun Value<*>.amp(other: Value<*>): Value<*> {
+infix fun Value<Any?>.amp(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -135,9 +132,9 @@ infix fun Value<*>.amp(other: Value<*>): Value<*> {
     }
 }
 
-infix fun Value<*>.and(other: Value<*>) = this amp other
+infix fun Value<Any?>.and(other: Value<Any?>) = this amp other
 
-infix fun Value<*>.or(other: Value<*>): Value<*> {
+infix fun Value<Any?>.or(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -149,7 +146,7 @@ infix fun Value<*>.or(other: Value<*>): Value<*> {
     }
 }
 
-infix fun Value<*>.xor(other: Value<*>): Value<*> {
+infix fun Value<Any?>.xor(other: Value<Any?>): Value<Any?> {
     val left = checkNotNull(this.value)
     val right = checkNotNull(other.value)
     check(left::class.qualifiedName == right::class.qualifiedName)
@@ -161,7 +158,7 @@ infix fun Value<*>.xor(other: Value<*>): Value<*> {
     }
 }
 
-operator fun Value<*>.unaryMinus(): Value<*> {
+operator fun Value<Any?>.unaryMinus(): Value<Any?> {
     val left = checkNotNull(this.value)
     return when (left::class.qualifiedName) {
         Int::class.qualifiedName -> Value(-(left as Int))
@@ -171,7 +168,7 @@ operator fun Value<*>.unaryMinus(): Value<*> {
     }
 }
 
-operator fun Value<*>.not(): Value<*> {
+operator fun Value<Any?>.not(): Value<Any?> {
     val left = checkNotNull(this.value)
     return when (left::class.qualifiedName) {
         Int::class.qualifiedName -> error("operator not defined")

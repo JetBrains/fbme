@@ -1,27 +1,27 @@
 package org.fbme.debugger.simulator.st
 
-import org.fbme.debugger.simulator.*
+import org.fbme.debugger.common.state.*
 import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
 class STInterpreter(
-    private val inputVariables: MutableMap<String, Value<*>>,
-    private val internalVariables: MutableMap<String, Value<*>>,
-    private val outputVariables: MutableMap<String, Value<*>>
+    private val inputVariables: Map<String, Value<Any?>>,
+    private val internalVariables: Map<String, Value<Any?>>,
+    private val outputVariables: Map<String, Value<Any?>>
 ) {
-    fun interpret(expression: Expression): Value<*> = when (expression) {
+    fun interpret(expression: Expression): Value<Any?> = when (expression) {
         is VariableReference -> interpret(expression)
         is ArrayVariable -> error("TODO: Support ArrayVariable")
         is BinaryExpression -> interpret(expression)
         is ParenthesisExpression -> interpret(expression.innerExpression)
         is UnaryExpression -> interpret(expression)
-        is Literal<*> -> Value(expression)
+        is Literal<*> -> Value(expression.value)
         is FunctionCall -> error("TODO: Support ArrayVariable")
         else -> error("unexpected expression")
     }
 
-    private fun interpret(variableReference: VariableReference): Value<*> {
+    private fun interpret(variableReference: VariableReference): Value<Any?> {
         val variableName = (variableReference as VariableReferenceByNode).reference.presentation
         return inputVariables[variableName]
             ?: internalVariables[variableName]
@@ -29,7 +29,7 @@ class STInterpreter(
             ?: error("unexpected variable $variableName")
     }
 
-    private fun interpret(binaryExpression: BinaryExpression): Value<*> {
+    private fun interpret(binaryExpression: BinaryExpression): Value<Any?> {
         val left = binaryExpression.leftExpression ?: error("left expression is null")
         val right = binaryExpression.rightExpression ?: error("right expression is null")
         val leftValue = interpret(left)
@@ -55,7 +55,7 @@ class STInterpreter(
         }
     }
 
-    private fun interpret(unaryExpression: UnaryExpression): Value<*> {
+    private fun interpret(unaryExpression: UnaryExpression): Value<Any?> {
         val expr = unaryExpression.getInnerExpression() ?: error("expression is null")
         val value = interpret(expr)
 
@@ -135,11 +135,11 @@ class STInterpreter(
         val expression = assignmentStatement.expression ?: error("expression expected in assignment $variableName")
         val value = interpret(expression)
         if (inputVariables.contains(variableName)) {
-            inputVariables[variableName] = value
+            inputVariables[variableName]!!.value = value
         } else if (internalVariables.contains(variableName)) {
-            internalVariables[variableName] = value
+            internalVariables[variableName]!!.value = value
         } else if (outputVariables.contains(variableName)) {
-            outputVariables[variableName] = value
+            outputVariables[variableName]!!.value = value
         } else {
             error("unknown variable $variableName")
         }

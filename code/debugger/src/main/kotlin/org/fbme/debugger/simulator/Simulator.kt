@@ -2,6 +2,8 @@ package org.fbme.debugger.simulator
 
 import androidx.compose.ui.awt.ComposePanel
 import jetbrains.mps.project.Project
+import org.fbme.debugger.common.state.BasicFBState
+import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.simulator.ui.simulatePanel
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
@@ -11,14 +13,24 @@ import javax.swing.JComponent
 class Simulator private constructor(private val project: Project) {
     private val simulatePanels: MutableMap<FBTypeDeclaration, ComposePanel> = mutableMapOf()
 
-    fun addSimulateTab(fbTypeDeclaration: FBTypeDeclaration) {
+    fun addSimulateTab(typeDeclaration: FBTypeDeclaration) {
         project.modelAccess.executeCommand {
-            val fbSimulator = when (fbTypeDeclaration) {
-                is BasicFBTypeDeclaration -> BasicFBSimulator(fbTypeDeclaration)
-                is CompositeFBTypeDeclaration -> CompositeFBSimulator(fbTypeDeclaration)
+            val fbSimulator = when (typeDeclaration) {
+                is BasicFBTypeDeclaration -> BasicFBSimulator(
+                    typeDeclaration = typeDeclaration,
+                    state = BasicFBState(typeDeclaration),
+                    parent = null,
+                    fbInstanceName = null
+                )
+                is CompositeFBTypeDeclaration -> CompositeFBSimulator(
+                    typeDeclaration = typeDeclaration,
+                    state = CompositeFBState(typeDeclaration),
+                    parent = null,
+                    fbInstanceName = null
+                )
                 else -> error("Unsupported FB type to simulate execution")
             }
-            simulatePanels[fbTypeDeclaration] = simulatePanel(fbSimulator, project)
+            simulatePanels[typeDeclaration] = simulatePanel(fbSimulator, project)
         }
     }
 
