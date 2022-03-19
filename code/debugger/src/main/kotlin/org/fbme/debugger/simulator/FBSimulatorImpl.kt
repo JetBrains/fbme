@@ -1,22 +1,43 @@
 package org.fbme.debugger.simulator
 
 import org.fbme.debugger.common.*
+import org.fbme.debugger.common.change.Change
+import org.fbme.debugger.common.change.InputEventChange
+import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.state.FBStateImpl
 import org.fbme.debugger.common.state.Value
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import java.util.*
 
-abstract class FBSimulatorImpl : FBSimulator {
+abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator {
     abstract val typeDeclaration: FBTypeDeclaration
     abstract val state: FBStateImpl
 
-    protected abstract val parent: CompositeFBSimulator?
-    protected abstract val fbInstanceName: String?
+    abstract val parent: CompositeFBSimulator?
+    abstract val fbInstanceName: String
 
     private val candidates = mutableMapOf<String, Value<Any?>>()
-    protected val deferredTriggers = LinkedList<String>()
+    private val deferredTriggers = LinkedList<String>()
 
-    override fun triggerEvent(eventName: String) {
+    private val rootFBState by lazy {
+        var curParent = this
+        while (curParent.parent != null) {
+            curParent = curParent.parent!!
+        }
+        curParent.state
+    }
+
+    private val fbPath by lazy {
+        val path = mutableListOf(fbInstanceName)
+        var curParent = parent
+        while (curParent != null) {
+            path.add(curParent!!.fbInstanceName)
+            curParent = curParent!!.parent
+        }
+        path.reversed()
+    }
+
+    final override fun triggerEvent(eventName: String) {
         if (state.inputEvents.contains(eventName)) {
             triggerInputEvent(eventName)
         } else if (state.outputEvents.contains(eventName)) {
@@ -26,28 +47,32 @@ abstract class FBSimulatorImpl : FBSimulator {
         }
     }
 
-    override fun setVariable(variableName: String, value: Value<Any?>) {
+    final override fun setVariable(variableName: String, value: Value<Any?>) {
         if (state.inputVariables.contains(variableName)) {
-            setCandidateInputVariable(variableName, value)
+            candidates[variableName] = value
         } else if (state.outputVariables.contains(variableName)) {
-            setOutputVariable(variableName, value)
+            state.outputVariables[variableName]!!.value = value.value
         } else {
             error("unexpected variable to set")
         }
     }
 
+    private fun triggerInputEvent(eventName: String) {
+        logCurrentStateAndNextChange(InputEventChange(eventName))
 
-    private fun setCandidateInputVariable(variableName: String, value: Value<Any?>) {
-        candidates[variableName] = value
+        state.inputEvents[eventName] = state.inputEvents[eventName]!! + 1
+        setValuesToAssociatedVariablesWithInputEvent(eventName)
+
+        triggerInputEventInternal(eventName)
+
+        triggerDeferredOutputEvents()
     }
 
-    protected fun setOutputVariable(variableName: String, value: Value<Any?>) {
-        state.outputVariables[variableName]!!.value = value.value
-    }
-
-    abstract fun triggerInputEvent(eventName: String)
+    abstract fun triggerInputEventInternal(eventName: String)
 
     private fun triggerOutputEvent(eventName: String) {
+        logCurrentStateAndNextChange(OutputEventChange(eventName))
+
         state.outputEvents[eventName] = state.outputEvents[eventName]!! + 1
 
         if (parent != null) {
@@ -59,7 +84,7 @@ abstract class FBSimulatorImpl : FBSimulator {
 
                 if (targetFB == null) {
                     parent!!.pushValuesOfAssociatedVariablesWithOutputEvent(targetPort)
-                    parent!!.deferredTriggers.add(targetPort)
+                    parent!!.addDeferredTrigger(targetPort)
                 } else {
                     parent!!.children[targetFB]!!.triggerInputEvent(targetPort)
                 }
@@ -67,7 +92,7 @@ abstract class FBSimulatorImpl : FBSimulator {
         }
     }
 
-    protected fun setValuesToAssociatedVariablesWithInputEvent(eventName: String) {
+    private fun setValuesToAssociatedVariablesWithInputEvent(eventName: String) {
         val associatedVariables = typeDeclaration.getAssociatedVariablesWithInputEvent(eventName)
         for (associatedVariable in associatedVariables) {
             val newValue = candidates[associatedVariable]
@@ -92,16 +117,33 @@ abstract class FBSimulatorImpl : FBSimulator {
                     val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
 
                     if (targetFB == null) {
-                        parent!!.setOutputVariable(targetPort, associatedVariableValue)
+                        parent!!.state.outputVariables[targetPort]!!.value = associatedVariableValue.value
                     } else {
-                        parent!!.children[targetFB]!!.setCandidateInputVariable(targetPort, associatedVariableValue)
+                        parent!!.children[targetFB]!!.candidates[targetPort] = associatedVariableValue
                     }
                 }
             }
         }
     }
 
-    protected fun triggerDeferredOutputEvents() {
+    protected fun logCurrentStateAndNextChange(change: Change) {
+        logCurrentState()
+        logChange(change)
+    }
+
+    private fun logCurrentState() {
+        trace.addState(rootFBState)
+    }
+
+    private fun logChange(change: Change) {
+        trace.addChange(fbPath, change)
+    }
+
+    protected fun addDeferredTrigger(eventName: String) {
+        deferredTriggers.add(eventName)
+    }
+
+    private fun triggerDeferredOutputEvents() {
         while (deferredTriggers.isNotEmpty()) {
             val outputEventName = deferredTriggers.peek()
             triggerOutputEvent(outputEventName)

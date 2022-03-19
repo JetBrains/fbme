@@ -1,5 +1,6 @@
 package org.fbme.debugger.simulator
 
+import org.fbme.debugger.common.change.StateChange
 import org.fbme.debugger.common.evaluateCondition
 import org.fbme.debugger.common.getActionsOnState
 import org.fbme.debugger.common.getAlgorithmByName
@@ -14,28 +15,27 @@ class BasicFBSimulator(
     override val typeDeclaration: BasicFBTypeDeclaration,
     override val state: BasicFBState,
     override val parent: CompositeFBSimulator?,
-    override val fbInstanceName: String?
-) : FBSimulatorImpl() {
+    override val fbInstanceName: String,
+    trace: SimulationTrace
+) : FBSimulatorImpl(trace) {
     private val interpreter = STInterpreter(
         state.inputVariables,
         state.internalVariables,
         state.outputVariables
     )
 
-    override fun triggerInputEvent(eventName: String) {
-        state.inputEvents[eventName] = state.inputEvents[eventName]!! + 1
-        setValuesToAssociatedVariablesWithInputEvent(eventName)
-
+    override fun triggerInputEventInternal(eventName: String) {
         var transition: StateTransition? = findTransition(activeEvent = eventName) ?: return
 
         do {
             val nextState = transition!!.targetReference.presentation
+
+            logCurrentStateAndNextChange(StateChange(nextState))
+
             state.activeState = nextState
             performActions()
             transition = findTransition(activeEvent = null)
         } while (transition != null)
-
-        triggerDeferredOutputEvents()
     }
 
     private fun findTransition(activeEvent: String?): StateTransition? {
@@ -57,7 +57,7 @@ class BasicFBSimulator(
 
             val outputEventName = action.event.presentation
             pushValuesOfAssociatedVariablesWithOutputEvent(outputEventName)
-            deferredTriggers.add(outputEventName)
+            addDeferredTrigger(outputEventName)
         }
     }
 }

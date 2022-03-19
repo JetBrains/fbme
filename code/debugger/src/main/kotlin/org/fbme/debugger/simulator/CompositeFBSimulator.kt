@@ -11,8 +11,9 @@ class CompositeFBSimulator(
     override val typeDeclaration: CompositeFBTypeDeclaration,
     override val state: CompositeFBState,
     override val parent: CompositeFBSimulator?,
-    override val fbInstanceName: String?
-) : FBSimulatorImpl() {
+    override val fbInstanceName: String,
+    trace: SimulationTrace
+) : FBSimulatorImpl(trace) {
     val children: Map<String, FBSimulatorImpl>
 
     init {
@@ -26,34 +27,32 @@ class CompositeFBSimulator(
                     typeDeclaration = childDeclaration,
                     state = childState as BasicFBState,
                     parent = this,
-                    fbInstanceName = childName
+                    fbInstanceName = childName,
+                    trace = trace
                 )
                 is CompositeFBTypeDeclaration -> CompositeFBSimulator(
                     typeDeclaration = childDeclaration,
                     state = childState as CompositeFBState,
                     parent = this,
-                    fbInstanceName = childName
+                    fbInstanceName = childName,
+                    trace = trace
                 )
                 else -> error("unexpected type")
             }
         }
     }
 
-    override fun triggerInputEvent(eventName: String) {
-        state.inputEvents[eventName] = state.inputEvents[eventName]!! + 1
-        setValuesToAssociatedVariablesWithInputEvent(eventName)
-
+    override fun triggerInputEventInternal(eventName: String) {
         val outgoingEventConnections = typeDeclaration.getOutgoingEventConnectionsFromPort(null, eventName)
         for (outgoingEventConnection in outgoingEventConnections) {
             val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
 
             if (targetFB == null) {
                 pushValuesOfAssociatedVariablesWithOutputEvent(targetPort)
-                deferredTriggers.add(targetPort)
+                addDeferredTrigger(targetPort)
             } else {
-                children[targetFB]!!.triggerInputEvent(targetPort)
+                children[targetFB]!!.triggerEvent(targetPort)
             }
         }
-        triggerDeferredOutputEvents()
     }
 }

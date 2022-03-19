@@ -14,24 +14,25 @@ class Simulator private constructor(private val project: Project) {
     private val simulatePanels: MutableMap<FBTypeDeclaration, ComposePanel> = mutableMapOf()
 
     fun addSimulateTab(typeDeclaration: FBTypeDeclaration) {
-        project.modelAccess.executeCommand {
-            val fbSimulator = when (typeDeclaration) {
-                is BasicFBTypeDeclaration -> BasicFBSimulator(
-                    typeDeclaration = typeDeclaration,
-                    state = BasicFBState(typeDeclaration),
-                    parent = null,
-                    fbInstanceName = null
-                )
-                is CompositeFBTypeDeclaration -> CompositeFBSimulator(
-                    typeDeclaration = typeDeclaration,
-                    state = CompositeFBState(typeDeclaration),
-                    parent = null,
-                    fbInstanceName = null
-                )
-                else -> error("Unsupported FB type to simulate execution")
-            }
+//        project.modelAccess.executeCommand {
+//            val fbSimulator = when (typeDeclaration) {
+//                is BasicFBTypeDeclaration -> BasicFBSimulator(
+//                    typeDeclaration = typeDeclaration,
+//                    state = BasicFBState(typeDeclaration),
+//                    parent = null,
+//                    fbInstanceName = null
+//                )
+//                is CompositeFBTypeDeclaration -> CompositeFBSimulator(
+//                    typeDeclaration = typeDeclaration,
+//                    state = CompositeFBState(typeDeclaration),
+//                    parent = null,
+//                    fbInstanceName = null,
+//
+//                )
+//                else -> error("Unsupported FB type to simulate execution")
+//            }
 //            simulatePanels[typeDeclaration] = simulatePanel(fbSimulator, project)
-        }
+//        }
     }
 
     fun getSimulateTab(fbTypeDeclaration: FBTypeDeclaration): JComponent? {
