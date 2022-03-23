@@ -1,9 +1,11 @@
 package org.fbme.ide.iec61499.snashot
 
+import jetbrains.mps.project.Solution
 import jetbrains.mps.smodel.CopyUtil
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SModelReference
 import jetbrains.mps.smodel.TrivialModelDescriptor
+import jetbrains.mps.smodel.tempmodel.TempModule
 import jetbrains.mps.util.ReferenceUpdater
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
@@ -51,6 +53,8 @@ class FBTypeSnapshot(
         ): FBTypeSnapshot {
             check(typeDeclaration is PlatformElement)
 
+            val snapshotModule = TempModule(emptySet(), false, false)
+
             val originalToTemporaryModels = hashMapOf<SModel, TrivialModelDescriptor>()
 
             val declarations = hashSetOf<Declaration>()
@@ -61,7 +65,7 @@ class FBTypeSnapshot(
                 check(declaration is PlatformElement)
                 val originalModel = checkNotNull(declaration.node.model)
                 val snapshotModel = originalToTemporaryModels.getOrPut(originalModel) {
-                    SnapshotModel(originalModel)
+                    SnapshotModel(originalModel).also { snapshotModule.registerModel(it) }
                 }
                 val snapshotNode = CopyUtil.copyAndPreserveId(declaration.node)
                 snapshotModel.addRootNode(snapshotNode)
