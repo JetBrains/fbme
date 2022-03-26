@@ -2,15 +2,15 @@ package org.fbme.debugger.common.state
 
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.ResourceTypeDeclaration
 
-class CompositeFBState : FBStateImpl {
-    val children: Map<String, FBState>
+class ResourceState : State {
+    private val children: Map<String, FBState>
 
-    constructor(typeDeclaration: CompositeFBTypeDeclaration) : super(typeDeclaration) {
+    constructor(typeDeclaration: ResourceTypeDeclaration) {
         children = typeDeclaration.network.allComponents.associate { component ->
             val componentName = component.name
-            val componentDeclaration = component.type.declaration!!
-            val componentState = when (componentDeclaration) {
+            val componentState = when (val componentDeclaration = component.type.declaration!!) {
                 is BasicFBTypeDeclaration -> BasicFBState(componentDeclaration)
                 is CompositeFBTypeDeclaration -> CompositeFBState(componentDeclaration)
                 else -> error("unexpected type")
@@ -20,8 +20,8 @@ class CompositeFBState : FBStateImpl {
         }
     }
 
-    constructor(compositeFBState: CompositeFBState) : super(compositeFBState) {
-        children = compositeFBState.children.mapValues {
+    constructor(resourceState: ResourceState) {
+        children = resourceState.children.mapValues {
             when (val state = it.value) {
                 is CompositeFBState -> CompositeFBState(state)
                 is BasicFBState -> BasicFBState(state)
@@ -30,7 +30,7 @@ class CompositeFBState : FBStateImpl {
         }
     }
 
-    override fun copy(): CompositeFBState {
-        return CompositeFBState(this)
+    override fun copy(): ResourceState {
+        return ResourceState(this)
     }
 }

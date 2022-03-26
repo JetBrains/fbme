@@ -4,6 +4,7 @@ import org.fbme.debugger.common.getOutgoingEventConnectionsFromPort
 import org.fbme.debugger.common.resolveTargetPortPresentation
 import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.CompositeFBState
+import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
@@ -11,15 +12,15 @@ class CompositeFBSimulator(
     override val typeDeclaration: CompositeFBTypeDeclaration,
     override val state: CompositeFBState,
     override val parent: CompositeFBSimulator?,
-    override val fbInstanceName: String,
-    trace: SimulationTrace
+    override val fbInstanceName: String?,
+    trace: ExecutionTrace
 ) : FBSimulatorImpl(trace) {
     val children: Map<String, FBSimulatorImpl>
 
     init {
         children = state.children.mapValues { (childName, childState) ->
             val childDeclaration = typeDeclaration.network.allComponents
-                .firstOrNull { component -> component.name == childName }
+                .firstOrNull { component -> component.name == childName }?.type?.declaration
                 ?: error("type declaration of FB $childName not found")
 
             when (childDeclaration) {

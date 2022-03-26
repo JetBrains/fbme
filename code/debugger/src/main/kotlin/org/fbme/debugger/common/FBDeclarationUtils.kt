@@ -2,6 +2,7 @@ package org.fbme.debugger.common
 
 import org.fbme.debugger.common.state.Value
 import org.fbme.debugger.simulator.st.STInterpreter
+import org.fbme.ide.iec61499.repository.PlatformIdentifier
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateTransition
@@ -110,7 +111,7 @@ val ElementaryType.defaultValue: Value<Any?>
 fun ParameterDeclaration.extractInitialValue(): Value<Any?> {
     return Value(
         initialValue?.value
-            ?: (type as? ElementaryType)?.defaultValue
+            ?: (type as? ElementaryType)?.defaultValue?.value
             ?: error("Can not initialize variable")
     )
 }

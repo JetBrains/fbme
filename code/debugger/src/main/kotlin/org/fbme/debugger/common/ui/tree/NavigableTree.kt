@@ -1,4 +1,4 @@
-package org.fbme.debugger.ui
+package org.fbme.debugger.common.ui.tree
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
@@ -20,19 +19,19 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.fbme.debugger.ui.colors.listBackground
-import org.fbme.debugger.ui.colors.listForeground
-import org.fbme.debugger.ui.colors.listSelectionBackground
-import org.fbme.debugger.ui.colors.listSelectionForeground
+import org.fbme.debugger.common.ui.colors.listBackground
+import org.fbme.debugger.common.ui.colors.listForeground
+import org.fbme.debugger.common.ui.colors.listSelectionBackground
+import org.fbme.debugger.common.ui.colors.listSelectionForeground
 import kotlin.math.max
 import kotlin.math.min
 
 @Composable
-fun NavigatableTree(
-    nodes: MutableList<NavigatableNode>,
-    selectedNode: MutableState<NavigatableNode?> = remember { mutableStateOf<NavigatableNode?>(null) },
-    itemStartPadding: (NavigatableNode) -> Dp = { node -> 20.dp * (node.depth + if (node is LeafNode) 1 else 0) },
-    itemContent: @Composable (NavigatableNode) -> Unit
+fun NavigableTree(
+    nodes: MutableList<NavigableNode>,
+    selectedNode: MutableState<NavigableNode?> = remember { mutableStateOf(null) },
+    itemStartPadding: (NavigableNode) -> Dp = { node -> 20.dp * (node.depth + if (node is LeafNode) 1 else 0) },
+    itemContent: @Composable (NavigableNode) -> Unit
 ) {
     Box {
         val scrollState = rememberScrollState()
@@ -57,7 +56,7 @@ fun NavigatableTree(
     }
 }
 
-private fun isUnderCollapsed(node: NavigatableNode): Boolean {
+private fun isUnderCollapsed(node: NavigableNode): Boolean {
     val parent = node.parent ?: return false
     return parent.isCollapsed.value || isUnderCollapsed(parent)
 }
@@ -65,11 +64,11 @@ private fun isUnderCollapsed(node: NavigatableNode): Boolean {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun TreeItem(
-    node: NavigatableNode,
-    nodes: MutableList<NavigatableNode>,
-    selectedNode: MutableState<NavigatableNode?>,
+    node: NavigableNode,
+    nodes: MutableList<NavigableNode>,
+    selectedNode: MutableState<NavigableNode?>,
     itemStartPadding: Dp,
-    itemContent: @Composable (NavigatableNode) -> Unit
+    itemContent: @Composable (NavigableNode) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -188,9 +187,9 @@ fun ItemText(text: AnnotatedString, isSelected: Boolean = false) {
 }
 
 private fun goParent(
-    selected: NavigatableNode,
-    nodes: MutableList<NavigatableNode>,
-    selectedNode: MutableState<NavigatableNode?>
+    selected: NavigableNode,
+    nodes: MutableList<NavigableNode>,
+    selectedNode: MutableState<NavigableNode?>
 ) {
     val parentIndex = selected.parent?.let { nodes.indexOf(it) } ?: 0
     val parent = nodes[parentIndex]
@@ -215,9 +214,9 @@ private fun keyRightPressed(keyEvent: KeyEvent) =
     keyEvent.key == Key.DirectionRight && keyEvent.type == KeyEventType.KeyDown
 
 private fun goPrev(
-    nodes: MutableList<NavigatableNode>,
+    nodes: MutableList<NavigableNode>,
     selectedIndex: Int,
-    selectedNode: MutableState<NavigatableNode?>
+    selectedNode: MutableState<NavigableNode?>
 ) {
     val prevIndex = max(0, selectedIndex - 1)
     val prev = nodes[prevIndex]
@@ -226,9 +225,9 @@ private fun goPrev(
 }
 
 private fun goNext(
-    nodes: MutableList<NavigatableNode>,
+    nodes: MutableList<NavigableNode>,
     selectedIndex: Int,
-    selectedNode: MutableState<NavigatableNode?>
+    selectedNode: MutableState<NavigableNode?>
 ) {
     val nextIndex = min(nodes.lastIndex, selectedIndex + 1)
     val next = nodes[nextIndex]
@@ -236,24 +235,3 @@ private fun goNext(
     next.focusRequester.value.requestFocus()
 }
 
-interface NavigatableNode {
-    val parent: NavigatableTreeNode?
-    val focusRequester: MutableState<FocusRequester>
-    val depth: Int
-}
-
-interface NavigatableTreeNode : NavigatableNode {
-    val isCollapsed: MutableState<Boolean>
-}
-
-abstract class AbstractNavigatableNode : NavigatableNode {
-    final override val focusRequester = mutableStateOf(FocusRequester())
-    final override val depth
-        get() = parent?.depth?.inc() ?: 0
-}
-
-abstract class TreeNode(isCollapsed: Boolean = false) : AbstractNavigatableNode(), NavigatableTreeNode {
-    override val isCollapsed: MutableState<Boolean> = mutableStateOf(isCollapsed)
-}
-
-abstract class LeafNode : AbstractNavigatableNode()

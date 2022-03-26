@@ -22,7 +22,7 @@
 //import androidx.compose.ui.unit.dp
 //import androidx.compose.ui.unit.sp
 //import jetbrains.mps.project.Project
-//import org.fbme.debugger.ItemButton
+//import org.fbme.debugger.common.ui.ItemButton
 //import org.fbme.debugger.simulator.BasicFBData
 //import org.fbme.debugger.simulator.FBData
 //import org.fbme.debugger.simulator.FBSimulator

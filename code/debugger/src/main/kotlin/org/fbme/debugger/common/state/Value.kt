@@ -34,6 +34,10 @@ class Value<V>(
             else -> error("unexpected type")
         }
     }
+
+    override fun toString(): String {
+        return value.toString()
+    }
 }
 
 operator fun Value<Any?>.plus(other: Value<Any?>): Value<Any?> {

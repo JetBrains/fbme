@@ -1,4 +1,4 @@
-package org.fbme.debugger.ui.colors
+package org.fbme.debugger.common.ui.colors
 
 import androidx.compose.material.Colors
 import androidx.compose.ui.graphics.Color
@@ -108,3 +108,6 @@ val Colors.StopResourceIconBackground: Color
 
 val Colors.ExplainButtonIconBackground: Color
     get() = Color(255, 188, 31)
+
+val Colors.FireEventBackground: Color
+    get() = Color(47, 143, 212)

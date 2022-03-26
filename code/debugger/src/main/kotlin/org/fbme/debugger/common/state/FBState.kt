@@ -1,6 +1,6 @@
 package org.fbme.debugger.common.state
 
-interface FBState {
+interface FBState : State {
     val inputEvents: Map<String, Int>
     val outputEvents: Map<String, Int>
     val inputVariables: Map<String, Value<Any?>>

@@ -6,15 +6,16 @@ import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.state.FBStateImpl
 import org.fbme.debugger.common.state.Value
+import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import java.util.*
 
-abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator {
+abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator {
     abstract val typeDeclaration: FBTypeDeclaration
     abstract val state: FBStateImpl
 
     abstract val parent: CompositeFBSimulator?
-    abstract val fbInstanceName: String
+    abstract val fbInstanceName: String?
 
     private val candidates = mutableMapOf<String, Value<Any?>>()
     private val deferredTriggers = LinkedList<String>()
@@ -28,11 +29,11 @@ abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator
     }
 
     private val fbPath by lazy {
-        val path = mutableListOf(fbInstanceName)
-        var curParent = parent
-        while (curParent != null) {
-            path.add(curParent!!.fbInstanceName)
-            curParent = curParent!!.parent
+        val path = mutableListOf<String>()
+        var cur: FBSimulatorImpl? = this
+        while (cur!!.parent != null) {
+            path.add(cur!!.fbInstanceName!!)
+            cur = cur!!.parent
         }
         path.reversed()
     }
@@ -58,10 +59,10 @@ abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator
     }
 
     private fun triggerInputEvent(eventName: String) {
-        logCurrentStateAndNextChange(InputEventChange(eventName))
-
         state.inputEvents[eventName] = state.inputEvents[eventName]!! + 1
         setValuesToAssociatedVariablesWithInputEvent(eventName)
+
+        logCurrentStateAndChange(InputEventChange(eventName))
 
         triggerInputEventInternal(eventName)
 
@@ -71,9 +72,9 @@ abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator
     abstract fun triggerInputEventInternal(eventName: String)
 
     private fun triggerOutputEvent(eventName: String) {
-        logCurrentStateAndNextChange(OutputEventChange(eventName))
-
         state.outputEvents[eventName] = state.outputEvents[eventName]!! + 1
+
+        logCurrentStateAndChange(OutputEventChange(eventName))
 
         if (parent != null) {
             val outgoingEventConnections = parent!!.typeDeclaration
@@ -126,17 +127,8 @@ abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator
         }
     }
 
-    protected fun logCurrentStateAndNextChange(change: Change) {
-        logCurrentState()
-        logChange(change)
-    }
-
-    private fun logCurrentState() {
-        trace.addState(rootFBState)
-    }
-
-    private fun logChange(change: Change) {
-        trace.addChange(fbPath, change)
+    protected fun logCurrentStateAndChange(change: Change) {
+        trace.addStateAndChange(rootFBState.copy(), Pair(fbPath, change))
     }
 
     protected fun addDeferredTrigger(eventName: String) {
@@ -145,7 +137,7 @@ abstract class FBSimulatorImpl(private val trace: SimulationTrace) : FBSimulator
 
     private fun triggerDeferredOutputEvents() {
         while (deferredTriggers.isNotEmpty()) {
-            val outputEventName = deferredTriggers.peek()
+            val outputEventName = deferredTriggers.poll()
             triggerOutputEvent(outputEventName)
         }
     }

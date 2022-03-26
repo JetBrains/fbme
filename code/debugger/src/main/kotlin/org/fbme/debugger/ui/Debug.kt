@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import org.fbme.debugger.Debugger
-import org.fbme.debugger.VerticalDivider
-import org.fbme.debugger.ui.colors.tableHeaderBackground
+import org.fbme.debugger.common.ui.VerticalDivider
+import org.fbme.debugger.common.ui.colors.tableHeaderBackground
 
 fun debugPanel(debugger: Debugger): ComposePanel {
     val composePanel = ComposePanel()
@@ -22,14 +22,14 @@ fun debugPanel(debugger: Debugger): ComposePanel {
 
 @Composable
 fun DebugContent(debugger: Debugger) {
-    Row(
-        modifier = Modifier
-            .background(MaterialTheme.colors.tableHeaderBackground)
-    ) {
-        MenuColumn(debugger)
-        VerticalDivider()
-        StatesColumn(debugger)
-        VerticalDivider()
-        WatchablesColumn(debugger)
-    }
+//    Row(
+//        modifier = Modifier
+//            .background(MaterialTheme.colors.tableHeaderBackground)
+//    ) {
+//        MenuColumn(debugger)
+//        VerticalDivider()
+//        StatesColumn(debugger)
+//        VerticalDivider()
+//        WatchablesColumn(debugger)
+//    }
 }

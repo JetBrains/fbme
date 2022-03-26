@@ -1,26 +1,30 @@
-package org.fbme.debugger.ui
+package org.fbme.debugger.common.ui
 
+import org.fbme.debugger.common.ui.tree.LeafNode
+import org.fbme.debugger.common.ui.tree.NavigableNode
+import org.fbme.debugger.common.ui.tree.NavigableTreeNode
+import org.fbme.debugger.common.ui.tree.TreeNode
 import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 
-object WatchablesTreeNodes {
-    interface NodeWithDeclaration : NavigatableNode {
+object FBTreeNodes {
+    interface NodeWithDeclaration : NavigableNode {
         val declaration: Declaration
     }
 
-    interface CompositeFBParentNode : NavigatableTreeNode
-    interface BasicFBParentNode : NavigatableTreeNode
+    interface CompositeFBParentNode : NavigableTreeNode
+    interface BasicFBParentNode : NavigableTreeNode
 
     class ResourceNode(
         override val declaration: ResourceDeclaration,
         val name: String
     ) : TreeNode(), NodeWithDeclaration, CompositeFBParentNode, BasicFBParentNode {
-        override val parent: NavigatableTreeNode? = null
+        override val parent: NavigableTreeNode? = null
     }
 
-    interface FBNode : NavigatableTreeNode, NodeWithDeclaration {
+    interface FBNode : NavigableTreeNode, NodeWithDeclaration {
         override val declaration: FunctionBlockDeclaration
         val name: String
     }

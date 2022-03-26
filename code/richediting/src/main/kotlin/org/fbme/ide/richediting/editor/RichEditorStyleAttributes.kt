@@ -13,6 +13,7 @@ import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.iec61499.ecc.ECC
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
@@ -89,6 +90,9 @@ object RichEditorStyleAttributes {
     @JvmField
     val VIEWPOINT: StyleAttribute<SceneViewpoint> = InheritableStyleAttribute("viewpoint")
 
+    @JvmField
+    val ECC: StyleAttribute<ECC> = InheritableStyleAttribute("ecc")
+
     init {
         NETWORK.register()
         NETWORK_INSTANCE.register()
@@ -110,5 +114,6 @@ object RichEditorStyleAttributes {
         CONNECTIONS_FACILITY.register()
         INSPECTIONS_FACILITY.register()
         VIEWPOINT.register()
+        ECC.register()
     }
 }

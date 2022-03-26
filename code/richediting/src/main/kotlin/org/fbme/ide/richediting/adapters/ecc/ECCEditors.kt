@@ -80,6 +80,7 @@ object ECCEditors {
             val declaration = repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
             val eccInstance = ECCInstance.createForDeclaration(declaration, parent)
             val ecc = eccInstance.eCCDeclaration
+            scene.style.set(RichEditorStyleAttributes.ECC, ecc)
             scene.style.set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc))
             scene.style.set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory)

@@ -133,7 +133,7 @@ class STInterpreter(
     private fun interpret(assignmentStatement: AssignmentStatement) {
         val variableName = (assignmentStatement.variable as VariableReferenceByNode).reference.presentation
         val expression = assignmentStatement.expression ?: error("expression expected in assignment $variableName")
-        val value = interpret(expression)
+        val value = interpret(expression).value
         if (inputVariables.contains(variableName)) {
             inputVariables[variableName]!!.value = value
         } else if (internalVariables.contains(variableName)) {

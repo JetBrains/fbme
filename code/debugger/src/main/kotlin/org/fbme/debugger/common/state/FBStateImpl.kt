@@ -19,4 +19,11 @@ abstract class FBStateImpl : FBState {
         outputVariables = typeDeclaration.outputParameters
             .associate { variable -> Pair(variable.name, variable.extractInitialValue()) }
     }
+
+    constructor(fbState: FBState) {
+        inputEvents = fbState.inputEvents.toMutableMap()
+        outputEvents = fbState.outputEvents.toMutableMap()
+        inputVariables = fbState.inputVariables.mapValues { Value(it.value.value) }
+        outputVariables = fbState.outputVariables.mapValues { Value(it.value.value) }
+    }
 }

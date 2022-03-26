@@ -1,4 +1,4 @@
-package org.fbme.debugger
+package org.fbme.debugger.common.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -6,7 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.fbme.debugger.ui.colors.tableHeaderSeparatorColor
+import org.fbme.debugger.common.ui.colors.tableHeaderSeparatorColor
 
 @Composable
 fun VerticalDivider() {
@@ -30,13 +30,14 @@ fun HorizontalDivider() {
 
 @Composable
 fun ItemButton(
+    modifier: Modifier = Modifier.size(20.dp),
     onClick: () -> Unit,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     content: @Composable () -> Unit
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.size(20.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(6.dp),
         elevation = null,
         colors = colors,

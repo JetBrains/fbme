@@ -11,4 +11,13 @@ class BasicFBState : FBStateImpl {
         internalVariables = typeDeclaration.internalVariables
             .associate { variable -> Pair(variable.name, variable.extractInitialValue()) }
     }
+
+    constructor(basicFBState: BasicFBState) : super(basicFBState) {
+        internalVariables = basicFBState.internalVariables.mapValues { Value(it.value.value) }
+        activeState = basicFBState.activeState
+    }
+
+    override fun copy(): BasicFBState {
+        return BasicFBState(this)
+    }
 }
