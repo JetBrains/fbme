@@ -135,9 +135,12 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
         }
 
         private fun getEventPortPosition(input: Boolean, number: Int, offsetY: Int): Int {
-            return (if (input) myFBCellComponent.getInputEventPortPosition(number) else myFBCellComponent.getOutputEventPortPosition(
-                number
-            )).y + offsetY
+            val portPosition = if (input) {
+                myFBCellComponent.getInputEventPortPosition(number)
+            } else {
+                myFBCellComponent.getOutputEventPortPosition(number)
+            }
+            return portPosition.y + offsetY
         }
 
         private fun getBottomPortsCount(input: Boolean): Int {
@@ -145,9 +148,20 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
         }
 
         private fun getDataPortPosition(input: Boolean, number: Int, offsetY: Int): Int {
-            return (if (input) myFBCellComponent.getInputDataPortPosition(number) else myFBCellComponent.getOutputDataPortPosition(
-                number
-            )).y + offsetY
+            val portPosition = if (input) {
+                if (number >= myFBCellComponent.inputDataPortsCount) {
+                    myFBCellComponent.getSocketPortPosition(number - myFBCellComponent.inputDataPortsCount)
+                } else {
+                    myFBCellComponent.getInputDataPortPosition(number)
+                }
+            } else {
+                if (number >= myFBCellComponent.outputDataPortsCount) {
+                    myFBCellComponent.getPlugPortPosition(number - myFBCellComponent.outputDataPortsCount)
+                } else {
+                    myFBCellComponent.getOutputDataPortPosition(number)
+                }
+            }
+            return portPosition.y + offsetY
         }
 
     }
