@@ -59,8 +59,10 @@ class BasicFBSimulator(
             }
 
             val outputEventName = action.event.presentation
-            pushValuesOfAssociatedVariablesWithOutputEvent(outputEventName)
-            addDeferredTrigger(outputEventName)
+            if (outputEventName != "") {
+                pushValuesOfAssociatedVariablesWithOutputEvent(outputEventName)
+                addDeferredTrigger(outputEventName)
+            }
         }
     }
 }
