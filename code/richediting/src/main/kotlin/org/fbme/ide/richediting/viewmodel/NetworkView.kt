@@ -195,14 +195,14 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         }
         i = 0
         for (socket in type.socketPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, false, socket.declaration!!)
+            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, true, socket.declaration!!)
             ports.add(port)
             myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.ADAPTER, socket.declaration!!)] = port
             myPorts[port] = view
         }
         i = 0
         for (plug in type.plugPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, true, plug.declaration!!)
+            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, false, plug.declaration!!)
             ports.add(port)
             myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.ADAPTER, plug.declaration!!)] = port
             myPorts[port] = view

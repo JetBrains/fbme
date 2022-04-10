@@ -2335,23 +2335,23 @@
                         <node concept="3clFbJ" id="1KgvZpgeSs4" role="3cqZAp">
                           <node concept="3clFbS" id="1KgvZpgeSs5" role="3clFbx">
                             <node concept="3cpWs6" id="1KgvZpgeSs6" role="3cqZAp">
-                              <node concept="2YIFZM" id="1KgvZpgeSs7" role="3cqZAk">
-                                <ref role="37wK5l" to="g27j:~PortPath.createPlugPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.PlugDeclaration)" resolve="createPlugPortPath" />
+                              <node concept="2YIFZM" id="5NqDTbzjyzt" role="3cqZAk">
+                                <ref role="37wK5l" to="g27j:~PortPath.createSocketPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.SocketDeclaration)" resolve="createSocketPortPath" />
                                 <ref role="1Pybhc" to="g27j:~PortPath" resolve="PortPath" />
-                                <node concept="37vLTw" id="1KgvZpgeSs8" role="37wK5m">
+                                <node concept="37vLTw" id="5NqDTbzjyzu" role="37wK5m">
                                   <ref role="3cqZAo" node="1KgvZpgeSrP" resolve="fb" />
                                 </node>
-                                <node concept="2OqwBi" id="1KgvZpgeSs9" role="37wK5m">
-                                  <node concept="37vLTw" id="1KgvZpgeSsa" role="2Oq$k0">
+                                <node concept="2OqwBi" id="5NqDTbzjyzv" role="37wK5m">
+                                  <node concept="37vLTw" id="5NqDTbzjyzw" role="2Oq$k0">
                                     <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
                                   </node>
-                                  <node concept="liA8E" id="1KgvZpgeSsb" role="2OqNvi">
+                                  <node concept="liA8E" id="5NqDTbzjyzx" role="2OqNvi">
                                     <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
-                                    <node concept="37vLTw" id="1KgvZpgeSsc" role="37wK5m">
+                                    <node concept="37vLTw" id="5NqDTbzjyzy" role="37wK5m">
                                       <ref role="3cqZAo" node="1KgvZpgeSrZ" resolve="declaration" />
                                     </node>
-                                    <node concept="3VsKOn" id="1KgvZpgeSsd" role="37wK5m">
-                                      <ref role="3VsUkX" to="cwd8:~PlugDeclaration" resolve="PlugDeclaration" />
+                                    <node concept="3VsKOn" id="5NqDTbzjyzz" role="37wK5m">
+                                      <ref role="3VsUkX" to="cwd8:~SocketDeclaration" resolve="SocketDeclaration" />
                                     </node>
                                   </node>
                                 </node>
