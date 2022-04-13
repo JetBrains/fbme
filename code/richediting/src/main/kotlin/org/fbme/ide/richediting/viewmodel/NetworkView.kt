@@ -47,8 +47,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
             addFunctionBlock(functionBlock, editable)
         }
         for (component in network.contextComponents) {
-            // TODO review "false", perhaps we want to delete plugs & sockets right on diagram 
-            addFunctionBlock(component, false)
+            addFunctionBlock(component, true)
         }
         val contextEventSources = network.contextEventSources
         val endpointCoordinates = network.endpointCoordinates
