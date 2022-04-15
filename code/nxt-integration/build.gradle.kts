@@ -1,3 +1,4 @@
+import org.fbme.gradle.moduleDependency
 
 plugins {
     java
@@ -16,8 +17,10 @@ dependencies {
 }
 
 mps {
-    artifactName = "nxt-integration"
-    buildScriptName = "fbme_nxt"
+    buildScriptName.set("fbme_nxt")
+    moduleName.set("org.fbme.integration.nxt.lib")
+    moduleDependency(project(":code:library"))
+    moduleDependency(project(":code:platform"))
 }
 
 val mpsPrepare by tasks.getting(Copy::class) {
@@ -25,14 +28,10 @@ val mpsPrepare by tasks.getting(Copy::class) {
     into("solutions/org.fbme.integration.nxt/lib")
 }
 
-val mpsAssemble by tasks.getting {
-    inputs.dir("solutions/org.fbme.integration.nxt/lib")
-}
-
 val test by tasks.getting(Test::class) {
     dependsOn(
-        ":code:library:mpsJar",
-        ":code:platform:mpsJar",
-        "mpsJar"
+        ":code:library:buildDistPlugin",
+        ":code:platform:buildDistPlugin",
+        "buildDistPlugin"
     )
 }

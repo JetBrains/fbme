@@ -10,16 +10,15 @@
   <imports>
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="c17a" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.language(MPS.OpenAPI/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
     <import index="mmaq" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:org.jdom(MPS.Core/)" />
     <import index="79zb" ref="r:ada5657a-12e1-4531-852c-54732bcbaa7f(org.fbme.ide.attributes.structure)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="80rz" ref="r:8923b760-80ff-427a-a226-9ed8b621742d(org.fbme.ide.attributes.behavior)" implicit="true" />
   </imports>
   <registry>
@@ -626,7 +625,7 @@
       <property role="TrG5h" value="T" />
       <node concept="3Tqbb2" id="1IuIrLUoYYu" role="3ztrMU" />
     </node>
-    <node concept="3uibUv" id="3WC2DnYvUHy" role="EKbjA">
+    <node concept="3uibUv" id="5onjsxWddUu" role="EKbjA">
       <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
     </node>
     <node concept="3clFbW" id="1IuIrLUoZzq" role="jymVt">

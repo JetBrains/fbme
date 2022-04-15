@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:library"))
-    implementation(project(":code:language", "mps"))
+    implementation(project(":code:language"))
 }
 
 java {
@@ -16,8 +16,8 @@ java {
 }
 
 mps {
-    artifactName = "statistics-plugin"
-    buildScriptName = "fbme_statistics"
+    buildScriptName.set("fbme_statistics")
+    moduleName.set("org.fbme.samples.statistics.lib")
 }
 
 val mpsPrepare by tasks.getting(Copy::class) {

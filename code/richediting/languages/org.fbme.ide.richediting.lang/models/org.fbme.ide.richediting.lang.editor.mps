@@ -17,56 +17,24 @@
   <imports>
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
-    <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(org.fbme.ide.iec61499.lang.behavior)" />
     <import index="xpi8" ref="r:9a9b929e-1b8b-403c-99cb-9e49e4b8f68b(org.fbme.ide.iec61499.lang.editor)" />
     <import index="5kh9" ref="r:fb13b7e5-37c8-4188-96ed-057d5b8154fd(org.fbme.ide.st.lang.editor)" />
-    <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="ykok" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel.constraints(MPS.Core/)" />
-    <import index="35tq" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.scope(MPS.Core/)" />
-    <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
-    <import index="82uw" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.function(JDK/)" />
     <import index="exr9" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor(MPS.Editor/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
-    <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
-    <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="tpco" ref="r:00000000-0000-4000-0000-011c89590284(jetbrains.mps.lang.core.editor)" />
-    <import index="rwq3" ref="r:c1a93deb-50a3-4728-ba16-8df97b360951(org.fbme.ide.iec61499.adapter.fbnetwork)" />
-    <import index="lv7i" ref="r:5472e35e-027d-42bb-bcce-32726ec4c9a9(org.fbme.ide.iec61499.adapter.ecc)" />
-    <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(org.fbme.ide.iec61499.adapter.interfacepart)" />
-    <import index="5ueo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.editor.runtime.style(MPS.Editor/)" />
-    <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
-    <import index="alof" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.project(MPS.Platform/)" />
-    <import index="4nm9" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.project(MPS.IDEA/)" />
-    <import index="ddhc" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ide(MPS.IDEA/)" />
-    <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
-    <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
-    <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
-    <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
-    <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
-    <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
-    <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
-    <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
     <import index="ar7i" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.scene(org.fbme.scenes/)" />
-    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
-    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
-    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
-    <import index="gl2l" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.viewmodel(org.fbme.scenes/)" />
-    <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
-    <import index="ek6x" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.inspections(org.fbme.ide.richediting/)" />
-    <import index="3rto" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.fb(org.fbme.ide.richediting/)" />
-    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
-    <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
-    <import index="1hzy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.viewmodel(org.fbme.ide.richediting/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
+    <import index="p24u" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.richediting.lib/)" />
+    <import index="56zl" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.richediting.lib/)" />
+    <import index="3rto" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.fbnetwork.fb(org.fbme.richediting.lib/)" />
   </imports>
   <registry>
     <language id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor">
@@ -1815,8 +1783,8 @@
                     <node concept="3clFbS" id="bRdTVHYPhN" role="3clF47">
                       <node concept="3clFbF" id="bRdTVHYPhO" role="3cqZAp">
                         <node concept="2YIFZM" id="3YrkjfSXbi9" role="3clFbG">
-                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
+                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <node concept="37vLTw" id="3YrkjfSXbia" role="37wK5m">
                             <ref role="3cqZAo" node="bRdTVHYPhL" resolve="context" />
                           </node>
@@ -2654,8 +2622,8 @@
                     <node concept="3clFbS" id="2SU8oJdHhUu" role="3clF47">
                       <node concept="3clFbF" id="2SU8oJdHhUv" role="3cqZAp">
                         <node concept="2YIFZM" id="3F_7WhoRfDL" role="3clFbG">
-                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
+                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <node concept="37vLTw" id="3F_7WhoRfDM" role="37wK5m">
                             <ref role="3cqZAo" node="2SU8oJdHhUs" resolve="context" />
                           </node>
@@ -2818,8 +2786,8 @@
                     <node concept="3clFbS" id="2SP6YJBXzMc" role="3clF47">
                       <node concept="3clFbF" id="2SP6YJBXzMd" role="3cqZAp">
                         <node concept="2YIFZM" id="3F_7WhoRfyD" role="3clFbG">
-                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
+                          <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
                           <node concept="37vLTw" id="3F_7WhoRfyE" role="37wK5m">
                             <ref role="3cqZAo" node="2SP6YJBXzMa" resolve="context" />
                           </node>
@@ -3032,8 +3000,8 @@
                         <node concept="3clFbS" id="6lA3BsRt62Z" role="3clF47">
                           <node concept="3clFbF" id="6lA3BsRthvF" role="3cqZAp">
                             <node concept="2YIFZM" id="6lA3BsRthwW" role="3clFbG">
-                              <ref role="37wK5l" to="56zl:~ECCEditors.createEccEditor(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createEccEditor" />
                               <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
+                              <ref role="37wK5l" to="56zl:~ECCEditors.createEccEditor(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createEccEditor" />
                               <node concept="37vLTw" id="6lA3BsRtkaw" role="37wK5m">
                                 <ref role="3cqZAo" node="6lA3BsRt62X" resolve="context" />
                               </node>
@@ -3094,8 +3062,8 @@
                         <node concept="3clFbS" id="6lA3BsRtm2h" role="3clF47">
                           <node concept="3clFbF" id="6lA3BsRtm2i" role="3cqZAp">
                             <node concept="2YIFZM" id="6lA3BsRtmR_" role="3clFbG">
-                              <ref role="37wK5l" to="p24u:~FBNetworkEditors.createFBNetworkCell(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createFBNetworkCell" />
                               <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
+                              <ref role="37wK5l" to="p24u:~FBNetworkEditors.createFBNetworkCell(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createFBNetworkCell" />
                               <node concept="37vLTw" id="6lA3BsRtmRA" role="37wK5m">
                                 <ref role="3cqZAo" node="6lA3BsRtm2f" resolve="context" />
                               </node>

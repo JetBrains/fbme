@@ -10,6 +10,6 @@ dependencies {
 }
 
 mps {
-    artifactName = "4diac-integration"
-    buildScriptName = "fbme_fordiac"
+    buildScriptName.set("fbme_fordiac")
+    moduleName.set("org.fbme.integration.fordiac.lib")
 }

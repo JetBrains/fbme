@@ -4,24 +4,20 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="${module}/lib" type="java_classes">
-      <sourceRoot location="statistics-plugin.jar" />
-    </modelRoot>
   </models>
   <facets>
     <facet type="java">
       <classes generated="true" path="${module}/classes_gen" />
     </facet>
   </facets>
-  <stubModelEntries>
-    <stubModelEntry path="${module}/lib/statistics-plugin.jar" />
-  </stubModelEntries>
   <sourcePath />
   <dependencies>
     <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)</dependency>
     <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
     <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)</dependency>
     <dependency reexport="false">742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)</dependency>
+    <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
+    <dependency reexport="false">7e52736a-b7d3-42d5-9933-2a61cbc70441(org.fbme.samples.statistics.lib)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="11" />
@@ -31,7 +27,6 @@
     <language slang="l:f2801650-65d5-424e-bb1b-463a8781b786:jetbrains.mps.baseLanguage.javadoc" version="2" />
     <language slang="l:760a0a8c-eabb-4521-8bfd-65db761a9ba3:jetbrains.mps.baseLanguage.logging" version="0" />
     <language slang="l:a247e09e-2435-45ba-b8d2-07e93feba96a:jetbrains.mps.baseLanguage.tuples" version="0" />
-    <language slang="l:fe9d76d7-5809-45c9-ae28-a40915b4d6ff:jetbrains.mps.lang.checkedName" version="1" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />
     <language slang="l:446c26eb-2b7b-4bf0-9b35-f83fa582753e:jetbrains.mps.lang.modelapi" version="0" />
     <language slang="l:28f9e497-3b42-4291-aeba-0a1039153ab1:jetbrains.mps.lang.plugin" version="4" />
@@ -49,10 +44,11 @@
     <module reference="498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)" version="0" />
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
-    <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
     <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
     <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
+    <module reference="ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)" version="0" />
+    <module reference="7e52736a-b7d3-42d5-9933-2a61cbc70441(org.fbme.samples.statistics.lib)" version="0" />
     <module reference="e75dd6b6-f70b-468d-91bc-fb7684b58409(org.fbme.samples.statisticsPlugin)" version="0" />
   </dependencyVersions>
 </solution>

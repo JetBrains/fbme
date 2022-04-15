@@ -17,7 +17,7 @@
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" />
     <import index="g3l6" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.extapi.model(MPS.Core/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
-    <import index="q8ad" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.editor(org.fbme.ide.iec61499.adapter/)" />
+    <import index="q8ad" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.editor(org.fbme.platform.lib/)" />
     <import index="z8iw" ref="r:dfdf3542-dbcf-43df-870a-3c3504b3c840(jetbrains.mps.baseLanguage.collections.custom)" implicit="true" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" implicit="true" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
@@ -892,7 +892,7 @@
       <node concept="3cqZAl" id="4BO4i0ZlXKI" role="3clF45" />
       <node concept="3Tm1VV" id="4BO4i0ZlYRF" role="1B3o_S" />
     </node>
-    <node concept="3uibUv" id="1EsE0fsvuRS" role="1zkMxy">
+    <node concept="3uibUv" id="5onjsxWf0AE" role="1zkMxy">
       <ref role="3uigEE" to="q8ad:~ProjectEditorSpecs" resolve="ProjectEditorSpecs" />
     </node>
   </node>

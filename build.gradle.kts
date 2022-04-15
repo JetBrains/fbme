@@ -1,5 +1,3 @@
-import org.fbme.gradle.MpsExtension
-
 plugins {
     base
     id("de.undercouch.download") version "4.1.1"
@@ -35,9 +33,12 @@ val buildBootstrap by tasks.registering {
     antexec("build-bootstrap.xml", "generate")
 }
 
+val buildSrcPlugin by tasks.creating
+
+val buildDistPlugin by tasks.creating
 
 val build by tasks.getting {
-    dependsOn(buildBootstrap)
+    dependsOn(buildBootstrap, buildSrcPlugin)
 }
 
 subprojects {
@@ -49,16 +50,18 @@ subprojects {
             }
         }
 
-        if (the<MpsExtension>().hasBuildSolution) {
-            buildBootstrap.get().inputs.dir("$projectDir/buildsolution/models")
+        val buildscriptModels = file("$projectDir/buildsolution/models")
+        if (buildscriptModels.exists()) {
+            buildBootstrap.get().inputs.dir(buildscriptModels)
             dependencies {
                 "antBinaries"("org.apache.ant:ant-junit:1.10.1")
             }
             tasks.named("mpsPrepare") {
                 dependsOn(buildBootstrap)
             }
+            buildSrcPlugin.dependsOn(tasks.named("buildSrcPlugin"))
+            buildDistPlugin.dependsOn(tasks.named("buildDistPlugin"))
         }
-        build.dependsOn(tasks.named("build"))
     }
 }
 
@@ -93,7 +96,7 @@ val copyStartupScripts by tasks.registering(Copy::class) {
 }
 
 val buildRcpDistrib by tasks.registering {
-    dependsOn(buildRcp, copyStartupScripts)
+    dependsOn(buildRcp, copyStartupScripts, buildDistPlugin)
     antexec("build/build-rcpdistrib.xml")
 }
 

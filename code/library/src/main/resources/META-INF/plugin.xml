@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.library</id>
+  <name>FBME Library</name>
+  <description>Common library for operations with IEC 61499 systems</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>jetbrains.mps.core</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

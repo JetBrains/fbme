@@ -12,8 +12,6 @@
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="eoo2" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.nio.file(JDK/)" />
     <import index="qqrq" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui.components(MPS.IDEA/)" />
     <import index="tsn" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui.components.panels(MPS.IDEA/)" />
@@ -22,10 +20,10 @@
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
-    <import index="jrjr" ref="a88077d2-f682-49f3-8108-f00338679901/java:org.fbme.smvDebugger.execution(org.fbme.smvDebugger/)" />
-    <import index="6yb" ref="a88077d2-f682-49f3-8108-f00338679901/java:org.fbme.smvDebugger.integration(org.fbme.smvDebugger/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="jrjr" ref="ea81373a-529d-4e5f-a3cf-1e9d8c08983c/java:org.fbme.smvDebugger.execution(org.fbme.smv-debugger.lib/)" />
+    <import index="6yb" ref="ea81373a-529d-4e5f-a3cf-1e9d8c08983c/java:org.fbme.smvDebugger.integration(org.fbme.smv-debugger.lib/)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
@@ -1143,8 +1141,8 @@
             <node concept="YeOm9" id="47ImtybUoIe" role="2ShVmc">
               <node concept="1Y3b0j" id="47ImtybUoIh" role="YeSDq">
                 <property role="2bfB8j" value="true" />
-                <ref role="1Y3XeK" to="6yb:~ServicePathProvider" resolve="ServicePathProvider" />
                 <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+                <ref role="1Y3XeK" to="6yb:~ServicePathProvider" resolve="ServicePathProvider" />
                 <node concept="3Tm1VV" id="47ImtybUoIi" role="1B3o_S" />
                 <node concept="3clFb_" id="47ImtybUoIn" role="jymVt">
                   <property role="TrG5h" value="getFb2SmvServicePath" />
@@ -1308,9 +1306,9 @@
       <node concept="3clFbS" id="47ImtybUtaP" role="3clF47">
         <node concept="3clFbF" id="47ImtybUtpe" role="3cqZAp">
           <node concept="2OqwBi" id="4K4Qd0pA2yP" role="3clFbG">
-            <node concept="10M0yZ" id="4K4Qd0p_QYq" role="2Oq$k0">
+            <node concept="10M0yZ" id="1EO1wDljOGp" role="2Oq$k0">
               <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
             </node>
             <node concept="liA8E" id="4K4Qd0pA2IP" role="2OqNvi">
               <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
@@ -1330,9 +1328,9 @@
       <node concept="3clFbS" id="47ImtybUfJY" role="3clF47">
         <node concept="3clFbF" id="47ImtybUfPd" role="3cqZAp">
           <node concept="2OqwBi" id="4K4Qd0pAddw" role="3clFbG">
-            <node concept="10M0yZ" id="4K4Qd0pAd1h" role="2Oq$k0">
+            <node concept="10M0yZ" id="1EO1wDljP9N" role="2Oq$k0">
               <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
             </node>
             <node concept="liA8E" id="4K4Qd0pAdpc" role="2OqNvi">
               <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
@@ -1343,8 +1341,8 @@
       </node>
     </node>
     <node concept="3Tm1VV" id="47ImtybUeMV" role="1B3o_S" />
-    <node concept="3uibUv" id="47ImtybUfww" role="1zkMxy">
-      <ref role="3uigEE" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
+    <node concept="3uibUv" id="1EO1wDljO1m" role="1zkMxy">
+      <ref role="3uigEE" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
     </node>
   </node>
   <node concept="sE7Ow" id="64NFiWSmz2R">

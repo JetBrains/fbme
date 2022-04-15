@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.integration.nxt</id>
+  <name>FBME - Nxt Integration</name>
+  <description>FBME Integration with NxtStudio and NxtControl</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>fbme.platform</depends>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.execution.languages</depends>
+  <depends>fbme.richediting</depends>
+  <depends>fbme.scenes</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

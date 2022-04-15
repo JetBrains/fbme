@@ -9,19 +9,14 @@
     <use id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources" version="2" />
   </languages>
   <imports>
-    <import index="dyp1" ref="a4712a21-b0bb-4e62-8857-e1c5ecf8c0ea/java:org.fbme.integration.nxt.importer.idea(org.fbme.integration.nxt/)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
-    <import index="1hzy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.viewmodel(org.fbme.ide.richediting/)" />
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
     <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
-    <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
-    <import index="r3nk" ref="a4712a21-b0bb-4e62-8857-e1c5ecf8c0ea/java:org.fbme.integration.nxt.importer(org.fbme.integration.nxt/)" />
     <import index="vdx1" ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(org.fbme.ide.platform.projectWizard)" />
     <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
@@ -37,7 +32,6 @@
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" />
     <import index="zn9m" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.util(MPS.IDEA/)" />
     <import index="epky" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.parser(org.fbme.lib/)" />
-    <import index="25ix" ref="292e01a6-3380-40ca-8417-b86844de2d63/java:org.fbme.ide.platform.converter(org.fbme.ide.platform/)" />
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="mmaq" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:org.jdom(MPS.Core/)" />
@@ -45,11 +39,13 @@
     <import index="dush" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.persistence(MPS.OpenAPI/)" />
     <import index="18ew" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.util(MPS.Core/)" />
     <import index="snbe" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.util.io(MPS.IDEA/)" />
-    <import index="1ctc" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.stream(JDK/)" />
-    <import index="q7tw" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:org.apache.log4j(MPS.Core/)" />
     <import index="g3l6" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.extapi.model(MPS.Core/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
-    <import index="3ju5" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.vfs(MPS.Core/)" />
+    <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
+    <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" />
+    <import index="r3nk" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer(org.fbme.integration.nxt.lib/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="25ix" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.converter(org.fbme.platform.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -437,7 +433,7 @@
               </node>
               <node concept="liA8E" id="6wb8cxJeedH" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6wb8cxJeedI" role="37wK5m">
+                <node concept="10M0yZ" id="2g7iZ5Y1g0X" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -461,8 +457,8 @@
               <node concept="liA8E" id="6wb8cxJeedP" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6wb8cxJeedQ" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                 </node>
               </node>
             </node>
@@ -622,7 +618,7 @@
         <node concept="3clFbF" id="3GESaPG8jAi" role="3cqZAp">
           <node concept="2OqwBi" id="3GESaPG8tN6" role="3clFbG">
             <node concept="2ShNRf" id="3GESaPG8jAe" role="2Oq$k0">
-              <node concept="1pGfFk" id="3GESaPG8tIE" role="2ShVmc">
+              <node concept="1pGfFk" id="2g7iZ5Y1$EO" role="2ShVmc">
                 <ref role="37wK5l" to="r3nk:~CompositeCreator.&lt;init&gt;()" resolve="CompositeCreator" />
               </node>
             </node>
@@ -686,9 +682,9 @@
               </node>
               <node concept="liA8E" id="6wb8cxJd_RY" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6wb8cxJd_RZ" role="37wK5m">
-                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                <node concept="10M0yZ" id="2g7iZ5Y1dO$" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
               </node>
             </node>
@@ -709,7 +705,7 @@
               </node>
               <node concept="liA8E" id="6wb8cxJebw7" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6wb8cxJeceQ" role="37wK5m">
+                <node concept="10M0yZ" id="2g7iZ5Y1exs" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -1432,7 +1428,7 @@
                       <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
                     </node>
                     <node concept="2ShNRf" id="2M8kVdCcB2o" role="33vP2m">
-                      <node concept="1pGfFk" id="2M8kVdCcB2p" role="2ShVmc">
+                      <node concept="1pGfFk" id="2g7iZ5Y14JN" role="2ShVmc">
                         <ref role="37wK5l" to="uvki:~PlatformElementsOwner.&lt;init&gt;()" resolve="PlatformElementsOwner" />
                       </node>
                     </node>
@@ -1445,9 +1441,9 @@
                       <ref role="3uigEE" to="epky:~Iec61499ConverterConfiguration" resolve="Iec61499ConverterConfiguration" />
                     </node>
                     <node concept="2OqwBi" id="2M8kVdCcB2t" role="33vP2m">
-                      <node concept="10M0yZ" id="2M8kVdCcB2u" role="2Oq$k0">
-                        <ref role="1PxDUh" to="r3nk:~NxtImporterConfiguration" resolve="NxtImporterConfiguration" />
+                      <node concept="10M0yZ" id="2g7iZ5Y1w55" role="2Oq$k0">
                         <ref role="3cqZAo" to="r3nk:~NxtImporterConfiguration.FACTORY" resolve="FACTORY" />
+                        <ref role="1PxDUh" to="r3nk:~NxtImporterConfiguration" resolve="NxtImporterConfiguration" />
                       </node>
                       <node concept="liA8E" id="2M8kVdCcB2v" role="2OqNvi">
                         <ref role="37wK5l" to="25ix:~PlatformConverter$DefaultConfigurationFactory.createConfiguration(org.fbme.ide.iec61499.repository.PlatformElementsOwner)" resolve="createConfiguration" />
@@ -1465,8 +1461,8 @@
                       <ref role="3uigEE" to="epky:~RootConverter" resolve="RootConverter" />
                     </node>
                     <node concept="2YIFZM" id="2M8kVdCcB2$" role="33vP2m">
-                      <ref role="37wK5l" to="25ix:~PlatformConverter.create(org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration,org.jetbrains.mps.openapi.model.SModelReference,org.jdom.Document)" resolve="create" />
                       <ref role="1Pybhc" to="25ix:~PlatformConverter" resolve="PlatformConverter" />
+                      <ref role="37wK5l" to="25ix:~PlatformConverter.create(org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration,org.jetbrains.mps.openapi.model.SModelReference,org.jdom.Document)" resolve="create" />
                       <node concept="37vLTw" id="2M8kVdCcB2_" role="37wK5m">
                         <ref role="3cqZAo" node="2M8kVdCcB2r" resolve="configuration" />
                       </node>

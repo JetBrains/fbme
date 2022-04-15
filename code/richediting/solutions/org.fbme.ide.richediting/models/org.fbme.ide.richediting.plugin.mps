@@ -7,8 +7,6 @@
     <use id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone" version="0" />
     <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="4" />
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
-    <use id="c0080a47-7e37-4558-bee9-9ae18e690549" name="jetbrains.mps.lang.extension" version="2" />
-    <use id="c7d5b9dd-a05f-4be2-bc73-f2e16994cc67" name="jetbrains.mps.baseLanguage.lightweightdsl" version="1" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
     <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />
     <use id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions" version="4" />
@@ -48,32 +46,27 @@
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="cj4x" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor(MPS.Editor/)" />
     <import index="g136" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.ecc(org.fbme.lib/)" />
     <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
-    <import index="ek6x" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.inspections(org.fbme.ide.richediting/)" />
-    <import index="je9f" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" />
-    <import index="1hzy" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.viewmodel(org.fbme.ide.richediting/)" />
-    <import index="6w4o" ref="292e01a6-3380-40ca-8417-b86844de2d63/java:org.fbme.ide.platform.debugger(org.fbme.ide.platform/)" />
-    <import index="8gms" ref="292e01a6-3380-40ca-8417-b86844de2d63/java:org.fbme.ide.platform.editor(org.fbme.ide.platform/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
-    <import index="ec6g" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting(org.fbme.ide.richediting/)" />
     <import index="alof" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.project(MPS.Platform/)" />
     <import index="4nm9" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.project(MPS.IDEA/)" />
     <import index="g51k" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.nodeEditor.cells(MPS.Editor/)" />
-    <import index="tamd" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.diagram(org.fbme.scenes/)" />
-    <import index="2w4" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.components(org.fbme.scenes/)" />
-    <import index="ws78" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.elk(org.fbme.ide.richediting/)" />
-    <import index="p24u" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork(org.fbme.ide.richediting/)" />
-    <import index="mrrx" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.fbnetwork.actions(org.fbme.ide.richediting/)" />
-    <import index="jnz" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc.cell(org.fbme.ide.richediting/)" />
-    <import index="56zl" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.ide.richediting/)" />
     <import index="sli2" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.cells(org.fbme.scenes/)" />
-    <import index="eo9q" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.adapters.common.actions(org.fbme.ide.richediting/)" />
+    <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
+    <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="jnz" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.ecc.cell(org.fbme.richediting.lib/)" />
+    <import index="56zl" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.ecc(org.fbme.richediting.lib/)" />
+    <import index="mrrx" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.fbnetwork.actions(org.fbme.richediting.lib/)" />
+    <import index="ek6x" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.inspections(org.fbme.richediting.lib/)" />
+    <import index="eo9q" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.adapters.common.actions(org.fbme.richediting.lib/)" />
+    <import index="ec6g" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting(org.fbme.richediting.lib/)" />
+    <import index="8gms" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.editor(org.fbme.platform.lib/)" />
+    <import index="6w4o" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.debugger(org.fbme.platform.lib/)" />
+    <import index="je9g" ref="ce053d11-5ec7-4fac-b419-6715b4a97d3a/java:org.fbme.ide.richediting.editor(org.fbme.ide.richediting/)" implicit="true" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" implicit="true" />
@@ -660,7 +653,7 @@
             </node>
             <node concept="liA8E" id="7eBFChAkOQV" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.registerExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="registerExtension" />
-              <node concept="10M0yZ" id="6SLp5w3JmPR" role="37wK5m">
+              <node concept="10M0yZ" id="6AO1fiERSFN" role="37wK5m">
                 <ref role="3cqZAo" to="ek6x:~InspectionManagerImpl.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
                 <ref role="1PxDUh" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
               </node>
@@ -695,7 +688,7 @@
             </node>
             <node concept="liA8E" id="7eBFChAkQcF" role="2OqNvi">
               <ref role="37wK5l" to="wvnl:~EditorExtensionRegistry.unregisterExtension(jetbrains.mps.openapi.editor.extensions.EditorExtension)" resolve="unregisterExtension" />
-              <node concept="10M0yZ" id="6SLp5w3JmTY" role="37wK5m">
+              <node concept="10M0yZ" id="6AO1fiERSFS" role="37wK5m">
                 <ref role="3cqZAo" to="ek6x:~InspectionManagerImpl.EDITOR_EXTENSION" resolve="EDITOR_EXTENSION" />
                 <ref role="1PxDUh" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
               </node>
@@ -714,7 +707,7 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$EMW" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$F5n" role="3clFbG">
-              <node concept="10M0yZ" id="6SLp5w3JmCX" role="2Oq$k0">
+              <node concept="10M0yZ" id="6AO1fiERSbl" role="2Oq$k0">
                 <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
@@ -730,7 +723,7 @@
           <node concept="3clFbF" id="7TC3cEN$Zh8" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$Zh9" role="3clFbG">
               <node concept="10M0yZ" id="6SLp5w3JmDh" role="2Oq$k0">
-                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                <ref role="3cqZAo" to="je9g:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
               <node concept="liA8E" id="7TC3cEN$Zhb" role="2OqNvi">
@@ -745,8 +738,8 @@
           <node concept="3clFbF" id="6YAH_gOce$V" role="8Wnug">
             <node concept="2OqwBi" id="6YAH_gOce$W" role="3clFbG">
               <node concept="10M0yZ" id="6SLp5w3JmD_" role="2Oq$k0">
-                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
               </node>
               <node concept="liA8E" id="6YAH_gOce$Y" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -759,7 +752,7 @@
           <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
           <node concept="3clFbF" id="7TC3cEN$Zhr" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$Zhs" role="3clFbG">
-              <node concept="10M0yZ" id="6SLp5w3JmDH" role="2Oq$k0">
+              <node concept="10M0yZ" id="6AO1fiERSb$" role="2Oq$k0">
                 <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
               </node>
@@ -775,8 +768,8 @@
           <node concept="3clFbF" id="7TC3cEN$ZhM" role="8Wnug">
             <node concept="2OqwBi" id="7TC3cEN$ZhN" role="3clFbG">
               <node concept="10M0yZ" id="6SLp5w3JmDP" role="2Oq$k0">
-                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.TYPE" resolve="TYPE" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.TYPE" resolve="TYPE" />
               </node>
               <node concept="liA8E" id="7TC3cEN$ZhP" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~StyleAttribute.register()" resolve="register" />
@@ -812,7 +805,7 @@
       <node concept="3clFbS" id="7TC3cEN$DE8" role="2VODD2">
         <node concept="3clFbF" id="7TC3cEN$ZNz" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZN$" role="3clFbG">
-            <node concept="10M0yZ" id="6SLp5w3JmDX" role="2Oq$k0">
+            <node concept="10M0yZ" id="6AO1fiERSbq" role="2Oq$k0">
               <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
               <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
@@ -823,7 +816,7 @@
         </node>
         <node concept="3clFbF" id="7TC3cEN$ZNB" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNC" role="3clFbG">
-            <node concept="10M0yZ" id="6SLp5w3JmE5" role="2Oq$k0">
+            <node concept="10M0yZ" id="6AO1fiERSgK" role="2Oq$k0">
               <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
               <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
@@ -834,7 +827,7 @@
         </node>
         <node concept="3clFbF" id="6YAH_gOceAF" role="3cqZAp">
           <node concept="2OqwBi" id="6YAH_gOceAG" role="3clFbG">
-            <node concept="10M0yZ" id="6SLp5w3JmEd" role="2Oq$k0">
+            <node concept="10M0yZ" id="6AO1fiERSbc" role="2Oq$k0">
               <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
               <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
@@ -846,8 +839,8 @@
         <node concept="3clFbF" id="7TC3cEN$ZNF" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNG" role="3clFbG">
             <node concept="10M0yZ" id="6SLp5w3JmEl" role="2Oq$k0">
-              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
               <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+              <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
             </node>
             <node concept="liA8E" id="7TC3cEN$ZNI" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~StyleAttribute.unregister()" resolve="unregister" />
@@ -856,7 +849,7 @@
         </node>
         <node concept="3clFbF" id="7TC3cEN$ZNJ" role="3cqZAp">
           <node concept="2OqwBi" id="7TC3cEN$ZNK" role="3clFbG">
-            <node concept="10M0yZ" id="6SLp5w3JmEt" role="2Oq$k0">
+            <node concept="10M0yZ" id="6AO1fiERSbv" role="2Oq$k0">
               <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.TYPE" resolve="TYPE" />
               <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
             </node>
@@ -911,8 +904,8 @@
               <node concept="liA8E" id="19RKY2xGcx1" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3Jcuv" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                 </node>
               </node>
             </node>
@@ -1620,7 +1613,7 @@
               </node>
               <node concept="liA8E" id="uP0FLzO7Ev" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3JbCD" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQOln" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -1642,8 +1635,8 @@
               <node concept="liA8E" id="uP0FLzO7EA" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3JbGf" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 </node>
               </node>
             </node>
@@ -1805,7 +1798,7 @@
               </node>
               <node concept="liA8E" id="uP0FLzPzSD" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3JaMs" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQOXK" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -1826,8 +1819,8 @@
               <node concept="liA8E" id="uP0FLzPAeD" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3Jb6A" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                 </node>
               </node>
             </node>
@@ -1846,8 +1839,8 @@
               <node concept="liA8E" id="uP0FLzPAQ2" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3JaWE" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 </node>
               </node>
             </node>
@@ -1957,8 +1950,8 @@
               <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
             </node>
             <node concept="2YIFZM" id="2Fi3aChvyuy" role="33vP2m">
-              <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+              <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <node concept="2OqwBi" id="2Fi3aChvyuz" role="37wK5m">
                 <node concept="2WthIp" id="2Fi3aChvyu$" role="2Oq$k0" />
                 <node concept="1DTwFV" id="2Fi3aChvyu_" role="2OqNvi">
@@ -2040,7 +2033,7 @@
                                         </node>
                                         <node concept="2OqwBi" id="42vv4xsG1VN" role="33vP2m">
                                           <node concept="2OqwBi" id="5EF1Nu6MiAi" role="2Oq$k0">
-                                            <node concept="10M0yZ" id="5EF1Nu6Mitd" role="2Oq$k0">
+                                            <node concept="10M0yZ" id="1EO1wDl9tUv" role="2Oq$k0">
                                               <ref role="3cqZAo" to="6w4o:~DevicesFacade.Companion" resolve="Companion" />
                                               <ref role="1PxDUh" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
                                             </node>
@@ -2115,7 +2108,7 @@
                                       <node concept="3clFbF" id="k3FE8isJoP" role="3cqZAp">
                                         <node concept="2OqwBi" id="k3FE8isJBZ" role="3clFbG">
                                           <node concept="2OqwBi" id="5EF1Nu6MjqQ" role="2Oq$k0">
-                                            <node concept="10M0yZ" id="5EF1Nu6MjcI" role="2Oq$k0">
+                                            <node concept="10M0yZ" id="1EO1wDl9tUq" role="2Oq$k0">
                                               <ref role="3cqZAo" to="6w4o:~DevicesFacade.Companion" resolve="Companion" />
                                               <ref role="1PxDUh" to="6w4o:~DevicesFacade" resolve="DevicesFacade" />
                                             </node>
@@ -2287,8 +2280,8 @@
         <node concept="3clFbF" id="6Vznkw4g7Dm" role="3cqZAp">
           <node concept="37vLTI" id="6Vznkw4g7U0" role="3clFbG">
             <node concept="2YIFZM" id="6Vznkw4g8fo" role="37vLTx">
-              <ref role="37wK5l" to="6w4o:~WatcherFacade.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <ref role="1Pybhc" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+              <ref role="37wK5l" to="6w4o:~WatcherFacade.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
               <node concept="37vLTw" id="6Vznkw4g8lm" role="37wK5m">
                 <ref role="3cqZAo" node="4WS_6wCD2Lw" resolve="project" />
               </node>
@@ -2566,8 +2559,8 @@
               <node concept="liA8E" id="19RKY2xFOoF" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3Kq0C" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 </node>
               </node>
             </node>
@@ -3504,8 +3497,8 @@
               <node concept="liA8E" id="74jd4DVyRqP" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3KFlu" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                 </node>
               </node>
             </node>
@@ -3742,8 +3735,8 @@
               <node concept="liA8E" id="5uVbEkjFHRI" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3KBXF" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 </node>
               </node>
             </node>
@@ -4092,7 +4085,7 @@
               </node>
               <node concept="liA8E" id="19RKY2xFKOY" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3Ky$G" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiESa2X" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -4189,7 +4182,7 @@
               </node>
               <node concept="liA8E" id="19RKY2xFFjB" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3Kwfa" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiESa2S" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -4297,7 +4290,7 @@
               </node>
               <node concept="liA8E" id="5uVbEkjJgzM" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3KsWE" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiESa2B" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -4470,8 +4463,8 @@
               <node concept="liA8E" id="5uVbEkjJifE" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3KsFP" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                 </node>
               </node>
             </node>
@@ -4858,8 +4851,8 @@
             <node concept="liA8E" id="19RKY2xFeiL" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
               <node concept="10M0yZ" id="6SLp5w3KGAJ" role="37wK5m">
-                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
               </node>
             </node>
           </node>
@@ -4899,8 +4892,8 @@
               <node concept="liA8E" id="5uVbEkjIgq$" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3KIZr" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                 </node>
               </node>
             </node>
@@ -4919,8 +4912,8 @@
               <node concept="liA8E" id="5uVbEkjIgqr" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="6SLp5w3KLyM" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.PORT" resolve="PORT" />
                 </node>
               </node>
             </node>
@@ -5011,8 +5004,8 @@
             <node concept="liA8E" id="1S4cYrOMT4D" role="2OqNvi">
               <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
               <node concept="10M0yZ" id="6SLp5w3KNLC" role="37wK5m">
-                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
                 <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.FB" resolve="FB" />
               </node>
             </node>
           </node>
@@ -5059,8 +5052,8 @@
                 <node concept="liA8E" id="1S4cYrOQtpM" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                   <node concept="10M0yZ" id="6SLp5w3KSMz" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                     <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                   </node>
                 </node>
               </node>
@@ -7027,7 +7020,7 @@
                       </node>
                       <node concept="liA8E" id="74jd4DV_S3F" role="2OqNvi">
                         <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                        <node concept="10M0yZ" id="6SLp5w3JnwR" role="37wK5m">
+                        <node concept="10M0yZ" id="6AO1fiERTRA" role="37wK5m">
                           <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                           <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                         </node>
@@ -7120,7 +7113,7 @@
               </node>
               <node concept="liA8E" id="1DfKejran99" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3JpX9" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQL2j" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -7151,7 +7144,7 @@
               </node>
               <node concept="liA8E" id="1DfKejr8H5Y" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3JqNb" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQLs0" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -7297,7 +7290,7 @@
               </node>
               <node concept="liA8E" id="1DfKejrap1q" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="6SLp5w3Jo$W" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQIuH" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -7330,7 +7323,7 @@
                   </node>
                   <node concept="liA8E" id="1DfKejr8BXv" role="2OqNvi">
                     <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                    <node concept="10M0yZ" id="6SLp5w3JpCj" role="37wK5m">
+                    <node concept="10M0yZ" id="6AO1fiEQKgc" role="37wK5m">
                       <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.SELECTED_FBS" resolve="SELECTED_FBS" />
                       <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                     </node>
@@ -10194,14 +10187,14 @@
       <property role="TrG5h" value="algorithmProjections" />
       <node concept="3Tm6S6" id="3kxbdDirvL9" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirvUE" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="1_XvODPMzse" role="33vP2m">
         <node concept="YeOm9" id="1_XvODPMzsf" role="2ShVmc">
           <node concept="1Y3b0j" id="1_XvODPMzsg" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="1_XvODPMzsh" role="1B3o_S" />
             <node concept="3clFb_" id="1_XvODPMzsi" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10310,14 +10303,14 @@
       <property role="TrG5h" value="applicationProjection" />
       <node concept="3Tm6S6" id="3kxbdDirvVx" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirw5M" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirw5T" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirw5U" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirw5V" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="3kxbdDirw5W" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirw5X" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10426,14 +10419,14 @@
       <property role="TrG5h" value="eccProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwam" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwan" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwrN" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwrO" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwrP" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwrQ" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwrR" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10547,14 +10540,14 @@
       <property role="TrG5h" value="interfaceProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwe6" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwe7" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="7Y8B9wpl4BU" role="33vP2m">
         <node concept="YeOm9" id="7Y8B9wpl4BV" role="2ShVmc">
           <node concept="1Y3b0j" id="7Y8B9wpl4BW" role="YeSDq">
             <property role="2bfB8j" value="true" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="7Y8B9wpl4BX" role="1B3o_S" />
             <node concept="3clFb_" id="7Y8B9wpl4BY" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10672,14 +10665,14 @@
       <property role="TrG5h" value="networkProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwiA" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwiB" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirw$y" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirw$z" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirw$$" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="3kxbdDirw$_" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirw$A" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10781,14 +10774,14 @@
       <property role="TrG5h" value="resourceProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwkl" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwkm" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwA0" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwA1" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwA2" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwA3" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwA4" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10897,14 +10890,14 @@
       <property role="TrG5h" value="systemOverviewProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwm7" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwm8" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwFj" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwFk" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwFl" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwFm" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwFn" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -11027,7 +11020,7 @@
               <ref role="3uigEE" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
             </node>
             <node concept="2OqwBi" id="5EF1Nu6MOCL" role="33vP2m">
-              <node concept="10M0yZ" id="5EF1Nu6MOwa" role="2Oq$k0">
+              <node concept="10M0yZ" id="1EO1wDl9w4s" role="2Oq$k0">
                 <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
                 <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
               </node>
@@ -11160,7 +11153,7 @@
               <ref role="3uigEE" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
             </node>
             <node concept="2OqwBi" id="5EF1Nu6MOZJ" role="33vP2m">
-              <node concept="10M0yZ" id="5EF1Nu6MOR4" role="2Oq$k0">
+              <node concept="10M0yZ" id="1EO1wDl9wf8" role="2Oq$k0">
                 <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
                 <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
               </node>
@@ -11608,7 +11601,7 @@
       </node>
     </node>
     <node concept="3Tm1VV" id="2k00pzqAsoB" role="1B3o_S" />
-    <node concept="3uibUv" id="2k00pzqAtW2" role="1zkMxy">
+    <node concept="3uibUv" id="6AO1fiEShxY" role="1zkMxy">
       <ref role="3uigEE" to="ec6g:~RicheditingMpsBridge" resolve="RicheditingMpsBridge" />
     </node>
   </node>
@@ -11674,8 +11667,8 @@
       <node concept="3clFbS" id="SYEhid_BVV" role="2VODD2">
         <node concept="3clFbF" id="5M730Cvngj0" role="3cqZAp">
           <node concept="2YIFZM" id="5M730CvngjG" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECCEditors.hideAllActions(org.fbme.scenes.cells.EditorCell_Scene)" resolve="hideAllActions" />
             <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
+            <ref role="37wK5l" to="56zl:~ECCEditors.hideAllActions(org.fbme.scenes.cells.EditorCell_Scene)" resolve="hideAllActions" />
             <node concept="1eOMI4" id="5M730CvnhfC" role="37wK5m">
               <node concept="10QFUN" id="5M730Cvnhf_" role="1eOMHV">
                 <node concept="3uibUv" id="5M730CvnhWp" role="10QFUM">
@@ -11714,8 +11707,8 @@
                 <node concept="liA8E" id="SYEhidAiA$" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                   <node concept="10M0yZ" id="SYEhidAiNX" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                     <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                   </node>
                 </node>
               </node>
@@ -11788,7 +11781,7 @@
               </node>
               <node concept="liA8E" id="50iwqwj_vKE" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="50iwqwj_vO0" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQWgy" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -11833,8 +11826,8 @@
             <node concept="3clFbS" id="6wS$TL7pIuO" role="9aQI4">
               <node concept="3clFbF" id="6wS$TL7pP4W" role="3cqZAp">
                 <node concept="2YIFZM" id="6wS$TL7pPeZ" role="3clFbG">
-                  <ref role="37wK5l" to="56zl:~ECStateController.setAlgorithmToNone(org.fbme.ide.richediting.adapters.ecc.cell.AlgorithmCell)" resolve="setAlgorithmToNone" />
                   <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+                  <ref role="37wK5l" to="56zl:~ECStateController.setAlgorithmToNone(org.fbme.ide.richediting.adapters.ecc.cell.AlgorithmCell)" resolve="setAlgorithmToNone" />
                   <node concept="1eOMI4" id="6wS$TL7pPR5" role="37wK5m">
                     <node concept="10QFUN" id="6wS$TL7pPR2" role="1eOMHV">
                       <node concept="3uibUv" id="6wS$TL7pQki" role="10QFUM">
@@ -11894,8 +11887,8 @@
               <node concept="liA8E" id="1qTIX84QkHG" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="1qTIX84Ql1v" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                 </node>
               </node>
             </node>
@@ -11916,7 +11909,7 @@
               </node>
               <node concept="liA8E" id="3z9JIK7ilL1" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="7qUD3D_UKpO" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQWgB" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -12120,7 +12113,7 @@
                     </node>
                     <node concept="liA8E" id="2WvzrPn99On" role="2OqNvi">
                       <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                      <node concept="10M0yZ" id="2WvzrPn99XQ" role="37wK5m">
+                      <node concept="10M0yZ" id="6AO1fiERT9d" role="37wK5m">
                         <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                         <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                       </node>
@@ -12239,8 +12232,8 @@
               <node concept="liA8E" id="73yih0QY4dY" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="73yih0QY4r3" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                 </node>
               </node>
             </node>
@@ -12288,8 +12281,8 @@
             <node concept="3clFbS" id="37tPqyjvGm1" role="9aQI4">
               <node concept="3clFbF" id="37tPqyjvMXw" role="3cqZAp">
                 <node concept="2YIFZM" id="37tPqyjvMYf" role="3clFbG">
-                  <ref role="37wK5l" to="56zl:~ECStateController.setOutputToNone(org.fbme.ide.richediting.adapters.ecc.cell.OutputCell)" resolve="setOutputToNone" />
                   <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+                  <ref role="37wK5l" to="56zl:~ECStateController.setOutputToNone(org.fbme.ide.richediting.adapters.ecc.cell.OutputCell)" resolve="setOutputToNone" />
                   <node concept="1eOMI4" id="37tPqyjvNAw" role="37wK5m">
                     <node concept="10QFUN" id="37tPqyjvNAt" role="1eOMHV">
                       <node concept="3uibUv" id="37tPqyjvOpJ" role="10QFUM">
@@ -12348,7 +12341,7 @@
               </node>
               <node concept="liA8E" id="1Q2$ygwjbRX" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="1Q2$ygwjc3d" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQX5_" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -12372,8 +12365,8 @@
               <node concept="liA8E" id="7hqzVzGxwKY" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="7hqzVzGxx0Q" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_OUTPUTS" resolve="ALL_OUTPUTS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_OUTPUTS" resolve="ALL_OUTPUTS" />
                 </node>
               </node>
             </node>
@@ -12506,8 +12499,8 @@
       <node concept="3clFbS" id="5CIuLyEt3XL" role="2VODD2">
         <node concept="3clFbF" id="5CIuLyEtSLv" role="3cqZAp">
           <node concept="2YIFZM" id="5CIuLyEtSMb" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECCEditors.showAllAlgorithms(org.fbme.scenes.cells.EditorCell_Scene)" resolve="showAllAlgorithms" />
             <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
+            <ref role="37wK5l" to="56zl:~ECCEditors.showAllAlgorithms(org.fbme.scenes.cells.EditorCell_Scene)" resolve="showAllAlgorithms" />
             <node concept="1eOMI4" id="5CIuLyEtTEM" role="37wK5m">
               <node concept="10QFUN" id="5CIuLyEtTEJ" role="1eOMHV">
                 <node concept="3uibUv" id="5CIuLyEtTXr" role="10QFUM">
@@ -12558,8 +12551,8 @@
                 <node concept="liA8E" id="5CIuLyEtQ4J" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                   <node concept="10M0yZ" id="5CIuLyEtSzM" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                     <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                   </node>
                 </node>
               </node>
@@ -12626,8 +12619,8 @@
               <node concept="liA8E" id="oLr9iwGiYQ" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="oLr9iwGj1z" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE_COLLECTION" resolve="STATE_COLLECTION" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE_COLLECTION" resolve="STATE_COLLECTION" />
                 </node>
               </node>
             </node>
@@ -12645,7 +12638,7 @@
               </node>
               <node concept="liA8E" id="oLr9iwGjyT" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="oLr9iwGj_E" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiESel_" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -12655,8 +12648,8 @@
         </node>
         <node concept="3clFbF" id="oLr9iwGhoe" role="3cqZAp">
           <node concept="2YIFZM" id="oLr9iwGhoZ" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECStateController.addNewAlgorithm(jetbrains.mps.nodeEditor.cells.EditorCell_Collection,org.fbme.lib.iec61499.ecc.StateAction)" resolve="addNewAlgorithm" />
             <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+            <ref role="37wK5l" to="56zl:~ECStateController.addNewAlgorithm(jetbrains.mps.nodeEditor.cells.EditorCell_Collection,org.fbme.lib.iec61499.ecc.StateAction)" resolve="addNewAlgorithm" />
             <node concept="37vLTw" id="oLr9iwGjEa" role="37wK5m">
               <ref role="3cqZAo" node="oLr9iwGiGI" resolve="cellCollection" />
             </node>
@@ -12749,8 +12742,8 @@
                     <node concept="liA8E" id="7hqzVzGwNSb" role="2OqNvi">
                       <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                       <node concept="10M0yZ" id="7hqzVzGwNWM" role="37wK5m">
-                        <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_OUTPUTS" resolve="ALL_OUTPUTS" />
                         <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                        <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_OUTPUTS" resolve="ALL_OUTPUTS" />
                       </node>
                     </node>
                   </node>
@@ -12817,8 +12810,8 @@
       <node concept="3clFbS" id="S0QuRL8wcw" role="2VODD2">
         <node concept="3clFbF" id="S0QuRL9t7t" role="3cqZAp">
           <node concept="2YIFZM" id="S0QuRL9t9F" role="3clFbG">
-            <ref role="37wK5l" to="jnz:~StateCell.changeHideStateActionsInState(org.fbme.ide.richediting.adapters.ecc.cell.StateCell)" resolve="changeHideStateActionsInState" />
             <ref role="1Pybhc" to="jnz:~StateCell" resolve="StateCell" />
+            <ref role="37wK5l" to="jnz:~StateCell.changeHideStateActionsInState(org.fbme.ide.richediting.adapters.ecc.cell.StateCell)" resolve="changeHideStateActionsInState" />
             <node concept="1eOMI4" id="S0QuRL9tMP" role="37wK5m">
               <node concept="10QFUN" id="S0QuRL9tMM" role="1eOMHV">
                 <node concept="3uibUv" id="S0QuRL9ua2" role="10QFUM">
@@ -12880,8 +12873,8 @@
                 <property role="TrG5h" value="isOpenNow" />
                 <node concept="10P_77" id="S0QuRL9m9y" role="1tU5fm" />
                 <node concept="2YIFZM" id="S0QuRL9ocR" role="33vP2m">
-                  <ref role="37wK5l" to="jnz:~StateCell.isOpenBody(org.fbme.ide.richediting.adapters.ecc.cell.StateCell)" resolve="isOpenBody" />
                   <ref role="1Pybhc" to="jnz:~StateCell" resolve="StateCell" />
+                  <ref role="37wK5l" to="jnz:~StateCell.isOpenBody(org.fbme.ide.richediting.adapters.ecc.cell.StateCell)" resolve="isOpenBody" />
                   <node concept="37vLTw" id="S0QuRL9oeR" role="37wK5m">
                     <ref role="3cqZAo" node="S0QuRL9kSM" resolve="stateCell" />
                   </node>
@@ -12965,8 +12958,8 @@
           <node concept="3clFbS" id="1p1S1dsDC6G" role="3clFbx">
             <node concept="3clFbF" id="4tEtWDaVsd4" role="3cqZAp">
               <node concept="2YIFZM" id="4tEtWDaVsfg" role="3clFbG">
-                <ref role="37wK5l" to="jnz:~AlgorithmCell.changeIsOpenBody(org.fbme.ide.richediting.adapters.ecc.cell.AlgorithmCell)" resolve="changeIsOpenBody" />
                 <ref role="1Pybhc" to="jnz:~AlgorithmCell" resolve="AlgorithmCell" />
+                <ref role="37wK5l" to="jnz:~AlgorithmCell.changeIsOpenBody(org.fbme.ide.richediting.adapters.ecc.cell.AlgorithmCell)" resolve="changeIsOpenBody" />
                 <node concept="1eOMI4" id="3V2vfkbDPGr" role="37wK5m">
                   <node concept="10QFUN" id="3V2vfkbDPGo" role="1eOMHV">
                     <node concept="3uibUv" id="3V2vfkbDQ5u" role="10QFUM">
@@ -13025,8 +13018,8 @@
               <node concept="liA8E" id="1p1S1dsDoo6" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="1p1S1dsDo$z" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                 </node>
               </node>
             </node>
@@ -13182,8 +13175,8 @@
               <node concept="liA8E" id="5KYly5X1f0M" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="5KYly5X1f4_" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                 </node>
               </node>
             </node>
@@ -13201,7 +13194,7 @@
               </node>
               <node concept="liA8E" id="5KYly5X1f$e" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="5KYly5X1fBf" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiERHLI" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -13221,7 +13214,7 @@
               </node>
               <node concept="liA8E" id="ZT8p$KuO9$" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="ZT8p$KuSN_" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiERHL$" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE_COLLECTION" resolve="STATE_COLLECTION" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -13233,8 +13226,8 @@
           <node concept="3clFbS" id="5KYly5X1fKp" role="3clFbx">
             <node concept="3clFbF" id="ZT8p$KuTVj" role="3cqZAp">
               <node concept="2YIFZM" id="7MrglEUUAe6" role="3clFbG">
-                <ref role="37wK5l" to="56zl:~ECStateController.removeActionWithState(org.fbme.lib.iec61499.ecc.StateAction,jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="removeActionWithState" />
                 <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+                <ref role="37wK5l" to="56zl:~ECStateController.removeActionWithState(org.fbme.lib.iec61499.ecc.StateAction,jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="removeActionWithState" />
                 <node concept="37vLTw" id="7MrglEUUAe7" role="37wK5m">
                   <ref role="3cqZAo" node="5KYly5X1eJ9" resolve="algorithmAction" />
                 </node>
@@ -13255,8 +13248,8 @@
           <node concept="3clFbS" id="ZT8p$KuUCE" role="3clFbx">
             <node concept="3clFbF" id="ZT8p$KuVHl" role="3cqZAp">
               <node concept="2YIFZM" id="7MrglEUUAgu" role="3clFbG">
-                <ref role="37wK5l" to="56zl:~ECStateController.removeActionWithState(org.fbme.lib.iec61499.ecc.StateAction,jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="removeActionWithState" />
                 <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+                <ref role="37wK5l" to="56zl:~ECStateController.removeActionWithState(org.fbme.lib.iec61499.ecc.StateAction,jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="removeActionWithState" />
                 <node concept="37vLTw" id="7MrglEUUAgv" role="37wK5m">
                   <ref role="3cqZAo" node="5KYly5X1fjC" resolve="outputAction" />
                 </node>
@@ -13313,7 +13306,7 @@
               </node>
               <node concept="liA8E" id="vrSA8DeGNt" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="vrSA8DeH1A" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiERHLD" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALGORITHMS" resolve="ALGORITHMS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -13334,8 +13327,8 @@
               <node concept="liA8E" id="vrSA8DeI59" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                 <node concept="10M0yZ" id="vrSA8DeIou" role="37wK5m">
-                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.OUTPUTS" resolve="OUTPUTS" />
                 </node>
               </node>
             </node>
@@ -13411,7 +13404,7 @@
               </node>
               <node concept="liA8E" id="2lFEJQ8Urmw" role="2OqNvi">
                 <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
-                <node concept="10M0yZ" id="2lFEJQ8Urpx" role="37wK5m">
+                <node concept="10M0yZ" id="6AO1fiEQQWD" role="37wK5m">
                   <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.STATE_COLLECTION" resolve="STATE_COLLECTION" />
                   <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
                 </node>
@@ -13421,8 +13414,8 @@
         </node>
         <node concept="3clFbF" id="2lFEJQ8Usmd" role="3cqZAp">
           <node concept="2YIFZM" id="2lFEJQ8Usqs" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECStateController.addAction(jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="addAction" />
             <ref role="1Pybhc" to="56zl:~ECStateController" resolve="ECStateController" />
+            <ref role="37wK5l" to="56zl:~ECStateController.addAction(jetbrains.mps.nodeEditor.cells.EditorCell_Collection)" resolve="addAction" />
             <node concept="37vLTw" id="2lFEJQ8Usrg" role="37wK5m">
               <ref role="3cqZAo" node="2lFEJQ8Ur3J" resolve="cellCollection" />
             </node>
@@ -13547,8 +13540,8 @@
       <node concept="3clFbS" id="1cVgxO1LwMw" role="2VODD2">
         <node concept="3clFbF" id="1cVgxO1MBuz" role="3cqZAp">
           <node concept="2YIFZM" id="1cVgxO1MBvf" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECCEditors.hideAllAlgorithms(org.fbme.scenes.cells.EditorCell_Scene)" resolve="hideAllAlgorithms" />
             <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
+            <ref role="37wK5l" to="56zl:~ECCEditors.hideAllAlgorithms(org.fbme.scenes.cells.EditorCell_Scene)" resolve="hideAllAlgorithms" />
             <node concept="1eOMI4" id="1cVgxO1MCgo" role="37wK5m">
               <node concept="10QFUN" id="1cVgxO1MCgl" role="1eOMHV">
                 <node concept="3uibUv" id="1cVgxO1MCyZ" role="10QFUM">
@@ -13592,8 +13585,8 @@
                 <node concept="liA8E" id="1cVgxO1M$OT" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                   <node concept="10M0yZ" id="1cVgxO1M_oa" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                     <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                   </node>
                 </node>
               </node>
@@ -13632,8 +13625,8 @@
       <node concept="3clFbS" id="5Hyh$bF1Ejq" role="2VODD2">
         <node concept="3clFbF" id="5Hyh$bF2uIC" role="3cqZAp">
           <node concept="2YIFZM" id="5Hyh$bF2uJz" role="3clFbG">
-            <ref role="37wK5l" to="56zl:~ECCEditors.showAllActions(org.fbme.scenes.cells.EditorCell_Scene)" resolve="showAllActions" />
             <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
+            <ref role="37wK5l" to="56zl:~ECCEditors.showAllActions(org.fbme.scenes.cells.EditorCell_Scene)" resolve="showAllActions" />
             <node concept="1eOMI4" id="5Hyh$bF2vnD" role="37wK5m">
               <node concept="10QFUN" id="5Hyh$bF2vnA" role="1eOMHV">
                 <node concept="3uibUv" id="5Hyh$bF2vEm" role="10QFUM">
@@ -13677,8 +13670,8 @@
                 <node concept="liA8E" id="5Hyh$bF2saM" role="2OqNvi">
                   <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
                   <node concept="10M0yZ" id="5Hyh$bF2sMg" role="37wK5m">
-                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                     <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                    <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.ALL_ALGORITHMS" resolve="ALL_ALGORITHMS" />
                   </node>
                 </node>
               </node>

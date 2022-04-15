@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.smvDebugger</id>
+  <name>FBME - SMV Debugger</name>
+  <description>Integration of SMV Verification tool for IEC 61499 systems</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>fbme.platform</depends>
+  <depends>fbme.richediting</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>
