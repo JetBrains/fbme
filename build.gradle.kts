@@ -37,9 +37,7 @@ val buildSrcPlugin by tasks.creating
 
 val buildDistPlugin by tasks.creating
 
-val build by tasks.getting {
-    dependsOn(buildBootstrap, buildSrcPlugin)
-}
+val build by tasks.getting
 
 subprojects {
     pluginManager.withPlugin("org.fbme.gradle.mps") {
@@ -62,6 +60,7 @@ subprojects {
             buildSrcPlugin.dependsOn(tasks.named("buildSrcPlugin"))
             buildDistPlugin.dependsOn(tasks.named("buildDistPlugin"))
         }
+        build.dependsOn(tasks.named("build"))
     }
 }
 

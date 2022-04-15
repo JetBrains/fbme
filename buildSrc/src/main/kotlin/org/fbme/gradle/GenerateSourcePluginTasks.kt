@@ -66,5 +66,9 @@ fun GenerateSourcePluginTasks(
             enabled = tasksEnabled
             dependsOn(copyPluginXml, jarPluginModule, copyLibs)
         }
+
+        val build by tasks.getting {
+            dependsOn(buildSrcPlugin)
+        }
     }
 }
