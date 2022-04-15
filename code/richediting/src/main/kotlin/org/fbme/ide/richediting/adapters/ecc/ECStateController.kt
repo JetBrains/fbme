@@ -7,6 +7,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.TextBuilder
 import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.richediting.RicheditingMpsBridge
 import org.fbme.ide.richediting.adapters.ecc.cell.*
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.lib.common.StringIdentifier
@@ -133,8 +134,8 @@ class ECStateController(
             val algorithmDeclaration = action.algorithm.getTarget()
             var algorithmCell: AlgorithmCell?
             if (algorithmDeclaration != null) {
-                val algorithmNode = (algorithmDeclaration.body as? PlatformElement)?.node
-                val bodyCell = context.editorComponent.updater.currentUpdateSession.updateChildNodeCell(algorithmNode)
+                val algorithmDeclarationNode = (algorithmDeclaration as PlatformElement).node
+                val contentCell = RicheditingMpsBridge.createAlgorithmContentCell(context, algorithmDeclarationNode)
                 isOpenAlgorithmBody.putIfAbsent(action, true)
                 algorithmCell = AlgorithmCell.createAlgorithmCell(
                     context,
@@ -142,12 +143,12 @@ class ECStateController(
                     node,
                     action,
                     cellCollection,
-                    bodyCell as EditorCell_Collection,
+                    contentCell,
                     isOpenAlgorithmBody
                 )
                 cellCollection.addEditorCell(algorithmCell)
                 if (isOpenBody) {
-                    cellCollection.addEditorCell(bodyCell)
+                    cellCollection.addEditorCell(contentCell)
                 }
             } else {
                 algorithmCell = AlgorithmCell.createAlgorithmCell(

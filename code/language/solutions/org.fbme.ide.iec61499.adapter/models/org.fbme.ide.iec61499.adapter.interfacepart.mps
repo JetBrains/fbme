@@ -90,6 +90,9 @@
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
       </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
+      </concept>
       <concept id="1109279763828" name="jetbrains.mps.baseLanguage.structure.TypeVariableDeclaration" flags="ng" index="16euLQ">
         <child id="1214996921760" name="bound" index="3ztrMU" />
       </concept>
@@ -7084,6 +7087,7 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="2tJIrI" id="2K1hwDRY0" role="jymVt" />
     <node concept="3clFb_" id="1IuIrLUysIt" role="jymVt">
       <property role="TrG5h" value="setBody" />
       <node concept="3Tm1VV" id="1IuIrLUysIu" role="1B3o_S" />
@@ -7140,6 +7144,50 @@
       </node>
       <node concept="2AHcQZ" id="1IuIrLUysIA" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="5tgPFZSd5xN" role="jymVt" />
+    <node concept="3clFb_" id="sU78fQp0fG" role="jymVt">
+      <property role="TrG5h" value="getTemporaryVariables" />
+      <node concept="3Tm1VV" id="sU78fQp0fH" role="1B3o_S" />
+      <node concept="2AHcQZ" id="sU78fQp0fJ" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="sU78fQp0fK" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="sU78fQp0fL" role="11_B2D">
+          <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="sU78fQp0fQ" role="3clF47">
+        <node concept="3clFbF" id="sU78fQp3Gk" role="3cqZAp">
+          <node concept="2ShNRf" id="sU78fQp3Gc" role="3clFbG">
+            <node concept="1pGfFk" id="sU78fQp5LZ" role="2ShVmc">
+              <property role="373rjd" value="true" />
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <node concept="3uibUv" id="sU78fQp6gM" role="1pMfVU">
+                <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+              </node>
+              <node concept="2OqwBi" id="sU78fQp9Dr" role="37wK5m">
+                <node concept="37vLTw" id="sU78fQp8WL" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3Tsc0h" id="sU78fQpad1" role="2OqNvi">
+                  <ref role="3TtcxE" to="xiqq:5tgPFZSaxk4" resolve="temporaryVariables" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="sU78fQpcxm" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+              </node>
+              <node concept="37vLTw" id="sU78fQpfe8" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="sU78fQp0fR" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
       </node>
     </node>
     <node concept="2tJIrI" id="1hwo9XLDEu5" role="jymVt" />

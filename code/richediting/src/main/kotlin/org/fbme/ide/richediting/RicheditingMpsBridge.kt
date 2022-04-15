@@ -18,7 +18,7 @@ abstract class RicheditingMpsBridge {
         node: SNode
     ): EditorCell_Collection
 
-    protected abstract fun provideStateDeclarationCell(
+    protected abstract fun provideAlgorithmContentCell(
         context: EditorContext,
         node: SNode
     ): EditorCell_Collection
@@ -48,11 +48,12 @@ abstract class RicheditingMpsBridge {
             return PROVIDER!!.provideTransitionCell(context, node)
         }
 
-        fun createStateDeclarationCell(
+        @JvmStatic
+        fun createAlgorithmContentCell(
             context: EditorContext,
             node: SNode
         ): EditorCell_Collection {
-            return PROVIDER!!.provideStateDeclarationCell(context, node)
+            return PROVIDER!!.provideAlgorithmContentCell(context, node)
         }
     }
 }

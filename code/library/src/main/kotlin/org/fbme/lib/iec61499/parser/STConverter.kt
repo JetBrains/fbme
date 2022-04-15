@@ -2,6 +2,7 @@ package org.fbme.lib.iec61499.parser
 
 import org.antlr.v4.runtime.ANTLRInputStream
 import org.antlr.v4.runtime.CommonTokenStream
+import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.*
@@ -16,6 +17,20 @@ import java.io.IOException
 import java.io.StringReader
 
 object STConverter {
+
+    @JvmStatic
+    fun parseStatementListWithDeclarations(
+        factory: STFactory,
+        declarationsCollector: (Identifier, DataType) -> Unit,
+        text: String
+    ): List<Statement> {
+        val ctx = createParser(text).statementListWithVariableDeclarations()
+        for (declCtx in ctx.decls) {
+            declarationsCollector(StringIdentifier(declCtx.name.text), parseType(factory, declCtx.type.text)!!)
+        }
+        return extractStatementList(factory, ctx.statementList())
+    }
+
     @JvmStatic
     fun parseStatementList(factory: STFactory, text: String?): List<Statement> {
         return extractStatementList(factory, createParser(text).statementList())

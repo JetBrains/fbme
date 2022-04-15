@@ -1,16 +1,23 @@
 package org.fbme.integration.nxt.importer;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
+import org.fbme.lib.common.Identifier;
 import org.fbme.lib.common.StringIdentifier;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration;
 import org.fbme.lib.iec61499.ecc.ECTransitionCondition;
 import org.fbme.lib.iec61499.parser.BasicFBTypeConverter;
 import org.fbme.lib.iec61499.parser.ConverterArguments;
 import org.fbme.lib.iec61499.parser.STConverter;
 import org.fbme.lib.st.STFactory;
 import org.fbme.lib.st.expressions.*;
+import org.fbme.lib.st.types.DataType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
 
@@ -56,6 +63,22 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
         condition.setGuardCondition(Objects.requireNonNull(STConverter.parseExpression(myStFactory, guardConditionText)));
     }
 
+    @NotNull
+    @Override
+    protected StAlgorithmConverter getStAlgorithmConverter() {
+        return StAlgorithmNxtImporter;
+    }
+
+    private static final StAlgorithmConverter StAlgorithmNxtImporter = (iec61499factory, factory, algorithmDeclaration, st, text) -> {
+        BiFunction<Identifier, DataType, kotlin.Unit> parameterCollector = (name, type) -> {
+            ParameterDeclaration parameterDeclaration = iec61499factory.createParameterDeclaration(name);
+            parameterDeclaration.setType(type);
+            algorithmDeclaration.getTemporaryVariables().add(parameterDeclaration);
+            return Unit.INSTANCE;
+        };
+        st.getStatements().addAll(STConverter.parseStatementListWithDeclarations(factory, parameterCollector::apply, text));
+    };
+
     private static class TransitionImportChecker {
         private boolean satisfy;
         private String eventName;
@@ -81,7 +104,7 @@ public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
             if (guardCondition instanceof VariableReference) {
                 String variableName = ((StringIdentifier) (((VariableReference) guardCondition).getReference().getIdentifier())).getValue();
                 if (this.fbtd.getInputParameters().stream().anyMatch(x -> x.getName().equals(variableName)) ||
-                    this.fbtd.getInternalVariables().stream().anyMatch(x -> x.getName().equals(variableName))) {
+                        this.fbtd.getInternalVariables().stream().anyMatch(x -> x.getName().equals(variableName))) {
                     setDefaultBraces(guardCondition);
                     return;
                 }

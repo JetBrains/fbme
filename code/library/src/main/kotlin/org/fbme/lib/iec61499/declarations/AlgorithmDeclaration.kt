@@ -6,5 +6,6 @@ import org.fbme.lib.common.Element
 
 interface AlgorithmDeclaration : Declaration, ContainedElement {
     var body: AlgorithmBody?
+    val temporaryVariables: MutableList<ParameterDeclaration>
     override val container: BasicFBTypeDeclaration?
 }

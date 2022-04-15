@@ -18,8 +18,7 @@
     <import index="g3l6" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.extapi.model(MPS.Core/)" />
     <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
     <import index="q8ad" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.editor(org.fbme.platform.lib/)" />
-    <import index="z8iw" ref="r:dfdf3542-dbcf-43df-870a-3c3504b3c840(jetbrains.mps.baseLanguage.collections.custom)" implicit="true" />
-    <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" implicit="true" />
+    <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -86,6 +85,9 @@
       <concept id="1068431474542" name="jetbrains.mps.baseLanguage.structure.VariableDeclaration" flags="ng" index="33uBYm">
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
+      </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
       </concept>
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
@@ -201,21 +203,6 @@
       </concept>
     </language>
     <language id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections">
-      <concept id="1201306600024" name="jetbrains.mps.baseLanguage.collections.structure.ContainsKeyOperation" flags="nn" index="2Nt0df">
-        <child id="1201654602639" name="key" index="38cxEo" />
-      </concept>
-      <concept id="1197683403723" name="jetbrains.mps.baseLanguage.collections.structure.MapType" flags="in" index="3rvAFt">
-        <child id="1197683466920" name="keyType" index="3rvQeY" />
-        <child id="1197683475734" name="valueType" index="3rvSg0" />
-      </concept>
-      <concept id="1197686869805" name="jetbrains.mps.baseLanguage.collections.structure.HashMapCreator" flags="nn" index="3rGOSV">
-        <child id="1197687026896" name="keyType" index="3rHrn6" />
-        <child id="1197687035757" name="valueType" index="3rHtpV" />
-      </concept>
-      <concept id="1576845966386891367" name="jetbrains.mps.baseLanguage.collections.structure.CustomMapCreator" flags="nn" index="1u7pXE">
-        <reference id="1576845966386891370" name="containerDeclaration" index="1u7pXB" />
-      </concept>
-      <concept id="1208542034276" name="jetbrains.mps.baseLanguage.collections.structure.MapClearOperation" flags="nn" index="1yHZxX" />
       <concept id="1197932370469" name="jetbrains.mps.baseLanguage.collections.structure.MapElement" flags="nn" index="3EllGN">
         <child id="1197932505799" name="map" index="3ElQJh" />
         <child id="1197932525128" name="key" index="3ElVtu" />
@@ -258,23 +245,25 @@
       <property role="TrG5h" value="mySpecMap" />
       <property role="3TUv4t" value="true" />
       <node concept="3Tm6S6" id="2hWn4IdW9Pt" role="1B3o_S" />
-      <node concept="3rvAFt" id="2hWn4IdWaDn" role="1tU5fm">
-        <node concept="1LlUBW" id="2hWn4IdWaIN" role="3rvQeY">
-          <node concept="3Tqbb2" id="2hWn4IdWaY1" role="1Lm7xW" />
-          <node concept="17QB3L" id="2hWn4IdWdDm" role="1Lm7xW" />
+      <node concept="3uibUv" id="2nUT8eQUfk4" role="1tU5fm">
+        <ref role="3uigEE" to="33ny:~Map" resolve="Map" />
+        <node concept="1LlUBW" id="2nUT8eQUgk0" role="11_B2D">
+          <node concept="3Tqbb2" id="2nUT8eQUgk1" role="1Lm7xW" />
+          <node concept="17QB3L" id="2nUT8eQUgk2" role="1Lm7xW" />
         </node>
-        <node concept="3Tqbb2" id="2hWn4IdWg1D" role="3rvSg0">
+        <node concept="3Tqbb2" id="2nUT8eQUhU6" role="11_B2D">
           <ref role="ehGHo" to="9ywi:6YAH_gOxzgt" resolve="HeaderedEditorSpec" />
         </node>
       </node>
       <node concept="2ShNRf" id="2hWn4IdWg9h" role="33vP2m">
-        <node concept="1u7pXE" id="2hWn4IdWyu2" role="2ShVmc">
-          <ref role="1u7pXB" to="z8iw:3TJnG96iD$S" resolve="weakHashMap" />
-          <node concept="1LlUBW" id="2hWn4IdWyu4" role="3rHrn6">
-            <node concept="3Tqbb2" id="2hWn4IdWyu5" role="1Lm7xW" />
-            <node concept="17QB3L" id="2hWn4IdWyu6" role="1Lm7xW" />
+        <node concept="1pGfFk" id="2nUT8eQUa6f" role="2ShVmc">
+          <property role="373rjd" value="true" />
+          <ref role="37wK5l" to="33ny:~WeakHashMap.&lt;init&gt;()" resolve="WeakHashMap" />
+          <node concept="1LlUBW" id="2hWn4IdWaIN" role="1pMfVU">
+            <node concept="3Tqbb2" id="2hWn4IdWaY1" role="1Lm7xW" />
+            <node concept="17QB3L" id="2hWn4IdWdDm" role="1Lm7xW" />
           </node>
-          <node concept="3Tqbb2" id="2hWn4IdWyu7" role="3rHtpV">
+          <node concept="3Tqbb2" id="2hWn4IdWg1D" role="1pMfVU">
             <ref role="ehGHo" to="9ywi:6YAH_gOxzgt" resolve="HeaderedEditorSpec" />
           </node>
         </node>
@@ -690,12 +679,13 @@
               </node>
             </node>
           </node>
-          <node concept="2OqwBi" id="2hWn4IdWjlw" role="3clFbw">
+          <node concept="2OqwBi" id="2nUT8eQUk6j" role="3clFbw">
             <node concept="37vLTw" id="2hWn4IdWiE_" role="2Oq$k0">
               <ref role="3cqZAo" node="2hWn4IdWf_S" resolve="mySpecMap" />
             </node>
-            <node concept="2Nt0df" id="2hWn4IdWnqi" role="2OqNvi">
-              <node concept="37vLTw" id="2hWn4IdWny1" role="38cxEo">
+            <node concept="liA8E" id="2nUT8eQUo8U" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.containsKey(java.lang.Object)" resolve="containsKey" />
+              <node concept="37vLTw" id="2nUT8eQUpl1" role="37wK5m">
                 <ref role="3cqZAo" node="2hWn4IdWdVH" resolve="key" />
               </node>
             </node>
@@ -837,11 +827,13 @@
       <property role="TrG5h" value="dispose" />
       <node concept="3clFbS" id="4BO4i0ZlYd5" role="3clF47">
         <node concept="3clFbF" id="4BO4i0Zm196" role="3cqZAp">
-          <node concept="2OqwBi" id="4BO4i0Zm1Jy" role="3clFbG">
+          <node concept="2OqwBi" id="2nUT8eQUsFs" role="3clFbG">
             <node concept="37vLTw" id="4BO4i0Zm194" role="2Oq$k0">
               <ref role="3cqZAo" node="2hWn4IdWf_S" resolve="mySpecMap" />
             </node>
-            <node concept="1yHZxX" id="4BO4i0Zm3$3" role="2OqNvi" />
+            <node concept="liA8E" id="2nUT8eQUyA1" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.clear()" resolve="clear" />
+            </node>
           </node>
         </node>
         <node concept="3cpWs8" id="5sOEwwEEdkD" role="3cqZAp">
