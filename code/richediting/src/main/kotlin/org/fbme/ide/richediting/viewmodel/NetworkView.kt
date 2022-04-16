@@ -47,7 +47,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
             addFunctionBlock(functionBlock, editable)
         }
         for (component in network.contextComponents) {
-            addFunctionBlock(component, true)
+            addFunctionBlock(component, editable)
         }
         val contextEventSources = network.contextEventSources
         val endpointCoordinates = network.endpointCoordinates
