@@ -13,7 +13,7 @@ import java.util.stream.Collectors
 
 class MPSNetworkInstanceReference(private val myRoot: SNodeReference, private val myNestedList: List<SNodeId?>) {
     fun resolve(repository: PlatformRepository): NetworkInstance? {
-        val node = myRoot.resolve(repository.mpsRepository) ?: return null
+        val node = myRoot.resolve(repository.project.repository) ?: return null
         val declaration = repository.getAdapter(node, Declaration::class.java)
             ?: return null
         var networkInstance: NetworkInstance? = NetworkInstance.createForDeclaration(declaration)

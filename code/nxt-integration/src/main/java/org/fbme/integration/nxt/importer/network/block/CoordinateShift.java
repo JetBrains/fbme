@@ -1,4 +1,6 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer.network.block;
+
+import org.fbme.integration.nxt.importer.network.Type;
 
 public class CoordinateShift {
     public int yDiff;
@@ -13,6 +15,14 @@ public class CoordinateShift {
         yOutput = 50;
         this.xInput = -xInput;
         this.xOutput = xOutput;
+    }
+
+    public CoordinateShift() {
+        yDiff = 0;
+        yInput = 0;
+        yOutput = 0;
+        xInput = 0;
+        xOutput = 0;
     }
 
     public int getY(Type type) {

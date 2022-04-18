@@ -12,7 +12,7 @@ object PlatformRepositoryProvider {
 
     @JvmStatic
     fun init(project: Project) {
-        ourRepositories[project] = PlatformRepository(project.repository)
+        ourRepositories[project] = PlatformRepository(project)
     }
 
     @JvmStatic

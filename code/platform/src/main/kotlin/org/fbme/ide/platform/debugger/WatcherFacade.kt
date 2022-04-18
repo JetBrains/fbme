@@ -100,7 +100,7 @@ class WatcherFacade private constructor(project: Project) {
         return Thread {
             try {
                 while (!Thread.currentThread().isInterrupted) {
-                    repository.mpsRepository.modelAccess.runReadInEDT {
+                    repository.project.modelAccess.runReadInEDT {
                         for (deviceIdentifier in devices.keys) {
                             try {
                                 val device = repository.declarationsScope.findDeviceDeclaration(deviceIdentifier)

@@ -8,10 +8,6 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 import org.jetbrains.mps.openapi.model.SNodeReference
-import org.jetbrains.mps.openapi.module.SModule
-import java.util.*
-import java.util.stream.Collectors
-import java.util.stream.StreamSupport
 
 internal class PlatformDeclarationsScope(
     private val myRepository: PlatformRepository,
@@ -54,15 +50,14 @@ internal class PlatformDeclarationsScope(
     }
 
     override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> {
-        return myRepository.mpsRepository.modules
-            .flatMap { it.models }
+        return myRepository.project.projectModels
             .filter { myModel == null || ModelImports(myModel).importedModels.contains(it.reference) }
             .flatMap { it.rootNodes }
             .mapNotNull { myRepository.getAdapter(it, FBTypeDeclaration::class.java) }
     }
 
     private fun findNode(identifier: Identifier): SNode? {
-        val node = getNodeReference(identifier).resolve(myRepository.mpsRepository) ?: return null
+        val node = getNodeReference(identifier).resolve(myRepository.project.repository) ?: return null
         if (myModel == null) {
             return node
         }

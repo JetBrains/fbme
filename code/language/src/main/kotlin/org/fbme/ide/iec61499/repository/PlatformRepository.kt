@@ -1,10 +1,10 @@
 package org.fbme.ide.iec61499.repository
 
+import jetbrains.mps.project.Project
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.jetbrains.mps.openapi.model.SModel
-import org.jetbrains.mps.openapi.module.SRepository
 
-class PlatformRepository(val mpsRepository: SRepository) : PlatformElementsOwner() {
+class PlatformRepository(val project: Project) : PlatformElementsOwner() {
     val declarationsScope: DeclarationsScope
         get() = PlatformDeclarationsScope(this, null)
 

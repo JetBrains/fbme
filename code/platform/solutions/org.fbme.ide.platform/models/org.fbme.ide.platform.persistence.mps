@@ -149,6 +149,9 @@
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
       </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
+      </concept>
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
       </concept>
@@ -2928,43 +2931,16 @@
                 </node>
               </node>
               <node concept="3clFbH" id="49FXEugK7bh" role="3cqZAp" />
-              <node concept="3cpWs8" id="49FXEugIg1K" role="3cqZAp">
-                <node concept="3cpWsn" id="49FXEugIg1L" role="3cpWs9">
-                  <property role="TrG5h" value="repository" />
-                  <node concept="3uibUv" id="49FXEugIgje" role="1tU5fm">
-                    <ref role="3uigEE" to="lui2:~SRepository" resolve="SRepository" />
+              <node concept="3cpWs8" id="7Dsdp0iyg5T" role="3cqZAp">
+                <node concept="3cpWsn" id="7Dsdp0iyg5U" role="3cpWs9">
+                  <property role="TrG5h" value="platformElementsOwner" />
+                  <node concept="3uibUv" id="7Dsdp0iyg5V" role="1tU5fm">
+                    <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
                   </node>
-                  <node concept="2OqwBi" id="49FXEugIg1M" role="33vP2m">
-                    <node concept="2OqwBi" id="49FXEugIg1N" role="2Oq$k0">
-                      <node concept="2YIFZM" id="49FXEugIg1O" role="2Oq$k0">
-                        <ref role="37wK5l" to="bd8o:~ApplicationManager.getApplication()" resolve="getApplication" />
-                        <ref role="1Pybhc" to="bd8o:~ApplicationManager" resolve="ApplicationManager" />
-                      </node>
-                      <node concept="liA8E" id="49FXEugIg1P" role="2OqNvi">
-                        <ref role="37wK5l" to="1m72:~ComponentManager.getComponent(java.lang.Class)" resolve="getComponent" />
-                        <node concept="3VsKOn" id="49FXEugIg1Q" role="37wK5m">
-                          <ref role="3VsUkX" to="3a50:~MPSCoreComponents" resolve="MPSCoreComponents" />
-                        </node>
-                      </node>
-                    </node>
-                    <node concept="liA8E" id="49FXEugIg1R" role="2OqNvi">
-                      <ref role="37wK5l" to="3a50:~MPSCoreComponents.getModuleRepository()" resolve="getModuleRepository" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3cpWs8" id="7Z9MekwcEqL" role="3cqZAp">
-                <node concept="3cpWsn" id="7Z9MekwcEqM" role="3cpWs9">
-                  <property role="TrG5h" value="platformRepository" />
-                  <node concept="3uibUv" id="7Z9MekwcDUP" role="1tU5fm">
-                    <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
-                  </node>
-                  <node concept="2ShNRf" id="7Z9MekwcEqN" role="33vP2m">
-                    <node concept="1pGfFk" id="7Z9MekwcEqO" role="2ShVmc">
-                      <ref role="37wK5l" to="uvki:~PlatformRepository.&lt;init&gt;(org.jetbrains.mps.openapi.module.SRepository)" resolve="PlatformRepository" />
-                      <node concept="37vLTw" id="7Z9MekwcEqP" role="37wK5m">
-                        <ref role="3cqZAo" node="49FXEugIg1L" resolve="repository" />
-                      </node>
+                  <node concept="2ShNRf" id="7Dsdp0iyxPL" role="33vP2m">
+                    <node concept="1pGfFk" id="7Dsdp0iyOGm" role="2ShVmc">
+                      <property role="373rjd" value="true" />
+                      <ref role="37wK5l" to="uvki:~PlatformElementsOwner.&lt;init&gt;()" resolve="PlatformElementsOwner" />
                     </node>
                   </node>
                 </node>
@@ -3007,7 +2983,7 @@
                       </node>
                       <node concept="2OqwBi" id="7Z9MekwcSnU" role="33vP2m">
                         <node concept="37vLTw" id="7Z9MekwcSfs" role="2Oq$k0">
-                          <ref role="3cqZAo" node="7Z9MekwcEqM" resolve="platformRepository" />
+                          <ref role="3cqZAo" node="7Dsdp0iyg5U" resolve="platformElementOwner" />
                         </node>
                         <node concept="liA8E" id="7Z9MekwcSZx" role="2OqNvi">
                           <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
