@@ -898,12 +898,17 @@
             <node concept="3uibUv" id="407BnQQkFY1" role="1tU5fm">
               <ref role="3uigEE" to="lui2:~SRepository" resolve="SRepository" />
             </node>
-            <node concept="2OqwBi" id="407BnQQkG0A" role="33vP2m">
-              <node concept="37vLTw" id="407BnQQkG0B" role="2Oq$k0">
-                <ref role="3cqZAo" node="407BnQQkEmA" resolve="platformRepository" />
+            <node concept="2OqwBi" id="60lahBcqf02" role="33vP2m">
+              <node concept="2OqwBi" id="60lahBcqdNW" role="2Oq$k0">
+                <node concept="37vLTw" id="407BnQQkG0B" role="2Oq$k0">
+                  <ref role="3cqZAo" node="407BnQQkEmA" resolve="platformRepository" />
+                </node>
+                <node concept="liA8E" id="60lahBcqeut" role="2OqNvi">
+                  <ref role="37wK5l" to="uvki:~PlatformRepository.getProject()" resolve="getProject" />
+                </node>
               </node>
-              <node concept="liA8E" id="7U8zpIsewJh" role="2OqNvi">
-                <ref role="37wK5l" to="uvki:~PlatformRepository.getMpsRepository()" resolve="getMpsRepository" />
+              <node concept="liA8E" id="60lahBcqfAK" role="2OqNvi">
+                <ref role="37wK5l" to="z1c4:~Project.getRepository()" resolve="getRepository" />
               </node>
             </node>
           </node>

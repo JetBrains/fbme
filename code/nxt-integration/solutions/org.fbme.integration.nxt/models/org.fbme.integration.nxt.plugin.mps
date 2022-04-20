@@ -51,6 +51,9 @@
     <import index="r3nk" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer(org.fbme.integration.nxt.lib/)" />
     <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="25ix" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.converter(org.fbme.platform.lib/)" />
+    <import index="yzds" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer.network.block(org.fbme.integration.nxt.lib/)" />
+    <import index="zjky" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer.network.adapter(org.fbme.integration.nxt.lib/)" />
+    <import index="e269" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer.network(org.fbme.integration.nxt.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
     <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" implicit="true" />
   </imports>
@@ -634,36 +637,36 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="3GESaPG8id8" role="3cqZAp" />
-        <node concept="3clFbF" id="5L5ajcP8dJk" role="3cqZAp">
-          <node concept="2OqwBi" id="5L5ajcP8MaS" role="3clFbG">
-            <node concept="2ShNRf" id="5L5ajcP8dJg" role="2Oq$k0">
-              <node concept="1pGfFk" id="5L5ajcP8M6d" role="2ShVmc">
+        <node concept="3clFbH" id="69ThbiswGoP" role="3cqZAp" />
+        <node concept="3clFbF" id="69Thbisw_E9" role="3cqZAp">
+          <node concept="2OqwBi" id="69ThbiswE8t" role="3clFbG">
+            <node concept="2ShNRf" id="69Thbisw_E5" role="2Oq$k0">
+              <node concept="1pGfFk" id="69ThbiswE2H" role="2ShVmc">
                 <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="yzdr:~CompositeCreator.&lt;init&gt;(boolean)" resolve="CompositeCreator" />
-                <node concept="3clFbT" id="3l6uIXg$UGe" role="37wK5m" />
+                <ref role="37wK5l" to="yzds:~CompositeCreator.&lt;init&gt;(boolean)" resolve="CompositeCreator" />
+                <node concept="3clFbT" id="69ThbiswE3J" role="37wK5m" />
               </node>
             </node>
-            <node concept="liA8E" id="5L5ajcP8Msr" role="2OqNvi">
-              <ref role="37wK5l" to="yzdr:~CompositeCreator.createComposite(org.fbme.lib.iec61499.fbnetwork.FBNetwork,java.util.List,java.lang.String,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="createComposite" />
-              <node concept="37vLTw" id="5L5ajcP8Mt$" role="37wK5m">
+            <node concept="liA8E" id="69ThbiswErR" role="2OqNvi">
+              <ref role="37wK5l" to="yzds:~CompositeCreator.createComposite(org.fbme.lib.iec61499.fbnetwork.FBNetwork,java.util.List,java.lang.String,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="createComposite" />
+              <node concept="37vLTw" id="69ThbiswEts" role="37wK5m">
                 <ref role="3cqZAo" node="6wb8cxJeedD" resolve="network" />
               </node>
-              <node concept="37vLTw" id="5L5ajcP8MCZ" role="37wK5m">
+              <node concept="37vLTw" id="69ThbiswEvG" role="37wK5m">
                 <ref role="3cqZAo" node="6wb8cxJehh3" resolve="blockList" />
               </node>
-              <node concept="10Nm6u" id="5L5ajcP8MG3" role="37wK5m" />
-              <node concept="2OqwBi" id="5L5ajcP8N09" role="37wK5m">
-                <node concept="2WthIp" id="5L5ajcP8MJR" role="2Oq$k0" />
-                <node concept="3gHZIF" id="5L5ajcP8N$_" role="2OqNvi">
+              <node concept="10Nm6u" id="69ThbiswExT" role="37wK5m" />
+              <node concept="2OqwBi" id="69ThbiswEPZ" role="37wK5m">
+                <node concept="2WthIp" id="69ThbiswE_H" role="2Oq$k0" />
+                <node concept="3gHZIF" id="69ThbiswF9S" role="2OqNvi">
                   <ref role="2WH_rO" node="6wb8cxJe6fC" resolve="model" />
                 </node>
               </node>
-              <node concept="2OqwBi" id="5L5ajcP8NRW" role="37wK5m">
-                <node concept="37vLTw" id="5L5ajcP8NJY" role="2Oq$k0">
+              <node concept="2OqwBi" id="69ThbiswFtn" role="37wK5m">
+                <node concept="37vLTw" id="69ThbiswFlp" role="2Oq$k0">
                   <ref role="3cqZAo" node="6wb8cxJefk1" resolve="instance" />
                 </node>
-                <node concept="liA8E" id="5L5ajcP8Ob1" role="2OqNvi">
+                <node concept="liA8E" id="69ThbiswFJJ" role="2OqNvi">
                   <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIec61499Factory()" resolve="getIec61499Factory" />
                 </node>
               </node>
@@ -2288,12 +2291,12 @@
         <node concept="3clFbF" id="6VpjB$m6XvV" role="3cqZAp">
           <node concept="2OqwBi" id="6VpjB$m70Jd" role="3clFbG">
             <node concept="2ShNRf" id="6VpjB$m6XvR" role="2Oq$k0">
-              <node concept="1pGfFk" id="3Ui8MhQTNV7" role="2ShVmc">
-                <ref role="37wK5l" to="e268:~NetworksAnalyser.&lt;init&gt;()" resolve="NetworksAnalyser" />
+              <node concept="1pGfFk" id="69ThbiswL2n" role="2ShVmc">
+                <ref role="37wK5l" to="e269:~NetworksAnalyser.&lt;init&gt;()" resolve="NetworksAnalyser" />
               </node>
             </node>
             <node concept="liA8E" id="6VpjB$m70ZN" role="2OqNvi">
-              <ref role="37wK5l" to="e268:~NetworksAnalyser.process(java.util.List,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="process" />
+              <ref role="37wK5l" to="e269:~NetworksAnalyser.process(java.util.List,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="process" />
               <node concept="37vLTw" id="6VpjB$m7119" role="37wK5m">
                 <ref role="3cqZAo" node="6VpjB$m6Imq" resolve="networks" />
               </node>
@@ -2539,13 +2542,12 @@
         <node concept="3clFbF" id="1_aRooYdZwF" role="3cqZAp">
           <node concept="2OqwBi" id="1_aRooYe3nf" role="3clFbG">
             <node concept="2ShNRf" id="1_aRooYdZwB" role="2Oq$k0">
-              <node concept="1pGfFk" id="1_aRooYe3i_" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="zjkx:~AdapterCreator.&lt;init&gt;()" resolve="AdapterCreator" />
+              <node concept="1pGfFk" id="69ThbiswJKg" role="2ShVmc">
+                <ref role="37wK5l" to="zjky:~AdapterCreator.&lt;init&gt;()" resolve="AdapterCreator" />
               </node>
             </node>
             <node concept="liA8E" id="1_aRooYe3B5" role="2OqNvi">
-              <ref role="37wK5l" to="zjkx:~AdapterCreator.create(org.fbme.lib.iec61499.fbnetwork.FBNetwork,org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration,org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="create" />
+              <ref role="37wK5l" to="zjky:~AdapterCreator.create(org.fbme.lib.iec61499.fbnetwork.FBNetwork,org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration,org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="create" />
               <node concept="37vLTw" id="1_aRooYe3CA" role="37wK5m">
                 <ref role="3cqZAo" node="7bIcSsJPAxH" resolve="network" />
               </node>
