@@ -1,7 +1,6 @@
 package org.fbme.debugger.simulator.st
 
 import org.fbme.debugger.common.state.*
-import org.fbme.ide.iec61499.adapter.st.VariableReferenceByNode
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
@@ -22,7 +21,7 @@ class STInterpreter(
     }
 
     private fun interpret(variableReference: VariableReference): Value<Any?> {
-        val variableName = (variableReference as VariableReferenceByNode).reference.presentation
+        val variableName = variableReference.reference.presentation
         return inputVariables[variableName]
             ?: internalVariables[variableName]
             ?: outputVariables[variableName]
@@ -131,7 +130,7 @@ class STInterpreter(
     }
 
     private fun interpret(assignmentStatement: AssignmentStatement) {
-        val variableName = (assignmentStatement.variable as VariableReferenceByNode).reference.presentation
+        val variableName = (assignmentStatement.variable as VariableReference).reference.presentation
         val expression = assignmentStatement.expression ?: error("expression expected in assignment $variableName")
         val value = interpret(expression).value
         if (inputVariables.contains(variableName)) {

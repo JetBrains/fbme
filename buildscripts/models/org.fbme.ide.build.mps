@@ -16,6 +16,7 @@
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
     <import index="lo8j" ref="r:c951fe04-0ad9-4d6c-9dc3-bae009e3b17b(org.fbme.integration.nxt.build)" />
     <import index="kvgc" ref="r:033fa9ec-1120-40c6-8124-b58f4474b999(org.fbme.ide.build.plugins)" />
+    <import index="recy" ref="r:8c25bb6d-a5ff-4b85-a0e5-d5a94a24a533(org.fbme.debugger.build)" />
   </imports>
   <registry>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
@@ -1405,6 +1406,11 @@
           <ref role="3bR37D" node="3oevj_m$qiw" resolve="org.fbme.ide.build.plugins" />
         </node>
       </node>
+      <node concept="1SiIV0" id="3tje84kIDtB" role="3bR37C">
+        <node concept="3bR9La" id="3tje84kIDtC" role="1SiIV1">
+          <ref role="3bR37D" node="5FNCztzn4vq" resolve="org.fbme.debugger.build" />
+        </node>
+      </node>
     </node>
     <node concept="1E1JtA" id="ApHj0p70Xv" role="3989C9">
       <property role="BnDLt" value="true" />
@@ -1585,6 +1591,74 @@
         </node>
       </node>
     </node>
+    <node concept="1E1JtA" id="5FNCztzn4vq" role="3989C9">
+      <property role="BnDLt" value="true" />
+      <property role="TrG5h" value="org.fbme.debugger.build" />
+      <property role="3LESm3" value="ff08ccef-06a9-4eaf-af2e-092d35667607" />
+      <node concept="55IIr" id="5FNCztzn4vs" role="3LF7KH">
+        <node concept="2Ry0Ak" id="5FNCztzn4yT" role="iGT6I">
+          <property role="2Ry0Am" value="code" />
+          <node concept="2Ry0Ak" id="5FNCztzn4yY" role="2Ry0An">
+            <property role="2Ry0Am" value="debugger" />
+            <node concept="2Ry0Ak" id="5FNCztzn4z3" role="2Ry0An">
+              <property role="2Ry0Am" value="buildsolution" />
+              <node concept="2Ry0Ak" id="5FNCztzn4z8" role="2Ry0An">
+                <property role="2Ry0Am" value="org.fbme.debugger.build.msd" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1SiIV0" id="5FNCztzn5zD" role="3bR37C">
+        <node concept="3bR9La" id="5FNCztzn5zE" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfCS" resolve="org.fbme.platform.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="5FNCztzn5zF" role="3bR37C">
+        <node concept="3bR9La" id="5FNCztzn5zG" role="1SiIV1">
+          <ref role="3bR37D" node="ApHj0p70Xv" resolve="org.fbme.language.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="5FNCztzn5zJ" role="3bR37C">
+        <node concept="3bR9La" id="5FNCztzn5zK" role="1SiIV1">
+          <ref role="3bR37D" to="ffeo:78GwwOvB3tw" resolve="jetbrains.mps.ide.build" />
+        </node>
+      </node>
+      <node concept="1BupzO" id="5FNCztzn5zS" role="3bR31x">
+        <property role="3ZfqAx" value="models" />
+        <property role="1Hdu6h" value="true" />
+        <property role="1HemKv" value="true" />
+        <node concept="3LXTmp" id="5FNCztzn5zT" role="1HemKq">
+          <node concept="55IIr" id="5FNCztzn5zN" role="3LXTmr">
+            <node concept="2Ry0Ak" id="5FNCztzn5zO" role="iGT6I">
+              <property role="2Ry0Am" value="code" />
+              <node concept="2Ry0Ak" id="5FNCztzn5zP" role="2Ry0An">
+                <property role="2Ry0Am" value="debugger" />
+                <node concept="2Ry0Ak" id="5FNCztzn5zQ" role="2Ry0An">
+                  <property role="2Ry0Am" value="buildsolution" />
+                  <node concept="2Ry0Ak" id="5FNCztzn5zR" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3qWCbU" id="5FNCztzn5zU" role="3LXTna">
+            <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+          </node>
+        </node>
+      </node>
+      <node concept="1SiIV0" id="aucBW5W4vN" role="3bR37C">
+        <node concept="3bR9La" id="aucBW5W4vO" role="1SiIV1">
+          <ref role="3bR37D" node="Ej4tEpnfDM" resolve="org.fbme.richediting.build" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="7rWf3U0OcWL" role="3bR37C">
+        <node concept="3bR9La" id="7rWf3U0OcWM" role="1SiIV1">
+          <ref role="3bR37D" node="3oevj_m$qiw" resolve="org.fbme.ide.build.plugins" />
+        </node>
+      </node>
+    </node>
     <node concept="1E1JtA" id="Ej4tEpnfDM" role="3989C9">
       <property role="BnDLt" value="true" />
       <property role="TrG5h" value="org.fbme.richediting.build" />
@@ -1645,6 +1719,11 @@
       <node concept="1SiIV0" id="3oevj_m$uks" role="3bR37C">
         <node concept="3bR9La" id="3oevj_m$ukt" role="1SiIV1">
           <ref role="3bR37D" node="3oevj_m$qiw" resolve="org.fbme.ide.build.plugins" />
+        </node>
+      </node>
+      <node concept="1SiIV0" id="3tje84kIDu0" role="3bR37C">
+        <node concept="3bR9La" id="3tje84kIDu1" role="1SiIV1">
+          <ref role="3bR37D" node="5FNCztzn4vq" resolve="org.fbme.debugger.build" />
         </node>
       </node>
     </node>
@@ -1876,6 +1955,9 @@
     </node>
     <node concept="2sgV4H" id="7nNI4eNtl2i" role="1l3spa">
       <ref role="1l3spb" to="1b2w:68dTcycFmrj" resolve="fbme_smvdebugger" />
+    </node>
+    <node concept="2sgV4H" id="3tje84kIDDL" role="1l3spa">
+      <ref role="1l3spb" to="recy:7ZpdjDjcHim" resolve="fbme_debugger" />
     </node>
     <node concept="2sgV4H" id="2mxBo27MLoR" role="1l3spa">
       <ref role="1l3spb" to="lo8j:68dTcycFmrj" resolve="fbme_nxt" />

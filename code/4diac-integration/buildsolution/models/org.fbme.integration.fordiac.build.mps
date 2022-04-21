@@ -377,6 +377,11 @@
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
+        <node concept="1SiIV0" id="7rWf3U0NMR_" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U0NMRA" role="1SiIV1">
+            <ref role="3bR37D" to="kvgc:177eUH8B7m3" resolve="org.fbme.lib" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2sgV4H" id="68dTcycFoqk" role="1l3spa">

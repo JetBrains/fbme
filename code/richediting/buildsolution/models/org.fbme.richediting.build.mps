@@ -298,14 +298,14 @@
             <ref role="3bR37D" to="kvgc:6AO1fiEOKn8" resolve="org.fbme.scenes.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="6AO1fiESjEB" role="3bR37C">
-          <node concept="3bR9La" id="6AO1fiESjEC" role="1SiIV1">
-            <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
+        <node concept="1SiIV0" id="7rWf3U0ND0N" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U0ND0O" role="1SiIV1">
+            <ref role="3bR37D" to="kvgc:6AO1fiESjIi" resolve="org.fbme.richediting.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="6AO1fiESjIn" role="3bR37C">
-          <node concept="3bR9La" id="6AO1fiESjIo" role="1SiIV1">
-            <ref role="3bR37D" to="kvgc:6AO1fiESjIi" resolve="org.fbme.richediting.lib" />
+        <node concept="1SiIV0" id="7rWf3U0ND0P" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U0ND0Q" role="1SiIV1">
+            <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
       </node>
@@ -425,13 +425,13 @@
             <ref role="3bR37D" to="kvgc:6AO1fiEOKn8" resolve="org.fbme.scenes.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2g7iZ5XX4oI" role="3bR37C">
-          <node concept="3bR9La" id="2g7iZ5XX4oJ" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U1JbfL" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1JbfM" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:6AO1fiESjIi" resolve="org.fbme.richediting.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2g7iZ5XX4oK" role="3bR37C">
-          <node concept="3bR9La" id="2g7iZ5XX4oL" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U1JbfN" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1JbfO" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>

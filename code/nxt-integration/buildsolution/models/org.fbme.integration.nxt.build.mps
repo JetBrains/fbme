@@ -266,18 +266,23 @@
             <ref role="3bR37D" to="kvgc:6AO1fiEOKn8" resolve="org.fbme.scenes.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2Ine_yKUjxf" role="3bR37C">
-          <node concept="3bR9La" id="2Ine_yKUjxg" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U0O39C" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U0O39D" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="7rWf3U1QKYv" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1QKYw" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:6AO1fiESjIi" resolve="org.fbme.richediting.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2Ine_yKUjxh" role="3bR37C">
-          <node concept="3bR9La" id="2Ine_yKUjxi" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U1QKYx" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1QKYy" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2Ine_yKUl7Q" role="3bR37C">
-          <node concept="3bR9La" id="2Ine_yKUl7R" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U1QKYz" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1QKY$" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:2Ine_yKUjxR" resolve="org.fbme.integration.nxt.lib" />
           </node>
         </node>

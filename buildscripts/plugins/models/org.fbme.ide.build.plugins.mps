@@ -413,6 +413,448 @@
         </node>
       </node>
     </node>
+    <node concept="1E1JtA" id="4YrY9S5MVXg" role="3989C9">
+      <property role="BnDLt" value="true" />
+      <property role="TrG5h" value="org.fbme.debugger.lib" />
+      <property role="3LESm3" value="c6b02c2c-6484-48c4-ab6e-40937aeede2e" />
+      <node concept="1BurEX" id="5H1yg74QXi9" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXia" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXie" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXij" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXiy" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXiB" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXiG" role="2Ry0An">
+                    <property role="2Ry0Am" value="animation-core-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXiI" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXiJ" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXiK" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXiL" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXiM" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXiN" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXj3" role="2Ry0An">
+                    <property role="2Ry0Am" value="animation-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXj5" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXj6" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXj7" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXj8" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXj9" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXja" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXjx" role="2Ry0An">
+                    <property role="2Ry0Am" value="debugger.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXjz" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXj$" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXj_" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXjA" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXjB" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXjC" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXk6" role="2Ry0An">
+                    <property role="2Ry0Am" value="desktop-jvm-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXk8" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXk9" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXka" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXkb" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXkc" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXkd" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXkM" role="2Ry0An">
+                    <property role="2Ry0Am" value="foundation-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXkO" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXkP" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXkQ" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXkR" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXkS" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXkT" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXl_" role="2Ry0An">
+                    <property role="2Ry0Am" value="foundation-layout-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXmX" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXmY" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXmZ" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXn0" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXn1" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXn2" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXnP" role="2Ry0An">
+                    <property role="2Ry0Am" value="kotlinx-coroutines-core-jvm-1.5.2.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXnR" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXnS" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXnT" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXnU" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXnV" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXnW" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXoQ" role="2Ry0An">
+                    <property role="2Ry0Am" value="kotlinx-coroutines-swing-1.5.2.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXoS" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXoT" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXoU" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXoV" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXoW" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXoX" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXpY" role="2Ry0An">
+                    <property role="2Ry0Am" value="material-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXq0" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXq1" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXq2" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXq3" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXq4" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXq5" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXrd" role="2Ry0An">
+                    <property role="2Ry0Am" value="material-icons-core-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXrf" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXrg" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXrh" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXri" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXrj" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXrk" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXsz" role="2Ry0An">
+                    <property role="2Ry0Am" value="material-icons-extended-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXs_" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXsA" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXsB" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXsC" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXsD" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXsE" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXu0" role="2Ry0An">
+                    <property role="2Ry0Am" value="material-ripple-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXu2" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXu3" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXu4" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXu5" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXu6" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXu7" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXv$" role="2Ry0An">
+                    <property role="2Ry0Am" value="runtime-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXvA" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXvB" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXvC" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXvD" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXvE" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXvF" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXxf" role="2Ry0An">
+                    <property role="2Ry0Am" value="runtime-saveable-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXxh" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXxi" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXxj" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXxk" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXxl" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXxm" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXz1" role="2Ry0An">
+                    <property role="2Ry0Am" value="skiko-jvm-0.5.9.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXz3" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXz4" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXz5" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXz6" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXz7" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXz8" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QX$U" role="2Ry0An">
+                    <property role="2Ry0Am" value="skiko-jvm-runtime-macos-arm64-0.5.9.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QX$W" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QX$X" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QX$Y" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QX$Z" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QX_0" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QX_1" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXAU" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXAW" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXAX" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXAY" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXAZ" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXB0" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXB1" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXD1" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-geometry-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXD3" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXD4" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXD5" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXD6" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXD7" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXD8" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXFf" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-graphics-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXFh" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXFi" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXFj" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXFk" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXFl" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXFm" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXH$" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-text-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXHA" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXHB" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXHC" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXHD" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXHE" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXHF" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXK0" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-tooling-preview-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXK2" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXK3" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXK4" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXK5" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXK6" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXK7" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXMz" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-unit-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1BurEX" id="5H1yg74QXM_" role="3bR37C">
+        <node concept="55IIr" id="5H1yg74QXMA" role="1BurEY">
+          <node concept="2Ry0Ak" id="5H1yg74QXMB" role="iGT6I">
+            <property role="2Ry0Am" value="build" />
+            <node concept="2Ry0Ak" id="5H1yg74QXMC" role="2Ry0An">
+              <property role="2Ry0Am" value="src-plugins" />
+              <node concept="2Ry0Ak" id="5H1yg74QXMD" role="2Ry0An">
+                <property role="2Ry0Am" value="fbme.debugger" />
+                <node concept="2Ry0Ak" id="5H1yg74QXME" role="2Ry0An">
+                  <property role="2Ry0Am" value="lib" />
+                  <node concept="2Ry0Ak" id="5H1yg74QXPd" role="2Ry0An">
+                    <property role="2Ry0Am" value="ui-util-desktop-1.0.0-beta5.jar" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="55IIr" id="177eUH8B7jx" role="auvoZ" />
     <node concept="1l3spV" id="177eUH8B7jy" role="1l3spN">
       <node concept="398223" id="1wt__nLa3Ty" role="39821P">
@@ -883,6 +1325,467 @@
                   </node>
                 </node>
               </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="398223" id="4YrY9S5MW2B" role="39821P">
+        <node concept="3_J27D" id="4YrY9S5MW2D" role="Nbhlr">
+          <node concept="3Mxwew" id="4YrY9S5MW5B" role="3MwsjC">
+            <property role="3MwjfP" value="fbme.debugger" />
+          </node>
+        </node>
+        <node concept="398223" id="4YrY9S5MW7q" role="39821P">
+          <node concept="3_J27D" id="4YrY9S5MW7s" role="Nbhlr">
+            <node concept="3Mxwew" id="4YrY9S5MW7_" role="3MwsjC">
+              <property role="3MwjfP" value="lib" />
+            </node>
+          </node>
+          <node concept="28jJK3" id="7ZpdjDjcLBP" role="39821P">
+            <node concept="55IIr" id="7ZpdjDjcLBT" role="28jJRO">
+              <node concept="2Ry0Ak" id="7ZpdjDjcLBZ" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWcy" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWcz" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWc$" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWc_" role="2Ry0An">
+                        <property role="2Ry0Am" value="debugger.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWcI" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWcJ" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWcK" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWcL" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWcM" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWcN" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWcO" role="2Ry0An">
+                        <property role="2Ry0Am" value="animation-core-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWf7" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWf8" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWf9" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWfa" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWfb" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWfc" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWfd" role="2Ry0An">
+                        <property role="2Ry0Am" value="animation-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWm7" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWm8" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWm9" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWma" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWmb" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWmc" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWmd" role="2Ry0An">
+                        <property role="2Ry0Am" value="desktop-jvm-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWqK" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWqL" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWqM" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWqN" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWqO" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWqP" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWqQ" role="2Ry0An">
+                        <property role="2Ry0Am" value="foundation-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWvr" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWvs" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWvt" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWvu" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWvv" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWvw" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWvx" role="2Ry0An">
+                        <property role="2Ry0Am" value="foundation-layout-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MW$8" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MW$9" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MW$a" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MW$b" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MW$c" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MW$d" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MW$e" role="2Ry0An">
+                        <property role="2Ry0Am" value="kotlinx-coroutines-core-jvm-1.5.2.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWCR" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWCS" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWCT" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWCU" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWCV" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWCW" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWCX" role="2Ry0An">
+                        <property role="2Ry0Am" value="kotlinx-coroutines-swing-1.5.2.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWHC" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWHD" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWHE" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWHF" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWHG" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWHH" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWHI" role="2Ry0An">
+                        <property role="2Ry0Am" value="material-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWK8" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWK9" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWKa" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWKb" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWKc" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWKd" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWKe" role="2Ry0An">
+                        <property role="2Ry0Am" value="material-icons-core-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWP9" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWPa" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWPb" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWPc" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWPd" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWPe" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWPf" role="2Ry0An">
+                        <property role="2Ry0Am" value="material-icons-extended-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWUc" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWUd" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWUe" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWUf" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWUg" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWUh" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWUi" role="2Ry0An">
+                        <property role="2Ry0Am" value="material-ripple-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MWZh" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MWZi" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MWZj" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MWZk" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MWZl" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MWZm" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MWZn" role="2Ry0An">
+                        <property role="2Ry0Am" value="runtime-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MX4o" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MX4p" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MX4q" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MX4r" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MX4s" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MX4t" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MX4u" role="2Ry0An">
+                        <property role="2Ry0Am" value="runtime-saveable-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXbT" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXbU" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXbV" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXbW" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXbX" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXbY" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXbZ" role="2Ry0An">
+                        <property role="2Ry0Am" value="skiko-jvm-0.5.9.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXgS" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXgT" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXgU" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXgV" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXgW" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXgX" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXgY" role="2Ry0An">
+                        <property role="2Ry0Am" value="skiko-jvm-runtime-macos-arm64-0.5.9.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXlT" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXlU" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXlV" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXlW" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXlX" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXlY" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXlZ" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXqW" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXqX" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXqY" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXqZ" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXr0" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXr1" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXr2" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-geometry-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXw1" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXw2" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXw3" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXw4" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXw5" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXw6" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXw7" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-graphics-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXE7" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXE8" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXE9" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXEa" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXEb" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXEc" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXEd" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-text-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MXJg" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MXJh" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MXJi" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MXJj" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MXJk" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MXJl" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MXJm" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-tooling-preview-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MYvZ" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MYw0" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MYw1" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MYw2" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MYw3" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MYw4" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MYw5" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-unit-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="28jJK3" id="4YrY9S5MY_c" role="39821P">
+            <node concept="55IIr" id="4YrY9S5MY_d" role="28jJRO">
+              <node concept="2Ry0Ak" id="4YrY9S5MY_e" role="iGT6I">
+                <property role="2Ry0Am" value="build" />
+                <node concept="2Ry0Ak" id="4YrY9S5MY_f" role="2Ry0An">
+                  <property role="2Ry0Am" value="src-plugins" />
+                  <node concept="2Ry0Ak" id="4YrY9S5MY_g" role="2Ry0An">
+                    <property role="2Ry0Am" value="fbme.debugger" />
+                    <node concept="2Ry0Ak" id="4YrY9S5MY_h" role="2Ry0An">
+                      <property role="2Ry0Am" value="lib" />
+                      <node concept="2Ry0Ak" id="4YrY9S5MY_i" role="2Ry0An">
+                        <property role="2Ry0Am" value="ui-util-desktop-1.0.0-beta5.jar" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="398223" id="4YrY9S5MW5R" role="39821P">
+          <node concept="L2wRC" id="4YrY9S5MW61" role="39821P">
+            <ref role="L2wRA" node="4YrY9S5MVXg" resolve="org.fbme.debugger.lib" />
+          </node>
+          <node concept="3_J27D" id="4YrY9S5MW5S" role="Nbhlr">
+            <node concept="3Mxwew" id="4YrY9S5MW5X" role="3MwsjC">
+              <property role="3MwjfP" value="languages" />
             </node>
           </node>
         </node>

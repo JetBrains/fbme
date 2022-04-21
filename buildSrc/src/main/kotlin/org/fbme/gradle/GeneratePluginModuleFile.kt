@@ -37,9 +37,8 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
     @get:Input
     override val libraryLocations: List<String>
         get() = project.configurations["runtimeClasspath"].files
+            .filter { file -> libraryFilters.get().any { file.absolutePath.contains(it) } }
             .map { it.name }
-            .filter { name -> libraryFilters.get().any { name.startsWith(it) } }
-
 
     @TaskAction
     fun generatePlugin() {
