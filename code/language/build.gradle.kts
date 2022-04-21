@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 
 plugins {
     mps
@@ -11,15 +12,14 @@ dependencies {
 }
 
 mps {
-    artifactName = "language"
-    buildScriptName = "fbme_language"
+    buildScriptName.set("fbme_language")
+    moduleName.set("org.fbme.language.lib")
 }
 
-val mpsPrepare by tasks.getting(Copy::class) {
-    from("build/libs/language.jar")
-    into("solutions/org.fbme.ide.iec61499.adapter/lib")
+val compileKotlin by tasks.getting(KotlinCompile::class) {
+    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
 }
 
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
-
-compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
+val mpsGenerate by tasks.getting {
+    dependsOn(":code:platform:buildSrcPlugin")
+}

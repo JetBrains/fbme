@@ -7,6 +7,7 @@ import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.version
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
+import org.fbme.gradle.mpsDistribution as mpsDistribution0
 
 
 inline val PluginDependenciesSpec.mps: PluginDependencySpec get() = id("org.fbme.gradle.mps")
@@ -18,7 +19,6 @@ fun Project.mps(builder: org.fbme.gradle.MpsExtension.() -> Unit) {
 }
 
 fun DependencyHandlerScope.mpsImplementation(dependencyNotation: Any): Dependency? =
-        dependencies.add("mpsImplementation", dependencyNotation)
+    dependencies.add("mpsImplementation", dependencyNotation)
 
-fun Project.mpsDistribution(): ConfigurableFileTree =
-        org.fbme.gradle.MpsPlugin.run { mpsDistribution() }
+fun Project.mpsDistribution(): ConfigurableFileTree = mpsDistribution0()

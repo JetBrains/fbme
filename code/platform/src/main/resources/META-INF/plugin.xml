@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.platform</id>
+  <name>FBME - Platform</name>
+  <description>Defines the core functionality for FBME IDE platform</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>fbme.library</depends>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.execution.languages</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

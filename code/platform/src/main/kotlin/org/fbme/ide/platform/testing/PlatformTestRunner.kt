@@ -5,7 +5,8 @@ import jetbrains.mps.smodel.MPSModuleRepository
 import jetbrains.mps.smodel.ModelAccessHelper
 import jetbrains.mps.tool.environment.Environment
 import jetbrains.mps.tool.environment.EnvironmentConfig
-import jetbrains.mps.tool.environment.MpsEnvironment
+import jetbrains.mps.tool.environment.IdeaEnvironment
+import jetbrains.mps.util.PathManager
 import org.junit.runner.notification.RunNotifier
 import org.junit.runners.BlockJUnit4ClassRunner
 import org.junit.runners.model.FrameworkMethod
@@ -60,8 +61,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
             File("build/classes/java/test").toURI().toURL(),
             File("build/classes/kotlin/test").toURI().toURL(),
             File("build/resources/test").toURI().toURL()
-        ),
-        null
+        ), null
     ) {
         @Throws(ClassNotFoundException::class)
         override fun loadClass(name: String): Class<*> {
@@ -97,25 +97,32 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
             return moduleName
         }
 
-        @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class) fun initializeRunnerEnvironment(moduleName: String) {
+        @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class)
+        fun initializeRunnerEnvironment(moduleName: String) {
             runnerEnvironments.getOrPut(moduleName) {
                 val config = EnvironmentConfig.defaultConfig()
-                    .addLib(libPath("../library/build/artifacts/fbme_library/fbme.library/languages"))
-                    .addLib(libPath("../language/build/artifacts/fbme_language/fbme.language/languages"))
-                    .addLib(libPath("../platform/build/artifacts/fbme_platform/fbme.platform/languages"))
-                    .addLib(libPath("../richediting/build/artifacts/fbme_richediting/fbme.richediting/languages"))
-                    .addLib(libPath("../scenes/build/artifacts/fbme_scenes/fbme.scenes/languages"))
-                    .addLib(libPath("../formalfb/build/artifacts/fbme_formalfb/fbme.formalfb/languages"))
-                    .addLib(libPath("../nxt-integration/build/artifacts/fbme_nxt/fbme.integration.nxt/languages"))
+                    .withBuildPlugin()
+                    .addDistributedPlugin("mps-execution-api", "jetbrains.mps.execution.api")
+                    .addDistributedPlugin("mps-execution-configurations", "jetbrains.mps.execution.configurations")
+                    .addFbmePlugin("fbme.library")
+                    .addFbmePlugin("fbme.language")
+                    .addFbmePlugin("fbme.platform")
+                    .addFbmePlugin("fbme.richediting")
+                    .addFbmePlugin("fbme.scenes")
+                    .addFbmePlugin("fbme.formalfb")
+                    .addFbmePlugin("fbme.integration.nxt")
                     .withTestModeOn()
-                val environment = MpsEnvironment(config)
+                val environment = IdeaEnvironment(config)
                 environment.init()
+                System.setProperty("java.awt.headless", "true")
                 val repository = MPSModuleRepository.getInstance()
                 val parentModule = ModelAccessHelper(repository.modelAccess).runReadAction<ReloadableModule> {
                     val platformModule = repository.modules.first { it.moduleName == moduleName } as ReloadableModule
                     try {
-                        platformModule.getClass("org.fbme.ide.iec61499.repository.MpsBridgeImpl")
-                            .getMethod("install").invoke(null)
+                        platformModule
+                            .getClass("org.fbme.ide.iec61499.repository.MpsBridgeImpl")
+                            .getMethod("install")
+                            .invoke(null)
                     } catch (e: Exception) {
                         throw RuntimeException("Bridge not installed", e)
                     }
@@ -125,15 +132,20 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                 val platformTestClass =
                     Class.forName("org.fbme.ide.platform.testing.PlatformTestBase", true, classloader)
                 RunnerEnvironment(
-                    environment,
-                    classloader,
-                    platformTestClass,
-                    platformTestClass.getField("environment")
+                    environment, classloader, platformTestClass, platformTestClass.getField("environment")
                 )
             }
         }
 
-        private fun libPath(relative: String) = Path.of(relative)
-            .toAbsolutePath().normalize().toString()
+        private fun libPath(relative: String) = Path.of(relative).toAbsolutePath().normalize().toString()
+
+        private fun EnvironmentConfig.addDistributedPlugin(folder: String, id: String): EnvironmentConfig {
+            val preinstalledPluginFolder = File(PathManager.getPreInstalledPluginsPath())
+            return addPlugin(File(preinstalledPluginFolder, folder).absolutePath, id)
+        }
+
+        private fun EnvironmentConfig.addFbmePlugin(id: String): EnvironmentConfig {
+            return addPlugin(libPath("../../build/dist-plugins/$id"), id)
+        }
     }
 }

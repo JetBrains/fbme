@@ -9,6 +9,13 @@
 - Install [JetBrains MPS 2021.2.*](https://www.jetbrains.com/mps/download)
 - Run `./gradlew build`
 - Open project with MPS
+- Configure "source" plugins:
+  - Invoke `Help -> Edit Custom VM Options...` action
+  - Set `idea.plugins.path` VM option to:
+    ```
+    -Didea.plugins.path=<project-root>/build/src-plugins
+    ```
+- Restart MPS
 
 ### Building the standalone IDE
 

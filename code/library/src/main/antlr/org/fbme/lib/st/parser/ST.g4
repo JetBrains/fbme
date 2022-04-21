@@ -78,6 +78,15 @@ variable
     ;
 
 
+statementListWithVariableDeclarations
+    : ('VAR' (decls+=variablesDeclaration)+ 'END_VAR')? statementList
+    ;
+
+variablesDeclaration
+   : name=ID ':' type=ID ';'
+   ;
+
+
 DecInteger:       Dec ('_'|Dec)*;
 BinInteger: '2#'  Bin ('_'|Bin)*;
 OctInteger: '8#'  Oct ('_'|Oct)*;

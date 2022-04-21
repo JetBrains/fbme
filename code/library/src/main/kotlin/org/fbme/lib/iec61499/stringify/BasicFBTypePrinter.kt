@@ -78,6 +78,7 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
         override fun printDeclarationBody(element: Element) {
             val body = this.element.body ?: return
             val language = body.language
+            ParameterDeclarationPrinter.printAll(this.element.temporaryVariables, element)
             if (language === AlgorithmLanguage.ST) {
                 val st = Element("ST")
                 st.setAttribute("Text", escapeXML(STPrinter.printStatementList((body as AlgorithmBody.ST).statements)))

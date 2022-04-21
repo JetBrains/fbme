@@ -20,16 +20,12 @@
     <import index="vdx1" ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(org.fbme.ide.platform.projectWizard)" />
     <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
-    <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="z1c3" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.project(MPS.Platform/)" />
     <import index="z1c4" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
-    <import index="6w4o" ref="292e01a6-3380-40ca-8417-b86844de2d63/java:org.fbme.ide.platform.debugger(org.fbme.ide.platform/)" />
-    <import index="7u3r" ref="r:b054d510-f3eb-4f3b-8611-d75feed6cb53(org.fbme.ide.iec61499.editor)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
-    <import index="8gms" ref="292e01a6-3380-40ca-8417-b86844de2d63/java:org.fbme.ide.platform.editor(org.fbme.ide.platform/)" />
+    <import index="6w4o" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.debugger(org.fbme.platform.lib/)" />
+    <import index="8gms" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.editor(org.fbme.platform.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -478,14 +474,14 @@
       <property role="TrG5h" value="myFactory" />
       <node concept="3Tm6S6" id="1lhPVEAdo5r" role="1B3o_S" />
       <node concept="3uibUv" id="1lhPVEAdsGf" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
       </node>
       <node concept="2ShNRf" id="7Y8B9wpl4BU" role="33vP2m">
         <node concept="YeOm9" id="7Y8B9wpl4BV" role="2ShVmc">
           <node concept="1Y3b0j" id="7Y8B9wpl4BW" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
             <node concept="3Tm1VV" id="7Y8B9wpl4BX" role="1B3o_S" />
             <node concept="3clFb_" id="7Y8B9wpl4BY" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -660,8 +656,8 @@
           <node concept="2OqwBi" id="1lhPVEAdJBK" role="3clFbG">
             <node concept="2OqwBi" id="1r7YWVUoAKl" role="2Oq$k0">
               <node concept="10M0yZ" id="1r7YWVUoACv" role="2Oq$k0">
-                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
                 <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
               </node>
               <node concept="liA8E" id="1r7YWVUoAYG" role="2OqNvi">
                 <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
@@ -686,8 +682,8 @@
           <node concept="2OqwBi" id="1lhPVEAdKzT" role="3clFbG">
             <node concept="2OqwBi" id="1r7YWVUoB15" role="2Oq$k0">
               <node concept="10M0yZ" id="1r7YWVUoAZN" role="2Oq$k0">
-                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
                 <ref role="1PxDUh" to="8gms:~EditorProjectionControllerRegistry" resolve="EditorProjectionControllerRegistry" />
+                <ref role="3cqZAo" to="8gms:~EditorProjectionControllerRegistry.Companion" resolve="Companion" />
               </node>
               <node concept="liA8E" id="1r7YWVUoB2s" role="2OqNvi">
                 <ref role="37wK5l" to="8gms:~EditorProjectionControllerRegistry$Companion.getInstance()" resolve="getInstance" />
@@ -716,8 +712,8 @@
       <node concept="3clFbS" id="1UP38w$52rv" role="2VODD2">
         <node concept="3clFbF" id="1UP38w$52WR" role="3cqZAp">
           <node concept="2YIFZM" id="1UP38w$52Xh" role="3clFbG">
-            <ref role="37wK5l" to="6w4o:~WatcherFacade.register(jetbrains.mps.project.Project)" resolve="register" />
             <ref role="1Pybhc" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+            <ref role="37wK5l" to="6w4o:~WatcherFacade.register(jetbrains.mps.project.Project)" resolve="register" />
             <node concept="1KvdUw" id="1UP38w$52XD" role="37wK5m" />
           </node>
         </node>
@@ -727,8 +723,8 @@
       <node concept="3clFbS" id="1UP38w$530S" role="2VODD2">
         <node concept="3clFbF" id="1UP38w$537F" role="3cqZAp">
           <node concept="2YIFZM" id="1UP38w$538d" role="3clFbG">
-            <ref role="37wK5l" to="6w4o:~WatcherFacade.unregister(jetbrains.mps.project.Project)" resolve="unregister" />
             <ref role="1Pybhc" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+            <ref role="37wK5l" to="6w4o:~WatcherFacade.unregister(jetbrains.mps.project.Project)" resolve="unregister" />
             <node concept="1KvdUw" id="1UP38w$538A" role="37wK5m" />
           </node>
         </node>

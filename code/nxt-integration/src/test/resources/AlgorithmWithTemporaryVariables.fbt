@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="AlgorithmWithTemporaryVariables" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="FBME" Version="0.0" Author="Radimir.Sorokin" Date="4/15/2022" Remarks="Test" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" x="1451.53" y="449.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1022.407" y="356.5317" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="VAR&#xD;&#xA;	temp : INT;&#xD;&#xA;END_VAR&#xD;&#xA;tempt := 0;&#xD;&#xA;temp := temp + 1;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

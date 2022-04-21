@@ -3,6 +3,7 @@
   <component name="MPSProject">
     <projectModules>
       <modulePath path="$PROJECT_DIR$/buildscripts/org.fbme.ide.build.msd" folder="buildscripts" />
+      <modulePath path="$PROJECT_DIR$/buildscripts/plugins/org.fbme.ide.build.plugins.msd" folder="buildscripts" />
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" folder="code.4diac integration" />
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="code.4diac integration" />
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/stdlib/stdlib.msd" folder="code.4diac integration" />
@@ -17,8 +18,6 @@
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.st.lang/org.fbme.ide.st.lang.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/languages/org.fbme.ide.util.lang/org.fbme.ide.util.lang.mpl" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/language/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="code.language" />
-      <modulePath path="$PROJECT_DIR$/code/library/buildsolution/org.fbme.library.build.msd" folder="code.library" />
-      <modulePath path="$PROJECT_DIR$/code/library/org.fbme.lib.msd" folder="code.library" />
       <modulePath path="$PROJECT_DIR$/code/nxt-integration/buildsolution/org.fbme.integration.nxt.build.msd" folder="code.nxt integration" />
       <modulePath path="$PROJECT_DIR$/code/nxt-integration/solutions/org.fbme.integration.nxt/org.fbme.integration.nxt.msd" folder="code.nxt integration" />
       <modulePath path="$PROJECT_DIR$/code/platform/buildsolution/org.fbme.platform.build.msd" folder="code.platform" />

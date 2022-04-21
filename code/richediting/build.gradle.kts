@@ -1,3 +1,5 @@
+import org.fbme.gradle.moduleDependency
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 
 plugins {
     mps
@@ -20,16 +22,14 @@ dependencies {
 }
 
 mps {
-    artifactName = "richediting"
-    buildScriptName = "fbme_richediting"
+    buildScriptName.set("fbme_richediting")
+    moduleName.set("org.fbme.richediting.lib")
+    libraryFilters.add("org.eclipse")
+    moduleDependency(project(":code:library"))
+    moduleDependency(project(":code:platform"))
+    moduleDependency(project(":code:scenes"))
 }
 
-val mpsPrepare by tasks.getting(Copy::class) {
-    from("build/libs/richediting.jar")
-    from(configurations.runtimeClasspath.get().files.filter { it.name.startsWith("org.eclipse") })
-    into("solutions/org.fbme.ide.richediting/lib")
+val compileKotlin by tasks.getting(KotlinCompile::class) {
+    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
 }
-
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
-
-compileKotlin.kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>fbme.scenes</id>
+    <name>Scenes</name>
+    <description>Provides a support for visual editing of free-floating cell components for MPS</description>
+    <version>0.1</version>
+    <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+    <depends>jetbrains.mps.core</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <mps.LanguageLibrary dir="/languages"/>
+        <postStartupActivity implementation="org.fbme.scenes.plugin.SceneExtensionsRegistrar" />
+    </extensions>
+
+</idea-plugin>
