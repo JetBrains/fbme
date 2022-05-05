@@ -307,6 +307,54 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="2tJIrI" id="1fU$xHHGKBY" role="jymVt" />
+    <node concept="3clFb_" id="1fU$xHHGQoZ" role="jymVt">
+      <property role="TrG5h" value="createCATBlockTypeDeclaration" />
+      <node concept="37vLTG" id="1fU$xHHGQp0" role="3clF46">
+        <property role="TrG5h" value="identifier" />
+        <node concept="3uibUv" id="1fU$xHHGQp1" role="1tU5fm">
+          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+        </node>
+        <node concept="2AHcQZ" id="1fU$xHHGQp2" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="1fU$xHHGQp3" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1fU$xHHGQp4" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="1fU$xHHGQp5" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1fU$xHHGQp6" role="3clF47">
+        <node concept="3clFbF" id="1fU$xHHGQp7" role="3cqZAp">
+          <node concept="2OqwBi" id="1fU$xHHGQp8" role="3clFbG">
+            <node concept="37vLTw" id="1fU$xHHGQp9" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="1fU$xHHGQpa" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="1rXfSq" id="1fU$xHHGQpb" role="37wK5m">
+                <ref role="37wK5l" node="634IrDRwHCB" resolve="create" />
+                <node concept="35c_gC" id="1fU$xHHGQpc" role="37wK5m">
+                  <ref role="35c_gD" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+                </node>
+                <node concept="37vLTw" id="1fU$xHHGQpd" role="37wK5m">
+                  <ref role="3cqZAo" node="1fU$xHHGQp0" resolve="identifier" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1fU$xHHGQpe" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1fU$xHHGQpf" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1fU$xHHGKNH" role="jymVt" />
     <node concept="3clFb_" id="1R0_JUQTxgH" role="jymVt">
       <property role="TrG5h" value="createApplicationDeclaration" />
       <node concept="37vLTG" id="634IrDRwU2x" role="3clF46">

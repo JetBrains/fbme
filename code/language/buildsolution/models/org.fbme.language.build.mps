@@ -91,6 +91,7 @@
         <child id="5253498789149547704" name="dependencies" index="3bR37C" />
       </concept>
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
+        <property id="5253498789149547713" name="reexport" index="3bR36h" />
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
       <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
@@ -285,6 +286,7 @@
         </node>
         <node concept="1SiIV0" id="Ej4tEplebs" role="3bR37C">
           <node concept="3bR9La" id="Ej4tEplebt" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="66wk:42vv4xsIHXY" resolve="org.fbme.lib" />
           </node>
         </node>
@@ -319,11 +321,6 @@
         <node concept="1SiIV0" id="723cCDWSRrG" role="3bR37C">
           <node concept="3bR9La" id="723cCDWSRrH" role="1SiIV1">
             <ref role="3bR37D" node="723cCDWLyJu" resolve="org.fbme.ide.attributes" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="6_LJHgTyPs$" role="3bR37C">
-          <node concept="3bR9La" id="6_LJHgTyPs_" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:1ia2VB5guYy" resolve="MPS.IDEA" />
           </node>
         </node>
       </node>
@@ -834,11 +831,6 @@
             <node concept="3qWCbU" id="723cCDWLyPI" role="3LXTna">
               <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
-          </node>
-        </node>
-        <node concept="1SiIV0" id="6_LJHgTyPte" role="3bR37C">
-          <node concept="3bR9La" id="6_LJHgTyPtf" role="1SiIV1">
-            <ref role="3bR37D" node="68dTcycFmt8" resolve="org.fbme.ide.iec61499.lang" />
           </node>
         </node>
       </node>

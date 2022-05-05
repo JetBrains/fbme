@@ -256,9 +256,9 @@
     <node concept="2G$12M" id="68dTcycFmt7" role="3989C9">
       <property role="TrG5h" value="fbme-platform" />
       <node concept="1E1JtA" id="42vv4xsIHLX" role="2G$12L">
-        <property role="BnDLt" value="true" />
         <property role="TrG5h" value="org.fbme.ide.platform" />
         <property role="3LESm3" value="292e01a6-3380-40ca-8417-b86844de2d63" />
+        <property role="BnDLt" value="true" />
         <node concept="3rtmxn" id="3ZIdPazw4gS" role="3bR31x">
           <node concept="3LXTmp" id="3ZIdPazw4gU" role="3rtmxm">
             <node concept="55IIr" id="3ZIdPazw4gW" role="3LXTmr">
@@ -351,6 +351,7 @@
         </node>
         <node concept="1SiIV0" id="42vv4xsIHNX" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHNY" role="1SiIV1">
+            <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
           </node>
         </node>

@@ -12,6 +12,7 @@ class RootDeclarationPrinter(private val myDeclaration: Declaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> BasicFBTypePrinter(myDeclaration).print()
             is CompositeFBTypeDeclaration -> CompositeFBTypePrinter(myDeclaration).print()
+            is CATBlockTypeDeclaration -> CATBlockTypePrinter(myDeclaration).print()
             is DeviceTypeDeclaration -> DeviceTypePrinter(myDeclaration).print()
             is ResourceTypeDeclaration -> ResourceTypePrinter(myDeclaration).print()
             is ServiceInterfaceFBTypeDeclaration -> ServiceInterfaceFBTypePrinter(myDeclaration).print()

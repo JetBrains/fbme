@@ -47,6 +47,10 @@ class RootConverter(
         return SystemConverter(arguments()).extract()
     }
 
+    fun convertCATConfiguration(): CATBlockTypeDeclaration {
+        return CATBlockTypeConverter(arguments()).extract()
+    }
+
     private fun arguments(): ConverterArgumentsHolder {
         return ConverterArgumentsHolder(myFactory, myStFactory, myLocus, myDocument.rootElement)
     }

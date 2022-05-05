@@ -7539,5 +7539,345 @@
       </node>
     </node>
   </node>
+  <node concept="312cEu" id="7zgDk8NJMDa">
+    <property role="TrG5h" value="CATBlockTypeByNode" />
+    <node concept="2tJIrI" id="7zgDk8NK7Jb" role="jymVt" />
+    <node concept="3clFbW" id="7zgDk8NK7UV" role="jymVt">
+      <node concept="3cqZAl" id="7zgDk8NK7UW" role="3clF45" />
+      <node concept="3clFbS" id="7zgDk8NK7UY" role="3clF47">
+        <node concept="XkiVB" id="7zgDk8NK8ir" role="3cqZAp">
+          <ref role="37wK5l" to="fcfa:1IuIrLUpCCt" resolve="PlatformDeclarationBase" />
+          <node concept="37vLTw" id="7zgDk8NK8mY" role="37wK5m">
+            <ref role="3cqZAo" node="7zgDk8NK7Zc" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="7zgDk8NK8I$" role="37wK5m">
+            <ref role="3cqZAo" node="7zgDk8NK83x" resolve="owner" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="7zgDk8NK7TT" role="1B3o_S" />
+      <node concept="37vLTG" id="7zgDk8NK7Zc" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="7zgDk8NK7Zb" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="7zgDk8NK83x" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="7zgDk8NK84L" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="7zgDk8NK8M8" role="jymVt" />
+    <node concept="3clFb_" id="~CATBlockTypeDeclaration.getBlockDeclaration()" role="jymVt">
+      <property role="TrG5h" value="getBlockDeclaration" />
+      <node concept="3Tm1VV" id="7zgDk8NJvow" role="1B3o_S" />
+      <node concept="2AHcQZ" id="7zgDk8NJvoy" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3clFbS" id="7zgDk8NK9oO" role="3clF47">
+        <node concept="3cpWs6" id="2FMxr8TfSRZ" role="3cqZAp">
+          <node concept="2OqwBi" id="2FMxr8TfTB9" role="3cqZAk">
+            <node concept="37vLTw" id="2FMxr8TfTgH" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="2FMxr8TfUb7" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2OqwBi" id="2FMxr8TfV8F" role="37wK5m">
+                <node concept="37vLTw" id="2FMxr8TfUJh" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="2FMxr8TfVDv" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:5QkmFzq9n26" resolve="blockDeclaration" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="2FMxr8TfXtx" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3uibUv" id="2FMxr8TfNex" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2FMxr8TfYc6" role="jymVt" />
+    <node concept="3clFb_" id="2FMxr8TfYOS" role="jymVt">
+      <property role="TrG5h" value="setBlockDeclaration" />
+      <node concept="3Tm1VV" id="2FMxr8TfYOT" role="1B3o_S" />
+      <node concept="3cqZAl" id="2FMxr8TfYOU" role="3clF45" />
+      <node concept="37vLTG" id="2FMxr8TfYOV" role="3clF46">
+        <property role="TrG5h" value="block" />
+        <node concept="3uibUv" id="2FMxr8TfYOW" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~CompositeFBTypeDeclaration" resolve="CompositeFBTypeDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="2FMxr8TfYOX" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="2FMxr8TfYOY" role="3clF47">
+        <node concept="3clFbF" id="2FMxr8TfYOZ" role="3cqZAp">
+          <node concept="37vLTI" id="2FMxr8Tg2uv" role="3clFbG">
+            <node concept="2OqwBi" id="2FMxr8Tg2ux" role="37vLTJ">
+              <node concept="37vLTw" id="2FMxr8Tg2uy" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="2FMxr8Tg2uz" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:5QkmFzq9n26" resolve="blockDeclaration" />
+              </node>
+            </node>
+            <node concept="3K4zz7" id="2FMxr8Tg2u$" role="37vLTx">
+              <node concept="10Nm6u" id="2FMxr8Tg2u_" role="3K4E3e" />
+              <node concept="3clFbC" id="2FMxr8Tg2uA" role="3K4Cdx">
+                <node concept="10Nm6u" id="2FMxr8Tg2uB" role="3uHU7w" />
+                <node concept="37vLTw" id="2FMxr8Tg2uC" role="3uHU7B">
+                  <ref role="3cqZAo" node="2FMxr8TfYOV" resolve="block" />
+                </node>
+              </node>
+              <node concept="2OqwBi" id="2FMxr8Tg2uD" role="3K4GZi">
+                <node concept="1eOMI4" id="2FMxr8Tg2uE" role="2Oq$k0">
+                  <node concept="10QFUN" id="2FMxr8Tg2uF" role="1eOMHV">
+                    <node concept="37vLTw" id="2FMxr8Tg2uG" role="10QFUP">
+                      <ref role="3cqZAo" node="2FMxr8TfYOV" resolve="block" />
+                    </node>
+                    <node concept="3uibUv" id="2FMxr8Tg2uH" role="10QFUM">
+                      <ref role="3uigEE" to="fcfa:1IuIrLUoYWZ" resolve="PlatformElementBase" />
+                      <node concept="3Tqbb2" id="2FMxr8Tg2uI" role="11_B2D">
+                        <ref role="ehGHo" to="xiqq:PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="2FMxr8Tg2uJ" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="2FMxr8TfYPg" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="2FMxr8TfYu1" role="jymVt" />
+    <node concept="2tJIrI" id="1ua7aTBY2GZ" role="jymVt" />
+    <node concept="3clFb_" id="~CATBlockTypeDeclaration.getSubCATs()" role="jymVt">
+      <property role="TrG5h" value="getSubCATs" />
+      <node concept="3Tm1VV" id="1ua7aTBXMfY" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1ua7aTBXMg0" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="1ua7aTBXMg1" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="1ua7aTBXMg2" role="11_B2D">
+          <ref role="3uigEE" to="cwd8:~SubCATDeclaration" resolve="SubCATDeclaration" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1ua7aTBY55f" role="3clF47">
+        <node concept="3clFbF" id="QqnmHEHRnK" role="3cqZAp">
+          <node concept="2ShNRf" id="QqnmHEHJyA" role="3clFbG">
+            <node concept="1pGfFk" id="QqnmHEHJyB" role="2ShVmc">
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <node concept="2OqwBi" id="QqnmHEHJyC" role="37wK5m">
+                <node concept="37vLTw" id="QqnmHEHJyD" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3Tsc0h" id="QqnmHEHOpF" role="2OqNvi">
+                  <ref role="3TtcxE" to="xiqq:5cPJ2880ORd" resolve="subCAT" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="QqnmHEHJyF" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~SubCATDeclaration" resolve="SubCATDeclaration" />
+              </node>
+              <node concept="37vLTw" id="QqnmHEHJyG" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+              <node concept="3uibUv" id="QqnmHEHJyH" role="1pMfVU">
+                <ref role="3uigEE" to="cwd8:~SubCATDeclaration" resolve="SubCATDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="QqnmHEHTE5" role="jymVt" />
+    <node concept="3clFb_" id="QqnmHEHUuC" role="jymVt">
+      <property role="TrG5h" value="getHmiInterface" />
+      <node concept="3Tm1VV" id="QqnmHEHUuD" role="1B3o_S" />
+      <node concept="3uibUv" id="QqnmHEHUuE" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~HMIInterfaceTypeDeclaration" resolve="HMIInterfaceTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="QqnmHEHUuF" role="3clF47">
+        <node concept="3clFbF" id="QqnmHEHUuG" role="3cqZAp">
+          <node concept="2ShNRf" id="QqnmHEHUuH" role="3clFbG">
+            <node concept="1pGfFk" id="QqnmHEHUuI" role="2ShVmc">
+              <ref role="37wK5l" node="1ua7aTBYwcW" resolve="HMIInterfaceDeclarationByNode" />
+              <node concept="2OqwBi" id="QqnmHEI0gx" role="37wK5m">
+                <node concept="37vLTw" id="QqnmHEHUuJ" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="QqnmHEI1hO" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:15ruYIbk1Mx" resolve="hmiInterfaceDeclaration" />
+                </node>
+              </node>
+              <node concept="37vLTw" id="QqnmHEHUuK" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="QqnmHEHUuL" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="2AHcQZ" id="QqnmHEHUuM" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="QqnmHEHTEO" role="jymVt" />
+    <node concept="2tJIrI" id="1ua7aTBY2Rg" role="jymVt" />
+    <node concept="2tJIrI" id="7zgDk8NKikC" role="jymVt" />
+    <node concept="3Tm1VV" id="7zgDk8NJMDb" role="1B3o_S" />
+    <node concept="3uibUv" id="7zgDk8NJO6_" role="1zkMxy">
+      <ref role="3uigEE" to="fcfa:1IuIrLUpCCg" resolve="PlatformDeclarationBase" />
+      <node concept="3Tqbb2" id="7zgDk8NJO7Q" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+      </node>
+    </node>
+    <node concept="3uibUv" id="7zgDk8NJOlo" role="EKbjA">
+      <ref role="3uigEE" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+    </node>
+    <node concept="3uibUv" id="7zgDk8NK7Io" role="EKbjA">
+      <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
+    </node>
+  </node>
+  <node concept="312cEu" id="1ua7aTBYsNh">
+    <property role="TrG5h" value="SubCATDeclarationByNode" />
+    <node concept="3clFbW" id="1ua7aTBYt0J" role="jymVt">
+      <node concept="3cqZAl" id="1ua7aTBYt0K" role="3clF45" />
+      <node concept="3clFbS" id="1ua7aTBYt0L" role="3clF47">
+        <node concept="XkiVB" id="1ua7aTBYt0M" role="3cqZAp">
+          <ref role="37wK5l" to="fcfa:1hwo9XLD_LX" resolve="PlatformContainedDeclarationBase" />
+          <node concept="37vLTw" id="1ua7aTBYt0N" role="37wK5m">
+            <ref role="3cqZAo" node="1ua7aTBYt0Q" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="1ua7aTBYt0O" role="37wK5m">
+            <ref role="3cqZAo" node="1ua7aTBYt0S" resolve="owner" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="1ua7aTBYt0P" role="1B3o_S" />
+      <node concept="37vLTG" id="1ua7aTBYt0Q" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="1ua7aTBYt0R" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:15ruYIbk1MG" resolve="SubCATDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="1ua7aTBYt0S" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="1ua7aTBYt0T" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1ua7aTBYsVb" role="jymVt" />
+    <node concept="2tJIrI" id="1ua7aTBYtJk" role="jymVt" />
+    <node concept="3clFb_" id="1ua7aTBYtMy" role="jymVt">
+      <property role="TrG5h" value="getContainer" />
+      <node concept="3Tm1VV" id="1ua7aTBYtMz" role="1B3o_S" />
+      <node concept="3uibUv" id="1ua7aTBYtM$" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1ua7aTBYtM_" role="3clF47">
+        <node concept="3clFbF" id="1ua7aTBYtMA" role="3cqZAp">
+          <node concept="1rXfSq" id="1ua7aTBYtMB" role="3clFbG">
+            <ref role="37wK5l" to="fcfa:1hwo9XLDGQM" resolve="getContainer" />
+            <node concept="3VsKOn" id="1ua7aTBYtMC" role="37wK5m">
+              <ref role="3VsUkX" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1ua7aTBYtMD" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1ua7aTBYtJy" role="jymVt" />
+    <node concept="3Tm1VV" id="1ua7aTBYsNi" role="1B3o_S" />
+    <node concept="3uibUv" id="1ua7aTBYsPj" role="1zkMxy">
+      <ref role="3uigEE" to="fcfa:1hwo9XLD_LP" resolve="PlatformContainedDeclarationBase" />
+      <node concept="3Tqbb2" id="1ua7aTBYsQ$" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:15ruYIbk1MG" resolve="SubCATDeclaration" />
+      </node>
+    </node>
+    <node concept="3uibUv" id="1ua7aTBYsU_" role="EKbjA">
+      <ref role="3uigEE" to="cwd8:~SubCATDeclaration" resolve="SubCATDeclaration" />
+    </node>
+  </node>
+  <node concept="312cEu" id="1ua7aTBYvP8">
+    <property role="TrG5h" value="HMIInterfaceDeclarationByNode" />
+    <node concept="3clFbW" id="1ua7aTBYwcW" role="jymVt">
+      <node concept="3cqZAl" id="1ua7aTBYwcX" role="3clF45" />
+      <node concept="3clFbS" id="1ua7aTBYwcY" role="3clF47">
+        <node concept="XkiVB" id="1ua7aTBYwcZ" role="3cqZAp">
+          <ref role="37wK5l" to="fcfa:1hwo9XLD_LX" resolve="PlatformContainedDeclarationBase" />
+          <node concept="37vLTw" id="1ua7aTBYwd0" role="37wK5m">
+            <ref role="3cqZAo" node="1ua7aTBYwd3" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="1ua7aTBYwd1" role="37wK5m">
+            <ref role="3cqZAo" node="1ua7aTBYwd5" resolve="owner" />
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="1ua7aTBYwd2" role="1B3o_S" />
+      <node concept="37vLTG" id="1ua7aTBYwd3" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="1ua7aTBYwd4" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="1ua7aTBYwd5" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="1ua7aTBYwd6" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1ua7aTBYwkU" role="jymVt" />
+    <node concept="3clFb_" id="1ua7aTBYwxb" role="jymVt">
+      <property role="TrG5h" value="getContainer" />
+      <node concept="3Tm1VV" id="1ua7aTBYwxc" role="1B3o_S" />
+      <node concept="3uibUv" id="1ua7aTBYwxd" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1ua7aTBYwxe" role="3clF47">
+        <node concept="3clFbF" id="1ua7aTBYwxf" role="3cqZAp">
+          <node concept="1rXfSq" id="1ua7aTBYwxg" role="3clFbG">
+            <ref role="37wK5l" to="fcfa:1hwo9XLDGQM" resolve="getContainer" />
+            <node concept="3VsKOn" id="1ua7aTBYwxh" role="37wK5m">
+              <ref role="3VsUkX" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1ua7aTBYwxi" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1ua7aTBYwvU" role="jymVt" />
+    <node concept="3Tm1VV" id="1ua7aTBYvP9" role="1B3o_S" />
+    <node concept="3uibUv" id="1ua7aTBYvQU" role="1zkMxy">
+      <ref role="3uigEE" to="fcfa:1hwo9XLD_LP" resolve="PlatformContainedDeclarationBase" />
+      <node concept="3Tqbb2" id="1ua7aTBYvSc" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+      </node>
+    </node>
+    <node concept="3uibUv" id="1ua7aTBYvWd" role="EKbjA">
+      <ref role="3uigEE" to="cwd8:~HMIInterfaceTypeDeclaration" resolve="HMIInterfaceTypeDeclaration" />
+    </node>
+  </node>
 </model>
 

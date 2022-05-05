@@ -1534,5 +1534,11 @@
       </node>
     </node>
   </node>
+  <node concept="1N5Tt2" id="QqnmHESSwT">
+    <property role="TrG5h" value="CATComposite" />
+    <node concept="2zBDe_" id="QqnmHESTnp" role="2zBDey">
+      <property role="TrG5h" value="input" />
+    </node>
+  </node>
 </model>
 

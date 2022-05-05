@@ -1659,5 +1659,145 @@
       <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
     </node>
   </node>
+  <node concept="1TIwiD" id="15ruYIbk1Mw">
+    <property role="EcuMT" value="1250729573110258848" />
+    <property role="TrG5h" value="CATBlockTypeDeclaration" />
+    <property role="19KtqR" value="true" />
+    <property role="34LRSv" value="cat function block type" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="5cPJ2880ORd" role="1TKVEi">
+      <property role="IQ2ns" value="5995905333263027661" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="subCAT" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="15ruYIbk1MG" resolve="SubCATDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="15ruYIbk1Mx" role="1TKVEi">
+      <property role="IQ2ns" value="1250729573110258849" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="hmiInterfaceDeclaration" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="5QkmFzq9n26" role="1TKVEi">
+      <property role="IQ2ns" value="6743114292060844166" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="blockDeclaration" />
+      <ref role="20lvS9" node="PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EM3" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986371" />
+      <property role="TrG5h" value="CATFile" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EM9" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986377" />
+      <property role="TrG5h" value="symbolDefFile" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EMc" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986380" />
+      <property role="TrG5h" value="symbolEventFile" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EMg" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986384" />
+      <property role="TrG5h" value="designFile" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="gdnNDDKQnZ" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="15ruYIbk1Mz">
+    <property role="EcuMT" value="1250729573110258851" />
+    <property role="TrG5h" value="HMIInterfaceTypeDeclaration" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="5cPJ2880EJZ" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EMs" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986396" />
+      <property role="TrG5h" value="fileName" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5cPJ2880EMu" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986398" />
+      <property role="TrG5h" value="usage" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyj" id="5cPJ2880EMx" role="1TKVEi">
+      <property role="IQ2ns" value="5995905333262986401" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="symbol" />
+      <ref role="20lvS9" node="5cPJ2880EMz" resolve="SymbolDefinition" />
+    </node>
+    <node concept="1TJgyj" id="5QkmFzq9n2o" role="1TKVEi">
+      <property role="IQ2ns" value="6743114292060844184" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="blockDeclaration" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="23XkovVSBlc" resolve="ServiceInterfaceFBTypeDeclaration" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="15ruYIbk1MG">
+    <property role="EcuMT" value="1250729573110258860" />
+    <property role="TrG5h" value="SubCATDeclaration" />
+    <property role="34LRSv" value="SubCAT" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="15ruYIbk1MH" role="1TKVEl">
+      <property role="IQ2nx" value="1250729573110258861" />
+      <property role="TrG5h" value="usedInCAT" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+    <node concept="1TJgyi" id="15ruYIbk1MS" role="1TKVEl">
+      <property role="IQ2nx" value="1250729573110258872" />
+      <property role="TrG5h" value="type" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="15ruYIbk1MM" role="1TKVEl">
+      <property role="IQ2nx" value="1250729573110258866" />
+      <property role="TrG5h" value="namespace" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="KKtd0UUIR_" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5cPJ2880EMz">
+    <property role="TrG5h" value="SymbolDefinition" />
+    <property role="EcuMT" value="5995905333262986403" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="5cPJ2880EM$" role="1TKVEi">
+      <property role="IQ2ns" value="5995905333262986404" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="dependentFiles" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="5cPJ2880EMA" resolve="DependentFilesDefinition" />
+    </node>
+    <node concept="1TJgyi" id="KKtd0UM5ml" role="1TKVEl">
+      <property role="IQ2nx" value="878330365025473941" />
+      <property role="TrG5h" value="fileName" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="KKtd0UXPzJ" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5cPJ2880EMA">
+    <property role="TrG5h" value="DependentFilesDefinition" />
+    <property role="EcuMT" value="5995905333262986406" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="5cPJ2880EMB" role="1TKVEi">
+      <property role="IQ2ns" value="5995905333262986407" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="value" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" to="gpgy:2lwHqHjKxV$" resolve="StringLiteral" />
+    </node>
+    <node concept="PrWs8" id="KKtd0UXPzF" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
 </model>
 

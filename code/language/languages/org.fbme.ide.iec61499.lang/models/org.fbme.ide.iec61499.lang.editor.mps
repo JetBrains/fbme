@@ -4349,5 +4349,27 @@
       </node>
     </node>
   </node>
+  <node concept="24kQdi" id="5cPJ2880EIi">
+    <ref role="1XX52x" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+    <node concept="3F0ifn" id="QqnmHESSKt" role="6VMZX" />
+    <node concept="3EZMnI" id="2FMxr8ThQ2d" role="2wV5jI">
+      <node concept="3F0ifn" id="2FMxr8ThQ2u" role="3EZMnx">
+        <property role="3F0ifm" value="CAT" />
+      </node>
+      <node concept="l2Vlx" id="2FMxr8ThQ2g" role="2iSdaV" />
+      <node concept="3F0A7n" id="2FMxr8ThQ2A" role="3EZMnx">
+        <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+        <node concept="ljvvj" id="2FMxr8ThQ2B" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="2FMxr8TtkFU" role="3EZMnx">
+        <property role="3F0ifm" value="Composite" />
+      </node>
+      <node concept="3F1sOY" id="2FMxr8TtkG6" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:5QkmFzq9n26" resolve="blockDeclaration" />
+      </node>
+    </node>
+  </node>
 </model>
 
