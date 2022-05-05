@@ -1,20 +1,23 @@
 package org.fbme.lib.iec61499.parser
 
 import org.fbme.lib.common.Identifier
+import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.ecc.ECTransitionCondition
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
+import org.fbme.lib.st.STFactory
 import org.jdom.Element
 
-class BasicFBTypeConverter(arguments: ConverterArguments) :
+open class BasicFBTypeConverter(arguments: ConverterArguments) :
     DeclarationConverterBase<BasicFBTypeDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): BasicFBTypeDeclaration {
         checkNotNull(element)
         val fbtd = factory.createBasicFBTypeDeclaration(identifier)
-        val basicFbElement = element.getChild("BasicFB")
+        val basicFbElement = element!!.getChild("BasicFB")
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         ParameterDeclarationConverter.extractAll(with(basicFbElement.getChild("InternalVars")), fbtd.internalVariables)
@@ -27,12 +30,12 @@ class BasicFBTypeConverter(arguments: ConverterArguments) :
             }
             val ecTransitionElements = eccElement.getChildren("ECTransition")
             for (ecTransitionElement in ecTransitionElements) {
-                ecc.transitions.add(convertEcTransition(ecTransitionElement))
+                ecc.transitions.add(convertEcTransition(ecTransitionElement, fbtd))
             }
         }
         val algorithmElements = basicFbElement.getChildren("Algorithm")
         for (algorithmElement in algorithmElements) {
-            fbtd.algorithms.add(AlgorithmConverter(with(algorithmElement)).extract())
+            fbtd.algorithms.add(AlgorithmConverter(with(algorithmElement), stAlgorithmConverter).extract())
         }
         return fbtd
     }
@@ -61,17 +64,21 @@ class BasicFBTypeConverter(arguments: ConverterArguments) :
         }
     }
 
-    private fun convertEcTransition(ecTransitionElement: Element): StateTransition {
+    private fun convertEcTransition(ecTransitionElement: Element, fbtd: BasicFBTypeDeclaration): StateTransition {
         val transition = factory.createStateTransition()
         transition.sourceReference.setTargetName(ecTransitionElement.getAttributeValue("Source"))
         transition.targetReference.setTargetName(ecTransitionElement.getAttributeValue("Destination"))
-        parseCondition(transition.condition, ecTransitionElement.getAttributeValue("Condition"))
+        parseCondition(transition.condition, ecTransitionElement.getAttributeValue("Condition"), fbtd)
         transition.centerX = ecTransitionElement.getAttributeValue("x").toFloat().toInt()
         transition.centerY = ecTransitionElement.getAttributeValue("y").toFloat().toInt()
         return transition
     }
 
-    private fun parseCondition(condition: ECTransitionCondition, rawCondition: String) {
+    protected open fun parseCondition(
+        condition: ECTransitionCondition,
+        rawCondition: String,
+        fbtd: BasicFBTypeDeclaration
+    ) {
         if (rawCondition == "1") {
             return
         }
@@ -89,18 +96,46 @@ class BasicFBTypeConverter(arguments: ConverterArguments) :
         condition.setGuardCondition(STConverter.parseExpression(stFactory, guardConditionText)!!)
     }
 
-    private class AlgorithmConverter(arguments: ConverterArguments) :
+    interface StAlgorithmConverter {
+        fun convert(
+            iec61499factory: IEC61499Factory,
+            factory: STFactory,
+            algorithmDeclaration: AlgorithmDeclaration,
+            st: AlgorithmBody.ST,
+            text: String
+        )
+    }
+
+    object DefaultStAlgorithmConverter : StAlgorithmConverter {
+        override fun convert(
+            iec61499factory: IEC61499Factory,
+            factory: STFactory,
+            algorithmDeclaration: AlgorithmDeclaration,
+            st: AlgorithmBody.ST,
+            text: String
+        ) {
+            st.statements.addAll(STConverter.parseStatementList(factory, text))
+        }
+    }
+
+    protected open val stAlgorithmConverter: StAlgorithmConverter = DefaultStAlgorithmConverter
+
+    private class AlgorithmConverter(
+        arguments: ConverterArguments,
+        private val stAlgorithmConverter: StAlgorithmConverter
+    ) :
         DeclarationConverterBase<AlgorithmDeclaration>(arguments) {
         override fun extractDeclarationBody(identifier: Identifier?): AlgorithmDeclaration {
             checkNotNull(element)
             val algorithmDeclaration = factory.createAlgorithmDeclaration(identifier)
+            ParameterDeclarationConverter.extractAll(this, algorithmDeclaration.temporaryVariables)
             val stBodyElement = element.getChild("ST")
             if (stBodyElement != null) {
                 val st = factory.createAlgorithmBody(AlgorithmLanguage.ST)
                 algorithmDeclaration.body = st
                 val stText = unescapeXML(stBodyElement.getAttributeValue("Text"))
                 if (stText != null) {
-                    st.statements.addAll(STConverter.parseStatementList(stFactory, stText))
+                    stAlgorithmConverter.convert(factory, stFactory, algorithmDeclaration, st, stText)
                 }
             }
             val otherBodyElement = element.getChild("Other")

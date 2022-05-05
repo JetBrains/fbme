@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="boolMerge" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Gulnar zhan" Date="14/02/2014" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="input1">
+        <With Var="bool1" />
+      </Event>
+      <Event Name="input2">
+        <With Var="bool2" />
+      </Event>
+      <Event Name="input3">
+        <With Var="bool3" />
+      </Event>
+      <Event Name="input4">
+        <With Var="bool4" />
+      </Event>
+      <Event Name="input5">
+        <With Var="bool5" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="Ouput">
+        <With Var="boolOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="bool1" Type="BOOL" />
+      <VarDeclaration Name="bool2" Type="BOOL" />
+      <VarDeclaration Name="bool3" Type="BOOL" />
+      <VarDeclaration Name="bool4" Type="BOOL" />
+      <VarDeclaration Name="bool5" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="boolOut" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1176.941" y="157.4117" />
+      <ECState Name="STATE1" x="284" y="880">
+        <ECAction Algorithm="string1" Output="Ouput" />
+      </ECState>
+      <ECState Name="STATE2" x="672" y="1328">
+        <ECAction Algorithm="string2" Output="Ouput" />
+      </ECState>
+      <ECState Name="STATE3" x="1604" y="1460">
+        <ECAction Algorithm="string3" Output="Ouput" />
+      </ECState>
+      <ECState Name="STATE4" x="1924" y="456" />
+      <ECState Name="STATE5" x="2560" y="1208">
+        <ECAction Algorithm="string4" Output="Ouput" />
+      </ECState>
+      <ECState Name="STATE6" x="2972" y="828.0001">
+        <ECAction Algorithm="string5" Output="Ouput" />
+      </ECState>
+      <ECTransition Source="STATE4" Destination="STATE1" Condition="input1" x="681.5812" y="470.8947">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="197.6966,89.78378,84.03167,118.1782" />
+      </ECTransition>
+      <ECTransition Source="STATE4" Destination="STATE2" Condition="input2" x="1321.357" y="935.926">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="376.49,205.7347,284.8957,269.5493" />
+      </ECTransition>
+      <ECTransition Source="STATE4" Destination="STATE3" Condition="input3" x="1824.283" y="908.6594">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="471.7226,183.7063,449.0099,262.4" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="STATE4" Condition="1" x="1188.706" y="578.4829">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="247.2352,153.1281,361.6729,124.4959" />
+      </ECTransition>
+      <ECTransition Source="STATE2" Destination="STATE4" Condition="1" x="1345.572" y="694.2659">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="298.3916,190.3914,390.2163,126.4967" />
+      </ECTransition>
+      <ECTransition Source="STATE3" Destination="STATE4" Condition="1" x="1684.114" y="1038.495">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="403.5051,305.9238,427.1309,226.7398" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="STATE4" Condition="1" x="1524.936" y="226.5451">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="354.781,42.79364,399.3296,60.85448" />
+      </ECTransition>
+      <ECTransition Source="STATE4" Destination="STATE5" Condition="input4" x="2283.621" y="783.568">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="549.7773,164.8712,595.4218,218.8408" />
+      </ECTransition>
+      <ECTransition Source="STATE5" Destination="STATE4" Condition="1" x="2172.076" y="907">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="563.1302,259.9848,517.4857,206.0152" />
+      </ECTransition>
+      <ECTransition Source="STATE4" Destination="STATE6" Condition="input5" x="2459.109" y="566.8669">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="581.6046,125.6634,645.1432,148.2171" />
+      </ECTransition>
+      <ECTransition Source="STATE6" Destination="STATE4" Condition="1" x="2378.138" y="721.9951">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="623.5772,196.7769,560.0386,174.2231" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="string1" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;(*stringOut:= '';*)&#xD;&#xA;boolOut:= bool1;" />
+    </Algorithm>
+    <Algorithm Name="string2">
+      <ST Text=";&#xD;&#xA;(*stringOut:= '';*)&#xD;&#xA;boolOut:= bool2;" />
+    </Algorithm>
+    <Algorithm Name="string3">
+      <ST Text=";&#xD;&#xA;(*stringOut:= '';*)&#xD;&#xA;boolOut:= bool3;" />
+    </Algorithm>
+    <Algorithm Name="string4">
+      <ST Text=";&#xD;&#xA;boolOut:= bool4;" />
+    </Algorithm>
+    <Algorithm Name="string5">
+      <ST Text=";&#xD;&#xA;boolOut:= bool5;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

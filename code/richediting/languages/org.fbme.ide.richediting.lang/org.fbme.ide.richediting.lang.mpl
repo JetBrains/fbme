@@ -13,7 +13,7 @@
   <accessoryModels />
   <sourcePath />
   <dependencies>
-    <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes)</dependency>
+    <dependency reexport="false">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes.lib)</dependency>
     <dependency reexport="false">ce053d11-5ec7-4fac-b419-6715b4a97d3a(org.fbme.ide.richediting)</dependency>
     <dependency reexport="false">1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)</dependency>
     <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
@@ -25,6 +25,8 @@
     <dependency reexport="false">498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)</dependency>
     <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
     <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)</dependency>
+    <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
+    <dependency reexport="false">fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5(org.fbme.richediting.lib)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="11" />
@@ -79,7 +81,9 @@
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)" version="0" />
     <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(org.fbme.lib.iec61499)" version="0" />
-    <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes)" version="0" />
+    <module reference="ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)" version="0" />
+    <module reference="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5(org.fbme.richediting.lib)" version="0" />
+    <module reference="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes.lib)" version="0" />
   </dependencyVersions>
   <extendedLanguages>
     <extendedLanguage>6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)</extendedLanguage>

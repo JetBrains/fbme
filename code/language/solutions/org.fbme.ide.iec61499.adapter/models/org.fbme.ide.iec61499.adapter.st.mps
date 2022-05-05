@@ -6,7 +6,6 @@
   </languages>
   <imports>
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="x2xk" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.st.statements(org.fbme.lib/)" />
@@ -15,8 +14,7 @@
     <import index="gpgy" ref="r:70ba2090-1a36-4ca3-87ef-116d9af7b3ac(org.fbme.ide.st.lang.structure)" />
     <import index="a9j9" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.st.types(org.fbme.lib/)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
-    <import index="w1kc" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.smodel(MPS.Core/)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -3653,7 +3651,7 @@
                       <ref role="3cqZAo" node="4$fK7E5AAWj" resolve="expression" />
                     </node>
                     <node concept="3uibUv" id="69Ck8LzLjL" role="10QFUM">
-                      <ref role="3uigEE" node="6uL6kAQcjuW" resolve="LiteralByNode" />
+                      <ref role="3uigEE" node="1KgvZpgp5L3" resolve="ExpressionByNode" />
                     </node>
                   </node>
                 </node>
@@ -3744,7 +3742,7 @@
                       <ref role="3cqZAo" node="4$fK7E5AAWJ" resolve="expression" />
                     </node>
                     <node concept="3uibUv" id="69Ck8LzPaL" role="10QFUM">
-                      <ref role="3uigEE" node="6uL6kAQcjuW" resolve="LiteralByNode" />
+                      <ref role="3uigEE" node="1KgvZpgp5L3" resolve="ExpressionByNode" />
                     </node>
                   </node>
                 </node>
@@ -3835,7 +3833,7 @@
                       <ref role="3cqZAo" node="4$fK7E5AAXb" resolve="expression" />
                     </node>
                     <node concept="3uibUv" id="69Ck8LzPUi" role="10QFUM">
-                      <ref role="3uigEE" node="6uL6kAQcjuW" resolve="LiteralByNode" />
+                      <ref role="3uigEE" node="1KgvZpgp5L3" resolve="ExpressionByNode" />
                     </node>
                   </node>
                 </node>

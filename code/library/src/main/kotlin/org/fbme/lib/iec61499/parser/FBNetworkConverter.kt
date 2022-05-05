@@ -17,7 +17,7 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         extractEndpointCoordinates(myNetwork.endpointCoordinates)
     }
 
-    private fun extractEndpointCoordinates(endpointCoordinates: MutableList<EndpointCoordinate>) {
+    protected open fun extractEndpointCoordinates(endpointCoordinates: MutableList<EndpointCoordinate>) {
         val elementNotNull = element ?: return
         val elements = elementNotNull.getChildren("EndpointCoordinate")
         for (element in elements) {
@@ -108,7 +108,7 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         return connection
     }
 
-    private fun extractConnectionPath(connecitonElement: Element): ConnectionPath {
+    protected open fun extractConnectionPath(connecitonElement: Element): ConnectionPath {
         val dx1Attriubte = connecitonElement.getAttribute("dx1")
         val dyAttriubte = connecitonElement.getAttribute("dy")
         val dx2Attriubte = connecitonElement.getAttribute("dx2")

@@ -48,7 +48,7 @@
         <ECAction Output="S5_GATE_CLOSE" />
         <ECAction Output="CNF" Algorithm="FEED" />
       </ECState>
-      <ECState Name="COLLECT" x="3933" y="3806">
+      <ECState Name="COLLECT" x="3766" y="3646">
         <ECAction Output="S5_GATE_OPEN" />
         <ECAction Output="CNF" Algorithm="COLLECT" />
       </ECState>
@@ -69,13 +69,13 @@
       <ECTransition Source="INIT" Destination="READY" x="2846" y="1307" Condition="1" />
       <ECTransition Source="HOME" Destination="READY" x="1830" y="1207" Condition="[robotinoPos = &amp;#39;HOME&amp;#39;]" />
       <ECTransition Source="READY" Destination="HOME" x="1661" y="2038" Condition="REQ_HOME" />
-      <ECTransition Source="READY" Destination="COLLECT" x="3999" y="2800" Condition="REQ_COLLECT" />
-      <ECTransition Source="COLLECT" Destination="COLL_CONFIRM" x="2100" y="3706" Condition="[(robotinoPos = &amp;#39;COLLECT&amp;#39;) OR (robotinoPos = &amp;#39;COLL&amp;#39;)]" />
+      <ECTransition Source="READY" Destination="COLLECT" x="3839" y="2800" Condition="REQ_COLLECT" />
+      <ECTransition Source="COLLECT" Destination="COLL_CONFIRM" x="2100" y="3546" Condition="[(robotinoPos = &amp;#39;COLLECT&amp;#39;) OR (robotinoPos = &amp;#39;COLL&amp;#39;)]" />
       <ECTransition Source="READY" Destination="REJECT" x="4653" y="1776" Condition="REQ_REJECT" />
       <ECTransition Source="REJECT" Destination="READY" x="4392" y="2323" Condition="1" />
       <ECTransition Source="READY" Destination="FEED" x="3346" y="806" Condition="REQ_FEED" />
       <ECTransition Source="FEED" Destination="FEED_CONFIRM" x="5820" y="746" Condition="[robotinoPos = &amp;#39;FEED&amp;#39;]" />
-      <ECTransition Source="COLLECT" Destination="READY" x="3359" y="2920" Condition="RESET" />
+      <ECTransition Source="COLLECT" Destination="READY" x="3199" y="2920" Condition="RESET" />
       <ECTransition Source="FEED" Destination="READY" x="3626" y="1040" Condition="RESET" />
       <ECTransition Source="HOME" Destination="READY" x="1976" y="1723" Condition="RESET" />
       <ECTransition Source="COLL_CONFIRM" Destination="READY" x="2473" y="2833" Condition="CONFIRM" />

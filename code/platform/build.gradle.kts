@@ -1,3 +1,5 @@
+import org.fbme.gradle.includeMpsArtifacts
+import org.fbme.gradle.moduleDependency
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -10,20 +12,15 @@ dependencies {
     implementation(project(":code:library"))
     implementation(project(":code:language"))
     mpsImplementation(project(":code:library", "mps"))
+    mpsImplementation(project(":code:language", "mps"))
 }
 
 mps {
-    artifactName = "platform"
-    buildScriptName = "fbme_platform"
-}
-
-val mpsPrepare by tasks.getting(Copy::class) {
-    from("build/libs/platform.jar")
-    into("solutions/org.fbme.ide.platform/lib")
-}
-
-val mpsAssemble by tasks.getting {
-    inputs.dir("solutions/org.fbme.ide.platform/lib")
+    buildScriptName.set("fbme_platform")
+    moduleName.set("org.fbme.platform.lib")
+    libraryFilters.add("language")
+    includeMpsArtifacts(project(":code:language"))
+    moduleDependency(project(":code:library"))
 }
 
 val compileKotlin by tasks.getting(KotlinCompile::class) {
@@ -32,7 +29,11 @@ val compileKotlin by tasks.getting(KotlinCompile::class) {
 
 val test by tasks.getting(Test::class) {
     dependsOn(
-        ":code:library:mpsJar",
-        "mpsJar"
+        ":code:library:buildDistPlugin",
+        "buildDistPlugin"
     )
+}
+
+val copyLibs by tasks.getting(Copy::class) {
+    dependsOn(":code:language:jar")
 }

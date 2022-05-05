@@ -7,11 +7,11 @@
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
   </languages>
   <imports>
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
+    <import index="m1e1" ref="r:ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.ide.iec61499.repository)" />
     <import index="z1c3" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.project(MPS.Core/)" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" />
     <import index="7u3r" ref="r:b054d510-f3eb-4f3b-8611-d75feed6cb53(org.fbme.ide.iec61499.editor)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -74,8 +74,8 @@
       <node concept="3clFbS" id="5vstEPJdCq0" role="2VODD2">
         <node concept="3clFbF" id="5vstEPJdCw$" role="3cqZAp">
           <node concept="2YIFZM" id="5vstEPJdCxj" role="3clFbG">
-            <ref role="37wK5l" to="1u7h:5vstEPJdmmV" resolve="install" />
-            <ref role="1Pybhc" to="1u7h:5vstEPJ8LFK" resolve="MpsBridgeImpl" />
+            <ref role="37wK5l" to="m1e1:5vstEPJdmmV" resolve="install" />
+            <ref role="1Pybhc" to="m1e1:5vstEPJ8LFK" resolve="MpsBridgeImpl" />
           </node>
         </node>
       </node>
@@ -84,8 +84,8 @@
       <node concept="3clFbS" id="5vstEPJdC$s" role="2VODD2">
         <node concept="3clFbF" id="5vstEPJdC$N" role="3cqZAp">
           <node concept="2YIFZM" id="5vstEPJdC_v" role="3clFbG">
-            <ref role="1Pybhc" to="1u7h:5vstEPJ8LFK" resolve="MpsBridgeImpl" />
-            <ref role="37wK5l" to="1u7h:5vstEPJdnqL" resolve="uninstall" />
+            <ref role="1Pybhc" to="m1e1:5vstEPJ8LFK" resolve="MpsBridgeImpl" />
+            <ref role="37wK5l" to="m1e1:5vstEPJdnqL" resolve="uninstall" />
           </node>
         </node>
       </node>
@@ -97,8 +97,8 @@
       <node concept="3clFbS" id="6YcNwH3$$ZF" role="2VODD2">
         <node concept="3clFbF" id="6YcNwH3$_6h" role="3cqZAp">
           <node concept="2YIFZM" id="6YcNwH3$_74" role="3clFbG">
-            <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.init(jetbrains.mps.project.Project)" resolve="init" />
             <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+            <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.init(jetbrains.mps.project.Project)" resolve="init" />
             <node concept="1KvdUw" id="6YcNwH3$_7w" role="37wK5m" />
           </node>
         </node>

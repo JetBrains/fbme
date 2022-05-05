@@ -70,6 +70,7 @@
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)</dependency>
     <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
+    <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:21063c66-85ba-4e98-839b-036445b17ae2:de.itemis.mps.editor.layout" version="0" />
@@ -133,6 +134,7 @@
     <module reference="2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)" version="0" />
     <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(org.fbme.lib.iec61499)" version="0" />
+    <module reference="ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)" version="0" />
   </dependencyVersions>
   <extendedLanguages>
     <extendedLanguage>2046780a-246e-4cb0-90fe-56a2b7d92c54(org.fbme.ide.st.lang)</extendedLanguage>

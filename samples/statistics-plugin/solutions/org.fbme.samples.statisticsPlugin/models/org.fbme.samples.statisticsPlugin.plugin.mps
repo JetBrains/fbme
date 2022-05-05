@@ -7,12 +7,9 @@
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="597t" ref="e75dd6b6-f70b-468d-91bc-fb7684b58409/java:org.fbme.samples.statistics.plugin(org.fbme.samples.statistics/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="v900" ref="r:ff24162f-099d-43d8-a0b8-3a06f2c9c0a1(org.fbme.ide.platform)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
-    <import index="g089" ref="r:e617f9b7-4078-4f43-b620-871a161535c7(org.fbme.ide.iec61499.plugin)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="597t" ref="7e52736a-b7d3-42d5-9933-2a61cbc70441/java:org.fbme.samples.statistics.plugin(org.fbme.samples.statistics.lib/)" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -135,7 +132,7 @@
               </node>
               <node concept="2ShNRf" id="5Z7HjgyO$Cn" role="33vP2m">
                 <node concept="1pGfFk" id="5Z7HjgyO$Co" role="2ShVmc">
-                  <ref role="37wK5l" to="597t:~ApplicationStatisticsReporter.&lt;init&gt;(org.fbme.ide.PlatformRepository)" resolve="ApplicationStatisticsReporter" />
+                  <ref role="37wK5l" to="597t:~ApplicationStatisticsReporter.&lt;init&gt;(org.fbme.ide.iec61499.repository.PlatformRepository)" resolve="ApplicationStatisticsReporter" />
                   <node concept="37vLTw" id="5Z7HjgyO$Cp" role="37wK5m">
                     <ref role="3cqZAo" node="5Z7HjgyO$y9" resolve="repository" />
                   </node>

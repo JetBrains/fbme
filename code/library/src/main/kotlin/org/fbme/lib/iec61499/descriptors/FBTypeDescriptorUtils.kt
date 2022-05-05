@@ -52,10 +52,10 @@ internal object FBTypeDescriptorUtils {
     @JvmStatic
     fun getSocketPorts(declaration: FBInterfaceDeclarationWithAdapters): List<FBPortDescriptor> {
         val res: MutableList<FBPortDescriptor> = ArrayList()
-        val outputParameters = declaration.plugs
-        for (i in outputParameters.indices) {
-            val plugDeclaration = outputParameters[i]
-            res.add(FBPortDescriptor(plugDeclaration.name, EntryKind.ADAPTER, i, true, true, plugDeclaration))
+        val inputParameters = declaration.sockets
+        for (i in inputParameters.indices) {
+            val socketDeclaration = inputParameters[i]
+            res.add(FBPortDescriptor(socketDeclaration.name, EntryKind.ADAPTER, i, true, true, socketDeclaration))
         }
         return res
     }
@@ -63,10 +63,10 @@ internal object FBTypeDescriptorUtils {
     @JvmStatic
     fun getPlugPorts(declaration: FBInterfaceDeclarationWithAdapters): List<FBPortDescriptor> {
         val res: MutableList<FBPortDescriptor> = ArrayList()
-        val outputParameters = declaration.sockets
+        val outputParameters = declaration.plugs
         for (i in outputParameters.indices) {
-            val socketDeclaration = outputParameters[i]
-            res.add(FBPortDescriptor(socketDeclaration.name, EntryKind.ADAPTER, i, false, true, socketDeclaration))
+            val plugDeclaration = outputParameters[i]
+            res.add(FBPortDescriptor(plugDeclaration.name, EntryKind.ADAPTER, i, false, true, plugDeclaration))
         }
         return res
     }

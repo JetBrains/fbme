@@ -10,29 +10,18 @@
   <imports>
     <import index="tpcu" ref="r:00000000-0000-4000-0000-011c89590282(jetbrains.mps.lang.core.behavior)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
-    <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(org.fbme.ide.iec61499.lang.behavior)" />
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
-    <import index="go3h" ref="r:c95c1d38-95d5-42ab-aead-d308fc2b6566(org.fbme.ide.iec61499.adapter.interfacepart)" />
-    <import index="82uw" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.function(JDK/)" />
-    <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" />
-    <import index="dush" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.persistence(MPS.OpenAPI/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
     <import index="cwd8" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations(org.fbme.lib/)" />
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
-    <import index="74cb" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.instances(org.fbme.lib/)" />
-    <import index="v4vf" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499(org.fbme.lib/)" />
-    <import index="1u7h" ref="r:3c4663c2-1cde-45a1-97cb-9049b04f4007(org.fbme.ide.iec61499.repository)" />
-    <import index="6iyo" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork.subapp(org.fbme.lib/)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
-    <import index="lv7i" ref="r:5472e35e-027d-42bb-bcce-32726ec4c9a9(org.fbme.ide.iec61499.adapter.ecc)" />
-    <import index="uvki" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
-    <import index="1ctc" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util.stream(JDK/)" />
+    <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -2335,23 +2324,23 @@
                         <node concept="3clFbJ" id="1KgvZpgeSs4" role="3cqZAp">
                           <node concept="3clFbS" id="1KgvZpgeSs5" role="3clFbx">
                             <node concept="3cpWs6" id="1KgvZpgeSs6" role="3cqZAp">
-                              <node concept="2YIFZM" id="1KgvZpgeSs7" role="3cqZAk">
-                                <ref role="37wK5l" to="g27j:~PortPath.createPlugPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.PlugDeclaration)" resolve="createPlugPortPath" />
+                              <node concept="2YIFZM" id="5NqDTbzjyzt" role="3cqZAk">
+                                <ref role="37wK5l" to="g27j:~PortPath.createSocketPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.SocketDeclaration)" resolve="createSocketPortPath" />
                                 <ref role="1Pybhc" to="g27j:~PortPath" resolve="PortPath" />
-                                <node concept="37vLTw" id="1KgvZpgeSs8" role="37wK5m">
+                                <node concept="37vLTw" id="5NqDTbzjyzu" role="37wK5m">
                                   <ref role="3cqZAo" node="1KgvZpgeSrP" resolve="fb" />
                                 </node>
-                                <node concept="2OqwBi" id="1KgvZpgeSs9" role="37wK5m">
-                                  <node concept="37vLTw" id="1KgvZpgeSsa" role="2Oq$k0">
+                                <node concept="2OqwBi" id="5NqDTbzjyzv" role="37wK5m">
+                                  <node concept="37vLTw" id="5NqDTbzjyzw" role="2Oq$k0">
                                     <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
                                   </node>
-                                  <node concept="liA8E" id="1KgvZpgeSsb" role="2OqNvi">
+                                  <node concept="liA8E" id="5NqDTbzjyzx" role="2OqNvi">
                                     <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
-                                    <node concept="37vLTw" id="1KgvZpgeSsc" role="37wK5m">
+                                    <node concept="37vLTw" id="5NqDTbzjyzy" role="37wK5m">
                                       <ref role="3cqZAo" node="1KgvZpgeSrZ" resolve="declaration" />
                                     </node>
-                                    <node concept="3VsKOn" id="1KgvZpgeSsd" role="37wK5m">
-                                      <ref role="3VsUkX" to="cwd8:~PlugDeclaration" resolve="PlugDeclaration" />
+                                    <node concept="3VsKOn" id="5NqDTbzjyzz" role="37wK5m">
+                                      <ref role="3VsUkX" to="cwd8:~SocketDeclaration" resolve="SocketDeclaration" />
                                     </node>
                                   </node>
                                 </node>

@@ -7,18 +7,14 @@ plugins {
 dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:library"))
-    implementation(project(":code:platform", "mps"))
-    implementation(project(":code:richediting", "mps"))
+    implementation(project(":code:platform"))
+    implementation(project(":code:richediting" ))
 
     mpsImplementation(project(":code:library", "mps"))
+    mpsImplementation(project(":code:language", "mps"))
 }
 
 mps {
-    artifactName = "smv-debugger"
-    buildScriptName = "fbme_smvdebugger"
-}
-
-val mpsPrepare by tasks.getting(Copy::class) {
-    from("build/libs/smv-debugger.jar")
-    into("solutions/org.fbme.smvDebugger/lib")
+    buildScriptName.set("fbme_smvdebugger")
+    moduleName.set("org.fbme.smv-debugger.lib")
 }

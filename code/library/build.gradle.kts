@@ -15,9 +15,9 @@ dependencies {
 }
 
 mps {
-    artifactName = "library"
-    buildScriptName = "fbme_library"
-    skipGeneration = true
+    buildScriptName.set("fbme_library")
+    libraryFilters.add("antlr4-runtime")
+    moduleName.set("org.fbme.lib")
 }
 
 // to mark them as source set in idea module
@@ -29,19 +29,9 @@ sourceSets {
     }
 }
 
-val mpsAssemble by tasks.getting {
-    inputs.dir("out")
-}
-
 val generateGrammarSource by tasks.getting
 
 val compileKotlin by tasks.getting(KotlinCompile::class) {
     dependsOn(generateGrammarSource)
     kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
-}
-
-tasks.named<Copy>("mpsPrepare") {
-    from(configurations.antlr.get().files.find { it.name.startsWith("antlr4-runtime") })
-    from("build/libs")
-    into("out")
 }
