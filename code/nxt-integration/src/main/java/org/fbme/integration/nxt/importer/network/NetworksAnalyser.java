@@ -22,6 +22,8 @@ public class NetworksAnalyser {
     private final NetworkConverter converter;
     private final CompositeCreator creator;
 
+    private static final long SUBGRAPH_MAX_BLOCKS_SIZE = 5;
+
     public NetworksAnalyser() {
         this.searcher = new UllmannSearcher();
         this.converter = new NetworkConverter();
@@ -346,8 +348,9 @@ public class NetworksAnalyser {
         for (int i = 3; i < Math.pow(2, length); i++) {
             List<Boolean> mask = Integer.toBinaryString(i).chars().mapToObj(c -> c == (byte) '1').collect(Collectors.toList());
 
+            long subgraphBlockCount = mask.stream().filter(a -> a).count();
             // throw away masks with only one true
-            if (mask.stream().filter(a -> a).count() == 1) {
+            if (subgraphBlockCount == 1 || subgraphBlockCount > SUBGRAPH_MAX_BLOCKS_SIZE) {
                 continue;
             }
 
