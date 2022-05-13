@@ -40,7 +40,6 @@ public class DeclarationKeyInfo {
         Optional<DeclarationKey> declarationKey = declarationKeyCopySaveMap.keySet().stream()
                 .filter(object -> (object.getFbNetwork() == fbNetwork &&
                         object.getFbType() == fbType &&
-                        object.getBlockDeclaration() == blockDeclaration &&
                         object.getPortDeclaration() == portDeclaration) ||
                         (object.getFbType() == fbType &&
                                 object.getPortDeclaration() == portDeclaration &&

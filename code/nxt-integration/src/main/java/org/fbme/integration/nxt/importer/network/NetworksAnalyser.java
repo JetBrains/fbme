@@ -22,7 +22,7 @@ public class NetworksAnalyser {
     private final NetworkConverter converter;
     private final CompositeCreator creator;
 
-    private static final long SUBGRAPH_MAX_BLOCKS_SIZE = 5;
+    private static final long SUBGRAPH_MAX_BLOCKS_SIZE = 8;
 
     public NetworksAnalyser() {
         this.searcher = new UllmannSearcher();
@@ -37,7 +37,7 @@ public class NetworksAnalyser {
         while (requests.size() > 0) {
             RefactoringRequest processedRequest = requests
                     .stream()
-                    .max(Comparator.comparing(r -> r.subgraph.vertices.size()))
+                    .max(new RefactoringRequestComparator())
                     .get();
 
             processRequest(processedRequest, sModel, factory);
@@ -92,12 +92,6 @@ public class NetworksAnalyser {
                     if (!assignmentsList.isEmpty()) {
                         RefactoringRequest request = checkRequestExistence(requests, subgraph);
 
-                        // reverse maps to get subgraph vertex numbers by graph vertex numbers
-                        assignmentsList = assignmentsList
-                                .stream()
-                                .map(map -> map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey)))
-                                .collect(Collectors.toList());
-
                         if (request == null) {
                             requests.add(createNewRequest(
                                     assignmentsList,
@@ -107,6 +101,12 @@ public class NetworksAnalyser {
                                     networkByGraph.get(subgraphEntry.getKey())
                             ));
                         } else {
+                            // reverse maps to get subgraph vertex numbers by graph vertex numbers
+                            assignmentsList = assignmentsList
+                                    .stream()
+                                    .map(map -> map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey)))
+                                    .collect(Collectors.toList());
+
                             supplyExistedRequest(
                                     request,
                                     assignmentsList,
@@ -131,7 +131,7 @@ public class NetworksAnalyser {
             FBNetwork subgraphNetwork
     ) {
         // take any assignments to set graph information in request
-        List<Integer> orderedSubgraphVertexNumbers = new ArrayList<>(assignmentsList.get(0).values());
+        List<Integer> orderedSubgraphVertexNumbers = new ArrayList<>(assignmentsList.get(0).keySet());
         RefactoringRequest request = new RefactoringRequest(
                 subgraph,
                 subgraphNetwork,
@@ -140,7 +140,9 @@ public class NetworksAnalyser {
         );
 
         for (Map<Integer, Integer> assignments : assignmentsList) {
-            List<Integer> orderedGraphVertexNumbers = new ArrayList<>(assignments.keySet());
+            List<Integer> orderedGraphVertexNumbers = orderedSubgraphVertexNumbers.stream()
+                    .map(assignments::get)
+                    .collect(Collectors.toList());
             request.addNetworkSubgraphDeclarations(
                     graphNetwork,
                     orderedGraphVertexNumbers,
@@ -153,7 +155,7 @@ public class NetworksAnalyser {
 
     private void supplyExistedRequest(
             RefactoringRequest request,
-            List<Map<Integer, Integer>> assignmentsList,
+            List<Map<Integer, Integer>> reversedAssignmentsList,
             Graph subgraph,
             FBNetwork graphNetwork,
             FBNetwork subgraphNetwork
@@ -174,8 +176,8 @@ public class NetworksAnalyser {
             return;
         }
 
-        for (Map<Integer, Integer> assignments : assignmentsList) {
-            Set<Integer> graphVertexNumbers = assignments.keySet();
+        for (Map<Integer, Integer> reversedAssignments : reversedAssignmentsList) {
+            Set<Integer> graphVertexNumbers = reversedAssignments.keySet();
 
             NetworkSubgraphDeclarations graphNsg = request.networkSubgraphDeclarations
                     .stream()
@@ -196,7 +198,7 @@ public class NetworksAnalyser {
 
             List<Integer> orderedSubgraphVertexNumbers = graphNsg.getSubgraphVertexNumbers()
                     .stream()
-                    .map(assignments::get)
+                    .map(reversedAssignments::get)
                     .collect(Collectors.toList());
 
             request.addNetworkSubgraphDeclarationsWithCheck(
@@ -364,5 +366,20 @@ public class NetworksAnalyser {
         }
 
         return masks;
+    }
+
+    private static class RefactoringRequestComparator implements Comparator<RefactoringRequest> {
+        @Override
+        public int compare(RefactoringRequest request1, RefactoringRequest request2) {
+            int size1 = request1.subgraph.vertices.size();
+            int size2 = request2.subgraph.vertices.size();
+            if (size1 < size2) {
+                return -1;
+            }
+            if (size1 > size2) {
+                return 1;
+            }
+            return Integer.compare(request1.networkSubgraphDeclarations.size(), request2.networkSubgraphDeclarations.size());
+        }
     }
 }
