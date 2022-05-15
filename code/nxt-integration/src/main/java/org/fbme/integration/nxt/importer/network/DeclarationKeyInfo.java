@@ -10,9 +10,11 @@ import java.util.Map;
 import java.util.Optional;
 
 public class DeclarationKeyInfo {
+    private final boolean singleCreation;
     public Map<DeclarationKey, DeclarationKey> declarationKeyCopySaveMap;
 
-    public DeclarationKeyInfo() {
+    public DeclarationKeyInfo(boolean singleCreation) {
+        this.singleCreation = singleCreation;
         this.declarationKeyCopySaveMap = new HashMap<>();
     }
 
@@ -40,6 +42,7 @@ public class DeclarationKeyInfo {
         Optional<DeclarationKey> declarationKey = declarationKeyCopySaveMap.keySet().stream()
                 .filter(object -> (object.getFbNetwork() == fbNetwork &&
                         object.getFbType() == fbType &&
+                        (!singleCreation || object.getBlockDeclaration() == blockDeclaration) &&
                         object.getPortDeclaration() == portDeclaration) ||
                         (object.getFbType() == fbType &&
                                 object.getPortDeclaration() == portDeclaration &&

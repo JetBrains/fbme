@@ -92,7 +92,8 @@ public class CompositeCreator {
                 null,
                 sModel,
                 factory,
-                declarationExtractorsByNetwork.values()
+                declarationExtractorsByNetwork.values(),
+                false
         );
     }
 
@@ -138,7 +139,8 @@ public class CompositeCreator {
             String compositeName,
             SModel sModel,
             IEC61499Factory factory,
-            Collection<DeclarationExtractor> declarationExtractors
+            Collection<DeclarationExtractor> declarationExtractors,
+            boolean singleCreation
     ) {
         List<String> innerFBs = functionBlockDeclarationList
                 .stream()
@@ -159,7 +161,7 @@ public class CompositeCreator {
         CompositeFBTypeDeclaration compositeFB = factory.createCompositeFBTypeDeclaration(compositeFBIdentifier); // name in interface (TODO set by user)
         sModel.addRootNode(((PlatformElement) compositeFB).getNode());
 
-        DeclarationKeyInfo declarationKeyInfo = new DeclarationKeyInfo();
+        DeclarationKeyInfo declarationKeyInfo = new DeclarationKeyInfo(singleCreation);
         for (var entry : compositeTypeIODeclarations.entrySet()) {
             FunctionBlockDeclaration blockDeclaration = entry.getKey();
             FBTypeDeclaration fbType = blockDeclaration.getTypeReference().getTarget();
@@ -375,7 +377,8 @@ public class CompositeCreator {
                 compositeName,
                 sModel,
                 factory,
-                Set.of(declarationExtractor)
+                Set.of(declarationExtractor),
+                true
         );
 
         insertCompositeFbIntoNetwork(fbNetwork, functionBlockDeclarationList, compositeFB, declarationExtractor, factory);

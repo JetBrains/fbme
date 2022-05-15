@@ -15,7 +15,7 @@
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
-    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes.lib/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="vdx1" ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(org.fbme.ide.platform.projectWizard)" />
@@ -325,9 +325,6 @@
         <child id="1163670683720" name="body" index="3Kbo56" />
       </concept>
       <concept id="1082113931046" name="jetbrains.mps.baseLanguage.structure.ContinueStatement" flags="nn" index="3N13vt" />
-      <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
-        <child id="8356039341262087992" name="line" index="1aUNEU" />
-      </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
       <concept id="1146644641414" name="jetbrains.mps.baseLanguage.structure.ProtectedVisibility" flags="nn" index="3Tmbuc" />
@@ -375,14 +372,6 @@
       </concept>
       <concept id="4452961908202556907" name="jetbrains.mps.lang.core.structure.BaseCommentAttribute" flags="ng" index="1X3_iC">
         <child id="3078666699043039389" name="commentedNode" index="8Wnug" />
-      </concept>
-    </language>
-    <language id="c7fb639f-be78-4307-89b0-b5959c3fa8c8" name="jetbrains.mps.lang.text">
-      <concept id="155656958578482948" name="jetbrains.mps.lang.text.structure.Word" flags="nn" index="3oM_SD">
-        <property id="155656958578482949" name="value" index="3oM_SC" />
-      </concept>
-      <concept id="2535923850359271782" name="jetbrains.mps.lang.text.structure.Line" flags="nn" index="1PaTwC">
-        <child id="2535923850359271783" name="elements" index="1PaTwD" />
       </concept>
     </language>
     <language id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections">
@@ -3086,34 +3075,30 @@
     <property role="TrG5h" value="IsomorphismSearchPlugin" />
     <node concept="2uRRBT" id="3jjJUY4f7KG" role="2uRRB$">
       <node concept="3clFbS" id="3jjJUY4f7KH" role="2VODD2">
-        <node concept="3clFbF" id="3jjJUY4f8Bh" role="3cqZAp">
-          <node concept="2OqwBi" id="3jjJUY4f9hD" role="3clFbG">
-            <node concept="2OqwBi" id="3jjJUY4f8Mc" role="2Oq$k0">
-              <node concept="2YIFZM" id="3jjJUY4f8C0" role="2Oq$k0">
-                <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
-                <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
-                <node concept="1KvdUw" id="3jjJUY4f8Co" role="37wK5m" />
-              </node>
-              <node concept="liA8E" id="3jjJUY4f99Q" role="2OqNvi">
-                <ref role="37wK5l" to="uvki:~PlatformRepository.getDeclarationsScope()" resolve="getDeclarationsScope" />
-              </node>
-            </node>
-            <node concept="liA8E" id="3jjJUY4f9yj" role="2OqNvi">
-              <ref role="37wK5l" to="v4vf:~DeclarationsScope.findAllFBTypeDeclarations()" resolve="findAllFBTypeDeclarations" />
-            </node>
-          </node>
-        </node>
-        <node concept="3SKdUt" id="3jjJUY4f9KE" role="3cqZAp">
-          <node concept="1PaTwC" id="3jjJUY4f9KF" role="1aUNEU">
-            <node concept="3oM_SD" id="3jjJUY4f9Pu" role="1PaTwD">
-              <property role="3oM_SC" value="runReadAction()" />
+        <node concept="3clFbF" id="58o4d6TL_8V" role="3cqZAp">
+          <node concept="2YIFZM" id="58o4d6TL_e1" role="3clFbG">
+            <ref role="37wK5l" to="dfgj:~IsomorphismManagerProvider.init(jetbrains.mps.project.Project,org.fbme.ide.iec61499.repository.PlatformRepository)" resolve="init" />
+            <ref role="1Pybhc" to="dfgj:~IsomorphismManagerProvider" resolve="IsomorphismManagerProvider" />
+            <node concept="1KvdUw" id="58o4d6TL_fk" role="37wK5m" />
+            <node concept="2YIFZM" id="58o4d6TL_pC" role="37wK5m">
+              <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
+              <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+              <node concept="1KvdUw" id="58o4d6TL_qm" role="37wK5m" />
             </node>
           </node>
         </node>
       </node>
     </node>
     <node concept="2uRRBN" id="3jjJUY4f9PJ" role="2uRRB_">
-      <node concept="3clFbS" id="3jjJUY4f9PK" role="2VODD2" />
+      <node concept="3clFbS" id="3jjJUY4f9PK" role="2VODD2">
+        <node concept="3clFbF" id="58o4d6TL_Pp" role="3cqZAp">
+          <node concept="2YIFZM" id="58o4d6TL_PR" role="3clFbG">
+            <ref role="37wK5l" to="dfgj:~IsomorphismManagerProvider.dispose(jetbrains.mps.project.Project)" resolve="dispose" />
+            <ref role="1Pybhc" to="dfgj:~IsomorphismManagerProvider" resolve="IsomorphismManagerProvider" />
+            <node concept="1KvdUw" id="58o4d6TL_Qg" role="37wK5m" />
+          </node>
+        </node>
+      </node>
     </node>
   </node>
 </model>

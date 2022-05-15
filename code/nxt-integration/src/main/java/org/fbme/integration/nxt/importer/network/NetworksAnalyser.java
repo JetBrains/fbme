@@ -368,7 +368,7 @@ public class NetworksAnalyser {
         return masks;
     }
 
-    private static class RefactoringRequestComparator implements Comparator<RefactoringRequest> {
+    public static class RefactoringRequestComparator implements Comparator<RefactoringRequest> {
         @Override
         public int compare(RefactoringRequest request1, RefactoringRequest request2) {
             int size1 = request1.subgraph.vertices.size();
