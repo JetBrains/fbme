@@ -53,10 +53,16 @@ public class NetworksAnalyser {
         return creator.processRefactoringRequest(request, sModel, factory);
     }
 
-    public List<RefactoringRequest> collectRequests(List<FBNetwork> fbNetworks) {
-        Map<Graph, FBNetwork> networkByGraph = fbNetworks
+    public Map<Graph, FBNetwork> convertNetworks(List<FBNetwork> fbNetworks) {
+        return fbNetworks
                 .stream()
                 .collect(Collectors.toMap(converter::convert, Function.identity()));
+    }
+
+    public List<RefactoringRequest> collectRequests(Map<Graph, FBNetwork> networkByGraph) {
+        if (networkByGraph.isEmpty()) {
+            return List.of();
+        }
 
         Map<Graph, List<Graph>> subgraphsByGraph = networkByGraph
                 .keySet()
@@ -121,6 +127,10 @@ public class NetworksAnalyser {
         }
 
         return requests;
+    }
+
+    public List<RefactoringRequest> collectRequests(List<FBNetwork> fbNetworks) {
+        return collectRequests(convertNetworks(fbNetworks));
     }
 
     private RefactoringRequest createNewRequest(

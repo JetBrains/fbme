@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="ctb1">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="ei1">
+        <With Var="iv1" />
+      </Event>
+      <Event Name="ei2">
+        <With Var="iv2" />
+      </Event>
+      <Event Name="ei3">
+        <With Var="iv3" />
+      </Event>
+      <Event Name="ei4">
+        <With Var="iv4" />
+      </Event>
+      <Event Name="ei5">
+        <With Var="iv5" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="eo1">
+        <With Var="ov1" />
+      </Event>
+      <Event Name="eo2">
+        <With Var="ov2" />
+      </Event>
+      <Event Name="eo3">
+        <With Var="ov3" />
+      </Event>
+      <Event Name="eo4">
+        <With Var="ov4" />
+      </Event>
+      <Event Name="eo5">
+        <With Var="ov5" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="iv1" Type="BOOL" />
+      <VarDeclaration Name="iv2" Type="BOOL" />
+      <VarDeclaration Name="iv3" Type="BOOL" />
+      <VarDeclaration Name="iv4" Type="BOOL" />
+      <VarDeclaration Name="iv5" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ov1" Type="BOOL" />
+      <VarDeclaration Name="ov2" Type="BOOL" />
+      <VarDeclaration Name="ov3" Type="BOOL" />
+      <VarDeclaration Name="ov4" Type="BOOL" />
+      <VarDeclaration Name="ov5" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="FB1" Type="btb1" x="506" y="0" />
+    <FB Name="FB2" Type="btb2" x="1300" y="0" />
+    <FB Name="FB3" Type="btb3" x="2240" y="-20" />
+    <FB Name="FB4" Type="btb1" x="489" y="760" />
+    <FB Name="FB5" Type="btb2" x="1310" y="740" />
+    <FB Name="FB6" Type="btb3" x="2230" y="710" />
+    <FB Name="FB7" Type="btb1" x="496" y="1669" />
+    <FB Name="FB8" Type="btb2" x="1296" y="1633" />
+    <FB Name="FB9" Type="btb3" x="2220" y="1566" />
+    <DataConnections>
+      <Connection Source="iv1" Destination="FB1.iv1" dx1="170" />
+      <Connection Source="iv3" Destination="FB1.iv3" dx1="170" />
+      <Connection Source="iv5" Destination="FB1.iv5" dx1="170" />
+      <Connection Source="iv2" Destination="FB4.iv2" dx1="160" />
+      <Connection Source="iv4" Destination="FB4.iv4" dx1="160" />
+      <Connection Source="iv5" Destination="FB7.iv5" dx1="163" />
+      <Connection Source="iv4" Destination="FB7.iv4" dx1="163" />
+      <Connection Source="FB1.ov4" Destination="FB2.iv2" dx1="260" />
+      <Connection Source="FB1.ov2" Destination="FB2.iv4" dx1="260" />
+      <Connection Source="FB1.ov1" Destination="FB2.iv3" dx1="260" />
+      <Connection Source="FB4.ov4" Destination="FB5.iv2" dx1="269" />
+      <Connection Source="FB4.ov2" Destination="FB5.iv4" dx1="269" />
+      <Connection Source="FB4.ov1" Destination="FB5.iv3" dx1="269" />
+      <Connection Source="FB7.ov4" Destination="FB8.iv2" dx1="266" />
+      <Connection Source="FB7.ov2" Destination="FB8.iv4" dx1="266" />
+      <Connection Source="FB7.ov1" Destination="FB8.iv3" dx1="266" />
+      <Connection Source="FB2.ov2" Destination="FB3.iv1" dx1="337" />
+      <Connection Source="FB5.ov2" Destination="FB6.iv1" dx1="327" />
+      <Connection Source="FB8.ov2" Destination="FB9.iv1" dx1="330" />
+      <Connection Source="FB3.ov2" Destination="ov1" dx1="260" />
+      <Connection Source="FB3.ov3" Destination="ov2" dx1="260" />
+      <Connection Source="FB3.ov4" Destination="ov3" dx1="260" />
+      <Connection Source="FB6.ov2" Destination="ov2" dx1="270" />
+      <Connection Source="FB6.ov3" Destination="ov3" dx1="270" />
+      <Connection Source="FB6.ov4" Destination="ov4" dx1="270" />
+      <Connection Source="FB9.ov2" Destination="ov3" dx1="280" />
+      <Connection Source="FB9.ov3" Destination="ov4" dx1="280" />
+      <Connection Source="FB9.ov4" Destination="ov5" dx1="280" />
+      <Connection Source="FB2.ov3" Destination="FB3.iv4" dx1="337" />
+      <Connection Source="FB5.ov3" Destination="FB6.iv4" dx1="327" />
+      <Connection Source="FB8.ov3" Destination="FB9.iv4" dx1="330" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="ei1" Destination="FB1.ei1" dx1="170" />
+      <Connection Source="ei3" Destination="FB1.ei3" dx1="170" />
+      <Connection Source="ei5" Destination="FB1.ei5" dx1="170" />
+      <Connection Source="ei2" Destination="FB4.ei2" dx1="160" />
+      <Connection Source="ei4" Destination="FB4.ei4" dx1="160" />
+      <Connection Source="ei5" Destination="FB7.ei5" dx1="163" />
+      <Connection Source="ei4" Destination="FB7.ei4" dx1="163" />
+      <Connection Source="ei1" Destination="FB7.ei1" dx1="163" />
+      <Connection Source="FB1.eo1" Destination="FB2.ei1" />
+      <Connection Source="FB1.eo2" Destination="FB2.ei4" dx1="260" />
+      <Connection Source="FB1.eo3" Destination="FB2.ei3" />
+      <Connection Source="FB1.eo5" Destination="FB2.ei2" dx1="260" />
+      <Connection Source="FB4.eo1" Destination="FB5.ei1" dx1="269" />
+      <Connection Source="FB4.eo2" Destination="FB5.ei4" dx1="269" />
+      <Connection Source="FB4.eo3" Destination="FB5.ei3" dx1="269" />
+      <Connection Source="FB4.eo5" Destination="FB5.ei2" dx1="269" />
+      <Connection Source="FB7.eo1" Destination="FB8.ei1" dx1="266" />
+      <Connection Source="FB7.eo2" Destination="FB8.ei4" dx1="266" />
+      <Connection Source="FB7.eo3" Destination="FB8.ei3" dx1="266" />
+      <Connection Source="FB7.eo5" Destination="FB8.ei2" dx1="266" />
+      <Connection Source="FB2.eo2" Destination="FB3.ei1" dx1="337" />
+      <Connection Source="FB5.eo2" Destination="FB6.ei1" dx1="327" />
+      <Connection Source="FB3.eo2" Destination="eo1" dx1="230" />
+      <Connection Source="FB3.eo3" Destination="eo2" dx1="230" />
+      <Connection Source="FB3.eo4" Destination="eo3" dx1="230" />
+      <Connection Source="FB6.eo2" Destination="eo2" dx1="240" />
+      <Connection Source="FB6.eo3" Destination="eo3" dx1="240" />
+      <Connection Source="FB6.eo4" Destination="eo4" dx1="240" />
+      <Connection Source="FB9.eo2" Destination="eo3" dx1="246" />
+      <Connection Source="FB9.eo3" Destination="eo4" dx1="246" />
+      <Connection Source="FB9.eo4" Destination="eo5" dx1="246" />
+      <Connection Source="FB2.eo4" Destination="FB3.ei4" dx1="337" />
+      <Connection Source="FB5.eo4" Destination="FB6.ei4" dx1="327" />
+      <Connection Source="FB8.eo4" Destination="FB9.ei4" dx1="330" />
+      <Connection Source="FB8.eo2" Destination="FB9.ei1" dx1="330" />
+    </EventConnections>
+    <EndpointCoordinate Name="eo1" x="2970" y="63" />
+    <EndpointCoordinate Name="eo2" x="2970" y="103" />
+    <EndpointCoordinate Name="eo4" x="2970" y="213" />
+    <EndpointCoordinate Name="eo3" x="2970" y="153" />
+    <EndpointCoordinate Name="eo5" x="2970" y="256" />
+    <EndpointCoordinate Name="ov1" x="3036" y="576" />
+    <EndpointCoordinate Name="ov2" x="3036" y="610" />
+    <EndpointCoordinate Name="ov3" x="3036" y="663" />
+    <EndpointCoordinate Name="ov4" x="3036" y="716" />
+    <EndpointCoordinate Name="ov5" x="3036" y="776" />
+  </FBNetwork>
+</FBType>
+

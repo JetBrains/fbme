@@ -6,6 +6,7 @@ import jetbrains.mps.nodeEditor.Highlighter;
 import jetbrains.mps.project.Project;
 import org.fbme.ide.iec61499.repository.PlatformElement;
 import org.fbme.ide.iec61499.repository.PlatformRepository;
+import org.fbme.integration.nxt.importer.graph.model.Graph;
 import org.fbme.integration.nxt.importer.network.NetworksAnalyser;
 import org.fbme.integration.nxt.importer.network.RefactoringRequest;
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration;
@@ -15,6 +16,7 @@ import org.jetbrains.mps.openapi.model.SNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -24,15 +26,17 @@ public class IsomorphismManager {
     private NetworksAnalyser networksAnalyser;
     private IsomorphismHighlighter isomorphismHighlighter;
     private Highlighter highlighter;
+    private volatile Map<Graph, FBNetwork> networkByGraph;
     private volatile List<RefactoringRequest> requests;
     private List<IsomorphismListener> listeners;
     private Thread collectThread;
-    private final Runnable collectListener = () -> requests = networksAnalyser.collectRequests(getNetworks());
+    private final Runnable collectListener = () -> networkByGraph = networksAnalyser.convertNetworks(getNetworks());
 
     private final Runnable launchListener = () -> {
         while (true) {
             try {
                 project.getRepository().getModelAccess().runReadAction(collectListener);
+                requests = networksAnalyser.collectRequests(networkByGraph);
                 Thread.sleep(120000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

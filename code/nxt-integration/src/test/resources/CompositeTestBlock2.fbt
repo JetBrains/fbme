@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeTestBlock2">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="eventInput1">
+        <With Var="inputVar1" />
+      </Event>
+      <Event Name="eventInput2">
+        <With Var="inputVar2" />
+      </Event>
+      <Event Name="eventInput3">
+        <With Var="inputVar3" />
+      </Event>
+      <Event Name="eventInput4">
+        <With Var="inputVar4" />
+      </Event>
+      <Event Name="eventInput5">
+        <With Var="inputVar5" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="eventOutput1">
+        <With Var="outputVar1" />
+      </Event>
+      <Event Name="eventOutput2">
+        <With Var="outputVar2" />
+      </Event>
+      <Event Name="eventOutput3">
+        <With Var="outputVar3" />
+      </Event>
+      <Event Name="eventOutput4">
+        <With Var="outputVar4" />
+      </Event>
+      <Event Name="eventOutput5">
+        <With Var="outputVar5" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="inputVar1" Type="BOOL" />
+      <VarDeclaration Name="inputVar2" Type="BOOL" />
+      <VarDeclaration Name="inputVar3" Type="BOOL" />
+      <VarDeclaration Name="inputVar4" Type="BOOL" />
+      <VarDeclaration Name="inputVar5" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="outputVar1" Type="BOOL" />
+      <VarDeclaration Name="outputVar2" Type="BOOL" />
+      <VarDeclaration Name="outputVar3" Type="BOOL" />
+      <VarDeclaration Name="outputVar4" Type="BOOL" />
+      <VarDeclaration Name="outputVar5" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="FB3" Type="BasicTestBlock1" x="466" y="1530" />
+    <FB Name="FB4" Type="BasicTestBlock1" x="1829" y="246" />
+    <DataConnections>
+      <Connection Source="FB3.outputVar3" Destination="FB4.inputVar3" dx1="310" />
+      <Connection Source="FB4.outputVar4" Destination="outputVar4" dx1="247" />
+      <Connection Source="inputVar1" Destination="FB3.inputVar1" dy="790" dx2="119" dx1="116" />
+      <Connection Source="inputVar3" Destination="FB3.inputVar3" dy="790" dx2="119" dx1="116" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="FB3.eventOutput3" Destination="FB4.eventInput3" dx1="310" />
+      <Connection Source="FB4.eventOutput3" Destination="eventOutput3" dx1="213" />
+      <Connection Source="eventInput4" Destination="FB3.eventInput4" dy="790" dx2="119" dx1="130" />
+    </EventConnections>
+    <EndpointCoordinate Name="eventOutput1" x="2970" y="63" />
+    <EndpointCoordinate Name="eventOutput2" x="2970" y="103" />
+    <EndpointCoordinate Name="eventOutput4" x="2970" y="213" />
+    <EndpointCoordinate Name="eventOutput3" x="2970" y="153" />
+    <EndpointCoordinate Name="eventOutput5" x="2970" y="256" />
+    <EndpointCoordinate Name="outputVar1" x="3036" y="576" />
+    <EndpointCoordinate Name="outputVar2" x="3036" y="610" />
+    <EndpointCoordinate Name="outputVar3" x="3036" y="663" />
+    <EndpointCoordinate Name="outputVar4" x="3036" y="716" />
+    <EndpointCoordinate Name="outputVar5" x="3036" y="776" />
+  </FBNetwork>
+</FBType>
+

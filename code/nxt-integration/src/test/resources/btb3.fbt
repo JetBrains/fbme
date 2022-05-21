@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="btb3">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="ei1">
+        <With Var="iv1" />
+      </Event>
+      <Event Name="ei4">
+        <With Var="iv4" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="eo2">
+        <With Var="ov2" />
+      </Event>
+      <Event Name="eo3">
+        <With Var="ov3" />
+      </Event>
+      <Event Name="eo4">
+        <With Var="ov4" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="iv1" Type="INT" />
+      <VarDeclaration Name="iv4" Type="ANY" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ov2" Type="STRING" />
+      <VarDeclaration Name="ov3" Type="BOOL" />
+      <VarDeclaration Name="ov4" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

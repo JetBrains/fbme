@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BasicTestBlock1">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="eventInput1">
+        <With Var="inputVar1" />
+      </Event>
+      <Event Name="eventInput2">
+        <With Var="inputVar2" />
+      </Event>
+      <Event Name="eventInput3">
+        <With Var="inputVar3" />
+      </Event>
+      <Event Name="eventInput4">
+        <With Var="inputVar4" />
+      </Event>
+      <Event Name="eventInput5">
+        <With Var="inputVar5" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="eventOutput1">
+        <With Var="outputVar1" />
+      </Event>
+      <Event Name="eventOutput2">
+        <With Var="outputVar2" />
+      </Event>
+      <Event Name="eventOutput3">
+        <With Var="outputVar3" />
+      </Event>
+      <Event Name="eventOutput4">
+        <With Var="outputVar4" />
+      </Event>
+      <Event Name="eventOutput5">
+        <With Var="outputVar5" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="inputVar1" Type="BOOL" />
+      <VarDeclaration Name="inputVar2" Type="BOOL" />
+      <VarDeclaration Name="inputVar3" Type="BOOL" />
+      <VarDeclaration Name="inputVar4" Type="BOOL" />
+      <VarDeclaration Name="inputVar5" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="outputVar1" Type="BOOL" />
+      <VarDeclaration Name="outputVar2" Type="BOOL" />
+      <VarDeclaration Name="outputVar3" Type="BOOL" />
+      <VarDeclaration Name="outputVar4" Type="BOOL" />
+      <VarDeclaration Name="outputVar5" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

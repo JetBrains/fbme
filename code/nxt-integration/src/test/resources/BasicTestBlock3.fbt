@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BasicTestBlock3">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="eventInput1">
+        <With Var="inputVar1" />
+      </Event>
+      <Event Name="eventInput4">
+        <With Var="inputVar4" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="eventOutput2">
+        <With Var="outputVar2" />
+      </Event>
+      <Event Name="eventOutput3">
+        <With Var="outputVar3" />
+      </Event>
+      <Event Name="eventOutput4">
+        <With Var="outputVar4" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="inputVar1" Type="INT" />
+      <VarDeclaration Name="inputVar4" Type="ANY" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="outputVar2" Type="STRING" />
+      <VarDeclaration Name="outputVar3" Type="BOOL" />
+      <VarDeclaration Name="outputVar4" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+  </BasicFB>
+</FBType>
+
