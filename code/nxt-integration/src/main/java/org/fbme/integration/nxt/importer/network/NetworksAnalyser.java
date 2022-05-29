@@ -30,6 +30,15 @@ public class NetworksAnalyser {
         this.creator = new CompositeCreator(false);
     }
 
+    /**
+     * Find all requests in project and apply all that can be applied
+     * Applying starts from request corresponding to subgraph with most vertices
+     *
+     * @param fbNetworks project networks list
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @return number of applied requests
+     */
     public int process(List<FBNetwork> fbNetworks, SModel sModel, IEC61499Factory factory) {
         List<RefactoringRequest> requests = collectRequests(fbNetworks);
 
@@ -49,16 +58,36 @@ public class NetworksAnalyser {
         return count;
     }
 
+    /**
+     * Apply given request to project
+     *
+     * @param request to apply
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @return type declaration for created composite
+     */
     public CompositeFBTypeDeclaration processRequest(RefactoringRequest request, SModel sModel, IEC61499Factory factory) {
         return creator.processRefactoringRequest(request, sModel, factory);
     }
 
+    /**
+     * Convert given networks to graph
+     *
+     * @param fbNetworks list of networks to convert
+     * @return map, key - graph, value - network
+     */
     public Map<Graph, FBNetwork> convertNetworks(List<FBNetwork> fbNetworks) {
         return fbNetworks
                 .stream()
                 .collect(Collectors.toMap(converter::convert, Function.identity()));
     }
 
+    /**
+     * Collect list of requests based on network by graph mapping
+     *
+     * @param networkByGraph mapping for request search
+     * @return list of found requests
+     */
     public List<RefactoringRequest> collectRequests(Map<Graph, FBNetwork> networkByGraph) {
         if (networkByGraph.isEmpty()) {
             return List.of();
@@ -129,10 +158,26 @@ public class NetworksAnalyser {
         return requests;
     }
 
+    /**
+     * Collect list of request for given networks
+     *
+     * @param fbNetworks project networks list
+     * @return list of found requests
+     */
     public List<RefactoringRequest> collectRequests(List<FBNetwork> fbNetworks) {
         return collectRequests(convertNetworks(fbNetworks));
     }
 
+    /**
+     * Create new refactoring request based on granted information
+     *
+     * @param assignmentsList found assignments between graph and subgraph vertices
+     * @param graph in which isomorphism was found
+     * @param subgraph for which isomorphism was found
+     * @param graphNetwork in which subgraph was found
+     * @param subgraphNetwork from which subgraph was taken
+     * @return created request
+     */
     private RefactoringRequest createNewRequest(
             List<Map<Integer, Integer>> assignmentsList,
             Graph graph,
@@ -163,6 +208,15 @@ public class NetworksAnalyser {
         return request;
     }
 
+    /**
+     * Supply existed request with info about another found isomorphic subgraphs
+     *
+     * @param request to supply
+     * @param reversedAssignmentsList found assignments between graph and subgraph vertices
+     * @param subgraph corresponding to request
+     * @param graphNetwork in which subgraph was found
+     * @param subgraphNetwork from which subgraph was taken
+     */
     private void supplyExistedRequest(
             RefactoringRequest request,
             List<Map<Integer, Integer>> reversedAssignmentsList,
@@ -219,6 +273,13 @@ public class NetworksAnalyser {
         }
     }
 
+    /**
+     * Check if request for given subgraph already exist in request list
+     *
+     * @param requests list in which request can be found
+     * @param subgraph for which request existence checked
+     * @return request for given subgraph if it was found, null otherwise
+     */
     private RefactoringRequest checkRequestExistence(List<RefactoringRequest> requests, Graph subgraph) {
         if (requests.isEmpty()) {
             return null;
@@ -233,6 +294,13 @@ public class NetworksAnalyser {
         return null;
     }
 
+    /**
+     * Check if subgraph can be found in graph by checking count of blocks of all types
+     *
+     * @param graphBlockTypes block types count map for graph
+     * @param subgraphBlockTypes block types count map for subgraph
+     * @return true if subgraph can be found in graph, false otherwise
+     */
     private boolean checkBlockCountTypes(
             Map<FBTypeDeclaration, Integer> graphBlockTypes,
             Map<FBTypeDeclaration, Integer> subgraphBlockTypes
@@ -251,6 +319,12 @@ public class NetworksAnalyser {
         return hashStorage.isGraphContainsSubgraphHash(graph, subgraph);
     }
 
+    /**
+     * Calculate count blocks of all types in given graph
+     *
+     * @param graph for which calculation processed
+     * @return map, key - block type, value - count of such blocks in graph
+     */
     private Map<FBTypeDeclaration, Integer> countGraphBlockTypes(Graph graph) {
         Map<FBTypeDeclaration, Integer> graphBlockTypes = new HashMap<>();
         for (Vertex vertex : graph.vertices) {
@@ -263,6 +337,14 @@ public class NetworksAnalyser {
         return graphBlockTypes;
     }
 
+    /**
+     * Find multiple isomorphic subgraphs for given subgraph in given graph
+     *
+     * @param graph in which to search subgraph
+     * @param subgraph to be searched
+     * @param sameNetwork if subgraph taken from graph itself
+     * @return list of assignments for found isomorphic subgraphs
+     */
     private List<Map<Integer, Integer>> findSubgraphs(Graph graph, Graph subgraph, boolean sameNetwork) {
         List<Map<Integer, Integer>> assignmentsList = new ArrayList<>();
 
@@ -290,6 +372,12 @@ public class NetworksAnalyser {
         return assignmentsList;
     }
 
+    /**
+     * Get all subgraph for given graph
+     *
+     * @param graph for which subgraphs should be returned
+     * @return list of subgraphs
+     */
     @NotNull
     private List<Graph> getAllSubgraphs(Graph graph) {
         int blockCount = graph.getVertices().size();
@@ -312,6 +400,12 @@ public class NetworksAnalyser {
         return subgraphs;
     }
 
+    /**
+     * Check if given graph is in one connected component
+     *
+     * @param graph which should be checked
+     * @return true if graph is in one connected component, false otherwise
+     */
     private boolean isOneComponent(Graph graph) {
         Map<Integer, Boolean> used = graph.getVertexNumbers()
                 .stream()
@@ -354,6 +448,12 @@ public class NetworksAnalyser {
         }
     }
 
+    /**
+     * Get all boolean masks for given length, except masks with length equal to one or length more than max length
+     *
+     * @param length for all returned masks
+     * @return list of all masks corresponding to given length
+     */
     private List<List<Boolean>> getAllMasks(int length) {
         List<List<Boolean>> masks = new ArrayList<>();
 

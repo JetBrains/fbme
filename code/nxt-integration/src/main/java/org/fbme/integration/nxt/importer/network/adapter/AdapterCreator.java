@@ -20,6 +20,15 @@ public class AdapterCreator {
     public AdapterCreator() {
     }
 
+    /**
+     * Create adapter connection between given block declarations within given network
+     *
+     * @param fbNetwork in which transformation was launched
+     * @param startDeclaration1 one of selected blocks
+     * @param startDeclaration2 one of selected blocks
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     */
     public void create(
             FBNetwork fbNetwork,
             FunctionBlockDeclaration startDeclaration1,
@@ -88,6 +97,7 @@ public class AdapterCreator {
         if (internalConnections.isEmpty()) {
             // there is no connections between given block declarations
             // or all ports within internal connections has external connections as well
+            // so we can't wrap them to adapter
             return;
         }
 
@@ -142,6 +152,16 @@ public class AdapterCreator {
         adapterConnection.setPath(new ConnectionPath((declaration2.getX() - (declaration1.getX() + getXShiftByFBType(newTypeDeclaration1))) / 2));
     }
 
+    /**
+     * Get set of connections between two given declarations which can be wraped to adapter
+     *
+     * @param declarationExtractor to extract connections
+     * @param declaration1 one of selected blocks
+     * @param declaration2 one of selected blocks
+     * @param typeDeclaration1 type of one of selected blocks
+     * @param typeDeclaration2 type of one of selected blocks
+     * @return set of found connections
+     */
     private Set<FBNetworkConnection> processInternalConnectionSearch(
             DeclarationExtractor declarationExtractor,
             FunctionBlockDeclaration declaration1,
@@ -155,6 +175,13 @@ public class AdapterCreator {
         return filterInternalConnections(declarationExtractor);
     }
 
+    /**
+     * Extract port declarations from given block declaration and add them to extractor
+     *
+     * @param declarationExtractor to extract port declarations and save them
+     * @param declaration from which port declarations will be extracted
+     * @param fbType of given declaration
+     */
     private void extractDeclarations(
             DeclarationExtractor declarationExtractor,
             FunctionBlockDeclaration declaration,
@@ -167,6 +194,13 @@ public class AdapterCreator {
         declarationExtractor.extractParameters(fbType, declaration, Type.OUTPUT, shift, null);
     }
 
+    /**
+     * Analyze collected set of internal connections and filter out all connections that have at least one external connection
+     * This based on idea that we can't wrap such connections to adapter
+     *
+     * @param declarationExtractor to get internal and external connections
+     * @return filtered set of internal connections
+     */
     private Set<FBNetworkConnection> filterInternalConnections(DeclarationExtractor declarationExtractor) {
         Set<FBNetworkConnection> internalConnections = new HashSet<>();
 
@@ -197,6 +231,17 @@ public class AdapterCreator {
         return internalConnections;
     }
 
+    /**
+     * Adjust coordinates within created composite types
+     *
+     * @param startDeclaration1 one of selected blocks
+     * @param startDeclaration2 one of selected blocks
+     * @param newTypeDeclaration1 to adjust coordinates within
+     * @param newTypeDeclaration2 to adjust coordinates within
+     * @param adapterTypeDeclaration to get coordinate shift
+     * @param plug declaration to adjust in first network
+     * @param socket declaration to adjust in second network
+     */
     private void adjustNewCompositeNetworkCoordinates(
             FunctionBlockDeclaration startDeclaration1,
             FunctionBlockDeclaration startDeclaration2,
@@ -228,6 +273,12 @@ public class AdapterCreator {
         });
     }
 
+    /**
+     * Calculate shift for X coordinate based on default characteristics and number of letters in declarations
+     *
+     * @param fbType declaration to calculate X shift
+     * @return calculated shift
+     */
     private int getXShiftByFBType(FBInterfaceDeclaration fbType) {
         if (fbType == null) {
             return 300;
@@ -247,6 +298,12 @@ public class AdapterCreator {
         return (blockWidthCount + 10) * charSize;
     }
 
+    /**
+     * Calculate shift for Y coordinate based on default characteristics and number of letters in declarations
+     *
+     * @param fbType declaration to calculate Y shift
+     * @return calculated shift
+     */
     private int getYShiftByFBType(FBInterfaceDeclaration fbType) {
         if (fbType == null) {
             return 300;
@@ -261,6 +318,9 @@ public class AdapterCreator {
         return charSize * blockWidthCount;
     }
 
+    /**
+     * Move port declarations of selected blocks from old declarations to new composite declaration and adapter type as well
+     */
     public Set<Declaration> moveDeclarationsToAdapter(
             AdapterTypeDeclaration adapterTypeDeclaration,
             Set<FBNetworkConnection> internalConnections,
@@ -384,6 +444,10 @@ public class AdapterCreator {
         return movedDeclarations;
     }
 
+    /**
+     * Move event connections to new created composite
+     * Also create and return runnable to modify type declarations by add/remove ports later
+     */
     private Runnable setupEventConnectionsWithAdapter(
             CompositeFBTypeDeclaration typeDeclarationFrom,
             CompositeFBTypeDeclaration typeDeclarationTo,
@@ -427,6 +491,10 @@ public class AdapterCreator {
         return move;
     }
 
+    /**
+     * Move parameter connections to new created composite
+     * Also create and return runnable to modify type declarations by add/remove ports later
+     */
     private Runnable setupParameterConnectionsWithAdapter(
             CompositeFBTypeDeclaration typeDeclarationFrom,
             CompositeFBTypeDeclaration typeDeclarationTo,
@@ -470,6 +538,14 @@ public class AdapterCreator {
         return move;
     }
 
+    /**
+     * Get block port declaration that have connection to given inner port declaration
+     *
+     * @param networkConnections list of connections to analyze
+     * @param declaration where port declaration should be searched
+     * @param portDeclaration from/to which connection from block declaration should exist
+     * @return found block port declaration if it exists, null otherwise
+     */
     private Declaration findBlockPortDeclarationByInnerPortPath(
             List<FBNetworkConnection> networkConnections,
             FunctionBlockDeclaration declaration,
@@ -494,6 +570,12 @@ public class AdapterCreator {
         return null;
     }
 
+    /**
+     * Remove unused inner connections based on list of moved port declarations
+     *
+     * @param fbNetwork from which inner connections should be removed
+     * @param movedDeclarations set of port declarations
+     */
     private void removeUnusedInnerIOConnections(
             FBNetwork fbNetwork,
             Set<Declaration> movedDeclarations
@@ -519,6 +601,16 @@ public class AdapterCreator {
         fbNetwork.getDataConnections().removeAll(connectionsToDelete);
     }
 
+    /**
+     * Get set of connections which should be removed from network based on already moved port declarations
+     * Also remove unused endpoint coordinates
+     *
+     * @param connections to analyze and set to removed if necessary
+     * @param movedDeclarations set of port declarations
+     * @param endpointCoordinates list of endpoint coordinates within network
+     * @param endpointCoordinateByPortPath map of endpoint coordinates by port name
+     * @return set of connections to remove
+     */
     private Set<FBNetworkConnection> collectRemovableConnectionsToEndpoints(
             List<FBNetworkConnection> connections,
             Set<Declaration> movedDeclarations,
@@ -548,6 +640,13 @@ public class AdapterCreator {
         return connectionsToDelete;
     }
 
+    /**
+     * Delete associations that was moved to adapter
+     *
+     * @param fbType to get list of events
+     * @param movedDeclarations set of port declarations
+     * @param inverted to clarify if association should be moved with declarations
+     */
     private void deleteMovedDeclarationsFromAssociations(
             FBInterfaceDeclaration fbType,
             Set<Declaration> movedDeclarations,

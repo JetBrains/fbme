@@ -2,6 +2,9 @@ package org.fbme.integration.nxt.importer.network.block;
 
 import org.fbme.integration.nxt.importer.network.Type;
 
+/**
+ * This class is used to calculate coordinates for created endpoint coordinates
+ */
 public class CoordinateShift {
     public int yDiff;
     private int yInput;

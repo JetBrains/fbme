@@ -7,6 +7,9 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration;
 
 import java.util.Objects;
 
+/**
+ * This class is used to collect additional info about specific port declaration
+ */
 public class DeclarationKey {
     private final FBNetwork fbNetwork;
     private final FBTypeDeclaration fbType;

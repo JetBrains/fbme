@@ -22,6 +22,14 @@ public class CompositeCreator {
         this.createForAdapter = createForAdapter;
     }
 
+    /**
+     * Apply request in networks within project
+     *
+     * @param request to be applied
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @return type declaration for created composite
+     */
     public CompositeFBTypeDeclaration processRefactoringRequest(RefactoringRequest request, SModel sModel, IEC61499Factory factory) {
         Map<NetworkSubgraphDeclarations, DeclarationExtractor> declarationExtractorsByNsg =
                 request.networkSubgraphDeclarations
@@ -62,6 +70,9 @@ public class CompositeCreator {
         return compositeFB;
     }
 
+    /**
+     * Create declaration extractor for given network and block declaration list
+     */
     private DeclarationExtractor createExtractor(
             FBNetwork fbNetwork,
             List<FunctionBlockDeclaration> functionBlockDeclarationList
@@ -69,6 +80,16 @@ public class CompositeCreator {
         return new DeclarationExtractor(fbNetwork, functionBlockDeclarationList);
     }
 
+    /**
+     * Create composite type declaration from request info
+     * Also patch information about ports in all declaration extractors to insert composite into networks later
+     *
+     * @param request from which take info to create composite
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @param declarationExtractorsByNetwork declarations to collect info and patch it
+     * @return type declaration for created composite
+     */
     private CompositeFBTypeDeclaration createCompositeFromRequest(
             RefactoringRequest request,
             SModel sModel,
@@ -97,6 +118,13 @@ public class CompositeCreator {
         );
     }
 
+    /**
+     * Collect port declarations for all blocks in list for which exists external connections
+     *
+     * @param declarationExtractor to collect info
+     * @param functionBlockDeclarationList for which port declarations should be collect
+     * @return map, key - block declaration, value - set of port declarations
+     */
     private Map<FunctionBlockDeclaration, Set<Declaration>> getCompositeTypeIODeclarationMap(
             DeclarationExtractor declarationExtractor,
             List<FunctionBlockDeclaration> functionBlockDeclarationList
@@ -131,6 +159,21 @@ public class CompositeCreator {
         return ioDeclarationMap;
     }
 
+    /**
+     * Create composite type declaration based on given info
+     * Also patch information about ports in all declaration extractors to insert composite into networks later
+     *
+     * @param compositeTypeIODeclarations map of port declarations for all blocks
+     * @param baseFbNetwork base network to use if nsg doesn't contain any network
+     * @param functionBlockDeclarationList list of blocks to wrap in one block
+     * @param nsgList list of info about isomorphic subgraph
+     * @param compositeName for new composite
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @param declarationExtractors to patch with new port declarations
+     * @param singleCreation flag if composite will be inserting only in one network
+     * @return type declaration for created composite
+     */
     private CompositeFBTypeDeclaration createAndReturnComposite(
             Map<FunctionBlockDeclaration, Set<Declaration>> compositeTypeIODeclarations,
             FBNetwork baseFbNetwork,
@@ -194,6 +237,15 @@ public class CompositeCreator {
         return compositeFB;
     }
 
+    /**
+     * Insert created earlier composite to given network
+     *
+     * @param fbNetwork in which composite should be inserted
+     * @param functionBlockDeclarationList to collect block name for identifier
+     * @param compositeFB to be inserted
+     * @param declarationExtractor to get info about connections
+     * @param factory to create new declarations
+     */
     private void insertCompositeFbIntoNetwork(
             FBNetwork fbNetwork,
             List<FunctionBlockDeclaration> functionBlockDeclarationList,
@@ -229,6 +281,12 @@ public class CompositeCreator {
         }
     }
 
+    /**
+     * Create mapping between old and new block declarations based on request info
+     *
+     * @param request to provide info about declarations
+     * @return map, key - new block declaration, value - set of old block declarations
+     */
     private Map<FunctionBlockDeclaration, Set<FunctionBlockDeclaration>> createFunctionBlockDeclarations(
             RefactoringRequest request
     ) {
@@ -245,6 +303,17 @@ public class CompositeCreator {
         return oldFBDeclarationsByNewFBDeclarations;
     }
 
+    /**
+     * Adjust data within created composite type
+     * Set event associations, adjust network coordinates, create inner connections
+     *
+     * @param compositeFB to be adjusted
+     * @param declarationExtractor to provide info about ports and coordinates
+     * @param connectedDeclarationsPortPathMap to get info for create endpoint coordinates
+     * @param oldFBDeclarationsByNewFBDeclarations to substitute old port declarations by new ones
+     * @param functionBlockDeclarationList to adjust network coordinates
+     * @param factory to create new declarations
+     */
     private void adjustCompositeFbTypeDeclaration(
             CompositeFBTypeDeclaration compositeFB,
             DeclarationExtractor declarationExtractor,
@@ -272,6 +341,13 @@ public class CompositeCreator {
         );
     }
 
+    /**
+     * Get index of given declaration within list increased by one
+     *
+     * @param blockDeclaration to be found
+     * @param functionBlockDeclarationList in which to search
+     * @return index + 1 of given declaration if it is in list, null otherwise
+     */
     private Integer getDeclarationNsgIndex(
             FunctionBlockDeclaration blockDeclaration,
             List<FunctionBlockDeclaration> functionBlockDeclarationList
@@ -287,6 +363,18 @@ public class CompositeCreator {
         return index;
     }
 
+    /**
+     * Collect sets of declaration based on all usable declarations and add declarations to created composite type
+     *
+     * @param fbNetwork to create declaration key
+     * @param fbType to create declaration key and get old declarations
+     * @param blockDeclaration to create declaration key
+     * @param compositeFB to which declarations should be added
+     * @param fbName to create names for new port declarations
+     * @param index to create declaration key
+     * @param ioDeclarations to save already handled declarations and avoid duplication
+     * @param declarationKeyInfo to save old and new declaration mapping for patch later
+     */
     private void setCompositeFbTypeIODeclarations(
             FBNetwork fbNetwork,
             FBTypeDeclaration fbType,
@@ -358,6 +446,16 @@ public class CompositeCreator {
         compositeFB.getOutputParameters().addAll(outputParameters);
     }
 
+    /**
+     * Action method for launch composite creation within context menu
+     *
+     * @param fbNetwork in which action was launched
+     * @param functionBlockDeclarationList selected declarations to create composite
+     * @param compositeName entered by user name for new composite type
+     * @param sModel to expand project model
+     * @param factory to create new declarations
+     * @return created composite type declaration
+     */
     public CompositeFBTypeDeclaration createComposite(
             FBNetwork fbNetwork,
             List<FunctionBlockDeclaration> functionBlockDeclarationList,
@@ -398,6 +496,16 @@ public class CompositeCreator {
         return compositeFB;
     }
 
+    /**
+     * Adjust coordinates of block declarations and connections to improve display
+     *
+     * @param declarationExtractor to get info about internal connections
+     * @param compositeFB whose network will be adjusted
+     * @param functionBlockDeclarationList to find block declarations
+     * @param oldFBDeclarationsByNewFBDeclarations to find block declarations
+     * @param decX to adjust coordinates by X
+     * @param decY to adjust coordinates by Y
+     */
     private void adjustNetworkCoordinates(
             DeclarationExtractor declarationExtractor,
             CompositeFBTypeDeclaration compositeFB,
@@ -443,6 +551,15 @@ public class CompositeCreator {
         }
     }
 
+    /**
+     * Create endpoint coordinates and connections to them for all port declarations within given composite type
+     *
+     * @param compositeFB for which endpoint coordinates will be created
+     * @param declarationExtractor to get info about new port declarations
+     * @param connectedDeclarationsPortPathMap to get info about new port declarations
+     * @param oldFBDeclarationsByNewFBDeclarations to get info about block declarations
+     * @param factory to create new declarations
+     */
     private void createInnerIOConnections(
             CompositeFBTypeDeclaration compositeFB,
             DeclarationExtractor declarationExtractor,
@@ -508,6 +625,18 @@ public class CompositeCreator {
         }
     }
 
+    /**
+     * Create one endpoint coordinate and connection to it
+     *
+     * @param factory to create new declarations
+     * @param innerPortPath to set connection
+     * @param portPathNetworkCoordinates to create port path from port declaration side
+     * @param oldFBDeclarationsByNewFBDeclarations to get info about block declarations
+     * @param connections to add new connection
+     * @param endpointCoordinates to add new endpoint coordinate
+     * @param kind of connection to be created
+     * @param type to correctly set connection
+     */
     private void createInnerIOConnection(
             IEC61499Factory factory,
             PortPath<?> innerPortPath,
@@ -553,6 +682,13 @@ public class CompositeCreator {
         endpointCoordinates.add(endpointCoordinate);
     }
 
+    /**
+     * Calculate coordinate shift by X and Y based on default characteristics and number of letters in declarations
+     *
+     * @param fbName name of declaration block
+     * @param fbType type of block
+     * @return created coordinate shift
+     */
     public CoordinateShift createShift(String fbName, FBTypeDeclaration fbType) {
         int charSize = 20;
         int defaultShift = 300;
@@ -572,6 +708,13 @@ public class CompositeCreator {
         );
     }
 
+    /**
+     * Rehang external connections to created composite declaration
+     *
+     * @param connectionMap of connections to be rehanged
+     * @param functionBlockDeclaration to which connections should be rehang
+     * @param type of connections in given map
+     */
     private void rehangExternalConnections(
             Map<DeclarationKey, List<FBNetworkConnection>> connectionMap,
             FunctionBlockDeclaration functionBlockDeclaration,
@@ -600,6 +743,12 @@ public class CompositeCreator {
         });
     }
 
+    /**
+     * Set associations for given events
+     *
+     * @param events to update associations
+     * @param parameterDeclarationCopyMap to get info about parameters
+     */
     private void setEventAssociations(
             List<EventDeclaration> events,
             Map<DeclarationKey, Declaration> parameterDeclarationCopyMap
@@ -615,6 +764,13 @@ public class CompositeCreator {
         });
     }
 
+    /**
+     * Get new parameter port declaration using old parameter port declaration
+     *
+     * @param parameterDeclarationCopyMap mapping of new declaration by old ones
+     * @param declaration of old port
+     * @return found parameter declaration if it was in map, null otherwise
+     */
     private Declaration getParameterDeclarationByCopyDeclaration(
             Map<DeclarationKey, Declaration> parameterDeclarationCopyMap,
             Declaration declaration
@@ -628,6 +784,14 @@ public class CompositeCreator {
         return null;
     }
 
+    /**
+     * Get port path network coordinates by given port declaration
+     *
+     * @param connectedDeclarationsPortPathMap to search in first place
+     * @param allDeclarationsPortPathMap to search in second place
+     * @param declaration to found key
+     * @return found port path network coordinates if it was in map, null otherwise
+     */
     private PortPathNetworkCoordinates getPortPathNetworkCoordinates(
             Map<DeclarationKey, PortPathNetworkCoordinates> connectedDeclarationsPortPathMap,
             Map<DeclarationKey, PortPathNetworkCoordinates> allDeclarationsPortPathMap,
@@ -641,6 +805,13 @@ public class CompositeCreator {
         return getPortPathNetworkCoordinatesByCopyDeclaration(allDeclarationsPortPathMap, declaration);
     }
 
+    /**
+     * Get port path network coordinates by given port declaration
+     *
+     * @param declarationsPortPathMap to search
+     * @param declaration to found key
+     * @return found port path network coordinates if it was in map, null otherwise
+     */
     private PortPathNetworkCoordinates getPortPathNetworkCoordinatesByCopyDeclaration(
             Map<DeclarationKey, PortPathNetworkCoordinates> declarationsPortPathMap,
             Declaration declaration
@@ -654,6 +825,12 @@ public class CompositeCreator {
         return null;
     }
 
+    /**
+     * Set coordinates for new composite declaration
+     *
+     * @param compositeFunctionBlockDeclaration to set coordinates
+     * @param functionBlockDeclarationList to calculate coordinates
+     */
     private void setDeclarationCoordinates(
             FunctionBlockDeclaration compositeFunctionBlockDeclaration,
             List<FunctionBlockDeclaration> functionBlockDeclarationList

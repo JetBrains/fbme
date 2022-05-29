@@ -67,6 +67,11 @@ public class DeclarationExtractor {
         return parameterDeclarationCopyMap;
     }
 
+    /**
+     * Update existed info about port declarations in maps from old to new declarations
+     *
+     * @param declarationCopySaveMap which will be used to update ports
+     */
     public void patch(Map<DeclarationKey, DeclarationKey> declarationCopySaveMap) {
         allDeclarationsPortPathMap = allDeclarationsPortPathMap.entrySet()
                 .stream()
@@ -99,6 +104,17 @@ public class DeclarationExtractor {
         this.minXCoordinate = minX;
     }
 
+    /**
+     * Extract list of event declarations within one block which have external connections
+     * Also collect info about internal connections
+     *
+     * @param fbType type of given block declaration
+     * @param functionBlockDeclaration for which connections will be analyzed
+     * @param type what kind of events expected in return
+     * @param shift for calculation coordinates of new ports (if they are created)
+     * @param index number of given block declaration in corresponding network
+     * @return list of found event declarations
+     */
     public List<EventDeclaration> extractEvents(
             FBTypeDeclaration fbType,
             FunctionBlockDeclaration functionBlockDeclaration,
@@ -144,6 +160,17 @@ public class DeclarationExtractor {
         return externalEvents;
     }
 
+    /**
+     * Extract list of parameter declarations within one block which have external connections
+     * Also collect info about internal connections
+     *
+     * @param fbType type of given block declaration
+     * @param functionBlockDeclaration for which connections will be analyzed
+     * @param type what kind of parameters expected in return
+     * @param shift for calculation coordinates of new endpoint coordinates (if they are created)
+     * @param index number of given block declaration in corresponding network
+     * @return list of found parameter declarations
+     */
     public List<ParameterDeclaration> extractParameters(
             FBTypeDeclaration fbType,
             FunctionBlockDeclaration functionBlockDeclaration,
@@ -189,6 +216,15 @@ public class DeclarationExtractor {
         return externalParameters;
     }
 
+    /**
+     * Find all external connections for given port declarations
+     *
+     * @param declaration port for which connections should be found
+     * @param type of given declarations
+     * @param functionBlockDeclaration corresponding to given port
+     * @param connections list to analyze
+     * @return list of connections
+     */
     private List<FBNetworkConnection> findConnections(
             Declaration declaration,
             Type type,
@@ -218,6 +254,17 @@ public class DeclarationExtractor {
         return externalConnections;
     }
 
+    /**
+     * Check if connection corresponds to given declaration and appear as an external to it
+     * Also if connection is internal to analyzed sub network, save it
+     *
+     * @param declaration of port
+     * @param functionBlockDeclaration of given port
+     * @param connection to be checked
+     * @param externalFBPortPath for given connection
+     * @param internalFBPortPath for given connection
+     * @return true if connection appear as an external to given port, false otherwise
+     */
     private boolean checkDeclarationPorts(
             Declaration declaration,
             FunctionBlockDeclaration functionBlockDeclaration,
@@ -242,6 +289,13 @@ public class DeclarationExtractor {
         return false;
     }
 
+    /**
+     * Save given connections to map for further analysis
+     *
+     * @param type for decide save map
+     * @param declarationKey to be used as key in map
+     * @param connections to be saved
+     */
     private void saveExternalConnections(
             Type type,
             DeclarationKey declarationKey,

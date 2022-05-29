@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * This class is used to collect mapping info about old and new port declarations
+ * This info will be used later for accurate rehang connections from old to new declarations
+ */
 public class DeclarationKeyInfo {
     private final boolean singleCreation;
     public Map<DeclarationKey, DeclarationKey> declarationKeyCopySaveMap;
@@ -18,6 +22,10 @@ public class DeclarationKeyInfo {
         this.declarationKeyCopySaveMap = new HashMap<>();
     }
 
+    /**
+     * Create a pair of declaration keys by given parameters with difference in portDeclaration
+     * Put this pair to save map afterwards
+     */
     public void add(
             FBNetwork fbNetwork,
             FBTypeDeclaration fbType,
@@ -32,6 +40,12 @@ public class DeclarationKeyInfo {
         );
     }
 
+    /**
+     * Check if save map contains declaration key by given parameters and creation mode
+     * If key was found, create a new pair of keys using given parameters and found key
+     *
+     * @return true if new declaration key was created, false otherwise
+     */
     public boolean containsAndCopyIfPresent(
             FBNetwork fbNetwork,
             FBTypeDeclaration fbType,

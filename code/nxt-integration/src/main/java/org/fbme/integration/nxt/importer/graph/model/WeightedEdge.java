@@ -20,6 +20,11 @@ public class WeightedEdge {
         this.edges = edge.edges.stream().map(Edge::new).collect(Collectors.toList());
     }
 
+    /**
+     * Add edge to list, then sort all edges by from/to vertex numbers
+     *
+     * @param edge to be added
+     */
     public void addEdge(Edge edge) {
         edges.add(edge);
         edges.sort(new Graph.EdgeComparator());

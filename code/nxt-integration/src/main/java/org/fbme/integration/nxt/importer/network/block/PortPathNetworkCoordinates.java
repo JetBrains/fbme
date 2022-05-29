@@ -5,6 +5,10 @@ import org.fbme.lib.iec61499.fbnetwork.PortPath;
 
 import java.util.function.Function;
 
+/**
+ * This class is used to collect info for creation of new port
+ * Also it contains coordinate shifts for new endpoint coordinate
+ */
 public class PortPathNetworkCoordinates {
     private final Function<FunctionBlockDeclaration, PortPath<?>> portPathFunction;
     private final FunctionBlockDeclaration oldFunctionBlockDeclaration;

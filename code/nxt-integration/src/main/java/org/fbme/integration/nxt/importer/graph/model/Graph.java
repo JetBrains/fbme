@@ -34,6 +34,12 @@ public class Graph {
         this.adjacency = graph.adjacency.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> new HashSet<>(e.getValue())));
     }
 
+    /**
+     * Add edge to corresponding weighted edge
+     * If corresponding weighted edge doesn't exist, create it and then add edge
+     *
+     * @param edge to be added
+     */
     public void addToWeightedEdge(Edge edge) {
         WeightedEdge weightedEdge = weightedEdges
                 .stream()
@@ -44,6 +50,14 @@ public class Graph {
         weightedEdge.addEdge(edge);
     }
 
+    /**
+     * Create weighted edge between two vertices, add it to weighted edges list
+     * Update adjacency respectively
+     *
+     * @param from vertex number
+     * @param to vertex number
+     * @return created weighted edge
+     */
     private WeightedEdge createWeightedEdge(int from, int to) {
         upDegree(from);
         upDegree(to);
@@ -64,6 +78,11 @@ public class Graph {
         return weightedEdge;
     }
 
+    /**
+     * Add edge to edges list, sort list afterwards
+     *
+     * @param edge to be added
+     */
     public void addEdge(Edge edge) {
         upDegree(edge.from);
         upDegree(edge.to);
@@ -80,6 +99,12 @@ public class Graph {
         }
     }
 
+    /**
+     * Add vertex to vertices list, sort list afterwards
+     * If vertex with corresponding number already exists throw exception
+     *
+     * @param vertex to be added
+     */
     public void addVertex(Vertex vertex) {
         if (vertexByNumber.containsKey(vertex.number)) {
             throw new GraphException("Vertex with number " + vertex.number + " already exists");
@@ -90,6 +115,13 @@ public class Graph {
         vertices.sort(Comparator.comparing(Vertex::getNumber));
     }
 
+    /**
+     * Create vertex with given declaration parameters, add it to vertices list, sort list afterwards
+     *
+     * @param typeDeclaration to fill new vertex info
+     * @param declaration to fill new vertex info
+     * @return number of created vertex
+     */
     public Integer addVertex(FBTypeDeclaration typeDeclaration, FunctionBlockDeclaration declaration) {
         int number = vertices.size() != 0 ? vertices.get(vertices.size() - 1).number + 1 : 1;
         Vertex vertex = new Vertex(number, typeDeclaration, declaration);
@@ -99,10 +131,12 @@ public class Graph {
         return number;
     }
 
-    public Integer addVertex() {
-        return addVertex(null, null);
-    }
-
+    /**
+     * Delete vertex by given number from vertices list, delete corresponding adjacency and weighted edges afterwards
+     * If vertex by given number doesn't exists, throw exception
+     *
+     * @param number of vertex to be deleted
+     */
     public void deleteVertex(int number) {
         if (!vertexByNumber.containsKey(number)) {
             throw new GraphException("Vertex with number " + number + " doesn't exists");
@@ -148,6 +182,14 @@ public class Graph {
         return weightedEdges;
     }
 
+    /**
+     * Get weighted edge by from/to vertices numbers
+     * If weighted edge between those vertices doesn't exists, throw exception
+     *
+     * @param from vertex number
+     * @param to vertex number
+     * @return found weighted edge
+     */
     public WeightedEdge getWeightedEdge(int from, int to) {
         return weightedEdges.stream().filter(e -> e.from == from && e.to == to).findFirst().orElseThrow(
                 () -> new GraphException("Weighted edge from " + from + " to " + to + " doesn't exists")
@@ -158,6 +200,12 @@ public class Graph {
         return vertices;
     }
 
+    /**
+     * Get function block declarations corresponding to given vertices numbers
+     *
+     * @param vertexNumbers for which declarations should be returned
+     * @return list of found declarations
+     */
     public List<FunctionBlockDeclaration> getVertexDeclarationsByNumbers(List<Integer> vertexNumbers) {
         Map<Integer, FunctionBlockDeclaration> declarationByVertexNumber =
                 vertices.stream().collect(Collectors.toMap(Vertex::getNumber, Vertex::getDeclaration));
@@ -172,11 +220,23 @@ public class Graph {
         return vertices.stream().map(Vertex::getNumber).collect(Collectors.toList());
     }
 
+    /**
+     * Get numbers of all vertices that can be reached from given vertex
+     *
+     * @param from vertex number
+     * @return set of reachable vertices numbers
+     */
     public Set<Integer> getAdjacencies(Integer from) {
         return adjacency.getOrDefault(from, Set.of());
     }
 
     // adjacency including reverse edges
+
+    /**
+     * Get adjacency for every vertex in graph, include reverse edges
+     *
+     * @return map, key - vertex number, value - set of reachable vertices
+     */
     public Map<Integer, Set<Integer>> getFullAdjacency() {
         Map<Integer, Set<Integer>> fullAdjacency = adjacency.entrySet()
                 .stream()
@@ -197,6 +257,14 @@ public class Graph {
         return fullAdjacency;
     }
 
+    /**
+     * Check if graph has given weighted edge by from/to vertex numbers
+     *
+     * @param from vertex number
+     * @param to vertex number
+     * @param exampleEdge to check for existence
+     * @return true if given weighted edge exists in graph, false otherwise
+     */
     public boolean hasWeightedEdge(int from, int to, WeightedEdge exampleEdge) {
         try {
             WeightedEdge edge = getWeightedEdge(from, to);
@@ -229,10 +297,23 @@ public class Graph {
         }
     }
 
+    /**
+     * Check if graph has edge by from/to vertex numbers
+     *
+     * @param from vertex number
+     * @param to vertex number
+     * @return true if edge exists in graph, false otherwise
+     */
     public boolean hasEdge(int from, int to) {
         return edges.stream().anyMatch(e -> e.from == from && e.to == to);
     }
 
+    /**
+     * Increase vertex degree value by one
+     * If vertex with given number doesn't exist, throw exception
+     *
+     * @param vertexNumber to increase degree
+     */
     private void upDegree(int vertexNumber) {
         if (!vertexByNumber.containsKey(vertexNumber)) {
             throw new GraphException("Vertex with number " + vertexNumber + " doesn't exists");

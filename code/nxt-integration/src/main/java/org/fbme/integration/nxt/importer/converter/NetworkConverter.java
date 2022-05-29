@@ -12,10 +12,24 @@ public class NetworkConverter {
     public NetworkConverter() {
     }
 
+    /**
+     * Convert network to graph
+     *
+     * @param fbNetwork to be converted
+     * @return converted graph
+     */
     public Graph convert(FBNetwork fbNetwork) {
         return convert(fbNetwork.getFunctionBlocks(), fbNetwork.getEventConnections(), fbNetwork.getDataConnections());
     }
 
+    /**
+     * Convert function blocks and connections between blocks to graph
+     *
+     * @param functionBlockDeclarations to be converted
+     * @param eventConnections to be converted
+     * @param dataConnections to be converted
+     * @return converted graph
+     */
     public Graph convert(
             List<FunctionBlockDeclaration> functionBlockDeclarations,
             List<FBNetworkConnection> eventConnections,
@@ -36,6 +50,13 @@ public class NetworkConverter {
         return graph;
     }
 
+    /**
+     * Convert network connections to graph edges
+     *
+     * @param graph to which edges are added
+     * @param connections to be converted
+     * @param declarationToVertexNumberMap used to get vertex number by declaration for edge creation
+     */
     private void processConnections(
             Graph graph,
             List<FBNetworkConnection> connections,
