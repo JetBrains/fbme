@@ -907,6 +907,9 @@
       <node concept="tCFHf" id="7bIcSsJQIia" role="ftvYc">
         <ref role="tCJdB" node="6VpjB$m4T4a" resolve="AnalyseNetwork" />
       </node>
+      <node concept="tCFHf" id="5JOOlQrpLXz" role="ftvYc">
+        <ref role="tCJdB" node="5JOOlQroE94" resolve="ApplySimplification" />
+      </node>
       <node concept="tCFHf" id="7bIcSsJQIil" role="ftvYc">
         <ref role="tCJdB" node="7bIcSsJPAxp" resolve="CreateAdapter" />
       </node>
@@ -3096,6 +3099,303 @@
             <ref role="37wK5l" to="dfgj:~IsomorphismManagerProvider.dispose(jetbrains.mps.project.Project)" resolve="dispose" />
             <ref role="1Pybhc" to="dfgj:~IsomorphismManagerProvider" resolve="IsomorphismManagerProvider" />
             <node concept="1KvdUw" id="58o4d6TL_Qg" role="37wK5m" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="sE7Ow" id="5JOOlQroE94">
+    <property role="TrG5h" value="ApplySimplification" />
+    <property role="2uzpH1" value="Apply Simplification" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
+    <node concept="1DS2jV" id="5JOOlQroE95" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="5JOOlQroE96" role="1oa70y" />
+    </node>
+    <node concept="2S4$dB" id="5JOOlQroE97" role="1NuT2Z">
+      <property role="TrG5h" value="model" />
+      <node concept="3Tm6S6" id="5JOOlQroE98" role="1B3o_S" />
+      <node concept="1oajcY" id="5JOOlQroE99" role="1oa70y" />
+      <node concept="H_c77" id="5JOOlQroE9a" role="1tU5fm" />
+    </node>
+    <node concept="1DS2jV" id="5JOOlQroE9b" role="1NuT2Z">
+      <property role="TrG5h" value="project" />
+      <ref role="1DUlNI" to="qq03:~MPSCommonDataKeys.MPS_PROJECT" resolve="MPS_PROJECT" />
+      <node concept="1oajcY" id="5JOOlQroE9c" role="1oa70y" />
+    </node>
+    <node concept="tnohg" id="5JOOlQroE9d" role="tncku">
+      <node concept="3clFbS" id="5JOOlQroE9e" role="2VODD2">
+        <node concept="3cpWs8" id="4FNrSfYKj3P" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYKj3Q" role="3cpWs9">
+            <property role="TrG5h" value="isomorphismManager" />
+            <node concept="3uibUv" id="4FNrSfYKj3R" role="1tU5fm">
+              <ref role="3uigEE" to="dfgj:~IsomorphismManager" resolve="IsomorphismManager" />
+            </node>
+            <node concept="2YIFZM" id="4FNrSfYKjr4" role="33vP2m">
+              <ref role="37wK5l" to="dfgj:~IsomorphismManagerProvider.getManager(jetbrains.mps.project.Project)" resolve="getManager" />
+              <ref role="1Pybhc" to="dfgj:~IsomorphismManagerProvider" resolve="IsomorphismManagerProvider" />
+              <node concept="2OqwBi" id="4FNrSfYKjJ2" role="37wK5m">
+                <node concept="2WthIp" id="4FNrSfYKjsq" role="2Oq$k0" />
+                <node concept="1DTwFV" id="4FNrSfYKk22" role="2OqNvi">
+                  <ref role="2WH_rO" node="5JOOlQroE9b" resolve="project" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4FNrSfYKkGH" role="3cqZAp">
+          <node concept="3clFbS" id="4FNrSfYKkGJ" role="3clFbx">
+            <node concept="3cpWs6" id="4FNrSfYKmJU" role="3cqZAp" />
+          </node>
+          <node concept="3clFbC" id="4FNrSfYKlrf" role="3clFbw">
+            <node concept="10Nm6u" id="4FNrSfYKlRH" role="3uHU7w" />
+            <node concept="37vLTw" id="4FNrSfYKla6" role="3uHU7B">
+              <ref role="3cqZAo" node="4FNrSfYKj3Q" resolve="isomorphismManager" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYJMQi" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYJMQj" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="4FNrSfYJMQk" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYJMQl" role="33vP2m">
+              <node concept="2OqwBi" id="4FNrSfYJMQm" role="2Oq$k0">
+                <node concept="2WthIp" id="4FNrSfYJMQn" role="2Oq$k0" />
+                <node concept="1DTwFV" id="4FNrSfYJMQo" role="2OqNvi">
+                  <ref role="2WH_rO" node="5JOOlQroE95" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="4FNrSfYJMQp" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYJMQq" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYJMQr" role="3cpWs9">
+            <property role="TrG5h" value="network" />
+            <node concept="3uibUv" id="4FNrSfYJMQs" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYJMQt" role="33vP2m">
+              <node concept="37vLTw" id="4FNrSfYJMQu" role="2Oq$k0">
+                <ref role="3cqZAo" node="4FNrSfYJMQj" resolve="style" />
+              </node>
+              <node concept="liA8E" id="4FNrSfYJMQv" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="4FNrSfYJMQw" role="37wK5m">
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYKnpm" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYKnpn" role="3cpWs9">
+            <property role="TrG5h" value="request" />
+            <node concept="3uibUv" id="4FNrSfYKnpo" role="1tU5fm">
+              <ref role="3uigEE" to="e269:~RefactoringRequest" resolve="RefactoringRequest" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYKnWl" role="33vP2m">
+              <node concept="37vLTw" id="4FNrSfYKnRp" role="2Oq$k0">
+                <ref role="3cqZAo" node="4FNrSfYKj3Q" resolve="isomorphismManager" />
+              </node>
+              <node concept="liA8E" id="4FNrSfYKo3L" role="2OqNvi">
+                <ref role="37wK5l" to="dfgj:~IsomorphismManager.getApplyableRequest(org.fbme.lib.iec61499.fbnetwork.FBNetwork)" resolve="getApplyableRequest" />
+                <node concept="37vLTw" id="4FNrSfYKo4X" role="37wK5m">
+                  <ref role="3cqZAo" node="4FNrSfYJMQr" resolve="network" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4FNrSfYKoJL" role="3cqZAp">
+          <node concept="3clFbS" id="4FNrSfYKoJN" role="3clFbx">
+            <node concept="3cpWs8" id="4FNrSfYL2XX" role="3cqZAp">
+              <node concept="3cpWsn" id="4FNrSfYL2XY" role="3cpWs9">
+                <property role="TrG5h" value="instance" />
+                <node concept="3uibUv" id="4FNrSfYL2XZ" role="1tU5fm">
+                  <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
+                </node>
+                <node concept="2YIFZM" id="4FNrSfYL2Y0" role="33vP2m">
+                  <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+                  <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
+                  <node concept="2OqwBi" id="4FNrSfYL2Y1" role="37wK5m">
+                    <node concept="2WthIp" id="4FNrSfYL2Y2" role="2Oq$k0" />
+                    <node concept="1DTwFV" id="4FNrSfYL2Y3" role="2OqNvi">
+                      <ref role="2WH_rO" node="5JOOlQroE9b" resolve="project" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbF" id="4FNrSfYKq6e" role="3cqZAp">
+              <node concept="2OqwBi" id="4FNrSfYL25r" role="3clFbG">
+                <node concept="2ShNRf" id="4FNrSfYKq6a" role="2Oq$k0">
+                  <node concept="1pGfFk" id="4FNrSfYL20K" role="2ShVmc">
+                    <property role="373rjd" value="true" />
+                    <ref role="37wK5l" to="e269:~NetworksAnalyser.&lt;init&gt;()" resolve="NetworksAnalyser" />
+                  </node>
+                </node>
+                <node concept="liA8E" id="4FNrSfYL2dd" role="2OqNvi">
+                  <ref role="37wK5l" to="e269:~NetworksAnalyser.processRequest(org.fbme.integration.nxt.importer.network.RefactoringRequest,org.jetbrains.mps.openapi.model.SModel,org.fbme.lib.iec61499.IEC61499Factory)" resolve="processRequest" />
+                  <node concept="37vLTw" id="4FNrSfYL2ew" role="37wK5m">
+                    <ref role="3cqZAo" node="4FNrSfYKnpn" resolve="request" />
+                  </node>
+                  <node concept="2OqwBi" id="4FNrSfYL2wK" role="37wK5m">
+                    <node concept="2WthIp" id="4FNrSfYL2h5" role="2Oq$k0" />
+                    <node concept="3gHZIF" id="4FNrSfYL2LH" role="2OqNvi">
+                      <ref role="2WH_rO" node="5JOOlQroE97" resolve="model" />
+                    </node>
+                  </node>
+                  <node concept="2OqwBi" id="4FNrSfYL3G3" role="37wK5m">
+                    <node concept="37vLTw" id="4FNrSfYL3$G" role="2Oq$k0">
+                      <ref role="3cqZAo" node="4FNrSfYL2XY" resolve="instance" />
+                    </node>
+                    <node concept="liA8E" id="4FNrSfYL3Yw" role="2OqNvi">
+                      <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getIec61499Factory()" resolve="getIec61499Factory" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3clFbF" id="27E0fQhAqkR" role="3cqZAp">
+              <node concept="2OqwBi" id="27E0fQhAqv7" role="3clFbG">
+                <node concept="37vLTw" id="27E0fQhAqkP" role="2Oq$k0">
+                  <ref role="3cqZAo" node="4FNrSfYKj3Q" resolve="isomorphismManager" />
+                </node>
+                <node concept="liA8E" id="27E0fQhAqAy" role="2OqNvi">
+                  <ref role="37wK5l" to="dfgj:~IsomorphismManager.removeRequest(org.fbme.integration.nxt.importer.network.RefactoringRequest)" resolve="removeRequest" />
+                  <node concept="37vLTw" id="27E0fQhAr8g" role="37wK5m">
+                    <ref role="3cqZAo" node="4FNrSfYKnpn" resolve="request" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="3y3z36" id="4FNrSfYKpvm" role="3clFbw">
+            <node concept="10Nm6u" id="4FNrSfYKpIr" role="3uHU7w" />
+            <node concept="37vLTw" id="4FNrSfYKped" role="3uHU7B">
+              <ref role="3cqZAo" node="4FNrSfYKnpn" resolve="request" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2ScWuX" id="5JOOlQroEa6" role="tmbBb">
+      <node concept="3clFbS" id="5JOOlQroEa7" role="2VODD2">
+        <node concept="3cpWs8" id="4FNrSfYL4tY" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYL4tZ" role="3cpWs9">
+            <property role="TrG5h" value="isomorphismManager" />
+            <node concept="3uibUv" id="4FNrSfYL4u0" role="1tU5fm">
+              <ref role="3uigEE" to="dfgj:~IsomorphismManager" resolve="IsomorphismManager" />
+            </node>
+            <node concept="2YIFZM" id="4FNrSfYL4u1" role="33vP2m">
+              <ref role="37wK5l" to="dfgj:~IsomorphismManagerProvider.getManager(jetbrains.mps.project.Project)" resolve="getManager" />
+              <ref role="1Pybhc" to="dfgj:~IsomorphismManagerProvider" resolve="IsomorphismManagerProvider" />
+              <node concept="2OqwBi" id="4FNrSfYL4u2" role="37wK5m">
+                <node concept="2WthIp" id="4FNrSfYL4u3" role="2Oq$k0" />
+                <node concept="1DTwFV" id="4FNrSfYL4u4" role="2OqNvi">
+                  <ref role="2WH_rO" node="5JOOlQroE9b" resolve="project" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4FNrSfYL4u5" role="3cqZAp">
+          <node concept="3clFbS" id="4FNrSfYL4u6" role="3clFbx">
+            <node concept="3cpWs6" id="4FNrSfYL4u7" role="3cqZAp">
+              <node concept="3clFbT" id="4FNrSfYL5gV" role="3cqZAk" />
+            </node>
+          </node>
+          <node concept="3clFbC" id="4FNrSfYL4u8" role="3clFbw">
+            <node concept="10Nm6u" id="4FNrSfYL4u9" role="3uHU7w" />
+            <node concept="37vLTw" id="4FNrSfYL4ua" role="3uHU7B">
+              <ref role="3cqZAo" node="4FNrSfYL4tZ" resolve="isomorphismManager" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYL4ub" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYL4uc" role="3cpWs9">
+            <property role="TrG5h" value="style" />
+            <node concept="3uibUv" id="4FNrSfYL4ud" role="1tU5fm">
+              <ref role="3uigEE" to="hox0:~Style" resolve="Style" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYL4ue" role="33vP2m">
+              <node concept="2OqwBi" id="4FNrSfYL4uf" role="2Oq$k0">
+                <node concept="2WthIp" id="4FNrSfYL4ug" role="2Oq$k0" />
+                <node concept="1DTwFV" id="4FNrSfYL4uh" role="2OqNvi">
+                  <ref role="2WH_rO" node="5JOOlQroE95" resolve="cell" />
+                </node>
+              </node>
+              <node concept="liA8E" id="4FNrSfYL4ui" role="2OqNvi">
+                <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYL4uj" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYL4uk" role="3cpWs9">
+            <property role="TrG5h" value="network" />
+            <node concept="3uibUv" id="4FNrSfYL4ul" role="1tU5fm">
+              <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYL4um" role="33vP2m">
+              <node concept="37vLTw" id="4FNrSfYL4un" role="2Oq$k0">
+                <ref role="3cqZAo" node="4FNrSfYL4uc" resolve="style" />
+              </node>
+              <node concept="liA8E" id="4FNrSfYL4uo" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="4FNrSfYL4up" role="37wK5m">
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK" resolve="NETWORK" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="4FNrSfYL9B7" role="3cqZAp">
+          <node concept="3clFbS" id="4FNrSfYL9B9" role="3clFbx">
+            <node concept="3cpWs6" id="4FNrSfYLb2R" role="3cqZAp">
+              <node concept="3clFbT" id="4FNrSfYLbgD" role="3cqZAk" />
+            </node>
+          </node>
+          <node concept="3clFbC" id="4FNrSfYLaf6" role="3clFbw">
+            <node concept="10Nm6u" id="4FNrSfYLazW" role="3uHU7w" />
+            <node concept="37vLTw" id="4FNrSfYL9S4" role="3uHU7B">
+              <ref role="3cqZAo" node="4FNrSfYL4uk" resolve="network" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4FNrSfYL4uq" role="3cqZAp">
+          <node concept="3cpWsn" id="4FNrSfYL4ur" role="3cpWs9">
+            <property role="TrG5h" value="request" />
+            <node concept="3uibUv" id="4FNrSfYL4us" role="1tU5fm">
+              <ref role="3uigEE" to="e269:~RefactoringRequest" resolve="RefactoringRequest" />
+            </node>
+            <node concept="2OqwBi" id="4FNrSfYL4ut" role="33vP2m">
+              <node concept="37vLTw" id="4FNrSfYL4uu" role="2Oq$k0">
+                <ref role="3cqZAo" node="4FNrSfYL4tZ" resolve="isomorphismManager" />
+              </node>
+              <node concept="liA8E" id="4FNrSfYL4uv" role="2OqNvi">
+                <ref role="37wK5l" to="dfgj:~IsomorphismManager.getApplyableRequest(org.fbme.lib.iec61499.fbnetwork.FBNetwork)" resolve="getApplyableRequest" />
+                <node concept="37vLTw" id="4FNrSfYL4uw" role="37wK5m">
+                  <ref role="3cqZAo" node="4FNrSfYL4uk" resolve="network" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="4FNrSfYL67K" role="3cqZAp">
+          <node concept="3y3z36" id="4FNrSfYL8gy" role="3clFbG">
+            <node concept="10Nm6u" id="4FNrSfYL8vG" role="3uHU7w" />
+            <node concept="37vLTw" id="4FNrSfYL7Rr" role="3uHU7B">
+              <ref role="3cqZAo" node="4FNrSfYL4ur" resolve="request" />
+            </node>
           </node>
         </node>
       </node>

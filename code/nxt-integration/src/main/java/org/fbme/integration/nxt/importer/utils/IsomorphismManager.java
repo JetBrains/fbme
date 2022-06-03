@@ -1,7 +1,5 @@
 package org.fbme.integration.nxt.importer.utils;
 
-import com.intellij.openapi.components.ProjectComponent;
-import jetbrains.mps.nodeEditor.EmptyHighlighter;
 import jetbrains.mps.nodeEditor.Highlighter;
 import jetbrains.mps.project.Project;
 import org.fbme.ide.iec61499.repository.PlatformElement;
@@ -14,10 +12,7 @@ import org.fbme.lib.iec61499.declarations.FBTypeDeclaration;
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork;
 import org.jetbrains.mps.openapi.model.SNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class IsomorphismManager {
@@ -39,7 +34,7 @@ public class IsomorphismManager {
                 requests = networksAnalyser.collectRequests(networkByGraph);
                 Thread.sleep(120000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
             }
         }
     };
@@ -56,18 +51,13 @@ public class IsomorphismManager {
         this.highlighter.addChecker(this.isomorphismHighlighter);
 
         this.collectThread = new Thread(launchListener);
-//        this.collectThread.start();
+        this.collectThread.start();
     }
 
     public void dispose() {
         this.highlighter.removeChecker(this.isomorphismHighlighter);
         this.isomorphismHighlighter.dispose();
-
-        try {
-            this.collectThread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        this.collectThread.interrupt();
     }
 
     public void addListener(IsomorphismListener listener) {
@@ -87,6 +77,34 @@ public class IsomorphismManager {
                         .anyMatch(typeDeclaration -> ((PlatformElement) typeDeclaration).getNode() == node)
                 )
                 .collect(Collectors.toList());
+    }
+
+    public RefactoringRequest getApplyableRequest(FBNetwork fbNetwork) {
+        PlatformElement platformElement = (PlatformElement) fbNetwork.getContainer();
+        if (platformElement == null) {
+            return null;
+        }
+
+        return getRequestsBySNode(platformElement.getNode())
+                .stream()
+                .max(new NetworksAnalyser.RefactoringRequestComparator())
+                .orElse(null);
+    }
+
+    public void removeRequest(RefactoringRequest request) {
+        Set<RefactoringRequest> requestToRemove = new HashSet<>();
+        requestToRemove.add(request);
+
+        for (var nsg : request.networkSubgraphDeclarations) {
+            PlatformElement platformElement = (PlatformElement) nsg.getNetwork().getContainer();
+            if (platformElement == null) {
+                continue;
+            }
+
+            requestToRemove.addAll(getRequestsBySNode(platformElement.getNode()));
+        }
+
+        requests.removeAll(requestToRemove);
     }
 
     private List<FBNetwork> getNetworks() {

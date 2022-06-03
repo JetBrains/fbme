@@ -2,11 +2,15 @@ package org.fbme.integration.nxt.importer.utils;
 
 import com.intellij.ui.JBColor;
 import jetbrains.mps.errors.MessageStatus;
+import jetbrains.mps.errors.messageTargets.NodeMessageTarget;
+import jetbrains.mps.ide.editor.checkers.ModelProblemMessage;
+import jetbrains.mps.java.platform.highlighters.ToDoMessage;
 import jetbrains.mps.nodeEditor.DefaultEditorMessage;
 import jetbrains.mps.nodeEditor.EditorComponent;
 import jetbrains.mps.nodeEditor.EditorMessage;
 import jetbrains.mps.nodeEditor.checking.BaseEditorChecker;
 import jetbrains.mps.nodeEditor.checking.UpdateResult;
+import jetbrains.mps.nodeEditor.messageTargets.EditorMessageWithTarget;
 import jetbrains.mps.util.Cancellable;
 import org.fbme.integration.nxt.importer.network.NetworksAnalyser;
 import org.fbme.integration.nxt.importer.network.RefactoringRequest;
@@ -21,7 +25,7 @@ import java.util.stream.Collectors;
 public class IsomorphismHighlighter extends BaseEditorChecker {
     private final IsomorphismManager isomorphismManager;
     private boolean changed = true;
-    private final int MESSAGES_LIMIT = 10;
+    private final int MESSAGES_LIMIT = 1;
 
     private IsomorphismManager.IsomorphismListener listener = new IsomorphismManager.IsomorphismListener() {
         @Override
@@ -64,7 +68,7 @@ public class IsomorphismHighlighter extends BaseEditorChecker {
     }
 
     private EditorMessage transformRequestToMessage(RefactoringRequest request, SNode node) {
-        return new DefaultEditorMessage(node, MessageStatus.OK, JBColor.RED, createMessage(request), this);
+        return new ModelProblemMessage(node, MessageStatus.OK, JBColor.YELLOW, createMessage(request), this);
     }
 
     private String createMessage(RefactoringRequest request) {

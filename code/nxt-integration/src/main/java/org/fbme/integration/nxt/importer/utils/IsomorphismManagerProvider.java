@@ -17,6 +17,10 @@ public class IsomorphismManagerProvider {
         }
     }
 
+    public static IsomorphismManager getManager(Project project) {
+        return managers.getOrDefault(project, null);
+    }
+
     public static void dispose(Project project) {
         IsomorphismManager manager = managers.remove(project);
         if (manager != null) {
