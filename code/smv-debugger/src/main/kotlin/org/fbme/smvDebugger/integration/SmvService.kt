@@ -5,27 +5,28 @@ import org.fbme.smvDebugger.model.CounterexampleParser
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
-import java.util.*
 
 class SmvService(provider: ServicePathProvider) {
     private val fb2SmvService: Fb2SmvService
     private val nuSmvService: NuSmvService
     private val nutracService: NutracService
     private val counterexampleParser: CounterexampleParser
-    fun verify(fbPath: Path?, specification: String): Optional<Counterexample> {
+    fun verify(fbPath: Path?, specification: String): Path? {
         return try {
             val smvPath = fb2SmvService.convertFbToSmv(fbPath)
             val rawCounterexamplePath = nuSmvService.getRawCounterexample(smvPath, specification)
-            Files.delete(smvPath)
+        //    Files.delete(smvPath)
             if (rawCounterexamplePath.isEmpty) {
-                return Optional.empty()
+                return null
             }
-            val csvCounterexamplePath = nutracService.convertToCsv(rawCounterexamplePath.get())
-            Files.delete(rawCounterexamplePath.get())
-            val lines = Files.readAllLines(csvCounterexamplePath)
-            Files.delete(csvCounterexamplePath)
-            val counterexample = counterexampleParser.parse(lines)
-            Optional.of(counterexample)
+            return rawCounterexamplePath.get()
+
+//            val csvCounterexamplePath = nutracService.convertToCsv(rawCounterexamplePath.get())
+//            Files.delete(rawCounterexamplePath.get())
+//            val lines = Files.readAllLines(csvCounterexamplePath)
+//            Files.delete(csvCounterexamplePath)
+//            val counterexample = counterexampleParser.parse(lines)
+//            Optional.of(counterexample)
         } catch (e: IOException) {
             throw RuntimeException(e)
         }

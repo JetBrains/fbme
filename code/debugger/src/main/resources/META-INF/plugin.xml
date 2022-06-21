@@ -13,5 +13,14 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <mps.LanguageLibrary dir="/languages" />
+
   </extensions>
+
+
+<extensionPoints>
+  <extensionPoint
+          name="traceFactory"
+          interface="org.fbme.debugger.executionTraceFactory.TraceFactory"/>
+</extensionPoints>
+
 </idea-plugin>

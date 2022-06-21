@@ -413,8 +413,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtra" role="2WSJUY">
-        <property role="10YbkC" value="756.0" />
-        <property role="10YbkE" value="1875.0" />
+        <property role="10YbkC" value="1619.0" />
+        <property role="10YbkE" value="2073.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVuwJ" role="2zAPxA">
@@ -427,8 +427,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrb" role="2WSJUY">
-        <property role="10YbkC" value="2425.0" />
-        <property role="10YbkE" value="1531.0" />
+        <property role="10YbkC" value="2666.0" />
+        <property role="10YbkE" value="1719.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVuxa" role="2zAPxA">
@@ -441,8 +441,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="38k27ITgtrc" role="2WSJUY">
-        <property role="10YbkC" value="2250.0" />
-        <property role="10YbkE" value="2287.0" />
+        <property role="10YbkC" value="2820.0" />
+        <property role="10YbkE" value="1979.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVux0" role="2zAPxA">
@@ -450,8 +450,8 @@
       <ref role="2zAPx1" node="G6ZN4N970Y" resolve="INIT" />
       <node concept="2EVYwv" id="2R0WzquVux1" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtrd" role="2WSJUY">
-        <property role="10YbkC" value="1925.0" />
-        <property role="10YbkE" value="1468.0" />
+        <property role="10YbkC" value="1713.0" />
+        <property role="10YbkE" value="1773.0" />
       </node>
     </node>
     <node concept="2zAPAq" id="2R0WzquVux_" role="2zAPxA">
@@ -459,15 +459,15 @@
       <ref role="2zAPx3" node="2R0WzquVuxo" resolve="STACK" />
       <node concept="2EVYwv" id="2R0WzquVuxA" role="2zAZMv" />
       <node concept="10YbkR" id="38k27ITgtre" role="2WSJUY">
-        <property role="10YbkC" value="1712.0" />
-        <property role="10YbkE" value="2543.0" />
+        <property role="10YbkC" value="2920.0" />
+        <property role="10YbkE" value="2300.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="G6ZN4N970F" role="2zAPwY">
       <property role="TrG5h" value="START" />
       <node concept="10YbkR" id="5jb5jNCal_s" role="2WOQdS">
-        <property role="10YbkC" value="718.0" />
-        <property role="10YbkE" value="1193.0" />
+        <property role="10YbkC" value="1053.0" />
+        <property role="10YbkE" value="1866.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="G6ZN4N970Y" role="2zAPwY">
@@ -492,8 +492,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_u" role="2WOQdS">
-        <property role="10YbkC" value="2156.0" />
-        <property role="10YbkE" value="1162.0" />
+        <property role="10YbkC" value="1759.0" />
+        <property role="10YbkE" value="973.0" />
       </node>
     </node>
     <node concept="2zAPAk" id="2R0WzquVuxo" role="2zAPwY">
@@ -506,8 +506,8 @@
         </node>
       </node>
       <node concept="10YbkR" id="5jb5jNCal_v" role="2WOQdS">
-        <property role="10YbkC" value="2018.0" />
-        <property role="10YbkE" value="2868.0" />
+        <property role="10YbkC" value="3279.0" />
+        <property role="10YbkE" value="1786.0" />
       </node>
     </node>
     <node concept="3IBQi5" id="G6ZN4N970H" role="3YHajr">

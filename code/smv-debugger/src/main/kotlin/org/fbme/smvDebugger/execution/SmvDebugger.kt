@@ -5,8 +5,10 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
+import org.fbme.smvDebugger.executionTraceGeneration.SMVCountereExampleParser
 import org.fbme.smvDebugger.integration.ServicePathProvider
 import org.fbme.smvDebugger.integration.SmvService
+import org.fbme.smvDebugger.model.CounterexampleParser
 import org.fbme.smvDebugger.panel.DebugPanelService
 import java.nio.file.Path
 import javax.swing.JComponent
@@ -17,6 +19,8 @@ class SmvDebugger(project: MPSProject) {
     private val smvService: SmvService
     private val debugPanelService: DebugPanelService
     private val ideaProject: Project
+    private val counterexampleParser = CounterexampleParser
+    private val unifiedParser: SMVCountereExampleParser
     fun run(
         fbPath: Path,
         compositeFb: CompositeFBTypeDeclaration,
@@ -44,11 +48,14 @@ class SmvDebugger(project: MPSProject) {
     private fun verify(fbPath: Path, compositeFb: CompositeFBTypeDeclaration): JPanel? {
         val specification = specification
         val counterexample = smvService.verify(fbPath, specification)
-        if (counterexample.isEmpty) {
+        if (counterexample == null) {
             notifySuccess()
             return null
         }
-        return debugPanelService.run(compositeFb, counterexample.get())
+
+        unifiedParser.getUnifiedTrace("", counterexample,  compositeFb)
+        return null
+        //return debugPanelService.run(compositeFb, counterexample.get())
     }
 
     companion object {
@@ -64,5 +71,6 @@ class SmvDebugger(project: MPSProject) {
         smvService = SmvService(ServicePathProvider.Companion.create(project))
         debugPanelService = DebugPanelService(project)
         ideaProject = project.project
+        unifiedParser = SMVCountereExampleParser(project)
     }
 }
