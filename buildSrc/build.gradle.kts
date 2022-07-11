@@ -6,8 +6,8 @@ plugins {
     id("de.undercouch.download") version "4.1.1"
 }
 
-val mpsMajor = "2021.2"
-val mpsMinor = "3"
+val mpsMajor = "2021.3"
+val mpsMinor = "1"
 
 
 repositories {

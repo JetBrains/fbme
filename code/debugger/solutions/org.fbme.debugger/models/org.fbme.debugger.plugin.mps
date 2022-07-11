@@ -7013,6 +7013,9 @@
       <node concept="tCFHf" id="aucBW5SZYk" role="ftvYc">
         <ref role="tCJdB" node="6kcQr5w_Vl4" resolve="Debug_UnwatchSelectedFBs" />
       </node>
+      <node concept="tCFHf" id="45FpMYiNXPx" role="ftvYc">
+        <ref role="tCJdB" node="44qSI5$V0ef" resolve="DeployResource" />
+      </node>
     </node>
   </node>
   <node concept="sE7Ow" id="5XK6zxB$xyX">
@@ -7439,11 +7442,20 @@
                   <ref role="3uigEE" to="b15n:~SimulatorPanel" resolve="SimulatorPanel" />
                 </node>
                 <node concept="2ShNRf" id="2B82559iDlf" role="33vP2m">
-                  <node concept="1pGfFk" id="2B82559iGaY" role="2ShVmc">
+                  <node concept="1pGfFk" id="1UrSL8pQAhQ" role="2ShVmc">
                     <property role="373rjd" value="true" />
-                    <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(org.fbme.debugger.simulator.Simulator)" resolve="SimulatorPanel" />
-                    <node concept="37vLTw" id="2B82559iGcW" role="37wK5m">
+                    <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.simulator.Simulator,org.fbme.lib.common.Declaration)" resolve="SimulatorPanel" />
+                    <node concept="2OqwBi" id="1UrSL8pQAjD" role="37wK5m">
+                      <node concept="2WthIp" id="1UrSL8pQAjG" role="2Oq$k0" />
+                      <node concept="1DTwFV" id="1UrSL8pQAjI" role="2OqNvi">
+                        <ref role="2WH_rO" node="6V1xIBUmlNY" resolve="project" />
+                      </node>
+                    </node>
+                    <node concept="37vLTw" id="1UrSL8pQAop" role="37wK5m">
                       <ref role="3cqZAo" node="2B82559ivuR" resolve="simulator" />
+                    </node>
+                    <node concept="37vLTw" id="1UrSL8pQAy6" role="37wK5m">
+                      <ref role="3cqZAo" node="2B82559izLz" resolve="basicFBTypeDeclaration" />
                     </node>
                   </node>
                 </node>
@@ -7565,11 +7577,20 @@
                     <ref role="3uigEE" to="b15n:~SimulatorPanel" resolve="SimulatorPanel" />
                   </node>
                   <node concept="2ShNRf" id="2B82559iGmN" role="33vP2m">
-                    <node concept="1pGfFk" id="2B82559iGmO" role="2ShVmc">
+                    <node concept="1pGfFk" id="1UrSL8pQE7U" role="2ShVmc">
                       <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(org.fbme.debugger.simulator.Simulator)" resolve="SimulatorPanel" />
-                      <node concept="37vLTw" id="2B82559iGmP" role="37wK5m">
+                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.simulator.Simulator,org.fbme.lib.common.Declaration)" resolve="SimulatorPanel" />
+                      <node concept="2OqwBi" id="1UrSL8pQEgH" role="37wK5m">
+                        <node concept="2WthIp" id="1UrSL8pQEgK" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="1UrSL8pQEgM" role="2OqNvi">
+                          <ref role="2WH_rO" node="6V1xIBUmlNY" resolve="project" />
+                        </node>
+                      </node>
+                      <node concept="37vLTw" id="1UrSL8pQEl7" role="37wK5m">
                         <ref role="3cqZAo" node="2B82559i$N7" resolve="simulator" />
+                      </node>
+                      <node concept="37vLTw" id="1UrSL8pQEug" role="37wK5m">
+                        <ref role="3cqZAo" node="2B82559iBHq" resolve="compositeFBTypeDeclaration" />
                       </node>
                     </node>
                   </node>

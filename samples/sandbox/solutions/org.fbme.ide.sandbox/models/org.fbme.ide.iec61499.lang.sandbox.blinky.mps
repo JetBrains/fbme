@@ -188,7 +188,7 @@
             <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EI" resolve="EI" />
             <ref role="1N5Pi4" node="3wAsKTk8K1b" resolve="E_SWITCH" />
           </node>
-          <node concept="bR32z" id="7UhQjJlFWlj" role="bPNfo">
+          <node concept="bR32z" id="45FpMYiMPPK" role="bPNfo">
             <property role="bR32p" value="170.0" />
           </node>
         </node>
@@ -272,7 +272,7 @@
             <ref role="1N5Pi4" node="3wAsKTk8K19" resolve="E_CYCLE" />
             <ref role="1N5Pi3" to="7fvu:~E_CYCLE.START" resolve="START" />
           </node>
-          <node concept="bR32z" id="7UhQjJlFWlk" role="bPNfo">
+          <node concept="bR32z" id="45FpMYiMPPI" role="bPNfo">
             <property role="bR32p" value="320.0" />
           </node>
         </node>
@@ -285,7 +285,7 @@
             <ref role="1N5Pi4" node="3wAsKTk8K19" resolve="E_CYCLE" />
             <ref role="1N5Pi3" to="7fvu:~E_CYCLE.START" resolve="START" />
           </node>
-          <node concept="bR32z" id="7UhQjJlFWll" role="bPNfo">
+          <node concept="bR32z" id="45FpMYiMPPJ" role="bPNfo">
             <property role="bR32p" value="320.0" />
           </node>
         </node>
@@ -293,7 +293,7 @@
       <node concept="1LUwhx" id="3wAsKTk8K0G" role="180RAs">
         <ref role="1LUwhw" to="7fvu:~FORTE_PC.MGR_ID" resolve="MGR_ID" />
         <node concept="1QCEHf" id="3wAsKTk8K0O" role="1LUwh$">
-          <property role="1QCEHe" value="10.211.55.3:61499" />
+          <property role="1QCEHe" value="localhost:61499" />
         </node>
       </node>
     </node>

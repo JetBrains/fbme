@@ -18,7 +18,7 @@ class CellSelectionOnPopupTrigger(private val editorComponent: EditorComponent) 
                 return
             }
             val selectionManager = editorComponent.selectionManager
-            if (isTrivialSelection(selectionManager.selection)) {
+            if (isTrivialSelection(selectionManager.selection!!)) {
                 var leaf = editorComponent.rootCell.findLeaf(event.x, event.y)
                 if (leaf != null && CellTraversalUtil.getFoldedParent(leaf) != null) {
                     return
