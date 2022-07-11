@@ -49,8 +49,7 @@ class CompositeFBSimulator(
             val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
 
             if (targetFB == null) {
-                pushValuesOfAssociatedVariablesWithOutputEvent(targetPort)
-                addDeferredTrigger(targetPort)
+                triggerEvent(targetPort)
             } else {
                 children[targetFB]!!.triggerEvent(targetPort)
             }

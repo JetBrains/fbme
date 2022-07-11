@@ -13,6 +13,10 @@ val Colors.panelForeground: Color
 val Colors.tableBackground: Color
     get() = UIManager.getColor("Table.background").compose
 
+// for using from not-composable functions
+val tableBackground: java.awt.Color
+    get() = UIManager.getColor("Table.background")
+
 val Colors.tableForeground: Color
     get() = UIManager.getColor("Table.foreground").compose
 
@@ -58,14 +62,30 @@ val Colors.textFieldCaretForeground: Color
 val Colors.listBackground: Color
     get() = UIManager.getColor("List.background").compose
 
+// for using from not-composable functions
+val listBackground: java.awt.Color
+    get() = UIManager.getColor("List.background")
+
 val Colors.listForeground: Color
     get() = UIManager.getColor("List.foreground").compose
+
+// for using from not-composable functions
+val listForeground: java.awt.Color
+    get() = UIManager.getColor("List.foreground")
 
 val Colors.listSelectionBackground: Color
     get() = UIManager.getColor("List.selectionBackground").compose
 
+// for using from not-composable functions
+val listSelectionBackground: java.awt.Color
+    get() = UIManager.getColor("List.selectionBackground")
+
 val Colors.listSelectionForeground: Color
     get() = UIManager.getColor("List.selectionForeground").compose
+
+// for using from not-composable functions
+val listSelectionForeground: java.awt.Color
+    get() = UIManager.getColor("List.selectionForeground")
 
 val Colors.comboBoxBackground: Color
     get() = UIManager.getColor("ComboBox.background").compose
@@ -111,3 +131,9 @@ val Colors.ExplainButtonIconBackground: Color
 
 val Colors.FireEventBackground: Color
     get() = Color(47, 143, 212)
+
+val newValueBgColor: java.awt.Color
+    get() = UIManager.getColor("List.background")
+
+val newValueFgColor: java.awt.Color
+    get() = java.awt.Color(23,152,75)

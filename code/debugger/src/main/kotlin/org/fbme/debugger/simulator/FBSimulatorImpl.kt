@@ -1,12 +1,13 @@
 package org.fbme.debugger.simulator
 
 import org.fbme.debugger.common.*
-import org.fbme.debugger.common.change.Change
+import org.fbme.debugger.common.change.TraceChange
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.state.FBStateImpl
 import org.fbme.debugger.common.state.Value
 import org.fbme.debugger.common.trace.ExecutionTrace
+import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import java.util.*
 
@@ -42,6 +43,7 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
         if (state.inputEvents.contains(eventName)) {
             triggerInputEvent(eventName)
         } else if (state.outputEvents.contains(eventName)) {
+            pushValuesOfAssociatedVariablesWithOutputEvent(eventName)
             triggerOutputEvent(eventName)
         } else {
             error("unexpected event to trigger")
@@ -84,8 +86,7 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
                 val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
 
                 if (targetFB == null) {
-                    parent!!.pushValuesOfAssociatedVariablesWithOutputEvent(targetPort)
-                    parent!!.addDeferredTrigger(targetPort)
+                    parent!!.triggerEvent(targetPort)
                 } else {
                     parent!!.children[targetFB]!!.triggerInputEvent(targetPort)
                 }
@@ -127,8 +128,8 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
         }
     }
 
-    protected fun logCurrentStateAndChange(change: Change) {
-        trace.addStateAndChange(rootFBState.copy(), Pair(fbPath, change))
+    protected fun logCurrentStateAndChange(change: TraceChange) {
+        trace.add(TraceItem(rootFBState.copy(), fbPath, change))
     }
 
     protected fun addDeferredTrigger(eventName: String) {

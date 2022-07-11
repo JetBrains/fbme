@@ -2,7 +2,7 @@ package org.fbme.debugger.common
 
 import org.fbme.debugger.common.state.Value
 import org.fbme.debugger.simulator.st.STInterpreter
-import org.fbme.ide.iec61499.repository.PlatformIdentifier
+import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateTransition
@@ -61,7 +61,7 @@ fun FBNetworkConnection.resolveTargetPortPresentation(): Pair<String?, String> {
     return resolvePortPresentation(targetReference.presentation)
 }
 
-fun CompositeFBTypeDeclaration.getOutgoingDataConnectionsFromPort(
+fun WithNetwork.getOutgoingDataConnectionsFromPort(
     fb: String?,
     port: String
 ): List<FBNetworkConnection> {
@@ -71,13 +71,33 @@ fun CompositeFBTypeDeclaration.getOutgoingDataConnectionsFromPort(
     }
 }
 
-fun CompositeFBTypeDeclaration.getOutgoingEventConnectionsFromPort(
+fun WithNetwork.getOutgoingEventConnectionsFromPort(
     fb: String?,
     port: String
 ): List<FBNetworkConnection> {
     return network.eventConnections.filter { connection ->
         val (sourceFB, sourcePort) = connection.resolveSourcePortPresentation()
         fb == sourceFB && port == sourcePort
+    }
+}
+
+fun WithNetwork.getIncomingEventConnectionsToPort(
+    fb: String?,
+    port: String
+): List<FBNetworkConnection> {
+    return network.eventConnections.filter { connection ->
+        val (targetFB, targetPort) = connection.resolveTargetPortPresentation()
+        fb == targetFB && port == targetPort
+    }
+}
+
+fun WithNetwork.getIncomingDataConnectionsToPort(
+    fb: String?,
+    port: String
+): List<FBNetworkConnection> {
+    return network.dataConnections.filter { connection ->
+        val (targetFB, targetPort) = connection.resolveTargetPortPresentation()
+        fb == targetFB && port == targetPort
     }
 }
 
@@ -114,4 +134,34 @@ fun ParameterDeclaration.extractInitialValue(): Value<Any?> {
             ?: (type as? ElementaryType)?.defaultValue?.value
             ?: error("Can not initialize variable")
     )
+}
+
+fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
+    var cur: Declaration = this
+    if (path.isNotEmpty()) {
+        for (p in path) {
+            when (cur) {
+                is CompositeFBTypeDeclaration -> {
+                    val cfb = cur
+                    cur = cfb.network.allComponents.firstOrNull { it.name == p }?.type?.declaration
+                        ?: cfb.inputEvents.firstOrNull { it.name == p }
+                                ?: cfb.inputParameters.firstOrNull { it.name == p }
+                                ?: cfb.outputEvents.firstOrNull { it.name == p }
+                                ?: cfb.outputParameters.firstOrNull { it.name == p }
+                                ?: error("Path unresolved")
+                }
+                is BasicFBTypeDeclaration -> {
+                    val bfb = cur
+                    cur = bfb.inputEvents.firstOrNull { it.name == p }
+                        ?: bfb.inputParameters.firstOrNull { it.name == p }
+                                ?: bfb.outputEvents.firstOrNull { it.name == p }
+                                ?: bfb.outputParameters.firstOrNull { it.name == p }
+                                ?: if (p == "\$ECC") bfb.ecc.states.first() else null
+                                ?: error("Path unresolved")
+                }
+                else -> {}
+            }
+        }
+    }
+    return cur
 }

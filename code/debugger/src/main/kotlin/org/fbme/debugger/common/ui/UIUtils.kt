@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.awt.awtEventOrNull
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.unit.dp
 import org.fbme.debugger.common.ui.colors.tableHeaderSeparatorColor
 
@@ -46,3 +49,15 @@ fun ItemButton(
         content()
     }
 }
+
+fun keyUpPressed(keyEvent: KeyEvent) =
+    keyEvent.awtEventOrNull?.keyCode == java.awt.event.KeyEvent.VK_UP && keyEvent.type == KeyEventType.KeyDown
+
+fun keyDownPressed(keyEvent: KeyEvent) =
+    keyEvent.awtEventOrNull?.keyCode == java.awt.event.KeyEvent.VK_DOWN && keyEvent.type == KeyEventType.KeyDown
+
+fun keyLeftPressed(keyEvent: KeyEvent) =
+    keyEvent.awtEventOrNull?.keyCode == java.awt.event.KeyEvent.VK_LEFT && keyEvent.type == KeyEventType.KeyDown
+
+fun keyRightPressed(keyEvent: KeyEvent) =
+    keyEvent.awtEventOrNull?.keyCode == java.awt.event.KeyEvent.VK_RIGHT && keyEvent.type == KeyEventType.KeyDown

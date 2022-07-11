@@ -5,7 +5,7 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceTypeDeclaration
 
 class ResourceState : State {
-    private val children: Map<String, FBState>
+    val children: Map<String, FBState>
 
     constructor(typeDeclaration: ResourceTypeDeclaration) {
         children = typeDeclaration.network.allComponents.associate { component ->
