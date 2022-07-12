@@ -12,10 +12,7 @@ import org.fbme.debugger.common.state.*
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.ui.resolveValue
 import org.fbme.lib.common.Declaration
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.ResourceDeclaration
-import org.fbme.lib.iec61499.declarations.WithNetwork
+import org.fbme.lib.iec61499.declarations.*
 
 class ExplanationProducer(
     private val trace: ExecutionTrace,
@@ -39,15 +36,8 @@ class ExplanationProducer(
 
         when (currentDeclaration) {
             is BasicFBTypeDeclaration -> {}
-            is CompositeFBTypeDeclaration -> {
-                for (component in currentDeclaration.network.allComponents) {
-                    val componentName = component.name
-                    val componentDeclaration = component.type.declaration ?: error("Declaration does not exist")
-
-                    mapPathsToDeclarations(map, currentPath.plus(componentName), componentDeclaration)
-                }
-            }
-            is ResourceDeclaration -> {
+            is ServiceInterfaceFBTypeDeclaration -> {}
+            is WithNetwork -> {
                 for (component in currentDeclaration.network.allComponents) {
                     val componentName = component.name
                     val componentDeclaration = component.type.declaration ?: error("Declaration does not exist")
@@ -89,7 +79,7 @@ class ExplanationProducer(
             return@lazy when (fbDeclaration) {
                 is BasicFBTypeDeclaration -> "Basic FB"
                 is CompositeFBTypeDeclaration -> "Composite FB"
-                is ResourceDeclaration -> "Resource"
+                is ResourceTypeDeclaration -> "Resource"
                 else -> error("unexpected type")
             }
         }

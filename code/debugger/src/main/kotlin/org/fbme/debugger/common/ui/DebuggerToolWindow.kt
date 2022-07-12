@@ -55,32 +55,40 @@ open class DebuggerToolWindow(
     val suggestions = mutableListOf<String>()
 
     inner class NodeFactory() {
-        fun createNode(path: List<String>): MutableTreeNode {
-            val name = path.joinToString(".")
+        fun createNode(path: List<String>, name: String = path.joinToString(".")): MutableTreeNode {
+            val watchDeclaration = when (declaration) {
+                is ResourceDeclaration -> declaration.resolvePath(path)
+                is FBTypeDeclaration -> declaration.resolvePath(path)
+                else -> error("Unsupported type")
+            }
 
-            if (declaration is FBTypeDeclaration) {
-                val watchDeclaration = declaration.resolvePath(path)
-
-                when (watchDeclaration) {
-                    is CompositeFBTypeDeclaration -> {
-                        val node = DefaultMutableTreeNode(name)
-                        node.addCFBPortNodes(watchDeclaration)
-                        return node
+            when (watchDeclaration) {
+                is CompositeFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addCFBPortNodes(watchDeclaration)
+                    for (component in watchDeclaration.network.allComponents) {
+                        node.insert(createNode(path.plus(component.name), component.name), node.childCount)
                     }
-                    is BasicFBTypeDeclaration -> {
-                        val node = DefaultMutableTreeNode(name)
-                        node.addBFBPortNodes(watchDeclaration)
-                        return node
-                    }
-                    is ParameterDeclaration -> {
-                        return DefaultMutableTreeNode(name, false)
-                    }
-                    is EventDeclaration -> {
-                        return DefaultMutableTreeNode(name, false)
-                    }
-                    is StateDeclaration -> {
-                        return DefaultMutableTreeNode(name, false)
-                    }
+                    return node
+                }
+                is BasicFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addBFBPortNodes(watchDeclaration)
+                    return node
+                }
+                is ServiceInterfaceFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addSFBPortNodes(watchDeclaration)
+                    return node
+                }
+                is ParameterDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
+                }
+                is EventDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
+                }
+                is StateDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
                 }
             }
             return DefaultMutableTreeNode(name)
@@ -179,12 +187,11 @@ open class DebuggerToolWindow(
                 row: Int,
                 hasFocus: Boolean
             ): Component {
-//                super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus)
                 val line = JPanel()
                 line.layout = BoxLayout(line, BoxLayout.X_AXIS)
                 val node = value as DefaultMutableTreeNode
 
-                if (node.parent != null && declaration is FBTypeDeclaration) {
+                if (node.parent != null) {
                     var path = node.userObject as String
                     var par = node.parent as DefaultMutableTreeNode
                     while (par.parent != null) {
@@ -197,9 +204,13 @@ open class DebuggerToolWindow(
                     val previousState =
                         statesListModel.items.getOrNull(statesList.selectedIndex - 1)?.state ?: selectedState
                     val pathAsList = path.split(".")
-                    val watchDeclaration = declaration.resolvePath(pathAsList)
+                    val watchDeclaration = when (declaration) {
+                        is ResourceDeclaration -> declaration.resolvePath(pathAsList)
+                        is FBTypeDeclaration -> declaration.resolvePath(pathAsList)
+                        else -> error("Unsupported type")
+                    }
 
-                    line.add(JLabel(if (path == node.userObject.toString()) Icons.Watch else AllIcons.Debugger.Value).apply {
+                    line.add(JLabel(if (node.parent.parent == null) Icons.Watch else if (watchDeclaration is FBTypeDeclaration) AllIcons.Debugger.WatchLastReturnValue else AllIcons.Debugger.Value).apply {
                         verticalAlignment = CENTER
                     })
                     line.add(Box.createRigidArea(Dimension(5, 0)))
@@ -363,19 +374,18 @@ open class DebuggerToolWindow(
             suggestions += declaration.outputEvents.map { prefix + it.name }
             suggestions += declaration.inputParameters.map { prefix + it.name }
             suggestions += declaration.outputParameters.map { prefix + it.name }
-
-            when (declaration) {
-                is BasicFBTypeDeclaration -> {
-                    suggestions += declaration.internalVariables.map { prefix + it.name }
-                    suggestions += "$prefix\$ECC"
+        }
+        when (declaration) {
+            is BasicFBTypeDeclaration -> {
+                suggestions += declaration.internalVariables.map { prefix + it.name }
+                suggestions += "$prefix\$ECC"
+            }
+            is WithNetwork -> {
+                for (component in declaration.network.allComponents) {
+                    suggestions += prefix + component.name
                 }
-                is CompositeFBTypeDeclaration -> {
-                    for (component in declaration.network.allComponents) {
-                        suggestions += prefix + component.name
-                    }
-                    for (component in declaration.network.allComponents) {
-                        initSuggestions(component.type.declaration!!, prefix + component.name)
-                    }
+                for (component in declaration.network.allComponents) {
+                    initSuggestions(component.type.declaration!!, prefix + component.name)
                 }
             }
         }
@@ -399,6 +409,10 @@ open class DebuggerToolWindow(
     private fun MutableTreeNode.addBFBPortNodes(basicFBTypeDeclaration: BasicFBTypeDeclaration) {
         addFBPortNodes(basicFBTypeDeclaration)
         insert(DefaultMutableTreeNode("\$ECC", false), childCount)
+    }
+
+    private fun MutableTreeNode.addSFBPortNodes(serviceFBTypeDeclaration: ServiceInterfaceFBTypeDeclaration) {
+        addFBPortNodes(serviceFBTypeDeclaration)
     }
 
     private fun MutableTreeNode.addCFBPortNodes(compositeFBTypeDeclaration: CompositeFBTypeDeclaration) {

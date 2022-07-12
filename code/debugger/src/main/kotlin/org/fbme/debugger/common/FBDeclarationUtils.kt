@@ -123,7 +123,7 @@ val ElementaryType.defaultValue: Value<Any?>
         ElementaryType.STRING -> Value("")
         ElementaryType.TOD -> error("TODO")
         ElementaryType.TIME_OF_DAY -> error("TODO")
-        ElementaryType.TIME -> error("TODO")
+        ElementaryType.TIME -> Value(0)
         ElementaryType.WSTRING -> error("TODO")
         ElementaryType.WORD -> error("TODO")
     }
@@ -136,11 +136,23 @@ fun ParameterDeclaration.extractInitialValue(): Value<Any?> {
     )
 }
 
+fun ResourceDeclaration.resolvePath(path: List<String>): Declaration {
+    return (this as Declaration).resolvePath(path)
+}
 fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
+    return (this as Declaration).resolvePath(path)
+}
+
+private fun Declaration.resolvePath(path: List<String>): Declaration {
     var cur: Declaration = this
     if (path.isNotEmpty()) {
         for (p in path) {
             when (cur) {
+                is ResourceDeclaration -> {
+                    val res = cur
+                    cur = res.network.allComponents.firstOrNull { it.name == p }?.type?.declaration
+                        ?: error("Path unresolved")
+                }
                 is CompositeFBTypeDeclaration -> {
                     val cfb = cur
                     cur = cfb.network.allComponents.firstOrNull { it.name == p }?.type?.declaration
@@ -157,6 +169,14 @@ fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
                                 ?: bfb.outputEvents.firstOrNull { it.name == p }
                                 ?: bfb.outputParameters.firstOrNull { it.name == p }
                                 ?: if (p == "\$ECC") bfb.ecc.states.first() else null
+                            ?: error("Path unresolved")
+                }
+                is ServiceInterfaceFBTypeDeclaration -> {
+                    val ser = cur
+                    cur = ser.inputEvents.firstOrNull { it.name == p }
+                        ?: ser.inputParameters.firstOrNull { it.name == p }
+                                ?: ser.outputEvents.firstOrNull { it.name == p }
+                                ?: ser.outputParameters.firstOrNull { it.name == p }
                                 ?: error("Path unresolved")
                 }
                 else -> {}
