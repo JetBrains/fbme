@@ -50,7 +50,7 @@ object RichEditorStyleAttributes {
     val OUTPUTS: StyleAttribute<StateAction> = InheritableStyleAttribute("outputs")
 
     @JvmField
-    val ALL_ALGORITHMS: StyleAttribute<MutableList<AlgorithmDeclaration>> = InheritableStyleAttribute("all-outputs")
+    val ALL_ALGORITHMS: StyleAttribute<MutableList<AlgorithmDeclaration>> = InheritableStyleAttribute("all-algorithms")
 
     @JvmField
     val ALL_OUTPUTS: StyleAttribute<List<EventDeclaration>> = InheritableStyleAttribute("all-outputs")

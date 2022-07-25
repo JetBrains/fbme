@@ -153,7 +153,7 @@ class ECStateController(
             } else {
                 algorithmCell = AlgorithmCell.createAlgorithmCell(
                     context,
-                    algorithmDeclaration,
+                    null,
                     node,
                     action,
                     cellCollection,

@@ -8,8 +8,11 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Property
 import jetbrains.mps.nodeEditor.cells.ModelAccessor
 import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
+import org.fbme.ide.iec61499.repository.PlatformIdentifier
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
+import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Graphics
@@ -126,17 +129,45 @@ class AlgorithmCell(
             body: EditorCell_Collection?,
             isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
         ): AlgorithmCell {
+            var algorithmDeclaration: AlgorithmDeclaration? = algorithmDeclaration
+
             val modelAccessor: ModelAccessor = object : ModelAccessor {
-                override fun getText(): String? {
+                override fun getText(): String {
                     if (algorithmDeclaration == null) {
                         return ""
                     }
-                    val name = algorithmDeclaration.name
-                    return if (name == "") null else name
+                    return algorithmDeclaration!!.name
                 }
 
-                override fun setText(text: String?) {
-                    algorithmDeclaration!!.name = text ?: ""
+                override fun setText(text: String) {
+                    if (algorithmDeclaration == null) {
+                        if (text != "") {
+                            val factory = cellCollection.style.get(RichEditorStyleAttributes.FACTORY_DECLARATION)
+                            val allAlgorithms = cellCollection.style.get(RichEditorStyleAttributes.ALL_ALGORITHMS)
+                            val newAlgorithmDeclaration = factory.createAlgorithmDeclaration(StringIdentifier(text))
+                            val body = factory.createAlgorithmBody(AlgorithmLanguage.ST)
+                            newAlgorithmDeclaration.body = body
+                            allAlgorithms.add(newAlgorithmDeclaration)
+                            action.algorithm.setTarget(newAlgorithmDeclaration)
+                            newAlgorithmDeclaration.name = text
+                            algorithmDeclaration = newAlgorithmDeclaration
+                        }
+                    } else {
+                        if (text == "") {
+                            // (action as StateActionByNode).node.dropReference(...)
+                            for (sNode in node.children) {
+                                for (sReference in sNode.references) {
+                                    if (sReference.targetNodeId == (algorithmDeclaration!!.identifier as PlatformIdentifier).reference.nodeId) {
+                                        sNode.dropReference(sReference.link)
+                                        break
+                                    }
+                                }
+                            }
+                            algorithmDeclaration!!.remove()
+                        } else {
+                            algorithmDeclaration!!.name = text
+                        }
+                    }
                 }
 
                 override fun isValidText(text: String): Boolean {
