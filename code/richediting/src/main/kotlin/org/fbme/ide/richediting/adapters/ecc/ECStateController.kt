@@ -78,14 +78,6 @@ class ECStateController(
     override fun translateForm(originalPosition: Point, dx: Int, dy: Int): Point {
         val point = Point(originalPosition)
         point.translate(dx, dy)
-        for (it in stateActionBlocks) {
-            val algo = it.algorithm
-            val body = algo.algorithmBody ?: continue
-            for (cell in body.cells) {
-                val shiftPoint = algo.algorithmBodyPoint
-                cell.moveTo(shiftPoint.x, shiftPoint.y)
-            }
-        }
         return point
     }
 
