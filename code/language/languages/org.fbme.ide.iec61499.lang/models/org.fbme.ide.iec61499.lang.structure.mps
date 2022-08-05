@@ -1719,6 +1719,7 @@
   <node concept="1TIwiD" id="15ruYIbk1Mz">
     <property role="EcuMT" value="1250729573110258851" />
     <property role="TrG5h" value="HMIInterfaceTypeDeclaration" />
+    <property role="34LRSv" value="hmi" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="5cPJ2880EJZ" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />

@@ -229,7 +229,6 @@
         </node>
         <node concept="1SiIV0" id="42vv4xsIHNX" role="3bR37C">
           <node concept="3bR9La" id="42vv4xsIHNY" role="1SiIV1">
-            <property role="3bR36h" value="true" />
             <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
           </node>
         </node>
