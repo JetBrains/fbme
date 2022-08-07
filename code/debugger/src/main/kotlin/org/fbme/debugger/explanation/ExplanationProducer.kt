@@ -80,6 +80,7 @@ class ExplanationProducer(
                 is BasicFBTypeDeclaration -> "Basic FB"
                 is CompositeFBTypeDeclaration -> "Composite FB"
                 is ResourceTypeDeclaration -> "Resource"
+                is ServiceInterfaceFBTypeDeclaration -> "Service FB"
                 else -> error("unexpected type")
             }
         }
@@ -123,8 +124,28 @@ class ExplanationProducer(
             "Output Event of Composite FB" -> explainOutputEventOfCompositeFB(explanationNode)
             "Input Variable of Composite FB" -> explainInputVariableOfCompositeFB(explanationNode)
             "Output Variable of Composite FB" -> explainOutputVariableOfCompositeFB(explanationNode)
+            "Input Event of Service FB" -> explainInputEventOfServiceFB(explanationNode)
+            "Output Event of Service FB" -> explainOutputEventOfServiceFB(explanationNode)
+            "Input Variable of Service FB" -> explainInputVariableOfServiceFB(explanationNode)
+            "Output Variable of Service FB" -> explainOutputVariableOfServiceFB(explanationNode)
             else -> error("unexpected case")
         }
+    }
+
+    private fun explainOutputVariableOfServiceFB(explanationNode: ExplanationNode): List<ExplanationNode> {
+        TODO("Not yet implemented")
+    }
+
+    private fun explainInputVariableOfServiceFB(explanationNode: ExplanationNode): List<ExplanationNode> {
+        TODO("Not yet implemented")
+    }
+
+    private fun explainOutputEventOfServiceFB(explanationNode: ExplanationNode): List<ExplanationNode> {
+        TODO("Not yet implemented")
+    }
+
+    private fun explainInputEventOfServiceFB(explanationNode: ExplanationNode): List<ExplanationNode> {
+        TODO("Not yet implemented")
     }
 
     private fun explainInputEventOfBasicFB(explanationNode: ExplanationNode): List<ExplanationNode> {

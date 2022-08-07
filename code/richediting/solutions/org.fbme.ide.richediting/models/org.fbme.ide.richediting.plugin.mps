@@ -808,6 +808,9 @@
       <node concept="10WQ6h" id="aucBW5SZUF" role="ftvYc">
         <property role="TrG5h" value="watch" />
       </node>
+      <node concept="10WQ6h" id="6cA57nYRFv1" role="ftvYc">
+        <property role="TrG5h" value="debug" />
+      </node>
       <node concept="10WQ6h" id="4pceBWtd$te" role="ftvYc">
         <property role="TrG5h" value="simulate" />
       </node>

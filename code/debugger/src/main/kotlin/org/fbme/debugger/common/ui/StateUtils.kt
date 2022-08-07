@@ -37,10 +37,15 @@ fun State.resolveValue(path: List<String>): String? { // TODO
     return result
 }
 
-fun State.resolveFB(path: List<String>): State {
+fun State.resolveFB(path: List<String>): FBStateImpl {
     var cur: State = this
     if (path.isNotEmpty()) {
         when (cur) {
+            is ResourceState -> {
+                for (fbInstanceName in path) {
+                    cur = (cur as ResourceState).children[fbInstanceName]!!
+                }
+            }
             is CompositeFBState -> {
                 for (fbInstanceName in path) {
                     cur = (cur as CompositeFBState).children[fbInstanceName]!!
@@ -49,5 +54,5 @@ fun State.resolveFB(path: List<String>): State {
             else -> {}
         }
     }
-    return cur
+    return cur as FBStateImpl
 }
