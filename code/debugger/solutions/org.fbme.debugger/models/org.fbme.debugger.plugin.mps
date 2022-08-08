@@ -3292,19 +3292,6 @@
                                             </node>
                                           </node>
                                         </node>
-                                        <node concept="3SKdUt" id="7rWf3U0Gyb2" role="3cqZAp">
-                                          <node concept="1PaTwC" id="7rWf3U0Gyb3" role="1aUNEU">
-                                            <node concept="3oM_SD" id="7rWf3U0Gz4h" role="1PaTwD">
-                                              <property role="3oM_SC" value="TODO:" />
-                                            </node>
-                                            <node concept="3oM_SD" id="7rWf3U0Gzhe" role="1PaTwD">
-                                              <property role="3oM_SC" value="watch" />
-                                            </node>
-                                            <node concept="3oM_SD" id="7rWf3U0Gybl" role="1PaTwD">
-                                              <property role="3oM_SC" value="" />
-                                            </node>
-                                          </node>
-                                        </node>
                                       </node>
                                       <node concept="3y3z36" id="42vv4xsG6Bg" role="3clFbw">
                                         <node concept="10Nm6u" id="42vv4xsG6Ch" role="3uHU7w" />
@@ -8150,9 +8137,9 @@
                                               <ref role="3cqZAo" node="1UPrnlCa9mE" resolve="connection" />
                                             </node>
                                             <node concept="liA8E" id="1UPrnlCam5W" role="2OqNvi">
-                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.killResource(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="killResource" />
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.killResource(org.jetbrains.mps.openapi.model.SNode)" resolve="killResource" />
                                               <node concept="37vLTw" id="1UPrnlCanxW" role="37wK5m">
-                                                <ref role="3cqZAo" node="1UPrnlCa9m1" resolve="resourceDeclaration" />
+                                                <ref role="3cqZAo" node="1UPrnlCa9lE" resolve="node" />
                                               </node>
                                             </node>
                                           </node>
@@ -8163,9 +8150,9 @@
                                               <ref role="3cqZAo" node="1UPrnlCa9mE" resolve="connection" />
                                             </node>
                                             <node concept="liA8E" id="1UPrnlCabBt" role="2OqNvi">
-                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.deleteResource(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="deleteResource" />
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.deleteResource(org.jetbrains.mps.openapi.model.SNode)" resolve="deleteResource" />
                                               <node concept="37vLTw" id="1UPrnlCacR9" role="37wK5m">
-                                                <ref role="3cqZAo" node="1UPrnlCa9m1" resolve="resourceDeclaration" />
+                                                <ref role="3cqZAo" node="1UPrnlCa9lE" resolve="node" />
                                               </node>
                                             </node>
                                           </node>
@@ -8489,23 +8476,61 @@
                                               <ref role="3cqZAo" node="6bvi$yscBw5" resolve="connection" />
                                             </node>
                                             <node concept="liA8E" id="6bvi$yscBwi" role="2OqNvi">
-                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.deployResource(org.jetbrains.mps.openapi.model.SNode)" resolve="deployResource" />
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.createResourceNetwork(org.jetbrains.mps.openapi.model.SNode)" resolve="createResourceNetwork" />
                                               <node concept="37vLTw" id="6bvi$yscBwj" role="37wK5m">
                                                 <ref role="3cqZAo" node="6bvi$yscBv5" resolve="node" />
                                               </node>
                                             </node>
                                           </node>
                                         </node>
-                                        <node concept="3SKdUt" id="6bvi$yscBwk" role="3cqZAp">
-                                          <node concept="1PaTwC" id="6bvi$yscBwl" role="1aUNEU">
-                                            <node concept="3oM_SD" id="6bvi$yscBwm" role="1PaTwD">
-                                              <property role="3oM_SC" value="TODO:" />
+                                        <node concept="3cpWs8" id="57aJTs8lEVy" role="3cqZAp">
+                                          <node concept="3cpWsn" id="57aJTs8lEVz" role="3cpWs9">
+                                            <property role="TrG5h" value="watcherFacade" />
+                                            <node concept="3uibUv" id="57aJTs8lEFG" role="1tU5fm">
+                                              <ref role="3uigEE" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
                                             </node>
-                                            <node concept="3oM_SD" id="6bvi$yscBwn" role="1PaTwD">
-                                              <property role="3oM_SC" value="watch" />
+                                            <node concept="2OqwBi" id="57aJTs8lEV$" role="33vP2m">
+                                              <node concept="10M0yZ" id="57aJTs8lEV_" role="2Oq$k0">
+                                                <ref role="3cqZAo" to="6w4o:~WatcherFacade.Companion" resolve="Companion" />
+                                                <ref role="1PxDUh" to="6w4o:~WatcherFacade" resolve="WatcherFacade" />
+                                              </node>
+                                              <node concept="liA8E" id="57aJTs8lEVA" role="2OqNvi">
+                                                <ref role="37wK5l" to="6w4o:~WatcherFacade$Companion.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
+                                                <node concept="2OqwBi" id="57aJTs8lEVB" role="37wK5m">
+                                                  <node concept="2WthIp" id="57aJTs8lEVC" role="2Oq$k0">
+                                                    <ref role="32nkFo" node="6bvi$yscBuL" resolve="DeployResourceInDebugMode" />
+                                                  </node>
+                                                  <node concept="1DTwFV" id="57aJTs8lEVD" role="2OqNvi">
+                                                    <ref role="2WH_rO" node="6bvi$yscDwX" resolve="mpsProject" />
+                                                  </node>
+                                                </node>
+                                              </node>
                                             </node>
-                                            <node concept="3oM_SD" id="6bvi$yscBwo" role="1PaTwD">
-                                              <property role="3oM_SC" value="" />
+                                          </node>
+                                        </node>
+                                        <node concept="3clFbF" id="2QVQjiHh6kJ" role="3cqZAp">
+                                          <node concept="2OqwBi" id="57aJTs8lqM5" role="3clFbG">
+                                            <node concept="37vLTw" id="57aJTs8lEVE" role="2Oq$k0">
+                                              <ref role="3cqZAo" node="57aJTs8lEVz" resolve="instance" />
+                                            </node>
+                                            <node concept="liA8E" id="57aJTs8lrm1" role="2OqNvi">
+                                              <ref role="37wK5l" to="6w4o:~WatcherFacade.watchResourceNetwork(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="watchResourceNetwork" />
+                                              <node concept="37vLTw" id="57aJTs8lEr2" role="37wK5m">
+                                                <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+                                              </node>
+                                            </node>
+                                          </node>
+                                        </node>
+                                        <node concept="3clFbF" id="NsL_pTj1_l" role="3cqZAp">
+                                          <node concept="2OqwBi" id="NsL_pTj2kW" role="3clFbG">
+                                            <node concept="37vLTw" id="NsL_pTj1_j" role="2Oq$k0">
+                                              <ref role="3cqZAo" node="6bvi$yscBw5" resolve="connection" />
+                                            </node>
+                                            <node concept="liA8E" id="NsL_pTj37S" role="2OqNvi">
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.startResource(org.jetbrains.mps.openapi.model.SNode)" resolve="startResource" />
+                                              <node concept="37vLTw" id="NsL_pTj4Wk" role="37wK5m">
+                                                <ref role="3cqZAo" node="6bvi$yscBv5" resolve="node" />
+                                              </node>
                                             </node>
                                           </node>
                                         </node>
@@ -9085,9 +9110,9 @@
                                               <ref role="3cqZAo" node="6bvi$ysdnq4" resolve="connection" />
                                             </node>
                                             <node concept="liA8E" id="6bvi$ysdnqh" role="2OqNvi">
-                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.killResource(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="killResource" />
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.killResource(org.jetbrains.mps.openapi.model.SNode)" resolve="killResource" />
                                               <node concept="37vLTw" id="6bvi$ysdnqi" role="37wK5m">
-                                                <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
+                                                <ref role="3cqZAo" node="6bvi$ysdnp4" resolve="node" />
                                               </node>
                                             </node>
                                           </node>
@@ -9098,9 +9123,9 @@
                                               <ref role="3cqZAo" node="6bvi$ysdnq4" resolve="connection" />
                                             </node>
                                             <node concept="liA8E" id="6bvi$ysdnqm" role="2OqNvi">
-                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.deleteResource(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="deleteResource" />
+                                              <ref role="37wK5l" to="6w4o:~DeviceConnection.deleteResource(org.jetbrains.mps.openapi.model.SNode)" resolve="deleteResource" />
                                               <node concept="37vLTw" id="6bvi$ysdnqn" role="37wK5m">
-                                                <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
+                                                <ref role="3cqZAo" node="6bvi$ysdnp4" resolve="node" />
                                               </node>
                                             </node>
                                           </node>

@@ -5,9 +5,8 @@ import jetbrains.mps.util.JDOMUtil
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.lib.common.Identifier
-import org.fbme.lib.iec61499.declarations.DeviceDeclaration
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
-import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
@@ -22,6 +21,44 @@ class WatcherFacade private constructor(project: Project) {
 
     init {
         repository = PlatformRepositoryProvider.getInstance(project)
+    }
+
+    fun watchResourceNetwork(resourceDeclaration: ResourceDeclaration) {
+        watchFBNetwork(resourceDeclaration, resourceDeclaration)
+    }
+
+    private fun watchFBNetwork(resource: ResourceDeclaration, fbWithNetwork: WithNetwork, vararg path: FunctionBlockDeclaration) {
+        for (functionBlock in fbWithNetwork.network.functionBlocks) {
+            val newPath = path.toList().plus(functionBlock).toTypedArray()
+
+            val fbTypeDeclaration = functionBlock.type.declaration as FBTypeDeclaration
+
+            for (event in fbTypeDeclaration.inputEvents) {
+                watch(Watchable(WatchablePath(resource, *newPath), event.name))
+            }
+            for (event in fbTypeDeclaration.outputEvents) {
+                watch(Watchable(WatchablePath(resource, *newPath), event.name))
+            }
+            for (variable in fbTypeDeclaration.inputParameters) {
+                watch(Watchable(WatchablePath(resource, *newPath), variable.name))
+            }
+            for (variable in fbTypeDeclaration.outputParameters) {
+                watch(Watchable(WatchablePath(resource, *newPath), variable.name))
+            }
+
+            when (fbTypeDeclaration) {
+                is BasicFBTypeDeclaration -> {
+                    watch(Watchable(WatchablePath(resource, *newPath), "\$ECC"))
+                    for (internalVariable in fbTypeDeclaration.internalVariables) {
+                        watch(Watchable(WatchablePath(resource, *newPath), internalVariable.name))
+                    }
+                }
+                is CompositeFBTypeDeclaration -> {
+                    watchFBNetwork(resource, fbTypeDeclaration, *newPath)
+                }
+                else -> {}
+            }
+        }
     }
 
     fun watch(watchable: Watchable) {
