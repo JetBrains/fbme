@@ -135,6 +135,13 @@ open class DebuggerToolWindow(
 
         initSuggestions()
 
+        for (child in suggestions.filterNot { it.contains('.') }) {
+            val newNode = nodeFactory.createNode(listOf(child))
+            rootNode.add(newNode)
+            watchesTreeModel.nodeStructureChanged(newNode.parent)
+            watchesTreeModel.nodeStructureChanged(newNode)
+        }
+
         watchFieldPanel = watchFieldPanel()
 
         splitPane.firstComponent = statesPanel()
@@ -173,8 +180,6 @@ open class DebuggerToolWindow(
             Point(component.x, e.y)
         }
     }
-
-    val watchItems = mutableMapOf<List<String>, JComponent>()
 
     open fun initializeWatchesTreeCellRenderer() {
         watchesTree.cellRenderer = object : DefaultTreeCellRenderer() {
@@ -242,7 +247,6 @@ open class DebuggerToolWindow(
                             })
                         }
                     }
-                    watchItems[pathAsList] = line
                 }
                 return line
             }
