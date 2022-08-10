@@ -59,7 +59,6 @@
     <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
     <import index="7zqy" ref="c6b02c2c-6484-48c4-ab6e-40937aeede2e/java:org.fbme.debugger.common.ui(org.fbme.debugger.lib/)" />
     <import index="flki" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger(org.fbme.debugger/)" implicit="true" />
-    <import index="7zqz" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger.common.ui(org.fbme.debugger/)" implicit="true" />
     <import index="uvkj" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" implicit="true" />
   </imports>
   <registry>
@@ -601,7 +600,7 @@
                     <ref role="3cqZAo" node="7Nz$1uIc9kf" resolve="debuggerPanel" />
                   </node>
                   <node concept="liA8E" id="7Nz$1uIcPzp" role="2OqNvi">
-                    <ref role="37wK5l" to="7zqz:~DebuggerPanel.getPanel()" resolve="getPanel" />
+                    <ref role="37wK5l" to="7zqy:~DebuggerPanel.getPanel()" resolve="getPanel" />
                   </node>
                 </node>
               </node>
@@ -8877,7 +8876,7 @@
             <node concept="2ShNRf" id="6bvi$ysddzW" role="33vP2m">
               <node concept="1pGfFk" id="6bvi$ysdd$G" role="2ShVmc">
                 <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.&lt;init&gt;(jetbrains.mps.project.Project,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="RuntimeTraceSynchronizer" />
+                <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.&lt;init&gt;(jetbrains.mps.project.Project,org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="RuntimeTraceSynchronizer" />
                 <node concept="2OqwBi" id="6bvi$ysddzc" role="37wK5m">
                   <node concept="2WthIp" id="6bvi$ysddze" role="2Oq$k0" />
                   <node concept="1DTwFV" id="6bvi$ysddzk" role="2OqNvi">
@@ -8885,9 +8884,39 @@
                   </node>
                 </node>
                 <node concept="37vLTw" id="6bvi$ysddym" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+                </node>
+                <node concept="37vLTw" id="6dBZAJEDorh" role="37wK5m">
                   <ref role="3cqZAo" node="6bvi$ysddzi" resolve="executionTrace" />
                 </node>
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="2M$4ifY8wJl" role="3cqZAp">
+          <node concept="2OqwBi" id="2M$4ifY8xWK" role="3clFbG">
+            <node concept="10M0yZ" id="2M$4ifY8xul" role="2Oq$k0">
+              <ref role="3cqZAo" to="flkh:~RuntimeTraceSynchronizer.Companion" resolve="Companion" />
+              <ref role="1PxDUh" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+            </node>
+            <node concept="liA8E" id="2M$4ifY8yn8" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer$Companion.addTraceSynchronizer(org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.RuntimeTraceSynchronizer)" resolve="addTraceSynchronizer" />
+              <node concept="37vLTw" id="2M$4ifY8ypt" role="37wK5m">
+                <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+              </node>
+              <node concept="37vLTw" id="2M$4ifY8yw0" role="37wK5m">
+                <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="7AhpHN80YjW" role="3cqZAp">
+          <node concept="2OqwBi" id="7AhpHN80Zj0" role="3clFbG">
+            <node concept="37vLTw" id="7AhpHN80YjU" role="2Oq$k0">
+              <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
+            </node>
+            <node concept="liA8E" id="7AhpHN80ZVB" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.startMonitoring()" resolve="startMonitoring" />
             </node>
           </node>
         </node>
@@ -9227,6 +9256,50 @@
             </node>
             <node concept="liA8E" id="6bvi$ysdnqR" role="2OqNvi">
               <ref role="37wK5l" to="xygl:~Task.queue()" resolve="queue" />
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="4WlA_fFjca4" role="3cqZAp">
+          <node concept="3cpWsn" id="4WlA_fFjca5" role="3cpWs9">
+            <property role="TrG5h" value="traceSynchronizer" />
+            <node concept="3uibUv" id="4WlA_fFjca6" role="1tU5fm">
+              <ref role="3uigEE" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+            </node>
+            <node concept="2OqwBi" id="2M$4ifY8_sa" role="33vP2m">
+              <node concept="10M0yZ" id="2M$4ifY8_mP" role="2Oq$k0">
+                <ref role="3cqZAo" to="flkh:~RuntimeTraceSynchronizer.Companion" resolve="Companion" />
+                <ref role="1PxDUh" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+              </node>
+              <node concept="liA8E" id="2M$4ifY8_F2" role="2OqNvi">
+                <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer$Companion.getInstance(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="getInstance" />
+                <node concept="37vLTw" id="2M$4ifY8_Hg" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="2M$4ifY8BcJ" role="3cqZAp">
+          <node concept="2OqwBi" id="2M$4ifY8BO4" role="3clFbG">
+            <node concept="37vLTw" id="2M$4ifY8BcH" role="2Oq$k0">
+              <ref role="3cqZAo" node="4WlA_fFjca5" resolve="traceSynchronizer" />
+            </node>
+            <node concept="liA8E" id="2M$4ifY8Cae" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.endMonitoring()" resolve="endMonitoring" />
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="2M$4ifY8FAU" role="3cqZAp">
+          <node concept="2OqwBi" id="2M$4ifY8FAW" role="3clFbG">
+            <node concept="10M0yZ" id="2M$4ifY8FAX" role="2Oq$k0">
+              <ref role="1PxDUh" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+              <ref role="3cqZAo" to="flkh:~RuntimeTraceSynchronizer.Companion" resolve="Companion" />
+            </node>
+            <node concept="liA8E" id="2M$4ifY8FAY" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer$Companion.removeTraceSynchronizer(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="removeTraceSynchronizer" />
+              <node concept="37vLTw" id="2M$4ifY8FAZ" role="37wK5m">
+                <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
+              </node>
             </node>
           </node>
         </node>

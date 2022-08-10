@@ -103,6 +103,10 @@ class WatcherFacade private constructor(project: Project) {
         readWatchesListeners.add(listener)
     }
 
+    fun removeReadWatchesListener(listener: ReadWatchesListener) {
+        readWatchesListeners.remove(listener)
+    }
+
     fun addWatchedValueListener(watchable: WatchableData, listener: WatchedValueListener) {
         val listeners = watchedValueListeners.computeIfAbsent(watchable) { HashSet() }
         listeners.add(listener)

@@ -14,9 +14,11 @@ import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.ReadWatchesListener
 import org.fbme.ide.platform.debugger.WatchableData
 import org.fbme.ide.platform.debugger.WatcherFacade
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 
 class RuntimeTraceSynchronizer(
     private val mpsProject: jetbrains.mps.project.Project,
+    private val resourceDeclaration: ResourceDeclaration,
     private val trace: ExecutionTrace
 ) {
     // save trace
@@ -25,11 +27,32 @@ class RuntimeTraceSynchronizer(
     // sort the sequence of states
     // and display it
 
-    private val readWatchesListener = object : ReadWatchesListener {
-        override fun onReadWatches(watches: Map<WatchableData, String>) {
-            if (watches.isEmpty()) {
-                return
+    private val readWatchesRequests by lazy { mutableListOf<Map<WatchableData, String>>() }
+
+    private val watcherFacade by lazy { WatcherFacade.getInstance(mpsProject)!! }
+
+    private val readWatchesListener by lazy {
+        object : ReadWatchesListener {
+            override fun onReadWatches(watches: Map<WatchableData, String>) {
+                if (watches.isEmpty()) {
+                    return
+                }
+                readWatchesRequests.add(watches)
             }
+        }
+    }
+
+    fun startMonitoring() {
+        watcherFacade.addReadWatchesListener(readWatchesListener)
+    }
+
+    fun endMonitoring() {
+        processReadWatchesRequests()
+        watcherFacade.removeReadWatchesListener(readWatchesListener)
+    }
+
+    private fun processReadWatchesRequests() {
+        for (watches in readWatchesRequests) {
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val newWatches = watches.mapKeys { it.key.resolve(repository) }
 
@@ -78,15 +101,25 @@ class RuntimeTraceSynchronizer(
                             }
                         }
                     }
-
                     else -> error("expected execution of resource")
                 }
             }
         }
     }
 
-    init {
-        val watcherFacade = WatcherFacade.getInstance(mpsProject)
-        watcherFacade?.addReadWatchesListener(readWatchesListener)
+    companion object {
+        private val instances = mutableMapOf<ResourceDeclaration, RuntimeTraceSynchronizer>()
+
+        fun getInstance(resourceDeclaration: ResourceDeclaration): RuntimeTraceSynchronizer? {
+            return instances[resourceDeclaration]
+        }
+
+        fun addTraceSynchronizer(resourceDeclaration: ResourceDeclaration, traceSynchronizer: RuntimeTraceSynchronizer) {
+            instances[resourceDeclaration] = traceSynchronizer
+        }
+
+        fun removeTraceSynchronizer(resourceDeclaration: ResourceDeclaration) {
+            instances.remove(resourceDeclaration)
+        }
     }
 }
