@@ -10,6 +10,7 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.WithNetwork
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
@@ -89,6 +90,11 @@ class DeclarationSnapshot(
         private fun collectAllDeclarations(declaration: Declaration, result: MutableSet<Declaration>) {
             if (!result.add(declaration)) {
                 return
+            }
+            if (declaration is ResourceDeclaration) {
+                declaration.typeReference.getTarget()?.let { typeDeclaration ->
+                    collectAllDeclarations(typeDeclaration, result)
+                }
             }
             if (declaration is WithNetwork) {
                 for (it in declaration.network.functionBlocks) {

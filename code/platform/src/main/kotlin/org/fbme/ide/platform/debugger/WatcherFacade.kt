@@ -24,6 +24,8 @@ class WatcherFacade private constructor(project: Project) {
     }
 
     fun watchResourceNetwork(resourceDeclaration: ResourceDeclaration) {
+        val resourceTypeDeclaration = resourceDeclaration.typeReference.getTarget()!!
+        watchFBNetwork(resourceDeclaration, resourceTypeDeclaration)
         watchFBNetwork(resourceDeclaration, resourceDeclaration)
     }
 
