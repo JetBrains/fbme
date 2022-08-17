@@ -3,6 +3,7 @@ package org.fbme.debugger
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.StateChange
+import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.state.typeOfParameter
@@ -14,6 +15,7 @@ import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.ReadWatchesListener
 import org.fbme.ide.platform.debugger.WatchableData
 import org.fbme.ide.platform.debugger.WatcherFacade
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 
 class RuntimeTraceSynchronizer(
@@ -66,13 +68,16 @@ class RuntimeTraceSynchronizer(
                         val fbPath = path.dropLast(1)
                         val fbState = state.resolveFB(fbPath)
                         val prevValue = fbState.valueOfParameter(portName) ?: error("value unresolved")
-                        val newValue = watch.value
+                        val typeOfParameter = fbState.typeOfParameter(portName)
+                        val typeDeclaration = resourceDeclaration.resolvePath(fbPath)
+                        val newValue = if (typeOfParameter == "ECC State")
+                            (typeDeclaration as BasicFBTypeDeclaration).ecc.states[watch.value.toInt()].name
+                        else watch.value
 
                         if (prevValue != newValue) {
-                            val typeOfParameter = fbState.typeOfParameter(portName)
-
                             val newState = state.copy()
                             val newFBState = newState.resolveFB(fbPath)
+
                             when (typeOfParameter) {
                                 "Input Event" -> {
                                     newFBState.inputEvents[portName] = newFBState.inputEvents[portName]!! + 1
@@ -101,6 +106,7 @@ class RuntimeTraceSynchronizer(
                             }
                         }
                     }
+
                     else -> error("expected execution of resource")
                 }
             }
@@ -114,7 +120,10 @@ class RuntimeTraceSynchronizer(
             return instances[resourceDeclaration]
         }
 
-        fun addTraceSynchronizer(resourceDeclaration: ResourceDeclaration, traceSynchronizer: RuntimeTraceSynchronizer) {
+        fun addTraceSynchronizer(
+            resourceDeclaration: ResourceDeclaration,
+            traceSynchronizer: RuntimeTraceSynchronizer
+        ) {
             instances[resourceDeclaration] = traceSynchronizer
         }
 
