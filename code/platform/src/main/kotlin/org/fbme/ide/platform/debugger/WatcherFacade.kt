@@ -27,7 +27,11 @@ class WatcherFacade private constructor(project: Project) {
         watchFBNetwork(resourceDeclaration, resourceDeclaration)
     }
 
-    private fun watchFBNetwork(resource: ResourceDeclaration, fbWithNetwork: WithNetwork, vararg path: FunctionBlockDeclaration) {
+    private fun watchFBNetwork(
+        resource: ResourceDeclaration,
+        fbWithNetwork: WithNetwork,
+        vararg path: FunctionBlockDeclaration
+    ) {
         for (functionBlock in fbWithNetwork.network.functionBlocks) {
             val newPath = path.toList().plus(functionBlock).toTypedArray()
 
@@ -155,7 +159,7 @@ class WatcherFacade private constructor(project: Project) {
                                 requireNotNull(device)
                                 val connection = DevicesFacade.instance?.attach(device)
                                 if (connection != null && connection.isAlive) {
-                                    val resolvedWatches: Map<WatchableData, String> = resolveWatches(device, connection.readWatches())
+                                    val resolvedWatches = resolveWatches(device, connection.readWatches())
 
                                     for (listener in readWatchesListeners) {
                                         listener.onReadWatches(resolvedWatches)
@@ -224,27 +228,45 @@ class WatcherFacade private constructor(project: Project) {
                 val watchesElement = doc.rootElement.getChild("Watches")
                 for (resourceElement in watchesElement.getChildren("Resource")) {
                     val resourceName = resourceElement.getAttributeValue("name")
-                    val resource =
-                        device.resources.stream().filter { it.name == resourceName }
-                            .findFirst().orElseThrow()
+                    val resource = device.resources.firstOrNull { it.name == resourceName }
+                        ?: error("resource not found")
                     for (fbElement in resourceElement.getChildren("FB")) {
-                        val fbName = fbElement.getAttributeValue("name")
-                        val fb = resource.allFunctionBlocks().stream()
-                            .filter { it.name == fbName }
-                            .findFirst().orElseThrow()
+                        val fbPath = fbElement.getAttributeValue("name").split(".")
+
+                        val firstFB = resource.allFunctionBlocks().firstOrNull { it.name == fbPath.first() }
+                            ?: error("fb not found")
+
+                        val fbDeclarationsPath = mutableListOf(firstFB)
+
+                        var currentFB = firstFB
+
+                        for (fbName in fbPath.drop(1)) {
+                            val currentFBDeclaration = currentFB.type.declaration as FBTypeDeclaration
+
+                            if (currentFBDeclaration is WithNetwork) {
+                                currentFB = currentFBDeclaration.network.functionBlocks
+                                    .firstOrNull { it.name == fbName }
+                                    ?: error("fb not found")
+                            }
+
+                            fbDeclarationsPath.add(currentFB)
+                        }
+
                         for (portElement in fbElement.getChildren("Port")) {
                             val portName = portElement.getAttributeValue("name")
                             val dataElement = portElement.getChild("Data")
                             if (dataElement != null) {
-                                watches[Watchable(WatchablePath(resource, fb), portName).serialize()] =
-                                    dataElement.getAttributeValue("value")
+                                watches[Watchable(
+                                    WatchablePath(resource, *fbDeclarationsPath.toTypedArray()),
+                                    portName
+                                ).serialize()] = dataElement.getAttributeValue("value")
                             }
                         }
                     }
                 }
                 watches
             } catch (e: Throwable) {
-                emptyMap()
+                error(e)
             }
         }
     }
