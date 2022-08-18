@@ -24,17 +24,15 @@ class WatcherFacade private constructor(project: Project) {
     }
 
     fun watchResourceNetwork(resourceDeclaration: ResourceDeclaration) {
-        val resourceTypeDeclaration = resourceDeclaration.typeReference.getTarget()!!
-        watchFBNetwork(resourceDeclaration, resourceTypeDeclaration)
-        watchFBNetwork(resourceDeclaration, resourceDeclaration)
+        watchFBNetwork(resourceDeclaration, resourceDeclaration.allFunctionBlocks())
     }
 
     private fun watchFBNetwork(
         resource: ResourceDeclaration,
-        fbWithNetwork: WithNetwork,
+        children: List<FunctionBlockDeclaration>,
         vararg path: FunctionBlockDeclaration
     ) {
-        for (functionBlock in fbWithNetwork.network.functionBlocks) {
+        for (functionBlock in children) {
             val newPath = path.toList().plus(functionBlock).toTypedArray()
 
             val fbTypeDeclaration = functionBlock.type.declaration as FBTypeDeclaration
@@ -60,7 +58,7 @@ class WatcherFacade private constructor(project: Project) {
                     }
                 }
                 is CompositeFBTypeDeclaration -> {
-                    watchFBNetwork(resource, fbTypeDeclaration, *newPath)
+                    watchFBNetwork(resource, fbTypeDeclaration.network.functionBlocks, *newPath)
                 }
                 else -> {}
             }
