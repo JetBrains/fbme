@@ -1,27 +1,25 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.common.getOutgoingEventConnectionsFromPort
-import org.fbme.debugger.common.resolveTargetPortPresentation
 import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.CompositeFBState
+import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.state.ServiceFBState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
-class CompositeFBSimulator(
-    override val typeDeclaration: CompositeFBTypeDeclaration,
-    override val state: CompositeFBState,
-    override val parent: Simulator?,
-    override val fbInstanceName: String?,
-    trace: ExecutionTrace
-) : FBSimulatorImpl(trace) {
+class ResourceSimulatorImpl(
+    val resourceDeclaration: ResourceDeclaration,
+    val state: ResourceState,
+    override val trace: ExecutionTrace
+) : ResourceSimulator {
     val children: Map<String, FBSimulatorImpl>
 
     init {
         children = state.children.mapValues { (childName, childState) ->
-            val childDeclaration = typeDeclaration.network.allComponents
+            val childDeclaration = resourceDeclaration.network.allComponents
                 .firstOrNull { component -> component.name == childName }?.type?.declaration
                 ?: error("type declaration of FB $childName not found")
 
@@ -52,16 +50,7 @@ class CompositeFBSimulator(
         }
     }
 
-    override fun triggerInputEventInternal(eventName: String) {
-        val outgoingEventConnections = typeDeclaration.getOutgoingEventConnectionsFromPort(null, eventName)
-        for (outgoingEventConnection in outgoingEventConnections) {
-            val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
-
-            if (targetFB == null) {
-                triggerEvent(targetPort)
-            } else {
-                children[targetFB]!!.triggerEvent(targetPort)
-            }
-        }
+    override fun start() {
+        TODO("Not yet implemented")
     }
 }

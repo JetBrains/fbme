@@ -15,7 +15,7 @@ import org.fbme.lib.iec61499.ecc.StateTransition
 class BasicFBSimulator(
     override val typeDeclaration: BasicFBTypeDeclaration,
     override val state: BasicFBState,
-    override val parent: CompositeFBSimulator?,
+    override val parent: Simulator?,
     override val fbInstanceName: String?,
     trace: ExecutionTrace
 ) : FBSimulatorImpl(trace) {

@@ -1,9 +1,9 @@
 package org.fbme.debugger.simulator
 
 import org.fbme.debugger.common.*
-import org.fbme.debugger.common.change.TraceChange
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
+import org.fbme.debugger.common.change.TraceChange
 import org.fbme.debugger.common.state.FBStateImpl
 import org.fbme.debugger.common.state.Value
 import org.fbme.debugger.common.trace.ExecutionTrace
@@ -15,26 +15,26 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
     abstract val typeDeclaration: FBTypeDeclaration
     abstract val state: FBStateImpl
 
-    abstract val parent: CompositeFBSimulator?
+    abstract val parent: Simulator?
     abstract val fbInstanceName: String?
 
     private val candidates = mutableMapOf<String, Value<Any?>>()
     private val deferredTriggers = LinkedList<String>()
 
     private val rootFBState by lazy {
-        var curParent = this
-        while (curParent.parent != null) {
-            curParent = curParent.parent!!
+        var curParent: Simulator = this
+        while ((curParent as? FBSimulatorImpl)?.parent != null) {
+            curParent = (curParent as FBSimulatorImpl).parent!!
         }
-        curParent.state
+        (curParent as? FBSimulatorImpl)?.state ?: (curParent as? ResourceSimulatorImpl)?.state!!
     }
 
     private val fbPath by lazy {
         val path = mutableListOf<String>()
-        var cur: FBSimulatorImpl? = this
-        while (cur!!.parent != null) {
-            path.add(cur!!.fbInstanceName!!)
-            cur = cur!!.parent
+        var cur: Simulator? = this
+        while ((cur as? FBSimulatorImpl)?.parent != null) {
+            path.add((cur as FBSimulatorImpl).fbInstanceName!!)
+            cur = (cur as FBSimulatorImpl).parent
         }
         path.reversed()
     }
@@ -79,16 +79,25 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
         logCurrentStateAndChange(OutputEventChange(eventName))
 
         if (parent != null) {
-            val outgoingEventConnections = parent!!.typeDeclaration
-                .getOutgoingEventConnectionsFromPort(fbInstanceName, eventName)
+            val outgoingEventConnections = when (parent) {
+                is FBSimulatorImpl -> (parent as CompositeFBSimulator)
+                    .typeDeclaration.getOutgoingEventConnectionsFromPort(fbInstanceName, eventName)
+
+                is ResourceSimulatorImpl -> (parent as ResourceSimulatorImpl)
+                    .resourceDeclaration.getOutgoingEventConnectionsFromPort(fbInstanceName, eventName)
+
+                else -> error("can't initialize outgoing connections")
+            }
 
             for (outgoingEventConnection in outgoingEventConnections) {
                 val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
 
                 if (targetFB == null) {
-                    parent!!.triggerEvent(targetPort)
+                    (parent as CompositeFBSimulator).triggerEvent(targetPort)
                 } else {
-                    parent!!.children[targetFB]!!.triggerInputEvent(targetPort)
+                    val children = (parent as? CompositeFBSimulator)?.children
+                        ?: (parent as? ResourceSimulatorImpl)?.children!!
+                    children[targetFB]!!.triggerInputEvent(targetPort)
                 }
             }
         }
@@ -112,16 +121,26 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
                 val associatedVariableValue =
                     state.outputVariables[associatedVariable] ?: error("associated variable not found")
 
-                val outgoingDataConnections = parent!!.typeDeclaration
-                    .getOutgoingDataConnectionsFromPort(fbInstanceName, associatedVariable)
+                val outgoingDataConnections = when (parent) {
+                    is FBSimulatorImpl -> (parent as CompositeFBSimulator)
+                        .typeDeclaration.getOutgoingDataConnectionsFromPort(fbInstanceName, associatedVariable)
+
+                    is ResourceSimulatorImpl -> (parent as ResourceSimulatorImpl)
+                        .resourceDeclaration.getOutgoingDataConnectionsFromPort(fbInstanceName, associatedVariable)
+
+                    else -> error("can't initialize outgoing connections")
+                }
 
                 for (outgoingDataConnection in outgoingDataConnections) {
                     val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
 
                     if (targetFB == null) {
-                        parent!!.state.outputVariables[targetPort]!!.value = associatedVariableValue.value
+                        (parent as CompositeFBSimulator).state.outputVariables[targetPort]!!.value =
+                            associatedVariableValue.value
                     } else {
-                        parent!!.children[targetFB]!!.candidates[targetPort] = associatedVariableValue
+                        val children = (parent as? CompositeFBSimulator)?.children
+                            ?: (parent as? ResourceSimulatorImpl)?.children!!
+                        children[targetFB]!!.candidates[targetPort] = associatedVariableValue
                     }
                 }
             }

@@ -1,13 +1,10 @@
 package org.fbme.debugger.simulator.ui
 
 import org.fbme.debugger.common.state.valueOfParameter
-import org.fbme.debugger.simulator.BasicFBSimulator
-import org.fbme.debugger.simulator.CompositeFBSimulator
-import org.fbme.debugger.simulator.FBSimulator
+import org.fbme.debugger.simulator.*
 
-fun FBSimulator.resolveSimulator(path: List<String>): FBSimulator? {
+fun Simulator.resolveSimulator(path: List<String>): Simulator? {
     var cur = this
-    var result: FBSimulator? = this
     for ((ind, p) in path.withIndex()) {
         when (cur) {
             is BasicFBSimulator -> {
@@ -22,10 +19,16 @@ fun FBSimulator.resolveSimulator(path: List<String>): FBSimulator? {
                     cur = next
                 }
             }
+            is ServiceFBSimulator -> {
+                check(ind == path.size - 1)
+                val value = cur.state.valueOfParameter(p) ?: return null
+            }
+            is ResourceSimulatorImpl -> {
+                val next = cur.children[p] ?: return null
+                cur = next
+            }
             else -> {}
         }
     }
-    result = cur
-
-    return result
+    return cur
 }
