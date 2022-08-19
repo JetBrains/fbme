@@ -1,5 +1,7 @@
 package org.fbme.debugger.simulator
 
+import org.fbme.debugger.common.getAssociatedVariablesWithInputEvent
+import org.fbme.debugger.common.getOutgoingDataConnectionsFromPort
 import org.fbme.debugger.common.getOutgoingEventConnectionsFromPort
 import org.fbme.debugger.common.resolveTargetPortPresentation
 import org.fbme.debugger.common.state.BasicFBState
@@ -53,6 +55,8 @@ class CompositeFBSimulator(
     }
 
     override fun triggerInputEventInternal(eventName: String) {
+        pushAssociatedVariablesWithInputEvent(eventName)
+
         val outgoingEventConnections = typeDeclaration.getOutgoingEventConnectionsFromPort(null, eventName)
         for (outgoingEventConnection in outgoingEventConnections) {
             val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
@@ -61,6 +65,28 @@ class CompositeFBSimulator(
                 triggerEvent(targetPort)
             } else {
                 children[targetFB]!!.triggerEvent(targetPort)
+            }
+        }
+    }
+
+    private fun pushAssociatedVariablesWithInputEvent(eventName: String) {
+        val associatedVariables = typeDeclaration.getAssociatedVariablesWithInputEvent(eventName)
+        for (associatedVariable in associatedVariables) {
+            val newValue = state.inputVariables[associatedVariable]
+            if (newValue != null) {
+                val outgoingDataConnections =
+                    typeDeclaration.getOutgoingDataConnectionsFromPort(null, associatedVariable)
+
+                for (outgoingDataConnection in outgoingDataConnections) {
+                    val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
+
+                    if (targetFB == null) {
+                        state.outputVariables[targetPort]!!.value =
+                            newValue.value
+                    } else {
+                        children[targetFB]!!.candidates[targetPort] = newValue
+                    }
+                }
             }
         }
     }

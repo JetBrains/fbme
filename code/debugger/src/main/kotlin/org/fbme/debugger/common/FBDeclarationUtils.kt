@@ -123,7 +123,7 @@ val ElementaryType.defaultValue: Value<Any?>
         ElementaryType.STRING -> Value("")
         ElementaryType.TOD -> error("TODO")
         ElementaryType.TIME_OF_DAY -> error("TODO")
-        ElementaryType.TIME -> Value(0)
+        ElementaryType.TIME -> Value("0ms")
         ElementaryType.WSTRING -> error("TODO")
         ElementaryType.WORD -> error("TODO")
     }

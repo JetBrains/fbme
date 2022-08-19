@@ -15,7 +15,7 @@ class STInterpreter(
         is BinaryExpression -> interpret(expression)
         is ParenthesisExpression -> interpret(expression.innerExpression)
         is UnaryExpression -> interpret(expression)
-        is Literal<*> -> Value(expression.value)
+        is Literal<*> -> interpretLiteral(expression)
         is FunctionCall -> error("TODO: Support ArrayVariable")
         else -> error("unexpected expression")
     }
@@ -150,5 +150,11 @@ class STInterpreter(
 
     private fun interpret(caseStatement: CaseStatement) {
         // TODO: implement case statement
+    }
+
+    companion object {
+        fun interpretLiteral(literal: Literal<*>): Value<Any?> {
+            return Value(literal.value)
+        }
     }
 }

@@ -1,22 +1,23 @@
 package org.fbme.debugger
 
-import org.fbme.debugger.common.change.InputEventChange
-import org.fbme.debugger.common.change.OutputEventChange
-import org.fbme.debugger.common.change.StateChange
 import org.fbme.debugger.common.resolvePath
-import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.state.typeOfParameter
 import org.fbme.debugger.common.state.valueOfParameter
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.ui.resolveFB
+import org.fbme.debugger.simulator.FBSimulator
+import org.fbme.debugger.simulator.ResourceSimulatorImpl
+import org.fbme.debugger.simulator.st.STInterpreter
+import org.fbme.debugger.simulator.ui.resolveSimulator
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.ReadWatchesListener
+import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.ide.platform.debugger.WatchableData
 import org.fbme.ide.platform.debugger.WatcherFacade
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
+import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
 class RuntimeTraceSynchronizer(
     private val mpsProject: jetbrains.mps.project.Project,
@@ -53,61 +54,102 @@ class RuntimeTraceSynchronizer(
         watcherFacade.removeReadWatchesListener(readWatchesListener)
     }
 
+    private fun getChanges(currentState: ResourceState, newWatches: Map<Watchable, String>): Map<List<String>, String> {
+        val changes = mutableMapOf<List<String>, String>()
+        for (watch in newWatches) {
+            val path = watch.key.path.path.map { it.name }.plus(watch.key.port)
+            val portName = watch.key.port
+            val fbPath = path.dropLast(1)
+            val fbState = currentState.resolveFB(fbPath)
+            val prevValue = fbState.valueOfParameter(portName) ?: error("value unresolved")
+            val typeOfParameter = fbState.typeOfParameter(portName)
+            val typeDeclaration = resourceDeclaration.resolvePath(fbPath)
+            val newValue = if (typeOfParameter == "ECC State")
+                (typeDeclaration as BasicFBTypeDeclaration).ecc.states[watch.value.toInt()].name
+            else watch.value
+            val validNewValue = if (newValue.startsWith("T#")) newValue.drop(2) else newValue
+
+            if (prevValue != validNewValue) {
+                changes[path] = validNewValue
+            }
+        }
+        return changes
+    }
+
     private fun processReadWatchesRequests() {
-        for (watches in readWatchesRequests) {
+        var currentStateIndex = 0
+
+        for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
+            for (parameter in functionBlock.parameters) {
+                val portName = parameter.parameterReference.getTarget()!!.name
+                val value = STInterpreter.interpretLiteral(parameter.value!!)
+                val fbState = (trace[currentStateIndex].state as ResourceState).children[functionBlock.name]!!
+                fbState.inputVariables[portName] = value
+            }
+        }
+
+        requestsLoop@ for (watches in readWatchesRequests) {
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val newWatches = watches.mapKeys { it.key.resolve(repository) }
 
-            for (watch in newWatches) {
-                val state = trace[trace.size - 1].state
+            // find in tail
+            for (i in currentStateIndex + 1 until trace.size) {
+                if (getChanges(trace[i].state as ResourceState, newWatches).isEmpty()) {
+                    currentStateIndex = i
+                    continue@requestsLoop
+                }
+            }
+            currentStateIndex = trace.size - 1
 
-                when (state) {
-                    is ResourceState -> {
-                        val path = watch.key.path.path.map { it.name }.plus(watch.key.port)
-                        val portName = watch.key.port
-                        val fbPath = path.dropLast(1)
-                        val fbState = state.resolveFB(fbPath)
-                        val prevValue = fbState.valueOfParameter(portName) ?: error("value unresolved")
-                        val typeOfParameter = fbState.typeOfParameter(portName)
-                        val typeDeclaration = resourceDeclaration.resolvePath(fbPath)
-                        val newValue = if (typeOfParameter == "ECC State")
-                            (typeDeclaration as BasicFBTypeDeclaration).ecc.states[watch.value.toInt()].name
-                        else watch.value
+            val changes = getChanges(trace[currentStateIndex].state as ResourceState, newWatches)
+            if (changes.isEmpty()) {
+                continue@requestsLoop
+            }
 
-                        if (prevValue != newValue) {
-                            val newState = state.copy()
-                            val newFBState = newState.resolveFB(fbPath)
+            val serviceChanges = changes.filter { (path, _) ->
+                resourceDeclaration.resolvePath(path.dropLast(1)) is ServiceInterfaceFBTypeDeclaration
+            }
+            check(serviceChanges.isNotEmpty())
 
-                            when (typeOfParameter) {
-                                "Input Event" -> {
-                                    newFBState.inputEvents[portName] = newFBState.inputEvents[portName]!! + 1
-                                    val change = InputEventChange(portName)
-                                    trace.add(TraceItem(newState, fbPath, change))
-                                }
+            val currentState = trace[currentStateIndex].state as ResourceState
 
-                                "Output Event" -> {
-                                    newFBState.outputEvents[portName] = newFBState.outputEvents[portName]!! + 1
-                                    val change = OutputEventChange(portName)
-                                    trace.add(TraceItem(newState, fbPath, change))
-                                }
+            for ((path, newValue) in serviceChanges) {
+                val portName = path.last()
+                val fbPath = path.dropLast(1)
+                val fbState = currentState.resolveFB(fbPath)
+                val typeOfParameter = fbState.typeOfParameter(portName)
 
-                                "Input Variable",
-                                "Output Variable",
-                                "Internal Variable" -> {
-                                }
+                val newState = currentState.copy()
 
-                                "ECC State" -> {
-                                    (newFBState as BasicFBState).activeState = newValue
-                                    val change = StateChange(newValue)
-                                    trace.add(TraceItem(newState, fbPath, change))
-                                }
+                val traceSegment = ExecutionTrace(newState)
+                val resourceSimulator = ResourceSimulatorImpl(
+                    resourceDeclaration,
+                    newState,
+                    traceSegment
+                )
+                val fbSimulator = resourceSimulator.resolveSimulator(fbPath) as FBSimulator
 
-                                else -> error("unknown type")
+                when (typeOfParameter) {
+                    "Input Event",
+                    "Output Event" -> {
+                        fbSimulator.triggerEvent(portName)
+                        for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
+                            val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
+                            if (changesOnSegment.isEmpty()) {
+                                currentStateIndex += index + 1
+                                trace.addAll(traceSegment.drop(1))
+                                continue@requestsLoop
                             }
                         }
                     }
 
-                    else -> error("expected execution of resource")
+                    "Input Variable",
+                    "Output Variable",
+                    "Internal Variable",
+                    "ECC State" -> {
+                    }
+
+                    else -> error("unknown type")
                 }
             }
         }

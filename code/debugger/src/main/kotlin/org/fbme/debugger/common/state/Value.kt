@@ -36,7 +36,10 @@ class Value<V>(
     }
 
     override fun toString(): String {
-        return value.toString()
+        return when(value!!::class.qualifiedName) {
+            Boolean::class.qualifiedName -> (value as Boolean).toString().uppercase()
+            else -> value.toString()
+        }
     }
 }
 

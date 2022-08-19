@@ -37,4 +37,9 @@ class ExecutionTrace(initialState: State): Iterable<TraceItem> {
     override fun iterator(): Iterator<TraceItem> {
         return items.iterator()
     }
+    fun addAll(traceItems: List<TraceItem>) {
+        for (traceItem in traceItems) {
+            add(traceItem)
+        }
+    }
 }

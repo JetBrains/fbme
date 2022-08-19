@@ -3,7 +3,7 @@ package org.fbme.debugger.common.state
 import org.fbme.lib.iec61499.declarations.*
 
 class ResourceState : State {
-    val children: Map<String, FBState>
+    val children: Map<String, FBStateImpl>
 
     constructor(typeDeclaration: ResourceDeclaration) {
         children = typeDeclaration.network.allComponents.associate { component ->
