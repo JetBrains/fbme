@@ -61,7 +61,8 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
             File("build/classes/java/test").toURI().toURL(),
             File("build/classes/kotlin/test").toURI().toURL(),
             File("build/resources/test").toURI().toURL()
-        ), null
+        ),
+        null
     ) {
         @Throws(ClassNotFoundException::class)
         override fun loadClass(name: String): Class<*> {
@@ -111,10 +112,8 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                     .addFbmePlugin("fbme.scenes")
                     .addFbmePlugin("fbme.formalfb")
                     .addFbmePlugin("fbme.integration.nxt")
-                    .withTestModeOn()
                 val environment = IdeaEnvironment(config)
                 environment.init()
-                System.setProperty("java.awt.headless", "true")
                 val repository = MPSModuleRepository.getInstance()
                 val parentModule = ModelAccessHelper(repository.modelAccess).runReadAction<ReloadableModule> {
                     val platformModule = repository.modules.first { it.moduleName == moduleName } as ReloadableModule
@@ -132,7 +131,10 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                 val platformTestClass =
                     Class.forName("org.fbme.ide.platform.testing.PlatformTestBase", true, classloader)
                 RunnerEnvironment(
-                    environment, classloader, platformTestClass, platformTestClass.getField("environment")
+                    environment,
+                    classloader,
+                    platformTestClass,
+                    platformTestClass.getField("environment")
                 )
             }
         }
