@@ -50,13 +50,16 @@ abstract class PlatformTestBase {
         createConverter(requireNotNull(this::class.java.getResourceAsStream(input)))
 
     fun rootConverterByPath(input: String, config: PlatformConverter.DefaultConfigurationFactory) =
-            createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
+        createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
 
     private fun createConverter(stream: InputStream): RootConverter {
         return createConverter(stream, null)
     }
 
-    private fun createConverter(stream: InputStream, config: PlatformConverter.DefaultConfigurationFactory?): RootConverter {
+    private fun createConverter(
+        stream: InputStream,
+        config: PlatformConverter.DefaultConfigurationFactory?
+    ): RootConverter {
         return try {
             val reference = SModelReference(null, SModelId.generate(), SModelName("testModel"))
             val locus = PlatformIdentifierLocus(reference)
