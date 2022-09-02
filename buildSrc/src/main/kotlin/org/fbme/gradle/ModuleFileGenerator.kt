@@ -2,7 +2,8 @@ package org.fbme.gradle
 
 class ModuleFileGenerator(
     private val name: String,
-    private val id: String,
+    private val moduleId: String,
+    private val pluginId: String,
     private val dependencies: List<ModuleDependency>,
     private val libraryLocations: List<String>,
     private val languages: List<ModuleDependency>
@@ -31,7 +32,7 @@ class ModuleFileGenerator(
 
         return """
             <?xml version="1.0" encoding="UTF-8"?>
-            <solution name="$name" uuid="$id" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="true">
+            <solution name="$name" uuid="$moduleId" moduleVersion="0" pluginKind="PLUGIN_OTHER" compileInMPS="false">
               <models>
                 <modelRoot contentPath="$module/lib" type="java_classes">$libraryRoots  
                 </modelRoot>
@@ -40,6 +41,7 @@ class ModuleFileGenerator(
                 <facet type="java" languageLevel="JAVA_8">
                   <classes generated="true" path="$module/classes_gen" />
                 </facet>
+                <facet type="ideaPlugin" pluginId="$pluginId" />
               </facets>
               <stubModelEntries>$stubModelEntries
               </stubModelEntries>
@@ -70,7 +72,7 @@ class ModuleFileGenerator(
 
         return """
             <?xml version="1.0" encoding="UTF-8"?>
-            <module namespace="$name" type="solution" uuid="$id">
+            <module namespace="$name" type="solution" uuid="$moduleId">
               <dependencies>$dependencyEntries
               </dependencies>
               <uses>$languageEntries
@@ -80,22 +82,16 @@ class ModuleFileGenerator(
         """.trimIndent()
     }
 
-
     companion object {
         fun forIdeaPlugin(
             spec: PluginModuleFileSpec
         ): ModuleFileGenerator {
             val name = spec.moduleName.get()
-            val id = spec.moduleId.get()
+            val moduleId = spec.moduleId.get()
+            val pluginId = spec.pluginId.get()
             val dependencies = ideaPluginDependencies + spec.dependentModules.get()
             val libraryLocations = spec.libraryLocations + "${spec.project.name}.jar"
-            return ModuleFileGenerator(
-                name,
-                id,
-                dependencies,
-                libraryLocations,
-                ideaPluginLanguages
-            )
+            return ModuleFileGenerator(name, moduleId, pluginId, dependencies, libraryLocations, ideaPluginLanguages)
         }
 
         private val ideaPluginDependencies = listOf(

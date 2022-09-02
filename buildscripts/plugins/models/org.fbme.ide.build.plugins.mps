@@ -400,7 +400,7 @@
             <node concept="2Ry0Ak" id="1EO1wDlp0_w" role="2Ry0An">
               <property role="2Ry0Am" value="src-plugins" />
               <node concept="2Ry0Ak" id="1EO1wDlp0_x" role="2Ry0An">
-                <property role="2Ry0Am" value="fbme.statistsics" />
+                <property role="2Ry0Am" value="fbme.statistics" />
                 <node concept="2Ry0Ak" id="1EO1wDlp0_y" role="2Ry0An">
                   <property role="2Ry0Am" value="lib" />
                   <node concept="2Ry0Ak" id="1EO1wDlp0_z" role="2Ry0An">
@@ -488,6 +488,11 @@
             <ref role="L2wRA" node="DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
+        <node concept="3_J27D" id="6AO1fiEOKmv" role="Nbhlr">
+          <node concept="3Mxwew" id="6AO1fiEOKmw" role="3MwsjC">
+            <property role="3MwjfP" value="fbme.platform" />
+          </node>
+        </node>
         <node concept="398223" id="2g7iZ5XXA6F" role="39821P">
           <node concept="3_J27D" id="2g7iZ5XXA6G" role="Nbhlr">
             <node concept="3Mxwew" id="2g7iZ5XXA6H" role="3MwsjC">
@@ -531,11 +536,6 @@
                 </node>
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="3_J27D" id="6AO1fiEOKmv" role="Nbhlr">
-          <node concept="3Mxwew" id="6AO1fiEOKmw" role="3MwsjC">
-            <property role="3MwjfP" value="fbme.platform" />
           </node>
         </node>
       </node>
@@ -830,7 +830,7 @@
                 <node concept="2Ry0Ak" id="1EO1wDljBnL" role="2Ry0An">
                   <property role="2Ry0Am" value="src-plugins" />
                   <node concept="2Ry0Ak" id="1EO1wDljBnM" role="2Ry0An">
-                    <property role="2Ry0Am" value="fbme.statistsics" />
+                    <property role="2Ry0Am" value="fbme.statistics" />
                     <node concept="2Ry0Ak" id="1EO1wDljBnN" role="2Ry0An">
                       <property role="2Ry0Am" value="lib" />
                       <node concept="2Ry0Ak" id="1EO1wDljBtJ" role="2Ry0An">
