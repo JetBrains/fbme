@@ -275,6 +275,9 @@
     <node concept="PrWs8" id="3HBlKeoZ0Ur" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
+    <node concept="PrWs8" id="7eg14Ye25df" role="PzmwI">
+      <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
     <node concept="1TJgyj" id="1zB5ET5xzpJ" role="1TKVEi">
       <property role="IQ2ns" value="1794427914276976239" />
       <property role="20kJfa" value="body" />
