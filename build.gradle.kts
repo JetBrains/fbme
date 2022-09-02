@@ -26,6 +26,7 @@ dependencies {
 
 val buildBootstrap by tasks.registering {
     inputs.dir("buildscripts/models")
+    inputs.dir("buildscripts/plugins/models")
     inputs.file("build-bootstrap.xml")
     outputs.dir("buildscripts/source_gen")
 
