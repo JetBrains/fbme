@@ -19,7 +19,7 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
     abstract val fbInstanceName: String?
 
     val candidates = mutableMapOf<String, Value<Any?>>()
-    private val deferredTriggers = LinkedList<String>()
+    val deferredTriggers = LinkedList<String>()
 
     private val rootFBState by lazy {
         var curParent: Simulator = this

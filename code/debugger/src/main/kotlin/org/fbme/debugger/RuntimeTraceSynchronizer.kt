@@ -8,6 +8,7 @@ import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.ui.resolveFB
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.ResourceSimulatorImpl
+import org.fbme.debugger.simulator.applyContext
 import org.fbme.debugger.simulator.st.STInterpreter
 import org.fbme.debugger.simulator.ui.resolveSimulator
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
@@ -78,6 +79,7 @@ class RuntimeTraceSynchronizer(
 
     private fun processReadWatchesRequests() {
         var currentStateIndex = 0
+        var curSimulator: ResourceSimulatorImpl? = null
 
         for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
             for (parameter in functionBlock.parameters) {
@@ -127,6 +129,9 @@ class RuntimeTraceSynchronizer(
                     newState,
                     traceSegment
                 )
+                if (curSimulator != null) {
+                    resourceSimulator.applyContext(curSimulator)
+                }
                 val fbSimulator = resourceSimulator.resolveSimulator(fbPath) as FBSimulator
 
                 when (typeOfParameter) {
@@ -138,6 +143,7 @@ class RuntimeTraceSynchronizer(
                             if (changesOnSegment.isEmpty()) {
                                 currentStateIndex += index + 1
                                 trace.addAll(traceSegment.drop(1))
+                                curSimulator = resourceSimulator
                                 continue@requestsLoop
                             }
                         }
