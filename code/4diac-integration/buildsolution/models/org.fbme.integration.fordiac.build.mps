@@ -382,6 +382,16 @@
             <ref role="3bR37D" to="kvgc:177eUH8B7m3" resolve="org.fbme.lib" />
           </node>
         </node>
+        <node concept="1SiIV0" id="1_cY4Eav1Ig" role="3bR37C">
+          <node concept="3bR9La" id="1_cY4Eav1Ih" role="1SiIV1">
+            <ref role="3bR37D" to="kvgc:4YrY9S5MVXg" resolve="org.fbme.debugger.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="1_cY4Eav1Ii" role="3bR37C">
+          <node concept="3bR9La" id="1_cY4Eav1Ij" role="1SiIV1">
+            <ref role="3bR37D" to="kvgc:6AO1fiESjIi" resolve="org.fbme.richediting.lib" />
+          </node>
+        </node>
       </node>
     </node>
     <node concept="2sgV4H" id="68dTcycFoqk" role="1l3spa">
