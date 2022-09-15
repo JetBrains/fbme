@@ -59,7 +59,6 @@
     <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
     <import index="7zqy" ref="c6b02c2c-6484-48c4-ab6e-40937aeede2e/java:org.fbme.debugger.common.ui(org.fbme.debugger.lib/)" />
     <import index="flki" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger(org.fbme.debugger/)" implicit="true" />
-    <import index="uvkj" ref="5aff85f5-c1e8-49b6-a1f1-66d79702cceb/java:org.fbme.ide.iec61499.repository(org.fbme.ide.iec61499.adapter/)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -766,41 +765,6 @@
       </node>
     </node>
   </node>
-  <node concept="2uRRBy" id="7UhQjJlHsQO">
-    <property role="TrG5h" value="FBME Degugger" />
-    <node concept="2uRRBT" id="7UhQjJlHsSh" role="2uRRB$">
-      <node concept="3clFbS" id="7UhQjJlHsSi" role="2VODD2">
-        <node concept="3clFbF" id="e_aGwOhcP$" role="3cqZAp">
-          <node concept="2OqwBi" id="e_aGwOhif8" role="3clFbG">
-            <node concept="10M0yZ" id="7rWf3U0H4Ps" role="2Oq$k0">
-              <ref role="3cqZAo" to="flkh:~Debugger.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="flkh:~Debugger" resolve="Debugger" />
-            </node>
-            <node concept="liA8E" id="e_aGwOhimz" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~Debugger$Companion.register(jetbrains.mps.project.Project)" resolve="register" />
-              <node concept="1KvdUw" id="e_aGwOhmi0" role="37wK5m" />
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2uRRBN" id="e_aGwOhmlz" role="2uRRB_">
-      <node concept="3clFbS" id="e_aGwOhml$" role="2VODD2">
-        <node concept="3clFbF" id="e_aGwOhmsq" role="3cqZAp">
-          <node concept="2OqwBi" id="e_aGwOhm$z" role="3clFbG">
-            <node concept="10M0yZ" id="e_aGwOhmvE" role="2Oq$k0">
-              <ref role="1PxDUh" to="flkh:~Debugger" resolve="Debugger" />
-              <ref role="3cqZAo" to="flkh:~Debugger.Companion" resolve="Companion" />
-            </node>
-            <node concept="liA8E" id="e_aGwOhmG5" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~Debugger$Companion.unregister(jetbrains.mps.project.Project)" resolve="unregister" />
-              <node concept="1KvdUw" id="e_aGwOhmGJ" role="37wK5m" />
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-  </node>
   <node concept="2wDNrl" id="10LywHcMGPf">
     <property role="TrG5h" value="Debugger" />
     <property role="2XNbzY" value="FBME Debugger" />
@@ -1136,11 +1100,11 @@
                                                     <node concept="3cpWsn" id="10LywHcMPmB" role="3cpWs9">
                                                       <property role="TrG5h" value="platformRepo" />
                                                       <node concept="3uibUv" id="10LywHcMPmC" role="1tU5fm">
-                                                        <ref role="3uigEE" to="uvkj:~PlatformRepository" resolve="PlatformRepository" />
+                                                        <ref role="3uigEE" to="uvki:~PlatformRepository" resolve="PlatformRepository" />
                                                       </node>
                                                       <node concept="2YIFZM" id="10LywHcMPmD" role="33vP2m">
-                                                        <ref role="37wK5l" to="uvkj:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
-                                                        <ref role="1Pybhc" to="uvkj:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+                                                        <ref role="1Pybhc" to="uvki:~PlatformRepositoryProvider" resolve="PlatformRepositoryProvider" />
+                                                        <ref role="37wK5l" to="uvki:~PlatformRepositoryProvider.getInstance(jetbrains.mps.project.Project)" resolve="getInstance" />
                                                         <node concept="2OqwBi" id="10LywHcN1yh" role="37wK5m">
                                                           <node concept="2WthIp" id="10LywHcN1yk" role="2Oq$k0">
                                                             <ref role="32nkFo" node="10LywHcMGPf" resolve="Debugger" />
@@ -1160,7 +1124,7 @@
                                                           <ref role="3cqZAo" node="10LywHcMPmB" resolve="platformRepo" />
                                                         </node>
                                                         <node concept="liA8E" id="10LywHcMPmL" role="2OqNvi">
-                                                          <ref role="37wK5l" to="uvkj:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+                                                          <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
                                                           <node concept="37vLTw" id="10LywHcMPmM" role="37wK5m">
                                                             <ref role="3cqZAo" node="10LywHcMPmz" resolve="node" />
                                                           </node>
