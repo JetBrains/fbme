@@ -71,22 +71,27 @@ open class DebuggerPanel(
                     }
                     return node
                 }
+
                 is BasicFBTypeDeclaration -> {
                     val node = DefaultMutableTreeNode(name)
                     node.addBFBPortNodes(watchDeclaration)
                     return node
                 }
+
                 is ServiceInterfaceFBTypeDeclaration -> {
                     val node = DefaultMutableTreeNode(name)
                     node.addSFBPortNodes(watchDeclaration)
                     return node
                 }
+
                 is ParameterDeclaration -> {
                     return DefaultMutableTreeNode(name, false)
                 }
+
                 is EventDeclaration -> {
                     return DefaultMutableTreeNode(name, false)
                 }
+
                 is StateDeclaration -> {
                     return DefaultMutableTreeNode(name, false)
                 }
@@ -273,28 +278,37 @@ open class DebuggerPanel(
             ) {
                 val (state, path, change) = traceItem
 
-                append("$index\t", SimpleTextAttributes.GRAYED_BOLD_ATTRIBUTES)
+                val nLen = statesListModel.size.toString().length
+                val nPadding = nLen * 10 + 12
+                val changePadding = nPadding + 100
+                append("$index", SimpleTextAttributes.GRAYED_BOLD_ATTRIBUTES, nPadding, 2)
 
                 when (change) {
                     is InitialChange -> {
                         append("Initial State", SimpleTextAttributes.REGULAR_ATTRIBUTES)
                     }
+
                     is InputEventChange -> {
                         val name = change.eventName
                         val value = state.resolveValue(path.plus(change.eventName)) ?: "???"
-                        append("Input Event $name: $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                        append("Input Event", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append("${path.plus(name).joinToString(".")} → $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
                     }
+
                     is OutputEventChange -> {
                         val name = change.eventName
                         val value = state.resolveValue(path.plus(change.eventName)) ?: "???"
-                        append("Output Event $name: $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                        append("Output Event", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append("${path.plus(name).joinToString(".")} → $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
                     }
+
                     is StateChange -> {
-                        append("ECC State: ${change.state}", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                        append("ECC State", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append(
+                            "${path.plus("\$ECC").joinToString(".")} → ${change.state}",
+                            SimpleTextAttributes.REGULAR_ATTRIBUTES
+                        )
                     }
-                }
-                if (path.isNotEmpty()) {
-                    append(" ${path.joinToString(".")}", SimpleTextAttributes.GRAY_ATTRIBUTES)
                 }
             }
         }
@@ -384,6 +398,7 @@ open class DebuggerPanel(
                 suggestions += declaration.internalVariables.map { prefix + it.name }
                 suggestions += "$prefix\$ECC"
             }
+
             is WithNetwork -> {
                 for (component in declaration.network.allComponents) {
                     suggestions += prefix + component.name
