@@ -333,7 +333,9 @@
         <reference id="1205756909548" name="member" index="2WH_rO" />
       </concept>
       <concept id="1205769003971" name="jetbrains.mps.baseLanguage.classifiers.structure.DefaultClassifierMethodDeclaration" flags="ng" index="2XrIbr" />
-      <concept id="1205769149993" name="jetbrains.mps.baseLanguage.classifiers.structure.DefaultClassifierMethodCallOperation" flags="nn" index="2XshWL" />
+      <concept id="1205769149993" name="jetbrains.mps.baseLanguage.classifiers.structure.DefaultClassifierMethodCallOperation" flags="nn" index="2XshWL">
+        <child id="1205770614681" name="actualArgument" index="2XxRq1" />
+      </concept>
     </language>
     <language id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging">
       <concept id="2034914114981261497" name="jetbrains.mps.baseLanguage.logging.structure.LogLowLevelStatement" flags="ng" index="RRSsy">
@@ -443,110 +445,69 @@
     <property role="TrG5h" value="Debugger" />
     <property role="2XNbzY" value="FBME Debugger" />
     <node concept="2XrIbr" id="10LywHcMT1w" role="2XNbBy">
-      <property role="TrG5h" value="setProject" />
+      <property role="TrG5h" value="addPanel" />
       <node concept="3cqZAl" id="10LywHcMT1x" role="3clF45" />
       <node concept="3clFbS" id="10LywHcMT1y" role="3clF47">
-        <node concept="3clFbF" id="10LywHcMT1z" role="3cqZAp">
-          <node concept="37vLTI" id="10LywHcMT1$" role="3clFbG">
-            <node concept="37vLTw" id="10LywHcMT1_" role="37vLTx">
-              <ref role="3cqZAo" node="10LywHcMT1D" resolve="project" />
+        <node concept="3clFbF" id="3QRZI1v4eOV" role="3cqZAp">
+          <node concept="2OqwBi" id="3QRZI1v4fk7" role="3clFbG">
+            <node concept="2OqwBi" id="3QRZI1v4eUV" role="2Oq$k0">
+              <node concept="2WthIp" id="3QRZI1v4eOU" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="3QRZI1v4f6l" role="2OqNvi">
+                <ref role="2WH_rO" node="3QRZI1v49IF" resolve="panels" />
+              </node>
             </node>
-            <node concept="2OqwBi" id="10LywHcMT1A" role="37vLTJ">
-              <node concept="2WthIp" id="10LywHcMT1B" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="10LywHcMT1C" role="2OqNvi">
-                <ref role="2WH_rO" node="10LywHcMNoA" resolve="mpsProject" />
+            <node concept="liA8E" id="3QRZI1v4guJ" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
+              <node concept="37vLTw" id="3QRZI1v4gAA" role="37wK5m">
+                <ref role="3cqZAo" node="3QRZI1v4e3$" resolve="trace" />
+              </node>
+              <node concept="37vLTw" id="3QRZI1v4h25" role="37wK5m">
+                <ref role="3cqZAo" node="3QRZI1v4e4B" resolve="panel" />
               </node>
             </node>
           </node>
         </node>
       </node>
-      <node concept="37vLTG" id="10LywHcMT1D" role="3clF46">
-        <property role="3TUv4t" value="true" />
-        <property role="TrG5h" value="project" />
-        <node concept="3uibUv" id="10LywHcMT1E" role="1tU5fm">
-          <ref role="3uigEE" to="z1c3:~MPSProject" resolve="MPSProject" />
+      <node concept="37vLTG" id="3QRZI1v4e3$" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="3QRZI1v4e3z" role="1tU5fm">
+          <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="3QRZI1v4e4B" role="3clF46">
+        <property role="TrG5h" value="panel" />
+        <node concept="3uibUv" id="3QRZI1v4eC8" role="1tU5fm">
+          <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
         </node>
       </node>
     </node>
     <node concept="2XrIbr" id="3iKHL5MqMkI" role="2XNbBy">
-      <property role="TrG5h" value="getDebugTab" />
+      <property role="TrG5h" value="getPanel" />
       <node concept="3uibUv" id="3iKHL5MqNwU" role="3clF45">
-        <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
+        <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
       </node>
       <node concept="3clFbS" id="3iKHL5MqMkK" role="3clF47">
         <node concept="3cpWs6" id="3iKHL5MqNQk" role="3cqZAp">
-          <node concept="2OqwBi" id="3iKHL5MqNU3" role="3cqZAk">
-            <node concept="2WthIp" id="3iKHL5MqNQM" role="2Oq$k0" />
-            <node concept="2BZ7hE" id="3iKHL5MqNWS" role="2OqNvi">
-              <ref role="2WH_rO" node="1W99A8Bdhfp" resolve="debugTab" />
+          <node concept="2OqwBi" id="3QRZI1v4iFQ" role="3cqZAk">
+            <node concept="2OqwBi" id="3QRZI1v4ii8" role="2Oq$k0">
+              <node concept="2WthIp" id="3QRZI1v4ieQ" role="2Oq$k0" />
+              <node concept="2BZ7hE" id="3QRZI1v4it$" role="2OqNvi">
+                <ref role="2WH_rO" node="3QRZI1v49IF" resolve="panels" />
+              </node>
             </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2XrIbr" id="3iKHL5MqAYw" role="2XNbBy">
-      <property role="TrG5h" value="setDebugTab" />
-      <node concept="3cqZAl" id="3iKHL5MqBJD" role="3clF45" />
-      <node concept="3clFbS" id="3iKHL5MqAYy" role="3clF47">
-        <node concept="3clFbF" id="3iKHL5MqCSg" role="3cqZAp">
-          <node concept="37vLTI" id="3iKHL5MqDg1" role="3clFbG">
-            <node concept="37vLTw" id="3iKHL5MqDmb" role="37vLTx">
-              <ref role="3cqZAo" node="3iKHL5MqCBt" resolve="debugTab" />
-            </node>
-            <node concept="2OqwBi" id="3iKHL5MqIs0" role="37vLTJ">
-              <node concept="2WthIp" id="3iKHL5MqIcW" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="3iKHL5MqI$j" role="2OqNvi">
-                <ref role="2WH_rO" node="1W99A8Bdhfp" resolve="debugTab" />
+            <node concept="liA8E" id="3QRZI1v4k9f" role="2OqNvi">
+              <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
+              <node concept="37vLTw" id="3QRZI1v4kko" role="37wK5m">
+                <ref role="3cqZAo" node="3QRZI1v4iaT" resolve="trace" />
               </node>
             </node>
           </node>
         </node>
       </node>
-      <node concept="37vLTG" id="3iKHL5MqCBt" role="3clF46">
-        <property role="TrG5h" value="debugTab" />
-        <node concept="3uibUv" id="3iKHL5MqCBs" role="1tU5fm">
-          <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
-        </node>
-      </node>
-    </node>
-    <node concept="2XrIbr" id="3iKHL5MqOLy" role="2XNbBy">
-      <property role="TrG5h" value="getDeployTab" />
-      <node concept="3uibUv" id="3iKHL5MqQ7F" role="3clF45">
-        <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
-      </node>
-      <node concept="3clFbS" id="3iKHL5MqOL$" role="3clF47">
-        <node concept="3cpWs6" id="3iKHL5MqQt$" role="3cqZAp">
-          <node concept="2OqwBi" id="3iKHL5MqQx7" role="3cqZAk">
-            <node concept="2WthIp" id="3iKHL5MqQtY" role="2Oq$k0" />
-            <node concept="2BZ7hE" id="3iKHL5MqQDH" role="2OqNvi">
-              <ref role="2WH_rO" node="1W99A8BdiVn" resolve="deployTab" />
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2XrIbr" id="3iKHL5MqDn5" role="2XNbBy">
-      <property role="TrG5h" value="setDeployTab" />
-      <node concept="3clFbS" id="3iKHL5MqDn7" role="3clF47">
-        <node concept="3clFbF" id="3iKHL5MqILt" role="3cqZAp">
-          <node concept="37vLTI" id="3iKHL5MqJmM" role="3clFbG">
-            <node concept="37vLTw" id="3iKHL5MqJyM" role="37vLTx">
-              <ref role="3cqZAo" node="3iKHL5MqFtJ" resolve="deployTab" />
-            </node>
-            <node concept="2OqwBi" id="3iKHL5MqIRy" role="37vLTJ">
-              <node concept="2WthIp" id="3iKHL5MqILs" role="2Oq$k0" />
-              <node concept="2BZ7hE" id="3iKHL5MqJ3O" role="2OqNvi">
-                <ref role="2WH_rO" node="1W99A8BdiVn" resolve="deployTab" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="3cqZAl" id="3iKHL5MqES9" role="3clF45" />
-      <node concept="37vLTG" id="3iKHL5MqFtJ" role="3clF46">
-        <property role="TrG5h" value="deployTab" />
-        <node concept="3uibUv" id="3iKHL5MqFtI" role="1tU5fm">
-          <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
+      <node concept="37vLTG" id="3QRZI1v4iaT" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="3QRZI1v4iaS" role="1tU5fm">
+          <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
         </node>
       </node>
     </node>
@@ -880,25 +841,23 @@
       </node>
       <node concept="3cqZAl" id="10LywHcMPn5" role="3clF45" />
     </node>
-    <node concept="2BZ0e9" id="10LywHcMNoA" role="2XNbBz">
-      <property role="TrG5h" value="mpsProject" />
-      <node concept="3Tm6S6" id="10LywHcMNoB" role="1B3o_S" />
-      <node concept="3uibUv" id="10LywHcMNoC" role="1tU5fm">
-        <ref role="3uigEE" to="z1c3:~MPSProject" resolve="MPSProject" />
+    <node concept="2BZ0e9" id="3QRZI1v49IF" role="2XNbBz">
+      <property role="TrG5h" value="panels" />
+      <node concept="3Tm6S6" id="3QRZI1v4bdJ" role="1B3o_S" />
+      <node concept="3uibUv" id="3QRZI1v49Qx" role="1tU5fm">
+        <ref role="3uigEE" to="33ny:~Map" resolve="Map" />
+        <node concept="3uibUv" id="3QRZI1v4afm" role="11_B2D">
+          <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
+        </node>
+        <node concept="3uibUv" id="3QRZI1v4av6" role="11_B2D">
+          <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
+        </node>
       </node>
-    </node>
-    <node concept="2BZ0e9" id="1W99A8Bdhfp" role="2XNbBz">
-      <property role="TrG5h" value="debugTab" />
-      <node concept="3Tm6S6" id="1W99A8Bdhfq" role="1B3o_S" />
-      <node concept="3uibUv" id="1W99A8BdiVa" role="1tU5fm">
-        <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
-      </node>
-    </node>
-    <node concept="2BZ0e9" id="1W99A8BdiVn" role="2XNbBz">
-      <property role="TrG5h" value="deployTab" />
-      <node concept="3Tm6S6" id="1W99A8BdiVo" role="1B3o_S" />
-      <node concept="3uibUv" id="1W99A8BdiVp" role="1tU5fm">
-        <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
+      <node concept="2ShNRf" id="71aix_tjThL" role="33vP2m">
+        <node concept="1pGfFk" id="71aix_tkCVi" role="2ShVmc">
+          <property role="373rjd" value="true" />
+          <ref role="37wK5l" to="33ny:~HashMap.&lt;init&gt;()" resolve="HashMap" />
+        </node>
       </node>
     </node>
   </node>
@@ -8664,6 +8623,62 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="6bvi$ysddys" role="3cqZAp" />
+        <node concept="3cpWs8" id="6bvi$ysdd$Q" role="3cqZAp">
+          <node concept="3cpWsn" id="6bvi$ysddxW" role="3cpWs9">
+            <property role="TrG5h" value="traceSynchronizer" />
+            <node concept="3uibUv" id="6bvi$ysddxS" role="1tU5fm">
+              <ref role="3uigEE" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+            </node>
+            <node concept="2ShNRf" id="6bvi$ysddzW" role="33vP2m">
+              <node concept="1pGfFk" id="6bvi$ysdd$G" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.&lt;init&gt;(jetbrains.mps.project.Project,org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="RuntimeTraceSynchronizer" />
+                <node concept="2OqwBi" id="6bvi$ysddzc" role="37wK5m">
+                  <node concept="2WthIp" id="6bvi$ysddze" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="6bvi$ysddzk" role="2OqNvi">
+                    <ref role="2WH_rO" node="6bvi$yscDwX" resolve="mpsProject" />
+                  </node>
+                </node>
+                <node concept="37vLTw" id="6bvi$ysddym" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+                </node>
+                <node concept="37vLTw" id="6dBZAJEDorh" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$ysddzi" resolve="executionTrace" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="2M$4ifY8wJl" role="3cqZAp">
+          <node concept="2OqwBi" id="2M$4ifY8xWK" role="3clFbG">
+            <node concept="10M0yZ" id="2M$4ifY8xul" role="2Oq$k0">
+              <ref role="3cqZAo" to="flkh:~RuntimeTraceSynchronizer.Companion" resolve="Companion" />
+              <ref role="1PxDUh" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
+            </node>
+            <node concept="liA8E" id="2M$4ifY8yn8" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer$Companion.addTraceSynchronizer(org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.RuntimeTraceSynchronizer)" resolve="addTraceSynchronizer" />
+              <node concept="37vLTw" id="2M$4ifY8ypt" role="37wK5m">
+                <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+              </node>
+              <node concept="37vLTw" id="2M$4ifY8yw0" role="37wK5m">
+                <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="7AhpHN80YjW" role="3cqZAp">
+          <node concept="2OqwBi" id="7AhpHN80Zj0" role="3clFbG">
+            <node concept="37vLTw" id="7AhpHN80YjU" role="2Oq$k0">
+              <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
+            </node>
+            <node concept="liA8E" id="7AhpHN80ZVB" role="2OqNvi">
+              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.startMonitoring()" resolve="startMonitoring" />
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="4NMyx2mSBRH" role="3cqZAp" />
+        <node concept="3clFbH" id="7f479GGNmAw" role="3cqZAp" />
         <node concept="3cpWs8" id="ZL2uO6yd7v" role="3cqZAp">
           <node concept="3cpWsn" id="ZL2uO6yd7w" role="3cpWs9">
             <property role="TrG5h" value="debuggerPanel" />
@@ -8693,6 +8708,23 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="7f479GGNnDY" role="3cqZAp">
+          <node concept="2OqwBi" id="7f479GGNoKS" role="3clFbG">
+            <node concept="37vLTw" id="7f479GGNnDW" role="2Oq$k0">
+              <ref role="3cqZAo" node="6bvi$ysddxG" resolve="debuggerTool" />
+            </node>
+            <node concept="2XshWL" id="7f479GGNpvr" role="2OqNvi">
+              <ref role="2WH_rO" node="10LywHcMT1w" resolve="addPanel" />
+              <node concept="37vLTw" id="7f479GGNsrt" role="2XxRq1">
+                <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+              </node>
+              <node concept="37vLTw" id="7f479GGNrdt" role="2XxRq1">
+                <ref role="3cqZAo" node="ZL2uO6yd7w" resolve="debuggerPanel" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="7f479GGNreF" role="3cqZAp" />
         <node concept="3clFbF" id="6bvi$ysddzS" role="3cqZAp">
           <node concept="37vLTI" id="6bvi$ysddzQ" role="3clFbG">
             <node concept="2OqwBi" id="6bvi$ysddzO" role="37vLTx">
@@ -8708,7 +8740,7 @@
             </node>
           </node>
         </node>
-        <node concept="3clFbH" id="6bvi$ysddys" role="3cqZAp" />
+        <node concept="3clFbH" id="5GqVh438FLF" role="3cqZAp" />
         <node concept="1gVbGN" id="6bvi$ysddyq" role="3cqZAp">
           <node concept="3y3z36" id="6bvi$ysddyA" role="1gVkn0">
             <node concept="10Nm6u" id="6bvi$ysddy$" role="3uHU7w" />
@@ -8770,59 +8802,6 @@
               <node concept="37vLTw" id="6bvi$ysddy0" role="37wK5m">
                 <ref role="3cqZAo" node="6bvi$ysddzC" resolve="debuggerPanelComponent" />
               </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="6bvi$ysdd$Q" role="3cqZAp">
-          <node concept="3cpWsn" id="6bvi$ysddxW" role="3cpWs9">
-            <property role="TrG5h" value="traceSynchronizer" />
-            <node concept="3uibUv" id="6bvi$ysddxS" role="1tU5fm">
-              <ref role="3uigEE" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
-            </node>
-            <node concept="2ShNRf" id="6bvi$ysddzW" role="33vP2m">
-              <node concept="1pGfFk" id="6bvi$ysdd$G" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.&lt;init&gt;(jetbrains.mps.project.Project,org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="RuntimeTraceSynchronizer" />
-                <node concept="2OqwBi" id="6bvi$ysddzc" role="37wK5m">
-                  <node concept="2WthIp" id="6bvi$ysddze" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="6bvi$ysddzk" role="2OqNvi">
-                    <ref role="2WH_rO" node="6bvi$yscDwX" resolve="mpsProject" />
-                  </node>
-                </node>
-                <node concept="37vLTw" id="6bvi$ysddym" role="37wK5m">
-                  <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
-                </node>
-                <node concept="37vLTw" id="6dBZAJEDorh" role="37wK5m">
-                  <ref role="3cqZAo" node="6bvi$ysddzi" resolve="executionTrace" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="2M$4ifY8wJl" role="3cqZAp">
-          <node concept="2OqwBi" id="2M$4ifY8xWK" role="3clFbG">
-            <node concept="10M0yZ" id="2M$4ifY8xul" role="2Oq$k0">
-              <ref role="3cqZAo" to="flkh:~RuntimeTraceSynchronizer.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="flkh:~RuntimeTraceSynchronizer" resolve="RuntimeTraceSynchronizer" />
-            </node>
-            <node concept="liA8E" id="2M$4ifY8yn8" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer$Companion.addTraceSynchronizer(org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.RuntimeTraceSynchronizer)" resolve="addTraceSynchronizer" />
-              <node concept="37vLTw" id="2M$4ifY8ypt" role="37wK5m">
-                <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
-              </node>
-              <node concept="37vLTw" id="2M$4ifY8yw0" role="37wK5m">
-                <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="7AhpHN80YjW" role="3cqZAp">
-          <node concept="2OqwBi" id="7AhpHN80Zj0" role="3clFbG">
-            <node concept="37vLTw" id="7AhpHN80YjU" role="2Oq$k0">
-              <ref role="3cqZAo" node="6bvi$ysddxW" resolve="traceSynchronizer" />
-            </node>
-            <node concept="liA8E" id="7AhpHN80ZVB" role="2OqNvi">
-              <ref role="37wK5l" to="flkh:~RuntimeTraceSynchronizer.startMonitoring()" resolve="startMonitoring" />
             </node>
           </node>
         </node>
@@ -9206,6 +9185,56 @@
               <node concept="37vLTw" id="2M$4ifY8FAZ" role="37wK5m">
                 <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="1uimsQTZKpF" role="3cqZAp" />
+        <node concept="3cpWs8" id="1uimsQU0pxj" role="3cqZAp">
+          <node concept="3cpWsn" id="1uimsQU0pxk" role="3cpWs9">
+            <property role="TrG5h" value="debuggerTool" />
+            <node concept="1xUVSX" id="1uimsQU0pxl" role="1tU5fm">
+              <ref role="1xYkEM" node="10LywHcMGPf" resolve="Debugger" />
+            </node>
+            <node concept="2OqwBi" id="1uimsQU0pxm" role="33vP2m">
+              <node concept="2OqwBi" id="1uimsQU0pxn" role="2Oq$k0">
+                <node concept="2WthIp" id="1uimsQU0pxo" role="2Oq$k0" />
+                <node concept="1DTwFV" id="1uimsQU0pxp" role="2OqNvi">
+                  <ref role="2WH_rO" node="6bvi$ysdmAl" resolve="project" />
+                </node>
+              </node>
+              <node concept="LR4U6" id="1uimsQU0pxq" role="2OqNvi">
+                <ref role="LR4U5" node="10LywHcMGPf" resolve="Debugger" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="7f479GGNv7m" role="3cqZAp" />
+        <node concept="3cpWs8" id="7f479GGNxkX" role="3cqZAp">
+          <node concept="3cpWsn" id="7f479GGNxkY" role="3cpWs9">
+            <property role="TrG5h" value="panel" />
+            <node concept="3uibUv" id="7f479GGNxkZ" role="1tU5fm">
+              <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
+            </node>
+            <node concept="2OqwBi" id="7f479GGNy7u" role="33vP2m">
+              <node concept="37vLTw" id="7f479GGNxZ3" role="2Oq$k0">
+                <ref role="3cqZAo" node="1uimsQU0pxk" resolve="debuggerTool" />
+              </node>
+              <node concept="2XshWL" id="7f479GGNypI" role="2OqNvi">
+                <ref role="2WH_rO" node="3iKHL5MqMkI" resolve="getPanel" />
+                <node concept="37vLTw" id="7f479GGNyrB" role="2XxRq1">
+                  <ref role="3cqZAo" node="6bvi$ysdnpr" resolve="resourceDeclaration" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="3pR0omkCUV_" role="3cqZAp">
+          <node concept="2OqwBi" id="3pR0omkCVKw" role="3clFbG">
+            <node concept="37vLTw" id="3pR0omkCUVz" role="2Oq$k0">
+              <ref role="3cqZAo" node="7f479GGNxkY" resolve="panel" />
+            </node>
+            <node concept="liA8E" id="3pR0omkCWnB" role="2OqNvi">
+              <ref role="37wK5l" to="7zqy:~DebuggerPanel.initUI()" resolve="initUI" />
             </node>
           </node>
         </node>

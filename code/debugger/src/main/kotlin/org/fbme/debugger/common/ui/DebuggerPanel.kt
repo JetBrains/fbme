@@ -9,13 +9,11 @@ import com.intellij.openapi.ui.JBPopupMenu
 import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.openapi.ui.popup.Balloon
 import com.intellij.ui.*
-import com.intellij.ui.components.JBList
-import com.intellij.ui.components.JBScrollBar
-import com.intellij.ui.components.JBScrollPane
-import com.intellij.ui.components.JBViewport
+import com.intellij.ui.components.*
 import com.intellij.ui.treeStructure.Tree
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.components.BorderLayoutPanel
+import org.fbme.debugger.RuntimeTraceSynchronizer
 import org.fbme.debugger.common.change.InitialChange
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
@@ -30,6 +28,7 @@ import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import java.awt.Component
 import java.awt.Dimension
+import java.awt.FlowLayout
 import java.awt.Point
 import java.awt.event.*
 import java.util.*
@@ -149,12 +148,24 @@ open class DebuggerPanel(
 
         watchFieldPanel = watchFieldPanel()
 
-        splitPane.firstComponent = statesPanel()
-        splitPane.secondComponent = watchesPanel()
+        initUI()
 
         toolWindowPanel.add(splitPane)
         toolWindowPanel.updateUI()
     }
+
+    fun initUI() {
+        if (declaration is ResourceDeclaration && RuntimeTraceSynchronizer.hasTrace(trace) && trace.size == 1) {
+            val unavailableStatesPanel = JBPanelWithEmptyText().withEmptyText("States are not available during execution")
+            splitPane.firstComponent = unavailableStatesPanel
+            val unavailableWatchesPanel = JBPanelWithEmptyText().withEmptyText("Watches are not available during execution")
+            splitPane.secondComponent = unavailableWatchesPanel
+        } else {
+            splitPane.firstComponent = statesPanel()
+            splitPane.secondComponent = watchesPanel()
+        }
+    }
+
 
     protected fun showExplanationPopup(e: MouseEvent) {
         // TODO: rewrite

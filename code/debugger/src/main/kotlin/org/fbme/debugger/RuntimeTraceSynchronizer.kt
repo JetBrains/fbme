@@ -178,5 +178,9 @@ class RuntimeTraceSynchronizer(
         fun removeTraceSynchronizer(resourceDeclaration: ResourceDeclaration) {
             instances.remove(resourceDeclaration)
         }
+
+        fun hasTrace(trace: ExecutionTrace): Boolean {
+            return instances.values.firstOrNull { it.trace === trace } != null
+        }
     }
 }
