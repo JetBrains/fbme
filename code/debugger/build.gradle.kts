@@ -38,6 +38,7 @@ mps {
     moduleDependency(project(":code:library"))
     moduleDependency(project(":code:platform"))
     moduleDependency(project(":code:scenes"))
+    moduleDependency(project(":code:richediting"))
 }
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks

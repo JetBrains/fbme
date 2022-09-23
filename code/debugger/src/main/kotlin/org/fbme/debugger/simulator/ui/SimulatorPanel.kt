@@ -9,6 +9,7 @@ import org.fbme.debugger.common.ui.DebuggerPanel
 import org.fbme.debugger.explanation.ExplanationProducer
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.Simulator
+import org.fbme.ide.richediting.inspections.Inspector
 import org.fbme.lib.common.Declaration
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
@@ -16,11 +17,14 @@ import java.awt.event.MouseListener
 
 class SimulatorPanel(
     private val project: Project,
+    mpsProject: jetbrains.mps.project.Project,
     private val trace: ExecutionTrace,
-    private val declaration: Declaration,
+    declaration: Declaration,
+    originalDeclaration: Declaration,
     private val simulator: Simulator,
-    private val explanationProducer: ExplanationProducer
-) : DebuggerPanel(project, trace, declaration, explanationProducer) {
+    private val explanationProducer: ExplanationProducer,
+    inspector: Inspector? = null
+) : DebuggerPanel(project, mpsProject, trace, declaration, originalDeclaration, explanationProducer, inspector) {
     init {
         val ml: MouseListener = object : MouseAdapter() {
             override fun mousePressed(e: MouseEvent) {

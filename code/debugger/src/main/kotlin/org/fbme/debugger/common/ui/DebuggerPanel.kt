@@ -23,12 +23,15 @@ import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.ui.icons.Icons
 import org.fbme.debugger.explanation.ExplanationProducer
+import org.fbme.ide.richediting.inspections.Inspection
+import org.fbme.ide.richediting.inspections.Inspector
+import org.fbme.ide.richediting.inspections.NetworkInspector
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateDeclaration
+import org.fbme.lib.iec61499.fbnetwork.PortPath
 import java.awt.Component
 import java.awt.Dimension
-import java.awt.FlowLayout
 import java.awt.Point
 import java.awt.event.*
 import java.util.*
@@ -38,12 +41,14 @@ import javax.swing.tree.DefaultTreeCellRenderer
 import javax.swing.tree.DefaultTreeModel
 import javax.swing.tree.MutableTreeNode
 
-
 open class DebuggerPanel(
     private val project: Project,
+    private val mpsProject: jetbrains.mps.project.Project,
     private val trace: ExecutionTrace,
     private val declaration: Declaration,
-    private val explanationProducer: ExplanationProducer
+    private val originalDeclaration: Declaration,
+    private val explanationProducer: ExplanationProducer,
+    private val inspector: Inspector? = null
 ) {
     val toolWindowPanel = SimpleToolWindowPanel(false, true)
     private val splitPane = OnePixelSplitter(false)
@@ -132,8 +137,22 @@ open class DebuggerPanel(
 
         trace.addListenerOnAdding { traceItem -> statesListModel.add(traceItem) }
         initializeStatesListCellRenderer()
+
+        val ports: List<Pair<PortPath<out Declaration>, List<String>>> = getPorts()
+
         statesList.addListSelectionListener {
             watchesTree.updateUI()
+            val selectedState = statesList.selectedValue?.state ?: error("no selected state")
+            when (inspector) {
+                is NetworkInspector -> {
+                    for ((port, portPath) in ports) {
+                        val value = selectedState.resolveValue(portPath)
+                        inspector!!.setInspectionForPort(port, Inspection(value ?: "???"))
+                    }
+                }
+
+                else -> {}
+            }
         }
         statesList.selectedIndex = 0
 
@@ -154,6 +173,31 @@ open class DebuggerPanel(
         toolWindowPanel.updateUI()
     }
 
+    private fun getPorts(): List<Pair<PortPath<out Declaration>, List<String>>> {
+        var ports: List<Pair<PortPath<out Declaration>, List<String>>> = listOf()
+        mpsProject.modelAccess.runReadAction {
+            when (originalDeclaration) {
+                is ResourceDeclaration -> {
+                    ports = originalDeclaration
+                        .allFunctionBlocks()
+                        .map { fb -> fb.ports }.flatMap { it.toList() }
+                        .map { port -> Pair(port, port.declarations.map { it.name }) }
+                }
+
+                is CompositeFBTypeDeclaration -> {
+                    ports = originalDeclaration
+                        .network
+                        .functionBlocks
+                        .map { fb -> fb.ports }.flatMap { it.toList() }
+                        .map { port -> Pair(port, port.declarations.map { it.name }) }
+                }
+
+                else -> {}
+            }
+        }
+        return ports
+    }
+
     fun initUI() {
         if (declaration is ResourceDeclaration && RuntimeTraceSynchronizer.hasTrace(trace) && trace.size == 1) {
             val unavailableStatesPanel = JBPanelWithEmptyText().withEmptyText("States are not available during execution")
@@ -165,7 +209,6 @@ open class DebuggerPanel(
             splitPane.secondComponent = watchesPanel()
         }
     }
-
 
     protected fun showExplanationPopup(e: MouseEvent) {
         // TODO: rewrite

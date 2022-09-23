@@ -5,7 +5,7 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 import org.fbme.lib.iec61499.fbnetwork.PortPath
 import java.awt.Color
 
-interface NetworkInspector {
+interface NetworkInspector : Inspector {
     fun setInspectionForPort(port: PortPath<*>, inspection: Inspection?)
     fun setInspectionForComponent(component: Declaration, inspection: Inspection?)
     fun setHighlightingForConnection(connection: FBNetworkConnection, color: Color?)

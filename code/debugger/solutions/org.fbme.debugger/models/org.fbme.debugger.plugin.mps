@@ -7090,11 +7090,17 @@
                 <node concept="2ShNRf" id="ZL2uO6yt07" role="33vP2m">
                   <node concept="1pGfFk" id="ZL2uO6yuWA" role="2ShVmc">
                     <property role="373rjd" value="true" />
-                    <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer)" resolve="SimulatorPanel" />
+                    <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,jetbrains.mps.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer,org.fbme.ide.richediting.inspections.Inspector)" resolve="SimulatorPanel" />
                     <node concept="2OqwBi" id="ZL2uO6yuY0" role="37wK5m">
                       <node concept="2WthIp" id="ZL2uO6yuY3" role="2Oq$k0" />
                       <node concept="1DTwFV" id="ZL2uO6yuY5" role="2OqNvi">
                         <ref role="2WH_rO" node="6V1xIBUmlNY" resolve="project" />
+                      </node>
+                    </node>
+                    <node concept="2OqwBi" id="7O51BCbwakA" role="37wK5m">
+                      <node concept="2WthIp" id="7O51BCbwakD" role="2Oq$k0" />
+                      <node concept="1DTwFV" id="7O51BCbwakF" role="2OqNvi">
+                        <ref role="2WH_rO" node="6V1xIBUmlO0" resolve="mpsProject" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="ZL2uO6yv2h" role="37wK5m">
@@ -7103,12 +7109,16 @@
                     <node concept="37vLTw" id="ZL2uO6yvj6" role="37wK5m">
                       <ref role="3cqZAo" node="2B82559izLz" resolve="basicFBTypeDeclaration" />
                     </node>
+                    <node concept="37vLTw" id="76fFiPktijT" role="37wK5m">
+                      <ref role="3cqZAo" node="2jViL$fDYSm" resolve="typeDeclaration" />
+                    </node>
                     <node concept="37vLTw" id="ZL2uO6yvv6" role="37wK5m">
                       <ref role="3cqZAo" node="2B82559ivuR" resolve="simulator" />
                     </node>
                     <node concept="37vLTw" id="ZL2uO6yvXW" role="37wK5m">
                       <ref role="3cqZAo" node="ZL2uO6yoBS" resolve="explanationProducer" />
                     </node>
+                    <node concept="10Nm6u" id="2YJdAbwhBXT" role="37wK5m" />
                   </node>
                 </node>
               </node>
@@ -7242,6 +7252,79 @@
                   </node>
                 </node>
               </node>
+              <node concept="3cpWs8" id="2YJdAbwhD24" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhD25" role="3cpWs9">
+                  <property role="TrG5h" value="manager" />
+                  <node concept="3uibUv" id="2YJdAbwhD26" role="1tU5fm">
+                    <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
+                  </node>
+                  <node concept="2YIFZM" id="2YJdAbwhD27" role="33vP2m">
+                    <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
+                    <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+                    <node concept="2OqwBi" id="2YJdAbwhD28" role="37wK5m">
+                      <node concept="liA8E" id="2YJdAbwhD29" role="2OqNvi">
+                        <ref role="37wK5l" to="f4zo:~EditorCell.getEditorComponent()" resolve="getEditorComponent" />
+                      </node>
+                      <node concept="2OqwBi" id="2YJdAbwhD2a" role="2Oq$k0">
+                        <node concept="2WthIp" id="2YJdAbwhD2b" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="2YJdAbwhD2c" role="2OqNvi">
+                          <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3cpWs8" id="2YJdAbwhD2d" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhD2e" role="3cpWs9">
+                  <property role="TrG5h" value="networkInstance" />
+                  <node concept="3uibUv" id="2YJdAbwhD2f" role="1tU5fm">
+                    <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
+                  </node>
+                  <node concept="2OqwBi" id="2YJdAbwhD2g" role="33vP2m">
+                    <node concept="2OqwBi" id="2YJdAbwhD2h" role="2Oq$k0">
+                      <node concept="2OqwBi" id="2YJdAbwhD2i" role="2Oq$k0">
+                        <node concept="2WthIp" id="2YJdAbwhD2j" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="2YJdAbwhD2k" role="2OqNvi">
+                          <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                        </node>
+                      </node>
+                      <node concept="liA8E" id="2YJdAbwhD2l" role="2OqNvi">
+                        <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+                      </node>
+                    </node>
+                    <node concept="liA8E" id="2YJdAbwhD2m" role="2OqNvi">
+                      <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                      <node concept="10M0yZ" id="2YJdAbwhD2n" role="37wK5m">
+                        <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                        <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3cpWs8" id="2YJdAbwhD2o" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhD2p" role="3cpWs9">
+                  <property role="TrG5h" value="inspector" />
+                  <node concept="3uibUv" id="2YJdAbwhD2q" role="1tU5fm">
+                    <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
+                  </node>
+                  <node concept="2OqwBi" id="2YJdAbwhD2r" role="33vP2m">
+                    <node concept="37vLTw" id="2YJdAbwhD2s" role="2Oq$k0">
+                      <ref role="3cqZAo" node="2YJdAbwhD25" resolve="manager" />
+                    </node>
+                    <node concept="liA8E" id="2YJdAbwhD2t" role="2OqNvi">
+                      <ref role="37wK5l" to="ek6x:~InspectionManager.installInspector(org.fbme.lib.iec61499.instances.NetworkInstance,java.lang.Runnable)" resolve="installInspector" />
+                      <node concept="37vLTw" id="2YJdAbwhD2u" role="37wK5m">
+                        <ref role="3cqZAo" node="2YJdAbwhD2e" resolve="networkInstance" />
+                      </node>
+                      <node concept="1bVj0M" id="2YJdAbwhD2v" role="37wK5m">
+                        <node concept="3clFbS" id="2YJdAbwhD2w" role="1bW5cS" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
               <node concept="3cpWs8" id="ZL2uO6ywGT" role="3cqZAp">
                 <node concept="3cpWsn" id="ZL2uO6ywGU" role="3cpWs9">
                   <property role="TrG5h" value="simulatorPanel" />
@@ -7251,11 +7334,17 @@
                   <node concept="2ShNRf" id="ZL2uO6ywGW" role="33vP2m">
                     <node concept="1pGfFk" id="ZL2uO6ywGX" role="2ShVmc">
                       <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer)" resolve="SimulatorPanel" />
+                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,jetbrains.mps.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer,org.fbme.ide.richediting.inspections.Inspector)" resolve="SimulatorPanel" />
                       <node concept="2OqwBi" id="ZL2uO6ywGY" role="37wK5m">
                         <node concept="2WthIp" id="ZL2uO6ywGZ" role="2Oq$k0" />
                         <node concept="1DTwFV" id="ZL2uO6ywH0" role="2OqNvi">
                           <ref role="2WH_rO" node="6V1xIBUmlNY" resolve="project" />
+                        </node>
+                      </node>
+                      <node concept="2OqwBi" id="7O51BCbwbxJ" role="37wK5m">
+                        <node concept="2WthIp" id="7O51BCbwbxM" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="7O51BCbwbxO" role="2OqNvi">
+                          <ref role="2WH_rO" node="6V1xIBUmlO0" resolve="mpsProject" />
                         </node>
                       </node>
                       <node concept="37vLTw" id="ZL2uO6ywH1" role="37wK5m">
@@ -7264,11 +7353,17 @@
                       <node concept="37vLTw" id="ZL2uO6ywH2" role="37wK5m">
                         <ref role="3cqZAo" node="2B82559iBHq" resolve="compositeFBTypeDeclaration" />
                       </node>
+                      <node concept="37vLTw" id="76fFiPktjha" role="37wK5m">
+                        <ref role="3cqZAo" node="2jViL$fDYSm" resolve="typeDeclaration" />
+                      </node>
                       <node concept="37vLTw" id="ZL2uO6ywH3" role="37wK5m">
                         <ref role="3cqZAo" node="2B82559i$N7" resolve="simulator" />
                       </node>
                       <node concept="37vLTw" id="ZL2uO6ywH4" role="37wK5m">
                         <ref role="3cqZAo" node="ZL2uO6ywGN" resolve="explanationProducer" />
+                      </node>
+                      <node concept="37vLTw" id="2YJdAbwhQKG" role="37wK5m">
+                        <ref role="3cqZAo" node="2YJdAbwhD2p" resolve="inspector" />
                       </node>
                     </node>
                   </node>
@@ -7386,6 +7481,79 @@
                   </node>
                 </node>
               </node>
+              <node concept="3cpWs8" id="2YJdAbwhRmo" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhRmp" role="3cpWs9">
+                  <property role="TrG5h" value="manager" />
+                  <node concept="3uibUv" id="2YJdAbwhRmq" role="1tU5fm">
+                    <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
+                  </node>
+                  <node concept="2YIFZM" id="2YJdAbwhRmr" role="33vP2m">
+                    <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
+                    <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+                    <node concept="2OqwBi" id="2YJdAbwhRms" role="37wK5m">
+                      <node concept="liA8E" id="2YJdAbwhRmt" role="2OqNvi">
+                        <ref role="37wK5l" to="f4zo:~EditorCell.getEditorComponent()" resolve="getEditorComponent" />
+                      </node>
+                      <node concept="2OqwBi" id="2YJdAbwhRmu" role="2Oq$k0">
+                        <node concept="2WthIp" id="2YJdAbwhRmv" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="2YJdAbwhRmw" role="2OqNvi">
+                          <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3cpWs8" id="2YJdAbwhRmx" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhRmy" role="3cpWs9">
+                  <property role="TrG5h" value="networkInstance" />
+                  <node concept="3uibUv" id="2YJdAbwhRmz" role="1tU5fm">
+                    <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
+                  </node>
+                  <node concept="2OqwBi" id="2YJdAbwhRm$" role="33vP2m">
+                    <node concept="2OqwBi" id="2YJdAbwhRm_" role="2Oq$k0">
+                      <node concept="2OqwBi" id="2YJdAbwhRmA" role="2Oq$k0">
+                        <node concept="2WthIp" id="2YJdAbwhRmB" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="2YJdAbwhRmC" role="2OqNvi">
+                          <ref role="2WH_rO" node="5IF$9ECXGXB" resolve="cell" />
+                        </node>
+                      </node>
+                      <node concept="liA8E" id="2YJdAbwhRmD" role="2OqNvi">
+                        <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+                      </node>
+                    </node>
+                    <node concept="liA8E" id="2YJdAbwhRmE" role="2OqNvi">
+                      <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                      <node concept="10M0yZ" id="2YJdAbwhRmF" role="37wK5m">
+                        <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                        <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="3cpWs8" id="2YJdAbwhRmG" role="3cqZAp">
+                <node concept="3cpWsn" id="2YJdAbwhRmH" role="3cpWs9">
+                  <property role="TrG5h" value="inspector" />
+                  <node concept="3uibUv" id="2YJdAbwhRmI" role="1tU5fm">
+                    <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
+                  </node>
+                  <node concept="2OqwBi" id="2YJdAbwhRmJ" role="33vP2m">
+                    <node concept="37vLTw" id="2YJdAbwhRmK" role="2Oq$k0">
+                      <ref role="3cqZAo" node="2YJdAbwhRmp" resolve="manager" />
+                    </node>
+                    <node concept="liA8E" id="2YJdAbwhRmL" role="2OqNvi">
+                      <ref role="37wK5l" to="ek6x:~InspectionManager.installInspector(org.fbme.lib.iec61499.instances.NetworkInstance,java.lang.Runnable)" resolve="installInspector" />
+                      <node concept="37vLTw" id="2YJdAbwhRmM" role="37wK5m">
+                        <ref role="3cqZAo" node="2YJdAbwhRmy" resolve="networkInstance" />
+                      </node>
+                      <node concept="1bVj0M" id="2YJdAbwhRmN" role="37wK5m">
+                        <node concept="3clFbS" id="2YJdAbwhRmO" role="1bW5cS" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
               <node concept="3cpWs8" id="ZL2uO6yyz$" role="3cqZAp">
                 <node concept="3cpWsn" id="ZL2uO6yyz_" role="3cpWs9">
                   <property role="TrG5h" value="simulatorPanel" />
@@ -7395,11 +7563,17 @@
                   <node concept="2ShNRf" id="ZL2uO6yyzB" role="33vP2m">
                     <node concept="1pGfFk" id="ZL2uO6yyzC" role="2ShVmc">
                       <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer)" resolve="SimulatorPanel" />
+                      <ref role="37wK5l" to="b15n:~SimulatorPanel.&lt;init&gt;(com.intellij.openapi.project.Project,jetbrains.mps.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.lib.common.Declaration,org.fbme.debugger.simulator.Simulator,org.fbme.debugger.explanation.ExplanationProducer,org.fbme.ide.richediting.inspections.Inspector)" resolve="SimulatorPanel" />
                       <node concept="2OqwBi" id="ZL2uO6yyzD" role="37wK5m">
                         <node concept="2WthIp" id="ZL2uO6yyzE" role="2Oq$k0" />
                         <node concept="1DTwFV" id="ZL2uO6yyzF" role="2OqNvi">
                           <ref role="2WH_rO" node="6V1xIBUmlNY" resolve="project" />
+                        </node>
+                      </node>
+                      <node concept="2OqwBi" id="7O51BCbwchT" role="37wK5m">
+                        <node concept="2WthIp" id="7O51BCbwchW" role="2Oq$k0" />
+                        <node concept="1DTwFV" id="7O51BCbwchY" role="2OqNvi">
+                          <ref role="2WH_rO" node="6V1xIBUmlO0" resolve="mpsProject" />
                         </node>
                       </node>
                       <node concept="37vLTw" id="ZL2uO6yyzG" role="37wK5m">
@@ -7408,11 +7582,17 @@
                       <node concept="37vLTw" id="ZL2uO6yyzH" role="37wK5m">
                         <ref role="3cqZAo" node="7MfEBAxhj21" resolve="resourceDeclaration" />
                       </node>
+                      <node concept="37vLTw" id="76fFiPktmaB" role="37wK5m">
+                        <ref role="3cqZAo" node="2jViL$fDYSm" resolve="typeDeclaration" />
+                      </node>
                       <node concept="37vLTw" id="ZL2uO6yyzI" role="37wK5m">
                         <ref role="3cqZAo" node="cr4sro7Sp2" resolve="simulator" />
                       </node>
                       <node concept="37vLTw" id="ZL2uO6yyzJ" role="37wK5m">
                         <ref role="3cqZAo" node="ZL2uO6yyzu" resolve="explanationProducer" />
+                      </node>
+                      <node concept="37vLTw" id="2YJdAbwhUcC" role="37wK5m">
+                        <ref role="3cqZAo" node="2YJdAbwhRmH" resolve="inspector" />
                       </node>
                     </node>
                   </node>
@@ -8122,11 +8302,17 @@
   <node concept="sE7Ow" id="6bvi$yscBuL">
     <property role="TrG5h" value="DeployResourceInDebugMode" />
     <property role="2uzpH1" value="Deploy Resource In Debug Mode" />
+    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
     <node concept="2S4$dB" id="6bvi$yscDwT" role="1NuT2Z">
       <property role="TrG5h" value="node" />
       <node concept="3Tm6S6" id="6bvi$yscDwU" role="1B3o_S" />
       <node concept="1oajcY" id="6bvi$yscDwV" role="1oa70y" />
       <node concept="3Tqbb2" id="6bvi$yscDwW" role="1tU5fm" />
+    </node>
+    <node concept="1DS2jV" id="5A2K7QhVrXW" role="1NuT2Z">
+      <property role="TrG5h" value="cell" />
+      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_CELL" resolve="EDITOR_CELL" />
+      <node concept="1oajcY" id="5A2K7QhVrXX" role="1oa70y" />
     </node>
     <node concept="1DS2jV" id="6bvi$yscDwX" role="1NuT2Z">
       <property role="TrG5h" value="mpsProject" />
@@ -8678,36 +8864,121 @@
           </node>
         </node>
         <node concept="3clFbH" id="4NMyx2mSBRH" role="3cqZAp" />
-        <node concept="3clFbH" id="7f479GGNmAw" role="3cqZAp" />
-        <node concept="3cpWs8" id="ZL2uO6yd7v" role="3cqZAp">
-          <node concept="3cpWsn" id="ZL2uO6yd7w" role="3cpWs9">
-            <property role="TrG5h" value="debuggerPanel" />
-            <node concept="3uibUv" id="ZL2uO6yd7x" role="1tU5fm">
-              <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
+        <node concept="3cpWs8" id="5A2K7QhVlKC" role="3cqZAp">
+          <node concept="3cpWsn" id="5A2K7QhVlKD" role="3cpWs9">
+            <property role="TrG5h" value="manager" />
+            <node concept="3uibUv" id="5A2K7QhVlKE" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~InspectionManager" resolve="InspectionManager" />
             </node>
-            <node concept="2ShNRf" id="ZL2uO6ye1u" role="33vP2m">
-              <node concept="1pGfFk" id="ZL2uO6yfvL" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="7zqy:~DebuggerPanel.&lt;init&gt;(com.intellij.openapi.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.debugger.explanation.ExplanationProducer)" resolve="DebuggerPanel" />
-                <node concept="2OqwBi" id="ZL2uO6yfLs" role="37wK5m">
-                  <node concept="2WthIp" id="ZL2uO6yfxW" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="ZL2uO6yglq" role="2OqNvi">
-                    <ref role="2WH_rO" node="6bvi$yscDwZ" resolve="project" />
+            <node concept="2YIFZM" id="5A2K7QhVlKF" role="33vP2m">
+              <ref role="1Pybhc" to="ek6x:~InspectionManagerImpl" resolve="InspectionManagerImpl" />
+              <ref role="37wK5l" to="ek6x:~InspectionManagerImpl.getInstance(jetbrains.mps.openapi.editor.EditorComponent)" resolve="getInstance" />
+              <node concept="2OqwBi" id="5A2K7QhVlKG" role="37wK5m">
+                <node concept="liA8E" id="5A2K7QhVlKH" role="2OqNvi">
+                  <ref role="37wK5l" to="f4zo:~EditorCell.getEditorComponent()" resolve="getEditorComponent" />
+                </node>
+                <node concept="2OqwBi" id="5A2K7QhVlKI" role="2Oq$k0">
+                  <node concept="2WthIp" id="5A2K7QhVlKJ" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="5A2K7QhVlKK" role="2OqNvi">
+                    <ref role="2WH_rO" node="5A2K7QhVrXW" resolve="cell" />
                   </node>
-                </node>
-                <node concept="37vLTw" id="ZL2uO6ygsl" role="37wK5m">
-                  <ref role="3cqZAo" node="6bvi$ysddzi" resolve="executionTrace" />
-                </node>
-                <node concept="37vLTw" id="ZL2uO6ygz6" role="37wK5m">
-                  <ref role="3cqZAo" node="6bvi$ysddzs" resolve="resourceTypeDeclarationSnaphot" />
-                </node>
-                <node concept="37vLTw" id="ZL2uO6ygDT" role="37wK5m">
-                  <ref role="3cqZAo" node="ZL2uO6xsfb" resolve="explanationProducer" />
                 </node>
               </node>
             </node>
           </node>
         </node>
+        <node concept="3cpWs8" id="5A2K7QhVFl7" role="3cqZAp">
+          <node concept="3cpWsn" id="5A2K7QhVFl8" role="3cpWs9">
+            <property role="TrG5h" value="networkInstance" />
+            <node concept="3uibUv" id="5A2K7QhVFl9" role="1tU5fm">
+              <ref role="3uigEE" to="74cb:~NetworkInstance" resolve="NetworkInstance" />
+            </node>
+            <node concept="2OqwBi" id="5A2K7QhVHeG" role="33vP2m">
+              <node concept="2OqwBi" id="5A2K7QhVGG8" role="2Oq$k0">
+                <node concept="2OqwBi" id="5A2K7QhVGmx" role="2Oq$k0">
+                  <node concept="2WthIp" id="5A2K7QhVGm$" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="5A2K7QhVGmA" role="2OqNvi">
+                    <ref role="2WH_rO" node="5A2K7QhVrXW" resolve="cell" />
+                  </node>
+                </node>
+                <node concept="liA8E" id="5A2K7QhVH8e" role="2OqNvi">
+                  <ref role="37wK5l" to="f4zo:~EditorCell.getStyle()" resolve="getStyle" />
+                </node>
+              </node>
+              <node concept="liA8E" id="5A2K7QhVHHu" role="2OqNvi">
+                <ref role="37wK5l" to="hox0:~Style.get(jetbrains.mps.openapi.editor.style.StyleAttribute)" resolve="get" />
+                <node concept="10M0yZ" id="5A2K7QhVMx$" role="37wK5m">
+                  <ref role="3cqZAo" to="je9f:~RichEditorStyleAttributes.NETWORK_INSTANCE" resolve="NETWORK_INSTANCE" />
+                  <ref role="1PxDUh" to="je9f:~RichEditorStyleAttributes" resolve="RichEditorStyleAttributes" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="5A2K7QhVlKL" role="3cqZAp">
+          <node concept="3cpWsn" id="5A2K7QhVlKM" role="3cpWs9">
+            <property role="TrG5h" value="inspector" />
+            <node concept="3uibUv" id="5A2K7QhVlKN" role="1tU5fm">
+              <ref role="3uigEE" to="ek6x:~NetworkInspector" resolve="NetworkInspector" />
+            </node>
+            <node concept="2OqwBi" id="5A2K7QhVlKO" role="33vP2m">
+              <node concept="37vLTw" id="5A2K7QhVlKP" role="2Oq$k0">
+                <ref role="3cqZAo" node="5A2K7QhVlKD" resolve="manager" />
+              </node>
+              <node concept="liA8E" id="5A2K7QhVlKQ" role="2OqNvi">
+                <ref role="37wK5l" to="ek6x:~InspectionManager.installInspector(org.fbme.lib.iec61499.instances.NetworkInstance,java.lang.Runnable)" resolve="installInspector" />
+                <node concept="37vLTw" id="5A2K7QhVlKR" role="37wK5m">
+                  <ref role="3cqZAo" node="5A2K7QhVFl8" resolve="networkInstance" />
+                </node>
+                <node concept="1bVj0M" id="5A2K7QhVlKS" role="37wK5m">
+                  <node concept="3clFbS" id="5A2K7QhVlKT" role="1bW5cS" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="7U3BhvtPtMx" role="3cqZAp">
+          <node concept="3cpWsn" id="7U3BhvtPtMy" role="3cpWs9">
+            <property role="TrG5h" value="debuggerPanel" />
+            <node concept="3uibUv" id="7U3BhvtPtMz" role="1tU5fm">
+              <ref role="3uigEE" to="7zqy:~DebuggerPanel" resolve="DebuggerPanel" />
+            </node>
+            <node concept="2ShNRf" id="7U3BhvtPuvz" role="33vP2m">
+              <node concept="1pGfFk" id="7U3BhvtPwsT" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" to="7zqy:~DebuggerPanel.&lt;init&gt;(com.intellij.openapi.project.Project,jetbrains.mps.project.Project,org.fbme.debugger.common.trace.ExecutionTrace,org.fbme.lib.common.Declaration,org.fbme.lib.common.Declaration,org.fbme.debugger.explanation.ExplanationProducer,org.fbme.ide.richediting.inspections.Inspector)" resolve="DebuggerPanel" />
+                <node concept="2OqwBi" id="7U3BhvtPwuu" role="37wK5m">
+                  <node concept="2WthIp" id="7U3BhvtPwux" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7U3BhvtPwuz" role="2OqNvi">
+                    <ref role="2WH_rO" node="6bvi$yscDwZ" resolve="project" />
+                  </node>
+                </node>
+                <node concept="2OqwBi" id="7O51BCbw7ye" role="37wK5m">
+                  <node concept="2WthIp" id="7O51BCbw7yh" role="2Oq$k0" />
+                  <node concept="1DTwFV" id="7O51BCbw7yj" role="2OqNvi">
+                    <ref role="2WH_rO" node="6bvi$yscDwX" resolve="mpsProject" />
+                  </node>
+                </node>
+                <node concept="37vLTw" id="7U3BhvtPwAK" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$ysddzi" resolve="executionTrace" />
+                </node>
+                <node concept="37vLTw" id="7U3BhvtPwGl" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$ysddzs" resolve="resourceTypeDeclarationSnaphot" />
+                </node>
+                <node concept="37vLTw" id="76fFiPktdlk" role="37wK5m">
+                  <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
+                </node>
+                <node concept="37vLTw" id="7U3BhvtPwNo" role="37wK5m">
+                  <ref role="3cqZAo" node="ZL2uO6xsfb" resolve="explanationProducer" />
+                </node>
+                <node concept="37vLTw" id="2YJdAbwhq_6" role="37wK5m">
+                  <ref role="3cqZAo" node="5A2K7QhVlKM" resolve="inspector" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbH" id="3uSIVReec3u" role="3cqZAp" />
         <node concept="3clFbF" id="7f479GGNnDY" role="3cqZAp">
           <node concept="2OqwBi" id="7f479GGNoKS" role="3clFbG">
             <node concept="37vLTw" id="7f479GGNnDW" role="2Oq$k0">
@@ -8719,7 +8990,7 @@
                 <ref role="3cqZAo" node="6bvi$yscBvs" resolve="resourceDeclaration" />
               </node>
               <node concept="37vLTw" id="7f479GGNrdt" role="2XxRq1">
-                <ref role="3cqZAo" node="ZL2uO6yd7w" resolve="debuggerPanel" />
+                <ref role="3cqZAo" node="7U3BhvtPtMy" resolve="debuggerPanel" />
               </node>
             </node>
           </node>
@@ -8729,7 +9000,7 @@
           <node concept="37vLTI" id="6bvi$ysddzQ" role="3clFbG">
             <node concept="2OqwBi" id="6bvi$ysddzO" role="37vLTx">
               <node concept="37vLTw" id="6bvi$ysdd$O" role="2Oq$k0">
-                <ref role="3cqZAo" node="ZL2uO6yd7w" resolve="debuggerPanel" />
+                <ref role="3cqZAo" node="7U3BhvtPtMy" resolve="debuggerPanel" />
               </node>
               <node concept="liA8E" id="6bvi$ysddzM" role="2OqNvi">
                 <ref role="37wK5l" to="7zqy:~DebuggerPanel.getToolWindowPanel()" resolve="getToolWindowPanel" />
