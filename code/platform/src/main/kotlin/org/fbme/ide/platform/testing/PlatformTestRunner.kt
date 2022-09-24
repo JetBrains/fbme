@@ -60,6 +60,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
         override fun loadClass(name: String): Class<*> {
             try {
                 return super.loadClass(name)
+            } catch (ignored: LinkageError) {
             } catch (ignored: ClassNotFoundException) {
             }
             return myParentModule.getClass(name)
