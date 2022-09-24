@@ -1,7 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -55,13 +54,6 @@ object Build : BuildType({
             tasks = "clean buildRcpDistrib"
             gradleParams = "-Pteamcity=true"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-        }
-    }
-
-    triggers {
-        vcs {
-            triggerRules = "+:refs/heads/master"
-            branchFilter = ""
         }
     }
 
