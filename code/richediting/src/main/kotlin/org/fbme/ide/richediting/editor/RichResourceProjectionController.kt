@@ -30,7 +30,7 @@ class RichResourceProjectionController(
             return ModelAccessHelper(myProject.modelAccess).runReadAction<List<AnAction>> {
                 mySystem.devices.stream()
                     .flatMap { it.resources.stream() }
-                    .map { ChooseProjectionAction(this, it.container!!.name + "." + it.name) }
+                    .map { ChooseProjectionAction(this, it.container.name + "." + it.name) }
                     .collect(Collectors.toList())
             }
         }

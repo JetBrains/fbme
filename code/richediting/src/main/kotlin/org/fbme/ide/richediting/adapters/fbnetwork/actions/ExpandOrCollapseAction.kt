@@ -46,11 +46,11 @@ abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) : 
         val style = cell.style
         selectedFBs = style.get(RichEditorStyleAttributes.SELECTED_FBS).selectedComponents
         componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY)
-                as ComponentsFacility<NetworkComponentView, Point>
+            as ComponentsFacility<NetworkComponentView, Point>
         connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY)
-                as ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>
+            as ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>
         diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY)
-                as DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>
+            as DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>
         viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT)
         diagramController = diagramFacility.diagramController
         componentsSynchronizer = componentsFacility.componentSynchronizer as FBNetworkComponentSynchronizer

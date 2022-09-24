@@ -4,7 +4,6 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.scenes.controllers.SceneViewpoint
 import org.fbme.scenes.controllers.components.ComponentSynchronizer
 import java.awt.Point
-import java.util.function.Supplier
 
 class ECCSynchronizer(private val viewpoint: SceneViewpoint) : ComponentSynchronizer<StateDeclaration, Point> {
     override fun getForm(component: StateDeclaration): () -> Point {

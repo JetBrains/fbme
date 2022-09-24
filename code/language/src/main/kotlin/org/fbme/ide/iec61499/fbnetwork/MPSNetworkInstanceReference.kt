@@ -59,7 +59,7 @@ class MPSNetworkInstanceReference(private val myRoot: SNodeReference, private va
             while (parentInstance != null) {
                 val functionBlock = parentInstance.declaration
                 nestedList.add((functionBlock.identifier as PlatformIdentifier).reference.nodeId)
-                networkInstance = parentInstance.parent as NetworkInstance
+                networkInstance = parentInstance.parent
                 parentInstance = networkInstance.parent as FunctionBlockInstance?
             }
             val rootReference = (networkInstance.declaration.identifier as PlatformIdentifier).reference

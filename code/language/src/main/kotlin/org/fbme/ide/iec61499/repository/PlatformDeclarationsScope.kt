@@ -8,10 +8,6 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 import org.jetbrains.mps.openapi.model.SNodeReference
-import org.jetbrains.mps.openapi.module.SModule
-import java.util.*
-import java.util.stream.Collectors
-import java.util.stream.StreamSupport
 
 internal class PlatformDeclarationsScope(
     private val myRepository: PlatformRepository,

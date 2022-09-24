@@ -104,16 +104,20 @@ class ECStateController(
         context: EditorContext,
         node: SNode
     ): EditorCell_Collection {
-        return EditorCell_Collection(context, node, object : AbstractCellLayout() {
-            override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                assert(cells === cellCollection)
-                relayout()
-            }
+        return EditorCell_Collection(
+            context,
+            node,
+            object : AbstractCellLayout() {
+                override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                    assert(cells === cellCollection)
+                    relayout()
+                }
 
-            override fun doLayoutText(p0: MutableIterable<jetbrains.mps.openapi.editor.cells.EditorCell>): TextBuilder {
-                return TextBuilderImpl()
+                override fun doLayoutText(p0: MutableIterable<jetbrains.mps.openapi.editor.cells.EditorCell>): TextBuilder {
+                    return TextBuilderImpl()
+                }
             }
-        })
+        )
     }
 
     private fun initializeActions() {

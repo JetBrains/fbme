@@ -6,7 +6,7 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 import org.jetbrains.mps.openapi.model.SNode
 
 class FunctionBlockView(val component: FunctionBlockDeclarationBase, isEditable: Boolean) : NetworkComponentView {
-    val associatedNode: SNode
+    val associatedNode: SNode = (component as PlatformElement).node
     private val myTypeDescriptor: TypeDescriptorAdapter
     override val isEditable: Boolean
 
@@ -30,7 +30,6 @@ class FunctionBlockView(val component: FunctionBlockDeclarationBase, isEditable:
     }
 
     init {
-        associatedNode = (component as PlatformElement).node
         myTypeDescriptor = TypeDescriptorAdapter(component.type)
         this.isEditable = isEditable
     }

@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Checked source files" pattern="file[FBME.code.*.main]:kotlin//*" />
+</component>

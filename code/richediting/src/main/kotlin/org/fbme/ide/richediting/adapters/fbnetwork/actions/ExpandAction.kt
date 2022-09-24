@@ -5,8 +5,9 @@ import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.openapi.editor.style.Style
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
-import org.fbme.ide.richediting.viewmodel.*
-import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
+import org.fbme.ide.richediting.viewmodel.InterfaceEndpointView
+import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.LayoutUtil.getFontSize
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
@@ -14,8 +15,6 @@ import org.fbme.scenes.controllers.LayoutUtil.setFontSize
 import org.jetbrains.mps.openapi.module.SRepository
 import java.awt.Point
 import java.awt.Rectangle
-import kotlin.math.max
-import kotlin.math.min
 
 class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
     override fun apply() {

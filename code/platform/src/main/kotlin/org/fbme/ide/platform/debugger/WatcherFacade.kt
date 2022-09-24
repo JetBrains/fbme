@@ -172,7 +172,7 @@ class WatcherFacade private constructor(project: Project) {
                             val portName = portElement.getAttributeValue("name")
                             val dataElement = portElement.getChild("Data")
                             if (dataElement != null) {
-                                watches[Watchable(WatchablePath(resource, fb), portName).serialize()] =
+                                watches[Watchable(WatchablePath(resource, listOf(fb)), portName).serialize()] =
                                     dataElement.getAttributeValue("value")
                             }
                         }

@@ -4,9 +4,6 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
-import java.io.File
-import java.util.*
-import javax.xml.parsers.SAXParserFactory
 
 @Suppress("UnstableApiUsage")
 fun GenerateSourcePluginTasks(
@@ -14,8 +11,7 @@ fun GenerateSourcePluginTasks(
     mpsExtension: MpsExtension,
     pluginId: String?
 ) {
-    with (project) {
-
+    with(project) {
         val moduleName = mpsExtension.moduleName
         val libraryFilters = mpsExtension.libraryFilters
 

@@ -29,8 +29,8 @@ class NetworkInstanceHeaderComponentProvider(baseNode: SNode, instance: NetworkI
 
         private val NavBarUI: NavBarUI = object : CommonNavBarUI() {
             override fun getElementFont(navBarItem: NavBarItem): Font {
-                val `object` = navBarItem.getObject()
-                return if (`object` is NetworkInstanceNavBarModel.Item || `object` is NetworkInstanceNavBarModel.SystemItem || `object` is NetworkInstanceNavBarModel.DeviceItem) {
+                val item = navBarItem.getObject()
+                return if (item is NetworkInstanceNavBarModel.Item || item is NetworkInstanceNavBarModel.SystemItem || item is NetworkInstanceNavBarModel.DeviceItem) {
                     EditorSettings.getInstance().defaultEditorFont
                 } else super.getElementFont(navBarItem)
             }

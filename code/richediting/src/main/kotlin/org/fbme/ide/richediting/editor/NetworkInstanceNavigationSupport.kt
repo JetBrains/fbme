@@ -42,11 +42,12 @@ object NetworkInstanceNavigationSupport {
                     )
                     targetNode = SNodeOperations.getParent(targetNode)
                 }
+
                 is ResourceDeclaration -> {
                     element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Resource")
                     element.setAttribute(
                         HeaderedNodeEditor.PROJECTION_NAME_KEY,
-                        (container as ResourceDeclaration).container!!.name + "." + container.name
+                        (container as ResourceDeclaration).container.name + "." + container.name
                     )
                     element.setAttribute(
                         RichResourceProjection.PERSISTENCE_KEY,
@@ -54,6 +55,7 @@ object NetworkInstanceNavigationSupport {
                     )
                     targetNode = SNodeOperations.getParent(SNodeOperations.getParent(targetNode))
                 }
+
                 else -> {
                     element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Network")
                     element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, "Network")

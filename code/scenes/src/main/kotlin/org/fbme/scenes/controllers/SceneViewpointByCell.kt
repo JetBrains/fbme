@@ -22,12 +22,10 @@ class SceneViewpointByCell(
             myEditor.fireRelayout()
         }
 
-
     override val editorScale: Float
         get() {
             return LayoutUtil.getScale(cell.style)
         }
-
 
     inner class MyInitializer : SceneInitializer {
         override fun onAdd() {

@@ -421,7 +421,8 @@ class EditorCell_Scene(
                                 action.invoke(pattern, completionPositionX, completionPositionY)
                                 return null
                             }
-                        })
+                        }
+                    )
                 }
             }
             return result
@@ -469,9 +470,9 @@ class EditorCell_Scene(
         var shiftY: Int = 0
 
         override val editorShift: Point
-        get() {
-            return Point(shiftX, shiftY)
-        }
+            get() {
+                return Point(shiftX, shiftY)
+            }
         override val editorScale: Float
             get() {
                 return LayoutUtil.getScale(style)

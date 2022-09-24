@@ -23,16 +23,20 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
     private val myOutputAssociations: MutableList<EventAssociation> = ArrayList()
 
     private fun createRootCell(editorContext: EditorContext, node: SNode): EditorCell_Collection {
-        return object : EditorCell_Collection(editorContext, node, object : AbstractCellLayout() {
-            override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                assert(cells === cellCollection)
-                relayout()
-            }
+        return object : EditorCell_Collection(
+            editorContext,
+            node,
+            object : AbstractCellLayout() {
+                override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                    assert(cells === cellCollection)
+                    relayout()
+                }
 
-            override fun doLayoutText(cells: Iterable<EditorCell>): TextBuilder {
-                return TextBuilderImpl()
+                override fun doLayoutText(cells: Iterable<EditorCell>): TextBuilder {
+                    return TextBuilderImpl()
+                }
             }
-        }) {
+        ) {
             override fun paintContent(graphics: Graphics, settings: ParentSettings) {
                 var g = graphics
                 g = g.create()
@@ -163,7 +167,6 @@ class FBTypeTemplateCellComponent(editorContext: EditorContext, node: SNode, pri
             }
             return portPosition.y + offsetY
         }
-
     }
 
     private val foregroundColor: Color

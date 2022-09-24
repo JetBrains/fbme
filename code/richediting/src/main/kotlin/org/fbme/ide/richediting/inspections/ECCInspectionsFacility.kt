@@ -59,7 +59,7 @@ class ECCInspectionsFacility(
             val controller = transitionProvider.apply(key)
             controller.highlightColor = value
         }
-        if (!data.highlightedTransitions.isEmpty()) {
+        if (data.highlightedTransitions.isNotEmpty()) {
             editor.fireRepaint()
         }
     }

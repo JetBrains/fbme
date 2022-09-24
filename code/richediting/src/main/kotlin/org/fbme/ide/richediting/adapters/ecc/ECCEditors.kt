@@ -63,9 +63,11 @@ object ECCEditors {
             val componentsLayer = scene.createLayer(3f)
             val connectionsLayer = scene.createLayer(2f)
             val editorComponent = context.editorComponent as EditorComponent
-            val viewpoint = if (layout === SceneLayout.WINDOWED)
+            val viewpoint = if (layout === SceneLayout.WINDOWED) {
                 SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
-            else scene.viewpoint!!
+            } else {
+                scene.viewpoint!!
+            }
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {
                 WindowedBackgroundDragFacility(scene, (viewpoint as SceneViewpointByCell), backgroundLayer)
@@ -90,9 +92,11 @@ object ECCEditors {
                 componentsLayout, componentsSelection, focus, componentsLayer, tracesLayer
             )
             scene.style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility)
-            scene.addCompletionProvider(CompletionProviderByViewpoint(viewpoint) {
-                getCompletion(ecc, declarationFactory)
-            })
+            scene.addCompletionProvider(
+                CompletionProviderByViewpoint(viewpoint) {
+                    getCompletion(ecc, declarationFactory)
+                }
+            )
             val portSettings = ECPortSettingProvider.create(componentsFacility)
             val settingProvider: DiagramComponentSettingProvider<StateDeclaration, Point> =
                 object : DiagramComponentSettingProvider<StateDeclaration, Point> {
@@ -104,9 +108,7 @@ object ECCEditors {
                         return componentsFacility.getTransformedForm(component)
                     }
                 }
-            val diagramFacility = DiagramFacility(
-                eccAdapter, portSettings, settingProvider
-            )
+            val diagramFacility = DiagramFacility(eccAdapter, portSettings, settingProvider)
             scene.style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val connectionsFacility = ConnectionsFacility(
                 scene,
@@ -139,9 +141,10 @@ object ECCEditors {
     ): ComponentControllerFactory<StateDeclaration, Point> {
         return object : ComponentControllerFactory<StateDeclaration, Point> {
             override fun create(context: EditorContext, view: StateDeclaration): ComponentController<Point>? {
-                return if (view is PlatformElement)
-                    ECStateController(scene, context, view, isEditable)
-                else null
+                if (view !is PlatformElement) {
+                    return null
+                }
+                return ECStateController(scene, context, view, isEditable)
             }
         }
     }
@@ -192,7 +195,6 @@ object ECCEditors {
                     }
                 )
             }
-
         }
     }
 

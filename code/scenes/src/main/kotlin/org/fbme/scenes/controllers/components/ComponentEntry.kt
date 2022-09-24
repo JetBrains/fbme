@@ -2,7 +2,6 @@ package org.fbme.scenes.controllers.components
 
 import org.fbme.scenes.controllers.LayoutSetting
 import java.awt.Rectangle
-import java.util.function.Supplier
 
 class ComponentEntry<CompT, FormT>(facility: ComponentsFacility<CompT, FormT>, val myComponent: CompT) {
     val layoutSetting: MyLayoutSetting
@@ -46,7 +45,8 @@ class ComponentEntry<CompT, FormT>(facility: ComponentsFacility<CompT, FormT>, v
     init {
         layoutSetting = MyLayoutSetting()
         this.facility = facility
-        controller = this.facility.controllerFactory.create(this.facility.editor.editorContext, myComponent) ?: error("Can't get controller")
+        controller = this.facility.controllerFactory.create(this.facility.editor.editorContext, myComponent)
+            ?: error("Can't get controller")
         formProvider = this.facility.componentSynchronizer.getForm(myComponent)
         modelForm = formProvider()
         layoutSetting.bounds = controller.getBounds(modelForm)

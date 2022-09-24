@@ -33,6 +33,7 @@ class FBConnectionPathSynchronizer(
                     val fbConnectionPathWithOffset = getFBConnectionPathWithOffset(connection, fbConnectionPath)
                     getBrokenConnectionIfNecessary(connection, fbConnectionPathWithOffset)
                 }
+
                 ConnectionPath.Kind.TwoAngles -> {
                     val editorBendPoints = mutableListOf(
                         Point(x1, sourcePosition.y),
@@ -42,6 +43,7 @@ class FBConnectionPathSynchronizer(
                     val fbConnectionPathWithOffset = getFBConnectionPathWithOffset(connection, fbConnectionPath)
                     getBrokenConnectionIfNecessary(connection, fbConnectionPathWithOffset)
                 }
+
                 ConnectionPath.Kind.FourAngles -> {
                     val editorBendPoints = mutableListOf(
                         Point(x1, sourcePosition.y),
@@ -53,6 +55,7 @@ class FBConnectionPathSynchronizer(
                     val fbConnectionPathWithOffset = getFBConnectionPathWithOffset(connection, fbConnectionPath)
                     getBrokenConnectionIfNecessary(connection, fbConnectionPathWithOffset)
                 }
+
                 ConnectionPath.Kind.MoreThanFour -> {
                     check(path is LongConnectionPath)
                     val editorBendPoints = editorBendPoints(path)
@@ -69,10 +72,10 @@ class FBConnectionPathSynchronizer(
         fbConnectionPath: FBConnectionPath,
         index: Int = 0
     ): FBConnectionPath {
-        if (index >= expandedComponentsController.expandedFBs.size
-            || diagramController.getSource(connection) == null
-            || diagramController.getSource(connection) is InlineValueView
-            || diagramController.getTarget(connection) == null
+        if (index >= expandedComponentsController.expandedFBs.size ||
+            diagramController.getSource(connection) == null ||
+            diagramController.getSource(connection) is InlineValueView ||
+            diagramController.getTarget(connection) == null
         ) {
             return fbConnectionPath
         }
@@ -121,6 +124,7 @@ class FBConnectionPathSynchronizer(
                     }
                     return@withConnectionData fbConnectionPath
                 }
+
                 ConnectionPath.Kind.TwoAngles -> {
                     val x1 = fbConnectionPath.x1
 
@@ -140,6 +144,7 @@ class FBConnectionPathSynchronizer(
                     }
                     return@withConnectionData fbConnectionPath
                 }
+
                 ConnectionPath.Kind.FourAngles -> {
                     val x1 = fbConnectionPath.x1
                     val x2 = fbConnectionPath.x2
@@ -163,6 +168,7 @@ class FBConnectionPathSynchronizer(
                     }
                     return@withConnectionData fbConnectionPath
                 }
+
                 ConnectionPath.Kind.MoreThanFour -> {
                     val x1 = fbConnectionPath.x1
                     val x2 = fbConnectionPath.x2
@@ -201,9 +207,9 @@ class FBConnectionPathSynchronizer(
         padding: Int
     ) {
         fun condition(expandedFBData: ExpandedFBData, connectionData: ConnectionData, x: Int): Boolean {
-            return !expandedFBData.hasSourceShiftByY()
-                    && expandedFBData.bounds.bottom - expandedFBData.dy < connectionData.sourcePosition.y
-                    && connectionData.sourcePosition.x < expandedFBData.bounds.left && expandedFBData.bounds.left < x
+            return !expandedFBData.hasSourceShiftByY() &&
+                expandedFBData.bounds.bottom - expandedFBData.dy < connectionData.sourcePosition.y &&
+                connectionData.sourcePosition.x < expandedFBData.bounds.left && expandedFBData.bounds.left < x
         }
 
         var maxDy = expandedFBData.dy
@@ -233,9 +239,9 @@ class FBConnectionPathSynchronizer(
         padding: Int
     ) {
         fun condition(expandedFBData: ExpandedFBData, connectionData: ConnectionData, x: Int): Boolean {
-            return !expandedFBData.hasTargetShiftByY()
-                    && expandedFBData.bounds.bottom - expandedFBData.dy < connectionData.targetPosition.y
-                    && x < expandedFBData.bounds.right && expandedFBData.bounds.right < connectionData.targetPosition.x
+            return !expandedFBData.hasTargetShiftByY() &&
+                expandedFBData.bounds.bottom - expandedFBData.dy < connectionData.targetPosition.y &&
+                x < expandedFBData.bounds.right && expandedFBData.bounds.right < connectionData.targetPosition.x
         }
 
         var maxDy = expandedFBData.dy
@@ -317,10 +323,10 @@ class FBConnectionPathSynchronizer(
         fbConnectionPath: FBConnectionPath,
         inverted: Boolean
     ): FBConnectionPath {
-        if (expandedComponentsController.expandedFBs.isEmpty()
-            || diagramController.getSource(connection) == null
-            || diagramController.getSource(connection) is InlineValueView
-            || diagramController.getTarget(connection) == null
+        if (expandedComponentsController.expandedFBs.isEmpty() ||
+            diagramController.getSource(connection) == null ||
+            diagramController.getSource(connection) is InlineValueView ||
+            diagramController.getTarget(connection) == null
         ) {
             return fbConnectionPath
         }
@@ -431,7 +437,7 @@ class FBConnectionPathSynchronizer(
         val dx: Int,
         val dy: Int,
         val sourceShift: Point?,
-        val targetShift: Point?,
+        val targetShift: Point?
     ) {
         fun hasSourceShiftByX() = sourceShift != null && sourceShift.x > 0
         fun hasSourceShiftByY() = sourceShift != null && sourceShift.y > 0
@@ -461,7 +467,7 @@ class FBConnectionPathSynchronizer(
             dx = dx,
             dy = dy,
             sourceShift = sourceShift,
-            targetShift = targetShift,
+            targetShift = targetShift
         ).block()
     }
 

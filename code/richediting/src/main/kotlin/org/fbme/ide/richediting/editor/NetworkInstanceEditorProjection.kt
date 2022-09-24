@@ -35,7 +35,8 @@ class NetworkInstanceEditorProjection(
 
     override fun saveState(element: Element) {
         element.setAttribute(
-            PERSISTENCE_KEY, MPSNetworkInstanceReference.create(
+            PERSISTENCE_KEY,
+            MPSNetworkInstanceReference.create(
                 instance
             ).serialize()
         )

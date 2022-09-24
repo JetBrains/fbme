@@ -13,7 +13,6 @@ import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramFacility
 import java.awt.Point
 
-
 class RelayoutECCAction(cell: EditorCell) : Action {
     private val layoutProvider: ELKLayoutProvider
 

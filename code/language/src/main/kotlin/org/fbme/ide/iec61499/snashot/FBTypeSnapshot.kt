@@ -1,6 +1,5 @@
 package org.fbme.ide.iec61499.snashot
 
-import jetbrains.mps.project.Solution
 import jetbrains.mps.smodel.CopyUtil
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SModelReference
@@ -16,11 +15,10 @@ import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 
-
 class FBTypeSnapshot(
     val snapshotDeclaration: FBTypeDeclaration,
     private val originalOwner: PlatformElementsOwner,
-    private val temporaryModels: Map<SModel, SModel>,
+    private val temporaryModels: Map<SModel, SModel>
 ) {
 
     /**
@@ -102,7 +100,7 @@ class FBTypeSnapshot(
 
     class SnapshotModel(
         val originalModel: SModel,
-        reference: SModelReference = SModelReference(null, SModelId.generate(), originalModel.name),
+        reference: SModelReference = SModelReference(null, SModelId.generate(), originalModel.name)
     ) : TrivialModelDescriptor(jetbrains.mps.smodel.SModel(reference)) {
 
         override fun addRootNode(node: SNode) {

@@ -206,7 +206,8 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         graphics.paint = DiagramColors.createGradientPaint(background, Rectangle(x, y, rootCell.width, rootCell.height))
         graphics.fill(shape)
         graphics.paint = DiagramColors.createGradientPaint(
-            typeBackgroundColor, Rectangle(x, y, rootCell.width, rootCell.height)
+            typeBackgroundColor,
+            Rectangle(x, y, rootCell.width, rootCell.height)
         )
         graphics.fill(Rectangle(x, typeNameY, rootCell.width, lineSize))
         graphics.stroke = BasicStroke(scale(1).toFloat())
@@ -235,16 +236,20 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
     }
 
     private fun createRootCell(): EditorCell_Collection {
-        return object : EditorCell_Collection(context, node, object : AbstractCellLayout() {
-            override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                assert(collection === rootCell)
-                relayout()
-            }
+        return object : EditorCell_Collection(
+            context,
+            node,
+            object : AbstractCellLayout() {
+                override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                    assert(collection === rootCell)
+                    relayout()
+                }
 
-            override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
-                return TextBuilderImpl()
+                override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
+                    return TextBuilderImpl()
+                }
             }
-        }) {
+        ) {
             override fun paintContent(g: Graphics, parentSettings: ParentSettings) {
                 this@FBTypeCellComponent.paint(g.create() as Graphics2D)
             }
@@ -281,7 +286,8 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
                 val childNetworkInstance = child.containedNetwork
                 if (childNetworkInstance is NetworkInstance) {
                     val navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(
-                        rootCell.context.operationContext.project, childNetworkInstance
+                        rootCell.context.operationContext.project,
+                        childNetworkInstance
                     )
                     if (navigationStub != null) {
                         style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
@@ -305,10 +311,12 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         private fun portsColumnWidth(ports: List<Port>): Int {
             return if (ports.isEmpty()) {
                 0
-            } else (Collections.max(
-                ports,
-                PORT_LABEL_WIDTH_COMPARATOR
-            ) as PortWithLabel).label.width
+            } else (
+                Collections.max(
+                    ports,
+                    PORT_LABEL_WIDTH_COMPARATOR
+                ) as PortWithLabel
+                ).label.width
         }
     }
 }

@@ -6,10 +6,8 @@ import jetbrains.mps.project.MPSProject
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport.navigate
 import org.fbme.ide.richediting.inspections.Inspection
 import org.fbme.ide.richediting.inspections.InspectionManagerImpl.Companion.getInstance
-import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
-import org.fbme.lib.iec61499.fbnetwork.PortPath
 import org.fbme.lib.iec61499.instances.NetworkInstance.Companion.createForCompositeFBType
 import org.fbme.smvDebugger.model.SystemItemType
 import org.fbme.smvDebugger.model.SystemItemValue
@@ -27,7 +25,7 @@ class SystemHighlighter(private val project: MPSProject, private val compositeFb
             val components: List<FunctionBlockDeclaration?> = fbNetwork.functionBlocks
             for (itemValue in itemValues!!) {
                 val item = itemValue!!.item
-                if (item.fbNames!!.size == 0) {
+                if (item.fbNames.isEmpty()) {
                     continue
                 }
                 var component: FunctionBlockDeclaration? = null
@@ -49,21 +47,15 @@ class SystemHighlighter(private val project: MPSProject, private val compositeFb
                     i.value++
                 }
                 if (component != null) {
+                    val inspection = Inspection(itemValue.value!!, HIGHLIGHT_COLOR)
                     if (item.type == SystemItemType.ECC) {
-                        networkInspector.setInspectionForComponent(
-                            component,
-                            Inspection(itemValue.value!!, HIGHLIGHT_COLOR)
-                        )
+                        networkInspector.setInspectionForComponent(component, inspection)
                     } else {
                         val ports = component.ports
-                        ports.stream()
-                            .filter { it.portTarget!!.name == item.itemName }
-                            .findFirst()
-                            .ifPresent { port: PortPath<out Declaration>? ->
-                                networkInspector.setInspectionForPort(
-                                    port!!, Inspection(itemValue.value!!, HIGHLIGHT_COLOR)
-                                )
-                            }
+                        val port = ports.firstOrNull { it.portTarget.name == item.itemName }
+                        if (port != null) {
+                            networkInspector.setInspectionForPort(port, inspection)
+                        }
                     }
                 }
             }

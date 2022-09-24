@@ -134,17 +134,16 @@ class HeaderedNodeEditor(baseNode: SNode, mpsProject: Project) : BaseNodeEditor(
 
     override fun loadState(state: EditorState) {
         if (state is BaseEditorState) {
-            val realState = state
             myProject.modelAccess.runReadAction {
-                if (realState is HeaderedEditorState) {
-                    val projectionState = realState.myProjectionState
+                if (state is HeaderedEditorState) {
+                    val projectionState = state.myProjectionState
                     restoreState(projectionState)
                 } else {
                     // regular editor was shown for that node last time
                     initializeFirstAvailableProjection()
                 }
                 val componentState = Element("container")
-                realState.save(componentState)
+                state.save(componentState)
                 val memento = componentState.getChild("memento")
                 if (memento != null) {
                     memento.removeChildren("enabledHints")
@@ -156,9 +155,9 @@ class HeaderedNodeEditor(baseNode: SNode, mpsProject: Project) : BaseNodeEditor(
                     }
                     memento.addContent(hintsElement)
                 }
-                realState.load(componentState)
+                state.load(componentState)
             }
-            super.loadState(realState)
+            super.loadState(state)
         }
     }
 

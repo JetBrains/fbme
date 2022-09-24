@@ -336,6 +336,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
                         y = s.y - scale(ENDPOINTS_PADDING)
                     }
                 }
+
                 ConnectionPath.Kind.FourAngles, ConnectionPath.Kind.MoreThanFour -> if (ntx >= x1 + t.x - x2) {
                     kind = ConnectionPath.Kind.TwoAngles
                     x1 = if (t.x - x2 != x1 - s.x) {
@@ -388,6 +389,7 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
                         y = t.y - scale(ENDPOINTS_PADDING)
                     }
                 }
+
                 ConnectionPath.Kind.FourAngles, ConnectionPath.Kind.MoreThanFour -> if (nsx <= x2 + s.x - x1) {
                     kind = ConnectionPath.Kind.TwoAngles
                     x1 = if (t.x - s.x != x2 - x1) {

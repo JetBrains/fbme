@@ -7,8 +7,7 @@ import jetbrains.mps.openapi.editor.extensions.EditorExtensionRegistry
 import org.fbme.scenes.controllers.scene.SceneStateManager
 import org.fbme.scenes.ext.contextMenu.CellSelectionOnPopupTrigger
 
-
-class SceneExtensionsRegistrar: StartupActivity {
+class SceneExtensionsRegistrar : StartupActivity {
 
     override fun runActivity(project: Project) {
         val registry = project.getComponent(EditorExtensionRegistry::class.java)

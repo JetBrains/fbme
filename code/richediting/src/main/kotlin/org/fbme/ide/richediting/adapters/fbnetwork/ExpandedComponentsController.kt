@@ -20,7 +20,7 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         editorShift: Point,
         dx: Int,
         dy: Int,
-        componentShifts: MutableMap<NetworkComponentView, Point>,
+        componentShifts: MutableMap<NetworkComponentView, Point>
     ) {
         expandedFBs[functionBlock] = ExpandingData(
             editorShift,
@@ -59,7 +59,7 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         val editorShift: Point,
         val dx: Int,
         val dy: Int,
-        val componentShifts: MutableMap<NetworkComponentView, Point>,
+        val componentShifts: MutableMap<NetworkComponentView, Point>
     )
 
     companion object {

@@ -94,8 +94,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
 
         private fun loadFromModuleName(clazz: Class<*>): String {
             val loadFrom = clazz.getAnnotation(LoadFrom::class.java)
-            val moduleName = loadFrom?.module ?: "org.fbme.ide.platform"
-            return moduleName
+            return loadFrom?.module ?: "org.fbme.ide.platform"
         }
 
         @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class)

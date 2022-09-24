@@ -159,7 +159,6 @@ class ELKLayoutProvider(
         return viewpoint.fromEditor(componentBounds)
     }
 
-
     private fun applyLayout(
         nodes: Map<FunctionBlockView, ElkNode>,
         endpoints: Map<InterfaceEndpointView, ElkPort>,

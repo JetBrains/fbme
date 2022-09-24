@@ -1,7 +1,9 @@
 package org.fbme.smvDebugger.panel.items
 
 import org.fbme.smvDebugger.model.Counterexample
-import org.fbme.smvDebugger.panel.condition.*
+import org.fbme.smvDebugger.panel.condition.ConditionParseException
+import org.fbme.smvDebugger.panel.condition.ConditionParser
+import org.fbme.smvDebugger.panel.condition.Expression
 import org.fbme.smvDebugger.panel.mvc.DebugPanelMVCItem
 import org.fbme.smvDebugger.panel.mvc.DebugPanelModel
 import java.awt.Dimension
@@ -13,7 +15,7 @@ import javax.swing.JFormattedTextField
 import javax.swing.JOptionPane
 
 class ConditionNavigator(private val counterexample: Counterexample?) : HorizontalSpinner(), DebugPanelMVCItem {
-    private val conditionParser: ConditionParser
+    private val conditionParser: ConditionParser = ConditionParser()
     private var model: DebugPanelModel? = null
     override fun setPanelModel(model: DebugPanelModel) {
         this.model = model
@@ -28,10 +30,10 @@ class ConditionNavigator(private val counterexample: Counterexample?) : Horizont
     override fun initController() {
         for (component in components) {
             val componentName = component.name
-            if (componentName == HorizontalSpinnerUI.Companion.NEXT_BUTTON_NAME) {
+            if (componentName == HorizontalSpinnerUI.NEXT_BUTTON_NAME) {
                 val nextButton = component as JButton
                 nextButton.addActionListener { event: ActionEvent? -> processAction({ stepIndex: Int -> stepIndex < counterexample!!.length() }) { stepIndex: Int -> stepIndex + 1 } }
-            } else if (componentName == HorizontalSpinnerUI.Companion.PREVIOUS_BUTTON_NAME) {
+            } else if (componentName == HorizontalSpinnerUI.PREVIOUS_BUTTON_NAME) {
                 val previousButton = component as JButton
                 previousButton.addActionListener { event: ActionEvent? -> processAction({ stepIndex: Int -> stepIndex >= 0 }) { stepIndex: Int -> stepIndex - 1 } }
             }
@@ -40,8 +42,7 @@ class ConditionNavigator(private val counterexample: Counterexample?) : Horizont
 
     private fun processAction(stopPredicate: Predicate<Int>, stepFunction: Function<Int, Int>) {
         val condition = conditionField!!.text
-        val expression: Expression?
-        expression = try {
+        val expression: Expression? = try {
             conditionParser.parse(condition)
         } catch (e: ConditionParseException) {
             JOptionPane.showMessageDialog(null, e.message)
@@ -74,7 +75,4 @@ class ConditionNavigator(private val counterexample: Counterexample?) : Horizont
         private const val SPINNER_HEIGHT = 25
     }
 
-    init {
-        conditionParser = ConditionParser()
-    }
 }
