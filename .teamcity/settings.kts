@@ -48,10 +48,6 @@ object Build : BuildType({
 
     vcs {
         root(DslContext.settingsRoot)
-        branchFilter = """
-            +:refs/heads/master
-            +:refs/heads/features/*
-        """.trimIndent()
     }
 
     steps {
