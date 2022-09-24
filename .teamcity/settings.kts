@@ -60,6 +60,8 @@ object Build : BuildType({
 
     triggers {
         vcs {
+            triggerRules = "+:refs/heads/master"
+            branchFilter = ""
         }
     }
 
