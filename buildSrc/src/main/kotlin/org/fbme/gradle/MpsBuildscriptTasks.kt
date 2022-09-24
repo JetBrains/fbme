@@ -89,7 +89,7 @@ fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
 }
 
 fun Project.mpsDistribution(): ConfigurableFileTree =
-    fileTree("../../lib/MPS 2021.2/") {
+    fileTree("../../lib/MPS 2021.3/") {
         include("lib/**/*.jar")
         include("languages/**/*.jar")
         include("plugins/**/*.jar")

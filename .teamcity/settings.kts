@@ -66,22 +66,22 @@ fun CompoundStage.Build() = buildType("Build") {
     }
 
     dependencies {
-        artifacts(AbsoluteId("MPS_20212_Distribution_GetResources")) {
+        artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
             buildRule = lastSuccessful()
             artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
         }
-        artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
-            buildRule = tag("2021.2.6")
-            artifactRules = "MPS-212.5284.1433.zip!/MPS 2021.2=>lib/MPS 2021.2"
+        artifacts(AbsoluteId("MPS_20213_Distribution_DownloadableArtifacts")) {
+            buildRule = tag("2021.3.1")
+            artifactRules = "MPS-213.7172.958.zip!/MPS 2021.3=>lib/MPS 2021.3"
         }
     }
 }
 
 fun CompoundStage.BuildRcpDistrib() = buildType("BuildRcpDistrib") {
     artifactRules = """
-        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.tar.gz
-        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.win.zip
-        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.macos.zip
+        build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.tar.gz
+        build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.win.zip
+        build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.macos.zip
     """.trimIndent()
 
     params {

@@ -360,7 +360,7 @@
         <node concept="3clFbF" id="7OBD32Igfj2" role="3cqZAp">
           <node concept="2YIFZM" id="7OBD32Igfv1" role="3clFbG">
             <ref role="1Pybhc" to="l5s7:~NewModuleUtil" resolve="NewModuleUtil" />
-            <ref role="37wK5l" to="l5s7:~NewModuleUtil.check(org.jetbrains.mps.openapi.module.SRepository,java.lang.String,java.lang.String,java.lang.String)" resolve="check" />
+            <ref role="37wK5l" to="l5s7:~NewModuleUtil.check(jetbrains.mps.project.MPSProject,java.lang.String,java.lang.String,java.lang.String)" resolve="check" />
             <node concept="10Nm6u" id="7OBD32IgfEP" role="37wK5m" />
             <node concept="10M0yZ" id="7OBD32Iggpu" role="37wK5m">
               <ref role="3cqZAo" to="z1c4:~MPSExtentions.DOT_SOLUTION" resolve="DOT_SOLUTION" />
