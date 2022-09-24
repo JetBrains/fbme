@@ -1,10 +1,7 @@
-import jetbrains.buildServer.configs.kotlin.AbsoluteId
-import jetbrains.buildServer.configs.kotlin.DslContext
+import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.project
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
-import jetbrains.buildServer.configs.kotlin.version
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -33,62 +30,64 @@ version = "2022.04"
 project {
     description = "IDE for IEC 61499 built on top of JetBrains MPS"
 
-    buildType {
-        name = "Build"
+    buildType(Build)
+}
 
-        artifactRules = """
-            build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.tar.gz
-            build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.win.zip
-            build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.macos.zip
-        """.trimIndent()
+object Build : BuildType({
+    name = "Build"
 
-        params {
-            param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
-        }
+    artifactRules = """
+        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.tar.gz
+        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.win.zip
+        build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.macos.zip
+    """.trimIndent()
 
-        vcs {
-            root(DslContext.settingsRoot)
-        }
+    params {
+        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
+    }
 
-        steps {
-            gradle {
-                tasks = "clean buildRcpDistrib"
-                gradleParams = "-Pteamcity=true"
-                param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-            }
-        }
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 
-        triggers {
-            vcs {
-                branchFilter = """
-                    +:refs/heads/master
-                    +:refs/heads/features/*
-                """.trimIndent()
-            }
-        }
-
-        features {
-            commitStatusPublisher {
-                vcsRootExtId = "${DslContext.settingsRoot.id}"
-                publisher = github {
-                    githubUrl = "https://api.github.com"
-                    authType = personalToken {
-                        token = "credentialsJSON:f27506e4-f6d8-4a42-8e1a-31d65d35a8f9"
-                    }
-                }
-                param("github_oauth_user", "qradimir")
-            }
-        }
-
-        dependencies {
-            artifacts(AbsoluteId("MPS_20211_Distribution_GetResources")) {
-                buildRule = lastSuccessful()
-                artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
-            }
-            artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
-                buildRule = tag("2021.2.1")
-                artifactRules = "MPS-212.5284.1175.zip!/MPS 2021.2=>lib/MPS 2021.2"
-            }
+    steps {
+        gradle {
+            tasks = "clean buildRcpDistrib"
+            gradleParams = "-Pteamcity=true"
+            param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
     }
-}
+
+    triggers {
+        vcs {
+            branchFilter = """
+                    +:refs/heads/master
+                    +:refs/heads/features/*
+            """.trimIndent()
+        }
+    }
+
+    features {
+        commitStatusPublisher {
+            vcsRootExtId = "${DslContext.settingsRoot.id}"
+            publisher = github {
+                githubUrl = "https://api.github.com"
+                authType = personalToken {
+                    token = "credentialsJSON:f27506e4-f6d8-4a42-8e1a-31d65d35a8f9"
+                }
+            }
+            param("github_oauth_user", "qradimir")
+        }
+    }
+
+    dependencies {
+        artifacts(AbsoluteId("MPS_20211_Distribution_GetResources")) {
+            buildRule = lastSuccessful()
+            artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
+        }
+        artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
+            buildRule = tag("2021.2.1")
+            artifactRules = "MPS-212.5284.1175.zip!/MPS 2021.2=>lib/MPS 2021.2"
+        }
+    }
+})
