@@ -30,12 +30,53 @@ version = "2022.04"
 project {
     description = "IDE for IEC 61499 built on top of JetBrains MPS"
 
-    buildType(Build)
+    val bts = sequential {
+        Build()
+        BuildRcpDistrib()
+    }.buildTypes()
+
+    bts.forEach { buildType(it) }
+    bts.last().triggers { vcs {} }
 }
 
-object Build : BuildType({
-    name = "Build"
+fun CompoundStage.buildType(name: String, init: BuildType.() -> Unit): BuildType {
+    val buildType = BuildType()
+    buildType.name = name
+    buildType.id(name)
+    buildType.init()
+    this.buildType(buildType)
+    return buildType
+}
 
+fun CompoundStage.Build() = buildType("Build") {
+    params {
+        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
+    }
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        gradle {
+            tasks = "clean build"
+            gradleParams = "-Pteamcity=true"
+        }
+    }
+
+    dependencies {
+        artifacts(AbsoluteId("MPS_20212_Distribution_GetResources")) {
+            buildRule = lastSuccessful()
+            artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
+        }
+        artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
+            buildRule = tag("2021.2.3")
+            artifactRules = "MPS-212.5284.1281.zip!/MPS 2021.2=>lib/MPS 2021.2"
+        }
+    }
+}
+
+fun CompoundStage.BuildRcpDistrib() = buildType("BuildRcpDistrib") {
     artifactRules = """
         build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.tar.gz
         build/artifacts/fbme_rcp_distrib/fbme-212.SNAPSHOT.win.zip
@@ -52,14 +93,8 @@ object Build : BuildType({
 
     steps {
         gradle {
-            tasks = "clean buildRcpDistrib"
+            tasks = "buildRcpDistrib"
             gradleParams = "-Pteamcity=true"
-            param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-        }
-    }
-
-    triggers {
-        vcs {
         }
     }
 
@@ -75,15 +110,4 @@ object Build : BuildType({
             param("github_oauth_user", "qradimir")
         }
     }
-
-    dependencies {
-        artifacts(AbsoluteId("MPS_20212_Distribution_GetResources")) {
-            buildRule = lastSuccessful()
-            artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
-        }
-        artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
-            buildRule = tag("2021.2.3")
-            artifactRules = "MPS-212.5284.1281.zip!/MPS 2021.2=>lib/MPS 2021.2"
-        }
-    }
-})
+}
