@@ -77,13 +77,13 @@ object Build : BuildType({
     }
 
     dependencies {
-        artifacts(AbsoluteId("MPS_20211_Distribution_GetResources")) {
+        artifacts(AbsoluteId("MPS_20212_Distribution_GetResources")) {
             buildRule = lastSuccessful()
             artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
         }
         artifacts(AbsoluteId("MPS_20212_Distribution_DownloadableArtifacts")) {
-            buildRule = tag("2021.2.1")
-            artifactRules = "MPS-212.5284.1175.zip!/MPS 2021.2=>lib/MPS 2021.2"
+            buildRule = tag("2021.2.3")
+            artifactRules = "MPS-212.5284.1281.zip!/MPS 2021.2=>lib/MPS 2021.2"
         }
     }
 })
