@@ -309,7 +309,7 @@ open class DebuggerPanel(
                             })
 
                             line.add(JLabel("$curValue").apply {
-                                initForeground(selected, hasFocus)
+                                initForeground(selected, hasFocus, isValueChanged)
                                 verticalAlignment = CENTER
                             })
                         }
@@ -322,11 +322,12 @@ open class DebuggerPanel(
 
     private fun JLabel.initForeground(
         isSelected: Boolean,
-        hasFocus: Boolean
+        hasFocus: Boolean,
+        isValueChanged: Boolean = false
     ) {
         foreground =
             if (isSelected && hasFocus) UIManager.getColor("List.selectionForeground")
-            else UIManager.getColor("List.foreground")
+            else if (isValueChanged) MPSColors.GREEN.darker() else UIManager.getColor("List.foreground")
     }
 
     private fun initializeStatesListCellRenderer() {
