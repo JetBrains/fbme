@@ -13,6 +13,7 @@ import com.intellij.ui.components.*
 import com.intellij.ui.treeStructure.Tree
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.components.BorderLayoutPanel
+import jetbrains.mps.nodeEditor.MPSColors
 import org.fbme.debugger.RuntimeTraceSynchronizer
 import org.fbme.debugger.common.change.InitialChange
 import org.fbme.debugger.common.change.InputEventChange
@@ -143,11 +144,18 @@ open class DebuggerPanel(
         statesList.addListSelectionListener {
             watchesTree.updateUI()
             val selectedState = statesList.selectedValue?.state ?: error("no selected state")
+            val previousState =
+                statesListModel.items.getOrNull(statesList.selectedIndex - 1)?.state ?: selectedState
             when (inspector) {
                 is NetworkInspector -> {
                     for ((port, portPath) in ports) {
                         val value = selectedState.resolveValue(portPath)
-                        inspector!!.setInspectionForPort(port, Inspection(value ?: "???"))
+                        val prevValue = previousState.resolveValue(portPath)
+
+                        val isValueChanged = value != prevValue
+                        val color = if (isValueChanged) MPSColors.GREEN.darker() else MPSColors.GRAY
+
+                        inspector.setInspectionForPort(port, Inspection(value ?: "???", color, isValueChanged))
                     }
                 }
 
