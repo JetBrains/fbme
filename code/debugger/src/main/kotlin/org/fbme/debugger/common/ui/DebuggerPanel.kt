@@ -344,8 +344,11 @@ open class DebuggerPanel(
                 val nLen = statesListModel.size.toString().length
                 val nPadding = nLen * 10 + 12
                 val changePadding = nPadding + 100
-                append("$index", SimpleTextAttributes.GRAYED_BOLD_ATTRIBUTES, nPadding, 2)
-
+                if (traceItem.synced) {
+                    append("$index", SimpleTextAttributes.REGULAR_BOLD_ATTRIBUTES, nPadding, 2)
+                } else {
+                    append("$index", SimpleTextAttributes.GRAYED_BOLD_ATTRIBUTES, nPadding, 2)
+                }
                 when (change) {
                     is InitialChange -> {
                         append("Initial State", SimpleTextAttributes.REGULAR_ATTRIBUTES)

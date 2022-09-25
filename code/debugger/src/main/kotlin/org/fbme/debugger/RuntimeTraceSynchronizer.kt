@@ -141,6 +141,7 @@ class RuntimeTraceSynchronizer(
                         for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
                             val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
                             if (changesOnSegment.isEmpty()) {
+                                traceItem.synced = true
                                 currentStateIndex += index + 1
                                 trace.addAll(traceSegment.drop(1))
                                 curSimulator = resourceSimulator
