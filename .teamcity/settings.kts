@@ -1,12 +1,6 @@
-import buildTypes.Build
+import buildTypes.*
 import buildTypes.Build.vcs
-import buildTypes.BuildNumber
-import buildTypes.BuildRcpDistribution
-import buildTypes.PublishArtifacts
-import jetbrains.buildServer.configs.kotlin.DslContext
-import jetbrains.buildServer.configs.kotlin.project
-import jetbrains.buildServer.configs.kotlin.sequential
-import jetbrains.buildServer.configs.kotlin.version
+import jetbrains.buildServer.configs.kotlin.*
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -45,4 +39,10 @@ project {
         buildType(BuildRcpDistribution)
         buildType(PublishArtifacts)
     }.buildTypes().forEach { buildType(it) }
+
+    subProject(Actions)
 }
+
+object Actions : Project({
+    buildType(DeployDocumentation)
+})
