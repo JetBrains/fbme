@@ -77,9 +77,9 @@ fun Task.antexec(path: String, vararg tasks: String) {
     }
 }
 
-val buildRcp by tasks.registering {
-    dependsOn(build)
-    antexec("build/build-rcp.xml")
+val buildRcpShared by tasks.registering {
+    dependsOn(buildDistPlugin)
+    antexec("build/build-rcp-shared.xml")
 }
 
 val copyStartupScripts by tasks.registering(Copy::class) {
@@ -95,9 +95,27 @@ val copyStartupScripts by tasks.registering(Copy::class) {
     into("build/startup")
 }
 
-val buildRcpDistrib by tasks.registering {
-    dependsOn(buildRcp, copyStartupScripts, buildDistPlugin)
-    antexec("build/build-rcpdistrib.xml")
+val assembleRcpShared by tasks.registering {
+    dependsOn(buildRcpShared, copyStartupScripts)
+}
+
+val buildRcpWindows by tasks.registering {
+    dependsOn(assembleRcpShared)
+    antexec("build/build-rcp-windows.xml")
+}
+
+val buildRcpLinux by tasks.registering {
+    dependsOn(assembleRcpShared)
+    antexec("build/build-rcp-linux.xml")
+}
+
+val buildRcpMacos by tasks.registering {
+    dependsOn(assembleRcpShared)
+    antexec("build/build-rcp-macos.xml")
+}
+
+val buildDistributions by tasks.registering {
+    dependsOn(buildRcpWindows, buildRcpLinux, buildRcpMacos)
 }
 
 val clean by tasks.getting {

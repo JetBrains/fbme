@@ -37,7 +37,11 @@ project {
     sequential {
         buildType(BuildNumber)
         buildType(Build)
-        buildType(BuildRcpDistribution)
+        parallel {
+            buildType(BuildMacosDistribution)
+            buildType(BuildLinuxDistribution)
+            buildType(BuildWindowsDistribution)
+        }
         buildType(PublishArtifacts)
     }.buildTypes().forEach { buildType(it) }
 
