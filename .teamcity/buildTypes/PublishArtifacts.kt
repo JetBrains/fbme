@@ -28,6 +28,10 @@ object PublishArtifacts : FbmeBuildType(
             vcs { }
         }
 
-        artifactRules = "distributions"
+        dependencies {
+            artifacts(BuildMacosDistribution) { }
+            artifacts(BuildWindowsDistribution) { }
+            artifacts(BuildLinuxDistribution) { }
+        }
     }
 )

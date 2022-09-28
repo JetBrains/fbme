@@ -15,7 +15,7 @@ open class BuildDistribution(val kind: String) : FbmeBuildType(
 
         gradleStep("buildRcp$taskSuffix -x test -x assembleRcpShared")
 
-        artifactRules = "build/artifacts/fbme_rcp_$targetArtifactSuffix => distributions\n" +
+        artifactRules = "build/artifacts/fbme_rcp_$targetArtifactSuffix\n" +
             "-:build/artifacts/build.properties"
 
         params {
