@@ -30,39 +30,41 @@ version = "2022.04"
 project {
     description = "IDE for IEC 61499 built on top of JetBrains MPS"
 
-    val bts = sequential {
-        Build()
-        BuildRcpDistrib()
-    }.buildTypes()
-
-    bts.forEach { buildType(it) }
-    bts.last().triggers { vcs {} }
-}
-
-fun CompoundStage.buildType(name: String, init: BuildType.() -> Unit): BuildType {
-    val buildType = BuildType()
-    buildType.name = name
-    buildType.id(name)
-    buildType.init()
-    this.buildType(buildType)
-    return buildType
-}
-
-fun CompoundStage.Build() = buildType("Build") {
-    params {
-        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
+    sequential {
+        buildType(Build)
+        buildType(BuildRcpDistribution)
     }
+
+    buildType(Build)
+    buildType(BuildRcpDistribution)
+}
+
+open class GradleBuild(
+    private val gradleTasks: String,
+    val init: BuildType.() -> Unit
+) : BuildType({
+
+    name = this.javaClass.simpleName
 
     vcs {
         root(DslContext.settingsRoot)
     }
 
+    params {
+        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
+    }
+
     steps {
         gradle {
-            tasks = "clean build -x test"
+            tasks = gradleTasks
             gradleParams = "-Pteamcity=true"
         }
     }
+
+    init(this)
+})
+
+object Build : GradleBuild("clean build -x test", {
 
     dependencies {
         artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
@@ -74,29 +76,17 @@ fun CompoundStage.Build() = buildType("Build") {
             artifactRules = "MPS-213.7172.958.zip!/MPS 2021.3=>lib/MPS 2021.3"
         }
     }
-}
+})
 
-fun CompoundStage.BuildRcpDistrib() = buildType("BuildRcpDistrib") {
+object BuildRcpDistribution : GradleBuild("buildRcpDistrib -x test", {
+
+    name = "Build IDE Distributions"
+
     artifactRules = """
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.tar.gz
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.win.zip
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.macos.zip
     """.trimIndent()
-
-    params {
-        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
-    }
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        gradle {
-            tasks = "buildRcpDistrib -x test"
-            gradleParams = "-Pteamcity=true"
-        }
-    }
 
     features {
         commitStatusPublisher {
@@ -110,4 +100,8 @@ fun CompoundStage.BuildRcpDistrib() = buildType("BuildRcpDistrib") {
             param("github_oauth_user", "qradimir")
         }
     }
-}
+
+    triggers {
+        vcs { }
+    }
+})
