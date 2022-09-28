@@ -2,7 +2,9 @@ package buildTypes
 
 object BuildRcpDistribution : FbmeBuildType({
     name = "Build IDE Distributions"
+
     useSharedBuildNumber()
+    useMpsPlatform()
 
     gradleStep("buildRcpDistrib -x test")
 

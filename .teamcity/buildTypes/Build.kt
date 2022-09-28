@@ -5,7 +5,8 @@ import jetbrains.buildServer.configs.kotlin.AbsoluteId
 object Build : FbmeBuildType({
 
     useSharedBuildNumber()
-    setJavaHome()
+    useMpsPlatform()
+
     gradleStep("clean build -x test")
 
     dependencies {

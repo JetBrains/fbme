@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.triggers.vcs
 object PublishArtifacts : FbmeBuildType({
     name = "Artifacts"
     type = Type.COMPOSITE
+
     useSharedBuildNumber()
 
     features {
