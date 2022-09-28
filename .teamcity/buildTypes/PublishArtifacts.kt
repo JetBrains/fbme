@@ -29,9 +29,9 @@ object PublishArtifacts : FbmeBuildType(
         }
 
         dependencies {
-            artifacts(BuildMacosDistribution) { }
-            artifacts(BuildWindowsDistribution) { }
-            artifacts(BuildLinuxDistribution) { }
+            artifacts(BuildMacosDistribution) { artifactRules = "+:*" }
+            artifacts(BuildWindowsDistribution) { artifactRules = "+:*" }
+            artifacts(BuildLinuxDistribution) { artifactRules = "+:*" }
         }
     }
 )
