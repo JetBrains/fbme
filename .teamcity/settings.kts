@@ -30,13 +30,16 @@ version = "2022.04"
 project {
     description = "IDE for IEC 61499 built on top of JetBrains MPS"
 
-    sequential {
+    registerSequential {
+        buildType(BuildNumber)
         buildType(Build)
         buildType(BuildRcpDistribution)
+        buildType(PublishArtifacts)
     }
+}
 
-    buildType(Build)
-    buildType(BuildRcpDistribution)
+fun Project.registerSequential(block: CompoundStage.() -> Unit) {
+    sequential(block).buildTypes().forEach { buildType(it) }
 }
 
 open class GradleBuild(
@@ -65,6 +68,7 @@ open class GradleBuild(
 })
 
 object Build : GradleBuild("clean build -x test", {
+    useSharedBuildNumber()
 
     dependencies {
         artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
@@ -79,14 +83,20 @@ object Build : GradleBuild("clean build -x test", {
 })
 
 object BuildRcpDistribution : GradleBuild("buildRcpDistrib -x test", {
-
     name = "Build IDE Distributions"
+    useSharedBuildNumber()
 
     artifactRules = """
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.tar.gz
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.win.zip
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.macos.zip
     """.trimIndent()
+})
+
+object PublishArtifacts : BuildType({
+    name = "Publish IDE Distributions"
+    type = Type.COMPOSITE
+    useSharedBuildNumber()
 
     features {
         commitStatusPublisher {
@@ -105,3 +115,13 @@ object BuildRcpDistribution : GradleBuild("buildRcpDistrib -x test", {
         vcs { }
     }
 })
+
+object BuildNumber : BuildType({
+    type = Type.COMPOSITE
+    name = "Build Number"
+})
+
+fun BuildType.useSharedBuildNumber() {
+    dependencies.snapshot(BuildNumber) { }
+    buildNumberPattern = "%dep.BuildNumber.build.number%"
+}
