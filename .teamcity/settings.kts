@@ -1,6 +1,6 @@
+import Settings.Build.vcs
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
-import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
@@ -30,45 +30,22 @@ version = "2022.04"
 project {
     description = "IDE for IEC 61499 built on top of JetBrains MPS"
 
-    registerSequential {
-        buildType(BuildNumber)
-        buildType(Build)
-        buildType(BuildRcpDistribution)
-        buildType(PublishArtifacts)
-    }
-}
-
-fun Project.registerSequential(block: CompoundStage.() -> Unit) {
-    sequential(block).buildTypes().forEach { buildType(it) }
-}
-
-open class GradleBuild(
-    private val gradleTasks: String,
-    val init: BuildType.() -> Unit
-) : BuildType({
-
-    name = this.javaClass.simpleName
-
     vcs {
         root(DslContext.settingsRoot)
     }
 
-    params {
-        param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
-    }
+    sequential {
+        buildType(BuildNumber)
+        buildType(Build)
+        buildType(BuildRcpDistribution)
+        buildType(PublishArtifacts)
+    }.buildTypes().forEach { buildType(it) }
+}
 
-    steps {
-        gradle {
-            tasks = gradleTasks
-            gradleParams = "-Pteamcity=true"
-        }
-    }
+object Build : FbmeBuildType({
 
-    init(this)
-})
-
-object Build : GradleBuild("clean build -x test", {
     useSharedBuildNumber()
+    setJavaHome()
 
     dependencies {
         artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
@@ -82,9 +59,11 @@ object Build : GradleBuild("clean build -x test", {
     }
 })
 
-object BuildRcpDistribution : GradleBuild("buildRcpDistrib -x test", {
+object BuildRcpDistribution : FbmeBuildType({
     name = "Build IDE Distributions"
     useSharedBuildNumber()
+
+    gradleStep("buildRcpDistrib -x test")
 
     artifactRules = """
         build/artifacts/fbme_rcp_distrib/fbme-213.SNAPSHOT.tar.gz
@@ -93,8 +72,8 @@ object BuildRcpDistribution : GradleBuild("buildRcpDistrib -x test", {
     """.trimIndent()
 })
 
-object PublishArtifacts : BuildType({
-    name = "Publish IDE Distributions"
+object PublishArtifacts : FbmeBuildType({
+    name = "Artifacts"
     type = Type.COMPOSITE
     useSharedBuildNumber()
 
@@ -116,12 +95,7 @@ object PublishArtifacts : BuildType({
     }
 })
 
-object BuildNumber : BuildType({
+object BuildNumber : FbmeBuildType({
     type = Type.COMPOSITE
     name = "Build Number"
 })
-
-fun BuildType.useSharedBuildNumber() {
-    dependencies.snapshot(BuildNumber) { }
-    buildNumberPattern = "%dep.BuildNumber.build.number%"
-}
