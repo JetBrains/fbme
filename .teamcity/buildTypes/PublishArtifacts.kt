@@ -27,5 +27,7 @@ object PublishArtifacts : FbmeBuildType(
         triggers {
             vcs { }
         }
+
+        artifactRules = "distributions"
     }
 )
