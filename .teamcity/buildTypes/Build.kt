@@ -6,6 +6,7 @@ object Build : FbmeBuildType({
 
     useSharedBuildNumber()
     setJavaHome()
+    gradleStep("clean build -x test")
 
     dependencies {
         artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
