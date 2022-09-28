@@ -1,5 +1,6 @@
 import buildTypes.*
 import buildTypes.Build.vcs
+import buildTypes.actions.DeployDocumentation
 import jetbrains.buildServer.configs.kotlin.*
 
 /*
