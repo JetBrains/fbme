@@ -4,6 +4,7 @@ object Build : FbmeBuildType(
     {
         useSharedBuildNumber()
         useMpsPlatform()
+        passBuildNumber()
 
         artifactRules = "+:build/artifacts => build/artifacts/\n" +
             "+:build/build-*.xml => build"

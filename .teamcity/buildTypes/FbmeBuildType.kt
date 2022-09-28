@@ -34,6 +34,12 @@ open class FbmeBuildType(
         }
     }
 
+    fun passBuildNumber() {
+        params {
+            param("system.build.number", "%build.number%")
+        }
+    }
+
     fun useMpsPlatform() {
         useJbrsdk()
         dependencies {

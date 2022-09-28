@@ -12,6 +12,7 @@ open class BuildDistribution(val kind: String) : FbmeBuildType(
 
         useSharedBuildNumber()
         useMpsPlatform()
+        passBuildNumber()
 
         gradleStep("buildRcp$taskSuffix -x test -x assembleRcpShared")
 
