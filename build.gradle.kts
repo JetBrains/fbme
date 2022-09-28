@@ -80,10 +80,11 @@ fun Task.antexec(path: String, vararg tasks: String?) {
 val buildNumber = project.findProperty("build.number")
 
 val buildNumberAntParameter = buildNumber?.let { "-Dbuild.number=$buildNumber" }
+val versionAntParameter = "-Dversion=0.1"
 
 val buildRcpShared by tasks.registering {
     dependsOn(buildDistPlugin)
-    antexec("build/build-rcp-shared.xml", buildNumberAntParameter)
+    antexec("build/build-rcp-shared.xml", buildNumberAntParameter, versionAntParameter)
 }
 
 val copyStartupScripts by tasks.registering(Copy::class) {
@@ -105,17 +106,17 @@ val assembleRcpShared by tasks.registering {
 
 val buildRcpWindows by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-windows.xml", buildNumberAntParameter)
+    antexec("build/build-rcp-windows.xml", buildNumberAntParameter, versionAntParameter)
 }
 
 val buildRcpLinux by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-linux.xml", buildNumberAntParameter)
+    antexec("build/build-rcp-linux.xml", buildNumberAntParameter, versionAntParameter)
 }
 
 val buildRcpMacos by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-macos.xml", buildNumberAntParameter)
+    antexec("build/build-rcp-macos.xml", buildNumberAntParameter, versionAntParameter)
 }
 
 val buildDistributions by tasks.registering {

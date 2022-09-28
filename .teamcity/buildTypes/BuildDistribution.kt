@@ -1,7 +1,5 @@
 package buildTypes
 
-import jetbrains.buildServer.configs.kotlin.ArtifactRule
-
 open class BuildDistribution(val info: OsInfo) : FbmeBuildType(
     {
         name = "Distribution: ${info.presentation}"
@@ -9,11 +7,12 @@ open class BuildDistribution(val info: OsInfo) : FbmeBuildType(
         useSharedBuildNumber()
         useMpsPlatform()
         passBuildNumber()
-        useJbr(info.jbrAlias, "build/artifacts/fbme_rcp_${info.artifactSuffix}/jbr")
+        useJbr(info.jbrAlias, "lib/jbr")
 
         gradleStep("buildRcp${info.taskSuffix} -x test -x assembleRcpShared")
 
-        artifactRules = "build/artifacts/fbme_rcp_${info.artifactSuffix}\n" +
+        artifactRules =
+            "+:build/artifacts/fbme_rcp_${info.artifactSuffix}\n" +
             "-:build/artifacts/build.properties"
 
         dependencies {
