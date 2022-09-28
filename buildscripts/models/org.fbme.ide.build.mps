@@ -969,7 +969,7 @@
             <property role="3MwjfP" value="-" />
           </node>
           <node concept="3Mxwey" id="1mPaNys5H9r" role="3MwsjC">
-            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+            <ref role="3Mxwex" node="4tzOUaV8K6F" resolve="build.number" />
           </node>
           <node concept="3Mxwew" id="1mPaNys5H9s" role="3MwsjC">
             <property role="3MwjfP" value=".win.zip" />
@@ -984,6 +984,16 @@
           <property role="2Ry0Am" value="lib" />
           <node concept="2Ry0Ak" id="60wxHLH9ueT" role="2Ry0An">
             <property role="2Ry0Am" value="MPS 2021.3" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2kB4xC" id="4tzOUaV8K6F" role="1l3spd">
+      <property role="TrG5h" value="build.number" />
+      <node concept="aVJcg" id="4tzOUaV8K6O" role="aVJcv">
+        <node concept="NbPM2" id="4tzOUaV8K6N" role="aVJcq">
+          <node concept="3Mxwey" id="4tzOUaV8K6M" role="3MwsjC">
+            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
           </node>
         </node>
       </node>
@@ -1638,7 +1648,7 @@
             <property role="3MwjfP" value="-" />
           </node>
           <node concept="3Mxwey" id="4tzOUaV86k9" role="3MwsjC">
-            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+            <ref role="3Mxwex" node="4tzOUaV8K6Y" resolve="build.number" />
           </node>
           <node concept="3Mxwew" id="4tzOUaV86ka" role="3MwsjC">
             <property role="3MwjfP" value=".macos.zip" />
@@ -1747,7 +1757,7 @@
                 <property role="1688n3" value="\$version\$" />
                 <node concept="NbPM2" id="4tzOUaV86kN" role="1688n0">
                   <node concept="3Mxwey" id="4tzOUaV86kO" role="3MwsjC">
-                    <ref role="3Mxwex" node="4tzOUaV8x2a" resolve="version" />
+                    <ref role="3Mxwex" node="4tzOUaV8K7k" resolve="version" />
                   </node>
                 </node>
               </node>
@@ -1755,7 +1765,7 @@
                 <property role="1688n3" value="\$build\$" />
                 <node concept="NbPM2" id="4tzOUaV86kQ" role="1688n0">
                   <node concept="3Mxwey" id="4tzOUaV86kR" role="3MwsjC">
-                    <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+                    <ref role="3Mxwex" node="4tzOUaV8K6Y" resolve="build.number" />
                   </node>
                 </node>
               </node>
@@ -1867,7 +1877,7 @@
               <property role="3MwjfP" value="fbme " />
             </node>
             <node concept="3Mxwey" id="4tzOUaV86lt" role="3MwsjC">
-              <ref role="3Mxwex" node="4tzOUaV8x2a" resolve="version" />
+              <ref role="3Mxwex" node="4tzOUaV8K7k" resolve="version" />
             </node>
             <node concept="3Mxwew" id="4tzOUaV86lu" role="3MwsjC">
               <property role="3MwjfP" value=".app" />
@@ -1887,6 +1897,26 @@
         </node>
       </node>
     </node>
+    <node concept="2kB4xC" id="4tzOUaV8K6Y" role="1l3spd">
+      <property role="TrG5h" value="build.number" />
+      <node concept="aVJcg" id="4tzOUaV8K6Z" role="aVJcv">
+        <node concept="NbPM2" id="4tzOUaV8K70" role="aVJcq">
+          <node concept="3Mxwey" id="4tzOUaV8K71" role="3MwsjC">
+            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2kB4xC" id="4tzOUaV8K7k" role="1l3spd">
+      <property role="TrG5h" value="version" />
+      <node concept="aVJcg" id="4tzOUaV8K7x" role="aVJcv">
+        <node concept="NbPM2" id="4tzOUaV8K7w" role="aVJcq">
+          <node concept="3Mxwey" id="4tzOUaV8K7v" role="3MwsjC">
+            <ref role="3Mxwex" node="4tzOUaV8x2a" resolve="version" />
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="55IIr" id="4tzOUaV86lz" role="auvoZ">
       <node concept="2Ry0Ak" id="4tzOUaV86l$" role="iGT6I">
         <property role="2Ry0Am" value="build" />
@@ -1898,7 +1928,7 @@
     <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcp-linux.xml" />
     <node concept="2sgV4H" id="4tzOUaV86n0" role="1l3spa">
-      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp" />
+      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp_shared" />
     </node>
     <node concept="1l3spV" id="4tzOUaV86n1" role="1l3spN">
       <node concept="1tmT9g" id="4tzOUaV86n2" role="39821P">
@@ -1996,7 +2026,7 @@
             <property role="3MwjfP" value="-" />
           </node>
           <node concept="3Mxwey" id="4tzOUaV86n$" role="3MwsjC">
-            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+            <ref role="3Mxwex" node="4tzOUaV8K7_" resolve="build.number" />
           </node>
           <node concept="3Mxwew" id="4tzOUaV86n_" role="3MwsjC">
             <property role="3MwjfP" value=".tar.gz" />
@@ -2011,6 +2041,26 @@
           <property role="2Ry0Am" value="lib" />
           <node concept="2Ry0Ak" id="4tzOUaV86pQ" role="2Ry0An">
             <property role="2Ry0Am" value="MPS 2021.3" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2kB4xC" id="4tzOUaV8K7_" role="1l3spd">
+      <property role="TrG5h" value="build.number" />
+      <node concept="aVJcg" id="4tzOUaV8K7A" role="aVJcv">
+        <node concept="NbPM2" id="4tzOUaV8K7B" role="aVJcq">
+          <node concept="3Mxwey" id="4tzOUaV8K7C" role="3MwsjC">
+            <ref role="3Mxwex" node="1mPaNys5H5E" resolve="build.number" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2kB4xC" id="4tzOUaV8K7D" role="1l3spd">
+      <property role="TrG5h" value="version" />
+      <node concept="aVJcg" id="4tzOUaV8K7E" role="aVJcv">
+        <node concept="NbPM2" id="4tzOUaV8K7F" role="aVJcq">
+          <node concept="3Mxwey" id="4tzOUaV8K7G" role="3MwsjC">
+            <ref role="3Mxwex" node="4tzOUaV8x2a" resolve="version" />
           </node>
         </node>
       </node>

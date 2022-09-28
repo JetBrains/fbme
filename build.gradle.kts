@@ -65,21 +65,25 @@ subprojects {
     }
 }
 
-fun Task.antexec(path: String, vararg tasks: String) {
+fun Task.antexec(path: String, vararg tasks: String?) {
     doLast {
         javaexec {
             main = "org.apache.tools.ant.launch.Launcher"
             classpath = ant_lib
 
             args("-Dbasedir=$projectDir", "-buildfile", file(path))
-            args(*tasks)
+            args(tasks.filterNotNull())
         }
     }
 }
 
+val buildNumber = System.getProperty("build.number", null)
+
+val buildNumberAntParameter = buildNumber?.let { "-Dbuild.number=$buildNumber" }
+
 val buildRcpShared by tasks.registering {
     dependsOn(buildDistPlugin)
-    antexec("build/build-rcp-shared.xml")
+    antexec("build/build-rcp-shared.xml", buildNumber)
 }
 
 val copyStartupScripts by tasks.registering(Copy::class) {
@@ -101,17 +105,17 @@ val assembleRcpShared by tasks.registering {
 
 val buildRcpWindows by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-windows.xml")
+    antexec("build/build-rcp-windows.xml", buildNumber)
 }
 
 val buildRcpLinux by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-linux.xml")
+    antexec("build/build-rcp-linux.xml", buildNumber)
 }
 
 val buildRcpMacos by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-macos.xml")
+    antexec("build/build-rcp-macos.xml", buildNumber)
 }
 
 val buildDistributions by tasks.registering {
