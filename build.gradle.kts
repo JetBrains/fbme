@@ -107,17 +107,17 @@ val assembleRcpShared by tasks.registering {
 
 val buildRcpWindows by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-windows.xml", buildNumber)
+    antexec("build/build-rcp-windows.xml", buildNumberAntParameter)
 }
 
 val buildRcpLinux by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-linux.xml", buildNumber)
+    antexec("build/build-rcp-linux.xml", buildNumberAntParameter)
 }
 
 val buildRcpMacos by tasks.registering {
     dependsOn(assembleRcpShared)
-    antexec("build/build-rcp-macos.xml", buildNumber)
+    antexec("build/build-rcp-macos.xml", buildNumberAntParameter)
 }
 
 val buildDistributions by tasks.registering {
