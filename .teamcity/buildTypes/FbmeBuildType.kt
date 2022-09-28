@@ -22,15 +22,19 @@ open class FbmeBuildType(
         buildNumberPattern = "%dep.${BuildNumber.id!!.value}.build.number%"
     }
 
-    fun useJbrsdk() {
-        dependencies {
-            artifacts(AbsoluteId("MPS_20213_Distribution_GetResources")) {
-                buildRule = lastSuccessful()
-                artifactRules = "openJDK/jbrsdk-linux-x64.tar.gz!/jbrsdk=>lib/jbrsdk-linux-x64"
-            }
-        }
+    fun runWithJbr() {
+        useJbr("linux", jbrHomeLocation)
         params {
-            param("env.JAVA_HOME", "lib/jbrsdk-linux-x64")
+            param("env.JAVA_HOME", jbrHomeLocation)
+        }
+    }
+
+    fun useJbr(os: String, path: String) {
+        dependencies {
+            artifacts(mpsGetResourcesId) {
+                buildRule = lastSuccessful()
+                artifactRules = "openJDK/jbrsdk-$os-x64.tar.gz!/jbrsdk=>$path"
+            }
         }
     }
 
@@ -41,9 +45,9 @@ open class FbmeBuildType(
     }
 
     fun useMpsPlatform() {
-        useJbrsdk()
+        runWithJbr()
         dependencies {
-            artifacts(AbsoluteId("MPS_20213_Distribution_DownloadableArtifacts")) {
+            artifacts(mpsArtifactsId) {
                 buildRule = tag("2021.3.1")
                 artifactRules = "MPS-213.7172.958.zip!/MPS 2021.3=>lib/MPS 2021.3"
             }
@@ -57,5 +61,12 @@ open class FbmeBuildType(
                 gradleParams = "-Pteamcity=true"
             }
         }
+    }
+
+    companion object {
+        val jbrHomeLocation = "lib/jbrsdk-linux-x64"
+        val mpsProjectId = "MPS_20213_Distribution"
+        val mpsGetResourcesId = AbsoluteId(mpsProjectId + "_GetResources")
+        val mpsArtifactsId = AbsoluteId(mpsProjectId + "_DownloadableArtifacts")
     }
 }

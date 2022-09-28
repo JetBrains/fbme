@@ -79,6 +79,8 @@ fun Task.antexec(path: String, vararg tasks: String?) {
 
 val buildNumber = System.getProperty("build.number", null)
 
+println("Build number: $buildNumber")
+
 val buildNumberAntParameter = buildNumber?.let { "-Dbuild.number=$buildNumber" }
 
 val buildRcpShared by tasks.registering {
