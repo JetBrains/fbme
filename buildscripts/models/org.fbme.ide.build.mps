@@ -424,18 +424,8 @@
         </node>
       </node>
     </node>
-    <node concept="2kB4xC" id="4tzOUaV8x3W" role="1l3spd">
-      <property role="TrG5h" value="build.number" />
-      <node concept="aVJcg" id="4tzOUaV8x4q" role="aVJcv">
-        <node concept="NbPM2" id="4tzOUaV8x4p" role="aVJcq">
-          <node concept="3Mxwew" id="4tzOUaV8x4o" role="3MwsjC">
-            <property role="3MwjfP" value="SNAPSHOT" />
-          </node>
-        </node>
-      </node>
-    </node>
     <node concept="2kB4xC" id="1mPaNys5H5E" role="1l3spd">
-      <property role="TrG5h" value="version.build.number" />
+      <property role="TrG5h" value="build.number" />
       <node concept="aVJcg" id="1mPaNys5H5F" role="aVJcv">
         <node concept="NbPM2" id="1mPaNys5H5G" role="aVJcq">
           <node concept="3Mxwey" id="4tzOUaV8x4u" role="3MwsjC">
@@ -444,8 +434,8 @@
           <node concept="3Mxwew" id="4tzOUaV8x7u" role="3MwsjC">
             <property role="3MwjfP" value="." />
           </node>
-          <node concept="3Mxwey" id="4tzOUaV8x4x" role="3MwsjC">
-            <ref role="3Mxwex" node="4tzOUaV8x3W" resolve="build.number" />
+          <node concept="3Mxwew" id="4tzOUaV8DmL" role="3MwsjC">
+            <property role="3MwjfP" value="SNAPSHOT" />
           </node>
         </node>
       </node>

@@ -18,8 +18,12 @@ open class BuildDistribution(val kind: String) : FbmeBuildType(
         artifactRules = "build/artifacts/fbme_rcp_$targetArtifactSuffix => distributions\n" +
             "-:build/artifacts/build.properties"
 
+        params {
+            param("fbme_rcp_$targetArtifactSuffix.build.number", "%build.number%")
+        }
+
         dependencies {
-            artifacts(Build) { rules += ArtifactRule.include("build/artifacts/fbme_rcp_shared") }
+            artifacts(Build) { rules += ArtifactRule.include("build/") }
         }
     }
 )
