@@ -17,7 +17,7 @@ open class BuildDistribution(val info: OsInfo) : FbmeBuildType(
             "-:build/artifacts/build.properties"
 
         dependencies {
-            artifacts(Build) { rules += ArtifactRule.include("build/") }
+            artifacts(Build) { rules += ArtifactRule.include("+:build/**=>build") }
         }
     }
 )

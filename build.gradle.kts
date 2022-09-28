@@ -77,15 +77,13 @@ fun Task.antexec(path: String, vararg tasks: String?) {
     }
 }
 
-val buildNumber = System.getProperty("build.number", null)
-
-println("Build number: $buildNumber")
+val buildNumber = project.findProperty("build.number")
 
 val buildNumberAntParameter = buildNumber?.let { "-Dbuild.number=$buildNumber" }
 
 val buildRcpShared by tasks.registering {
     dependsOn(buildDistPlugin)
-    antexec("build/build-rcp-shared.xml", buildNumber)
+    antexec("build/build-rcp-shared.xml", buildNumberAntParameter)
 }
 
 val copyStartupScripts by tasks.registering(Copy::class) {
