@@ -1,5 +1,6 @@
+package buildTypes
+
 import jetbrains.buildServer.configs.kotlin.BuildType
-import jetbrains.buildServer.configs.kotlin.RelativeId
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 
 open class FbmeBuildType(
@@ -12,8 +13,8 @@ open class FbmeBuildType(
     }
 
     fun useSharedBuildNumber() {
-        dependencies.snapshot(RelativeId("BuildNumber")) { }
-        buildNumberPattern = "%dep.BuildNumber.build.number%"
+        dependencies.snapshot(BuildNumber) { }
+        buildNumberPattern = "%dep.${BuildNumber.id!!.value}.build.number%"
     }
 
     fun setJavaHome() {
