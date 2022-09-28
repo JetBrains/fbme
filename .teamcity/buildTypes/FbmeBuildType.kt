@@ -1,6 +1,7 @@
 package buildTypes
 
 import jetbrains.buildServer.configs.kotlin.BuildType
+import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 
 open class FbmeBuildType(
@@ -9,6 +10,9 @@ open class FbmeBuildType(
 
     init {
         name = this.javaClass.simpleName
+        vcs {
+            root(DslContext.settingsRoot)
+        }
         init()
     }
 
