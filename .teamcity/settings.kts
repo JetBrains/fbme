@@ -44,5 +44,6 @@ project {
 }
 
 object Actions : Project({
+    name = "Actions"
     buildType(DeployDocumentation)
 })
