@@ -59,7 +59,7 @@ fun CompoundStage.Build() = buildType("Build") {
 
     steps {
         gradle {
-            tasks = "clean build"
+            tasks = "clean build -x test"
             gradleParams = "-Pteamcity=true"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
@@ -94,7 +94,7 @@ fun CompoundStage.BuildRcpDistrib() = buildType("BuildRcpDistrib") {
 
     steps {
         gradle {
-            tasks = "buildRcpDistrib"
+            tasks = "buildRcpDistrib -x test"
             gradleParams = "-Pteamcity=true"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
