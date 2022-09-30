@@ -132,7 +132,7 @@ val os = when (OperatingSystem.current()) {
 
 val downloadLocalJbr by tasks.registering(Download::class) {
     if (os != null) {
-        src("https://teamcity.jetbrains.com/repository/download/MPS_20213_Distribution_GetResources/.lastSuccessful/openJDK/jbrsdk-$os-x64.tar.gz")
+        src("https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_20213_Distribution_GetResources/.lastSuccessful/openJDK/jbrsdk-$os-x64.tar.gz")
     } else {
         enabled = false
     }
