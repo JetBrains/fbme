@@ -129,16 +129,18 @@ val os = when (OperatingSystem.current()) {
     OperatingSystem.MAC_OS -> "osx"
     else -> null
 }
+val teamcity = findProperty("teamcity") == "true"
 
 val downloadLocalJbr by tasks.registering(Download::class) {
     if (os != null) {
         src("https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_20213_Distribution_GetResources/.lastSuccessful/openJDK/jbrsdk-$os-x64.tar.gz")
-    } else {
-        enabled = false
     }
     dest("lib")
     overwrite(false)
+
+    enabled = !teamcity
 }
+
 val unpackLocalJbr by tasks.registering(Copy::class) {
     dependsOn(downloadLocalJbr)
 
@@ -150,6 +152,8 @@ val unpackLocalJbr by tasks.registering(Copy::class) {
         includeEmptyDirs = false
     }
     into("lib/jbr")
+
+    enabled = !teamcity
 }
 
 @Suppress("INACCESSIBLE_TYPE")
