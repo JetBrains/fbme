@@ -24,7 +24,7 @@ gradlePlugin {
 
 val mps by configurations.creating
 
-val teamcity = findProperty("teamcity") == "true"
+val teamcity = findProperty("ci.teamcity") == "true"
 
 val downloadMpsZip by tasks.registering(Download::class) {
     src("https://download.jetbrains.com/mps/$mpsMajor/MPS-$mpsMajor.$mpsMinor.zip")

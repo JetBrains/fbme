@@ -129,7 +129,9 @@ val os = when (OperatingSystem.current()) {
     OperatingSystem.MAC_OS -> "osx"
     else -> null
 }
-val teamcity = findProperty("teamcity") == "true"
+val teamcity = findProperty("ci.teamcity") == "true"
+
+println("-Pci.teamcity=$teamcity")
 
 val downloadLocalJbr by tasks.registering(Download::class) {
     if (os != null) {

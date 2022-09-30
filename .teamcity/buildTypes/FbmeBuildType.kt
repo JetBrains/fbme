@@ -58,7 +58,7 @@ open class FbmeBuildType(
         steps {
             gradle {
                 this.tasks = tasks
-                gradleParams = "-Pteamcity=true"
+                gradleParams = "-Pci.teamcity=true"
             }
         }
     }
