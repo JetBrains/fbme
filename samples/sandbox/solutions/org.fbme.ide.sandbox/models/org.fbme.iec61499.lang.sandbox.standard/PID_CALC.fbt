@@ -1,17 +1,17 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="PID_CALC">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="PRE"></Event>
-      <Event Name="POST"></Event>
+      <Event Name="INIT" />
+      <Event Name="PRE" />
+      <Event Name="POST" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INTIO"></Event>
-      <Event Name="PREO"></Event>
-      <Event Name="POSTO"></Event>
+      <Event Name="INTIO" />
+      <Event Name="PREO" />
+      <Event Name="POSTO" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="PV" Type="REAL" />
@@ -28,9 +28,9 @@
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="0.0" y="0.0"></ECState>
+      <ECState Name="START" x="0" y="0" />
     </ECC>
   </BasicFB>
 </FBType>
+

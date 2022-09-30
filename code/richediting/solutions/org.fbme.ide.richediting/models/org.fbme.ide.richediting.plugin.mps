@@ -5,9 +5,9 @@
   <languages>
     <use id="443f4c36-fcf5-4eb6-9500-8d06ed259e3e" name="jetbrains.mps.baseLanguage.classifiers" version="0" />
     <use id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone" version="0" />
-    <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="4" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
+    <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="5" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="19" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="12" />
     <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />
     <use id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions" version="4" />
     <use id="8dfbe92d-d233-4cc1-8ddb-a2863fd64843" name="org.fbme.ide.meta.editor" version="0" />
@@ -10203,14 +10203,14 @@
       <property role="TrG5h" value="algorithmProjections" />
       <node concept="3Tm6S6" id="3kxbdDirvL9" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirvUE" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="1_XvODPMzse" role="33vP2m">
         <node concept="YeOm9" id="1_XvODPMzsf" role="2ShVmc">
           <node concept="1Y3b0j" id="1_XvODPMzsg" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="1_XvODPMzsh" role="1B3o_S" />
             <node concept="3clFb_" id="1_XvODPMzsi" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10319,14 +10319,14 @@
       <property role="TrG5h" value="applicationProjection" />
       <node concept="3Tm6S6" id="3kxbdDirvVx" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirw5M" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirw5T" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirw5U" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirw5V" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="3kxbdDirw5W" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirw5X" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10435,14 +10435,14 @@
       <property role="TrG5h" value="eccProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwam" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwan" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwrN" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwrO" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwrP" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwrQ" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwrR" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10556,14 +10556,14 @@
       <property role="TrG5h" value="interfaceProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwe6" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwe7" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="7Y8B9wpl4BU" role="33vP2m">
         <node concept="YeOm9" id="7Y8B9wpl4BV" role="2ShVmc">
           <node concept="1Y3b0j" id="7Y8B9wpl4BW" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="7Y8B9wpl4BX" role="1B3o_S" />
             <node concept="3clFb_" id="7Y8B9wpl4BY" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10681,14 +10681,14 @@
       <property role="TrG5h" value="networkProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwiA" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwiB" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirw$y" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirw$z" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirw$$" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="3kxbdDirw$_" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirw$A" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10790,14 +10790,14 @@
       <property role="TrG5h" value="resourceProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwkl" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwkm" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwA0" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwA1" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwA2" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwA3" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwA4" role="jymVt">
               <property role="TrG5h" value="getId" />
@@ -10906,14 +10906,14 @@
       <property role="TrG5h" value="systemOverviewProjections" />
       <node concept="3Tm6S6" id="3kxbdDirwm7" role="1B3o_S" />
       <node concept="3uibUv" id="3kxbdDirwm8" role="1tU5fm">
-        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+        <ref role="3uigEE" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
       </node>
       <node concept="2ShNRf" id="3kxbdDirwFj" role="33vP2m">
         <node concept="YeOm9" id="3kxbdDirwFk" role="2ShVmc">
           <node concept="1Y3b0j" id="3kxbdDirwFl" role="YeSDq">
             <property role="2bfB8j" value="true" />
             <ref role="37wK5l" to="wyt6:~Object.&lt;init&gt;()" resolve="Object" />
-            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="Factory" />
+            <ref role="1Y3XeK" to="8gms:~EditorProjectionController$Factory" resolve="EditorProjectionController.Factory" />
             <node concept="3Tm1VV" id="3kxbdDirwFm" role="1B3o_S" />
             <node concept="3clFb_" id="3kxbdDirwFn" role="jymVt">
               <property role="TrG5h" value="getId" />

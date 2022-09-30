@@ -589,7 +589,7 @@
             </node>
           </node>
           <node concept="1zDrgl" id="1mPaNys5H75" role="39821P">
-            <ref role="1zDrgn" node="1mPaNys5H5R" resolve="FBME 1.0" />
+            <ref role="1zDrgn" node="1mPaNys5H5R" resolve="FBME ${version.major}.${version.minor}" />
           </node>
           <node concept="28jJK3" id="qjx41CDd6K" role="39821P">
             <node concept="55IIr" id="qjx41CDd70" role="28jJRO">
@@ -823,7 +823,7 @@
     <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcp-windows.xml" />
     <node concept="2sgV4H" id="1mPaNys5H7s" role="1l3spa">
-      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp" />
+      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp_shared" />
     </node>
     <node concept="1l3spV" id="1mPaNys5H7t" role="1l3spN">
       <node concept="3981dG" id="1mPaNys5H8H" role="39821P">
@@ -1605,7 +1605,7 @@
     <property role="26EafI" value="-" />
     <property role="26FY9R" value="jetbrains.mps.Launcher" />
     <property role="TrG5h" value="fbme_script" />
-    <ref role="1_kbm$" node="1mPaNys5H5R" resolve="FBME 1.0" />
+    <ref role="1_kbm$" node="1mPaNys5H5R" resolve="FBME ${version.major}.${version.minor}" />
     <node concept="26EafG" id="1mPaNys5Hbd" role="26Ea7d">
       <property role="26EafJ" value="lib/branding.jar" />
     </node>
@@ -1639,7 +1639,7 @@
     <property role="2DA0ip" value="../" />
     <property role="turDy" value="build-rcp-macos.xml" />
     <node concept="2sgV4H" id="4tzOUaV86iG" role="1l3spa">
-      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp" />
+      <ref role="1l3spb" node="1mPaNys5H5_" resolve="fbme_rcp_shared" />
     </node>
     <node concept="1l3spV" id="4tzOUaV86iH" role="1l3spN">
       <node concept="3981dG" id="4tzOUaV86k5" role="39821P">
