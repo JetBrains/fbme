@@ -1,0 +1,77 @@
+title: Function Blocks Modelling Environment
+description: >-
+  FBME (Function Blocks Modelling Environment) is an IDE for IEC 61499 standard 
+  built on top of JetBrains MPS language workbench.
+baseurl: "/fbme" # the subpath of your site, e.g. /blog
+url: "https://jetbrains.github.io"
+
+plugins:
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      search: false
+      sidebar: home_sidebar
+      topnav: topnav
+
+
+sidebars:
+  - home_sidebar
+
+company_name: FBME
+
+github_editme_path: JetBrains/fbme/blob/master/docs/
+
+repository: JetBrains/fbme
+
+output: web
+# this property is useful for conditional filtering of content that is separate from the PDF.
+
+topnav_title: FBME
+# this appears on the top navigation bar next to the home button
+
+site_title: Function Blocks Modelling Environment
+# this appears in the html browser tab for the site title (seen mostly by search engines, not users)
+
+host: 127.0.0.1
+# the preview server used. Leave as is.
+
+port: 4000
+# the port where the preview is rendered. You can leave this as is unless you have other Jekyll builds using this same port that might cause conflicts. in that case, use another port such as 4006.
+
+exclude:
+  - .idea/
+  - .gitignore
+  - vendor
+# these are the files and directories that jekyll will exclude from the build
+
+feedback_subject_line: Contact with FBME
+
+feedback_email: rad.sorokin@gmail.com
+
+# feedback_disable: true
+# if you uncomment the previous line, the Feedback link gets removed
+
+feedback_text: "Contact"
+# if you uncomment the previous line, it changes the Feedback text
+
+# feedback_link: "http://helpy.io/"
+# if you uncomment the previous line, it changes where the feedback link points to
+
+highlighter: rouge
+# library used for syntax highlighting
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
+# filter used to process markdown. note that kramdown differs from github-flavored markdown in some subtle ways
+
+
+github: [ metadata ]
+
