@@ -56,7 +56,6 @@ object ECCEditors {
         return try {
             val repository: PlatformElementsOwner =
                 PlatformRepositoryProvider.getInstance(context.operationContext.project)
-            context.operationContext.project
             val scene = EditorCell_Scene(context, node, layout)
             val backgroundLayer = scene.createLayer(0f)
             val tracesLayer = scene.createLayer(1f)
@@ -82,9 +81,6 @@ object ECCEditors {
             val declaration = repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
             val eccInstance = ECCInstance.createForDeclaration(declaration, parent)
             val ecc = eccInstance.eCCDeclaration
-            scene.style.set(RichEditorStyleAttributes.ALL_ALGORITHMS, getAllAlgorithmsFromDeclarationFactory(ecc))
-            scene.style.set(RichEditorStyleAttributes.ALL_OUTPUTS, getAllOutputsFromDeclarationFactory(ecc))
-            scene.style.set(RichEditorStyleAttributes.FACTORY_DECLARATION, declarationFactory)
             val isEditable = parent == null
             val eccAdapter = ECCViewAdapter(ecc, declarationFactory, isEditable)
             val componentsFacility = ComponentsFacility(
@@ -216,83 +212,5 @@ object ECCEditors {
                 ecc.states.add(state)
             }
         })
-    }
-
-    @JvmStatic
-    fun hideAllAlgorithms(scene: EditorCell_Scene) {
-        setHideOrOpenAlgorithmBodyForAllStates(scene, false)
-    }
-
-    @JvmStatic
-    fun showAllAlgorithms(scene: EditorCell_Scene) {
-        setHideOrOpenAlgorithmBodyForAllStates(scene, true)
-    }
-
-    private fun setHideOrOpenAlgorithmBodyForAllStates(scene: EditorCell_Scene, isOpen: Boolean) {
-        var isOpenAlgorithmBody = scene.loadState(IS_OPEN_ALGORITHM_BODY)
-        isOpenAlgorithmBody = isOpenAlgorithmBody ?: HashMap()
-        var context: EditorContext? = null
-        for (cell in scene.cells) {
-            val declaration = cell.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
-            val cellContext = cell.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
-            if (cellContext != null) {
-                context = cellContext
-            }
-            if (declaration != null) {
-                for (action in declaration.actions) {
-                    isOpenAlgorithmBody[action] = isOpen
-                }
-            }
-        }
-        scene.storeState(IS_OPEN_ALGORITHM_BODY, isOpenAlgorithmBody)
-        context?.editorComponent?.updater?.update()
-    }
-
-    @JvmStatic
-    fun hideAllActions(scene: EditorCell_Scene) {
-        setHideOrOpenActionsForAllStates(scene, false)
-    }
-
-    @JvmStatic
-    fun showAllActions(scene: EditorCell_Scene) {
-        setHideOrOpenActionsForAllStates(scene, true)
-    }
-
-    private fun setHideOrOpenActionsForAllStates(scene: EditorCell_Scene, isOpen: Boolean) {
-        var isOpenActions = scene.loadState(IS_OPEN_ACTIONS)
-        isOpenActions = isOpenActions ?: HashMap()
-        var context: EditorContext? = null
-        for (cell in scene.cells) {
-            val declaration = cell.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
-            if (declaration != null) {
-                isOpenActions[declaration] = isOpen
-            }
-            if (context == null) {
-                val cellContext = cell.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
-                if (cellContext != null) {
-                    context = cellContext
-                }
-            }
-        }
-        scene.storeState(IS_OPEN_ACTIONS, isOpenActions)
-        context?.editorComponent?.updater?.update()
-    }
-
-    private fun getAllAlgorithmsFromDeclarationFactory(ecc: ECC): MutableList<AlgorithmDeclaration> {
-        val element = ecc.container
-        return if (element is BasicFBTypeDeclaration) {
-            element.algorithms
-        } else {
-            ArrayList()
-        }
-    }
-
-    private fun getAllOutputsFromDeclarationFactory(ecc: ECC): List<EventDeclaration> {
-        val element = ecc.container
-        return if (element is BasicFBTypeDeclaration) {
-            element.outputEvents
-        } else {
-            ArrayList()
-        }
     }
 }

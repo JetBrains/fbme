@@ -1,7 +1,6 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions
 
 import jetbrains.mps.openapi.editor.cells.EditorCell
-import org.fbme.ide.richediting.adapters.common.actions.Action
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSynchronizer
@@ -17,7 +16,7 @@ import org.fbme.scenes.controllers.diagram.DiagramController
 import org.fbme.scenes.controllers.diagram.DiagramFacility
 import java.awt.Point
 
-abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) : Action {
+abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) {
     @JvmField
     protected val selectedFBs: Set<NetworkComponentView>
 

@@ -17,7 +17,7 @@ import java.awt.Point
 import java.awt.Rectangle
 
 class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
-    override fun apply() {
+    fun apply() {
         val functionBlock = selectedFBs.filterIsInstance<FunctionBlockView>().last()
         functionBlock.expand()
     }
