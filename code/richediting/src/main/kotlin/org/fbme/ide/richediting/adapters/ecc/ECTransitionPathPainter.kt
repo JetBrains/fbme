@@ -9,6 +9,9 @@ import java.awt.geom.AffineTransform
 import java.awt.geom.Arc2D
 import java.awt.geom.GeneralPath
 import java.awt.geom.QuadCurve2D
+import kotlin.math.abs
+import kotlin.math.atan2
+import kotlin.math.sqrt
 
 class ECTransitionPathPainter(private val path: ECTransitionPath, private val cursor: ECTransitionCursor?) {
     fun paint(graphics: Graphics, drawArrow: Boolean) {
@@ -72,22 +75,22 @@ class ECTransitionPathPainter(private val path: ECTransitionPath, private val cu
     companion object {
         private const val HOVER_SIZE = ECTransitionController.HOVER_SIZE
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setupHighlightPathPaint(graphics: Graphics) {
             (graphics as Graphics2D).stroke = BasicStroke(4f)
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setupSelectedPathPaint(graphics: Graphics) {
             (graphics as Graphics2D).stroke = BasicStroke(2.5f)
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setupRegularPathPaint(graphics: Graphics) {
             (graphics as Graphics2D).stroke = BasicStroke(1.5f)
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun setupShadowPathPaint(graphics: Graphics) {
             (graphics as Graphics2D).stroke =
                 BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 3F, floatArrayOf(3f), 3F)
@@ -137,7 +140,7 @@ class ECTransitionPathPainter(private val path: ECTransitionPath, private val cu
             }
             // уравнение прямой2 x = const
             if (x2.x == x3.x) {
-                val y2 = Math.abs(x2.y + x3.y) / 2.0
+                val y2 = abs(x2.y + x3.y) / 2.0
                 // y1 = kx1 + b
                 val k = -1 / ((x1.y - x2.y) / ((x1.x - x2.x) * 1.0))
                 val mx = (x1.x + x2.x) / 2.0
@@ -147,7 +150,7 @@ class ECTransitionPathPainter(private val path: ECTransitionPath, private val cu
             }
             // уравнение прямой2 y = const
             if (x2.y == x3.y) {
-                val x2_const = Math.abs(x2.x + x3.x) / 2.0
+                val x2_const = abs(x2.x + x3.x) / 2.0
                 // y1 = kx1 + b
                 val k = -1 / ((x1.y - x2.y) / ((x1.x - x2.x) * 1.0))
                 val mx = (x1.x + x2.x) / 2.0
@@ -182,15 +185,15 @@ class ECTransitionPathPainter(private val path: ECTransitionPath, private val cu
         }
         val center = findCenter(s, c, t)
         val r = findDistance(center, s).toInt()
-        var startAng = Math.toDegrees(-Math.atan2((s.y - center.y).toDouble(), (s.x - center.x).toDouble()))
+        var startAng = Math.toDegrees(-atan2((s.y - center.y).toDouble(), (s.x - center.x).toDouble()))
         if (startAng < 0) {
             startAng += 360.0
         }
-        var cAng = Math.toDegrees(-Math.atan2((c.y - center.y).toDouble(), (c.x - center.x).toDouble()))
+        var cAng = Math.toDegrees(-atan2((c.y - center.y).toDouble(), (c.x - center.x).toDouble()))
         if (cAng < 0) {
             cAng += 360.0
         }
-        var finishAng = Math.toDegrees(-Math.atan2((t.y - center.y).toDouble(), (t.x - center.x).toDouble()))
+        var finishAng = Math.toDegrees(-atan2((t.y - center.y).toDouble(), (t.x - center.x).toDouble()))
         if (finishAng < 0) {
             finishAng += 360.0
         }
@@ -222,6 +225,6 @@ class ECTransitionPathPainter(private val path: ECTransitionPath, private val cu
     }
 
     private fun findDistance(x1: Point?, x2: Point?): Double {
-        return Math.sqrt(((x1!!.x - x2!!.x) * (x1.x - x2.x) + (x1.y - x2.y) * (x1.y - x2.y)).toDouble())
+        return sqrt(((x1!!.x - x2!!.x) * (x1.x - x2.x) + (x1.y - x2.y) * (x1.y - x2.y)).toDouble())
     }
 }

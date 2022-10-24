@@ -40,7 +40,7 @@ class InspectionManagerImpl : InspectionManager {
             } else {
                 facility.install()
             }
-            val res: MyNetworkInspector = MyNetworkInspector(network, onDispose)
+            val res = MyNetworkInspector(network, onDispose)
             myNetworkInspectors[network] = res
             return res
         }
@@ -70,7 +70,7 @@ class InspectionManagerImpl : InspectionManager {
             facility.clear()
             val previous = myECCInspectors[ecc]
             previous?.dispose()
-            val res: MyECCInspector = MyECCInspector(ecc, onDispose)
+            val res = MyECCInspector(ecc, onDispose)
             myECCInspectors[ecc] = res
             return res
         }
@@ -130,7 +130,7 @@ class InspectionManagerImpl : InspectionManager {
     companion object {
         private val INSTANCES: MutableMap<EditorComponent, InspectionManagerImpl> = HashMap()
 
-        @kotlin.jvm.JvmField
+        @JvmField
         val EDITOR_EXTENSION: EditorExtension = object : EditorExtension {
             override fun isApplicable(ec: EditorComponent): Boolean {
                 return true
@@ -152,7 +152,7 @@ class InspectionManagerImpl : InspectionManager {
             }
         }
 
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun getInstance(ec: EditorComponent): InspectionManager? {
             return INSTANCES[ec]
         }

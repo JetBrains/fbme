@@ -101,11 +101,13 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
                 element.setAttribute("dx2", "" + path.dX2)
                 element.setAttribute("dx1", "" + path.dX1)
             }
+
             ConnectionPath.Kind.FourAngles -> {
                 element.setAttribute("dy", "" + path.dY)
                 element.setAttribute("dx2", "" + path.dX2)
                 element.setAttribute("dx1", "" + path.dX1)
             }
+
             ConnectionPath.Kind.TwoAngles -> element.setAttribute("dx1", "" + path.dX1)
         }
         return element

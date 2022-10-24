@@ -33,17 +33,21 @@ object FakeCells {
 
     @JvmStatic
     fun createCollection(context: EditorContext?, node: SNode?): EditorCell_Collection {
-        return object : EditorCell_Collection(context, node, object : AbstractCellLayout() {
-            override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                for (child in collection) {
-                    child.relayout()
+        return object : EditorCell_Collection(
+            context,
+            node,
+            object : AbstractCellLayout() {
+                override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                    for (child in collection) {
+                        child.relayout()
+                    }
+                }
+
+                override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
+                    return TextBuilderImpl()
                 }
             }
-
-            override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
-                return TextBuilderImpl()
-            }
-        }) {
+        ) {
             override fun paintContent(p0: Graphics, p1: ParentSettings) {}
             override fun getWidth(): Int {
                 return -1

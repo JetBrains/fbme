@@ -15,7 +15,7 @@ object FBConnectionUtils {
 
     @JvmStatic
     fun getPathFactory(style: Style): BiFunction<Point, Point, FBConnectionPath> {
-        return  BiFunction { source: Point, target: Point ->
+        return BiFunction { source: Point, target: Point ->
             if (target.x - source.x < 2 * padding(style)) {
                 var y = (source.y + target.y) / 2
                 if (y >= source.y && y - padding(style) < source.y) {

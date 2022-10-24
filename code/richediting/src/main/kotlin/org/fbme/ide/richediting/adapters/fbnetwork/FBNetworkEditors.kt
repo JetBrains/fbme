@@ -144,9 +144,11 @@ object FBNetworkEditors {
             val connectionsLayer = scene.createLayer(3f)
             val inspectionsLayer = scene.createLayer(4f)
             val scale = RicheditingMpsBridge.getEditorScale(project)
-            val viewpoint = if (layout === SceneLayout.WINDOWED)
+            val viewpoint = if (layout === SceneLayout.WINDOWED) {
                 SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
-            else scene.viewpoint!!
+            } else {
+                scene.viewpoint!!
+            }
             style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint)
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {
@@ -211,9 +213,12 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val extendedLayout: ROLayoutModel<NetworkComponentView> = ExtendedLayoutModel(
                 componentsLayout,
-                { view: NetworkComponentView, compPosition: Point ->
-                    (inlineValuesFacility.getController(view) as InlineValueController).getCoordinates(compPosition)
-                }) { inlineValuesView.getExtensions(it) }
+                { view, compPosition ->
+                    val controller = inlineValuesFacility.getController(view) as InlineValueController
+                    controller.getCoordinates(compPosition)
+                },
+                { inlineValuesView.getExtensions(it) }
+            )
             val connectionsFacility = ConnectionsFacility(
                 scene,
                 CONNECTION_CONTROLLER_FACTORY,

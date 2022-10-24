@@ -6,6 +6,8 @@ import java.awt.Color
 import java.awt.GradientPaint
 import java.awt.Paint
 import java.awt.geom.Rectangle2D
+import kotlin.math.max
+import kotlin.math.min
 
 object DiagramColors {
 
@@ -43,12 +45,18 @@ object DiagramColors {
     @JvmStatic
     fun createGradientPaint(color: Color, bounds: Rectangle2D): Paint {
         var centerBrightness = getBrightness(color)
-        centerBrightness = Math.min(Math.max(centerBrightness, VARIANCE), 1.0f - VARIANCE)
+        centerBrightness = min(max(centerBrightness, VARIANCE), 1.0f - VARIANCE)
         val color1 = setBrightness(color, centerBrightness + VARIANCE)
         val color2 = setBrightness(color, centerBrightness - VARIANCE)
         return GradientPaint(
-            bounds.minX.toFloat(), bounds.minY.toFloat(), color1, bounds.maxX.toFloat(), bounds.maxY
-                .toFloat(), color2, false
+            bounds.minX.toFloat(),
+            bounds.minY.toFloat(),
+            color1,
+            bounds.maxX.toFloat(),
+            bounds.maxY
+                .toFloat(),
+            color2,
+            false
         )
     }
 

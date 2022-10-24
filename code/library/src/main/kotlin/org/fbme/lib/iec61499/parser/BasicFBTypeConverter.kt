@@ -17,7 +17,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
     override fun extractDeclarationBody(identifier: Identifier?): BasicFBTypeDeclaration {
         checkNotNull(element)
         val fbtd = factory.createBasicFBTypeDeclaration(identifier)
-        val basicFbElement = element!!.getChild("BasicFB")
+        val basicFbElement = element.getChild("BasicFB")
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         ParameterDeclarationConverter.extractAll(with(basicFbElement.getChild("InternalVars")), fbtd.internalVariables)
@@ -50,10 +50,10 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
                 val action = factory.createStateAction()
                 val algorithmName = ecActionElement.getAttributeValue("Algorithm")
                 val eventName = ecActionElement.getAttributeValue("Output")
-                if (algorithmName != null && algorithmName.length > 0) {
+                if (algorithmName != null && algorithmName.isNotEmpty()) {
                     action.algorithm.setTargetName(algorithmName)
                 }
-                if (eventName != null && eventName.length > 0) {
+                if (eventName != null && eventName.isNotEmpty()) {
                     action.event.setFQName(eventName)
                 }
                 state.actions.add(action)

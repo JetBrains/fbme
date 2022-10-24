@@ -27,14 +27,14 @@ internal class RegularFunctionBlockInstance(
 
     init {
         val typeDeclaration = declaration.type.declaration
-        if (typeDeclaration is CompositeFBTypeDeclaration) {
-            containedNetwork = RegularNetworkInstance(this, typeDeclaration.network, typeDeclaration)
+        containedNetwork = if (typeDeclaration is CompositeFBTypeDeclaration) {
+            RegularNetworkInstance(this, typeDeclaration.network, typeDeclaration)
         } else if (typeDeclaration is SubapplicationTypeDeclaration) {
-            containedNetwork = RegularNetworkInstance(this, typeDeclaration.network, typeDeclaration)
+            RegularNetworkInstance(this, typeDeclaration.network, typeDeclaration)
         } else if (typeDeclaration is BasicFBTypeDeclaration) {
-            containedNetwork = RegularECCInstance(this, typeDeclaration.ecc, typeDeclaration)
+            RegularECCInstance(this, typeDeclaration.ecc, typeDeclaration)
         } else {
-            containedNetwork = null
+            null
         }
     }
 }

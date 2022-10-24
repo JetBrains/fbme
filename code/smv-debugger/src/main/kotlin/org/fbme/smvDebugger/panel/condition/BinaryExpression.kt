@@ -6,5 +6,4 @@ abstract class BinaryExpression(val first: Expression, val second: Expression) :
     }
 
     protected abstract val symbol: String
-
 }

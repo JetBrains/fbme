@@ -5,7 +5,7 @@ import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 
 class CollapseAction(cell: EditorCell) : ExpandOrCollapseAction(cell.parent) {
-    override fun apply() {
+    fun apply() {
         collapse(selectedFBs.filterIsInstance<FunctionBlockView>())
     }
 

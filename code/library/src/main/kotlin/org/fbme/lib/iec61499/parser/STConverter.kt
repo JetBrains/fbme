@@ -76,11 +76,10 @@ object STConverter {
 
     private fun extractStatement(factory: STFactory, statementCtx: StatementContext): Statement? {
         if (statementCtx is IfStatementContext) {
-            val ifStatementCtx = statementCtx
             val ifStatement = factory.createIfStatement()
-            ifStatement.condition = extractExpression(factory, ifStatementCtx.condition)
-            ifStatement.thenClause.addAll(extractStatementList(factory, ifStatementCtx.thenClause))
-            val elsifClauseCtxs = ifStatementCtx.elsifClauses
+            ifStatement.condition = extractExpression(factory, statementCtx.condition)
+            ifStatement.thenClause.addAll(extractStatementList(factory, statementCtx.thenClause))
+            val elsifClauseCtxs = statementCtx.elsifClauses
             val elseIfClauses = ifStatement.elseIfClauses
             for (elsifClauseCtx in elsifClauseCtxs) {
                 val elseIfClause = factory.createElseIfClause()
@@ -88,16 +87,15 @@ object STConverter {
                 elseIfClause.body.addAll(extractStatementList(factory, elsifClauseCtx.body))
                 elseIfClauses.add(elseIfClause)
             }
-            if (ifStatementCtx.elseClause != null) {
-                ifStatement.addElseClause().addAll(extractStatementList(factory, ifStatementCtx.elseClause))
+            if (statementCtx.elseClause != null) {
+                ifStatement.addElseClause().addAll(extractStatementList(factory, statementCtx.elseClause))
             }
             return ifStatement
         }
         if (statementCtx is CaseStatementContext) {
-            val caseStatementCtx = statementCtx
             val caseStatement = factory.createCaseStatement()
-            caseStatement.expression = extractExpression(factory, caseStatementCtx.expression())
-            val caseClauseCtxs = caseStatementCtx.caseClauses
+            caseStatement.expression = extractExpression(factory, statementCtx.expression())
+            val caseClauseCtxs = statementCtx.caseClauses
             val cases = caseStatement.cases
             for (caseClauseCtx in caseClauseCtxs) {
                 val caseElement = factory.createCaseElement()
@@ -105,43 +103,39 @@ object STConverter {
                 caseElement.statements.addAll(extractStatementList(factory, caseClauseCtx.body))
                 cases.add(caseElement)
             }
-            if (caseStatementCtx.elseClause != null) {
-                caseStatement.addElseCase().addAll(extractStatementList(factory, caseStatementCtx.elseClause))
+            if (statementCtx.elseClause != null) {
+                caseStatement.addElseCase().addAll(extractStatementList(factory, statementCtx.elseClause))
             }
             return caseStatement
         }
         if (statementCtx is ForStatementContext) {
-            val forStatementCtx = statementCtx
             val forStatement = factory.createForStatement()
             val controlVariable = forStatement.controlVariable
-            controlVariable.name = forStatementCtx.ID().text
-            controlVariable.beginExpression = extractExpression(factory, forStatementCtx.varBegin)
-            controlVariable.endExpression = extractExpression(factory, forStatementCtx.varEnd)
-            if (forStatementCtx.varBy != null) {
-                controlVariable.stepExpression = extractExpression(factory, forStatementCtx.varBy)
+            controlVariable.name = statementCtx.ID().text
+            controlVariable.beginExpression = extractExpression(factory, statementCtx.varBegin)
+            controlVariable.endExpression = extractExpression(factory, statementCtx.varEnd)
+            if (statementCtx.varBy != null) {
+                controlVariable.stepExpression = extractExpression(factory, statementCtx.varBy)
             }
-            forStatement.statements.addAll(extractStatementList(factory, forStatementCtx.body))
+            forStatement.statements.addAll(extractStatementList(factory, statementCtx.body))
             return forStatement
         }
         if (statementCtx is WhileStatementContext) {
-            val whileStatementCtx = statementCtx
             val whileStatement = factory.createWhileStatement()
-            whileStatement.condition = extractExpression(factory, whileStatementCtx.condition)
-            whileStatement.body.addAll(extractStatementList(factory, whileStatementCtx.body))
+            whileStatement.condition = extractExpression(factory, statementCtx.condition)
+            whileStatement.body.addAll(extractStatementList(factory, statementCtx.body))
             return whileStatement
         }
         if (statementCtx is RepeatStatementContext) {
-            val repeatStatementCtx = statementCtx
             val repeatStatement = factory.createRepeatStatement()
-            repeatStatement.condition = extractExpression(factory, repeatStatementCtx.condition)
-            repeatStatement.body.addAll(extractStatementList(factory, repeatStatementCtx.body))
+            repeatStatement.condition = extractExpression(factory, statementCtx.condition)
+            repeatStatement.body.addAll(extractStatementList(factory, statementCtx.body))
             return repeatStatement
         }
         if (statementCtx is AssigmentStatementContext) {
-            val assigmentStatementCtx = statementCtx
             val assigmentStatement = factory.createAssignmentStatement()
-            assigmentStatement.variable = extractVariable(factory, assigmentStatementCtx.variable())
-            assigmentStatement.expression = extractExpression(factory, assigmentStatementCtx.expression())
+            assigmentStatement.variable = extractVariable(factory, statementCtx.variable())
+            assigmentStatement.expression = extractExpression(factory, statementCtx.expression())
             return assigmentStatement
         }
         if (statementCtx is ExitStatementContext) {
@@ -152,7 +146,7 @@ object STConverter {
         } else null
     }
 
-    private fun extractExpression(factory: STFactory, expressionCtx: STParser.ExpressionContext): Expression? {
+    private fun extractExpression(factory: STFactory, expressionCtx: ExpressionContext): Expression? {
         if (expressionCtx is ConstantContext) {
             return extractLiteral(factory, expressionCtx.literal())
         }
@@ -166,10 +160,9 @@ object STConverter {
             return parenthesisExpression
         }
         if (expressionCtx is FunctionCallContext) {
-            val functionCallCtx = expressionCtx
             val functionCall = factory.createFunctionCall()
-            functionCall.functionName = functionCallCtx.ID().text
-            val parameterCtxs = functionCallCtx.params
+            functionCall.functionName = expressionCtx.ID().text
+            val parameterCtxs = expressionCtx.params
             val actualParameters = functionCall.actualParameters
             for (parameterCtx in parameterCtxs) {
                 actualParameters.add(extractExpression(factory, parameterCtx))
@@ -177,18 +170,16 @@ object STConverter {
             return functionCall
         }
         if (expressionCtx is UnaryExpressionContext) {
-            val unaryExpressionCtx = expressionCtx
-            val operation = chooseUnaryOperation(unaryExpressionCtx.op.text)
+            val operation = chooseUnaryOperation(expressionCtx.op.text)
             val unaryExpression = factory.createUnaryExpression(operation!!)
-            unaryExpression.setInnerExpression(extractExpression(factory, unaryExpressionCtx.e)!!)
+            unaryExpression.setInnerExpression(extractExpression(factory, expressionCtx.e)!!)
             return unaryExpression
         }
         if (expressionCtx is BinaryExpressionContext) {
-            val binaryExpressionCtx = expressionCtx
-            val binaryOperation = chooseBinaryOperation(binaryExpressionCtx.op.text)
+            val binaryOperation = chooseBinaryOperation(expressionCtx.op.text)
             val binaryExpression = factory.createBinaryExpression(binaryOperation!!)
-            binaryExpression.leftExpression = extractExpression(factory, binaryExpressionCtx.l)
-            binaryExpression.rightExpression = extractExpression(factory, binaryExpressionCtx.r)
+            binaryExpression.leftExpression = extractExpression(factory, expressionCtx.l)
+            binaryExpression.rightExpression = extractExpression(factory, expressionCtx.r)
             return binaryExpression
         }
         return null
@@ -212,18 +203,17 @@ object STConverter {
         return null
     }
 
-    private fun extractVariable(factory: STFactory, variableCtx: STParser.VariableContext): Variable? {
+    private fun extractVariable(factory: STFactory, variableCtx: VariableContext): Variable? {
         if (variableCtx is VarReferenceContext) {
             val variableReference = factory.createVariableReference()
             variableReference.reference.setTargetName(variableCtx.getText())
             return variableReference
         }
         if (variableCtx is ArraySelectorContext) {
-            val arraySelectorCtx = variableCtx
             val arrayVariable = factory.createArrayVariable()
-            arrayVariable.subscribedVariable = extractVariable(factory, arraySelectorCtx.subscripted)
+            arrayVariable.subscribedVariable = extractVariable(factory, variableCtx.subscripted)
             val subscripts = arrayVariable.subscripts
-            val subscriptCtxs = arraySelectorCtx.subscrpits
+            val subscriptCtxs = variableCtx.subscrpits
             for (subscriptCtx in subscriptCtxs) {
                 subscripts.add(extractExpression(factory, subscriptCtx))
             }
@@ -254,7 +244,7 @@ object STConverter {
             literal.value = literalCtx.getText().substring(3).toInt(16)
             return literal
         }
-        if (literalCtx is STParser.StringContext) {
+        if (literalCtx is StringContext) {
             val literal = factory.createLiteral(LiteralKind.STRING) as Literal<String?>
             val text = literalCtx.getText()
             // TODO unescape parsed string

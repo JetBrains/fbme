@@ -70,7 +70,7 @@ class CounterexampleTable(
             systemHighlighter.highlight(relatedItems)
         }
         model!!.stepIndexModel
-            .addPropertyChangeListener(StepIndexModel.Companion.STEP_INDEX) { event: PropertyChangeEvent ->
+            .addPropertyChangeListener(StepIndexModel.STEP_INDEX) { event: PropertyChangeEvent ->
                 val stepIndex = event.newValue as Int
                 valueTable.setCurrentColumnIndex(stepIndex)
                 valueTable.repaint()

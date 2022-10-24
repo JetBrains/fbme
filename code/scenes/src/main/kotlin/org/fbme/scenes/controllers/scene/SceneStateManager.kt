@@ -16,8 +16,7 @@ class SceneStateManager {
         return states[StateId(cell.sNode.reference, cell.cellId, key)] as T?
     }
 
-    private class StateId
-        (
+    private class StateId(
         private val nodeRef: SNodeReference,
         private val cellId: String?,
         private val key: SceneStateKey<*>

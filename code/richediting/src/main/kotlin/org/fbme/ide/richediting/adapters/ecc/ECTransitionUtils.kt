@@ -71,26 +71,26 @@ object ECTransitionUtils {
             val k = (from.y - to.y) / (from.x - to.x).toDouble()
             val constant = from.y - k * from.x
             val top_x = (a.y - constant) / k
-            if (top_x > a.x && top_x < b.x // проверка, что прямая действительно пересекается
-                && from.y < a.y && a.y < to.y
+            if (top_x > a.x && top_x < b.x && // проверка, что прямая действительно пересекается
+                from.y < a.y && a.y < to.y
             ) { // проверка, что ближе это
                 return Point(top_x.toInt(), a.y)
             }
             val right_y = k * b.x + constant
-            if (right_y > b.y && right_y < c.y
-                && to.x < b.x && b.x < from.x
+            if (right_y > b.y && right_y < c.y &&
+                to.x < b.x && b.x < from.x
             ) {
                 return Point(b.x, right_y.toInt())
             }
             val bottom_x = (c.y - constant) / k
-            if (bottom_x > d.x && bottom_x < c.x
-                && to.y < d.y && d.y < from.y
+            if (bottom_x > d.x && bottom_x < c.x &&
+                to.y < d.y && d.y < from.y
             ) {
                 return Point(bottom_x.toInt(), c.y)
             }
             val left_y = k * a.x + constant
-            if (left_y > a.y && left_y < d.y
-                && from.x < a.x && a.x < to.x
+            if (left_y > a.y && left_y < d.y &&
+                from.x < a.x && a.x < to.x
             ) {
                 return Point(a.x, left_y.toInt())
             }

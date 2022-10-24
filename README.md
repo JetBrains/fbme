@@ -6,7 +6,7 @@
 ### Opening MPS project first time
 
 - Pre-installed JRE 11 is required
-- Install [JetBrains MPS 2021.2.*](https://www.jetbrains.com/mps/download)
+- Install [JetBrains MPS 2021.3.*](https://www.jetbrains.com/mps/download)
 - Run `./gradlew build`
 - Open project with MPS
 - Configure "source" plugins:

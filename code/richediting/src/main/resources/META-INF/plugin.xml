@@ -12,4 +12,53 @@
     <extensions defaultExtensionNs="com.intellij">
         <mps.LanguageLibrary dir="/languages"/>
     </extensions>
+
+    <actions>
+        <group id="richediting.RichEditorPopupGroup">
+            <action id="richediting.AddConstantToPort"
+                    class="org.fbme.ide.richediting.actions.AddConstantToPortAction"
+                    text="Add Constant"/>
+            <action id="richediting.AddStateAction"
+                    class="org.fbme.ide.richediting.actions.AddStateActionAction"
+                    text="Add Action"/>
+            <action id="richediting.DeleteStateAction"
+                    class="org.fbme.ide.richediting.actions.DeleteStateActionAction"
+                    text="Delete Action"/>
+            <action id="richediting.AlgorithmCloseOpenAction"
+                    class="org.fbme.ide.richediting.actions.AlgorithmBodyVisibilityAction"/>
+            <action id="richediting.Collapse"
+                    class="org.fbme.ide.richediting.actions.CollapseAction"
+                    text="Collapse"/>
+            <action id="richediting.Expand"
+                    class="org.fbme.ide.richediting.actions.ExpandAction"
+                    text="Expand"/>
+            <action id="richediting.HideAllAlgorthmBody"
+                    class="org.fbme.ide.richediting.actions.AllAlgorithmBodyVisibilityAction$Hide"
+                    text="Hide All Algorithm Bodies"/>
+            <action id="richediting.ShowAllAlgorthmBody"
+                    class="org.fbme.ide.richediting.actions.AllAlgorithmBodyVisibilityAction$Show"
+                    text="Show All Algorithm Bodies"/>
+            <action id="richediting.HideAllStateAction"
+                    class="org.fbme.ide.richediting.actions.AllStateActionVisibilityAction$Hide"
+                    text="Hide All State Actions"/>
+            <action id="richediting.ShowAllStateAction"
+                    class="org.fbme.ide.richediting.actions.AllStateActionVisibilityAction$Show"
+                    text="Show All State Action"/>
+            <group id="richediting.ChangeAlgorithmGroup"
+                   class="org.fbme.ide.richediting.actions.ChangeAlgorithmActionGroup"
+                   popup="true"
+                   text="Change Algorithm"/>
+            <group id="richediting.ChangeOutputGroup"
+                   class="org.fbme.ide.richediting.actions.ChangeOutputActionGroup"
+                   popup="true"
+                   text="Change Output"/>
+            <action id="richediting.Relayout"
+                    class="org.fbme.ide.richediting.actions.RelayoutAction"
+                    text="Relayout"/>
+            <action id="richediting.NewAlgorithmAction"
+                    class="org.fbme.ide.richediting.actions.NewAlgorithmAction"
+                    text="New Algorithm..."/>
+            <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
+        </group>
+    </actions>
 </idea-plugin>

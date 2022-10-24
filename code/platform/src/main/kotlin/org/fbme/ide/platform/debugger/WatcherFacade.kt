@@ -30,35 +30,35 @@ class WatcherFacade private constructor(project: Project) {
     private fun watchFBNetwork(
         resource: ResourceDeclaration,
         children: List<FunctionBlockDeclaration>,
-        vararg path: FunctionBlockDeclaration
+        path: List<FunctionBlockDeclaration> = listOf()
     ) {
         for (functionBlock in children) {
-            val newPath = path.toList().plus(functionBlock).toTypedArray()
+            val newPath = path.toList().plus(functionBlock)
 
             val fbTypeDeclaration = functionBlock.type.declaration as FBTypeDeclaration
 
             for (event in fbTypeDeclaration.inputEvents) {
-                watch(Watchable(WatchablePath(resource, *newPath), event.name))
+                watch(Watchable(WatchablePath(resource, newPath), event.name))
             }
             for (event in fbTypeDeclaration.outputEvents) {
-                watch(Watchable(WatchablePath(resource, *newPath), event.name))
+                watch(Watchable(WatchablePath(resource, newPath), event.name))
             }
             for (variable in fbTypeDeclaration.inputParameters) {
-                watch(Watchable(WatchablePath(resource, *newPath), variable.name))
+                watch(Watchable(WatchablePath(resource, newPath), variable.name))
             }
             for (variable in fbTypeDeclaration.outputParameters) {
-                watch(Watchable(WatchablePath(resource, *newPath), variable.name))
+                watch(Watchable(WatchablePath(resource, newPath), variable.name))
             }
 
             when (fbTypeDeclaration) {
                 is BasicFBTypeDeclaration -> {
-                    watch(Watchable(WatchablePath(resource, *newPath), "\$ECC"))
+                    watch(Watchable(WatchablePath(resource, newPath), "\$ECC"))
                     for (internalVariable in fbTypeDeclaration.internalVariables) {
-                        watch(Watchable(WatchablePath(resource, *newPath), internalVariable.name))
+                        watch(Watchable(WatchablePath(resource, newPath), internalVariable.name))
                     }
                 }
                 is CompositeFBTypeDeclaration -> {
-                    watchFBNetwork(resource, fbTypeDeclaration.network.functionBlocks, *newPath)
+                    watchFBNetwork(resource, fbTypeDeclaration.network.functionBlocks, newPath)
                 }
                 else -> {}
             }
@@ -256,10 +256,8 @@ class WatcherFacade private constructor(project: Project) {
                             val portName = portElement.getAttributeValue("name")
                             val dataElement = portElement.getChild("Data")
                             if (dataElement != null) {
-                                watches[Watchable(
-                                    WatchablePath(resource, *fbDeclarationsPath.toTypedArray()),
-                                    portName
-                                ).serialize()] = dataElement.getAttributeValue("value")
+                                watches[Watchable(WatchablePath(resource, fbDeclarationsPath), portName).serialize()] =
+                                    dataElement.getAttributeValue("value")
                             }
                         }
                     }

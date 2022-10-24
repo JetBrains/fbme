@@ -15,11 +15,10 @@ import org.fbme.lib.iec61499.declarations.WithNetwork
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 
-
 class DeclarationSnapshot(
     val snapshotDeclaration: Declaration,
     private val originalOwner: PlatformElementsOwner,
-    private val temporaryModels: Map<SModel, SModel>,
+    private val temporaryModels: Map<SModel, SModel>
 ) {
 
     /**
@@ -106,7 +105,7 @@ class DeclarationSnapshot(
 
     class SnapshotModel(
         val originalModel: SModel,
-        reference: SModelReference = SModelReference(null, SModelId.generate(), originalModel.name),
+        reference: SModelReference = SModelReference(null, SModelId.generate(), originalModel.name)
     ) : TrivialModelDescriptor(jetbrains.mps.smodel.SModel(reference)) {
 
         override fun addRootNode(node: SNode) {

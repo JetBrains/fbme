@@ -3,12 +3,10 @@ package org.fbme.ide.richediting.editor
 import jetbrains.mps.editor.runtime.style.InheritableStyleAttribute
 import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
-import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
-import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
@@ -45,31 +43,13 @@ object RichEditorStyleAttributes {
     val SELECTED_FBS: StyleAttribute<SelectionModel<NetworkComponentView>> = InheritableStyleAttribute("selected-fbs")
 
     @JvmField
-    val ALGORITHMS: StyleAttribute<StateAction> = InheritableStyleAttribute("algo")
-
-    @JvmField
-    val OUTPUTS: StyleAttribute<StateAction> = InheritableStyleAttribute("outputs")
-
-    @JvmField
-    val ALL_ALGORITHMS: StyleAttribute<MutableList<AlgorithmDeclaration>> = InheritableStyleAttribute("all-outputs")
-
-    @JvmField
-    val ALL_OUTPUTS: StyleAttribute<List<EventDeclaration>> = InheritableStyleAttribute("all-outputs")
-
-    @JvmField
-    val STATE_COLLECTION: StyleAttribute<EditorCell_Collection> = InheritableStyleAttribute("state-collection")
+    val STATE_ACTION: StyleAttribute<StateAction> = InheritableStyleAttribute("state-action")
 
     @JvmField
     val ACTIONS: StyleAttribute<MutableList<ActionBlock>> = InheritableStyleAttribute("action-block")
 
     @JvmField
     val STATE_DECLARATION: StyleAttribute<StateDeclaration> = InheritableStyleAttribute("state-declaration")
-
-    @JvmField
-    val EDITOR_CONTEXT: StyleAttribute<EditorContext> = InheritableStyleAttribute("editor-context")
-
-    @JvmField
-    val FACTORY_DECLARATION: StyleAttribute<IEC61499Factory> = InheritableStyleAttribute("factory-declaration")
 
     @JvmField
     val DIAGRAM_FACILITY: StyleAttribute<DiagramFacility<*, *, *, *>> =
@@ -100,15 +80,9 @@ object RichEditorStyleAttributes {
         TYPE.register()
         FB.register()
         SELECTED_FBS.register()
-        ALGORITHMS.register()
-        OUTPUTS.register()
-        ALL_ALGORITHMS.register()
-        ALL_OUTPUTS.register()
-        STATE_COLLECTION.register()
+        STATE_ACTION.register()
         ACTIONS.register()
         STATE_DECLARATION.register()
-        EDITOR_CONTEXT.register()
-        FACTORY_DECLARATION.register()
         DIAGRAM_FACILITY.register()
         COMPONENTS_FACILITY.register()
         CONNECTIONS_FACILITY.register()

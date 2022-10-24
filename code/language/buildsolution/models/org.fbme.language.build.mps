@@ -330,6 +330,11 @@
               </node>
             </node>
           </node>
+          <node concept="1SiIV0" id="5cUQ_BhKDbM" role="3bR37C">
+            <node concept="3bR9La" id="5cUQ_BhKDbN" role="1SiIV1">
+              <ref role="3bR37D" to="ffeo:rD7wKO5Iy" resolve="MPS.TextGen" />
+            </node>
+          </node>
         </node>
         <node concept="1SiIV0" id="ahlxKSr1RM" role="3bR37C">
           <node concept="3bR9La" id="ahlxKSr1RN" role="1SiIV1">
@@ -405,8 +410,8 @@
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="1_cY4Eau2J5" role="3bR37C">
-          <node concept="3bR9La" id="1_cY4Eau2J6" role="1SiIV1">
+        <node concept="1SiIV0" id="5WcZ9cNMFCD" role="3bR37C">
+          <node concept="3bR9La" id="5WcZ9cNMFCE" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1d41uYMTVPB" resolve="jetbrains.mps.lang.scopes.runtime" />
           </node>
         </node>

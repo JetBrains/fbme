@@ -28,9 +28,6 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
         return object : Statement() {
             @Throws(Throwable::class)
             override fun evaluate() {
-                if (runnerEnvironment.platformTestClass.isInstance(target)) {
-                    runnerEnvironment.platformTestEnvironmentField[target] = runnerEnvironment.environment
-                }
                 original.evaluate()
             }
         }
@@ -49,12 +46,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
         }
     }
 
-    class RunnerEnvironment(
-        val environment: Environment,
-        val classLoader: PlatformTestClassloader,
-        val platformTestClass: Class<*>,
-        val platformTestEnvironmentField: Field
-    )
+    class RunnerEnvironment(val classLoader: PlatformTestClassloader)
 
     class PlatformTestClassloader(private val myParentModule: ReloadableModule) : URLClassLoader(
         arrayOf(
@@ -68,6 +60,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
         override fun loadClass(name: String): Class<*> {
             try {
                 return super.loadClass(name)
+            } catch (ignored: LinkageError) {
             } catch (ignored: ClassNotFoundException) {
             }
             return myParentModule.getClass(name)
@@ -94,8 +87,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
 
         private fun loadFromModuleName(clazz: Class<*>): String {
             val loadFrom = clazz.getAnnotation(LoadFrom::class.java)
-            val moduleName = loadFrom?.module ?: "org.fbme.ide.platform"
-            return moduleName
+            return loadFrom?.module ?: "org.fbme.ide.platform"
         }
 
         @Throws(MalformedURLException::class, ClassNotFoundException::class, NoSuchFieldException::class)
@@ -130,12 +122,10 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                 val classloader = PlatformTestClassloader(parentModule)
                 val platformTestClass =
                     Class.forName("org.fbme.ide.platform.testing.PlatformTestBase", true, classloader)
-                RunnerEnvironment(
-                    environment,
-                    classloader,
-                    platformTestClass,
-                    platformTestClass.getField("environment")
-                )
+                val field = platformTestClass.getDeclaredField("environment")
+                field.isAccessible = true
+                field.set(null, environment)
+                RunnerEnvironment(classloader)
             }
         }
 
@@ -148,6 +138,11 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
 
         private fun EnvironmentConfig.addFbmePlugin(id: String): EnvironmentConfig {
             return addPlugin(libPath("../../build/dist-plugins/$id"), id)
+        }
+
+        init {
+            System.setProperty("ide.widget.toolbar", "false")
+            System.setProperty("ide.cancellation.propagate", "false")
         }
     }
 }

@@ -25,13 +25,13 @@ import java.util.*
 class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
     private val project: jetbrains.mps.project.Project?
     override fun updateModel(context: DataContext) {}
-    override fun updateModel(`object`: Any) {
+    override fun updateModel(item: Any) {
         project!!.modelAccess.runReadAction {
             var instance: NetworkInstance?
-            instance = if (`object` is Item) {
-                `object`.instance
-            } else if (`object` is NetworkInstance) {
-                `object`
+            instance = if (item is Item) {
+                item.instance
+            } else if (item is NetworkInstance) {
+                item
             } else {
                 setModel(emptyList())
                 return@runReadAction
@@ -41,18 +41,18 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
             var device: DeviceDeclaration? = null
             val container = instance.rootInstance.declaration
             if (container is ApplicationDeclaration) {
-                system = container.container as SystemDeclaration?
+                system = container.container
             }
             if (container is ResourceDeclaration) {
                 device = container.container as DeviceDeclaration
-                system = device.container as SystemDeclaration?
+                system = device.container
             }
             while (instance != null) {
                 model.add(Item(instance, project))
                 val parentInstace = instance.parent
-                instance = if (parentInstace is FunctionBlockInstance) ({
+                instance = if (parentInstace is FunctionBlockInstance) {
                     parentInstace.parent
-                }) as? NetworkInstance else {
+                } else {
                     null
                 }
             }
@@ -62,7 +62,7 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
             if (system != null) {
                 model.add(SystemItem(system, project))
             }
-            Collections.reverse(model)
+            model.reverse()
             setModel(model)
         }
     }
@@ -71,7 +71,9 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
         override fun navigate(requestFocus: Boolean) {
             project!!.modelAccess.runReadAction {
                 NetworkInstanceNavigationSupport.navigate(
-                    project, instance, requestFocus
+                    project,
+                    instance,
+                    requestFocus
                 )
             }
         }
@@ -91,7 +93,10 @@ class NetworkInstanceNavBarModel(project: Project) : NavBarModel(project) {
         override fun navigate(requestFocus: Boolean) {
             ModelAccessHelper(project!!.modelAccess).runReadAction<Editor> {
                 NavigationSupport.getInstance().openNode(
-                    project, spec!!, requestFocus, true
+                    project,
+                    spec!!,
+                    requestFocus,
+                    true
                 )
             }
         }

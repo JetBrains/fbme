@@ -1,8 +1,5 @@
 package org.fbme.lib.common
 
-import java.util.*
-import java.util.stream.Collectors
-
 interface CompositeReference<DeclarationPathT : DeclarationPath> {
     fun getTarget(): DeclarationPathT?
     fun getPath(): List<Identifier>
@@ -13,8 +10,7 @@ interface CompositeReference<DeclarationPathT : DeclarationPath> {
     }
 
     fun setTargetNames(names: List<String>) {
-        setPath(names.stream().map { value: String -> StringIdentifier(value) }
-            .collect(Collectors.toList()))
+        setPath(names.map { value -> StringIdentifier(value) })
     }
 
     fun setFQName(fqName: String) {

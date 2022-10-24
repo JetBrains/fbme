@@ -36,11 +36,7 @@ class RichResourceProjection(
     }
 
     override fun saveState(element: Element) {
-        element.setAttribute(
-            PERSISTENCE_KEY, MPSNetworkInstanceReference.create(
-                instance
-            ).serialize()
-        )
+        element.setAttribute(PERSISTENCE_KEY, MPSNetworkInstanceReference.create(instance).serialize())
     }
 
     companion object {

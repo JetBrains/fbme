@@ -5,9 +5,10 @@ import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.st.expressions.Expression
 import org.jetbrains.mps.openapi.model.SNode
 
-class InlineValueView(val opposite: FunctionBlockPortView, val expression: Expression) : NetworkComponentView,
+class InlineValueView(val opposite: FunctionBlockPortView, val expression: Expression) :
+    NetworkComponentView,
     NetworkPortView {
-    val associatedNode: SNode
+    val associatedNode: SNode = (expression as PlatformElement).node
     override val component: NetworkComponentView
         get() = this
     override val kind: EntryKind
@@ -29,7 +30,4 @@ class InlineValueView(val opposite: FunctionBlockPortView, val expression: Expre
         return opposite.hashCode()
     }
 
-    init {
-        associatedNode = (expression as PlatformElement).node
-    }
 }

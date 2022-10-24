@@ -114,12 +114,9 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         val dx2Attriubte = connecitonElement.getAttribute("dx2")
         return try {
             var kind = ConnectionPath.Kind.Straight
-            var dx1: Int
-            var dy: Int
-            var dx2: Int
-            dx2 = 0
-            dy = dx2
-            dx1 = dy
+            var dx1 = 0
+            var dy = 0
+            var dx2 = 0
             if (dx1Attriubte != null && dyAttriubte != null && dx2Attriubte != null) {
                 kind = ConnectionPath.Kind.FourAngles
                 dx1 = dx1Attriubte.floatValue.toInt()

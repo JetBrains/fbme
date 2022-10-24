@@ -195,7 +195,7 @@ class NetworkInspectionsFacility(
             val controller = connectionProvider(networkView.getConnectionView(key))
             controller.highlightColor = value
         }
-        if (!data.highlightedConnections.isEmpty()) {
+        if (data.highlightedConnections.isNotEmpty()) {
             editor.fireRepaint()
         }
     }

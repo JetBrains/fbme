@@ -19,7 +19,6 @@ class StateCell(
     editorContext: EditorContext,
     accessor: ModelAccessor,
     node: SNode,
-    collection: EditorCell_Collection,
     private val isOpenActions: MutableMap<StateDeclaration, Boolean>,
     private val stateDeclaration: StateDeclaration
 ) : EditorCell_Property(editorContext, accessor, node) {
@@ -68,7 +67,7 @@ class StateCell(
                     return text != ""
                 }
             }
-            return StateCell(editorContext, modelAccessor, node, cellCollection, isOpenActions, state)
+            return StateCell(editorContext, modelAccessor, node, isOpenActions, state)
         }
 
         @JvmStatic
@@ -87,6 +86,5 @@ class StateCell(
     init {
         style.set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK)
         style.set(StyleAttributes.PADDING_BOTTOM, Padding(0.05, Measure.SPACES))
-        style.set(RichEditorStyleAttributes.STATE_COLLECTION, collection)
     }
 }

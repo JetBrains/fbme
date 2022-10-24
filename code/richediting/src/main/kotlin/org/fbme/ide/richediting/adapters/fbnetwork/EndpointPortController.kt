@@ -5,7 +5,10 @@ import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.ide.richediting.viewmodel.InterfaceEndpointView
 import org.fbme.ide.richediting.viewmodel.NetworkPortView
 import org.fbme.scenes.controllers.components.ComponentController
-import java.awt.*
+import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.Point
+import java.awt.Rectangle
 import java.util.function.Function
 
 class EndpointPortController(context: EditorContext, private val view: InterfaceEndpointView) :
@@ -15,7 +18,7 @@ class EndpointPortController(context: EditorContext, private val view: Interface
 
     @JvmField
     var portCell: EndpointPortCell
-    
+
     override val componentCell: EditorCell
         get() = portCell.rootCell
 

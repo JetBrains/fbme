@@ -28,14 +28,14 @@ class StepChanger(private val counterexample: Counterexample?, private val syste
             val spinner = event.source as JSpinner
             val step = spinner.value as String
             val stepIndex = counterexample!!.indexOf(step)
-            stepIndexModel!!.setStepIndex(stepIndex)
+            stepIndexModel.setStepIndex(stepIndex)
         }
-        stepIndexModel!!.addPropertyChangeListener(StepIndexModel.Companion.STEP_INDEX) { event: PropertyChangeEvent ->
+        stepIndexModel.addPropertyChangeListener(StepIndexModel.STEP_INDEX) { event: PropertyChangeEvent ->
             val stepIndex = event.newValue as Int
             val dataScrollModel = model!!.dataScrollModel
             val percent = stepIndex.toDouble() / counterexample!!.length()
-            val value = (dataScrollModel!!.maximum * percent).toInt()
-            dataScrollModel!!.value = value
+            val value = (dataScrollModel.maximum * percent).toInt()
+            dataScrollModel.value = value
             model!!.globalTimeModel.time = counterexample.timeOf(stepIndex)
             val itemValues = counterexample.getItemValues(stepIndex)
             systemHighlighter.highlight(itemValues)

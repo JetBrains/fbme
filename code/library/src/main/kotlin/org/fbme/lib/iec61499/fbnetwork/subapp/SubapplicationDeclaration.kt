@@ -1,6 +1,5 @@
 package org.fbme.lib.iec61499.fbnetwork.subapp
 
-import org.fbme.lib.common.Element
 import org.fbme.lib.common.Reference
 import org.fbme.lib.iec61499.declarations.SubapplicationTypeDeclaration
 import org.fbme.lib.iec61499.declarations.WithNetwork

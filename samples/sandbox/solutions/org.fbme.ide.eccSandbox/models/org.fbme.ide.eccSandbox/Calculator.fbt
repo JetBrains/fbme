@@ -1,16 +1,16 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE FBType SYSTEM 'http://www.holobloc.com/xml/LibraryElement.dtd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
 <FBType Name="Calculator">
-  <Identification Standard="61499-2" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT"></Event>
-      <Event Name="Addition"></Event>
-      <Event Name="Substraction"></Event>
+      <Event Name="INIT" />
+      <Event Name="Addition" />
+      <Event Name="Substraction" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="CNF"></Event>
-      <Event Name="INITO"></Event>
+      <Event Name="CNF" />
+      <Event Name="INITO" />
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="IN1" Type="INT" />
@@ -21,33 +21,33 @@
     </OutputVars>
   </InterfaceList>
   <BasicFB>
-    <InternalVars></InternalVars>
     <ECC>
-      <ECState Name="START" x="1770.0" y="383.0"></ECState>
-      <ECState Name="INIT" x="354.0" y="908.0">
-        <ECAction Algorithm="INIT" Output="INITO" />
+      <ECState Name="START" x="1770" y="383" />
+      <ECState Name="INIT" x="354" y="908">
+        <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="Addition" x="1545.0" y="1233.0">
-        <ECAction Algorithm="Addition" Output="CNF" />
+      <ECState Name="Addition" x="1545" y="1233">
+        <ECAction Output="CNF" Algorithm="Addition" />
       </ECState>
-      <ECState Name="Substraction" x="3412.0" y="679.0">
-        <ECAction Algorithm="Substraction" Output="CNF" />
+      <ECState Name="Substraction" x="3412" y="679">
+        <ECAction Output="CNF" Algorithm="Substraction" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1075.0" y="554.0" />
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="1375.0" y="783.0" />
-      <ECTransition Source="START" Destination="Addition" Condition="Addition" x="1750.0" y="875.0" />
-      <ECTransition Source="Addition" Destination="START" Condition="1" x="2054.0" y="829.0" />
-      <ECTransition Source="START" Destination="Substraction" Condition="Substraction" x="2762.0" y="716.0" />
-      <ECTransition Source="Substraction" Destination="START" Condition="1" x="2875.0" y="487.0" />
+      <ECTransition Source="START" Destination="INIT" x="1075" y="554" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="START" x="1375" y="783" Condition="1" />
+      <ECTransition Source="START" Destination="Addition" x="1750" y="875" Condition="Addition" />
+      <ECTransition Source="Addition" Destination="START" x="2054" y="829" Condition="1" />
+      <ECTransition Source="START" Destination="Substraction" x="2762" y="716" Condition="Substraction" />
+      <ECTransition Source="Substraction" Destination="START" x="2875" y="487" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="OUT := 0;&#38;#10;" />
+      <ST Text="OUT := 0;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="Addition">
-      <ST Text="OUT := IN1 + IN2;&#38;#10;" />
+      <ST Text="OUT := IN1 + IN2;&amp;#38;#10;" />
     </Algorithm>
     <Algorithm Name="Substraction">
-      <ST Text="OUT := IN1 - IN2;&#38;#10;" />
+      <ST Text="OUT := IN1 - IN2;&amp;#38;#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
+

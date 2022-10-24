@@ -6,7 +6,7 @@ import javax.swing.*
 import javax.swing.table.TableModel
 
 class DebugPanelModel(counterexample: Counterexample?) {
-    val stepIndexModel: StepIndexModel
+    val stepIndexModel: StepIndexModel = StepIndexModel()
     val stepSpinnerModel: SpinnerModel
     val globalTimeModel: GlobalTimeModel
     val conditionModel: ConditionModel
@@ -20,11 +20,10 @@ class DebugPanelModel(counterexample: Counterexample?) {
     }
 
     init {
-        stepIndexModel = StepIndexModel()
         stepSpinnerModel = SpinnerListModel(counterexample!!.steps)
         globalTimeModel = GlobalTimeModel()
         conditionModel = ConditionModel()
-        val elements: Array<SystemItem> = counterexample!!.items
+        val elements: Array<SystemItem> = counterexample.items
         val arr = emptyArray<Array<SystemItem>>().plus(elements)
         itemModel = UneditableTableModel(arr, arrayOf<String?>(FIRST_COLUMN_NAME))
         valueModel = UneditableTableModel(counterexample.values, counterexample.steps)

@@ -50,9 +50,9 @@ internal class ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>(
             val isTargetComponentSelected = targetPort?.let {
                 componentsSelection.isSelected(diagramController.getComponent(it))
             } ?: false
-            return myConnectionsSelection.contains(connection)
-                    || isSourceComponentSelected
-                    || isTargetComponentSelected
+            return myConnectionsSelection.contains(connection) ||
+                isSourceComponentSelected ||
+                isTargetComponentSelected
         }
 
     init {

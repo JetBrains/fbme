@@ -24,3 +24,6 @@ out
 lib
 
 build.xml
+
+*.log
+*.log.*

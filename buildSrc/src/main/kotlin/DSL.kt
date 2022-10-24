@@ -9,7 +9,6 @@ import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 import org.fbme.gradle.mpsDistribution as mpsDistribution0
 
-
 inline val PluginDependenciesSpec.mps: PluginDependencySpec get() = id("org.fbme.gradle.mps")
 inline val PluginDependenciesSpec.kotlin: PluginDependencySpec get() = kotlin("jvm").version("1.6.21")
 inline val PluginDependenciesSpec.compose: PluginDependencySpec get() = id("org.jetbrains.compose") version "1.2.0-alpha01-dev686"

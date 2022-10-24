@@ -7,22 +7,22 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.TextBuilder
 import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.richediting.RicheditingMpsBridge
 import org.fbme.ide.richediting.adapters.ecc.cell.*
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
-import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.scenes.cells.EditorCell_Scene
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.components.ComponentController
+import org.fbme.scenes.controllers.scene.scene
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.util.function.Function
-import java.util.stream.Collectors
 
 class ECStateController(
     scene: EditorCell_Scene,
@@ -78,14 +78,6 @@ class ECStateController(
     override fun translateForm(originalPosition: Point, dx: Int, dy: Int): Point {
         val point = Point(originalPosition)
         point.translate(dx, dy)
-        for (it in stateActionBlocks) {
-            val algo = it.algorithm
-            val body = algo.algorithmBody ?: continue
-            for (cell in body.cells) {
-                val shiftPoint = algo.algorithmBodyPoint
-                cell.moveTo(shiftPoint.x, shiftPoint.y)
-            }
-        }
         return point
     }
 
@@ -112,16 +104,20 @@ class ECStateController(
         context: EditorContext,
         node: SNode
     ): EditorCell_Collection {
-        return EditorCell_Collection(context, node, object : AbstractCellLayout() {
-            override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                assert(cells === cellCollection)
-                relayout()
-            }
+        return EditorCell_Collection(
+            context,
+            node,
+            object : AbstractCellLayout() {
+                override fun doLayout(cells: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                    assert(cells === cellCollection)
+                    relayout()
+                }
 
-            override fun doLayoutText(p0: MutableIterable<jetbrains.mps.openapi.editor.cells.EditorCell>): TextBuilder {
-                return TextBuilderImpl()
+                override fun doLayoutText(p0: MutableIterable<jetbrains.mps.openapi.editor.cells.EditorCell>): TextBuilder {
+                    return TextBuilderImpl()
+                }
             }
-        })
+        )
     }
 
     private fun initializeActions() {
@@ -137,34 +133,19 @@ class ECStateController(
                 val algorithmDeclarationNode = (algorithmDeclaration as PlatformElement).node
                 val contentCell = RicheditingMpsBridge.createAlgorithmContentCell(context, algorithmDeclarationNode)
                 isOpenAlgorithmBody.putIfAbsent(action, true)
-                algorithmCell = AlgorithmCell.createAlgorithmCell(
-                    context,
-                    algorithmDeclaration,
-                    node,
-                    action,
-                    cellCollection,
-                    contentCell,
-                    isOpenAlgorithmBody
-                )
+                algorithmCell =
+                    AlgorithmCell.createAlgorithmCell(context, algorithmDeclaration, node, action, contentCell)
                 cellCollection.addEditorCell(algorithmCell)
                 if (isOpenBody) {
                     cellCollection.addEditorCell(contentCell)
                 }
             } else {
-                algorithmCell = AlgorithmCell.createAlgorithmCell(
-                    context,
-                    algorithmDeclaration,
-                    node,
-                    action,
-                    cellCollection,
-                    null,
-                    isOpenAlgorithmBody
-                )
+                algorithmCell = AlgorithmCell.createAlgorithmCell(context, null, node, action, null)
                 cellCollection.addEditorCell(algorithmCell)
             }
-            val outputCell = OutputCell(context, node, action, cellCollection, isOpenAlgorithmBody)
+            val outputCell = OutputCell(context, node, action)
             cellCollection.addEditorCell(outputCell)
-            stateActionBlocks.add(ActionBlock(algorithmCell, outputCell, action))
+            stateActionBlocks.add(ActionBlock(algorithmCell, outputCell))
         }
     }
 
@@ -177,79 +158,46 @@ class ECStateController(
             collection: EditorCell_Collection
         ) {
             val declaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
-            val context = collection.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
             declaration!!.actions.remove(action)
-            context!!.editorComponent.updater.update()
+            collection.editorComponent.updater.update()
         }
 
         @JvmStatic
-        fun addAction(collection: EditorCell_Collection) {
-            val declaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
-            declaration!!.actions.add(createEmptyAction(collection))
-        }
+        fun addNewAlgorithm(collection: EditorCell, action: StateAction) {
 
-        @JvmStatic
-        fun addNewAlgorithm(collection: EditorCell_Collection, action: StateAction) {
-            val prefixName = "NewAlgorithm"
-            val factory = collection.style.get(RichEditorStyleAttributes.FACTORY_DECLARATION)
-            val allAlgorithms = collection.style.get(RichEditorStyleAttributes.ALL_ALGORITHMS)
-            val allAlgorithmNames = allAlgorithms!!.stream().map { obj: AlgorithmDeclaration? -> obj!!.name }
-                .collect(Collectors.toList())
-            val number = allAlgorithmNames.stream()
-                .filter { it.startsWith(prefixName) && it.length > prefixName.length }
-                .map { it.substring(prefixName.length) }
-                .filter { it.matches(Regex("^[0-9]+$")) }
-                .mapToInt { s: String -> s.toInt() }
-                .max()
-                .orElse(0)
-            val algorithmName = prefixName + (number + 1)
-            val algorithmDeclaration = factory!!.createAlgorithmDeclaration(StringIdentifier(algorithmName))
-            algorithmDeclaration.name = algorithmName
-            val body: AlgorithmBody = factory.createAlgorithmBody(AlgorithmLanguage.ST)
-            algorithmDeclaration.body = body
-            allAlgorithms.add(algorithmDeclaration)
-            action.algorithm.setTarget(algorithmDeclaration)
         }
 
         @JvmStatic
         fun setAlgorithmToNone(cell: AlgorithmCell) {
-            val collection = cell.style.get(RichEditorStyleAttributes.STATE_COLLECTION)
-            val stateAction = cell.style.get(RichEditorStyleAttributes.ALGORITHMS)
-            val context = collection!!.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
-            val newStateAction = createEmptyAction(collection)
+            val stateAction = cell.style.get(RichEditorStyleAttributes.STATE_ACTION)
+            val context = cell.context
+            val factory = PlatformRepositoryProvider.getInstance(context.repository).iec61499Factory
+            val newStateAction = factory.createStateAction()
             val outputDeclaration = stateAction!!.event.getTarget()
             if (outputDeclaration != null) {
                 newStateAction.event.setTarget(outputDeclaration)
             }
-            val stateDeclaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
+            val stateDeclaration = cell.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
             val indexInArray = stateDeclaration!!.actions.indexOf(stateAction)
             stateDeclaration.actions[indexInArray] = newStateAction
-            context!!.editorComponent.updater.update()
         }
 
         @JvmStatic
         fun setOutputToNone(cell: OutputCell) {
-            val collection = cell.style.get(RichEditorStyleAttributes.STATE_COLLECTION)
-            val stateAction = cell.style.get(RichEditorStyleAttributes.OUTPUTS)
-            val context = collection!!.style.get(RichEditorStyleAttributes.EDITOR_CONTEXT)
-            val newStateAction = createEmptyAction(collection)
+            val stateAction = cell.style.get(RichEditorStyleAttributes.STATE_ACTION)
+            val factory = PlatformRepositoryProvider.getInstance(cell.context.repository).iec61499Factory
+            val newStateAction = factory.createStateAction()
             val algorithmDeclaration = stateAction!!.algorithm.getTarget()
             if (algorithmDeclaration != null) {
                 newStateAction.algorithm.setTarget(algorithmDeclaration)
             }
-            val isOpenAlgorithmBody = cell.isOpenAlgorithmBody
+            val isOpenAlgorithmBody = cell.scene!!.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY)!!
             val status = isOpenAlgorithmBody.getOrDefault(stateAction, true)
             isOpenAlgorithmBody.remove(stateAction)
             isOpenAlgorithmBody[newStateAction] = status
-            val stateDeclaration = collection.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
+            val stateDeclaration = cell.style.get(RichEditorStyleAttributes.STATE_DECLARATION)
             val indexInArray = stateDeclaration!!.actions.indexOf(stateAction)
             stateDeclaration.actions[indexInArray] = newStateAction
-            context!!.editorComponent.updater.update()
-        }
-
-        private fun createEmptyAction(cell: EditorCell_Collection?): StateAction {
-            val iec61499Factory = cell!!.style.get(RichEditorStyleAttributes.FACTORY_DECLARATION)
-            return iec61499Factory!!.createStateAction()
         }
     }
 
@@ -267,7 +215,6 @@ class ECStateController(
         cellCollection.isBig = true
         cellCollection.style.set(RichEditorStyleAttributes.ACTIONS, stateActionBlocks)
         cellCollection.style.set(RichEditorStyleAttributes.STATE_DECLARATION, state)
-        cellCollection.style.set(RichEditorStyleAttributes.EDITOR_CONTEXT, context)
         relayout()
     }
 }
