@@ -2,7 +2,7 @@ package org.fbme.debugger.common.ui
 
 import org.fbme.debugger.common.state.*
 
-fun State.resolveValue(path: List<String>): String? { // TODO
+fun State.resolveValue(path: List<String>): String? {
     var cur = this
     var result: String? = null
     for ((ind, p) in path.withIndex()) {

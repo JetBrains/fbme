@@ -16,7 +16,7 @@ import org.fbme.lib.iec61499.declarations.*
 
 class ExplanationProducer(
     private val trace: ExecutionTrace,
-    private val typeDeclaration: Declaration
+    typeDeclaration: Declaration
 ) {
     private val pathToDeclarationMap: Map<List<String>, Declaration>
     private val pathToExplanationNodeMap: MutableMap<Pair<Int, List<String>>, ExplanationNode> = mutableMapOf()

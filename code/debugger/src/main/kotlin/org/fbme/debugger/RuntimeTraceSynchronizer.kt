@@ -25,12 +25,6 @@ class RuntimeTraceSynchronizer(
     private val resourceDeclaration: ResourceDeclaration,
     private val trace: ExecutionTrace
 ) {
-    // save trace
-    // after stopping execution
-    // by invoking associated method
-    // sort the sequence of states
-    // and display it
-
     private val readWatchesRequests by lazy { mutableListOf<Map<WatchableData, String>>() }
 
     private val watcherFacade by lazy { WatcherFacade.getInstance(mpsProject)!! }
@@ -94,7 +88,6 @@ class RuntimeTraceSynchronizer(
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val newWatches = watches.mapKeys { it.key.resolve(repository) }
 
-            // find in tail
             for (i in currentStateIndex + 1 until trace.size) {
                 if (getChanges(trace[i].state as ResourceState, newWatches).isEmpty()) {
                     currentStateIndex = i

@@ -16,16 +16,20 @@ import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 
 class SimulatorPanel(
-    private val project: Project,
+    project: Project,
     mpsProject: jetbrains.mps.project.Project,
-    private val trace: ExecutionTrace,
+    trace: ExecutionTrace,
     declaration: Declaration,
     originalDeclaration: Declaration,
     private val simulator: Simulator,
-    private val explanationProducer: ExplanationProducer,
+    explanationProducer: ExplanationProducer,
     inspector: Inspector? = null
 ) : DebuggerPanel(project, mpsProject, trace, declaration, originalDeclaration, explanationProducer, inspector) {
     init {
+        addMouseListenerToWatches()
+    }
+
+    private fun addMouseListenerToWatches() {
         val ml: MouseListener = object : MouseAdapter() {
             override fun mousePressed(e: MouseEvent) {
                 if (e.isPopupTrigger) {

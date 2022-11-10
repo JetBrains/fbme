@@ -219,7 +219,6 @@ open class DebuggerPanel(
     }
 
     protected fun showExplanationPopup(e: MouseEvent) {
-        // TODO: rewrite
         val selectionPath = watchesTree
             .selectionPath
             ?.path
