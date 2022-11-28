@@ -6,6 +6,7 @@ import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.smvDebugger.executionTraceGeneration.SMVCountereExampleParser
+import org.fbme.smvDebugger.fb2smv.FB2SMV
 import org.fbme.smvDebugger.integration.ServicePathProvider
 import org.fbme.smvDebugger.integration.SmvService
 import org.fbme.smvDebugger.model.CounterexampleParser
@@ -21,6 +22,8 @@ class SmvDebugger(project: MPSProject) {
     private val ideaProject: Project
     private val counterexampleParser = CounterexampleParser
     private val unifiedParser: SMVCountereExampleParser
+    private val fB2SMV: FB2SMV
+    private val mpsProject: MPSProject
     fun run(
         fbPath: Path,
         compositeFb: CompositeFBTypeDeclaration,
@@ -30,7 +33,9 @@ class SmvDebugger(project: MPSProject) {
             if (exported) {
                 showExportedConterexample(compositeFb)
             } else {
-                verify(fbPath, compositeFb)
+               fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
+             //  verify(fbPath, compositeFb)
+                null
             }
         } catch (e: Exception) {
             JOptionPane.showMessageDialog(null, e.message)
@@ -47,15 +52,17 @@ class SmvDebugger(project: MPSProject) {
 
     private fun verify(fbPath: Path, compositeFb: CompositeFBTypeDeclaration): JPanel? {
         val specification = specification
+
         val counterexample = smvService.verify(fbPath, specification)
         if (counterexample == null) {
             notifySuccess()
             return null
         }
 
+
         unifiedParser.getUnifiedTrace("", counterexample,  compositeFb)
         return null
-        //return debugPanelService.run(compositeFb, counterexample.get())
+      //  return debugPanelService.run(compositeFb, counterexample.get())
     }
 
     companion object {
@@ -71,6 +78,8 @@ class SmvDebugger(project: MPSProject) {
         smvService = SmvService(ServicePathProvider.Companion.create(project))
         debugPanelService = DebugPanelService(project)
         ideaProject = project.project
+        mpsProject = project
+        fB2SMV = FB2SMV()
         unifiedParser = SMVCountereExampleParser(project)
     }
 }
