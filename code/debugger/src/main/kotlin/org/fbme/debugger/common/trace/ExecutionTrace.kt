@@ -4,7 +4,7 @@ import org.fbme.debugger.common.change.InitialChange
 import org.fbme.debugger.common.state.State
 
 class ExecutionTrace(initialState: State): Iterable<TraceItem> {
-    private val _items = mutableListOf(TraceItem(initialState.copy(), listOf(), InitialChange()))
+    private val _items = mutableListOf(TraceItem(initialState.copy(), listOf(), InitialChange))
 
     private val listenersOnAdding = mutableListOf<(TraceItem) -> Unit>()
 

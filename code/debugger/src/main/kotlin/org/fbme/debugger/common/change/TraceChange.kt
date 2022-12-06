@@ -1,3 +1,3 @@
 package org.fbme.debugger.common.change
 
-interface TraceChange
+sealed interface TraceChange
