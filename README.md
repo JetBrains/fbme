@@ -19,4 +19,4 @@
 
 ### Building the standalone IDE
 
-- Run `./gradlew buildRcpDistrib`
+- Run `./gradlew buildLocalDistribution`
