@@ -1,6 +1,6 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.common.state.Value
+import org.fbme.debugger.common.value.Value
 
 interface FBSimulator : Simulator {
     fun triggerEvent(eventName: String)

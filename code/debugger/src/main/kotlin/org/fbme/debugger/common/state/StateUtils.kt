@@ -1,13 +1,15 @@
 package org.fbme.debugger.common.state
 
-fun FBState.typeOfParameter(name: String): String? {
-    return if (inputEvents.contains(name)) "Input Event"
-    else if (outputEvents.contains(name)) "Output Event"
-    else if (inputVariables.contains(name)) "Input Variable"
-    else if (outputVariables.contains(name)) "Output Variable"
-    else if (this is BasicFBState && internalVariables.contains(name)) "Internal Variable"
-    else if (this is BasicFBState && name == "\$ECC") "ECC State"
-    else null
+import org.fbme.lib.iec61499.declarations.*
+
+fun FBState.typeOfParameter(name: String) = when {
+    name in inputEvents -> "Input Event"
+    name in outputEvents -> "Output Event"
+    name in inputVariables -> "Input Variable"
+    name in outputVariables -> "Output Variable"
+    this is BasicFBState && name in internalVariables -> "Internal Variable"
+    this is BasicFBState && name == "\$ECC" -> "ECC State"
+    else -> error("Parameter not found")
 }
 
 fun FBState.valueOfParameter(name: String): String? {
@@ -21,12 +23,17 @@ fun FBState.valueOfParameter(name: String): String? {
         else null
 }
 
-fun FBState.typeOfValue(name: String): String? {
-    return if (inputEvents.contains(name)) "Int"
-    else if (outputEvents.contains(name)) "Int"
-    else if (inputVariables.contains(name)) inputVariables[name]!!.value!!::class.simpleName
-    else if (outputVariables.contains(name)) outputVariables[name]!!.value!!::class.simpleName
-    else if (this is BasicFBState && internalVariables.contains(name)) internalVariables[name]!!.value!!::class.simpleName
-    else if (this is BasicFBState && name == "\$ECC") "String"
-    else null
+internal fun WithNetwork.getChildrenStates(): Map<String, FBStateImpl> {
+    return network.allComponents.associate { component ->
+        val componentName = component.name
+        val componentDeclaration = component.type.declaration as FBTypeDeclaration
+        val componentState = when (componentDeclaration) {
+            is BasicFBTypeDeclaration -> BasicFBState(componentDeclaration)
+            is CompositeFBTypeDeclaration -> CompositeFBState(componentDeclaration)
+            is ServiceInterfaceFBTypeDeclaration -> ServiceFBState(componentDeclaration)
+            else -> error("unexpected type")
+        }
+
+        Pair(componentName, componentState)
+    }
 }

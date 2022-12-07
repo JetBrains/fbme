@@ -6,6 +6,7 @@ import org.fbme.debugger.common.state.typeOfParameter
 import org.fbme.debugger.common.state.valueOfParameter
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.ui.resolveFB
+import org.fbme.debugger.common.value.Value
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.ResourceSimulatorImpl
 import org.fbme.debugger.simulator.applyContext
@@ -78,7 +79,7 @@ class RuntimeTraceSynchronizer(
         for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
             for (parameter in functionBlock.parameters) {
                 val portName = parameter.parameterReference.getTarget()!!.name
-                val value = STInterpreter.interpretLiteral(parameter.value!!)
+                val value = Value.fromSTLiteral(parameter.value!!)
                 val fbState = (trace[currentStateIndex].state as ResourceState).children[functionBlock.name]!!
                 fbState.inputVariables[portName] = value
             }

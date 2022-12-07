@@ -1,13 +1,14 @@
 package org.fbme.debugger.common.state
 
 import org.fbme.debugger.common.extractInitialValue
+import org.fbme.debugger.common.value.Value
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 
-abstract class FBStateImpl : FBState {
+sealed class FBStateImpl : FBState {
     final override val inputEvents: MutableMap<String, Int>
     final override val outputEvents: MutableMap<String, Int>
-    final override val inputVariables: MutableMap<String, Value<Any?>>
-    final override val outputVariables: MutableMap<String, Value<Any?>>
+    final override val inputVariables: MutableMap<String, Value<*>>
+    final override val outputVariables: MutableMap<String, Value<*>>
 
     constructor(typeDeclaration: FBTypeDeclaration) {
         inputEvents = typeDeclaration.inputEvents
@@ -23,7 +24,9 @@ abstract class FBStateImpl : FBState {
     constructor(fbState: FBState) {
         inputEvents = fbState.inputEvents.toMutableMap()
         outputEvents = fbState.outputEvents.toMutableMap()
-        inputVariables = fbState.inputVariables.mapValues { Value(it.value.value) }.toMutableMap()
-        outputVariables = fbState.outputVariables.mapValues { Value(it.value.value) }.toMutableMap()
+        inputVariables = fbState.inputVariables.mapValues { it.value.copy() }.toMutableMap()
+        outputVariables = fbState.outputVariables.mapValues { it.value.copy() }.toMutableMap()
     }
+
+    abstract override fun copy(): FBStateImpl
 }

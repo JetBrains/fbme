@@ -1,5 +1,5 @@
 package org.fbme.debugger.common.state
 
-interface State {
+sealed interface State {
     fun copy(): State
 }

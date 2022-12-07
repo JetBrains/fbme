@@ -5,9 +5,9 @@ import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.TraceChange
 import org.fbme.debugger.common.state.FBStateImpl
-import org.fbme.debugger.common.state.Value
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
+import org.fbme.debugger.common.value.Value
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import java.util.*
 
@@ -18,7 +18,7 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
     abstract val parent: Simulator?
     abstract val fbInstanceName: String?
 
-    val candidates = mutableMapOf<String, Value<Any?>>()
+    val candidates = mutableMapOf<String, Value<*>>()
     val deferredTriggers = LinkedList<String>()
 
     private val rootFBState by lazy {
@@ -50,14 +50,10 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
         }
     }
 
-    final override fun setVariable(variableName: String, value: Value<Any?>) {
-        if (state.inputVariables.contains(variableName)) {
-            candidates[variableName] = value
-        } else if (state.outputVariables.contains(variableName)) {
-            state.outputVariables[variableName]!!.value = value.value
-        } else {
-            error("unexpected variable to set")
-        }
+    final override fun setVariable(variableName: String, value: Value<Any?>): Unit = when (variableName) {
+        in state.inputVariables -> candidates[variableName] = value
+        in state.outputVariables -> state.outputVariables[variableName] = value.copy()
+        else -> error("unexpected variable to set")
     }
 
     private fun triggerInputEvent(eventName: String) {
@@ -108,7 +104,7 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
         for (associatedVariable in associatedVariables) {
             val newValue = candidates[associatedVariable]
             if (newValue != null) {
-                state.inputVariables[associatedVariable]!!.value = newValue.value
+                state.inputVariables[associatedVariable] = newValue.copy()
             }
             candidates.remove(associatedVariable)
         }
@@ -135,8 +131,8 @@ abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator
                     val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
 
                     if (targetFB == null) {
-                        (parent as CompositeFBSimulator).state.outputVariables[targetPort]!!.value =
-                            associatedVariableValue.value
+                        (parent as CompositeFBSimulator).state.outputVariables[targetPort] =
+                            associatedVariableValue.copy()
                     } else {
                         val children = (parent as? CompositeFBSimulator)?.children
                             ?: (parent as? ResourceSimulatorImpl)?.children!!

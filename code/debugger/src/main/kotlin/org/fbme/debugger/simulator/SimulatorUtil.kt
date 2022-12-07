@@ -1,6 +1,6 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.common.state.Value
+import org.fbme.debugger.common.value.Value
 
 fun ResourceSimulatorImpl.applyContext(otherSimulator: ResourceSimulatorImpl) {
     for ((fbName, fbSimulator) in otherSimulator.children) {
@@ -10,7 +10,7 @@ fun ResourceSimulatorImpl.applyContext(otherSimulator: ResourceSimulatorImpl) {
 
 private fun FBSimulatorImpl.applyFBContext(otherSimulator: FBSimulatorImpl) {
     for ((name, value) in otherSimulator.candidates) {
-        candidates[name] = Value(value.value)
+        candidates[name] = value.copy()
     }
     for (name in otherSimulator.deferredTriggers) {
         deferredTriggers.add(name)

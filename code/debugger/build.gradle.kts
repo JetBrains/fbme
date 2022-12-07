@@ -1,4 +1,5 @@
 import org.fbme.gradle.moduleDependency
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     mps
@@ -41,10 +42,13 @@ mps {
     moduleDependency(project(":code:richediting"))
 }
 
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+val compileKotlin: KotlinCompile by tasks
 
-compileKotlin.kotlinOptions.freeCompilerArgs = listOf(
-    "-Xjvm-default=all",
-    "-P",
-    "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-)
+compileKotlin.kotlinOptions {
+    languageVersion = "1.8"
+    freeCompilerArgs = listOf(
+        "-Xjvm-default=all",
+        "-P",
+        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+    )
+}

@@ -81,8 +81,7 @@ class CompositeFBSimulator(
                     val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
 
                     if (targetFB == null) {
-                        state.outputVariables[targetPort]!!.value =
-                            newValue.value
+                        state.outputVariables[targetPort] = newValue.copy()
                     } else {
                         children[targetFB]!!.candidates[targetPort] = newValue
                     }

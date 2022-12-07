@@ -1,12 +1,12 @@
 package org.fbme.debugger.common
 
-import org.fbme.debugger.common.state.Value
+import org.fbme.debugger.common.value.*
 import org.fbme.debugger.simulator.st.STInterpreter
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
-import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
+import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
 
 fun BasicFBTypeDeclaration.getOutgoingTransitionsFromState(state: String): List<StateTransition> {
@@ -24,13 +24,11 @@ fun StateTransition.evaluateCondition(activeEvent: String?, interpreter: STInter
     return result
 }
 
-fun BasicFBTypeDeclaration.getActionsOnState(state: String): List<StateAction> {
-    return ecc.states.firstOrNull { it.name == state }?.actions ?: error("unknown state $state")
-}
+fun BasicFBTypeDeclaration.getActionsOnState(state: String) = ecc.states
+    .firstOrNull { it.name == state }?.actions ?: error("unknown state $state")
 
-fun BasicFBTypeDeclaration.getAlgorithmByName(algorithmName: String): AlgorithmDeclaration {
-    return algorithms.firstOrNull { it.name == algorithmName } ?: error("unknown algorithm $algorithmName")
-}
+fun BasicFBTypeDeclaration.getAlgorithmByName(algorithmName: String) = algorithms
+    .firstOrNull { it.name == algorithmName } ?: error("unknown algorithm $algorithmName")
 
 fun FBTypeDeclaration.getAssociatedVariablesWithInputEvent(eventName: String): List<String> {
     val inputEventIndex = typeDescriptor.eventInputPorts.map { it.name }.indexOf(eventName)
@@ -61,126 +59,101 @@ fun FBNetworkConnection.resolveTargetPortPresentation(): Pair<String?, String> {
     return resolvePortPresentation(targetReference.presentation)
 }
 
-fun WithNetwork.getOutgoingDataConnectionsFromPort(
-    fb: String?,
-    port: String
-): List<FBNetworkConnection> {
-    return network.dataConnections.filter { connection ->
-        val (sourceFB, sourcePort) = connection.resolveSourcePortPresentation()
-        fb == sourceFB && port == sourcePort
-    }
+fun WithNetwork.getOutgoingDataConnectionsFromPort(fb: String?, port: String) =
+    network.dataConnections.filter { it.isOutgoingFromPort(fb, port) }
+
+fun WithNetwork.getOutgoingEventConnectionsFromPort(fb: String?, port: String) =
+    network.eventConnections.filter { it.isOutgoingFromPort(fb, port) }
+
+fun WithNetwork.getIncomingEventConnectionsToPort(fb: String?, port: String) =
+    network.eventConnections.filter { it.isIncomingToPort(fb, port) }
+
+@Suppress("unused")
+fun WithNetwork.getIncomingDataConnectionsToPort(fb: String?, port: String) =
+    network.dataConnections.filter { it.isIncomingToPort(fb, port) }
+
+private fun FBNetworkConnection.isOutgoingFromPort(fb: String?, port: String): Boolean {
+    val (sourceFB, sourcePort) = resolveSourcePortPresentation()
+    return fb == sourceFB && port == sourcePort
 }
 
-fun WithNetwork.getOutgoingEventConnectionsFromPort(
-    fb: String?,
-    port: String
-): List<FBNetworkConnection> {
-    return network.eventConnections.filter { connection ->
-        val (sourceFB, sourcePort) = connection.resolveSourcePortPresentation()
-        fb == sourceFB && port == sourcePort
-    }
+private fun FBNetworkConnection.isIncomingToPort(fb: String?, port: String): Boolean {
+    val (targetFB, targetPort) = resolveTargetPortPresentation()
+    return fb == targetFB && port == targetPort
 }
 
-fun WithNetwork.getIncomingEventConnectionsToPort(
-    fb: String?,
-    port: String
-): List<FBNetworkConnection> {
-    return network.eventConnections.filter { connection ->
-        val (targetFB, targetPort) = connection.resolveTargetPortPresentation()
-        fb == targetFB && port == targetPort
-    }
-}
-
-fun WithNetwork.getIncomingDataConnectionsToPort(
-    fb: String?,
-    port: String
-): List<FBNetworkConnection> {
-    return network.dataConnections.filter { connection ->
-        val (targetFB, targetPort) = connection.resolveTargetPortPresentation()
-        fb == targetFB && port == targetPort
-    }
-}
-
-val ElementaryType.defaultValue: Value<Any?>
+val DataType.defaultValue: Value<*>
     get() = when (this) {
-        ElementaryType.BOOL -> Value(false)
-        ElementaryType.BYTE -> error("TODO")
-        ElementaryType.DT -> error("TODO")
-        ElementaryType.DWORD -> error("TODO")
-        ElementaryType.DATE_AND_TIME -> error("TODO")
-        ElementaryType.DATE -> error("TODO")
-        ElementaryType.DINT -> error("TODO")
-        ElementaryType.INT -> Value(0)
-        ElementaryType.LINT -> error("TODO")
-        ElementaryType.SINT -> error("TODO")
-        ElementaryType.UDINT -> error("TODO")
-        ElementaryType.UINT -> error("TODO")
-        ElementaryType.ULINT -> error("TODO")
-        ElementaryType.USINT -> error("TODO")
-        ElementaryType.LREAL -> error("TODO")
-        ElementaryType.LWORD -> error("TODO")
-        ElementaryType.REAL -> error("TODO")
-        ElementaryType.STRING -> Value("")
-        ElementaryType.TOD -> error("TODO")
-        ElementaryType.TIME_OF_DAY -> error("TODO")
-        ElementaryType.TIME -> Value("0ms")
-        ElementaryType.WSTRING -> error("TODO")
-        ElementaryType.WORD -> error("TODO")
+        is ElementaryType -> when (this) {
+            ElementaryType.BOOL -> BooleanValue(false)
+            ElementaryType.BYTE -> TODO("Not yet implemented")
+            ElementaryType.DT -> TODO("Not yet implemented")
+            ElementaryType.DWORD -> TODO("Not yet implemented")
+            ElementaryType.DATE_AND_TIME -> TODO("Not yet implemented")
+            ElementaryType.DATE -> TODO("Not yet implemented")
+            ElementaryType.DINT -> TODO("Not yet implemented")
+            ElementaryType.INT -> IntValue(0)
+            ElementaryType.LINT -> TODO("Not yet implemented")
+            ElementaryType.SINT -> TODO("Not yet implemented")
+            ElementaryType.UDINT -> TODO("Not yet implemented")
+            ElementaryType.UINT -> TODO("Not yet implemented")
+            ElementaryType.ULINT -> TODO("Not yet implemented")
+            ElementaryType.USINT -> TODO("Not yet implemented")
+            ElementaryType.LREAL -> TODO("Not yet implemented")
+            ElementaryType.LWORD -> TODO("Not yet implemented")
+            ElementaryType.REAL -> TODO("Not yet implemented")
+            ElementaryType.STRING -> StringValue("")
+            ElementaryType.TOD -> TODO("Not yet implemented")
+            ElementaryType.TIME_OF_DAY -> TODO("Not yet implemented")
+            ElementaryType.TIME -> IntValue(0)
+            ElementaryType.WSTRING -> TODO("Not yet implemented")
+            ElementaryType.WORD -> TODO("Not yet implemented")
+        }
+        else -> TODO("Not yet implemented")
     }
 
-fun ParameterDeclaration.extractInitialValue(): Value<Any?> {
-    return Value(
-        initialValue?.value
-            ?: (type as? ElementaryType)?.defaultValue?.value
-            ?: error("Can not initialize variable")
-    )
+fun ParameterDeclaration.extractInitialValue(): Value<*> {
+    val type = requireNotNull(type)
+    val initialValue = initialValue ?: return type.defaultValue
+
+    return Value.fromSTLiteral(initialValue)
 }
 
 fun ResourceDeclaration.resolvePath(path: List<String>): Declaration {
-    return (this as Declaration).resolvePath(path)
-}
-fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
-    return (this as Declaration).resolvePath(path)
+    if (path.isEmpty()) {
+        return this
+    }
+    val firstFB = network.allComponents
+        .firstOrNull { it.name == path.first() }
+        ?.type
+        ?.declaration as? FBTypeDeclaration ?: error("Path unresolved")
+    return firstFB.resolvePath(path.drop(1))
 }
 
-private fun Declaration.resolvePath(path: List<String>): Declaration {
+fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
     var cur: Declaration = this
-    if (path.isNotEmpty()) {
-        for (p in path) {
-            when (cur) {
-                is ResourceDeclaration -> {
-                    val res = cur
-                    cur = res.network.allComponents.firstOrNull { it.name == p }?.type?.declaration
-                        ?: error("Path unresolved")
-                }
-                is CompositeFBTypeDeclaration -> {
-                    val cfb = cur
-                    cur = cfb.network.allComponents.firstOrNull { it.name == p }?.type?.declaration
-                        ?: cfb.inputEvents.firstOrNull { it.name == p }
-                                ?: cfb.inputParameters.firstOrNull { it.name == p }
-                                ?: cfb.outputEvents.firstOrNull { it.name == p }
-                                ?: cfb.outputParameters.firstOrNull { it.name == p }
-                                ?: error("Path unresolved")
-                }
-                is BasicFBTypeDeclaration -> {
-                    val bfb = cur
-                    cur = bfb.inputEvents.firstOrNull { it.name == p }
-                        ?: bfb.inputParameters.firstOrNull { it.name == p }
-                                ?: bfb.outputEvents.firstOrNull { it.name == p }
-                                ?: bfb.outputParameters.firstOrNull { it.name == p }
-                                ?: if (p == "\$ECC") bfb.ecc.states.first() else null
-                            ?: error("Path unresolved")
-                }
-                is ServiceInterfaceFBTypeDeclaration -> {
-                    val ser = cur
-                    cur = ser.inputEvents.firstOrNull { it.name == p }
-                        ?: ser.inputParameters.firstOrNull { it.name == p }
-                                ?: ser.outputEvents.firstOrNull { it.name == p }
-                                ?: ser.outputParameters.firstOrNull { it.name == p }
-                                ?: error("Path unresolved")
-                }
-                else -> {}
-            }
+    if (path.isEmpty()) {
+        return cur
+    }
+    for (p in path) {
+        cur = when (cur) {
+            is CompositeFBTypeDeclaration -> cur.network.allComponents
+                .firstOrNull { it.name == p }?.type?.declaration ?: cur.inputEvents
+                .firstOrNull { it.name == p } ?: cur.inputParameters
+                .firstOrNull { it.name == p } ?: cur.outputEvents
+                .firstOrNull { it.name == p } ?: cur.outputParameters
+                .firstOrNull { it.name == p } ?: error("Path unresolved")
+            is BasicFBTypeDeclaration -> if (p == "\$ECC") cur.ecc.states.first() else cur.inputEvents
+                .firstOrNull { it.name == p } ?: cur.inputParameters
+                .firstOrNull { it.name == p } ?: cur.outputEvents
+                .firstOrNull { it.name == p } ?: cur.outputParameters
+                .firstOrNull { it.name == p } ?: error("Path unresolved")
+            is ServiceInterfaceFBTypeDeclaration -> cur.inputEvents
+                .firstOrNull { it.name == p } ?: cur.inputParameters
+                .firstOrNull { it.name == p } ?: cur.outputEvents
+                .firstOrNull { it.name == p } ?: cur.outputParameters
+                .firstOrNull { it.name == p } ?: error("Path unresolved")
+            else -> error("Path unresolved")
         }
     }
     return cur

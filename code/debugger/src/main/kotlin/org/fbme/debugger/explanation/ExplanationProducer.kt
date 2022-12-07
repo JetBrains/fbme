@@ -360,6 +360,7 @@ class ExplanationProducer(
                         return listOf(getNodeOrPut(i, source))
                     }
                 }
+                else -> {}
             }
         }
         return listOf() // Triggered by hand
