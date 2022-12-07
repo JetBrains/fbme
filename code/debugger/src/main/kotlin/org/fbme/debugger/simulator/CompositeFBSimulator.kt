@@ -17,7 +17,7 @@ class CompositeFBSimulator(
     override val state: CompositeFBState,
     override val parent: Simulator?,
     override val fbInstanceName: String?,
-    trace: ExecutionTrace
+    trace: ExecutionTrace,
 ) : FBSimulatorImpl(trace) {
     val children: Map<String, FBSimulatorImpl>
 

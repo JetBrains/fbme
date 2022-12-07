@@ -9,7 +9,7 @@ class ServiceFBSimulator(
     override val state: ServiceFBState,
     override val parent: Simulator?,
     override val fbInstanceName: String?,
-    trace: ExecutionTrace
+    trace: ExecutionTrace,
 ) : FBSimulatorImpl(trace) {
     override fun triggerInputEventInternal(eventName: String) {
         // TODO: do nothing?

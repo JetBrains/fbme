@@ -1,7 +1,5 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.common.value.Value
-
 fun ResourceSimulatorImpl.applyContext(otherSimulator: ResourceSimulatorImpl) {
     for ((fbName, fbSimulator) in otherSimulator.children) {
         children[fbName]!!.applyContext(fbSimulator)

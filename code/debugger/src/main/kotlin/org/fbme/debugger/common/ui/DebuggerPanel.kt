@@ -49,7 +49,7 @@ open class DebuggerPanel(
     private val declaration: Declaration,
     private val originalDeclaration: Declaration,
     private val explanationProducer: ExplanationProducer,
-    private val inspector: Inspector? = null
+    private val inspector: Inspector? = null,
 ) {
     val toolWindowPanel = SimpleToolWindowPanel(false, true)
     private val splitPane = OnePixelSplitter(false)
@@ -208,9 +208,11 @@ open class DebuggerPanel(
 
     fun initUI() {
         if (declaration is ResourceDeclaration && RuntimeTraceSynchronizer.hasTrace(trace) && trace.size == 1) {
-            val unavailableStatesPanel = JBPanelWithEmptyText().withEmptyText("States are not available during execution")
+            val unavailableStatesPanel =
+                JBPanelWithEmptyText().withEmptyText("States are not available during execution")
             splitPane.firstComponent = unavailableStatesPanel
-            val unavailableWatchesPanel = JBPanelWithEmptyText().withEmptyText("Watches are not available during execution")
+            val unavailableWatchesPanel =
+                JBPanelWithEmptyText().withEmptyText("Watches are not available during execution")
             splitPane.secondComponent = unavailableWatchesPanel
         } else {
             splitPane.firstComponent = statesPanel()
@@ -235,12 +237,7 @@ open class DebuggerPanel(
             explanationText += "$explanationNode\n"
         }
 
-        val explanation =
-            GotItTooltip(
-                UUID.randomUUID().toString(),
-                explanationText,
-                project
-            )
+        val explanation = GotItTooltip(UUID.randomUUID().toString(), explanationText, project)
         explanation.position = Balloon.Position.atLeft
         explanation.show(watchesTree) { component, _ ->
             Point(component.x, e.y)
@@ -256,7 +253,7 @@ open class DebuggerPanel(
                 expanded: Boolean,
                 leaf: Boolean,
                 row: Int,
-                hasFocus: Boolean
+                hasFocus: Boolean,
             ): Component {
                 val line = JPanel()
                 line.layout = BoxLayout(line, BoxLayout.X_AXIS)
@@ -296,7 +293,8 @@ open class DebuggerPanel(
                         is BasicFBTypeDeclaration -> {}
                         is StateDeclaration,
                         is ParameterDeclaration,
-                        is EventDeclaration -> {
+                        is EventDeclaration,
+                        -> {
                             val curValue = selectedState.resolveValue(pathAsList)
                             val prevValue = previousState.resolveValue(pathAsList)
 
@@ -322,7 +320,7 @@ open class DebuggerPanel(
     private fun JLabel.initForeground(
         isSelected: Boolean,
         hasFocus: Boolean,
-        isValueChanged: Boolean = false
+        isValueChanged: Boolean = false,
     ) {
         foreground =
             if (isSelected && hasFocus) UIManager.getColor("List.selectionForeground")
@@ -336,7 +334,7 @@ open class DebuggerPanel(
                 traceItem: TraceItem,
                 index: Int,
                 isSelected: Boolean,
-                hasFocus: Boolean
+                hasFocus: Boolean,
             ) {
                 val (state, path, change) = traceItem
 

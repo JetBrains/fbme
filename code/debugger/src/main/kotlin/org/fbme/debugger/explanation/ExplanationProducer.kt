@@ -5,18 +5,16 @@ import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.StateChange
 import org.fbme.debugger.common.getActionsOnState
-import org.fbme.debugger.common.getIncomingDataConnectionsToPort
 import org.fbme.debugger.common.getIncomingEventConnectionsToPort
 import org.fbme.debugger.common.resolveSourcePortPresentation
 import org.fbme.debugger.common.state.*
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.debugger.common.ui.resolveValue
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 
 class ExplanationProducer(
     private val trace: ExecutionTrace,
-    typeDeclaration: Declaration
+    typeDeclaration: Declaration,
 ) {
     private val pathToDeclarationMap: Map<List<String>, Declaration>
     private val pathToExplanationNodeMap: MutableMap<Pair<Int, List<String>>, ExplanationNode> = mutableMapOf()
@@ -30,7 +28,7 @@ class ExplanationProducer(
     private fun mapPathsToDeclarations(
         map: MutableMap<List<String>, Declaration>,
         currentPath: List<String>,
-        currentDeclaration: Declaration
+        currentDeclaration: Declaration,
     ) {
         map[currentPath] = currentDeclaration
 

@@ -3,7 +3,7 @@ package org.fbme.debugger.common.trace
 import org.fbme.debugger.common.change.InitialChange
 import org.fbme.debugger.common.state.State
 
-class ExecutionTrace(initialState: State): Iterable<TraceItem> {
+class ExecutionTrace(initialState: State) : Iterable<TraceItem> {
     private val _items = mutableListOf(TraceItem(initialState.copy(), listOf(), InitialChange))
 
     private val listenersOnAdding = mutableListOf<(TraceItem) -> Unit>()
@@ -37,6 +37,7 @@ class ExecutionTrace(initialState: State): Iterable<TraceItem> {
     override fun iterator(): Iterator<TraceItem> {
         return items.iterator()
     }
+
     fun addAll(traceItems: List<TraceItem>) {
         for (traceItem in traceItems) {
             add(traceItem)

@@ -4,7 +4,7 @@ import org.fbme.debugger.common.extractInitialValue
 import org.fbme.debugger.common.value.Value
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 
-class BasicFBState : FBStateImpl {
+class BasicFBState : FBState {
     val internalVariables: MutableMap<String, Value<*>>
     var activeState = START_STATE
 

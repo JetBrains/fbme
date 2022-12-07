@@ -10,7 +10,6 @@ import org.fbme.debugger.common.value.Value
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.ResourceSimulatorImpl
 import org.fbme.debugger.simulator.applyContext
-import org.fbme.debugger.simulator.st.STInterpreter
 import org.fbme.debugger.simulator.ui.resolveSimulator
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.ReadWatchesListener
@@ -24,7 +23,7 @@ import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 class RuntimeTraceSynchronizer(
     private val mpsProject: jetbrains.mps.project.Project,
     private val resourceDeclaration: ResourceDeclaration,
-    private val trace: ExecutionTrace
+    private val trace: ExecutionTrace,
 ) {
     private val readWatchesRequests by lazy { mutableListOf<Map<WatchableData, String>>() }
 
@@ -109,7 +108,7 @@ class RuntimeTraceSynchronizer(
 
             val currentState = trace[currentStateIndex].state as ResourceState
 
-            for ((path, newValue) in serviceChanges) {
+            for ((path, _) in serviceChanges) {
                 val portName = path.last()
                 val fbPath = path.dropLast(1)
                 val fbState = currentState.resolveFB(fbPath)
@@ -130,7 +129,8 @@ class RuntimeTraceSynchronizer(
 
                 when (typeOfParameter) {
                     "Input Event",
-                    "Output Event" -> {
+                    "Output Event",
+                    -> {
                         fbSimulator.triggerEvent(portName)
                         for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
                             val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
@@ -147,7 +147,8 @@ class RuntimeTraceSynchronizer(
                     "Input Variable",
                     "Output Variable",
                     "Internal Variable",
-                    "ECC State" -> {
+                    "ECC State",
+                    -> {
                     }
 
                     else -> error("unknown type")
@@ -165,7 +166,7 @@ class RuntimeTraceSynchronizer(
 
         fun addTraceSynchronizer(
             resourceDeclaration: ResourceDeclaration,
-            traceSynchronizer: RuntimeTraceSynchronizer
+            traceSynchronizer: RuntimeTraceSynchronizer,
         ) {
             instances[resourceDeclaration] = traceSynchronizer
         }

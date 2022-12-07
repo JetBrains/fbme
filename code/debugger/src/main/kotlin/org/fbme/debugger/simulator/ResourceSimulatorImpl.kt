@@ -13,7 +13,7 @@ import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 class ResourceSimulatorImpl(
     val resourceDeclaration: ResourceDeclaration,
     val state: ResourceState,
-    override val trace: ExecutionTrace
+    override val trace: ExecutionTrace,
 ) : ResourceSimulator {
     val children: Map<String, FBSimulatorImpl>
 

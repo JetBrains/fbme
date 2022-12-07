@@ -17,7 +17,7 @@ class BasicFBSimulator(
     override val state: BasicFBState,
     override val parent: Simulator?,
     override val fbInstanceName: String?,
-    trace: ExecutionTrace
+    trace: ExecutionTrace,
 ) : FBSimulatorImpl(trace) {
     private val interpreter = STInterpreter(
         state.inputVariables,

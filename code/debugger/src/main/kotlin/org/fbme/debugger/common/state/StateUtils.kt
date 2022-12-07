@@ -23,7 +23,7 @@ fun FBState.valueOfParameter(name: String): String? {
         else null
 }
 
-internal fun WithNetwork.getChildrenStates(): Map<String, FBStateImpl> {
+internal fun WithNetwork.getChildrenStates(): Map<String, FBState> {
     return network.allComponents.associate { component ->
         val componentName = component.name
         val componentDeclaration = component.type.declaration as FBTypeDeclaration

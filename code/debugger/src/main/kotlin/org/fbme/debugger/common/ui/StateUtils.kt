@@ -37,7 +37,7 @@ fun State.resolveValue(path: List<String>): String? {
     return result
 }
 
-fun State.resolveFB(path: List<String>): FBStateImpl {
+fun State.resolveFB(path: List<String>): FBState {
     var cur: State = this
     if (path.isNotEmpty()) {
         for (fbInstanceName in path) {
@@ -45,5 +45,5 @@ fun State.resolveFB(path: List<String>): FBStateImpl {
             cur = childrenStates[fbInstanceName] ?: error("fb not found")
         }
     }
-    return cur as FBStateImpl
+    return cur as FBState
 }

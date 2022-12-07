@@ -1,6 +1,5 @@
 package org.fbme.debugger.simulator.st
 
-import org.fbme.debugger.common.state.*
 import org.fbme.debugger.common.value.Value
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
@@ -109,7 +108,9 @@ class STInterpreter(
         }
     }
 
-    private fun interpret(forStatement: ForStatement): Unit = TODO("Not yet implemented")
+    private fun interpret(@Suppress("UNUSED_PARAMETER") forStatement: ForStatement): Unit =
+        TODO("Not yet implemented")
 
-    private fun interpret(caseStatement: CaseStatement): Unit = TODO("Not yet implemented")
+    private fun interpret(@Suppress("UNUSED_PARAMETER") caseStatement: CaseStatement): Unit =
+        TODO("Not yet implemented")
 }

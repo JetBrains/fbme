@@ -23,7 +23,7 @@ class SimulatorPanel(
     originalDeclaration: Declaration,
     private val simulator: Simulator,
     explanationProducer: ExplanationProducer,
-    inspector: Inspector? = null
+    inspector: Inspector? = null,
 ) : DebuggerPanel(project, mpsProject, trace, declaration, originalDeclaration, explanationProducer, inspector) {
     init {
         addMouseListenerToWatches()

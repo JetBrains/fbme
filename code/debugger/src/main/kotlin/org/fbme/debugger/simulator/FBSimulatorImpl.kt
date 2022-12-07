@@ -4,7 +4,7 @@ import org.fbme.debugger.common.*
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.TraceChange
-import org.fbme.debugger.common.state.FBStateImpl
+import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.value.Value
@@ -13,7 +13,7 @@ import java.util.*
 
 abstract class FBSimulatorImpl(override val trace: ExecutionTrace) : FBSimulator {
     abstract val typeDeclaration: FBTypeDeclaration
-    abstract val state: FBStateImpl
+    abstract val state: FBState
 
     abstract val parent: Simulator?
     abstract val fbInstanceName: String?

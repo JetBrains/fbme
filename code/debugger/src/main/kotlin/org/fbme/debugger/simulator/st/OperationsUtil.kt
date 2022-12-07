@@ -5,7 +5,6 @@ import org.fbme.debugger.common.value.IntValue
 import org.fbme.debugger.common.value.StringValue
 import org.fbme.debugger.common.value.Value
 import org.fbme.lib.st.expressions.BinaryOperation
-import org.fbme.lib.st.expressions.UnaryExpression
 import org.fbme.lib.st.expressions.UnaryOperation
 import kotlin.math.pow
 

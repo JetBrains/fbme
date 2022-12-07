@@ -7,5 +7,5 @@ data class TraceItem(
     val state: State,
     val path: List<String>,
     val change: TraceChange,
-    var synced: Boolean = false
+    var synced: Boolean = false,
 )
