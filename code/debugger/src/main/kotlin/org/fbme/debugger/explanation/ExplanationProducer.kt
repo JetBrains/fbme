@@ -84,7 +84,7 @@ class ExplanationProducer(
 
         val type: String by lazy {
             return@lazy when (fbState) {
-                is FBState -> (fbState as FBState).typeOfParameter(name)
+                is FBState -> (fbState as FBState).typeOfParameter(name) ?: error("parameter not found")
                 else -> error("unexpected type")
             }
         }

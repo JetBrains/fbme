@@ -56,8 +56,8 @@ class RuntimeTraceSynchronizer(
             val portName = watch.key.port
             val fbPath = path.dropLast(1)
             val fbState = currentState.resolveFB(fbPath)
+            val typeOfParameter = fbState.typeOfParameter(portName) ?: error("parameter not found")
             val prevValue = fbState.valueOfParameter(portName) ?: error("value unresolved")
-            val typeOfParameter = fbState.typeOfParameter(portName)
             val typeDeclaration = resourceDeclaration.resolvePath(fbPath)
             val newValue = if (typeOfParameter == "ECC State")
                 (typeDeclaration as BasicFBTypeDeclaration).ecc.states[watch.value.toInt()].name
@@ -112,7 +112,7 @@ class RuntimeTraceSynchronizer(
                 val portName = path.last()
                 val fbPath = path.dropLast(1)
                 val fbState = currentState.resolveFB(fbPath)
-                val typeOfParameter = fbState.typeOfParameter(portName)
+                val typeOfParameter = fbState.typeOfParameter(portName) ?: error("parameter not found")
 
                 val newState = currentState.copy()
 
@@ -128,8 +128,7 @@ class RuntimeTraceSynchronizer(
 
                 when (typeOfParameter) {
                     "Input Event",
-                    "Output Event",
-                    -> {
+                    "Output Event" -> {
                         fbSimulator.triggerEvent(portName)
                         for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
                             val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
@@ -143,11 +142,12 @@ class RuntimeTraceSynchronizer(
                         }
                     }
 
+                    // Skip everything except event triggers
                     "Input Variable",
                     "Output Variable",
                     "Internal Variable",
-                    "ECC State",
-                    -> {
+                    "ECC State" -> {
+                        // skip
                     }
 
                     else -> error("unknown type")
@@ -174,7 +174,8 @@ class RuntimeTraceSynchronizer(
             instances.remove(resourceDeclaration)
         }
 
-        fun hasTrace(trace: ExecutionTrace): Boolean {
+        @JvmSynthetic
+        internal fun hasTrace(trace: ExecutionTrace): Boolean {
             return instances.values.firstOrNull { it.trace === trace } != null
         }
     }

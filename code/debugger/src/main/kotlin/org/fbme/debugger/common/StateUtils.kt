@@ -3,14 +3,14 @@ package org.fbme.debugger.common
 import org.fbme.debugger.common.state.*
 
 @JvmSynthetic
-internal fun FBState.typeOfParameter(name: String) = when {
+internal fun FBState.typeOfParameter(name: String): String? = when {
     name in inputEvents -> "Input Event"
     name in outputEvents -> "Output Event"
     name in inputVariables -> "Input Variable"
     name in outputVariables -> "Output Variable"
     this is BasicFBState && name in internalVariables -> "Internal Variable"
     this is BasicFBState && name == "\$ECC" -> "ECC State"
-    else -> error("Parameter not found")
+    else -> null
 }
 
 @JvmSynthetic

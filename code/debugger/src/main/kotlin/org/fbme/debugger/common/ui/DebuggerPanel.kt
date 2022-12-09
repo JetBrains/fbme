@@ -448,25 +448,25 @@ open class DebuggerPanel(
     }
 
     private fun initSuggestions(declaration: Declaration = this.declaration, prefix: String = "") {
-        val prefix = if (prefix.isNotEmpty()) "$prefix." else ""
+        val validPrefix = if (prefix.isNotEmpty()) "$prefix." else ""
         if (declaration is FBTypeDeclaration) {
-            suggestions += declaration.inputEvents.map { prefix + it.name }
-            suggestions += declaration.outputEvents.map { prefix + it.name }
-            suggestions += declaration.inputParameters.map { prefix + it.name }
-            suggestions += declaration.outputParameters.map { prefix + it.name }
+            suggestions += declaration.inputEvents.map { validPrefix + it.name }
+            suggestions += declaration.outputEvents.map { validPrefix + it.name }
+            suggestions += declaration.inputParameters.map { validPrefix + it.name }
+            suggestions += declaration.outputParameters.map { validPrefix + it.name }
         }
         when (declaration) {
             is BasicFBTypeDeclaration -> {
-                suggestions += declaration.internalVariables.map { prefix + it.name }
-                suggestions += "$prefix\$ECC"
+                suggestions += declaration.internalVariables.map { validPrefix + it.name }
+                suggestions += "$validPrefix\$ECC"
             }
 
             is DeclarationWithNetwork -> {
                 for (component in declaration.network.allComponents) {
-                    suggestions += prefix + component.name
+                    suggestions += validPrefix + component.name
                 }
                 for (component in declaration.network.allComponents) {
-                    initSuggestions(component.type.declaration!!, prefix + component.name)
+                    initSuggestions(component.type.declaration!!, validPrefix + component.name)
                 }
             }
         }
