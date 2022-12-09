@@ -4,10 +4,7 @@ import org.fbme.debugger.common.state.BasicFBState
 import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.state.ServiceFBState
-import org.fbme.debugger.common.value.BooleanValue
-import org.fbme.debugger.common.value.IntValue
-import org.fbme.debugger.common.value.StringValue
-import org.fbme.debugger.common.value.Value
+import org.fbme.debugger.common.value.*
 import org.fbme.debugger.simulator.st.STInterpreter
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
@@ -144,7 +141,7 @@ private val DataType.defaultValue: Value<*>
             ElementaryType.STRING -> StringValue("")
             ElementaryType.TOD -> TODO("Not yet implemented")
             ElementaryType.TIME_OF_DAY -> TODO("Not yet implemented")
-            ElementaryType.TIME -> IntValue(0)
+            ElementaryType.TIME -> TimeValue("0ms")
             ElementaryType.WSTRING -> TODO("Not yet implemented")
             ElementaryType.WORD -> TODO("Not yet implemented")
         }
