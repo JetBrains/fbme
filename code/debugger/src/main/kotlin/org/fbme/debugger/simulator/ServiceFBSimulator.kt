@@ -4,14 +4,34 @@ import org.fbme.debugger.common.state.ServiceFBState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
-class ServiceFBSimulator(
-    override val typeDeclaration: ServiceInterfaceFBTypeDeclaration,
+class ServiceFBSimulator private constructor(
+    @get:JvmSynthetic
+    override val declaration: ServiceInterfaceFBTypeDeclaration,
+    @get:JvmSynthetic
     override val state: ServiceFBState,
-    override val parent: Simulator?,
-    override val fbInstanceName: String?,
+    parent: Simulator?,
+    instanceName: String?,
     trace: ExecutionTrace,
-) : FBSimulatorImpl(trace) {
+) : FBSimulator(declaration, state, parent, instanceName, trace) {
+    @JvmOverloads
+    constructor(
+        typeDeclaration: ServiceInterfaceFBTypeDeclaration,
+        initialState: ServiceFBState = ServiceFBState(typeDeclaration),
+    ) : this(typeDeclaration, initialState, null, null, ExecutionTrace(initialState))
+
+    @JvmSynthetic
     override fun triggerInputEventInternal(eventName: String) {
-        // TODO: do nothing?
+        // do nothing
+    }
+
+    companion object {
+        @JvmSynthetic
+        internal fun createInstanceAsChild(
+            typeDeclaration: ServiceInterfaceFBTypeDeclaration,
+            initialState: ServiceFBState,
+            parent: Simulator,
+            fbInstanceName: String,
+            trace: ExecutionTrace,
+        ) = ServiceFBSimulator(typeDeclaration, initialState, parent, fbInstanceName, trace)
     }
 }

@@ -2,7 +2,31 @@ package org.fbme.debugger.common.ui
 
 import org.fbme.debugger.common.state.*
 
-fun State.resolveValue(path: List<String>): String? {
+@JvmSynthetic
+internal fun FBState.typeOfParameter(name: String) = when {
+    name in inputEvents -> "Input Event"
+    name in outputEvents -> "Output Event"
+    name in inputVariables -> "Input Variable"
+    name in outputVariables -> "Output Variable"
+    this is BasicFBState && name in internalVariables -> "Internal Variable"
+    this is BasicFBState && name == "\$ECC" -> "ECC State"
+    else -> error("Parameter not found")
+}
+
+@JvmSynthetic
+internal fun FBState.valueOfParameter(name: String): String? {
+    return inputEvents[name]?.toString()
+        ?: outputEvents[name]?.toString()
+        ?: inputVariables[name]?.toString()
+        ?: outputVariables[name]?.toString()
+        ?: if (this is BasicFBState)
+            if (name == "\$ECC") activeState
+            else internalVariables[name]?.toString()
+        else null
+}
+
+@JvmSynthetic
+internal fun State.resolveValue(path: List<String>): String? {
     var cur = this
     var result: String? = null
     for ((ind, p) in path.withIndex()) {
@@ -31,11 +55,11 @@ fun State.resolveValue(path: List<String>): String? {
                 val next = cur.children[p] ?: return null
                 cur = next
             }
-            else -> {}
         }
     }
     return result
 }
+
 
 fun State.resolveFB(path: List<String>): FBState {
     var cur: State = this

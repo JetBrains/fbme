@@ -243,7 +243,7 @@ class WatcherFacade private constructor(project: Project) {
                         for (fbName in fbPath.drop(1)) {
                             val currentFBDeclaration = currentFB.type.declaration as FBTypeDeclaration
 
-                            if (currentFBDeclaration is WithNetwork) {
+                            if (currentFBDeclaration is DeclarationWithNetwork) {
                                 currentFB = currentFBDeclaration.network.functionBlocks
                                     .firstOrNull { it.name == fbName }
                                     ?: error("fb not found")

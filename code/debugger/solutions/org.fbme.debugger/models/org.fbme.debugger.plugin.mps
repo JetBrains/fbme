@@ -6998,17 +6998,17 @@
                 </node>
               </node>
             </node>
-            <node concept="3cpWs8" id="2B82559ie0c" role="3cqZAp">
-              <node concept="3cpWsn" id="2B82559ie0d" role="3cpWs9">
-                <property role="TrG5h" value="basicFBState" />
-                <node concept="3uibUv" id="2B82559ie0e" role="1tU5fm">
-                  <ref role="3uigEE" to="3l4b:~BasicFBState" resolve="BasicFBState" />
+            <node concept="3cpWs8" id="2B82559ivuQ" role="3cqZAp">
+              <node concept="3cpWsn" id="2B82559ivuR" role="3cpWs9">
+                <property role="TrG5h" value="simulator" />
+                <node concept="3uibUv" id="2B82559ivuS" role="1tU5fm">
+                  <ref role="3uigEE" to="80uf:~BasicFBSimulator" resolve="BasicFBSimulator" />
                 </node>
-                <node concept="2ShNRf" id="2B82559ie2J" role="33vP2m">
-                  <node concept="1pGfFk" id="2B82559im02" role="2ShVmc">
+                <node concept="2ShNRf" id="2B82559ivxH" role="33vP2m">
+                  <node concept="1pGfFk" id="2B82559iynm" role="2ShVmc">
                     <property role="373rjd" value="true" />
-                    <ref role="37wK5l" to="3l4b:~BasicFBState.&lt;init&gt;(org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration)" resolve="BasicFBState" />
-                    <node concept="37vLTw" id="2B82559izLB" role="37wK5m">
+                    <ref role="37wK5l" to="80uf:~BasicFBSimulator.&lt;init&gt;(org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration)" resolve="BasicFBSimulator" />
+                    <node concept="37vLTw" id="2B82559izLC" role="37wK5m">
                       <ref role="3cqZAo" node="2B82559izLz" resolve="basicFBTypeDeclaration" />
                     </node>
                   </node>
@@ -7021,38 +7021,12 @@
                 <node concept="3uibUv" id="2B82559ipXH" role="1tU5fm">
                   <ref role="3uigEE" to="m3bz:~ExecutionTrace" resolve="ExecutionTrace" />
                 </node>
-                <node concept="2ShNRf" id="2B82559ipZH" role="33vP2m">
-                  <node concept="1pGfFk" id="2B82559isna" role="2ShVmc">
-                    <property role="373rjd" value="true" />
-                    <ref role="37wK5l" to="m3bz:~ExecutionTrace.&lt;init&gt;(org.fbme.debugger.common.state.State)" resolve="ExecutionTrace" />
-                    <node concept="37vLTw" id="2B82559isoU" role="37wK5m">
-                      <ref role="3cqZAo" node="2B82559ie0d" resolve="basicFBState" />
-                    </node>
+                <node concept="2OqwBi" id="6GRoqVttjaC" role="33vP2m">
+                  <node concept="37vLTw" id="6GRoqVttiFx" role="2Oq$k0">
+                    <ref role="3cqZAo" node="2B82559ivuR" resolve="simulator" />
                   </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3cpWs8" id="2B82559ivuQ" role="3cqZAp">
-              <node concept="3cpWsn" id="2B82559ivuR" role="3cpWs9">
-                <property role="TrG5h" value="simulator" />
-                <node concept="3uibUv" id="2B82559ivuS" role="1tU5fm">
-                  <ref role="3uigEE" to="80uf:~BasicFBSimulator" resolve="BasicFBSimulator" />
-                </node>
-                <node concept="2ShNRf" id="2B82559ivxH" role="33vP2m">
-                  <node concept="1pGfFk" id="2B82559iynm" role="2ShVmc">
-                    <property role="373rjd" value="true" />
-                    <ref role="37wK5l" to="80uf:~BasicFBSimulator.&lt;init&gt;(org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration,org.fbme.debugger.common.state.BasicFBState,org.fbme.debugger.simulator.Simulator,java.lang.String,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="BasicFBSimulator" />
-                    <node concept="37vLTw" id="2B82559izLC" role="37wK5m">
-                      <ref role="3cqZAo" node="2B82559izLz" resolve="basicFBTypeDeclaration" />
-                    </node>
-                    <node concept="37vLTw" id="2B82559izdu" role="37wK5m">
-                      <ref role="3cqZAo" node="2B82559ie0d" resolve="basicFBState" />
-                    </node>
-                    <node concept="10Nm6u" id="2B82559iznV" role="37wK5m" />
-                    <node concept="10Nm6u" id="2B82559izqD" role="37wK5m" />
-                    <node concept="37vLTw" id="2B82559iztU" role="37wK5m">
-                      <ref role="3cqZAo" node="2B82559ipXG" resolve="trace" />
-                    </node>
+                  <node concept="liA8E" id="6GRoqVttjLi" role="2OqNvi">
+                    <ref role="37wK5l" to="80uf:~Simulator.getTrace()" resolve="getTrace" />
                   </node>
                 </node>
               </node>
@@ -7169,18 +7143,18 @@
                   </node>
                 </node>
               </node>
-              <node concept="3cpWs8" id="2B82559in4Z" role="3cqZAp">
-                <node concept="3cpWsn" id="2B82559in50" role="3cpWs9">
-                  <property role="TrG5h" value="compositeFBState" />
-                  <node concept="3uibUv" id="2B82559in51" role="1tU5fm">
-                    <ref role="3uigEE" to="3l4b:~CompositeFBState" resolve="CompositeFBState" />
+              <node concept="3cpWs8" id="2B82559i$N6" role="3cqZAp">
+                <node concept="3cpWsn" id="2B82559i$N7" role="3cpWs9">
+                  <property role="TrG5h" value="simulator" />
+                  <node concept="3uibUv" id="2B82559i$N8" role="1tU5fm">
+                    <ref role="3uigEE" to="80uf:~CompositeFBSimulator" resolve="CompositeFBSimulator" />
                   </node>
-                  <node concept="2ShNRf" id="2B82559in78" role="33vP2m">
-                    <node concept="1pGfFk" id="2B82559ioyd" role="2ShVmc">
+                  <node concept="2ShNRf" id="2B82559i$Pf" role="33vP2m">
+                    <node concept="1pGfFk" id="2B82559iBES" role="2ShVmc">
                       <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="3l4b:~CompositeFBState.&lt;init&gt;(org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration)" resolve="CompositeFBState" />
-                      <node concept="37vLTw" id="2B82559iBHu" role="37wK5m">
-                        <ref role="3cqZAo" node="2B82559iBHq" resolve="declaration" />
+                      <ref role="37wK5l" to="80uf:~CompositeFBSimulator.&lt;init&gt;(org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration)" resolve="CompositeFBSimulator" />
+                      <node concept="37vLTw" id="2B82559iBGR" role="37wK5m">
+                        <ref role="3cqZAo" node="2B82559iBHq" resolve="compositeFBTypeDeclaration" />
                       </node>
                     </node>
                   </node>
@@ -7192,38 +7166,12 @@
                   <node concept="3uibUv" id="2B82559isOD" role="1tU5fm">
                     <ref role="3uigEE" to="m3bz:~ExecutionTrace" resolve="ExecutionTrace" />
                   </node>
-                  <node concept="2ShNRf" id="2B82559isQS" role="33vP2m">
-                    <node concept="1pGfFk" id="2B82559iuK9" role="2ShVmc">
-                      <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="m3bz:~ExecutionTrace.&lt;init&gt;(org.fbme.debugger.common.state.State)" resolve="ExecutionTrace" />
-                      <node concept="37vLTw" id="2B82559iuLU" role="37wK5m">
-                        <ref role="3cqZAo" node="2B82559in50" resolve="compositeFBState" />
-                      </node>
+                  <node concept="2OqwBi" id="6GRoqVttpsh" role="33vP2m">
+                    <node concept="37vLTw" id="6GRoqVttnzD" role="2Oq$k0">
+                      <ref role="3cqZAo" node="2B82559i$N7" resolve="simulator" />
                     </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3cpWs8" id="2B82559i$N6" role="3cqZAp">
-                <node concept="3cpWsn" id="2B82559i$N7" role="3cpWs9">
-                  <property role="TrG5h" value="simulator" />
-                  <node concept="3uibUv" id="2B82559i$N8" role="1tU5fm">
-                    <ref role="3uigEE" to="80uf:~CompositeFBSimulator" resolve="CompositeFBSimulator" />
-                  </node>
-                  <node concept="2ShNRf" id="2B82559i$Pf" role="33vP2m">
-                    <node concept="1pGfFk" id="2B82559iBES" role="2ShVmc">
-                      <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="80uf:~CompositeFBSimulator.&lt;init&gt;(org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration,org.fbme.debugger.common.state.CompositeFBState,org.fbme.debugger.simulator.Simulator,java.lang.String,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="CompositeFBSimulator" />
-                      <node concept="37vLTw" id="2B82559iBGR" role="37wK5m">
-                        <ref role="3cqZAo" node="2B82559iBHq" resolve="compositeFBTypeDeclaration" />
-                      </node>
-                      <node concept="37vLTw" id="2B82559iBVx" role="37wK5m">
-                        <ref role="3cqZAo" node="2B82559in50" resolve="compositeFBState" />
-                      </node>
-                      <node concept="10Nm6u" id="2B82559iBY4" role="37wK5m" />
-                      <node concept="10Nm6u" id="2B82559iC0b" role="37wK5m" />
-                      <node concept="37vLTw" id="2B82559iC3s" role="37wK5m">
-                        <ref role="3cqZAo" node="2B82559isOC" resolve="trace" />
-                      </node>
+                    <node concept="liA8E" id="6GRoqVttqmL" role="2OqNvi">
+                      <ref role="37wK5l" to="80uf:~Simulator.getTrace()" resolve="getTrace" />
                     </node>
                   </node>
                 </node>
@@ -7400,17 +7348,17 @@
                   </node>
                 </node>
               </node>
-              <node concept="3cpWs8" id="3opgYSFfF69" role="3cqZAp">
-                <node concept="3cpWsn" id="3opgYSFfF6a" role="3cpWs9">
-                  <property role="TrG5h" value="resourceState" />
-                  <node concept="3uibUv" id="3opgYSFfF6b" role="1tU5fm">
-                    <ref role="3uigEE" to="3l4b:~ResourceState" resolve="ResourceState" />
+              <node concept="3cpWs8" id="cr4sro7Sp1" role="3cqZAp">
+                <node concept="3cpWsn" id="cr4sro7Sp2" role="3cpWs9">
+                  <property role="TrG5h" value="simulator" />
+                  <node concept="3uibUv" id="cr4sro7Sp3" role="1tU5fm">
+                    <ref role="3uigEE" to="80uf:~ResourceSimulator" resolve="ResourceSimulator" />
                   </node>
-                  <node concept="2ShNRf" id="3opgYSFfF8Y" role="33vP2m">
-                    <node concept="1pGfFk" id="3opgYSFgft4" role="2ShVmc">
+                  <node concept="2ShNRf" id="cr4sro7Sva" role="33vP2m">
+                    <node concept="1pGfFk" id="cr4sro8qar" role="2ShVmc">
                       <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="3l4b:~ResourceState.&lt;init&gt;(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="ResourceState" />
-                      <node concept="37vLTw" id="3opgYSFgfvw" role="37wK5m">
+                      <ref role="37wK5l" to="80uf:~ResourceSimulator.&lt;init&gt;(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="ResourceSimulator" />
+                      <node concept="37vLTw" id="cr4sro8qd9" role="37wK5m">
                         <ref role="3cqZAo" node="7MfEBAxhj21" resolve="resourceDeclaration" />
                       </node>
                     </node>
@@ -7423,36 +7371,12 @@
                   <node concept="3uibUv" id="3opgYSFggmH" role="1tU5fm">
                     <ref role="3uigEE" to="m3bz:~ExecutionTrace" resolve="ExecutionTrace" />
                   </node>
-                  <node concept="2ShNRf" id="3opgYSFggpT" role="33vP2m">
-                    <node concept="1pGfFk" id="3opgYSFgkMQ" role="2ShVmc">
-                      <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="m3bz:~ExecutionTrace.&lt;init&gt;(org.fbme.debugger.common.state.State)" resolve="ExecutionTrace" />
-                      <node concept="37vLTw" id="3opgYSFgkOt" role="37wK5m">
-                        <ref role="3cqZAo" node="3opgYSFfF6a" resolve="resourceState" />
-                      </node>
+                  <node concept="2OqwBi" id="6GRoqVttsU$" role="33vP2m">
+                    <node concept="37vLTw" id="6GRoqVttsxr" role="2Oq$k0">
+                      <ref role="3cqZAo" node="cr4sro7Sp2" resolve="simulator" />
                     </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3cpWs8" id="cr4sro7Sp1" role="3cqZAp">
-                <node concept="3cpWsn" id="cr4sro7Sp2" role="3cpWs9">
-                  <property role="TrG5h" value="simulator" />
-                  <node concept="3uibUv" id="cr4sro7Sp3" role="1tU5fm">
-                    <ref role="3uigEE" to="80uf:~ResourceSimulator" resolve="ResourceSimulator" />
-                  </node>
-                  <node concept="2ShNRf" id="cr4sro7Sva" role="33vP2m">
-                    <node concept="1pGfFk" id="cr4sro8qar" role="2ShVmc">
-                      <property role="373rjd" value="true" />
-                      <ref role="37wK5l" to="80uf:~ResourceSimulatorImpl.&lt;init&gt;(org.fbme.lib.iec61499.declarations.ResourceDeclaration,org.fbme.debugger.common.state.ResourceState,org.fbme.debugger.common.trace.ExecutionTrace)" resolve="ResourceSimulatorImpl" />
-                      <node concept="37vLTw" id="cr4sro8qd9" role="37wK5m">
-                        <ref role="3cqZAo" node="7MfEBAxhj21" resolve="resourceDeclaration" />
-                      </node>
-                      <node concept="37vLTw" id="cr4sro8qh5" role="37wK5m">
-                        <ref role="3cqZAo" node="3opgYSFfF6a" resolve="resourceState" />
-                      </node>
-                      <node concept="37vLTw" id="cr4sro8szW" role="37wK5m">
-                        <ref role="3cqZAo" node="3opgYSFggmG" resolve="trace" />
-                      </node>
+                    <node concept="liA8E" id="6GRoqVtttrF" role="2OqNvi">
+                      <ref role="37wK5l" to="80uf:~Simulator.getTrace()" resolve="getTrace" />
                     </node>
                   </node>
                 </node>

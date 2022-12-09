@@ -9,6 +9,8 @@ import org.fbme.debugger.common.getIncomingEventConnectionsToPort
 import org.fbme.debugger.common.resolveSourcePortPresentation
 import org.fbme.debugger.common.state.*
 import org.fbme.debugger.common.trace.ExecutionTrace
+import org.fbme.debugger.common.ui.typeOfParameter
+import org.fbme.debugger.common.ui.valueOfParameter
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 
@@ -35,7 +37,7 @@ class ExplanationProducer(
         when (currentDeclaration) {
             is BasicFBTypeDeclaration -> {}
             is ServiceInterfaceFBTypeDeclaration -> {}
-            is WithNetwork -> {
+            is DeclarationWithNetwork -> {
                 for (component in currentDeclaration.network.allComponents) {
                     val componentName = component.name
                     val componentDeclaration = component.type.declaration ?: error("Declaration does not exist")
@@ -337,7 +339,7 @@ class ExplanationProducer(
         val parentPath = explanationNode.fbPath.dropLast(1)
         val fb = explanationNode.fbPath.last()
         val port = explanationNode.name
-        val parentDeclaration = (pathToDeclarationMap[parentPath]!! as WithNetwork)
+        val parentDeclaration = (pathToDeclarationMap[parentPath]!! as DeclarationWithNetwork)
         val incomingEventConnections = parentDeclaration.getIncomingEventConnectionsToPort(fb, port)
         val sources = incomingEventConnections.map { connection ->
             val (sourceFB, sourcePort) = connection.resolveSourcePortPresentation()

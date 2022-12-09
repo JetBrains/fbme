@@ -1,5 +1,6 @@
 package org.fbme.debugger.common.state
 
+import org.fbme.debugger.common.getChildrenStates
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 
 class ResourceState : State {

@@ -57,9 +57,9 @@ open class DebuggerPanel(
     private val statesListModel = CollectionListModel(trace.items)
     protected val statesList = JBList(statesListModel)
 
-    val suggestions = mutableListOf<String>()
+    private val suggestions = mutableListOf<String>()
 
-    inner class NodeFactory() {
+    private inner class NodeFactory() {
         fun createNode(path: List<String>, name: String = path.joinToString(".")): MutableTreeNode {
             val watchDeclaration = when (declaration) {
                 is ResourceDeclaration -> declaration.resolvePath(path)
@@ -104,8 +104,6 @@ open class DebuggerPanel(
             return DefaultMutableTreeNode(name)
         }
     }
-
-    protected val watchesTreeMenuItems = mutableListOf<JBMenuItem>() // TODO
 
     private val nodeFactory = NodeFactory()
 
@@ -244,7 +242,7 @@ open class DebuggerPanel(
         }
     }
 
-    open fun initializeWatchesTreeCellRenderer() {
+    private fun initializeWatchesTreeCellRenderer() {
         watchesTree.cellRenderer = object : DefaultTreeCellRenderer() {
             override fun getTreeCellRendererComponent(
                 tree: JTree?,
@@ -462,7 +460,7 @@ open class DebuggerPanel(
                 suggestions += "$prefix\$ECC"
             }
 
-            is WithNetwork -> {
+            is DeclarationWithNetwork -> {
                 for (component in declaration.network.allComponents) {
                     suggestions += prefix + component.name
                 }

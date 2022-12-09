@@ -9,6 +9,7 @@ import org.fbme.debugger.common.ui.DebuggerPanel
 import org.fbme.debugger.explanation.ExplanationProducer
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.Simulator
+import org.fbme.debugger.simulator.resolveSimulator
 import org.fbme.ide.richediting.inspections.Inspector
 import org.fbme.lib.common.Declaration
 import java.awt.event.MouseAdapter
@@ -45,11 +46,10 @@ class SimulatorPanel(
                     if (statesList.selectedIndex == statesList.itemsCount - 1) {
                         val triggerItem = JBMenuItem("Trigger event", AllIcons.Actions.Execute)
                         triggerItem.addActionListener {
-                            val selectionPath = watchPath
-                            if (selectionPath != null) {
+                            if (watchPath != null) {
                                 val resolvedSimulator = simulator
-                                    .resolveSimulator(selectionPath.dropLast(1))!! as FBSimulator
-                                resolvedSimulator.triggerEvent(selectionPath.last())
+                                    .resolveSimulator(watchPath.dropLast(1))!! as FBSimulator
+                                resolvedSimulator.triggerEvent(watchPath.last())
                             }
                         }
                         popup.add(triggerItem)

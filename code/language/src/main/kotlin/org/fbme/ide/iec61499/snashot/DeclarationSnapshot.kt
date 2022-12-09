@@ -11,7 +11,7 @@ import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
-import org.fbme.lib.iec61499.declarations.WithNetwork
+import org.fbme.lib.iec61499.declarations.DeclarationWithNetwork
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 
@@ -95,7 +95,7 @@ class DeclarationSnapshot(
                     collectAllDeclarations(typeDeclaration, result)
                 }
             }
-            if (declaration is WithNetwork) {
+            if (declaration is DeclarationWithNetwork) {
                 for (it in declaration.network.functionBlocks) {
                     collectAllDeclarations(it.type.declaration ?: continue, result)
                 }

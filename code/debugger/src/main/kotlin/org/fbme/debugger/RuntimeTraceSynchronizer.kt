@@ -2,15 +2,15 @@ package org.fbme.debugger
 
 import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.state.ResourceState
-import org.fbme.debugger.common.state.typeOfParameter
-import org.fbme.debugger.common.state.valueOfParameter
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.ui.resolveFB
+import org.fbme.debugger.common.ui.typeOfParameter
+import org.fbme.debugger.common.ui.valueOfParameter
 import org.fbme.debugger.common.value.Value
 import org.fbme.debugger.simulator.FBSimulator
-import org.fbme.debugger.simulator.ResourceSimulatorImpl
+import org.fbme.debugger.simulator.ResourceSimulator
 import org.fbme.debugger.simulator.applyContext
-import org.fbme.debugger.simulator.ui.resolveSimulator
+import org.fbme.debugger.simulator.resolveSimulator
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.debugger.ReadWatchesListener
 import org.fbme.ide.platform.debugger.Watchable
@@ -73,7 +73,7 @@ class RuntimeTraceSynchronizer(
 
     private fun processReadWatchesRequests() {
         var currentStateIndex = 0
-        var curSimulator: ResourceSimulatorImpl? = null
+        var curSimulator: ResourceSimulator? = null
 
         for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
             for (parameter in functionBlock.parameters) {
@@ -116,12 +116,11 @@ class RuntimeTraceSynchronizer(
 
                 val newState = currentState.copy()
 
-                val traceSegment = ExecutionTrace(newState)
-                val resourceSimulator = ResourceSimulatorImpl(
+                val resourceSimulator = ResourceSimulator(
                     resourceDeclaration,
                     newState,
-                    traceSegment
                 )
+                val traceSegment = resourceSimulator.trace
                 if (curSimulator != null) {
                     resourceSimulator.applyContext(curSimulator)
                 }
