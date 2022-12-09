@@ -1,12 +1,12 @@
 package org.fbme.debugger
 
+import org.fbme.debugger.common.resolveFB
 import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.debugger.common.ui.resolveFB
-import org.fbme.debugger.common.ui.typeOfParameter
-import org.fbme.debugger.common.ui.valueOfParameter
+import org.fbme.debugger.common.typeOfParameter
 import org.fbme.debugger.common.value.Value
+import org.fbme.debugger.common.valueOfParameter
 import org.fbme.debugger.simulator.FBSimulator
 import org.fbme.debugger.simulator.ResourceSimulator
 import org.fbme.debugger.simulator.applyContext

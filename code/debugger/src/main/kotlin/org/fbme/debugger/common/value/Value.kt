@@ -25,26 +25,3 @@ sealed interface Value<V> {
     }
 }
 
-@JvmInline
-value class IntValue(override val value: Int) : Value<Int> {
-    override fun copy() = IntValue(value)
-    override fun toString() = value.toString()
-}
-
-@JvmInline
-value class BooleanValue(override val value: Boolean) : Value<Boolean> {
-    override fun copy() = BooleanValue(value)
-    override fun toString() = value.toString().uppercase()
-}
-
-@JvmInline
-value class StringValue(override val value: String) : Value<String> {
-    override fun copy() = StringValue(value)
-    override fun toString() = value
-}
-
-@JvmInline
-value class TimeValue(override val value: String) : Value<String> {
-    override fun copy() = TimeValue(value)
-    override fun toString() = value
-}

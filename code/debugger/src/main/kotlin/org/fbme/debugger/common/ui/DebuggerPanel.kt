@@ -20,6 +20,7 @@ import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.StateChange
 import org.fbme.debugger.common.resolvePath
+import org.fbme.debugger.common.resolveValue
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.ui.icons.Icons

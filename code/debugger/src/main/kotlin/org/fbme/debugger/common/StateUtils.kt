@@ -1,4 +1,4 @@
-package org.fbme.debugger.common.ui
+package org.fbme.debugger.common
 
 import org.fbme.debugger.common.state.*
 
@@ -60,8 +60,8 @@ internal fun State.resolveValue(path: List<String>): String? {
     return result
 }
 
-
-fun State.resolveFB(path: List<String>): FBState {
+@JvmSynthetic
+internal fun State.resolveFB(path: List<String>): FBState {
     var cur: State = this
     if (path.isNotEmpty()) {
         for (fbInstanceName in path) {

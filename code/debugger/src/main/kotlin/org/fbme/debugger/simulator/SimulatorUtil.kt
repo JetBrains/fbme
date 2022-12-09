@@ -5,7 +5,7 @@ import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.state.ServiceFBState
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.debugger.common.ui.valueOfParameter
+import org.fbme.debugger.common.valueOfParameter
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
