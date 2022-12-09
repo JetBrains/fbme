@@ -63,6 +63,7 @@ internal fun Simulator.resolveSimulator(path: List<String>): Simulator? {
                 check(ind == path.size - 1)
                 val value = cur.state.valueOfParameter(p) ?: return null
             }
+
             is CompositeFBSimulator -> {
                 val value = cur.state.valueOfParameter(p)
 
@@ -71,10 +72,12 @@ internal fun Simulator.resolveSimulator(path: List<String>): Simulator? {
                     cur = next
                 }
             }
+
             is ServiceFBSimulator -> {
                 check(ind == path.size - 1)
                 val value = cur.state.valueOfParameter(p) ?: return null
             }
+
             is ResourceSimulator -> {
                 val next = cur.children[p] ?: return null
                 cur = next
@@ -98,6 +101,7 @@ internal fun Simulator.createChildSimulator(
         fbInstanceName = childName,
         trace = trace
     )
+
     is CompositeFBTypeDeclaration -> CompositeFBSimulator.createInstanceAsChild(
         typeDeclaration = childDeclaration,
         initialState = childState as CompositeFBState,
@@ -105,6 +109,7 @@ internal fun Simulator.createChildSimulator(
         fbInstanceName = childName,
         trace = trace
     )
+
     is ServiceInterfaceFBTypeDeclaration -> ServiceFBSimulator.createInstanceAsChild(
         typeDeclaration = childDeclaration,
         initialState = childState as ServiceFBState,
@@ -112,5 +117,6 @@ internal fun Simulator.createChildSimulator(
         fbInstanceName = childName,
         trace = trace
     )
+
     else -> error("unexpected type")
 }

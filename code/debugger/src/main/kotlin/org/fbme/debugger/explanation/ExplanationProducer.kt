@@ -41,6 +41,7 @@ class ExplanationProducer(
                     mapPathsToDeclarations(map, currentPath.plus(componentName), componentDeclaration)
                 }
             }
+
             else -> error("unexpected case")
         }
     }
@@ -83,7 +84,7 @@ class ExplanationProducer(
 
         val type: String by lazy {
             return@lazy when (fbState) {
-                is FBState -> (fbState as FBState).typeOfParameter(name) ?: error("$name not found")
+                is FBState -> (fbState as FBState).typeOfParameter(name)
                 else -> error("unexpected type")
             }
         }
@@ -356,6 +357,7 @@ class ExplanationProducer(
                         return listOf(getNodeOrPut(i, source))
                     }
                 }
+
                 else -> {}
             }
         }

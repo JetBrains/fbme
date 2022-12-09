@@ -36,11 +36,13 @@ internal fun State.resolveValue(path: List<String>): String? {
                 val value = cur.valueOfParameter(p) ?: return null
                 result = value
             }
+
             is BasicFBState -> {
                 check(ind == path.size - 1)
                 val value = cur.valueOfParameter(p) ?: return null
                 result = value
             }
+
             is CompositeFBState -> {
                 val value = cur.valueOfParameter(p)
 
@@ -51,6 +53,7 @@ internal fun State.resolveValue(path: List<String>): String? {
                     result = value
                 }
             }
+
             is ResourceState -> {
                 val next = cur.children[p] ?: return null
                 cur = next

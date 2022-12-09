@@ -39,6 +39,7 @@ sealed class FBSimulator(
             pushValuesOfAssociatedVariablesWithOutputEvent(eventName)
             triggerOutputEvent(eventName)
         }
+
         else -> error("unexpected event to trigger")
     }
 
@@ -83,8 +84,10 @@ sealed class FBSimulator(
             val outgoingEventConnections = when (parent) {
                 is CompositeFBSimulator -> parent.declaration
                     .getOutgoingEventConnectionsFromPort(instanceName, eventName)
+
                 is ResourceSimulator -> parent.declaration
                     .getOutgoingEventConnectionsFromPort(instanceName, eventName)
+
                 else -> error("can't initialize outgoing connections")
             }
 
@@ -115,8 +118,10 @@ sealed class FBSimulator(
                 val outgoingDataConnections = when (parent) {
                     is CompositeFBSimulator -> parent.declaration
                         .getOutgoingDataConnectionsFromPort(instanceName, associatedVariable)
+
                     is ResourceSimulator -> parent.declaration
                         .getOutgoingDataConnectionsFromPort(instanceName, associatedVariable)
+
                     else -> error("can't initialize outgoing connections")
                 }
 

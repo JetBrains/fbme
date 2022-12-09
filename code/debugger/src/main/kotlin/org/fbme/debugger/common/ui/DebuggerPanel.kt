@@ -60,7 +60,7 @@ open class DebuggerPanel(
 
     private val suggestions = mutableListOf<String>()
 
-    private inner class NodeFactory() {
+    private inner class NodeFactory {
         fun createNode(path: List<String>, name: String = path.joinToString(".")): MutableTreeNode {
             val watchDeclaration = when (declaration) {
                 is ResourceDeclaration -> declaration.resolvePath(path)

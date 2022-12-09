@@ -148,6 +148,7 @@ private val DataType.defaultValue: Value<*>
             ElementaryType.WSTRING -> TODO("Not yet implemented")
             ElementaryType.WORD -> TODO("Not yet implemented")
         }
+
         else -> TODO("Not yet implemented")
     }
 
@@ -185,16 +186,19 @@ internal fun FBTypeDeclaration.resolvePath(path: List<String>): Declaration {
                 .firstOrNull { it.name == p } ?: cur.outputEvents
                 .firstOrNull { it.name == p } ?: cur.outputParameters
                 .firstOrNull { it.name == p } ?: error("Path unresolved")
+
             is BasicFBTypeDeclaration -> if (p == "\$ECC") cur.ecc.states.first() else cur.inputEvents
                 .firstOrNull { it.name == p } ?: cur.inputParameters
                 .firstOrNull { it.name == p } ?: cur.outputEvents
                 .firstOrNull { it.name == p } ?: cur.outputParameters
                 .firstOrNull { it.name == p } ?: error("Path unresolved")
+
             is ServiceInterfaceFBTypeDeclaration -> cur.inputEvents
                 .firstOrNull { it.name == p } ?: cur.inputParameters
                 .firstOrNull { it.name == p } ?: cur.outputEvents
                 .firstOrNull { it.name == p } ?: cur.outputParameters
                 .firstOrNull { it.name == p } ?: error("Path unresolved")
+
             else -> error("Path unresolved")
         }
     }
