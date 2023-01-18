@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.debugger</id>
+  <name>FBME - Debugger</name>
+  <description>Intelligent IEC 61499 debugger for FBME platform</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>fbme.platform</depends>
+  <depends>fbme.library</depends>
+  <depends>fbme.scenes</depends>
+  <depends>fbme.richediting</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

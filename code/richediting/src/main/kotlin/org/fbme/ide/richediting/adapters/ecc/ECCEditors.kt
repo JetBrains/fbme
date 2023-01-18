@@ -81,6 +81,7 @@ object ECCEditors {
             val declaration = repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
             val eccInstance = ECCInstance.createForDeclaration(declaration, parent)
             val ecc = eccInstance.eCCDeclaration
+            scene.style.set(RichEditorStyleAttributes.ECC, ecc)
             val isEditable = parent == null
             val eccAdapter = ECCViewAdapter(ecc, declarationFactory, isEditable)
             val componentsFacility = ComponentsFacility(

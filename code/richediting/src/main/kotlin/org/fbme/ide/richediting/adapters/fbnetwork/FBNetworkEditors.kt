@@ -32,7 +32,6 @@ import org.fbme.scenes.controllers.scene.*
 import org.fbme.scenes.viewmodel.PositionalCompletionItem
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Point
-import java.util.function.Function
 
 object FBNetworkEditors {
     @JvmField
@@ -188,11 +187,12 @@ object FBNetworkEditors {
                 componentsLayer,
                 tracesLayer
             )
-            val componentProvider = Function { it: NetworkComponentView ->
+            val componentProvider = componentProvider@{ it: NetworkComponentView ->
                 if (it is InlineValueView || it is BrokenPortView) {
-                    return@Function inlineValuesFacility.getController(it) as FBNetworkComponentController
+                    inlineValuesFacility.getController(it) as FBNetworkComponentController
+                } else {
+                    componentsFacility.getController(it) as FBNetworkComponentController
                 }
-                return@Function componentsFacility.getController(it) as FBNetworkComponentController
             }
             val portSettings = FBPortSettingProvider(componentProvider)
             val diagramComponentSettings: DiagramComponentSettingProvider<NetworkComponentView, Point> =
@@ -239,8 +239,9 @@ object FBNetworkEditors {
                 focus
             )
             style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility)
-            val connectionProvider =
-                Function { it: NetworkConnectionView -> connectionsFacility.getController(it) as FBConnectionController }
+            val connectionProvider = { it: NetworkConnectionView ->
+                connectionsFacility.getController(it) as FBConnectionController
+            }
             val networkInspectionsFacility = NetworkInspectionsFacility(
                 networkView,
                 networkInstance,

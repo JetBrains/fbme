@@ -10,13 +10,13 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
-import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.ResourceDeclaration
+import org.fbme.lib.iec61499.declarations.DeclarationWithNetwork
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 
-class FBTypeSnapshot(
-    val snapshotDeclaration: FBTypeDeclaration,
+class DeclarationSnapshot(
+    val snapshotDeclaration: Declaration,
     private val originalOwner: PlatformElementsOwner,
     private val temporaryModels: Map<SModel, SModel>
 ) {
@@ -47,29 +47,29 @@ class FBTypeSnapshot(
          */
         @JvmStatic
         fun create(
-            typeDeclaration: FBTypeDeclaration
-        ): FBTypeSnapshot {
-            check(typeDeclaration is PlatformElement)
+            declaration: Declaration
+        ): DeclarationSnapshot {
+            check(declaration is PlatformElement)
 
             val snapshotModule = TempModule(emptySet(), false, false)
 
             val originalToTemporaryModels = hashMapOf<SModel, TrivialModelDescriptor>()
 
             val declarations = hashSetOf<Declaration>()
-            collectAllDeclarations(typeDeclaration, declarations)
-            lateinit var resultDeclaration: FBTypeDeclaration
+            collectAllDeclarations(declaration, declarations)
+            lateinit var resultDeclaration: Declaration
 
-            for (declaration in declarations) {
-                check(declaration is PlatformElement)
-                val originalModel = checkNotNull(declaration.node.model)
+            for (decl in declarations) {
+                check(decl is PlatformElement)
+                val originalModel = checkNotNull(decl.node.model)
                 val snapshotModel = originalToTemporaryModels.getOrPut(originalModel) {
                     SnapshotModel(originalModel).also { snapshotModule.registerModel(it) }
                 }
-                val snapshotNode = CopyUtil.copyAndPreserveId(declaration.node)
+                val snapshotNode = CopyUtil.copyAndPreserveId(decl.node)
                 snapshotModel.addRootNode(snapshotNode)
-                if (declaration == typeDeclaration) {
+                if (decl == declaration) {
                     resultDeclaration =
-                        PlatformElementsOwner().getAdapter(snapshotNode, FBTypeDeclaration::class.java)!!
+                        PlatformElementsOwner().getAdapter(snapshotNode, Declaration::class.java)!!
                 }
             }
 
@@ -79,9 +79,9 @@ class FBTypeSnapshot(
             }
             referenceUpdater.adjust()
 
-            return FBTypeSnapshot(
+            return DeclarationSnapshot(
                 resultDeclaration,
-                typeDeclaration.owner,
+                declaration.owner,
                 originalToTemporaryModels.entries.associate { it.value to it.key }
             )
         }
@@ -90,7 +90,12 @@ class FBTypeSnapshot(
             if (!result.add(declaration)) {
                 return
             }
-            if (declaration is CompositeFBTypeDeclaration) {
+            if (declaration is ResourceDeclaration) {
+                declaration.typeReference.getTarget()?.let { typeDeclaration ->
+                    collectAllDeclarations(typeDeclaration, result)
+                }
+            }
+            if (declaration is DeclarationWithNetwork) {
                 for (it in declaration.network.functionBlocks) {
                     collectAllDeclarations(it.type.declaration ?: continue, result)
                 }

@@ -34,7 +34,7 @@ fun GenerateSourcePluginTasks(
             dependsOn(tasks.named("jar"))
 
             val runtimeFiles = configurations["runtimeClasspath"].files
-            from(runtimeFiles.filter { file -> libraryFilters.get().any { file.name.startsWith(it) } })
+            from(runtimeFiles.filter { file -> libraryFilters.get().any { file.absolutePath.contains(it) } })
 
             from(layout.buildDirectory.file("libs/${project.name}.jar"))
 

@@ -235,13 +235,18 @@
             <ref role="3bR37D" to="kvgc:177eUH8B7m3" resolve="org.fbme.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="2g7iZ5XXx34" role="3bR37C">
-          <node concept="3bR9La" id="2g7iZ5XXx35" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U0O3a$" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U0O3a_" role="1SiIV1">
+            <ref role="3bR37D" to="ci81:1JYTWWzvsHw" resolve="org.fbme.ide.iec61499.adapter" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="7rWf3U1Jbgo" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1Jbgp" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
-        <node concept="1SiIV0" id="1EO1wDljU4W" role="3bR37C">
-          <node concept="3bR9La" id="1EO1wDljU4X" role="1SiIV1">
+        <node concept="1SiIV0" id="7rWf3U1Jbgq" role="3bR37C">
+          <node concept="3bR9La" id="7rWf3U1Jbgr" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:1EO1wDljU1B" resolve="org.fbme.smv-debugger.lib" />
           </node>
         </node>

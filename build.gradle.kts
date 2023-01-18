@@ -9,6 +9,7 @@ plugins {
 allprojects {
     repositories {
         mavenCentral()
+        google()
     }
     pluginManager.withPlugin("java") {
         extensions.configure<JavaPluginExtension> {

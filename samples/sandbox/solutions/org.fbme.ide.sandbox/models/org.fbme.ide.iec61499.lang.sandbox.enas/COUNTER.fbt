@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="COUNTER">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="O" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="E_SWITCH" Type="E_SWITCH" x="150" y="0" />
+    <FB Name="E_SR" Type="E_SR" x="671" y="0" />
+    <DataConnections>
+      <Connection Source="E_SR.Q" Destination="E_SWITCH.G" dy="57" dx2="75" dx1="75" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="E_SWITCH.EO0" Destination="E_SR.S" />
+      <Connection Source="E_SWITCH.EO1" Destination="E_SR.R" />
+      <Connection Source="E_SR.EO" Destination="O" />
+      <Connection Source="E" Destination="E_SWITCH.EI" />
+    </EventConnections>
+    <EndpointCoordinate Name="E" x="-107" y="50" />
+    <EndpointCoordinate Name="O" x="989" y="50" />
+  </FBNetwork>
+</FBType>
+

@@ -30,7 +30,6 @@
     <dependency reexport="false">c0080a47-7e37-4558-bee9-9ae18e690549(jetbrains.mps.lang.extension)</dependency>
     <dependency reexport="false">86441d7a-e194-42da-81a5-2161ec62a379(MPS.Workbench)</dependency>
     <dependency reexport="true">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
-    <dependency reexport="false">fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5(org.fbme.richediting.lib)</dependency>
     <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
   </dependencies>
   <languageVersions>

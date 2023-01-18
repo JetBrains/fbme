@@ -96,7 +96,6 @@
         <child id="5253498789149547704" name="dependencies" index="3bR37C" />
       </concept>
       <concept id="5253498789149585690" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleDependencyOnModule" flags="ng" index="3bR9La">
-        <property id="5253498789149547713" name="reexport" index="3bR36h" />
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
       <concept id="978600701690054692" name="jetbrains.mps.build.mps.structure.GeneratorInternal_String" flags="ng" index="1cIVw3">
@@ -344,12 +343,6 @@
         <node concept="1SiIV0" id="6aeiw5$tCL6" role="3bR37C">
           <node concept="3bR9La" id="6aeiw5$tCL7" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1H905DlDUSw" resolve="MPS.OpenAPI" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="Ej4tEplvBE" role="3bR37C">
-          <node concept="3bR9La" id="Ej4tEplvBF" role="1SiIV1">
-            <property role="3bR36h" value="true" />
-            <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
           </node>
         </node>
         <node concept="1SiIV0" id="ApHj0p4ZOu" role="3bR37C">
