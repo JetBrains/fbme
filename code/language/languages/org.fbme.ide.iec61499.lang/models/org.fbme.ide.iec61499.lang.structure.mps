@@ -11,20 +11,8 @@
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
-      <concept id="2756621024541681841" name="jetbrains.mps.lang.resources.structure.Primitive" flags="ng" index="1irPi6">
-        <child id="1860120738943552529" name="fillColor" index="3PKjn_" />
-      </concept>
-      <concept id="2756621024541681849" name="jetbrains.mps.lang.resources.structure.Text" flags="ng" index="1irPie">
-        <property id="2756621024541681854" name="text" index="1irPi9" />
-        <child id="1860120738943552534" name="color" index="3PKjny" />
-      </concept>
-      <concept id="2756621024541674821" name="jetbrains.mps.lang.resources.structure.TextIcon" flags="ng" index="1irR5M">
-        <property id="1358878980655415353" name="iconId" index="2$rrk2" />
-        <child id="2756621024541675110" name="layers" index="1irR9h" />
-      </concept>
-      <concept id="2756621024541675104" name="jetbrains.mps.lang.resources.structure.Circle" flags="ng" index="1irR9n" />
-      <concept id="1860120738943552477" name="jetbrains.mps.lang.resources.structure.ColorLiteral" flags="ng" index="3PKj8D">
-        <property id="1860120738943552481" name="val" index="3PKj8l" />
+      <concept id="8974276187400029883" name="jetbrains.mps.lang.resources.structure.FileIcon" flags="ng" index="1QGGSu">
+        <property id="2756621024541341363" name="file" index="1iqoE4" />
       </concept>
     </language>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
@@ -176,22 +164,11 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
     </node>
-    <node concept="1irR5M" id="1rxLtFPxBhm" role="rwd14">
-      <property role="2$rrk2" value="3" />
-      <node concept="1irR9n" id="3K9TJQKaV8R" role="1irR9h">
-        <node concept="3PKj8D" id="3K9TJQKaV8S" role="3PKjn_">
-          <property role="3PKj8l" value="87CEEB" />
-        </node>
-      </node>
-      <node concept="1irPie" id="3K9TJQKaV8U" role="1irR9h">
-        <property role="1irPi9" value="B" />
-        <node concept="3PKj8D" id="3K9TJQKaV8V" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
-    </node>
     <node concept="PrWs8" id="7GyesCpjDrV" role="PzmwI">
       <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
+    <node concept="1QGGSu" id="4dW98DtmzF5" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/basic_fb.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="3HBlKeoZ0Un">
@@ -312,22 +289,11 @@
     <property role="3GE5qa" value="fbtype.composite" />
     <property role="19KtqR" value="true" />
     <ref role="1TJDcQ" node="3HBlKeoYsiw" resolve="FBTypeDeclaration" />
-    <node concept="1irR5M" id="1rxLtFPxBha" role="rwd14">
-      <property role="2$rrk2" value="2" />
-      <node concept="1irR9n" id="3K9TJQKb0qV" role="1irR9h">
-        <node concept="3PKj8D" id="3K9TJQKb0qW" role="3PKjn_">
-          <property role="3PKj8l" value="87CEEB" />
-        </node>
-      </node>
-      <node concept="1irPie" id="3K9TJQKb0qX" role="1irR9h">
-        <property role="1irPi9" value="C" />
-        <node concept="3PKj8D" id="3K9TJQKb0qY" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
-    </node>
     <node concept="PrWs8" id="2lwHqHjRxfS" role="PzmwI">
       <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
+    <node concept="1QGGSu" id="6wZrrvDn9Xt" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/composite_fb.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="PI_pXYugbu">
@@ -573,19 +539,8 @@
     <property role="19KtqR" value="true" />
     <property role="3GE5qa" value="adapter" />
     <ref role="1TJDcQ" node="2ByE74knaXi" resolve="DeclarationWithInterface" />
-    <node concept="1irR5M" id="1rxLtFPxB0W" role="rwd14">
-      <property role="2$rrk2" value="1" />
-      <node concept="1irR9n" id="3K9TJQKb0qN" role="1irR9h">
-        <node concept="3PKj8D" id="3K9TJQKb0qO" role="3PKjn_">
-          <property role="3PKj8l" value="87CEEB" />
-        </node>
-      </node>
-      <node concept="1irPie" id="3K9TJQKb0qP" role="1irR9h">
-        <property role="1irPi9" value="A" />
-        <node concept="3PKj8D" id="3K9TJQKb0qQ" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98DtmzF9" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/adapter.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="37fub3vjRJq">
@@ -873,19 +828,8 @@
     <node concept="PrWs8" id="2lwHqHkn6us" role="PzmwI">
       <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
     </node>
-    <node concept="1irR5M" id="2lwHqHkp4wV" role="rwd14">
-      <property role="2$rrk2" value="4" />
-      <node concept="1irR9n" id="2lwHqHkp4x3" role="1irR9h">
-        <node concept="3PKj8D" id="2lwHqHkp4x7" role="3PKjn_">
-          <property role="3PKj8l" value="8FBC8F" />
-        </node>
-      </node>
-      <node concept="1irPie" id="2lwHqHkp4xe" role="1irR9h">
-        <property role="1irPi9" value="R" />
-        <node concept="3PKj8D" id="2lwHqHkp4xl" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98Dtm$7t" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/resource.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="2lwHqHjRwSl">
@@ -977,19 +921,8 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="1WTKUmKKVQg" resolve="ResourceTypeReference" />
     </node>
-    <node concept="1irR5M" id="2lwHqHkAgDq" role="rwd14">
-      <property role="2$rrk2" value="5" />
-      <node concept="1irR9n" id="2lwHqHkAgDv" role="1irR9h">
-        <node concept="3PKj8D" id="2lwHqHkAgDw" role="3PKjn_">
-          <property role="3PKj8l" value="8FBC8F" />
-        </node>
-      </node>
-      <node concept="1irPie" id="2lwHqHkAgDx" role="1irR9h">
-        <property role="1irPi9" value="D" />
-        <node concept="3PKj8D" id="2lwHqHkAgDy" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98Dtm$zH" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/device.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="2lwHqHkyELo">
@@ -1135,19 +1068,8 @@
     <node concept="PrWs8" id="uLhTRQWVWW" role="PzmwI">
       <ref role="PrY4T" node="uLhTRQW_B0" resolve="IWithSubappNetwork" />
     </node>
-    <node concept="1irR5M" id="uLhTRR236s" role="rwd14">
-      <property role="2$rrk2" value="6" />
-      <node concept="1irR9n" id="uLhTRR236x" role="1irR9h">
-        <node concept="3PKj8D" id="uLhTRR236y" role="3PKjn_">
-          <property role="3PKj8l" value="87CEEB" />
-        </node>
-      </node>
-      <node concept="1irPie" id="uLhTRR236z" role="1irR9h">
-        <property role="1irPi9" value="S" />
-        <node concept="3PKj8D" id="uLhTRR236$" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98DtmzOB" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/subapp.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="uLhTRQWXSY">
@@ -1224,19 +1146,8 @@
     <node concept="PrWs8" id="uLhTRR7Mvx" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
-    <node concept="1irR5M" id="uLhTRR7MXU" role="rwd14">
-      <property role="2$rrk2" value="7" />
-      <node concept="1irR9n" id="uLhTRR7MXZ" role="1irR9h">
-        <node concept="3PKj8D" id="uLhTRR7MY0" role="3PKjn_">
-          <property role="3PKj8l" value="FF9111" />
-        </node>
-      </node>
-      <node concept="1irPie" id="uLhTRR7MY1" role="1irR9h">
-        <property role="1irPi9" value="S" />
-        <node concept="3PKj8D" id="uLhTRR7MY2" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98DtmzFb" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/system.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="uLhTRR7MEy">
@@ -1387,19 +1298,8 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
     </node>
-    <node concept="1irR5M" id="5s_pyghvFr3" role="rwd14">
-      <property role="2$rrk2" value="8" />
-      <node concept="1irR9n" id="5s_pyghvFr8" role="1irR9h">
-        <node concept="3PKj8D" id="5s_pyghvFr9" role="3PKjn_">
-          <property role="3PKj8l" value="8FBC8F" />
-        </node>
-      </node>
-      <node concept="1irPie" id="5s_pyghvFra" role="1irR9h">
-        <property role="1irPi9" value="S" />
-        <node concept="3PKj8D" id="5s_pyghvFrb" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="6wzd0wHTlo1" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/segment.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="5s_pyghtuNV">
@@ -1463,19 +1363,8 @@
     <property role="34LRSv" value="service interface function block type" />
     <property role="19KtqR" value="true" />
     <ref role="1TJDcQ" node="3HBlKeoYsiw" resolve="FBTypeDeclaration" />
-    <node concept="1irR5M" id="23XkovWfelh" role="rwd14">
-      <property role="2$rrk2" value="9" />
-      <node concept="1irR9n" id="23XkovWfelm" role="1irR9h">
-        <node concept="3PKj8D" id="23XkovWfeln" role="3PKjn_">
-          <property role="3PKj8l" value="87CEEB" />
-        </node>
-      </node>
-      <node concept="1irPie" id="23XkovWfelo" role="1irR9h">
-        <property role="1irPi9" value="I" />
-        <node concept="3PKj8D" id="23XkovWfelp" role="3PKjny">
-          <property role="3PKj8l" value="EEEEEE" />
-        </node>
-      </node>
+    <node concept="1QGGSu" id="4dW98DtmzF7" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/service_fb.svg" />
     </node>
   </node>
   <node concept="1TIwiD" id="23XkovWspjs">

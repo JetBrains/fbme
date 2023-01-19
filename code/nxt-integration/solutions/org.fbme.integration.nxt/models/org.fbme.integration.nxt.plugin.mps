@@ -50,20 +50,8 @@
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
-      <concept id="2756621024541681841" name="jetbrains.mps.lang.resources.structure.Primitive" flags="ng" index="1irPi6">
-        <child id="1860120738943552529" name="fillColor" index="3PKjn_" />
-      </concept>
-      <concept id="2756621024541681849" name="jetbrains.mps.lang.resources.structure.Text" flags="ng" index="1irPie">
-        <property id="2756621024541681854" name="text" index="1irPi9" />
-        <child id="1860120738943552534" name="color" index="3PKjny" />
-      </concept>
-      <concept id="2756621024541674821" name="jetbrains.mps.lang.resources.structure.TextIcon" flags="ng" index="1irR5M">
-        <property id="1358878980655415353" name="iconId" index="2$rrk2" />
-        <child id="2756621024541675110" name="layers" index="1irR9h" />
-      </concept>
-      <concept id="2756621024541675104" name="jetbrains.mps.lang.resources.structure.Circle" flags="ng" index="1irR9n" />
-      <concept id="1860120738943552477" name="jetbrains.mps.lang.resources.structure.ColorLiteral" flags="ng" index="3PKj8D">
-        <property id="1860120738943552481" name="val" index="3PKj8l" />
+      <concept id="8974276187400029883" name="jetbrains.mps.lang.resources.structure.FileIcon" flags="ng" index="1QGGSu">
+        <property id="2756621024541341363" name="file" index="1iqoE4" />
       </concept>
       <concept id="8974276187400029891" name="jetbrains.mps.lang.resources.structure.IconExpression" flags="nn" index="1QGGTA">
         <child id="8974276187400029893" name="icon" index="1QGGTw" />
@@ -770,7 +758,7 @@
               <node concept="3clFbS" id="3qzmBf7cl7D" role="3clF47">
                 <node concept="3clFbF" id="3qzmBf7cl7E" role="3cqZAp">
                   <node concept="Xl_RD" id="3qzmBf7cl7F" role="3clFbG">
-                    <property role="Xl_RC" value="NxtImport" />
+                    <property role="Xl_RC" value="Import Nxt Project" />
                   </node>
                 </node>
               </node>
@@ -805,7 +793,7 @@
               <node concept="3clFbS" id="3qzmBf7cl7S" role="3clF47">
                 <node concept="3clFbF" id="3qzmBf7cl7T" role="3cqZAp">
                   <node concept="Xl_RD" id="3qzmBf7cl7U" role="3clFbG">
-                    <property role="Xl_RC" value="import" />
+                    <property role="Xl_RC" value="system" />
                   </node>
                 </node>
               </node>
@@ -825,19 +813,8 @@
               <node concept="3clFbS" id="3qzmBf7cl82" role="3clF47">
                 <node concept="3clFbF" id="3qzmBf7cl83" role="3cqZAp">
                   <node concept="1QGGTA" id="3qzmBf7cl84" role="3clFbG">
-                    <node concept="1irR5M" id="3qzmBf7cl85" role="1QGGTw">
-                      <property role="2$rrk2" value="2" />
-                      <node concept="1irR9n" id="3qzmBf7cl86" role="1irR9h">
-                        <node concept="3PKj8D" id="3qzmBf7cl87" role="3PKjn_">
-                          <property role="3PKj8l" value="87CEEB" />
-                        </node>
-                      </node>
-                      <node concept="1irPie" id="3qzmBf7cl88" role="1irR9h">
-                        <property role="1irPi9" value="I" />
-                        <node concept="3PKj8D" id="3qzmBf7cl89" role="3PKjny">
-                          <property role="3PKj8l" value="EEEEEE" />
-                        </node>
-                      </node>
+                    <node concept="1QGGSu" id="6wzd0wHUltr" role="1QGGTw">
+                      <property role="1iqoE4" value="${module}/icons/org/fbme/integration/nxt/plugin/nxt_import.svg" />
                     </node>
                   </node>
                 </node>

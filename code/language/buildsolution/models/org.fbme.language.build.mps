@@ -382,21 +382,21 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="ApHj0p0xSz" role="3bR31x">
-          <node concept="3LXTmp" id="ApHj0p0xS$" role="3rtmxm">
-            <node concept="55IIr" id="ApHj0p0xS_" role="3LXTmr">
-              <node concept="2Ry0Ak" id="ApHj0p0xSA" role="iGT6I">
+        <node concept="3rtmxn" id="6wzd0wHWh45" role="3bR31x">
+          <node concept="3LXTmp" id="6wzd0wHWh46" role="3rtmxm">
+            <node concept="55IIr" id="6wzd0wHWh47" role="3LXTmr">
+              <node concept="2Ry0Ak" id="6wzd0wHWh48" role="iGT6I">
                 <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="ApHj0p0xSB" role="2Ry0An">
+                <node concept="2Ry0Ak" id="6wzd0wHWh49" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
-                  <node concept="2Ry0Ak" id="1M54bK80mw8" role="2Ry0An">
-                    <property role="2Ry0Am" value="source_gen" />
+                  <node concept="2Ry0Ak" id="6wzd0wHWh4v" role="2Ry0An">
+                    <property role="2Ry0Am" value="icons" />
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="ApHj0p0xSD" role="3LXTna">
-              <property role="3qWCbO" value="**/*.png" />
+            <node concept="3qWCbU" id="6wzd0wHWh4a" role="3LXTna">
+              <property role="3qWCbO" value="**/*.svg" />
             </node>
           </node>
         </node>
@@ -490,18 +490,21 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="ApHj0p0xS6" role="3bR31x">
-          <node concept="3LXTmp" id="ApHj0p0xS7" role="3rtmxm">
-            <node concept="55IIr" id="ApHj0p0xS8" role="3LXTmr">
-              <node concept="2Ry0Ak" id="ApHj0p0xS9" role="iGT6I">
+        <node concept="3rtmxn" id="6wzd0wHWhwX" role="3bR31x">
+          <node concept="3LXTmp" id="6wzd0wHWhwY" role="3rtmxm">
+            <node concept="55IIr" id="6wzd0wHWhwZ" role="3LXTmr">
+              <node concept="2Ry0Ak" id="6wzd0wHWhx0" role="iGT6I">
                 <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="ApHj0p0xSa" role="2Ry0An">
+                <node concept="2Ry0Ak" id="6wzd0wHWhx1" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.st.lang" />
+                  <node concept="2Ry0Ak" id="6wzd0wHWhx2" role="2Ry0An">
+                    <property role="2Ry0Am" value="icons" />
+                  </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="ApHj0p0xSc" role="3LXTna">
-              <property role="3qWCbO" value="icons/**, resources/**" />
+            <node concept="3qWCbU" id="6wzd0wHWhx3" role="3LXTna">
+              <property role="3qWCbO" value="**/*.svg" />
             </node>
           </node>
         </node>
