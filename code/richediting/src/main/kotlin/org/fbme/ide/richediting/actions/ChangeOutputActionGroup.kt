@@ -15,8 +15,10 @@ class ChangeOutputActionGroup : ActionGroup(), DumbAware {
     override fun getChildren(event: AnActionEvent?): Array<AnAction> {
         if (event == null) return emptyArray()
 
-        val fbTypeDeclaration = event.element<BasicFBTypeDeclaration>() ?: return emptyArray()
-        val actions = fbTypeDeclaration.outputEvents.map { ChangeOutputAction(it) } + ChangeOutputAction(null)
-        return actions.toTypedArray()
+        return event.executeReadAction<Array<AnAction>> {
+            val fbTypeDeclaration = event.element<BasicFBTypeDeclaration>() ?: return@executeReadAction emptyArray()
+            val actions = fbTypeDeclaration.outputEvents.map { ChangeOutputAction(it) } + ChangeOutputAction(null)
+            actions.toTypedArray()
+        }
     }
 }
