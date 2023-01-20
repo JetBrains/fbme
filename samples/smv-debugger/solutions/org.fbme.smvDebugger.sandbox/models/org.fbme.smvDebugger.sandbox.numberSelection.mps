@@ -504,8 +504,8 @@
       <property role="TrG5h" value="plant" />
       <ref role="1N5Tt0" node="3ImrickCq$D" resolve="Plant" />
       <node concept="10YbkR" id="3ImrickCTfZ" role="b_cXm">
-        <property role="10YbkC" value="2303.0" />
-        <property role="10YbkE" value="850.0" />
+        <property role="10YbkC" value="1776.0" />
+        <property role="10YbkE" value="1013.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="3ImrickCTg2" role="1N5PiY">
@@ -526,8 +526,8 @@
       <property role="TrG5h" value="cycle" />
       <ref role="1N5Tt0" to="7fvu:~E_CYCLE" resolve="E_CYCLE" />
       <node concept="10YbkR" id="3ImrickCTg9" role="b_cXm">
-        <property role="10YbkC" value="1761.0" />
-        <property role="10YbkE" value="234.0" />
+        <property role="10YbkC" value="1363.0" />
+        <property role="10YbkE" value="370.0" />
       </node>
       <node concept="1LUwhx" id="3ryclnQaWQa" role="2LNCDh">
         <ref role="1LUwhw" to="7fvu:~E_CYCLE.DT" resolve="DT" />
@@ -545,10 +545,10 @@
         <ref role="1N5Pi4" node="3ImrickCTfY" resolve="plant" />
         <ref role="1N5Pi3" node="3ImrickCKfh" resolve="TICK" />
       </node>
-      <node concept="bR73E" id="2b77TIBZeSt" role="bPNfo">
-        <property role="bR73D" value="150.0" />
-        <property role="bR73n" value="350.0" />
-        <property role="bR73k" value="150.0" />
+      <node concept="bR73E" id="7lAkPnkGuqS" role="bPNfo">
+        <property role="bR73D" value="194.0" />
+        <property role="bR73n" value="430.0" />
+        <property role="bR73k" value="130.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWW$" role="1N5PiQ">
@@ -559,8 +559,8 @@
         <ref role="1N5Pi4" node="3ImrickCTg8" resolve="cycle" />
         <ref role="1N5Pi3" to="7fvu:~E_CYCLE.START" resolve="START" />
       </node>
-      <node concept="bR32z" id="2b77TIBZeSv" role="bPNfo">
-        <property role="bR32p" value="800.0" />
+      <node concept="bR32z" id="7lAkPnkGuqR" role="bPNfo">
+        <property role="bR32p" value="600.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWWM" role="1N5PiQ">
@@ -571,8 +571,8 @@
         <ref role="1N5Pi4" node="3ImrickCTfY" resolve="plant" />
         <ref role="1N5Pi3" node="3ImrickCKdf" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="3ryclnQaWX3" role="bPNfo">
-        <property role="bR32p" value="457.0" />
+      <node concept="bR32z" id="7lAkPnkGuq$" role="bPNfo">
+        <property role="bR32p" value="340.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWX7" role="1N5PiQ">
@@ -584,8 +584,8 @@
         <ref role="1N5Pi4" node="3ImrickCTg2" resolve="controller" />
         <ref role="1N5Pi3" node="3ImrickCqBl" resolve="CHG" />
       </node>
-      <node concept="bR32z" id="3caC8F66hAA" role="bPNfo">
-        <property role="bR32p" value="317.0" />
+      <node concept="bR32z" id="7lAkPnkGuqw" role="bPNfo">
+        <property role="bR32p" value="273.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWXs" role="1N5PiQ">
@@ -597,10 +597,10 @@
         <ref role="1N5Pi4" node="3ImrickCTfY" resolve="plant" />
         <ref role="1N5Pi3" node="3ImrickCKe3" resolve="PICK" />
       </node>
-      <node concept="bR73E" id="3caC8F66hA$" role="bPNfo">
+      <node concept="bR73E" id="7lAkPnkGuqB" role="bPNfo">
         <property role="bR73D" value="150.0" />
         <property role="bR73n" value="467.0" />
-        <property role="bR73k" value="63.0" />
+        <property role="bR73k" value="60.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWXX" role="1N5PiQ">
@@ -611,8 +611,8 @@
       <node concept="3YHrnl" id="3ryclnQaWXW" role="2RhMK_">
         <ref role="3Yz8TM" node="3ImrickCTfH" resolve="COMPLETE" />
       </node>
-      <node concept="bR32z" id="3ryclnQaWXY" role="bPNfo">
-        <property role="bR32p" value="1123.0" />
+      <node concept="bR32z" id="7lAkPnkGuqA" role="bPNfo">
+        <property role="bR32p" value="1363.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3ryclnQaWYq" role="1N5PiQ">
@@ -624,10 +624,10 @@
         <ref role="1N5Pi4" node="3ImrickCTg8" resolve="cycle" />
         <ref role="1N5Pi3" to="7fvu:~E_CYCLE.STOP" resolve="STOP" />
       </node>
-      <node concept="bR73E" id="2b77TIBZeSu" role="bPNfo">
+      <node concept="bR73E" id="7lAkPnkGuqQ" role="bPNfo">
         <property role="bR73D" value="50.0" />
-        <property role="bR73n" value="-857.0" />
-        <property role="bR73k" value="150.0" />
+        <property role="bR73n" value="-1030.0" />
+        <property role="bR73k" value="80.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="3ryclnQaWZ2" role="1N5PiV">
@@ -639,8 +639,8 @@
         <ref role="1N5Pi4" node="3ImrickCTg2" resolve="controller" />
         <ref role="1N5PlF" node="3ImrickCqBt" resolve="NUM" />
       </node>
-      <node concept="bR32z" id="3caC8F66hA_" role="bPNfo">
-        <property role="bR32p" value="180.0" />
+      <node concept="bR32z" id="7lAkPnkGuq_" role="bPNfo">
+        <property role="bR32p" value="470.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="3ryclnQaWZf" role="1N5PiV">
@@ -651,8 +651,8 @@
       <node concept="3I$zcF" id="3ryclnQaWZe" role="2RhMK_">
         <ref role="3IAu0i" node="3ImrickCTfJ" resolve="NUM" />
       </node>
-      <node concept="bR32z" id="3ryclnQaWZq" role="bPNfo">
-        <property role="bR32p" value="1411.0" />
+      <node concept="bR32z" id="7lAkPnkGuqy" role="bPNfo">
+        <property role="bR32p" value="1716.0" />
       </node>
     </node>
   </node>
