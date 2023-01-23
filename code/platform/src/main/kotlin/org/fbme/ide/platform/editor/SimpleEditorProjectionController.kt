@@ -11,10 +11,9 @@ class SimpleEditorProjectionController(
     private val myHints: Array<String>,
     private val myDefault: Boolean
 ) : EditorProjectionController {
-    override val chooseProjectionActions: List<AnAction>
-        get() = listOf<AnAction>(ChooseProjectionAction(this, id))
-    override val createProjectionActions: List<AnAction>
-        get() = emptyList()
+
+    override val chooser: ProjectionChooser
+        get() = ProjectionChooser.Simple(id, ChooseProjectionAction(this, id))
 
     override fun createProjection(name: String): EditorProjection {
         return if (name == id) {

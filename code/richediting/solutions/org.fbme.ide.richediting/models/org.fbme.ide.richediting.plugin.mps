@@ -54,15 +54,13 @@
     <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="8gms" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.editor(org.fbme.platform.lib/)" />
     <import index="6w4o" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.debugger(org.fbme.platform.lib/)" />
+    <import index="ec6g" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting(org.fbme.richediting.lib/)" />
     <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" implicit="true" />
     <import index="lui2" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.module(MPS.OpenAPI/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" implicit="true" />
-    <import index="9ti4" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.extensions(MPS.IDEA/)" implicit="true" />
-    <import index="tprs" ref="r:00000000-0000-4000-0000-011c895904a4(jetbrains.mps.ide.actions)" implicit="true" />
     <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" implicit="true" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(org.fbme.ide.iec61499.lang.behavior)" implicit="true" />
-    <import index="ec6g" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting(org.fbme.richediting.lib/)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -70,7 +68,6 @@
       <concept id="1207145163717" name="jetbrains.mps.lang.plugin.structure.ElementListContents" flags="ng" index="ftmFs">
         <child id="1207145201301" name="reference" index="ftvYc" />
       </concept>
-      <concept id="394857668357342104" name="jetbrains.mps.lang.plugin.structure.EverywhereActionPlace" flags="ng" index="mfpdH" />
       <concept id="1207318242772" name="jetbrains.mps.lang.plugin.structure.KeyMapKeystroke" flags="ng" index="pLAjd">
         <property id="1207318242773" name="modifiers" index="pLAjc" />
         <property id="1207318242774" name="keycode" index="pLAjf" />
@@ -78,7 +75,6 @@
       <concept id="1203071646776" name="jetbrains.mps.lang.plugin.structure.ActionDeclaration" flags="ng" index="sE7Ow">
         <property id="1205250923097" name="caption" index="2uzpH1" />
         <property id="7458746815261976739" name="requiredAccess" index="2YLI8m" />
-        <child id="394857668356997869" name="places" index="med8o" />
         <child id="1203083196627" name="updateBlock" index="tmbBb" />
         <child id="1203083461638" name="executeFunction" index="tncku" />
         <child id="1227008813498" name="constructionParameter" index="2JrayB" />
@@ -2014,196 +2010,6 @@
       <ref role="3uigEE" to="qqrq:~JBPanel" resolve="JBPanel" />
     </node>
   </node>
-  <node concept="2uRRBC" id="30N5LJaazkw">
-    <property role="TrG5h" value="NetworkInstanceNavBarExtensionRegistrar" />
-    <node concept="2uRRBj" id="30N5LJaazuT" role="2uRRBE">
-      <node concept="3clFbS" id="30N5LJaazuU" role="2VODD2">
-        <node concept="3clFbF" id="7Y8B9wpfmKG" role="3cqZAp">
-          <node concept="2OqwBi" id="7Y8B9wpfocE" role="3clFbG">
-            <node concept="2OqwBi" id="7Y8B9wpfn3W" role="2Oq$k0">
-              <node concept="10M0yZ" id="1vJkp1U0e2M" role="2Oq$k0">
-                <ref role="3cqZAo" to="93vd:~NavBarModelExtension.EP_NAME" resolve="EP_NAME" />
-                <ref role="1PxDUh" to="93vd:~NavBarModelExtension" resolve="NavBarModelExtension" />
-              </node>
-              <node concept="liA8E" id="7Y8B9wpfnG1" role="2OqNvi">
-                <ref role="37wK5l" to="9ti4:~ExtensionPointName.getPoint(com.intellij.openapi.extensions.AreaInstance)" resolve="getPoint" />
-                <node concept="2YIFZM" id="30N5LJaaB7e" role="37wK5m">
-                  <ref role="37wK5l" to="bd8o:~ApplicationManager.getApplication()" resolve="getApplication" />
-                  <ref role="1Pybhc" to="bd8o:~ApplicationManager" resolve="ApplicationManager" />
-                </node>
-              </node>
-            </node>
-            <node concept="liA8E" id="7Y8B9wpfrHw" role="2OqNvi">
-              <ref role="37wK5l" to="9ti4:~ExtensionPoint.registerExtension(java.lang.Object)" resolve="registerExtension" />
-              <node concept="2ShNRf" id="1vJkp1U04LB" role="37wK5m">
-                <node concept="1pGfFk" id="6SLp5w3O7Bb" role="2ShVmc">
-                  <ref role="37wK5l" to="je9f:~NetworkInstanceNavBarExtension.&lt;init&gt;()" resolve="NetworkInstanceNavBarExtension" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2uRRBI" id="30N5LJaa$bR" role="2uRRBF">
-      <node concept="3clFbS" id="30N5LJaa$bS" role="2VODD2">
-        <node concept="3clFbF" id="1vJkp1U0dGe" role="3cqZAp">
-          <node concept="2OqwBi" id="1vJkp1U0dGf" role="3clFbG">
-            <node concept="2OqwBi" id="1vJkp1U0dGg" role="2Oq$k0">
-              <node concept="liA8E" id="1vJkp1U0dGi" role="2OqNvi">
-                <ref role="37wK5l" to="9ti4:~ExtensionPointName.getPoint(com.intellij.openapi.extensions.AreaInstance)" resolve="getPoint" />
-                <node concept="2YIFZM" id="30N5LJaaAZX" role="37wK5m">
-                  <ref role="37wK5l" to="bd8o:~ApplicationManager.getApplication()" resolve="getApplication" />
-                  <ref role="1Pybhc" to="bd8o:~ApplicationManager" resolve="ApplicationManager" />
-                </node>
-              </node>
-              <node concept="10M0yZ" id="1vJkp1U0edE" role="2Oq$k0">
-                <ref role="1PxDUh" to="93vd:~NavBarModelExtension" resolve="NavBarModelExtension" />
-                <ref role="3cqZAo" to="93vd:~NavBarModelExtension.EP_NAME" resolve="EP_NAME" />
-              </node>
-            </node>
-            <node concept="liA8E" id="1vJkp1U0dGm" role="2OqNvi">
-              <ref role="37wK5l" to="9ti4:~ExtensionPoint.unregisterExtension(java.lang.Class)" resolve="unregisterExtension" />
-              <node concept="3VsKOn" id="1vJkp1U0gKW" role="37wK5m">
-                <ref role="3VsUkX" to="je9f:~NetworkInstanceNavBarExtension" resolve="NetworkInstanceNavBarExtension" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-  </node>
-  <node concept="sE7Ow" id="3vwudsmWdp9">
-    <property role="TrG5h" value="NetworkInstance_GoToNavBar" />
-    <property role="2uzpH1" value="Jump to Network Navigation Bar" />
-    <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
-    <node concept="tnohg" id="3vwudsmWdpa" role="tncku">
-      <node concept="3clFbS" id="3vwudsmWdpb" role="2VODD2">
-        <node concept="3cpWs8" id="3vwudsmZfEF" role="3cqZAp">
-          <node concept="3cpWsn" id="3vwudsmZfEG" role="3cpWs9">
-            <property role="TrG5h" value="editor" />
-            <node concept="3uibUv" id="IHtTBFkSWd" role="1tU5fm">
-              <ref role="3uigEE" to="8gms:~HeaderedNodeEditor" resolve="HeaderedNodeEditor" />
-            </node>
-            <node concept="0kSF2" id="2CiAywA857_" role="33vP2m">
-              <node concept="3uibUv" id="IHtTBFkSWh" role="0kSFW">
-                <ref role="3uigEE" to="8gms:~HeaderedNodeEditor" resolve="HeaderedNodeEditor" />
-              </node>
-              <node concept="2OqwBi" id="2CiAywA8bcu" role="0kSFX">
-                <node concept="2WthIp" id="2CiAywA8aVU" role="2Oq$k0" />
-                <node concept="1DTwFV" id="2CiAywA8bxy" role="2OqNvi">
-                  <ref role="2WH_rO" node="2CiAywA7Wrb" resolve="editor" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="3vwudsmZCJq" role="3cqZAp">
-          <node concept="3cpWsn" id="3vwudsmZCJr" role="3cpWs9">
-            <property role="TrG5h" value="component" />
-            <node concept="3uibUv" id="3vwudsmZCDp" role="1tU5fm">
-              <ref role="3uigEE" to="dxuu:~JComponent" resolve="JComponent" />
-            </node>
-            <node concept="2OqwBi" id="3vwudsmZCJs" role="33vP2m">
-              <node concept="37vLTw" id="3vwudsmZCJt" role="2Oq$k0">
-                <ref role="3cqZAo" node="3vwudsmZfEG" resolve="editor" />
-              </node>
-              <node concept="liA8E" id="IHtTBFkTiE" role="2OqNvi">
-                <ref role="37wK5l" to="8gms:~HeaderedNodeEditor.getProjectionComponent()" resolve="getProjectionComponent" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="3vwudsmZSnb" role="3cqZAp">
-          <node concept="3cpWsn" id="3vwudsmZSnc" role="3cpWs9">
-            <property role="TrG5h" value="panel" />
-            <node concept="3uibUv" id="3vwudsmZSmT" role="1tU5fm">
-              <ref role="3uigEE" to="93vd:~NavBarPanel" resolve="NavBarPanel" />
-            </node>
-            <node concept="0kSF2" id="3vwudsmZSnd" role="33vP2m">
-              <node concept="3uibUv" id="3vwudsmZSne" role="0kSFW">
-                <ref role="3uigEE" to="93vd:~NavBarPanel" resolve="NavBarPanel" />
-              </node>
-              <node concept="2OqwBi" id="3vwudsmZSnf" role="0kSFX">
-                <node concept="37vLTw" id="3vwudsmZSng" role="2Oq$k0">
-                  <ref role="3cqZAo" node="3vwudsmZCJr" resolve="component" />
-                </node>
-                <node concept="liA8E" id="3vwudsmZSnh" role="2OqNvi">
-                  <ref role="37wK5l" to="dxuu:~JComponent.getClientProperty(java.lang.Object)" resolve="getClientProperty" />
-                  <node concept="Xl_RD" id="3vwudsmZSni" role="37wK5m">
-                    <property role="Xl_RC" value="NavBarPanel" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="3vwudsmZSKp" role="3cqZAp">
-          <node concept="2OqwBi" id="3vwudsmZTtZ" role="3clFbG">
-            <node concept="37vLTw" id="3vwudsmZSKn" role="2Oq$k0">
-              <ref role="3cqZAo" node="3vwudsmZSnc" resolve="panel" />
-            </node>
-            <node concept="liA8E" id="3vwudsmZUOI" role="2OqNvi">
-              <ref role="37wK5l" to="93vd:~NavBarPanel.rebuildAndSelectTail(boolean)" resolve="rebuildAndSelectTail" />
-              <node concept="3clFbT" id="3vwudsmZVyx" role="37wK5m">
-                <property role="3clFbU" value="true" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="1DS2jV" id="2CiAywA7Wrb" role="1NuT2Z">
-      <property role="TrG5h" value="editor" />
-      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.MPS_EDITOR" resolve="MPS_EDITOR" />
-      <node concept="1oajcY" id="2CiAywA7Wrc" role="1oa70y" />
-    </node>
-    <node concept="1DS2jV" id="3vwudsn0kPM" role="1NuT2Z">
-      <property role="TrG5h" value="editorComponent" />
-      <ref role="1DUlNI" to="k3nr:~MPSEditorDataKeys.EDITOR_COMPONENT" resolve="EDITOR_COMPONENT" />
-      <node concept="1oajcY" id="3vwudsn0kPN" role="1oa70y" />
-    </node>
-    <node concept="2ScWuX" id="3vwudsmZevT" role="tmbBb">
-      <node concept="3clFbS" id="3vwudsmZevU" role="2VODD2">
-        <node concept="3clFbF" id="2CiAywA7WKB" role="3cqZAp">
-          <node concept="2ZW3vV" id="2CiAywA7YEz" role="3clFbG">
-            <node concept="3uibUv" id="IHtTBFkSRs" role="2ZW6by">
-              <ref role="3uigEE" to="8gms:~HeaderedNodeEditor" resolve="HeaderedNodeEditor" />
-            </node>
-            <node concept="2OqwBi" id="2CiAywA7WKx" role="2ZW6bz">
-              <node concept="2WthIp" id="2CiAywA7WK$" role="2Oq$k0" />
-              <node concept="1DTwFV" id="2CiAywA7WKA" role="2OqNvi">
-                <ref role="2WH_rO" node="2CiAywA7Wrb" resolve="editor" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="1X3_iC" id="2CiAywA8aMI" role="lGtFl">
-          <property role="3V$3am" value="statement" />
-          <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
-          <node concept="3clFbF" id="2CiAywA5IQt" role="8Wnug">
-            <node concept="3y3z36" id="2CiAywA5Kff" role="3clFbG">
-              <node concept="10Nm6u" id="2CiAywA5KsY" role="3uHU7w" />
-              <node concept="2YIFZM" id="2CiAywA5IRp" role="3uHU7B">
-                <ref role="37wK5l" to="dxuu:~SwingUtilities.getAncestorOfClass(java.lang.Class,java.awt.Component)" resolve="getAncestorOfClass" />
-                <ref role="1Pybhc" to="dxuu:~SwingUtilities" resolve="SwingUtilities" />
-                <node concept="3VsKOn" id="2CiAywA5Jmo" role="37wK5m">
-                  <ref role="3VsUkX" to="8gms:~HeaderedNodeEditor" resolve="HeaderedNodeEditor" />
-                </node>
-                <node concept="2OqwBi" id="3vwudsmZeCz" role="37wK5m">
-                  <node concept="2WthIp" id="3vwudsmZeCA" role="2Oq$k0" />
-                  <node concept="1DTwFV" id="2CiAywA5$qS" role="2OqNvi">
-                    <ref role="2WH_rO" node="3vwudsn0kPM" resolve="editorComponent" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="mfpdH" id="3vwudsn0BWC" role="med8o" />
-  </node>
   <node concept="Zd50a" id="3vwudsn0zdT">
     <property role="TrG5h" value="RichEditingActions_Default" />
     <node concept="Zd509" id="3vwudsn0zdW" role="Zd508">
@@ -2212,17 +2018,6 @@
         <property role="pLAjf" value="VK_UP" />
         <property role="pLAjc" value="ctrl" />
       </node>
-    </node>
-  </node>
-  <node concept="tC5Ba" id="2CiAywA5fjA">
-    <property role="TrG5h" value="FlyingActions_NavBar" />
-    <node concept="ftmFs" id="2CiAywA5fjE" role="ftER_">
-      <node concept="tCFHf" id="2CiAywA5fjH" role="ftvYc">
-        <ref role="tCJdB" node="3vwudsmWdp9" resolve="NetworkInstance_GoToNavBar" />
-      </node>
-    </node>
-    <node concept="tT9cl" id="2CiAywA5fjC" role="2f5YQi">
-      <ref role="tU$_T" to="tprs:hyf4Gvz" resolve="NodeActions" />
     </node>
   </node>
   <node concept="sE7Ow" id="4gibKcM_3Tu">

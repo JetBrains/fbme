@@ -1,23 +1,20 @@
 package org.fbme.ide.platform.editor
 
-import com.intellij.openapi.actionSystem.AnAction
 import jetbrains.mps.project.Project
 import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
 
 interface EditorProjectionController {
+
     val id: String
+
     fun createProjection(name: String): EditorProjection
-    fun restoreProjection(name: String, e: Element): EditorProjection? {
-        return createProjection(name)
-    }
 
-    fun createDefaultProjection(): EditorProjection? {
-        return null
-    }
+    fun restoreProjection(name: String, e: Element): EditorProjection? = createProjection(name)
 
-    val chooseProjectionActions: List<AnAction>
-    val createProjectionActions: List<AnAction>
+    fun createDefaultProjection(): EditorProjection? = null
+
+    val chooser: ProjectionChooser get() = ProjectionChooser.Simple(id, ChooseProjectionAction(this, id))
 
     interface Factory {
         val id: String

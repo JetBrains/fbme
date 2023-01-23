@@ -1,73 +1,67 @@
 package org.fbme.ide.richediting.editor
 
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations
 import jetbrains.mps.openapi.editor.Editor
 import jetbrains.mps.openapi.navigation.NavigationSupport
 import jetbrains.mps.project.Project
-import org.fbme.ide.iec61499.editor.ProjectEditorSpecs
 import org.fbme.ide.iec61499.fbnetwork.MPSNetworkInstanceReference
 import org.fbme.ide.iec61499.repository.PlatformElement
-import org.fbme.ide.platform.editor.HeaderedNodeEditor
+import org.fbme.ide.platform.editor.NavigatableDeclaration
+import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.ApplicationDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
+import org.fbme.lib.iec61499.declarations.SystemDeclaration
+import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
-import org.jdom.Element
-import org.jdom.output.XMLOutputter
 import org.jetbrains.mps.openapi.model.SNode
 
 object NetworkInstanceNavigationSupport {
     @JvmStatic
     fun navigate(project: Project?, instance: NetworkInstance, focus: Boolean): Editor {
-        return NavigationSupport.getInstance().openNode(project!!, getNavigationStub(project, instance)!!, focus, true)
+        return NavigationSupport.getInstance().openNode(project!!, getNavigationStub(project, instance), focus, true)
     }
 
     @JvmStatic
-    fun canNavigate(project: Project, instance: NetworkInstance): Boolean {
-        return getNavigationStub(project, instance) != null
-    }
+    fun getNavigationStub(project: Project, instance: NetworkInstance): SNode =
+            getNavigatableDeclaration(project, instance).targetSpec
 
-    @JvmStatic
-    fun getNavigationStub(project: Project, instance: NetworkInstance): SNode? {
+    fun getNavigatableDeclaration(
+            project: Project,
+            instance: NetworkInstance,
+            declaration: Declaration = instance.rootInstance.declaration
+    ): NavigatableDeclaration {
         val container = instance.rootInstance.declaration
-        if (container is PlatformElement) {
-            var targetNode: SNode = (container as PlatformElement).node
-            val element = Element(HeaderedNodeEditor.PROJECTION_DATA_KEY)
-            when (container) {
-                is ApplicationDeclaration -> {
-                    element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Application")
-                    element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, container.name)
-                    element.setAttribute(
-                        RichApplicationProjection.PERSISTENCE_KEY,
-                        MPSNetworkInstanceReference.create(instance).serialize()
-                    )
-                    targetNode = SNodeOperations.getParent(targetNode)
-                }
-
-                is ResourceDeclaration -> {
-                    element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Resource")
-                    element.setAttribute(
-                        HeaderedNodeEditor.PROJECTION_NAME_KEY,
-                        (container as ResourceDeclaration).container.name + "." + container.name
-                    )
-                    element.setAttribute(
-                        RichResourceProjection.PERSISTENCE_KEY,
-                        MPSNetworkInstanceReference.create(instance).serialize()
-                    )
-                    targetNode = SNodeOperations.getParent(SNodeOperations.getParent(targetNode))
-                }
-
-                else -> {
-                    element.setAttribute(HeaderedNodeEditor.CONTROLLER_ID_KEY, "Network")
-                    element.setAttribute(HeaderedNodeEditor.PROJECTION_NAME_KEY, "Network")
-                    element.setAttribute(
-                        NetworkInstanceEditorProjection.PERSISTENCE_KEY,
-                        MPSNetworkInstanceReference.create(instance).serialize()
-                    )
-                }
-            }
-            val specs = ProjectEditorSpecs.getInstance(project)
-            return specs.getSpec(targetNode, XMLOutputter().outputString(element))
+        val controllerId = when (container) {
+            is ApplicationDeclaration -> "Application"
+            is ResourceDeclaration -> "Resource"
+            else -> "Network"
         }
-        return null
+        val projectionName = when (container) {
+            is ApplicationDeclaration -> container.name
+            is ResourceDeclaration -> "${container.container.name}.${container.name}"
+            else -> "Network"
+        }
+        val editedNode = (declaration as PlatformElement).node
+        return NavigatableDeclaration.build(project, editedNode, controllerId, projectionName) {
+            val reference = MPSNetworkInstanceReference.create(instance).serialize()
+            it.setAttribute(NetworkInstanceEditorProjection.PERSISTENCE_KEY, reference)
+        }
+    }
+
+    fun navigatablePath(project: Project, instance: NetworkInstance): ArrayDeque<NavigatableDeclaration> {
+        var currentInstance: NetworkInstance? = instance
+        var currentDeclaration: Declaration = instance.declaration
+        val result = ArrayDeque<NavigatableDeclaration>()
+        while (currentInstance != null) {
+            result.addFirst(getNavigatableDeclaration(project, currentInstance, currentDeclaration))
+            currentInstance = when (val parentInstance = instance.parent) {
+                is FunctionBlockInstance -> parentInstance.parent
+                is NetworkInstance -> parentInstance
+                else -> null
+            }
+            if (currentInstance != null) {
+                currentDeclaration = currentInstance.declaration
+            }
+        }
+        return result
     }
 }
