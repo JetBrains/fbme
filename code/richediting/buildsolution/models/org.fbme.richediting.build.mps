@@ -246,11 +246,6 @@
             </node>
           </node>
         </node>
-        <node concept="1SiIV0" id="1a1larLfpph" role="3bR37C">
-          <node concept="3bR9La" id="1a1larLfppi" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:7Kfy9QB6L5O" resolve="jetbrains.mps.lang.extension" />
-          </node>
-        </node>
         <node concept="1SiIV0" id="1a1larLfppl" role="3bR37C">
           <node concept="3bR9La" id="1a1larLfppm" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:44LXwdzyvTi" resolve="Annotations" />
@@ -259,21 +254,6 @@
         <node concept="1SiIV0" id="1a1larLfppn" role="3bR37C">
           <node concept="3bR9La" id="1a1larLfppo" role="1SiIV1">
             <ref role="3bR37D" to="ffeo:1TaHNgiIbIQ" resolve="MPS.Core" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="1a1larLfppp" role="3bR37C">
-          <node concept="3bR9La" id="1a1larLfppq" role="1SiIV1">
-            <ref role="3bR37D" to="ffeo:2eDSGe9d1q1" resolve="MPS.Workbench" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="Ej4tEplrUK" role="3bR37C">
-          <node concept="3bR9La" id="Ej4tEplrUL" role="1SiIV1">
-            <ref role="3bR37D" to="ci82:42vv4xsIHLX" resolve="org.fbme.ide.platform" />
-          </node>
-        </node>
-        <node concept="1SiIV0" id="ApHj0p5VBG" role="3bR37C">
-          <node concept="3bR9La" id="ApHj0p5VBH" role="1SiIV1">
-            <ref role="3bR37D" to="ci81:1a1larLevcL" resolve="org.fbme.ide.util.lang" />
           </node>
         </node>
         <node concept="1SiIV0" id="ApHj0p5VBI" role="3bR37C">
