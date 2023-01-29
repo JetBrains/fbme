@@ -101,7 +101,7 @@ class ExplanationProducer(
         }
 
         override fun toString(): String {
-            return "At State $stateIndex $type ${path.joinToString(".")} was $value"
+            return "At <a href=\"#state\" style=\"color: #2675BF\">State $stateIndex</a> $type ${path.joinToString(".")} was <a href=\"#value\" style=\"color: #2675BF\">$value</a>"
         }
     }
 
