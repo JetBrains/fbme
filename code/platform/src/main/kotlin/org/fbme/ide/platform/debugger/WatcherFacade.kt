@@ -4,13 +4,16 @@ import jetbrains.mps.project.Project
 import jetbrains.mps.util.JDOMUtil
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
+import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
+import org.fbme.lib.iec61499.fbnetwork.PortPath
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.IOException
+import java.util.function.Function
 
 class WatcherFacade private constructor(project: Project) {
     private val devices: MutableMap<Identifier, MutableSet<WatchableData>> = HashMap()
@@ -25,6 +28,31 @@ class WatcherFacade private constructor(project: Project) {
 
     fun watchResourceNetwork(resourceDeclaration: ResourceDeclaration) {
         watchFBNetwork(resourceDeclaration, resourceDeclaration.allFunctionBlocks())
+    }
+
+    fun addWatchedValueListenersResourceNetwork(
+        resourceDeclaration: ResourceDeclaration,
+        createListener: Function<PortPath<out Declaration>, WatchedValueListener>
+    ) {
+        val children = resourceDeclaration.allFunctionBlocks()
+        for (functionBlock in children) {
+            val path = listOf(functionBlock)
+
+            val fbTypeDeclaration = functionBlock.type.declaration as FBTypeDeclaration
+
+            for (event in fbTypeDeclaration.inputEvents + fbTypeDeclaration.outputEvents) {
+                val watchable = Watchable(WatchablePath(resourceDeclaration, path), event.name)
+                val portPath = PortPath.createEventPortPath(functionBlock, event)
+                val listener = createListener.apply(portPath)
+                addWatchedValueListener(watchable.serialize(), listener)
+            }
+            for (variable in fbTypeDeclaration.inputParameters + fbTypeDeclaration.outputParameters) {
+                val watchable = Watchable(WatchablePath(resourceDeclaration, path), variable.name)
+                val portPath = PortPath.createDataPortPath(functionBlock, variable)
+                val listener = createListener.apply(portPath)
+                addWatchedValueListener(watchable.serialize(), listener)
+            }
+        }
     }
 
     private fun watchFBNetwork(
@@ -57,9 +85,11 @@ class WatcherFacade private constructor(project: Project) {
                         watch(Watchable(WatchablePath(resource, newPath), internalVariable.name))
                     }
                 }
+
                 is CompositeFBTypeDeclaration -> {
                     watchFBNetwork(resource, fbTypeDeclaration.network.functionBlocks, newPath)
                 }
+
                 else -> {}
             }
         }
@@ -166,7 +196,7 @@ class WatcherFacade private constructor(project: Project) {
                                     }
 
                                     for ((key, value) in resolvedWatches) {
-                                        val listeners: Set<WatchedValueListener> = watchedValueListeners[key]!!
+                                        val listeners = watchedValueListeners[key] ?: continue
                                         for (listener in listeners) {
                                             listener.onValueChanged(value)
                                         }
