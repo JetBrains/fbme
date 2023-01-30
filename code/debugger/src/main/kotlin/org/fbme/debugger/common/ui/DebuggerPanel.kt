@@ -114,6 +114,8 @@ open class DebuggerPanel(
 
     private val watchFieldPanel: BorderLayoutPanel
 
+    private val ports: List<Pair<PortPath<out Declaration>, List<String>>> = getPorts()
+
     init {
         watchesTree.isRootVisible = false
         watchesTree.showsRootHandles = true
@@ -124,7 +126,7 @@ open class DebuggerPanel(
                     val popup = JBPopupMenu()
                     val explainItem = JBMenuItem("Why?", AllIcons.Debugger.Question_badge)
                     explainItem.addActionListener {
-                        showExplanationPopup(e)
+                        showExplanation(e)
                     }
                     popup.add(explainItem)
                     popup.show(e.component, e.x, e.y)
@@ -137,8 +139,6 @@ open class DebuggerPanel(
 
         trace.addListenerOnAdding { traceItem -> statesListModel.add(traceItem) }
         initializeStatesListCellRenderer()
-
-        val ports: List<Pair<PortPath<out Declaration>, List<String>>> = getPorts()
 
         statesList.addListSelectionListener {
             watchesTree.updateUI()
@@ -219,7 +219,7 @@ open class DebuggerPanel(
         }
     }
 
-    protected fun showExplanationPopup(e: MouseEvent) {
+    protected fun showExplanation(e: MouseEvent) {
         val selectionPath = watchesTree
             .selectionPath
             ?.path
@@ -236,9 +236,20 @@ open class DebuggerPanel(
             explanationText += "$explanationNode\n"
         }
 
-        val explanation = GotItTooltip(UUID.randomUUID().toString(), explanationText, project)
-        explanation.position = Balloon.Position.atLeft
-        explanation.show(watchesTree) { component, _ ->
+        val selectedState = statesList.selectedValue?.state
+        val networkInspector = inspector as? NetworkInspector
+
+        if (selectedState != null && networkInspector != null) {
+            for (explanationNode in children) {
+                val port = ports.firstOrNull { it.second == explanationNode.path } ?: continue
+                val value = selectedState.resolveValue(port.second) ?: continue
+                networkInspector.setInspectionForPort(port.first, Inspection(value, MPSColors.RED, true))
+            }
+        }
+
+        val explanationPopup = GotItTooltip(UUID.randomUUID().toString(), explanationText, project)
+        explanationPopup.position = Balloon.Position.atLeft
+        explanationPopup.show(watchesTree) { component, _ ->
             Point(component.x, e.y)
         }
     }

@@ -56,7 +56,7 @@ class SimulatorPanel(
                     }
                     val explainItem = JBMenuItem("Why?", AllIcons.Debugger.Question_badge)
                     explainItem.addActionListener {
-                        showExplanationPopup(e)
+                        showExplanation(e)
                     }
                     popup.add(explainItem)
                     popup.show(e.component, e.x, e.y)
