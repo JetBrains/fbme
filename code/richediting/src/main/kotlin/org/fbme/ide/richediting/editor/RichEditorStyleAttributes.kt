@@ -71,7 +71,7 @@ object RichEditorStyleAttributes {
     val VIEWPOINT: StyleAttribute<SceneViewpoint> = InheritableStyleAttribute("viewpoint")
 
     @JvmField
-    val ECC: StyleAttribute<ECC> = InheritableStyleAttribute("ecc")
+    val ECC: StyleAttribute<ECC> = InheritableStyleAttribute("ecc", null)
 
     init {
         NETWORK.register()

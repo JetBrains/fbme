@@ -8,6 +8,8 @@ interface EditorProjectionController {
 
     val id: String
 
+    val priority: Int
+
     fun createProjection(name: String): EditorProjection
 
     fun restoreProjection(name: String, e: Element): EditorProjection? = createProjection(name)

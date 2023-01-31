@@ -15,22 +15,24 @@ import org.fbme.lib.iec61499.declarations.SystemDeclaration
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
-import java.util.stream.Collectors
 
 class RichApplicationProjectionController(
-        private val myNode: SNode,
-        private val myProject: Project
+        private val node: SNode,
+        private val project: Project
 ) : EditorProjectionController {
-    private val mySystem: SystemDeclaration
-    private val myRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(myProject)
-    override val id: String
-        get() = "Application"
+    private val repository: PlatformRepository = PlatformRepositoryProvider.getInstance(project)
+
+    private val system = repository.getAdapter(node, SystemDeclaration::class.java)
+            ?: error("SystemDeclaration is null")
+
+    override val id: String get() = "Application"
+    override val priority: Int get() = 2
 
     override val chooser: ProjectionChooser
-        get() = ModelAccessHelper(myProject.modelAccess).runReadAction<ProjectionChooser> {
+        get() = ModelAccessHelper(project.modelAccess).runReadAction<ProjectionChooser> {
             ProjectionChooser.Composite(
                     id,
-                    mySystem.applications.map { ChooseProjectionAction(this, it.name) },
+                    system.applications.map { ChooseProjectionAction(this, it.name) },
                     listOf(CreateApplicationAction())
             )
         }
@@ -44,21 +46,20 @@ class RichApplicationProjectionController(
             }
             project.modelAccess.executeCommand {
                 val application =
-                        myRepository.iec61499Factory.createApplicationDeclaration(StringIdentifier(""))
-                mySystem.applications.add(application)
+                        repository.iec61499Factory.createApplicationDeclaration(StringIdentifier(""))
+                system.applications.add(application)
                 editor.chooseProjection(createProjection(""))
             }
         }
     }
 
     init {
-        mySystem = myRepository.getAdapter(myNode, SystemDeclaration::class.java)
-                ?: error("SystemDeclaration is null")
+
     }
 
     override fun createProjection(name: String): EditorProjection {
-        val app = ModelAccessHelper(myProject.modelAccess).runReadAction<ApplicationDeclaration> {
-            mySystem.applications.stream()
+        val app = ModelAccessHelper(project.modelAccess).runReadAction<ApplicationDeclaration> {
+            system.applications.stream()
                     .filter { it.name == name }
                     .findFirst()
                     .orElse(null)
@@ -69,19 +70,19 @@ class RichApplicationProjectionController(
 
     override fun restoreProjection(name: String, e: Element): EditorProjection {
         val ref = e.getAttributeValue(RichApplicationProjection.PERSISTENCE_KEY)
-        val repository = PlatformRepositoryProvider.getInstance(myProject)
+        val repository = PlatformRepositoryProvider.getInstance(project)
         val instance = if (ref != null) MPSNetworkInstanceReference.deserialize(ref).resolve(repository) else null
         return instance?.let { createProjection0(name, it) } ?: createProjection(name)
     }
 
     private fun createProjection0(name: String, instance: NetworkInstance): EditorProjection {
         return RichApplicationProjection(
-                myNode,
+                node,
                 this,
                 name,
                 arrayOf("org.fbme.ide.richediting.lang.editor.Rich Editing Hint.system_app"),
                 instance,
-                myProject
+                project
         )
     }
 }

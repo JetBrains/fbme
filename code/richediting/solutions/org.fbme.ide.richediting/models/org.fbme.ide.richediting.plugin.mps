@@ -4708,7 +4708,7 @@
                 <node concept="3clFbF" id="3kxbdDirwso" role="3cqZAp">
                   <node concept="2ShNRf" id="3kxbdDirwsp" role="3clFbG">
                     <node concept="1pGfFk" id="3kxbdDirwsq" role="2ShVmc">
-                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean)" resolve="SimpleEditorProjectionController" />
+                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean,int)" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="3kxbdDirwsr" role="37wK5m">
                         <ref role="3cqZAo" node="3kxbdDirwsh" resolve="node" />
                       </node>
@@ -4727,6 +4727,9 @@
                         </node>
                       </node>
                       <node concept="3clFbT" id="3kxbdDirwsx" role="37wK5m" />
+                      <node concept="3cmrfG" id="63LEJF2ycQb" role="37wK5m">
+                        <property role="3cmrfH" value="2" />
+                      </node>
                     </node>
                   </node>
                 </node>
@@ -4831,7 +4834,7 @@
                 <node concept="3clFbF" id="7Y8B9wpl4Jg" role="3cqZAp">
                   <node concept="2ShNRf" id="7Y8B9wpl4Ja" role="3clFbG">
                     <node concept="1pGfFk" id="1QSEqLhAMsC" role="2ShVmc">
-                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean)" resolve="SimpleEditorProjectionController" />
+                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean,int)" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="1QSEqLhAMsB" role="37wK5m">
                         <ref role="3cqZAo" node="7Y8B9wpl4C9" resolve="node" />
                       </node>
@@ -4851,6 +4854,9 @@
                       </node>
                       <node concept="3clFbT" id="7ii99HMp1gQ" role="37wK5m">
                         <property role="3clFbU" value="true" />
+                      </node>
+                      <node concept="3cmrfG" id="63LEJF2y8CO" role="37wK5m">
+                        <property role="3cmrfH" value="10" />
                       </node>
                     </node>
                   </node>
@@ -5181,7 +5187,7 @@
                 <node concept="3clFbF" id="3kxbdDirwFS" role="3cqZAp">
                   <node concept="2ShNRf" id="3kxbdDirwFT" role="3clFbG">
                     <node concept="1pGfFk" id="3kxbdDirwFU" role="2ShVmc">
-                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean)" resolve="SimpleEditorProjectionController" />
+                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean,int)" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="3kxbdDirwFV" role="37wK5m">
                         <ref role="3cqZAo" node="3kxbdDirwFL" resolve="node" />
                       </node>
@@ -5201,6 +5207,9 @@
                       </node>
                       <node concept="3clFbT" id="3kxbdDirwG1" role="37wK5m">
                         <property role="3clFbU" value="true" />
+                      </node>
+                      <node concept="3cmrfG" id="63LEJF2y7Uq" role="37wK5m">
+                        <property role="3cmrfH" value="10" />
                       </node>
                     </node>
                   </node>

@@ -530,7 +530,7 @@
                 <node concept="3clFbF" id="7Y8B9wpl4Jg" role="3cqZAp">
                   <node concept="2ShNRf" id="7Y8B9wpl4Ja" role="3clFbG">
                     <node concept="1pGfFk" id="1QSEqLhBmkn" role="2ShVmc">
-                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean)" resolve="SimpleEditorProjectionController" />
+                      <ref role="37wK5l" to="8gms:~SimpleEditorProjectionController.&lt;init&gt;(org.jetbrains.mps.openapi.model.SNode,java.lang.String,jetbrains.mps.project.Project,java.lang.String[],boolean,int)" resolve="SimpleEditorProjectionController" />
                       <node concept="37vLTw" id="1vJkp1TWFyC" role="37wK5m">
                         <ref role="3cqZAo" node="1vJkp1TWFh2" resolve="node" />
                       </node>
@@ -571,6 +571,9 @@
                             </node>
                           </node>
                         </node>
+                      </node>
+                      <node concept="3cmrfG" id="63LEJF2oZWJ" role="37wK5m">
+                        <property role="3cmrfH" value="0" />
                       </node>
                     </node>
                   </node>

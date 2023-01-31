@@ -15,19 +15,20 @@ import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.jetbrains.mps.openapi.model.SNode
 
 class RichAlgorithmsProjectionController(
-        private val myNode: SNode,
-        private val myProject: Project
+        private val node: SNode,
+        private val project: Project
 ) : EditorProjectionController {
-    private val myTypeDeclaration: BasicFBTypeDeclaration
-    private val myPlatformRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(myProject)
-    override val id: String
-        get() = "Algorithm"
+    private val typeDeclaration: BasicFBTypeDeclaration
+    private val platformRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(project)
+
+    override val id: String get() = "Algorithm"
+    override val priority: Int get() = 1
 
     override val chooser: ProjectionChooser
-        get() = ModelAccessHelper(myProject.modelAccess).runReadAction<ProjectionChooser> {
+        get() = ModelAccessHelper(project.modelAccess).runReadAction<ProjectionChooser> {
             ProjectionChooser.Composite(
                     id,
-                    myTypeDeclaration.algorithms.map { ChooseProjectionAction(this, it.name) },
+                    typeDeclaration.algorithms.map { ChooseProjectionAction(this, it.name) },
                     listOf(CreateAlgorithmAction())
 
             )
@@ -42,8 +43,8 @@ class RichAlgorithmsProjectionController(
             }
             project.modelAccess.executeCommand {
                 val algorithm =
-                        myPlatformRepository.iec61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
-                myTypeDeclaration.algorithms.add(algorithm)
+                        platformRepository.iec61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
+                typeDeclaration.algorithms.add(algorithm)
                 editor.chooseProjection(createProjection(""))
                 val component = editor.currentEditorComponent
                 component.changeSelection(
@@ -57,18 +58,18 @@ class RichAlgorithmsProjectionController(
     }
 
     init {
-        myTypeDeclaration = myPlatformRepository.getAdapter(myNode, BasicFBTypeDeclaration::class.java)
+        typeDeclaration = platformRepository.getAdapter(node, BasicFBTypeDeclaration::class.java)
                 ?: error("BasicFBTypeDeclaration is null")
     }
 
     override fun createProjection(name: String): EditorProjection {
-        val algorithm = ModelAccessHelper(myProject.modelAccess).runReadAction<AlgorithmDeclaration> {
-            myTypeDeclaration.algorithms.first { it.name == name }
+        val algorithm = ModelAccessHelper(project.modelAccess).runReadAction<AlgorithmDeclaration> {
+            typeDeclaration.algorithms.first { it.name == name }
         }
         return RichAlgorithmProjection(
-                myNode,
+                node,
                 this,
-                myProject,
+                project,
                 name,
                 arrayOf("org.fbme.ide.richediting.lang.editor.Rich Editing Hint.algorithm"),
                 algorithm

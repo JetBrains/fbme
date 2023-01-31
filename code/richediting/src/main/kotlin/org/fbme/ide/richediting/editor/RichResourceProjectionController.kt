@@ -22,9 +22,9 @@ class RichResourceProjectionController(
             .getInstance(project)
             .getAdapter(node, SystemDeclaration::class.java)
             ?: error("System declaration is null")
-    override val id: String
-        get() = "Resource"
 
+    override val id: String get() = "Resource"
+    override val priority: Int get() = 1
 
     override val chooser: ProjectionChooser
         get() = ModelAccessHelper(project.modelAccess).runReadAction<ProjectionChooser> {

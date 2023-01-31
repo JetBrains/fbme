@@ -1,11 +1,9 @@
 package org.fbme.ide.platform.editor
 
 import com.intellij.ide.DataManager
-import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.openapi.ui.popup.JBPopupFactory.ActionSelectionAid.MNEMONICS
-import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.AnActionLink
 import com.intellij.ui.components.DropDownLink
 import com.intellij.ui.components.JBPanel
@@ -13,16 +11,16 @@ import jetbrains.mps.project.Project
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Dimension
 import java.awt.FlowLayout
-import javax.swing.JPanel
 
 class ProjectionChooserPanel(node: SNode, project: Project) : JBPanel<ProjectionChooserPanel>(FlowLayout(FlowLayout.CENTER, 10, 5)) {
 
     init {
-        val choosers = EditorProjectionControllerRegistry.instance.factories
+        val controllers = EditorProjectionControllerRegistry.instance.factories
                 .filter { it.isApplicable(node) }
-                .map { it.create(node, project).chooser }
+                .map { it.create(node, project) }
 
-        for (chooser in choosers) {
+        for (controller in controllers.sortedByDescending { it.priority }) {
+            val chooser = controller.chooser
             val component = when (chooser) {
                 is ProjectionChooser.Simple -> AnActionLink(chooser.text, chooser.action)
                 is ProjectionChooser.Composite -> DropDownLink(chooser.text) {
