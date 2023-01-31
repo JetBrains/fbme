@@ -289,10 +289,8 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
                         rootCell.context.operationContext.project,
                         childNetworkInstance
                     )
-                    if (navigationStub != null) {
-                        style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
-                        return
-                    }
+                    style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
+                    return
                 }
             }
         }

@@ -22,7 +22,7 @@ object NetworkInstanceNavigationSupport {
 
     @JvmStatic
     fun getNavigationStub(project: Project, instance: NetworkInstance): SNode =
-            getNavigatableDeclaration(project, instance).targetSpec
+            getNavigatableDeclaration(project, instance).targetSpec()
 
     fun getNavigatableDeclaration(
             project: Project,
@@ -53,7 +53,7 @@ object NetworkInstanceNavigationSupport {
         val result = ArrayDeque<NavigatableDeclaration>()
         while (currentInstance != null) {
             result.addFirst(getNavigatableDeclaration(project, currentInstance, currentDeclaration))
-            currentInstance = when (val parentInstance = instance.parent) {
+            currentInstance = when (val parentInstance = currentInstance.parent) {
                 is FunctionBlockInstance -> parentInstance.parent
                 is NetworkInstance -> parentInstance
                 else -> null

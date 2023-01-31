@@ -104,7 +104,7 @@ class ProjectionHeaderInfoPanel(
     private fun addNameLabel(declaration: NavigatableDeclaration, font: Font, color: Color = JBColor.BLACK) {
         val label = ActionLink(declaration.declaration.name) {
             project.modelAccess.runReadAction {
-                NavigationSupport.getInstance().openNode(project, declaration.targetSpec, true, false)
+                NavigationSupport.getInstance().openNode(project, declaration.targetSpec(), true, false)
             }
         }
         label.font = font

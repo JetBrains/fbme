@@ -12,7 +12,7 @@ import org.jetbrains.mps.openapi.model.SNodeUtil
 
 data class NavigatableDeclaration(
         val declaration: Declaration,
-        val targetSpec: SNode
+        val targetSpec: () -> SNode
 ) {
     companion object {
 
@@ -22,10 +22,11 @@ data class NavigatableDeclaration(
 
         fun build(project: Project, node: SNode, controllerId: String, projectionName: String, configureProjection: (org.jdom.Element) -> Unit = { }): NavigatableDeclaration {
             val declaration = PlatformRepositoryProvider.getInstance(project).getAdapter(node, Declaration::class.java)!!
-            val state = HeaderedNodeEditor.createState(controllerId, projectionName)
-            configureProjection(state)
-            val spec = ProjectEditorSpecs.getInstance(project).getSpec(node.containingRoot, XMLOutputter().outputString(state))
-            return NavigatableDeclaration(declaration, spec)
+            return NavigatableDeclaration(declaration) {
+                val state = HeaderedNodeEditor.createState(controllerId, projectionName)
+                configureProjection(state)
+                ProjectEditorSpecs.getInstance(project).getSpec(node.containingRoot, XMLOutputter().outputString(state))
+            }
         }
     }
 }
