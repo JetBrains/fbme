@@ -15,10 +15,12 @@ class RelayoutAction : AnAction(), DumbAware {
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        val cell = event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)
-        when {
-            event.element<ECC>() != null -> RelayoutECCAction(cell).apply()
-            event.element<FBNetwork>() != null -> RelayoutFBNetworkAction(cell).apply()
+        event.executeReadActionInEditor {
+            val cell = event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)
+            when {
+                event.element<ECC>() != null -> RelayoutECCAction(cell).apply()
+                event.element<FBNetwork>() != null -> RelayoutFBNetworkAction(cell).apply()
+            }
         }
     }
 }
