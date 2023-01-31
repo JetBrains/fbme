@@ -13,6 +13,8 @@ class CollapseAction : AnAction(), DumbAware {
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        CollapseAction(event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)).apply()
+        event.executeReadActionInEditor {
+            CollapseAction(event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)).apply()
+        }
     }
 }

@@ -13,6 +13,8 @@ class ExpandAction : AnAction(), DumbAware {
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        ExpandAction(event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)).apply()
+        event.executeReadActionInEditor {
+            ExpandAction(event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)).apply()
+        }
     }
 }

@@ -49,7 +49,6 @@ class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
             dy = dy,
             componentShifts(oldBounds, newBounds)
         )
-        expandedComponentsController.update()
     }
 
     private fun NetworkComponentView.componentShifts(

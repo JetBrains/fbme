@@ -34,10 +34,6 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         expandedFBs.remove(functionBlock)
     }
 
-    fun update() {
-        updateFB(editorContext)
-    }
-
     fun isExpanded(functionBlock: FunctionBlockView): Boolean {
         return expandedFBs.containsKey(functionBlock)
     }
@@ -64,10 +60,5 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
 
     companion object {
         private val EXPANDED_FBS_KEY = SceneStateKey<MutableMap<FunctionBlockView, ExpandingData>>("expanded-fbs")
-
-        private fun updateFB(editorContext: EditorContext) {
-            val updater = editorContext.editorComponent.updater
-            updater.update()
-        }
     }
 }

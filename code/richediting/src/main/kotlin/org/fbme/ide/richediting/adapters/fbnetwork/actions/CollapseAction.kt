@@ -21,6 +21,5 @@ class CollapseAction(cell: EditorCell) : ExpandOrCollapseAction(cell.parent) {
 //        expandedComponentsController.removeAffectedComponents(component)
         expandedComponentsController.removeFB(functionBlock)
 //        expandedComponentsController.removeAffectedSections(component)
-        expandedComponentsController.update()
     }
 }
