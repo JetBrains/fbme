@@ -16,6 +16,10 @@
       <concept id="185023738902821179" name="org.fbme.ide.st.lang.structure.UnaryExpression" flags="ng" index="UK6WB">
         <child id="8872717756044728347" name="expression" index="1yuI7h" />
       </concept>
+      <concept id="4435217627499935168" name="org.fbme.ide.st.lang.structure.BinaryExpression" flags="ng" index="398zGI">
+        <child id="4435217627499935199" name="right" index="398zGL" />
+        <child id="4435217627499935197" name="left" index="398zGN" />
+      </concept>
       <concept id="2377145822810428099" name="org.fbme.ide.st.lang.structure.DIntType" flags="ng" index="3r5wd4" />
       <concept id="8872717756041500089" name="org.fbme.ide.st.lang.structure.StatementList" flags="ng" index="1y1qLN">
         <child id="8872717756041500466" name="statements" index="1y1qVS" />
@@ -24,6 +28,7 @@
         <child id="8872717756041500659" name="expression" index="1y1qST" />
         <child id="8872717756041500657" name="variable" index="1y1qSV" />
       </concept>
+      <concept id="8872717756044701100" name="org.fbme.ide.st.lang.structure.AndExpression" flags="ng" index="1yu_hA" />
       <concept id="8872717756044728375" name="org.fbme.ide.st.lang.structure.NotExpression" flags="ng" index="1yuI7X" />
       <concept id="2693352324616754506" name="org.fbme.ide.st.lang.structure.BooleanLiteral" flags="ng" index="1QCq3x">
         <property id="2693352324616826154" name="value" index="1QCDy1" />
@@ -54,6 +59,9 @@
       <concept id="4280485643802119832" name="org.fbme.ide.iec61499.lang.structure.StateAction" flags="ng" index="2zAPAr">
         <reference id="4280485643802119837" name="algorithm" index="2zAPAu" />
         <child id="3296901243643750533" name="event" index="2NbhEN" />
+      </concept>
+      <concept id="4280485643802176324" name="org.fbme.ide.iec61499.lang.structure.InputEventGuard" flags="ng" index="2zAVL7">
+        <reference id="4280485643802176325" name="inputEvent" index="2zAVL6" />
       </concept>
       <concept id="4280485643801969830" name="org.fbme.ide.iec61499.lang.structure.EventDeclaration" flags="ng" index="2zBDe_">
         <child id="4280485643801969855" name="associatedVariables" index="2zBDeW" />
@@ -222,6 +230,26 @@
   </node>
   <node concept="2zBDf2" id="sGryc2GKnS">
     <property role="TrG5h" value="DrillController" />
+    <node concept="2zAPAq" id="6yZuNNtt7hc" role="2zAPxA">
+      <ref role="2zAPx3" node="sGryc2GKnT" resolve="START" />
+      <ref role="2zAPx1" node="sGryc2H_1m" resolve="INIT" />
+      <node concept="10YbkR" id="6yZuNNtt7hd" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
+      <node concept="2EVYwv" id="6yZuNNtt7he" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7hO" role="2EVYSB">
+          <node concept="1yuI7X" id="6yZuNNtt7hV" role="398zGL">
+            <node concept="2zAFuc" id="6yZuNNtt7i4" role="1yuI7h">
+              <ref role="2zAFuj" node="sGryc2H85F" resolve="UP" />
+            </node>
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7hJ" role="398zGN">
+            <ref role="2zAVL6" node="199xfzRrZGq" resolve="INIT" />
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="2zAPAp" id="sGryc2HMcc" role="2zAPwS">
       <property role="TrG5h" value="LIFT_0" />
       <node concept="1tttXp" id="sGryc2HMce" role="1toi31">
@@ -421,24 +449,6 @@
         <ref role="2zAPAu" node="sGryc2HU6m" resolve="DRILL_0" />
       </node>
     </node>
-    <node concept="2zAPAq" id="sGryc2HEhY" role="2zAPxA">
-      <ref role="2zAPx3" node="sGryc2GKnT" resolve="START" />
-      <ref role="2zAPx1" node="sGryc2H_1m" resolve="INIT" />
-      <node concept="10YbkR" id="sGryc2HEhZ" role="2WSJUY">
-        <property role="10YbkC" value="1559.0" />
-        <property role="10YbkE" value="560.0" />
-      </node>
-      <node concept="2EVYwv" id="199xfzRrYpw" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYp$" role="2N3Qeb">
-          <ref role="3Yz8TM" node="sGryc2H85B" resolve="INIT" />
-        </node>
-        <node concept="1yuI7X" id="199xfzRrYpC" role="2EVYSB">
-          <node concept="2zAFuc" id="199xfzRrYpH" role="1yuI7h">
-            <ref role="2zAFuj" node="sGryc2H85F" resolve="UP" />
-          </node>
-        </node>
-      </node>
-    </node>
     <node concept="2zAPAq" id="sGryc2HGV2" role="2zAPxA">
       <ref role="2zAPx3" node="sGryc2H_1m" resolve="INIT" />
       <ref role="2zAPx1" node="sGryc2H85Z" resolve="WAITING" />
@@ -452,19 +462,21 @@
         </node>
       </node>
     </node>
-    <node concept="2zAPAq" id="sGryc2HJzG" role="2zAPxA">
+    <node concept="2zAPAq" id="6yZuNNtt7iz" role="2zAPxA">
       <ref role="2zAPx3" node="sGryc2GKnT" resolve="START" />
       <ref role="2zAPx1" node="sGryc2H85Z" resolve="WAITING" />
-      <node concept="10YbkR" id="sGryc2HJzH" role="2WSJUY">
-        <property role="10YbkC" value="1460.0" />
-        <property role="10YbkE" value="2013.0" />
+      <node concept="10YbkR" id="6yZuNNtt7i$" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
-      <node concept="2EVYwv" id="199xfzRrY2M" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrY2P" role="2N3Qeb">
-          <ref role="3Yz8TM" node="sGryc2H85B" resolve="INIT" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrY2S" role="2EVYSB">
-          <ref role="2zAFuj" node="sGryc2H85F" resolve="UP" />
+      <node concept="2EVYwv" id="6yZuNNtt7i_" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7jc" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7jj" role="398zGL">
+            <ref role="2zAFuj" node="sGryc2H85F" resolve="UP" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7j7" role="398zGN">
+            <ref role="2zAVL6" node="199xfzRrZGq" resolve="INIT" />
+          </node>
         </node>
       </node>
     </node>
@@ -985,7 +997,7 @@
       <ref role="2zAPx1" node="sGryc2IfaH" resolve="BRING" />
       <node concept="10YbkR" id="sGryc2IhO9" role="2WSJUY">
         <property role="10YbkC" value="1360.0" />
-        <property role="10YbkE" value="2493.0" />
+        <property role="10YbkE" value="2486.0" />
       </node>
       <node concept="2EVYwv" id="sGryc2IhOa" role="2zAZMv">
         <node concept="1yuI7X" id="sGryc2IhOc" role="2EVYSB">
@@ -1169,55 +1181,61 @@
   </node>
   <node concept="2zBDf2" id="sGryc2IhPX">
     <property role="TrG5h" value="DrillModel" />
+    <node concept="2zAPAq" id="6yZuNNtt7jN" role="2zAPxA">
+      <ref role="2zAPx3" node="sGryc2IhPY" resolve="START" />
+      <ref role="2zAPx1" node="199xfzRqXuf" resolve="DRILL" />
+      <node concept="10YbkR" id="6yZuNNtt7jO" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
+      <node concept="2EVYwv" id="6yZuNNtt7jP" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7kK" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7kU" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqWB0" resolve="LOWER" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7kF" role="398zGN">
+            <ref role="2zAVL6" node="sGryc2I$hQ" resolve="CHGI" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2zAPAq" id="6yZuNNtt7kX" role="2zAPxA">
+      <ref role="2zAPx3" node="199xfzRqXuf" resolve="DRILL" />
+      <ref role="2zAPx1" node="199xfzRqY45" resolve="WAITING" />
+      <node concept="10YbkR" id="6yZuNNtt7kY" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
+      <node concept="2EVYwv" id="6yZuNNtt7kZ" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7mo" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7mv" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqWzH" resolve="LIFT" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7mj" role="398zGN">
+            <ref role="2zAVL6" node="sGryc2I$hQ" resolve="CHGI" />
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="2zBDeF" id="199xfzRqYw7" role="2zBDeH">
       <property role="TrG5h" value="COORD" />
       <node concept="3r5wd4" id="199xfzRqYw9" role="2zB7qv" />
     </node>
-    <node concept="2zAPAq" id="199xfzRqX$q" role="2zAPxA">
-      <ref role="2zAPx3" node="sGryc2IhPY" resolve="START" />
-      <ref role="2zAPx1" node="199xfzRqXuf" resolve="DRILL" />
-      <node concept="10YbkR" id="199xfzRqX$r" role="2WSJUY">
-        <property role="10YbkC" value="0.0" />
-        <property role="10YbkE" value="0.0" />
-      </node>
-      <node concept="2EVYwv" id="199xfzRrYKS" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYKX" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqWxb" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYL0" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqWB0" resolve="LOWER" />
-        </node>
-      </node>
-    </node>
     <node concept="2zAPAq" id="199xfzRqXNG" role="2zAPxA">
-      <ref role="2zAPx3" node="199xfzRqXuf" resolve="DRILL" />
-      <ref role="2zAPx1" node="199xfzRqY45" resolve="WAITING" />
+      <ref role="2zAPx3" node="199xfzRqY45" resolve="WAITING" />
+      <ref role="2zAPx1" node="199xfzRqXuf" resolve="DRILL" />
       <node concept="10YbkR" id="199xfzRqXNH" role="2WSJUY">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
       </node>
       <node concept="2EVYwv" id="199xfzRrYL2" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYL7" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqWxb" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYLb" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqWzH" resolve="LIFT" />
-        </node>
-      </node>
-    </node>
-    <node concept="2zAPAq" id="199xfzRqYku" role="2zAPxA">
-      <ref role="2zAPx1" node="199xfzRqXuf" resolve="DRILL" />
-      <ref role="2zAPx3" node="199xfzRqY45" resolve="WAITING" />
-      <node concept="10YbkR" id="199xfzRqYkv" role="2WSJUY">
-        <property role="10YbkC" value="0.0" />
-        <property role="10YbkE" value="0.0" />
-      </node>
-      <node concept="2EVYwv" id="199xfzRrYLd" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYLi" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqWxb" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYLl" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqWB0" resolve="LOWER" />
+        <node concept="1yu_hA" id="6yZuNNtt7mD" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7mK" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqWB0" resolve="LOWER" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7m$" role="398zGN">
+            <ref role="2zAVL6" node="199xfzRqZDJ" resolve="CHGI" />
+          </node>
         </node>
       </node>
     </node>
@@ -1504,51 +1522,57 @@
         </node>
       </node>
     </node>
-    <node concept="2zAPAq" id="199xfzRqZGc" role="2zAPxA">
+    <node concept="2zAPAq" id="6yZuNNtt7dY" role="2zAPxA">
       <ref role="2zAPx3" node="sGryc2IhQM" resolve="START" />
       <ref role="2zAPx1" node="199xfzRqZGh" resolve="PROCESSING" />
-      <node concept="10YbkR" id="199xfzRqZGd" role="2WSJUY">
-        <property role="10YbkC" value="826.0" />
-        <property role="10YbkE" value="1886.0" />
+      <node concept="10YbkR" id="6yZuNNtt7dZ" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
-      <node concept="2EVYwv" id="199xfzRrYKv" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYKy" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqZDJ" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYK_" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqZDL" resolve="INSIDE" />
+      <node concept="2EVYwv" id="6yZuNNtt7e0" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7ew" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7eB" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqZDL" resolve="INSIDE" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7er" role="398zGN">
+            <ref role="2zAVL6" node="sGryc2I$hQ" resolve="CHGI" />
+          </node>
         </node>
       </node>
     </node>
-    <node concept="2zAPAq" id="199xfzRqZGw" role="2zAPxA">
+    <node concept="2zAPAq" id="6yZuNNtt7eE" role="2zAPxA">
       <ref role="2zAPx3" node="199xfzRqZGh" resolve="PROCESSING" />
       <ref role="2zAPx1" node="199xfzRqZGs" resolve="WAITING" />
-      <node concept="10YbkR" id="199xfzRqZGx" role="2WSJUY">
-        <property role="10YbkC" value="640.0" />
-        <property role="10YbkE" value="2820.0" />
+      <node concept="10YbkR" id="6yZuNNtt7eF" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
-      <node concept="2EVYwv" id="199xfzRrYKC" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYKG" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqZDJ" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYKJ" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqZDP" resolve="OUTSIDE" />
+      <node concept="2EVYwv" id="6yZuNNtt7eG" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7fc" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7fj" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqZDP" resolve="OUTSIDE" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7f7" role="398zGN">
+            <ref role="2zAVL6" node="sGryc2I$hQ" resolve="CHGI" />
+          </node>
         </node>
       </node>
     </node>
-    <node concept="2zAPAq" id="199xfzRqZGK" role="2zAPxA">
-      <ref role="2zAPx1" node="199xfzRqZGh" resolve="PROCESSING" />
+    <node concept="2zAPAq" id="6yZuNNtt7fm" role="2zAPxA">
       <ref role="2zAPx3" node="199xfzRqZGs" resolve="WAITING" />
-      <node concept="10YbkR" id="199xfzRqZGL" role="2WSJUY">
-        <property role="10YbkC" value="3766.0" />
-        <property role="10YbkE" value="2840.0" />
+      <ref role="2zAPx1" node="199xfzRqZGh" resolve="PROCESSING" />
+      <node concept="10YbkR" id="6yZuNNtt7fn" role="2WSJUY">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
-      <node concept="2EVYwv" id="199xfzRqZGM" role="2zAZMv">
-        <node concept="3YHqtX" id="199xfzRrYKM" role="2N3Qeb">
-          <ref role="3Yz8TM" node="199xfzRqZDJ" resolve="CHGI" />
-        </node>
-        <node concept="2zAFuc" id="199xfzRrYKQ" role="2EVYSB">
-          <ref role="2zAFuj" node="199xfzRqZDL" resolve="INSIDE" />
+      <node concept="2EVYwv" id="6yZuNNtt7fo" role="2zAZMv">
+        <node concept="1yu_hA" id="6yZuNNtt7gH" role="2EVYSB">
+          <node concept="2zAFuc" id="6yZuNNtt7gR" role="398zGL">
+            <ref role="2zAFuj" node="199xfzRqZDL" resolve="INSIDE" />
+          </node>
+          <node concept="2zAVL7" id="6yZuNNtt7gC" role="398zGN">
+            <ref role="2zAVL6" node="sGryc2I$hQ" resolve="CHGI" />
+          </node>
         </node>
       </node>
     </node>

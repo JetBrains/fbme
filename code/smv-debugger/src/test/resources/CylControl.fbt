@@ -52,7 +52,7 @@
       </ECState>
       <ECTransition Source="START" Destination="INIT" x="986" y="520" Condition="INIT" />
       <ECTransition Source="INIT" Destination="START" x="986" y="706" Condition="1" />
-      <ECTransition Source="START" Destination="GO" x="993" y="899" Condition="REQ[START AND Extended]" />
+      <ECTransition Source="START" Destination="GO" x="993" y="899" Condition="REQ[START]" />
       <ECTransition Source="GO" Destination="S_RETURN" x="3126" y="1686" Condition="REQ[Extended]" />
       <ECTransition Source="S_RETURN" Destination="NOMOVE" x="4853" y="1046" Condition="REQ[Retracted]" />
       <ECTransition Source="NOMOVE" Destination="START" x="3213" y="-553" Condition="1" />

@@ -1,9 +1,14 @@
 package org.fbme.smvDebugger.fb2smv
 
+import jetbrains.mps.smodel.SNode
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.st.expressions.BinaryExpression
+import org.fbme.lib.st.expressions.BinaryOperation
+import org.fbme.lib.st.expressions.Expression
+import org.fbme.lib.st.expressions.VariableReference
 import org.fbme.lib.st.statements.EmptyStatement
 import org.fbme.lib.st.types.ElementaryType
 import java.nio.file.Files
@@ -16,6 +21,10 @@ class FB2SMV : AbstractFBConverter("smv") {
     )
     val typesInitValMap = mapOf<ElementaryType, String>(
         ElementaryType.BOOL to "FALSE"
+    )
+    val binaryOperationsConvertionMap = mapOf<BinaryOperation, String>(
+        BinaryOperation.AND to "&",
+        BinaryOperation.OR to "|"
     )
 
     override fun generateAlphaBeta(fb: FBTypeDescriptor) {
@@ -102,11 +111,29 @@ class FB2SMV : AbstractFBConverter("smv") {
                 file?.appendText("& event_" + tr.condition.eventReference.presentation)
             }
             //if condition guards
-            if (tr.condition.getGuardCondition() != null) TODO()
+            tr.condition.getGuardCondition()?.let {
+                file?.appendText("&")
+                guardConditionParsing(it)
+            }
 
             file?.appendText(" : " + target + "_ecc;\n")
         }
         file?.appendText("\tTRUE : Q_smv;\nesac;\n")
+    }
+    fun guardConditionParsing(guards : Expression?){
+        if (guards is  BinaryExpression) {
+            val refs = guards as BinaryExpression
+            val type = refs.operation
+            val left = refs.leftExpression
+            val right = refs.rightExpression
+            guardConditionParsing(left)
+            binaryOperationsConvertionMap[type]?.let { file?.appendText(" $it") }
+            guardConditionParsing(right)
+        }
+        if (guards is VariableReference) {
+            val refs = guards as VariableReference
+            file?.appendText(" " + refs.reference.presentation)
+        }
     }
 
     override fun generateLocalVariableDefinition(fb: FBTypeDescriptor) {

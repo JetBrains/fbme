@@ -13,6 +13,7 @@ TODO
  1)INIT[...] - on ECC transitions
  2)REQ AND (PREV = INP) - on ECC transitions
  3) generateNA - when NA may be grater then 1
+ 4) fill maps
 
  */
 abstract class AbstractFBConverter(val fileExtention: String) {
@@ -47,7 +48,6 @@ abstract class AbstractFBConverter(val fileExtention: String) {
         generateNI(fb)
         generateInputVariablesUpdate(fb)
         generateOutputVariablesUpdate(fb)
-
         generateAlphaBeta(fb)
     }
 

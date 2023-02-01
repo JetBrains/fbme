@@ -1,0 +1,53 @@
+MODULE CylControl(event_INIT,event_REQ,event_INITO,event_CNF,Retracted_,Extended_,START_,EXTEND_,RETRACT_,alpha, beta)
+VAR Retracted : boolean;
+VAR Extended : boolean;
+VAR START : boolean;
+VAR EXTEND : boolean;
+VAR RETRACT : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,GO_ecc,S_RETURN_ecc,NOMOVE_ecc}
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(Retracted):= FALSE;
+init(Extended):= FALSE;
+init(START):= FALSE;
+init(EXTEND):= FALSE
+init(RETRACT):= FALSE
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_REQ& START& Extended : GO_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm & event_REQ& Extended : S_RETURN_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm & event_REQ& Retracted : NOMOVE_ecc;
+	Q_smv=NOMOVE_ecc & S_smv=s1_osm  : START_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=GO_ecc & NA < 1 ) | (Q_smv=S_RETURN_ecc & NA < 1 ) | (Q_smv=NOMOVE_ecc & NA < 1 ): (NA + 1) mod 2);
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1):  0 ;	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=GO_ecc & NA = 1  & 2 < 1) | (Q_smv=S_RETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=NOMOVE_ecc & NA = 1  & 2 < 1): (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2):  0 ;	TRUE : NI;
+esac;
+next(Retracted := case
+	alpha & S_smv=s0_osm & (
