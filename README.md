@@ -20,3 +20,12 @@
 ### Building the standalone IDE
 
 - Run `./gradlew buildLocalDistribution`
+
+### Download
+
+FBME distributions are available for following platforms:
+
+* [Windows](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.win.zip)
+* [Linux](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.tar.gz)
+* [Mac OS](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.macos.zip)
+
