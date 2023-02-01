@@ -15,7 +15,7 @@ class ChangeOutputAction(private val eventDeclaration: EventDeclaration?) :
 
     override fun actionPerformed(event: AnActionEvent) {
         event.executeWriteActionInEditor {
-            val editorCell = event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL) as AlgorithmCell
+            val editorCell = event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)
             val action = editorCell.style.get(RichEditorStyleAttributes.STATE_ACTION)
             if (eventDeclaration != null) {
                 action.event.setTarget(createEventPortPath(null, eventDeclaration))

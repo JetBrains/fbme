@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import jetbrains.mps.project.Project
 import jetbrains.mps.smodel.ModelAccessHelper
+import jetbrains.mps.smodel.SNodeUtil
 import jetbrains.mps.workbench.MPSDataKeys
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepository
@@ -18,8 +19,9 @@ class RichAlgorithmsProjectionController(
         private val node: SNode,
         private val project: Project
 ) : EditorProjectionController {
-    private val typeDeclaration: BasicFBTypeDeclaration
     private val platformRepository: PlatformRepository = PlatformRepositoryProvider.getInstance(project)
+    private val typeDeclaration = platformRepository.getAdapter(node, BasicFBTypeDeclaration::class.java)
+            ?: error("BasicFBTypeDeclaration is null")
 
     override val id: String get() = "Algorithm"
     override val priority: Int get() = 1
@@ -34,32 +36,8 @@ class RichAlgorithmsProjectionController(
             )
         }
 
-    inner class CreateAlgorithmAction : AnAction("New Algorithm") {
-        override fun actionPerformed(event: AnActionEvent) {
-            val project = event.getData(MPSDataKeys.MPS_PROJECT)
-            val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
-            if (project == null || editor == null) {
-                return
-            }
-            project.modelAccess.executeCommand {
-                val algorithm =
-                        platformRepository.iec61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
-                typeDeclaration.algorithms.add(algorithm)
-                editor.chooseProjection(createProjection(""))
-                val component = editor.currentEditorComponent
-                component.changeSelection(
-                        component.findNodeCellWithRole(
-                                (algorithm as PlatformElement).node,
-                                "name"
-                        )!!
-                )
-            }
-        }
-    }
-
     init {
-        typeDeclaration = platformRepository.getAdapter(node, BasicFBTypeDeclaration::class.java)
-                ?: error("BasicFBTypeDeclaration is null")
+
     }
 
     override fun createProjection(name: String): EditorProjection {
@@ -74,5 +52,23 @@ class RichAlgorithmsProjectionController(
                 arrayOf("org.fbme.ide.richediting.lang.editor.Rich Editing Hint.algorithm"),
                 algorithm
         )
+    }
+
+    inner class CreateAlgorithmAction : AnAction("New Algorithm") {
+        override fun actionPerformed(event: AnActionEvent) {
+            val project = event.getData(MPSDataKeys.MPS_PROJECT)
+            val editor = event.getData(HeaderedEditorDataKeys.EDITOR)
+            if (project == null || editor == null) {
+                return
+            }
+            project.modelAccess.executeCommand {
+                val algorithm = platformRepository.iec61499Factory.createAlgorithmDeclaration(StringIdentifier(""))
+                typeDeclaration.algorithms.add(algorithm)
+                editor.chooseProjection(createProjection(""))
+                val component = editor.currentEditorComponent
+                val editorCell = component.findCellWithId((algorithm as PlatformElement).node, "property_name")
+                component.changeSelection(editorCell)
+            }
+        }
     }
 }
