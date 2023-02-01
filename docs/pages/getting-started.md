@@ -19,7 +19,7 @@ After pressing _OK_, FBME will create fresh project with a single empty system c
 
 For learning how to develop IEC 61499 systems with FBME follow [Blinking Sample](blinking-sample.md) tutorial.
 
-### Export
+### Import from Nxt Studio
 
 FBME can import project from other IEC 61499 development tools, such as NxtStudio.
 To import your project from NxtStudio, open FBME and choose _Create New Project_.
