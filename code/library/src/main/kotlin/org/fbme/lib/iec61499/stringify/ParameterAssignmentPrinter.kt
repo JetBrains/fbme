@@ -12,9 +12,9 @@ class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
 
     companion object {
         @JvmStatic
-        fun printAll(assignments: List<ParameterAssignment?>, element: Element) {
+        fun printAll(assignments: List<ParameterAssignment>, element: Element) {
             for (assignment in assignments) {
-                element.addContent(ParameterAssignmentPrinter(assignment!!).print())
+                element.addContent(ParameterAssignmentPrinter(assignment).print())
             }
         }
     }
