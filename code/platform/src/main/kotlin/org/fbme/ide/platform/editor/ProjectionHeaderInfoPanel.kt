@@ -2,22 +2,23 @@ package org.fbme.ide.platform.editor
 
 import com.intellij.ide.DataManager
 import com.intellij.openapi.actionSystem.ActionPlaces
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.ui.JBColor
 import com.intellij.ui.PopupHandler
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
-import com.intellij.ui.components.labels.LinkLabel
-import com.intellij.uiDesigner.core.Spacer
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.actions.SNodeActionData
 import jetbrains.mps.ide.icons.GlobalIconManager
-import jetbrains.mps.ide.refactoring.plugin.RenameNode_Action
+import jetbrains.mps.ide.platform.refactoring.RenameDialog
 import jetbrains.mps.nodeEditor.EditorSettings
 import jetbrains.mps.openapi.navigation.NavigationSupport
 import jetbrains.mps.project.Project
 import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.lib.common.Declaration
 import org.jetbrains.mps.openapi.event.SPropertyChangeEvent
 import org.jetbrains.mps.openapi.model.SModel
@@ -26,9 +27,7 @@ import org.jetbrains.mps.openapi.model.SNodeId
 import java.awt.Color
 import java.awt.FlowLayout
 import java.awt.Font
-import java.awt.font.TextAttribute
 import javax.swing.JButton
-import javax.swing.JLabel
 import javax.swing.JPanel
 
 class ProjectionHeaderInfoPanel(
@@ -54,7 +53,7 @@ class ProjectionHeaderInfoPanel(
         stereotypeLabel.font = stereotypeFont
         stereotypeLabel.foreground = JBColor.GRAY
 
-        val renameAction = RenameNode_Action()
+        val renameAction = RenameAction()
         val group = DefaultActionGroup(renameAction)
         DataManager.registerDataProvider(this) {
             when (it) {
@@ -143,6 +142,23 @@ class ProjectionHeaderInfoPanel(
         override fun propertyChanged(event: SPropertyChangeEvent) {
             if (event.property.name == "name" && event.node.nodeId in nodes) {
                 updateCurrent()
+            }
+        }
+    }
+
+    private inner class RenameAction: AnAction("Rename") {
+
+        override fun actionPerformed(event: AnActionEvent) {
+            val project = event.getRequiredData(MPSCommonDataKeys.MPS_PROJECT)
+            val (declaration, newName) = project.modelAccess.computeReadAction {
+                val platformRepository = PlatformRepositoryProvider.getInstance(project)
+                val node = event.getRequiredData(MPSCommonDataKeys.NODE)
+                val declaration = platformRepository.getAdapter(node, Declaration::class.java)!!
+                val newName = RenameDialog.getNewName(event.project, declaration.name, "declaration")
+                declaration to newName
+            }
+            project.modelAccess.executeCommandInEDT {
+                declaration.name = newName
             }
         }
     }
