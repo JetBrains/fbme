@@ -226,46 +226,51 @@ object STConverter {
     private fun extractLiteral(factory: STFactory, literalCtx: LiteralContext): Literal<*>? {
         if (literalCtx is DecContext) {
             val literal = factory.createLiteral(LiteralKind.DEC_INT) as Literal<Int?>
-            literal.value = literalCtx.getText().toInt()
+            literal.value = literalCtx.text.toInt()
             return literal
         }
         if (literalCtx is BinContext) {
             val literal = factory.createLiteral(LiteralKind.BINARY_INT) as Literal<Int?>
-            literal.value = literalCtx.getText().substring(2).toInt(2)
+            literal.value = literalCtx.text.substring(2).toInt(2)
             return literal
         }
         if (literalCtx is OctContext) {
             val literal = factory.createLiteral(LiteralKind.OCT_INT) as Literal<Int?>
-            literal.value = literalCtx.getText().substring(2).toInt(8)
+            literal.value = literalCtx.text.substring(2).toInt(8)
             return literal
         }
         if (literalCtx is HexContext) {
             val literal = factory.createLiteral(LiteralKind.HEX_INT) as Literal<Int?>
-            literal.value = literalCtx.getText().substring(3).toInt(16)
+            literal.value = literalCtx.text.substring(3).toInt(16)
             return literal
         }
         if (literalCtx is StringContext) {
             val literal = factory.createLiteral(LiteralKind.STRING) as Literal<String?>
-            val text = literalCtx.getText()
+            val text = literalCtx.text
             // TODO unescape parsed string
             literal.value = text.substring(1, text.length - 1)
             return literal
         }
         if (literalCtx is WstringContext) {
             val literal = factory.createLiteral(LiteralKind.WSTRING) as Literal<String?>
-            val text = literalCtx.getText()
+            val text = literalCtx.text
             // TODO unescape parsed string
             literal.value = text.substring(1, text.length - 1)
             return literal
         }
         if (literalCtx is BooleanContext) {
             val literal = factory.createLiteral(LiteralKind.BOOL) as Literal<Boolean?>
-            literal.value = literalCtx.getText() == "TRUE"
+            literal.value = literalCtx.text == "TRUE"
             return literal
         }
         if (literalCtx is BooleanBinContext) {
             val literal = factory.createLiteral(LiteralKind.BINARY_BOOL) as Literal<Boolean?>
-            literal.value = literalCtx.getText() == "BOOL#1"
+            literal.value = literalCtx.text == "BOOL#1"
+            return literal
+        }
+        if (literalCtx is DurationContext) {
+            val literal = factory.createLiteral(LiteralKind.TIME) as Literal<String?>
+            literal.value = literalCtx.text.substringAfter('#')
             return literal
         }
         return null
