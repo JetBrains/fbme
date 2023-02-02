@@ -6371,11 +6371,19 @@
       <node concept="tCFHf" id="aucBW5SZYk" role="ftvYc">
         <ref role="tCJdB" node="6kcQr5w_Vl4" resolve="Debug_UnwatchSelectedFBs" />
       </node>
-      <node concept="tCFHf" id="45FpMYiNXPx" role="ftvYc">
-        <ref role="tCJdB" node="44qSI5$V0ef" resolve="StopResource" />
+      <node concept="1X3_iC" id="7TPxhsI2lWN" role="lGtFl">
+        <property role="3V$3am" value="reference" />
+        <property role="3V$3ak" value="28f9e497-3b42-4291-aeba-0a1039153ab1/1207145163717/1207145201301" />
+        <node concept="tCFHf" id="45FpMYiNXPx" role="8Wnug">
+          <ref role="tCJdB" node="44qSI5$V0ef" resolve="DeployResource" />
+        </node>
       </node>
-      <node concept="tCFHf" id="3nYvV6wb5v2" role="ftvYc">
-        <ref role="tCJdB" node="1UPrnlC93lw" resolve="StopResource" />
+      <node concept="1X3_iC" id="7TPxhsI2lX2" role="lGtFl">
+        <property role="3V$3am" value="reference" />
+        <property role="3V$3ak" value="28f9e497-3b42-4291-aeba-0a1039153ab1/1207145163717/1207145201301" />
+        <node concept="tCFHf" id="3nYvV6wb5v2" role="8Wnug">
+          <ref role="tCJdB" node="1UPrnlC93lw" resolve="StopResource" />
+        </node>
       </node>
     </node>
   </node>
@@ -7979,7 +7987,7 @@
   </node>
   <node concept="sE7Ow" id="6bvi$yscBuL">
     <property role="TrG5h" value="DeployResourceInDebugMode" />
-    <property role="2uzpH1" value="Deploy Resource In Debug Mode" />
+    <property role="2uzpH1" value="Deploy Resource" />
     <property role="2YLI8m" value="6u2MFnph2yk/editorCommand" />
     <node concept="2S4$dB" id="6bvi$yscDwT" role="1NuT2Z">
       <property role="TrG5h" value="node" />
@@ -8863,7 +8871,7 @@
   </node>
   <node concept="sE7Ow" id="6bvi$ysdmt1">
     <property role="TrG5h" value="StopResourceInDebugMode" />
-    <property role="2uzpH1" value="Stop Resource In Debug Mode" />
+    <property role="2uzpH1" value="Stop Resource" />
     <node concept="2S4$dB" id="6bvi$ysdmAf" role="1NuT2Z">
       <property role="TrG5h" value="node" />
       <node concept="3Tm6S6" id="6bvi$ysdmAg" role="1B3o_S" />
