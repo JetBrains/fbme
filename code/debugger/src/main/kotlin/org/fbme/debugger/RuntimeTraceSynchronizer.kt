@@ -101,14 +101,9 @@ class RuntimeTraceSynchronizer(
                 continue@requestsLoop
             }
 
-            val serviceChanges = changes.filter { (path, _) ->
-                resourceDeclaration.resolvePath(path.dropLast(1)) is ServiceInterfaceFBTypeDeclaration
-            }
-            check(serviceChanges.isNotEmpty())
-
             val currentState = trace[currentStateIndex].state as ResourceState
 
-            for ((path, _) in serviceChanges) {
+            for ((path, _) in changes) {
                 val portName = path.last()
                 val fbPath = path.dropLast(1)
                 val fbState = currentState.resolveFB(fbPath)
