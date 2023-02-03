@@ -1,19 +1,12 @@
 package org.fbme.smvDebugger.fb2smv
 
-import jetbrains.mps.smodel.SNode
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
-import org.fbme.lib.st.expressions.BinaryExpression
-import org.fbme.lib.st.expressions.BinaryOperation
-import org.fbme.lib.st.expressions.Expression
-import org.fbme.lib.st.expressions.VariableReference
-import org.fbme.lib.st.statements.EmptyStatement
+import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.ElementaryType
-import java.nio.file.Files
-import java.util.Collections.max
-import kotlin.math.max
 
 class FB2SMV : AbstractFBConverter("smv") {
     val typesMap = mapOf<ElementaryType, String>(
@@ -27,28 +20,133 @@ class FB2SMV : AbstractFBConverter("smv") {
         BinaryOperation.OR to "|"
     )
 
+    override fun generateFooter(fb: FBTypeDescriptor) {
+        file?.appendText("DEFINE ExistsInputEvent:=\n")
+        for (ie in fb.eventInputPorts) {
+            file?.appendText(" event_${ie.name} ")
+            if (fb.eventInputPorts.last() != ie) file?.appendText("|")
+        }
+
+        val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
+
+        file?.appendText(";\nDEFINE ExistsEnabledECTran:= \n")
+        for (st in states) {
+            file?.appendText("(Q_smv=${st.name}_ecc  ")
+            val transitions = fbService.getAllTransitionFromState(st, fb)
+            for (tr in transitions) {
+                tr.condition.eventReference.getTarget()?.let {
+                    file?.appendText("& ( event_" + tr.condition.eventReference.presentation)
+                }
+                tr.condition.getGuardCondition()?.let {
+                    file?.appendText("& ")
+                    guardConditionParsing(it)
+                }
+            }
+        }
+        file?.appendText("FAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
+    }
+
+    override fun generateOutputEventsSet(fb: FBTypeDescriptor) {
+        // how to identify which state can produce event
+        val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
+        for (oe in fb.eventOutputPorts) {
+            file?.appendText("DEFINE event_${oe.name}_set:=\tS_smv=s2_osm & NI=0")
+            var flag = true
+            for (st in states) {
+                for (act in st.actions) {
+                    if (act.event.getTarget()?.portTarget == oe.declaration) {
+                        if (flag) {
+                            file?.appendText(" & (")
+                            flag = false
+                        } else {
+                            file?.appendText(" | ")
+                        }
+                        file?.appendText("(Q_smv=${st.name}_ecc & NA = ${st.actions.indexOf(act) + 1})")
+                    }
+                }
+            }
+            file?.appendText(" ;\n")
+        }
+    }
+    //     val event = oe.declaration as EventDeclaration
+
+    //   event.associations.forEach { it.parameterReference.getTarget(). }
+
+    override fun generateInputEventsReset(fb: FBTypeDescriptor) {
+        val eventsList = ArrayList<String>(fb.eventInputPorts.size)
+        for (ie in fb.eventInputPorts) {
+            file?.appendText("DEFINE event_${ie.name}_reset:= ")
+
+            if (eventsList.size != 0) {
+                file?.appendText("((alpha & (")
+                for (e in eventsList) {
+                    file?.appendText(" $e ")
+                    if (eventsList.last() != e) file?.appendText("|")
+                }
+                file?.appendText(") | ")
+            }
+            file?.appendText("(S_smv=s1_osm);")
+            eventsList.add(ie.name)
+        }
+    }
+
     override fun generateAlphaBeta(fb: FBTypeDescriptor) {
-        TODO("Not yet implemented")
+        file?.appendText(
+            "DEFINE alpha_reset:= \t(alpha & S_smv=s0_osm & !ExistsInputEvent " +
+                    "| S_smv=s1_osm & (!ExistsEnabledECTran));\nDEFINE beta_set:= \t" +
+                    "(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));\n"
+        )
     }
 
     override fun generateOutputVariablesUpdate(fb: FBTypeDescriptor) {
-        TODO("Not yet implemented")
+        val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
+
+        for (id in fb.dataOutputPorts) {
+            file?.appendText("next(${id.name}) := case\n")
+            for (st in states) {
+                for (act in st.actions) {
+                    val body = act.algorithm.getTarget()?.body
+                    if (body is AlgorithmBody.ST) {
+                        val rez = fbService.getOutputsAssignmentsFromAlgBody(id, body) ?: continue;
+                        for (stat in rez) {
+                            file?.appendText(
+                                "\tS_smv=s2_osm & Q_smv=(${st.name}_ecc & " +
+                                        "NA=${st.actions.indexOf(act) + 1} & NI=${stat.second} : (" +
+                                        (stat.first.expression as? Literal<*>)?.value.toString().uppercase() + ");\n"
+                            )
+                        }
+                    }
+                }
+            }
+            file?.appendText("\tTRUE : ${id.name}\nesac;\n")
+        }
+
+        for (id in fb.dataOutputPorts) {
+            file?.appendText("next(${id.name}_) := case\nS_smv=s2_osm & NI=0 & (")
+            for (st in states) {
+                file?.appendText("(Q_smv=${st.name}_ecc & NA=1)")//TODO algs
+                if (states.last() != st) file?.appendText(" | ")
+            }
+            file?.appendText(") : ${id.name};\n")
+        }
     }
 
     override fun generateInputVariablesUpdate(fb: FBTypeDescriptor) {
         for (id in fb.dataInputPorts) {
-            file?.appendText("next(${id.name} := case\n\talpha & S_smv=s0_osm & (")
-            for (event in fbService.getAssociatedInputEvents(fb, id)){
+            file?.appendText("next(${id.name}) := case\n\talpha & S_smv=s0_osm & (")
+            for (event in fbService.getAssociatedInputEvents(fb, id)) {
                 file?.appendText("event_${event.name}")
-                if(fb.dataInputPorts.last() != event)  file?.appendText(" | ")
+                if (fb.dataInputPorts.last() != event) file?.appendText(" | ")
             }
             file?.appendText(") : ${id.name}_ ;\n\tTRUE : ${id.name}\nesac;\n\n")
         }
     }
 
     override fun generateCountersDeclaration(fb: FBTypeDescriptor) {
-        file?.appendText("}\n\nVAR NA: 0..${fbService.getMaxNA(fb)};\nVAR NI: 0.." +
-                "${fbService.getMaxNI(fb)};\n\n")
+        file?.appendText(
+            "}\n\nVAR NA: 0..${fbService.getMaxNA(fb)};\nVAR NI: 0.." +
+                    "${fbService.getMaxNI(fb)};\n\n"
+        )
     }
 
     override fun generateNI(fb: FBTypeDescriptor) {
@@ -60,13 +158,13 @@ class FB2SMV : AbstractFBConverter("smv") {
             if (st != states.last()) file?.appendText(" | ")
         }
 
-        file?.appendText(": (NI + 1) mod ${maxNI?.plus(1)};\n\tS_smv=s2_osm & (")
+        file?.appendText(") : (NI + 1) mod ${maxNI?.plus(1)};\n\tS_smv=s2_osm & (")
         for (st in states) {
             file?.appendText("(Q_smv=" + st.name + "_ecc & NA = 1 & NI = $maxNI)")
             if (st != states.last()) file?.appendText(" | ")
         }
 
-        file?.appendText(":  0 ;\tTRUE : NI;\nesac;\n")
+        file?.appendText(") :  0 ;\tTRUE : NI;\nesac;\n")
     }
 
     //TODO Testing with multiple algs and lines
@@ -80,13 +178,13 @@ class FB2SMV : AbstractFBConverter("smv") {
             if (st != states.last()) file?.appendText(" | ")
         }
 
-        file?.appendText(": (NA + 1) mod ${maxNA+1});\n\tS_smv=s2_osm & NI=0 & (")
+        file?.appendText(") : (NA + 1) mod ${maxNA + 1};\n\tS_smv=s2_osm & NI=0 & (")
         for (st in states) {
             file?.appendText("(Q_smv=" + st.name + "_ecc & NA = $maxNA)")
             if (st != states.last()) file?.appendText(" | ")
         }
 
-        file?.appendText(":  0 ;\tTRUE : NA;\nesac;\n")
+        file?.appendText(") :  0 ;\n\tTRUE : NA;\nesac;\n")
     }
 
     override fun generateOSM(fb: FBTypeDescriptor) {
@@ -112,7 +210,7 @@ class FB2SMV : AbstractFBConverter("smv") {
             }
             //if condition guards
             tr.condition.getGuardCondition()?.let {
-                file?.appendText("&")
+                file?.appendText("& ")
                 guardConditionParsing(it)
             }
 
@@ -120,12 +218,12 @@ class FB2SMV : AbstractFBConverter("smv") {
         }
         file?.appendText("\tTRUE : Q_smv;\nesac;\n")
     }
-    fun guardConditionParsing(guards : Expression?){
-        if (guards is  BinaryExpression) {
-            val refs = guards as BinaryExpression
-            val type = refs.operation
-            val left = refs.leftExpression
-            val right = refs.rightExpression
+
+    private fun guardConditionParsing(guards: Expression?) {
+        if (guards is BinaryExpression) {
+            val type = guards.operation
+            val left = guards.leftExpression
+            val right = guards.rightExpression
             guardConditionParsing(left)
             binaryOperationsConvertionMap[type]?.let { file?.appendText(" $it") }
             guardConditionParsing(right)
@@ -156,7 +254,6 @@ class FB2SMV : AbstractFBConverter("smv") {
         file?.appendText("init(NA):= 0;\ninit(NI):= 0;\n\n")
     }
 
-
     override fun generateLocalVariableDeclaration(fb: FBTypeDescriptor) {
 
         for (id in fb.dataInputPorts) {
@@ -174,7 +271,6 @@ class FB2SMV : AbstractFBConverter("smv") {
                         + typesMap[type] + ";\n"
             )
         }
-
         file?.appendText("VAR S_smv : {s0_osm, s1_osm, s2_osm};\nVAR Q_smv : {")
 
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states

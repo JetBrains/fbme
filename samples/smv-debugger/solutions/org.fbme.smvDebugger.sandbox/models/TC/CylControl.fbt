@@ -37,25 +37,26 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="0" y="540" />
-      <ECState Name="INIT" x="3026" y="246">
+      <ECState Name="START" x="1746" y="866" />
+      <ECState Name="INIT" x="3786" y="726">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="GO" x="1659" y="1493">
+      <ECState Name="GO" x="3499" y="2046">
         <ECAction Output="CNF" Algorithm="FWD" />
       </ECState>
-      <ECState Name="S_RETURN" x="3693" y="1460">
+      <ECState Name="S_RETURN" x="6166" y="146">
         <ECAction Output="CNF" Algorithm="BACK" />
       </ECState>
-      <ECState Name="NOMOVE" x="6113" y="-133">
+      <ECState Name="NOMOVE" x="0" y="286">
         <ECAction Output="CNF" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="986" y="520" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="START" x="986" y="706" Condition="1" />
-      <ECTransition Source="START" Destination="GO" x="993" y="899" Condition="REQ[START AND Extended]" />
-      <ECTransition Source="GO" Destination="S_RETURN" x="3126" y="1686" Condition="REQ[Extended]" />
-      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="4853" y="1046" Condition="REQ[Retracted]" />
-      <ECTransition Source="NOMOVE" Destination="START" x="3213" y="-553" Condition="1" />
+      <ECTransition Source="START" Destination="INIT" x="2920" y="1080" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="START" x="2920" y="680" Condition="1" />
+      <ECTransition Source="START" Destination="GO" x="2920" y="1280" Condition="REQ[START]" />
+      <ECTransition Source="GO" Destination="S_RETURN" x="5480" y="1080" Condition="REQ[Extended]" />
+      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="2926" y="479" Condition="REQ[Retracted]" />
+      <ECTransition Source="NOMOVE" Destination="START" x="1380" y="853" Condition="1" />
+      <ECTransition Source="S_RETURN" Destination="S_RETURN" x="6626" y="66" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />

@@ -14,13 +14,15 @@ TODO
  2)REQ AND (PREV = INP) - on ECC transitions
  3) generateNA - when NA may be grater then 1
  4) fill maps
+ 5) generateOutputVariablesUpdate - Iterate over algs 2d output generation
+ 6) names of composite blocks???
 
  */
 abstract class AbstractFBConverter(val fileExtention: String) {
     var file: File? = null
     val fbTypesSet = HashSet<FBTypeDescriptor>()
     val fbService = FBInfoService()
-
+    val buf = StringBuilder()
 
     private fun networkTraversal(compositeFb: CompositeFBTypeDeclaration){
         if( fbTypesSet.contains(compositeFb.typeDescriptor)) return
@@ -49,7 +51,16 @@ abstract class AbstractFBConverter(val fileExtention: String) {
         generateInputVariablesUpdate(fb)
         generateOutputVariablesUpdate(fb)
         generateAlphaBeta(fb)
+        generateInputEventsReset(fb)
+        generateOutputEventsSet(fb)
+        generateFooter(fb)
     }
+
+    abstract fun generateFooter(fb: FBTypeDescriptor)
+
+    abstract fun generateOutputEventsSet(fb: FBTypeDescriptor)
+
+    abstract fun generateInputEventsReset(fb: FBTypeDescriptor)
 
     protected abstract fun generateAlphaBeta(fb: FBTypeDescriptor)
 
@@ -89,6 +100,7 @@ abstract class AbstractFBConverter(val fileExtention: String) {
             for (fb in fbs) {
 
             }
+            file?.appendText(buf.toString())
         }
         return null
     }
