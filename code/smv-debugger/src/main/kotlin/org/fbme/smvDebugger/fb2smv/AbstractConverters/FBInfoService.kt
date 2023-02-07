@@ -1,4 +1,4 @@
-package org.fbme.smvDebugger.fb2smv
+package org.fbme.smvDebugger.fb2smv.AbstractConverters
 
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
@@ -10,7 +10,7 @@ import org.fbme.lib.st.expressions.VariableReference
 import org.fbme.lib.st.statements.AssignmentStatement
 import org.fbme.lib.st.statements.EmptyStatement
 
-class FBInfoService {
+object FBInfoService {
 
     fun getAssociatedOutputEvents(fb: FBTypeDescriptor, port: FBPortDescriptor): List<FBPortDescriptor> {
         return fb.eventOutputPorts.filter {

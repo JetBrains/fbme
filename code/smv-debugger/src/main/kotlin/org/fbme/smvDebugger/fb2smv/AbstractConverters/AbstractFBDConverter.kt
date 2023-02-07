@@ -1,4 +1,4 @@
-package org.fbme.smvDebugger.fb2smv
+package org.fbme.smvDebugger.fb2smv.AbstractConverters
 
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
@@ -18,11 +18,11 @@ TODO
  6) names of composite blocks???
 
  */
-abstract class AbstractFBConverter(val fileExtention: String) {
-    var file: File? = null
+abstract class AbstractFBDConverter(val fileExtention: String) {
     val fbTypesSet = HashSet<FBTypeDescriptor>()
-    val fbService = FBInfoService()
     val buf = StringBuilder()
+    var basicFBConverter: AbstractBasicFBConverter? = null
+    var compositeFBConverter: AbstractCompositeFBConverter? = null
 
     private fun networkTraversal(compositeFb: CompositeFBTypeDeclaration){
         if( fbTypesSet.contains(compositeFb.typeDescriptor)) return
@@ -40,56 +40,28 @@ abstract class AbstractFBConverter(val fileExtention: String) {
     }
 
     private fun fbTraversal(fb: FBTypeDescriptor) {
-        generateSignature(fb)
-        generateLocalVariableDeclaration(fb)
-        generateCountersDeclaration(fb)
-        generateLocalVariableDefinition(fb)
-        generateECCTransitions(fb)
-        generateOSM(fb)
-        generateNA(fb)
-        generateNI(fb)
-        generateInputVariablesUpdate(fb)
-        generateOutputVariablesUpdate(fb)
-        generateAlphaBeta(fb)
-        generateInputEventsReset(fb)
-        generateOutputEventsSet(fb)
-        generateFooter(fb)
+        basicFBConverter?.generateSignature(fb, buf)
+        basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
+        basicFBConverter?.generateCountersDeclaration(fb, buf)
+        basicFBConverter?.generateLocalVariableDefinition(fb, buf)
+        basicFBConverter?.generateECCTransitions(fb, buf)
+        basicFBConverter?.generateOSM(fb, buf)
+        basicFBConverter?.generateNA(fb, buf)
+        basicFBConverter?.generateNI(fb, buf)
+        basicFBConverter?.generateInputVariablesUpdate(fb, buf)
+        basicFBConverter?.generateOutputVariablesUpdate(fb, buf)
+        basicFBConverter?.generateAlphaBeta(fb, buf)
+        basicFBConverter?.generateInputEventsReset(fb, buf)
+        basicFBConverter?.generateOutputEventsSet(fb, buf)
+        basicFBConverter?.generateFooter(fb, buf)
     }
-
-    abstract fun generateFooter(fb: FBTypeDescriptor)
-
-    abstract fun generateOutputEventsSet(fb: FBTypeDescriptor)
-
-    abstract fun generateInputEventsReset(fb: FBTypeDescriptor)
-
-    protected abstract fun generateAlphaBeta(fb: FBTypeDescriptor)
-
-    protected abstract fun generateOutputVariablesUpdate(fb: FBTypeDescriptor)
-
-    protected abstract fun generateInputVariablesUpdate(fb: FBTypeDescriptor)
-
-    protected abstract fun generateCountersDeclaration(fb: FBTypeDescriptor)
-
-    protected abstract fun generateNI(fb: FBTypeDescriptor)
-
-    protected abstract fun generateNA(fb: FBTypeDescriptor)
-
-    protected abstract fun generateOSM(fb: FBTypeDescriptor)
-
-    protected abstract fun generateECCTransitions(fb: FBTypeDescriptor)
-
-    protected abstract fun generateLocalVariableDefinition(fb: FBTypeDescriptor)
-
-    protected abstract fun generateLocalVariableDeclaration(fb: FBTypeDescriptor)
-
-    protected abstract fun generateSignature(fb: FBTypeDescriptor)
 
     fun convertFB(
         fbPath: Path, compositeFb: CompositeFBTypeDeclaration,
         project: MPSProject
     ): Path? {
         project.modelAccess.runReadAction {
-            file = File(
+            val file = File(
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
                             + compositeFb.name + "." + fileExtention)
 
@@ -100,7 +72,8 @@ abstract class AbstractFBConverter(val fileExtention: String) {
             for (fb in fbs) {
 
             }
-            file?.appendText(buf.toString())
+            file.appendText(buf.toString())
+            buf.clear()
         }
         return null
     }

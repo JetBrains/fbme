@@ -7,6 +7,7 @@ import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.smvDebugger.executionTraceGeneration.SMVCountereExampleParser
 import org.fbme.smvDebugger.fb2smv.FB2SMV
+import org.fbme.smvDebugger.fb2smv.SMVFunctionBlockConverter
 import org.fbme.smvDebugger.integration.ServicePathProvider
 import org.fbme.smvDebugger.integration.SmvService
 import org.fbme.smvDebugger.model.CounterexampleParser
