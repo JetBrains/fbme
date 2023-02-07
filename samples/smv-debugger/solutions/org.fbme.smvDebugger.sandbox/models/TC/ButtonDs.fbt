@@ -36,7 +36,7 @@
       <ECState Name="OFF" x="3859" y="773">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
-      <ECState Name="PRESSED" x="1146" y="-99">
+      <ECState Name="PRESSED" x="2333" y="1686">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
       <ECTransition Source="START" Destination="INIT" x="1420" y="1153" Condition="INIT" />

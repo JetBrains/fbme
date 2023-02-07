@@ -28,6 +28,7 @@
       <concept id="4304617121958142676" name="org.fbme.ide.iec61499.lang.structure.TwoAngleConnectionPath" flags="ng" index="bR32z">
         <property id="4304617121958142702" name="dx" index="bR32p" />
       </concept>
+      <concept id="4304617121958142617" name="org.fbme.ide.iec61499.lang.structure.StraightConnectionPath" flags="ng" index="bR33I" />
       <concept id="4304617121958159005" name="org.fbme.ide.iec61499.lang.structure.FourAngleConncetionPath" flags="ng" index="bR73E">
         <property id="4304617121958159011" name="dx2" index="bR73k" />
         <property id="4304617121958159008" name="dy" index="bR73n" />
@@ -395,8 +396,8 @@
         <ref role="1N5Pi4" node="3a01G9fNkWh" resolve="tb" />
         <ref role="1N5PlF" node="v2ZCRmXcxd" resolve="ibInpVar" />
       </node>
-      <node concept="bR32z" id="3a01G9fNkWV" role="bPNfo">
-        <property role="bR32p" value="250.0" />
+      <node concept="bR32z" id="DHYmhodCEs" role="bPNfo">
+        <property role="bR32p" value="49.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3a01G9fNkW_" role="1N5PiQ">
@@ -407,23 +408,31 @@
         <ref role="1N5Pi4" node="3a01G9fNkWh" resolve="tb" />
         <ref role="1N5Pi3" node="v2ZCRmXcx0" resolve="INIT" />
       </node>
-      <node concept="bR32z" id="43JI95g8oTF" role="bPNfo">
-        <property role="bR32p" value="514.0" />
+      <node concept="bR32z" id="DHYmhodCEu" role="bPNfo">
+        <property role="bR32p" value="73.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="3a01G9fNkWh" role="1N5PiY">
       <property role="TrG5h" value="ctb" />
       <ref role="1N5Tt0" node="v2ZCRmXcwX" resolve="InnerBlock" />
       <node concept="10YbkR" id="3a01G9fNkWi" role="b_cXm">
-        <property role="10YbkC" value="826.0" />
-        <property role="10YbkE" value="143.0" />
+        <property role="10YbkC" value="343.0" />
+        <property role="10YbkE" value="469.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="DHYmhodCC1" role="1N5PiY">
+      <property role="TrG5h" value="fb2" />
+      <ref role="1N5Tt0" node="DHYmhodCyt" resolve="OneMoreInnerBlock" />
+      <node concept="10YbkR" id="DHYmhodCC2" role="b_cXm">
+        <property role="10YbkC" value="396.0" />
+        <property role="10YbkE" value="0.0" />
       </node>
     </node>
     <node concept="1qmbkl" id="3a01G9fNkV9" role="3rj3o">
       <ref role="2zR1Pb" node="v2ZCRmXd_z" resolve="INTO" />
       <node concept="10YbkR" id="3a01G9fNkVa" role="1qmfRk">
-        <property role="10YbkC" value="2193.0" />
-        <property role="10YbkE" value="116.0" />
+        <property role="10YbkC" value="1260.0" />
+        <property role="10YbkE" value="49.0" />
       </node>
     </node>
     <node concept="2zBDeF" id="v2ZCRmXdAY" role="2zBDeH">
@@ -449,15 +458,15 @@
     <node concept="1qmbkl" id="3a01G9fNkVd" role="3rj3o">
       <ref role="2zR1Pb" node="v2ZCRmXdAY" resolve="icbOutpVar" />
       <node concept="10YbkR" id="3a01G9fNkVe" role="1qmfRk">
-        <property role="10YbkC" value="2029.0" />
-        <property role="10YbkE" value="270.0" />
+        <property role="10YbkC" value="1260.0" />
+        <property role="10YbkE" value="199.0" />
       </node>
     </node>
     <node concept="1qmbkl" id="3a01G9fNkVb" role="3rj3o">
       <ref role="2zR1Pb" node="v2ZCRmXdAe" resolve="icbInpVar" />
       <node concept="10YbkR" id="3a01G9fNkVc" role="1qmfRk">
-        <property role="10YbkC" value="-6.0" />
-        <property role="10YbkE" value="260.0" />
+        <property role="10YbkC" value="-323.0" />
+        <property role="10YbkE" value="199.0" />
       </node>
     </node>
     <node concept="1N5Tqi" id="3a01G9fNkX9" role="1N5PiQ">
@@ -468,8 +477,8 @@
       <node concept="3YHrnl" id="3a01G9fNkXc" role="2RhMK_">
         <ref role="3Yz8TM" node="v2ZCRmXd_z" resolve="INTO" />
       </node>
-      <node concept="bR32z" id="3a01G9fNkXd" role="bPNfo">
-        <property role="bR32p" value="410.0" />
+      <node concept="bR32z" id="DHYmhodCEr" role="bPNfo">
+        <property role="bR32p" value="183.0" />
       </node>
     </node>
     <node concept="1N5Tq9" id="3a01G9fNkXv" role="1N5PiV">
@@ -480,8 +489,79 @@
       <node concept="3I$zcF" id="3a01G9fNkXy" role="2RhMK_">
         <ref role="3IAu0i" node="v2ZCRmXdAY" resolve="icbOutpVar" />
       </node>
-      <node concept="bR32z" id="3a01G9fNkXz" role="bPNfo">
-        <property role="bR32p" value="327.0" />
+      <node concept="bR32z" id="DHYmhodCEn" role="bPNfo">
+        <property role="bR32p" value="74.0" />
+      </node>
+    </node>
+    <node concept="1qmbkl" id="DHYmhodCC7" role="3rj3o">
+      <ref role="2zR1Pb" node="v2ZCRmXd$_" resolve="INIT" />
+      <node concept="10YbkR" id="DHYmhodCC8" role="1qmfRk">
+        <property role="10YbkC" value="-190.0" />
+        <property role="10YbkE" value="49.0" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="DHYmhodCCB" role="1N5PiQ">
+      <node concept="3YHqtX" id="DHYmhodCCD" role="2RhMKC">
+        <ref role="3Yz8TM" node="v2ZCRmXd$_" resolve="INIT" />
+      </node>
+      <node concept="3Yx0EI" id="DHYmhodCCE" role="2RhMK_">
+        <ref role="1N5Pi4" node="DHYmhodCC1" resolve="fb2" />
+        <ref role="1N5Pi3" node="DHYmhodCBB" resolve="IN" />
+      </node>
+      <node concept="bR33I" id="DHYmhodCEp" role="bPNfo" />
+    </node>
+    <node concept="1N5Tq9" id="DHYmhodCD1" role="1N5PiV">
+      <node concept="3I$UGD" id="DHYmhodCD3" role="2RhMKC">
+        <ref role="3IAu0i" node="v2ZCRmXdAe" resolve="icbInpVar" />
+      </node>
+      <node concept="3IAvtB" id="DHYmhodCD4" role="2RhMK_">
+        <ref role="1N5Pi4" node="DHYmhodCC1" resolve="fb2" />
+        <ref role="1N5PlF" node="DHYmhodCBF" resolve="in" />
+      </node>
+      <node concept="bR33I" id="DHYmhodCEt" role="bPNfo" />
+    </node>
+    <node concept="1N5Tqi" id="DHYmhodCDr" role="1N5PiQ">
+      <node concept="3YB4oO" id="DHYmhodCDt" role="2RhMKC">
+        <ref role="1N5Pi4" node="DHYmhodCC1" resolve="fb2" />
+        <ref role="1N5Pi3" node="DHYmhodCBD" resolve="OUT" />
+      </node>
+      <node concept="3YHrnl" id="DHYmhodCDu" role="2RhMK_">
+        <ref role="3Yz8TM" node="v2ZCRmXd_z" resolve="INTO" />
+      </node>
+      <node concept="bR33I" id="DHYmhodCEq" role="bPNfo" />
+    </node>
+    <node concept="1N5Tq9" id="DHYmhodCDT" role="1N5PiV">
+      <node concept="3IAhSD" id="DHYmhodCDV" role="2RhMKC">
+        <ref role="1N5Pi4" node="DHYmhodCC1" resolve="fb2" />
+        <ref role="1N5PlF" node="DHYmhodCBM" resolve="out" />
+      </node>
+      <node concept="3I$zcF" id="DHYmhodCDW" role="2RhMK_">
+        <ref role="3IAu0i" node="v2ZCRmXdAY" resolve="icbOutpVar" />
+      </node>
+      <node concept="bR33I" id="DHYmhodCEo" role="bPNfo" />
+    </node>
+  </node>
+  <node concept="2zBDf2" id="DHYmhodCyt">
+    <property role="TrG5h" value="OneMoreInnerBlock" />
+    <node concept="2zBDeF" id="DHYmhodCBM" role="2zBDeH">
+      <property role="TrG5h" value="out" />
+      <node concept="2zB9wT" id="DHYmhodCBQ" role="2zB7qv" />
+    </node>
+    <node concept="2zBDeF" id="DHYmhodCBF" role="2zBDeD">
+      <property role="TrG5h" value="in" />
+      <node concept="2zB9wT" id="DHYmhodCBJ" role="2zB7qv" />
+    </node>
+    <node concept="2zBDe_" id="DHYmhodCBD" role="2zBDew">
+      <property role="TrG5h" value="OUT" />
+    </node>
+    <node concept="2zBDe_" id="DHYmhodCBB" role="2zBDey">
+      <property role="TrG5h" value="IN" />
+    </node>
+    <node concept="2zAPAk" id="DHYmhodCyu" role="2zAPwY">
+      <property role="TrG5h" value="START" />
+      <node concept="10YbkR" id="DHYmhodCyv" role="2WOQdS">
+        <property role="10YbkC" value="1353.0" />
+        <property role="10YbkE" value="553.0" />
       </node>
     </node>
   </node>

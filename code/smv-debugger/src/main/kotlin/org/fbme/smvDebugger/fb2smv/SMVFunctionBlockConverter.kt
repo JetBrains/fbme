@@ -22,15 +22,18 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
     )
 
     override fun generateFooter(fb: FBTypeDescriptor, buf: StringBuilder) {
-        buf.append("DEFINE ExistsInputEvent:=\n")
+        buf.append("DEFINE ExistsInputEvent:=")
         for (ie in fb.eventInputPorts) {
             buf.append(" event_${ie.name} ")
-            if (fb.eventInputPorts.last() != ie) buf.append("|")
+            if (fb.eventInputPorts.last() != ie){
+                buf.append("|")
+            }
         }
+        buf.append(";\n")
 
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
 
-        buf.append(";\nDEFINE ExistsEnabledECTran:= \n")
+        buf.append(";\nDEFINE ExistsEnabledECTran:= ")
         for (st in states) {
             buf.append("(Q_smv=${st.name}_ecc  ")
             val transitions = FBInfoService.getAllTransitionFromState(st, fb)
@@ -39,12 +42,16 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
                     buf.append("& ( event_" + tr.condition.eventReference.presentation)
                 }
                 tr.condition.getGuardCondition()?.let {
-                    buf.append("& ")
+                    buf.append("& (")
                     guardConditionParsing(it, buf)
+                    buf.append(") ")
                 }
             }
+            if(states.last() != st){
+                buf.append(" | ")
+            }
         }
-        buf.append("FAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
+        buf.append("\nFAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
     }
 
     override fun generateOutputEventsSet(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -66,12 +73,10 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
                     }
                 }
             }
-            buf.append(" ;\n")
+            buf.append(") ;\n")
         }
+        buf.append("\n")
     }
-    //     val event = oe.declaration as EventDeclaration
-
-    //   event.associations.forEach { it.parameterReference.getTarget(). }
 
     override fun generateInputEventsReset(fb: FBTypeDescriptor, buf: StringBuilder) {
         val eventsList = ArrayList<String>(fb.eventInputPorts.size)
@@ -79,23 +84,24 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
             buf.append("DEFINE event_${ie.name}_reset:= ")
 
             if (eventsList.size != 0) {
-                buf.append("((alpha & (")
+                buf.append("(alpha & (")
                 for (e in eventsList) {
                     buf.append(" $e ")
                     if (eventsList.last() != e) buf.append("|")
                 }
-                buf.append(") | ")
+                buf.append(")) | ")
             }
-            buf.append("(S_smv=s1_osm);")
+            buf.append("(S_smv=s1_osm);\n")
             eventsList.add(ie.name)
         }
+        buf.append("\n")
     }
 
     override fun generateAlphaBeta(fb: FBTypeDescriptor, buf: StringBuilder) {
         buf.append(
             "DEFINE alpha_reset:= \t(alpha & S_smv=s0_osm & !ExistsInputEvent " +
                     "| S_smv=s1_osm & (!ExistsEnabledECTran));\nDEFINE beta_set:= \t" +
-                    "(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));\n"
+                    "(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));\n\n"
         )
     }
 
@@ -111,7 +117,7 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
                         val rez = FBInfoService.getOutputsAssignmentsFromAlgBody(id, body) ?: continue;
                         for (stat in rez) {
                             buf.append(
-                                "\tS_smv=s2_osm & Q_smv=(${st.name}_ecc & " +
+                                "\tS_smv=s2_osm & Q_smv=${st.name}_ecc & " +
                                         "NA=${st.actions.indexOf(act) + 1} & NI=${stat.second} : (" +
                                         (stat.first.expression as? Literal<*>)?.value.toString().uppercase() + ");\n"
                             )
@@ -122,14 +128,17 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
             buf.append("\tTRUE : ${id.name}\nesac;\n")
         }
 
+        buf.append("\n")
+
         for (id in fb.dataOutputPorts) {
             buf.append("next(${id.name}_) := case\nS_smv=s2_osm & NI=0 & (")
             for (st in states) {
                 buf.append("(Q_smv=${st.name}_ecc & NA=1)")//TODO algs
                 if (states.last() != st) buf.append(" | ")
             }
-            buf.append(") : ${id.name};\n")
+            buf.append(") : ${id.name};\n\tTRUE : ${id.name}_;\nesac;\n")
         }
+        buf.append("\n")
     }
 
     override fun generateInputVariablesUpdate(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -249,7 +258,7 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
 
         for (od in fb.dataOutputPorts) {
             val type = ((od.declaration as ParameterDeclaration).type as ElementaryType)
-            buf.append("init(" + od.name + "):= " + typesInitValMap[type] + "\n")
+            buf.append("init(" + od.name + "):= " + typesInitValMap[type] + ";\n")
         }
 
         buf.append("init(NA):= 0;\ninit(NI):= 0;\n\n")

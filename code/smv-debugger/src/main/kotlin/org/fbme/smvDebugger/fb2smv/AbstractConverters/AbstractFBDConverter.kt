@@ -72,7 +72,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
             for (fb in fbs) {
 
             }
-            file.appendText(buf.toString())
+            file.writeText(buf.toString())
             buf.clear()
         }
         return null

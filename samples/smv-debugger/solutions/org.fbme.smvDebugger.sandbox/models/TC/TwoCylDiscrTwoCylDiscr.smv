@@ -1,3 +1,263 @@
+MODULE CylControl(event_INIT,event_REQ,event_INITO,event_CNF,Retracted_,Extended_,START_,EXTEND_,RETRACT_,alpha, beta)
+VAR Retracted : boolean;
+VAR Extended : boolean;
+VAR START : boolean;
+VAR EXTEND : boolean;
+VAR RETRACT : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,GO_ecc,S_RETURN_ecc,NOMOVE_ecc}
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(Retracted):= FALSE;
+init(Extended):= FALSE;
+init(START):= FALSE;
+init(EXTEND):= FALSE
+init(RETRACT):= FALSE
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_REQ&  START : GO_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm & event_REQ&  Extended : S_RETURN_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm & event_REQ&  Retracted : NOMOVE_ecc;
+	Q_smv=NOMOVE_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm  : S_RETURN_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=GO_ecc & NA < 1 ) | (Q_smv=S_RETURN_ecc & NA < 1 ) | (Q_smv=NOMOVE_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=GO_ecc & NA = 1  & 2 < 1) | (Q_smv=S_RETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=NOMOVE_ecc & NA = 1  & 2 < 1)) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(Retracted) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Retracted_ ;
+	TRUE : Retracted
+esac;
+
+next(Extended) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Extended_ ;
+	TRUE : Extended
+esac;
+
+next(START) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : START_ ;
+	TRUE : START
+esac;
+
+next(EXTEND) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(GO_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(S_RETURN_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(NOMOVE_ecc & NA=1 & NI=0 : (FALSE);
+	TRUE : EXTEND
+esac;
+next(RETRACT) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(GO_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(S_RETURN_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=(NOMOVE_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : RETRACT
+esac;
+next(EXTEND_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : EXTEND;
+next(RETRACT_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : RETRACT;
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1) ;
+DEFINE ExistsInputEvent:=
+ event_INIT | event_REQ |;
+DEFINE ExistsEnabledECTran:= 
+(Q_smv=START_ecc  & ( event_INIT& ( event_REQ&  START(Q_smv=INIT_ecc  (Q_smv=GO_ecc  & ( event_REQ&  Extended(Q_smv=S_RETURN_ecc  & ( event_REQ&  Retracted(Q_smv=NOMOVE_ecc  FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE CylControl(event_INIT,event_REQ,event_INITO,event_CNF,Retracted_,Extended_,START_,EXTEND_,RETRACT_,alpha, beta)
+VAR Retracted : boolean;
+VAR Extended : boolean;
+VAR START : boolean;
+VAR EXTEND : boolean;
+VAR RETRACT : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,GO_ecc,S_RETURN_ecc,NOMOVE_ecc}
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(Retracted):= FALSE;
+init(Extended):= FALSE;
+init(START):= FALSE;
+init(EXTEND):= FALSE
+init(RETRACT):= FALSE
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_REQ&  START : GO_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm & event_REQ&  Extended : S_RETURN_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm & event_REQ&  Retracted : NOMOVE_ecc;
+	Q_smv=NOMOVE_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm  : S_RETURN_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=GO_ecc & NA < 1 ) | (Q_smv=S_RETURN_ecc & NA < 1 ) | (Q_smv=NOMOVE_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=GO_ecc & NA = 1  & 2 < 1) | (Q_smv=S_RETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=NOMOVE_ecc & NA = 1  & 2 < 1)) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(Retracted) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Retracted_ ;
+	TRUE : Retracted
+esac;
+
+next(Extended) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Extended_ ;
+	TRUE : Extended
+esac;
+
+next(START) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : START_ ;
+	TRUE : START
+esac;
+
+next(EXTEND) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(GO_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(S_RETURN_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(NOMOVE_ecc & NA=1 & NI=0 : (FALSE);
+	TRUE : EXTEND
+esac;
+next(RETRACT) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(GO_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(S_RETURN_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=(NOMOVE_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : RETRACT
+esac;
+next(EXTEND_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : EXTEND;
+next(RETRACT_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : RETRACT;
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1) ;
+DEFINE ExistsInputEvent:=
+ event_INIT | event_REQ |;
+DEFINE ExistsEnabledECTran:= 
+(Q_smv=START_ecc  & ( event_INIT& ( event_REQ&  START(Q_smv=INIT_ecc  (Q_smv=GO_ecc  & ( event_REQ&  Extended(Q_smv=S_RETURN_ecc  & ( event_REQ&  Retracted(Q_smv=NOMOVE_ecc  FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE ButtonDs(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,LightOn_,Pressed_,alpha, beta)
+VAR LightOn : boolean;
+VAR Pressed : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,OFF_ecc,PRESSED_ecc}
+
+VAR NA: 0..1;
+VAR NI: 0..1;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(LightOn):= FALSE;
+init(Pressed):= FALSE
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm & event_REQ : OFF_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=OFF_ecc & NA < 1 ) | (Q_smv=PRESSED_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=OFF_ecc & NA = 1) | (Q_smv=PRESSED_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 1 < 1) | (Q_smv=INIT_ecc & NA = 1  & 1 < 1) | (Q_smv=OFF_ecc & NA = 1  & 1 < 1) | (Q_smv=PRESSED_ecc & NA = 1  & 1 < 1)) : (NI + 1) mod 2;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=INIT_ecc & NA = 1 & NI = 1) | (Q_smv=OFF_ecc & NA = 1 & NI = 1) | (Q_smv=PRESSED_ecc & NA = 1 & NI = 1)) :  0 ;	TRUE : NI;
+esac;
+next(LightOn) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : LightOn_ ;
+	TRUE : LightOn
+esac;
+
+next(Pressed) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(OFF_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(PRESSED_ecc & NA=1 & NI=0 : (TRUE);
+	TRUE : Pressed
+esac;
+next(Pressed_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=OFF_ecc & NA=1) | (Q_smv=PRESSED_ecc & NA=1)) : Pressed;
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_NDT_reset:= ((alpha & ( INIT | REQ ) | (S_smv=s1_osm);DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1) ;
+DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=OFF_ecc & NA = 1) | (Q_smv=PRESSED_ecc & NA = 1) ;
+DEFINE ExistsInputEvent:=
+ event_INIT | event_REQ | event_NDT |;
+DEFINE ExistsEnabledECTran:= 
+(Q_smv=START_ecc  & ( event_INIT(Q_smv=INIT_ecc  & ( event_REQ(Q_smv=OFF_ecc  (Q_smv=PRESSED_ecc  FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
 MODULE LinearDA(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,FWD_,BACK_,HOME_,END_,alpha, beta)
 VAR FWD : boolean;
 VAR BACK : boolean;
@@ -66,14 +326,132 @@ next(BACK) := case
 esac;
 
 next(HOME) := case
-	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : 	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=0 : 	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=0 : 	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=0 : 	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=0 : 	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=0 : next(END) := case
-	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=1 : 	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=1 : 	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=1 : 	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=1 : 	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=1 : 	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=1 : next(HOME_) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=0 : (FALSE);
+	TRUE : HOME
+esac;
+next(END) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : END
+esac;
+next(HOME_) := case
 S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : HOME;
 next(END_) := case
 S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : END;
 DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
 DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
-DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_NDT_reset:= ((alpha & ( INIT | REQ ) | (S_smv=s1_osm);DEFINE event_INITO_set:= DEFINE event_CHG_set:= DEFINE ExistsInputEvent:=
+DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_NDT_reset:= ((alpha & ( INIT | REQ ) | (S_smv=s1_osm);DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1) ;
+DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=stHOME_ecc & NA = 1) | (Q_smv=stEND_ecc & NA = 1) | (Q_smv=ddMOVETO_ecc & NA = 1) | (Q_smv=ddRETURN_ecc & NA = 1) | (Q_smv=stSTOP_ecc & NA = 1) ;
+DEFINE ExistsInputEvent:=
+ event_INIT | event_REQ | event_NDT |;
+DEFINE ExistsEnabledECTran:= 
+(Q_smv=START_ecc  & ( event_INIT(Q_smv=INIT_ecc  & ( event_NDT& ( event_NDT& ( event_NDT(Q_smv=stHOME_ecc  &  FWD(Q_smv=stEND_ecc  &  BACK(Q_smv=ddMOVETO_ecc  & ( event_NDT&  &(Q_smv=ddRETURN_ecc  & ( event_NDT&  &(Q_smv=stSTOP_ecc  &  BACK&  FWDFAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE LinearDA(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,FWD_,BACK_,HOME_,END_,alpha, beta)
+VAR FWD : boolean;
+VAR BACK : boolean;
+VAR HOME : boolean;
+VAR END : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,stHOME_ecc,stEND_ecc,ddMOVETO_ecc,ddRETURN_ecc,stSTOP_ecc}
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(FWD):= FALSE;
+init(BACK):= FALSE;
+init(HOME):= FALSE
+init(END):= FALSE
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
+	Q_smv=stHOME_ecc & S_smv=s1_osm &  FWD : ddMOVETO_ecc;
+	Q_smv=stEND_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
+	Q_smv=ddMOVETO_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
+	Q_smv=ddRETURN_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
+	Q_smv=ddRETURN_ecc & S_smv=s1_osm &  & : stSTOP_ecc;
+	Q_smv=stSTOP_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
+	Q_smv=stSTOP_ecc & S_smv=s1_osm &  FWD : ddMOVETO_ecc;
+	Q_smv=ddMOVETO_ecc & S_smv=s1_osm &  & : stSTOP_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stSTOP_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
+	Q_smv=stSTOP_ecc & S_smv=s1_osm  : stSTOP_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=stHOME_ecc & NA < 1 ) | (Q_smv=stEND_ecc & NA < 1 ) | (Q_smv=ddMOVETO_ecc & NA < 1 ) | (Q_smv=ddRETURN_ecc & NA < 1 ) | (Q_smv=stSTOP_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=stHOME_ecc & NA = 1) | (Q_smv=stEND_ecc & NA = 1) | (Q_smv=ddMOVETO_ecc & NA = 1) | (Q_smv=ddRETURN_ecc & NA = 1) | (Q_smv=stSTOP_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=stHOME_ecc & NA = 1  & 2 < 1) | (Q_smv=stEND_ecc & NA = 1  & 2 < 1) | (Q_smv=ddMOVETO_ecc & NA = 1  & 2 < 1) | (Q_smv=ddRETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=stSTOP_ecc & NA = 1  & 2 < 1)) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=stHOME_ecc & NA = 1 & NI = 2) | (Q_smv=stEND_ecc & NA = 1 & NI = 2) | (Q_smv=ddMOVETO_ecc & NA = 1 & NI = 2) | (Q_smv=ddRETURN_ecc & NA = 1 & NI = 2) | (Q_smv=stSTOP_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(FWD) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : FWD_ ;
+	TRUE : FWD
+esac;
+
+next(BACK) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : BACK_ ;
+	TRUE : BACK
+esac;
+
+next(HOME) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=0 : (TRUE);
+	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=0 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=0 : (FALSE);
+	TRUE : HOME
+esac;
+next(END) := case
+	S_smv=s2_osm & Q_smv=(INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stHOME_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stEND_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=(ddMOVETO_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(ddRETURN_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=(stSTOP_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : END
+esac;
+next(HOME_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : HOME;
+next(END_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA=1) | (Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : END;
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE event_INIT_reset:= (S_smv=s1_osm);DEFINE event_REQ_reset:= ((alpha & ( INIT ) | (S_smv=s1_osm);DEFINE event_NDT_reset:= ((alpha & ( INIT | REQ ) | (S_smv=s1_osm);DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1) ;
+DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=stHOME_ecc & NA = 1) | (Q_smv=stEND_ecc & NA = 1) | (Q_smv=ddMOVETO_ecc & NA = 1) | (Q_smv=ddRETURN_ecc & NA = 1) | (Q_smv=stSTOP_ecc & NA = 1) ;
+DEFINE ExistsInputEvent:=
  event_INIT | event_REQ | event_NDT |;
 DEFINE ExistsEnabledECTran:= 
 (Q_smv=START_ecc  & ( event_INIT(Q_smv=INIT_ecc  & ( event_NDT& ( event_NDT& ( event_NDT(Q_smv=stHOME_ecc  &  FWD(Q_smv=stEND_ecc  &  BACK(Q_smv=ddMOVETO_ecc  & ( event_NDT&  &(Q_smv=ddRETURN_ecc  & ( event_NDT&  &(Q_smv=stSTOP_ecc  &  BACK&  FWDFAIRNESS (alpha)
