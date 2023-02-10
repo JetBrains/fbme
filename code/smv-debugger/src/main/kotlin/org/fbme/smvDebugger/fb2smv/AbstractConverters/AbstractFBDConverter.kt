@@ -23,23 +23,36 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     val buf = StringBuilder()
     var basicFBConverter: AbstractBasicFBConverter? = null
     var compositeFBConverter: AbstractCompositeFBConverter? = null
+    var data: VerifiersData? = null
 
-    private fun networkTraversal(compositeFb: CompositeFBTypeDeclaration){
+    private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
         if( fbTypesSet.contains(compositeFb.typeDescriptor)) return
         val fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks
         for (fb in fbs) {
             //if we have already generated definition for this FB type
             if(fbTypesSet.contains(fb.type)) continue
             //composite or not?
-            if (fb.typeReference is CompositeFBTypeDeclaration){
-                networkTraversal(fb.typeReference as CompositeFBTypeDeclaration)
+            if (fb.typeReference.getTarget() is CompositeFBTypeDeclaration){
+                compositeBlockNetworkTraversal(fb.typeReference.getTarget() as CompositeFBTypeDeclaration)
             }
-            fbTraversal(fb.type)
+            basicFBConversion(fb.type)
             fbTypesSet.add(fb.type)
         }
+        compositeFBConversion(compositeFb)
+
     }
 
-    private fun fbTraversal(fb: FBTypeDescriptor) {
+    private fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration) {
+        compositeFBConverter?.generateSignature(compositeFb, buf)
+        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
+        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
+        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
+
+
+
+    }
+
+    private fun basicFBConversion(fb: FBTypeDescriptor) {
         basicFBConverter?.generateSignature(fb, buf)
         basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
         basicFBConverter?.generateCountersDeclaration(fb, buf)
@@ -65,7 +78,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
                             + compositeFb.name + "." + fileExtention)
 
-            networkTraversal(compositeFb)
+            compositeBlockNetworkTraversal(compositeFb)
             val fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks
             val dataCon = compositeFb.network.dataConnections
             val eventCon = compositeFb.network.eventConnections

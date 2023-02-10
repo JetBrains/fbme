@@ -8,20 +8,13 @@ import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractBasicFBConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.FBInfoService
+import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 
-class SMVFunctionBlockConverter : AbstractBasicFBConverter {
-    val typesMap = mapOf<ElementaryType, String>(
-        ElementaryType.BOOL to "boolean"
-    )
-    val typesInitValMap = mapOf<ElementaryType, String>(
-        ElementaryType.BOOL to "FALSE"
-    )
-    val binaryOperationsConvertionMap = mapOf<BinaryOperation, String>(
-        BinaryOperation.AND to "&",
-        BinaryOperation.OR to "|"
-    )
+class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasicFBConverter {
+
 
     override fun generateFooter(fb: FBTypeDescriptor, buf: StringBuilder) {
+
         buf.append("DEFINE ExistsInputEvent:=")
         for (ie in fb.eventInputPorts) {
             buf.append(" event_${ie.name} ")
@@ -235,7 +228,7 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
             val left = guards.leftExpression
             val right = guards.rightExpression
             guardConditionParsing(left, buf)
-            binaryOperationsConvertionMap[type]?.let { buf.append(" $it") }
+            data.binaryOperationsConvertionMap[type]?.let { buf.append(" $it") }
             guardConditionParsing(right, buf)
         }
         if (guards is VariableReference) {
@@ -253,12 +246,12 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
 
         for (id in fb.dataInputPorts) {
             val type = (id.declaration as ParameterDeclaration).type as ElementaryType
-            buf.append("init(" + id.name + "):= " + typesInitValMap[type] + ";\n")
+            buf.append("init(" + id.name + "):= " + data.typesInitValMap[type] + ";\n")
         }
 
         for (od in fb.dataOutputPorts) {
             val type = ((od.declaration as ParameterDeclaration).type as ElementaryType)
-            buf.append("init(" + od.name + "):= " + typesInitValMap[type] + ";\n")
+            buf.append("init(" + od.name + "):= " + data.typesInitValMap[type] + ";\n")
         }
 
         buf.append("init(NA):= 0;\ninit(NI):= 0;\n\n")
@@ -271,14 +264,14 @@ class SMVFunctionBlockConverter : AbstractBasicFBConverter {
             val type = decl.type as ElementaryType
             buf.append(
                 "VAR " + id.name + " : "
-                        + typesMap[type] + ";\n"
+                        + data.typesMap[type] + ";\n"
             )
         }
         for (od in fb.dataOutputPorts) {
             val type = (od.declaration as ParameterDeclaration).type as ElementaryType
             buf.append(
                 "VAR " + od.name + " : "
-                        + typesMap[type] + ";\n"
+                        + data.typesMap[type] + ";\n"
             )
         }
         buf.append("VAR S_smv : {s0_osm, s1_osm, s2_osm};\nVAR Q_smv : {")
