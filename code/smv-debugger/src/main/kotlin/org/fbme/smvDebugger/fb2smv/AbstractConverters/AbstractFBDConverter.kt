@@ -43,11 +43,13 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     }
 
     private fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration) {
-        compositeFBConverter?.generateSignature(compositeFb, buf)
-        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
-        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
-        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
-
+//        compositeFBConverter?.generateSignature(compositeFb, buf)
+//        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
+//        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
+//        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
+//        compositeFBConverter?.generateInnerFBsEventOutputsUpdate(compositeFb, buf)
+//        compositeFBConverter?.generateDispatcher(compositeFb, buf)
+        compositeFBConverter?.generateInternalEventConnections(compositeFb, buf)
 
 
     }
