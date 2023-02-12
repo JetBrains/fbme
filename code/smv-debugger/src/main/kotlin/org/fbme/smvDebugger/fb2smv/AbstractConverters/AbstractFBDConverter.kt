@@ -23,6 +23,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     val buf = StringBuilder()
     var basicFBConverter: AbstractBasicFBConverter? = null
     var compositeFBConverter: AbstractCompositeFBConverter? = null
+    var mainFunction: AbstractMainConverter? = null
     var data: VerifiersData? = null
 
     private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
@@ -43,15 +44,14 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     }
 
     private fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration) {
-//        compositeFBConverter?.generateSignature(compositeFb, buf)
-//        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
-//        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
-//        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
-//        compositeFBConverter?.generateInnerFBsEventOutputsUpdate(compositeFb, buf)
-//        compositeFBConverter?.generateDispatcher(compositeFb, buf)
+        compositeFBConverter?.generateSignature(compositeFb, buf)
+        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
+        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
+        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
+        compositeFBConverter?.generateInnerFBsEventOutputsUpdate(compositeFb, buf)
+        compositeFBConverter?.generateDispatcher(compositeFb, buf)
         compositeFBConverter?.generateInternalEventConnections(compositeFb, buf)
-
-
+        compositeFBConverter?.generateFooter(compositeFb, buf)
     }
 
     private fun basicFBConversion(fb: FBTypeDescriptor) {
@@ -81,17 +81,13 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
                             + compositeFb.name + "." + fileExtention)
 
             compositeBlockNetworkTraversal(compositeFb)
-            val fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks
-            val dataCon = compositeFb.network.dataConnections
-            val eventCon = compositeFb.network.eventConnections
-            for (fb in fbs) {
-
-            }
+            mainFunction?.generateMainFunction(compositeFb, buf)
             file.writeText(buf.toString())
             buf.clear()
         }
         return null
     }
+
 
 
 }

@@ -11,8 +11,6 @@ import org.fbme.smvDebugger.fb2smv.AbstractConverters.FBInfoService
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 
 class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasicFBConverter {
-
-
     override fun generateFooter(fb: FBTypeDescriptor, buf: StringBuilder) {
 
         buf.append("DEFINE ExistsInputEvent:=")
