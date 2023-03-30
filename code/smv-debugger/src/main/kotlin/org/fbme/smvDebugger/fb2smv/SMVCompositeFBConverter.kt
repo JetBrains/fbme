@@ -28,6 +28,8 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
     }
 
     override fun generateCompositeFBsVariables(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+        buf.append("\n-- generateCompositeFBsVariables\n\n")
+
         val fbs: List<FunctionBlockDeclaration> = fbc.network.functionBlocks
         //declarations
         for (fb in fbs) {
@@ -69,12 +71,14 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
     }
 
     override fun generateInternalDataConnections(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+        buf.append("\n-- generateInternalDataConnections\n\n")
+
         for (id in fbc.outputParameters) {
             //parameter - assosoated events
             var variables = HashSet<String>()
             var events = ArrayList<String>()
 
-            for (dc in fbc.network.eventConnections) {
+            for (dc in fbc.network.dataConnections) {
                 if (dc.targetReference.getTarget()?.portTarget == id) {
                     val parameter = (dc.sourceReference.getTarget()?.portTarget as? ParameterDeclaration)
                     val fbOutEvents = dc.sourceReference.getTarget()?.functionBlock?.type?.eventOutputPorts
@@ -84,7 +88,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                                 if (par.parameterReference.getTarget() == parameter) {
                                     val fbName = dc.sourceReference.getTarget()?.functionBlock!!.name
                                     variables.add(fbName + "_" + parameter?.name)
-                                    events.add(ev.name)
+                                    events.add(dc.sourceReference.getTarget()?.functionBlock?.name + "_" + ev.name)
                                     break;
                                 }
                             }
@@ -94,35 +98,32 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
             }
 
             for (entity in variables) {
-                buf.append("next(${id.name}_) := case\n(")
+                buf.append("next(${id.name}_) := case\n\t(")
                 for (ev in events) {
                     buf.append(ev)
                     if (events.last() != ev) {
                         buf.append(" | ")
                     }
                 }
-                buf.append(")\n${entity};\n(\t${data.typesMap[id.type as? ElementaryType]} : ${id.name}_;\nesac;\n")
+                buf.append(") : ${entity};\n\tTRUE : ${id.name}_;\nesac;\n")
             }
         }
 
         //For input variable
         for (id in fbc.inputParameters) {
             var variables = HashSet<String>()
-            var events = ArrayList<String>()
+            var events = HashSet<String>()
 
-            for (dc in fbc.network.eventConnections) {
+            for (dc in fbc.network.dataConnections) {
                 if (dc.sourceReference.getTarget()?.portTarget == id) {
-                    val parameter = (dc.targetReference.getTarget()?.portTarget as? ParameterDeclaration)
-                    val fbOutEvents = dc.targetReference.getTarget()?.functionBlock?.type?.eventOutputPorts
-                    if (fbOutEvents != null) {
-                        for (ev in fbOutEvents) {
-                            for (par in (ev.declaration as? EventDeclaration)?.associations!!) {
-                                if (par.parameterReference.getTarget() == parameter) {
-                                    val fbName = dc.targetReference.getTarget()?.functionBlock!!.name
-                                    variables.add(fbName + "_" + parameter?.name)
-                                    events.add(ev.name)
-                                    break;
-                                }
+                    val parameter_name = (dc.targetReference.getTarget()?.portTarget as? ParameterDeclaration)?.name
+                    val fbName = dc.targetReference.getTarget()?.functionBlock!!.name
+                    for(ie in fbc.inputEvents){
+                        for(a in ie.associations){
+                            if(a.parameterReference.getTarget() == id){
+                                variables.add(fbName + "_" + parameter_name)
+                                events.add("event_${ie.name}")
+                                break;
                             }
                         }
                     }
@@ -130,23 +131,27 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
             }
 
             for (entity in variables) {
-                buf.append("next(${entity}_) := case\nalpha & (")
+                buf.append("next(${entity}) := case\nalpha & (")
                 for (ev in events) {
                     buf.append(ev)
                     if (events.last() != ev) {
                         buf.append(" | ")
                     }
                 }
-                buf.append(")\n: ${id.name}_;\n\tTRUE: ${entity};\nesac;\n")
+                buf.append(") : ${id.name}_;\n\tTRUE: ${entity};\nesac;\n")
             }
         }
     }
 
 
     override fun generateInnerFBsEventOutputsUpdate(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
-        val outputs = ArrayList<CompositeReference<PortPath<*>>>()
+        buf.append("\n-- generateInnerFBsEventOutputsUpdate\n\n")
+
+        val outputs = HashSet<PortPath<*>>()
         for (dc in fbc.network.eventConnections) {
-            if (!outputs.contains(dc.sourceReference)) {
+            if (!outputs.contains(dc.sourceReference.getTarget())
+                && !fbc.inputEvents.contains(dc.sourceReference.getTarget()?.portTarget)
+            ) {
                 val ref = dc.sourceReference.getTarget()?.portTarget as? EventDeclaration
                 ref?.let {
                     val fbname = dc.sourceReference.getTarget()?.functionBlock?.name
@@ -154,64 +159,63 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                         "next(${fbname}_${ref.name}) :=" +
                                 " case\n\t${fbname}.event_${ref.name}_set : TRUE;\n\tTRUE : FALSE;\nesac;\n"
                     )
+                    dc.sourceReference?.getTarget()?.let { it1 -> outputs.add(it1) }
                 }
             }
         }
     }
 
     override fun generateDispatcher(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
-        val compositeFBs = ArrayList<String>()
+        buf.append("\n-- DISPATCHER\n\n")
         for (fb in fbc.network.functionBlocks) {
             buf.append(
-                "next${fb.name}_alpha):= case\n\talpha & omega & !ExistsInputEvent : TRUE;\n" +
-                        "${fb.name}.alpha_reset : FALSE;\n\tTRUE : ${fb.name}_alpha;\nesac;"
+                "next(${fb.name}_alpha):= case\n\talpha & omega & !ExistsInputEvent : TRUE;\n" +
+                        "\t${fb.name}.alpha_reset : FALSE;\n\tTRUE : ${fb.name}_alpha;\nesac;\n"
             )
 
             buf.append(
-                "next${fb.name}_beta):= case\n\tbeta & omega & !ExistsInputEvent : TRUE;\n" +
-                        "${fb.name}.beta_set : FALSE;\n\tTRUE : ${fb.name}_beta;\nesac;"
+                "next(${fb.name}_beta):= case\n\tbeta & omega & !ExistsInputEvent : TRUE;\n" +
+                        "\t${fb.name}.beta_set : FALSE;\n\tTRUE : ${fb.name}_beta;\nesac;\n"
             )
-
-            if (fb.typeReference.getTarget() is CompositeFBTypeDeclaration) {
-                compositeFBs.add(fb.name)
-            }
         }
 
-        buf.append("DEFINE beta _reset:= ")
-        for (cb in compositeFBs) {
-            buf.append("$cb & ")
-        }
-        buf.append("& omega;\nDEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;\n\nASSIGN")
+        buf.append("DEFINE beta_set:= ${fbc.network.functionBlocks.last().name}_beta & omega;\nDEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;\n\nASSIGN\n")
     }
 
     override fun generateInternalEventConnections(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+        buf.append("\n-- generateInternalEventConnections\n\n")
+
         val isComposite = true
-        val data = HashMap<CompositeReference<PortPath<*>>, ArrayList<Pair<String, Boolean>>>()
+        val data = HashMap<PortPath<*>, ArrayList<Pair<String, Boolean>>>()
+        // val test = HashSet<CompositeReference<PortPath<*>>>()
 
         for (dc in fbc.network.eventConnections) {
-            val source = dc.targetReference.getTarget()?.portTarget
-            if (source != null && !fbc.outputEvents.contains(source)
-                && !fbc.inputEvents.contains(dc.sourceReference.getTarget()?.portTarget)
+            val target = dc.targetReference.getTarget()?.portTarget
+            if (target != null && !fbc.outputEvents.contains(target)
+  //              && !fbc.inputEvents.contains(dc.sourceReference.getTarget()?.portTarget)
             ) {
-                if (data[dc.targetReference] == null) {
-                    data[dc.targetReference] = ArrayList()
+                if (data[dc.targetReference.getTarget()] == null) {
+                    data[dc.targetReference.getTarget()!!] = ArrayList<Pair<String, Boolean>>()
                 }
-                //IF INPUT
-                val eventName = "${dc.sourceReference.getTarget()?.functionBlock?.name}_" +
-                        "${(dc.sourceReference.getTarget()?.portTarget as? EventDeclaration)?.name}"
 
-                data[dc.targetReference]?.add(
-                    Pair(
-                        eventName,
-                        dc.sourceReference.getTarget()?.functionBlock?.type is CompositeFBTypeDeclaration
-                    )
-                )
+                var eventName = ""
+                //IF INPUT
+                if( fbc.inputEvents.contains(dc.sourceReference.getTarget()?.portTarget)){
+                    eventName = "(event_${dc.sourceReference.getTarget()?.functionBlock?.name} & alpha)"
+                }else{
+                    eventName = "${dc.sourceReference.getTarget()?.functionBlock?.name}_" +
+                            "${(dc.sourceReference.getTarget()?.portTarget as? EventDeclaration)?.name}"
+                }
+
+                val pair =  Pair(eventName,
+                    dc.sourceReference.getTarget()?.functionBlock?.type is CompositeFBTypeDeclaration)
+                data[dc.targetReference.getTarget()]?.add(pair)
             }
         }
 
         for (d in data) {
-            val name = d.key.getTarget()?.portTarget?.name
-            val fb = d.key.getTarget()?.functionBlock?.name
+            val name = d.key.portTarget.name
+            val fb = d.key.functionBlock?.name
 
             buf.append("next(${fb}_${name}):= case\n\t(")
             for (e in d.value) {
@@ -220,12 +224,12 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                 } else {
                     buf.append(e.first)
                 }
-                if (d.value.last() == e) {
+                if (d.value.last() != e) {
                     buf.append(" | ")
                 }
             }
             buf.append(
-                ")\n\t(${fb}.event_${name}_reset) : FALSE;\n" +
+                ") : TRUE;\n\t(${fb}.event_${name}_reset) : FALSE;\n" +
                         "\tTRUE : ${fb}_${name};\nesac;\n\n"
             )
         }
@@ -234,43 +238,43 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
     override fun generateFooter(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
 //output events
         for (ie in fbc.outputEvents) {
-            buf.append("DEFINE event_${ie.name}_set:= (\n")
-            for (dc in fbc.network.eventConnections) {
-                val t = (dc.targetReference.getTarget()?.portTarget as EventDeclaration)
-                if (t == ie) {
-                    buf.append("${dc.targetReference.getTarget()?.functionBlock?.name}_${t.name}\n")
-                    if (fbc.network.eventConnections.last() != dc) {
-                        buf.append(" | ")
-                    }
+            buf.append("DEFINE event_${ie.name}_set:= (")
+
+            val tmp = fbc.network.eventConnections.filter { it.targetReference.getTarget()?.portTarget as EventDeclaration == ie }
+
+            tmp.forEach {
+                buf.append("${it.sourceReference.getTarget()?.functionBlock?.name}_${it.sourceReference.getTarget()?.portTarget?.name}")
+                if (tmp.last() != it) {
+                    buf.append(" | ")
                 }
-                buf.append(" );\n")
             }
+            buf.append(" );\n")
         }
 
 //input events
         for (ie in fbc.inputEvents) {
             buf.append("DEFINE event_${ie.name}_reset:= alpha;\n")
         }
-        buf.append("DEFINE ExistsInputEvent :=\n")
+        buf.append("DEFINE ExistsInputEvent := ")
 
         for (ie in fbc.inputEvents) {
-            buf.append(" ${ie.name} ")
+            buf.append(" event_${ie.name} ")
             if (fbc.inputEvents.last() != ie) {
                 buf.append(" | ")
             }
         }
         //OMEGA
-        buf.append("DEFINE omega:= !(\n")
+        buf.append(";\n\nDEFINE omega:= !(")
 
-        val outputEvents = HashSet<CompositeReference<PortPath<*>>>()
-        val inputEvents = HashSet<CompositeReference<PortPath<*>>>()
+        val outputEvents = HashSet<PortPath<*>>()
+        val inputEvents = HashSet<PortPath<*>>()
 
         for (f in fbc.network.eventConnections) {
             if (!fbc.inputEvents.contains(f.sourceReference.getTarget()?.portTarget as EventDeclaration)) {
-                outputEvents.add(f.sourceReference)
+                outputEvents.add(f.sourceReference.getTarget()!!)
             }
             if (!fbc.outputEvents.contains(f.targetReference.getTarget()?.portTarget as EventDeclaration)) {
-                inputEvents.add(f.targetReference)
+                inputEvents.add(f.targetReference.getTarget()!!)
             }
         }
 
@@ -278,14 +282,14 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
         val bufInputs = StringBuilder()
 
         for (e in outputEvents) {
-            bufOutputs.append("${e.getTarget()?.functionBlock?.name}_${e.getTarget()?.portTarget?.name}\n")
+            bufOutputs.append("${e.functionBlock?.name}_${e.portTarget.name}")
             if (outputEvents.last() != e) {
                 bufOutputs.append(" | ")
             }
         }
 
         for (e in inputEvents) {
-            bufInputs.append("${e.getTarget()?.functionBlock?.name}_${e.getTarget()?.portTarget?.name}\n")
+            bufInputs.append("${e.functionBlock?.name}_${e.portTarget?.name}")
             if (outputEvents.last() != e) {
                 bufInputs.append(" | ")
             }
@@ -295,7 +299,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
         buf.append(");\n\nDEFINE phi:= (!ExistsInputEvent) & (!($bufInputs | $bufOutputs ));\n")
 
         //END
-        buf.append("FAIRNESS (alpha)\nFAIRNESS (beta)\n")
+        buf.append("FAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
     }
 
     override fun generateSignature(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {

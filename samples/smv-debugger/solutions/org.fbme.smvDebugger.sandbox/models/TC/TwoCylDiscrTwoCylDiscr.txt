@@ -5,7 +5,7 @@ VAR START : boolean;
 VAR EXTEND : boolean;
 VAR RETRACT : boolean;
 VAR S_smv : {s0_osm, s1_osm, s2_osm};
-VAR Q_smv : {START_ecc,INIT_ecc,GO_ecc,S_RETURN_ecc,NOMOVE_ecc};
+VAR Q_smv : {START_ecc,INIT_ecc,GO_ecc,S_RETURN_ecc,NOMOVE_ecc}
 
 VAR NA: 0..1;
 VAR NI: 0..2;
@@ -22,6 +22,7 @@ init(RETRACT):= FALSE;
 init(NA):= 0;
 init(NI):= 0;
 
+
 next(Q_smv):= case
 	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm  : START_ecc;
@@ -29,6 +30,7 @@ next(Q_smv):= case
 	Q_smv=GO_ecc & S_smv=s1_osm & event_REQ&  Extended : S_RETURN_ecc;
 	Q_smv=S_RETURN_ecc & S_smv=s1_osm & event_REQ&  Retracted : NOMOVE_ecc;
 	Q_smv=NOMOVE_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=S_RETURN_ecc & S_smv=s1_osm  : S_RETURN_ecc;
 	TRUE : Q_smv;
 esac;
 next(S_smv):= case
@@ -45,24 +47,25 @@ next(NA):= case
 	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1)) :  0 ;
 	TRUE : NA;
 esac;
+
 next(NI):= case
 	S_smv=s1_osm: 1;
-	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=GO_ecc & NA = 1  & NI < 2 ) | (Q_smv=S_RETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=NOMOVE_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=GO_ecc & NA = 1  & 2 < 1) | (Q_smv=S_RETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=NOMOVE_ecc & NA = 1  & 2 < 1)) : (NI + 1) mod 3;
 	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
 esac;
 next(Retracted) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : Retracted_ ;
-	TRUE : Retracted;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Retracted_ ;
+	TRUE : Retracted
 esac;
 
 next(Extended) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : Extended_ ;
-	TRUE : Extended;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : Extended_ ;
+	TRUE : Extended
 esac;
 
 next(START) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : START_ ;
-	TRUE : START;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : START_ ;
+	TRUE : START
 esac;
 
 next(EXTEND) := case
@@ -70,14 +73,14 @@ next(EXTEND) := case
 	S_smv=s2_osm & Q_smv=GO_ecc & NA=1 & NI=0 : (TRUE);
 	S_smv=s2_osm & Q_smv=S_RETURN_ecc & NA=1 & NI=0 : (FALSE);
 	S_smv=s2_osm & Q_smv=NOMOVE_ecc & NA=1 & NI=0 : (FALSE);
-	TRUE : EXTEND;
+	TRUE : EXTEND
 esac;
 next(RETRACT) := case
 	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
 	S_smv=s2_osm & Q_smv=GO_ecc & NA=1 & NI=1 : (FALSE);
 	S_smv=s2_osm & Q_smv=S_RETURN_ecc & NA=1 & NI=1 : (TRUE);
 	S_smv=s2_osm & Q_smv=NOMOVE_ecc & NA=1 & NI=1 : (FALSE);
-	TRUE : RETRACT;
+	TRUE : RETRACT
 esac;
 
 next(EXTEND_) := case
@@ -93,13 +96,14 @@ DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm &
 DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
 
 DEFINE event_INIT_reset:= (S_smv=s1_osm);
-DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( INIT )) | (S_smv=s1_osm);
 
 DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
 DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=GO_ecc & NA = 1) | (Q_smv=S_RETURN_ecc & NA = 1) | (Q_smv=NOMOVE_ecc & NA = 1)) ;
 
-DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
-DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  |  ( event_REQ & ( START)  )  ) ) | (Q_smv=INIT_ecc  ) | (Q_smv=GO_ecc   & (  ( event_REQ & ( Extended)  )  ) ) | (Q_smv=S_RETURN_ecc   & (  ( event_REQ & ( Retracted)  )  ) ) | (Q_smv=NOMOVE_ecc  );
+DEFINE ExistsInputEvent:= event_INIT | event_REQ |;
+;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc  & ( event_INIT& ( event_REQ& ( START)  | (Q_smv=INIT_ecc   | (Q_smv=GO_ecc  & ( event_REQ& ( Extended)  | (Q_smv=S_RETURN_ecc  & ( event_REQ& ( Retracted)  | (Q_smv=NOMOVE_ecc  
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
@@ -108,7 +112,7 @@ MODULE ButtonDs(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,LightOn_,Pr
 VAR LightOn : boolean;
 VAR Pressed : boolean;
 VAR S_smv : {s0_osm, s1_osm, s2_osm};
-VAR Q_smv : {START_ecc,INIT_ecc,OFF_ecc,PRESSED_ecc};
+VAR Q_smv : {START_ecc,INIT_ecc,OFF_ecc,PRESSED_ecc}
 
 VAR NA: 0..1;
 VAR NI: 0..1;
@@ -122,14 +126,6 @@ init(Pressed):= FALSE;
 init(NA):= 0;
 init(NI):= 0;
 
-init(event_NDT) :=  { TRUE , FALSE };
-next(event_NDT):= case
-	Q_smv=START_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=INIT_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=OFF_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=PRESSED_ecc & S_smv=s1_osm : {TRUE,FALSE};
-TRUE : event_NDT;
-esac;
 next(Q_smv):= case
 	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm & event_REQ : OFF_ecc;
@@ -151,19 +147,19 @@ next(NA):= case
 esac;
 next(NI):= case
 	S_smv=s1_osm: 1;
-	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 1 ) | (Q_smv=OFF_ecc & NA = 1  & NI < 1 ) | (Q_smv=PRESSED_ecc & NA = 1  & NI < 1 )) : (NI + 1) mod 2;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 1 < 1) | (Q_smv=INIT_ecc & NA = 1  & 1 < 1) | (Q_smv=OFF_ecc & NA = 1  & 1 < 1) | (Q_smv=PRESSED_ecc & NA = 1  & 1 < 1)) : (NI + 1) mod 2;
 	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=INIT_ecc & NA = 1 & NI = 1) | (Q_smv=OFF_ecc & NA = 1 & NI = 1) | (Q_smv=PRESSED_ecc & NA = 1 & NI = 1)) :  0 ;	TRUE : NI;
 esac;
 next(LightOn) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : LightOn_ ;
-	TRUE : LightOn;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : LightOn_ ;
+	TRUE : LightOn
 esac;
 
 next(Pressed) := case
 	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=0 : (FALSE);
 	S_smv=s2_osm & Q_smv=OFF_ecc & NA=1 & NI=0 : (TRUE);
 	S_smv=s2_osm & Q_smv=PRESSED_ecc & NA=1 & NI=0 : (TRUE);
-	TRUE : Pressed;
+	TRUE : Pressed
 esac;
 
 next(Pressed_) := case
@@ -175,14 +171,15 @@ DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm &
 DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
 
 DEFINE event_INIT_reset:= (S_smv=s1_osm);
-DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
-DEFINE event_NDT_reset:= (alpha & ( event_INIT | event_REQ )) | (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( INIT )) | (S_smv=s1_osm);
+DEFINE event_NDT_reset:= (alpha & ( INIT | REQ )) | (S_smv=s1_osm);
 
 DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
 DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=OFF_ecc & NA = 1) | (Q_smv=PRESSED_ecc & NA = 1)) ;
 
-DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT ;
-DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc   & (  ( event_REQ )  ) ) | (Q_smv=OFF_ecc  ) | (Q_smv=PRESSED_ecc  );
+DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT |;
+;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc  & ( event_INIT | (Q_smv=INIT_ecc  & ( event_REQ | (Q_smv=OFF_ecc   | (Q_smv=PRESSED_ecc  
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
@@ -193,7 +190,7 @@ VAR BACK : boolean;
 VAR HOME : boolean;
 VAR END : boolean;
 VAR S_smv : {s0_osm, s1_osm, s2_osm};
-VAR Q_smv : {START_ecc,INIT_ecc,stHOME_ecc,stEND_ecc,ddMOVETO_ecc,ddRETURN_ecc,stSTOP_ecc};
+VAR Q_smv : {START_ecc,INIT_ecc,stHOME_ecc,stEND_ecc,ddMOVETO_ecc,ddRETURN_ecc,stSTOP_ecc}
 
 VAR NA: 0..1;
 VAR NI: 0..2;
@@ -209,17 +206,6 @@ init(END):= FALSE;
 init(NA):= 0;
 init(NI):= 0;
 
-init(event_NDT) :=  { TRUE , FALSE };
-next(event_NDT):= case
-	Q_smv=START_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=INIT_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stHOME_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stEND_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=ddMOVETO_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=ddRETURN_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stSTOP_ecc & S_smv=s1_osm : {TRUE,FALSE};
-TRUE : event_NDT;
-esac;
 next(Q_smv):= case
 	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
@@ -227,12 +213,13 @@ next(Q_smv):= case
 	Q_smv=stEND_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
 	Q_smv=ddMOVETO_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
 	Q_smv=ddRETURN_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
-	Q_smv=ddRETURN_ecc & S_smv=s1_osm & !( FWD) &!( BACK) : stSTOP_ecc;
+	Q_smv=ddRETURN_ecc & S_smv=s1_osm &  & : stSTOP_ecc;
 	Q_smv=stSTOP_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
 	Q_smv=stSTOP_ecc & S_smv=s1_osm &  FWD : ddMOVETO_ecc;
-	Q_smv=ddMOVETO_ecc & S_smv=s1_osm & !( FWD) &!( BACK) : stSTOP_ecc;
+	Q_smv=ddMOVETO_ecc & S_smv=s1_osm &  & : stSTOP_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stSTOP_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
+	Q_smv=stSTOP_ecc & S_smv=s1_osm  : stSTOP_ecc;
 	TRUE : Q_smv;
 esac;
 next(S_smv):= case
@@ -251,17 +238,17 @@ next(NA):= case
 esac;
 next(NI):= case
 	S_smv=s1_osm: 1;
-	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=stHOME_ecc & NA = 1  & NI < 2 ) | (Q_smv=stEND_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddMOVETO_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddRETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=stSTOP_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & 2 < 1) | (Q_smv=INIT_ecc & NA = 1  & 2 < 1) | (Q_smv=stHOME_ecc & NA = 1  & 2 < 1) | (Q_smv=stEND_ecc & NA = 1  & 2 < 1) | (Q_smv=ddMOVETO_ecc & NA = 1  & 2 < 1) | (Q_smv=ddRETURN_ecc & NA = 1  & 2 < 1) | (Q_smv=stSTOP_ecc & NA = 1  & 2 < 1)) : (NI + 1) mod 3;
 	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=stHOME_ecc & NA = 1 & NI = 2) | (Q_smv=stEND_ecc & NA = 1 & NI = 2) | (Q_smv=ddMOVETO_ecc & NA = 1 & NI = 2) | (Q_smv=ddRETURN_ecc & NA = 1 & NI = 2) | (Q_smv=stSTOP_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
 esac;
 next(FWD) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : FWD_ ;
-	TRUE : FWD;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : FWD_ ;
+	TRUE : FWD
 esac;
 
 next(BACK) := case
-	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : BACK_ ;
-	TRUE : BACK;
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ | ) : BACK_ ;
+	TRUE : BACK
 esac;
 
 next(HOME) := case
@@ -271,7 +258,7 @@ next(HOME) := case
 	S_smv=s2_osm & Q_smv=ddMOVETO_ecc & NA=1 & NI=0 : (FALSE);
 	S_smv=s2_osm & Q_smv=ddRETURN_ecc & NA=1 & NI=0 : (FALSE);
 	S_smv=s2_osm & Q_smv=stSTOP_ecc & NA=1 & NI=0 : (FALSE);
-	TRUE : HOME;
+	TRUE : HOME
 esac;
 next(END) := case
 	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
@@ -280,7 +267,7 @@ next(END) := case
 	S_smv=s2_osm & Q_smv=ddMOVETO_ecc & NA=1 & NI=1 : (FALSE);
 	S_smv=s2_osm & Q_smv=ddRETURN_ecc & NA=1 & NI=1 : (FALSE);
 	S_smv=s2_osm & Q_smv=stSTOP_ecc & NA=1 & NI=1 : (FALSE);
-	TRUE : END;
+	TRUE : END
 esac;
 
 next(HOME_) := case
@@ -296,14 +283,15 @@ DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm &
 DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
 
 DEFINE event_INIT_reset:= (S_smv=s1_osm);
-DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
-DEFINE event_NDT_reset:= (alpha & ( event_INIT | event_REQ )) | (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( INIT )) | (S_smv=s1_osm);
+DEFINE event_NDT_reset:= (alpha & ( INIT | REQ )) | (S_smv=s1_osm);
 
 DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
 DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=stHOME_ecc & NA = 1) | (Q_smv=stEND_ecc & NA = 1) | (Q_smv=ddMOVETO_ecc & NA = 1) | (Q_smv=ddRETURN_ecc & NA = 1) | (Q_smv=stSTOP_ecc & NA = 1)) ;
 
-DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT ;
-DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc   & (  ( event_NDT )  |  ( event_NDT )  |  ( event_NDT )  ) ) | (Q_smv=stHOME_ecc   & (  ( ( FWD)  )  ) ) | (Q_smv=stEND_ecc   & (  ( ( BACK)  )  ) ) | (Q_smv=ddMOVETO_ecc   & (  ( event_NDT )  |  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=ddRETURN_ecc   & (  ( event_NDT )  |  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=stSTOP_ecc   & (  ( ( BACK)  )  |  ( ( FWD)  )  ) );
+DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT |;
+;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc  & ( event_INIT | (Q_smv=INIT_ecc  & ( event_NDT& ( event_NDT& ( event_NDT | (Q_smv=stHOME_ecc  & ( FWD)  | (Q_smv=stEND_ecc  & ( BACK)  | (Q_smv=ddMOVETO_ecc  & ( event_NDT& ( &)  | (Q_smv=ddRETURN_ecc  & ( event_NDT& ( &)  | (Q_smv=stSTOP_ecc  & ( BACK) & ( FWD) 
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
@@ -312,7 +300,7 @@ MODULE TwoCylDiscr(event_INIT, event_INITO, alpha, beta)
 VAR  FB1  : CylControl (FB1_INIT,FB1_REQ,FB1_INITO, FB1_CNF, FB1_Retracted, FB1_Extended, FB1_START, FB1_EXTEND, FB1_RETRACT, alpha, beta);
 VAR  FB2  : CylControl (FB2_INIT,FB2_REQ,FB2_INITO, FB2_CNF, FB2_Retracted, FB2_Extended, FB2_START, FB2_EXTEND, FB2_RETRACT, alpha, beta);
 VAR  FB3  : ButtonDs (FB3_INIT,FB3_REQ,FB3_NDT,FB3_INITO, FB3_CHG, FB3_LightOn, FB3_Pressed, alpha, beta);
-VAR  FB4  : LinearDA (FB4_INIT,FB4_REQ,FB4_NDT,FB4_INITO, FB4_CHG, FB4_FWD, FB4_BACK, FB4_HOME, FB4_END, alpha, beta);
+VAR  тFB4  : LinearDA (тFB4_INIT,тFB4_REQ,тFB4_NDT,тFB4_INITO, тFB4_CHG, тFB4_FWD, тFB4_BACK, тFB4_HOME, тFB4_END, alpha, beta);
 VAR  FB5  : LinearDA (FB5_INIT,FB5_REQ,FB5_NDT,FB5_INITO, FB5_CHG, FB5_FWD, FB5_BACK, FB5_HOME, FB5_END, alpha, beta);
 
 
@@ -349,17 +337,17 @@ VAR FB3_LightOn : boolean;
 VAR FB3_Pressed : boolean;
 VAR FB3_alpha : boolean;
 VAR FB3_beta : boolean;
-VAR FB4_INIT : boolean;
-VAR FB4_REQ : boolean;
-VAR FB4_NDT : boolean;
-VAR FB4_INITO : boolean;
-VAR FB4_CHG : boolean;
-VAR FB4_FWD : boolean;
-VAR FB4_BACK : boolean;
-VAR FB4_HOME : boolean;
-VAR FB4_END : boolean;
-VAR FB4_alpha : boolean;
-VAR FB4_beta : boolean;
+VAR тFB4_INIT : boolean;
+VAR тFB4_REQ : boolean;
+VAR тFB4_NDT : boolean;
+VAR тFB4_INITO : boolean;
+VAR тFB4_CHG : boolean;
+VAR тFB4_FWD : boolean;
+VAR тFB4_BACK : boolean;
+VAR тFB4_HOME : boolean;
+VAR тFB4_END : boolean;
+VAR тFB4_alpha : boolean;
+VAR тFB4_beta : boolean;
 VAR FB5_INIT : boolean;
 VAR FB5_REQ : boolean;
 VAR FB5_NDT : boolean;
@@ -404,17 +392,17 @@ init(FB3_LightOn) := FALSE;
 init(FB3_Pressed) := FALSE;
 init( FB3_alpha) := FALSE;
 init( FB3_beta) := FALSE;
-init(FB4_INIT) := FALSE;
-init(FB4_REQ) := FALSE;
-init(FB4_NDT) := FALSE;
-init(FB4_INITO) := FALSE;
-init(FB4_CHG) := FALSE;
-init(FB4_FWD) := FALSE;
-init(FB4_BACK) := FALSE;
-init(FB4_HOME) := FALSE;
-init(FB4_END) := FALSE;
-init( FB4_alpha) := FALSE;
-init( FB4_beta) := FALSE;
+init(тFB4_INIT) := FALSE;
+init(тFB4_REQ) := FALSE;
+init(тFB4_NDT) := FALSE;
+init(тFB4_INITO) := FALSE;
+init(тFB4_CHG) := FALSE;
+init(тFB4_FWD) := FALSE;
+init(тFB4_BACK) := FALSE;
+init(тFB4_HOME) := FALSE;
+init(тFB4_END) := FALSE;
+init( тFB4_alpha) := FALSE;
+init( тFB4_beta) := FALSE;
 init(FB5_INIT) := FALSE;
 init(FB5_REQ) := FALSE;
 init(FB5_NDT) := FALSE;
@@ -437,8 +425,8 @@ next(FB3_INITO) := case
 	FB3.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB4_INITO) := case
-	FB4.event_INITO_set : TRUE;
+next(тFB4_INITO) := case
+	тFB4.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
 next(FB5_INITO) := case
@@ -449,8 +437,8 @@ next(FB1_CNF) := case
 	FB1.event_CNF_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB4_CHG) := case
-	FB4.event_CHG_set : TRUE;
+next(тFB4_CHG) := case
+	тFB4.event_CHG_set : TRUE;
 	TRUE : FALSE;
 esac;
 next(FB5_CHG) := case
@@ -506,15 +494,15 @@ next(FB3_beta):= case
 	FB3.beta_set : FALSE;
 	TRUE : FB3_beta;
 esac;
-next(FB4_alpha):= case
+next(тFB4_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB4.alpha_reset : FALSE;
-	TRUE : FB4_alpha;
+	тFB4.alpha_reset : FALSE;
+	TRUE : тFB4_alpha;
 esac;
-next(FB4_beta):= case
+next(тFB4_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB4.beta_set : FALSE;
-	TRUE : FB4_beta;
+	тFB4.beta_set : FALSE;
+	TRUE : тFB4_beta;
 esac;
 next(FB5_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
@@ -526,80 +514,80 @@ next(FB5_beta):= case
 	FB5.beta_set : FALSE;
 	TRUE : FB5_beta;
 esac;
-DEFINE beta_set:= FB5_beta & omega;
+DEFINE beta_reset:= & omega;
 DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
 
 ASSIGN
 
 -- generateInternalEventConnections
 
-next(FB1_REQ):= case
-	(FB4_CHG | FB3_CHG) : TRUE;
-	(FB1.event_REQ_reset) : FALSE;
-	TRUE : FB1_REQ;
-esac;
-
-next(FB4_INIT):= case
-	(FB3_INITO) : TRUE;
-	(FB4.event_INIT_reset) : FALSE;
-	TRUE : FB4_INIT;
+next(тFB4_INIT):= case
+	(FB3_INITO)
+	(тFB4.event_INIT_reset) : FALSE;
+	TRUE : тFB4_INIT;
 esac;
 
 next(FB2_REQ):= case
-	(FB5_CHG | FB3_CHG) : TRUE;
+	(FB5_CHG | FB3_CHG)
 	(FB2.event_REQ_reset) : FALSE;
 	TRUE : FB2_REQ;
 esac;
 
 next(FB1_INIT):= case
-	(FB5_INITO) : TRUE;
+	(FB5_INITO)
 	(FB1.event_INIT_reset) : FALSE;
 	TRUE : FB1_INIT;
 esac;
 
-next(FB3_INIT):= case
-	((event_null & alpha)) : TRUE;
-	(FB3.event_INIT_reset) : FALSE;
-	TRUE : FB3_INIT;
-esac;
-
 next(FB3_REQ):= case
-	(FB2_INITO) : TRUE;
+	(FB2_INITO)
 	(FB3.event_REQ_reset) : FALSE;
 	TRUE : FB3_REQ;
 esac;
 
-next(FB5_REQ):= case
-	(FB2_CNF) : TRUE;
-	(FB5.event_REQ_reset) : FALSE;
-	TRUE : FB5_REQ;
-esac;
-
-next(FB2_INIT):= case
-	(FB1_INITO) : TRUE;
-	(FB2.event_INIT_reset) : FALSE;
-	TRUE : FB2_INIT;
-esac;
-
 next(FB5_INIT):= case
-	(FB4_INITO) : TRUE;
+	(тFB4_INITO)
 	(FB5.event_INIT_reset) : FALSE;
 	TRUE : FB5_INIT;
 esac;
 
-next(FB4_REQ):= case
-	(FB1_CNF) : TRUE;
-	(FB4.event_REQ_reset) : FALSE;
-	TRUE : FB4_REQ;
+next(FB5_REQ):= case
+	(FB2_CNF)
+	(FB5.event_REQ_reset) : FALSE;
+	TRUE : FB5_REQ;
 esac;
 
-DEFINE event_INITO_set:= (FB2_INITO );
+next(FB3_INIT):= case
+	((event_null & alpha))
+	(FB3.event_INIT_reset) : FALSE;
+	TRUE : FB3_INIT;
+esac;
+
+next(тFB4_REQ):= case
+	(FB1_CNF)
+	(тFB4.event_REQ_reset) : FALSE;
+	TRUE : тFB4_REQ;
+esac;
+
+next(FB1_REQ):= case
+	(тFB4_CHG | FB3_CHG)
+	(FB1.event_REQ_reset) : FALSE;
+	TRUE : FB1_REQ;
+esac;
+
+next(FB2_INIT):= case
+	(FB1_INITO)
+	(FB2.event_INIT_reset) : FALSE;
+	TRUE : FB2_INIT;
+esac;
+
+DEFINE event_INITO_set:= (FB2_INITO |  );
 DEFINE event_INIT_reset:= alpha;
 DEFINE ExistsInputEvent :=  event_INIT ;
 
-DEFINE omega:= !(FB1_CNF | FB3_INITO | FB2_CNF | FB1_INITO | FB5_INITO | FB5_CHG | FB2_INITO | FB4_CHG | FB4_INITO | FB3_CHG);
+DEFINE omega:= !(тFB4_INITO | FB5_INITO | FB3_CHG | FB1_INITO | FB2_CNF | тFB4_CHG | FB2_INITO | FB5_CHG | FB1_CNF | FB3_INITO);
 
-DEFINE phi:= (!ExistsInputEvent) & (!(FB1_REQ | FB4_INIT | FB2_REQ | FB1_INIT | FB3_INIT | FB3_REQ | FB5_REQ | FB2_INIT | FB5_INIT | FB4_REQ |  | FB1_CNF | FB3_INITO | FB2_CNF | FB1_INITO | FB5_INITO | FB5_CHG | FB2_INITO | FB4_CHG | FB4_INITO | FB3_CHG ));
+DEFINE phi:= (!ExistsInputEvent) & (!(тFB4_INIT | FB2_REQ | FB1_INIT | FB3_REQ | FB5_INIT | FB5_REQ | FB3_INIT | тFB4_REQ | FB1_REQ | FB2_INIT |  | тFB4_INITO | FB5_INITO | FB3_CHG | FB1_INITO | FB2_CNF | тFB4_CHG | FB2_INITO | FB5_CHG | FB1_CNF | FB3_INITO ));
 FAIRNESS (alpha)
 FAIRNESS (beta)
 

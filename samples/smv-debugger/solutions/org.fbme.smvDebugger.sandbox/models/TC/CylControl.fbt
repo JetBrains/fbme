@@ -37,26 +37,25 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="4926" y="433" />
-      <ECState Name="INIT" x="6593" y="0">
+      <ECState Name="START" x="1533" y="1386" />
+      <ECState Name="INIT" x="0" y="1350">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="GO" x="6593" y="1160">
+      <ECState Name="GO" x="2266" y="1060">
         <ECAction Output="CNF" Algorithm="FWD" />
       </ECState>
-      <ECState Name="S_RETURN" x="0" y="479">
+      <ECState Name="S_RETURN" x="1853" y="-160">
         <ECAction Output="CNF" Algorithm="BACK" />
       </ECState>
-      <ECState Name="NOMOVE" x="2460" y="126">
+      <ECState Name="NOMOVE" x="0" y="0">
         <ECAction Output="CNF" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="5926" y="580" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="START" x="5926" y="180" Condition="1" />
-      <ECTransition Source="START" Destination="GO" x="5926" y="819" Condition="REQ[START]" />
-      <ECTransition Source="GO" Destination="S_RETURN" x="4180" y="1066" Condition="REQ[Extended]" />
-      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="1686" y="433" Condition="REQ[Retracted]" />
-      <ECTransition Source="NOMOVE" Destination="START" x="4180" y="433" Condition="1" />
-      <ECTransition Source="S_RETURN" Destination="S_RETURN" x="453" y="399" Condition="1" />
+      <ECTransition Source="START" Destination="INIT" x="1240" y="1440" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="START" x="1306" y="1893" Condition="1" />
+      <ECTransition Source="START" Destination="GO" x="1999" y="1886" Condition="REQ[START]" />
+      <ECTransition Source="GO" Destination="S_RETURN" x="2800" y="693" Condition="REQ[Extended]" />
+      <ECTransition Source="S_RETURN" Destination="NOMOVE" x="1340" y="280" Condition="REQ[Retracted]" />
+      <ECTransition Source="NOMOVE" Destination="START" x="1293" y="926" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="EXTEND := FALSE;&amp;#38;#10;RETRACT := FALSE;&amp;#38;#10;" />

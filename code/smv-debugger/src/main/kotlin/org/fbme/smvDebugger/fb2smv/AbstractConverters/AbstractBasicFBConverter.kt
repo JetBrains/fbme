@@ -31,4 +31,5 @@ interface AbstractBasicFBConverter {
     fun generateLocalVariableDeclaration(fb: FBTypeDescriptor, buf: StringBuilder)
 
     fun generateSignature(fb: FBTypeDescriptor, buf: StringBuilder)
+    fun generateNonDeterministicVariables(fb: FBTypeDescriptor, buf: StringBuilder)
 }

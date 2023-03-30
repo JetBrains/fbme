@@ -2,6 +2,7 @@ package org.fbme.smvDebugger.fb2smv.AbstractConverters
 
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import java.io.File
@@ -19,7 +20,7 @@ TODO
 
  */
 abstract class AbstractFBDConverter(val fileExtention: String) {
-    val fbTypesSet = HashSet<FBTypeDescriptor>()
+    val fbTypesSet = HashSet<FBTypeDeclaration>()
     val buf = StringBuilder()
     var basicFBConverter: AbstractBasicFBConverter? = null
     var compositeFBConverter: AbstractCompositeFBConverter? = null
@@ -27,17 +28,21 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     var data: VerifiersData? = null
 
     private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
-        if( fbTypesSet.contains(compositeFb.typeDescriptor)) return
+        if( fbTypesSet.contains(compositeFb)) return
         val fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks
         for (fb in fbs) {
             //if we have already generated definition for this FB type
-            if(fbTypesSet.contains(fb.type)) continue
+            if(fbTypesSet.contains(fb.typeReference.getTarget())){
+                continue
+            }
             //composite or not?
             if (fb.typeReference.getTarget() is CompositeFBTypeDeclaration){
                 compositeBlockNetworkTraversal(fb.typeReference.getTarget() as CompositeFBTypeDeclaration)
+                fbTypesSet.add(compositeFb)
+            }else{
+                basicFBConversion(fb.type)
+                fb.typeReference.getTarget()?.let { fbTypesSet.add(it) }
             }
-            basicFBConversion(fb.type)
-            fbTypesSet.add(fb.type)
         }
         compositeFBConversion(compositeFb)
 
@@ -59,6 +64,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
         basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
         basicFBConverter?.generateCountersDeclaration(fb, buf)
         basicFBConverter?.generateLocalVariableDefinition(fb, buf)
+        basicFBConverter?.generateNonDeterministicVariables(fb, buf)
         basicFBConverter?.generateECCTransitions(fb, buf)
         basicFBConverter?.generateOSM(fb, buf)
         basicFBConverter?.generateNA(fb, buf)

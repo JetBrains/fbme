@@ -3,6 +3,7 @@ package org.fbme.smvDebugger.fb2smv
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.ElementaryType
@@ -14,13 +15,14 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
     override fun generateFooter(fb: FBTypeDescriptor, buf: StringBuilder) {
 
         buf.append("DEFINE ExistsInputEvent:=")
+        var counter = 0
         for (ie in fb.eventInputPorts) {
+            counter++
             buf.append(" event_${ie.name} ")
-            if (fb.eventInputPorts.last() != ie){
+            if (counter != fb.eventInputPorts.size){
                 buf.append("|")
             }
         }
-        buf.append(";\n")
 
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
 
@@ -28,21 +30,42 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         for (st in states) {
             buf.append("(Q_smv=${st.name}_ecc  ")
             val transitions = FBInfoService.getAllTransitionFromState(st, fb)
-            for (tr in transitions) {
-                tr.condition.eventReference.getTarget()?.let {
-                    buf.append("& ( event_" + tr.condition.eventReference.presentation)
+
+            val validTransitions = transitions.filter { it.condition.eventReference.getTarget() != null || it.condition.getGuardCondition() != null }
+
+            if (validTransitions.isNotEmpty()){
+                    buf.append(" & ( ") //open TR list
+
+                    for (tr in validTransitions) {
+
+                        buf.append(" ( ") //open one transition
+                        tr.condition.eventReference.getTarget()?.let {
+                            buf.append("event_" + tr.condition.eventReference.presentation)
+                        }
+
+                        tr.condition.getGuardCondition()?.let {
+                            if (tr.condition.eventReference.getTarget() != null) {
+                                buf.append(" & ")
+                            }
+                            buf.append("(")
+                            guardConditionParsing(it, buf)
+                            buf.append(") ")
+                        }
+                        buf.append(" ) ") //close one transition
+
+                        if(validTransitions.last()!= tr){
+                            buf.append(" | ")
+                        }
+                    }
+                    buf.append(" ) ")    //close TR list
                 }
-                tr.condition.getGuardCondition()?.let {
-                    buf.append("& (")
-                    guardConditionParsing(it, buf)
-                    buf.append(") ")
-                }
-            }
-            if(states.last() != st){
-                buf.append(" | ")
+
+
+            if(states.last()!= st){
+                buf.append(") | ")
             }
         }
-        buf.append("\nFAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
+        buf.append(");\nFAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
     }
 
     override fun generateOutputEventsSet(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -77,7 +100,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             if (eventsList.size != 0) {
                 buf.append("(alpha & (")
                 for (e in eventsList) {
-                    buf.append(" $e ")
+                    buf.append(" event_$e ")
                     if (eventsList.last() != e) buf.append("|")
                 }
                 buf.append(")) | ")
@@ -116,7 +139,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
                     }
                 }
             }
-            buf.append("\tTRUE : ${id.name}\nesac;\n")
+            buf.append("\tTRUE : ${id.name};\nesac;\n")
         }
 
         buf.append("\n")
@@ -135,17 +158,20 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
     override fun generateInputVariablesUpdate(fb: FBTypeDescriptor, buf: StringBuilder) {
         for (id in fb.dataInputPorts) {
             buf.append("next(${id.name}) := case\n\talpha & S_smv=s0_osm & (")
-            for (event in FBInfoService.getAssociatedInputEvents(fb, id)) {
+            val events = FBInfoService.getAssociatedInputEvents(fb, id)
+            for (event in events) {
                 buf.append("event_${event.name}")
-                if (fb.dataInputPorts.last() != event) buf.append(" | ")
+                if (events.last() != event){
+                    buf.append(" | ")
+                }
             }
-            buf.append(") : ${id.name}_ ;\n\tTRUE : ${id.name}\nesac;\n\n")
+            buf.append(") : ${id.name}_ ;\n\tTRUE : ${id.name};\nesac;\n\n")
         }
     }
 
     override fun generateCountersDeclaration(fb: FBTypeDescriptor, buf: StringBuilder) {
         buf.append(
-            "}\n\nVAR NA: 0..${FBInfoService.getMaxNA(fb)};\nVAR NI: 0.." +
+            "};\n\nVAR NA: 0..${FBInfoService.getMaxNA(fb)};\nVAR NI: 0.." +
                     "${FBInfoService.getMaxNI(fb)};\n\n"
         )
     }
@@ -155,7 +181,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         buf.append("next(NI):= case\n\tS_smv=s1_osm: 1;\n\tS_smv=s2_osm &  (")
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
         for (st in states) {
-            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1  & $maxNI < 1)")
+            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1  & NI < $maxNI )")
             if (st != states.last()) buf.append(" | ")
         }
 
@@ -229,9 +255,19 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             data.binaryOperationsConvertionMap[type]?.let { buf.append(" $it") }
             guardConditionParsing(right, buf)
         }
-        if (guards is VariableReference) {
-            val refs = guards as VariableReference
-            buf.append(" " + refs.reference.presentation)
+        else if (guards is VariableReference) {
+            buf.append(" " + guards.reference.presentation)
+        }
+        else if (guards is UnaryExpression){
+            if (guards.operation == UnaryOperation.NOT){
+                buf.append("!")
+            }
+            buf.append("(")
+            guardConditionParsing(guards.getInnerExpression(), buf)
+            buf.append(")")
+        }
+        else if(guards is Literal<*>){
+            buf.append(guards.value.toString())
         }
     }
 
@@ -280,6 +316,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             if (states.last() != state) buf.append(",")
 
         }
+
     }
 
     override fun generateSignature(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -289,6 +326,22 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         for (id in fb.dataInputPorts) buf.append(id.name + "_,")
         for (od in fb.dataOutputPorts) buf.append(od.name + "_,")
         buf.append("alpha, beta)\n")
+    }
+
+
+ //   TODO - remove not used states
+    private fun generateNonDeterministicEventPort(fb: FBTypeDescriptor, buf: StringBuilder, port: FBPortDescriptor){
+        if (fb.getAssociatedVariablesForInputEvent(port.position).isEmpty()){
+        buf.append("init(event_${port.name}) :=  { TRUE , FALSE };\nnext(event_${port.name}):= case\n")
+        for(st in (fb.declaration as BasicFBTypeDeclaration).ecc.states){
+            buf.append("\tQ_smv=${st.name}_ecc & S_smv=s1_osm : {TRUE,FALSE};\n")
+        }
+        buf.append("TRUE : event_${port.name};\nesac;\n")
+        }
+    }
+    override fun generateNonDeterministicVariables(fb: FBTypeDescriptor, buf: StringBuilder) {
+        fb.eventInputPorts.forEach {  generateNonDeterministicEventPort(fb, buf, it) }
+        fb.eventOutputPorts.forEach {  generateNonDeterministicEventPort(fb, buf, it) }
     }
 
 }

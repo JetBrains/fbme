@@ -23,7 +23,7 @@ class MainConverter (private val data: VerifiersData ): AbstractMainConverter {
             buf.append("${compositeFb.name}_inst_${ie.name}, ")
         }
         //Declarations
-        buf.append("\n\n")
+        buf.append(" ${compositeFb.name}_inst_alpha, ${compositeFb.name}_inst_beta);\n\n")
         for (ie in compositeFb.inputEvents){
             buf.append("VAR ${compositeFb.name}_inst_${ie.name} : boolean;\n")
         }
@@ -57,12 +57,12 @@ class MainConverter (private val data: VerifiersData ): AbstractMainConverter {
         }
 
         //alpha beta init
-        buf.append("init(${compositeFb.name}__inst_alpha):= TRUE;\n" +
-                "init(${compositeFb.name}__inst_beta):= FALSE;\n\n")
+        buf.append("init(${compositeFb.name}_inst_alpha):= TRUE;\n" +
+                "init(${compositeFb.name}_inst_beta):= FALSE;\n\n")
 
         //init INPUT VARs
         for (ie in compositeFb.inputParameters){
-            buf.append("init ( ${compositeFb.name}_inst_${ie.name}) := ${compositeFb.name}_inst_${ie.name}\n")
+            buf.append("init ( ${compositeFb.name}_inst_${ie.name}) := ${compositeFb.name}_inst_${ie.name};\n")
         }
 
         //init INPUT EVENTS
@@ -70,13 +70,13 @@ class MainConverter (private val data: VerifiersData ): AbstractMainConverter {
             buf.append("next(${compositeFb.name}_inst_${ie.name}):= case\n" +
                     "${compositeFb.name}_inst.event_${ie.name}_reset : FALSE;\n" +
                     "\tTRUE : ${compositeFb.name}_inst_${ie.name};\n" +
-                    "esac;")
+                    "esac;\n")
         }
         for (ie in compositeFb.outputEvents){
             buf.append("next(${compositeFb.name}_inst_${ie.name}):= case\n" +
                     "${compositeFb.name}_inst.event_${ie.name}_reset : FALSE;\n" +
                     "\tTRUE : ${compositeFb.name}_inst_${ie.name};\n" +
-                    "esac;")
+                    "esac;\n")
         }
 
         //footer
