@@ -64,7 +64,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
         basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
         basicFBConverter?.generateCountersDeclaration(fb, buf)
         basicFBConverter?.generateLocalVariableDefinition(fb, buf)
-        basicFBConverter?.generateNonDeterministicVariables(fb, buf)
+    //    basicFBConverter?.generateNonDeterministicVariables(fb, buf) TODO: elaborate question
         basicFBConverter?.generateECCTransitions(fb, buf)
         basicFBConverter?.generateOSM(fb, buf)
         basicFBConverter?.generateNA(fb, buf)

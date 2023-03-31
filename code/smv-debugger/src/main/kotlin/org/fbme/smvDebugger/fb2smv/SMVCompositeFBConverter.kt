@@ -1,8 +1,5 @@
 package org.fbme.smvDebugger.fb2smv
 
-import org.fbme.lib.common.CompositeReference
-import org.fbme.lib.common.Declaration
-import org.fbme.lib.common.DeclarationPath
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
@@ -10,6 +7,7 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.fbme.lib.iec61499.fbnetwork.PortPath
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractCompositeFBConverter
+import org.fbme.smvDebugger.fb2smv.AbstractConverters.CFBInfoService
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 
 class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractCompositeFBConverter {
@@ -17,9 +15,23 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
         val fbs: List<FunctionBlockDeclaration> = fbc.network.functionBlocks
         for (fb in fbs) {
             buf.append("VAR  ${fb.name}  : ${fb.type.typeName} (")
-            for (ie in fb.type.eventInputPorts) buf.append("${fb.name}_${ie.name},")
-            for (oe in fb.type.eventOutputPorts) buf.append("${fb.name}_${oe.name}, ")
-            for (id in fb.type.dataInputPorts) buf.append("${fb.name}_${id.name}, ")
+            for (ie in fb.type.eventInputPorts) {
+                buf.append("${fb.name}_${ie.name},")
+            }
+
+            for (oe in fb.type.eventOutputPorts) {
+                buf.append("${fb.name}_${oe.name}, ")
+            }
+
+            for (id in fb.type.dataInputPorts) {
+                val source = CFBInfoService.getConnectedDataPort(fbc, id)
+                if(source == null) {
+                    buf.append("${fb.name}_${id.name}, ")
+                }
+                else{
+                    buf.append("${source.functionBlock!!.name}_${(source.portTarget as? ParameterDeclaration)?.name}, ")
+                }
+            }
             for (od in fb.type.dataOutputPorts) buf.append("${fb.name}_${od.name}, ")
             buf.append("alpha, beta);\n")
         }
@@ -27,37 +39,50 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
 
     }
 
+
     override fun generateCompositeFBsVariables(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
         buf.append("\n-- generateCompositeFBsVariables\n\n")
 
         val fbs: List<FunctionBlockDeclaration> = fbc.network.functionBlocks
         //declarations
         for (fb in fbs) {
-            for (ie in fb.type.eventInputPorts) buf.append("VAR ${fb.name}_${ie.name} : boolean;\n")
+            for (ie in fb.type.eventInputPorts) {
+                if(CFBInfoService.getConnectedEventPort(fbc, ie) != null){
+                    buf.append("VAR ${fb.name}_${ie.name} : boolean;\n")
+                }
+            }
             for (oe in fb.type.eventOutputPorts) buf.append("VAR ${fb.name}_${oe.name} : boolean;\n")
+
             for (id in fb.type.dataInputPorts) {
-                buf.append("VAR ${fb.name}_${id.name} : ${data.typesMap[(id.declaration as ParameterDeclaration).type as ElementaryType]};\n")
+                if(CFBInfoService.getConnectedDataPort(fbc, id) == null) {
+                    buf.append("VAR ${fb.name}_${id.name} : ${data.typesMap[(id.declaration as ParameterDeclaration).type as ElementaryType]};\n")
+                }
             }
             for (od in fb.type.dataOutputPorts) {
                 buf.append("VAR ${fb.name}_${od.name} : ${data.typesMap[(od.declaration as ParameterDeclaration).type as ElementaryType]};\n")
             }
-            buf.append("VAR ${fb.name}_alpha : boolean;\nVAR ${fb.name}_beta : boolean;\n")
+            buf.append("VAR ${fb.name}_alpha : boolean;\nVAR ${fb.name}_beta : boolean;\n\n")
         }
-        buf.append("\nASSIGN\n")
+        buf.append("\n\nASSIGN\n")
 
         //definitions
         for (fb in fbs) {
             for (ie in fb.type.eventInputPorts) {
-                buf.append("init(${fb.name}_${ie.name}) := FALSE;\n")
+                if(CFBInfoService.getConnectedEventPort(fbc, ie) != null) {
+                    buf.append("init(${fb.name}_${ie.name}) := FALSE;\n")
+                }
             }
             for (oe in fb.type.eventOutputPorts) {
                 buf.append("init(${fb.name}_${oe.name}) := FALSE;\n")
             }
             for (id in fb.type.dataInputPorts) {
-                buf.append(
-                    "init(${fb.name}_${id.name}) :=" +
-                            " ${data.typesInitValMap[(id.declaration as ParameterDeclaration).type as ElementaryType]};\n"
-                )
+
+                if(CFBInfoService.getConnectedDataPort(fbc, id) == null) {
+                    buf.append(
+                        "init(${fb.name}_${id.name}) :=" +
+                                " ${data.typesInitValMap[(id.declaration as ParameterDeclaration).type as ElementaryType]};\n"
+                    )
+                }
             }
             for (od in fb.type.dataOutputPorts) {
                 buf.append(
@@ -65,7 +90,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                             " ${data.typesInitValMap[(od.declaration as ParameterDeclaration).type as ElementaryType]};\n"
                 )
             }
-            buf.append("init( ${fb.name}_alpha) := FALSE;\ninit( ${fb.name}_beta) := FALSE;\n")
+            buf.append("init( ${fb.name}_alpha) := FALSE;\ninit( ${fb.name}_beta) := FALSE;\n\n")
         }
         buf.append("\n")
     }
@@ -201,7 +226,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                 var eventName = ""
                 //IF INPUT
                 if( fbc.inputEvents.contains(dc.sourceReference.getTarget()?.portTarget)){
-                    eventName = "(event_${dc.sourceReference.getTarget()?.functionBlock?.name} & alpha)"
+                    eventName = "(event_${dc.sourceReference.getTarget()?.portTarget?.name} & alpha)"
                 }else{
                     eventName = "${dc.sourceReference.getTarget()?.functionBlock?.name}_" +
                             "${(dc.sourceReference.getTarget()?.portTarget as? EventDeclaration)?.name}"
@@ -290,7 +315,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
 
         for (e in inputEvents) {
             bufInputs.append("${e.functionBlock?.name}_${e.portTarget?.name}")
-            if (outputEvents.last() != e) {
+            if (inputEvents.last() != e) {
                 bufInputs.append(" | ")
             }
         }

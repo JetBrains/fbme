@@ -104,7 +104,7 @@ FAIRNESS (alpha)
 FAIRNESS (beta)
 
 
-MODULE ButtonDs(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,LightOn_,Pressed_,alpha, beta)
+MODULE ButtonDs(event_INIT,event_REQ,event_INITO,event_CHG,LightOn_,Pressed_,alpha, beta)
 VAR LightOn : boolean;
 VAR Pressed : boolean;
 VAR S_smv : {s0_osm, s1_osm, s2_osm};
@@ -122,14 +122,6 @@ init(Pressed):= FALSE;
 init(NA):= 0;
 init(NI):= 0;
 
-init(event_NDT) :=  { TRUE , FALSE };
-next(event_NDT):= case
-	Q_smv=START_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=INIT_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=OFF_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=PRESSED_ecc & S_smv=s1_osm : {TRUE,FALSE};
-TRUE : event_NDT;
-esac;
 next(Q_smv):= case
 	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
 	Q_smv=INIT_ecc & S_smv=s1_osm & event_REQ : OFF_ecc;
@@ -176,18 +168,17 @@ DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!
 
 DEFINE event_INIT_reset:= (S_smv=s1_osm);
 DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
-DEFINE event_NDT_reset:= (alpha & ( event_INIT | event_REQ )) | (S_smv=s1_osm);
 
 DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
 DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=OFF_ecc & NA = 1) | (Q_smv=PRESSED_ecc & NA = 1)) ;
 
-DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT ;
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
 DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc   & (  ( event_REQ )  ) ) | (Q_smv=OFF_ecc  ) | (Q_smv=PRESSED_ecc  );
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
 
-MODULE LinearDA(event_INIT,event_REQ,event_NDT,event_INITO,event_CHG,FWD_,BACK_,HOME_,END_,alpha, beta)
+MODULE LinearDA(event_INIT,event_REQ,event_INITO,event_CHG,FWD_,BACK_,HOME_,END_,alpha, beta)
 VAR FWD : boolean;
 VAR BACK : boolean;
 VAR HOME : boolean;
@@ -209,30 +200,19 @@ init(END):= FALSE;
 init(NA):= 0;
 init(NI):= 0;
 
-init(event_NDT) :=  { TRUE , FALSE };
-next(event_NDT):= case
-	Q_smv=START_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=INIT_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stHOME_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stEND_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=ddMOVETO_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=ddRETURN_ecc & S_smv=s1_osm : {TRUE,FALSE};
-	Q_smv=stSTOP_ecc & S_smv=s1_osm : {TRUE,FALSE};
-TRUE : event_NDT;
-esac;
 next(Q_smv):= case
 	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
-	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : stHOME_ecc;
 	Q_smv=stHOME_ecc & S_smv=s1_osm &  FWD : ddMOVETO_ecc;
 	Q_smv=stEND_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
-	Q_smv=ddMOVETO_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
-	Q_smv=ddRETURN_ecc & S_smv=s1_osm & event_NDT : stHOME_ecc;
+	Q_smv=ddMOVETO_ecc & S_smv=s1_osm  : stEND_ecc;
+	Q_smv=ddRETURN_ecc & S_smv=s1_osm  : stHOME_ecc;
 	Q_smv=ddRETURN_ecc & S_smv=s1_osm & !( FWD) &!( BACK) : stSTOP_ecc;
 	Q_smv=stSTOP_ecc & S_smv=s1_osm &  BACK : ddRETURN_ecc;
 	Q_smv=stSTOP_ecc & S_smv=s1_osm &  FWD : ddMOVETO_ecc;
 	Q_smv=ddMOVETO_ecc & S_smv=s1_osm & !( FWD) &!( BACK) : stSTOP_ecc;
-	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stSTOP_ecc;
-	Q_smv=INIT_ecc & S_smv=s1_osm & event_NDT : stEND_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : stSTOP_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : stEND_ecc;
 	TRUE : Q_smv;
 esac;
 next(S_smv):= case
@@ -297,135 +277,119 @@ DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!
 
 DEFINE event_INIT_reset:= (S_smv=s1_osm);
 DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
-DEFINE event_NDT_reset:= (alpha & ( event_INIT | event_REQ )) | (S_smv=s1_osm);
 
 DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
 DEFINE event_CHG_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=stHOME_ecc & NA = 1) | (Q_smv=stEND_ecc & NA = 1) | (Q_smv=ddMOVETO_ecc & NA = 1) | (Q_smv=ddRETURN_ecc & NA = 1) | (Q_smv=stSTOP_ecc & NA = 1)) ;
 
-DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_NDT ;
-DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc   & (  ( event_NDT )  |  ( event_NDT )  |  ( event_NDT )  ) ) | (Q_smv=stHOME_ecc   & (  ( ( FWD)  )  ) ) | (Q_smv=stEND_ecc   & (  ( ( BACK)  )  ) ) | (Q_smv=ddMOVETO_ecc   & (  ( event_NDT )  |  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=ddRETURN_ecc   & (  ( event_NDT )  |  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=stSTOP_ecc   & (  ( ( BACK)  )  |  ( ( FWD)  )  ) );
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc  ) | (Q_smv=stHOME_ecc   & (  ( ( FWD)  )  ) ) | (Q_smv=stEND_ecc   & (  ( ( BACK)  )  ) ) | (Q_smv=ddMOVETO_ecc   & (  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=ddRETURN_ecc   & (  ( (!( FWD) &!( BACK))  )  ) ) | (Q_smv=stSTOP_ecc   & (  ( ( BACK)  )  |  ( ( FWD)  )  ) );
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
 
 MODULE TwoCylDiscr(event_INIT, event_INITO, alpha, beta)
-VAR  FB1  : CylControl (FB1_INIT,FB1_REQ,FB1_INITO, FB1_CNF, FB1_Retracted, FB1_Extended, FB1_START, FB1_EXTEND, FB1_RETRACT, alpha, beta);
-VAR  FB2  : CylControl (FB2_INIT,FB2_REQ,FB2_INITO, FB2_CNF, FB2_Retracted, FB2_Extended, FB2_START, FB2_EXTEND, FB2_RETRACT, alpha, beta);
-VAR  FB3  : ButtonDs (FB3_INIT,FB3_REQ,FB3_NDT,FB3_INITO, FB3_CHG, FB3_LightOn, FB3_Pressed, alpha, beta);
-VAR  FB4  : LinearDA (FB4_INIT,FB4_REQ,FB4_NDT,FB4_INITO, FB4_CHG, FB4_FWD, FB4_BACK, FB4_HOME, FB4_END, alpha, beta);
-VAR  FB5  : LinearDA (FB5_INIT,FB5_REQ,FB5_NDT,FB5_INITO, FB5_CHG, FB5_FWD, FB5_BACK, FB5_HOME, FB5_END, alpha, beta);
+VAR  HorCTL  : CylControl (HorCTL_INIT,HorCTL_REQ,HorCTL_INITO, HorCTL_CNF, HorCyl_HOME, HorCyl_END, Button_Pressed, HorCTL_EXTEND, HorCTL_RETRACT, alpha, beta);
+VAR  VerCTL  : CylControl (VerCTL_INIT,VerCTL_REQ,VerCTL_INITO, VerCTL_CNF, HorCyl_HOME, HorCyl_END, Button_Pressed, VerCTL_EXTEND, VerCTL_RETRACT, alpha, beta);
+VAR  Button  : ButtonDs (Button_INIT,Button_REQ,Button_INITO, Button_CHG, Button_LightOn, Button_Pressed, alpha, beta);
+VAR  HorCyl  : LinearDA (HorCyl_INIT,HorCyl_REQ,HorCyl_INITO, HorCyl_CHG, HorCTL_EXTEND, HorCTL_RETRACT, HorCyl_HOME, HorCyl_END, alpha, beta);
+VAR  VerCyl  : LinearDA (VerCyl_INIT,VerCyl_REQ,VerCyl_INITO, VerCyl_CHG, HorCTL_EXTEND, HorCTL_RETRACT, VerCyl_HOME, VerCyl_END, alpha, beta);
 
 
 -- generateCompositeFBsVariables
 
-VAR FB1_INIT : boolean;
-VAR FB1_REQ : boolean;
-VAR FB1_INITO : boolean;
-VAR FB1_CNF : boolean;
-VAR FB1_Retracted : boolean;
-VAR FB1_Extended : boolean;
-VAR FB1_START : boolean;
-VAR FB1_EXTEND : boolean;
-VAR FB1_RETRACT : boolean;
-VAR FB1_alpha : boolean;
-VAR FB1_beta : boolean;
-VAR FB2_INIT : boolean;
-VAR FB2_REQ : boolean;
-VAR FB2_INITO : boolean;
-VAR FB2_CNF : boolean;
-VAR FB2_Retracted : boolean;
-VAR FB2_Extended : boolean;
-VAR FB2_START : boolean;
-VAR FB2_EXTEND : boolean;
-VAR FB2_RETRACT : boolean;
-VAR FB2_alpha : boolean;
-VAR FB2_beta : boolean;
-VAR FB3_INIT : boolean;
-VAR FB3_REQ : boolean;
-VAR FB3_NDT : boolean;
-VAR FB3_INITO : boolean;
-VAR FB3_CHG : boolean;
-VAR FB3_LightOn : boolean;
-VAR FB3_Pressed : boolean;
-VAR FB3_alpha : boolean;
-VAR FB3_beta : boolean;
-VAR FB4_INIT : boolean;
-VAR FB4_REQ : boolean;
-VAR FB4_NDT : boolean;
-VAR FB4_INITO : boolean;
-VAR FB4_CHG : boolean;
-VAR FB4_FWD : boolean;
-VAR FB4_BACK : boolean;
-VAR FB4_HOME : boolean;
-VAR FB4_END : boolean;
-VAR FB4_alpha : boolean;
-VAR FB4_beta : boolean;
-VAR FB5_INIT : boolean;
-VAR FB5_REQ : boolean;
-VAR FB5_NDT : boolean;
-VAR FB5_INITO : boolean;
-VAR FB5_CHG : boolean;
-VAR FB5_FWD : boolean;
-VAR FB5_BACK : boolean;
-VAR FB5_HOME : boolean;
-VAR FB5_END : boolean;
-VAR FB5_alpha : boolean;
-VAR FB5_beta : boolean;
+VAR HorCTL_INIT : boolean;
+VAR HorCTL_REQ : boolean;
+VAR HorCTL_INITO : boolean;
+VAR HorCTL_CNF : boolean;
+VAR HorCTL_EXTEND : boolean;
+VAR HorCTL_RETRACT : boolean;
+VAR HorCTL_alpha : boolean;
+VAR HorCTL_beta : boolean;
+
+VAR VerCTL_INIT : boolean;
+VAR VerCTL_REQ : boolean;
+VAR VerCTL_INITO : boolean;
+VAR VerCTL_CNF : boolean;
+VAR VerCTL_EXTEND : boolean;
+VAR VerCTL_RETRACT : boolean;
+VAR VerCTL_alpha : boolean;
+VAR VerCTL_beta : boolean;
+
+VAR Button_INIT : boolean;
+VAR Button_REQ : boolean;
+VAR Button_INITO : boolean;
+VAR Button_CHG : boolean;
+VAR Button_LightOn : boolean;
+VAR Button_Pressed : boolean;
+VAR Button_alpha : boolean;
+VAR Button_beta : boolean;
+
+VAR HorCyl_INIT : boolean;
+VAR HorCyl_REQ : boolean;
+VAR HorCyl_INITO : boolean;
+VAR HorCyl_CHG : boolean;
+VAR HorCyl_HOME : boolean;
+VAR HorCyl_END : boolean;
+VAR HorCyl_alpha : boolean;
+VAR HorCyl_beta : boolean;
+
+VAR VerCyl_INIT : boolean;
+VAR VerCyl_REQ : boolean;
+VAR VerCyl_INITO : boolean;
+VAR VerCyl_CHG : boolean;
+VAR VerCyl_HOME : boolean;
+VAR VerCyl_END : boolean;
+VAR VerCyl_alpha : boolean;
+VAR VerCyl_beta : boolean;
+
+
 
 ASSIGN
-init(FB1_INIT) := FALSE;
-init(FB1_REQ) := FALSE;
-init(FB1_INITO) := FALSE;
-init(FB1_CNF) := FALSE;
-init(FB1_Retracted) := FALSE;
-init(FB1_Extended) := FALSE;
-init(FB1_START) := FALSE;
-init(FB1_EXTEND) := FALSE;
-init(FB1_RETRACT) := FALSE;
-init( FB1_alpha) := FALSE;
-init( FB1_beta) := FALSE;
-init(FB2_INIT) := FALSE;
-init(FB2_REQ) := FALSE;
-init(FB2_INITO) := FALSE;
-init(FB2_CNF) := FALSE;
-init(FB2_Retracted) := FALSE;
-init(FB2_Extended) := FALSE;
-init(FB2_START) := FALSE;
-init(FB2_EXTEND) := FALSE;
-init(FB2_RETRACT) := FALSE;
-init( FB2_alpha) := FALSE;
-init( FB2_beta) := FALSE;
-init(FB3_INIT) := FALSE;
-init(FB3_REQ) := FALSE;
-init(FB3_NDT) := FALSE;
-init(FB3_INITO) := FALSE;
-init(FB3_CHG) := FALSE;
-init(FB3_LightOn) := FALSE;
-init(FB3_Pressed) := FALSE;
-init( FB3_alpha) := FALSE;
-init( FB3_beta) := FALSE;
-init(FB4_INIT) := FALSE;
-init(FB4_REQ) := FALSE;
-init(FB4_NDT) := FALSE;
-init(FB4_INITO) := FALSE;
-init(FB4_CHG) := FALSE;
-init(FB4_FWD) := FALSE;
-init(FB4_BACK) := FALSE;
-init(FB4_HOME) := FALSE;
-init(FB4_END) := FALSE;
-init( FB4_alpha) := FALSE;
-init( FB4_beta) := FALSE;
-init(FB5_INIT) := FALSE;
-init(FB5_REQ) := FALSE;
-init(FB5_NDT) := FALSE;
-init(FB5_INITO) := FALSE;
-init(FB5_CHG) := FALSE;
-init(FB5_FWD) := FALSE;
-init(FB5_BACK) := FALSE;
-init(FB5_HOME) := FALSE;
-init(FB5_END) := FALSE;
-init( FB5_alpha) := FALSE;
-init( FB5_beta) := FALSE;
+init(HorCTL_INIT) := FALSE;
+init(HorCTL_REQ) := FALSE;
+init(HorCTL_INITO) := FALSE;
+init(HorCTL_CNF) := FALSE;
+init(HorCTL_EXTEND) := FALSE;
+init(HorCTL_RETRACT) := FALSE;
+init( HorCTL_alpha) := FALSE;
+init( HorCTL_beta) := FALSE;
+
+init(VerCTL_INIT) := FALSE;
+init(VerCTL_REQ) := FALSE;
+init(VerCTL_INITO) := FALSE;
+init(VerCTL_CNF) := FALSE;
+init(VerCTL_EXTEND) := FALSE;
+init(VerCTL_RETRACT) := FALSE;
+init( VerCTL_alpha) := FALSE;
+init( VerCTL_beta) := FALSE;
+
+init(Button_INIT) := FALSE;
+init(Button_REQ) := FALSE;
+init(Button_INITO) := FALSE;
+init(Button_CHG) := FALSE;
+init(Button_LightOn) := FALSE;
+init(Button_Pressed) := FALSE;
+init( Button_alpha) := FALSE;
+init( Button_beta) := FALSE;
+
+init(HorCyl_INIT) := FALSE;
+init(HorCyl_REQ) := FALSE;
+init(HorCyl_INITO) := FALSE;
+init(HorCyl_CHG) := FALSE;
+init(HorCyl_HOME) := FALSE;
+init(HorCyl_END) := FALSE;
+init( HorCyl_alpha) := FALSE;
+init( HorCyl_beta) := FALSE;
+
+init(VerCyl_INIT) := FALSE;
+init(VerCyl_REQ) := FALSE;
+init(VerCyl_INITO) := FALSE;
+init(VerCyl_CHG) := FALSE;
+init(VerCyl_HOME) := FALSE;
+init(VerCyl_END) := FALSE;
+init( VerCyl_alpha) := FALSE;
+init( VerCyl_beta) := FALSE;
+
 
 
 -- generateInternalDataConnections
@@ -433,173 +397,173 @@ init( FB5_beta) := FALSE;
 
 -- generateInnerFBsEventOutputsUpdate
 
-next(FB3_INITO) := case
-	FB3.event_INITO_set : TRUE;
+next(Button_INITO) := case
+	Button.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB4_INITO) := case
-	FB4.event_INITO_set : TRUE;
+next(HorCyl_INITO) := case
+	HorCyl.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB5_INITO) := case
-	FB5.event_INITO_set : TRUE;
+next(VerCyl_INITO) := case
+	VerCyl.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB1_CNF) := case
-	FB1.event_CNF_set : TRUE;
+next(HorCTL_CNF) := case
+	HorCTL.event_CNF_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB4_CHG) := case
-	FB4.event_CHG_set : TRUE;
+next(HorCyl_CHG) := case
+	HorCyl.event_CHG_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB5_CHG) := case
-	FB5.event_CHG_set : TRUE;
+next(VerCyl_CHG) := case
+	VerCyl.event_CHG_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB1_INITO) := case
-	FB1.event_INITO_set : TRUE;
+next(HorCTL_INITO) := case
+	HorCTL.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB2_CNF) := case
-	FB2.event_CNF_set : TRUE;
+next(VerCTL_CNF) := case
+	VerCTL.event_CNF_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB3_CHG) := case
-	FB3.event_CHG_set : TRUE;
+next(Button_CHG) := case
+	Button.event_CHG_set : TRUE;
 	TRUE : FALSE;
 esac;
-next(FB2_INITO) := case
-	FB2.event_INITO_set : TRUE;
+next(VerCTL_INITO) := case
+	VerCTL.event_INITO_set : TRUE;
 	TRUE : FALSE;
 esac;
 
 -- DISPATCHER
 
-next(FB1_alpha):= case
+next(HorCTL_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB1.alpha_reset : FALSE;
-	TRUE : FB1_alpha;
+	HorCTL.alpha_reset : FALSE;
+	TRUE : HorCTL_alpha;
 esac;
-next(FB1_beta):= case
+next(HorCTL_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB1.beta_set : FALSE;
-	TRUE : FB1_beta;
+	HorCTL.beta_set : FALSE;
+	TRUE : HorCTL_beta;
 esac;
-next(FB2_alpha):= case
+next(VerCTL_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB2.alpha_reset : FALSE;
-	TRUE : FB2_alpha;
+	VerCTL.alpha_reset : FALSE;
+	TRUE : VerCTL_alpha;
 esac;
-next(FB2_beta):= case
+next(VerCTL_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB2.beta_set : FALSE;
-	TRUE : FB2_beta;
+	VerCTL.beta_set : FALSE;
+	TRUE : VerCTL_beta;
 esac;
-next(FB3_alpha):= case
+next(Button_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB3.alpha_reset : FALSE;
-	TRUE : FB3_alpha;
+	Button.alpha_reset : FALSE;
+	TRUE : Button_alpha;
 esac;
-next(FB3_beta):= case
+next(Button_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB3.beta_set : FALSE;
-	TRUE : FB3_beta;
+	Button.beta_set : FALSE;
+	TRUE : Button_beta;
 esac;
-next(FB4_alpha):= case
+next(HorCyl_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB4.alpha_reset : FALSE;
-	TRUE : FB4_alpha;
+	HorCyl.alpha_reset : FALSE;
+	TRUE : HorCyl_alpha;
 esac;
-next(FB4_beta):= case
+next(HorCyl_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB4.beta_set : FALSE;
-	TRUE : FB4_beta;
+	HorCyl.beta_set : FALSE;
+	TRUE : HorCyl_beta;
 esac;
-next(FB5_alpha):= case
+next(VerCyl_alpha):= case
 	alpha & omega & !ExistsInputEvent : TRUE;
-	FB5.alpha_reset : FALSE;
-	TRUE : FB5_alpha;
+	VerCyl.alpha_reset : FALSE;
+	TRUE : VerCyl_alpha;
 esac;
-next(FB5_beta):= case
+next(VerCyl_beta):= case
 	beta & omega & !ExistsInputEvent : TRUE;
-	FB5.beta_set : FALSE;
-	TRUE : FB5_beta;
+	VerCyl.beta_set : FALSE;
+	TRUE : VerCyl_beta;
 esac;
-DEFINE beta_set:= FB5_beta & omega;
+DEFINE beta_set:= VerCyl_beta & omega;
 DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
 
 ASSIGN
 
 -- generateInternalEventConnections
 
-next(FB1_REQ):= case
-	(FB4_CHG | FB3_CHG) : TRUE;
-	(FB1.event_REQ_reset) : FALSE;
-	TRUE : FB1_REQ;
+next(HorCyl_INIT):= case
+	(Button_INITO) : TRUE;
+	(HorCyl.event_INIT_reset) : FALSE;
+	TRUE : HorCyl_INIT;
 esac;
 
-next(FB4_INIT):= case
-	(FB3_INITO) : TRUE;
-	(FB4.event_INIT_reset) : FALSE;
-	TRUE : FB4_INIT;
+next(VerCyl_INIT):= case
+	(HorCyl_INITO) : TRUE;
+	(VerCyl.event_INIT_reset) : FALSE;
+	TRUE : VerCyl_INIT;
 esac;
 
-next(FB2_REQ):= case
-	(FB5_CHG | FB3_CHG) : TRUE;
-	(FB2.event_REQ_reset) : FALSE;
-	TRUE : FB2_REQ;
+next(HorCTL_INIT):= case
+	(VerCyl_INITO) : TRUE;
+	(HorCTL.event_INIT_reset) : FALSE;
+	TRUE : HorCTL_INIT;
 esac;
 
-next(FB1_INIT):= case
-	(FB5_INITO) : TRUE;
-	(FB1.event_INIT_reset) : FALSE;
-	TRUE : FB1_INIT;
+next(HorCTL_REQ):= case
+	(HorCyl_CHG | Button_CHG) : TRUE;
+	(HorCTL.event_REQ_reset) : FALSE;
+	TRUE : HorCTL_REQ;
 esac;
 
-next(FB3_INIT):= case
-	((event_null & alpha)) : TRUE;
-	(FB3.event_INIT_reset) : FALSE;
-	TRUE : FB3_INIT;
+next(VerCTL_REQ):= case
+	(VerCyl_CHG | Button_CHG) : TRUE;
+	(VerCTL.event_REQ_reset) : FALSE;
+	TRUE : VerCTL_REQ;
 esac;
 
-next(FB3_REQ):= case
-	(FB2_INITO) : TRUE;
-	(FB3.event_REQ_reset) : FALSE;
-	TRUE : FB3_REQ;
+next(Button_REQ):= case
+	(VerCTL_INITO) : TRUE;
+	(Button.event_REQ_reset) : FALSE;
+	TRUE : Button_REQ;
 esac;
 
-next(FB5_REQ):= case
-	(FB2_CNF) : TRUE;
-	(FB5.event_REQ_reset) : FALSE;
-	TRUE : FB5_REQ;
+next(VerCyl_REQ):= case
+	(VerCTL_CNF) : TRUE;
+	(VerCyl.event_REQ_reset) : FALSE;
+	TRUE : VerCyl_REQ;
 esac;
 
-next(FB2_INIT):= case
-	(FB1_INITO) : TRUE;
-	(FB2.event_INIT_reset) : FALSE;
-	TRUE : FB2_INIT;
+next(VerCTL_INIT):= case
+	(HorCTL_INITO) : TRUE;
+	(VerCTL.event_INIT_reset) : FALSE;
+	TRUE : VerCTL_INIT;
 esac;
 
-next(FB5_INIT):= case
-	(FB4_INITO) : TRUE;
-	(FB5.event_INIT_reset) : FALSE;
-	TRUE : FB5_INIT;
+next(Button_INIT):= case
+	((event_INIT & alpha)) : TRUE;
+	(Button.event_INIT_reset) : FALSE;
+	TRUE : Button_INIT;
 esac;
 
-next(FB4_REQ):= case
-	(FB1_CNF) : TRUE;
-	(FB4.event_REQ_reset) : FALSE;
-	TRUE : FB4_REQ;
+next(HorCyl_REQ):= case
+	(HorCTL_CNF) : TRUE;
+	(HorCyl.event_REQ_reset) : FALSE;
+	TRUE : HorCyl_REQ;
 esac;
 
-DEFINE event_INITO_set:= (FB2_INITO );
+DEFINE event_INITO_set:= (VerCTL_INITO );
 DEFINE event_INIT_reset:= alpha;
 DEFINE ExistsInputEvent :=  event_INIT ;
 
-DEFINE omega:= !(FB1_CNF | FB3_INITO | FB2_CNF | FB1_INITO | FB5_INITO | FB5_CHG | FB2_INITO | FB4_CHG | FB4_INITO | FB3_CHG);
+DEFINE omega:= !(HorCyl_CHG | HorCyl_INITO | HorCTL_INITO | HorCTL_CNF | VerCyl_CHG | VerCTL_CNF | Button_INITO | VerCTL_INITO | VerCyl_INITO | Button_CHG);
 
-DEFINE phi:= (!ExistsInputEvent) & (!(FB1_REQ | FB4_INIT | FB2_REQ | FB1_INIT | FB3_INIT | FB3_REQ | FB5_REQ | FB2_INIT | FB5_INIT | FB4_REQ |  | FB1_CNF | FB3_INITO | FB2_CNF | FB1_INITO | FB5_INITO | FB5_CHG | FB2_INITO | FB4_CHG | FB4_INITO | FB3_CHG ));
+DEFINE phi:= (!ExistsInputEvent) & (!(HorCyl_INIT | VerCyl_INIT | HorCTL_INIT | HorCTL_REQ | VerCTL_REQ | Button_REQ | VerCyl_REQ | VerCTL_INIT | Button_INIT | HorCyl_REQ | HorCyl_CHG | HorCyl_INITO | HorCTL_INITO | HorCTL_CNF | VerCyl_CHG | VerCTL_CNF | Button_INITO | VerCTL_INITO | VerCyl_INITO | Button_CHG ));
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
@@ -626,7 +590,7 @@ TwoCylDiscr_inst.event_INIT_reset : FALSE;
 	TRUE : TwoCylDiscr_inst_INIT;
 esac;
 next(TwoCylDiscr_inst_INITO):= case
-TwoCylDiscr_inst.event_INITO_reset : FALSE;
+TwoCylDiscr_inst.event_INITO_set : TRUE;
 	TRUE : TwoCylDiscr_inst_INITO;
 esac;
 next(TwoCylDiscr_inst_alpha):= case

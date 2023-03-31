@@ -10,7 +10,6 @@
       <Event Name="REQ">
         <With Var="LightOn" />
       </Event>
-      <Event Name="NDT" />
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO">

@@ -74,7 +74,7 @@ class MainConverter (private val data: VerifiersData ): AbstractMainConverter {
         }
         for (ie in compositeFb.outputEvents){
             buf.append("next(${compositeFb.name}_inst_${ie.name}):= case\n" +
-                    "${compositeFb.name}_inst.event_${ie.name}_reset : FALSE;\n" +
+                    "${compositeFb.name}_inst.event_${ie.name}_set : TRUE;\n" +
                     "\tTRUE : ${compositeFb.name}_inst_${ie.name};\n" +
                     "esac;\n")
         }
