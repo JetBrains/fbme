@@ -138,7 +138,7 @@
       </node>
     </node>
     <node concept="2sgV4H" id="7ZpdjDjcHiq" role="1l3spa">
-      <ref role="1l3spb" to="ffeo:3IKDaVZmzS6" />
+      <ref role="1l3spb" to="ffeo:3IKDaVZmzS6" resolve="mps" />
       <node concept="398BVA" id="7ZpdjDjcHir" role="2JcizS">
         <ref role="398BVh" node="7ZpdjDjcHip" resolve="mps_home" />
       </node>

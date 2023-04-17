@@ -458,7 +458,7 @@
             <node concept="liA8E" id="3QRZI1v4guJ" role="2OqNvi">
               <ref role="37wK5l" to="33ny:~Map.put(java.lang.Object,java.lang.Object)" resolve="put" />
               <node concept="37vLTw" id="3QRZI1v4gAA" role="37wK5m">
-                <ref role="3cqZAo" node="3QRZI1v4e3$" resolve="trace" />
+                <ref role="3cqZAo" node="3QRZI1v4e3$" resolve="declaration" />
               </node>
               <node concept="37vLTw" id="3QRZI1v4h25" role="37wK5m">
                 <ref role="3cqZAo" node="3QRZI1v4e4B" resolve="panel" />
@@ -497,7 +497,7 @@
             <node concept="liA8E" id="3QRZI1v4k9f" role="2OqNvi">
               <ref role="37wK5l" to="33ny:~Map.get(java.lang.Object)" resolve="get" />
               <node concept="37vLTw" id="3QRZI1v4kko" role="37wK5m">
-                <ref role="3cqZAo" node="3QRZI1v4iaT" resolve="trace" />
+                <ref role="3cqZAo" node="3QRZI1v4iaT" resolve="declaration" />
               </node>
             </node>
           </node>
@@ -552,8 +552,8 @@
                   <node concept="1Y3b0j" id="10LywHcMPlv" role="YeSDq">
                     <property role="2bfB8j" value="true" />
                     <property role="373rjd" value="true" />
-                    <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Backgroundable" />
-                    <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Backgroundable" />
+                    <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Task.Backgroundable" />
+                    <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Task.Backgroundable" />
                     <node concept="312cEg" id="10LywHcMPlw" role="jymVt">
                       <property role="TrG5h" value="deviceDeclarations" />
                       <node concept="3Tm6S6" id="10LywHcMPlx" role="1B3o_S" />
@@ -970,7 +970,7 @@
               <node concept="2OqwBi" id="19RKY2xG7hE" role="3uHU7B">
                 <node concept="2ShNRf" id="19RKY2xG0p_" role="2Oq$k0">
                   <node concept="1pGfFk" id="19RKY2xG1DI" role="2ShVmc">
-                    <ref role="37wK5l" node="19RKY2xF00g" />
+                    <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                     <node concept="1PxgMI" id="19RKY2xG5Ei" role="37wK5m">
                       <node concept="chp4Y" id="19RKY2xG5JR" role="3oSUPX">
                         <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
@@ -997,7 +997,7 @@
                   </node>
                 </node>
                 <node concept="liA8E" id="19RKY2xG7x0" role="2OqNvi">
-                  <ref role="37wK5l" node="19RKY2xFaZl" />
+                  <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
                 </node>
               </node>
             </node>
@@ -1032,11 +1032,11 @@
           <node concept="3cpWsn" id="19RKY2xGpuf" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="19RKY2xGpqN" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="19RKY2xGpug" role="33vP2m">
               <node concept="1pGfFk" id="19RKY2xGpuh" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="1PxgMI" id="19RKY2xGpui" role="37wK5m">
                   <node concept="chp4Y" id="19RKY2xGpuj" role="3oSUPX">
                     <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
@@ -1075,7 +1075,7 @@
                 <ref role="3cqZAo" node="19RKY2xGpuf" resolve="actions" />
               </node>
               <node concept="liA8E" id="19RKY2xGq69" role="2OqNvi">
-                <ref role="37wK5l" node="19RKY2xFeiO" />
+                <ref role="37wK5l" node="19RKY2xFeiO" resolve="getNetworkInstance" />
               </node>
             </node>
           </node>
@@ -1126,7 +1126,7 @@
                           <ref role="3cqZAo" node="19RKY2xGpuf" resolve="actions" />
                         </node>
                         <node concept="liA8E" id="19RKY2xGttl" role="2OqNvi">
-                          <ref role="37wK5l" node="19RKY2xFn5W" />
+                          <ref role="37wK5l" node="19RKY2xFn5W" resolve="setInspector" />
                           <node concept="10Nm6u" id="19RKY2xGtvl" role="37wK5m" />
                         </node>
                       </node>
@@ -1140,7 +1140,7 @@
         <node concept="3clFbF" id="1R4IoyRvaFp" role="3cqZAp">
           <node concept="2OqwBi" id="19RKY2xGqWc" role="3clFbG">
             <node concept="liA8E" id="19RKY2xGrau" role="2OqNvi">
-              <ref role="37wK5l" node="19RKY2xFn5W" />
+              <ref role="37wK5l" node="19RKY2xFn5W" resolve="setInspector" />
               <node concept="37vLTw" id="19RKY2xGtxn" role="37wK5m">
                 <ref role="3cqZAo" node="1R4IoyRvdoc" resolve="inspector" />
               </node>
@@ -1180,11 +1180,11 @@
           <node concept="3cpWsn" id="19RKY2xGjU$" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="19RKY2xGjQa" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="19RKY2xGjU_" role="33vP2m">
               <node concept="1pGfFk" id="19RKY2xGjUA" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="1PxgMI" id="19RKY2xGjUB" role="37wK5m">
                   <node concept="chp4Y" id="19RKY2xGjUC" role="3oSUPX">
                     <ref role="cht4Q" to="xiqq:2lwHqHkyELo" resolve="ResourceDeclaration" />
@@ -1221,7 +1221,7 @@
                   <ref role="3cqZAo" node="19RKY2xGjU$" resolve="actions" />
                 </node>
                 <node concept="liA8E" id="19RKY2xGnHD" role="2OqNvi">
-                  <ref role="37wK5l" node="19RKY2xFeiO" />
+                  <ref role="37wK5l" node="19RKY2xFeiO" resolve="getNetworkInstance" />
                 </node>
               </node>
             </node>
@@ -1232,7 +1232,7 @@
                   <ref role="3cqZAo" node="19RKY2xGjU$" resolve="actions" />
                 </node>
                 <node concept="liA8E" id="19RKY2xGkzx" role="2OqNvi">
-                  <ref role="37wK5l" node="19RKY2xFaZl" />
+                  <ref role="37wK5l" node="19RKY2xFaZl" resolve="getInspector" />
                 </node>
               </node>
             </node>
@@ -1293,7 +1293,7 @@
           <node concept="2OqwBi" id="19RKY2xGw9Y" role="3clFbG">
             <node concept="2ShNRf" id="19RKY2xGvST" role="2Oq$k0">
               <node concept="1pGfFk" id="19RKY2xGvSU" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="19RKY2xGwl_" role="37wK5m">
                   <node concept="2WthIp" id="19RKY2xGwlA" role="2Oq$k0" />
                   <node concept="2XshWL" id="19RKY2xGwlB" role="2OqNvi">
@@ -1315,7 +1315,7 @@
               </node>
             </node>
             <node concept="liA8E" id="19RKY2xGwku" role="2OqNvi">
-              <ref role="37wK5l" node="19RKY2xFzs2" />
+              <ref role="37wK5l" node="19RKY2xFzs2" resolve="unwatchEcc" />
             </node>
           </node>
         </node>
@@ -1348,7 +1348,7 @@
             <node concept="2OqwBi" id="19RKY2xGvoK" role="3uHU7w">
               <node concept="2ShNRf" id="19RKY2xGtNR" role="2Oq$k0">
                 <node concept="1pGfFk" id="19RKY2xGv1v" role="2ShVmc">
-                  <ref role="37wK5l" node="19RKY2xF00g" />
+                  <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                   <node concept="37vLTw" id="19RKY2xGv7s" role="37wK5m">
                     <ref role="3cqZAo" node="7BKWMw_XFpy" resolve="node" />
                   </node>
@@ -1367,7 +1367,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="19RKY2xGvAq" role="2OqNvi">
-                <ref role="37wK5l" node="19RKY2xFFjc" />
+                <ref role="37wK5l" node="19RKY2xFFjc" resolve="hasWatchedEcc" />
               </node>
             </node>
           </node>
@@ -1385,7 +1385,7 @@
           <node concept="2OqwBi" id="1S4cYrOLGlM" role="3clFbG">
             <node concept="2ShNRf" id="1S4cYrOLGlN" role="2Oq$k0">
               <node concept="1pGfFk" id="1S4cYrOLGlO" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="1S4cYrOLGlP" role="37wK5m">
                   <node concept="2WthIp" id="1S4cYrOLGlQ" role="2Oq$k0" />
                   <node concept="2XshWL" id="1S4cYrOLGlR" role="2OqNvi">
@@ -1407,7 +1407,7 @@
               </node>
             </node>
             <node concept="liA8E" id="1S4cYrOPKav" role="2OqNvi">
-              <ref role="37wK5l" node="1S4cYrONxwq" />
+              <ref role="37wK5l" node="1S4cYrONxwq" resolve="unwatchFunctionBlock" />
             </node>
           </node>
         </node>
@@ -1469,11 +1469,11 @@
           <node concept="3cpWsn" id="1S4cYrOLGmm" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="1S4cYrOLGmn" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="1S4cYrOLGmo" role="33vP2m">
               <node concept="1pGfFk" id="1S4cYrOLGmp" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="1S4cYrOLGmq" role="37wK5m">
                   <ref role="3cqZAo" node="1S4cYrOLGm5" resolve="node" />
                 </node>
@@ -1502,7 +1502,7 @@
                 <ref role="3cqZAo" node="1S4cYrOLGmm" resolve="actions" />
               </node>
               <node concept="liA8E" id="1S4cYrONwDx" role="2OqNvi">
-                <ref role="37wK5l" node="1S4cYrOMDwO" />
+                <ref role="37wK5l" node="1S4cYrOMDwO" resolve="hasWatchedFunctionBlock" />
               </node>
             </node>
           </node>
@@ -1526,7 +1526,7 @@
                           <ref role="3cqZAo" node="1S4cYrOLGmm" resolve="actions" />
                         </node>
                         <node concept="liA8E" id="1S4cYrONwFb" role="2OqNvi">
-                          <ref role="37wK5l" node="1S4cYrOMM45" />
+                          <ref role="37wK5l" node="1S4cYrOMM45" resolve="getFunctionBlock" />
                         </node>
                       </node>
                       <node concept="liA8E" id="74jd4DV$31a" role="2OqNvi">
@@ -1610,7 +1610,7 @@
           <node concept="2OqwBi" id="19RKY2xG__l" role="3clFbG">
             <node concept="2ShNRf" id="19RKY2xG_b7" role="2Oq$k0">
               <node concept="1pGfFk" id="19RKY2xG_b8" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="19RKY2xG_f_" role="37wK5m">
                   <node concept="2WthIp" id="19RKY2xG_fA" role="2Oq$k0" />
                   <node concept="2XshWL" id="19RKY2xG_fB" role="2OqNvi">
@@ -1632,7 +1632,7 @@
               </node>
             </node>
             <node concept="liA8E" id="19RKY2xG_KU" role="2OqNvi">
-              <ref role="37wK5l" node="19RKY2xFM13" />
+              <ref role="37wK5l" node="19RKY2xFM13" resolve="unwatchPort" />
             </node>
           </node>
         </node>
@@ -1694,11 +1694,11 @@
           <node concept="3cpWsn" id="19RKY2xGyuj" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="19RKY2xGyrt" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="19RKY2xGyuk" role="33vP2m">
               <node concept="1pGfFk" id="19RKY2xGyul" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="19RKY2xGyum" role="37wK5m">
                   <ref role="3cqZAo" node="7BKWMw_XDRz" resolve="node" />
                 </node>
@@ -1727,7 +1727,7 @@
                 <ref role="3cqZAo" node="19RKY2xGyuj" resolve="actions" />
               </node>
               <node concept="liA8E" id="1S4cYrOMy9b" role="2OqNvi">
-                <ref role="37wK5l" node="19RKY2xF446" />
+                <ref role="37wK5l" node="19RKY2xF446" resolve="hasWatchedPort" />
               </node>
             </node>
           </node>
@@ -1750,7 +1750,7 @@
                         <ref role="3cqZAo" node="19RKY2xGyuj" resolve="actions" />
                       </node>
                       <node concept="liA8E" id="19RKY2xGzho" role="2OqNvi">
-                        <ref role="37wK5l" node="19RKY2xFOor" />
+                        <ref role="37wK5l" node="19RKY2xFOor" resolve="portToWatch" />
                       </node>
                     </node>
                   </node>
@@ -1830,7 +1830,7 @@
           <node concept="2OqwBi" id="6kcQr5w_Vl8" role="3clFbG">
             <node concept="2ShNRf" id="6kcQr5w_Vl9" role="2Oq$k0">
               <node concept="1pGfFk" id="6kcQr5w_Vla" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="6kcQr5w_Vlb" role="37wK5m">
                   <node concept="2WthIp" id="6kcQr5w_Vlc" role="2Oq$k0" />
                   <node concept="2XshWL" id="6kcQr5w_Vld" role="2OqNvi">
@@ -1852,7 +1852,7 @@
               </node>
             </node>
             <node concept="liA8E" id="6kcQr5w_WCx" role="2OqNvi">
-              <ref role="37wK5l" node="1S4cYrOQcQr" />
+              <ref role="37wK5l" node="1S4cYrOQcQr" resolve="unwatchSelectedFunctionBlocks" />
             </node>
           </node>
         </node>
@@ -1933,11 +1933,11 @@
           <node concept="3cpWsn" id="6kcQr5w_VlO" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="6kcQr5w_VlP" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="6kcQr5w_VlQ" role="33vP2m">
               <node concept="1pGfFk" id="6kcQr5w_VlR" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="6kcQr5w_VlS" role="37wK5m">
                   <ref role="3cqZAo" node="6kcQr5w_VlB" resolve="node" />
                 </node>
@@ -1963,7 +1963,7 @@
               <ref role="3cqZAo" node="6kcQr5w_VlO" resolve="actions" />
             </node>
             <node concept="liA8E" id="6kcQr5w_WuU" role="2OqNvi">
-              <ref role="37wK5l" node="6kcQr5w_nRD" />
+              <ref role="37wK5l" node="6kcQr5w_nRD" resolve="hasWatchedFunctionBlocksInSelection" />
             </node>
           </node>
         </node>
@@ -2022,7 +2022,7 @@
           <node concept="2OqwBi" id="19RKY2xGAnT" role="3clFbG">
             <node concept="2ShNRf" id="19RKY2xGAnU" role="2Oq$k0">
               <node concept="1pGfFk" id="19RKY2xGAnV" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="19RKY2xGAnW" role="37wK5m">
                   <node concept="2WthIp" id="19RKY2xGAnX" role="2Oq$k0" />
                   <node concept="2XshWL" id="19RKY2xGAnY" role="2OqNvi">
@@ -2044,7 +2044,7 @@
               </node>
             </node>
             <node concept="liA8E" id="19RKY2xGACC" role="2OqNvi">
-              <ref role="37wK5l" node="19RKY2xFC5D" />
+              <ref role="37wK5l" node="19RKY2xFC5D" resolve="watchEcc" />
             </node>
           </node>
         </node>
@@ -2077,7 +2077,7 @@
             <node concept="2OqwBi" id="19RKY2xG_WE" role="3uHU7w">
               <node concept="2ShNRf" id="19RKY2xG_WF" role="2Oq$k0">
                 <node concept="1pGfFk" id="19RKY2xG_WG" role="2ShVmc">
-                  <ref role="37wK5l" node="19RKY2xF00g" />
+                  <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                   <node concept="37vLTw" id="19RKY2xG_WH" role="37wK5m">
                     <ref role="3cqZAo" node="19RKY2xG_Ww" resolve="node" />
                   </node>
@@ -2096,7 +2096,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="19RKY2xGAgG" role="2OqNvi">
-                <ref role="37wK5l" node="19RKY2xFKOC" />
+                <ref role="37wK5l" node="19RKY2xFKOC" resolve="hasEccToWatch" />
               </node>
             </node>
           </node>
@@ -2114,7 +2114,7 @@
           <node concept="2OqwBi" id="1S4cYrOQS5G" role="3clFbG">
             <node concept="2ShNRf" id="1S4cYrOQS5H" role="2Oq$k0">
               <node concept="1pGfFk" id="1S4cYrOQS5I" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="1S4cYrOQS5J" role="37wK5m">
                   <node concept="2WthIp" id="1S4cYrOQS5K" role="2Oq$k0" />
                   <node concept="2XshWL" id="1S4cYrOQS5L" role="2OqNvi">
@@ -2136,7 +2136,7 @@
               </node>
             </node>
             <node concept="liA8E" id="1S4cYrOQTb0" role="2OqNvi">
-              <ref role="37wK5l" node="1S4cYrOPOKP" />
+              <ref role="37wK5l" node="1S4cYrOPOKP" resolve="watchFunctionBlock" />
             </node>
           </node>
         </node>
@@ -2198,11 +2198,11 @@
           <node concept="3cpWsn" id="1S4cYrOQS6g" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="1S4cYrOQS6h" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="1S4cYrOQS6i" role="33vP2m">
               <node concept="1pGfFk" id="1S4cYrOQS6j" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="1S4cYrOQS6k" role="37wK5m">
                   <ref role="3cqZAo" node="1S4cYrOQS5Z" resolve="node" />
                 </node>
@@ -2231,7 +2231,7 @@
                 <ref role="3cqZAo" node="1S4cYrOQS6g" resolve="actions" />
               </node>
               <node concept="liA8E" id="1S4cYrOQT9i" role="2OqNvi">
-                <ref role="37wK5l" node="1S4cYrONjsz" />
+                <ref role="37wK5l" node="1S4cYrONjsz" resolve="hasFunctionBlockToWatch" />
               </node>
             </node>
           </node>
@@ -2255,7 +2255,7 @@
                           <ref role="3cqZAo" node="1S4cYrOQS6g" resolve="actions" />
                         </node>
                         <node concept="liA8E" id="1S4cYrOQS6C" role="2OqNvi">
-                          <ref role="37wK5l" node="1S4cYrOMM45" />
+                          <ref role="37wK5l" node="1S4cYrOMM45" resolve="getFunctionBlock" />
                         </node>
                       </node>
                       <node concept="liA8E" id="74jd4DV$2ex" role="2OqNvi">
@@ -2339,7 +2339,7 @@
           <node concept="2OqwBi" id="19RKY2xGBAw" role="3clFbG">
             <node concept="2ShNRf" id="19RKY2xGBAx" role="2Oq$k0">
               <node concept="1pGfFk" id="19RKY2xGBAy" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="19RKY2xGBAz" role="37wK5m">
                   <node concept="2WthIp" id="19RKY2xGBA$" role="2Oq$k0" />
                   <node concept="2XshWL" id="19RKY2xGBA_" role="2OqNvi">
@@ -2361,7 +2361,7 @@
               </node>
             </node>
             <node concept="liA8E" id="19RKY2xGBMj" role="2OqNvi">
-              <ref role="37wK5l" node="19RKY2xFNcv" />
+              <ref role="37wK5l" node="19RKY2xFNcv" resolve="watchPort" />
             </node>
           </node>
         </node>
@@ -2423,11 +2423,11 @@
           <node concept="3cpWsn" id="19RKY2xGAOD" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="19RKY2xGAOE" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="19RKY2xGAOF" role="33vP2m">
               <node concept="1pGfFk" id="19RKY2xGAOG" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="19RKY2xGAOH" role="37wK5m">
                   <ref role="3cqZAo" node="19RKY2xGAOo" resolve="node" />
                 </node>
@@ -2456,7 +2456,7 @@
                 <ref role="3cqZAo" node="19RKY2xGAOD" resolve="actions" />
               </node>
               <node concept="liA8E" id="19RKY2xGBfU" role="2OqNvi">
-                <ref role="37wK5l" node="19RKY2xF3hL" />
+                <ref role="37wK5l" node="19RKY2xF3hL" resolve="hasPortToWatch" />
               </node>
             </node>
           </node>
@@ -2479,7 +2479,7 @@
                         <ref role="3cqZAo" node="19RKY2xGAOD" resolve="actions" />
                       </node>
                       <node concept="liA8E" id="19RKY2xGAP1" role="2OqNvi">
-                        <ref role="37wK5l" node="19RKY2xFOor" />
+                        <ref role="37wK5l" node="19RKY2xFOor" resolve="portToWatch" />
                       </node>
                     </node>
                   </node>
@@ -2559,7 +2559,7 @@
           <node concept="2OqwBi" id="6kcQr5wzrj1" role="3clFbG">
             <node concept="2ShNRf" id="6kcQr5wzrj2" role="2Oq$k0">
               <node concept="1pGfFk" id="6kcQr5wzrj3" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="2OqwBi" id="6kcQr5wzrj4" role="37wK5m">
                   <node concept="2WthIp" id="6kcQr5wzrj5" role="2Oq$k0" />
                   <node concept="2XshWL" id="6kcQr5wzrj6" role="2OqNvi">
@@ -2581,7 +2581,7 @@
               </node>
             </node>
             <node concept="liA8E" id="6kcQr5w_Vhg" role="2OqNvi">
-              <ref role="37wK5l" node="1S4cYrOQM6a" />
+              <ref role="37wK5l" node="1S4cYrOQM6a" resolve="watchSelectedFunctionBlocks" />
             </node>
           </node>
         </node>
@@ -2662,11 +2662,11 @@
           <node concept="3cpWsn" id="6kcQr5wzrj_" role="3cpWs9">
             <property role="TrG5h" value="actions" />
             <node concept="3uibUv" id="6kcQr5wzrjA" role="1tU5fm">
-              <ref role="3uigEE" node="5PjcHHGcAKb" />
+              <ref role="3uigEE" node="5PjcHHGcAKb" resolve="NetworkWatchActions" />
             </node>
             <node concept="2ShNRf" id="6kcQr5wzrjB" role="33vP2m">
               <node concept="1pGfFk" id="6kcQr5wzrjC" role="2ShVmc">
-                <ref role="37wK5l" node="19RKY2xF00g" />
+                <ref role="37wK5l" node="19RKY2xF00g" resolve="NetworkWatchActions" />
                 <node concept="37vLTw" id="6kcQr5wzrjD" role="37wK5m">
                   <ref role="3cqZAo" node="6kcQr5wzrjk" resolve="node" />
                 </node>
@@ -2692,7 +2692,7 @@
               <ref role="3cqZAo" node="6kcQr5wzrj_" resolve="actions" />
             </node>
             <node concept="liA8E" id="6kcQr5w_SEA" role="2OqNvi">
-              <ref role="37wK5l" node="6kcQr5w$sYW" />
+              <ref role="37wK5l" node="6kcQr5w$sYW" resolve="hasFunctionBlocskToWatchInSelection" />
             </node>
           </node>
         </node>
@@ -2811,8 +2811,8 @@
               <node concept="YeOm9" id="7i6W9OfhqDS" role="2ShVmc">
                 <node concept="1Y3b0j" id="7i6W9OfhqDV" role="YeSDq">
                   <property role="2bfB8j" value="true" />
-                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Backgroundable" />
-                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Backgroundable" />
+                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Task.Backgroundable" />
+                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Task.Backgroundable" />
                   <node concept="3Tm1VV" id="7i6W9OfhqDW" role="1B3o_S" />
                   <node concept="3clFb_" id="7i6W9OfhqE3" role="jymVt">
                     <property role="TrG5h" value="run" />
@@ -7608,7 +7608,7 @@
           <node concept="3clFbC" id="2jViL$fDApZ" role="3clFbw">
             <node concept="10Nm6u" id="2jViL$fDAX2" role="3uHU7w" />
             <node concept="37vLTw" id="2jViL$fD_D9" role="3uHU7B">
-              <ref role="3cqZAo" node="2jViL$fDzBH" resolve="fbTypeDeclaration" />
+              <ref role="3cqZAo" node="2jViL$fDzBH" resolve="fb" />
             </node>
           </node>
           <node concept="9aQIb" id="2jViL$fDRWq" role="9aQIa">
@@ -7774,8 +7774,8 @@
               <node concept="YeOm9" id="1UPrnlCa9mj" role="2ShVmc">
                 <node concept="1Y3b0j" id="1UPrnlCa9mk" role="YeSDq">
                   <property role="2bfB8j" value="true" />
-                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Backgroundable" />
-                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Backgroundable" />
+                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Task.Backgroundable" />
+                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Task.Backgroundable" />
                   <node concept="3Tm1VV" id="1UPrnlCa9ml" role="1B3o_S" />
                   <node concept="3clFb_" id="1UPrnlCa9mm" role="jymVt">
                     <property role="TrG5h" value="run" />
@@ -8194,8 +8194,8 @@
               <node concept="YeOm9" id="6bvi$yscBvI" role="2ShVmc">
                 <node concept="1Y3b0j" id="6bvi$yscBvJ" role="YeSDq">
                   <property role="2bfB8j" value="true" />
-                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Backgroundable" />
-                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Backgroundable" />
+                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Task.Backgroundable" />
+                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Task.Backgroundable" />
                   <node concept="3Tm1VV" id="6bvi$yscBvK" role="1B3o_S" />
                   <node concept="3clFb_" id="6bvi$yscBvL" role="jymVt">
                     <property role="TrG5h" value="run" />
@@ -8298,7 +8298,7 @@
                                         <node concept="3clFbF" id="2QVQjiHh6kJ" role="3cqZAp">
                                           <node concept="2OqwBi" id="57aJTs8lqM5" role="3clFbG">
                                             <node concept="37vLTw" id="57aJTs8lEVE" role="2Oq$k0">
-                                              <ref role="3cqZAo" node="57aJTs8lEVz" resolve="instance" />
+                                              <ref role="3cqZAo" node="57aJTs8lEVz" resolve="watcherFacade" />
                                             </node>
                                             <node concept="liA8E" id="57aJTs8lrm1" role="2OqNvi">
                                               <ref role="37wK5l" to="6w4o:~WatcherFacade.watchResourceNetwork(org.fbme.lib.iec61499.declarations.ResourceDeclaration)" resolve="watchResourceNetwork" />
@@ -8997,8 +8997,8 @@
               <node concept="YeOm9" id="6bvi$ysdnpH" role="2ShVmc">
                 <node concept="1Y3b0j" id="6bvi$ysdnpI" role="YeSDq">
                   <property role="2bfB8j" value="true" />
-                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Backgroundable" />
-                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Backgroundable" />
+                  <ref role="1Y3XeK" to="xygl:~Task$Backgroundable" resolve="Task.Backgroundable" />
+                  <ref role="37wK5l" to="xygl:~Task$Backgroundable.&lt;init&gt;(com.intellij.openapi.project.Project,java.lang.String)" resolve="Task.Backgroundable" />
                   <node concept="3Tm1VV" id="6bvi$ysdnpJ" role="1B3o_S" />
                   <node concept="3clFb_" id="6bvi$ysdnpK" role="jymVt">
                     <property role="TrG5h" value="run" />

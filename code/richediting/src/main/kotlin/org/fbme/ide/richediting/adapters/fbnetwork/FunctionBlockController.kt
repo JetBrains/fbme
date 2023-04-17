@@ -177,6 +177,7 @@ class FunctionBlockController(
 
     override fun updateCellSelection(selected: Boolean) {
         myNameProperty.style.set(StyleAttributes.FONT_STYLE, if (selected) Font.BOLD else Font.PLAIN)
+       fbCell.isSelected = selected
     }
 
     override fun paintTrace(g: Graphics?, form: Point) {
