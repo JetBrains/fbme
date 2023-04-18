@@ -6,8 +6,8 @@ import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
 import org.fbme.ide.richediting.adapters.ecc.actions.RelayoutECCAction
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.RelayoutFBNetworkAction
-import org.fbme.lib.iec61499.ecc.ECC
-import org.fbme.lib.iec61499.fbnetwork.FBNetwork
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.DeclarationWithNetwork
 
 class RelayoutAction : AnAction(), DumbAware {
     override fun update(event: AnActionEvent) {
@@ -15,11 +15,11 @@ class RelayoutAction : AnAction(), DumbAware {
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        event.executeReadActionInEditor {
+        event.executeWriteActionInEditor {
             val cell = event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)
             when {
-                event.element<ECC>() != null -> RelayoutECCAction(cell).apply()
-                event.element<FBNetwork>() != null -> RelayoutFBNetworkAction(cell).apply()
+                event.element<BasicFBTypeDeclaration>() != null -> RelayoutECCAction(cell).apply()
+                event.element<DeclarationWithNetwork>() != null -> RelayoutFBNetworkAction(cell).apply()
             }
         }
     }
