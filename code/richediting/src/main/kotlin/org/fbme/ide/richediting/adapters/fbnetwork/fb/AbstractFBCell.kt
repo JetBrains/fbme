@@ -12,6 +12,8 @@ import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.awt.geom.GeneralPath
+import java.util.function.Function
+import java.util.function.Supplier
 import kotlin.math.max
 
 abstract class AbstractFBCell protected constructor(
@@ -79,53 +81,29 @@ abstract class AbstractFBCell protected constructor(
         relayoutChildren()
     }
 
-    override fun getInputEventPortPosition(eventNumber: Int): Point {
+    private fun getPortPosition(bounds: Rectangle, isOutput: Boolean = false): Point {
         val lineSize = lineSize
-        val bounds = getInputEventPortBounds(eventNumber)
-        val x = bounds.x - scale(PORT_SIZE) / 2
+        val xOffset = if (isOutput) bounds.width + scale(PORT_SIZE) / 2 else - scale(PORT_SIZE) / 2
+        val x = bounds.x + xOffset
         val y = bounds.y + lineSize / 2
         return Point(x, y)
     }
 
-    override fun getOutputEventPortPosition(eventNumber: Int): Point {
-        val lineSize = lineSize
-        val bounds = getOutputEventPortBounds(eventNumber)
-        val x = bounds.x + bounds.width + scale(PORT_SIZE) / 2
-        val y = bounds.y + lineSize / 2
-        return Point(x, y)
-    }
+    override fun getInputEventPortPosition(eventNumber: Int): Point =
+            getPortPosition(getInputEventPortBounds(eventNumber))
 
-    override fun getInputDataPortPosition(dataNumber: Int): Point {
-        val lineSize = lineSize
-        val bounds = getInputDataPortBounds(dataNumber)
-        val x = bounds.x - scale(PORT_SIZE) / 2
-        val y = bounds.y + lineSize / 2
-        return Point(x, y)
-    }
+    override fun getOutputEventPortPosition(eventNumber: Int): Point =
+            getPortPosition(getOutputEventPortBounds(eventNumber), isOutput = true)
 
-    override fun getOutputDataPortPosition(dataNumber: Int): Point {
-        val lineSize = lineSize
-        val bounds = getOutputDataPortBounds(dataNumber)
-        val x = bounds.x + bounds.width + scale(PORT_SIZE) / 2
-        val y = bounds.y + lineSize / 2
-        return Point(x, y)
-    }
+    override fun getInputDataPortPosition(dataNumber: Int): Point = getPortPosition(getInputDataPortBounds(dataNumber))
 
-    override fun getSocketPortPosition(dataNumber: Int): Point {
-        val lineSize = lineSize
-        val bounds = getSocketPortBounds(dataNumber)
-        val x = bounds.x - scale(PORT_SIZE) / 2
-        val y = bounds.y + lineSize / 2
-        return Point(x, y)
-    }
+    override fun getOutputDataPortPosition(dataNumber: Int): Point =
+            getPortPosition(getOutputDataPortBounds(dataNumber), isOutput = true)
 
-    override fun getPlugPortPosition(dataNumber: Int): Point {
-        val lineSize = lineSize
-        val bounds = getPlugPortBounds(dataNumber)
-        val x = bounds.x + bounds.width + scale(PORT_SIZE) / 2
-        val y = bounds.y + lineSize / 2
-        return Point(x, y)
-    }
+    override fun getSocketPortPosition(dataNumber: Int): Point = getPortPosition(getSocketPortBounds(dataNumber))
+
+    override fun getPlugPortPosition(dataNumber: Int): Point =
+            getPortPosition(getPlugPortBounds(dataNumber), isOutput = true)
 
     protected fun initPorts() {
         initPorts(inputEventPorts, fbType.eventInputPorts)
