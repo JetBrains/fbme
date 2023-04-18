@@ -29,7 +29,7 @@ import java.util.*
 import kotlin.math.max
 
 class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node: SNode, isEditable: Boolean) :
-    AbstractFBCell(context, fbType, node, isEditable) {
+        AbstractFBCell(context, fbType, node, isEditable) {
 
     private val typeNameLabel: EditorCell_SceneLabel
     override val rootCell: EditorCell_Collection
@@ -77,53 +77,41 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         relayoutLabel(lineSize)
     }
 
-    override fun getInputEventPortBounds(eventNumber: Int): Rectangle {
+    private fun getPortBounds(
+            position: Int,
+            ports: List<Port>,
+            isOutput: Boolean = false,
+            verticalOffset: Int = 0): Rectangle {
         val lineSize = lineSize
-        val port = inputEventPorts[eventNumber]
+        val port = ports[position]
+
         val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = eventNumber * lineSize
-        return Rectangle(0, y, width, lineSize)
+
+        val y = (verticalOffset + position) * lineSize
+        val x = if (isOutput) rootCell.width - width else 0
+
+        return Rectangle(x, y, width, lineSize)
     }
 
-    override fun getOutputEventPortBounds(eventNumber: Int): Rectangle {
-        val lineSize = lineSize
-        val port = outputEventPorts[eventNumber]
-        val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = eventNumber * lineSize
-        return Rectangle(rootCell.width - width, y, width, lineSize)
-    }
+    override fun getInputEventPortBounds(eventNumber: Int): Rectangle =
+            getPortBounds(eventNumber, inputEventPorts)
 
-    override fun getInputDataPortBounds(dataNumber: Int): Rectangle {
-        val lineSize = lineSize
-        val port = inputDataPorts[dataNumber]
-        val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = (eventPortsCount + 2 + dataNumber) * lineSize
-        return Rectangle(0, y, width, lineSize)
-    }
+    override fun getOutputEventPortBounds(eventNumber: Int): Rectangle =
+            getPortBounds(eventNumber, outputEventPorts, isOutput = true)
 
-    override fun getOutputDataPortBounds(dataNumber: Int): Rectangle {
-        val lineSize = lineSize
-        val port = outputDataPorts[dataNumber]
-        val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = (eventPortsCount + 2 + dataNumber) * lineSize
-        return Rectangle(rootCell.width - width, y, width, lineSize)
-    }
+    override fun getInputDataPortBounds(dataNumber: Int): Rectangle =
+            getPortBounds(dataNumber, inputDataPorts, verticalOffset = 2 + eventPortsCount)
 
-    override fun getSocketPortBounds(socketNumber: Int): Rectangle {
-        val lineSize = lineSize
-        val port = socketPorts[socketNumber]
-        val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = (eventPortsCount + inputDataPortsCount + 2 + socketNumber) * lineSize
-        return Rectangle(0, y, width, lineSize)
-    }
+    override fun getOutputDataPortBounds(dataNumber: Int): Rectangle =
+            getPortBounds(dataNumber, outputDataPorts, isOutput = true, verticalOffset = 2 + eventPortsCount)
 
-    override fun getPlugPortBounds(plugNumber: Int): Rectangle {
-        val lineSize = lineSize
-        val port = plugPorts[plugNumber]
-        val width = (port as PortWithLabel).label.width + scale(INNER_BORDER_PADDING)
-        val y = (eventPortsCount + 2 + outputDataPortsCount + plugNumber) * lineSize
-        return Rectangle(rootCell.width - width, y, width, lineSize)
-    }
+
+    override fun getSocketPortBounds(socketNumber: Int): Rectangle =
+            getPortBounds(socketNumber, socketPorts, verticalOffset = 2 + eventPortsCount + inputDataPortsCount)
+
+    override fun getPlugPortBounds(plugNumber: Int): Rectangle =
+            getPortBounds(plugNumber, plugPorts, isOutput = true,
+                    verticalOffset = 2 + eventPortsCount + outputDataPortsCount)
 
     private fun relayoutPortLabels(lineSize: Int) {
         val leftX = rootCell.x + scale(INNER_BORDER_PADDING)
@@ -138,51 +126,36 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         relayoutPlugPortLabels(rightX, dataY + lineSize * outputDataPorts.size, lineSize)
     }
 
-    private fun relayoutDataOutputPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutOutputPortLabels(x, y, lineSize, outputDataPorts)
-    }
+    private fun relayoutDataOutputPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, outputDataPorts, isOutput = true)
 
-    private fun relayoutEventOutputPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutOutputPortLabels(x, y, lineSize, outputEventPorts)
-    }
+    private fun relayoutEventOutputPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, outputEventPorts, isOutput = true)
 
-    private fun relayoutPlugPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutOutputPortLabels(x, y, lineSize, plugPorts)
-    }
+    private fun relayoutPlugPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, plugPorts, isOutput = true)
 
-    private fun relayoutOutputPortLabels(x: Int, y: Int, lineSize: Int, outputPorts: List<Port>) {
-        var curY = y
-        for (port in outputPorts) {
-            val label = (port as PortWithLabel).label
-            label.moveTo(x - label.width, curY)
-            curY += lineSize
-        }
-    }
+    private fun relayoutDataInputPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, inputDataPorts)
 
-    private fun relayoutDataInputPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutInputPortLabels(x, y, lineSize, inputDataPorts)
-    }
+    private fun relayoutEventInputPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, inputEventPorts)
 
-    private fun relayoutEventInputPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutInputPortLabels(x, y, lineSize, inputEventPorts)
-    }
+    private fun relayoutSocketPortLabels(x: Int, y: Int, lineSize: Int) =
+            relayoutPortLabels(x, y, lineSize, socketPorts)
+    private fun relayoutPortLabels(x: Int, y: Int, lineSize: Int, ports: List<Port>, isOutput: Boolean = false) =
+            ports.forEachIndexed { index, port ->
+                val label = (port as PortWithLabel).label
+                val curY = y + index * lineSize
+                val curX = x - if (isOutput) label.width else 0
+                label.moveTo(curX, curY)
+            }
 
-    private fun relayoutSocketPortLabels(x: Int, y: Int, lineSize: Int) {
-        relayoutInputPortLabels(x, y, lineSize, socketPorts)
-    }
-
-    private fun relayoutInputPortLabels(x: Int, y: Int, lineSize: Int, inputPorts: List<Port>) {
-        var curY = y
-        for (port in inputPorts) {
-            (port as PortWithLabel).label.moveTo(x, curY)
-            curY += lineSize
-        }
-    }
 
     private fun relayoutLabel(lineSize: Int) {
         typeNameLabel.moveTo(
-            rootCell.x + rootCell.width / 2 - typeNameLabel.width / 2,
-            rootCell.y + (eventPortsCount + 1) * lineSize - lineSize / 4
+                rootCell.x + rootCell.width / 2 - typeNameLabel.width / 2,
+                rootCell.y + (eventPortsCount + 1) * lineSize - lineSize / 4
         )
     }
 
@@ -198,10 +171,10 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         drawAllPortIcons(graphics, foreground)
     }
 
-    fun drawEditIcon(graphics: Graphics2D, mainComponent: GeneralPath) {
+    fun drawEditIcon(graphics: Graphics2D, shape: GeneralPath) {
         if (isSelected) {
-            val x = mainComponent.bounds2D.maxX + 10
-            val y = mainComponent.bounds2D.minY - 20
+            val x = shape.bounds2D.maxX + 10
+            val y = shape.bounds2D.minY - 20
             val shape: Shape = Ellipse2D.Double(x, y, 15.0, 15.0)
             graphics.paint = Color(0x737373)
             graphics.fill(shape)
@@ -220,8 +193,8 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         graphics.paint = DiagramColors.createGradientPaint(background, Rectangle(x, y, rootCell.width, rootCell.height))
         graphics.fill(shape)
         graphics.paint = DiagramColors.createGradientPaint(
-            typeBackgroundColor,
-            Rectangle(x, y, rootCell.width, rootCell.height)
+                typeBackgroundColor,
+                Rectangle(x, y, rootCell.width, rootCell.height)
         )
         graphics.fill(Rectangle(x, typeNameY, rootCell.width, lineSize))
         graphics.stroke = BasicStroke(scale(1).toFloat())
@@ -239,12 +212,12 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
     private fun calculateWidth(): Int {
         val typeNameRowWidth = typeNameLabel.width
         val inputsWidth = max(
-            portsColumnWidth(inputEventPorts),
-            max(portsColumnWidth(inputDataPorts), portsColumnWidth(socketPorts))
+                portsColumnWidth(inputEventPorts),
+                max(portsColumnWidth(inputDataPorts), portsColumnWidth(socketPorts))
         )
         val outputsWidth = max(
-            portsColumnWidth(outputEventPorts),
-            max(portsColumnWidth(outputDataPorts), portsColumnWidth(plugPorts))
+                portsColumnWidth(outputEventPorts),
+                max(portsColumnWidth(outputDataPorts), portsColumnWidth(plugPorts))
         )
         val regularRowsWidth = inputsWidth + outputsWidth + scale(CENTER_PADDING + 2 * INNER_BORDER_PADDING)
         return max(regularRowsWidth, typeNameRowWidth) + scale(2 * INNER_BORDER_PADDING)
@@ -252,18 +225,18 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
 
     private fun createRootCell(): EditorCell_Collection {
         return object : EditorCell_Collection(
-            context,
-            node,
-            object : AbstractCellLayout() {
-                override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
-                    assert(collection === rootCell)
-                    relayout()
-                }
+                context,
+                node,
+                object : AbstractCellLayout() {
+                    override fun doLayout(collection: jetbrains.mps.openapi.editor.cells.EditorCell_Collection) {
+                        assert(collection === rootCell)
+                        relayout()
+                    }
 
-                override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
-                    return TextBuilderImpl()
+                    override fun doLayoutText(iterable: Iterable<EditorCell>): TextBuilder {
+                        return TextBuilderImpl()
+                    }
                 }
-            }
         ) {
             override fun paintContent(g: Graphics, parentSettings: ParentSettings) {
                 this@FBTypeCellComponent.paint(g.create() as Graphics2D)
@@ -301,8 +274,8 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
                 val childNetworkInstance = child.containedNetwork
                 if (childNetworkInstance is NetworkInstance) {
                     val navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(
-                        rootCell.context.operationContext.project,
-                        childNetworkInstance
+                            rootCell.context.operationContext.project,
+                            childNetworkInstance
                     )
                     style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
                     return
@@ -319,17 +292,17 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         private const val CENTER_PADDING = 20
         private const val INNER_BORDER_PADDING = 2
         private val PORT_LABEL_WIDTH_COMPARATOR =
-            Comparator.comparing { port: Port -> (port as PortWithLabel).label.width }
+                Comparator.comparing { port: Port -> (port as PortWithLabel).label.width }
 
         private fun portsColumnWidth(ports: List<Port>): Int {
             return if (ports.isEmpty()) {
                 0
             } else (
-                Collections.max(
-                    ports,
-                    PORT_LABEL_WIDTH_COMPARATOR
-                ) as PortWithLabel
-                ).label.width
+                    Collections.max(
+                            ports,
+                            PORT_LABEL_WIDTH_COMPARATOR
+                    ) as PortWithLabel
+                    ).label.width
         }
     }
 }
