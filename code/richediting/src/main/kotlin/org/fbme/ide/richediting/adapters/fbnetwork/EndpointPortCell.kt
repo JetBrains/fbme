@@ -128,9 +128,10 @@ class EndpointPortCell(
         val portPosition = portPosition
         portPosition.translate(rootCell.x, rootCell.y)
         val portBounds = Rectangle(
-            portPosition.x, portPosition.y, scale(AbstractFBCell.PORT_SIZE), scale(
-                AbstractFBCell.PORT_SIZE
-            )
+            portPosition.x,
+            portPosition.y,
+            scale(AbstractFBCell.PORT_SIZE),
+            scale(AbstractFBCell.PORT_SIZE)
         )
         graphics.color = DiagramColors.getColorFor(connectionKind, isEditable)
         graphics.fill(portBounds)

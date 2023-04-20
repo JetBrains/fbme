@@ -2,11 +2,12 @@
 <model ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(org.fbme.ide.platform.projectWizard)">
   <persistence version="9" />
   <languages>
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="19" />
     <use id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources" version="2" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="12" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
+    <use id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions" version="4" />
   </languages>
   <imports>
     <import index="dxuu" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing(JDK/)" />
@@ -31,20 +32,8 @@
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
-      <concept id="2756621024541681841" name="jetbrains.mps.lang.resources.structure.Primitive" flags="ng" index="1irPi6">
-        <child id="1860120738943552529" name="fillColor" index="3PKjn_" />
-      </concept>
-      <concept id="2756621024541681849" name="jetbrains.mps.lang.resources.structure.Text" flags="ng" index="1irPie">
-        <property id="2756621024541681854" name="text" index="1irPi9" />
-        <child id="1860120738943552534" name="color" index="3PKjny" />
-      </concept>
-      <concept id="2756621024541674821" name="jetbrains.mps.lang.resources.structure.TextIcon" flags="ng" index="1irR5M">
-        <property id="1358878980655415353" name="iconId" index="2$rrk2" />
-        <child id="2756621024541675110" name="layers" index="1irR9h" />
-      </concept>
-      <concept id="2756621024541675104" name="jetbrains.mps.lang.resources.structure.Circle" flags="ng" index="1irR9n" />
-      <concept id="1860120738943552477" name="jetbrains.mps.lang.resources.structure.ColorLiteral" flags="ng" index="3PKj8D">
-        <property id="1860120738943552481" name="val" index="3PKj8l" />
+      <concept id="8974276187400029883" name="jetbrains.mps.lang.resources.structure.FileIcon" flags="ng" index="1QGGSu">
+        <property id="2756621024541341363" name="file" index="1iqoE4" />
       </concept>
       <concept id="8974276187400029891" name="jetbrains.mps.lang.resources.structure.IconExpression" flags="nn" index="1QGGTA">
         <child id="8974276187400029893" name="icon" index="1QGGTw" />
@@ -207,6 +196,10 @@
         <child id="1199569916463" name="body" index="1bW5cS" />
       </concept>
     </language>
+    <language id="aee9cad2-acd4-4608-aef2-0004f6a1cdbd" name="jetbrains.mps.lang.actions">
+      <concept id="767145758118872833" name="jetbrains.mps.lang.actions.structure.NF_LinkList_AddNewChildOperation" flags="nn" index="2DeJg1" />
+      <concept id="5480835971642160908" name="jetbrains.mps.lang.actions.structure.NF_Model_CreateNewRootNodeOperation" flags="nn" index="15Ty1b" />
+    </language>
     <language id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel">
       <concept id="1166648550386" name="jetbrains.mps.lang.smodel.structure.Model_CreateNewRootNodeOperation" flags="nn" index="2xF2bX" />
       <concept id="1143226024141" name="jetbrains.mps.lang.smodel.structure.SModelType" flags="in" index="H_c77" />
@@ -214,7 +207,6 @@
         <reference id="1143235391024" name="concept" index="I8UWU" />
       </concept>
       <concept id="1212008292747" name="jetbrains.mps.lang.smodel.structure.Model_GetLongNameOperation" flags="nn" index="LkI2h" />
-      <concept id="1139184414036" name="jetbrains.mps.lang.smodel.structure.LinkList_AddNewChildOperation" flags="nn" index="WFELt" />
       <concept id="1138055754698" name="jetbrains.mps.lang.smodel.structure.SNodeType" flags="in" index="3Tqbb2">
         <reference id="1138405853777" name="concept" index="ehGHo" />
       </concept>
@@ -360,7 +352,7 @@
         <node concept="3clFbF" id="7OBD32Igfj2" role="3cqZAp">
           <node concept="2YIFZM" id="7OBD32Igfv1" role="3clFbG">
             <ref role="1Pybhc" to="l5s7:~NewModuleUtil" resolve="NewModuleUtil" />
-            <ref role="37wK5l" to="l5s7:~NewModuleUtil.check(org.jetbrains.mps.openapi.module.SRepository,java.lang.String,java.lang.String,java.lang.String)" resolve="check" />
+            <ref role="37wK5l" to="l5s7:~NewModuleUtil.check(jetbrains.mps.project.MPSProject,java.lang.String,java.lang.String,java.lang.String)" resolve="check" />
             <node concept="10Nm6u" id="7OBD32IgfEP" role="37wK5m" />
             <node concept="10M0yZ" id="7OBD32Iggpu" role="37wK5m">
               <ref role="3cqZAo" to="z1c4:~MPSExtentions.DOT_SOLUTION" resolve="DOT_SOLUTION" />
@@ -383,6 +375,9 @@
               </node>
             </node>
           </node>
+        </node>
+        <node concept="3cpWs6" id="62uNvAbKI9L" role="3cqZAp">
+          <node concept="10Nm6u" id="62uNvAbKK4Z" role="3cqZAk" />
         </node>
       </node>
       <node concept="2AHcQZ" id="7OBD32IgdPU" role="2AJF6D">
@@ -840,20 +835,9 @@
               </node>
               <node concept="3clFbS" id="7OBD32HGcFg" role="3clF47">
                 <node concept="3clFbF" id="7OBD32HGes2" role="3cqZAp">
-                  <node concept="1QGGTA" id="7OBD32HGerZ" role="3clFbG">
-                    <node concept="1irR5M" id="7OBD32HGezw" role="1QGGTw">
-                      <property role="2$rrk2" value="1" />
-                      <node concept="1irR9n" id="uLhTRR7MXZ" role="1irR9h">
-                        <node concept="3PKj8D" id="uLhTRR7MY0" role="3PKjn_">
-                          <property role="3PKj8l" value="FF9111" />
-                        </node>
-                      </node>
-                      <node concept="1irPie" id="uLhTRR7MY1" role="1irR9h">
-                        <property role="1irPi9" value="S" />
-                        <node concept="3PKj8D" id="uLhTRR7MY2" role="3PKjny">
-                          <property role="3PKj8l" value="EEEEEE" />
-                        </node>
-                      </node>
+                  <node concept="1QGGTA" id="3qzmBf7cl84" role="3clFbG">
+                    <node concept="1QGGSu" id="6wzd0wHUltr" role="1QGGTw">
+                      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/platform/projectWizard/system_project.svg" />
                     </node>
                   </node>
                 </node>
@@ -956,7 +940,7 @@
                           <ref role="3TtcxE" to="xiqq:uLhTRR7MVq" resolve="applications" />
                         </node>
                       </node>
-                      <node concept="WFELt" id="3V8WxCAjbDy" role="2OqNvi" />
+                      <node concept="2DeJg1" id="3pBR_pAX2EA" role="2OqNvi" />
                     </node>
                   </node>
                 </node>
@@ -1080,21 +1064,10 @@
                 <ref role="3uigEE" to="dxuu:~Icon" resolve="Icon" />
               </node>
               <node concept="3clFbS" id="7OBD32Ij_iO" role="3clF47">
-                <node concept="3clFbF" id="7OBD32Ij_iP" role="3cqZAp">
-                  <node concept="1QGGTA" id="7OBD32Ij_iQ" role="3clFbG">
-                    <node concept="1irR5M" id="7OBD32Ij_iR" role="1QGGTw">
-                      <property role="2$rrk2" value="2" />
-                      <node concept="1irR9n" id="uLhTRR236x" role="1irR9h">
-                        <node concept="3PKj8D" id="uLhTRR236y" role="3PKjn_">
-                          <property role="3PKj8l" value="87CEEB" />
-                        </node>
-                      </node>
-                      <node concept="1irPie" id="uLhTRR236z" role="1irR9h">
-                        <property role="1irPi9" value="L" />
-                        <node concept="3PKj8D" id="uLhTRR236$" role="3PKjny">
-                          <property role="3PKj8l" value="EEEEEE" />
-                        </node>
-                      </node>
+                <node concept="3clFbF" id="6wzd0wHV3ut" role="3cqZAp">
+                  <node concept="1QGGTA" id="6wzd0wHV3uu" role="3clFbG">
+                    <node concept="1QGGSu" id="6wzd0wHV3uv" role="1QGGTw">
+                      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/platform/projectWizard/library_project.svg" />
                     </node>
                   </node>
                 </node>
@@ -1124,7 +1097,7 @@
                       <node concept="37vLTw" id="7OBD32IjasO" role="2Oq$k0">
                         <ref role="3cqZAo" node="7OBD32IjasG" resolve="m" />
                       </node>
-                      <node concept="2xF2bX" id="7OBD32IjasP" role="2OqNvi">
+                      <node concept="15Ty1b" id="3pBR_pAX7zD" role="2OqNvi">
                         <ref role="I8UWU" to="xiqq:3HBlKeoYsj1" resolve="BasicFBTypeDeclaration" />
                       </node>
                     </node>

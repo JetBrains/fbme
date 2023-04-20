@@ -8,6 +8,8 @@ dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:library"))
     implementation(project(":code:language"))
+
+    mpsImplementation(project(":code:language", "mps"))
 }
 
 java {

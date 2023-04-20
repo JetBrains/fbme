@@ -5,9 +5,8 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.fbnetwork.EndpointCoordinate
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
-import org.jetbrains.mps.openapi.model.SNode
 
-class InterfaceEndpointView(
+data class InterfaceEndpointView(
     private val network: FBNetwork,
     private val endpointCoordinate: EndpointCoordinate,
     val position: Int,
@@ -15,8 +14,9 @@ class InterfaceEndpointView(
     val isSource: Boolean,
     val target: Declaration
 ) : NetworkComponentView, NetworkPortView {
-    val associatedNode: SNode
-    val name: String
+
+    val associatedNode = (target as PlatformElement).node
+    val name = target.name
 
     //            endpointCoordinate.getPortReference().setFQName(myName);
     var x: Int
@@ -54,18 +54,5 @@ class InterfaceEndpointView(
             return false
         }
         return position == other.position && kind == other.kind && isSource == other.isSource
-    }
-
-    override fun hashCode(): Int {
-        var result = 0
-        result = 31 * result + position
-        result = 31 * result + kind.hashCode()
-        result = 31 * result + if (isSource) 1 else 0
-        return result
-    }
-
-    init {
-        name = target.name
-        associatedNode = (target as PlatformElement).node
     }
 }

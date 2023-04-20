@@ -1,17 +1,14 @@
 package org.fbme.integration.nxt.importer;
 
-import org.fbme.ide.platform.testing.LoadFrom;
 import org.fbme.ide.platform.testing.PlatformTestBase;
 import org.fbme.ide.platform.testing.PlatformTestRunner;
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
-import org.fbme.lib.st.types.DataType;
 import org.fbme.lib.st.types.ElementaryType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(PlatformTestRunner.class)
-@LoadFrom(module = "org.fbme.integration.nxt")
 public class BasicFbTypeNxtImporterTest extends PlatformTestBase {
     @Test
     public void parseTest1() {

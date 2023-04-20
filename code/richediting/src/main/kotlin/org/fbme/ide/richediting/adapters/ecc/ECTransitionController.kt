@@ -79,23 +79,17 @@ class ECTransitionController(
     }
 
     override fun isSourceTransformableAt(path: ECTransitionPath, x: Int, y: Int): Boolean {
-        if (!isEditable) {
-            return false
-        }
+        if (!isEditable) return false
         val curve =
             ECTransitionUtils.fromPath(path.source, path.target, path.centre.x.toDouble(), path.centre.y.toDouble())
-        return (curve.intersects(boundary(x, y))
-                && boundary(path.source.x, path.source.y).intersects(boundary(x, y)))
+        return curve.intersects(boundary(x, y)) && boundary(path.source.x, path.source.y).intersects(boundary(x, y))
     }
 
     override fun isTargetTransformableAt(path: ECTransitionPath, x: Int, y: Int): Boolean {
-        if (!isEditable) {
-            return false
-        }
+        if (!isEditable) return false
         val curve =
             ECTransitionUtils.fromPath(path.source, path.target, path.centre.x.toDouble(), path.centre.y.toDouble())
-        return (curve.intersects(boundary(x, y))
-                && boundary(path.target.x, path.target.y).intersects(boundary(x, y)))
+        return curve.intersects(boundary(x, y)) && boundary(path.target.x, path.target.y).intersects(boundary(x, y))
     }
 
     private fun boundary(x: Int, y: Int): Rectangle {

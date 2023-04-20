@@ -23,18 +23,21 @@ class FBConnectionPath {
                 this.y = 0
                 this.x1 = 0
             }
+
             2 -> {
                 pathKind = ConnectionPath.Kind.TwoAngles
                 x1 = bendPoints[0].x
                 x2 = 0
                 y = 0
             }
+
             4 -> {
                 pathKind = ConnectionPath.Kind.FourAngles
                 x1 = bendPoints[0].x
                 y = bendPoints[1].y
                 x2 = bendPoints[bendPoints.size - 1].x
             }
+
             else -> {
                 pathKind = ConnectionPath.Kind.MoreThanFour
                 x1 = bendPoints[0].x
@@ -55,16 +58,19 @@ class FBConnectionPath {
         when (pathKind) {
             ConnectionPath.Kind.Straight -> {
             }
+
             ConnectionPath.Kind.TwoAngles -> {
                 bendPoints.add(Point(x1, mySourcePosition.y))
                 bendPoints.add(Point(x1, myTargetPosition.y))
             }
+
             ConnectionPath.Kind.FourAngles -> {
                 bendPoints.add(Point(x1, mySourcePosition.y))
                 bendPoints.add(Point(x1, y))
                 bendPoints.add(Point(x2, y))
                 bendPoints.add(Point(x2, myTargetPosition.y))
             }
+
             ConnectionPath.Kind.MoreThanFour -> {
                 // do nothing
             }

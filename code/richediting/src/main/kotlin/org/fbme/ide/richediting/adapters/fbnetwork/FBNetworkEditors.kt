@@ -32,7 +32,6 @@ import org.fbme.scenes.controllers.scene.*
 import org.fbme.scenes.viewmodel.PositionalCompletionItem
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Point
-import java.util.function.Function
 
 object FBNetworkEditors {
     @JvmField
@@ -145,9 +144,11 @@ object FBNetworkEditors {
             val connectionsLayer = scene.createLayer(3f)
             val inspectionsLayer = scene.createLayer(4f)
             val scale = RicheditingMpsBridge.getEditorScale(project)
-            val viewpoint = if (layout === SceneLayout.WINDOWED)
+            val viewpoint = if (layout === SceneLayout.WINDOWED) {
                 SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
-            else scene.viewpoint!!
+            } else {
+                scene.viewpoint!!
+            }
             style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint)
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {
@@ -186,11 +187,12 @@ object FBNetworkEditors {
                 componentsLayer,
                 tracesLayer
             )
-            val componentProvider = Function { it: NetworkComponentView ->
+            val componentProvider = componentProvider@{ it: NetworkComponentView ->
                 if (it is InlineValueView || it is BrokenPortView) {
-                    return@Function inlineValuesFacility.getController(it) as FBNetworkComponentController
+                    inlineValuesFacility.getController(it) as FBNetworkComponentController
+                } else {
+                    componentsFacility.getController(it) as FBNetworkComponentController
                 }
-                return@Function componentsFacility.getController(it) as FBNetworkComponentController
             }
             val portSettings = FBPortSettingProvider(componentProvider)
             val diagramComponentSettings: DiagramComponentSettingProvider<NetworkComponentView, Point> =
@@ -211,9 +213,12 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val extendedLayout: ROLayoutModel<NetworkComponentView> = ExtendedLayoutModel(
                 componentsLayout,
-                { view: NetworkComponentView, compPosition: Point ->
-                    (inlineValuesFacility.getController(view) as InlineValueController).getCoordinates(compPosition)
-                }) { inlineValuesView.getExtensions(it) }
+                { view, compPosition ->
+                    val controller = inlineValuesFacility.getController(view) as InlineValueController
+                    controller.getCoordinates(compPosition)
+                },
+                { inlineValuesView.getExtensions(it) }
+            )
             val connectionsFacility = ConnectionsFacility(
                 scene,
                 CONNECTION_CONTROLLER_FACTORY,
@@ -234,8 +239,9 @@ object FBNetworkEditors {
                 focus
             )
             style.set(RichEditorStyleAttributes.CONNECTIONS_FACILITY, connectionsFacility)
-            val connectionProvider =
-                Function { it: NetworkConnectionView -> connectionsFacility.getController(it) as FBConnectionController }
+            val connectionProvider = { it: NetworkConnectionView ->
+                connectionsFacility.getController(it) as FBConnectionController
+            }
             val networkInspectionsFacility = NetworkInspectionsFacility(
                 networkView,
                 networkInstance,

@@ -153,12 +153,11 @@ class ELKLayoutProvider(
     }
 
     private fun getBounds(inlineValue: InlineValueView): Rectangle {
-        val componentController = inspectionsFacility.myComponentProvider.apply(inlineValue)
-        val componentPosition = inspectionsFacility.myLayoutModel.getActivePosition(inlineValue)
+        val componentController = inspectionsFacility.componentProvider(inlineValue)
+        val componentPosition = inspectionsFacility.layoutModel.getActivePosition(inlineValue)
         val componentBounds = componentController.getBounds(componentPosition)
         return viewpoint.fromEditor(componentBounds)
     }
-
 
     private fun applyLayout(
         nodes: Map<FunctionBlockView, ElkNode>,

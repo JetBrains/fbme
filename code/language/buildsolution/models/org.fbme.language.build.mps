@@ -138,7 +138,7 @@
             <node concept="2Ry0Ak" id="Ej4tEplx2w" role="2Ry0An">
               <property role="2Ry0Am" value="lib" />
               <node concept="2Ry0Ak" id="Ej4tEplx2x" role="2Ry0An">
-                <property role="2Ry0Am" value="MPS 2021.2" />
+                <property role="2Ry0Am" value="MPS 2021.3" />
               </node>
             </node>
           </node>
@@ -332,6 +332,11 @@
               </node>
             </node>
           </node>
+          <node concept="1SiIV0" id="5cUQ_BhKDbM" role="3bR37C">
+            <node concept="3bR9La" id="5cUQ_BhKDbN" role="1SiIV1">
+              <ref role="3bR37D" to="ffeo:rD7wKO5Iy" resolve="MPS.TextGen" />
+            </node>
+          </node>
         </node>
         <node concept="1SiIV0" id="ahlxKSr1RM" role="3bR37C">
           <node concept="3bR9La" id="ahlxKSr1RN" role="1SiIV1">
@@ -379,21 +384,21 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="ApHj0p0xSz" role="3bR31x">
-          <node concept="3LXTmp" id="ApHj0p0xS$" role="3rtmxm">
-            <node concept="55IIr" id="ApHj0p0xS_" role="3LXTmr">
-              <node concept="2Ry0Ak" id="ApHj0p0xSA" role="iGT6I">
+        <node concept="3rtmxn" id="6wzd0wHWh45" role="3bR31x">
+          <node concept="3LXTmp" id="6wzd0wHWh46" role="3rtmxm">
+            <node concept="55IIr" id="6wzd0wHWh47" role="3LXTmr">
+              <node concept="2Ry0Ak" id="6wzd0wHWh48" role="iGT6I">
                 <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="ApHj0p0xSB" role="2Ry0An">
+                <node concept="2Ry0Ak" id="6wzd0wHWh49" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.iec61499.lang" />
-                  <node concept="2Ry0Ak" id="1M54bK80mw8" role="2Ry0An">
-                    <property role="2Ry0Am" value="source_gen" />
+                  <node concept="2Ry0Ak" id="6wzd0wHWh4v" role="2Ry0An">
+                    <property role="2Ry0Am" value="icons" />
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="ApHj0p0xSD" role="3LXTna">
-              <property role="3qWCbO" value="**/*.png" />
+            <node concept="3qWCbU" id="6wzd0wHWh4a" role="3LXTna">
+              <property role="3qWCbO" value="**/*.svg" />
             </node>
           </node>
         </node>
@@ -405,6 +410,11 @@
         <node concept="1SiIV0" id="DMI5IaKG29" role="3bR37C">
           <node concept="3bR9La" id="DMI5IaKG2a" role="1SiIV1">
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
+          </node>
+        </node>
+        <node concept="1SiIV0" id="5WcZ9cNMFCD" role="3bR37C">
+          <node concept="3bR9La" id="5WcZ9cNMFCE" role="1SiIV1">
+            <ref role="3bR37D" to="ffeo:1d41uYMTVPB" resolve="jetbrains.mps.lang.scopes.runtime" />
           </node>
         </node>
       </node>
@@ -482,18 +492,21 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="ApHj0p0xS6" role="3bR31x">
-          <node concept="3LXTmp" id="ApHj0p0xS7" role="3rtmxm">
-            <node concept="55IIr" id="ApHj0p0xS8" role="3LXTmr">
-              <node concept="2Ry0Ak" id="ApHj0p0xS9" role="iGT6I">
+        <node concept="3rtmxn" id="6wzd0wHWhwX" role="3bR31x">
+          <node concept="3LXTmp" id="6wzd0wHWhwY" role="3rtmxm">
+            <node concept="55IIr" id="6wzd0wHWhwZ" role="3LXTmr">
+              <node concept="2Ry0Ak" id="6wzd0wHWhx0" role="iGT6I">
                 <property role="2Ry0Am" value="languages" />
-                <node concept="2Ry0Ak" id="ApHj0p0xSa" role="2Ry0An">
+                <node concept="2Ry0Ak" id="6wzd0wHWhx1" role="2Ry0An">
                   <property role="2Ry0Am" value="org.fbme.ide.st.lang" />
+                  <node concept="2Ry0Ak" id="6wzd0wHWhx2" role="2Ry0An">
+                    <property role="2Ry0Am" value="icons" />
+                  </node>
                 </node>
               </node>
             </node>
-            <node concept="3qWCbU" id="ApHj0p0xSc" role="3LXTna">
-              <property role="3qWCbO" value="icons/**, resources/**" />
+            <node concept="3qWCbU" id="6wzd0wHWhx3" role="3LXTna">
+              <property role="3qWCbO" value="**/*.svg" />
             </node>
           </node>
         </node>

@@ -8,10 +8,6 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 import org.jetbrains.mps.openapi.model.SNodeReference
-import org.jetbrains.mps.openapi.module.SModule
-import java.util.*
-import java.util.stream.Collectors
-import java.util.stream.StreamSupport
 
 internal class PlatformDeclarationsScope(
     private val myRepository: PlatformRepository,
@@ -56,7 +52,11 @@ internal class PlatformDeclarationsScope(
     override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> {
         return myRepository.mpsRepository.modules
             .flatMap { it.models }
-            .filter { myModel == null || ModelImports(myModel).importedModels.contains(it.reference) }
+            .filter {
+                myModel == null ||
+                    myModel.reference == it.reference ||
+                    ModelImports(myModel).importedModels.contains(it.reference)
+            }
             .flatMap { it.rootNodes }
             .mapNotNull { myRepository.getAdapter(it, FBTypeDeclaration::class.java) }
     }
@@ -67,9 +67,7 @@ internal class PlatformDeclarationsScope(
             return node
         }
         val reference = requireNotNull(node.model).reference
-        return if (ModelImports(myModel).importedModels.contains(reference)) {
-            node
-        } else null
+        return node.takeIf { myModel.reference == reference || ModelImports(myModel).importedModels.contains(reference) }
     }
 
     private fun getNodeReference(identifier: Identifier): SNodeReference {

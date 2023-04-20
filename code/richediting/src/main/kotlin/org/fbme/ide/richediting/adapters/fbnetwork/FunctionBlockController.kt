@@ -39,36 +39,44 @@ class FunctionBlockController(
     }
 
     private fun getNameProperty(context: EditorContext, view: FunctionBlockView, node: SNode): EditorCell_Property {
-        return EditorCell_Property(context, object : ModelAccessor {
-            override fun getText(): String? {
-                val name = view.component.name
-                return if (name == "") null else name
-            }
+        return EditorCell_Property(
+            context,
+            object : ModelAccessor {
+                override fun getText(): String? {
+                    val name = view.component.name
+                    return if (name == "") null else name
+                }
 
-            override fun setText(text: String) {
-                view.component.name = text
-            }
+                override fun setText(text: String) {
+                    view.component.name = text
+                }
 
-            override fun isValidText(text: String): Boolean {
-                return true
-            }
-        }, node)
+                override fun isValidText(text: String): Boolean {
+                    return true
+                }
+            },
+            node
+        )
     }
 
     private fun createRootCell(
         context: EditorContext,
         node: SNode
     ): jetbrains.mps.nodeEditor.cells.EditorCell_Collection {
-        return EditorCell_Collection(context, node, object : CellLayout_Vertical() {
-            override fun doLayout(editorCells: EditorCell_Collection) {
-                super.doLayout(editorCells)
-                fbCell.rootCell.moveTo(cellCollection.x, cellCollection.y + lineSize)
-                myNameProperty.moveTo(
-                    cellCollection.x + fbCell.width / 2 - myNameProperty.width / 2,
-                    cellCollection.y - lineSize / 4
-                )
+        return EditorCell_Collection(
+            context,
+            node,
+            object : CellLayout_Vertical() {
+                override fun doLayout(editorCells: EditorCell_Collection) {
+                    super.doLayout(editorCells)
+                    fbCell.rootCell.moveTo(cellCollection.x, cellCollection.y + lineSize)
+                    myNameProperty.moveTo(
+                        cellCollection.x + fbCell.width / 2 - myNameProperty.width / 2,
+                        cellCollection.y - lineSize / 4
+                    )
+                }
             }
-        })
+        )
     }
 
     private fun initializeFBSceneCell(editorShift: Point = Point()): FBCell {
@@ -109,9 +117,11 @@ class FunctionBlockController(
             EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(
                 index
             )
+
             EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(
                 index
             )
+
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortPosition(index) else fbCell.getSocketPortPosition(index)
             else -> error("")
         }
@@ -128,9 +138,11 @@ class FunctionBlockController(
             EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(
                 index
             )
+
             EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(
                 index
             )
+
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
             else -> error("Unknown port kind")
         }

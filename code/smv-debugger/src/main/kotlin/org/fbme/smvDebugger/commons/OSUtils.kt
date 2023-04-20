@@ -6,7 +6,7 @@ object OSUtils {
     private val SUPPORTED_OS = EnumSet.of(OS.MAC_OS)
     val oS: OS
         get() {
-            val osName = System.getProperty("os.name").toLowerCase()
+            val osName = System.getProperty("os.name").lowercase(Locale.getDefault())
             if (osName.contains("mac os")) {
                 return OS.MAC_OS
             }

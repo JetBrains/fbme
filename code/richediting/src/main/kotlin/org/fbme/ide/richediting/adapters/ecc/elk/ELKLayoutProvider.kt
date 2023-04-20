@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory
 import java.awt.Point
 import java.awt.Rectangle
 
-
 class ELKLayoutProvider(
     diagramFacility: DiagramFacility<StateDeclaration, StateDeclaration, StateTransition, Point>,
     componentsFacility: ComponentsFacility<StateDeclaration, Point>,

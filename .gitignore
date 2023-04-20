@@ -14,6 +14,7 @@
 classes_gen
 source_gen
 source_gen.caches
+.mps-caches
 
 **/startup.properties
 
@@ -23,3 +24,6 @@ out
 lib
 
 build.xml
+
+*.log
+*.log.*

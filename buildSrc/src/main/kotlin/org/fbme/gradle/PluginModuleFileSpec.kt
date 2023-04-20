@@ -5,10 +5,13 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Nested
 
-interface PluginModuleFileSpec: Task {
+interface PluginModuleFileSpec : Task {
 
     @get:Input
     val moduleId: Provider<String>
+
+    @get:Input
+    val pluginId: Provider<String>
 
     @get:Input
     val moduleName: Provider<String>

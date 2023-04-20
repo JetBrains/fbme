@@ -2,10 +2,10 @@
 <model ref="r:1c3e83f1-dc29-416c-9a91-7ca7507c87bb(org.fbme.smvDebugger.plugin)">
   <persistence version="9" />
   <languages>
-    <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="4" />
+    <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="5" />
     <use id="ef7bf5ac-d06c-4342-b11d-e42104eb9343" name="jetbrains.mps.lang.plugin.standalone" version="0" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="19" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="12" />
   </languages>
   <imports>
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" />
@@ -1308,7 +1308,7 @@
           <node concept="2OqwBi" id="4K4Qd0pA2yP" role="3clFbG">
             <node concept="10M0yZ" id="1EO1wDljOGp" role="2Oq$k0">
               <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
             </node>
             <node concept="liA8E" id="4K4Qd0pA2IP" role="2OqNvi">
               <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
@@ -1330,7 +1330,7 @@
           <node concept="2OqwBi" id="4K4Qd0pAddw" role="3clFbG">
             <node concept="10M0yZ" id="1EO1wDljP9N" role="2Oq$k0">
               <ref role="3cqZAo" to="6yb:~ServicePathProvider$Factory.Companion" resolve="Companion" />
-              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
+              <ref role="1PxDUh" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
             </node>
             <node concept="liA8E" id="4K4Qd0pAdpc" role="2OqNvi">
               <ref role="37wK5l" to="6yb:~ServicePathProvider$Factory$Companion.setINSTANCE(org.fbme.smvDebugger.integration.ServicePathProvider$Factory)" resolve="setINSTANCE" />
@@ -1342,7 +1342,7 @@
     </node>
     <node concept="3Tm1VV" id="47ImtybUeMV" role="1B3o_S" />
     <node concept="3uibUv" id="1EO1wDljO1m" role="1zkMxy">
-      <ref role="3uigEE" to="6yb:~ServicePathProvider$Factory" resolve="Factory" />
+      <ref role="3uigEE" to="6yb:~ServicePathProvider$Factory" resolve="ServicePathProvider.Factory" />
     </node>
   </node>
   <node concept="sE7Ow" id="64NFiWSmz2R">

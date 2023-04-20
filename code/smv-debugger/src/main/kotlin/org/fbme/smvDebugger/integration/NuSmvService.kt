@@ -23,18 +23,14 @@ class NuSmvService(nuSmvBinaryPath: Path?) : AbstractIntegrationService(nuSmvBin
 
     private fun addSpecification(smvPath: Path?, specification: String) {
         try {
-            Files.write(
-                smvPath, """
-
-$specification""".toByteArray(), StandardOpenOption.APPEND
-            )
+            Files.write(smvPath, "\n\n$specification".toByteArray(), StandardOpenOption.APPEND)
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
     }
 
     private fun createRawCounterexampleFile(smvPath: Path?, counterexample: String?): Path {
-        val rawCounterexamplePath = newPathOf(smvPath!!, NutracService.Companion.NUTRAC_FILE_EXTENSION)
+        val rawCounterexamplePath = newPathOf(smvPath!!, NutracService.NUTRAC_FILE_EXTENSION)
         return try {
             Files.write(rawCounterexamplePath, counterexample!!.toByteArray())
         } catch (e: IOException) {

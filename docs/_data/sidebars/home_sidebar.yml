@@ -1,0 +1,27 @@
+entries:
+  - title: home_sidebar
+    product: FBME
+    version: 0.1
+    folders:
+
+      - title: User manuals
+        output: web, pdf
+        type: frontmatter
+        folderitems:
+          - title: Getting Started
+            url: /getting-started.html
+            output: web, pdf
+            type: frontmatter
+          - title: Blinking Sample
+            url: /blinking-sample.html
+            output: web, pdf
+            type: frontmatter
+
+      - title: Developer guides
+        output: web, pdf
+        type: frontmatter
+        folderitems:
+          - title: Contributing
+            url: /contributing.html
+            output: web, pdf
+            type: frontmatter

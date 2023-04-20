@@ -2,7 +2,7 @@ package org.fbme.scenes.controllers.components
 
 internal class ComponentExtEntry<CompT, CompExtT, FormT>(
     facility: ComponentsExtensionsFacility<CompT, CompExtT, FormT>,
-    val componentExt: CompExtT,
+    componentExt: CompExtT,
     val component: CompT
 ) {
     val componentEntry: ComponentEntry<CompT, FormT>

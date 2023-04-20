@@ -6,7 +6,6 @@ import org.fbme.scenes.controllers.SceneViewpoint
 import org.fbme.scenes.controllers.components.ComponentsFacility
 import org.fbme.scenes.controllers.diagram.ConnectionPathSynchronizer
 import java.awt.Point
-import java.util.function.BiFunction
 
 class ECTransitionPathSynchronizer(
     private val viewpoint: SceneViewpoint,

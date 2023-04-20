@@ -1,13 +1,13 @@
 package org.fbme.ide.platform.adapters
 
-import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.ide.platform.testing.PlatformTestBase
+import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@RunWith(PlatformTestRunner::class)
 // TODO implement real tests
+@RunWith(PlatformTestRunner::class)
 class FBNetworkConverterTest : PlatformTestBase() {
 
     @Test

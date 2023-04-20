@@ -1,7 +1,6 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions
 
 import jetbrains.mps.openapi.editor.cells.EditorCell
-import org.fbme.ide.richediting.adapters.common.actions.Action
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSynchronizer
@@ -17,7 +16,7 @@ import org.fbme.scenes.controllers.diagram.DiagramController
 import org.fbme.scenes.controllers.diagram.DiagramFacility
 import java.awt.Point
 
-abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) : Action {
+abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) {
     @JvmField
     protected val selectedFBs: Set<NetworkComponentView>
 
@@ -46,11 +45,11 @@ abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) : 
         val style = cell.style
         selectedFBs = style.get(RichEditorStyleAttributes.SELECTED_FBS).selectedComponents
         componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY)
-                as ComponentsFacility<NetworkComponentView, Point>
+            as ComponentsFacility<NetworkComponentView, Point>
         connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY)
-                as ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>
+            as ConnectionsFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, FBConnectionCursor, FBConnectionPath>
         diagramFacility = style.get(RichEditorStyleAttributes.DIAGRAM_FACILITY)
-                as DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>
+            as DiagramFacility<NetworkComponentView, NetworkPortView, NetworkConnectionView, Point>
         viewpoint = style.get(RichEditorStyleAttributes.VIEWPOINT)
         diagramController = diagramFacility.diagramController
         componentsSynchronizer = componentsFacility.componentSynchronizer as FBNetworkComponentSynchronizer

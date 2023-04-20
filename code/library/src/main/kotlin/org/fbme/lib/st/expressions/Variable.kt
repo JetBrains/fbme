@@ -1,3 +1,3 @@
 package org.fbme.lib.st.expressions
 
-interface Variable : Expression
+sealed interface Variable : Expression

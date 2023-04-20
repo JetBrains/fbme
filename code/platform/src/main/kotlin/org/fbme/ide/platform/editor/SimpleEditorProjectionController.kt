@@ -1,20 +1,19 @@
 package org.fbme.ide.platform.editor
 
-import com.intellij.openapi.actionSystem.AnAction
 import jetbrains.mps.project.Project
 import org.jetbrains.mps.openapi.model.SNode
 
 class SimpleEditorProjectionController(
-    private val myNode: SNode,
-    override val id: String,
-    private val myProject: Project,
-    private val myHints: Array<String>,
-    private val myDefault: Boolean
+        private val node: SNode,
+        override val id: String,
+        private val project: Project,
+        private val hints: Array<String>,
+        private val hasDefault: Boolean,
+        override val priority: Int
 ) : EditorProjectionController {
-    override val chooseProjectionActions: List<AnAction>
-        get() = listOf<AnAction>(ChooseProjectionAction(this, id))
-    override val createProjectionActions: List<AnAction>
-        get() = emptyList()
+
+    override val chooser: ProjectionChooser
+        get() = ProjectionChooser.Simple(id, ChooseProjectionAction(this, id))
 
     override fun createProjection(name: String): EditorProjection {
         return if (name == id) {
@@ -25,14 +24,10 @@ class SimpleEditorProjectionController(
     }
 
     override fun createDefaultProjection(): EditorProjection? {
-        return if (myDefault) {
-            createProjection0()
-        } else {
-            null
-        }
+        return if (hasDefault) createProjection0() else null
     }
 
     private fun createProjection0(): SimpleEditorProjection {
-        return SimpleEditorProjection(myNode, this, myProject, id, myHints)
+        return SimpleEditorProjection(node, this, project, id, hints)
     }
 }

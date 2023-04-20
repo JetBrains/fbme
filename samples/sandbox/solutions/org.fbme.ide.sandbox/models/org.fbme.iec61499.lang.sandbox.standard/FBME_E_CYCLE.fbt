@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="FBME_E_CYCLE">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START">
+        <With Var="DT" />
+      </Event>
+      <Event Name="STOP" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DT" Type="TIME" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="E_DELAY" Type="E_DELAY" x="143" y="3" />
+    <DataConnections>
+      <Connection Source="DT" Destination="E_DELAY.DT" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="START" Destination="E_DELAY.START" />
+      <Connection Source="STOP" Destination="E_DELAY.STOP" />
+      <Connection Source="E_DELAY.EO" Destination="EO" />
+      <Connection Source="E_DELAY.EO" Destination="E_DELAY.START" dy="-80" dx2="3" dx1="3" />
+    </EventConnections>
+    <EndpointCoordinate Name="EO" x="486" y="53" />
+    <EndpointCoordinate Name="STOP" x="-190" y="103" />
+    <EndpointCoordinate Name="START" x="-216" y="53" />
+    <EndpointCoordinate Name="DT" x="-140" y="253" />
+  </FBNetwork>
+</FBType>
+

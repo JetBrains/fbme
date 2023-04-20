@@ -1,12 +1,12 @@
 package org.fbme.gradle
 
 import org.gradle.api.Project
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.tasks.Copy
-import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.*
-import java.io.File
-import java.util.*
-import javax.xml.parsers.SAXParserFactory
+import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.getting
+import org.gradle.kotlin.dsl.provideDelegate
+import org.gradle.kotlin.dsl.registering
 
 @Suppress("UnstableApiUsage")
 fun GenerateDistPluginTasks(
@@ -14,8 +14,7 @@ fun GenerateDistPluginTasks(
     mpsExtension: MpsExtension,
     pluginId: String?
 ) {
-    with (project) {
-
+    with(project) {
         val tasksEnabled = pluginId != null
 
         val buildSrcPlugin by tasks.getting
@@ -28,7 +27,7 @@ fun GenerateDistPluginTasks(
         val buildDistPlugin by tasks.registering(Copy::class) {
             enabled = tasksEnabled
             dependsOn(buildSrcPlugin, mpsExtension.mpsArtifactTasks)
-
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             from(rootProject.layout.buildDirectory.dir("src-plugins/$pluginId").map { it.asFileTree })
             into(rootProject.layout.buildDirectory.dir("dist-plugins/$pluginId"))
 

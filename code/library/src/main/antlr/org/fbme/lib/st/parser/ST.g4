@@ -68,6 +68,7 @@ literal
     | WString    #wstring
     | Boolean    #boolean
     | BooleanBin #booleanBin
+    | Duration   #duration
     ;
 
 variable
@@ -97,6 +98,17 @@ WString: '"'  (('$' [$"LNPRT] | '$' Hex Hex Hex Hex)| ~["\n\r\\])* '"';
 
 Boolean: 'TRUE'|'FALSE';
 BooleanBin: 'BOOL#'('1'|'0');
+
+Duration: ('T' | 'TIME') '#' '-'? Interval;
+
+Interval: Days | Hours | Minutes | Seconds | Milliseconds;
+FixedPoint: DecInteger ( '.' DecInteger)?;
+
+Days: FixedPoint 'd' | DecInteger 'd' '_' Hours;
+Hours: FixedPoint 'h' | DecInteger 'h' '_' Minutes;
+Minutes: FixedPoint 'm' | DecInteger 'm' '_' Seconds;
+Seconds: FixedPoint 's' | DecInteger 's' '_' Milliseconds;
+Milliseconds: FixedPoint 'ms';
 
 ID: [A-Za-z][A-Za-z_0-9]*;
 

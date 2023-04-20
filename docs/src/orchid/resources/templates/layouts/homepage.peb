@@ -1,9 +1,0 @@
-{% extends 'layouts/index' %}
-
-{% block pageContent %}
-    <section id="pageContent">
-        <article>
-            {% page %}
-        </article>
-    </section>
-{% endblock %}

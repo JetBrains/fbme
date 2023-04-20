@@ -2,7 +2,6 @@ package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.iec61499.declarations.ParameterAssignment
 import org.jdom.Element
-import java.util.*
 
 class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
     PrinterElementBase<ParameterAssignment>(assignment, "Parameter") {
@@ -12,10 +11,10 @@ class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
     }
 
     companion object {
-        @kotlin.jvm.JvmStatic
-        fun printAll(assignments: List<ParameterAssignment?>, element: Element) {
+        @JvmStatic
+        fun printAll(assignments: List<ParameterAssignment>, element: Element) {
             for (assignment in assignments) {
-                element.addContent(ParameterAssignmentPrinter(assignment!!).print())
+                element.addContent(ParameterAssignmentPrinter(assignment).print())
             }
         }
     }

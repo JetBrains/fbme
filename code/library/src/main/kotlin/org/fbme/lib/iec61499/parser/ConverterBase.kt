@@ -1,14 +1,12 @@
 package org.fbme.lib.iec61499.parser
 
-import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.st.STFactory
-import org.jdom.Element
-
 abstract class ConverterBase(arguments: ConverterArguments) : ConverterArguments {
-    override val factory: IEC61499Factory
-    override val stFactory: STFactory
-    override val identifierLocus: IdentifierLocus
-    override val element: Element?
+
+    final override val factory = arguments.factory
+    final override val stFactory = arguments.stFactory
+    final override val identifierLocus = arguments.identifierLocus
+    final override val element = arguments.element
+
     protected fun unescapeXML(text: String?): String? {
         var text = text ?: return null
         text = text.replace("&#10;", "\n")
@@ -20,12 +18,5 @@ abstract class ConverterBase(arguments: ConverterArguments) : ConverterArguments
         text = text.replace("&#xD;", "")
         text = text.replace("&#xA;", "")
         return text
-    }
-
-    init {
-        factory = arguments.factory
-        stFactory = arguments.stFactory
-        identifierLocus = arguments.identifierLocus
-        element = arguments.element
     }
 }

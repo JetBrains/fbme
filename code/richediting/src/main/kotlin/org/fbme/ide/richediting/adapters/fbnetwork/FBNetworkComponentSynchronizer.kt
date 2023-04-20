@@ -6,7 +6,6 @@ import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.scenes.controllers.SceneViewpoint
 import org.fbme.scenes.controllers.components.ComponentSynchronizer
 import java.awt.Point
-import java.util.function.Supplier
 
 class FBNetworkComponentSynchronizer(
     private val viewpoint: SceneViewpoint,

@@ -3,8 +3,8 @@
   <persistence version="9" />
   <languages>
     <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="12" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="19" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="fd392034-7849-419d-9071-12563d152375" name="jetbrains.mps.baseLanguage.closures" version="0" />
     <use id="3a13115c-633c-4c5c-bbcc-75c4219e9555" name="jetbrains.mps.lang.quotation" version="5" />
@@ -58,7 +58,6 @@
       <concept id="1237303669825" name="jetbrains.mps.lang.editor.structure.CellLayout_Indent" flags="nn" index="l2Vlx" />
       <concept id="1237307900041" name="jetbrains.mps.lang.editor.structure.IndentLayoutIndentStyleClassItem" flags="ln" index="lj46D" />
       <concept id="1237308012275" name="jetbrains.mps.lang.editor.structure.IndentLayoutNewLineStyleClassItem" flags="ln" index="ljvvj" />
-      <concept id="1237375020029" name="jetbrains.mps.lang.editor.structure.IndentLayoutNewLineChildrenStyleClassItem" flags="ln" index="pj6Ft" />
       <concept id="1142886221719" name="jetbrains.mps.lang.editor.structure.QueryFunction_NodeCondition" flags="in" index="pkWqt" />
       <concept id="1142886811589" name="jetbrains.mps.lang.editor.structure.ConceptFunctionParameter_node" flags="nn" index="pncrf" />
       <concept id="1237385578942" name="jetbrains.mps.lang.editor.structure.IndentLayoutOnNewLineStyleClassItem" flags="ln" index="pVoyu" />
@@ -1034,15 +1033,15 @@
         <node concept="1HfYo3" id="38k27IRjp_C" role="1HlULh">
           <node concept="3TQlhw" id="38k27IRjp_D" role="1Hhtcw">
             <node concept="3clFbS" id="38k27IRjp_E" role="2VODD2">
-              <node concept="3clFbF" id="5tgPFZSaIQl" role="3cqZAp">
-                <node concept="2OqwBi" id="5tgPFZSaJh9" role="3clFbG">
+              <node concept="3clFbF" id="38k27IRjp_F" role="3cqZAp">
+                <node concept="2OqwBi" id="38k27IRjp_G" role="3clFbG">
                   <node concept="2OqwBi" id="38k27IRjp_H" role="2Oq$k0">
                     <node concept="pncrf" id="38k27IRjp_I" role="2Oq$k0" />
                     <node concept="3TrEf2" id="38k27IRjp_J" role="2OqNvi">
                       <ref role="3Tt5mk" to="xiqq:1zB5ET5xzpJ" resolve="body" />
                     </node>
                   </node>
-                  <node concept="2qgKlT" id="5tgPFZSaJAb" role="2OqNvi">
+                  <node concept="2qgKlT" id="38k27IRjp_K" role="2OqNvi">
                     <ref role="37wK5l" to="t4dg:1zB5ET5xzrF" resolve="languageType" />
                   </node>
                 </node>
@@ -1062,22 +1061,6 @@
       </node>
       <node concept="3EZMnI" id="38k27IRjp_N" role="3EZMnx">
         <property role="S$Qs1" value="true" />
-        <node concept="3F2HdR" id="5tgPFZSaCyC" role="3EZMnx">
-          <ref role="1NtTu8" to="xiqq:5tgPFZSaxk4" resolve="temporaryVariables" />
-          <node concept="lj46D" id="5tgPFZSaCyM" role="3F10Kt">
-            <property role="VOm3f" value="true" />
-          </node>
-          <node concept="pVoyu" id="5tgPFZSaCyN" role="3F10Kt">
-            <property role="VOm3f" value="true" />
-          </node>
-          <node concept="ljvvj" id="5tgPFZSaCyO" role="3F10Kt">
-            <property role="VOm3f" value="true" />
-          </node>
-          <node concept="pj6Ft" id="5tgPFZSaIQd" role="3F10Kt">
-            <property role="VOm3f" value="true" />
-          </node>
-          <node concept="l2Vlx" id="5tgPFZSaCyE" role="2czzBx" />
-        </node>
         <node concept="VPM3Z" id="38k27IRjp_O" role="3F10Kt">
           <property role="VOm3f" value="false" />
         </node>
@@ -1800,8 +1783,8 @@
                     <node concept="3clFbS" id="bRdTVHYPhN" role="3clF47">
                       <node concept="3clFbF" id="bRdTVHYPhO" role="3cqZAp">
                         <node concept="2YIFZM" id="3YrkjfSXbi9" role="3clFbG">
-                          <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                           <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
+                          <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                           <node concept="37vLTw" id="3YrkjfSXbia" role="37wK5m">
                             <ref role="3cqZAo" node="bRdTVHYPhL" resolve="context" />
                           </node>
@@ -1966,15 +1949,15 @@
           <node concept="1HfYo3" id="1_XvODPLhqZ" role="1HlULh">
             <node concept="3TQlhw" id="1_XvODPLhr0" role="1Hhtcw">
               <node concept="3clFbS" id="1_XvODPLhr1" role="2VODD2">
-                <node concept="3clFbF" id="5tgPFZSaBw5" role="3cqZAp">
-                  <node concept="2OqwBi" id="5tgPFZSaBXb" role="3clFbG">
+                <node concept="3clFbF" id="1_XvODPLhr2" role="3cqZAp">
+                  <node concept="2OqwBi" id="1_XvODPLhr3" role="3clFbG">
                     <node concept="2OqwBi" id="1_XvODPLhr4" role="2Oq$k0">
                       <node concept="pncrf" id="1_XvODPLhr5" role="2Oq$k0" />
                       <node concept="3TrEf2" id="1_XvODPLhr6" role="2OqNvi">
                         <ref role="3Tt5mk" to="xiqq:1zB5ET5xzpJ" resolve="body" />
                       </node>
                     </node>
-                    <node concept="2qgKlT" id="5tgPFZSaCmE" role="2OqNvi">
+                    <node concept="2qgKlT" id="1_XvODPLhr7" role="2OqNvi">
                       <ref role="37wK5l" to="t4dg:1zB5ET5xzrF" resolve="languageType" />
                     </node>
                   </node>
@@ -1984,19 +1967,6 @@
           </node>
         </node>
         <node concept="2iRfu4" id="1_XvODPLgSr" role="2iSdaV" />
-      </node>
-      <node concept="3EZMnI" id="5tgPFZSaBgj" role="3EZMnx">
-        <node concept="VPM3Z" id="5tgPFZSaBgk" role="3F10Kt" />
-        <node concept="3XFhqQ" id="5tgPFZSaBgl" role="3EZMnx" />
-        <node concept="3F0ifn" id="5tgPFZSaBgm" role="3EZMnx">
-          <property role="3F0ifm" value="temporary variables:" />
-          <ref role="1k5W1q" to="5kh9:3HBlKeoYLK_" resolve="Keyword" />
-        </node>
-        <node concept="3F2HdR" id="5tgPFZSaBje" role="3EZMnx">
-          <ref role="1NtTu8" to="xiqq:5tgPFZSaxk4" resolve="temporaryVariables" />
-          <node concept="2iRkQZ" id="5tgPFZSaBjz" role="2czzBx" />
-        </node>
-        <node concept="2iRfu4" id="5tgPFZSaBg$" role="2iSdaV" />
       </node>
       <node concept="3F0ifn" id="1_XvODPLhEj" role="3EZMnx">
         <node concept="VPM3Z" id="1_XvODPMQbs" role="3F10Kt" />
@@ -2652,8 +2622,8 @@
                     <node concept="3clFbS" id="2SU8oJdHhUu" role="3clF47">
                       <node concept="3clFbF" id="2SU8oJdHhUv" role="3cqZAp">
                         <node concept="2YIFZM" id="3F_7WhoRfDL" role="3clFbG">
-                          <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                           <ref role="37wK5l" to="p24u:~FBNetworkEditors.createCellForNetworkInstance(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createCellForNetworkInstance" />
+                          <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                           <node concept="37vLTw" id="3F_7WhoRfDM" role="37wK5m">
                             <ref role="3cqZAo" node="2SU8oJdHhUs" resolve="context" />
                           </node>
@@ -3030,8 +3000,8 @@
                         <node concept="3clFbS" id="6lA3BsRt62Z" role="3clF47">
                           <node concept="3clFbF" id="6lA3BsRthvF" role="3cqZAp">
                             <node concept="2YIFZM" id="6lA3BsRthwW" role="3clFbG">
-                              <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
                               <ref role="37wK5l" to="56zl:~ECCEditors.createEccEditor(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createEccEditor" />
+                              <ref role="1Pybhc" to="56zl:~ECCEditors" resolve="ECCEditors" />
                               <node concept="37vLTw" id="6lA3BsRtkaw" role="37wK5m">
                                 <ref role="3cqZAo" node="6lA3BsRt62X" resolve="context" />
                               </node>
@@ -3092,8 +3062,8 @@
                         <node concept="3clFbS" id="6lA3BsRtm2h" role="3clF47">
                           <node concept="3clFbF" id="6lA3BsRtm2i" role="3cqZAp">
                             <node concept="2YIFZM" id="6lA3BsRtmR_" role="3clFbG">
-                              <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                               <ref role="37wK5l" to="p24u:~FBNetworkEditors.createFBNetworkCell(jetbrains.mps.openapi.editor.EditorContext,org.jetbrains.mps.openapi.model.SNode,org.fbme.scenes.controllers.scene.SceneLayout)" resolve="createFBNetworkCell" />
+                              <ref role="1Pybhc" to="p24u:~FBNetworkEditors" resolve="FBNetworkEditors" />
                               <node concept="37vLTw" id="6lA3BsRtmRA" role="37wK5m">
                                 <ref role="3cqZAo" node="6lA3BsRtm2f" resolve="context" />
                               </node>

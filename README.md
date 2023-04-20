@@ -6,7 +6,7 @@
 ### Opening MPS project first time
 
 - Pre-installed JRE 11 is required
-- Install [JetBrains MPS 2021.2.*](https://www.jetbrains.com/mps/download)
+- Install [JetBrains MPS 2021.3.*](https://www.jetbrains.com/mps/download)
 - Run `./gradlew build`
 - Open project with MPS
 - Configure "source" plugins:
@@ -19,4 +19,13 @@
 
 ### Building the standalone IDE
 
-- Run `./gradlew buildRcpDistrib`
+- Run `./gradlew buildLocalDistribution`
+
+### Download
+
+FBME distributions are available for following platforms:
+
+* [Windows](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.win.zip)
+* [Linux](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.tar.gz)
+* [Mac OS](https://teamcity.jetbrains.com/guestAuth/repository/download/MPS_Fbme_PublishArtifacts/.lastPinned/fbme-%7Bbuild.number%7D.macos.zip)
+

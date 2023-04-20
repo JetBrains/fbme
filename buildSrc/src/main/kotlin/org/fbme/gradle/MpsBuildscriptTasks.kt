@@ -5,7 +5,6 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
-import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
 
 fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
@@ -19,7 +18,7 @@ fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
         sourceSets {
             create("mps") {
                 java {
-                    modules.forEach { moduleDir -> srcDir("${moduleDir}/source_gen") }
+                    modules.forEach { moduleDir -> srcDir("$moduleDir/source_gen") }
                 }
             }
         }
@@ -54,8 +53,8 @@ fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
             dependsOn(mpsPrepare)
 
             inputs.file("$projectDir/build.xml")
-            modules.forEach { moduleDir -> inputs.dir("${moduleDir}/models") }
-            modules.forEach { moduleDir -> outputs.dir("${moduleDir}/source_gen") }
+            modules.forEach { moduleDir -> inputs.dir("$moduleDir/models") }
+            modules.forEach { moduleDir -> outputs.dir("$moduleDir/source_gen") }
 
             doLast {
                 executeMpsBuild(antBinaries, "generate")
@@ -90,7 +89,7 @@ fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
 }
 
 fun Project.mpsDistribution(): ConfigurableFileTree =
-    fileTree("../../lib/MPS 2021.2/") {
+    fileTree("../../lib/MPS 2021.3/") {
         include("lib/**/*.jar")
         include("languages/**/*.jar")
         include("plugins/**/*.jar")
@@ -103,7 +102,8 @@ private fun Project.executeMpsBuild(antBinaries: Configuration, vararg targets: 
         classpath = antBinaries
         args(
             "-Dbasedir=$projectDir",
-            "-buildfile", file("build.xml"),
+            "-buildfile",
+            file("build.xml"),
             *targets
         )
     }

@@ -61,7 +61,7 @@ class SmvDebugger(project: MPSProject) {
     }
 
     init {
-        smvService = SmvService(ServicePathProvider.Companion.create(project))
+        smvService = SmvService(ServicePathProvider.create(project))
         debugPanelService = DebugPanelService(project)
         ideaProject = project.project
     }

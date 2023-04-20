@@ -1,3 +1,4 @@
+import org.fbme.gradle.moduleDependency
 
 plugins {
     mps
@@ -8,7 +9,7 @@ dependencies {
     implementation(mpsDistribution())
     implementation(project(":code:library"))
     implementation(project(":code:platform"))
-    implementation(project(":code:richediting" ))
+    implementation(project(":code:richediting"))
 
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
@@ -17,4 +18,6 @@ dependencies {
 mps {
     buildScriptName.set("fbme_smvdebugger")
     moduleName.set("org.fbme.smv-debugger.lib")
+    moduleDependency(project(":code:library"))
 }
+
