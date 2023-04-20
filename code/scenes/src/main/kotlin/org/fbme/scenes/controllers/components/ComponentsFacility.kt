@@ -151,10 +151,10 @@ class ComponentsFacility<CompT, FormT>(
     private inner class MyClickEventListener : ClickEventListener {
         override fun onMouseClicked(event: ClickEvent) {
             val component = layout.findAt(event.awt.x, event.awt.y)
-                    ?: layout.findAt(event.awt.x - 35, event.awt.y - 25)
+                    /*?: layout.findAt(event.awt.x - 35, event.awt.y - 25)
                     ?: layout.findAt(event.awt.x - 35, event.awt.y + 25)
                     ?: layout.findAt(event.awt.x + 35, event.awt.y - 25)
-                    ?: layout.findAt(event.awt.x + 35, event.awt.y + 35)
+                    ?: layout.findAt(event.awt.x + 35, event.awt.y + 35)*/
             if (component != null) {
                 setSelection(component, clickShouldSelect)
                 components[component]!!.relayout()

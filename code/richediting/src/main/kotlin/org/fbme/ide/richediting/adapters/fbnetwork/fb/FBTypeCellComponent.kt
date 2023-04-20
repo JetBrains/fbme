@@ -23,14 +23,11 @@ import org.fbme.scenes.cells.EditorCell_SceneLabel
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.awt.geom.AffineTransform
-import java.awt.geom.Ellipse2D
-import java.awt.geom.GeneralPath
 import java.util.*
 import kotlin.math.max
 
 class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node: SNode, isEditable: Boolean) :
         AbstractFBCell(context, fbType, node, isEditable) {
-
     private val typeNameLabel: EditorCell_SceneLabel
     override val rootCell: EditorCell_Collection
     private val backgroundColor: Color
@@ -42,8 +39,6 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         get() = MPSColors.LIGHT_BLUE
     private val foregroundColor: Color
         get() = rootCell.style.get(StyleAttributes.TEXT_COLOR)
-
-    override var isSelected: Boolean = false
 
     init {
         rootCell = createRootCell()
@@ -171,16 +166,6 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         drawAllPortIcons(graphics, foreground)
     }
 
-    fun drawEditIcon(graphics: Graphics2D, shape: GeneralPath) {
-        if (isSelected) {
-            val x = shape.bounds2D.maxX + 10
-            val y = shape.bounds2D.minY - 20
-            val shape: Shape = Ellipse2D.Double(x, y, 15.0, 15.0)
-            graphics.paint = Color(0x737373)
-            graphics.fill(shape)
-        }
-    }
-
     private fun drawComponentShape(graphics: Graphics2D, background: Color, foreground: Color) {
         val x = rootCell.x
         val y = rootCell.y
@@ -200,7 +185,6 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         graphics.stroke = BasicStroke(scale(1).toFloat())
         graphics.color = foreground
         graphics.draw(shape)
-        drawEditIcon(graphics, shape)
     }
 
     private fun calculateHeight(): Int {

@@ -20,7 +20,6 @@ interface FBCell {
     val eventPortsCount: Int
     val inputEventPortsCount: Int
     val outputEventPortsCount: Int
-    var isSelected: Boolean
     fun getInputEventPortPosition(eventNumber: Int): Point
     fun getOutputEventPortPosition(eventNumber: Int): Point
     fun getInputDataPortPosition(dataNumber: Int): Point

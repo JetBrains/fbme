@@ -1,14 +1,20 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
+import jetbrains.mps.editor.runtime.style.CellAlign
+import jetbrains.mps.editor.runtime.style.Measure
+import jetbrains.mps.editor.runtime.style.Padding
 import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
 import jetbrains.mps.nodeEditor.cells.*
 import jetbrains.mps.openapi.editor.EditorContext
+import jetbrains.mps.openapi.editor.cells.CellAction
+import jetbrains.mps.openapi.editor.cells.CellActionType
 import jetbrains.mps.openapi.editor.cells.EditorCell_Collection
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBSceneCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent
+import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeEditCellComponent
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
@@ -16,6 +22,7 @@ import org.fbme.ide.richediting.viewmodel.NetworkPortView
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
+import org.fbme.scenes.cells.EditorCell_Button
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.components.ComponentController
 import org.jetbrains.mps.openapi.model.SNode
@@ -29,6 +36,7 @@ class FunctionBlockController(
     val expandedComponentsController: ExpandedComponentsController
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
+    private val editButton: EditorCell_Button
     private val cellCollection: jetbrains.mps.nodeEditor.cells.EditorCell_Collection
     private val isEditable: Boolean = view.isEditable
     private val fbCell: FBCell
@@ -59,21 +67,13 @@ class FunctionBlockController(
         )
     }
 
-    private fun createRootCell(
-        context: EditorContext,
-        node: SNode
-    ): jetbrains.mps.nodeEditor.cells.EditorCell_Collection {
+    private fun createRootCell(context: EditorContext, node: SNode): jetbrains.mps.nodeEditor.cells.EditorCell_Collection {
         return EditorCell_Collection(
             context,
             node,
             object : CellLayout_Vertical() {
                 override fun doLayout(editorCells: EditorCell_Collection) {
                     super.doLayout(editorCells)
-                    fbCell.rootCell.moveTo(cellCollection.x, cellCollection.y + lineSize)
-                    myNameProperty.moveTo(
-                        cellCollection.x + fbCell.width / 2 - myNameProperty.width / 2,
-                        cellCollection.y - lineSize / 4
-                    )
                 }
             }
         )
@@ -92,6 +92,14 @@ class FunctionBlockController(
 
     private fun initializeFBCell(): FBCell {
         return FBTypeCellComponent(cellCollection.context, view.type, view.associatedNode, isEditable)
+    }
+
+    private fun initializeFBEditCell(): FBCell {
+        return FBTypeEditCellComponent(cellCollection.context, view.type, view.associatedNode, isEditable)
+    }
+
+    private fun getEditButton(context: EditorContext, node: SNode): EditorCell_Button {
+        return EditorCell_Button(context, node)
     }
 
     val fbInstance: FunctionBlockInstance?
@@ -125,7 +133,7 @@ class FunctionBlockController(
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortPosition(index) else fbCell.getSocketPortPosition(index)
             else -> error("")
         }
-        coordinates.translate(position.x, position.y + lineSize)
+        coordinates.translate(position.x, position.y + getVerticalOffset())
         return coordinates
     }
 
@@ -146,7 +154,7 @@ class FunctionBlockController(
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
             else -> error("Unknown port kind")
         }
-        bounds.translate(position.x, position.y + lineSize)
+        bounds.translate(position.x, position.y + getVerticalOffset())
         return bounds
     }
 
@@ -177,14 +185,14 @@ class FunctionBlockController(
 
     override fun updateCellSelection(selected: Boolean) {
         myNameProperty.style.set(StyleAttributes.FONT_STYLE, if (selected) Font.BOLD else Font.PLAIN)
-       fbCell.isSelected = selected
+        editButton.style.set(StyleAttributes.TRANSPARENT, selected)
     }
 
     override fun paintTrace(g: Graphics?, form: Point) {
         fbCell.paintTrace(
             g!!.create() as Graphics2D,
             form.x,
-            form.y + if (fbCell is FBTypeCellComponent) lineSize else 0
+            form.y + if (fbCell is FBTypeCellComponent) getVerticalOffset() else 0
         )
     }
 
@@ -197,13 +205,45 @@ class FunctionBlockController(
         cellCollection.style.set(RichEditorStyleAttributes.FB, view.component)
         cellCollection.isBig = true
         this.networkInstance = networkInstance
+        //edit button
+        editButton = getEditButton(context, node)
+        editButton.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.RIGHT)
+        editButton.setAction(CellActionType.CLICK, toEditModeAction())
+        editButton.style.set(
+                StyleAttributes.PADDING_BOTTOM,
+                Padding(EditorCell_Button.OY_OFFSET.toDouble(), Measure.PIXELS)
+        )
+        editButton.style.set(StyleAttributes.TRANSPARENT, true)
+        cellCollection.addEditorCell(editButton)
+        //name property
         myNameProperty = getNameProperty(context, view, node)
         myNameProperty.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
+        myNameProperty.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.CENTER)
         cellCollection.addEditorCell(myNameProperty)
+
         val isExpanded = expandedComponentsController.isExpanded(view)
         val editorShift = expandedComponentsController.getEditorShift(view)
+
         fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else initializeFBCell()
         cellCollection.addEditorCell(fbCell.rootCell)
         fbCell.relayout()
+    }
+
+    private fun getVerticalOffset(): Int {
+        return fbCell.rootCell.y - cellCollection.y
+    }
+    private fun toEditModeAction(): CellAction {
+        return object : CellAction {
+            override fun getDescriptionText(): String = "on click"
+
+            override fun executeInCommand(): Boolean = true
+
+            override fun canExecute(context: EditorContext): Boolean = true
+
+            override fun execute(context: EditorContext) =
+                    context.repository.modelAccess.executeCommandInEDT {
+                        view.type.declaration?.name = "new name on click"
+                    }
+        }
     }
 }

@@ -73,10 +73,6 @@ abstract class AbstractFBCell protected constructor(
     override val bounds: Rectangle
         get() = Rectangle(rootCell.x, rootCell.y, width, height)
 
-    override var isSelected: Boolean
-        get() = false
-        set(value) {}
-
     override fun relayout() {
         relayoutChildren()
     }
