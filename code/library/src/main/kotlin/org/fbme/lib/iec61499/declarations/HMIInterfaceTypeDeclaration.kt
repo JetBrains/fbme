@@ -5,6 +5,7 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Reference
 
 interface HMIInterfaceTypeDeclaration : Declaration, ContainedElement {
-//    val symbol: SymbolDefinition
-//    val blockDeclaration: Reference<ServiceInterfaceFBTypeDeclaration>
+    val inputs: MutableList<ParameterDeclaration>
+    val outputs: MutableList<ParameterDeclaration>
+    val source: String
 }

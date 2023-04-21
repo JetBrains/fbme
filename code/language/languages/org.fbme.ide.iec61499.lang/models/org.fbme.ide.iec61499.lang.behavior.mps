@@ -4599,11 +4599,5 @@
       </node>
     </node>
   </node>
-  <node concept="13h7C7" id="QqnmHESSwH">
-    <ref role="13h7C2" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
-    <node concept="13hLZK" id="QqnmHESSwI" role="13h7CW">
-      <node concept="3clFbS" id="QqnmHESSwJ" role="2VODD2" />
-    </node>
-  </node>
 </model>
 

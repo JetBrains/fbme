@@ -5,6 +5,5 @@ import org.fbme.lib.common.RootElement
 
 interface CATBlockTypeDeclaration : Declaration, RootElement {
     val hmiInterface: HMIInterfaceTypeDeclaration
-    val subCATs: List<SubCATDeclaration>
     var blockDeclaration: CompositeFBTypeDeclaration
 }

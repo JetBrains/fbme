@@ -17,6 +17,10 @@ internal class PlatformDeclarationsScope(
         return myRepository.getAdapter(findNode(identifier), CompositeFBTypeDeclaration::class.java)
     }
 
+    override fun findCATBlockTypeDeclaration(identifier: Identifier): CATBlockTypeDeclaration? {
+        return myRepository.getAdapter(findNode(identifier), CATBlockTypeDeclaration::class.java)
+    }
+
     override fun findBasicFBTypeDeclaration(identifier: Identifier): BasicFBTypeDeclaration? {
         return myRepository.getAdapter(findNode(identifier), BasicFBTypeDeclaration::class.java)
     }

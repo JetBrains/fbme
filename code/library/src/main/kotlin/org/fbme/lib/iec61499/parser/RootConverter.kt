@@ -10,6 +10,7 @@ class RootConverter(
 ) {
     fun convertFBType(): FBTypeDeclaration {
         val root = myDocument.rootElement
+        var decl  = myConfiguration.createBasicFbTypeConverter(arguments()).extract().algorithms.get(0).body!!.
         if (root.getChild("FBNetwork") != null) {
             return myConfiguration.createCompositeFbTypeConverter(arguments()).extract()
         }

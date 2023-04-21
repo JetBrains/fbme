@@ -96,6 +96,7 @@
         <reference id="1083260308426" name="enumConstantDeclaration" index="Rm8GQ" />
         <reference id="1144432896254" name="enumClass" index="1Px2BO" />
       </concept>
+      <concept id="1145552809883" name="jetbrains.mps.baseLanguage.structure.AbstractCreator" flags="nn" index="2ShaUh" />
       <concept id="1145552977093" name="jetbrains.mps.baseLanguage.structure.GenericNewExpression" flags="nn" index="2ShNRf">
         <child id="1145553007750" name="creator" index="2ShVmc" />
       </concept>
@@ -356,6 +357,13 @@
       <concept id="4222318806802425298" name="jetbrains.mps.lang.core.structure.SuppressErrorsAnnotation" flags="ng" index="15s5l7">
         <property id="8575328350543493365" name="message" index="huDt6" />
         <property id="2423417345669755629" name="filter" index="1eyWvh" />
+      </concept>
+      <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
+        <property id="709746936026609031" name="linkId" index="3V$3ak" />
+        <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
+      </concept>
+      <concept id="4452961908202556907" name="jetbrains.mps.lang.core.structure.BaseCommentAttribute" flags="ng" index="1X3_iC">
+        <child id="3078666699043039389" name="commentedNode" index="8Wnug" />
       </concept>
     </language>
     <language id="c7fb639f-be78-4307-89b0-b5959c3fa8c8" name="jetbrains.mps.lang.text">
@@ -3153,6 +3161,24 @@
                       </node>
                     </node>
                   </node>
+                  <node concept="1X3_iC" id="6lz3dnnw6j1" role="lGtFl">
+                    <property role="3V$3am" value="statement" />
+                    <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
+                    <node concept="3cpWs8" id="6lz3dnnv9Ai" role="8Wnug">
+                      <node concept="3cpWsn" id="6lz3dnnv9Ao" role="3cpWs9">
+                        <property role="TrG5h" value="dependentList" />
+                        <node concept="3uibUv" id="6lz3dnnv9Aq" role="1tU5fm">
+                          <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                          <node concept="3uibUv" id="6lz3dnnvfaW" role="11_B2D">
+                            <ref role="3uigEE" to="mmaq:~Document" resolve="Document" />
+                          </node>
+                        </node>
+                        <node concept="2ShNRf" id="6lz3dnnvDXV" role="33vP2m">
+                          <node concept="2ShaUh" id="6lz3dnnvDXX" role="2ShVmc" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
                   <node concept="3cpWs8" id="6gadshXOQkM" role="3cqZAp">
                     <node concept="3cpWsn" id="6gadshXOQkN" role="3cpWs9">
                       <property role="TrG5h" value="source" />
@@ -3594,36 +3620,6 @@
               <node concept="10Nm6u" id="43K6Fb_ZB5O" role="3cqZAk" />
             </node>
           </node>
-          <node concept="3KbdKl" id="qeRa5LboTB" role="3KbHQx">
-            <node concept="10M0yZ" id="qeRa5LbKV6" role="3Kbmr1">
-              <ref role="3cqZAo" node="2whheDh8l15" resolve="CFG_FILE_EXT" />
-              <ref role="1PxDUh" node="537nKv8IlHE" resolve="IEC61499ModelFactory" />
-            </node>
-            <node concept="3clFbS" id="qeRa5LbPgU" role="3Kbo56">
-              <node concept="3cpWs6" id="qeRa5LbWm3" role="3cqZAp">
-                <node concept="2OqwBi" id="qeRa5LciLA" role="3cqZAk">
-                  <node concept="1eOMI4" id="qeRa5LciLB" role="2Oq$k0">
-                    <node concept="10QFUN" id="qeRa5LciLC" role="1eOMHV">
-                      <node concept="3uibUv" id="qeRa5LciLD" role="10QFUM">
-                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
-                      </node>
-                      <node concept="2OqwBi" id="qeRa5LciLE" role="10QFUP">
-                        <node concept="37vLTw" id="qeRa5LciLF" role="2Oq$k0">
-                          <ref role="3cqZAo" node="43K6Fb_ZB4e" resolve="converter" />
-                        </node>
-                        <node concept="liA8E" id="qeRa5LciLG" role="2OqNvi">
-                          <ref role="37wK5l" to="epky:~RootConverter.convertCATConfiguration()" resolve="convertCATConfiguration" />
-                        </node>
-                      </node>
-                    </node>
-                  </node>
-                  <node concept="liA8E" id="qeRa5LciLH" role="2OqNvi">
-                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
         </node>
       </node>
       <node concept="3Tqbb2" id="43K6Fb_ZB5Q" role="3clF45" />
@@ -3790,25 +3786,6 @@
             <node concept="2Zo12i" id="43K6FbA0epZ" role="2OqNvi">
               <node concept="chp4Y" id="43K6FbA0g8K" role="2Zo12j">
                 <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbJ" id="gdnNDDK9JK" role="3cqZAp">
-          <node concept="3clFbS" id="gdnNDDK9JL" role="3clFbx">
-            <node concept="3cpWs6" id="gdnNDDK9JM" role="3cqZAp">
-              <node concept="37vLTw" id="gdnNDDK9JN" role="3cqZAk">
-                <ref role="3cqZAo" node="2whheDh8l15" resolve="CFG_FILE_EXT" />
-              </node>
-            </node>
-          </node>
-          <node concept="2OqwBi" id="gdnNDDK9JO" role="3clFbw">
-            <node concept="37vLTw" id="gdnNDDK9JP" role="2Oq$k0">
-              <ref role="3cqZAo" node="43K6Fb_ZIIR" resolve="concept" />
-            </node>
-            <node concept="2Zo12i" id="gdnNDDK9JQ" role="2OqNvi">
-              <node concept="chp4Y" id="gdnNDDK9JR" role="2Zo12j">
-                <ref role="cht4Q" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
               </node>
             </node>
           </node>
