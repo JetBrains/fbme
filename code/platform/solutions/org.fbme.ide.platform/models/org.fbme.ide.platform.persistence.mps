@@ -96,7 +96,6 @@
         <reference id="1083260308426" name="enumConstantDeclaration" index="Rm8GQ" />
         <reference id="1144432896254" name="enumClass" index="1Px2BO" />
       </concept>
-      <concept id="1145552809883" name="jetbrains.mps.baseLanguage.structure.AbstractCreator" flags="nn" index="2ShaUh" />
       <concept id="1145552977093" name="jetbrains.mps.baseLanguage.structure.GenericNewExpression" flags="nn" index="2ShNRf">
         <child id="1145553007750" name="creator" index="2ShVmc" />
       </concept>
@@ -149,6 +148,9 @@
       <concept id="1068431474542" name="jetbrains.mps.baseLanguage.structure.VariableDeclaration" flags="ng" index="33uBYm">
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
+      </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
       </concept>
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
@@ -357,13 +359,6 @@
       <concept id="4222318806802425298" name="jetbrains.mps.lang.core.structure.SuppressErrorsAnnotation" flags="ng" index="15s5l7">
         <property id="8575328350543493365" name="message" index="huDt6" />
         <property id="2423417345669755629" name="filter" index="1eyWvh" />
-      </concept>
-      <concept id="709746936026466394" name="jetbrains.mps.lang.core.structure.ChildAttribute" flags="ng" index="3VBwX9">
-        <property id="709746936026609031" name="linkId" index="3V$3ak" />
-        <property id="709746936026609029" name="role_DebugInfo" index="3V$3am" />
-      </concept>
-      <concept id="4452961908202556907" name="jetbrains.mps.lang.core.structure.BaseCommentAttribute" flags="ng" index="1X3_iC">
-        <child id="3078666699043039389" name="commentedNode" index="8Wnug" />
       </concept>
     </language>
     <language id="c7fb639f-be78-4307-89b0-b5959c3fa8c8" name="jetbrains.mps.lang.text">
@@ -3024,12 +3019,285 @@
                 </node>
               </node>
               <node concept="3clFbH" id="54aNzRMBnUh" role="3cqZAp" />
+              <node concept="3cpWs8" id="19ypCjb6EVE" role="3cqZAp">
+                <node concept="3cpWsn" id="19ypCjb6EVK" role="3cpWs9">
+                  <property role="TrG5h" value="dependents" />
+                  <node concept="3uibUv" id="19ypCjb6EVM" role="1tU5fm">
+                    <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                    <node concept="3uibUv" id="19ypCjb6K7b" role="11_B2D">
+                      <ref role="3uigEE" to="7adg:~RootElement" resolve="RootElement" />
+                    </node>
+                  </node>
+                  <node concept="2ShNRf" id="19ypCjb7g8l" role="33vP2m">
+                    <node concept="1pGfFk" id="19ypCjb7tTx" role="2ShVmc">
+                      <property role="373rjd" value="true" />
+                      <ref role="37wK5l" to="33ny:~ArrayList.&lt;init&gt;()" resolve="ArrayList" />
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node concept="1DcWWT" id="5q8N$bt$0$Q" role="3cqZAp">
+                <node concept="15s5l7" id="5q8N$bt$0$R" role="lGtFl">
+                  <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: type org.jetbrains.mps.openapi.model.SNode is not a subtype of node&lt;INamedConcept&gt;&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/1183457358399]&quot;;" />
+                  <property role="huDt6" value="Error: type org.jetbrains.mps.openapi.model.SNode is not a subtype of node&lt;INamedConcept&gt;" />
+                </node>
+                <node concept="3clFbS" id="5q8N$bt$0$S" role="2LFqv$">
+                  <node concept="3cpWs8" id="5q8N$bt$0$T" role="3cqZAp">
+                    <node concept="3cpWsn" id="5q8N$bt$0$U" role="3cpWs9">
+                      <property role="TrG5h" value="declaration" />
+                      <node concept="3uibUv" id="5q8N$bt$0$V" role="1tU5fm">
+                        <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
+                      </node>
+                      <node concept="2OqwBi" id="5q8N$bt$0$W" role="33vP2m">
+                        <node concept="37vLTw" id="5q8N$bt$0$X" role="2Oq$k0">
+                          <ref role="3cqZAo" node="7Z9MekwcEqM" resolve="platformRepository" />
+                        </node>
+                        <node concept="liA8E" id="5q8N$bt$0$Y" role="2OqNvi">
+                          <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+                          <node concept="37vLTw" id="5q8N$bt$0$Z" role="37wK5m">
+                            <ref role="3cqZAo" node="5q8N$bt$0Aj" resolve="rootNode" />
+                          </node>
+                          <node concept="3VsKOn" id="5q8N$bt$0_0" role="37wK5m">
+                            <ref role="3VsUkX" to="7adg:~Declaration" resolve="Declaration" />
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3cpWs8" id="3XDDk5GRc_0" role="3cqZAp">
+                    <node concept="3cpWsn" id="3XDDk5GRc_1" role="3cpWs9">
+                      <property role="TrG5h" value="owner" />
+                      <node concept="3uibUv" id="3XDDk5GRc_2" role="1tU5fm">
+                        <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+                      </node>
+                      <node concept="2ShNRf" id="3XDDk5GRc_3" role="33vP2m">
+                        <node concept="1pGfFk" id="3XDDk5GRc_4" role="2ShVmc">
+                          <ref role="37wK5l" to="uvki:~PlatformElementsOwner.&lt;init&gt;()" resolve="PlatformElementsOwner" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbH" id="3XDDk5GR8ff" role="3cqZAp" />
+                  <node concept="3cpWs8" id="3XDDk5GQpT6" role="3cqZAp">
+                    <node concept="3cpWsn" id="3XDDk5GQpT9" role="3cpWs9">
+                      <property role="TrG5h" value="conf" />
+                      <node concept="3uibUv" id="3XDDk5GQpT5" role="1tU5fm">
+                        <ref role="3uigEE" to="epky:~Iec61499ConverterConfiguration" resolve="Iec61499ConverterConfiguration" />
+                      </node>
+                      <node concept="2OqwBi" id="3XDDk5GRhY$" role="33vP2m">
+                        <node concept="10M0yZ" id="3XDDk5GQSMw" role="2Oq$k0">
+                          <ref role="3cqZAo" to="25ix:~PlatformConverter.STANDARD_CONFIG_FACTORY" resolve="STANDARD_CONFIG_FACTORY" />
+                          <ref role="1PxDUh" to="25ix:~PlatformConverter" resolve="PlatformConverter" />
+                        </node>
+                        <node concept="liA8E" id="3XDDk5GRoti" role="2OqNvi">
+                          <ref role="37wK5l" to="25ix:~PlatformConverter$DefaultConfigurationFactory.createConfiguration(org.fbme.ide.iec61499.repository.PlatformElementsOwner)" resolve="createConfiguration" />
+                          <node concept="37vLTw" id="3XDDk5GRt6k" role="37wK5m">
+                            <ref role="3cqZAo" node="3XDDk5GRc_1" resolve="owner" />
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbH" id="3XDDk5GRydF" role="3cqZAp" />
+                  <node concept="3cpWs8" id="3XDDk5GRIQ6" role="3cqZAp">
+                    <node concept="3cpWsn" id="3XDDk5GRIQ7" role="3cpWs9">
+                      <property role="TrG5h" value="args" />
+                      <node concept="3uibUv" id="3XDDk5GRIQ8" role="1tU5fm">
+                        <ref role="3uigEE" to="epky:~ConverterArgumentsHolder" resolve="ConverterArgumentsHolder" />
+                      </node>
+                      <node concept="2ShNRf" id="3XDDk5GRXyO" role="33vP2m">
+                        <node concept="1pGfFk" id="3XDDk5GS3fQ" role="2ShVmc">
+                          <property role="373rjd" value="true" />
+                          <ref role="37wK5l" to="epky:~ConverterArgumentsHolder.&lt;init&gt;(org.fbme.lib.iec61499.IEC61499Factory,org.fbme.lib.st.STFactory,org.fbme.lib.iec61499.parser.IdentifierLocus,org.jdom.Element)" resolve="ConverterArgumentsHolder" />
+                          <node concept="2OqwBi" id="3XDDk5GSwLV" role="37wK5m">
+                            <node concept="37vLTw" id="3XDDk5GShtb" role="2Oq$k0">
+                              <ref role="3cqZAo" node="3XDDk5GQpT9" resolve="conf" />
+                            </node>
+                            <node concept="liA8E" id="3XDDk5GS_wy" role="2OqNvi">
+                              <ref role="37wK5l" to="epky:~Iec61499ConverterConfiguration.getEntryFactory()" resolve="getEntryFactory" />
+                            </node>
+                          </node>
+                          <node concept="2OqwBi" id="3XDDk5GSNDZ" role="37wK5m">
+                            <node concept="37vLTw" id="3XDDk5GSJC7" role="2Oq$k0">
+                              <ref role="3cqZAo" node="3XDDk5GQpT9" resolve="conf" />
+                            </node>
+                            <node concept="liA8E" id="3XDDk5GSUqW" role="2OqNvi">
+                              <ref role="37wK5l" to="epky:~Iec61499ConverterConfiguration.getStEntryFactory()" resolve="getStEntryFactory" />
+                            </node>
+                          </node>
+                          <node concept="10Nm6u" id="3XDDk5GTo8f" role="37wK5m" />
+                          <node concept="10Nm6u" id="3XDDk5GTxNU" role="37wK5m" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbH" id="3YPjJkwYAG2" role="3cqZAp" />
+                  <node concept="3cpWs8" id="5q8N$bt$0_1" role="3cqZAp">
+                    <node concept="3cpWsn" id="5q8N$bt$0_2" role="3cpWs9">
+                      <property role="TrG5h" value="dependentsList" />
+                      <node concept="3uibUv" id="5q8N$bt$0_3" role="1tU5fm">
+                        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+                        <node concept="3uibUv" id="2kXZc_TW9bv" role="11_B2D">
+                          <ref role="3uigEE" to="7adg:~RootElement" resolve="RootElement" />
+                        </node>
+                      </node>
+                      <node concept="2OqwBi" id="3XDDk5GTFJ$" role="33vP2m">
+                        <node concept="2ShNRf" id="3YPjJkwXZKP" role="2Oq$k0">
+                          <node concept="1pGfFk" id="3XDDk5GPLCa" role="2ShVmc">
+                            <property role="373rjd" value="true" />
+                            <ref role="37wK5l" to="6phk:~DependentDeclarationGenerator.&lt;init&gt;(org.fbme.lib.common.Declaration,org.fbme.lib.iec61499.parser.ConverterArguments)" resolve="DependentDeclarationGenerator" />
+                            <node concept="37vLTw" id="3XDDk5GPQjC" role="37wK5m">
+                              <ref role="3cqZAo" node="5q8N$bt$0$U" resolve="declaration" />
+                            </node>
+                            <node concept="37vLTw" id="3XDDk5GTAsT" role="37wK5m">
+                              <ref role="3cqZAo" node="3XDDk5GRIQ7" resolve="args" />
+                            </node>
+                          </node>
+                        </node>
+                        <node concept="liA8E" id="3XDDk5GTKWX" role="2OqNvi">
+                          <ref role="37wK5l" to="6phk:~DependentDeclarationGenerator.generate()" resolve="generate" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbF" id="19ypCjb7zE1" role="3cqZAp">
+                    <node concept="2OqwBi" id="19ypCjb7E0b" role="3clFbG">
+                      <node concept="37vLTw" id="19ypCjb7zDZ" role="2Oq$k0">
+                        <ref role="3cqZAo" node="19ypCjb6EVK" resolve="dependents" />
+                      </node>
+                      <node concept="liA8E" id="19ypCjb7Lwh" role="2OqNvi">
+                        <ref role="37wK5l" to="33ny:~List.addAll(java.util.Collection)" resolve="addAll" />
+                        <node concept="37vLTw" id="19ypCjb7Rms" role="37wK5m">
+                          <ref role="3cqZAo" node="5q8N$bt$0_2" resolve="dependentsList" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="2Gpval" id="3XDDk5GUaFr" role="3cqZAp">
+                    <node concept="2GrKxI" id="3XDDk5GUaFt" role="2Gsz3X">
+                      <property role="TrG5h" value="d" />
+                    </node>
+                    <node concept="37vLTw" id="3XDDk5GUjXc" role="2GsD0m">
+                      <ref role="3cqZAo" node="5q8N$bt$0_2" resolve="dependentsList" />
+                    </node>
+                    <node concept="3clFbS" id="3XDDk5GUaFx" role="2LFqv$">
+                      <node concept="3clFbF" id="3XDDk5GUp_D" role="3cqZAp">
+                        <node concept="2OqwBi" id="3XDDk5GUvcq" role="3clFbG">
+                          <node concept="37vLTw" id="3XDDk5GUp_C" role="2Oq$k0">
+                            <ref role="3cqZAo" node="7OBD32HWdgl" resolve="model" />
+                          </node>
+                          <node concept="liA8E" id="6V$K_wBJn4E" role="2OqNvi">
+                            <ref role="37wK5l" to="w1kc:~SModel.addRootNode(org.jetbrains.mps.openapi.model.SNode)" resolve="addRootNode" />
+                            <node concept="2OqwBi" id="6V$K_wBJIEw" role="37wK5m">
+                              <node concept="1eOMI4" id="6V$K_wBJtbp" role="2Oq$k0">
+                                <node concept="10QFUN" id="6V$K_wBJtbm" role="1eOMHV">
+                                  <node concept="3uibUv" id="6V$K_wBJz0J" role="10QFUM">
+                                    <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
+                                  </node>
+                                  <node concept="2GrUjf" id="6V$K_wBJCdU" role="10QFUP">
+                                    <ref role="2Gs0qQ" node="3XDDk5GUaFt" resolve="d" />
+                                  </node>
+                                </node>
+                              </node>
+                              <node concept="liA8E" id="6V$K_wBJNK2" role="2OqNvi">
+                                <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="2OqwBi" id="5q8N$bt$0Ag" role="1DdaDG">
+                  <node concept="37vLTw" id="5q8N$bt$0Ah" role="2Oq$k0">
+                    <ref role="3cqZAo" node="7OBD32HWdgl" resolve="model" />
+                  </node>
+                  <node concept="liA8E" id="5q8N$bt$0Ai" role="2OqNvi">
+                    <ref role="37wK5l" to="w1kc:~SModel.getRootNodes()" resolve="getRootNodes" />
+                  </node>
+                </node>
+                <node concept="3cpWsn" id="5q8N$bt$0Aj" role="1Duv9x">
+                  <property role="TrG5h" value="rootNode" />
+                  <node concept="3Tqbb2" id="5q8N$bt$0Ak" role="1tU5fm">
+                    <ref role="ehGHo" to="tpck:h0TrEE$" resolve="INamedConcept" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3clFbH" id="5q8N$btzUPN" role="3cqZAp" />
               <node concept="1DcWWT" id="7Z9Mekwdwxq" role="3cqZAp">
                 <node concept="15s5l7" id="7Z9MekwdAjq" role="lGtFl">
                   <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: type org.jetbrains.mps.openapi.model.SNode is not a subtype of node&lt;INamedConcept&gt;&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/1183457358399]&quot;;" />
                   <property role="huDt6" value="Error: type org.jetbrains.mps.openapi.model.SNode is not a subtype of node&lt;INamedConcept&gt;" />
                 </node>
                 <node concept="3clFbS" id="49FXEugI_p7" role="2LFqv$">
+                  <node concept="3cpWs8" id="2ZYTOsKi2BF" role="3cqZAp">
+                    <node concept="3cpWsn" id="2ZYTOsKi2BG" role="3cpWs9">
+                      <property role="TrG5h" value="owner" />
+                      <node concept="3uibUv" id="2ZYTOsKi2BH" role="1tU5fm">
+                        <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+                      </node>
+                      <node concept="2ShNRf" id="2ZYTOsKi2BI" role="33vP2m">
+                        <node concept="1pGfFk" id="2ZYTOsKi2BJ" role="2ShVmc">
+                          <ref role="37wK5l" to="uvki:~PlatformElementsOwner.&lt;init&gt;()" resolve="PlatformElementsOwner" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3cpWs8" id="2ZYTOsKi7WH" role="3cqZAp">
+                    <node concept="3cpWsn" id="2ZYTOsKi7WI" role="3cpWs9">
+                      <property role="TrG5h" value="conf" />
+                      <node concept="3uibUv" id="2ZYTOsKi7WJ" role="1tU5fm">
+                        <ref role="3uigEE" to="epky:~Iec61499ConverterConfiguration" resolve="Iec61499ConverterConfiguration" />
+                      </node>
+                      <node concept="2OqwBi" id="2ZYTOsKi7WK" role="33vP2m">
+                        <node concept="10M0yZ" id="2ZYTOsKi7WL" role="2Oq$k0">
+                          <ref role="1PxDUh" to="25ix:~PlatformConverter" resolve="PlatformConverter" />
+                          <ref role="3cqZAo" to="25ix:~PlatformConverter.STANDARD_CONFIG_FACTORY" resolve="STANDARD_CONFIG_FACTORY" />
+                        </node>
+                        <node concept="liA8E" id="2ZYTOsKi7WM" role="2OqNvi">
+                          <ref role="37wK5l" to="25ix:~PlatformConverter$DefaultConfigurationFactory.createConfiguration(org.fbme.ide.iec61499.repository.PlatformElementsOwner)" resolve="createConfiguration" />
+                          <node concept="37vLTw" id="2ZYTOsKi7WN" role="37wK5m">
+                            <ref role="3cqZAo" node="2ZYTOsKi2BG" resolve="owner" />
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3cpWs8" id="2ZYTOsKij1R" role="3cqZAp">
+                    <node concept="3cpWsn" id="2ZYTOsKij1S" role="3cpWs9">
+                      <property role="TrG5h" value="args" />
+                      <node concept="3uibUv" id="2ZYTOsKij1T" role="1tU5fm">
+                        <ref role="3uigEE" to="epky:~ConverterArgumentsHolder" resolve="ConverterArgumentsHolder" />
+                      </node>
+                      <node concept="2ShNRf" id="2ZYTOsKij1U" role="33vP2m">
+                        <node concept="1pGfFk" id="2ZYTOsKij1V" role="2ShVmc">
+                          <property role="373rjd" value="true" />
+                          <ref role="37wK5l" to="epky:~ConverterArgumentsHolder.&lt;init&gt;(org.fbme.lib.iec61499.IEC61499Factory,org.fbme.lib.st.STFactory,org.fbme.lib.iec61499.parser.IdentifierLocus,org.jdom.Element)" resolve="ConverterArgumentsHolder" />
+                          <node concept="2OqwBi" id="2ZYTOsKij1W" role="37wK5m">
+                            <node concept="37vLTw" id="2ZYTOsKij1X" role="2Oq$k0">
+                              <ref role="3cqZAo" node="2ZYTOsKi7WI" resolve="conf" />
+                            </node>
+                            <node concept="liA8E" id="2ZYTOsKij1Y" role="2OqNvi">
+                              <ref role="37wK5l" to="epky:~Iec61499ConverterConfiguration.getEntryFactory()" resolve="getEntryFactory" />
+                            </node>
+                          </node>
+                          <node concept="2OqwBi" id="2ZYTOsKij1Z" role="37wK5m">
+                            <node concept="37vLTw" id="2ZYTOsKij20" role="2Oq$k0">
+                              <ref role="3cqZAo" node="2ZYTOsKi7WI" resolve="conf" />
+                            </node>
+                            <node concept="liA8E" id="2ZYTOsKij21" role="2OqNvi">
+                              <ref role="37wK5l" to="epky:~Iec61499ConverterConfiguration.getStEntryFactory()" resolve="getStEntryFactory" />
+                            </node>
+                          </node>
+                          <node concept="10Nm6u" id="2ZYTOsKij22" role="37wK5m" />
+                          <node concept="10Nm6u" id="2ZYTOsKij23" role="37wK5m" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbH" id="2ZYTOsKioJT" role="3cqZAp" />
+                  <node concept="3clFbH" id="2ZYTOsKid9a" role="3cqZAp" />
                   <node concept="3cpWs8" id="7Z9MekwcQzZ" role="3cqZAp">
                     <node concept="3cpWsn" id="7Z9MekwcQ$0" role="3cpWs9">
                       <property role="TrG5h" value="declaration" />
@@ -3061,9 +3329,12 @@
                       <node concept="2OqwBi" id="7Z9Mekwd5ol" role="33vP2m">
                         <node concept="2ShNRf" id="7Z9Mekwd5om" role="2Oq$k0">
                           <node concept="1pGfFk" id="7Z9Mekwd5on" role="2ShVmc">
-                            <ref role="37wK5l" to="6phk:~RootDeclarationPrinter.&lt;init&gt;(org.fbme.lib.common.Declaration)" resolve="RootDeclarationPrinter" />
+                            <ref role="37wK5l" to="6phk:~RootDeclarationPrinter.&lt;init&gt;(org.fbme.lib.common.Declaration,org.fbme.lib.iec61499.parser.ConverterArguments)" resolve="RootDeclarationPrinter" />
                             <node concept="37vLTw" id="7Z9Mekwd5oo" role="37wK5m">
                               <ref role="3cqZAo" node="7Z9MekwcQ$0" resolve="declaration" />
+                            </node>
+                            <node concept="37vLTw" id="2ZYTOsKiz7B" role="37wK5m">
+                              <ref role="3cqZAo" node="2ZYTOsKij1S" resolve="args" />
                             </node>
                           </node>
                         </node>
@@ -3157,24 +3428,6 @@
                               <property role="Xl_RC" value="/" />
                             </node>
                           </node>
-                        </node>
-                      </node>
-                    </node>
-                  </node>
-                  <node concept="1X3_iC" id="6lz3dnnw6j1" role="lGtFl">
-                    <property role="3V$3am" value="statement" />
-                    <property role="3V$3ak" value="f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123136/1068581517665" />
-                    <node concept="3cpWs8" id="6lz3dnnv9Ai" role="8Wnug">
-                      <node concept="3cpWsn" id="6lz3dnnv9Ao" role="3cpWs9">
-                        <property role="TrG5h" value="dependentList" />
-                        <node concept="3uibUv" id="6lz3dnnv9Aq" role="1tU5fm">
-                          <ref role="3uigEE" to="33ny:~List" resolve="List" />
-                          <node concept="3uibUv" id="6lz3dnnvfaW" role="11_B2D">
-                            <ref role="3uigEE" to="mmaq:~Document" resolve="Document" />
-                          </node>
-                        </node>
-                        <node concept="2ShNRf" id="6lz3dnnvDXV" role="33vP2m">
-                          <node concept="2ShaUh" id="6lz3dnnvDXX" role="2ShVmc" />
                         </node>
                       </node>
                     </node>
@@ -3620,6 +3873,36 @@
               <node concept="10Nm6u" id="43K6Fb_ZB5O" role="3cqZAk" />
             </node>
           </node>
+          <node concept="3KbdKl" id="2ZYTOsKiJmY" role="3KbHQx">
+            <node concept="10M0yZ" id="2ZYTOsKiZ67" role="3Kbmr1">
+              <ref role="3cqZAo" node="2whheDh8l15" resolve="CFG_FILE_EXT" />
+              <ref role="1PxDUh" node="537nKv8IlHE" resolve="IEC61499ModelFactory" />
+            </node>
+            <node concept="3clFbS" id="2ZYTOsKj525" role="3Kbo56">
+              <node concept="3cpWs6" id="2ZYTOsKjaZL" role="3cqZAp">
+                <node concept="2OqwBi" id="2ZYTOsKl$hR" role="3cqZAk">
+                  <node concept="1eOMI4" id="2ZYTOsKl6hn" role="2Oq$k0">
+                    <node concept="10QFUN" id="2ZYTOsKl6hk" role="1eOMHV">
+                      <node concept="3uibUv" id="2ZYTOsKlgq_" role="10QFUM">
+                        <ref role="3uigEE" to="uvki:~PlatformElement" resolve="PlatformElement" />
+                      </node>
+                      <node concept="2OqwBi" id="2ZYTOsKlph6" role="10QFUP">
+                        <node concept="37vLTw" id="2ZYTOsKll$e" role="2Oq$k0">
+                          <ref role="3cqZAo" node="43K6Fb_ZB4e" resolve="converter" />
+                        </node>
+                        <node concept="liA8E" id="2ZYTOsKlv3G" role="2OqNvi">
+                          <ref role="37wK5l" to="epky:~RootConverter.convertCATConfiguration()" resolve="convertCATConfiguration" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="liA8E" id="2ZYTOsKlDtr" role="2OqNvi">
+                    <ref role="37wK5l" to="uvki:~PlatformElement.getNode()" resolve="getNode" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
         </node>
       </node>
       <node concept="3Tqbb2" id="43K6Fb_ZB5Q" role="3clF45" />
@@ -3657,6 +3940,7 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbH" id="2ZYTOsKym8p" role="3cqZAp" />
         <node concept="3clFbJ" id="43K6Fb_ZIJ2" role="3cqZAp">
           <node concept="3clFbS" id="43K6Fb_ZIJ3" role="3clFbx">
             <node concept="3cpWs6" id="43K6Fb_ZIJ4" role="3cqZAp">
@@ -3786,6 +4070,25 @@
             <node concept="2Zo12i" id="43K6FbA0epZ" role="2OqNvi">
               <node concept="chp4Y" id="43K6FbA0g8K" role="2Zo12j">
                 <ref role="cht4Q" to="xiqq:uLhTRR7Mvw" resolve="SystemDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="2ZYTOsKyyt$" role="3cqZAp">
+          <node concept="3clFbS" id="2ZYTOsKyytA" role="3clFbx">
+            <node concept="3cpWs6" id="2ZYTOsKyY2c" role="3cqZAp">
+              <node concept="37vLTw" id="2ZYTOsKza23" role="3cqZAk">
+                <ref role="3cqZAo" node="2whheDh8l15" resolve="CFG_FILE_EXT" />
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="2ZYTOsKyGgD" role="3clFbw">
+            <node concept="37vLTw" id="2ZYTOsKyCpK" role="2Oq$k0">
+              <ref role="3cqZAo" node="43K6Fb_ZIIR" resolve="concept" />
+            </node>
+            <node concept="2Zo12i" id="2ZYTOsKyMdb" role="2OqNvi">
+              <node concept="chp4Y" id="2ZYTOsKyRuR" role="2Zo12j">
+                <ref role="cht4Q" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
               </node>
             </node>
           </node>

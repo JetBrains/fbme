@@ -11,18 +11,9 @@ class CATBlockTypeConverter(arguments: ConverterArguments) :
     override fun extractDeclarationBody(identifier: Identifier?): CATBlockTypeDeclaration {
         checkNotNull(element)
         val fbtd = factory.createCATBlockTypeDeclaration(identifier)
-        fbtd.blockDeclaration = CompositeBlockConverter(with(this.element.getChild("Composite"))).extract()
-//        FBInterfaceConverter(this, fbtd).extractInterface()
-//        FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
-//        FBNetworkConverter(with(element.getChild("SubCAT")), fbtd.network).extractNetwork()
+        fbtd.blockDeclaration.setTargetName(element.getChild("Composite").getAttributeValue("Type"))
+        fbtd.hmiInterface.setTargetName(element.getChild("HMI").getAttributeValue("Type"))
+
         return fbtd
-    }
-    private inner class CompositeBlockConverter(arguments: ConverterArguments) :
-            DeclarationConverterBase<CompositeFBTypeDeclaration>(arguments) {
-        override fun extractDeclarationBody(identifier: Identifier?): CompositeFBTypeDeclaration {
-            checkNotNull(element)
-            val fbd = factory.createCompositeFBTypeDeclaration(identifier)
-            return fbd
-        }
     }
 }

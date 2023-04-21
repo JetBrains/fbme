@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="JSON_SERIALIZER" Comment="Composite FB wrapping other FBs">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="valentinnodan" Date="2023-04-20">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="IS_BOOL" Type="Event" Comment="Normal Execution Request">
+				<With Var="BOOL_VALUE"/>
+				<With Var="NAME"/>
+			</Event>
+			<Event Name="IS_INT" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="INT_VALUE"/>
+			</Event>
+			<Event Name="IS_REAL" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="REAL_VALUE"/>
+			</Event>
+			<Event Name="IS_LREAL" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="LREAL_VALUE"/>
+			</Event>
+			<Event Name="IS_STRING" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="STRING_VALUE"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="RES" Type="Event" Comment="Execution Confirmation">
+				<With Var="MSG"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="NAME" Type="STRING" Comment=""/>
+			<VarDeclaration Name="BOOL_VALUE" Type="BOOL" Comment="Input event qualifier"/>
+			<VarDeclaration Name="INT_VALUE" Type="INT" Comment=""/>
+			<VarDeclaration Name="REAL_VALUE" Type="REAL" Comment=""/>
+			<VarDeclaration Name="LREAL_VALUE" Type="LREAL" Comment=""/>
+			<VarDeclaration Name="STRING_VALUE" Type="STRING" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="MSG" Type="STRING" Comment="Output event qualifier"/>
+		</OutputVars>
+	</InterfaceList>
+	<FBNetwork>
+		<FB Name="JSON_FORMER" Type="JSON_FORMER" Comment="" x="6682.35294117647" y="941.1764705882352">
+		</FB>
+		<FB Name="F_INT_TO_STRING" Type="F_INT_TO_STRING" Comment="" x="2941.176470588235" y="1058.8235294117646">
+		</FB>
+		<FB Name="F_BOOL_TO_STRING" Type="F_BOOL_TO_STRING" Comment="" x="2941.176470588235" y="352.94117647058823">
+		</FB>
+		<FB Name="F_REAL_TO_STRING" Type="F_REAL_TO_STRING" Comment="" x="2941.176470588235" y="1764.705882352941">
+		</FB>
+		<FB Name="F_LREAL_TO_STRING" Type="F_LREAL_TO_STRING" Comment="" x="2823.529411764706" y="2470.5882352941176">
+		</FB>
+		<FB Name="TYPE_SERIALIZER" Type="TYPE_SERIALIZER" Comment="" x="5176.470588235294" y="823.5294117647059">
+		</FB>
+		<EventConnections>
+			<Connection Source="IS_BOOL" Destination="F_BOOL_TO_STRING.REQ" Comment="" dx1="588.2352941176471"/>
+			<Connection Source="IS_INT" Destination="F_INT_TO_STRING.REQ" Comment="" dx1="647.0588235294117"/>
+			<Connection Source="IS_REAL" Destination="F_REAL_TO_STRING.REQ" Comment="" dx1="882.3529411764705"/>
+			<Connection Source="IS_LREAL" Destination="F_LREAL_TO_STRING.REQ" Comment="" dx1="235.2941176470588"/>
+			<Connection Source="F_BOOL_TO_STRING.CNF" Destination="TYPE_SERIALIZER.IS_BOOL" Comment="" dx1="658.8235294117646"/>
+			<Connection Source="F_INT_TO_STRING.CNF" Destination="TYPE_SERIALIZER.IS_INT" Comment="" dx1="676.470588235294"/>
+			<Connection Source="F_REAL_TO_STRING.CNF" Destination="TYPE_SERIALIZER.IS_REAL" Comment="" dx1="658.8235294117646"/>
+			<Connection Source="F_LREAL_TO_STRING.CNF" Destination="TYPE_SERIALIZER.IS_LREAL" Comment="" dx1="635.2941176470588"/>
+			<Connection Source="IS_STRING" Destination="TYPE_SERIALIZER.IS_STRING" Comment="" dx1="2058.8235294117644"/>
+			<Connection Source="TYPE_SERIALIZER.RES" Destination="JSON_FORMER.REQ" Comment="" dx1="258.8235294117647"/>
+			<Connection Source="JSON_FORMER.RES" Destination="RES" Comment="" dx1="2947.0588235294117"/>
+		</EventConnections>
+		<DataConnections>
+			<Connection Source="BOOL_VALUE" Destination="F_BOOL_TO_STRING.IN" Comment="" dx1="588.2352941176471"/>
+			<Connection Source="NAME" Destination="JSON_FORMER.NAME" Comment="" dx1="2058.8235294117644"/>
+			<Connection Source="F_LREAL_TO_STRING.OUT" Destination="TYPE_SERIALIZER.IN_LREAL" Comment="" dx1="635.2941176470588"/>
+			<Connection Source="F_REAL_TO_STRING.OUT" Destination="TYPE_SERIALIZER.IN_REAL" Comment="" dx1="658.8235294117646"/>
+			<Connection Source="F_INT_TO_STRING.OUT" Destination="TYPE_SERIALIZER.IN_INT" Comment="" dx1="676.470588235294"/>
+			<Connection Source="F_BOOL_TO_STRING.OUT" Destination="TYPE_SERIALIZER.IN_BOOL" Comment="" dx1="658.8235294117646"/>
+			<Connection Source="TYPE_SERIALIZER.TYPE_NAME" Destination="JSON_FORMER.TYPE" Comment="" dx1="258.8235294117647"/>
+			<Connection Source="TYPE_SERIALIZER.VALUE" Destination="JSON_FORMER.VALUE" Comment="" dx1="258.8235294117647"/>
+			<Connection Source="JSON_FORMER.DATA_MSG" Destination="MSG" Comment="" dx1="2947.0588235294117"/>
+			<Connection Source="INT_VALUE" Destination="F_INT_TO_STRING.IN" Comment="" dx1="647.0588235294117"/>
+			<Connection Source="REAL_VALUE" Destination="F_REAL_TO_STRING.IN" Comment="" dx1="882.3529411764705"/>
+			<Connection Source="LREAL_VALUE" Destination="F_LREAL_TO_STRING.IN" Comment="" dx1="235.2941176470588"/>
+			<Connection Source="STRING_VALUE" Destination="TYPE_SERIALIZER.IN_STRING" Comment="" dx1="2058.8235294117644"/>
+		</DataConnections>
+	</FBNetwork>
+</FBType>
