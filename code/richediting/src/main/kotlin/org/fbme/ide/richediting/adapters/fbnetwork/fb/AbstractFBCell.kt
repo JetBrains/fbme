@@ -2,8 +2,8 @@ package org.fbme.ide.richediting.adapters.fbnetwork.fb
 
 import jetbrains.mps.nodeEditor.EditorSettings
 import jetbrains.mps.openapi.editor.EditorContext
-import org.fbme.ide.richediting.adapters.fbnetwork.Port
-import org.fbme.ide.richediting.adapters.fbnetwork.PortBase
+import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
+import org.fbme.ide.richediting.adapters.fbnetwork.port.PortBase
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.scenes.cells.EditorCell_SceneLabel
@@ -12,8 +12,6 @@ import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.awt.geom.GeneralPath
-import java.util.function.Function
-import java.util.function.Supplier
 import kotlin.math.max
 
 abstract class AbstractFBCell protected constructor(
@@ -159,7 +157,7 @@ abstract class AbstractFBCell protected constructor(
         return EditorCell_SceneLabel(context, node, fbType.typeName, typeDeclaration == null)
     }
 
-    protected fun getComponentShape(x: Int, y: Int): GeneralPath {
+    protected open fun getComponentShape(x: Int, y: Int): GeneralPath {
         val shape = GeneralPath()
         val eventPortsCount = eventPortsCount
         val lineSize = lineSize

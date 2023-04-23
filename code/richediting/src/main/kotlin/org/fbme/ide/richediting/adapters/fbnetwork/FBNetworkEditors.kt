@@ -160,10 +160,11 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection)
             val componentsLayout = DefaultLayoutModel<NetworkComponentView>(context.repository)
             val expandedComponentsController = ExpandedComponentsController(scene, context)
+            val editedComponentsController = EditedComponentsController(scene)
             val componentsFacility = ComponentsFacility(
                 scene,
                 networkView.componentsView,
-                getComponentControllerFactory(networkInstance, expandedComponentsController),
+                getComponentControllerFactory(networkInstance, expandedComponentsController, editedComponentsController),
                 FBNetworkComponentSynchronizer(viewpoint, scale, expandedComponentsController),
                 componentsLayout,
                 componentsSelection,
@@ -259,12 +260,13 @@ object FBNetworkEditors {
     @JvmStatic
     fun getComponentControllerFactory(
         instance: NetworkInstance,
-        expandedComponentsController: ExpandedComponentsController
+        expandedComponentsController: ExpandedComponentsController,
+        editedComponentsController: EditedComponentsController
     ): ComponentControllerFactory<NetworkComponentView, Point> {
         return object : ComponentControllerFactory<NetworkComponentView, Point> {
             override fun create(context: EditorContext, view: NetworkComponentView): ComponentController<Point>? {
                 if (view is FunctionBlockView) {
-                    return FunctionBlockController(context, view, instance, expandedComponentsController)
+                    return FunctionBlockController(context, view, instance, expandedComponentsController, editedComponentsController)
                 }
                 if (view is InterfaceEndpointView) {
                     return EndpointPortController(context, view)

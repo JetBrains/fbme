@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fbnetwork
+package org.fbme.ide.richediting.adapters.fbnetwork.port
 
 import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes

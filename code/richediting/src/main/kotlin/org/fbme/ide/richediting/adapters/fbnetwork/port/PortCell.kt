@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fbnetwork
+package org.fbme.ide.richediting.adapters.fbnetwork.port
 
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import java.awt.Graphics2D

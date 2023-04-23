@@ -9,6 +9,7 @@ import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.AbstractFBCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors
+import org.fbme.ide.richediting.adapters.fbnetwork.port.PortCell
 import org.fbme.ide.richediting.viewmodel.InterfaceEndpointView
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.scenes.cells.EditorCell_SceneLabel

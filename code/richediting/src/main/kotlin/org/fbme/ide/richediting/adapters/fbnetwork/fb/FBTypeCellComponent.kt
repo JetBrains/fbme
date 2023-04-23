@@ -12,8 +12,8 @@ import jetbrains.mps.openapi.editor.cells.CellActionType
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
-import org.fbme.ide.richediting.adapters.fbnetwork.Port
-import org.fbme.ide.richediting.adapters.fbnetwork.PortWithLabel
+import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
+import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithLabel
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
@@ -47,6 +47,7 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
         rootCell.addEditorCell(typeNameLabel)
         rootCell.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
         initPorts()
+        relayout()
     }
 
     override fun initPorts(ports: MutableList<Port>, portDescriptors: List<FBPortDescriptor>) {

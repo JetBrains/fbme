@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.adapters.fbnetwork
+package org.fbme.ide.richediting.adapters.fbnetwork.port
 
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind

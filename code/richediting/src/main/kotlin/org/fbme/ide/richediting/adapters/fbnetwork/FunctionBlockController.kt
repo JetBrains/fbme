@@ -6,11 +6,13 @@ import jetbrains.mps.editor.runtime.style.Padding
 import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
-import jetbrains.mps.nodeEditor.cells.*
+import jetbrains.mps.nodeEditor.cells.EditorCell
+import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
+import jetbrains.mps.nodeEditor.cells.EditorCell_Property
+import jetbrains.mps.nodeEditor.cells.ModelAccessor
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.cells.CellAction
 import jetbrains.mps.openapi.editor.cells.CellActionType
-import jetbrains.mps.openapi.editor.cells.EditorCell_Collection
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBSceneCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent
@@ -30,16 +32,17 @@ import java.awt.*
 import java.util.function.Function
 
 class FunctionBlockController(
-    context: EditorContext,
-    private val view: FunctionBlockView,
-    networkInstance: NetworkInstance,
-    val expandedComponentsController: ExpandedComponentsController
+        context: EditorContext,
+        private val view: FunctionBlockView,
+        networkInstance: NetworkInstance,
+        val expandedComponentsController: ExpandedComponentsController,
+        val editedController: EditedComponentsController
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
     private val editButton: EditorCell_Button
-    private val cellCollection: jetbrains.mps.nodeEditor.cells.EditorCell_Collection
+    private val cellCollection: EditorCell_Collection
     private val isEditable: Boolean = view.isEditable
-    private val fbCell: FBCell
+    private var fbCell: FBCell
     private val networkInstance: NetworkInstance
 
     override fun getFBCellBounds(position: Point): Rectangle {
@@ -48,45 +51,41 @@ class FunctionBlockController(
 
     private fun getNameProperty(context: EditorContext, view: FunctionBlockView, node: SNode): EditorCell_Property {
         return EditorCell_Property(
-            context,
-            object : ModelAccessor {
-                override fun getText(): String? {
-                    val name = view.component.name
-                    return if (name == "") null else name
-                }
+                context,
+                object : ModelAccessor {
+                    override fun getText(): String? {
+                        val name = view.component.name
+                        return if (name == "") null else name
+                    }
 
-                override fun setText(text: String) {
-                    view.component.name = text
-                }
+                    override fun setText(text: String) {
+                        view.component.name = text
+                    }
 
-                override fun isValidText(text: String): Boolean {
-                    return true
-                }
-            },
-            node
+                    override fun isValidText(text: String): Boolean {
+                        return true
+                    }
+                },
+                node
         )
     }
 
-    private fun createRootCell(context: EditorContext, node: SNode): jetbrains.mps.nodeEditor.cells.EditorCell_Collection {
+    private fun createRootCell(context: EditorContext, node: SNode): EditorCell_Collection {
         return EditorCell_Collection(
-            context,
-            node,
-            object : CellLayout_Vertical() {
-                override fun doLayout(editorCells: EditorCell_Collection) {
-                    super.doLayout(editorCells)
-                }
-            }
+                context,
+                node,
+                CellLayout_Vertical()
         )
     }
 
     private fun initializeFBSceneCell(editorShift: Point = Point()): FBCell {
         return FBSceneCell(
-            cellCollection.context,
-            view.type,
-            view.associatedNode,
-            false,
-            networkInstance.getChild(view.component)!!,
-            editorShift
+                cellCollection.context,
+                view.type,
+                view.associatedNode,
+                false,
+                networkInstance.getChild(view.component)!!,
+                editorShift
         )
     }
 
@@ -123,11 +122,11 @@ class FunctionBlockController(
         val isSource = functionBlockPort.isSource
         val coordinates: Point = when (kind) {
             EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(
-                index
+                    index
             )
 
             EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(
-                index
+                    index
             )
 
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortPosition(index) else fbCell.getSocketPortPosition(index)
@@ -144,11 +143,11 @@ class FunctionBlockController(
         val isSource = functionBlockPort.isSource
         val bounds: Rectangle = when (kind) {
             EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(
-                index
+                    index
             )
 
             EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(
-                index
+                    index
             )
 
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
@@ -190,9 +189,9 @@ class FunctionBlockController(
 
     override fun paintTrace(g: Graphics?, form: Point) {
         fbCell.paintTrace(
-            g!!.create() as Graphics2D,
-            form.x,
-            form.y + if (fbCell is FBTypeCellComponent) getVerticalOffset() else 0
+                g!!.create() as Graphics2D,
+                form.x,
+                form.y + if (fbCell is FBTypeCellComponent) getVerticalOffset() else 0
         )
     }
 
@@ -224,14 +223,32 @@ class FunctionBlockController(
         val isExpanded = expandedComponentsController.isExpanded(view)
         val editorShift = expandedComponentsController.getEditorShift(view)
 
-        fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else initializeFBCell()
+
+        fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else if (editedController.isEdited(view)) initializeFBEditCell() else initializeFBCell()
         cellCollection.addEditorCell(fbCell.rootCell)
         fbCell.relayout()
+    }
+
+    private fun turnToEdit() {
+        val oldCell = fbCell
+        cellCollection.removeCell(oldCell.rootCell)
+        fbCell = if (oldCell is FBTypeCellComponent) {
+            val isExpanded = expandedComponentsController.isExpanded(view)
+            val editorShift = expandedComponentsController.getEditorShift(view)
+            if (isExpanded) initializeFBSceneCell(editorShift) else initializeFBEditCell()
+        } else {
+            initializeFBCell()
+        }
+        cellCollection.addEditorCell(fbCell.rootCell)
+        fbCell.rootCell.moveTo(cellCollection.x, myNameProperty.y + myNameProperty.height)
+        fbCell.relayout()
+        cellCollection.relayout()
     }
 
     private fun getVerticalOffset(): Int {
         return fbCell.rootCell.y - cellCollection.y
     }
+
     private fun toEditModeAction(): CellAction {
         return object : CellAction {
             override fun getDescriptionText(): String = "on click"
@@ -240,10 +257,9 @@ class FunctionBlockController(
 
             override fun canExecute(context: EditorContext): Boolean = true
 
-            override fun execute(context: EditorContext) =
-                    context.repository.modelAccess.executeCommandInEDT {
-                        view.type.declaration?.name = "new name on click"
-                    }
+            override fun execute(context: EditorContext) {
+                if (editedController.isEdited(view)) editedController.removeFB(view) else editedController.addFB(view)
+            }
         }
     }
 }
