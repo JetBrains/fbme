@@ -164,7 +164,7 @@ object FBNetworkEditors {
             val componentsFacility = ComponentsFacility(
                 scene,
                 networkView.componentsView,
-                getComponentControllerFactory(networkInstance, expandedComponentsController, editedComponentsController),
+                getComponentControllerFactory(networkInstance, expandedComponentsController, editedComponentsController, repository.iec61499Factory),
                 FBNetworkComponentSynchronizer(viewpoint, scale, expandedComponentsController),
                 componentsLayout,
                 componentsSelection,
@@ -259,14 +259,15 @@ object FBNetworkEditors {
 
     @JvmStatic
     fun getComponentControllerFactory(
-        instance: NetworkInstance,
-        expandedComponentsController: ExpandedComponentsController,
-        editedComponentsController: EditedComponentsController
+            instance: NetworkInstance,
+            expandedComponentsController: ExpandedComponentsController,
+            editedComponentsController: EditedComponentsController,
+            iec61499Factory: IEC61499Factory
     ): ComponentControllerFactory<NetworkComponentView, Point> {
         return object : ComponentControllerFactory<NetworkComponentView, Point> {
             override fun create(context: EditorContext, view: NetworkComponentView): ComponentController<Point>? {
                 if (view is FunctionBlockView) {
-                    return FunctionBlockController(context, view, instance, expandedComponentsController, editedComponentsController)
+                    return FunctionBlockController(context, view, instance, expandedComponentsController, editedComponentsController, iec61499Factory)
                 }
                 if (view is InterfaceEndpointView) {
                     return EndpointPortController(context, view)

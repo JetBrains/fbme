@@ -21,10 +21,13 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkPortView
+import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.cells.EditorCell_Button
+import org.fbme.scenes.cells.button.CrossButton
+import org.fbme.scenes.cells.button.EditButton
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.components.ComponentController
 import org.jetbrains.mps.openapi.model.SNode
@@ -36,7 +39,8 @@ class FunctionBlockController(
         private val view: FunctionBlockView,
         networkInstance: NetworkInstance,
         val expandedComponentsController: ExpandedComponentsController,
-        val editedController: EditedComponentsController
+        val editedController: EditedComponentsController,
+        iec61499Factory: IEC61499Factory
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
     private val editButton: EditorCell_Button
@@ -93,12 +97,13 @@ class FunctionBlockController(
         return FBTypeCellComponent(cellCollection.context, view.type, view.associatedNode, isEditable)
     }
 
-    private fun initializeFBEditCell(): FBCell {
-        return FBTypeEditCellComponent(cellCollection.context, view.type, view.associatedNode, isEditable)
+    private fun initializeFBEditCell(iec61499Factory: IEC61499Factory): FBCell {
+        return FBTypeEditCellComponent(cellCollection.context, view.type, view.associatedNode, iec61499Factory, isEditable)
     }
 
     private fun getEditButton(context: EditorContext, node: SNode): EditorCell_Button {
-        return EditorCell_Button(context, node)
+
+        return EditorCell_Button(context, node, if (!editedController.isEdited(view)) EditButton(18) else CrossButton(18))
     }
 
     val fbInstance: FunctionBlockInstance?
@@ -224,25 +229,9 @@ class FunctionBlockController(
         val editorShift = expandedComponentsController.getEditorShift(view)
 
 
-        fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else if (editedController.isEdited(view)) initializeFBEditCell() else initializeFBCell()
+        fbCell = if (isExpanded) initializeFBSceneCell(editorShift) else if (editedController.isEdited(view)) initializeFBEditCell(iec61499Factory) else initializeFBCell()
         cellCollection.addEditorCell(fbCell.rootCell)
         fbCell.relayout()
-    }
-
-    private fun turnToEdit() {
-        val oldCell = fbCell
-        cellCollection.removeCell(oldCell.rootCell)
-        fbCell = if (oldCell is FBTypeCellComponent) {
-            val isExpanded = expandedComponentsController.isExpanded(view)
-            val editorShift = expandedComponentsController.getEditorShift(view)
-            if (isExpanded) initializeFBSceneCell(editorShift) else initializeFBEditCell()
-        } else {
-            initializeFBCell()
-        }
-        cellCollection.addEditorCell(fbCell.rootCell)
-        fbCell.rootCell.moveTo(cellCollection.x, myNameProperty.y + myNameProperty.height)
-        fbCell.relayout()
-        cellCollection.relayout()
     }
 
     private fun getVerticalOffset(): Int {
@@ -259,6 +248,7 @@ class FunctionBlockController(
 
             override fun execute(context: EditorContext) {
                 if (editedController.isEdited(view)) editedController.removeFB(view) else editedController.addFB(view)
+                context.editorComponent.updater.update()
             }
         }
     }

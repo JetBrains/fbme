@@ -12,6 +12,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Property
 import jetbrains.mps.nodeEditor.cells.ModelAccessor
 import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
+import jetbrains.mps.openapi.editor.cells.CellAction
 import jetbrains.mps.openapi.editor.cells.CellActionType
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.openapi.editor.style.StyleAttribute
@@ -19,25 +20,30 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
 import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithEditableLabel
-import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithLabel
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.lib.common.*
+import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.instances.NetworkInstance
+import org.fbme.scenes.cells.EditorCell_Button
+import org.fbme.scenes.cells.button.PlusButton
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.awt.geom.AffineTransform
 import java.awt.geom.GeneralPath
 import kotlin.math.max
 
-class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node: SNode, isEditable: Boolean)
+class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node: SNode, val iec61499Factory: IEC61499Factory, isEditable: Boolean)
     : AbstractFBCell(context, fbType, node, isEditable) {
 
     private val typeNameLabel: EditorCell_Property
 
     override val rootCell: EditorCell_Collection
     private val eventPortsContainer: EditorCell_Collection
+    private val eventButtonContiner: EditorCell_Collection
     private val dataPortsContainer: EditorCell_Collection
     private val otherPortsContainer: EditorCell_Collection
 
@@ -62,16 +68,73 @@ class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, 
         rootCell.style.set(RichEditorStyleAttributes.TYPE, fbType)
 
         eventPortsContainer = createPortContainer(fbType.eventInputPorts, fbType.eventOutputPorts, inputEventPorts, outputEventPorts)
+        eventButtonContiner = createButtonContainer(
+                object : CellAction {
+                    override fun getDescriptionText(): String = "Add input event port"
+
+                    override fun executeInCommand(): Boolean = true
+
+                    override fun canExecute(p0: EditorContext?): Boolean = true
+
+                    override fun execute(context: EditorContext) {
+                        context.repository.modelAccess.runWriteInEDT {
+                            val declaration = fbType.declaration
+                            if (declaration is FBInterfaceDeclaration) {
+                                declaration.inputEvents.add(iec61499Factory.createEventDeclaration(StringIdentifier("Iinput")))
+                            }
+                            context.editorComponent.updater.update()
+                        }
+                    }
+                }, object : CellAction {
+                    override fun getDescriptionText(): String = "Add output event port"
+
+                    override fun executeInCommand(): Boolean = true
+
+                    override fun canExecute(p0: EditorContext?): Boolean = true
+
+                    override fun execute(context: EditorContext) {
+                        context.repository.modelAccess.runWriteAction {
+                            val declaration = fbType.declaration
+                            if (declaration is FBInterfaceDeclaration) {
+                                declaration.outputEvents.add(iec61499Factory.createEventDeclaration(StringIdentifier("Ioutput")))
+                            }
+                            context.editorComponent.updater.update()
+                        }
+                    }
+                })
         typeNameLabel = createNameLabel()
         dataPortsContainer = createPortContainer(fbType.dataInputPorts, fbType.dataOutputPorts, inputDataPorts, outputDataPorts)
         otherPortsContainer = createPortContainer(fbType.socketPorts, fbType.plugPorts, socketPorts, plugPorts)
 
         rootCell.addEditorCell(eventPortsContainer)
+        rootCell.addEditorCell(eventButtonContiner)
         rootCell.addEditorCell(typeNameLabel)
         rootCell.addEditorCell(dataPortsContainer)
         rootCell.addEditorCell(otherPortsContainer)
 
         rootCell.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
+    }
+
+    private fun createButtonContainer(inputAction: CellAction, outputAction: CellAction): EditorCell_Collection {
+        val container = object : EditorCell_Collection(context, node, CellLayout_Horizontal()) {}
+
+        val leftButton = createButton(inputAction)
+        val rightButton = createButton(outputAction)
+
+        container.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.CENTER)
+
+        container.addEditorCell(leftButton)
+        container.addEditorCell(rightButton)
+
+        return container
+    }
+
+    private fun createButton(cellAction: CellAction): EditorCell {
+        val button = EditorCell_Button(context, node, PlusButton(15))
+
+        button.setAction(CellActionType.CLICK, cellAction)
+
+        return button
     }
 
     private fun createPortContainer(
@@ -101,7 +164,7 @@ class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, 
         val block = object : EditorCell_Collection(context, node, CellLayout_Vertical()) {}
 
         for (port in portsDescriptors) {
-            val portWithLabel = PortWithEditableLabel(context, node, port)
+            val portWithLabel = PortWithEditableLabel(context, node, port, fbType.declaration)
             portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
             portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
             ports.add(portWithLabel)
@@ -198,8 +261,8 @@ class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, 
         val height = rootCell.height.toDouble()
         val xRight = x + width
         val yTop = y + height
-        val yCenterB = typeNameLabel.y - lineSize / 2
-        val yCenterT = typeNameLabel.y.toDouble() + lineSize / 2
+        val yCenterB = typeNameLabel.y -  lineSize / 2
+        val yCenterT = typeNameLabel.y + lineSize / 2
         val xLeftS = x + lineSize
         val xRightS = xRight - lineSize
         shape.moveTo(x.toDouble(), y.toDouble())
@@ -277,11 +340,12 @@ class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, 
 
     private fun calculateWidth(): Int {
         val typeNameRowWidth = typeNameLabel.width
+        val buttonWidth = eventButtonContiner.width
         val inputsWidth = portsColumnWidth(inputPorts)
         val outputsWidth = portsColumnWidth(outputPorts)
 
-        val regularRowsWidth = inputsWidth + outputsWidth + scale(CENTER_PADDING + 2 * INNER_BORDER_PADDING)
-        return max(regularRowsWidth, typeNameRowWidth) + scale(2 * INNER_BORDER_PADDING)
+        val regularRowsWidth = max(inputsWidth, outputsWidth) * 2 + scale(CENTER_PADDING + 2 * INNER_BORDER_PADDING)
+        return (listOf(regularRowsWidth, typeNameRowWidth).maxOrNull() ?: 0) + scale(2 * INNER_BORDER_PADDING)
     }
 
     private fun createNameLabel(): EditorCell_Property {
@@ -318,17 +382,25 @@ class FBTypeEditCellComponent(context: EditorContext, fbType: FBTypeDescriptor, 
         dataPortsContainer.width = width
         otherPortsContainer.width = width
         addCentralGap(width)
+        eventButtonContiner.height = eventButtonContiner.cells[0].height + lineSize / 2
+        eventButtonContiner.width = width
     }
 
     private fun addCentralGap(width: Int) {
         addCentralGap(width, outputEventPorts, eventPortsContainer)
         addCentralGap(width, outputDataPorts, dataPortsContainer)
         addCentralGap(width, plugPorts, otherPortsContainer)
+        addGapForButtons(width)
     }
 
     private fun addCentralGap(width: Int, ports: List<Port>, container: EditorCell_Collection) {
         val gap = (width - portsColumnWidth(ports) - INNER_BORDER_PADDING)
         container.cells[1].moveTo(gap, container.cells[1].y)
+    }
+
+    private fun addGapForButtons(width: Int) {
+        eventButtonContiner.cells[1].moveTo(width - 15, eventButtonContiner.cells[1].y + eventButtonContiner.height - eventButtonContiner.cells[1].height)
+        eventButtonContiner.cells[0].moveTo(0, eventButtonContiner.cells[0].y + eventButtonContiner.height - eventButtonContiner.cells[0].height)
     }
 
     companion object {
