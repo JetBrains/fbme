@@ -15,4 +15,5 @@ interface DeclarationsScope {
     fun findResourceDeclaration(identifier: Identifier): ResourceDeclaration?
     fun findFunctionBlockDeclaration(identifier: Identifier): FunctionBlockDeclaration?
     fun findAllFBTypeDeclarations(): List<FBTypeDeclaration>
+    fun findAllAdapterTypeDeclarations(): List<AdapterTypeDeclaration>
 }

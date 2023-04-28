@@ -9,7 +9,7 @@ import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Color
 import java.awt.Graphics
 
-class EditorCell_SceneLabel(
+open class EditorCell_SceneLabel(
     context: EditorContext,
     node: SNode?,
     text: String?,

@@ -14,7 +14,7 @@ import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.jetbrains.mps.openapi.model.SNode
 
-class PortWithEditableLabel(context: EditorContext, node: SNode, port: FBPortDescriptor, declaration: Declaration?) : PortBase(port) {
+open class PortWithEditableLabel(context: EditorContext, node: SNode, val port: FBPortDescriptor, declaration: Declaration?) : PortBase(port) {
     val label: EditorCell_Property
 
     init {
@@ -36,7 +36,7 @@ class PortWithEditableLabel(context: EditorContext, node: SNode, port: FBPortDes
 
         label.setAction(CellActionType.BACKSPACE, object : CellAction {
             override fun getDescriptionText(): String {
-               return  "Delete port"
+               return "Delete port"
             }
 
             override fun executeInCommand(): Boolean {

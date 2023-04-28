@@ -75,7 +75,7 @@ abstract class AbstractFBCell protected constructor(
         relayoutChildren()
     }
 
-    private fun getPortPosition(bounds: Rectangle, isOutput: Boolean = false): Point {
+    protected open fun getPortPosition(bounds: Rectangle, isOutput: Boolean = false): Point {
         val lineSize = lineSize
         val xOffset = if (isOutput) bounds.width + scale(PORT_SIZE) / 2 else - scale(PORT_SIZE) / 2
         val x = bounds.x + xOffset

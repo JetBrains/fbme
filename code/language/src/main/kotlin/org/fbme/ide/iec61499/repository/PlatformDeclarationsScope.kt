@@ -61,6 +61,18 @@ internal class PlatformDeclarationsScope(
             .mapNotNull { myRepository.getAdapter(it, FBTypeDeclaration::class.java) }
     }
 
+    override fun findAllAdapterTypeDeclarations(): List<AdapterTypeDeclaration> {
+        return myRepository.mpsRepository.modules
+                .flatMap { it.models }
+                .filter {
+                    myModel == null ||
+                            myModel.reference == it.reference ||
+                            ModelImports(myModel).importedModels.contains(it.reference)
+                }
+                .flatMap { it.rootNodes }
+                .mapNotNull { myRepository.getAdapter(it, AdapterTypeDeclaration::class.java) }
+    }
+
     private fun findNode(identifier: Identifier): SNode? {
         val node = getNodeReference(identifier).resolve(myRepository.mpsRepository) ?: return null
         if (myModel == null) {
