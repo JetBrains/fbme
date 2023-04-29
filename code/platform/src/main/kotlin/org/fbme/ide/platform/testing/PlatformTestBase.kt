@@ -65,7 +65,7 @@ abstract class PlatformTestBase {
         }
     }
 
-    // FIXME copied from IEC61499ModelFactory
+    // FIXME copied from Iec61499ModelFactory
     private class PlatformIdentifierLocus(private val reference: SModelReference) : IdentifierLocus {
 
         private val path: MutableList<String> = ArrayList()

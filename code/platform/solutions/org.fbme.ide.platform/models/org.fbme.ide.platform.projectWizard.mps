@@ -28,7 +28,7 @@
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="pa15" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:jetbrains.mps.persistence(MPS.Core/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" />
-    <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(mps.ide.persistence)" />
+    <import index="r29k" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.persistence(org.fbme.platform.lib/)" />
   </imports>
   <registry>
     <language id="982eb8df-2c96-4bd7-9963-11712ea622e5" name="jetbrains.mps.lang.resources">
@@ -588,7 +588,7 @@
                                                     <ref role="3cqZAo" node="7OBD32Ibu$B" resolve="root" />
                                                   </node>
                                                   <node concept="liA8E" id="7OBD32IbZ0A" role="2OqNvi">
-                                                    <ref role="37wK5l" to="pa15:~DefaultModelRoot.createModel(org.jetbrains.mps.openapi.model.SModelName,jetbrains.mps.extapi.persistence.SourceRoot,jetbrains.mps.extapi.persistence.datasource.DataSourceFactoryFromName,org.jetbrains.mps.openapi.persistence.ModelFactory)" resolve="createModel" />
+                                                    <ref role="37wK5l" to="pa15:~DefaultModelRoot.createModel(org.jetbrains.mps.openapi.model.SModelName,jetbrains.mps.extapi.persistence.SourceRoot,org.jetbrains.mps.openapi.persistence.datasource.DataSourceType,org.jetbrains.mps.openapi.persistence.ModelFactoryType)" resolve="createModel" />
                                                     <node concept="2ShNRf" id="7OBD32IbZLi" role="37wK5m">
                                                       <node concept="1pGfFk" id="7OBD32Ic2pr" role="2ShVmc">
                                                         <ref role="37wK5l" to="mhbf:~SModelName.&lt;init&gt;(java.lang.String)" resolve="SModelName" />
@@ -617,13 +617,13 @@
                                                         </node>
                                                       </node>
                                                     </node>
-                                                    <node concept="10M0yZ" id="7pEplJkvMyH" role="37wK5m">
-                                                      <ref role="3cqZAo" to="51vd:7OBD32IcaQ$" resolve="DATASOURCE_FROM_NAME_FACTORY" />
-                                                      <ref role="1PxDUh" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
+                                                    <node concept="2YIFZM" id="5A9gLZb6Xy0" role="37wK5m">
+                                                      <ref role="37wK5l" to="r29k:~Iec61499ModelFactory.getDST()" resolve="getDST" />
+                                                      <ref role="1Pybhc" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                                                     </node>
-                                                    <node concept="10M0yZ" id="7pEplJkvNG$" role="37wK5m">
-                                                      <ref role="3cqZAo" to="51vd:1_Zi$XmmA7o" resolve="MODEL_FACTORY" />
-                                                      <ref role="1PxDUh" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
+                                                    <node concept="2YIFZM" id="5A9gLZb7g$h" role="37wK5m">
+                                                      <ref role="37wK5l" to="r29k:~Iec61499ModelFactory.getTYPE()" resolve="getTYPE" />
+                                                      <ref role="1Pybhc" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                                                     </node>
                                                   </node>
                                                 </node>
@@ -632,7 +632,6 @@
                                                 </node>
                                               </node>
                                             </node>
-                                            <node concept="3clFbH" id="7OBD32IhjP7" role="3cqZAp" />
                                           </node>
                                           <node concept="3uVAMA" id="7OBD32IhjP9" role="1zxBo5">
                                             <node concept="XOnhg" id="7OBD32IhjPb" role="1zc67B">

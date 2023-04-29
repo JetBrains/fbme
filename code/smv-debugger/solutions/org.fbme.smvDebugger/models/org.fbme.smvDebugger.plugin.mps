@@ -17,13 +17,13 @@
     <import index="tsn" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui.components.panels(MPS.IDEA/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" />
-    <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="qkt" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.actionSystem(MPS.IDEA/)" />
     <import index="qq03" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.actions(MPS.Platform/)" />
     <import index="mhfm" ref="3f233e7f-b8a6-46d2-a57f-795d56775243/java:org.jetbrains.annotations(Annotations/)" />
     <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="jrjr" ref="ea81373a-529d-4e5f-a3cf-1e9d8c08983c/java:org.fbme.smvDebugger.execution(org.fbme.smv-debugger.lib/)" />
     <import index="6yb" ref="ea81373a-529d-4e5f-a3cf-1e9d8c08983c/java:org.fbme.smvDebugger.integration(org.fbme.smv-debugger.lib/)" />
+    <import index="r29k" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.persistence(org.fbme.platform.lib/)" />
     <import index="71xd" ref="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61/java:jetbrains.mps.ide.tools(MPS.Platform/)" implicit="true" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
@@ -363,8 +363,8 @@
               <ref role="37wK5l" to="eoo2:~Path.of(java.lang.String,java.lang.String...)" resolve="of" />
               <ref role="1Pybhc" to="eoo2:~Path" resolve="Path" />
               <node concept="2YIFZM" id="3BsD8pEJia2" role="37wK5m">
-                <ref role="37wK5l" to="51vd:13uTNv4mi$Q" resolve="getPathToElement" />
-                <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
+                <ref role="1Pybhc" to="r29k:~Iec61499Persistence" resolve="Iec61499Persistence" />
+                <ref role="37wK5l" to="r29k:~Iec61499Persistence.getPathToElement(org.jetbrains.mps.openapi.model.SNode)" resolve="getPathToElement" />
                 <node concept="37vLTw" id="3BsD8pEJia3" role="37wK5m">
                   <ref role="3cqZAo" node="3BsD8pEJ65D" resolve="fbTypeDecl" />
                 </node>
@@ -1429,8 +1429,8 @@
               <ref role="37wK5l" to="eoo2:~Path.of(java.lang.String,java.lang.String...)" resolve="of" />
               <ref role="1Pybhc" to="eoo2:~Path" resolve="Path" />
               <node concept="2YIFZM" id="64NFiWSmz3p" role="37wK5m">
-                <ref role="37wK5l" to="51vd:13uTNv4mi$Q" resolve="getPathToElement" />
-                <ref role="1Pybhc" to="51vd:1_Zi$Xmm_zm" resolve="IEC61499Persistence" />
+                <ref role="1Pybhc" to="r29k:~Iec61499Persistence" resolve="Iec61499Persistence" />
+                <ref role="37wK5l" to="r29k:~Iec61499Persistence.getPathToElement(org.jetbrains.mps.openapi.model.SNode)" resolve="getPathToElement" />
                 <node concept="37vLTw" id="64NFiWSmz3q" role="37wK5m">
                   <ref role="3cqZAo" node="64NFiWSmz33" resolve="fbTypeDecl" />
                 </node>

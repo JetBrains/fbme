@@ -14,7 +14,7 @@
     <import index="33ny" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.util(JDK/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
     <import index="k3nr" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.ide.editor(MPS.Editor/)" />
-    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes.lib/)" />
     <import index="hox0" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.style(MPS.Editor/)" />
     <import index="5z5t" ref="r:cb5ca339-5ab1-4d45-82cc-3e94fa36eca9(org.fbme.ide.richediting.plugin)" />
     <import index="vdx1" ref="r:9323096f-e22f-41d1-bc4e-66d2c0d81159(org.fbme.ide.platform.projectWizard)" />
@@ -32,7 +32,6 @@
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" />
     <import index="zn9m" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.openapi.util(MPS.IDEA/)" />
     <import index="epky" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.parser(org.fbme.lib/)" />
-    <import index="51vd" ref="r:61dddea3-21a4-4a11-920c-747c8c1e4777(org.fbme.ide.platform.persistence)" />
     <import index="mhbf" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.model(MPS.OpenAPI/)" />
     <import index="mmaq" ref="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea/java:org.jdom(MPS.Core/)" />
     <import index="guwi" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.io(JDK/)" />
@@ -46,6 +45,7 @@
     <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
     <import index="25ix" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.converter(org.fbme.platform.lib/)" />
     <import index="r3nk" ref="00c8d7a5-e1fd-4a2c-bbdf-9d0d4ac80c94/java:org.fbme.integration.nxt.importer(org.fbme.integration.nxt.lib/)" />
+    <import index="r29k" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.persistence(org.fbme.platform.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
@@ -933,7 +933,7 @@
                     </node>
                     <node concept="2ShNRf" id="6gadshXLdcs" role="33vP2m">
                       <node concept="1pGfFk" id="6gadshXLh$Z" role="2ShVmc">
-                        <ref role="37wK5l" to="51vd:7OBD32HKFSn" resolve="IEC61499ModelHeader" />
+                        <ref role="37wK5l" to="r29k:~Iec61499ModelHeader.&lt;init&gt;(org.jetbrains.mps.openapi.model.SModelReference,java.util.List)" resolve="Iec61499ModelHeader" />
                         <node concept="37vLTw" id="6gadshXLiyn" role="37wK5m">
                           <ref role="3cqZAo" node="49FXEugGWJk" resolve="ref" />
                         </node>
@@ -1457,9 +1457,9 @@
                     <ref role="3cqZAo" node="2M8kVdCcB46" resolve="fileExtension" />
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB2E" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB2F" role="3Kbmr1">
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                      <ref role="3cqZAo" to="51vd:49FXEugGn3U" resolve="FBT_FILE_EXT" />
+                    <node concept="10M0yZ" id="2dnEN0SJ09h" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.FBT_FILE_EXT" resolve="FBT_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB2G" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB2H" role="3cqZAp">
@@ -1487,9 +1487,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB2Q" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB2R" role="3Kbmr1">
-                      <ref role="3cqZAo" to="51vd:2ByE74k$OOc" resolve="ADP_FILE_EXT" />
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
+                    <node concept="10M0yZ" id="2dnEN0SJ9T4" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.ADP_FILE_EXT" resolve="ADP_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB2S" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB2T" role="3cqZAp">
@@ -1517,9 +1517,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB32" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB33" role="3Kbmr1">
-                      <ref role="3cqZAo" to="51vd:23XkovVqfsb" resolve="SUB_FILE_EXT" />
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
+                    <node concept="10M0yZ" id="2dnEN0SJcAS" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SUB_FILE_EXT" resolve="SUB_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB34" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB35" role="3cqZAp">
@@ -1547,9 +1547,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB3e" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB3f" role="3Kbmr1">
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                      <ref role="3cqZAo" to="51vd:23XkovVpUVE" resolve="RES_FILE_EXT" />
+                    <node concept="10M0yZ" id="2dnEN0SJe53" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.RES_FILE_EXT" resolve="RES_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB3g" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB3h" role="3cqZAp">
@@ -1577,9 +1577,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB3q" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB3r" role="3Kbmr1">
-                      <ref role="3cqZAo" to="51vd:23XkovVpZ6d" resolve="DEV_FILE_EXT" />
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
+                    <node concept="10M0yZ" id="2dnEN0SJmET" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.DEV_FILE_EXT" resolve="DEV_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB3s" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB3t" role="3cqZAp">
@@ -1607,9 +1607,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB3A" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB3B" role="3Kbmr1">
-                      <ref role="3cqZAo" to="51vd:23XkovVqbY6" resolve="SEG_FILE_EXT" />
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
+                    <node concept="10M0yZ" id="2dnEN0SJnUz" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SEG_FILE_EXT" resolve="SEG_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB3C" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB3D" role="3cqZAp">
@@ -1637,9 +1637,9 @@
                     </node>
                   </node>
                   <node concept="3KbdKl" id="2M8kVdCcB3M" role="3KbHQx">
-                    <node concept="10M0yZ" id="2M8kVdCcB3N" role="3Kbmr1">
-                      <ref role="3cqZAo" to="51vd:23XkovVpQv5" resolve="SYS_FILE_EXT" />
-                      <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
+                    <node concept="10M0yZ" id="2dnEN0SJpoV" role="3Kbmr1">
+                      <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SYS_FILE_EXT" resolve="SYS_FILE_EXT" />
+                      <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                     </node>
                     <node concept="3clFbS" id="2M8kVdCcB3O" role="3Kbo56">
                       <node concept="3cpWs6" id="2M8kVdCcB3P" role="3cqZAp">
@@ -1699,9 +1699,9 @@
                 <node concept="3clFbF" id="2ByE74kxETY" role="3cqZAp">
                   <node concept="22lmx$" id="1y1FD3r5CaQ" role="3clFbG">
                     <node concept="17R0WA" id="1y1FD3r5Daw" role="3uHU7w">
-                      <node concept="10M0yZ" id="3Nx_SuvaFaa" role="3uHU7w">
-                        <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                        <ref role="3cqZAo" to="51vd:23XkovVqbY6" resolve="SEG_FILE_EXT" />
+                      <node concept="10M0yZ" id="2dnEN0SJAfR" role="3uHU7w">
+                        <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SEG_FILE_EXT" resolve="SEG_FILE_EXT" />
+                        <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                       </node>
                       <node concept="37vLTw" id="1y1FD3r5CHR" role="3uHU7B">
                         <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
@@ -1716,18 +1716,18 @@
                                 <node concept="37vLTw" id="2ByE74kxETX" role="3uHU7B">
                                   <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                                 </node>
-                                <node concept="10M0yZ" id="3Nx_SuvaFgR" role="3uHU7w">
-                                  <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                                  <ref role="3cqZAo" to="51vd:49FXEugGn3U" resolve="FBT_FILE_EXT" />
+                                <node concept="10M0yZ" id="2dnEN0SJyQT" role="3uHU7w">
+                                  <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.FBT_FILE_EXT" resolve="FBT_FILE_EXT" />
+                                  <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                                 </node>
                               </node>
                               <node concept="17R0WA" id="2ByE74kxGxO" role="3uHU7w">
                                 <node concept="37vLTw" id="2ByE74kxGxP" role="3uHU7B">
                                   <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                                 </node>
-                                <node concept="10M0yZ" id="3Nx_SuvaFh5" role="3uHU7w">
-                                  <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                                  <ref role="3cqZAo" to="51vd:2ByE74k$OOc" resolve="ADP_FILE_EXT" />
+                                <node concept="10M0yZ" id="2dnEN0SJ$kF" role="3uHU7w">
+                                  <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.ADP_FILE_EXT" resolve="ADP_FILE_EXT" />
+                                  <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                                 </node>
                               </node>
                             </node>
@@ -1735,9 +1735,9 @@
                               <node concept="37vLTw" id="23XkovVqMYg" role="3uHU7B">
                                 <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                               </node>
-                              <node concept="10M0yZ" id="3Nx_SuvaFfK" role="3uHU7w">
-                                <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                                <ref role="3cqZAo" to="51vd:23XkovVqfsb" resolve="SUB_FILE_EXT" />
+                              <node concept="10M0yZ" id="2dnEN0SJ$kL" role="3uHU7w">
+                                <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SUB_FILE_EXT" resolve="SUB_FILE_EXT" />
+                                <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                               </node>
                             </node>
                           </node>
@@ -1745,9 +1745,9 @@
                             <node concept="37vLTw" id="23XkovVqTVn" role="3uHU7B">
                               <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                             </node>
-                            <node concept="10M0yZ" id="3Nx_SuvaFeT" role="3uHU7w">
-                              <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                              <ref role="3cqZAo" to="51vd:23XkovVpUVE" resolve="RES_FILE_EXT" />
+                            <node concept="10M0yZ" id="2dnEN0SJ$TO" role="3uHU7w">
+                              <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.RES_FILE_EXT" resolve="RES_FILE_EXT" />
+                              <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                             </node>
                           </node>
                         </node>
@@ -1755,9 +1755,9 @@
                           <node concept="37vLTw" id="23XkovVqVGv" role="3uHU7B">
                             <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                           </node>
-                          <node concept="10M0yZ" id="3Nx_SuvaFeu" role="3uHU7w">
-                            <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                            <ref role="3cqZAo" to="51vd:23XkovVpZ6d" resolve="DEV_FILE_EXT" />
+                          <node concept="10M0yZ" id="2dnEN0SJ$TU" role="3uHU7w">
+                            <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.DEV_FILE_EXT" resolve="DEV_FILE_EXT" />
+                            <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                           </node>
                         </node>
                       </node>
@@ -1765,9 +1765,9 @@
                         <node concept="37vLTw" id="23XkovVqXZv" role="3uHU7B">
                           <ref role="3cqZAo" node="2ByE74kxCXX" resolve="fileExt" />
                         </node>
-                        <node concept="10M0yZ" id="3Nx_SuvaFd4" role="3uHU7w">
-                          <ref role="1PxDUh" to="51vd:537nKv8IlHE" resolve="IEC61499ModelFactory" />
-                          <ref role="3cqZAo" to="51vd:23XkovVpQv5" resolve="SYS_FILE_EXT" />
+                        <node concept="10M0yZ" id="2dnEN0SJ$U0" role="3uHU7w">
+                          <ref role="3cqZAo" to="r29k:~Iec61499ModelFactory.SYS_FILE_EXT" resolve="SYS_FILE_EXT" />
+                          <ref role="1PxDUh" to="r29k:~Iec61499ModelFactory" resolve="Iec61499ModelFactory" />
                         </node>
                       </node>
                     </node>
