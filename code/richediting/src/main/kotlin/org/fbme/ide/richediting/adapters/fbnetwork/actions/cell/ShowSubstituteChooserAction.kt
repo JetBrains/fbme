@@ -1,4 +1,4 @@
-package org.fbme.scenes.cells.action
+package org.fbme.ide.richediting.adapters.fbnetwork.actions.cell
 
 import jetbrains.mps.nodeEditor.EditorComponent
 import jetbrains.mps.openapi.editor.EditorContext
@@ -13,6 +13,6 @@ open class ShowSubstituteChooserAction(
 
     override fun execute(context: EditorContext?) {
         val ec = context?.editorComponent as? EditorComponent
-        ec?.activateNodeSubstituteChooser(cell, true)
+        ec?.activateNodeSubstituteChooser(cell, true, true)
     }
 }

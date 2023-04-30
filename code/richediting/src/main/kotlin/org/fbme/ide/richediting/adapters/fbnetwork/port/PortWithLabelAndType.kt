@@ -12,7 +12,8 @@ import org.fbme.ide.richediting.adapters.fbnetwork.suggestion.CustomSubstituteIn
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.scenes.cells.EditorCell_SceneLabel
-import org.fbme.scenes.cells.action.ShowSubstituteChooserAction
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.ShowSubstituteChooserAction
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.scenes.viewmodel.CompletionItem
 import org.jetbrains.mps.openapi.model.SNode
 
@@ -20,7 +21,7 @@ class PortWithLabelAndType(
         context: EditorContext,
         node: SNode,
         port: FBPortDescriptor,
-        declaration: Declaration?,
+        val declaration: Declaration?,
         typeName: String?,
         items: List<CompletionItem>,
 ) : PortWithEditableLabel(context, node, port, declaration) {
@@ -49,6 +50,7 @@ class PortWithLabelAndType(
         //Add showing suggestion
         typeLabel.setAction(CellActionType.CLICK, ShowSubstituteChooserAction(typeLabel))
         typeLabel.substituteInfo = CustomSubstituteInfo(context, typeLabel, items)
+        typeLabel.style.set(RichEditorStyleAttributes.PORT, port)
 
         return typeLabel
     }

@@ -1,4 +1,4 @@
-package org.fbme.scenes.cells.action
+package org.fbme.ide.richediting.adapters.fbnetwork.actions.cell
 
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.cells.CellAction

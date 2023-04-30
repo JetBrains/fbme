@@ -219,16 +219,6 @@ class ComponentsFacility<CompT, FormT>(
         }
     }
 
-    private inner class MyCursorListener() : CursorListener {
-        override fun onCursorMoved(event: CursorEvent) {
-            val component = layout.findAt(event.awt.x, event.awt.y)
-
-            if (component != null) {
-
-            }
-        }
-    }
-
     companion object {
         private val SELECTION_KEY = SceneStateKey<Set<*>?>("comp-selection")
     }
@@ -244,7 +234,6 @@ class ComponentsFacility<CompT, FormT>(
         editor.addCellProvider(componentsLayer, MyCellProvider())
         editor.addClickListener(componentsLayer, MyClickEventListener())
         editor.addDragListener(componentsLayer, MyDragEventListener())
-        editor.addCursorListener(MyCursorListener())
         editor.addPainter(tracesLayer, MyPainter())
         editor.addInitializer(MySelectionInitializer())
     }

@@ -1,7 +1,7 @@
-package org.fbme.scenes.cells.action.port
+package org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.port
 
 import jetbrains.mps.openapi.editor.EditorContext
-import org.fbme.scenes.cells.action.DefaultAction
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.DefaultAction
 import java.util.function.Supplier
 
 open class AddPortAction<T>(

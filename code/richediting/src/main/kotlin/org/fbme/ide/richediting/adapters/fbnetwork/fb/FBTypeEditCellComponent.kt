@@ -9,7 +9,6 @@ import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Horizontal
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property
-import jetbrains.mps.nodeEditor.cells.ModelAccessor
 import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.cells.CellAction
@@ -18,22 +17,24 @@ import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.DeclarationNameAccessor
 import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortActionFactory
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithEditableLabel
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithLabelAndType
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
-import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
+import org.fbme.lib.iec61499.declarations.FBInterfaceDeclarationWithAdapters
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.declarations.SocketPluginDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.NetworkInstance
-import org.fbme.lib.st.types.DataType
-import org.fbme.lib.st.types.ElementaryType
-import org.fbme.lib.st.types.GenericType
+import org.fbme.lib.st.types.DataTypeUtil
 import org.fbme.scenes.cells.EditorCell_Button
 import org.fbme.scenes.cells.button.PlusButton
 import org.fbme.scenes.viewmodel.CompletionItem
@@ -41,6 +42,7 @@ import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.awt.geom.AffineTransform
 import java.awt.geom.GeneralPath
+import java.util.*
 import kotlin.math.max
 
 class FBTypeEditCellComponent(
@@ -55,19 +57,15 @@ class FBTypeEditCellComponent(
     private val typeNameLabel: EditorCell_Property
 
     override val rootCell: EditorCell_Collection
+    private val buttons: EnumMap<EntryKind, EditorCell_Collection>
     private val eventPortsContainer: EditorCell_Collection
-    private val eventButtonContiner: EditorCell_Collection
     private val dataPortsContainer: EditorCell_Collection
-    private val dataButtonContiner: EditorCell_Collection
     private val otherPortsContainer: EditorCell_Collection
-    private val otherButtonContainer: EditorCell_Collection
 
     private val inputPorts: Set<Port>
         get() = inputEventPorts.union(inputDataPorts).union(socketPorts)
-
     private val outputPorts: Set<Port>
         get() = outputEventPorts.union(outputDataPorts).union(plugPorts)
-
     private val backgroundColor: Color
         get() {
             val background = rootCell.style.get(StyleAttributes.BACKGROUND_COLOR)
@@ -79,40 +77,37 @@ class FBTypeEditCellComponent(
         get() = rootCell.style.get(StyleAttributes.TEXT_COLOR)
 
     init {
-        val declaration = fbType.declaration as FBInterfaceDeclaration
+        val declaration = fbType.declaration
 
         rootCell = createRootCell()
         rootCell.style.set(RichEditorStyleAttributes.TYPE, fbType)
 
+        buttons = EnumMap<EntryKind, EditorCell_Collection>(EntryKind::class.java)
+
         eventPortsContainer = createPortContainer(fbType.eventInputPorts, fbType.eventOutputPorts, inputEventPorts, outputEventPorts, ::createPortBlock)
-
-        eventButtonContiner = createButtonContainer(
-                PortActionFactory.getInputEventAction(declaration, iec61499Factory),
-                PortActionFactory.getOutputEventAction(declaration, iec61499Factory)
-        )
-
         typeNameLabel = createNameLabel()
-
         dataPortsContainer = createPortContainer(fbType.dataInputPorts, fbType.dataOutputPorts, inputDataPorts, outputDataPorts, ::createDataPortBlock)
-
-        dataButtonContiner = createButtonContainer(
-                PortActionFactory.getInputParameterAction(declaration, iec61499Factory),
-                PortActionFactory.getOutputParameterAction(declaration, iec61499Factory))
-
         otherPortsContainer = createPortContainer(fbType.socketPorts, fbType.plugPorts, socketPorts, plugPorts, ::createPlugSocketPortBlock)
-        otherButtonContainer = createButtonContainer(
-                PortActionFactory.getSocketAction(declaration as FBInterfaceDeclarationWithAdapters, iec61499Factory),
-                PortActionFactory.getPluginAction(declaration, iec61499Factory)
-        )
 
         rootCell.addEditorCell(eventPortsContainer)
-        rootCell.addEditorCell(eventButtonContiner)
+        if (declaration is FBInterfaceDeclaration) {
+            buttons[EntryKind.EVENT] = createButtonContainer(PortActionFactory.createInputEventAction(declaration, iec61499Factory), PortActionFactory.createOutputEventAction(declaration, iec61499Factory))
+
+            rootCell.addEditorCell(buttons[EntryKind.EVENT])
+        }
         rootCell.addEditorCell(typeNameLabel)
         rootCell.addEditorCell(dataPortsContainer)
-        rootCell.addEditorCell(dataButtonContiner)
-        rootCell.addEditorCell(otherPortsContainer)
-        rootCell.addEditorCell(otherButtonContainer)
+        if (declaration is FBInterfaceDeclaration) {
+            buttons[EntryKind.DATA] = createButtonContainer(PortActionFactory.createInputParameterAction(declaration, iec61499Factory), PortActionFactory.createOutputParameterAction(declaration, iec61499Factory))
 
+            rootCell.addEditorCell(buttons[EntryKind.DATA])
+        }
+        rootCell.addEditorCell(otherPortsContainer)
+        if (declaration is FBInterfaceDeclarationWithAdapters) {
+            buttons[EntryKind.ADAPTER] = createButtonContainer(PortActionFactory.createSocketAction(declaration, iec61499Factory), PortActionFactory.createPluginAction(declaration, iec61499Factory))
+
+            rootCell.addEditorCell(buttons[EntryKind.ADAPTER])
+        }
         rootCell.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
     }
 
@@ -131,7 +126,7 @@ class FBTypeEditCellComponent(
     }
 
     private fun createButton(cellAction: CellAction): EditorCell {
-        val button = EditorCell_Button(context, node, PlusButton(15))
+        val button = EditorCell_Button(context, node, PlusButton(PLUS_BUTTON_SIZE))
 
         button.setAction(CellActionType.CLICK, cellAction)
 
@@ -189,15 +184,12 @@ class FBTypeEditCellComponent(
             padding: StyleAttribute<Padding>,
     ): EditorCell_Collection {
         val block = object : EditorCell_Collection(context, node, CellLayout_Vertical()) {}
-        val types = mutableListOf<DataType>()
-        types.addAll(ElementaryType.values())
-        types.addAll(GenericType.values())
 
         for (port in portsDescriptors) {
             val typeDeclaration = port.declaration as ParameterDeclaration
-            val items = types.map {
+            val items = DataTypeUtil.getBasicTypes().map {
                 object : CompletionItem {
-                    override fun getMatchingText(pattern: String?): String? = it.stringify()
+                    override fun getMatchingText(pattern: String?): String = it.stringify()
 
                     override val descriptionText: String = ""
 
@@ -227,45 +219,24 @@ class FBTypeEditCellComponent(
         val types = scope.findAllAdapterTypeDeclarations()
 
         for (port in portsDescriptors) {
-            if (port.isInput) {
-                val typeDeclaration = port.declaration as SocketDeclaration
-                val items = types.map {
-                    object : CompletionItem {
-                        override fun getMatchingText(pattern: String?): String = it.name
+            val typeDeclaration = port.declaration as SocketPluginDeclaration
+            val items = types.map {
+                object : CompletionItem {
+                    override fun getMatchingText(pattern: String?): String = it.name
 
-                        override val descriptionText: String = ""
+                    override val descriptionText: String = ""
 
-                        override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
-                            typeDeclaration.typeReference.setTarget(it)
-                            return null
-                        }
+                    override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
+                        typeDeclaration.typeReference.setTarget(it)
+                        return null
                     }
                 }
-                val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
-                portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
-                portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
-                ports.add(portWithLabel)
-                block.addEditorCell(portWithLabel.cell)
-            } else {
-                val typeDeclaration = port.declaration as PlugDeclaration
-                val items = types.map {
-                    object : CompletionItem {
-                        override fun getMatchingText(pattern: String?): String = it.name
-
-                        override val descriptionText: String = ""
-
-                        override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
-                            typeDeclaration.typeReference.setTarget(it)
-                            return null
-                        }
-                    }
-                }
-                val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
-                portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
-                portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
-                ports.add(portWithLabel)
-                block.addEditorCell(portWithLabel.cell)
             }
+            val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
+            portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
+            portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
+            ports.add(portWithLabel)
+            block.addEditorCell(portWithLabel.cell)
         }
 
         return block
@@ -401,9 +372,6 @@ class FBTypeEditCellComponent(
         g.draw(shape)
     }
 
-    override val eventPortsCount: Int
-        get() = super.eventPortsCount + 3
-
     private fun getPortBounds(port: Port, isOutput: Boolean = false): Rectangle {
         val editablePort = port as PortWithEditableLabel
 
@@ -429,7 +397,6 @@ class FBTypeEditCellComponent(
 
     private fun calculateWidth(): Int {
         val typeNameRowWidth = typeNameLabel.width
-        val buttonWidth = eventButtonContiner.width
         val inputsWidth = portsColumnWidth(inputPorts)
         val outputsWidth = portsColumnWidth(outputPorts)
 
@@ -438,19 +405,7 @@ class FBTypeEditCellComponent(
     }
 
     private fun createNameLabel(): EditorCell_Property {
-        val typeDeclaration = fbType.declaration
-
-        val result = EditorCell_Property(context, object : ModelAccessor {
-            override fun getText(): String? = typeDeclaration?.name
-
-            override fun setText(text: String) {
-                typeDeclaration?.name = text
-            }
-
-            override fun isValidText(text: String): Boolean {
-                return true
-            }
-        }, node)
+        val result = EditorCell_Property(context, DeclarationNameAccessor(fbType.declaration) { !it.isNullOrEmpty() }, node)
 
         result.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.CENTER)
         result.style.set(StyleAttributes.FONT_SIZE, fontSize)
@@ -467,36 +422,37 @@ class FBTypeEditCellComponent(
         dataPortsContainer.width = width
         otherPortsContainer.width = width
         addCentralGap(width)
-        eventButtonContiner.height = eventButtonContiner.cells[0].height + lineSize / 2
-        dataButtonContiner.height = dataButtonContiner.cells[0].height + lineSize / 2
-        otherButtonContainer.height = otherButtonContainer.cells[0].height + lineSize / 2
-        eventButtonContiner.width = width
-        dataButtonContiner.width = width
-        otherButtonContainer.width = width
+
+        buttons.values.forEach {
+            addGapForButtons(width, it)
+            it.height = it.cells.first().height + lineSize / 2
+            it.width = width
+        }
     }
 
     private fun addCentralGap(width: Int) {
         addCentralGap(width, outputEventPorts, eventPortsContainer)
         addCentralGap(width, outputDataPorts, dataPortsContainer)
         addCentralGap(width, plugPorts, otherPortsContainer)
-        addGapForButtons(width, eventButtonContiner)
-        addGapForButtons(width, dataButtonContiner)
-        addGapForButtons(width, otherButtonContainer)
     }
 
     private fun addCentralGap(width: Int, ports: List<Port>, container: EditorCell_Collection) {
+        val right = container.cells.last()
         val gap = (width - portsColumnWidth(ports) - INNER_BORDER_PADDING)
-        container.cells[1].moveTo(gap, container.cells[1].y)
+        right.moveTo(gap, right.y)
     }
 
     private fun addGapForButtons(width: Int, cell: EditorCell_Collection) {
-        cell.cells[1].moveTo(width - 15, cell.cells[1].y + cell.height - cell.cells[1].height)
-        cell.cells[0].moveTo(0, cell.cells[0].y + cell.height - cell.cells[0].height)
+        val left = cell.cells.first()
+        val right = cell.cells.last()
+        right.moveTo(width - 15, right.y + cell.height - right.height)
+        left.moveTo(0, left.y + cell.height - left.height)
     }
 
     companion object {
         private const val CENTER_PADDING = 20
         private const val INNER_BORDER_PADDING = 2
+        private const val PLUS_BUTTON_SIZE = 15
 
         private fun portsColumnWidth(ports: Collection<Port>): Int {
             return ports.maxOfOrNull { if (it is PortWithLabelAndType) it.cell.width else (it as PortWithEditableLabel).label.width }
