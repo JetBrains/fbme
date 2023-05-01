@@ -59,10 +59,9 @@ object FBNetworkEditors {
                 require(!(extView !is InlineValueView || compController !is FunctionBlockController))
                 val repository: PlatformElementsOwner =
                     PlatformRepositoryProvider.getInstance(context.operationContext.project)
-                val node = extView.associatedNode.parent
+                val node = extView.associatedNode.parent ?: error("Parameter assignment is null")
                 val parameter = repository.getAdapter(node, ParameterAssignment::class.java)
-                    ?: error("Parameter assignment is null")
-                val cell = RicheditingMpsBridge.createInlineValueCell(context, node!!)
+                val cell = RicheditingMpsBridge.createInlineValueCell(context, node)
                 if (parameter.value == null) {
                     val action: CellAction = object : CellAction {
                         override fun getDescriptionText(): String {
