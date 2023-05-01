@@ -1,4 +1,4 @@
-package org.fbme.integration.nxt.importer
+package org.fbme.integration.nxt.refactorings
 
 class CoordinateShift(xInput: Int, private val xOutput: Int) {
     var yDiff = 50

@@ -1,4 +1,4 @@
-package org.fbme.integration.nxt.importer
+package org.fbme.integration.nxt.refactorings
 
 import org.fbme.lib.iec61499.fbnetwork.PortPath
 import java.awt.Point

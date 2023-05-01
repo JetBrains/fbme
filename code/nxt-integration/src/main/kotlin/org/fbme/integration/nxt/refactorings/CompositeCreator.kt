@@ -1,4 +1,4 @@
-package org.fbme.integration.nxt.importer
+package org.fbme.integration.nxt.refactorings
 
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.lib.common.CompositeReference
