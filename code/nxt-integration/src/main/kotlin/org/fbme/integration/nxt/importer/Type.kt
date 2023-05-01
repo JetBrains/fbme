@@ -1,6 +1,5 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer
 
-public enum Type {
-    INPUT,
-    OUTPUT
+enum class Type {
+    INPUT, OUTPUT
 }

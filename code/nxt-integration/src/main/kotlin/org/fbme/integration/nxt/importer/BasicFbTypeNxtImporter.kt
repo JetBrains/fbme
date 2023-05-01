@@ -1,171 +1,132 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
-import org.fbme.lib.common.Identifier;
-import org.fbme.lib.common.StringIdentifier;
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration;
-import org.fbme.lib.iec61499.declarations.ParameterDeclaration;
-import org.fbme.lib.iec61499.ecc.ECTransitionCondition;
-import org.fbme.lib.iec61499.parser.BasicFBTypeConverter;
-import org.fbme.lib.iec61499.parser.ConverterArguments;
-import org.fbme.lib.iec61499.parser.STConverter;
-import org.fbme.lib.st.STFactory;
-import org.fbme.lib.st.expressions.*;
-import org.fbme.lib.st.types.DataType;
-import org.jetbrains.annotations.NotNull;
+import org.fbme.lib.common.StringIdentifier
+import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.ecc.ECTransitionCondition
+import org.fbme.lib.iec61499.parser.BasicFBTypeConverter
+import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.STConverter.parseExpression
+import org.fbme.lib.iec61499.parser.STConverter.parseStatementListWithDeclarations
+import org.fbme.lib.st.STFactory
+import org.fbme.lib.st.expressions.*
 
-import java.util.Objects;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-
-public class BasicFbTypeNxtImporter extends BasicFBTypeConverter {
-
-    public BasicFbTypeNxtImporter(ConverterArguments arguments) {
-        super(arguments);
-    }
-
-    @Override
-    protected void parseCondition(
-            @NotNull ECTransitionCondition condition,
-            @NotNull String rawCondition,
-            @NotNull BasicFBTypeDeclaration fbtd
+class BasicFbTypeNxtImporter(arguments: ConverterArguments) : BasicFBTypeConverter(arguments) {
+    override fun parseCondition(
+        condition: ECTransitionCondition,
+        rawCondition: String,
+        fbtd: BasicFBTypeDeclaration
     ) {
-        rawCondition = rawCondition.trim();
-        if (Objects.equals(rawCondition, "1")) {
-            return;
+        var rawCondition = rawCondition
+        rawCondition = rawCondition.trim { it <= ' ' }
+        if (rawCondition == "1") {
+            return
         }
-        int openBracketIndex = rawCondition.indexOf('[');
-        int closeBracketIndex = rawCondition.lastIndexOf(']');
-        var myStFactory = getStFactory();
+        val openBracketIndex = rawCondition.indexOf('[')
+        val closeBracketIndex = rawCondition.lastIndexOf(']')
         if (openBracketIndex == -1) {
-            Expression guardCondition = STConverter.parseExpression(myStFactory, unescapeXML(rawCondition));
-            TransitionImportChecker checker = new TransitionImportChecker(myStFactory, fbtd);
-            checker.checkTransition(guardCondition);
+            val guardCondition = parseExpression(stFactory, unescapeXML(rawCondition))
+            val checker = TransitionImportChecker(fbtd)
+            checker.checkTransition(guardCondition)
             if (checker.satisfies()) {
-                String eventName = checker.getEventName();
-                if (eventName.length() > 0) {
-                    condition.getEventReference().setFQName(eventName);
+                val eventName: String = checker.eventName
+                if (eventName.isNotEmpty()) {
+                    condition.eventReference.setFQName(eventName)
                 }
-                condition.setGuardCondition(checker.getNewGuardCondition());
+                condition.setGuardCondition(checker.newGuardCondition)
             } else {
-                condition.getEventReference().setFQName(rawCondition);
+                condition.eventReference.setFQName(rawCondition)
             }
-            return;
+            return
         }
-        if (closeBracketIndex != rawCondition.length() - 1) {
-            throw new IllegalArgumentException("Malformed transition condition");
-        }
+        require(closeBracketIndex == rawCondition.length - 1) { "Malformed transition condition" }
         if (openBracketIndex > 0) {
-            condition.getEventReference().setFQName(rawCondition.substring(0, openBracketIndex));
+            condition.eventReference.setFQName(rawCondition.substring(0, openBracketIndex))
         }
-        String guardConditionText = unescapeXML(rawCondition.substring(openBracketIndex + 1, closeBracketIndex));
-        condition.setGuardCondition(Objects.requireNonNull(STConverter.parseExpression(myStFactory, guardConditionText)));
+        val guardConditionText = unescapeXML(rawCondition.substring(openBracketIndex + 1, closeBracketIndex))
+        condition.setGuardCondition(parseExpression(stFactory, guardConditionText)!!)
     }
 
-    @NotNull
-    @Override
-    protected StAlgorithmConverter getStAlgorithmConverter() {
-        return StAlgorithmNxtImporter;
-    }
+    private class TransitionImportChecker(
+        val fbtd: BasicFBTypeDeclaration
+    ) {
+        private var satisfy = false
+        var eventName = ""
+            private set
+        lateinit var newGuardCondition: Expression
+            private set
 
-    private static final StAlgorithmConverter StAlgorithmNxtImporter = (iec61499factory, factory, algorithmDeclaration, st, text) -> {
-        BiFunction<Identifier, DataType, kotlin.Unit> parameterCollector = (name, type) -> {
-            ParameterDeclaration parameterDeclaration = iec61499factory.createParameterDeclaration(name);
-            parameterDeclaration.setType(type);
-            algorithmDeclaration.getTemporaryVariables().add(parameterDeclaration);
-            return Unit.INSTANCE;
-        };
-        st.getStatements().addAll(STConverter.parseStatementListWithDeclarations(factory, parameterCollector::apply, text));
-    };
-
-    private static class TransitionImportChecker {
-        private boolean satisfy;
-        private String eventName;
-        private Expression newGuardCondition;
-        protected final STFactory myStFactory;
-        protected final BasicFBTypeDeclaration fbtd;
-
-        TransitionImportChecker(STFactory myStFactory, BasicFBTypeDeclaration fbtd) {
-            this.satisfy = false;
-            this.eventName = "";
-            this.newGuardCondition = null;
-            this.myStFactory = myStFactory;
-            this.fbtd = fbtd;
+        private fun setDefaultBraces(guardCondition: Expression) {
+            eventName = ""
+            newGuardCondition = guardCondition
+            satisfy = true
         }
 
-        private void setDefaultBraces(Expression guardCondition) {
-            this.eventName = "";
-            this.newGuardCondition = guardCondition;
-            this.satisfy = true;
-        }
-
-        public void checkTransition(Expression guardCondition) {
-            if (guardCondition instanceof VariableReference) {
-                String variableName = ((StringIdentifier) (((VariableReference) guardCondition).getReference().getIdentifier())).getValue();
-                if (this.fbtd.getInputParameters().stream().anyMatch(x -> x.getName().equals(variableName)) ||
-                        this.fbtd.getInternalVariables().stream().anyMatch(x -> x.getName().equals(variableName))) {
-                    setDefaultBraces(guardCondition);
-                    return;
+        fun checkTransition(guardCondition: Expression?) {
+            if (guardCondition is VariableReference) {
+                val variableName = (guardCondition.reference.identifier as StringIdentifier).value
+                if (fbtd.inputParameters.stream().anyMatch { x: ParameterDeclaration -> x.name == variableName } ||
+                    fbtd.internalVariables.stream().anyMatch { x: ParameterDeclaration -> x.name == variableName }) {
+                    setDefaultBraces(guardCondition)
+                    return
                 }
             }
-            if (guardCondition instanceof ParenthesisExpression) {
-                checkTransition(((ParenthesisExpression) guardCondition).getInnerExpression());
-                if (this.satisfies()) {
-                    this.newGuardCondition = guardCondition;
+            if (guardCondition is ParenthesisExpression) {
+                checkTransition(guardCondition.innerExpression)
+                if (satisfies()) {
+                    newGuardCondition = guardCondition
                 }
-                return;
+                return
             }
-            if (guardCondition instanceof UnaryExpression) {
-                setDefaultBraces(guardCondition);
-                return;
+            if (guardCondition is UnaryExpression) {
+                setDefaultBraces(guardCondition)
+                return
             }
-            if (guardCondition instanceof BinaryExpression) {
-                BinaryExpression binaryExpression = (BinaryExpression) guardCondition;
-                switch (binaryExpression.getOperation()) {
-                    case AND:
-                    case OR:
-                    case XOR: {
-                        Expression leftExpression = binaryExpression.getLeftExpression();
-                        if (leftExpression instanceof VariableReference) {
-                            String variableName = ((StringIdentifier) (((VariableReference) leftExpression).getReference().getIdentifier())).getValue();
-                            if (this.fbtd.getInputEvents().stream().anyMatch(x -> x.getName().equals(variableName))) {
-                                this.eventName = variableName;
-                                this.newGuardCondition = binaryExpression.getRightExpression();
-                                this.satisfy = true;
-                                return;
+            if (guardCondition is BinaryExpression) {
+                val binaryExpression = guardCondition
+                when (binaryExpression.operation) {
+                    BinaryOperation.AND, BinaryOperation.OR, BinaryOperation.XOR -> {
+                        val leftExpression = binaryExpression.leftExpression
+                        if (leftExpression is VariableReference) {
+                            val variableName = (leftExpression.reference.identifier as StringIdentifier).value
+                            if (fbtd.inputEvents.stream().anyMatch { x: EventDeclaration -> x.name == variableName }) {
+                                eventName = variableName
+                                newGuardCondition = binaryExpression.rightExpression!!
+                                satisfy = true
+                                return
                             }
                         }
-                        setDefaultBraces(guardCondition);
-                        return;
+                        setDefaultBraces(guardCondition)
+                        return
                     }
-                    case EQ:
-                    case GT:
-                    case GTE:
-                    case LT:
-                    case LTE:
-                    case NEQ: {
-                        setDefaultBraces(guardCondition);
-                        return;
+
+                    BinaryOperation.EQ, BinaryOperation.GT, BinaryOperation.GTE, BinaryOperation.LT, BinaryOperation.LTE, BinaryOperation.NEQ -> {
+                        setDefaultBraces(guardCondition)
+                        return
                     }
-                    default: {
-                        return;
+
+                    else -> {
+                        return
                     }
                 }
             }
-            satisfy = false;
+            satisfy = false
         }
 
-        public boolean satisfies() {
-            return satisfy;
+        fun satisfies(): Boolean {
+            return satisfy
         }
+    }
 
-        public String getEventName() {
-            return eventName;
-        }
-
-        public Expression getNewGuardCondition() {
-            return newGuardCondition;
-        }
+    companion object {
+        private val stAlgorithmConverter: StAlgorithmConverter =
+            StAlgorithmConverter { iec61499factory: IEC61499Factory, factory: STFactory, algorithmDeclaration: AlgorithmDeclaration, st: AlgorithmBody.ST, text: String ->
+                val statements = parseStatementListWithDeclarations(factory, text) { name, type ->
+                    val parameterDeclaration = iec61499factory.createParameterDeclaration(name)
+                    parameterDeclaration.type = type
+                    algorithmDeclaration.temporaryVariables.add(parameterDeclaration)
+                }
+                st.statements.addAll(statements)
+            }
     }
 }

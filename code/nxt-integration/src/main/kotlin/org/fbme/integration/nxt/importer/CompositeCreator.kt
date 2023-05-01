@@ -1,330 +1,318 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer
 
-import org.fbme.ide.iec61499.repository.PlatformElement;
-import org.fbme.lib.common.CompositeReference;
-import org.fbme.lib.common.Declaration;
-import org.fbme.lib.common.StringIdentifier;
-import org.fbme.lib.iec61499.IEC61499Factory;
-import org.fbme.lib.iec61499.declarations.*;
-import org.fbme.lib.iec61499.fbnetwork.*;
-import org.jetbrains.mps.openapi.model.SModel;
+import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.lib.common.CompositeReference
+import org.fbme.lib.common.Declaration
+import org.fbme.lib.common.Reference
+import org.fbme.lib.common.StringIdentifier
+import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.fbnetwork.*
+import org.fbme.lib.iec61499.fbnetwork.PortPath.Companion.createDataPortPath
+import org.fbme.lib.iec61499.fbnetwork.PortPath.Companion.createEventPortPath
+import org.jetbrains.mps.openapi.model.SModel
+import java.awt.Point
+import java.util.function.Consumer
+import java.util.stream.Collectors
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class CompositeCreator {
-    public CompositeCreator() {
-    }
-
-    public void createComposite(
-            FBNetwork fbNetwork,
-            List<FunctionBlockDeclaration> functionBlockDeclarationList,
-            SModel sModel,
-            IEC61499Factory factory
-            // TODO add user name for fb name in interface
+class CompositeCreator {
+    fun createComposite(
+        fbNetwork: FBNetwork,
+        functionBlockDeclarationList: List<FunctionBlockDeclaration>,
+        model: SModel,
+        factory: IEC61499Factory // TODO add user name for fb name in interface
     ) {
         // maybe sort functionBlockDeclarationList somehow
-        Set<String> innerFBs = functionBlockDeclarationList.stream().map(Declaration::getName).collect(Collectors.toSet());
-        String compositeFBNetworkName = String.join("_", innerFBs);
-
-        StringIdentifier compositeFBIdentifier = new StringIdentifier(compositeFBNetworkName);
-        CompositeFBTypeDeclaration compositeFB = factory.createCompositeFBTypeDeclaration(compositeFBIdentifier); // name in interface (TODO set by user)
-        sModel.addRootNode(((PlatformElement) compositeFB).getNode());
-
-        FunctionBlockDeclaration compositeFunctionBlockDeclaration = factory.createFunctionBlockDeclaration(compositeFBIdentifier); // name in network
-        compositeFunctionBlockDeclaration.getTypeReference().setTarget(compositeFB); // connect declaration in network to real fb in interface
-
-        setDeclarationCoordinates(compositeFunctionBlockDeclaration, functionBlockDeclarationList); // set network coordinates
-        fbNetwork.getFunctionBlocks().add(compositeFunctionBlockDeclaration);
-
-        List<FBNetworkConnection> eventConnections = fbNetwork.getEventConnections();
-        List<FBNetworkConnection> dataConnections = fbNetwork.getDataConnections();
-        DeclarationExtractor declarationExtractor = new DeclarationExtractor(eventConnections, dataConnections, innerFBs);
-
-        int minX = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getX).min().orElse(0);
-        for (FunctionBlockDeclaration blockDeclaration : functionBlockDeclarationList) {
-            FBTypeDeclaration fbType = blockDeclaration.getTypeReference().getTarget();
-            if (fbType == null) {
-                continue;
-            }
-
-            String fbName = blockDeclaration.getName();
-            CoordinateShift shift = createShift(fbName, fbType);
-            copyEvents(blockDeclaration, fbType, compositeFB, declarationExtractor, fbName, shift);
-
-            minX = Math.min(minX, blockDeclaration.getX() + shift.getX(Type.INPUT));
+        val innerFBs = functionBlockDeclarationList.stream().map(Declaration::name).collect(Collectors.toSet())
+        val compositeFBNetworkName = java.lang.String.join("_", innerFBs)
+        val compositeFBIdentifier = StringIdentifier(compositeFBNetworkName)
+        val compositeFB =
+            factory.createCompositeFBTypeDeclaration(compositeFBIdentifier) // name in interface (TODO set by user)
+        model.addRootNode((compositeFB as PlatformElement).node)
+        val compositeFunctionBlockDeclaration =
+            factory.createFunctionBlockDeclaration(compositeFBIdentifier) // name in network
+        compositeFunctionBlockDeclaration.typeReference.setTarget(compositeFB) // connect declaration in network to real fb in interface
+        setDeclarationCoordinates(
+            compositeFunctionBlockDeclaration,
+            functionBlockDeclarationList
+        ) // set network coordinates
+        fbNetwork.functionBlocks.add(compositeFunctionBlockDeclaration)
+        val eventConnections: List<FBNetworkConnection> = fbNetwork.eventConnections
+        val dataConnections: List<FBNetworkConnection> = fbNetwork.dataConnections
+        val declarationExtractor = DeclarationExtractor(eventConnections, dataConnections, innerFBs)
+        var minX = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::x).min().orElse(0)
+        for (blockDeclaration in functionBlockDeclarationList) {
+            val fbType = blockDeclaration.typeReference.getTarget() ?: continue
+            val fbName = blockDeclaration.name
+            val shift = createShift(fbName, fbType)
+            copyEvents(blockDeclaration, fbType, compositeFB, declarationExtractor, fbName, shift)
+            minX = Math.min(minX, blockDeclaration.x + shift.getX(Type.INPUT))
         }
 
         // setting new associations
-        Map<ParameterDeclaration, ParameterDeclaration> parameterDeclarationCopyMap = declarationExtractor.getParameterDeclarationCopyMap();
-        setEventAssociations(compositeFB.getInputEvents(), parameterDeclarationCopyMap);
-        setEventAssociations(compositeFB.getOutputEvents(), parameterDeclarationCopyMap);
-
-        rehangExternalConnections(declarationExtractor.getExternalConnectionsInputMap(), compositeFunctionBlockDeclaration, Type.INPUT);
-        rehangExternalConnections(declarationExtractor.getExternalConnectionsOutputMap(), compositeFunctionBlockDeclaration, Type.OUTPUT);
+        val parameterDeclarationCopyMap = declarationExtractor.parameterDeclarationCopyMap
+        setEventAssociations(compositeFB.inputEvents, parameterDeclarationCopyMap)
+        setEventAssociations(compositeFB.outputEvents, parameterDeclarationCopyMap)
+        rehangExternalConnections(
+            declarationExtractor.externalConnectionsInputMap,
+            compositeFunctionBlockDeclaration,
+            Type.INPUT
+        )
+        rehangExternalConnections(
+            declarationExtractor.externalConnectionsOutputMap,
+            compositeFunctionBlockDeclaration,
+            Type.OUTPUT
+        )
 
         // TODO think about optimal coordinate shifts
         // int decX = minX > 500 ? minX - 500 : 0;
-        int decX = minX;
-        int decY = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getY).min().orElse(0);
-
-        adjustNetworkCoordinates(declarationExtractor, compositeFB, functionBlockDeclarationList, fbNetwork, decX, decY);
+        val decX = minX
+        val decY = functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::y).min().orElse(0)
+        adjustNetworkCoordinates(declarationExtractor, compositeFB, functionBlockDeclarationList, fbNetwork, decX, decY)
 
         // add connections to external input/output based on existed external connection from inner blocks
-        createInnerIOConnections(compositeFB, declarationExtractor.getDeclarationPortPathMap(), factory, decX, decY);
+        createInnerIOConnections(compositeFB, declarationExtractor.declarationPortPathMap, factory, decX, decY)
     }
 
-    private void copyEvents(
-            FunctionBlockDeclaration blockDeclaration,
-            FBTypeDeclaration fbType,
-            CompositeFBTypeDeclaration compositeFB,
-            DeclarationExtractor declarationExtractor,
-            String fbName,
-            CoordinateShift shift
+    private fun copyEvents(
+        blockDeclaration: FunctionBlockDeclaration,
+        fbType: FBTypeDeclaration,
+        compositeFB: CompositeFBTypeDeclaration,
+        declarationExtractor: DeclarationExtractor,
+        fbName: String,
+        shift: CoordinateShift
     ) {
-        List<EventDeclaration> inputEvents = declarationExtractor.extractEvents(fbType.getInputEvents(), blockDeclaration, Type.INPUT, shift);
-        compositeFB.getInputEvents().addAll(renameEventDeclarations(inputEvents, fbName));
-
-        List<EventDeclaration> outputEvents = declarationExtractor.extractEvents(fbType.getOutputEvents(), blockDeclaration, Type.OUTPUT, shift);
-        compositeFB.getOutputEvents().addAll(renameEventDeclarations(outputEvents, fbName));
-
-        shift.adjustYForParameters();
-
-        List<ParameterDeclaration> inputParameters = declarationExtractor.extractParameters(fbType.getInputParameters(), blockDeclaration, Type.INPUT, shift);
-        compositeFB.getInputParameters().addAll(renameParameterDeclarations(inputParameters, fbName));
-
-        List<ParameterDeclaration> outputParameters = declarationExtractor.extractParameters(fbType.getOutputParameters(), blockDeclaration, Type.OUTPUT, shift);
-        compositeFB.getOutputParameters().addAll(renameParameterDeclarations(outputParameters, fbName));
+        val inputEvents = declarationExtractor.extractEvents(fbType.inputEvents, blockDeclaration, Type.INPUT, shift)
+        compositeFB.inputEvents.addAll(renameEventDeclarations(inputEvents, fbName))
+        val outputEvents = declarationExtractor.extractEvents(fbType.outputEvents, blockDeclaration, Type.OUTPUT, shift)
+        compositeFB.outputEvents.addAll(renameEventDeclarations(outputEvents, fbName))
+        shift.adjustYForParameters()
+        val inputParameters =
+            declarationExtractor.extractParameters(fbType.inputParameters, blockDeclaration, Type.INPUT, shift)
+        compositeFB.inputParameters.addAll(renameParameterDeclarations(inputParameters, fbName))
+        val outputParameters =
+            declarationExtractor.extractParameters(fbType.outputParameters, blockDeclaration, Type.OUTPUT, shift)
+        compositeFB.outputParameters.addAll(renameParameterDeclarations(outputParameters, fbName))
     }
 
-    private void adjustNetworkCoordinates(
-            DeclarationExtractor declarationExtractor,
-            CompositeFBTypeDeclaration compositeFB,
-            List<FunctionBlockDeclaration> functionBlockDeclarationList,
-            FBNetwork fbNetwork,
-            int decX,
-            int decY
+    private fun adjustNetworkCoordinates(
+        declarationExtractor: DeclarationExtractor,
+        compositeFB: CompositeFBTypeDeclaration,
+        functionBlockDeclarationList: List<FunctionBlockDeclaration>,
+        fbNetwork: FBNetwork,
+        decX: Int,
+        decY: Int
     ) {
-        List<FBNetworkConnection> eventConnections = fbNetwork.getEventConnections();
-        List<FBNetworkConnection> dataConnections = fbNetwork.getDataConnections();
+        val eventConnections: MutableList<FBNetworkConnection> = fbNetwork.eventConnections
+        val dataConnections: MutableList<FBNetworkConnection> = fbNetwork.dataConnections
 
         // adjust paths
-        for (FBNetworkConnection connection : declarationExtractor.getInternalConnectionsSet()) {
-            if (connection.getKind().equals(EntryKind.EVENT)) {
-                eventConnections.remove(connection);
-                compositeFB.getNetwork().getEventConnections().add(connection);
-            } else if (connection.getKind().equals(EntryKind.DATA)) {
-                dataConnections.remove(connection);
-                compositeFB.getNetwork().getDataConnections().add(connection);
+        for (connection in declarationExtractor.internalConnectionsSet) {
+            if (connection.kind == EntryKind.EVENT) {
+                eventConnections.remove(connection)
+                compositeFB.network.eventConnections.add(connection)
+            } else if (connection.kind == EntryKind.DATA) {
+                dataConnections.remove(connection)
+                compositeFB.network.dataConnections.add(connection)
             }
-            ConnectionPath path = connection.getPath();
-            if (path instanceof LongConnectionPath) {
-                List<Point> points = ((LongConnectionPath) path).getBendPoints();
-                points.forEach(point -> {
-                    point.x -= decX;
-                    point.y -= decY;
-                });
+            val path = connection.path
+            if (path is LongConnectionPath) {
+                val points = path.bendPoints
+                points.forEach(Consumer { point: Point ->
+                    point.x -= decX
+                    point.y -= decY
+                })
             }
         }
 
         // adjust blockDeclarations
-        for (FunctionBlockDeclaration blockDeclaration : functionBlockDeclarationList) {
-            fbNetwork.getFunctionBlocks().remove(blockDeclaration);
-            blockDeclaration.setX(blockDeclaration.getX() - decX);
-            blockDeclaration.setY(blockDeclaration.getY() - decY);
-            compositeFB.getNetwork().getFunctionBlocks().add(blockDeclaration);
+        for (blockDeclaration in functionBlockDeclarationList) {
+            fbNetwork.functionBlocks.remove(blockDeclaration)
+            blockDeclaration.x = blockDeclaration.x - decX
+            blockDeclaration.y = blockDeclaration.y - decY
+            compositeFB.network.functionBlocks.add(blockDeclaration)
         }
     }
 
-    private void createInnerIOConnections(
-            CompositeFBTypeDeclaration compositeFB,
-            Map<Declaration, PortPathNetworkCoordinates> declarationPortPathMap,
-            IEC61499Factory factory,
-            int decX,
-            int decY
+    private fun createInnerIOConnections(
+        compositeFB: CompositeFBTypeDeclaration,
+        declarationPortPathMap: Map<Declaration, PortPathNetworkCoordinates>,
+        factory: IEC61499Factory,
+        decX: Int,
+        decY: Int
     ) {
-        List<FBNetworkConnection> eventConnections = compositeFB.getNetwork().getEventConnections();
-        List<FBNetworkConnection> dataConnections = compositeFB.getNetwork().getDataConnections();
-        List<EndpointCoordinate> endpointCoordinates = compositeFB.getNetwork().getEndpointCoordinates();
-
-        for (EventDeclaration event : compositeFB.getInputEvents()) {
+        val eventConnections = compositeFB.network.eventConnections
+        val dataConnections = compositeFB.network.dataConnections
+        val endpointCoordinates = compositeFB.network.endpointCoordinates
+        for (event in compositeFB.inputEvents) {
             createInnerIOConnection(
-                    factory,
-                    PortPath.createEventPortPath(null, event),
-                    declarationPortPathMap.get(event),
-                    eventConnections,
-                    endpointCoordinates,
-                    EntryKind.EVENT,
-                    Type.INPUT,
-                    decX,
-                    decY
-            );
+                factory,
+                createEventPortPath(null, event),
+                declarationPortPathMap.getValue(event),
+                eventConnections,
+                endpointCoordinates,
+                EntryKind.EVENT,
+                Type.INPUT,
+                decX,
+                decY
+            )
         }
-
-        for (EventDeclaration event : compositeFB.getOutputEvents()) {
+        for (event in compositeFB.outputEvents) {
             createInnerIOConnection(
-                    factory,
-                    PortPath.createEventPortPath(null, event),
-                    declarationPortPathMap.get(event),
-                    eventConnections,
-                    endpointCoordinates,
-                    EntryKind.EVENT,
-                    Type.OUTPUT,
-                    decX,
-                    decY
-            );
+                factory,
+                createEventPortPath(null, event),
+                declarationPortPathMap.getValue(event),
+                eventConnections,
+                endpointCoordinates,
+                EntryKind.EVENT,
+                Type.OUTPUT,
+                decX,
+                decY
+            )
         }
-
-        for (ParameterDeclaration parameter : compositeFB.getInputParameters()) {
+        for (parameter in compositeFB.inputParameters) {
             createInnerIOConnection(
-                    factory,
-                    PortPath.createDataPortPath(null, parameter),
-                    declarationPortPathMap.get(parameter),
-                    dataConnections,
-                    endpointCoordinates,
-                    EntryKind.DATA,
-                    Type.INPUT,
-                    decX,
-                    decY
-            );
+                factory,
+                createDataPortPath(null, parameter),
+                declarationPortPathMap.getValue(parameter),
+                dataConnections,
+                endpointCoordinates,
+                EntryKind.DATA,
+                Type.INPUT,
+                decX,
+                decY
+            )
         }
-
-        for (ParameterDeclaration parameter : compositeFB.getOutputParameters()) {
+        for (parameter in compositeFB.outputParameters) {
             createInnerIOConnection(
-                    factory,
-                    PortPath.createDataPortPath(null, parameter),
-                    declarationPortPathMap.get(parameter),
-                    dataConnections,
-                    endpointCoordinates,
-                    EntryKind.DATA,
-                    Type.OUTPUT,
-                    decX,
-                    decY
-            );
+                factory,
+                createDataPortPath(null, parameter),
+                declarationPortPathMap.getValue(parameter),
+                dataConnections,
+                endpointCoordinates,
+                EntryKind.DATA,
+                Type.OUTPUT,
+                decX,
+                decY
+            )
         }
     }
 
-    private void createInnerIOConnection(
-            IEC61499Factory factory,
-            PortPath<?> innerPortPath,
-            PortPathNetworkCoordinates portPathNetworkCoordinates,
-            List<FBNetworkConnection> connections,
-            List<EndpointCoordinate> endpointCoordinates,
-            EntryKind kind,
-            Type type,
-            int decX,
-            int decY
+    private fun createInnerIOConnection(
+        factory: IEC61499Factory,
+        innerPortPath: PortPath<*>,
+        portPathNetworkCoordinates: PortPathNetworkCoordinates,
+        connections: MutableList<FBNetworkConnection>,
+        endpointCoordinates: MutableList<EndpointCoordinate>,
+        kind: EntryKind,
+        type: Type,
+        decX: Int,
+        decY: Int
     ) {
-        FBNetworkConnection connection = factory.createFBNetworkConnection(kind);
-        EndpointCoordinate endpointCoordinate = factory.createEndpointCoordinate();
-
+        val connection = factory.createFBNetworkConnection(kind)
+        val endpointCoordinate = factory.createEndpointCoordinate()
         if (type == Type.INPUT) {
-            connection.getSourceReference().setTarget(innerPortPath);
-            connection.getTargetReference().setTarget(portPathNetworkCoordinates.getPortPath());
+            connection.sourceReference.setTarget(innerPortPath)
+            connection.targetReference.setTarget(portPathNetworkCoordinates.portPath)
         } else {
-            connection.getSourceReference().setTarget(portPathNetworkCoordinates.getPortPath());
-            connection.getTargetReference().setTarget(innerPortPath);
+            connection.sourceReference.setTarget(portPathNetworkCoordinates.portPath)
+            connection.targetReference.setTarget(innerPortPath)
         }
-
-        endpointCoordinate.getPortReference().setTarget(innerPortPath);
-        endpointCoordinate.setX(portPathNetworkCoordinates.getPoint().x - decX);
-        endpointCoordinate.setY(portPathNetworkCoordinates.getPoint().y - decY);
-
-        connections.add(connection);
-        endpointCoordinates.add(endpointCoordinate);
+        endpointCoordinate.portReference.setTarget(innerPortPath)
+        endpointCoordinate.x = portPathNetworkCoordinates.point.x - decX
+        endpointCoordinate.y = portPathNetworkCoordinates.point.y - decY
+        connections.add(connection)
+        endpointCoordinates.add(endpointCoordinate)
     }
 
-    private CoordinateShift createShift(String fbName, FBTypeDeclaration fbType) {
-        int charSize = 20;
-        int defaultShift = 300;
-        int inputCharCount = Math.max(
-                fbType.getInputEvents().stream().mapToInt(s -> s.getName().length()).max().orElse(0),
-                fbType.getInputParameters().stream().mapToInt(s -> s.getName().length()).max().orElse(0)
-        );
-        int outputCharCount = Math.max(
-                fbType.getOutputEvents().stream().mapToInt(s -> s.getName().length()).max().orElse(0),
-                fbType.getOutputParameters().stream().mapToInt(s -> s.getName().length()).max().orElse(0)
-        );
-        int blockWidthCount = Math.max(inputCharCount + outputCharCount, fbType.getName().length());
-
-        return new CoordinateShift(
-                charSize * (inputCharCount + fbName.length() + 1) + defaultShift,
-                charSize * (blockWidthCount + 15) + defaultShift
-        );
+    private fun createShift(fbName: String, fbType: FBTypeDeclaration): CoordinateShift {
+        val charSize = 20
+        val defaultShift = 300
+        val inputCharCount = Math.max(
+            fbType.inputEvents.stream().mapToInt { s: EventDeclaration -> s.name.length }.max().orElse(0),
+            fbType.inputParameters.stream().mapToInt { s: ParameterDeclaration -> s.name.length }
+                .max().orElse(0)
+        )
+        val outputCharCount = Math.max(
+            fbType.outputEvents.stream().mapToInt { s: EventDeclaration -> s.name.length }.max().orElse(0),
+            fbType.outputParameters.stream().mapToInt { s: ParameterDeclaration -> s.name.length }
+                .max().orElse(0)
+        )
+        val blockWidthCount = Math.max(inputCharCount + outputCharCount, fbType.name.length)
+        return CoordinateShift(
+            charSize * (inputCharCount + fbName.length + 1) + defaultShift,
+            charSize * (blockWidthCount + 15) + defaultShift
+        )
     }
 
-    private void rehangExternalConnections(
-            Map<Declaration, List<FBNetworkConnection>> connectionMap,
-            FunctionBlockDeclaration functionBlockDeclaration,
-            Type type
+    private fun rehangExternalConnections(
+        connectionMap: Map<Declaration, List<FBNetworkConnection>>,
+        functionBlockDeclaration: FunctionBlockDeclaration,
+        type: Type
     ) {
-        connectionMap.forEach((declaration, connections) -> {
-            for (FBNetworkConnection connection : connections) {
-                CompositeReference<PortPath<?>> reference = null;
-                switch (type) {
-                    case INPUT: {
-                        reference = connection.getTargetReference();
-                        break;
-                    }
-                    case OUTPUT: {
-                        reference = connection.getSourceReference();
-                        break;
-                    }
+        connectionMap.forEach { (declaration, connections) ->
+            for (connection in connections) {
+                val reference: CompositeReference<PortPath<*>> = when (type) {
+                    Type.INPUT -> connection.targetReference
+                    Type.OUTPUT -> connection.sourceReference
                 }
-                if (declaration instanceof EventDeclaration) {
-                    reference.setTarget(PortPath.createEventPortPath(functionBlockDeclaration, (EventDeclaration) declaration));
-                } else if (declaration instanceof ParameterDeclaration) {
-                    reference.setTarget(PortPath.createDataPortPath(functionBlockDeclaration, (ParameterDeclaration) declaration));
+                if (declaration is EventDeclaration) {
+                    reference.setTarget(
+                        createEventPortPath(
+                            functionBlockDeclaration,
+                            (declaration as EventDeclaration?)!!
+                        )
+                    )
+                } else if (declaration is ParameterDeclaration) {
+                    reference.setTarget(
+                        createDataPortPath(
+                            functionBlockDeclaration,
+                            (declaration as ParameterDeclaration?)!!
+                        )
+                    )
                 }
             }
-        });
+        }
     }
 
-    private List<EventDeclaration> renameEventDeclarations(
-            List<EventDeclaration> events,
-            String fbName
-    ) {
-        return events
-                .stream()
-                .peek(event -> event.setName(String.format("%s_%s", fbName, event.getName())))
-                .collect(Collectors.toList());
+    private fun renameEventDeclarations(
+        events: List<EventDeclaration>,
+        fbName: String
+    ): List<EventDeclaration> {
+        return events.onEach { event -> event.name = "${fbName}_${event.name}" }
     }
 
-    private List<ParameterDeclaration> renameParameterDeclarations(
-            List<ParameterDeclaration> parameters,
-            String fbName
-    ) {
-        return parameters
-                .stream()
-                .peek(parameter -> parameter.setName(String.format("%s_%s", fbName, parameter.getName())))
-                .collect(Collectors.toList());
+    private fun renameParameterDeclarations(
+        parameters: List<ParameterDeclaration>,
+        fbName: String
+    ): List<ParameterDeclaration> {
+        return parameters.onEach { parameter -> parameter.name = "${fbName}_${parameter.name}" }
     }
 
-    private void setEventAssociations(
-            List<EventDeclaration> events,
-            Map<ParameterDeclaration, ParameterDeclaration> parameterDeclarationCopyMap
+    private fun setEventAssociations(
+        events: List<EventDeclaration>,
+        parameterDeclarationCopyMap: Map<ParameterDeclaration, ParameterDeclaration>
     ) {
-        events.forEach(event -> {
-            event.getAssociations().removeIf(eventAssociation ->
-                    !parameterDeclarationCopyMap.containsKey(eventAssociation.getParameterReference().getTarget()));
-
-            event.getAssociations().forEach(eventAssociation -> {
-                var reference = eventAssociation.getParameterReference();
-                reference.setTarget(parameterDeclarationCopyMap.get(reference.getTarget()));
-            });
-        });
+        events.forEach { event: EventDeclaration ->
+            event.associations.removeIf { eventAssociation: EventAssociation ->
+                !parameterDeclarationCopyMap.containsKey(eventAssociation.parameterReference.getTarget())
+            }
+            event.associations.forEach { eventAssociation ->
+                val reference: Reference<ParameterDeclaration> = eventAssociation.parameterReference
+                reference.setTarget(parameterDeclarationCopyMap.getValue(reference.getTarget()!!))
+            }
+        }
     }
 
-    private void setDeclarationCoordinates(
-            FunctionBlockDeclaration compositeFunctionBlockDeclaration,
-            List<FunctionBlockDeclaration> functionBlockDeclarationList
+    private fun setDeclarationCoordinates(
+        compositeFunctionBlockDeclaration: FunctionBlockDeclaration,
+        functionBlockDeclarationList: List<FunctionBlockDeclaration>
     ) {
-        int x = (int) functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getX).average().orElse(0.0);
-        int y = (int) functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::getY).average().orElse(0.0);
-
-        compositeFunctionBlockDeclaration.setX(x);
-        compositeFunctionBlockDeclaration.setY(y);
+        val x =
+            functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::x).average().orElse(0.0).toInt()
+        val y =
+            functionBlockDeclarationList.stream().mapToInt(FunctionBlockDeclaration::y).average().orElse(0.0).toInt()
+        compositeFunctionBlockDeclaration.x = x
+        compositeFunctionBlockDeclaration.y = y
     }
 }

@@ -1,51 +1,29 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer
 
-import org.fbme.ide.platform.converter.PlatformConverter;
-import org.fbme.lib.iec61499.IEC61499Factory;
-import org.fbme.lib.iec61499.parser.BasicFBTypeConverter;
-import org.fbme.lib.iec61499.parser.CompositeFBTypeConverter;
-import org.fbme.lib.iec61499.parser.ConverterArguments;
-import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration;
-import org.fbme.lib.st.STFactory;
-import org.jetbrains.annotations.NotNull;
+import org.fbme.ide.iec61499.repository.PlatformElementsOwner
+import org.fbme.ide.platform.converter.PlatformConverter.DefaultConfigurationFactory
+import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.parser.BasicFBTypeConverter
+import org.fbme.lib.iec61499.parser.CompositeFBTypeConverter
+import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
+import org.fbme.lib.st.STFactory
 
-public class NxtImporterConfiguration implements Iec61499ConverterConfiguration {
+class NxtImporterConfiguration(override val entryFactory: IEC61499Factory, override val stEntryFactory: STFactory) :
+    Iec61499ConverterConfiguration {
 
-    public static final PlatformConverter.DefaultConfigurationFactory FACTORY = owner ->
-            new NxtImporterConfiguration(owner.getIec61499Factory(), owner.getStFactory());
-
-    @NotNull
-    private final IEC61499Factory myEntryFactory;
-
-    @NotNull
-    private final STFactory myStEntryFactory;
-
-    public NxtImporterConfiguration(@NotNull IEC61499Factory entryFactory, @NotNull STFactory stEntryFactory) {
-        myEntryFactory = entryFactory;
-        myStEntryFactory = stEntryFactory;
+    override fun createBasicFbTypeConverter(arguments: ConverterArguments): BasicFBTypeConverter {
+        return BasicFbTypeNxtImporter(arguments)
     }
 
-    @NotNull
-    @Override
-    public IEC61499Factory getEntryFactory() {
-        return myEntryFactory;
+    override fun createCompositeFbTypeConverter(arguments: ConverterArguments): CompositeFBTypeConverter {
+        return CompositeFbTypeNxtImporter(arguments)
     }
 
-    @NotNull
-    @Override
-    public STFactory getStEntryFactory() {
-        return myStEntryFactory;
-    }
-
-    @Override
-    @NotNull
-    public BasicFBTypeConverter createBasicFbTypeConverter(@NotNull ConverterArguments arguments) {
-        return new BasicFbTypeNxtImporter(arguments);
-    }
-
-    @Override
-    @NotNull
-    public CompositeFBTypeConverter createCompositeFbTypeConverter(@NotNull ConverterArguments arguments) {
-        return new CompositeFbTypeNxtImporter(arguments);
+    companion object {
+        @JvmField
+        val FACTORY = DefaultConfigurationFactory { owner: PlatformElementsOwner ->
+            NxtImporterConfiguration(owner.iec61499Factory, owner.stFactory)
+        }
     }
 }

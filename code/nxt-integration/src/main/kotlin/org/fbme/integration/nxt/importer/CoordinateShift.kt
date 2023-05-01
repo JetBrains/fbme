@@ -1,38 +1,33 @@
-package org.fbme.integration.nxt.importer;
+package org.fbme.integration.nxt.importer
 
-public class CoordinateShift {
-    public int yDiff;
-    private int yInput;
-    private int yOutput;
-    private final int xInput;
-    private final int xOutput;
+class CoordinateShift(xInput: Int, private val xOutput: Int) {
+    var yDiff = 50
+    private var yInput = 50
+    private var yOutput = 50
+    private val xInput: Int
 
-    public CoordinateShift(int xInput, int xOutput) {
-        yDiff = 50;
-        yInput = 50;
-        yOutput = 50;
-        this.xInput = -xInput;
-        this.xOutput = xOutput;
+    init {
+        this.xInput = -xInput
     }
 
-    public int getY(Type type) {
-        return type == Type.INPUT ? yInput : yOutput;
+    fun getY(type: Type): Int {
+        return if (type == Type.INPUT) yInput else yOutput
     }
 
-    public int getX(Type type) {
-        return type == Type.INPUT ? xInput : xOutput;
+    fun getX(type: Type): Int {
+        return if (type == Type.INPUT) xInput else xOutput
     }
 
-    public void setY(Type type, int value) {
+    fun setY(type: Type, value: Int) {
         if (type == Type.INPUT) {
-            yInput = value;
+            yInput = value
         } else {
-            yOutput = value;
+            yOutput = value
         }
     }
 
-    public void adjustYForParameters() {
-        yInput = Math.max(yInput, yOutput) + 2 * yDiff;
-        yOutput = yInput;
+    fun adjustYForParameters() {
+        yInput = Math.max(yInput, yOutput) + 2 * yDiff
+        yOutput = yInput
     }
 }
