@@ -96,7 +96,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         condition.setGuardCondition(STConverter.parseExpression(stFactory, guardConditionText)!!)
     }
 
-    interface StAlgorithmConverter {
+    fun interface StAlgorithmConverter {
         fun convert(
             iec61499factory: IEC61499Factory,
             factory: STFactory,

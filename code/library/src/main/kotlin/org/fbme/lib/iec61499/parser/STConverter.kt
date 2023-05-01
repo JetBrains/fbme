@@ -21,8 +21,8 @@ object STConverter {
     @JvmStatic
     fun parseStatementListWithDeclarations(
         factory: STFactory,
-        declarationsCollector: (Identifier, DataType) -> Unit,
-        text: String
+        text: String,
+        declarationsCollector: (Identifier, DataType) -> Unit
     ): List<Statement> {
         val ctx = createParser(text).statementListWithVariableDeclarations()
         for (declCtx in ctx.decls) {
