@@ -17,6 +17,9 @@
                 implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
         <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
     </extensions>
+    <extensions defaultExtensionNs="jetbrains.mps">
+        <NodeEditorFactory implementation="org.fbme.ide.platform.editor.PlatformEditorFactory"/>
+    </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
