@@ -21,6 +21,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
         <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
+        <projectService serviceImplementation="org.fbme.ide.platform.debugger.WatcherFacade"/>
+        <applicationService serviceImplementation="org.fbme.ide.platform.debugger.DevicesFacade"/>
     </extensions>
 
     <extensionPoints>
@@ -32,4 +34,5 @@
         <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.SystemTemplate"/>
         <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.LibraryTemplate"/>
     </extensions>
+
 </idea-plugin>
