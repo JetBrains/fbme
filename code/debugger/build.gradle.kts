@@ -45,7 +45,7 @@ compileKotlin.kotlinOptions {
     languageVersion = "1.8"
     freeCompilerArgs = listOf(
         "-Xjvm-default=all",
-        "-P",
+//        "-P",
 //        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
     )
 }
