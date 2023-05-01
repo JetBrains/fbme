@@ -15,10 +15,21 @@
         <LanguageLibrary dir="/languages"/>
         <DataSourceFactoryRuleProvider
                 implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
+        <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer" />
-        <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter" />
+        <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
+        <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
+    </extensions>
+
+    <extensionPoints>
+        <extensionPoint name="iec61499projectTemplate"
+                        interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="fbme.platform">
+        <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.SystemTemplate"/>
+        <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.LibraryTemplate"/>
     </extensions>
 </idea-plugin>

@@ -164,24 +164,6 @@
             </node>
           </node>
         </node>
-        <node concept="3rtmxn" id="6wzd0wHWh3D" role="3bR31x">
-          <node concept="3LXTmp" id="6wzd0wHWh3E" role="3rtmxm">
-            <node concept="55IIr" id="6wzd0wHWh3F" role="3LXTmr">
-              <node concept="2Ry0Ak" id="6wzd0wHWh3G" role="iGT6I">
-                <property role="2Ry0Am" value="solutions" />
-                <node concept="2Ry0Ak" id="6wzd0wHWh3H" role="2Ry0An">
-                  <property role="2Ry0Am" value="org.fbme.integration.nxt" />
-                  <node concept="2Ry0Ak" id="6wzd0wHWh43" role="2Ry0An">
-                    <property role="2Ry0Am" value="icons" />
-                  </node>
-                </node>
-              </node>
-            </node>
-            <node concept="3qWCbU" id="6wzd0wHWh3I" role="3LXTna">
-              <property role="3qWCbO" value="**/*.svg" />
-            </node>
-          </node>
-        </node>
         <node concept="55IIr" id="42vv4xsIHM0" role="3LF7KH">
           <node concept="2Ry0Ak" id="3f0ZsV2QMej" role="iGT6I">
             <property role="2Ry0Am" value="solutions" />
