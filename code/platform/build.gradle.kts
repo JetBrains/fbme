@@ -8,9 +8,11 @@ plugins {
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation(project(":code:library"))
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+
     implementation(project(":code:language"))
+
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
 }
@@ -18,7 +20,6 @@ dependencies {
 mps {
     buildScriptName.set("fbme_platform")
     moduleName.set("org.fbme.platform.lib")
-    libraryFilters.add("language")
     includeMpsArtifacts(project(":code:language"))
     moduleDependency(project(":code:library"))
 }

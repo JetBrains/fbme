@@ -1,6 +1,7 @@
 package org.fbme.gradle
 
 import org.gradle.api.Task
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Nested
@@ -18,7 +19,4 @@ interface PluginModuleFileSpec : Task {
 
     @get:Nested
     val dependentModules: Provider<List<ModuleDependency>>
-
-    @get:Input
-    val libraryLocations: List<String>
 }

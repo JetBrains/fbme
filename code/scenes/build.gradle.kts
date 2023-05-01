@@ -11,6 +11,6 @@ mps {
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation("org.jetbrains:annotations:19.0.0")
+    compileOnly(mpsDistribution())
+    compileOnly("org.jetbrains:annotations:19.0.0")
 }

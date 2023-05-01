@@ -4,25 +4,24 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     mps
     kotlin
-    compose
+//    compose
 }
 
 repositories {
     gradlePluginPortal()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+//    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     mavenCentral()
     google()
 }
 
 dependencies {
-    implementation(mpsDistribution())
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+    compileOnly(project(":code:language"))
+    compileOnly(project(":code:platform"))
+    compileOnly(project(":code:richediting"))
 
-    implementation(project(":code:library"))
-    implementation(project(":code:language"))
-    implementation(project(":code:platform"))
-    implementation(project(":code:richediting"))
-
-    implementation(compose.desktop.currentOs)
+//    implementation(compose.desktop.currentOs)
 
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
@@ -33,9 +32,7 @@ dependencies {
 mps {
     buildScriptName.set("fbme_debugger")
     moduleName.set("org.fbme.debugger.lib")
-    libraryFilters.add("org.jetbrains.compose")
-    libraryFilters.add("org.jetbrains.skiko")
-    libraryFilters.add("org.jetbrains.kotlinx")
+
     moduleDependency(project(":code:library"))
     moduleDependency(project(":code:platform"))
     moduleDependency(project(":code:scenes"))
@@ -49,6 +46,6 @@ compileKotlin.kotlinOptions {
     freeCompilerArgs = listOf(
         "-Xjvm-default=all",
         "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+//        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
     )
 }

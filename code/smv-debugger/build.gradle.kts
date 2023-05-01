@@ -6,10 +6,10 @@ plugins {
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation(project(":code:library"))
-    implementation(project(":code:platform"))
-    implementation(project(":code:richediting"))
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+    compileOnly(project(":code:platform"))
+    compileOnly(project(":code:richediting"))
 
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
