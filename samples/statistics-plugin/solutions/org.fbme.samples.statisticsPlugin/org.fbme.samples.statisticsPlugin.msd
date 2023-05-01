@@ -12,9 +12,6 @@
   </facets>
   <sourcePath />
   <dependencies>
-    <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)</dependency>
-    <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
-    <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)</dependency>
     <dependency reexport="false">742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)</dependency>
     <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
     <dependency reexport="false">7e52736a-b7d3-42d5-9933-2a61cbc70441(org.fbme.samples.statistics.lib)</dependency>
@@ -44,9 +41,7 @@
     <module reference="498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)" version="0" />
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
-    <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
-    <module reference="1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)" version="0" />
     <module reference="ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)" version="0" />
     <module reference="7e52736a-b7d3-42d5-9933-2a61cbc70441(org.fbme.samples.statistics.lib)" version="0" />
     <module reference="e75dd6b6-f70b-468d-91bc-fb7684b58409(org.fbme.samples.statisticsPlugin)" version="0" />

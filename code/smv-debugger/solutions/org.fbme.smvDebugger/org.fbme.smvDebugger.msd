@@ -14,11 +14,8 @@
   <dependencies>
     <dependency reexport="false">6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)</dependency>
     <dependency reexport="false">6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)</dependency>
-    <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)</dependency>
     <dependency reexport="false">ce053d11-5ec7-4fac-b419-6715b4a97d3a(org.fbme.ide.richediting)</dependency>
-    <dependency reexport="false">1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)</dependency>
     <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
-    <dependency reexport="false">292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)</dependency>
     <dependency reexport="false">498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)</dependency>
     <dependency reexport="false">742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)</dependency>
     <dependency reexport="false">ce018f97-56b9-4ee7-9b5f-2d462b6628bf(org.fbme.platform.lib)</dependency>
@@ -46,7 +43,6 @@
     <module reference="742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)" version="0" />
     <module reference="92c73834-a51a-47a4-ba36-5d8a69f382af(common.iec61499.model)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
-    <module reference="5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)" version="0" />
     <module reference="6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)" version="0" />
     <module reference="292e01a6-3380-40ca-8417-b86844de2d63(org.fbme.ide.platform)" version="0" />
     <module reference="ce053d11-5ec7-4fac-b419-6715b4a97d3a(org.fbme.ide.richediting)" version="0" />

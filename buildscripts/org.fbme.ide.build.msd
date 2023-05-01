@@ -13,7 +13,6 @@
   <sourcePath />
   <dependencies>
     <dependency reexport="false">422c2909-59d6-41a9-b318-40e6256b250f(jetbrains.mps.ide.build)</dependency>
-    <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990c(org.fbme.platform.build)</dependency>
     <dependency reexport="false">fcf1995c-acfe-4b80-88f7-7756b5a07d7a(org.fbme.integration.fordiac.build)</dependency>
     <dependency reexport="false">c44ff7f6-aa34-4dc2-a9b3-93cc101df3d4(org.fbme.richediting.build)</dependency>
     <dependency reexport="false">1e230472-5031-41e3-a8db-02d0c36f3ee2(org.fbme.samples.statisticsPlugin.build)</dependency>

@@ -16,7 +16,6 @@
     <dependency reexport="true">836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9(org.fbme.scenes.lib)</dependency>
     <dependency reexport="false">498d89d2-c2e9-11e2-ad49-6cf049e62fe5(MPS.IDEA)</dependency>
     <dependency reexport="true">1ed103c3-3aa6-49b7-9c21-6765ee11f224(MPS.Editor)</dependency>
-    <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
     <dependency reexport="false">6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)</dependency>
     <dependency reexport="false">742f6602-5a2f-4313-aa6e-ae1cd4ffdc61(MPS.Platform)</dependency>
     <dependency reexport="false">5aff85f5-c1e8-49b6-a1f1-66d79702cceb(org.fbme.ide.iec61499.adapter)</dependency>
