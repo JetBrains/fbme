@@ -51,11 +51,11 @@ fun GenerateSourcePluginTasks(
             archiveBaseName.set(moduleName)
         }
 
-        val copyPluginXml by tasks.registering(Copy::class) {
+        val copyResources by tasks.registering(Copy::class) {
             enabled = tasksEnabled
 
-            from(layout.projectDirectory.file("src/main/resources/META-INF/plugin.xml"))
-            into(rootProject.layout.buildDirectory.dir("src-plugins/$pluginId/META-INF"))
+            from(layout.projectDirectory.dir("src/main/resources"))
+            into(rootProject.layout.buildDirectory.dir("src-plugins/$pluginId"))
         }
 
         val buildSrcPlugin by tasks.registering {
