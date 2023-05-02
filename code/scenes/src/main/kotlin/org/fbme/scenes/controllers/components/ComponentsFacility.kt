@@ -202,6 +202,8 @@ class ComponentsFacility<CompT, FormT>(
         override fun dragTo(x: Int, y: Int) {
             val dx = x - myOrigin.x
             val dy = y - myOrigin.y
+
+            if (!(dx * dx > 25 || dy * dy > 25)) return
             myHandle.moveTo(dx, dy)
             editor.fireRelayout()
             for (component in myMovedComponents) {
@@ -210,6 +212,11 @@ class ComponentsFacility<CompT, FormT>(
         }
 
         override fun completeAt(x: Int, y: Int) {
+            val dx = x - myOrigin.x
+            val dy = y - myOrigin.y
+
+            if (!(dx * dx > 25 || dy * dy > 25)) return
+
             myHandle.moveTo(x - myOrigin.x, y - myOrigin.y)
             myHandle.complete()
             editor.fireRelayout()
