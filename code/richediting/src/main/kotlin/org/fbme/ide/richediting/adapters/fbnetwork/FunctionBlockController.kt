@@ -27,8 +27,7 @@ import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.cells.EditorCell_Button
-import org.fbme.scenes.cells.EditorCell_Scene
-import org.fbme.scenes.cells.button.CrossButton
+import org.fbme.scenes.cells.button.TickButton
 import org.fbme.scenes.cells.button.EditButton
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.components.ComponentController
@@ -43,7 +42,7 @@ class FunctionBlockController(
         val expandedComponentsController: ExpandedComponentsController,
         val editedController: EditedComponentsController,
         iec61499Factory: IEC61499Factory,
-        scope: DeclarationsScope
+        scope: DeclarationsScope,
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
     private val editButton: EditorCell_Button
@@ -57,56 +56,40 @@ class FunctionBlockController(
     }
 
     private fun getNameProperty(context: EditorContext, view: FunctionBlockView, node: SNode): EditorCell_Property {
-        return EditorCell_Property(
-                context,
-                object : ModelAccessor {
-                    override fun getText(): String? {
-                        val name = view.component.name
-                        return if (name == "") null else name
-                    }
+        return EditorCell_Property(context, object : ModelAccessor {
+            override fun getText(): String? {
+                val name = view.component.name
+                return if (name == "") null else name
+            }
 
-                    override fun setText(text: String) {
-                        view.component.name = text
-                    }
+            override fun setText(text: String) {
+                view.component.name = text
+            }
 
-                    override fun isValidText(text: String): Boolean {
-                        return true
-                    }
-                },
-                node
-        )
+            override fun isValidText(text: String): Boolean {
+                return true
+            }
+        }, node)
     }
 
     private fun createRootCell(context: EditorContext, node: SNode): EditorCell_Collection {
-        return EditorCell_Collection(
-                context,
-                node,
-                CellLayout_Vertical()
-        )
+        return EditorCell_Collection(context, node, CellLayout_Vertical())
     }
 
     private fun initializeFBSceneCell(editorShift: Point = Point()): FBCell {
-        return FBSceneCell(
-                cellCollection.context,
-                view.type,
-                view.associatedNode,
-                false,
-                networkInstance.getChild(view.component)!!,
-                editorShift
-        )
+        return FBSceneCell(cellCollection.context, view.type, view.associatedNode, false, networkInstance.getChild(view.component)!!, editorShift)
     }
 
     private fun initializeFBCell(): FBCell {
         return FBTypeCellComponent(cellCollection.context, view.type, view.associatedNode, isEditable)
     }
 
-    private fun initializeFBEditCell(iec61499Factory: IEC61499Factory, scope: DeclarationsScope,): FBCell {
+    private fun initializeFBEditCell(iec61499Factory: IEC61499Factory, scope: DeclarationsScope): FBCell {
         return FBTypeEditCellComponent(cellCollection.context, view.type, view.associatedNode, iec61499Factory, scope, isEditable)
     }
 
     private fun getEditButton(context: EditorContext, node: SNode): EditorCell_Button {
-
-        return EditorCell_Button(context, node, if (!editedController.isEdited(view)) EditButton(18) else CrossButton(18))
+        return EditorCell_Button(context, node, if (!editedController.isEdited(view)) EditButton(18) else TickButton(18))
     }
 
     val fbInstance: FunctionBlockInstance?
@@ -129,13 +112,9 @@ class FunctionBlockController(
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
         val coordinates: Point = when (kind) {
-            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(
-                    index
-            )
+            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortPosition(index) else fbCell.getInputEventPortPosition(index)
 
-            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(
-                    index
-            )
+            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortPosition(index) else fbCell.getInputDataPortPosition(index)
 
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortPosition(index) else fbCell.getSocketPortPosition(index)
             else -> error("")
@@ -150,13 +129,9 @@ class FunctionBlockController(
         val kind = functionBlockPort.kind
         val isSource = functionBlockPort.isSource
         val bounds: Rectangle = when (kind) {
-            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(
-                    index
-            )
+            EntryKind.EVENT -> if (isSource) fbCell.getOutputEventPortBounds(index) else fbCell.getInputEventPortBounds(index)
 
-            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(
-                    index
-            )
+            EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(index)
 
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
             else -> error("Unknown port kind")
@@ -196,11 +171,7 @@ class FunctionBlockController(
     }
 
     override fun paintTrace(g: Graphics?, form: Point) {
-        fbCell.paintTrace(
-                g!!.create() as Graphics2D,
-                form.x,
-                form.y + if (fbCell is FBTypeCellComponent) getVerticalOffset() else 0
-        )
+        fbCell.paintTrace(g!!.create() as Graphics2D, form.x, form.y + if (fbCell is FBTypeCellComponent) getVerticalOffset() else 0)
     }
 
     private val lineSize: Int
@@ -211,18 +182,13 @@ class FunctionBlockController(
         cellCollection = createRootCell(context, node)
         cellCollection.style.set(RichEditorStyleAttributes.FB, view.component)
         cellCollection.isBig = true
-        this.networkInstance = networkInstance
-        //edit button
+        this.networkInstance = networkInstance //edit button
         editButton = getEditButton(context, node)
         editButton.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.RIGHT)
         editButton.setAction(CellActionType.CLICK, toEditModeAction())
-        editButton.style.set(
-                StyleAttributes.PADDING_BOTTOM,
-                Padding(EditorCell_Button.OY_OFFSET.toDouble(), Measure.PIXELS)
-        )
+        editButton.style.set(StyleAttributes.PADDING_BOTTOM, Padding(EditorCell_Button.OY_OFFSET.toDouble(), Measure.PIXELS))
         editButton.style.set(StyleAttributes.TRANSPARENT, true)
-        cellCollection.addEditorCell(editButton)
-        //name property
+        cellCollection.addEditorCell(editButton) //name property
         myNameProperty = getNameProperty(context, view, node)
         myNameProperty.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
         myNameProperty.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.CENTER)

@@ -1,5 +1,6 @@
 package org.fbme.scenes.cells
 
+import com.intellij.util.ui.StartupUiUtil
 import jetbrains.mps.nodeEditor.cells.*
 import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.scenes.cells.button.Button
@@ -13,8 +14,10 @@ class EditorCell_Button(
         node: SNode?,
         private val button: Button
 ): EditorCell_Basic(context, node) {
+    val isDark = StartupUiUtil.isUnderDarcula()
+
     override fun paintContent(g: Graphics, p1: ParentSettings) {
-        button.paint(g.create() as Graphics2D, myX, myY)
+        button.paint(g.create() as Graphics2D, myX, myY, isDark)
     }
 
     override fun paintSelection(g: Graphics?, c: Color?, drawBorder: Boolean, parentSettings: ParentSettings?) {
