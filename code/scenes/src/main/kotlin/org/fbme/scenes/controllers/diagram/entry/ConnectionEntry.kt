@@ -1,11 +1,13 @@
-package org.fbme.scenes.controllers.diagram
+package org.fbme.scenes.controllers.diagram.entry
 
+import org.fbme.scenes.controllers.diagram.ConnectionController
+import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import java.awt.Point
 import java.awt.Rectangle
 
 internal class ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>(
-    private val connectionsFacility: ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>,
-    val connection: ConnT
+        private val connectionsFacility: ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>,
+        val connection: ConnT
 ) {
     val controller: ConnectionController<CursorT, PathT> =
         connectionsFacility.controllerFactory.create(connectionsFacility.scene.editorContext, connection)

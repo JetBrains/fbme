@@ -5,6 +5,7 @@ interface DiagramView<C, P, E> {
     fun components(): Set<C>
     fun edges(): Set<E>
     fun ports(component: C): Set<P>
+    fun portsTemplates(component: C): Set<P>
     fun component(port: P): C
     fun sourcePort(edge: E): P
     fun setSourcePort(edge: E, port: P)
@@ -12,4 +13,6 @@ interface DiagramView<C, P, E> {
     fun setTargetPort(edge: E, port: P)
     fun removeEdge(edge: E)
     fun addEdge(sourcePort: P, targetPort: P): E?
+    fun addPort(port: P, component: C) {
+    }
 }

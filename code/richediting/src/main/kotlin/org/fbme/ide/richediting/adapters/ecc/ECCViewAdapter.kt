@@ -20,6 +20,10 @@ class ECCViewAdapter(
         return HashSet(ecc.transitions)
     }
 
+    override fun portsTemplates(component: StateDeclaration): Set<StateDeclaration> {
+        return emptySet()
+    }
+
     override fun addEdge(sourcePort: StateDeclaration, targetPort: StateDeclaration): StateTransition {
         val transition = factory.createStateTransition()
         transition.sourceReference.setTarget(sourcePort)

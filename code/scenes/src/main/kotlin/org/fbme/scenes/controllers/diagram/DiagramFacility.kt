@@ -1,11 +1,12 @@
 package org.fbme.scenes.controllers.diagram
 
-import java.awt.Point
-import java.awt.Rectangle
+import org.fbme.scenes.controllers.diagram.entry.PortEntry
+import org.fbme.scenes.controllers.diagram.entry.PortTemplateEntry
+
 
 class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private val diagramModel: DiagramView<CompT, PortT, ConnT>,
-    private val portSettingProvider: PortSettingProvider<PortT, CFormT>,
+    private val portSettingProvider: PortSettingProvider<PortT, CompT, CFormT>,
     private val componentSettings: DiagramComponentSettingProvider<CompT, CFormT>
 ) {
     private val components: MutableSet<CompT> = HashSet()
@@ -14,7 +15,9 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private val portToComponent: MutableMap<PortT, CompT> = HashMap()
     private val connectionToSource: MutableMap<ConnT, PortT> = HashMap()
     private val connectionToTarget: MutableMap<ConnT, PortT> = HashMap()
-    private val ports: MutableMap<PortT, PortEntry> = HashMap()
+    private val portTemplates: MutableList<PortT> = mutableListOf()
+    private val portTemplatesToComponent: MutableMap<PortTemplateEntry<PortT, CompT, CFormT>, CompT> = HashMap()
+    private val ports: MutableMap<PortT, PortEntry<PortT, CompT, CFormT>> = HashMap()
     val diagramController: DiagramController<CompT, PortT, ConnT> = MyDiagramController()
 
     private fun init() {
@@ -23,8 +26,17 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
             val ports = HashSet(diagramModel.ports(component))
             componentToPorts[component] = ports
             for (port in ports) {
-                this.ports.computeIfAbsent(port) { PortEntry(it) }
+                this.ports.computeIfAbsent(port) {
+                    PortEntry(it, component, componentSettings, portSettingProvider )
+                }
                 portToComponent[port] = component
+            }
+
+            val templates = portSettingProvider.getPortTemplates(component)
+            portTemplates.addAll(templates)
+            templates.forEach {
+                val template = PortTemplateEntry(it, component, this.portToComponent, this.ports, componentSettings, portSettingProvider)
+                portTemplatesToComponent[template] = component
             }
         }
         for (edge in diagramModel.edges()) {
@@ -37,10 +49,19 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private inner class MyDiagramController : DiagramController<CompT, PortT, ConnT> {
         override val isDiagramEditable: Boolean
             get() = diagramModel.isEditable
+
+        override fun getTemplateController(template: PortT): TemplateController<PortT> {
+            return portTemplatesToComponent.keys.find { it.template == template }!!
+        }
+
         override val components: Set<CompT>
             get() = this@DiagramFacility.components
         override val connections: Set<ConnT>
             get() = edges
+
+        override fun addPort(port: PortT) {
+            diagramModel.addPort(port, portToComponent[port]!!)
+        }
 
         override fun getComponent(port: PortT): CompT {
             return portToComponent[port] ?: error("Component not found")
@@ -57,6 +78,15 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
                 }
             }
             return null
+        }
+
+        override fun findPortTemplate(x: Int, y: Int): PortT? {
+            for (entry in portTemplatesToComponent.keys) {
+                if (entry.bounds.contains(x, y)) {
+                    return entry.template
+                }
+            }
+           return null
         }
 
         override fun getPorts(component: CompT): Set<PortT> {
@@ -85,35 +115,6 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
 
         override fun addEdge(sourcePort: PortT, targetPort: PortT): ConnT? {
             return diagramModel.addEdge(sourcePort, targetPort)
-        }
-    }
-
-    private inner class PortEntry(val port: PortT) : PortController {
-        override val bounds: Rectangle
-            get() {
-                val component = portToComponent[port] ?: error("Component not found")
-                return portSettingProvider.getBounds(componentSettings.getModelForm(component), port)
-            }
-        override val modelEndpointPosition: Point
-            get() {
-                val component = portToComponent[port] ?: error("Component not found")
-                return portSettingProvider.getEndpointPosition(componentSettings.getModelForm(component), port)
-            }
-        override val transformedEndpointPosition: Point?
-            get() {
-                val component = portToComponent[port] ?: error("Component not found")
-                val transformedForm = componentSettings.getTransformedForm(component) ?: return null
-                return portSettingProvider.getEndpointPosition(transformedForm, port)
-            }
-
-        override fun canBeSourcedAt(x: Int, y: Int): Boolean {
-            val component = portToComponent[port] ?: error("Component not found")
-            return portSettingProvider.canBeSourcedAt(componentSettings.getModelForm(component), port, x, y)
-        }
-
-        override fun canBeTargetedAt(x: Int, y: Int): Boolean {
-            val component = portToComponent[port] ?: error("Component not found")
-            return portSettingProvider.canBeTargetedAt(componentSettings.getModelForm(component), port, x, y)
         }
     }
 

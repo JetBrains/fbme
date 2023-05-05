@@ -8,8 +8,9 @@ import java.awt.Point
 import java.awt.Rectangle
 import java.util.function.Function
 
-class FBPortSettingProvider(private val myMapper: Function<NetworkComponentView, FBNetworkComponentController>) :
-    PortSettingProvider<NetworkPortView, Point> {
+class FBPortSettingProvider(
+        private val myMapper: Function<NetworkComponentView, FBNetworkComponentController>
+) : PortSettingProvider<NetworkPortView, NetworkComponentView, Point> {
     override fun getBounds(componentForm: Point, port: NetworkPortView): Rectangle {
         val component = port.component
         val controller = myMapper.apply(component)
@@ -20,6 +21,10 @@ class FBPortSettingProvider(private val myMapper: Function<NetworkComponentView,
         val component = port.component
         val controller = myMapper.apply(component)
         return controller.getPortCoordinates(port, componentForm)
+    }
+
+    override fun getPortTemplates(componentForm: NetworkComponentView): Set<NetworkPortView> {
+        return myMapper.apply(componentForm).getFBPortTemplates()
     }
 
     override fun canBeSourcedAt(componentForm: Point, port: NetworkPortView, x: Int, y: Int): Boolean {
@@ -38,5 +43,25 @@ class FBPortSettingProvider(private val myMapper: Function<NetworkComponentView,
         fun create(componentsFacility: ComponentsFacility<NetworkComponentView, Point>): FBPortSettingProvider {
             return FBPortSettingProvider { componentsFacility.getController(it) as FBNetworkComponentController }
         }
+    }
+
+    override fun getTemplateBounds(modelForm: Point, template: NetworkPortView): Rectangle {
+        val component = template.component
+        val controller = myMapper.apply(component)
+        return controller.getTemplateBounds(template, modelForm)
+    }
+
+    override fun createPort(source: NetworkPortView, template: NetworkPortView): NetworkPortView? {
+        if (source.kind != template.kind) return null
+
+        val component = template.component
+        val controller = myMapper.apply(component)
+        return controller.createPort(source, template)
+    }
+
+    override fun getTemplateEndpointPosition(modelForm: Point, template: NetworkPortView): Point {
+        val component = template.component
+        val controller = myMapper.apply(component)
+        return controller.getTemplatePosition(template, modelForm)
     }
 }

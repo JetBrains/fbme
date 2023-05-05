@@ -6,6 +6,7 @@ import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.cells.CellAction
 import jetbrains.mps.openapi.editor.cells.CellActionType
 import org.fbme.scenes.controllers.*
+import org.fbme.scenes.controllers.diagram.entry.ConnectionEntry
 import org.fbme.scenes.controllers.scene.*
 import java.awt.Graphics
 import java.awt.Graphics2D
@@ -113,10 +114,10 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
     }
 
     private fun changePath(
-        entry: ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>,
-        connectionView: ConnT,
-        translatedPath: PathT,
-        completed: Boolean
+            entry: ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>,
+            connectionView: ConnT,
+            translatedPath: PathT,
+            completed: Boolean
     ) {
         if (completed) {
             connectionSynchronizer.setPath(connectionView, translatedPath)
@@ -339,7 +340,25 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                         connectionSynchronizer.setPath(edge, newPath)
                     }
                 }
+            } else {
+                val template = diagramController.findPortTemplate(x, y)
+                if (template != null) {
+                    val templateController = diagramController.getTemplateController(template)
+                    if (templateController.canBeTargetedAt(x, y)) {
+                        scene.editorContext.repository.modelAccess.executeCommandInEDT {
+                            val nTarget = templateController.createPort(source) ?: return@executeCommandInEDT
+                            val targetSettings = diagramController.getPortController(nTarget)
+                            diagramController.addPort(nTarget)
+                            val edge = diagramController.addEdge(source, nTarget) ?: return@executeCommandInEDT
+                            val newPath = newPathFactory.apply(sourceLocation, targetSettings.modelEndpointPosition)
+                            connectionSynchronizer.setPath(edge, newPath)
+                            scene.editorContext.editorComponent.updater.update()
+                        }
+                    }
+
+                }
             }
+
             newConnectionPath = null
             scene.fireRepaint()
         }
@@ -368,6 +387,23 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                         val newPath = newPathFactory.apply(sourceSettings.modelEndpointPosition, targetLocation)
                         connectionSynchronizer.setPath(edge, newPath)
                     }
+                }
+            } else {
+                val template = diagramController.findPortTemplate(x, y)
+                if (template != null) {
+                    val templateController = diagramController.getTemplateController(template)
+                    if (templateController.canBeTargetedAt(x, y)) {
+                        scene.editorContext.repository.modelAccess.executeCommandInEDT {
+                            val nTarget = templateController.createPort(target) ?: return@executeCommandInEDT
+                            val targetSettings = diagramController.getPortController(nTarget)
+                            diagramController.addPort(nTarget)
+                            val edge = diagramController.addEdge(nTarget, target) ?: return@executeCommandInEDT
+                            val newPath = newPathFactory.apply(targetLocation, targetSettings.modelEndpointPosition)
+                            connectionSynchronizer.setPath(edge, newPath)
+                            scene.editorContext.editorComponent.updater.update()
+                        }
+                    }
+
                 }
             }
             newConnectionPath = null

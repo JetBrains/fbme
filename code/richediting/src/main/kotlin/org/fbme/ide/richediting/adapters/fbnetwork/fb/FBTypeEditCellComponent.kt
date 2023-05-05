@@ -7,6 +7,7 @@ import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Horizontal
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
+import jetbrains.mps.nodeEditor.cells.EditorCell_Basic
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property
 import jetbrains.mps.nodeEditor.cells.ParentSettings
@@ -18,18 +19,15 @@ import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.DeclarationNameAccessor
-import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
-import org.fbme.ide.richediting.adapters.fbnetwork.port.PortActionFactory
-import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithEditableLabel
-import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithLabelAndType
+import org.fbme.ide.richediting.adapters.fbnetwork.port.*
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
+import org.fbme.ide.richediting.viewmodel.NetworkPortView
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclarationWithAdapters
-import org.fbme.lib.iec61499.declarations.ParameterDeclaration
-import org.fbme.lib.iec61499.declarations.SocketPluginDeclaration
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
@@ -57,7 +55,7 @@ class FBTypeEditCellComponent(
     private val typeNameLabel: EditorCell_Property
 
     override val rootCell: EditorCell_Collection
-    private val buttons: EnumMap<EntryKind, EditorCell_Collection>
+    val buttons: EnumMap<EntryKind, EditorCell_Collection>
     private val eventPortsContainer: EditorCell_Collection
     private val dataPortsContainer: EditorCell_Collection
     private val otherPortsContainer: EditorCell_Collection
@@ -177,6 +175,40 @@ class FBTypeEditCellComponent(
         return block
     }
 
+    fun addPort(port: FBPortDescriptor) {
+        when (port.connectionKind) {
+            EntryKind.EVENT -> {
+                val value = PortWithEditableLabel(context, node,  port, fbType.declaration)
+                if (port.isInput) {
+                    (eventPortsContainer.cells.first() as EditorCell_Collection).addEditorCell(value.label)
+                    inputEventPorts.add(value)
+                } else {
+                    (eventPortsContainer.cells.last() as EditorCell_Collection).addEditorCell(value.label)
+                    outputEventPorts.add(value)
+                }
+            }
+            EntryKind.DATA -> {
+                val typeDeclaration = port.declaration as ParameterDeclaration
+                val value = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
+                if (port.isInput) {
+                    (dataPortsContainer.cells.first() as EditorCell_Collection).addEditorCell(value.cell)
+                    inputDataPorts.add(value)
+                } else {
+                    (dataPortsContainer.cells.last() as EditorCell_Collection).addEditorCell(value.cell)
+                    outputDataPorts.add(value)
+                }
+            }
+            EntryKind.ADAPTER -> {
+                val types = scope.findAllAdapterTypeDeclarations()
+                if (port.isInput) {
+                    addPlugSocketPort(port, socketPorts, otherPortsContainer.cells.first() as EditorCell_Collection, types, CellAlign.LEFT, StyleAttributes.PADDING_LEFT)
+                } else {
+                    addPlugSocketPort(port, plugPorts, otherPortsContainer.cells.last() as EditorCell_Collection, types, CellAlign.RIGHT, StyleAttributes.PADDING_RIGHT)
+                }
+            }
+        }
+    }
+
     private fun createDataPortBlock(
             portsDescriptors: List<FBPortDescriptor>,
             ports: MutableList<Port>,
@@ -187,19 +219,7 @@ class FBTypeEditCellComponent(
 
         for (port in portsDescriptors) {
             val typeDeclaration = port.declaration as ParameterDeclaration
-            val items = DataTypeUtil.getBasicTypes().map {
-                object : CompletionItem {
-                    override fun getMatchingText(pattern: String?): String = it.stringify()
-
-                    override val descriptionText: String = ""
-
-                    override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
-                        typeDeclaration.type = it
-                        return null
-                    }
-                }
-            }
-            val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), items)
+            val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
             portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
             portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
             ports.add(portWithLabel)
@@ -207,6 +227,21 @@ class FBTypeEditCellComponent(
         }
 
         return block
+    }
+
+    fun getDataTypeSuggestions(typeDeclaration: ParameterDeclaration): List<CompletionItem> {
+        return DataTypeUtil.getBasicTypes().map {
+            object : CompletionItem {
+                override fun getMatchingText(pattern: String?): String = it.stringify()
+
+                override val descriptionText: String = ""
+
+                override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
+                    typeDeclaration.type = it
+                    return null
+                }
+            }
+        }
     }
 
     private fun createPlugSocketPortBlock(
@@ -219,27 +254,32 @@ class FBTypeEditCellComponent(
         val types = scope.findAllAdapterTypeDeclarations()
 
         for (port in portsDescriptors) {
-            val typeDeclaration = port.declaration as SocketPluginDeclaration
-            val items = types.map {
-                object : CompletionItem {
-                    override fun getMatchingText(pattern: String?): String = it.name
-
-                    override val descriptionText: String = ""
-
-                    override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
-                        typeDeclaration.typeReference.setTarget(it)
-                        return null
-                    }
-                }
-            }
-            val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
-            portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
-            portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
-            ports.add(portWithLabel)
-            block.addEditorCell(portWithLabel.cell)
+            addPlugSocketPort(port, ports, block, types, horizontalAlign, padding)
         }
 
         return block
+    }
+
+    fun addPlugSocketPort(port: FBPortDescriptor, ports: MutableList<Port>, block: EditorCell_Collection, types: List<AdapterTypeDeclaration>, horizontalAlign: CellAlign,
+                          padding: StyleAttribute<Padding>) {
+        val typeDeclaration = port.declaration as SocketPluginDeclaration
+        val items = types.map {
+            object : CompletionItem {
+                override fun getMatchingText(pattern: String?): String = it.name
+
+                override val descriptionText: String = ""
+
+                override fun doSubstitute(editorContext: EditorContext?, pattern: String?): SNode? {
+                    typeDeclaration.typeReference.setTarget(it)
+                    return null
+                }
+            }
+        }
+        val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
+        portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
+        portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
+        ports.add(portWithLabel)
+        block.addEditorCell(portWithLabel.cell)
     }
 
     private fun createRootCell(): EditorCell_Collection {
@@ -447,6 +487,24 @@ class FBTypeEditCellComponent(
         val right = cell.cells.last()
         right.moveTo(width - 15, right.y + cell.height - right.height)
         left.moveTo(0, left.y + cell.height - left.height)
+    }
+
+    fun getPortTemplates(view: FunctionBlockView): Set<NetworkPortView> {
+        val result = mutableSetOf<NetworkPortView>()
+
+        if (fbType.declaration is FBInterfaceDeclaration) {
+            result.add(FunctionBlockPortView(view, -1, EntryKind.EVENT, true, fbType.declaration!!))
+            result.add(FunctionBlockPortView(view, -1, EntryKind.EVENT, false, fbType.declaration!!))
+            result.add(FunctionBlockPortView(view, -1, EntryKind.DATA, true, fbType.declaration!!))
+            result.add(FunctionBlockPortView(view, -1, EntryKind.DATA, false, fbType.declaration!!))
+        }
+
+        if (fbType.declaration is FBInterfaceDeclarationWithAdapters) {
+            result.add(FunctionBlockPortView(view, -1, EntryKind.ADAPTER, true, fbType.declaration!!))
+            result.add(FunctionBlockPortView(view, -1, EntryKind.ADAPTER, false, fbType.declaration!!))
+        }
+
+        return result
     }
 
     companion object {

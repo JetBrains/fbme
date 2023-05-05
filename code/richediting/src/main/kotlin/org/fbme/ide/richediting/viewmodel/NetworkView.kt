@@ -15,6 +15,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     private val myMainComponents: MutableSet<NetworkComponentView> = HashSet()
     private val myAuxComponents: MutableMap<NetworkComponentView, Set<NetworkComponentView>> = HashMap()
     private val myComponentToPorts: MutableMap<NetworkComponentView, Set<NetworkPortView>> = HashMap()
+    private val myComponentToPortTemplates:  MutableMap<NetworkComponentView, Set<FunctionBlockPortTemplateView>> = HashMap()
     private val myPorts: MutableMap<NetworkPortView, NetworkComponentView> = HashMap()
     private val myConnectionSources: MutableMap<NetworkConnectionView, NetworkPortView?> = HashMap()
     private val myConnectionDestinations: MutableMap<NetworkConnectionView, NetworkPortView?> = HashMap()
@@ -207,6 +208,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
             myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.ADAPTER, plug.declaration!!)] = port
             myPorts[port] = view
         }
+        //TODO: add ports templates
     }
 
     fun addConnection(connection: FBNetworkConnection, editable: Boolean): NetworkConnectionView? {
@@ -248,6 +250,10 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
 
             override fun edges(): Set<NetworkConnectionView> {
                 return myConnectionSources.keys
+            }
+
+            override fun portsTemplates(component: NetworkComponentView): Set<NetworkPortView> {
+                return myComponentToPortTemplates[component] ?: emptySet()
             }
 
             override fun ports(component: NetworkComponentView): Set<NetworkPortView> {
@@ -292,6 +298,10 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
                 return null
             }
 
+            override fun addPort(port: NetworkPortView, component: NetworkComponentView) {
+                myPorts[port] = component
+            }
+
             override fun removeEdge(edge: NetworkConnectionView) {
                 val connection = edge.connection
                 if (connection != null && edge.isEditable) {
@@ -314,6 +324,8 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
                 }
                 return null
             }
+
+
 
             override val isEditable: Boolean
                 get() = this@NetworkView.isEditable

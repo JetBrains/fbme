@@ -8,7 +8,7 @@ import java.awt.Rectangle
 import java.util.function.Function
 
 class ECPortSettingProvider(private val mapper: Function<StateDeclaration, ECStateController>) :
-    PortSettingProvider<StateDeclaration, Point> {
+    PortSettingProvider<StateDeclaration, StateDeclaration, Point> {
     override fun getBounds(componentForm: Point, port: StateDeclaration): Rectangle {
         val controller = mapper.apply(port)
         val bounds = Rectangle(controller.getBounds(componentForm))

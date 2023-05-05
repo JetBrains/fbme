@@ -17,12 +17,15 @@ import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBSceneCell
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeEditCellComponent
+import org.fbme.ide.richediting.adapters.fbnetwork.port.PortActionFactory
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkPortView
+import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
@@ -41,7 +44,7 @@ class FunctionBlockController(
         networkInstance: NetworkInstance,
         val expandedComponentsController: ExpandedComponentsController,
         val editedController: EditedComponentsController,
-        iec61499Factory: IEC61499Factory,
+        val iec61499Factory: IEC61499Factory,
         scope: DeclarationsScope,
 ) : ComponentController<Point>, FBNetworkComponentController {
     private val myNameProperty: EditorCell_Property
@@ -145,6 +148,87 @@ class FunctionBlockController(
         return functionBlockPort.isSource
     }
 
+    override fun getTemplateBounds(template: NetworkPortView, modelForm: Point): Rectangle {
+        if (!editedController.isEdited(view)) {
+            return super.getTemplateBounds(template, modelForm)
+        }
+
+        val buttons = (fbCell as FBTypeEditCellComponent).buttons[template.kind]
+        template as FunctionBlockPortView
+        val button = (if (template.isSource) buttons?.cells?.last() else buttons?.cells?.first())
+        val bounds = Rectangle(button?.x ?: 0, button?.y ?: 0, button?.width ?: 0, (button?.height ?: 0))
+        //bounds.translate(modelForm.x, modelForm.y + getVerticalOffset())
+        return bounds
+    }
+
+    override fun getTemplatePosition(template: NetworkPortView, modelForm: Point): Point {
+        if (!editedController.isEdited(view)) {
+            return super.getTemplatePosition(template, modelForm)
+        }
+
+        val buttons = (fbCell as FBTypeEditCellComponent).buttons[template.kind]
+        template as FunctionBlockPortView
+        val button = (if (template.isSource) buttons?.cells?.last() else buttons?.cells?.first())
+        val bounds = Rectangle(button?.width ?: 0, (button?.height ?: 0) + getVerticalOffset())
+        val x = bounds.x + if (template.isSource) bounds.width else 0
+        val y = bounds.y + bounds.height / 2
+        val point = Point(x, y)
+        point.translate(modelForm.x, modelForm.y + getVerticalOffset())
+        return point
+    }
+
+    override fun createPort(source: NetworkPortView, template: NetworkPortView): NetworkPortView? {
+        require(!(template !is FunctionBlockPortView || source !is FunctionBlockPortView)) { "invalid port" }
+
+        if (template.isSource == source.isSource) return null
+
+        val declaration = view.type.declaration
+
+        if (declaration !is FBInterfaceDeclaration) return null
+
+        when(template.kind) {
+            EntryKind.EVENT -> {
+                val list = if (template.isSource) declaration.outputEvents else declaration.inputEvents
+                val identifier = PortActionFactory.IDENTIFIER_FACTORY("E", list.map { it.name }).get()
+                val nEvent = iec61499Factory.createEventDeclaration(identifier)
+                list.add(nEvent)
+                (fbCell as FBTypeEditCellComponent).addPort(if (template.isSource) view.type.eventOutputPorts.last() else view.type.eventInputPorts.last())
+                return FunctionBlockPortView(template.component, list.size - 1, EntryKind.EVENT, template.isSource, nEvent)
+            }
+            EntryKind.DATA -> {
+                val list = if (template.isSource) declaration.outputParameters else declaration.inputParameters
+                val identifier = PortActionFactory.IDENTIFIER_FACTORY("P", list.map { it.name }).get()
+                val nParameter = iec61499Factory.createParameterDeclaration(identifier)
+                nParameter.type = (source.target as ParameterDeclaration).type
+                list.add(nParameter)
+                (fbCell as FBTypeEditCellComponent).addPort(if (template.isSource) view.type.dataOutputPorts.last() else view.type.dataInputPorts.last())
+                return FunctionBlockPortView(template.component, list.size - 1, EntryKind.DATA, template.isSource, nParameter)
+            }
+            EntryKind.ADAPTER -> {
+                if (declaration !is FBInterfaceDeclarationWithAdapters)  {
+                    return null
+                }
+                if  (template.isSource) {
+                    val list = declaration.plugs
+                    val identifier = PortActionFactory.IDENTIFIER_FACTORY("P", list.map { it.name }).get()
+                    val nParameter = iec61499Factory.createPlugDeclaration(identifier)
+                    val dec = source.target as PlugDeclaration
+                    nParameter.typeReference.setTarget(dec.typeReference.getTarget()!!)
+                    list.add(nParameter)
+                    (fbCell as FBTypeEditCellComponent).addPort(if (template.isSource) view.type.plugPorts.last() else view.type.socketPorts.last())
+                    return FunctionBlockPortView(template.component, list.size - 1, EntryKind.ADAPTER, template.isSource, nParameter)
+                }
+                val list = declaration.sockets
+                val identifier = PortActionFactory.IDENTIFIER_FACTORY("S", list.map { it.name }).get()
+                val nParameter = iec61499Factory.createSocketDeclaration(identifier)
+                val dec = source.target as SocketDeclaration
+                nParameter.typeReference.setTarget(dec.typeReference.getTarget()!!)
+                list.add(nParameter)
+                return FunctionBlockPortView(template.component, list.size - 1, EntryKind.DATA, template.isSource, nParameter)
+            }
+        }
+    }
+
     private fun assertMine(port: NetworkPortView): FunctionBlockPortView {
         require(!(port.component != view || port !is FunctionBlockPortView)) { "invalid port" }
         return port
@@ -176,6 +260,14 @@ class FunctionBlockController(
 
     private val lineSize: Int
         get() = getLineSize(cellCollection.style)
+
+    override fun getFBPortTemplates(): Set<NetworkPortView> {
+        if (!editedController.isEdited(view)) {
+            return super.getFBPortTemplates()
+        }
+
+        return (fbCell as FBTypeEditCellComponent).getPortTemplates(view)
+    }
 
     init {
         val node = view.associatedNode
