@@ -329,7 +329,12 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
 
     override fun generateSignature(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
         buf.append("MODULE " + fbc.name + '(')
-        for (ie in fbc.inputEvents) buf.append("event_${ie.name}, ")
+        for (ie in fbc.inputEvents) {
+            if (data.NON_DETERMINISTIC_VARIABLES_ENABLED && ie.name == "NDT" ){
+                continue
+            }
+            buf.append("event_${ie.name}, ")
+        }
         for (oe in fbc.outputEvents) buf.append("event_${oe.name}, ")
         for (id in fbc.inputParameters) buf.append("${id.name}_,")
         for (od in fbc.outputParameters) buf.append("${od.name}_,")

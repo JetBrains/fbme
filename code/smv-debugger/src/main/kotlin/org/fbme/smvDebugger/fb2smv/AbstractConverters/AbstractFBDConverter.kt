@@ -27,6 +27,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     var mainFunction: AbstractMainConverter? = null
     var data: VerifiersData? = null
 
+
     private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
         if( fbTypesSet.contains(compositeFb)) return
         val fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks

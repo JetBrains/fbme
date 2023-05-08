@@ -18,7 +18,7 @@ class FB2SMV: AbstractFBDConverter("smv")  {
             BinaryOperation.AND to "&",
             BinaryOperation.OR to "|"
         )
-        data = VerifiersData(typesMap,typesInitValMap,binaryOperationsConvertionMap)
+        data = VerifiersData(typesMap,typesInitValMap,binaryOperationsConvertionMap, true)
         basicFBConverter = SMVFunctionBlockConverter(data!!)
         compositeFBConverter = SMVCompositeFBConverter(data!!)
         mainFunction = MainConverter(data!!)
