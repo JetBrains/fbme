@@ -59,10 +59,9 @@ object FBNetworkEditors {
                 require(!(extView !is InlineValueView || compController !is FunctionBlockController))
                 val repository: PlatformElementsOwner =
                     PlatformRepositoryProvider.getInstance(context.operationContext.project)
-                val node = extView.associatedNode.parent
+                val node = extView.associatedNode.parent ?: error("Parameter assignment is null")
                 val parameter = repository.getAdapter(node, ParameterAssignment::class.java)
-                    ?: error("Parameter assignment is null")
-                val cell = RicheditingMpsBridge.createInlineValueCell(context, node!!)
+                val cell = RicheditingMpsBridge.createInlineValueCell(context, node)
                 if (parameter.value == null) {
                     val action: CellAction = object : CellAction {
                         override fun getDescriptionText(): String {
@@ -144,9 +143,11 @@ object FBNetworkEditors {
             val connectionsLayer = scene.createLayer(3f)
             val inspectionsLayer = scene.createLayer(4f)
             val scale = RicheditingMpsBridge.getEditorScale(project)
-            val viewpoint = if (layout === SceneLayout.WINDOWED)
+            val viewpoint = if (layout === SceneLayout.WINDOWED) {
                 SceneViewpointByCell(scene, scene, editorShift.x, editorShift.y)
-            else scene.viewpoint!!
+            } else {
+                scene.viewpoint!!
+            }
             style.set(RichEditorStyleAttributes.VIEWPOINT, viewpoint)
             val focus: SceneFocusModel = DefaultFocusModel()
             if (layout === SceneLayout.WINDOWED) {
@@ -211,9 +212,12 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val extendedLayout: ROLayoutModel<NetworkComponentView> = ExtendedLayoutModel(
                 componentsLayout,
-                { view: NetworkComponentView, compPosition: Point ->
-                    (inlineValuesFacility.getController(view) as InlineValueController).getCoordinates(compPosition)
-                }) { inlineValuesView.getExtensions(it) }
+                { view, compPosition ->
+                    val controller = inlineValuesFacility.getController(view) as InlineValueController
+                    controller.getCoordinates(compPosition)
+                },
+                { inlineValuesView.getExtensions(it) }
+            )
             val connectionsFacility = ConnectionsFacility(
                 scene,
                 CONNECTION_CONTROLLER_FACTORY,

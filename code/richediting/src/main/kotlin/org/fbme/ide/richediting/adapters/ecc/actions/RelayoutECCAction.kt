@@ -1,7 +1,6 @@
 package org.fbme.ide.richediting.adapters.ecc.actions
 
 import jetbrains.mps.openapi.editor.cells.EditorCell
-import org.fbme.ide.richediting.adapters.common.actions.Action
 import org.fbme.ide.richediting.adapters.ecc.ECTransitionCursor
 import org.fbme.ide.richediting.adapters.ecc.ECTransitionPath
 import org.fbme.ide.richediting.adapters.ecc.elk.ELKLayoutProvider
@@ -13,8 +12,7 @@ import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramFacility
 import java.awt.Point
 
-
-class RelayoutECCAction(cell: EditorCell) : Action {
+class RelayoutECCAction(cell: EditorCell) {
     private val layoutProvider: ELKLayoutProvider
 
     init {
@@ -27,7 +25,7 @@ class RelayoutECCAction(cell: EditorCell) : Action {
         )
     }
 
-    override fun apply() {
+    fun apply() {
         layoutProvider.relayout()
     }
 }

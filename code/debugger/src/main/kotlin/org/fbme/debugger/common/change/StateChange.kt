@@ -1,3 +1,4 @@
 package org.fbme.debugger.common.change
 
-data class StateChange(val state: String) : Change
+@JvmInline
+value class StateChange(val state: String) : TraceChange

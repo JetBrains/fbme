@@ -15,7 +15,7 @@ class GlobalTime : JLabel(), DebugPanelMVCItem {
     override fun initView() {}
     override fun initController() {
         model!!.globalTimeModel
-            .addPropertyChangeListener(GlobalTimeModel.Companion.GLOBAL_TIME) { event: PropertyChangeEvent ->
+            .addPropertyChangeListener(GlobalTimeModel.GLOBAL_TIME) { event: PropertyChangeEvent ->
                 val time = event.newValue as String
                 text = LEFT_PADDING + time
             }

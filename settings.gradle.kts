@@ -6,7 +6,7 @@ include(
     "code:language",
     "code:library",
     "code:nxt-integration",
-        "code:platform",
+    "code:platform",
     "code:richediting",
     "code:scenes",
     "code:smv-debugger",

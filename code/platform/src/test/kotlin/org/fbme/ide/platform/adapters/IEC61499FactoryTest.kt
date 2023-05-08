@@ -1,7 +1,7 @@
 package org.fbme.ide.platform.adapters
 
-import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.ide.platform.testing.PlatformTestBase
+import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.fbnetwork.EntryKind

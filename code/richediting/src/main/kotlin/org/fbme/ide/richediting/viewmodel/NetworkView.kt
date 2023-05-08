@@ -9,6 +9,7 @@ import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork
 import org.fbme.scenes.controllers.diagram.DiagramView
 import org.fbme.scenes.viewmodel.ComponentExtensionsView
 import org.fbme.scenes.viewmodel.ComponentsView
+import kotlin.math.max
 
 class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork: FBNetwork, val isEditable: Boolean) {
     private val myMainComponents: MutableSet<NetworkComponentView> = HashSet()
@@ -69,7 +70,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
                 endpointCoordinateMap.getOrDefault(eventDeclaration.name, createDefaultEndpointCoordinate(i, false))
             addInterfaceEndpoint(network, endpointCoordinate, i, EntryKind.EVENT, false, eventDeclaration)
         }
-        val events = Math.max(contextEventSources.size, contextEventDestinations.size)
+        val events = max(contextEventSources.size, contextEventDestinations.size)
         val contextDataSources = network.contextDataSources
         for (i in contextDataSources.indices) {
             val parameterDeclaration = contextDataSources[i]
@@ -148,14 +149,14 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myAuxComponents[view] = exts
         for (parameter in functionBlock.parameters) {
             val parameterDeclaration = parameter.parameterReference.getTarget()
-                ?: // TODO handle broken parameters 
+                ?: // TODO handle broken parameters
                 continue
             val declaration = parameterDeclaration.container as FBInterfaceDeclaration?
             val index = declaration!!.inputParameters.indexOf(parameterDeclaration)
             val oppositePortView = FunctionBlockPortView(view, index, EntryKind.DATA, false, parameterDeclaration)
             val inlineValueView = InlineValueView(oppositePortView, parameter.value!!)
             myElementModelMap[parameter] = inlineValueView
-            myComponentToPorts[inlineValueView] = java.util.Set.of<NetworkPortView>(inlineValueView)
+            myComponentToPorts[inlineValueView] = setOf<NetworkPortView>(inlineValueView)
             myPorts[inlineValueView] = inlineValueView
             exts.add(inlineValueView)
             val parameterConnectionView = NetworkConnectionView(parameter, true)
@@ -213,9 +214,8 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myConnectionModelMap[connection] = view
         val source = connection.sourceReference.getTarget()
         val target = connection.targetReference.getTarget()
-        val sourceView: NetworkPortView?
         val targetView: NetworkPortView?
-        sourceView = if (source != null) {
+        val sourceView: NetworkPortView? = if (source != null) {
             myPortModelMap[source]
         } else {
             view.shrink()

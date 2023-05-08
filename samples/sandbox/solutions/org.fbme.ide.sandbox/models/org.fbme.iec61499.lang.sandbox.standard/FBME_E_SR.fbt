@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="FBME_E_SR">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="S" />
+      <Event Name="R" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO">
+        <With Var="Q" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="320" y="0" />
+      <ECState Name="SET" x="1500" y="439">
+        <ECAction Output="EO" Algorithm="SET" />
+      </ECState>
+      <ECState Name="RESET" x="0" y="540">
+        <ECAction Output="EO" Algorithm="RESET" />
+      </ECState>
+      <ECTransition Source="START" Destination="SET" x="1073" y="486" Condition="S" />
+      <ECTransition Source="SET" Destination="RESET" x="1073" y="680" Condition="R" />
+      <ECTransition Source="RESET" Destination="SET" x="1073" y="979" Condition="S" />
+    </ECC>
+    <Algorithm Name="SET">
+      <ST Text="Q := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text="Q := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

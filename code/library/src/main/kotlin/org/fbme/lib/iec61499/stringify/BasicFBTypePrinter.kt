@@ -66,6 +66,7 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
             guardCondition != null && eventPresentation.isEmpty() -> {
                 "[" + escapeXML(STPrinter.printExpression(guardCondition)) + "]"
             }
+
             guardCondition == null -> eventPresentation
             else -> "$eventPresentation[" + escapeXML(STPrinter.printExpression(guardCondition)) + "]"
         }

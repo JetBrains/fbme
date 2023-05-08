@@ -3,10 +3,9 @@
   <property name="build.dir" location="build" />
   <property name="build.tmp" location="${build.dir}/tmp/fbme_bootstrap" />
   <property name="build.layout" location="${build.dir}/artifacts/fbme_bootstrap" />
-  <property name="mps_home" location="${basedir}/lib/MPS 2021.2" />
+  <property name="mps_home" location="${basedir}/lib/MPS 2021.3" />
   <property name="artifacts.mps" location="${mps_home}" />
   <property name="artifacts.fbme_source_plugins" location="${build.dir}/artifacts/fbme_source_plugins" />
-  <property name="artifacts.fbme_platform" location="code/platform/build/artifacts/fbme_platform" />
   <property name="artifacts.fbme_language" location="code/language/build/artifacts/fbme_language" />
   <property name="artifacts.fbme_richediting" location="code/richediting/build/artifacts/fbme_richediting" />
   <property name="artifacts.fbme_fordiac" location="code/4diac-integration/build/artifacts/fbme_fordiac" />
@@ -14,7 +13,7 @@
   <property name="artifacts.fbme_debugger" location="code/debugger/build/artifacts/fbme_debugger" />
   <property name="artifacts.fbme_nxt" location="code/nxt-integration/build/artifacts/fbme_nxt" />
   <property file="${artifacts.mps}/build.properties" prefix="import.mps" />
-  <property file="${artifacts.fbme_platform}/build.properties" prefix="import.fbme_platform" />
+  <property file="${artifacts.fbme_language}/build.properties" prefix="import.fbme_language" />
   <property file="${artifacts.fbme_richediting}/build.properties" prefix="import.fbme_richediting" />
   <property file="${artifacts.fbme_fordiac}/build.properties" prefix="import.fbme_fordiac" />
   <property file="${artifacts.fbme_smvdebugger}/build.properties" prefix="import.fbme_smvdebugger" />
@@ -31,8 +30,7 @@
   <property name="mpsBootstrapCore.version.bugfixNr" value="${import.mps.mpsBootstrapCore.version.bugfixNr}" />
   <property name="mpsBootstrapCore.version.eap" value="${import.mps.mpsBootstrapCore.version.eap}" />
   <property name="mpsBootstrapCore.version" value="${import.mps.mpsBootstrapCore.version}" />
-  <property name="fbme_platform.ide-version" value="${import.fbme_platform.fbme_platform.ide-version}" />
-  <property name="fbme_language.ide-version" value="${import.fbme_platform.fbme_language.ide-version}" />
+  <property name="fbme_language.ide-version" value="${import.fbme_language.fbme_language.ide-version}" />
   <property name="fbme_richediting.ide-version" value="${import.fbme_richediting.fbme_richediting.ide-version}" />
   <property name="fbme_fordiac.ide-version" value="${import.fbme_fordiac.fbme_fordiac.ide-version}" />
   <property name="fbme_smvdebugger.ide-version" value="${import.fbme_smvdebugger.fbme_smvdebugger.ide-version}" />
@@ -43,18 +41,24 @@
   
   <path id="path.mps.ant.path">
     <pathelement location="${mps_home}/lib/ant/lib/ant-mps.jar" />
-    <pathelement location="${mps_home}/lib/util.jar" />
+    <fileset dir="${mps_home}/lib">
+      <include name="util.jar" />
+      <include name="3rd-party-rt.jar" />
+    </fileset>
   </path>
+  
+  <taskdef resource="jetbrains/mps/build/ant/antlib.xml" classpathref="path.mps.ant.path" />
+  
+  <generator-settings id="m2m-defaults" strictMode="true" parallelThreads="8" inplaceTransform="false" warnWrongChild="true" createStaticRefs="true" skipUnmodifiedModels="${mps.generator.skipUnmodifiedModels}" />
   
   <target name="assemble" depends="declare-mps-tasks">
     <mkdir dir="${build.layout}" />
-    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_platform.ide-version=${fbme_platform.ide-version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}${line.separator}fbme_debugger.ide-version=${fbme_debugger.ide-version}${line.separator}fbme_nxt.ide-version=${fbme_nxt.ide-version}</echo>
+    <echo file="${build.layout}/build.properties">mps.build.number=${mps.build.number}${line.separator}mps.date=${mps.date}${line.separator}mps.build.vcs.number=${mps.build.vcs.number}${line.separator}mps.teamcity.buildConfName=${mps.teamcity.buildConfName}${line.separator}mps.idea.platform.build.number=${mps.idea.platform.build.number}${line.separator}mps.mps.build.counter=${mps.mps.build.counter}${line.separator}mpsBootstrapCore.version.major=${mpsBootstrapCore.version.major}${line.separator}mpsBootstrapCore.version.minor=${mpsBootstrapCore.version.minor}${line.separator}mpsBootstrapCore.version.bugfixNr=${mpsBootstrapCore.version.bugfixNr}${line.separator}mpsBootstrapCore.version.eap=${mpsBootstrapCore.version.eap}${line.separator}mpsBootstrapCore.version=${mpsBootstrapCore.version}${line.separator}fbme_language.ide-version=${fbme_language.ide-version}${line.separator}fbme_richediting.ide-version=${fbme_richediting.ide-version}${line.separator}fbme_fordiac.ide-version=${fbme_fordiac.ide-version}${line.separator}fbme_smvdebugger.ide-version=${fbme_smvdebugger.ide-version}${line.separator}fbme_debugger.ide-version=${fbme_debugger.ide-version}${line.separator}fbme_nxt.ide-version=${fbme_nxt.ide-version}</echo>
   </target>
   
   <target name="buildDependents">
     <ant antfile="build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/language/build.xml" inheritAll="false" useNativeBasedir="true" />
-    <ant antfile="code/platform/build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/richediting/build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/4diac-integration/build.xml" inheritAll="false" useNativeBasedir="true" />
     <ant antfile="code/smv-debugger/build.xml" inheritAll="false" useNativeBasedir="true" />
@@ -73,7 +77,8 @@
   
   <target name="generate" depends="declare-mps-tasks, fetchDependencies">
     <echo message="generating" />
-    <generate strictMode="true" parallelMode="true" parallelThreads="8" useInplaceTransform="false" hideWarnings="false" createStaticRefs="true" fork="true" skipUnmodifiedModels="${mps.generator.skipUnmodifiedModels}" logLevel="${mps.ant.log}">
+    <generate fork="true" logLevel="${mps.ant.log}">      
+      <settings refid="m2m-defaults" />
       <plugin path="${artifacts.mps}/plugins/mps-build" />
       <plugin path="${artifacts.mps}/plugins/mps-core" />
       <library file="${artifacts.mps}/languages/baseLanguage/closures.runtime.jar" />
@@ -92,7 +97,9 @@
       <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.scopes.jar" />
       <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.tuples.jar" />
       <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.tuples.runtime.jar" />
+      <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguage.util.jar" />
       <library file="${artifacts.mps}/languages/baseLanguage/jetbrains.mps.baseLanguageInternal.jar" />
+      <library file="${artifacts.mps}/languages/editor/jetbrains.mps.editing.runtime.jar" />
       <library file="${artifacts.mps}/languages/editor/jetbrains.mps.editor.runtime.jar" />
       <library file="${artifacts.mps}/languages/editor/jetbrains.mps.editorlang.runtime.jar" />
       <library file="${artifacts.mps}/languages/editor/jetbrains.mps.ide.editor.jar" />
@@ -139,7 +146,6 @@
       <library file="${artifacts.mps}/languages/make/jetbrains.mps.smodel.resources.jar" />
       <library file="${artifacts.mps}/languages/mps-stubs.jar" />
       <library file="${artifacts.mps}/languages/plaf/jetbrains.mps.baseLanguage.search.jar" />
-      <library file="${artifacts.mps}/languages/plaf/jetbrains.mps.baseLanguage.util.jar" />
       <library file="${artifacts.mps}/languages/plaf/jetbrains.mps.ide.platform.jar" />
       <library file="${artifacts.mps}/languages/plaf/jetbrains.mps.ide.refactoring.platform.jar" />
       <library file="${artifacts.mps}/languages/runtimes/jetbrains.mps.analyzers.runtime.jar" />
@@ -166,7 +172,6 @@
         <module file="${basedir}/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" />
         <module file="${basedir}/code/nxt-integration/buildsolution/org.fbme.integration.nxt.build.msd" />
         <module file="${basedir}/code/language/buildsolution/org.fbme.language.build.msd" />
-        <module file="${basedir}/code/platform/buildsolution/org.fbme.platform.build.msd" />
         <module file="${basedir}/code/richediting/buildsolution/org.fbme.richediting.build.msd" />
         <module file="${basedir}/samples/statistics-plugin/buildsolution/org.fbme.samples.statisticsPlugin.build.msd" />
         <module file="${basedir}/code/smv-debugger/buildsolution/org.fbme.smvDebugger.build.msd" />
@@ -179,9 +184,7 @@
     </generate>
   </target>
   
-  <target name="declare-mps-tasks">
-    <taskdef resource="jetbrains/mps/build/ant/antlib.xml" classpathref="path.mps.ant.path" />
-  </target>
+  <target name="declare-mps-tasks" />
   
   <target name="makeDependents">
     <ant antfile="build.xml" inheritAll="false" useNativeBasedir="true">
@@ -189,10 +192,6 @@
       <target name="assemble" />
     </ant>
     <ant antfile="code/language/build.xml" inheritAll="false" useNativeBasedir="true">
-      <target name="generate" />
-      <target name="assemble" />
-    </ant>
-    <ant antfile="code/platform/build.xml" inheritAll="false" useNativeBasedir="true">
       <target name="generate" />
       <target name="assemble" />
     </ant>
@@ -230,7 +229,7 @@
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.debugger.build, java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.integration.nxt.build, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statisticsPlugin.build, java.compile.org.fbme.smvDebugger.build">
+  <target name="java.compile.org.fbme.ide.build" depends="java.compile.org.fbme.debugger.build, java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.integration.fordiac.build, java.compile.org.fbme.integration.nxt.build, java.compile.org.fbme.language.build, java.compile.org.fbme.richediting.build, java.compile.org.fbme.samples.statisticsPlugin.build, java.compile.org.fbme.smvDebugger.build">
     <mkdir dir="${basedir}/buildscripts/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.ide.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.ide.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -244,7 +243,6 @@
         <pathelement path="${build.tmp}/java/out/org.fbme.integration.fordiac.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.integration.nxt.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.smvDebugger.build" />
@@ -264,22 +262,7 @@
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.platform.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build">
-    <mkdir dir="${basedir}/code/platform/buildsolution/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/org.fbme.platform.build" />
-    <javac destdir="${build.tmp}/java/out/org.fbme.platform.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
-      <compilerarg value="-Xlint:none" />
-      <src>
-        <path location="${basedir}/code/platform/buildsolution/source_gen" />
-      </src>
-      <classpath>
-        <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-      </classpath>
-    </javac>
-  </target>
-  
-  <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build">
+  <target name="java.compile.org.fbme.integration.nxt.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.richediting.build">
     <mkdir dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.integration.nxt.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.integration.nxt.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -290,29 +273,12 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.java.modules.cycle.1" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build">
-    <mkdir dir="${build.tmp}/java.modules.cycle.1" />
-    <javac destdir="${build.tmp}/java.modules.cycle.1" fork="true" encoding="utf8" nowarn="true" includeantruntime="false">
-      <compilerarg value="-Xlint:none" />
-      <src>
-        <path location="${basedir}/code/debugger/buildsolution/source_gen" />
-        <path location="${basedir}/code/richediting/buildsolution/source_gen" />
-      </src>
-      <classpath>
-        <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
-      </classpath>
-    </javac>
-  </target>
-  
-  <target name="java.compile.org.fbme.debugger.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build, java.compile.java.modules.cycle.1">
+  <target name="java.compile.org.fbme.debugger.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.richediting.build">
     <mkdir dir="${basedir}/code/debugger/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.debugger.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.debugger.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -323,13 +289,12 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
-        <pathelement path="${build.tmp}/java.modules.cycle.1" />
+        <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.richediting.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build, java.compile.java.modules.cycle.1">
+  <target name="java.compile.org.fbme.richediting.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build">
     <mkdir dir="${basedir}/code/richediting/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.richediting.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.richediting.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -340,13 +305,11 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
-        <pathelement path="${build.tmp}/java.modules.cycle.1" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.integration.fordiac.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build">
+  <target name="java.compile.org.fbme.integration.fordiac.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build">
     <mkdir dir="${basedir}/code/4diac-integration/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.integration.fordiac.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.integration.fordiac.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -357,12 +320,11 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.smvDebugger.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build, java.compile.org.fbme.richediting.build">
+  <target name="java.compile.org.fbme.smvDebugger.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.richediting.build">
     <mkdir dir="${basedir}/code/smv-debugger/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.smvDebugger.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.smvDebugger.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -373,13 +335,12 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
         <pathelement path="${build.tmp}/java/out/org.fbme.richediting.build" />
       </classpath>
     </javac>
   </target>
   
-  <target name="java.compile.org.fbme.samples.statisticsPlugin.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build, java.compile.org.fbme.platform.build">
+  <target name="java.compile.org.fbme.samples.statisticsPlugin.build" depends="java.compile.org.fbme.ide.build.plugins, java.compile.org.fbme.language.build">
     <mkdir dir="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
     <mkdir dir="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" />
     <javac destdir="${build.tmp}/java/out/org.fbme.samples.statisticsPlugin.build" fork="true" encoding="utf8" includeantruntime="false" debug="true">
@@ -390,7 +351,6 @@
       <classpath>
         <pathelement path="${build.tmp}/java/out/org.fbme.ide.build.plugins" />
         <pathelement path="${build.tmp}/java/out/org.fbme.language.build" />
-        <pathelement path="${build.tmp}/java/out/org.fbme.platform.build" />
       </classpath>
     </javac>
   </target>
@@ -402,7 +362,6 @@
     <delete dir="${basedir}/code/4diac-integration/buildsolution/source_gen" />
     <delete dir="${basedir}/code/nxt-integration/buildsolution/source_gen" />
     <delete dir="${basedir}/code/language/buildsolution/source_gen" />
-    <delete dir="${basedir}/code/platform/buildsolution/source_gen" />
     <delete dir="${basedir}/code/richediting/buildsolution/source_gen" />
     <delete dir="${basedir}/samples/statistics-plugin/buildsolution/source_gen" />
     <delete dir="${basedir}/code/smv-debugger/buildsolution/source_gen" />

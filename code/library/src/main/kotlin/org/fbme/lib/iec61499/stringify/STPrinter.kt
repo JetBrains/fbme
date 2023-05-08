@@ -34,27 +34,24 @@ class STPrinter {
 
     private fun appendExpression(expression: Expression?) {
         if (expression is BinaryExpression) {
-            val binaryExpression = expression
-            appendExpression(binaryExpression.leftExpression)
+            appendExpression(expression.leftExpression)
             append(" ")
-            append(binaryExpression.operation.alias)
+            append(expression.operation.alias)
             append(" ")
-            appendExpression(binaryExpression.rightExpression)
+            appendExpression(expression.rightExpression)
             return
         }
         if (expression is UnaryExpression) {
-            val unaryExpression = expression
-            val operation = unaryExpression.operation
+            val operation = expression.operation
             append(operation.alias)
             append(if (operation.isSpaced) " " else "")
-            appendExpression(unaryExpression.getInnerExpression())
+            appendExpression(expression.getInnerExpression())
             return
         }
         if (expression is FunctionCall) {
-            val functionCall = expression
-            append(functionCall.functionName)
+            append(expression.functionName)
             append("(")
-            val actualParameters = functionCall.actualParameters
+            val actualParameters = expression.actualParameters
             val last = actualParameters[actualParameters.size - 1]
             for (actualParameter in actualParameters) {
                 appendExpression(actualParameter)
@@ -84,10 +81,9 @@ class STPrinter {
 
     private fun appendVariable(variable: Variable?) {
         if (variable is ArrayVariable) {
-            val arrayVariable = variable
-            appendVariable(arrayVariable.subscribedVariable)
+            appendVariable(variable.subscribedVariable)
             append("[")
-            val subscripts = arrayVariable.subscripts
+            val subscripts = variable.subscripts
             val last = subscripts[subscripts.size - 1]
             for (subscript in subscripts) {
                 appendExpression(subscript)
@@ -109,11 +105,11 @@ class STPrinter {
         val value = literal.value
         when (literal.kind) {
             LiteralKind.BINARY_BOOL -> append(if (value === Boolean.TRUE) "BOOL#1" else "BOOL#0")
-            LiteralKind.BINARY_INT -> append("2#" + Integer.toString(value as Int, 2))
+            LiteralKind.BINARY_INT -> append("2#" + (value as Int).toString(2))
             LiteralKind.BOOL -> append(if (value === Boolean.TRUE) "TRUE" else "FALSE")
-            LiteralKind.DEC_INT -> append(Integer.toString(value as Int))
-            LiteralKind.HEX_INT -> append("16#" + Integer.toString(value as Int, 16))
-            LiteralKind.OCT_INT -> append("8#" + Integer.toString(value as Int, 8))
+            LiteralKind.DEC_INT -> append((value as Int).toString())
+            LiteralKind.HEX_INT -> append("16#" + (value as Int).toString(16))
+            LiteralKind.OCT_INT -> append("8#" + (value as Int).toString(8))
             LiteralKind.STRING -> append("'$value'")
             LiteralKind.WSTRING -> append("\"" + value + "\"")
             LiteralKind.TIME -> append("T#$value")
@@ -135,27 +131,25 @@ class STPrinter {
         appendIndent()
         try {
             if (statement is AssignmentStatement) {
-                val assignmentStatement = statement
-                appendVariable(assignmentStatement.variable)
+                appendVariable(statement.variable)
                 append(" := ")
-                appendExpression(assignmentStatement.expression)
+                appendExpression(statement.expression)
                 return
             }
             if (statement is CaseStatement) {
-                val caseStatement = statement
                 append("CASE ")
-                appendExpression(caseStatement.expression)
+                appendExpression(statement.expression)
                 append(" OF ")
                 appendNewLine()
                 withIndent {
-                    for (element in caseStatement.cases) {
+                    for (element in statement.cases) {
                         appendIndent()
-                        appendLiteral(element?.literal as Literal<*>)
+                        appendLiteral(element.literal as Literal<*>)
                         append(" ->")
                         appendNewLine()
                         withIndent { appendStatementList(element.statements) }
                     }
-                    val elseCase = caseStatement.elseCase
+                    val elseCase = statement.elseCase
                     if (elseCase != null) {
                         append("ELSE ->")
                         appendNewLine()
@@ -174,8 +168,7 @@ class STPrinter {
                 return
             }
             if (statement is ForStatement) {
-                val forStatement = statement
-                val controlVariable = forStatement.controlVariable
+                val controlVariable = statement.controlVariable
                 append("FOR ")
                 append(controlVariable.name)
                 append(" := ")
@@ -189,18 +182,17 @@ class STPrinter {
                 }
                 append(" DO")
                 appendNewLine()
-                withIndent { appendStatementList(forStatement.statements) }
+                withIndent { appendStatementList(statement.statements) }
                 appendIndent()
                 append("END_FOR")
             }
             if (statement is IfStatement) {
-                val ifStatement = statement
                 append("IF ")
-                appendExpression(ifStatement.condition)
+                appendExpression(statement.condition)
                 append(" THEN")
                 appendNewLine()
-                appendIndentStatementList(ifStatement.thenClause)
-                for (elseIfClause in ifStatement.elseIfClauses) {
+                appendIndentStatementList(statement.thenClause)
+                for (elseIfClause in statement.elseIfClauses) {
                     appendIndent()
                     append("ELSIF ")
                     appendExpression(elseIfClause.condition)
@@ -208,7 +200,7 @@ class STPrinter {
                     appendNewLine()
                     appendIndentStatementList(elseIfClause.body)
                 }
-                val elseClause = ifStatement.elseClause
+                val elseClause = statement.elseClause
                 if (elseClause != null) {
                     appendIndent()
                     append("ELSE")
@@ -219,25 +211,23 @@ class STPrinter {
                 append("END_IF")
             }
             if (statement is RepeatStatement) {
-                val repeatStatement = statement
                 append("REPEAT")
                 appendNewLine()
-                withIndent { appendStatementList(repeatStatement.body) }
+                withIndent { appendStatementList(statement.body) }
                 appendIndent()
                 append("UNITL ")
-                appendExpression(repeatStatement.condition)
+                appendExpression(statement.condition)
                 append(" END_REPEAT")
             }
             if (statement is ReturnStatement) {
                 append("RETURN")
             }
             if (statement is WhileStatement) {
-                val whileStatement = statement
                 append("WHILE ")
-                appendExpression(whileStatement.condition)
+                appendExpression(statement.condition)
                 append(" DO")
                 appendNewLine()
-                withIndent { appendStatementList(whileStatement.body) }
+                withIndent { appendStatementList(statement.body) }
                 appendIndent()
                 append(" END_WHILE")
             }

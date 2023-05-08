@@ -15,10 +15,10 @@ interface DeviceConnection : Closeable {
     fun deployResource(resource: ResourceDeclaration)
 
     @Throws(IOException::class)
-    fun killResource(resource: ResourceDeclaration)
+    fun killResource(resource: SNode)
 
     @Throws(IOException::class)
-    fun deleteResource(resource: ResourceDeclaration)
+    fun deleteResource(resource: SNode)
 
     @Throws(IOException::class)
     fun addWatch(watchable: Watchable)
@@ -28,4 +28,10 @@ interface DeviceConnection : Closeable {
 
     @Throws(IOException::class)
     fun readWatches(): String
+
+    @Throws(IOException::class)
+    fun createResourceNetwork(resource: SNode)
+
+    @Throws(IOException::class)
+    fun startResource(resource: SNode)
 }

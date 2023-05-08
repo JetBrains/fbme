@@ -1,6 +1,5 @@
 package org.fbme.lib.st.statements
 
-import org.fbme.lib.common.Element
 import org.fbme.lib.st.expressions.Expression
 import org.fbme.lib.st.expressions.VariableDeclaration
 

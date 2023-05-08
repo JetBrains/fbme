@@ -8,9 +8,15 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Property
 import jetbrains.mps.nodeEditor.cells.ModelAccessor
 import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
+import org.fbme.ide.iec61499.repository.PlatformIdentifier
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
+import org.fbme.ide.richediting.adapters.ecc.ECCEditors
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
+import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.ecc.StateAction
+import org.fbme.scenes.controllers.scene.scene
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Graphics
 import java.awt.Graphics2D
@@ -18,25 +24,18 @@ import java.awt.Point
 import kotlin.math.max
 
 class AlgorithmCell(
-    private val editorContext: EditorContext,
+    editorContext: EditorContext,
     accessor: ModelAccessor,
     node: SNode,
     private val action: StateAction,
-    private val cellCollection: EditorCell_Collection,
     val algorithmBody: EditorCell_Collection?,
-    private val isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
 ) : EditorCell_Property(editorContext, accessor, node) {
-    var isOpenBody: Boolean
-    private val hasTarget: Boolean
-
     init {
-        style.set(RichEditorStyleAttributes.ALGORITHMS, action)
-        isOpenAlgorithmBody.putIfAbsent(action, true)
-        isOpenBody = isOpenAlgorithmBody[action]!!
-        hasTarget = action.algorithm.getTarget() != null
+        style.set(RichEditorStyleAttributes.STATE_ACTION, action)
         style.set(StyleAttributes.PADDING_BOTTOM, Padding(0.05, Measure.SPACES))
-        style.set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection)
     }
+
+    val isOpenBody get() = scene?.loadState(ECCEditors.IS_OPEN_ALGORITHM_BODY)?.get(action) ?: true
 
     fun relayoutAll() {
         this.myTextLine.relayout()
@@ -119,45 +118,57 @@ class AlgorithmCell(
         @JvmStatic
         fun createAlgorithmCell(
             editorContext: EditorContext,
-            algorithmDeclaration: AlgorithmDeclaration?,
+            algorithm: AlgorithmDeclaration?,
             node: SNode,
             action: StateAction,
-            cellCollection: EditorCell_Collection,
-            body: EditorCell_Collection?,
-            isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
+            body: EditorCell_Collection?
         ): AlgorithmCell {
             val modelAccessor: ModelAccessor = object : ModelAccessor {
-                override fun getText(): String? {
-                    if (algorithmDeclaration == null) {
-                        return ""
-                    }
-                    val name = algorithmDeclaration.name
-                    return if (name == "") null else name
-                }
+                var currentAlgorithm: AlgorithmDeclaration? = algorithm
 
-                override fun setText(text: String?) {
-                    algorithmDeclaration!!.name = text ?: ""
+                override fun getText() = currentAlgorithm?.name ?: ""
+
+                override fun setText(text: String) {
+                    val algorithm = currentAlgorithm
+                    if (algorithm == null) {
+                        if (text != "") {
+                            val fbTypeDeclaration = action.container!!.container!!.container
+                            val allAlgorithms = fbTypeDeclaration.algorithms
+                            val factory =
+                                PlatformRepositoryProvider.getInstance(editorContext.repository).iec61499Factory
+                            val newAlgorithmDeclaration = factory.createAlgorithmDeclaration(StringIdentifier(text))
+                            val body = factory.createAlgorithmBody(AlgorithmLanguage.ST)
+                            newAlgorithmDeclaration.body = body
+                            allAlgorithms.add(newAlgorithmDeclaration)
+                            action.algorithm.setTarget(newAlgorithmDeclaration)
+                            newAlgorithmDeclaration.name = text
+                            currentAlgorithm = newAlgorithmDeclaration
+                        }
+                    } else {
+                        if (text == "") {
+                            // (action as StateActionByNode).node.dropReference(...)
+                            for (sNode in node.children) {
+                                for (sReference in sNode.references) {
+                                    if (sReference.targetNodeId == (algorithm.identifier as PlatformIdentifier).reference.nodeId) {
+                                        sNode.dropReference(sReference.link)
+                                        break
+                                    }
+                                }
+                            }
+                            algorithm.remove()
+                            currentAlgorithm = null
+                        } else {
+                            algorithm.name = text
+                        }
+                    }
                 }
 
                 override fun isValidText(text: String): Boolean {
                     return true
                 }
             }
-            return AlgorithmCell(editorContext, modelAccessor, node, action, cellCollection, body, isOpenAlgorithmBody)
+            return AlgorithmCell(editorContext, modelAccessor, node, action, body)
         }
 
-        @JvmStatic
-        fun changeIsOpenBody(cell: AlgorithmCell) {
-            val oldValue = cell.isOpenAlgorithmBody[cell.action]!!
-            val newValue = !oldValue
-            cell.isOpenAlgorithmBody[cell.action] = newValue
-            cell.isOpenBody = newValue
-            if (!newValue) {
-                cell.cellCollection.removeCell(cell.algorithmBody)
-            } else {
-                cell.cellCollection.addEditorCellAfter(cell.algorithmBody, cell)
-            }
-            cell.editorContext.editorComponent.updater.update()
-        }
     }
 }

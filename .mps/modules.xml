@@ -20,8 +20,6 @@
       <modulePath path="$PROJECT_DIR$/code/language/solutions/org.fbme.ide.iec61499.adapter/org.fbme.ide.iec61499.adapter.msd" folder="code.language" />
       <modulePath path="$PROJECT_DIR$/code/nxt-integration/buildsolution/org.fbme.integration.nxt.build.msd" folder="code.nxt integration" />
       <modulePath path="$PROJECT_DIR$/code/nxt-integration/solutions/org.fbme.integration.nxt/org.fbme.integration.nxt.msd" folder="code.nxt integration" />
-      <modulePath path="$PROJECT_DIR$/code/platform/buildsolution/org.fbme.platform.build.msd" folder="code.platform" />
-      <modulePath path="$PROJECT_DIR$/code/platform/solutions/org.fbme.ide.platform/org.fbme.ide.platform.msd" folder="code.platform" />
       <modulePath path="$PROJECT_DIR$/code/richediting/buildsolution/org.fbme.richediting.build.msd" folder="code.richediting" />
       <modulePath path="$PROJECT_DIR$/code/richediting/languages/org.fbme.ide.richediting.lang/org.fbme.ide.richediting.lang.mpl" folder="code.richediting" />
       <modulePath path="$PROJECT_DIR$/code/richediting/solutions/org.fbme.ide.richediting/org.fbme.ide.richediting.msd" folder="code.richediting" />

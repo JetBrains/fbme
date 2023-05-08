@@ -1,9 +1,9 @@
 package org.fbme.smvDebugger.commons
 
 object ArrayUtils {
-    fun toArray(`object`: Any?): Array<Any?> {
+    fun toArray(item: Any?): Array<Any?> {
         val array = arrayOfNulls<Any>(1)
-        array[0] = `object`
+        array[0] = item
         return array
     }
 
@@ -15,9 +15,9 @@ object ArrayUtils {
         return twoDArray
     }
 
-    fun concat(`object`: Any?, array: Array<Any?>): Array<Any?> {
+    fun concat(item: Any?, array: Array<Any?>): Array<Any?> {
         val result = arrayOfNulls<Any>(array.size + 1)
-        result[0] = `object`
+        result[0] = item
         System.arraycopy(array, 0, result, 1, array.size)
         return result
     }
@@ -42,9 +42,7 @@ object ArrayUtils {
         return arrayOf(listOfLists.flatten().toTypedArray())
     }
 
-    fun subarray(array: Array<String>?, beginIndex: Int, endIndex: Int): Array<String?> {
-        val result = arrayOfNulls<String>(endIndex - beginIndex)
-        System.arraycopy(array, beginIndex, result, 0, result.size)
-        return result
+    fun subarray(array: Array<String>, beginIndex: Int, endIndex: Int): Array<String> {
+        return array.copyOfRange(beginIndex, endIndex)
     }
 }

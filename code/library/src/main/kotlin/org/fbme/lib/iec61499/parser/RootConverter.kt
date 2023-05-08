@@ -8,7 +8,7 @@ class RootConverter(
     private val myLocus: IdentifierLocus,
     private val myDocument: Document
 ) {
-    fun convertFBType(): FBTypeDeclaration? {
+    fun convertFBType(): FBTypeDeclaration {
         val root = myDocument.rootElement
         if (root.getChild("FBNetwork") != null) {
             return myConfiguration.createCompositeFbTypeConverter(arguments()).extract()
@@ -36,7 +36,7 @@ class RootConverter(
         return DeviceTypeConverter(arguments()).extract()
     }
 
-    fun convertSegmentType(): SegmentTypeDeclaration? {
+    fun convertSegmentType(): SegmentTypeDeclaration {
         return SegmentTypeConverter(arguments()).extract()
     }
 
@@ -45,6 +45,11 @@ class RootConverter(
     }
 
     private fun arguments(): ConverterArgumentsHolder {
-        return ConverterArgumentsHolder(myConfiguration.entryFactory, myConfiguration.stEntryFactory, myLocus, myDocument.rootElement)
+        return ConverterArgumentsHolder(
+            myConfiguration.entryFactory,
+            myConfiguration.stEntryFactory,
+            myLocus,
+            myDocument.rootElement
+        )
     }
 }

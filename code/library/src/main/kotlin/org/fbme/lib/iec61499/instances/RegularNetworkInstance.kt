@@ -4,26 +4,25 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 
-/*package*/
-internal class RegularNetworkInstance(
+internal data class RegularNetworkInstance(
     override val parent: Instance?,
     override val networkDeclaration: FBNetwork,
     override val declaration: Declaration
 ) : NetworkInstance {
-    private var myChildren: MutableMap<FunctionBlockDeclarationBase, FunctionBlockInstance>? = null
+    private var children: MutableMap<FunctionBlockDeclarationBase, FunctionBlockInstance>? = null
 
     override fun getChild(component: FunctionBlockDeclarationBase): FunctionBlockInstance? {
         init()
-        return myChildren!![component]
+        return children!![component]
     }
 
     private fun init() {
-        if (myChildren == null) {
+        if (children == null) {
             synchronized(this) {
-                if (myChildren == null) {
-                    myChildren = HashMap()
+                if (children == null) {
+                    children = HashMap()
                     for (component in networkDeclaration.allComponents) {
-                        myChildren!![component] = RegularFunctionBlockInstance(this, component)
+                        children!![component] = RegularFunctionBlockInstance(this, component)
                     }
                 }
             }

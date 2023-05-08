@@ -15,4 +15,8 @@
   <extensions defaultExtensionNs="com.intellij">
     <mps.LanguageLibrary dir="/languages" />
   </extensions>
+
+  <extensions defaultExtensionNs="fbme.platform">
+    <iec61499projectTemplate implementation="org.fbme.integration.nxt.importer.NxtImportProjectTemplate" />
+  </extensions>
 </idea-plugin>

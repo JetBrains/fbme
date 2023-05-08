@@ -19,44 +19,36 @@ import org.jdom.Element
 import org.jdom.JDOMException
 import org.jetbrains.mps.openapi.model.SModelName
 import org.jetbrains.mps.openapi.persistence.PersistenceFacade
-import org.junit.After
-import org.junit.Before
+import org.junit.AfterClass
+import org.junit.BeforeClass
 import java.io.IOException
 import java.io.InputStream
 
 abstract class PlatformTestBase {
-    @JvmField
-    var environment: Environment? = null
-    protected lateinit var project: Project
-    protected val repository: PlatformRepository
-        get() = PlatformRepositoryProvider.getInstance(project)
+
     protected val factory: IEC61499Factory
         get() = repository.iec61499Factory
+
     protected val stFactory: STFactory
         get() = repository.stFactory
 
-    @Before
-    fun initProject() {
-        project = environment!!.createEmptyProject()
-        PlatformRepositoryProvider.init(project)
-    }
-
-    @After
-    fun disposeProject() {
-        environment!!.closeProject(project)
-    }
+    protected val repository: PlatformRepository
+        get() = PlatformRepositoryProvider.getInstance(project)
 
     fun rootConverterByPath(input: String) =
         createConverter(requireNotNull(this::class.java.getResourceAsStream(input)))
 
     fun rootConverterByPath(input: String, config: PlatformConverter.DefaultConfigurationFactory) =
-            createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
+        createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
 
     private fun createConverter(stream: InputStream): RootConverter {
         return createConverter(stream, null)
     }
 
-    private fun createConverter(stream: InputStream, config: PlatformConverter.DefaultConfigurationFactory?): RootConverter {
+    private fun createConverter(
+        stream: InputStream,
+        config: PlatformConverter.DefaultConfigurationFactory?
+    ): RootConverter {
         return try {
             val reference = SModelReference(null, SModelId.generate(), SModelName("testModel"))
             val locus = PlatformIdentifierLocus(reference)
@@ -73,7 +65,7 @@ abstract class PlatformTestBase {
         }
     }
 
-    // FIXME copied from IEC61499ModelFactory
+    // FIXME copied from Iec61499ModelFactory
     private class PlatformIdentifierLocus(private val reference: SModelReference) : IdentifierLocus {
 
         private val path: MutableList<String> = ArrayList()
@@ -88,6 +80,27 @@ abstract class PlatformTestBase {
 
         override fun onDeclarationLeaved() {
             path.removeAt(path.size - 1)
+        }
+    }
+
+    companion object {
+
+        lateinit var project: Project
+
+        @JvmStatic
+        var environment: Environment? = null
+
+        @JvmStatic
+        @BeforeClass
+        fun initProject() {
+            project = environment!!.createEmptyProject()
+            PlatformRepositoryProvider.init(project)
+        }
+
+        @JvmStatic
+        @AfterClass
+        fun disposeProject() {
+            environment!!.closeProject(project)
         }
     }
 }

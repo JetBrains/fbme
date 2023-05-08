@@ -20,7 +20,7 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         editorShift: Point,
         dx: Int,
         dy: Int,
-        componentShifts: MutableMap<NetworkComponentView, Point>,
+        componentShifts: MutableMap<NetworkComponentView, Point>
     ) {
         expandedFBs[functionBlock] = ExpandingData(
             editorShift,
@@ -32,10 +32,6 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
 
     fun removeFB(functionBlock: FunctionBlockView) {
         expandedFBs.remove(functionBlock)
-    }
-
-    fun update() {
-        updateFB(editorContext)
     }
 
     fun isExpanded(functionBlock: FunctionBlockView): Boolean {
@@ -59,15 +55,10 @@ class ExpandedComponentsController(scene: EditorCell_Scene, private val editorCo
         val editorShift: Point,
         val dx: Int,
         val dy: Int,
-        val componentShifts: MutableMap<NetworkComponentView, Point>,
+        val componentShifts: MutableMap<NetworkComponentView, Point>
     )
 
     companion object {
         private val EXPANDED_FBS_KEY = SceneStateKey<MutableMap<FunctionBlockView, ExpandingData>>("expanded-fbs")
-
-        private fun updateFB(editorContext: EditorContext) {
-            val updater = editorContext.editorComponent.updater
-            updater.update()
-        }
     }
 }

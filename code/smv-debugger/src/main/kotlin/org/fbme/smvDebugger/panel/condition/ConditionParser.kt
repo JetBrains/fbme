@@ -17,8 +17,8 @@ class ConditionParser {
 
     private fun cleanWhitespaces(str: String): String {
         val builder = StringBuilder()
-        for (i in 0 until str.length) {
-            val ch = str[i]
+        for (element in str) {
+            val ch = element
             if (!Character.isWhitespace(ch)) {
                 builder.append(ch)
             }
@@ -83,9 +83,11 @@ class ConditionParser {
 
     private fun argument(): Expression {
         val builder = StringBuilder()
-        while (index < str!!.length && (Character.isLetterOrDigit(str!![index]) || SPECIAL_SYMBOLS.contains(
-                str!![index]
-            ))
+        while (index < str!!.length && (
+            Character.isLetterOrDigit(str!![index]) || SPECIAL_SYMBOLS.contains(
+                    str!![index]
+                )
+            )
         ) {
             builder.append(str!![index])
             index++
@@ -109,6 +111,6 @@ class ConditionParser {
     }
 
     companion object {
-        private val SPECIAL_SYMBOLS = Set.of('.', '_')
+        private val SPECIAL_SYMBOLS = setOf('.', '_')
     }
 }

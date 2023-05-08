@@ -9,7 +9,9 @@ import org.fbme.smvDebugger.visualization.SystemHighlighter
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
 
-class ControlPanel(counterexample: Counterexample?, systemHighlighter: SystemHighlighter) : JBPanel<JBPanel<out JBPanel<*>>?>(), DebugPanelMVCItem {
+class ControlPanel(counterexample: Counterexample?, systemHighlighter: SystemHighlighter) :
+    JBPanel<ControlPanel>(), DebugPanelMVCItem {
+
     private val stepChanger: StepChanger
     private val globalTime: GlobalTime
     private val conditionNavigator: ConditionNavigator

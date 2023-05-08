@@ -13,7 +13,6 @@
   <sourcePath />
   <dependencies>
     <dependency reexport="false">422c2909-59d6-41a9-b318-40e6256b250f(jetbrains.mps.ide.build)</dependency>
-    <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990c(org.fbme.platform.build)</dependency>
     <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)</dependency>
     <dependency reexport="false">d76643a8-b8a1-4b1a-9500-66247bf6bc35(org.fbme.ide.build.plugins)</dependency>
   </dependencies>

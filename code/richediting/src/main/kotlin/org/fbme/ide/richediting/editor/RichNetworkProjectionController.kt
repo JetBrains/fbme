@@ -1,11 +1,9 @@
 package org.fbme.ide.richediting.editor
 
-import com.intellij.openapi.actionSystem.AnAction
 import jetbrains.mps.project.Project
 import org.fbme.ide.iec61499.fbnetwork.MPSNetworkInstanceReference
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
-import org.fbme.ide.platform.editor.ChooseProjectionAction
 import org.fbme.ide.platform.editor.EditorProjection
 import org.fbme.ide.platform.editor.EditorProjectionController
 import org.fbme.lib.common.Declaration
@@ -14,19 +12,11 @@ import org.jdom.Element
 import org.jetbrains.mps.openapi.model.SNode
 
 class RichNetworkProjectionController(
-    private val myNode: SNode,
-    private val myProject: Project
+        private val node: SNode,
+        private val project: Project
 ) : EditorProjectionController {
-    override val id: String
-        get() = "Network"
-    override val chooseProjectionActions: List<AnAction>
-        get() {
-            return listOf<AnAction>(ChooseProjectionAction(this, "Network"))
-        }
-    override val createProjectionActions: List<AnAction>
-        get() {
-            return emptyList()
-        }
+    override val id: String get() = "Network"
+    override val priority: Int get() = 1
 
     override fun createProjection(name: String): EditorProjection {
         return if (name == id) {
@@ -37,26 +27,26 @@ class RichNetworkProjectionController(
     }
 
     override fun restoreProjection(name: String, e: Element): EditorProjection {
-        return if (name == id) {
+        if (name == id) {
             val ref = e.getAttributeValue(NetworkInstanceEditorProjection.PERSISTENCE_KEY)
-            val repository = PlatformRepositoryProvider.getInstance(myProject)
-            var instance = if (ref != null) MPSNetworkInstanceReference.deserialize(ref).resolve(repository) else null
-            if (instance == null) {
-                instance = NetworkInstance.createForDeclaration(
-                    repository.getAdapter(myNode, Declaration::class.java) ?: error("Declaration is null")
-                )
+            val repository = PlatformRepositoryProvider.getInstance(project)
+            val declaration = repository.getAdapter(node, Declaration::class.java)
+            val instance = when {
+                ref != null -> MPSNetworkInstanceReference.deserialize(ref).resolve(repository)
+                declaration != null -> NetworkInstance.createForDeclaration(declaration)
+                else -> error("Declaration is null")
             }
-            NetworkInstanceEditorProjection(myNode, this, name, instance, myProject)
+            return NetworkInstanceEditorProjection(node, this, name, instance!!, project)
         } else {
             throw IllegalArgumentException("Unsupported projection")
         }
     }
 
     private fun createProjectionInternal(name: String): NetworkInstanceEditorProjection {
-        val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(myProject)
+        val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(project)
         val instance = NetworkInstance.createForDeclaration(
-            repository.getAdapter(myNode, Declaration::class.java) ?: error("Declaration is null")
+                repository.getAdapter(node, Declaration::class.java) ?: error("Declaration is null")
         )
-        return NetworkInstanceEditorProjection(myNode, this, name, instance, myProject)
+        return NetworkInstanceEditorProjection(node, this, name, instance, project)
     }
 }

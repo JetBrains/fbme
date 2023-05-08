@@ -1,15 +1,16 @@
 import org.fbme.gradle.moduleDependency
 
 plugins {
-    java
+    kotlin
     mps
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation(project(":code:library"))
-    implementation(project(":code:language"))
-    implementation(project(":code:platform"))
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+    compileOnly(project(":code:language"))
+    compileOnly(project(":code:platform"))
+
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
     mpsImplementation(project(":code:platform", "mps"))

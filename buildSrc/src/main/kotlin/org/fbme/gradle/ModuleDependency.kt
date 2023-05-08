@@ -4,7 +4,6 @@ import org.gradle.api.internal.provider.DefaultProvider
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Input
 
-
 data class ModuleDependency(
     @get:Input val idProvider: Provider<String>,
     @get:Input val nameProvider: Provider<String> = DefaultProvider { "" },

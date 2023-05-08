@@ -3,7 +3,6 @@ package org.fbme.scenes.controllers
 import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.EditorSettings
 import jetbrains.mps.openapi.editor.style.Style
-import java.util.*
 
 object LayoutUtil {
     fun getScale(style: Style): Float {

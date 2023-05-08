@@ -1,59 +1,82 @@
 package org.fbme.debugger.simulator
 
-import org.fbme.debugger.common.getOutgoingEventConnectionsFromPort
-import org.fbme.debugger.common.resolveTargetPortPresentation
-import org.fbme.debugger.common.state.BasicFBState
+import org.fbme.debugger.common.*
 import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
-class CompositeFBSimulator(
-    override val typeDeclaration: CompositeFBTypeDeclaration,
+class CompositeFBSimulator private constructor(
+    @get:JvmSynthetic
+    override val declaration: CompositeFBTypeDeclaration,
+    @get:JvmSynthetic
     override val state: CompositeFBState,
-    override val parent: CompositeFBSimulator?,
-    override val fbInstanceName: String?,
-    trace: ExecutionTrace
-) : FBSimulatorImpl(trace) {
-    val children: Map<String, FBSimulatorImpl>
+    parent: Simulator?,
+    instanceName: String?,
+    trace: ExecutionTrace,
+) : FBSimulator(declaration, state, parent, instanceName, trace) {
+    @JvmOverloads
+    constructor(
+        typeDeclaration: CompositeFBTypeDeclaration,
+        initialState: CompositeFBState = CompositeFBState(typeDeclaration),
+    ) : this(typeDeclaration, initialState, null, null, ExecutionTrace(initialState))
 
-    init {
-        children = state.children.mapValues { (childName, childState) ->
-            val childDeclaration = typeDeclaration.network.allComponents
-                .firstOrNull { component -> component.name == childName }?.type?.declaration
-                ?: error("type declaration of FB $childName not found")
+    @get:JvmSynthetic
+    internal val children = collectChildren()
 
-            when (childDeclaration) {
-                is BasicFBTypeDeclaration -> BasicFBSimulator(
-                    typeDeclaration = childDeclaration,
-                    state = childState as BasicFBState,
-                    parent = this,
-                    fbInstanceName = childName,
-                    trace = trace
-                )
-                is CompositeFBTypeDeclaration -> CompositeFBSimulator(
-                    typeDeclaration = childDeclaration,
-                    state = childState as CompositeFBState,
-                    parent = this,
-                    fbInstanceName = childName,
-                    trace = trace
-                )
-                else -> error("unexpected type")
-            }
-        }
-    }
-
+    @JvmSynthetic
     override fun triggerInputEventInternal(eventName: String) {
-        val outgoingEventConnections = typeDeclaration.getOutgoingEventConnectionsFromPort(null, eventName)
+        pushAssociatedVariablesWithInputEvent(eventName)
+
+        val outgoingEventConnections = declaration.getOutgoingEventConnectionsFromPort(null, eventName)
         for (outgoingEventConnection in outgoingEventConnections) {
             val (targetFB, targetPort) = outgoingEventConnection.resolveTargetPortPresentation()
 
             if (targetFB == null) {
-                pushValuesOfAssociatedVariablesWithOutputEvent(targetPort)
-                addDeferredTrigger(targetPort)
+                triggerEvent(targetPort)
             } else {
-                children[targetFB]!!.triggerEvent(targetPort)
+                val targetFBSimulator = children[targetFB]!!
+                targetFBSimulator.triggerEvent(targetPort)
             }
         }
+    }
+
+    private fun pushAssociatedVariablesWithInputEvent(eventName: String) {
+        val associatedVariables = declaration.getAssociatedVariablesWithInputEvent(eventName)
+        for (associatedVariable in associatedVariables) {
+            val newValue = state.inputVariables[associatedVariable]
+            if (newValue != null) {
+                val outgoingDataConnections =
+                    declaration.getOutgoingDataConnectionsFromPort(null, associatedVariable)
+
+                for (outgoingDataConnection in outgoingDataConnections) {
+                    val (targetFB, targetPort) = outgoingDataConnection.resolveTargetPortPresentation()
+
+                    if (targetFB == null) {
+                        state.outputVariables[targetPort] = newValue.copy()
+                    } else {
+                        val targetFBSimulator = children[targetFB]!!
+                        targetFBSimulator.setCandidate(targetPort, newValue)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectChildren(): Map<String, FBSimulator> {
+        return state.children.mapValues { (childName, childState) ->
+            val childDeclaration = declaration.getChildDeclaration(childName)
+            createChildSimulator(childDeclaration, childState, childName, trace)
+        }
+    }
+
+    companion object {
+        @JvmSynthetic
+        internal fun createInstanceAsChild(
+            typeDeclaration: CompositeFBTypeDeclaration,
+            initialState: CompositeFBState,
+            parent: Simulator,
+            fbInstanceName: String,
+            trace: ExecutionTrace,
+        ) = CompositeFBSimulator(typeDeclaration, initialState, parent, fbInstanceName, trace)
     }
 }

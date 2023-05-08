@@ -12,19 +12,28 @@ import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 
-class BasicFBSimulator(
-    override val typeDeclaration: BasicFBTypeDeclaration,
+class BasicFBSimulator private constructor(
+    @get:JvmSynthetic
+    override val declaration: BasicFBTypeDeclaration,
+    @get:JvmSynthetic
     override val state: BasicFBState,
-    override val parent: CompositeFBSimulator?,
-    override val fbInstanceName: String?,
-    trace: ExecutionTrace
-) : FBSimulatorImpl(trace) {
+    parent: Simulator?,
+    instanceName: String?,
+    trace: ExecutionTrace,
+) : FBSimulator(declaration, state, parent, instanceName, trace) {
+    @JvmOverloads
+    constructor(
+        typeDeclaration: BasicFBTypeDeclaration,
+        initialState: BasicFBState = BasicFBState(typeDeclaration),
+    ) : this(typeDeclaration, initialState, null, null, ExecutionTrace(initialState))
+
     private val interpreter = STInterpreter(
-        state.inputVariables,
-        state.internalVariables,
-        state.outputVariables
+        this.state.inputVariables,
+        this.state.internalVariables,
+        this.state.outputVariables
     )
 
+    @JvmSynthetic
     override fun triggerInputEventInternal(eventName: String) {
         var transition: StateTransition? = findTransition(activeEvent = eventName) ?: return
 
@@ -39,23 +48,20 @@ class BasicFBSimulator(
         } while (transition != null)
     }
 
-    private fun findTransition(activeEvent: String?): StateTransition? {
-        return typeDeclaration
-            .getOutgoingTransitionsFromState(state.activeState)
-            .firstOrNull { transition -> transition.evaluateCondition(activeEvent, interpreter) }
-    }
+    private fun findTransition(activeEvent: String?): StateTransition? = declaration
+        .getOutgoingTransitionsFromState(state.activeState)
+        .firstOrNull { transition -> transition.evaluateCondition(activeEvent, interpreter) }
 
     private fun performActions() {
-        val actions = typeDeclaration.getActionsOnState(state.activeState)
+        val actions = declaration.getActionsOnState(state.activeState)
         for (action in actions) {
             val algorithmName = action.algorithm.presentation
             if (algorithmName != "") {
-                val algorithmDeclaration = typeDeclaration.getAlgorithmByName(algorithmName)
-                val statements = (algorithmDeclaration.body as? AlgorithmBody.ST)?.statements
-                    ?: error("unexpected language of algorithm $algorithmName")
-                for (statement in statements) {
-                    interpreter.interpret(statement)
-                }
+                val algorithmDeclaration = declaration.getAlgorithmByName(algorithmName)
+                val body = algorithmDeclaration.body
+                check(body is AlgorithmBody.ST) { "unexpected language of algorithm $algorithmName" }
+                val statements = body.statements
+                statements.forEach(interpreter::interpret)
             }
 
             val outputEventName = action.event.presentation
@@ -64,5 +70,16 @@ class BasicFBSimulator(
                 addDeferredTrigger(outputEventName)
             }
         }
+    }
+
+    companion object {
+        @JvmSynthetic
+        internal fun createInstanceAsChild(
+            typeDeclaration: BasicFBTypeDeclaration,
+            initialState: BasicFBState,
+            parent: Simulator,
+            fbInstanceName: String,
+            trace: ExecutionTrace,
+        ) = BasicFBSimulator(typeDeclaration, initialState, parent, fbInstanceName, trace)
     }
 }

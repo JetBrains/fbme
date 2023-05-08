@@ -18,9 +18,7 @@ import java.awt.*
 class OutputCell(
     editorContext: EditorContext,
     node: SNode,
-    private val action: StateAction,
-    private val cellCollection: EditorCell_Collection,
-    val isOpenAlgorithmBody: MutableMap<StateAction, Boolean>
+    val action: StateAction
 ) : EditorCell_Basic(editorContext, node) {
     private val nameText: TextLine = TextLine("", style, false)
     private val backgroundColor: Color = CellConstants.OUTPUT_COLOR
@@ -67,7 +65,7 @@ class OutputCell(
     }
 
     private val lineSize: Int
-        get() = getLineSize(cellCollection.style)
+        get() = getLineSize(style)
 
     private fun setTextFromAction() {
         val outputTarget = action.event.getTarget()
@@ -80,9 +78,8 @@ class OutputCell(
 
     init {
         style.set(StyleAttributes.TEXT_COLOR, MPSColors.BLACK)
-        style.set(RichEditorStyleAttributes.STATE_COLLECTION, cellCollection)
         setTextFromAction()
         relayoutImpl()
-        style.set(RichEditorStyleAttributes.OUTPUTS, action)
+        style.set(RichEditorStyleAttributes.STATE_ACTION, action)
     }
 }

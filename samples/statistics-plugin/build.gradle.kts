@@ -5,9 +5,11 @@ plugins {
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation(project(":code:library"))
-    implementation(project(":code:language"))
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+    compileOnly(project(":code:language"))
+
+    mpsImplementation(project(":code:language", "mps"))
 }
 
 java {

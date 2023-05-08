@@ -2,7 +2,6 @@ package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.jdom.Element
-import java.util.*
 
 class ParameterDeclarationPrinter(declaration: ParameterDeclaration) :
     DeclarationPrinterBase<ParameterDeclaration>(declaration, "VarDeclaration") {

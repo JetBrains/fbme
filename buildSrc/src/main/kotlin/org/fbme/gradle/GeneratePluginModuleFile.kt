@@ -1,13 +1,12 @@
 package org.fbme.gradle
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.artifacts.Configuration
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.InputFile
-import org.gradle.api.tasks.Nested
-import org.gradle.api.tasks.OutputFile
-import org.gradle.api.tasks.TaskAction
+import org.gradle.api.provider.Provider
+import org.gradle.api.tasks.*
+import org.gradle.internal.fingerprint.classpath.impl.ClasspathFingerprintingStrategy
 import org.gradle.kotlin.dsl.get
 import java.io.File
 
@@ -22,9 +21,6 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
     @get:Nested
     abstract override val dependentModules: ListProperty<ModuleDependency>
 
-    @get:Input
-    abstract val libraryFilters: ListProperty<String>
-
     @get:OutputFile
     abstract val outputFile: Property<File>
 
@@ -35,10 +31,7 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
     abstract override val moduleId: Property<String>
 
     @get:Input
-    override val libraryLocations: List<String>
-        get() = project.configurations["runtimeClasspath"].files
-            .filter { file -> libraryFilters.get().any { file.absolutePath.contains(it) } }
-            .map { it.name }
+    abstract override val pluginId: Property<String>
 
     @TaskAction
     fun generatePlugin() {
@@ -56,16 +49,18 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
 
         moduleIdFile.convention(mpsExtension.moduleIdFile.asFile)
         moduleId.convention(mpsExtension.moduleId)
+        this.pluginId.convention(pluginId)
 
-        outputFile.convention(moduleName.map {
-            val relative = when (kind) {
-                ModuleDescriptorKind.SOURCE -> "/tmp/src-plugins/$pluginId/languages/$it/module/$it.msd"
-                ModuleDescriptorKind.DEPLOYMENT -> "/tmp/src-plugins/$pluginId/languages/$it/META-INF/module.xml"
+        outputFile.convention(
+            moduleName.map {
+                val relative = when (kind) {
+                    ModuleDescriptorKind.SOURCE -> "/tmp/src-plugins/$pluginId/languages/$it/module/$it.msd"
+                    ModuleDescriptorKind.DEPLOYMENT -> "/tmp/src-plugins/$pluginId/languages/$it/META-INF/module.xml"
+                }
+                project.file(project.buildDir.path + relative)
             }
-            project.file(project.buildDir.path + relative)
-        })
+        )
         moduleName.convention(mpsExtension.moduleName)
         dependentModules.convention(mpsExtension.dependentModules)
-        libraryFilters.convention(mpsExtension.libraryFilters)
     }
 }

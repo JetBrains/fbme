@@ -1,284 +1,513 @@
 package org.fbme.debugger.common.ui
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.awt.ComposePanel
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.fbme.debugger.common.change.Change
+import com.intellij.icons.AllIcons
+import com.intellij.openapi.project.DumbAwareAction
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.ComboBox
+import com.intellij.openapi.ui.JBMenuItem
+import com.intellij.openapi.ui.JBPopupMenu
+import com.intellij.openapi.ui.SimpleToolWindowPanel
+import com.intellij.openapi.ui.popup.Balloon
+import com.intellij.ui.*
+import com.intellij.ui.components.*
+import com.intellij.ui.treeStructure.Tree
+import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.components.BorderLayoutPanel
+import jetbrains.mps.nodeEditor.MPSColors
+import org.fbme.debugger.RuntimeTraceSynchronizer
+import org.fbme.debugger.common.change.InitialChange
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.StateChange
-import org.fbme.debugger.common.state.*
-import org.fbme.debugger.common.state.State
+import org.fbme.debugger.common.resolvePath
+import org.fbme.debugger.common.resolveValue
 import org.fbme.debugger.common.trace.ExecutionTrace
-import org.fbme.debugger.common.ui.colors.*
-import javax.swing.JComponent
+import org.fbme.debugger.common.trace.TraceItem
+import org.fbme.debugger.common.ui.icons.Icons
+import org.fbme.debugger.explanation.ExplanationProducer
+import org.fbme.ide.richediting.inspections.Inspection
+import org.fbme.ide.richediting.inspections.Inspector
+import org.fbme.ide.richediting.inspections.NetworkInspector
+import org.fbme.lib.common.Declaration
+import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.ecc.StateDeclaration
+import org.fbme.lib.iec61499.fbnetwork.PortPath
+import java.awt.Component
+import java.awt.Dimension
+import java.awt.Point
+import java.awt.event.*
+import java.util.*
+import javax.swing.*
+import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.DefaultTreeCellRenderer
+import javax.swing.tree.DefaultTreeModel
+import javax.swing.tree.MutableTreeNode
 
-open class DebuggerPanel(private val trace: ExecutionTrace) {
-    protected val states = mutableStateListOf<State>()
-    private val changes = mutableStateListOf<Pair<List<String>, Change>>()
+open class DebuggerPanel(
+    private val project: Project,
+    private val mpsProject: jetbrains.mps.project.Project,
+    private val trace: ExecutionTrace,
+    private val declaration: Declaration,
+    private val originalDeclaration: Declaration,
+    private val explanationProducer: ExplanationProducer,
+    private val inspector: Inspector? = null,
+) {
+    val toolWindowPanel = SimpleToolWindowPanel(false, true)
+    private val splitPane = OnePixelSplitter(false)
 
-    protected var selectedStateIndex by mutableStateOf(0)
+    private val statesListModel = CollectionListModel(trace.items)
+    protected val statesList = JBList(statesListModel)
 
-    init {
-        states.addAll(trace.getStates())
-        changes.addAll(trace.getChanges())
-        selectedStateIndex = states.lastIndex
-    }
+    private val suggestions = mutableListOf<String>()
 
-    val panel: JComponent
-        get() {
-            val composePanel = ComposePanel()
-
-            composePanel.setContent {
-                drawExecutionTrace()
+    private inner class NodeFactory {
+        fun createNode(path: List<String>, name: String = path.joinToString(".")): MutableTreeNode {
+            val watchDeclaration = when (declaration) {
+                is ResourceDeclaration -> declaration.resolvePath(path)
+                is FBTypeDeclaration -> declaration.resolvePath(path)
+                else -> error("Unsupported type")
             }
 
-            return composePanel
-        }
+            when (watchDeclaration) {
+                is CompositeFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addCFBPortNodes(watchDeclaration)
+                    for (component in watchDeclaration.network.allComponents) {
+                        node.insert(createNode(path.plus(component.name), component.name), node.childCount)
+                    }
+                    return node
+                }
 
-    protected fun synchronizeTrace() {
-        val moveSelected = selectedStateIndex == states.lastIndex
-        states.addAll(trace.getStates().drop(states.size))
-        changes.addAll(trace.getChanges().drop(changes.size))
-        if (moveSelected) {
-            selectedStateIndex = states.lastIndex
+                is BasicFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addBFBPortNodes(watchDeclaration)
+                    return node
+                }
+
+                is ServiceInterfaceFBTypeDeclaration -> {
+                    val node = DefaultMutableTreeNode(name)
+                    node.addSFBPortNodes(watchDeclaration)
+                    return node
+                }
+
+                is ParameterDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
+                }
+
+                is EventDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
+                }
+
+                is StateDeclaration -> {
+                    return DefaultMutableTreeNode(name, false)
+                }
+            }
+            return DefaultMutableTreeNode(name)
         }
     }
 
-    @Composable
-    open fun drawExecutionTrace() {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.tableHeaderBackground)
-        ) {
-            drawStateItems()
-            VerticalDivider()
-            drawStateInfo()
+    private val nodeFactory = NodeFactory()
+
+    private val rootNode = DefaultMutableTreeNode("root")
+    private val watchesTreeModel = DefaultTreeModel(rootNode, true)
+    protected val watchesTree = Tree(watchesTreeModel)
+
+    private val watchFieldPanel: BorderLayoutPanel
+
+    private val ports: List<Pair<PortPath<out Declaration>, List<String>>> = getPorts()
+
+    init {
+        watchesTree.isRootVisible = false
+        watchesTree.showsRootHandles = true
+
+        val ml: MouseListener = object : MouseAdapter() {
+            override fun mousePressed(e: MouseEvent) {
+                if (e.isPopupTrigger) {
+                    val popup = JBPopupMenu()
+                    val explainItem = JBMenuItem("Why?", AllIcons.Debugger.Question_badge)
+                    explainItem.addActionListener {
+                        showExplanation(e)
+                    }
+                    popup.add(explainItem)
+                    popup.show(e.component, e.x, e.y)
+                }
+            }
+        }
+        watchesTree.addMouseListener(ml)
+
+        initializeWatchesTreeCellRenderer()
+
+        trace.addListenerOnAdding { traceItem -> statesListModel.add(traceItem) }
+        initializeStatesListCellRenderer()
+
+        statesList.addListSelectionListener {
+            watchesTree.updateUI()
+            val selectedState = statesList.selectedValue?.state ?: error("no selected state")
+            val previousState =
+                statesListModel.items.getOrNull(statesList.selectedIndex - 1)?.state ?: selectedState
+            when (inspector) {
+                is NetworkInspector -> {
+                    for ((port, portPath) in ports) {
+                        val value = selectedState.resolveValue(portPath)
+                        val prevValue = previousState.resolveValue(portPath)
+
+                        val isValueChanged = value != prevValue
+                        val color = if (isValueChanged) MPSColors.GREEN.darker() else MPSColors.GRAY
+
+                        inspector.setInspectionForPort(port, Inspection(value ?: "???", color, isValueChanged))
+                    }
+                }
+
+                else -> {}
+            }
+        }
+        statesList.selectedIndex = 0
+
+        initSuggestions()
+
+        for (child in suggestions.filterNot { it.contains('.') }) {
+            val newNode = nodeFactory.createNode(listOf(child))
+            rootNode.add(newNode)
+            watchesTreeModel.nodeStructureChanged(newNode.parent)
+            watchesTreeModel.nodeStructureChanged(newNode)
+        }
+
+        watchFieldPanel = watchFieldPanel()
+
+        initUI()
+
+        toolWindowPanel.add(splitPane)
+        toolWindowPanel.updateUI()
+    }
+
+    private fun getPorts(): List<Pair<PortPath<out Declaration>, List<String>>> {
+        var ports: List<Pair<PortPath<out Declaration>, List<String>>> = listOf()
+        mpsProject.modelAccess.runReadAction {
+            when (originalDeclaration) {
+                is ResourceDeclaration -> {
+                    ports = originalDeclaration
+                        .allFunctionBlocks()
+                        .map { fb -> fb.ports }.flatMap { it.toList() }
+                        .map { port -> Pair(port, port.declarations.map { it.name }) }
+                }
+
+                is CompositeFBTypeDeclaration -> {
+                    ports = originalDeclaration
+                        .network
+                        .functionBlocks
+                        .map { fb -> fb.ports }.flatMap { it.toList() }
+                        .map { port -> Pair(port, port.declarations.map { it.name }) }
+                }
+
+                else -> {}
+            }
+        }
+        return ports
+    }
+
+    fun initUI() {
+        if (declaration is ResourceDeclaration && RuntimeTraceSynchronizer.hasTrace(trace) && trace.size == 1) {
+            val unavailableStatesPanel =
+                JBPanelWithEmptyText().withEmptyText("States are not available during execution")
+            splitPane.firstComponent = unavailableStatesPanel
+            val unavailableWatchesPanel =
+                JBPanelWithEmptyText().withEmptyText("Watches are not available during execution")
+            splitPane.secondComponent = unavailableWatchesPanel
+        } else {
+            splitPane.firstComponent = statesPanel()
+            splitPane.secondComponent = watchesPanel()
         }
     }
 
-    @Composable
-    open fun drawStateItems() {
-        Column(
-            modifier = Modifier
-                .width(350.dp)
-                .fillMaxHeight()
-                .background(MaterialTheme.colors.tableBackground)
-        ) {
-            Box {
-                val verticalScrollState = rememberScrollState()
-                Column(
-                    modifier = Modifier
-                        .verticalScroll(state = verticalScrollState)
-                        .fillMaxWidth()
-                        .background(MaterialTheme.colors.listBackground)
-                ) {
-                    for ((index, state) in states.withIndex()) {
-                        val onClick = { selectedStateIndex = index }
-                        if (index > 0) {
-                            val fbChange = changes[index - 1]
-                            drawStateItem(state, fbChange, onClick)
-                        } else {
-                            drawStateItem(state, null, onClick)
+    protected fun showExplanation(e: MouseEvent) {
+        val selectionPath = watchesTree
+            .selectionPath
+            ?.path
+            ?.toList()
+            ?.map { it.toString() }
+            ?.drop(1)
+            ?.joinToString(".")
+            ?.split(".")
+            ?: return
+        val children = explanationProducer.getNodeOrPut(statesList.selectedIndex, selectionPath).children
+        var explanationText = ""
+
+        for (explanationNode in children) {
+            explanationText += "$explanationNode\n"
+        }
+
+        val selectedState = statesList.selectedValue?.state
+        val networkInspector = inspector as? NetworkInspector
+
+        if (selectedState != null && networkInspector != null) {
+            for (explanationNode in children) {
+                val port = ports.firstOrNull { it.second == explanationNode.path } ?: continue
+                val value = selectedState.resolveValue(port.second) ?: continue
+                networkInspector.setInspectionForPort(port.first, Inspection(value, MPSColors.RED, true))
+            }
+        }
+
+        val explanationPopup = GotItTooltip(UUID.randomUUID().toString(), explanationText, project)
+        explanationPopup.position = Balloon.Position.atLeft
+        explanationPopup.show(watchesTree) { component, _ ->
+            Point(component.x, e.y)
+        }
+    }
+
+    private fun initializeWatchesTreeCellRenderer() {
+        watchesTree.cellRenderer = object : DefaultTreeCellRenderer() {
+            override fun getTreeCellRendererComponent(
+                tree: JTree?,
+                value: Any?,
+                selected: Boolean,
+                expanded: Boolean,
+                leaf: Boolean,
+                row: Int,
+                hasFocus: Boolean,
+            ): Component {
+                val line = JPanel()
+                line.layout = BoxLayout(line, BoxLayout.X_AXIS)
+                val node = value as DefaultMutableTreeNode
+
+                if (node.parent != null) {
+                    var path = node.userObject as String
+                    var par = node.parent as DefaultMutableTreeNode
+                    while (par.parent != null) {
+                        val name = par.userObject as String
+                        path = "$name.$path"
+                        par = par.parent as DefaultMutableTreeNode
+                    }
+
+                    val selectedState = statesList.selectedValue?.state ?: error("no selected state")
+                    val previousState =
+                        statesListModel.items.getOrNull(statesList.selectedIndex - 1)?.state ?: selectedState
+                    val pathAsList = path.split(".")
+                    val watchDeclaration = when (declaration) {
+                        is ResourceDeclaration -> declaration.resolvePath(pathAsList)
+                        is FBTypeDeclaration -> declaration.resolvePath(pathAsList)
+                        else -> error("Unsupported type")
+                    }
+
+                    line.add(JLabel(if (node.parent.parent == null) Icons.Watch else if (watchDeclaration is FBTypeDeclaration) AllIcons.Debugger.WatchLastReturnValue else AllIcons.Debugger.Value).apply {
+                        verticalAlignment = CENTER
+                    })
+                    line.add(Box.createRigidArea(Dimension(5, 0)))
+
+                    line.add(JLabel(node.userObject.toString()).apply {
+                        initForeground(selected, hasFocus)
+                        verticalAlignment = CENTER
+                    })
+
+                    when (watchDeclaration) {
+                        is CompositeFBTypeDeclaration -> {}
+                        is BasicFBTypeDeclaration -> {}
+                        is StateDeclaration,
+                        is ParameterDeclaration,
+                        is EventDeclaration,
+                        -> {
+                            val curValue = selectedState.resolveValue(pathAsList)
+                            val prevValue = previousState.resolveValue(pathAsList)
+
+                            val isValueChanged = curValue != prevValue
+
+                            line.add(JLabel(": ").apply {
+                                initForeground(selected, hasFocus)
+                                verticalAlignment = CENTER
+                            })
+
+                            line.add(JLabel("$curValue").apply {
+                                initForeground(selected, hasFocus, isValueChanged)
+                                verticalAlignment = CENTER
+                            })
                         }
                     }
                 }
-                val verticalScrollbarAdapter = rememberScrollbarAdapter(scrollState = verticalScrollState)
-                VerticalScrollbar(
-                    adapter = verticalScrollbarAdapter,
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .fillMaxHeight()
-                )
+                return line
             }
         }
     }
 
-    @Composable
-    open fun drawStateItem(state: State, fbChange: Pair<List<String>, Change>?, onClick: () -> Unit) {
-        if (fbChange == null) {
-            StateItem(
-                state = state,
-                text = "Initial State",
-                onClick = onClick
-            )
-        } else {
-            when (state) {
-                is FBState -> drawFBStateItem(state, fbChange, onClick)
-                is ResourceState -> drawResourceItem(state, fbChange, onClick)
-            }
-        }
+    private fun JLabel.initForeground(
+        isSelected: Boolean,
+        hasFocus: Boolean,
+        isValueChanged: Boolean = false,
+    ) {
+        foreground =
+            if (isSelected && hasFocus) UIManager.getColor("List.selectionForeground")
+            else if (isValueChanged) MPSColors.GREEN.darker() else UIManager.getColor("List.foreground")
     }
 
-    @Composable
-    open fun drawFBStateItem(fbState: FBState, fbChange: Pair<List<String>, Change>, onClick: () -> Unit) {
-        val (fbPath, change) = fbChange
+    private fun initializeStatesListCellRenderer() {
+        statesList.cellRenderer = object : ColoredListCellRenderer<TraceItem>() {
+            override fun customizeCellRenderer(
+                traceItems: JList<out TraceItem>,
+                traceItem: TraceItem,
+                index: Int,
+                isSelected: Boolean,
+                hasFocus: Boolean,
+            ) {
+                val (state, path, change) = traceItem
 
-        var changedState: FBState = fbState
+                val nLen = statesListModel.size.toString().length
+                val nPadding = nLen * 10 + 12
+                val changePadding = nPadding + 100
+                if (traceItem.synced) {
+                    append("$index", SimpleTextAttributes.REGULAR_BOLD_ATTRIBUTES, nPadding, 2)
+                } else {
+                    append("$index", SimpleTextAttributes.GRAYED_BOLD_ATTRIBUTES, nPadding, 2)
+                }
+                when (change) {
+                    is InitialChange -> {
+                        append("Initial State", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                    }
 
-        if (fbPath.isNotEmpty()) {
-            when (changedState) {
-                is CompositeFBState -> {
-                    for (fbInstanceName in fbPath) {
-                        changedState = (changedState as CompositeFBState).children[fbInstanceName]!!
+                    is InputEventChange -> {
+                        val name = change.eventName
+                        val value = state.resolveValue(path.plus(change.eventName)) ?: "???"
+                        append("Input Event", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append("${path.plus(name).joinToString(".")} → $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                    }
+
+                    is OutputEventChange -> {
+                        val name = change.eventName
+                        val value = state.resolveValue(path.plus(change.eventName)) ?: "???"
+                        append("Output Event", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append("${path.plus(name).joinToString(".")} → $value", SimpleTextAttributes.REGULAR_ATTRIBUTES)
+                    }
+
+                    is StateChange -> {
+                        append("ECC State", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
+                        append(
+                            "${path.plus("\$ECC").joinToString(".")} → ${change.state}",
+                            SimpleTextAttributes.REGULAR_ATTRIBUTES
+                        )
                     }
                 }
-                else -> {}
             }
         }
+    }
 
-        val changeInfo = when (change) {
-            is InputEventChange -> "${change.eventName}:${changedState.inputEvents[change.eventName]}"
-            is OutputEventChange -> "${change.eventName}:${changedState.outputEvents[change.eventName]}"
-            is StateChange -> "ECC State:${change.state}"
-            else -> error("Unexpected change in trace")
+    private fun statesPanel(): JBScrollPane {
+        val statesViewport = JBViewport().apply {
+            view = statesList
         }
 
-        StateItem(
-            state = fbState,
-            text = changeInfo + if (fbPath.isNotEmpty()) " (" + fbPath.joinToString(".") + ")" else "",
-            onClick = onClick
-        )
+        val scrollPane = JBScrollPane().apply {
+            viewport = statesViewport
+            verticalScrollBar = JBScrollBar(1)
+            horizontalScrollBar = JBScrollBar(0)
+        }
+
+        return scrollPane
     }
 
-    @Composable
-    open fun drawResourceItem(resourceState: ResourceState, fbChange: Pair<List<String>, Change>, onClick: () -> Unit) {
-        StateItem(
-            state = resourceState,
-            text = "Resource change",
-            onClick = onClick
-        )
+    private fun watchesPanel(): BorderLayoutPanel {
+        val borderLayoutPanel = BorderLayoutPanel()
+
+        borderLayoutPanel.addToTop(watchFieldPanel)
+        borderLayoutPanel.addToCenter(JBScrollPane().apply {
+            viewport = JBViewport().apply {
+                view = watchesTree
+            }
+            verticalScrollBar = JBScrollBar(1)
+            horizontalScrollBar = JBScrollBar(0)
+        })
+
+        return borderLayoutPanel
     }
 
-    @Composable
-    open fun drawStateInfo() {
-        Box {
-            val verticalScrollState = rememberScrollState()
-            Column(
-                modifier = Modifier
-                    .verticalScroll(state = verticalScrollState)
-                    .fillMaxHeight()
-                    .background(MaterialTheme.colors.tableBackground)
-            ) {
-                val selectedState = states[selectedStateIndex]
+    private fun watchFieldPanel(): BorderLayoutPanel {
+        val watchFieldPanel = BorderLayoutPanel()
 
-                when (selectedState) {
-                    is BasicFBState -> drawBasicFBStateInfo(selectedState, 0)
-                    is CompositeFBState -> drawCompositeFBStateInfo(selectedState, 0)
-                    else -> {}
+        val collectionComboboxModel = CollectionComboBoxModel(suggestions)
+
+        val textFieldWithAutoCompletion = TextFieldWithAutoCompletion.create(
+            project,
+            collectionComboboxModel.items,
+            false,
+            ""
+        )
+
+        fun addNewWatch() {
+            val path = textFieldWithAutoCompletion.text.split(".")
+            val newNode = nodeFactory.createNode(path)
+            rootNode.add(newNode)
+            watchesTreeModel.nodeStructureChanged(newNode.parent)
+            watchesTreeModel.nodeStructureChanged(newNode)
+        }
+
+        DumbAwareAction.create {
+            addNewWatch()
+        }.registerCustomShortcutSet(KeyEvent.VK_ENTER, InputEvent.SHIFT_DOWN_MASK, textFieldWithAutoCompletion)
+
+        val addToWatchesButton = InplaceButton("Add to Watches ", AllIcons.Debugger.AddToWatch) {
+            addNewWatch()
+        }
+
+        val combobox = ComboBox<String>()
+        combobox.isEditable = true
+        combobox.editor = ComboBoxCompositeEditor.withComponents<Any, TextFieldWithAutoCompletion<String>>(
+            textFieldWithAutoCompletion,
+            addToWatchesButton
+        )
+        combobox.model = collectionComboboxModel
+
+        watchFieldPanel.background = JBUI.CurrentTheme.Tree.BACKGROUND
+        watchFieldPanel.addToCenter(combobox)
+
+        return watchFieldPanel
+    }
+
+    private fun initSuggestions(declaration: Declaration = this.declaration, prefix: String = "") {
+        val validPrefix = if (prefix.isNotEmpty()) "$prefix." else ""
+        if (declaration is FBTypeDeclaration) {
+            suggestions += declaration.inputEvents.map { validPrefix + it.name }
+            suggestions += declaration.outputEvents.map { validPrefix + it.name }
+            suggestions += declaration.inputParameters.map { validPrefix + it.name }
+            suggestions += declaration.outputParameters.map { validPrefix + it.name }
+        }
+        when (declaration) {
+            is BasicFBTypeDeclaration -> {
+                suggestions += declaration.internalVariables.map { validPrefix + it.name }
+                suggestions += "$validPrefix\$ECC"
+            }
+
+            is DeclarationWithNetwork -> {
+                for (component in declaration.network.allComponents) {
+                    suggestions += validPrefix + component.name
+                }
+                for (component in declaration.network.allComponents) {
+                    initSuggestions(component.type.declaration!!, validPrefix + component.name)
                 }
             }
-            val verticalScrollbarAdapter = rememberScrollbarAdapter(scrollState = verticalScrollState)
-            VerticalScrollbar(
-                adapter = verticalScrollbarAdapter,
-                modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .fillMaxHeight()
-            )
         }
     }
 
-    @Composable
-    open fun drawBasicFBStateInfo(basicFBState: BasicFBState, depth: Int) {
-        drawFBStateInfo(basicFBState, depth)
-
-        val bgColor = MaterialTheme.colors.listBackground
-        val fgColor = MaterialTheme.colors.listForeground
-
-        Item("Internal Variables", bgColor, fgColor, 16.dp * depth)
-        for ((name, value) in basicFBState.internalVariables) {
-            Item("$name: $value", bgColor, fgColor, 16.dp * (depth + 1))
+    private fun MutableTreeNode.addFBPortNodes(fbTypeDeclaration: FBTypeDeclaration) {
+        for (inputEvent in fbTypeDeclaration.inputEvents) {
+            insert(DefaultMutableTreeNode(inputEvent.name, false), childCount)
         }
-
-        Item("ECC State", bgColor, fgColor, 16.dp * depth)
-        val eccState = basicFBState.activeState
-        Item(eccState, bgColor, fgColor, 16.dp * (depth + 1))
-    }
-
-    @Composable
-    open fun drawCompositeFBStateInfo(compositeFBState: CompositeFBState, depth: Int) {
-        drawFBStateInfo(compositeFBState, depth)
-
-        val bgColor = MaterialTheme.colors.listBackground
-        val fgColor = MaterialTheme.colors.listForeground
-
-        Item("Child Function Blocks", bgColor, fgColor, 16.dp * depth)
-        for ((fbName, fbState) in compositeFBState.children) {
-            Item(fbName, bgColor, fgColor, 16.dp * (depth + 1))
-            when (fbState) {
-                is BasicFBState -> drawBasicFBStateInfo(fbState, depth + 2)
-                is CompositeFBState -> drawCompositeFBStateInfo(fbState, depth + 2)
-                else -> {}
-            }
+        for (inputParameter in fbTypeDeclaration.inputParameters) {
+            insert(DefaultMutableTreeNode(inputParameter.name, false), childCount)
+        }
+        for (outputEvent in fbTypeDeclaration.outputEvents) {
+            insert(DefaultMutableTreeNode(outputEvent.name, false), childCount)
+        }
+        for (outputParameter in fbTypeDeclaration.outputParameters) {
+            insert(DefaultMutableTreeNode(outputParameter.name, false), childCount)
         }
     }
 
-    @Composable
-    open fun drawFBStateInfo(fbState: FBState, depth: Int) {
-        val bgColor = MaterialTheme.colors.listBackground
-        val fgColor = MaterialTheme.colors.listForeground
-
-        Item("Input Events", bgColor, fgColor, 16.dp * depth)
-        for ((name, value) in fbState.inputEvents) {
-            Item("$name: $value", bgColor, fgColor, 16.dp * (depth + 1))
-        }
-        Item("Output Events", bgColor, fgColor, 16.dp * depth)
-        for ((name, value) in fbState.outputEvents) {
-            Item("$name: $value", bgColor, fgColor, 16.dp * (depth + 1))
-        }
-        Item("Input Variables", bgColor, fgColor, 16.dp * depth)
-        for ((name, value) in fbState.inputVariables) {
-            Item("$name: $value", bgColor, fgColor, 16.dp * (depth + 1))
-        }
-        Item("Output Variables", bgColor, fgColor, 16.dp * depth)
-        for ((name, value) in fbState.outputVariables) {
-            Item("$name: $value", bgColor, fgColor, 16.dp * (depth + 1))
-        }
+    private fun MutableTreeNode.addBFBPortNodes(basicFBTypeDeclaration: BasicFBTypeDeclaration) {
+        addFBPortNodes(basicFBTypeDeclaration)
+        insert(DefaultMutableTreeNode("\$ECC", false), childCount)
     }
 
-    @Composable
-    open fun StateItem(state: State, text: String, onClick: () -> Unit) {
-        val isSelected = states[selectedStateIndex] === state
-        Item(
-            text = text,
-            bgColor = if (isSelected) MaterialTheme.colors.listSelectionBackground else MaterialTheme.colors.listBackground,
-            fgColor = if (isSelected) MaterialTheme.colors.listSelectionForeground else MaterialTheme.colors.listForeground,
-            onClick = onClick
-        )
+    private fun MutableTreeNode.addSFBPortNodes(serviceFBTypeDeclaration: ServiceInterfaceFBTypeDeclaration) {
+        addFBPortNodes(serviceFBTypeDeclaration)
     }
 
-    @Composable
-    open fun Item(
-        text: String,
-        bgColor: Color,
-        fgColor: Color,
-        textStartPadding: Dp = 0.dp,
-        onClick: () -> Unit = {}
-    ) {
-        Row(
-            modifier = Modifier
-                .clickable { onClick() }
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(color = bgColor),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                modifier = Modifier.padding(start = 24.dp + textStartPadding),
-                text = text,
-                color = fgColor,
-                fontSize = 13.sp
-            )
-        }
+    private fun MutableTreeNode.addCFBPortNodes(compositeFBTypeDeclaration: CompositeFBTypeDeclaration) {
+        addFBPortNodes(compositeFBTypeDeclaration)
     }
 }

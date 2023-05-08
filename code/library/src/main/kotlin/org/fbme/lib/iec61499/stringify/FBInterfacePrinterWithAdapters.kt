@@ -7,10 +7,8 @@ import org.jdom.Element
 
 class FBInterfacePrinterWithAdapters(declaration: FBInterfaceDeclarationWithAdapters) :
     PrinterBase<FBInterfaceDeclarationWithAdapters>(declaration) {
-    @kotlin.jvm.JvmField
-    var myInterfacePrinter = FBInterfacePrinter(
-        element!!, false
-    )
+    @JvmField
+    var myInterfacePrinter = FBInterfacePrinter(element, false)
 
     fun print(): Element {
         val element = myInterfacePrinter.print()

@@ -1,3 +1,4 @@
 package org.fbme.debugger.common.change
 
-data class InputEventChange(val eventName: String) : Change
+@JvmInline
+value class InputEventChange(override val eventName: String) : EventChange

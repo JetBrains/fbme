@@ -80,6 +80,7 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
             fbd.typeReference.setTargetName(element.getAttributeValue("Type"))
             fbd.x = element.getAttributeValue("x").toFloat().toInt()
             fbd.y = element.getAttributeValue("y").toFloat().toInt()
+            ParameterAssignmentsConverter(this, fbd.parameters).extractParameters()
             return fbd
         }
     }
@@ -108,18 +109,15 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         return connection
     }
 
-    protected open fun extractConnectionPath(connecitonElement: Element): ConnectionPath {
-        val dx1Attriubte = connecitonElement.getAttribute("dx1")
-        val dyAttriubte = connecitonElement.getAttribute("dy")
-        val dx2Attriubte = connecitonElement.getAttribute("dx2")
+    protected open fun extractConnectionPath(connectionElement: Element): ConnectionPath {
+        val dx1Attriubte = connectionElement.getAttribute("dx1")
+        val dyAttriubte = connectionElement.getAttribute("dy")
+        val dx2Attriubte = connectionElement.getAttribute("dx2")
         return try {
             var kind = ConnectionPath.Kind.Straight
-            var dx1: Int
-            var dy: Int
-            var dx2: Int
-            dx2 = 0
-            dy = dx2
-            dx1 = dy
+            var dx1 = 0
+            var dy = 0
+            var dx2 = 0
             if (dx1Attriubte != null && dyAttriubte != null && dx2Attriubte != null) {
                 kind = ConnectionPath.Kind.FourAngles
                 dx1 = dx1Attriubte.floatValue.toInt()
@@ -129,7 +127,7 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
                 kind = ConnectionPath.Kind.TwoAngles
                 dx1 = dx1Attriubte.floatValue.toInt()
             }
-            val bendPointsElement = connecitonElement.getChild("BendPoints")
+            val bendPointsElement = connectionElement.getChild("BendPoints")
             if (bendPointsElement != null) {
                 val bendPointsElementChildren = bendPointsElement.getChildren("BendPoint")
                 try {

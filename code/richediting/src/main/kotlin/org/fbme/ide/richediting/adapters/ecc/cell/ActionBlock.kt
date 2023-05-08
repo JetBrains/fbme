@@ -1,9 +1,8 @@
 package org.fbme.ide.richediting.adapters.ecc.cell
 
-import org.fbme.lib.iec61499.ecc.StateAction
 import kotlin.math.max
 
-class ActionBlock(val algorithm: AlgorithmCell, val output: OutputCell, val action: StateAction) {
+class ActionBlock(val algorithm: AlgorithmCell, val output: OutputCell) {
     fun relayout() {
         algorithm.relayoutAll()
         output.relayout()
