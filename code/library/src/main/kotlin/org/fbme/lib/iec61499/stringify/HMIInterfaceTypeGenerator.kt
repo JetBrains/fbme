@@ -159,8 +159,8 @@ companion object {
             }
         return STConverter.parseStatementListWithDeclarations(
             stFactory,
-            { t, u -> parameterCollector.apply(t, u) },
-            code
+            code,
+            { t, u -> parameterCollector.apply(t, u) }
         )
     }
 
