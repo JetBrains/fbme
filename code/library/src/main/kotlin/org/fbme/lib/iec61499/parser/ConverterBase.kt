@@ -8,15 +8,15 @@ abstract class ConverterBase(arguments: ConverterArguments) : ConverterArguments
     final override val element = arguments.element
 
     protected fun unescapeXML(text: String?): String? {
-        var text = text ?: return null
-        text = text.replace("&#10;", "\n")
-        text = text.replace("&#34;", "\"")
-        text = text.replace("&#38;", "&")
-        text = text.replace("&#39;", "'")
-        text = text.replace("&#60;", "<")
-        text = text.replace("&#62;", ">")
-        text = text.replace("&#xD;", "")
-        text = text.replace("&#xA;", "")
+        text ?: return null
         return text
+            .replace("&#10;", "\n")
+            .replace("&#34;", "\"")
+            .replace("&#38;", "&")
+            .replace("&#39;", "'")
+            .replace("&#60;", "<")
+            .replace("&#62;", ">")
+            .replace("&#xD;", "")
+            .replace("&#xA;", "")
     }
 }

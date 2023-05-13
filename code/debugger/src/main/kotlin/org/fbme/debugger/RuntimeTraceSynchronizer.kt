@@ -1,5 +1,8 @@
 package org.fbme.debugger
 
+import com.intellij.openapi.components.service
+import com.intellij.openapi.project.Project
+import jetbrains.mps.project.MPSProject
 import org.fbme.debugger.common.resolveFB
 import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.state.ResourceState
@@ -21,23 +24,20 @@ import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
 class RuntimeTraceSynchronizer(
-    private val mpsProject: jetbrains.mps.project.Project,
+    project: Project,
     private val resourceDeclaration: ResourceDeclaration,
     private val trace: ExecutionTrace,
 ) {
-    private val readWatchesRequests by lazy { mutableListOf<Map<WatchableData, String>>() }
+    private val watcherFacade = project.service<WatcherFacade>()
+    private val readWatchesRequests = mutableListOf<Map<WatchableData, String>>()
 
-    private val watcherFacade by lazy { WatcherFacade.getInstance(mpsProject)!! }
+    private val repository = PlatformRepositoryProvider.getInstance(project.getComponent(MPSProject::class.java))
 
-    private val readWatchesListener by lazy {
-        object : ReadWatchesListener {
-            override fun onReadWatches(watches: Map<WatchableData, String>) {
-                if (watches.isEmpty()) {
-                    return
-                }
-                readWatchesRequests.add(watches)
-            }
+    private val readWatchesListener = ReadWatchesListener { watches ->
+        if (watches.isEmpty()) {
+            return@ReadWatchesListener
         }
+        readWatchesRequests.add(watches)
     }
 
     fun startMonitoring() {
@@ -85,7 +85,6 @@ class RuntimeTraceSynchronizer(
         }
 
         requestsLoop@ for (watches in readWatchesRequests) {
-            val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val newWatches = watches.mapKeys { it.key.resolve(repository) }
 
             for (i in currentStateIndex + 1 until trace.size) {
@@ -122,8 +121,7 @@ class RuntimeTraceSynchronizer(
                 val fbSimulator = resourceSimulator.resolveSimulator(fbPath) as FBSimulator
 
                 when (typeOfParameter) {
-                    "Input Event",
-                    "Output Event" -> {
+                    "Input Event", "Output Event" -> {
                         fbSimulator.triggerEvent(portName)
                         for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
                             val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
@@ -138,10 +136,7 @@ class RuntimeTraceSynchronizer(
                     }
 
                     // Skip everything except event triggers
-                    "Input Variable",
-                    "Output Variable",
-                    "Internal Variable",
-                    "ECC State" -> {
+                    "Input Variable", "Output Variable", "Internal Variable", "ECC State" -> {
                         // skip
                     }
 

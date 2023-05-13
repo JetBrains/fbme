@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idea-plugin>
-  <id>fbme.platform</id>
-  <name>FBME - Platform</name>
-  <description>Defines the core functionality for FBME IDE platform</description>
-  <version>0.1</version>
-  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+    <id>fbme.platform</id>
+    <name>FBME - Platform</name>
+    <description>Defines the core functionality for FBME IDE platform</description>
+    <version>0.1</version>
+    <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
 
-  <depends>fbme.library</depends>
-  <depends>jetbrains.mps.core</depends>
-  <depends>jetbrains.mps.execution.languages</depends>
+    <depends>fbme.library</depends>
+    <depends>jetbrains.mps.core</depends>
+    <depends>jetbrains.mps.execution.languages</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <mps.LanguageLibrary dir="/languages" />
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij.mps">
+        <ModelFactoryProvider implementationClass="org.fbme.ide.platform.persistence.Iec61499ModelFactory"/>
+        <LanguageLibrary dir="/languages"/>
+        <DataSourceFactoryRuleProvider
+                implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
+        <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
+    </extensions>
+    <extensions defaultExtensionNs="jetbrains.mps">
+        <NodeEditorFactory implementation="org.fbme.ide.platform.editor.PlatformEditorFactory"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
+        <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
+        <projectService serviceImplementation="org.fbme.ide.platform.debugger.WatcherFacade"/>
+        <applicationService serviceImplementation="org.fbme.ide.platform.debugger.DevicesFacade"/>
+    </extensions>
+
+    <extensionPoints>
+        <extensionPoint name="iec61499projectTemplate"
+                        interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="fbme.platform">
+        <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.SystemTemplate"/>
+        <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.LibraryTemplate"/>
+    </extensions>
+
 </idea-plugin>

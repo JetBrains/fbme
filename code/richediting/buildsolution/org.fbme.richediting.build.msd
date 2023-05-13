@@ -13,9 +13,7 @@
   <sourcePath />
   <dependencies>
     <dependency reexport="false">422c2909-59d6-41a9-b318-40e6256b250f(jetbrains.mps.ide.build)</dependency>
-    <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990c(org.fbme.platform.build)</dependency>
     <dependency reexport="false">ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)</dependency>
-    <dependency reexport="false">ff08ccef-06a9-4eaf-af2e-092d35667607(org.fbme.debugger.build)</dependency>
     <dependency reexport="false">d76643a8-b8a1-4b1a-9500-66247bf6bc35(org.fbme.ide.build.plugins)</dependency>
   </dependencies>
   <languageVersions>
@@ -25,7 +23,6 @@
   </languageVersions>
   <dependencyVersions>
     <module reference="422c2909-59d6-41a9-b318-40e6256b250f(jetbrains.mps.ide.build)" version="0" />
-    <module reference="ff08ccef-06a9-4eaf-af2e-092d35667607(org.fbme.debugger.build)" version="0" />
     <module reference="d76643a8-b8a1-4b1a-9500-66247bf6bc35(org.fbme.ide.build.plugins)" version="0" />
     <module reference="ab2b933c-4cca-47c1-aeca-d2ac0bca990d(org.fbme.language.build)" version="0" />
     <module reference="5fa6114e-b864-4e52-bc3e-d77dc299a097(org.fbme.library.build)" version="0" />

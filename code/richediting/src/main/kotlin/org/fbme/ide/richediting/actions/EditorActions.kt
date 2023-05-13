@@ -44,8 +44,8 @@ val AnActionEvent.repository get() = PlatformRepositoryProvider.getInstance(getR
 inline fun <reified T : Element> AnActionEvent.element(): T? {
     var node = getData(MPSCommonDataKeys.NODE)
     while (node != null) {
-        val adapter = repository.getAdapter(node, T::class.java)
-        if (adapter != null) return adapter
+        val adapter = repository.getAdapter(node, Element::class.java)
+        if (adapter is T) return adapter
         node = node.parent
     }
     return null

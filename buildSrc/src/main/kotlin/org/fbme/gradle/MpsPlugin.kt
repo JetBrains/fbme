@@ -2,8 +2,9 @@ package org.fbme.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.api.plugins.JavaPlugin
+import org.gradle.kotlin.dsl.exclude
+import org.gradle.kotlin.dsl.get
 import java.util.*
 import javax.xml.parsers.SAXParserFactory
 
@@ -11,13 +12,18 @@ class MpsPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         project.pluginManager.apply(JavaPlugin::class.java)
-        project.pluginManager.apply(JavaLibraryPlugin::class.java)
+
+        excludeKotliRuntimeFromClasspath(project)
 
         val mpsExtension = MpsExtension.get(project).applyConventions(project)
         val pluginId = getPluginId(project)
         MpsBuildscriptTasks(project, mpsExtension)
         GenerateSourcePluginTasks(project, mpsExtension, pluginId)
         GenerateDistPluginTasks(project, mpsExtension, pluginId)
+    }
+
+    private fun excludeKotliRuntimeFromClasspath(project: Project) {
+        project.configurations["runtimeClasspath"].exclude(group = "org.jetbrains.kotlin")
     }
 
     private fun getPluginId(project: Project): String? {

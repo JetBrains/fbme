@@ -1,9 +1,12 @@
 package org.fbme.gradle
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.artifacts.Configuration
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.*
+import org.gradle.internal.fingerprint.classpath.impl.ClasspathFingerprintingStrategy
 import org.gradle.kotlin.dsl.get
 import java.io.File
 
@@ -18,9 +21,6 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
     @get:Nested
     abstract override val dependentModules: ListProperty<ModuleDependency>
 
-    @get:Input
-    abstract val libraryFilters: ListProperty<String>
-
     @get:OutputFile
     abstract val outputFile: Property<File>
 
@@ -32,13 +32,6 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
 
     @get:Input
     abstract override val pluginId: Property<String>
-
-    @get:Input
-    override val libraryLocations: List<String>
-        get() = project.configurations["runtimeClasspath"].files
-            .filter { file -> libraryFilters.get().any { file.absolutePath.contains(it) } }
-            .map { it.name }
-            .filter { name -> libraryFilters.get().any { name.startsWith(it) } }
 
     @TaskAction
     fun generatePlugin() {
@@ -69,6 +62,5 @@ abstract class GeneratePluginModuleFile : DefaultTask(), PluginModuleFileSpec {
         )
         moduleName.convention(mpsExtension.moduleName)
         dependentModules.convention(mpsExtension.dependentModules)
-        libraryFilters.convention(mpsExtension.libraryFilters)
     }
 }

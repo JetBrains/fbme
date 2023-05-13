@@ -5,7 +5,6 @@ import org.gradle.api.tasks.Copy
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
 
-@Suppress("UnstableApiUsage")
 fun GenerateSourcePluginTasks(
     project: Project,
     mpsExtension: MpsExtension,
@@ -13,7 +12,6 @@ fun GenerateSourcePluginTasks(
 ) {
     with(project) {
         val moduleName = mpsExtension.moduleName
-        val libraryFilters = mpsExtension.libraryFilters
 
         val tasksEnabled = pluginId != null
 
@@ -34,7 +32,7 @@ fun GenerateSourcePluginTasks(
             dependsOn(tasks.named("jar"))
 
             val runtimeFiles = configurations["runtimeClasspath"].files
-            from(runtimeFiles.filter { file -> libraryFilters.get().any { file.absolutePath.contains(it) } })
+            from(runtimeFiles)
 
             from(layout.buildDirectory.file("libs/${project.name}.jar"))
 
@@ -51,16 +49,16 @@ fun GenerateSourcePluginTasks(
             archiveBaseName.set(moduleName)
         }
 
-        val copyPluginXml by tasks.registering(Copy::class) {
+        val copyResources by tasks.registering(Copy::class) {
             enabled = tasksEnabled
 
-            from(layout.projectDirectory.file("src/main/resources/META-INF/plugin.xml"))
-            into(rootProject.layout.buildDirectory.dir("src-plugins/$pluginId/META-INF"))
+            from(layout.projectDirectory.dir("src/main/resources"))
+            into(rootProject.layout.buildDirectory.dir("src-plugins/$pluginId"))
         }
 
         val buildSrcPlugin by tasks.registering {
             enabled = tasksEnabled
-            dependsOn(copyPluginXml, jarPluginModule, copyLibs)
+            dependsOn(copyResources, jarPluginModule, copyLibs)
         }
 
         val build by tasks.getting {

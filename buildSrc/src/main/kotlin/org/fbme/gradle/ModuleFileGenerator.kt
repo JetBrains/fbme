@@ -1,5 +1,7 @@
 package org.fbme.gradle
 
+import org.gradle.kotlin.dsl.get
+
 class ModuleFileGenerator(
     private val name: String,
     private val moduleId: String,
@@ -90,7 +92,8 @@ class ModuleFileGenerator(
             val moduleId = spec.moduleId.get()
             val pluginId = spec.pluginId.get()
             val dependencies = ideaPluginDependencies + spec.dependentModules.get()
-            val libraryLocations = spec.libraryLocations + "${spec.project.name}.jar"
+            val runtimeDeps = spec.project.configurations["runtimeClasspath"]
+            val libraryLocations = runtimeDeps.files.map { it.name } + "${spec.project.name}.jar"
             return ModuleFileGenerator(name, moduleId, pluginId, dependencies, libraryLocations, ideaPluginLanguages)
         }
 

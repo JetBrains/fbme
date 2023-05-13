@@ -27,14 +27,14 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="https://projects.itemis.de/nexus/content/repositories/mbeddr" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="teamcity-server" />
       <option name="name" value="teamcity-server" />
       <option name="url" value="https://teamcity.jetbrains.com/app/dsl-plugins-repository" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://projects.itemis.de/nexus/content/repositories/mbeddr" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="Gradle Central Plugin Repository" />
@@ -42,14 +42,14 @@
       <option name="url" value="https://plugins.gradle.org/m2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="MavenRepo" />
-      <option name="name" value="MavenRepo" />
-      <option name="url" value="https://repo.maven.apache.org/maven2/" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="jetbrains-all" />
       <option name="name" value="jetbrains-all" />
       <option name="url" value="https://download.jetbrains.com/teamcity-repository" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenRepo" />
+      <option name="name" value="MavenRepo" />
+      <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="Google" />

@@ -3840,6 +3840,12 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="3ggcgD_Ddwe" role="3cqZAp">
+          <node concept="2YIFZM" id="3ggcgD_DdFo" role="3clFbG">
+            <ref role="1Pybhc" to="uvki:~MpsBridge" resolve="MpsBridge" />
+            <ref role="37wK5l" to="uvki:~MpsBridge.reloadAll()" resolve="reloadAll" />
+          </node>
+        </node>
       </node>
       <node concept="3Tm1VV" id="5vstEPJdmhR" role="1B3o_S" />
       <node concept="3cqZAl" id="5vstEPJdmkW" role="3clF45" />

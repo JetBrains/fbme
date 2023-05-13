@@ -18,8 +18,6 @@ interface MpsExtension {
 
     val moduleName: Property<String>
 
-    val libraryFilters: ListProperty<String>
-
     val dependentModules: ListProperty<ModuleDependency>
 
     val mpsArtifactTasks: ListProperty<String>

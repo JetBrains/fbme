@@ -7,7 +7,6 @@
   </languages>
   <imports>
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
-    <import index="ci82" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c31(org.fbme.platform.build)" />
     <import index="ci81" ref="r:ddb2cc39-021f-4bf6-ab5a-b4bcff106c32(org.fbme.language.build)" />
     <import index="kvgc" ref="r:033fa9ec-1120-40c6-8124-b58f4474b999(org.fbme.ide.build.plugins)" />
   </imports>
@@ -385,9 +384,6 @@
     </node>
     <node concept="2sgV4H" id="ApHj0p4ZOh" role="1l3spa">
       <ref role="1l3spb" to="ci81:68dTcycFmrj" resolve="fbme_language" />
-    </node>
-    <node concept="2sgV4H" id="Ej4tEplvBf" role="1l3spa">
-      <ref role="1l3spb" to="ci82:68dTcycFmrj" resolve="fbme_platform" />
     </node>
     <node concept="2sgV4H" id="1wt__nLadNG" role="1l3spa">
       <ref role="1l3spb" to="kvgc:177eUH8B7jw" resolve="fbme_source_plugins" />

@@ -436,25 +436,6 @@
           </node>
         </node>
       </node>
-      <node concept="1BurEX" id="5H1yg74QXmX" role="3bR37C">
-        <node concept="55IIr" id="5H1yg74QXmY" role="1BurEY">
-          <node concept="2Ry0Ak" id="5H1yg74QXmZ" role="iGT6I">
-            <property role="2Ry0Am" value="build" />
-            <node concept="2Ry0Ak" id="5H1yg74QXn0" role="2Ry0An">
-              <property role="2Ry0Am" value="src-plugins" />
-              <node concept="2Ry0Ak" id="5H1yg74QXn1" role="2Ry0An">
-                <property role="2Ry0Am" value="fbme.debugger" />
-                <node concept="2Ry0Ak" id="5H1yg74QXn2" role="2Ry0An">
-                  <property role="2Ry0Am" value="lib" />
-                  <node concept="2Ry0Ak" id="5n_Q6LeSaCe" role="2Ry0An">
-                    <property role="2Ry0Am" value="kotlinx-coroutines-core-jvm-1.6.0.jar" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
     </node>
     <node concept="55IIr" id="177eUH8B7jx" role="auvoZ" />
     <node concept="1l3spV" id="177eUH8B7jy" role="1l3spN">
@@ -954,25 +935,6 @@
                       <property role="2Ry0Am" value="lib" />
                       <node concept="2Ry0Ak" id="4YrY9S5MWc_" role="2Ry0An">
                         <property role="2Ry0Am" value="debugger.jar" />
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="28jJK3" id="4YrY9S5MW$8" role="39821P">
-            <node concept="55IIr" id="4YrY9S5MW$9" role="28jJRO">
-              <node concept="2Ry0Ak" id="4YrY9S5MW$a" role="iGT6I">
-                <property role="2Ry0Am" value="build" />
-                <node concept="2Ry0Ak" id="4YrY9S5MW$b" role="2Ry0An">
-                  <property role="2Ry0Am" value="src-plugins" />
-                  <node concept="2Ry0Ak" id="4YrY9S5MW$c" role="2Ry0An">
-                    <property role="2Ry0Am" value="fbme.debugger" />
-                    <node concept="2Ry0Ak" id="4YrY9S5MW$d" role="2Ry0An">
-                      <property role="2Ry0Am" value="lib" />
-                      <node concept="2Ry0Ak" id="5n_Q6LeSaBI" role="2Ry0An">
-                        <property role="2Ry0Am" value="kotlinx-coroutines-core-jvm-1.6.0.jar" />
                       </node>
                     </node>
                   </node>

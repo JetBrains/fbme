@@ -14,7 +14,7 @@ internal class PlatformDeclarationsScope(
     private val myModel: SModel?
 ) : DeclarationsScope {
     override fun findCompositeFBTypeDeclaration(identifier: Identifier): CompositeFBTypeDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), CompositeFBTypeDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, CompositeFBTypeDeclaration::class.java) }
     }
 
     override fun findCATBlockTypeDeclaration(identifier: Identifier): CATBlockTypeDeclaration? {
@@ -22,35 +22,35 @@ internal class PlatformDeclarationsScope(
     }
 
     override fun findBasicFBTypeDeclaration(identifier: Identifier): BasicFBTypeDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), BasicFBTypeDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, BasicFBTypeDeclaration::class.java) }
     }
 
     override fun findServiceFBTypeDeclaration(identifier: Identifier): ServiceInterfaceFBTypeDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), ServiceInterfaceFBTypeDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, ServiceInterfaceFBTypeDeclaration::class.java) }
     }
 
     override fun findAdapterTypeDeclaration(identifier: Identifier): AdapterTypeDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), AdapterTypeDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, AdapterTypeDeclaration::class.java) }
     }
 
     override fun findSubapplicationTypeDeclaration(identifier: Identifier): SubapplicationTypeDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), SubapplicationTypeDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, SubapplicationTypeDeclaration::class.java) }
     }
 
     override fun findSystemDeclaration(identifier: Identifier): SystemDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), SystemDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, SystemDeclaration::class.java) }
     }
 
     override fun findDeviceDeclaration(identifier: Identifier): DeviceDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), DeviceDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, DeviceDeclaration::class.java) }
     }
 
     override fun findResourceDeclaration(identifier: Identifier): ResourceDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), ResourceDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, ResourceDeclaration::class.java) }
     }
 
     override fun findFunctionBlockDeclaration(identifier: Identifier): FunctionBlockDeclaration? {
-        return myRepository.getAdapter(findNode(identifier), FunctionBlockDeclaration::class.java)
+        return findNode(identifier)?.let { myRepository.getAdapter(it, FunctionBlockDeclaration::class.java) }
     }
 
     override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> {

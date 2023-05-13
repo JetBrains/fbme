@@ -1,13 +1,14 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 
 plugins {
-    mps
     kotlin
+    mps
 }
 
 dependencies {
-    implementation(mpsDistribution())
-    implementation(project(":code:library"))
+    compileOnly(mpsDistribution())
+    compileOnly(project(":code:library"))
+
     mpsImplementation(project(":code:library", "mps"))
 }
 
