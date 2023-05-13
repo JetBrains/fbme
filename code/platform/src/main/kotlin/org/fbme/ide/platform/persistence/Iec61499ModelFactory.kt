@@ -24,6 +24,7 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.platform.MpsLanguages
+import org.fbme.ide.platform.converter.PlatformConverter
 import org.fbme.ide.platform.converter.PlatformConverter.create
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
@@ -270,8 +271,11 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
 
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
+                    val owner = PlatformElementsOwner()
+                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
+
                     val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-                    val document = RootDeclarationPrinter(declaration!!).print()
+                    val document = RootDeclarationPrinter(declaration!!, conf).print()
                     val folderName =
                         rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().replace(".", "/")
                     val fileLocalName = rootNode.name + "." + getExtensionOfSource(rootNode, platformRepository)
@@ -307,6 +311,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
         const val DEV_FILE_EXT = "dev"
         const val SEG_FILE_EXT = "seg"
         const val SYS_FILE_EXT = "sys"
+        const val CFG_FILE_EXT = "cfg"
         const val HEADER_FILE_EXT = "iec61499"
         const val HEADER_FILE = "header.iec61499"
 
@@ -340,6 +345,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 DEV_FILE_EXT -> (converter.convertDeviceType() as PlatformElement).node
                 SEG_FILE_EXT -> (converter.convertSegmentType() as PlatformElement).node
                 SYS_FILE_EXT -> (converter.convertSystemConfiguration() as PlatformElement).node
+                CFG_FILE_EXT -> (converter.convertCATConfiguration() as PlatformElement).node
                 else -> null
             }
         }
@@ -354,6 +360,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 is DeviceTypeDeclaration -> DEV_FILE_EXT
                 is SegmentTypeDeclaration -> SEG_FILE_EXT
                 is SystemDeclaration -> SYS_FILE_EXT
+                is CATBlockTypeDeclaration -> SYS_FILE_EXT
                 else -> null
             }
         }

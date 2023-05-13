@@ -8,6 +8,7 @@ import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.fbme.lib.iec61499.parser.CompositeFBTypeConverter
 import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 import org.fbme.lib.iec61499.parser.STConverter
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.Expression
@@ -17,15 +18,18 @@ import org.fbme.lib.st.types.ElementaryType
 import org.jdom.Element
 import java.util.function.BiFunction
 
-class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, val converterArguments: ConverterArguments) {
+class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, val converterArguments: Iec61499ConverterConfiguration) {
 
+    val factory = converterArguments.entryFactory
+    val stFactory = converterArguments.stEntryFactory
+    
     fun generateDependents(): List<FBTypeDeclaration> {
         val elements = mutableListOf<FBTypeDeclaration>()
-        val outFb = generateDispatchOut(converterArguments.factory, converterArguments.stFactory, declaration.outputParameters)
+        val outFb = generateDispatchOut(factory, stFactory, declaration.outputParameters)
         elements.add(outFb)
         val inFb = generateDispatchIn(
-            converterArguments.factory,
-            converterArguments.stFactory,
+            factory,
+            stFactory,
             declaration.inputParameters
         )
         elements.add(inFb)
@@ -34,21 +38,6 @@ class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, va
         return elements
     }
 
-    fun printComposite(element: Element, outEl: FunctionBlockDeclaration, inEl: FunctionBlockDeclaration) {
-        val composite = converterArguments.factory.createCompositeFBTypeDeclaration(null)
-        composite.network.functionBlocks.add(outEl)
-        composite.network.functionBlocks.add(inEl)
-        CompositeFBTypeConverter(converterArguments).extract()
-//        composite.network.functionBlocks.add(jsonSerializer)
-//        composite.network.functionBlocks.add(jsonDeserializer)
-//        composite.network.functionBlocks.add(publish)
-//        composite.network.functionBlocks.add(subscribe)
-        val connection = converterArguments.factory.createFBNetworkConnection(EntryKind.EVENT)
-//        connection.sourceReference(outEl, jsonSerializer)
-//        connection.sourceReference(inEl, jsonDeserializer)
-        composite.network.dataConnections
-        element.addContent(CompositeFBTypePrinter(composite).print())
-    }
 
 companion object {
     val CONNECTION_TYPES = listOf(
@@ -190,15 +179,15 @@ companion object {
 
 
     private fun createFunctionBlockDeclaration(name: String, type: DataType, x: Int, y: Int, assignments: List<String>): FunctionBlockDeclaration {
-        val block = converterArguments.factory.createFunctionBlockDeclaration(null)
+        val block = factory.createFunctionBlockDeclaration(null)
         block.name = name
         block.typeReference.setTargetName(type.stringify())
         block.x = x
         block.y = y
 
         val parameterAssignments = assignments.map {
-            val parameterAssign = converterArguments.factory.createParameterAssignment()
-            parameterAssign.value = STConverter.parseLiteral(converterArguments.stFactory, it)
+            val parameterAssign = factory.createParameterAssignment()
+            parameterAssign.value = STConverter.parseLiteral(stFactory, it)
 //            parameterAssign.parameterReference.setTargetName(it.third)
             parameterAssign
         }

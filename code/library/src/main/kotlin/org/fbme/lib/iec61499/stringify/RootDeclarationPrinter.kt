@@ -3,11 +3,12 @@ package org.fbme.lib.iec61499.stringify
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 import org.jdom.DocType
 import org.jdom.Document
 import org.jdom.Element
 
-class RootDeclarationPrinter(private val myDeclaration: Declaration, val converterArguments: ConverterArguments) {
+class RootDeclarationPrinter(private val myDeclaration: Declaration, val converterArguments: Iec61499ConverterConfiguration) {
     fun print(): Document {
         val rootElement: Element = when (myDeclaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()

@@ -6,8 +6,9 @@ import org.fbme.lib.iec61499.declarations.CATBlockTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.HMIInterfaceTypeDeclaration
 import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 
-class DependentDeclarationGenerator(private val myDeclaration: Declaration, private val converterArguments: ConverterArguments) {
+class DependentDeclarationGenerator(private val myDeclaration: Declaration, private val converterArguments: Iec61499ConverterConfiguration) {
 
 
     fun generate(): List<RootElement> {
