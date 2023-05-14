@@ -18,7 +18,7 @@ class HMIInterfaceConverter(arguments: ConverterArguments) :
             fbtd.inputParameters
         )
         ParameterDeclarationConverter.extractAll(
-            with(interfaceListElement.getChild("InputVars")),
+            with(interfaceListElement.getChild("OutputVars")),
             fbtd.outputParameters
         )
 

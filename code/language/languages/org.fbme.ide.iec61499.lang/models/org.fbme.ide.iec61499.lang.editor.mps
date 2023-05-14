@@ -4406,6 +4406,9 @@
       </node>
       <node concept="3F0ifn" id="4XC4nIUQ9Pu" role="3EZMnx">
         <property role="3F0ifm" value="hmiInterfaceDeclaration:" />
+        <node concept="pVoyu" id="1IgaGx7XRIV" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
       </node>
       <node concept="1iCGBv" id="19ypCjbmdXu" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:19ypCjbiyll" resolve="hmiInterfaceDeclaration" />
@@ -4415,6 +4418,9 @@
       </node>
       <node concept="3F0ifn" id="2hUvzC7g91S" role="3EZMnx">
         <property role="3F0ifm" value="Interface file:" />
+        <node concept="pVoyu" id="1IgaGx7XRIX" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
       </node>
       <node concept="3F0A7n" id="2hUvzC7g91q" role="3EZMnx">
         <ref role="1NtTu8" to="xiqq:5cPJ2880EM3" resolve="interfaceFileName" />

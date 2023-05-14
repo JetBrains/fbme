@@ -13,7 +13,7 @@ class CATBlockTypeConverter(arguments: ConverterArguments) :
         val fbtd = factory.createCATBlockTypeDeclaration(identifier)
         fbtd.blockDeclaration.setTargetName(element.getChild("Composite").getAttributeValue("Type"))
         fbtd.hmiInterface.setTargetName(element.getChild("HMI").getAttributeValue("Type"))
-
+        fbtd.interfaceFileName = element.getChild("HMI").getAttributeValue("InterfaceFile")
         return fbtd
     }
 }

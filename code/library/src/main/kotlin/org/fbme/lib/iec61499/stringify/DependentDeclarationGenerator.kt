@@ -14,7 +14,7 @@ class DependentDeclarationGenerator(private val myDeclaration: Declaration, priv
     fun generate(): List<RootElement> {
         val rootElements: List<FBTypeDeclaration> = when (myDeclaration) {
             is HMIInterfaceTypeDeclaration -> HMIInterfaceTypeGenerator(myDeclaration, converterArguments).generateDependents()
-            else -> error("Unrecognized root declaration")
+            else -> listOf()
         }
 
 

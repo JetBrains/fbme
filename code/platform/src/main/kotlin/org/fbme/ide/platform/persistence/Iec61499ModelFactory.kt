@@ -29,6 +29,7 @@ import org.fbme.ide.platform.converter.PlatformConverter.create
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.stringify.DependentDeclarationGenerator
 import org.fbme.lib.iec61499.stringify.RootDeclarationPrinter
 import org.jdom.Document
 import org.jetbrains.mps.openapi.model.SModel
@@ -46,6 +47,7 @@ import java.io.InputStreamReader
 import java.io.OutputStream
 import java.util.*
 import java.util.stream.Collectors
+import kotlin.io.path.Path
 
 class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
     private fun supportedFileExtension(fileExt: String): Boolean {
@@ -56,6 +58,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 || fileExt == DEV_FILE_EXT
                 || fileExt == SYS_FILE_EXT
                 || fileExt == SEG_FILE_EXT
+                || fileExt == CFG_FILE_EXT
     }
 
     override fun supports(dataSource: DataSource): Boolean {
@@ -269,6 +272,24 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                     .getComponent(MPSCoreComponents::class.java).moduleRepository
                 val platformRepository = PlatformRepository(repository)
 
+                val dependents = mutableListOf<SNode>()
+                for (rootNode in model.rootNodes) {
+                    val owner = PlatformElementsOwner()
+                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
+
+                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
+
+                    val els = DependentDeclarationGenerator(declaration, conf).generate()
+                    els.forEach {
+                        val node = (it as PlatformElement).node
+                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty())
+                        dependents.add(node)
+                    }
+                }
+
+                LOG.info("Dependents size: {}", dependents.size)
+                dependents.forEach { model.addRootNode(it) }
+
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
                     val owner = PlatformElementsOwner()
@@ -360,7 +381,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 is DeviceTypeDeclaration -> DEV_FILE_EXT
                 is SegmentTypeDeclaration -> SEG_FILE_EXT
                 is SystemDeclaration -> SYS_FILE_EXT
-                is CATBlockTypeDeclaration -> SYS_FILE_EXT
+                is CATBlockTypeDeclaration -> CFG_FILE_EXT
                 else -> null
             }
         }

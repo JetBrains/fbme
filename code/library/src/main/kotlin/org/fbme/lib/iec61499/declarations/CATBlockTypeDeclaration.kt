@@ -8,5 +8,5 @@ import org.fbme.lib.common.Reference
 interface CATBlockTypeDeclaration : Declaration, RootElement {
     val hmiInterface: Reference<HMIInterfaceTypeDeclaration>
     val blockDeclaration: Reference<CompositeFBTypeDeclaration>
-    val interfaceFileName: String
+    var interfaceFileName: String
 }

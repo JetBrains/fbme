@@ -10,7 +10,7 @@ class RootConverter(
 ) {
     fun convertFBType(): FBTypeDeclaration {
         val root = myDocument.rootElement
-        if (root.getAttribute("UsedInCAT") != null && root.getAttribute("UsedInCAT").value == "TRUE") {
+        if (root.getAttribute("UsedInCAT") != null && root.getAttribute("UsedInCAT").value == "True") {
             return HMIInterfaceConverter(arguments()).extract()
         }
         if (root.getChild("FBNetwork") != null) {
