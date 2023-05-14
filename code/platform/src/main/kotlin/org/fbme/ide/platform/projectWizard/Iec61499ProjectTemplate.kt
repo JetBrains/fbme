@@ -58,7 +58,8 @@ abstract class Iec61499ProjectTemplate(
                     }
                     val repository = PlatformRepositoryProvider.getInstance(project)
                     val initialElement = initModel(repository, model)
-                    val initialNode = (initialElement as PlatformElement).node
+                    model.module.declaredDependencies
+                    val initialNode = initialElement.node
                     project.repository.modelAccess.runReadInEDT {
                         NavigationSupport.getInstance().openNode(project, initialNode, true, false)
                         NavigationSupport.getInstance().selectInTree(project, initialNode, false)

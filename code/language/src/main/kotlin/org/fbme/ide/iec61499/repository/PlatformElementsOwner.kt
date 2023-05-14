@@ -15,7 +15,7 @@ open class PlatformElementsOwner {
         if (adapter == null) {
             elements.remove(node)
         }
-        return requiredClass.cast(adapter)
+        return requiredClass.cast(adapter)!!
     }
 
     private fun adapt(node: SNode): Element? {

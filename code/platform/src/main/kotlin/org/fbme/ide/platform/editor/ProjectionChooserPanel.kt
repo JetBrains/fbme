@@ -8,20 +8,23 @@ import com.intellij.ui.components.AnActionLink
 import com.intellij.ui.components.DropDownLink
 import com.intellij.ui.components.JBPanel
 import jetbrains.mps.project.Project
+import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Dimension
 import java.awt.FlowLayout
 
 class ProjectionChooserPanel(node: SNode, project: Project) : JBPanel<ProjectionChooserPanel>(FlowLayout(FlowLayout.CENTER, 10, 5)) {
 
+    val element = PlatformRepositoryProvider.getInstance(project).getAdapter(node, PlatformElement::class.java)
+
     init {
-        val controllers = EditorProjectionControllerRegistry.instance.factories
-                .filter { it.isApplicable(node) }
-                .map { it.create(node, project) }
+        val controllers = EditorProjectionControllerProvider.EP_NAME.extensions
+                .filter { it.isApplicable(element) }
+                .map { it.create(element, project) }
 
         for (controller in controllers.sortedByDescending { it.priority }) {
-            val chooser = controller.chooser
-            val component = when (chooser) {
+            val component = when (val chooser = controller.chooser) {
                 is ProjectionChooser.Simple -> AnActionLink(chooser.text, chooser.action)
                 is ProjectionChooser.Composite -> DropDownLink(chooser.text) {
                     val group = DefaultActionGroup()

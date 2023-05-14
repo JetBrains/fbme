@@ -31,11 +31,15 @@
     <extensionPoints>
         <extensionPoint name="iec61499projectTemplate"
                         interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
+        <extensionPoint name="ProjectionController"
+                        interface="org.fbme.ide.platform.editor.EditorProjectionControllerProvider"/>
     </extensionPoints>
 
     <extensions defaultExtensionNs="fbme.platform">
         <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.SystemTemplate"/>
         <iec61499projectTemplate implementation="org.fbme.ide.platform.projectWizard.LibraryTemplate"/>
+
+        <ProjectionController implementation="org.fbme.ide.platform.editor.SourceProjectionControllerProvider" />
     </extensions>
 
 </idea-plugin>
