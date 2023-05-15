@@ -10,6 +10,8 @@ import jetbrains.mps.openapi.editor.EditorState
 import jetbrains.mps.openapi.editor.selection.SelectionManager
 import jetbrains.mps.project.Project
 import org.fbme.ide.iec61499.editor.ProjectEditorSpecs
+import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.jdom.Element
 import org.jdom.JDOMException
 import org.jdom.input.SAXBuilder
@@ -29,6 +31,9 @@ class HeaderedNodeEditor(val baseNode: SNode, mpsProject: Project) : BaseNodeEdi
         private set
     var projectionComponent: JComponent? = null
         private set
+
+    val baseNodeElement = PlatformRepositoryProvider.getInstance(mpsProject)
+            .getAdapter(baseNode, PlatformElement::class.java)
 
     init {
         myVirtualFile = NodeVirtualFileSystem.getInstance().getFileFor(mpsProject.repository, baseNode)
@@ -142,20 +147,19 @@ class HeaderedNodeEditor(val baseNode: SNode, mpsProject: Project) : BaseNodeEdi
         val controllerId = projectionState!!.getAttributeValue(CONTROLLER_ID_KEY)
         val projectionName = projectionState.getAttributeValue(PROJECTION_NAME_KEY)
         if (controllerId != null && projectionName != null) {
-            val controller: EditorProjectionController = EditorProjectionControllerRegistry.instance
-                    .factories.stream()
-                    .filter { it.id == controllerId }
-                    .findFirst().orElseThrow()
-                    .create(baseNode, myProject)
+            val controller: EditorProjectionController = EditorProjectionControllerProvider.EP_NAME
+                    .extensions
+                    .first { it.id == controllerId }
+                    .create(baseNodeElement, myProject)
             chooseProjection(controller.restoreProjection(projectionName, projectionState)!!)
         }
     }
 
     private fun initializeFirstAvailableProjection() {
-        val factories: List<EditorProjectionController.Factory> =
-                EditorProjectionControllerRegistry.instance.factories.filter { it.isApplicable(baseNode) }
+        val factories: List<EditorProjectionControllerProvider> =
+                EditorProjectionControllerProvider.EP_NAME.extensions.filter { it.isApplicable(baseNodeElement) }
         for (factory in factories) {
-            val controller = factory.create(baseNode, myProject)
+            val controller = factory.create(baseNodeElement, myProject)
             val defaultProjection = controller.createDefaultProjection()
             if (defaultProjection != null) {
                 chooseProjection(defaultProjection)

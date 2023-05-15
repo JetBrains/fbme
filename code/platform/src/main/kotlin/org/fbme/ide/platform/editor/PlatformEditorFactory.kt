@@ -6,21 +6,27 @@ import jetbrains.mps.ide.editor.NodeEditorFactoryBase
 import jetbrains.mps.openapi.editor.Editor
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.editor.ProjectEditorSpecs
+import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.jetbrains.mps.openapi.model.SNode
 
-class PlatformEditorFactory(private val project: Project) : NodeEditorFactoryBase() {
+class PlatformEditorFactory(project: Project) : NodeEditorFactoryBase() {
+    private val mpsProject = project.getComponent(MPSProject::class.java)
+
     override fun canCreate(context: NodeEditorFactory.Context): Boolean {
         val node = context.node
-        return EditorProjectionControllerRegistry.instance
-            .factories
-            .any { it.isApplicable(node) }
+        val element = runCatching { PlatformRepositoryProvider.getInstance(mpsProject).getAdapter(node, PlatformElement::class.java) }.getOrNull()
+                ?: return false
+        return EditorProjectionControllerProvider.EP_NAME
+            .extensions
+            .any { it.isApplicable(element) }
     }
 
     override fun create(context: NodeEditorFactory.Context): Editor {
-        return HeaderedNodeEditor(context.node, project.getComponent(MPSProject::class.java))
+        return HeaderedNodeEditor(context.node, mpsProject)
     }
 
     override fun getBaseNode(node: SNode): SNode {
-        return ProjectEditorSpecs.getInstance(project.getComponent(MPSProject::class.java)).getSpecTarget(node)
+        return ProjectEditorSpecs.getInstance(mpsProject).getSpecTarget(node)
     }
 }
