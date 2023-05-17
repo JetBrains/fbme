@@ -114,5 +114,8 @@
       </node>
     </node>
   </node>
+  <node concept="37WguZ" id="48GmjZCuXd8">
+    <property role="TrG5h" value="CATFactory" />
+  </node>
 </model>
 

@@ -15,6 +15,12 @@ import jetbrains.mps.persistence.DataLocationAwareModelFactory
 import jetbrains.mps.smodel.SModel.ImportElement
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SNodeUtil
+import jetbrains.mps.smodel.adapter.ids.SContainmentLinkId
+import jetbrains.mps.smodel.adapter.ids.SPropertyId
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
+import jetbrains.mps.smodel.adapter.structure.link.SContainmentLinkAdapter
+import jetbrains.mps.smodel.adapter.structure.link.SContainmentLinkAdapterById
+import jetbrains.mps.smodel.adapter.structure.property.SPropertyAdapter
 import jetbrains.mps.util.FileUtil
 import jetbrains.mps.util.JDOMUtil
 import jetbrains.mps.util.NameUtil
@@ -29,6 +35,8 @@ import org.fbme.ide.platform.converter.PlatformConverter.create
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
+import org.fbme.lib.iec61499.parser.StandardIec61499ConverterConfiguration
 import org.fbme.lib.iec61499.stringify.DependentDeclarationGenerator
 import org.fbme.lib.iec61499.stringify.RootDeclarationPrinter
 import org.jdom.Document
@@ -272,28 +280,43 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                     .getComponent(MPSCoreComponents::class.java).moduleRepository
                 val platformRepository = PlatformRepository(repository)
 
+                val nodesToDelete = mutableListOf<SNode>()
                 val dependents = mutableListOf<SNode>()
                 for (rootNode in model.rootNodes) {
+                    if (rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().endsWith("_dependent")) {
+//                                c.dropReference(it.link)
+                        nodesToDelete.add(rootNode)
+                        continue
+                    }
                     val owner = PlatformElementsOwner()
                     val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
-
                     val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
 
                     val els = DependentDeclarationGenerator(declaration, conf).generate()
-                    els.forEach {
-                        val node = (it as PlatformElement).node
-                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty())
+                    els.forEach { element ->
+                        val node = (element as PlatformElement).node
+                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty() + ".${rootNode.name}_dependent")
                         dependents.add(node)
                     }
                 }
 
+                LOG.info("Deleting nodes size: {}", nodesToDelete.size)
+                nodesToDelete.forEach {
+                    model.enterUpdateMode()
+                    model.removeRootNode(it)
+                    it.delete()
+                    model.leaveUpdateMode()
+                }
                 LOG.info("Dependents size: {}", dependents.size)
-                dependents.forEach { model.addRootNode(it) }
+                dependents.forEach {
+                    model.enterUpdateMode()
+                    model.addRootNode(it)
+                    model.leaveUpdateMode()
+                }
 
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
-                    val owner = PlatformElementsOwner()
-                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
+                    val conf = StandardIec61499ConverterConfiguration(platformRepository.iec61499Factory, platformRepository.stFactory)
 
                     val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
                     val document = RootDeclarationPrinter(declaration!!, conf).print()
@@ -321,6 +344,8 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
             }
         }
     }
+
+
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Iec61499ModelFactory::class.java)
