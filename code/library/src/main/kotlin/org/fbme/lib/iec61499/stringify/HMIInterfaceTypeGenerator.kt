@@ -21,15 +21,19 @@ class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, va
     
     fun generateDependents(): List<FBTypeDeclaration> {
         val elements = mutableListOf<FBTypeDeclaration>()
-        val outFb = generateDispatchOut(factory, stFactory, declaration.inputParameters, declaration.name)
-        elements.add(outFb)
-        val inFb = generateDispatchIn(
-            factory,
-            stFactory,
-            declaration.outputParameters,
-            declaration.name
-        )
-        elements.add(inFb)
+        if (declaration.inputParameters.size > 0) {
+            val outFb = generateDispatchOut(factory, stFactory, declaration.inputParameters, declaration.name)
+            elements.add(outFb)
+        }
+        if (declaration.outputParameters.size > 0) {
+            val inFb = generateDispatchIn(
+                factory,
+                stFactory,
+                declaration.outputParameters,
+                declaration.name
+            )
+            elements.add(inFb)
+        }
         val compositeHMI = generateComposite(factory, stFactory, declaration)
         elements.add(compositeHMI)
         return elements
@@ -236,7 +240,7 @@ companion object {
     }
 
     fun generateInGuard(p: ParameterDeclaration, stFactory: STFactory): Expression {
-        val code = "(LEFT(NAME, LEN(NAME) - 7) = MAPPING) AND (RIGHT(NAME, LEN(NAME) - LEN(NAME) + ${p.name.length + 1}) = '#${p.name}')"
+        val code = "(LEFT(NAME, LEN(NAME) - ${p.name.length + 2}) = MAPPING) AND (RIGHT(NAME, LEN(NAME) - LEN(NAME) + ${p.name.length + 1}) = '#${p.name}')"
         return STConverter.parseExpression(stFactory, code)!!
     }
 
