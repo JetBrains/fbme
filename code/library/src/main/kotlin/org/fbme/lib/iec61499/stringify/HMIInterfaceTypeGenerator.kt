@@ -246,7 +246,7 @@ companion object {
 
     fun generateComposite(factory: IEC61499Factory, stFactory: STFactory, declaration: HMIInterfaceTypeDeclaration): CompositeFBTypeDeclaration {
         var cFB = factory.createCompositeFBTypeDeclaration(null)
-        cFB.name = declaration.name + "_HMI_COMPOSITE"
+        cFB.name = declaration.name + "_HMI"
         declaration.inputParameters.forEach {
             if (it.name != "MAPPING") {
                 val pD = factory.createParameterDeclaration(null)
