@@ -1,4 +1,4 @@
-package org.fbme.scenes.controllers
+package org.fbme.scenes.controllers.selection
 
 abstract class SelectionModelBase<T> : SelectionModel<T> {
     private val listeners: MutableSet<SelectionModel.Listener<T>> = HashSet()

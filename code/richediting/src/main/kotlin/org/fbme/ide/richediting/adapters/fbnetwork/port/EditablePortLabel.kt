@@ -9,7 +9,7 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.jetbrains.mps.openapi.model.SNode
 
-open class PortWithEditableLabel(
+open class EditablePortLabel(
         context: EditorContext,
         node: SNode,
         port: FBPortDescriptor,

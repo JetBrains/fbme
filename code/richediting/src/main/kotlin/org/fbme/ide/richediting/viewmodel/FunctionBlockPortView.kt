@@ -7,6 +7,6 @@ data class FunctionBlockPortView(
     override val component: FunctionBlockView,
     val position: Int,
     override val kind: EntryKind,
-    val isSource: Boolean,
-    val target: Declaration
-) : NetworkPortView
+    override val isSource: Boolean,
+    override val target: Declaration
+) : NetworkPortViewAdd

@@ -6,19 +6,31 @@ import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSynchronizer
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkComponentSynchronizer
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.ide.richediting.viewmodel.NetworkPortView
+import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.controllers.SceneViewpoint
 import org.fbme.scenes.controllers.components.ComponentsFacility
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramController
 import org.fbme.scenes.controllers.diagram.DiagramFacility
+import org.fbme.scenes.controllers.edited.EditedModel
 import java.awt.Point
 
-abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) {
+abstract class FBNetworkAction protected constructor(protected val cell: EditorCell) {
     @JvmField
     protected val selectedFBs: Set<NetworkComponentView>
+
+    @JvmField
+    protected val editedFBs: List<FunctionBlockView>
+
+    @JvmField
+    protected val editedFBsController: EditedModel<FunctionBlockView>
+
+    @JvmField
+    protected val networkInstance: NetworkInstance
 
     @JvmField
     protected val componentsFacility: ComponentsFacility<NetworkComponentView, Point>
@@ -44,6 +56,9 @@ abstract class ExpandOrCollapseAction protected constructor(cell: EditorCell) {
     init {
         val style = cell.style
         selectedFBs = style.get(RichEditorStyleAttributes.SELECTED_FBS).selectedComponents
+        editedFBs = style.get(RichEditorStyleAttributes.EDITED_FBS).editedComponents
+        editedFBsController = style.get(RichEditorStyleAttributes.EDITED_FBS)
+        networkInstance = style.get(RichEditorStyleAttributes.NETWORK_INSTANCE)
         componentsFacility = style.get(RichEditorStyleAttributes.COMPONENTS_FACILITY)
             as ComponentsFacility<NetworkComponentView, Point>
         connectionsFacility = style.get(RichEditorStyleAttributes.CONNECTIONS_FACILITY)

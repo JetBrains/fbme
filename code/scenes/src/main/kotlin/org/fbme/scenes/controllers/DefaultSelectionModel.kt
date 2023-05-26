@@ -1,5 +1,7 @@
 package org.fbme.scenes.controllers
 
+import org.fbme.scenes.controllers.selection.SelectionModelBase
+
 class DefaultSelectionModel<T> : SelectionModelBase<T>() {
     override val selectedComponents: MutableSet<T> = HashSet()
 

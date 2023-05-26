@@ -6,21 +6,22 @@ import jetbrains.mps.openapi.editor.cells.CellAction
 import jetbrains.mps.openapi.editor.cells.CellActionType
 import org.fbme.scenes.controllers.*
 import org.fbme.scenes.controllers.scene.*
+import org.fbme.scenes.controllers.selection.SelectionModel
 import org.fbme.scenes.viewmodel.ComponentsView
 import java.awt.Graphics2D
 import java.awt.Point
 import java.awt.Rectangle
 
 class ComponentsFacility<CompT, FormT>(
-    val editor: SceneEditor,
-    val view: ComponentsView<CompT>,
-    val controllerFactory: ComponentControllerFactory<CompT, FormT>,
-    val componentSynchronizer: ComponentSynchronizer<CompT, FormT>,
-    val layout: LayoutModel<CompT>,
-    val selection: SelectionModel<CompT>,
-    val sceneFocus: SceneFocusModel,
-    componentsLayer: Layer,
-    tracesLayer: Layer
+        val editor: SceneEditor,
+        val view: ComponentsView<CompT>,
+        val controllerFactory: ComponentControllerFactory<CompT, FormT>,
+        val componentSynchronizer: ComponentSynchronizer<CompT, FormT>,
+        val layout: LayoutModel<CompT>,
+        val selection: SelectionModel<CompT>,
+        val sceneFocus: SceneFocusModel,
+        componentsLayer: Layer,
+        tracesLayer: Layer
 ) {
     var components: MutableMap<CompT, ComponentEntry<CompT, FormT>> = HashMap()
 

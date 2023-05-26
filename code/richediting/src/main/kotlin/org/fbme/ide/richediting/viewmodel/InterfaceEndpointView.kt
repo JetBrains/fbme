@@ -11,9 +11,9 @@ data class InterfaceEndpointView(
     private val endpointCoordinate: EndpointCoordinate,
     val position: Int,
     override val kind: EntryKind,
-    val isSource: Boolean,
-    val target: Declaration
-) : NetworkComponentView, NetworkPortView {
+    override val isSource: Boolean,
+    override val target: Declaration
+) : NetworkComponentView, NetworkPortViewAdd {
 
     val associatedNode = (target as PlatformElement).node
     val name = target.name

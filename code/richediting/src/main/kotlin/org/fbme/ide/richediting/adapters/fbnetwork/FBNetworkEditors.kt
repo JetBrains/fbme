@@ -18,6 +18,7 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterAssignment
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.instances.Instance
@@ -27,6 +28,7 @@ import org.fbme.scenes.cells.SceneStyleAttributes.SCENE_BACKGROUND
 import org.fbme.scenes.controllers.*
 import org.fbme.scenes.controllers.components.*
 import org.fbme.scenes.controllers.diagram.*
+import org.fbme.scenes.controllers.edited.EditedModel
 import org.fbme.scenes.controllers.scene.*
 import org.fbme.scenes.viewmodel.PositionalCompletionItem
 import org.jetbrains.mps.openapi.model.SNode
@@ -135,7 +137,7 @@ object FBNetworkEditors {
         val project = context.operationContext.project
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
-            val isEditable = networkInstance.parent == null
+            val isEditable = true
             val networkView = NetworkView(repository.iec61499Factory, networkDeclaration, isEditable)
             val backgroundLayer = scene.createLayer(0f)
             val tracesLayer = scene.createLayer(1f)
@@ -160,7 +162,8 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection)
             val componentsLayout = DefaultLayoutModel<NetworkComponentView>(context.repository)
             val expandedComponentsController = ExpandedComponentsController(scene, context)
-            val editedComponentsController = EditedComponentsController(scene)
+            val editedComponentsController: EditedModel<FunctionBlockView> = EditedComponentsController(scene)
+            style.set(RichEditorStyleAttributes.EDITED_FBS, editedComponentsController)
             val componentsFacility = ComponentsFacility(
                 scene,
                 networkView.componentsView,
@@ -261,7 +264,7 @@ object FBNetworkEditors {
     fun getComponentControllerFactory(
             instance: NetworkInstance,
             expandedComponentsController: ExpandedComponentsController,
-            editedComponentsController: EditedComponentsController,
+            editedComponentsController: EditedModel<FunctionBlockView>,
             iec61499Factory: IEC61499Factory,
             scope: DeclarationsScope
     ): ComponentControllerFactory<NetworkComponentView, Point> {
@@ -284,7 +287,7 @@ object FBNetworkEditors {
         fbNetwork: FBNetwork,
         scale: Float
     ): List<PositionalCompletionItem> {
-        val completionList = mutableListOf<PositionalCompletionItem>();
+        val completionList = mutableListOf<PositionalCompletionItem>()
 
         scope.findAllFBTypeDeclarations().forEach { type ->
             completionList.add(
@@ -299,9 +302,23 @@ object FBNetworkEditors {
         }
 
         completionList.add(createPositionalCompletionItem(
-                "New functional block",
-                "Empty block for creating definition") { _: String?, x: Int, y: Int ->
+                "New composite FB",
+                "Empty composite FB") { _: String?, x: Int, y: Int ->
             val identifier = createNewCompositeBlock(scope, fbNetwork, factory)
+            val declaration = factory.createFunctionBlockDeclaration(identifier)
+            declaration.x = (x / scale).toInt()
+            declaration.y = (y / scale).toInt()
+            val type = scope.findAllFBTypeDeclarations().find {
+                it.name == identifier.value
+            } ?: error("Can't create empty block")
+            declaration.typeReference.setTarget(type)
+            fbNetwork.functionBlocks.add(declaration)
+        })
+
+        completionList.add(createPositionalCompletionItem(
+                "New basic FB",
+                "Empty basic FB") { _: String?, x: Int, y: Int ->
+            val identifier = createNewCompositeBlock(scope, fbNetwork, factory, false)
             val declaration = factory.createFunctionBlockDeclaration(identifier)
             declaration.x = (x / scale).toInt()
             declaration.y = (y / scale).toInt()
@@ -339,7 +356,8 @@ object FBNetworkEditors {
     private fun createNewCompositeBlock(
             scope: DeclarationsScope,
             fbNetwork: FBNetwork,
-            factory: IEC61499Factory
+            factory: IEC61499Factory,
+            composite: Boolean = true
     ): StringIdentifier {
         val getName: (Int?) -> String = { ind ->
             val baseName = "Empty block"
@@ -361,7 +379,7 @@ object FBNetworkEditors {
 
         val networkNode = (fbNetwork as PlatformElement).node
         val networkModel = networkNode.model
-        val newFbType = factory.createCompositeFBTypeDeclaration(identifier)
+        val newFbType: FBTypeDeclaration = if (composite) factory.createCompositeFBTypeDeclaration(identifier) else factory.createBasicFBTypeDeclaration(identifier)
         val fbTypeNode = (newFbType as PlatformElement).node
         networkModel!!.addRootNode(fbTypeNode)
 

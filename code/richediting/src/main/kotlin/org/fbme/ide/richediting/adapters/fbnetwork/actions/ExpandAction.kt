@@ -16,7 +16,7 @@ import org.jetbrains.mps.openapi.module.SRepository
 import java.awt.Point
 import java.awt.Rectangle
 
-class ExpandAction(cell: EditorCell) : ExpandOrCollapseAction(cell) {
+class ExpandAction(cell: EditorCell) : FBNetworkAction(cell) {
     fun apply() {
         val functionBlock = selectedFBs.filterIsInstance<FunctionBlockView>().last()
         functionBlock.expand()

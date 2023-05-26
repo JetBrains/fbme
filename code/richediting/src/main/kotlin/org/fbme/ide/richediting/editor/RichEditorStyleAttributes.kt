@@ -2,13 +2,11 @@ package org.fbme.ide.richediting.editor
 
 import jetbrains.mps.editor.runtime.style.InheritableStyleAttribute
 import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute
-import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
-import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
-import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.ecc.ECC
@@ -18,10 +16,11 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.controllers.SceneViewpoint
-import org.fbme.scenes.controllers.SelectionModel
 import org.fbme.scenes.controllers.components.ComponentsFacility
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility
 import org.fbme.scenes.controllers.diagram.DiagramFacility
+import org.fbme.scenes.controllers.edited.EditedModel
+import org.fbme.scenes.controllers.selection.SelectionModel
 
 object RichEditorStyleAttributes {
     @JvmField
@@ -41,6 +40,9 @@ object RichEditorStyleAttributes {
 
     @JvmField
     val SELECTED_FBS: StyleAttribute<SelectionModel<NetworkComponentView>> = InheritableStyleAttribute("selected-fbs")
+
+    @JvmField
+    val EDITED_FBS: StyleAttribute<EditedModel<FunctionBlockView>> = InheritableStyleAttribute("edited-fbs")
 
     @JvmField
     val STATE_ACTION: StyleAttribute<StateAction> = InheritableStyleAttribute("state-action")
@@ -80,6 +82,7 @@ object RichEditorStyleAttributes {
         TYPE.register()
         FB.register()
         SELECTED_FBS.register()
+        EDITED_FBS.register()
         STATE_ACTION.register()
         ACTIONS.register()
         STATE_DECLARATION.register()

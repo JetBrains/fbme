@@ -11,6 +11,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <mps.LanguageLibrary dir="/languages"/>
+        <notificationGroup displayType="BALLOON" id="Custom" key="notification.group.name" />
     </extensions>
 
     <actions>
@@ -32,6 +33,15 @@
             <action id="richediting.Expand"
                     class="org.fbme.ide.richediting.actions.ExpandAction"
                     text="Expand"/>
+            <action id="richediting.ChangeType"
+                    class="org.fbme.ide.richediting.actions.ChangeTypeAction"
+                    text="ChangeType"/>
+            <action id="richediting.ExtractNet"
+                    class="org.fbme.ide.richediting.actions.ExpandAction"
+                    text="Extract Network"/>
+            <action id="richediting."
+                    class="org.fbme.ide.richediting.actions.ExpandAction"
+                    text="Box in Composite"/>
             <action id="richediting.HideAllAlgorthmBody"
                     class="org.fbme.ide.richediting.actions.AllAlgorithmBodyVisibilityAction$Hide"
                     text="Hide All Algorithm Bodies"/>

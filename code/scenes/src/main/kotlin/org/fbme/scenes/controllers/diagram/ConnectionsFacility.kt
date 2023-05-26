@@ -8,6 +8,7 @@ import jetbrains.mps.openapi.editor.cells.CellActionType
 import org.fbme.scenes.controllers.*
 import org.fbme.scenes.controllers.diagram.entry.ConnectionEntry
 import org.fbme.scenes.controllers.scene.*
+import org.fbme.scenes.controllers.selection.SelectionModel
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.Point
@@ -17,17 +18,17 @@ import java.util.function.BiFunction
 import java.util.function.Function
 
 class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
-    val scene: SceneEditor,
-    val controllerFactory: ConnectionControllerFactory<ConnT, CursorT, PathT>,
-    private val newPathFactory: BiFunction<Point, Point, PathT>,
-    private val newPathPainter: BiConsumer<Graphics, PathT>,
-    val connectionSynchronizer: ConnectionPathSynchronizer<ConnT, PathT>,
-    componentsLayout: ROLayoutModel<CompT>,
-    val componentsSelection: SelectionModel<CompT>,
-    val diagramController: DiagramController<CompT, PortT, ConnT>,
-    connectionsLayer: Layer,
-    tracesLayer: Layer,
-    val sceneFocus: SceneFocusModel
+        val scene: SceneEditor,
+        val controllerFactory: ConnectionControllerFactory<ConnT, CursorT, PathT>,
+        private val newPathFactory: BiFunction<Point, Point, PathT>,
+        private val newPathPainter: BiConsumer<Graphics, PathT>,
+        val connectionSynchronizer: ConnectionPathSynchronizer<ConnT, PathT>,
+        componentsLayout: ROLayoutModel<CompT>,
+        val componentsSelection: SelectionModel<CompT>,
+        val diagramController: DiagramController<CompT, PortT, ConnT>,
+        connectionsLayer: Layer,
+        tracesLayer: Layer,
+        val sceneFocus: SceneFocusModel
 ) {
     private val connections: MutableMap<ConnT, ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>> = HashMap()
     val connectionsSelection: MutableSet<ConnT> = HashSet()

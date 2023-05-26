@@ -1,4 +1,4 @@
-package org.fbme.scenes.controllers
+package org.fbme.scenes.controllers.selection
 
 interface SelectionModel<T> {
     val selectedComponents: Set<T>

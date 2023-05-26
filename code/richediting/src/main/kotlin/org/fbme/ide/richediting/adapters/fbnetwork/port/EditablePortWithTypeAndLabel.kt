@@ -17,14 +17,14 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.scenes.viewmodel.CompletionItem
 import org.jetbrains.mps.openapi.model.SNode
 
-class PortWithLabelAndType(
+class EditablePortWithTypeAndLabel(
         context: EditorContext,
         node: SNode,
         port: FBPortDescriptor,
         val declaration: Declaration?,
         typeName: String?,
         items: List<CompletionItem>,
-) : PortWithEditableLabel(context, node, port, declaration) {
+) : EditablePortLabel(context, node, port, declaration) {
     val cell: EditorCell_Collection
     val typeLabel: EditorCell_SceneLabel
 

@@ -3,7 +3,6 @@ package org.fbme.scenes.controllers.diagram
 import org.fbme.scenes.controllers.diagram.entry.PortEntry
 import org.fbme.scenes.controllers.diagram.entry.PortTemplateEntry
 
-
 class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private val diagramModel: DiagramView<CompT, PortT, ConnT>,
     private val portSettingProvider: PortSettingProvider<PortT, CompT, CFormT>,

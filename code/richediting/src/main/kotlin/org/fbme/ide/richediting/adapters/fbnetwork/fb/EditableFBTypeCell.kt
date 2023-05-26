@@ -7,7 +7,6 @@ import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Horizontal
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
-import jetbrains.mps.nodeEditor.cells.EditorCell_Basic
 import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.nodeEditor.cells.EditorCell_Property
 import jetbrains.mps.nodeEditor.cells.ParentSettings
@@ -20,7 +19,6 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.DeclarationNameAccessor
 import org.fbme.ide.richediting.adapters.fbnetwork.port.*
-import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
@@ -43,7 +41,7 @@ import java.awt.geom.GeneralPath
 import java.util.*
 import kotlin.math.max
 
-class FBTypeEditCellComponent(
+class EditableFBTypeCell(
         context: EditorContext,
         fbType: FBTypeDescriptor,
         node: SNode,
@@ -165,7 +163,7 @@ class FBTypeEditCellComponent(
         val block = object : EditorCell_Collection(context, node, CellLayout_Vertical()) {}
 
         for (port in portsDescriptors) {
-            val portWithLabel = PortWithEditableLabel(context, node, port, fbType.declaration)
+            val portWithLabel = EditablePortLabel(context, node, port, fbType.declaration)
             portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
             portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
             ports.add(portWithLabel)
@@ -178,7 +176,7 @@ class FBTypeEditCellComponent(
     fun addPort(port: FBPortDescriptor) {
         when (port.connectionKind) {
             EntryKind.EVENT -> {
-                val value = PortWithEditableLabel(context, node,  port, fbType.declaration)
+                val value = EditablePortLabel(context, node,  port, fbType.declaration)
                 if (port.isInput) {
                     (eventPortsContainer.cells.first() as EditorCell_Collection).addEditorCell(value.label)
                     inputEventPorts.add(value)
@@ -189,7 +187,7 @@ class FBTypeEditCellComponent(
             }
             EntryKind.DATA -> {
                 val typeDeclaration = port.declaration as ParameterDeclaration
-                val value = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
+                val value = EditablePortWithTypeAndLabel(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
                 if (port.isInput) {
                     (dataPortsContainer.cells.first() as EditorCell_Collection).addEditorCell(value.cell)
                     inputDataPorts.add(value)
@@ -219,7 +217,7 @@ class FBTypeEditCellComponent(
 
         for (port in portsDescriptors) {
             val typeDeclaration = port.declaration as ParameterDeclaration
-            val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
+            val portWithLabel = EditablePortWithTypeAndLabel(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
             portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
             portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
             ports.add(portWithLabel)
@@ -275,7 +273,7 @@ class FBTypeEditCellComponent(
                 }
             }
         }
-        val portWithLabel = PortWithLabelAndType(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
+        val portWithLabel = EditablePortWithTypeAndLabel(context, node, port, fbType.declaration, typeDeclaration.typeReference.presentation, items)
         portWithLabel.label.style.set(StyleAttributes.HORIZONTAL_ALIGN, horizontalAlign)
         portWithLabel.label.style.set(padding, Padding(INNER_BORDER_PADDING.toDouble(), Measure.PIXELS))
         ports.add(portWithLabel)
@@ -292,7 +290,7 @@ class FBTypeEditCellComponent(
 
 
             override fun paintContent(g: Graphics, parentSettings: ParentSettings) {
-                this@FBTypeEditCellComponent.paint(g.create() as Graphics2D)
+                this@EditableFBTypeCell.paint(g.create() as Graphics2D)
             }
 
             override fun paintSelection(g: Graphics, c: Color, drawBorder: Boolean, parentSettings: ParentSettings) { // do noting
@@ -330,7 +328,7 @@ class FBTypeEditCellComponent(
 
     private fun drawPortIcons(graphics: Graphics2D, x: Int, ports: Set<Port>, color: Color?) {
         for (port in ports) {
-            val portWithLabel = port as PortWithEditableLabel
+            val portWithLabel = port as EditablePortLabel
             val y = portWithLabel.label.y + portWithLabel.label.height / 2 - scale(PORT_SIZE) / 2
             val form = Rectangle(x, y, scale(PORT_SIZE), scale(PORT_SIZE))
 
@@ -393,8 +391,10 @@ class FBTypeEditCellComponent(
             if (child != null) {
                 val childNetworkInstance = child.containedNetwork
                 if (childNetworkInstance is NetworkInstance) {
-                    val navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(rootCell.context.operationContext.project, childNetworkInstance)
-                    style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
+                    //val navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(rootCell.context.operationContext.project, childNetworkInstance)
+                    val typeDeclaration = style.get(RichEditorStyleAttributes.TYPE).declaration
+                    //style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
+                    style.set(StyleAttributes.NAVIGATABLE_NODE, (typeDeclaration as PlatformElement).node)
                     return
                 }
             }
@@ -406,14 +406,14 @@ class FBTypeEditCellComponent(
     }
 
     override fun paintTrace(g: Graphics2D, x: Int, y: Int) {
-        val shape = getComponentShape(x, y)
+        val shape = getComponentShape(x, rootCell.y)
         g.paint = MPSColors.GRAY
         FBConnectionPathPainter.setupShadowPathPaint(g, scale(1).toFloat())
         g.draw(shape)
     }
 
     private fun getPortBounds(port: Port, isOutput: Boolean = false): Rectangle {
-        val editablePort = port as PortWithEditableLabel
+        val editablePort = port as EditablePortLabel
 
         val width = editablePort.label.width + scale(INNER_BORDER_PADDING)
         val y = editablePort.label.y - rootCell.y
@@ -513,7 +513,7 @@ class FBTypeEditCellComponent(
         private const val PLUS_BUTTON_SIZE = 15
 
         private fun portsColumnWidth(ports: Collection<Port>): Int {
-            return ports.maxOfOrNull { if (it is PortWithLabelAndType) it.cell.width else (it as PortWithEditableLabel).label.width }
+            return ports.maxOfOrNull { if (it is EditablePortWithTypeAndLabel) it.cell.width else (it as EditablePortLabel).label.width }
                     ?: 0
         }
     }

@@ -7,7 +7,7 @@ import org.jetbrains.mps.openapi.model.SNode
 
 class FunctionBlockView(val component: FunctionBlockDeclarationBase, isEditable: Boolean) : NetworkComponentView {
     val associatedNode: SNode = (component as PlatformElement).node
-    private val myTypeDescriptor: TypeDescriptorAdapter
+    private val myTypeDescriptor: TypeDescriptorAdapter = TypeDescriptorAdapter(component.type)
     override val isEditable: Boolean
 
     val type: FBTypeDescriptor
@@ -30,7 +30,6 @@ class FunctionBlockView(val component: FunctionBlockDeclarationBase, isEditable:
     }
 
     init {
-        myTypeDescriptor = TypeDescriptorAdapter(component.type)
         this.isEditable = isEditable
     }
 }
