@@ -7,6 +7,7 @@ import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
+import org.fbme.ide.richediting.utils.Notifier
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.lib.common.CompositeReference
 import org.fbme.lib.common.Identifier
@@ -131,11 +132,7 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
     }
 
     private fun showNotification(message: String) {
-        NotificationGroupManager
-                .getInstance()
-                .getNotificationGroup("Custom")
-                .createNotification(message, NotificationType.WARNING)
-                .notify(project.project)
+        Notifier.showWarning(message, project.project)
     }
 
     companion object {
