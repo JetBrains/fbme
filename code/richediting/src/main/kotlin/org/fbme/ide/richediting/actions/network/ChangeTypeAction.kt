@@ -1,9 +1,10 @@
-package org.fbme.ide.richediting.actions
+package org.fbme.ide.richediting.actions.network
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
+import org.fbme.ide.richediting.actions.modelAccess
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.ChangeTypeAction
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration

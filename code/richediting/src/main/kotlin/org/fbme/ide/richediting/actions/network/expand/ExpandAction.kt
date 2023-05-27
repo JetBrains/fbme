@@ -1,9 +1,10 @@
-package org.fbme.ide.richediting.actions
+package org.fbme.ide.richediting.actions.network.expand
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
+import org.fbme.ide.richediting.actions.executeReadActionInEditor
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.ExpandAction
 
 class ExpandAction : AnAction(), DumbAware {
