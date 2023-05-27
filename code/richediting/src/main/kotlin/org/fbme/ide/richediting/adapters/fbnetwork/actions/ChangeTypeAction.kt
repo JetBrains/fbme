@@ -8,11 +8,15 @@ import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
+import org.fbme.lib.common.CompositeReference
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
+import org.fbme.lib.iec61499.fbnetwork.EntryKind
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
+import org.fbme.lib.iec61499.fbnetwork.PortPath
 
 class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAction(cell) {
     fun apply() {
@@ -65,6 +69,21 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
             if (oldFB.component.type.typeName == it.type.typeName) createdDeclaration else it
         }
 
+        network.eventConnections.forEach {
+            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.EVENT)
+            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.EVENT)
+        }
+
+        network.dataConnections.forEach {
+            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.DATA)
+            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.DATA)
+        }
+
+        network.adapterConnections.forEach {
+            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.ADAPTER)
+            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.ADAPTER)
+        }
+
         oldDeclaration.inputEvents.copyTo(type.inputEvents)
         oldDeclaration.outputEvents.copyTo(type.outputEvents)
         oldDeclaration.inputParameters.copyTo(type.inputParameters)
@@ -82,6 +101,18 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
     private fun <T> MutableList<T>.copyTo(newList: MutableList<T>) {
         this.toList().forEach {
             newList.add(it)
+        }
+    }
+
+    private fun CompositeReference<PortPath<*>>.updateTarget(
+            old: FunctionBlockDeclarationBase,
+            created:  FunctionBlockDeclarationBase,
+            kind: EntryKind
+    ) {
+        val target = this.getTarget() ?: return
+
+        if (target.functionBlock?.equals(old) == true) {
+            this.setTarget(PortPath.createPortPath(created, kind, target.portTarget))
         }
     }
 
