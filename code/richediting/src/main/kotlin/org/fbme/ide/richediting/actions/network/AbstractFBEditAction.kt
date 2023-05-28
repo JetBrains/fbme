@@ -19,8 +19,8 @@ abstract class AbstractFBEditAction: AnAction(), DumbAware {
             return
         }
 
-        val editedFBS = cell.style.get(RichEditorStyleAttributes.EDITED_FBS).editedComponents
-        val fbCell = editedFBS.find { it.associatedNode == cell.sNode }
+        val editedFBS = cell.style.get(RichEditorStyleAttributes.EDITED_FBS)?.editedComponents
+        val fbCell = editedFBS?.find { it.associatedNode == cell.sNode }
 
         if (fbCell == null) {
             notApplicable(event)
