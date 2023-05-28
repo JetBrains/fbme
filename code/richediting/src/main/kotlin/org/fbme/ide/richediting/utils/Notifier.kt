@@ -14,4 +14,12 @@ object Notifier {
                 .createNotification(message, NotificationType.WARNING)
                 .notify(project)
     }
+
+    fun showInformation(message: String, project: Project) {
+        NotificationGroupManager
+                .getInstance()
+                .getNotificationGroup(NOTIFICATION_GROUP)
+                .createNotification(message, NotificationType.INFORMATION)
+                .notify(project)
+    }
 }

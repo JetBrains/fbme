@@ -1,17 +1,38 @@
 package org.fbme.ide.richediting.actions.network
 
-import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
-import org.fbme.ide.richediting.utils.Notifier
+import jetbrains.mps.openapi.editor.cells.EditorCell
+import jetbrains.mps.project.MPSProject
+import org.fbme.ide.richediting.actions.modelAccess
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.CreateViewAction
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
-class CreateViewAction : AnAction(), DumbAware {
-    override fun update(e: AnActionEvent) {
+class CreateViewAction : AbstractFBEditAction() {
+    override fun internalConditionCheck(
+            event: AnActionEvent,
+            fbCell: FunctionBlockView,
+            cell: EditorCell,
+            project: MPSProject
+    ) {
+        when (fbCell.type.declaration) {
+            is CompositeFBTypeDeclaration -> {
+                event.presentation.isEnabled = false
+            }
 
+            else -> {
+                event.presentation.isEnabled = true
+            }
+        }
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        Notifier.showWarning("Boo", event.getRequiredData(MPSEditorDataKeys.MPS_PROJECT).project)
+        event.modelAccess.executeCommandInEDT {
+            CreateViewAction(
+                    event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL),
+                    event.getRequiredData(MPSEditorDataKeys.MPS_PROJECT)
+            ).apply()
+        }
     }
 }

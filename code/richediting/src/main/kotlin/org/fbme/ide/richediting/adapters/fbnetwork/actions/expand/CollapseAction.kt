@@ -1,10 +1,12 @@
-package org.fbme.ide.richediting.adapters.fbnetwork.actions
+package org.fbme.ide.richediting.adapters.fbnetwork.actions.expand
 
 import jetbrains.mps.openapi.editor.cells.EditorCell
+import jetbrains.mps.project.MPSProject
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.FBNetworkAction
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 
-class CollapseAction(cell: EditorCell) : FBNetworkAction(cell.parent) {
+class CollapseAction(cell: EditorCell, project: MPSProject) : FBNetworkAction(cell.parent, project) {
     fun apply() {
         collapse(selectedFBs.filterIsInstance<FunctionBlockView>())
     }

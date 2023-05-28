@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
 import org.fbme.ide.richediting.actions.executeReadActionInEditor
-import org.fbme.ide.richediting.adapters.fbnetwork.actions.ExpandAction
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.expand.ExpandAction
 
 class ExpandAction : AnAction(), DumbAware {
 
@@ -15,7 +15,10 @@ class ExpandAction : AnAction(), DumbAware {
 
     override fun actionPerformed(event: AnActionEvent) {
         event.executeReadActionInEditor {
-            ExpandAction(event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL)).apply()
+            ExpandAction(
+                    event.getRequiredData(MPSEditorDataKeys.EDITOR_CELL),
+                    event.getRequiredData(MPSEditorDataKeys.MPS_PROJECT)
+            ).apply()
         }
     }
 }

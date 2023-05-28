@@ -1,10 +1,12 @@
-package org.fbme.ide.richediting.adapters.fbnetwork.actions
+package org.fbme.ide.richediting.adapters.fbnetwork.actions.expand
 
 import jetbrains.mps.editor.runtime.HeadlessEditorComponent
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.openapi.editor.style.Style
+import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FunctionBlockController
+import org.fbme.ide.richediting.adapters.fbnetwork.actions.FBNetworkAction
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.InterfaceEndpointView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
@@ -16,7 +18,7 @@ import org.jetbrains.mps.openapi.module.SRepository
 import java.awt.Point
 import java.awt.Rectangle
 
-class ExpandAction(cell: EditorCell) : FBNetworkAction(cell) {
+class ExpandAction(cell: EditorCell,  project: MPSProject) : FBNetworkAction(cell, project) {
     fun apply() {
         val functionBlock = selectedFBs.filterIsInstance<FunctionBlockView>().last()
         functionBlock.expand()

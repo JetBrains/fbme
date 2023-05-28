@@ -26,6 +26,17 @@ interface FunctionBlockDeclarationBase : Declaration, ContainedElement {
             generatePorts(result, this, type.plugPorts)
             return result
         }
+
+    fun getAllPorts(): List<FBPortDescriptor>  {
+        return type.eventInputPorts
+                .union(type.eventOutputPorts)
+                .union(type.dataInputPorts)
+                .union(type.dataOutputPorts)
+                .union(type.socketPorts)
+                .union(type.plugPorts)
+                .toList()
+    }
+
     var x: Int
     var y: Int
 

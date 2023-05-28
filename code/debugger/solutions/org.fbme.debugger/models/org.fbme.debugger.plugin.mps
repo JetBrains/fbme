@@ -38,7 +38,7 @@
     <import index="ntnl" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.descriptors(org.fbme.lib/)" />
     <import index="g27j" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.fbnetwork(org.fbme.lib/)" />
     <import index="f4zo" ref="1ed103c3-3aa6-49b7-9c21-6765ee11f224/java:jetbrains.mps.openapi.editor.cells(MPS.Editor/)" />
-    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes/)" />
+    <import index="kdnk" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers(org.fbme.scenes.lib/)" />
     <import index="7adg" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.common(org.fbme.lib/)" />
     <import index="z60i" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.awt(JDK/)" />
     <import index="lzb2" ref="498d89d2-c2e9-11e2-ad49-6cf049e62fe5/java:com.intellij.ui(MPS.IDEA/)" />
@@ -60,6 +60,7 @@
     <import index="7zqy" ref="c6b02c2c-6484-48c4-ab6e-40937aeede2e/java:org.fbme.debugger.common.ui(org.fbme.debugger.lib/)" />
     <import index="89ek" ref="c6b02c2c-6484-48c4-ab6e-40937aeede2e/java:org.fbme.debugger.explanation(org.fbme.debugger.lib/)" />
     <import index="flki" ref="15002a50-4ccf-4200-98db-35093fe08692/java:org.fbme.debugger(org.fbme.debugger/)" implicit="true" />
+    <import index="q5oe" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.selection(org.fbme.scenes.lib/)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -6202,7 +6203,7 @@
                 </node>
               </node>
               <node concept="liA8E" id="1S4cYrOQtpO" role="2OqNvi">
-                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
+                <ref role="37wK5l" to="q5oe:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
               </node>
             </node>
           </node>

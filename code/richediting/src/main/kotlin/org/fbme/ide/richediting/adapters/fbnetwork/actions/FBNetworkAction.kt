@@ -1,11 +1,13 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions
 
 import jetbrains.mps.openapi.editor.cells.EditorCell
+import jetbrains.mps.project.MPSProject
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionCursor
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPath
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathSynchronizer
 import org.fbme.ide.richediting.adapters.fbnetwork.FBNetworkComponentSynchronizer
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.utils.Notifier
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
@@ -19,7 +21,7 @@ import org.fbme.scenes.controllers.diagram.DiagramFacility
 import org.fbme.scenes.controllers.edited.EditedModel
 import java.awt.Point
 
-abstract class FBNetworkAction protected constructor(protected val cell: EditorCell) {
+abstract class FBNetworkAction protected constructor(protected val cell: EditorCell, protected val project: MPSProject) {
     @JvmField
     protected val selectedFBs: Set<NetworkComponentView>
 
@@ -52,6 +54,10 @@ abstract class FBNetworkAction protected constructor(protected val cell: EditorC
 
     @JvmField
     protected val connectionSynchronizer: FBConnectionPathSynchronizer
+
+    protected fun showNotification(message: String) {
+        Notifier.showWarning(message, project.project)
+    }
 
     init {
         val style = cell.style

@@ -3,6 +3,7 @@ package org.fbme.lib.iec61499.fbnetwork
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import java.util.*
 
 interface FBNetwork : Element {
@@ -43,6 +44,28 @@ interface FBNetwork : Element {
             }
             return components
         }
+
+    fun getAllPorts(): List<FBPortDescriptor> {
+        val result: MutableList<FBPortDescriptor> = mutableListOf()
+
+        this.contextDataSources.forEachIndexed { index, it ->
+            result.add(FBPortDescriptor(it.name, EntryKind.DATA, index, true, true, it))
+        }
+
+        this.contextEventSources.forEachIndexed { index, it ->
+            result.add(FBPortDescriptor(it.name, EntryKind.EVENT, index, true, true, it))
+        }
+
+        this.contextDataDestinations.forEachIndexed { index, it ->
+            result.add(FBPortDescriptor(it.name, EntryKind.DATA, index, false, true, it))
+        }
+
+        this.contextEventDestinations.forEachIndexed { index, it ->
+            result.add(FBPortDescriptor(it.name, EntryKind.EVENT, index, false, true, it))
+        }
+
+        return result
+    }
 
     companion object {
         @JvmStatic

@@ -1,25 +1,22 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.actions
 
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
 import com.intellij.util.alsoIfNull
+import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.openapi.editor.cells.EditorCell
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.richediting.utils.Notifier
+import org.fbme.ide.richediting.utils.exceptions.CreationException
+import org.fbme.ide.richediting.utils.fb.FBFactory
+import org.fbme.ide.richediting.utils.fb.FBUtils
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
-import org.fbme.lib.common.CompositeReference
-import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
-import org.fbme.lib.iec61499.fbnetwork.EntryKind
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
-import org.fbme.lib.iec61499.fbnetwork.PortPath
 
-class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAction(cell) {
+class ChangeTypeAction(cell: EditorCell, project: MPSProject) : FBNetworkAction(cell, project) {
     fun apply() {
         val funBlock = editedFBs.find { it.associatedNode == cell.sNode }.alsoIfNull{
             showNotification(CANT_GET_FB_CELL)
@@ -30,13 +27,15 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
             is BasicFBTypeDeclaration -> convertToComposite(funBlock, declaration)
         }
 
+        Notifier.showInformation("Successfully change type!", project.project)
+
         cell.editorComponent.updater.update()
     }
 
     private fun convertFB(
             oldFB: FunctionBlockView,
             oldDeclaration: FBTypeDeclaration,
-            creator: (identity:  Identifier) -> FBTypeDeclaration
+            supplier: (name: String, context: EditorContext) -> FBTypeDeclaration
     ) {
         val identifier = StringIdentifier(oldDeclaration.name + TMP_SUFFIX)
 
@@ -47,50 +46,22 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
         val networkModel = (network as PlatformElement).node.model.alsoIfNull {
             showNotification("""Can't convert ${oldDeclaration.name} to basic functional block!""")
         } ?: return
-        val scope = repository.getDeclarationScopeFor(networkModel)
 
-        val createdFB =  creator(identifier)
-
-        val fbTypeNode = (createdFB as PlatformElement).node
-        networkModel.addRootNode(fbTypeNode)
+        val type = supplier(identifier.value, cell.context)
 
         val createdDeclaration = factory.createFunctionBlockDeclaration(identifier)
 
         createdDeclaration.x = oldFB.component.x
         createdDeclaration.y = oldFB.component.y
 
-        val type = scope.findAllFBTypeDeclarations().find {
-            it.name == identifier.value
-        }.alsoIfNull {
-            showNotification("Can't find new basic FB declaration ${oldDeclaration.name} in scope!")
-        } ?: return
-
         createdDeclaration.typeReference.setTarget(type)
         network.functionBlocks.replaceAll {
             if (oldFB.component.type.typeName == it.type.typeName) createdDeclaration else it
         }
 
-        network.eventConnections.forEach {
-            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.EVENT)
-            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.EVENT)
-        }
+        FBUtils.copyInterface(oldDeclaration, type, factory)
 
-        network.dataConnections.forEach {
-            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.DATA)
-            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.DATA)
-        }
-
-        network.adapterConnections.forEach {
-            it.sourceReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.ADAPTER)
-            it.targetReference.updateTarget(oldFB.component, createdDeclaration, EntryKind.ADAPTER)
-        }
-
-        oldDeclaration.inputEvents.copyTo(type.inputEvents)
-        oldDeclaration.outputEvents.copyTo(type.outputEvents)
-        oldDeclaration.inputParameters.copyTo(type.inputParameters)
-        oldDeclaration.outputParameters.copyTo(type.outputParameters)
-        oldDeclaration.plugs.copyTo(type.plugs)
-        oldDeclaration.sockets.copyTo(type.sockets)
+        FBUtils.replaceFBInConnections(network, oldFB.component, createdDeclaration)
 
         networkModel.removeRootNode((oldDeclaration as PlatformElement).node)
 
@@ -99,40 +70,20 @@ class ChangeTypeAction(cell: EditorCell, val project: MPSProject) : FBNetworkAct
         editedFBsController.setEdited(FunctionBlockView(createdDeclaration, true), true)
     }
 
-    private fun <T> MutableList<T>.copyTo(newList: MutableList<T>) {
-        this.toList().forEach {
-            newList.add(it)
-        }
-    }
-
-    private fun CompositeReference<PortPath<*>>.updateTarget(
-            old: FunctionBlockDeclarationBase,
-            created:  FunctionBlockDeclarationBase,
-            kind: EntryKind
-    ) {
-        val target = this.getTarget() ?: return
-
-        if (target.functionBlock?.equals(old) == true) {
-            this.setTarget(PortPath.createPortPath(created, kind, target.portTarget))
-        }
-    }
-
     private fun convertToBasicFB(funBlock: FunctionBlockView, declaration: CompositeFBTypeDeclaration) {
-        val repository = PlatformRepositoryProvider.getInstance(project)
-        val factory = repository.iec61499Factory
-
-        convertFB(funBlock, declaration, factory::createBasicFBTypeDeclaration)
+        try {
+            convertFB(funBlock, declaration, FBFactory::createBasicFunBlock)
+        } catch (e: CreationException) {
+            showNotification("Can't change type of block to basic! Exception: ${e.message}")
+        }
     }
 
     private fun convertToComposite(funBlock: FunctionBlockView, declaration: BasicFBTypeDeclaration) {
-        val repository = PlatformRepositoryProvider.getInstance(project)
-        val factory = repository.iec61499Factory
-
-        convertFB(funBlock, declaration, factory::createCompositeFBTypeDeclaration)
-    }
-
-    private fun showNotification(message: String) {
-        Notifier.showWarning(message, project.project)
+        try {
+            convertFB(funBlock, declaration, FBFactory::createCompositeFunBlock)
+        } catch (e: CreationException) {
+            showNotification("Can't change type of block to composite! Exception: ${e.message}")
+        }
     }
 
     companion object {

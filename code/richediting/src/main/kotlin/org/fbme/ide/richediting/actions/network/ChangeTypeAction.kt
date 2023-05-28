@@ -10,7 +10,7 @@ import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 
-class ChangeTypeAction : AbstractEditFBAction() {
+class ChangeTypeAction : AbstractFBEditAction() {
     override fun internalConditionCheck(
             event: AnActionEvent,
             fbCell: FunctionBlockView,

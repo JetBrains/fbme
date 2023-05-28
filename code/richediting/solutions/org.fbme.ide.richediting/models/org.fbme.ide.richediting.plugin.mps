@@ -56,8 +56,9 @@
     <import index="6w4o" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.platform.debugger(org.fbme.platform.lib/)" />
     <import index="ec6g" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting(org.fbme.richediting.lib/)" />
     <import index="je9f" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.editor(org.fbme.richediting.lib/)" />
+    <import index="q5oe" ref="836d7b1e-a51f-4ec1-a3cc-1c0b7cb75eb9/java:org.fbme.scenes.controllers.selection(org.fbme.scenes.lib/)" />
+    <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" />
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" implicit="true" />
-    <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" implicit="true" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(org.fbme.ide.iec61499.lang.behavior)" implicit="true" />
   </imports>
   <registry>
@@ -2056,7 +2057,7 @@
           <node concept="3cpWsn" id="1DfKejr8H5P" role="3cpWs9">
             <property role="TrG5h" value="selectedFBs" />
             <node concept="3uibUv" id="1DfKejr8H5Q" role="1tU5fm">
-              <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
+              <ref role="3uigEE" to="q5oe:~SelectionModel" resolve="SelectionModel" />
               <node concept="3uibUv" id="6SLp5w3Jqpg" role="11_B2D">
                 <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
               </node>
@@ -2096,7 +2097,7 @@
                 <ref role="3cqZAo" node="1DfKejr8H5P" resolve="selectedFBs" />
               </node>
               <node concept="liA8E" id="1DfKejr8IdW" role="2OqNvi">
-                <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
+                <ref role="37wK5l" to="q5oe:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
               </node>
             </node>
           </node>
@@ -2235,7 +2236,7 @@
               <node concept="3cpWsn" id="1DfKejr8BXo" role="3cpWs9">
                 <property role="TrG5h" value="selectedFBs" />
                 <node concept="3uibUv" id="1DfKejr8BKV" role="1tU5fm">
-                  <ref role="3uigEE" to="kdnk:~SelectionModel" resolve="SelectionModel" />
+                  <ref role="3uigEE" to="q5oe:~SelectionModel" resolve="SelectionModel" />
                   <node concept="3uibUv" id="6SLp5w3Jpit" role="11_B2D">
                     <ref role="3uigEE" to="1hzy:~NetworkComponentView" resolve="NetworkComponentView" />
                   </node>
@@ -2302,7 +2303,7 @@
                         <ref role="3cqZAo" node="1DfKejr8BXo" resolve="selectedFBs" />
                       </node>
                       <node concept="liA8E" id="1DfKejr8FgR" role="2OqNvi">
-                        <ref role="37wK5l" to="kdnk:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
+                        <ref role="37wK5l" to="q5oe:~SelectionModel.getSelectedComponents()" resolve="getSelectedComponents" />
                       </node>
                     </node>
                     <node concept="liA8E" id="3tHZ0yHsdkt" role="2OqNvi">

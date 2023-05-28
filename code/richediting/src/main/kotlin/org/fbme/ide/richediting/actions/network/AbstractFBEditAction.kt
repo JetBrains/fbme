@@ -9,7 +9,7 @@ import jetbrains.mps.project.MPSProject
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 
-abstract class AbstractEditFBAction: AnAction(), DumbAware {
+abstract class AbstractFBEditAction: AnAction(), DumbAware {
     override fun update(event: AnActionEvent) {
         val project = event.getData(MPSEditorDataKeys.MPS_PROJECT)
         val cell = event.getData(MPSEditorDataKeys.EDITOR_CELL)
