@@ -1,5 +1,8 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
+import com.intellij.util.alsoIfNull
 import jetbrains.mps.nodeEditor.EditorComponent
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cells.EditorCell
@@ -13,6 +16,9 @@ import org.fbme.ide.richediting.RicheditingMpsBridge
 import org.fbme.ide.richediting.editor.RichEditorDataKeys
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
+import org.fbme.ide.richediting.utils.Notifier
+import org.fbme.ide.richediting.utils.ProjectProvider
+import org.fbme.ide.richediting.utils.fb.FBCompletionProvider
 import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.StringIdentifier
@@ -58,8 +64,10 @@ object FBNetworkEditors {
                 compController: ComponentController<Point>
             ): ComponentExtController<Point> {
                 require(!(extView !is InlineValueView || compController !is FunctionBlockController))
-                val repository: PlatformElementsOwner =
-                    PlatformRepositoryProvider.getInstance(context.operationContext.project)
+                val project = ProjectProvider.getInstance(context).alsoIfNull {
+                    Notifier.showError("Can't get project from context!")
+                } ?: error("Project missing")
+                val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(project)
                 val node = extView.associatedNode.parent
                 val parameter = repository.getAdapter(node, ParameterAssignment::class.java)
                     ?: error("Parameter assignment is null")
@@ -135,6 +143,7 @@ object FBNetworkEditors {
         style.set(SCENE_BACKGROUND, MPSColors.WHITE)
         val component = context.editorComponent as EditorComponent
         val project = context.operationContext.project
+        val nProject = ProjectProvider.getInstance(context) ?: error("Can't get project")
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
             val isEditable = true
@@ -179,7 +188,8 @@ object FBNetworkEditors {
             val completionScope = repository.getDeclarationScopeFor(model)
             val factory = repository.iec61499Factory
             val provider: SceneCompletionProvider = CompletionProviderByViewpoint(viewpoint) {
-                getCompletion(completionScope, factory, networkDeclaration, scale)
+                FBCompletionProvider.getCompletionItems(networkInstance, context)
+                //getCompletion(completionScope, factory, networkDeclaration, scale, nProject.project)
             }
             scene.addCompletionProvider(provider)
             val inlineValuesView = networkView.extensionsView
@@ -285,7 +295,8 @@ object FBNetworkEditors {
         scope: DeclarationsScope,
         factory: IEC61499Factory,
         fbNetwork: FBNetwork,
-        scale: Float
+        scale: Float,
+        project: Project
     ): List<PositionalCompletionItem> {
         val completionList = mutableListOf<PositionalCompletionItem>()
 
@@ -304,7 +315,7 @@ object FBNetworkEditors {
         completionList.add(createPositionalCompletionItem(
                 "New composite FB",
                 "Empty composite FB") { _: String?, x: Int, y: Int ->
-            val identifier = createNewCompositeBlock(scope, fbNetwork, factory)
+            val identifier = createNewCompositeBlock(project, scope, fbNetwork, factory)
             val declaration = factory.createFunctionBlockDeclaration(identifier)
             declaration.x = (x / scale).toInt()
             declaration.y = (y / scale).toInt()
@@ -318,7 +329,7 @@ object FBNetworkEditors {
         completionList.add(createPositionalCompletionItem(
                 "New basic FB",
                 "Empty basic FB") { _: String?, x: Int, y: Int ->
-            val identifier = createNewCompositeBlock(scope, fbNetwork, factory, false)
+            val identifier = createNewCompositeBlock(project, scope, fbNetwork, factory, false)
             val declaration = factory.createFunctionBlockDeclaration(identifier)
             declaration.x = (x / scale).toInt()
             declaration.y = (y / scale).toInt()
@@ -354,13 +365,15 @@ object FBNetworkEditors {
     }
 
     private fun createNewCompositeBlock(
+            project: Project,
             scope: DeclarationsScope,
             fbNetwork: FBNetwork,
             factory: IEC61499Factory,
             composite: Boolean = true
     ): StringIdentifier {
+        val name = Messages.showInputDialog(project, "Enter name for functional block", "Naming", Messages.getQuestionIcon())
         val getName: (Int?) -> String = { ind ->
-            val baseName = "Empty block"
+            val baseName = "Empty_block"
             if (ind == null) {
                 baseName
             } else {
@@ -375,7 +388,7 @@ object FBNetworkEditors {
             prefix = (prefix ?: 0) + 1
         }
 
-        val identifier = StringIdentifier(getName(prefix))
+        val identifier = StringIdentifier(name ?: getName(prefix))
 
         val networkNode = (fbNetwork as PlatformElement).node
         val networkModel = networkNode.model
