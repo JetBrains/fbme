@@ -1,7 +1,5 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
-import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
 import com.intellij.util.alsoIfNull
 import jetbrains.mps.nodeEditor.EditorComponent
 import jetbrains.mps.nodeEditor.MPSColors
@@ -21,12 +19,9 @@ import org.fbme.ide.richediting.utils.ProjectProvider
 import org.fbme.ide.richediting.utils.fb.FBCompletionProvider
 import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.common.Declaration
-import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterAssignment
-import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.instances.Instance
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.cells.EditorCell_Scene
@@ -36,13 +31,13 @@ import org.fbme.scenes.controllers.components.*
 import org.fbme.scenes.controllers.diagram.*
 import org.fbme.scenes.controllers.edited.EditedModel
 import org.fbme.scenes.controllers.scene.*
-import org.fbme.scenes.viewmodel.PositionalCompletionItem
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.Point
 
 object FBNetworkEditors {
     @JvmField
-    val CONNECTION_CONTROLLER_FACTORY: ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> =
+    val CONNECTION_CONTROLLER_FACTORY:
+            ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> =
         object : ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
             override fun create(
                 context: EditorContext,
@@ -120,7 +115,8 @@ object FBNetworkEditors {
         editorShift: Point = Point()
     ): EditorCell {
         val scene = EditorCell_Scene(context, node!!, layout)
-        val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(context.operationContext.project)
+        val project = ProjectProvider.getInstance(context) ?: error("Can't get project instance from context!")
+        val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(project)
         val declaration = repository.getAdapter(node, Declaration::class.java)
             ?: error("Error when creating NetworkCell: Declaration is null")
         val networkInstance = NetworkInstance.createForDeclaration(declaration, parent)
@@ -142,8 +138,8 @@ object FBNetworkEditors {
         style.set(RichEditorStyleAttributes.NETWORK_INSTANCE, networkInstance)
         style.set(SCENE_BACKGROUND, MPSColors.WHITE)
         val component = context.editorComponent as EditorComponent
-        val project = context.operationContext.project
-        val nProject = ProjectProvider.getInstance(context) ?: error("Can't get project")
+        //val project = context.operationContext.project
+        val project = ProjectProvider.getInstance(context) ?: error("Can't get project")
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
             val isEditable = true
@@ -176,7 +172,13 @@ object FBNetworkEditors {
             val componentsFacility = ComponentsFacility(
                 scene,
                 networkView.componentsView,
-                getComponentControllerFactory(networkInstance, expandedComponentsController, editedComponentsController, repository.iec61499Factory, repository.getDeclarationScopeFor(model)),
+                getComponentControllerFactory(
+                        networkInstance,
+                        expandedComponentsController,
+                        editedComponentsController,
+                        repository.iec61499Factory,
+                        repository.getDeclarationScopeFor(model)
+                ),
                 FBNetworkComponentSynchronizer(viewpoint, scale, expandedComponentsController),
                 componentsLayout,
                 componentsSelection,
@@ -185,11 +187,8 @@ object FBNetworkEditors {
                 tracesLayer
             )
             style.set(RichEditorStyleAttributes.COMPONENTS_FACILITY, componentsFacility)
-            val completionScope = repository.getDeclarationScopeFor(model)
-            val factory = repository.iec61499Factory
             val provider: SceneCompletionProvider = CompletionProviderByViewpoint(viewpoint) {
                 FBCompletionProvider.getCompletionItems(networkInstance, context)
-                //getCompletion(completionScope, factory, networkDeclaration, scale, nProject.project)
             }
             scene.addCompletionProvider(provider)
             val inlineValuesView = networkView.extensionsView
@@ -281,7 +280,15 @@ object FBNetworkEditors {
         return object : ComponentControllerFactory<NetworkComponentView, Point> {
             override fun create(context: EditorContext, view: NetworkComponentView): ComponentController<Point>? {
                 if (view is FunctionBlockView) {
-                    return FunctionBlockController(context, view, instance, expandedComponentsController, editedComponentsController, iec61499Factory, scope)
+                    return FunctionBlockController(
+                            context,
+                            view,
+                            instance,
+                            expandedComponentsController,
+                            editedComponentsController,
+                            iec61499Factory,
+                            scope
+                    )
                 }
                 if (view is InterfaceEndpointView) {
                     return EndpointPortController(context, view)
@@ -289,113 +296,5 @@ object FBNetworkEditors {
                 return null
             }
         }
-    }
-
-    private fun getCompletion(
-        scope: DeclarationsScope,
-        factory: IEC61499Factory,
-        fbNetwork: FBNetwork,
-        scale: Float,
-        project: Project
-    ): List<PositionalCompletionItem> {
-        val completionList = mutableListOf<PositionalCompletionItem>()
-
-        scope.findAllFBTypeDeclarations().forEach { type ->
-            completionList.add(
-                    createPositionalCompletionItem(type.name, "Create function block") { _: String?, x: Int, y: Int ->
-                        val declaration = factory.createFunctionBlockDeclaration(StringIdentifier(type.name))
-                        declaration.x = (x / scale).toInt()
-                        declaration.y = (y / scale).toInt()
-                        declaration.typeReference.setTarget(type)
-                        fbNetwork.functionBlocks.add(declaration)
-                    }
-            )
-        }
-
-        completionList.add(createPositionalCompletionItem(
-                "New composite FB",
-                "Empty composite FB") { _: String?, x: Int, y: Int ->
-            val identifier = createNewCompositeBlock(project, scope, fbNetwork, factory)
-            val declaration = factory.createFunctionBlockDeclaration(identifier)
-            declaration.x = (x / scale).toInt()
-            declaration.y = (y / scale).toInt()
-            val type = scope.findAllFBTypeDeclarations().find {
-                it.name == identifier.value
-            } ?: error("Can't create empty block")
-            declaration.typeReference.setTarget(type)
-            fbNetwork.functionBlocks.add(declaration)
-        })
-
-        completionList.add(createPositionalCompletionItem(
-                "New basic FB",
-                "Empty basic FB") { _: String?, x: Int, y: Int ->
-            val identifier = createNewCompositeBlock(project, scope, fbNetwork, factory, false)
-            val declaration = factory.createFunctionBlockDeclaration(identifier)
-            declaration.x = (x / scale).toInt()
-            declaration.y = (y / scale).toInt()
-            val type = scope.findAllFBTypeDeclarations().find {
-                it.name == identifier.value
-            } ?: error("Can't create empty block")
-            declaration.typeReference.setTarget(type)
-            fbNetwork.functionBlocks.add(declaration)
-        })
-
-        return completionList
-    }
-
-    private fun createPositionalCompletionItem(
-            name: String,
-            description: String,
-            invokeFun: (pattern: String?, x: Int, y: Int) -> Unit
-    ): PositionalCompletionItem {
-        return object : PositionalCompletionItem {
-            override fun getMatchingText(pattern: String?): String {
-                return name
-            }
-
-            override val descriptionText: String
-                get() {
-                    return description
-                }
-
-            override fun invoke(pattern: String?, x: Int, y: Int) {
-                invokeFun(pattern, x, y)
-            }
-        }
-    }
-
-    private fun createNewCompositeBlock(
-            project: Project,
-            scope: DeclarationsScope,
-            fbNetwork: FBNetwork,
-            factory: IEC61499Factory,
-            composite: Boolean = true
-    ): StringIdentifier {
-        val name = Messages.showInputDialog(project, "Enter name for functional block", "Naming", Messages.getQuestionIcon())
-        val getName: (Int?) -> String = { ind ->
-            val baseName = "Empty_block"
-            if (ind == null) {
-                baseName
-            } else {
-                "$baseName $ind"
-            }
-        }
-
-        var prefix: Int? = null
-        val names = scope.findAllFBTypeDeclarations().map { it.name }.toSet()
-
-        while (names.contains(getName(prefix))) {
-            prefix = (prefix ?: 0) + 1
-        }
-
-        val identifier = StringIdentifier(name ?: getName(prefix))
-
-        val networkNode = (fbNetwork as PlatformElement).node
-        val networkModel = networkNode.model
-        val newFbType: FBTypeDeclaration = if (composite) factory.createCompositeFBTypeDeclaration(identifier) else factory.createBasicFBTypeDeclaration(identifier)
-        val fbTypeNode = (newFbType as PlatformElement).node
-        networkModel!!.addRootNode(fbTypeNode)
-
-        return identifier
     }
 }
