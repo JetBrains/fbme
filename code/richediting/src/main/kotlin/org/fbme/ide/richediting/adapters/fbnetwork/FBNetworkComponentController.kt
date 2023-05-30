@@ -36,4 +36,7 @@ interface FBNetworkComponentController {
     fun createPort(source: NetworkPortView, template: NetworkPortView): NetworkPortView? {
         return null
     }
+
+    fun connectTo(port: NetworkPortView, source: NetworkPortView) {
+    }
 }

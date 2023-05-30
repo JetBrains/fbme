@@ -2,7 +2,7 @@ package org.fbme.scenes.controllers.diagram
 
 interface DiagramController<CompT, PortT, ConnT> {
     val isDiagramEditable: Boolean
-    fun getPortController(port: PortT): PortController
+    fun getPortController(port: PortT): PortController<PortT>
     fun getTemplateController(template: PortT): TemplateController<PortT>
     fun findPort(x: Int, y: Int): PortT?
     fun findPortTemplate(x: Int, y: Int): PortT?

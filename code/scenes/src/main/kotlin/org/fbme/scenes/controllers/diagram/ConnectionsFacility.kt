@@ -336,6 +336,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                 val targetSettings = diagramController.getPortController(target)
                 if (targetSettings.canBeTargetedAt(x, y)) {
                     scene.editorContext.repository.modelAccess.executeCommandInEDT {
+                        targetSettings.connectTo(source)
                         val edge = diagramController.addEdge(source, target) ?: return@executeCommandInEDT
                         val newPath = newPathFactory.apply(sourceLocation, targetSettings.modelEndpointPosition)
                         connectionSynchronizer.setPath(edge, newPath)
@@ -384,6 +385,7 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
                 val sourceSettings = diagramController.getPortController(source)
                 if (sourceSettings.canBeSourcedAt(x, y)) {
                     scene.editorContext.repository.modelAccess.executeCommandInEDT {
+                        sourceSettings.connectTo(target)
                         val edge = diagramController.addEdge(source, target) ?: return@executeCommandInEDT
                         val newPath = newPathFactory.apply(sourceSettings.modelEndpointPosition, targetLocation)
                         connectionSynchronizer.setPath(edge, newPath)

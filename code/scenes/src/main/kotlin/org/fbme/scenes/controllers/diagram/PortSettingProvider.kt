@@ -30,4 +30,7 @@ interface PortSettingProvider<PortT, CompT, CFormT> {
     fun createPort(source: PortT, template: PortT): PortT? {
         return null
     }
+
+    fun connectPortTo(source: PortT, port: PortT) {
+    }
 }

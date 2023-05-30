@@ -14,7 +14,7 @@ class PortTemplateEntry<PortT, CompT, CFormT>(
         val ports: MutableMap<PortT, PortEntry<PortT, CompT, CFormT>>,
         private val componentSettings: DiagramComponentSettingProvider<CompT, CFormT>,
         private val portSettingProvider: PortSettingProvider<PortT, CompT, CFormT>,
-) : PortController, TemplateController<PortT> {
+) : PortController<PortT>, TemplateController<PortT> {
     override val bounds: Rectangle
         get() = portSettingProvider.getTemplateBounds(componentSettings.getModelForm(component), template)
     override val modelEndpointPosition: Point
@@ -28,6 +28,10 @@ class PortTemplateEntry<PortT, CompT, CFormT>(
 
     override fun canBeTargetedAt(x: Int, y: Int): Boolean {
         return true
+    }
+
+    override fun connectTo(port: PortT) {
+        //TODO
     }
 
     override fun createPort(source: PortT): PortT? {

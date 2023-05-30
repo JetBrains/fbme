@@ -11,7 +11,7 @@ class PortEntry<PortT, CompT, CFormT>(
         val component: CompT,
         private val componentSettings: DiagramComponentSettingProvider<CompT, CFormT>,
         private val portSettingProvider: PortSettingProvider<PortT, CompT, CFormT>,
-) : PortController {
+) : PortController<PortT> {
     override val bounds: Rectangle
         get() {
             return portSettingProvider.getBounds(componentSettings.getModelForm(component), port)
@@ -32,5 +32,9 @@ class PortEntry<PortT, CompT, CFormT>(
 
     override fun canBeTargetedAt(x: Int, y: Int): Boolean {
         return portSettingProvider.canBeTargetedAt(componentSettings.getModelForm(component), port, x, y)
+    }
+
+    override fun connectTo(source: PortT) {
+        portSettingProvider.connectPortTo(source, port)
     }
 }

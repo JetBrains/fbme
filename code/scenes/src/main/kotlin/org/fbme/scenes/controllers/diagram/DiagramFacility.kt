@@ -66,7 +66,7 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
             return portToComponent[port] ?: error("Component not found")
         }
 
-        override fun getPortController(port: PortT): PortController {
+        override fun getPortController(port: PortT): PortController<PortT> {
             return ports[port] ?: error("Port controller not found")
         }
 

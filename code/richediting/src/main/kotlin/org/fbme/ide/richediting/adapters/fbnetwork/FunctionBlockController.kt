@@ -4,6 +4,7 @@ import jetbrains.mps.editor.runtime.style.CellAlign
 import jetbrains.mps.editor.runtime.style.Measure
 import jetbrains.mps.editor.runtime.style.Padding
 import jetbrains.mps.editor.runtime.style.StyleAttributes
+import jetbrains.mps.findUsages.FindUsagesManager
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
 import jetbrains.mps.nodeEditor.cells.EditorCell
@@ -134,7 +135,6 @@ class FunctionBlockController(
             EntryKind.DATA -> if (isSource) fbCell.getOutputDataPortBounds(index) else fbCell.getInputDataPortBounds(index)
 
             EntryKind.ADAPTER -> if (isSource) fbCell.getPlugPortBounds(index) else fbCell.getSocketPortBounds(index)
-            else -> error("Unknown port kind")
         }
         bounds.translate(position.x, position.y + getVerticalOffset())
         return bounds
@@ -227,6 +227,21 @@ class FunctionBlockController(
         }
     }
 
+    override fun connectTo(port: NetworkPortView, source: NetworkPortView) {
+        if (!editedController.isEdited(view)) return
+        if (port.kind != source.kind || port.kind == EntryKind.EVENT) return
+        if (source !is FunctionBlockPortView) return
+
+        val myPort = assertMine(port)
+
+         if (myPort.target is ParameterDeclaration && source.target is ParameterDeclaration) {
+             myPort.target.type = source.target.type
+         } else if (myPort.target is SocketPluginDeclaration && source.target is SocketPluginDeclaration) {
+             val target = source.target.typeReference.getTarget() ?: return
+             myPort.target.typeReference.setTarget(target)
+         }
+    }
+
     private fun assertMine(port: NetworkPortView): FunctionBlockPortView {
         require(!(port.component != view || port !is FunctionBlockPortView)) { "invalid port" }
         return port
@@ -277,13 +292,13 @@ class FunctionBlockController(
         cellCollection = createRootCell(context, node)
         cellCollection.style.set(RichEditorStyleAttributes.FB, view.component)
         cellCollection.isBig = true
-        this.networkInstance = networkInstance //edit button
+        this.networkInstance = networkInstance
         editButton = getEditButton(context, node)
         editButton.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.RIGHT)
         editButton.setAction(CellActionType.CLICK, toEditModeAction())
         editButton.style.set(StyleAttributes.PADDING_BOTTOM, Padding(EditorCell_Button.OY_OFFSET.toDouble(), Measure.PIXELS))
         editButton.style.set(StyleAttributes.TRANSPARENT, true)
-        cellCollection.addEditorCell(editButton) //name property
+        cellCollection.addEditorCell(editButton)
         myNameProperty = getNameProperty(context, view, node)
         myNameProperty.style.set(StyleAttributes.TEXT_COLOR, if (isEditable) MPSColors.BLACK else MPSColors.DARK_GRAY)
         myNameProperty.style.set(StyleAttributes.HORIZONTAL_ALIGN, CellAlign.CENTER)
@@ -308,7 +323,10 @@ class FunctionBlockController(
 
             override fun executeInCommand(): Boolean = true
 
-            override fun canExecute(context: EditorContext): Boolean = true
+            override fun canExecute(context: EditorContext): Boolean {
+                //FindUsagesManager
+                return true
+            }
 
             override fun execute(context: EditorContext) {
                 editedController.setEdited(view, !editedController.isEdited(view))

@@ -64,4 +64,9 @@ class FBPortSettingProvider(
         val controller = myMapper.apply(component)
         return controller.getTemplatePosition(template, modelForm)
     }
+
+    override fun connectPortTo(source: NetworkPortView, port: NetworkPortView) {
+        val component = port.component
+        myMapper.apply(component).connectTo(port, source)
+    }
 }
