@@ -1,16 +1,25 @@
 package org.fbme.ide.richediting.actions.network.expand
 
-import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.editor.MPSEditorDataKeys
+import jetbrains.mps.openapi.editor.cells.EditorCell
+import jetbrains.mps.project.MPSProject
 import org.fbme.ide.richediting.actions.executeReadActionInEditor
+import org.fbme.ide.richediting.actions.network.AbstractFBEditAction
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.expand.ExpandAction
+import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 
-class ExpandAction : AnAction(), DumbAware {
+class ExpandAction : AbstractFBEditAction() {
 
-    override fun update(event: AnActionEvent) {
-        event.presentation.isEnabledAndVisible = event.getData(MPSEditorDataKeys.EDITOR_CELL) != null
+    override fun internalConditionCheck(
+            event: AnActionEvent,
+            fbCell: FunctionBlockView,
+            cell: EditorCell,
+            project: MPSProject
+    ) {
+        event.presentation.isEnabled =
+                cell.style.get(RichEditorStyleAttributes.EXPANDED_COMPONENTS_CONTROLLER)?.isExpanded(fbCell) == false
     }
 
     override fun actionPerformed(event: AnActionEvent) {

@@ -45,6 +45,9 @@ interface FBNetwork : Element {
             return components
         }
 
+    val allConnections: List<FBNetworkConnection>
+        get() = eventConnections.union(dataConnections).union(adapterConnections).toList()
+
     fun getAllPorts(): List<FBPortDescriptor> {
         val result: MutableList<FBPortDescriptor> = mutableListOf()
 

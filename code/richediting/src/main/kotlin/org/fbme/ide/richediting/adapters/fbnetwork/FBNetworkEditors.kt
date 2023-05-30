@@ -167,6 +167,7 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.SELECTED_FBS, componentsSelection)
             val componentsLayout = DefaultLayoutModel<NetworkComponentView>(context.repository)
             val expandedComponentsController = ExpandedComponentsController(scene, context)
+            style.set(RichEditorStyleAttributes.EXPANDED_COMPONENTS_CONTROLLER, expandedComponentsController)
             val editedComponentsController: EditedModel<FunctionBlockView> = EditedComponentsController(scene)
             style.set(RichEditorStyleAttributes.EDITED_FBS, editedComponentsController)
             val componentsFacility = ComponentsFacility(

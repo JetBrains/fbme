@@ -37,7 +37,7 @@
                     class="org.fbme.ide.richediting.actions.network.ChangeTypeAction"
                     text="ChangeType"/>
             <action id="richediting.ExtractNet"
-                    class="org.fbme.ide.richediting.actions.network.expand.ExpandAction"
+                    class="org.fbme.ide.richediting.actions.network.NetworkExtractorAction"
                     text="Extract Network"/>
             <action id="richediting."
                     class="org.fbme.ide.richediting.actions.network.CreateViewAction"

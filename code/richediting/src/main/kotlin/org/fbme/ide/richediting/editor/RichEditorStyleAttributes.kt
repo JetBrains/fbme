@@ -4,6 +4,7 @@ import jetbrains.mps.editor.runtime.style.InheritableStyleAttribute
 import jetbrains.mps.editor.runtime.style.SimpleStyleAttribute
 import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.richediting.adapters.ecc.cell.ActionBlock
+import org.fbme.ide.richediting.adapters.fbnetwork.ExpandedComponentsController
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
 import org.fbme.ide.richediting.viewmodel.NetworkComponentView
@@ -43,6 +44,10 @@ object RichEditorStyleAttributes {
 
     @JvmField
     val EDITED_FBS: StyleAttribute<EditedModel<FunctionBlockView>> = InheritableStyleAttribute("edited-fbs")
+
+    @JvmField
+    val EXPANDED_COMPONENTS_CONTROLLER: StyleAttribute<ExpandedComponentsController> =
+            InheritableStyleAttribute("expanded-controller")
 
     @JvmField
     val STATE_ACTION: StyleAttribute<StateAction> = InheritableStyleAttribute("state-action")
@@ -92,5 +97,6 @@ object RichEditorStyleAttributes {
         INSPECTIONS_FACILITY.register()
         VIEWPOINT.register()
         ECC.register()
+        EXPANDED_COMPONENTS_CONTROLLER.register()
     }
 }
