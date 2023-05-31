@@ -1,6 +1,7 @@
 package org.fbme.ide.richediting.adapters.fbnetwork.port
 
 import jetbrains.mps.openapi.editor.cells.CellAction
+import jetbrains.mps.openapi.editor.style.Style
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
@@ -85,7 +86,7 @@ object PortActionFactory {
         )
     }
 
-    fun deletePortAction(port: FBPortDescriptor, fbTypeDeclaration: Declaration?) : CellAction? {
+    fun deletePortAction(port: FBPortDescriptor, fbTypeDeclaration: Declaration?, style: Style) : CellAction? {
         fbTypeDeclaration ?: return null
 
         if (fbTypeDeclaration !is FBInterfaceDeclaration) {
@@ -108,7 +109,7 @@ object PortActionFactory {
             }
         }
 
-        return DeletePortAction(port, ports)
+        return DeletePortAction(port, ports, style)
     }
 
     val IDENTIFIER_FACTORY: (prefix: String, values: List<String>) -> Supplier<Identifier> = { prefix, names ->

@@ -70,6 +70,14 @@ interface FBNetwork : Element {
         return result
     }
 
+    fun getConnections(kind: EntryKind): MutableList<FBNetworkConnection>  {
+        return when (kind) {
+            EntryKind.EVENT -> this.eventConnections
+            EntryKind.DATA -> this.dataConnections
+            EntryKind.ADAPTER -> this.adapterConnections
+        }
+    }
+
     companion object {
         @JvmStatic
         fun extractNetwork(declaration: Declaration?): FBNetwork? {

@@ -1,6 +1,5 @@
 package org.fbme.ide.richediting.inspections
 
-import jetbrains.mps.editor.runtime.style.Padding
 import jetbrains.mps.editor.runtime.style.StyleAttributes
 import jetbrains.mps.nodeEditor.EditorSettings
 import jetbrains.mps.nodeEditor.MPSColors

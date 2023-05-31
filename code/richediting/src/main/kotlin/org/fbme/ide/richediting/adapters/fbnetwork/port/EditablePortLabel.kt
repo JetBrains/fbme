@@ -19,7 +19,7 @@ open class EditablePortLabel(
 
     init {
         label = EditorCell_Property(context, DeclarationNameAccessor(port.declaration) { true }, node)
-        label.setAction(CellActionType.BACKSPACE, PortActionFactory.deletePortAction(port, declaration))
+        label.setAction(CellActionType.BACKSPACE, PortActionFactory.deletePortAction(port, declaration, label.style))
         label.style.set(RichEditorStyleAttributes.PORT, port)
     }
 }

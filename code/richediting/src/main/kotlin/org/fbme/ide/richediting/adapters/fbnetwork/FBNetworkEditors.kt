@@ -138,7 +138,6 @@ object FBNetworkEditors {
         style.set(RichEditorStyleAttributes.NETWORK_INSTANCE, networkInstance)
         style.set(SCENE_BACKGROUND, MPSColors.WHITE)
         val component = context.editorComponent as EditorComponent
-        //val project = context.operationContext.project
         val project = ProjectProvider.getInstance(context) ?: error("Can't get project")
         val repository = PlatformRepositoryProvider.getInstance(project)
         try {
