@@ -27,15 +27,14 @@ interface FunctionBlockDeclarationBase : Declaration, ContainedElement {
             return result
         }
 
-    fun getAllPorts(): List<FBPortDescriptor>  {
-        return type.eventInputPorts
+    fun getAllPorts(): List<FBPortDescriptor> =
+            type.eventInputPorts
                 .union(type.eventOutputPorts)
                 .union(type.dataInputPorts)
                 .union(type.dataOutputPorts)
                 .union(type.socketPorts)
                 .union(type.plugPorts)
                 .toList()
-    }
 
     var x: Int
     var y: Int

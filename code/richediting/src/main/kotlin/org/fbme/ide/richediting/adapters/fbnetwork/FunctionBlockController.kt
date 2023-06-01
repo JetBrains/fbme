@@ -4,7 +4,6 @@ import jetbrains.mps.editor.runtime.style.CellAlign
 import jetbrains.mps.editor.runtime.style.Measure
 import jetbrains.mps.editor.runtime.style.Padding
 import jetbrains.mps.editor.runtime.style.StyleAttributes
-import jetbrains.mps.findUsages.FindUsagesManager
 import jetbrains.mps.nodeEditor.MPSColors
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Vertical
 import jetbrains.mps.nodeEditor.cells.EditorCell
@@ -20,6 +19,9 @@ import org.fbme.ide.richediting.adapters.fbnetwork.fb.FBTypeCellComponent
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.EditableFBTypeCell
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortActionFactory
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.utils.Notifier
+import org.fbme.ide.richediting.utils.ProjectProvider
+import org.fbme.ide.richediting.utils.fb.FBUsageFinder
 import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
@@ -324,7 +326,21 @@ class FunctionBlockController(
             override fun executeInCommand(): Boolean = true
 
             override fun canExecute(context: EditorContext): Boolean {
-                //FindUsagesManager
+                val project = ProjectProvider.getInstance(context)!!
+                val res = FBUsageFinder
+                        .findUsages(project, view.component.type.declaration!!)
+                        .filter {
+                            it.key.identifier != networkInstance.declaration.identifier
+                        }.map {
+                            it.key
+                        }
+                if (res.isNotEmpty()) {
+                    Notifier.showWarning(
+                            "This function block uses also in " +
+                            res.joinToString { it.name } + "!",
+                            project.project
+                    )
+                }
                 return true
             }
 
