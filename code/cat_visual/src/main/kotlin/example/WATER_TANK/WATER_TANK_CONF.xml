@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Conf>
+    <Inputs>
+        <Input type="BOOL" host="225.0.0.1" port="65000"/>
+        <Input type="REAL" host="225.0.0.1" port="65001"/>
+    </Inputs>
+    <Outputs>
+        <Output type="REAL" host="225.0.0.1" port="65002"/>
+    </Outputs>
+</Conf>
