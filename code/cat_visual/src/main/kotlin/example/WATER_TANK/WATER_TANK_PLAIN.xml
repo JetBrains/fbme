@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+    <Inputs>
+        <Input name="lampIndicator1" type="BOOL" host="225.0.0.1" port="65000"/>
+        <Input name="lampIndicator2" type="BOOL" host="225.0.0.1" port="65001"/>
+        <Input name="tankIndicator" type="REAL" host="225.0.0.1" port="65002"/>
+        <Input name="outputIndicator" type="REAL" host="225.0.0.1" port="65003"/>
+        <Input name="stateInlet" type="BOOL" host="225.0.0.1" port="65005"/>
+        <Input name="stateHeat" type="BOOL" host="225.0.0.1" port="65006"/>
+        <Input name="stateOutlet" type="BOOL" host="225.0.0.1" port="65007"/>
+    </Inputs>
+    <Outputs>
+        <Output name="knob1" type="REAL" host="225.0.0.1" port="65008"/>
+        <Output name="knob2" type="REAL" host="225.0.0.1" port="65009"/>
+    </Outputs>
+</Mapping>
