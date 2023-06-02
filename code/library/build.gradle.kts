@@ -23,7 +23,6 @@ configurations {
 }
 
 mps {
-    buildScriptName.set("fbme_library")
     moduleName.set("org.fbme.lib")
 }
 

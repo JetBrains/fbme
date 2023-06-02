@@ -39,7 +39,9 @@ fun AnActionEvent.executeActionInEditor(body: () -> Unit) {
     editorComponent.updater.update()
 }
 
+val AnActionEvent.cell get() = getData(MPSEditorDataKeys.EDITOR_CELL)
 val AnActionEvent.repository get() = PlatformRepositoryProvider.getInstance(getRequiredData(MPSCommonDataKeys.MPS_PROJECT))
+val AnActionEvent.mpsProject get() = getData(MPSCommonDataKeys.MPS_PROJECT)
 
 inline fun <reified T : Element> AnActionEvent.element(): T? {
     var node = getData(MPSCommonDataKeys.NODE)

@@ -1,9 +1,8 @@
 package org.fbme.ide.platform.projectWizard
 
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupManager
-import fbme.platform.PlatformIcons
 import jetbrains.mps.ide.newSolutionDialog.NewModuleUtil
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SModelOperations
 import jetbrains.mps.openapi.navigation.NavigationSupport
 import jetbrains.mps.persistence.DefaultModelRoot
 import jetbrains.mps.persistence.ModelCannotBeCreatedException
@@ -57,19 +56,20 @@ abstract class Iec61499ProjectTemplate(
                         throw RuntimeException("Model can not be created", e)
                     }
                     val repository = PlatformRepositoryProvider.getInstance(project)
-                    val initialElement = initModel(repository, model)
+                    val initialElement = initModel(project.project, repository, model)
                     model.module.declaredDependencies
                     val initialNode = initialElement.node
                     project.repository.modelAccess.runReadInEDT {
-                        NavigationSupport.getInstance().openNode(project, initialNode, true, false)
-                        NavigationSupport.getInstance().selectInTree(project, initialNode, false)
+                        val navigationSupport = NavigationSupport.getInstance()
+                        navigationSupport.openNode(project, initialNode, true, false)
+                        navigationSupport.selectInTree(project, initialNode, false)
                     }
                 }
             }
         }
     }
 
-    abstract fun initModel(repository: PlatformRepository, model: SModel): PlatformElement
+    abstract fun initModel(project: Project, repository: PlatformRepository, model: SModel): PlatformElement
 
     override fun getIcon() = icon
 

@@ -7,8 +7,6 @@
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/buildsolution/org.fbme.integration.fordiac.build.msd" folder="code.4diac integration" />
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/org.fbme.ide.integration.fordiac/org.fbme.ide.integration.fordiac.msd" folder="code.4diac integration" />
       <modulePath path="$PROJECT_DIR$/code/4diac-integration/solutions/stdlib/stdlib.msd" folder="code.4diac integration" />
-      <modulePath path="$PROJECT_DIR$/code/debugger/buildsolution/org.fbme.debugger.build.msd" folder="code.debugger" />
-      <modulePath path="$PROJECT_DIR$/code/debugger/solutions/org.fbme.debugger/org.fbme.debugger.msd" folder="code.debugger" />
       <modulePath path="$PROJECT_DIR$/code/enas/languages/org.fbme.ide.enas.lang/org.fbme.ide.enas.lang.mpl" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/enas/solutions/org.fbme.ide.enas.analyzer/org.fbme.ide.enas.analyzer.msd" folder="code.enas" />
       <modulePath path="$PROJECT_DIR$/code/language/buildsolution/org.fbme.language.build.msd" folder="code.language" />

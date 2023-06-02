@@ -6,8 +6,8 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 
 class ResourceFunctionBlockHierarchy(
     val resourceHierarchy: ResourceHierarchy,
-    val functionBlock: FunctionBlockDeclaration
+    val functionBlock: FunctionBlockDeclaration?
 ) : DeclarationPath {
     override val declarations: List<Declaration>
-        get() = listOf<Declaration>(resourceHierarchy.device, resourceHierarchy.resource, functionBlock)
+        get() = listOfNotNull(resourceHierarchy.device, resourceHierarchy.resource, functionBlock)
 }

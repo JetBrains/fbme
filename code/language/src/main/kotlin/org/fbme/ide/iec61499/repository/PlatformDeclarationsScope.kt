@@ -10,11 +10,12 @@ import org.jetbrains.mps.openapi.model.SNode
 import org.jetbrains.mps.openapi.model.SNodeReference
 
 internal class PlatformDeclarationsScope(
-    private val myRepository: PlatformRepository,
-    private val myModel: SModel?
+    private val repository: PlatformRepository,
+    private val model: SModel?,
 ) : DeclarationsScope {
+
     override fun findCompositeFBTypeDeclaration(identifier: Identifier): CompositeFBTypeDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, CompositeFBTypeDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findCATBlockTypeDeclaration(identifier: Identifier): CATBlockTypeDeclaration? {
@@ -22,56 +23,56 @@ internal class PlatformDeclarationsScope(
     }
 
     override fun findBasicFBTypeDeclaration(identifier: Identifier): BasicFBTypeDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, BasicFBTypeDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findServiceFBTypeDeclaration(identifier: Identifier): ServiceInterfaceFBTypeDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, ServiceInterfaceFBTypeDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findAdapterTypeDeclaration(identifier: Identifier): AdapterTypeDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, AdapterTypeDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findSubapplicationTypeDeclaration(identifier: Identifier): SubapplicationTypeDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, SubapplicationTypeDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findSystemDeclaration(identifier: Identifier): SystemDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, SystemDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findDeviceDeclaration(identifier: Identifier): DeviceDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, DeviceDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findResourceDeclaration(identifier: Identifier): ResourceDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, ResourceDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findFunctionBlockDeclaration(identifier: Identifier): FunctionBlockDeclaration? {
-        return findNode(identifier)?.let { myRepository.getAdapter(it, FunctionBlockDeclaration::class.java) }
+        return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
     override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> {
-        return myRepository.mpsRepository.modules
+        return repository.mpsRepository.modules
             .flatMap { it.models }
             .filter {
-                myModel == null ||
-                    myModel.reference == it.reference ||
-                    ModelImports(myModel).importedModels.contains(it.reference)
+                model == null ||
+                        model.reference == it.reference ||
+                        ModelImports(model).importedModels.contains(it.reference)
             }
             .flatMap { it.rootNodes }
-            .mapNotNull { myRepository.getAdapter(it, FBTypeDeclaration::class.java) }
+            .mapNotNull { repository.adapterOrNull<FBTypeDeclaration>(it) }
     }
 
     private fun findNode(identifier: Identifier): SNode? {
-        val node = getNodeReference(identifier).resolve(myRepository.mpsRepository) ?: return null
-        if (myModel == null) {
-            return node
-        }
+        val node = getNodeReference(identifier).resolve(repository.mpsRepository) ?: return null
+
+        model ?: return node
+
         val reference = requireNotNull(node.model).reference
-        return node.takeIf { myModel.reference == reference || ModelImports(myModel).importedModels.contains(reference) }
+        return node.takeIf { model.reference == reference || ModelImports(model).importedModels.contains(reference) }
     }
 
     private fun getNodeReference(identifier: Identifier): SNodeReference {

@@ -6,7 +6,6 @@ plugins {
 }
 
 mps {
-    buildScriptName.set("fbme_scenes")
     moduleName.set("org.fbme.scenes.lib")
 }
 

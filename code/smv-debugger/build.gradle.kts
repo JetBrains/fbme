@@ -11,6 +11,8 @@ dependencies {
     compileOnly(project(":code:platform"))
     compileOnly(project(":code:richediting"))
 
+    testImplementation(mpsDistribution())
+
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
 }
