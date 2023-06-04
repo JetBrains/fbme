@@ -16,6 +16,7 @@ import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
 import org.fbme.ide.richediting.adapters.fbnetwork.port.PortWithLabel
 import org.fbme.ide.richediting.editor.NetworkInstanceNavigationSupport
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
+import org.fbme.ide.richediting.utils.ProjectProvider
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.instances.NetworkInstance
@@ -259,8 +260,7 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
                 val childNetworkInstance = child.containedNetwork
                 if (childNetworkInstance is NetworkInstance) {
                     val navigationStub = NetworkInstanceNavigationSupport.getNavigationStub(
-                            rootCell.context.operationContext.project,
-                            childNetworkInstance
+                            ProjectProvider.getInstance(rootCell.context)!!, childNetworkInstance
                     )
                     style.set(StyleAttributes.NAVIGATABLE_NODE, navigationStub)
                     return
