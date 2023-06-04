@@ -146,26 +146,19 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
     }
 
     private fun magnetizeHorizontal(index: Int, bendPoints: MutableList<Point>) {
-        if (index >= bendPoints.size) {
-            return
-        }
-        val u = bendPoints[index - 1]
-        val v = bendPoints[index]
-        val uPrev = bendPoints[index - 2]
-        val vNext = bendPoints[index + 1]
-        if (abs(vNext.y - v.y) < scale(SELECTION_PADDING)) {
-            u.y = vNext.y
-            bendPoints.removeAt(index + 1)
-            bendPoints.removeAt(index)
-        }
-        if (abs(u.y - uPrev.y) < scale(SELECTION_PADDING)) {
-            v.y = uPrev.y
-            bendPoints.removeAt(index - 1)
-            bendPoints.removeAt(index - 2)
-        }
+        magnetize(index, bendPoints, { p -> p.y }, { p, v  -> p.y = v })
     }
 
     private fun magnetizeVertical(index: Int, bendPoints: MutableList<Point>) {
+        magnetize(index, bendPoints, { p -> p.x }, { p, v  -> p.x = v })
+    }
+
+    private fun magnetize(
+            index: Int,
+            bendPoints: MutableList<Point>,
+            extractor: (p: Point) -> Int,
+            setter: (p: Point, x: Int) -> Unit
+    ) {
         if (index >= bendPoints.size) {
             return
         }
@@ -173,13 +166,13 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
         val v = bendPoints[index]
         val uPrev = if (index - 2 >= 0) bendPoints[index - 2] else null
         val vNext = if (index + 1 < bendPoints.size) bendPoints[index + 1] else null
-        if (vNext != null && abs(vNext.x - v.x) < scale(SELECTION_PADDING)) {
-            u.x = vNext.x
+        if (vNext != null && abs(extractor(vNext) - extractor(v)) < scale(SELECTION_PADDING)) {
+            setter(u, extractor(vNext))
             bendPoints.removeAt(index + 1)
             bendPoints.removeAt(index)
         }
-        if (uPrev != null && abs(u.x - uPrev.x) < scale(SELECTION_PADDING)) {
-            v.x = uPrev.x
+        if (uPrev != null && abs(extractor(u) - extractor(uPrev)) < scale(SELECTION_PADDING)) {
+            setter(v, extractor(uPrev))
             bendPoints.removeAt(index - 1)
             bendPoints.removeAt(index - 2)
         }
