@@ -11,6 +11,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <mps.LanguageLibrary dir="/languages"/>
         <postStartupActivity implementation="org.fbme.scenes.plugin.SceneExtensionsRegistrar" />
+        <notificationGroup displayType="BALLOON" id="Custom-scenes" key="notification.group.name" />
     </extensions>
 
 </idea-plugin>

@@ -11,7 +11,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <mps.LanguageLibrary dir="/languages"/>
-        <notificationGroup displayType="BALLOON" id="Custom" key="notification.group.name" />
+        <notificationGroup displayType="BALLOON" id="Custom-richediting" key="notification.group.name" />
     </extensions>
 
     <actions>

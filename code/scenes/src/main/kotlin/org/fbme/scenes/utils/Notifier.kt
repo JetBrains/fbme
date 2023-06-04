@@ -1,11 +1,11 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.scenes.utils
 
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.project.Project
 
 object Notifier {
-    private const val NOTIFICATION_GROUP = "Custom-richediting"
+    private const val NOTIFICATION_GROUP = "Custom-scenes"
 
     fun showWarning(message: String, project: Project? = null) {
         NotificationGroupManager
