@@ -13,6 +13,5 @@ interface DiagramView<C, P, E> {
     fun setTargetPort(edge: E, port: P)
     fun removeEdge(edge: E)
     fun addEdge(sourcePort: P, targetPort: P): E?
-    fun addPort(port: P, component: C) {
-    }
+    fun addPort(port: P, component: C) {}
 }
