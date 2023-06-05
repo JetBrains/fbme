@@ -2,6 +2,7 @@ package org.fbme.scenes.controllers.diagram
 
 import org.fbme.scenes.controllers.diagram.entry.PortEntry
 import org.fbme.scenes.controllers.diagram.entry.PortTemplateEntry
+import org.fbme.scenes.exceptions.NoEntityException
 
 class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private val diagramModel: DiagramView<CompT, PortT, ConnT>,
@@ -26,7 +27,7 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
             componentToPorts[component] = ports
             for (port in ports) {
                 this.ports.computeIfAbsent(port) {
-                    PortEntry(it, component, componentSettings, portSettingProvider )
+                    PortEntry(it, component, componentSettings, portSettingProvider)
                 }
                 portToComponent[port] = component
             }
@@ -34,7 +35,14 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
             val templates = portSettingProvider.getPortTemplates(component)
             portTemplates.addAll(templates)
             templates.forEach {
-                val template = PortTemplateEntry(it, component, this.portToComponent, this.ports, componentSettings, portSettingProvider)
+                val template = PortTemplateEntry(
+                        it,
+                        component,
+                        this.portToComponent,
+                        this.ports,
+                        componentSettings,
+                        portSettingProvider
+                )
                 portTemplatesToComponent[template] = component
             }
         }
@@ -63,11 +71,11 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
         }
 
         override fun getComponent(port: PortT): CompT {
-            return portToComponent[port] ?: error("Component not found")
+            return portToComponent[port] ?: throw NoEntityException("Can't find component")
         }
 
         override fun getPortController(port: PortT): PortController<PortT> {
-            return ports[port] ?: error("Port controller not found")
+            return ports[port] ?: throw NoEntityException("Can't find port controller")
         }
 
         override fun findPort(x: Int, y: Int): PortT? {
@@ -89,7 +97,7 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
         }
 
         override fun getPorts(component: CompT): Set<PortT> {
-            return componentToPorts[component] ?: error("Ports not found")
+            return componentToPorts[component] ?: throw NoEntityException("Can't find port!")
         }
 
         override fun getSource(edge: ConnT): PortT? {
