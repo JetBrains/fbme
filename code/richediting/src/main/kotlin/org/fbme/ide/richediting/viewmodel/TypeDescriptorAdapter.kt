@@ -17,65 +17,35 @@ class TypeDescriptorAdapter(private val myOriginal: FBTypeDescriptor) : FBTypeDe
             return myOriginal.declaration
         }
     override val eventInputPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.eventInputPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.inputEvents) {
-                list.add(FBPortDescriptor(eventName, EntryKind.EVENT, i++, true, false, null))
-            }
-            return list
-        }
+        get() = getPorts(myOriginal.eventInputPorts, brokenPorts.inputEvents)
     override val eventOutputPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.eventOutputPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.outputEvents) {
-                list.add(FBPortDescriptor(eventName, EntryKind.EVENT, i++, false, false, null))
-            }
-            return list
-        }
+        get() = getPorts(myOriginal.eventOutputPorts, brokenPorts.outputEvents)
     override val dataInputPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.dataInputPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.inputDatas) {
-                list.add(FBPortDescriptor(eventName, EntryKind.DATA, i++, true, false, null))
-            }
-            return list
-        }
+        get() = getPorts(myOriginal.dataInputPorts, brokenPorts.inputDatas)
     override val dataOutputPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.dataOutputPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.outputDatas) {
-                list.add(FBPortDescriptor(eventName, EntryKind.DATA, i++, false, false, null))
-            }
-            return list
-        }
+        get() = getPorts(myOriginal.dataOutputPorts, brokenPorts.outputDatas)
     override val socketPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.socketPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.sockets) {
-                list.add(FBPortDescriptor(eventName, EntryKind.ADAPTER, i++, true, false, null))
-            }
-            return list
-        }
+        get() = getPorts(myOriginal.socketPorts, brokenPorts.sockets)
     override val plugPorts: List<FBPortDescriptor>
-        get() {
-            val ports = myOriginal.plugPorts
-            val list = ArrayList(ports)
-            var i = ports.size
-            for (eventName in brokenPorts.plugs) {
-                list.add(FBPortDescriptor(eventName, EntryKind.ADAPTER, i++, true, false, null))
-            }
-            return list
+        get() = getPorts(myOriginal.plugPorts, brokenPorts.plugs)
+
+    private fun getPorts(
+            validPorts: List<FBPortDescriptor>,
+            brokenPorts: List<FBPortDescriptor>
+    ): List<FBPortDescriptor> {
+        val result = ArrayList(validPorts)
+        brokenPorts.forEach {
+            result.add(FBPortDescriptor(
+                    it.name,
+                    it.connectionKind,
+                    validPorts.size + (- it.position),
+                    it.isInput,
+                    it.isValid,
+                    it.declaration)
+            )
         }
+        return result
+    }
 
     override fun getAssociatedVariablesForInputEvent(eventNumber: Int): List<Int> {
         return myOriginal.getAssociatedVariablesForInputEvent(eventNumber)
@@ -87,22 +57,33 @@ class TypeDescriptorAdapter(private val myOriginal: FBTypeDescriptor) : FBTypeDe
 
     class BrokenPorts {
         @JvmField
-        val inputEvents: List<String> = ArrayList()
+        val inputEvents: MutableList<FBPortDescriptor> = ArrayList()
 
         @JvmField
-        val outputEvents: List<String> = ArrayList()
+        val outputEvents: MutableList<FBPortDescriptor> = ArrayList()
 
         @JvmField
-        val inputDatas: List<String> = ArrayList()
+        val inputDatas: MutableList<FBPortDescriptor> = ArrayList()
 
         @JvmField
-        val outputDatas: List<String> = ArrayList()
+        val outputDatas: MutableList<FBPortDescriptor> = ArrayList()
 
         @JvmField
-        val plugs: List<String> = ArrayList()
+        val plugs: MutableList<FBPortDescriptor> = ArrayList()
 
         @JvmField
-        val sockets: List<String> = ArrayList()
+        val sockets: MutableList<FBPortDescriptor> = ArrayList()
+
+        fun addPort(name: String, kind: EntryKind, isInput: Boolean) : FBPortDescriptor {
+            val list = when (kind) {
+                EntryKind.EVENT -> if (isInput) inputDatas else outputEvents
+                EntryKind.DATA -> if (isInput) inputDatas else outputDatas
+                EntryKind.ADAPTER -> if (isInput) sockets else plugs
+            }
+            val entry = FBPortDescriptor(name, kind, -list.size, isInput, false, null)
+            list.add(entry)
+            return entry
+        }
     }
 
     init {
