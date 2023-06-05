@@ -9,6 +9,8 @@ import org.fbme.scenes.controllers.*
 import org.fbme.scenes.controllers.diagram.entry.ConnectionEntry
 import org.fbme.scenes.controllers.scene.*
 import org.fbme.scenes.controllers.selection.SelectionModel
+import org.fbme.scenes.exceptions.InitializationException
+import org.fbme.scenes.utils.Notifier
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.Point
@@ -63,7 +65,11 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
     private fun init() {
         val viewConnections = diagramController.connections
         for (connection in viewConnections) {
-            connections[connection] = ConnectionEntry(this@ConnectionsFacility, connection)
+            try {
+                connections[connection] = ConnectionEntry(this@ConnectionsFacility, connection)
+            } catch (e: InitializationException) {
+                Notifier.showError(e.message ?: "Can't initialize connection entry!")
+            }
         }
     }
 
