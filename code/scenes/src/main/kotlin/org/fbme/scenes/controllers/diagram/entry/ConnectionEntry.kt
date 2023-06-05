@@ -2,6 +2,8 @@ package org.fbme.scenes.controllers.diagram.entry
 
 import org.fbme.scenes.controllers.diagram.ConnectionController
 import org.fbme.scenes.controllers.diagram.ConnectionsFacility
+import org.fbme.scenes.exceptions.InitializationException
+import org.fbme.scenes.exceptions.NoEntityException
 import java.awt.Point
 import java.awt.Rectangle
 
@@ -59,10 +61,13 @@ internal class ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>(
 
     init {
         val diagramController = connectionsFacility.diagramController
-        val sourcePort = diagramController.getSource(connection) ?: error("Source not found")
-        val targetPort = diagramController.getTarget(connection) ?: error("Target not found")
-        val sourcePortController = diagramController.getPortController(sourcePort)
-        val targetPortController = diagramController.getPortController(targetPort)
+        val sourcePort = diagramController.getSource(connection) ?: throw InitializationException("Source not found")
+        val targetPort = diagramController.getTarget(connection) ?: throw InitializationException("Target not found")
+        val (sourcePortController, targetPortController) = try {
+            diagramController.getPortController(sourcePort) to diagramController.getPortController(targetPort)
+        } catch (e: NoEntityException) {
+            throw InitializationException(e.message, e)
+        }
         modelPath = pathProvider(sourcePortController.modelEndpointPosition, targetPortController.modelEndpointPosition)
     }
 }
