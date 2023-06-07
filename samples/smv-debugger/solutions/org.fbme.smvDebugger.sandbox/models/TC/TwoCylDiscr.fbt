@@ -1,50 +1,132 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
-
-<FBType Name="TwoCylDiscr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="8A0CC6CADBEB2891" Name="TwoCylDiscr" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="6" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="valeriy" Date="1/8/2021" Remarks="template" />
   <InterfaceList>
     <EventInputs>
-      <Event Name="INIT" />
+      <Event Name="INIT" Comment="Initialization Request" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" />
+      <Event Name="INITO" Comment="Initialization Confirm" />
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="HorCTL" Type="CylControl" x="2793" y="199" />
-    <FB Name="VerCTL" Type="CylControl" x="2783" y="929" />
-    <FB Name="Button" Type="ButtonDs" x="203" y="530" />
-    <FB Name="HorCyl" Type="LinearDA" x="1263" y="63" />
-    <FB Name="VerCyl" Type="LinearDA" x="1450" y="869" />
-    <DataConnections>
-      <Connection Source="HorCyl.HOME" Destination="HorCTL.Retracted" dx1="751" />
-      <Connection Source="HorCyl.END" Destination="HorCTL.Extended" dx1="817" />
-      <Connection Source="Button.Pressed" Destination="HorCTL.START" dx1="1620" />
-      <Connection Source="HorCTL.EXTEND" Destination="HorCyl.FWD" dy="-473" dx2="70" dx1="74" />
-      <Connection Source="HorCTL.RETRACT" Destination="HorCyl.BACK" dy="-523" dx2="100" dx1="120" />
-      <Connection Source="VerCyl.HOME" Destination="VerCTL.Retracted" dx1="44" />
-      <Connection Source="VerCyl.END" Destination="VerCTL.Extended" dx1="70" />
-      <Connection Source="VerCTL.RETRACT" Destination="VerCyl.BACK" dy="-410" dx2="100" dx1="70" />
-      <Connection Source="VerCTL.EXTEND" Destination="VerCyl.FWD" dy="-367" dx2="150" dx1="77" />
-      <Connection Source="Button.Pressed" Destination="VerCTL.START" dx1="337" />
-    </DataConnections>
+    <FB ID="1" Name="HorCTL" Type="CylControl" x="1960" y="380" Namespace="Main" />
+    <FB ID="2" Name="VerCTL" Type="CylControl" x="1980" y="1260" Namespace="Main" />
+    <FB ID="6" UID="3" Name="Button" Type="ButtonDs" x="340" y="960" Namespace="Main" />
+    <FB ID="4" Name="HorCyl" Type="LinearDA" x="1140" y="320" Namespace="Main" />
+    <FB ID="5" Name="VerCyl" Type="LinearDA" x="1140" y="1240" Namespace="Main" />
+    <Input Name="INIT" x="60" y="972" Type="Event" />
+    <Output Name="INITO" x="2680" y="1272" Type="Event" />
     <EventConnections>
-      <Connection Source="Button.INITO" Destination="HorCyl.INIT" dx1="110" />
-      <Connection Source="HorCyl.INITO" Destination="VerCyl.INIT" dy="403" dx2="133" dx1="134" />
-      <Connection Source="VerCyl.INITO" Destination="HorCTL.INIT" dx1="120" />
-      <Connection Source="HorCTL.CNF" Destination="HorCyl.REQ" dy="116" dx2="100" dx1="180" />
-      <Connection Source="HorCyl.CHG" Destination="HorCTL.REQ" dx1="394" />
-      <Connection Source="VerCyl.CHG" Destination="VerCTL.REQ" dx1="384" />
-      <Connection Source="HorCTL.INITO" Destination="VerCTL.INIT" dy="260" dx2="130" dx1="134" />
-      <Connection Source="VerCTL.CNF" Destination="VerCyl.REQ" dy="-210" dx2="177" dx1="207" />
-      <Connection Source="Button.CHG" Destination="VerCTL.REQ" dx1="760" />
-      <Connection Source="INIT" Destination="Button.INIT" dx1="132" />
-      <Connection Source="VerCTL.INITO" Destination="INITO" dx1="844" />
-      <Connection Source="Button.CHG" Destination="HorCTL.REQ" dx1="1133" />
-      <Connection Source="VerCTL.INITO" Destination="Button.REQ" dy="-996" dx2="150" dx1="100" />
+      <Connection Source="Button.INITO" Destination="HorCyl.INIT" dx1="93.79169">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HorCyl.INITO" Destination="VerCyl.INIT" dx1="95.8125" dx2="120" dy="640">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VerCyl.INITO" Destination="HorCTL.INIT" dx1="255.8125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HorCTL.CNF" Destination="HorCyl.REQ" dx1="70" dx2="70" dy="-230" />
+      <Connection Source="HorCyl.CHG" Destination="HorCTL.REQ" dx1="175.8125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VerCyl.CHG" Destination="VerCTL.REQ" dx1="85.8125" />
+      <Connection Source="HorCTL.INITO" Destination="VerCTL.INIT" dx1="103.5417" dx2="50" dy="640">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VerCTL.CNF" Destination="VerCyl.REQ" dx1="40" dx2="40" dy="-220">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Button.CHG" Destination="VerCTL.REQ" dx1="913.7917">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="INIT" Destination="Button.INIT" />
+      <Connection Source="VerCTL.INITO" Destination="INITO">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Button.CHG" Destination="HorCTL.REQ" dx1="913.7917">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VerCTL.INITO" Destination="Button.REQ" dx1="153.5417" dx2="30" dy="600">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
     </EventConnections>
-    <EndpointCoordinate Name="INITO" x="4993" y="463" />
-    <EndpointCoordinate Name="INIT" x="-236" y="723" />
+    <DataConnections>
+      <Connection Source="HorCyl.HOME" Destination="HorCTL.Retracted" />
+      <Connection Source="HorCyl.END" Destination="HorCTL.Extended" />
+      <Connection Source="Button.Pressed" Destination="HorCTL.START">
+        <Points>
+          <Points>
+            <X>196.552078</X>
+            <Y>330</Y>
+          </Points>
+          <Points>
+            <X>219.052078</X>
+            <Y>330</Y>
+          </Points>
+          <Points>
+            <X>219.052078</X>
+            <Y>292.5</Y>
+          </Points>
+          <Points>
+            <X>392.5</X>
+            <Y>292.5</Y>
+          </Points>
+          <Points>
+            <X>392.5</X>
+            <Y>200</Y>
+          </Points>
+          <Points>
+            <X>485</X>
+            <Y>200</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="HorCTL.EXTEND" Destination="HorCyl.FWD" dx1="133.5417" dx2="100" dy="-480">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HorCTL.RETRACT" Destination="HorCyl.BACK" dx1="43.54175" dx2="80" dy="150">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="VerCyl.HOME" Destination="VerCTL.Retracted" dx1="90" />
+      <Connection Source="VerCyl.END" Destination="VerCTL.Extended" dx1="110" />
+      <Connection Source="VerCTL.RETRACT" Destination="VerCyl.BACK" dx1="43.54175" dx2="110" dy="210" />
+      <Connection Source="VerCTL.EXTEND" Destination="VerCyl.FWD" dx1="93.54175" dx2="100" dy="240">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Button.Pressed" Destination="VerCTL.START">
+        <Points>
+          <Points>
+            <X>196.552078</X>
+            <Y>330</Y>
+          </Points>
+          <Points>
+            <X>220</X>
+            <Y>330</Y>
+          </Points>
+          <Points>
+            <X>220</X>
+            <Y>464.5</Y>
+          </Points>
+          <Points>
+            <X>450</X>
+            <Y>464.5</Y>
+          </Points>
+          <Points>
+            <X>450</X>
+            <Y>420</Y>
+          </Points>
+          <Points>
+            <X>490</X>
+            <Y>420</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
   </FBNetwork>
 </FBType>
-

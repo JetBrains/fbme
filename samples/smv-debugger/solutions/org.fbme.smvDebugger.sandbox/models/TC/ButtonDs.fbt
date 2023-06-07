@@ -10,6 +10,7 @@
       <Event Name="REQ">
         <With Var="LightOn" />
       </Event>
+      <Event Name="NDT" />
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO">
@@ -35,7 +36,7 @@
       <ECState Name="OFF" x="3859" y="779">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
-      <ECState Name="PRESSED" x="3519" y="2326">
+      <ECState Name="PRESSED" x="0" y="0">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
       <ECTransition Source="START" Destination="INIT" x="1420" y="1166" Condition="INIT" />

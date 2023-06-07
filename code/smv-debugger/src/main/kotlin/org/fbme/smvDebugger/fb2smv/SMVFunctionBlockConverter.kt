@@ -1,7 +1,9 @@
 package org.fbme.smvDebugger.fb2smv
 
+import com.intellij.remoteDev.util.UrlParameterKeys.Companion.port
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
@@ -174,6 +176,11 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             "};\n\nVAR NA: 0..${FBInfoService.getMaxNA(fb)};\nVAR NI: 0.." +
                     "${FBInfoService.getMaxNI(fb)};\n\n"
         )
+
+            if(data.ndtExists) {
+                buf.append("VAR NDT : boolean;\n" )
+            }
+
     }
 
     override fun generateNI(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -289,6 +296,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         }
 
         buf.append("init(NA):= 0;\ninit(NI):= 0;\n\n")
+
     }
 
     override fun generateLocalVariableDeclaration(fb: FBTypeDescriptor, buf: StringBuilder) {
@@ -321,7 +329,12 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
 
     override fun generateSignature(fb: FBTypeDescriptor, buf: StringBuilder) {
         buf.append("MODULE " + fb.typeName + '(')
-        for (ie in fb.eventInputPorts) buf.append("event_" + ie.name + ',')
+        for (ie in fb.eventInputPorts) {
+            if( !data.ndtCheck(ie.declaration as EventDeclaration)) {
+                buf.append("event_" + ie.name + ',')
+            }
+        }
+
         for (oe in fb.eventOutputPorts) buf.append("event_" + oe.name + ',')
         for (id in fb.dataInputPorts) buf.append(id.name + "_,")
         for (od in fb.dataOutputPorts) buf.append(od.name + "_,")
@@ -330,18 +343,24 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
 
 
  //   TODO - remove not used states
-    private fun generateNonDeterministicEventPort(fb: FBTypeDescriptor, buf: StringBuilder, port: FBPortDescriptor){
-        if (fb.getAssociatedVariablesForInputEvent(port.position).isEmpty()){
-        buf.append("init(event_${port.name}) :=  { TRUE , FALSE };\nnext(event_${port.name}):= case\n")
-        for(st in (fb.declaration as BasicFBTypeDeclaration).ecc.states){
-            buf.append("\tQ_smv=${st.name}_ecc & S_smv=s1_osm : {TRUE,FALSE};\n")
-        }
-        buf.append("TRUE : event_${port.name};\nesac;\n")
-        }
-    }
+
     override fun generateNonDeterministicVariables(fb: FBTypeDescriptor, buf: StringBuilder) {
-        fb.eventInputPorts.forEach {  generateNonDeterministicEventPort(fb, buf, it) }
-        fb.eventOutputPorts.forEach {  generateNonDeterministicEventPort(fb, buf, it) }
+        if(data.ndtExists) {
+            buf.append("-- _NonDeterministicVariableInitBlock\n" +
+                    "init(NDT):= { TRUE , FALSE };\n\n" +
+                    "next(NDT):= case\n" )
+
+            for (tr in (fb.declaration as BasicFBTypeDeclaration).ecc.transitions) {
+
+              //If event conditions
+                if (data.ndtCheck(tr.condition.eventReference.getTarget()?.portTarget!!)){
+                    val source = tr.sourceReference.getTarget()?.name
+                    buf.append("\tQ_smv=${source}_ecc & S_smv=s1_osm : {TRUE,FALSE};\n")
+                }
+            }
+            buf.append("\tTRUE : NDT;\nesac;\n\n")
+        }
+
     }
 
 }

@@ -61,11 +61,12 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     }
 
     private fun basicFBConversion(fb: FBTypeDescriptor) {
+        data?.ndtExists = false
         basicFBConverter?.generateSignature(fb, buf)
         basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
         basicFBConverter?.generateCountersDeclaration(fb, buf)
         basicFBConverter?.generateLocalVariableDefinition(fb, buf)
-    //    basicFBConverter?.generateNonDeterministicVariables(fb, buf) TODO: elaborate question
+        basicFBConverter?.generateNonDeterministicVariables(fb, buf)
         basicFBConverter?.generateECCTransitions(fb, buf)
         basicFBConverter?.generateOSM(fb, buf)
         basicFBConverter?.generateNA(fb, buf)
