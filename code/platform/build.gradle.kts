@@ -13,6 +13,9 @@ dependencies {
 
     implementation(project(":code:language"))
 
+    testImplementation(mpsDistribution())
+    testImplementation(project(":code:library"))
+
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
 }

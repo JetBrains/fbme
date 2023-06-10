@@ -10,13 +10,20 @@ open class PlatformElementsOwner {
     private val elements: MutableMap<SNode, Element?> = HashMap()
     private val adapter: PlatformElementAdapter = MpsBridge.createElementAdapter(this)
 
-    fun <T> getAdapter(node: SNode, requiredClass: Class<T>): T {
-        val adapter: Any? = elements.computeIfAbsent(node) { adapt(it) }
-        if (adapter == null) {
-            elements.remove(node)
-        }
-        return requiredClass.cast(adapter)!!
+    fun getAdapterRaw(node: SNode): Element? {
+        val adapter = elements.computeIfAbsent(node) { adapt(it) }
+        if (adapter == null) elements.remove(node)
+        return adapter
     }
+
+    fun <T> getAdapterNullable(node: SNode?, requiredClass: Class<T>): T? =
+        node?.let { getAdapterRaw(it) }?.let { requiredClass.cast(it) }
+
+    fun <T> getAdapter(node: SNode, requiredClass: Class<T>): T =
+        requiredClass.cast(getAdapterRaw(node))
+
+    inline fun <reified T : Element> adapter(node: SNode) = getAdapterRaw(node) as T
+    inline fun <reified T : Element> adapterOrNull(node: SNode) = getAdapterRaw(node) as? T
 
     private fun adapt(node: SNode): Element? {
         return adapter.adapt(node)

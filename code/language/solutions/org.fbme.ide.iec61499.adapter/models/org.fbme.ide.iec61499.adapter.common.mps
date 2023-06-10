@@ -843,7 +843,7 @@
               <ref role="3cqZAo" node="1IuIrLUoZ2w" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="1hwo9XLDJRa" role="2OqNvi">
-              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
               <node concept="2OqwBi" id="1hwo9XLDK0U" role="37wK5m">
                 <node concept="37vLTw" id="1hwo9XLDJSC" role="2Oq$k0">
                   <ref role="3cqZAo" node="1IuIrLUoZ0z" resolve="myNode" />
@@ -1190,7 +1190,7 @@
               <ref role="3cqZAo" node="3lxP5h46Pyt" resolve="myOwner" />
             </node>
             <node concept="liA8E" id="3lxP5h46SW0" role="2OqNvi">
-              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
               <node concept="37vLTw" id="3lxP5h46SW1" role="37wK5m">
                 <ref role="3cqZAo" node="3lxP5h46SVS" resolve="node" />
               </node>

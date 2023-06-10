@@ -50,7 +50,7 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         }
         val first = model.rootNodes.firstOrNull()
         if (first != null) {
-            return repository.getAdapter(first, PlatformElement::class.java)
+            return repository.adapter<PlatformElement>(first)
         }
         val result = repository.iec61499Factory.createBasicFBTypeDeclaration(null)
         result.name = "EmptyBasicFB"

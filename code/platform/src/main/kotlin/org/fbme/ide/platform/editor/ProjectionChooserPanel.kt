@@ -16,7 +16,7 @@ import java.awt.FlowLayout
 
 class ProjectionChooserPanel(node: SNode, project: Project) : JBPanel<ProjectionChooserPanel>(FlowLayout(FlowLayout.CENTER, 10, 5)) {
 
-    val element = PlatformRepositoryProvider.getInstance(project).getAdapter(node, PlatformElement::class.java)
+    val element = PlatformRepositoryProvider.getInstance(project).adapter<PlatformElement>(node)
 
     init {
         val controllers = EditorProjectionControllerProvider.EP_NAME.extensions

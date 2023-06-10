@@ -32,8 +32,7 @@ class HeaderedNodeEditor(val baseNode: SNode, mpsProject: Project) : BaseNodeEdi
     var projectionComponent: JComponent? = null
         private set
 
-    val baseNodeElement = PlatformRepositoryProvider.getInstance(mpsProject)
-            .getAdapter(baseNode, PlatformElement::class.java)
+    val baseNodeElement = PlatformRepositoryProvider.getInstance(mpsProject).adapter<PlatformElement>(baseNode)
 
     init {
         myVirtualFile = NodeVirtualFileSystem.getInstance().getFileFor(mpsProject.repository, baseNode)
