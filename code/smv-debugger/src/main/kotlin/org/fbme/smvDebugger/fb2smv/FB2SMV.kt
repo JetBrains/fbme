@@ -22,9 +22,9 @@ class FB2SMV: AbstractFBDConverter("smv")  {
         )
 
         data = VerifiersData(typesMap,typesInitValMap,binaryOperationsConvertionMap, NDT
-        ) { ie: EventDeclaration ->
+        ) { ie: EventDeclaration? ->
 
-            if (data?.NON_DETERMINISTIC_VARIABLES_ENABLED == true && ie.name == "NDT"){
+            if (data?.NON_DETERMINISTIC_VARIABLES_ENABLED == true && ie?.name == "NDT"){
                 data?.ndtExists = true
                 true
             }

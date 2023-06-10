@@ -20,7 +20,12 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         var counter = 0
         for (ie in fb.eventInputPorts) {
             counter++
-            buf.append(" event_${ie.name} ")
+            var suf = "event_"
+            if (data.ndtExists && data.ndtCheck(ie.declaration as EventDeclaration)){
+                suf = ""
+            }
+            buf.append(" $suf${ie.name} ")
+
             if (counter != fb.eventInputPorts.size){
                 buf.append("|")
             }
@@ -33,7 +38,13 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             buf.append("(Q_smv=${st.name}_ecc  ")
             val transitions = FBInfoService.getAllTransitionFromState(st, fb)
 
-            val validTransitions = transitions.filter { it.condition.eventReference.getTarget() != null || it.condition.getGuardCondition() != null }
+            val validTransitions = transitions.filter{
+                var localGuards: Expression? = null
+                try{
+                    localGuards =  it.condition.getGuardCondition()
+                } catch(_: Exception){}
+
+                it.condition.eventReference.getTarget() != null || localGuards != null }
 
             if (validTransitions.isNotEmpty()){
                     buf.append(" & ( ") //open TR list
@@ -42,10 +53,19 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
 
                         buf.append(" ( ") //open one transition
                         tr.condition.eventReference.getTarget()?.let {
-                            buf.append("event_" + tr.condition.eventReference.presentation)
+                            var suf = "event_"
+                            if (data.ndtExists && data.ndtCheck(tr.condition.eventReference.getTarget()?.portTarget)){
+                                suf = ""
+                            }
+                            buf.append("$suf" + tr.condition.eventReference.presentation)
                         }
 
-                        tr.condition.getGuardCondition()?.let {
+                        var localGuards: Expression? = null
+                        try{
+                            localGuards =  tr.condition.getGuardCondition()
+                        } catch(e: Exception){}
+
+                        localGuards?.let {
                             if (tr.condition.eventReference.getTarget() != null) {
                                 buf.append(" & ")
                             }
@@ -240,12 +260,20 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             buf.append("\tQ_smv=" + source + "_ecc & S_smv=s1_osm ")
             //If event conditions
             if (tr.condition.eventReference.getTarget() != null) {
-                buf.append("& event_" + tr.condition.eventReference.presentation)
+
+                var suf = "event_"
+                if (data.ndtExists && data.ndtCheck(tr.condition.eventReference.getTarget()?.portTarget)){
+                    suf = ""
+                }
+                buf.append("& $suf" + tr.condition.eventReference.presentation)
             }
             //if condition guards
-            tr.condition.getGuardCondition()?.let {
-                buf.append("& ")
-                guardConditionParsing(it, buf)
+            try {//  TODO  FIX, IT IS VERY BAD
+                tr.condition.getGuardCondition()?.let {
+                    buf.append("& ")
+                    guardConditionParsing(it, buf)
+                }
+            }catch (e: Exception) {
             }
 
             buf.append(" : " + target + "_ecc;\n")
@@ -353,7 +381,8 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             for (tr in (fb.declaration as BasicFBTypeDeclaration).ecc.transitions) {
 
               //If event conditions
-                if (data.ndtCheck(tr.condition.eventReference.getTarget()?.portTarget!!)){
+
+                if (data.ndtCheck(tr.condition.eventReference.getTarget()?.portTarget)){
                     val source = tr.sourceReference.getTarget()?.name
                     buf.append("\tQ_smv=${source}_ecc & S_smv=s1_osm : {TRUE,FALSE};\n")
                 }

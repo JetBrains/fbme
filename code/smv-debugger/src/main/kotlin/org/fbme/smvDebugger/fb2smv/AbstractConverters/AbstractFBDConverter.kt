@@ -86,7 +86,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
         project.modelAccess.runReadAction {
             val file = File(
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
-                            + compositeFb.name + "." + fileExtention)
+                      + "." + fileExtention)
 
             compositeBlockNetworkTraversal(compositeFb)
             mainFunction?.generateMainFunction(compositeFb, buf)

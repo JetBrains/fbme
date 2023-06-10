@@ -2,19 +2,23 @@ package org.fbme.smvDebugger.integration
 
 import org.fbme.smvDebugger.model.Counterexample
 import org.fbme.smvDebugger.model.CounterexampleParser
+import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.pathString
 
 class SmvService(provider: ServicePathProvider) {
     private val fb2SmvService: Fb2SmvService
     private val nuSmvService: NuSmvService
     private val nutracService: NutracService
     private val counterexampleParser: CounterexampleParser
-    fun verify(fbPath: Path?, specification: String): Path? {
+    fun verify(fbPath: Path, specification: String): Path? {
         return try {
-            val smvPath = fb2SmvService.convertFbToSmv(fbPath)
-            val rawCounterexamplePath = nuSmvService.getRawCounterexample(smvPath, specification)
+            //val smvPath = fb2SmvService.convertFbToSmv(fbPath)
+            val smvPath = fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf(".")) + "_ref.smv"
+
+            val rawCounterexamplePath = nuSmvService.getRawCounterexample(File(smvPath).toPath(), specification)
         //    Files.delete(smvPath)
             if (rawCounterexamplePath.isEmpty) {
                 return null

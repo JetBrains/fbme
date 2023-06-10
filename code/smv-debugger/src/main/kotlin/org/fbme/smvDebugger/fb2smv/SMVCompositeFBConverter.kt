@@ -16,7 +16,9 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
         for (fb in fbs) {
             buf.append("VAR  ${fb.name}  : ${fb.type.typeName} (")
             for (ie in fb.type.eventInputPorts) {
-                buf.append("${fb.name}_${ie.name},")
+                if (!(data.ndtExists && data.ndtCheck(ie.declaration as EventDeclaration))){
+                    buf.append("${fb.name}_${ie.name},")
+                }
             }
 
             for (oe in fb.type.eventOutputPorts) {

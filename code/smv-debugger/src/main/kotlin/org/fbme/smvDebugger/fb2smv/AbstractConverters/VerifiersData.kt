@@ -10,7 +10,7 @@ data class VerifiersData(
     val typesInitValMap: Map<ElementaryType, String>,
     val binaryOperationsConvertionMap: Map<BinaryOperation, String>,
     val NON_DETERMINISTIC_VARIABLES_ENABLED: Boolean,
-    val ndtCheck: (EventDeclaration) -> Boolean
+    val ndtCheck: (EventDeclaration?) -> Boolean
 ){
     var ndtExists: Boolean = false
 }

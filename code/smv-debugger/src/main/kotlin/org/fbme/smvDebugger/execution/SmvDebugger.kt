@@ -35,7 +35,7 @@ class SmvDebugger(project: MPSProject) {
                 showExportedConterexample(compositeFb)
             } else {
                fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
-             //  verify(fbPath, compositeFb)
+               verify(fbPath, compositeFb)
                 null
             }
         } catch (e: Exception) {
