@@ -47,21 +47,10 @@ interface FBNetwork : Element {
     companion object {
         @JvmStatic
         fun extractNetwork(declaration: Declaration?): FBNetwork? {
-            if (declaration is CompositeFBTypeDeclaration) {
+            if (declaration is DeclarationWithNetwork) {
                 return declaration.network
             }
-            if (declaration is SubapplicationTypeDeclaration) {
-                return declaration.network
-            }
-            if (declaration is ApplicationDeclaration) {
-                return declaration.network
-            }
-            if (declaration is ResourceDeclaration) {
-                return declaration.network
-            }
-            return if (declaration is ResourceTypeDeclaration) {
-                declaration.network
-            } else null
+            return null
         }
     }
 }

@@ -5,8 +5,8 @@ import org.fbme.lib.iec61499.descriptors.FBType
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork
 
-interface SubapplicationTypeDeclaration : FBInterfaceDeclarationWithAdapters, RootElement {
-    val network: SubappNetwork
+interface SubapplicationTypeDeclaration : FBInterfaceDeclarationWithAdapters, DeclarationWithNetwork, RootElement {
+    override val network: SubappNetwork
     val typeDescriptor: FBTypeDescriptor
         get() = FBType(this)
 }

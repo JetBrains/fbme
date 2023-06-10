@@ -1574,7 +1574,7 @@
                 <ref role="3cqZAo" node="7OBD32I4G3Q" resolve="myRepository" />
               </node>
               <node concept="liA8E" id="407BnQQk8NB" role="2OqNvi">
-                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
                 <node concept="37vLTw" id="407BnQQk8NC" role="37wK5m">
                   <ref role="3cqZAo" node="6kvdbYufHlm" resolve="node" />
                 </node>
@@ -4869,7 +4869,7 @@
                                 <ref role="3cqZAo" node="407BnQQn2MQ" resolve="platformRepo" />
                               </node>
                               <node concept="liA8E" id="407BnQQniuN" role="2OqNvi">
-                                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+                                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
                                 <node concept="37vLTw" id="407BnQQniuO" role="37wK5m">
                                   <ref role="3cqZAo" node="1MVY3kFBrqu" resolve="resolved" />
                                 </node>
@@ -5136,7 +5136,7 @@
                   <ref role="3cqZAo" node="lDifvuxsOe" resolve="repository" />
                 </node>
                 <node concept="liA8E" id="lDifvuxu9X" role="2OqNvi">
-                  <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+                  <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
                   <node concept="30xZXu" id="lDifvuxu9Y" role="37wK5m" />
                   <node concept="3VsKOn" id="lDifvuxu9Z" role="37wK5m">
                     <ref role="3VsUkX" to="cwd8:~DeviceDeclaration" resolve="DeviceDeclaration" />

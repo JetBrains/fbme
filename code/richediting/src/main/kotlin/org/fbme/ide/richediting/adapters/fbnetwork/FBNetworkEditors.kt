@@ -60,9 +60,9 @@ object FBNetworkEditors {
                 val repository: PlatformElementsOwner =
                     PlatformRepositoryProvider.getInstance(context.operationContext.project)
                 val node = extView.associatedNode.parent ?: error("Parameter assignment is null")
-                val parameter = repository.getAdapter(node, ParameterAssignment::class.java)
+                val parameter = repository.adapterOrNull<ParameterAssignment>(node)
                 val cell = RicheditingMpsBridge.createInlineValueCell(context, node)
-                if (parameter.value == null) {
+                if (parameter?.value == null) {
                     val action: CellAction = object : CellAction {
                         override fun getDescriptionText(): String {
                             return "Delete empty constant"
@@ -77,7 +77,7 @@ object FBNetworkEditors {
                         }
 
                         override fun execute(context: EditorContext) {
-                            parameter.remove()
+                            parameter?.remove()
                         }
                     }
                     cell.setAction(CellActionType.DELETE, action)

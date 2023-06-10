@@ -43,14 +43,14 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         val modelName = settings.moduleName
         val ref = PersistenceFacade.getInstance().createModelReference(null, modelId, modelName)
         val header: SModelSimpleHeader = Iec61499ModelHeader(ref, emptyList())
-        val files = File(nxtImportDirectory).listFiles()?.let { listOf(*it) }
+        val files = listOf(*File(nxtImportDirectory).listFiles()!!)
         try {
             readModel(header, files, model)
         } catch (e: ModelLoadException) {
         }
         val first = model.rootNodes.firstOrNull()
         if (first != null) {
-            return repository.getAdapter(first, PlatformElement::class.java)
+            return repository.adapter<PlatformElement>(first)
         }
         val result = repository.iec61499Factory.createBasicFBTypeDeclaration(null)
         result.name = "EmptyBasicFB"
@@ -58,7 +58,7 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
     }
 
     @Throws(ModelLoadException::class)
-    fun readModel(header: SModelSimpleHeader, files: List<File>?, m: SModel?) {
+    fun readModel(header: SModelSimpleHeader, files: List<File>, m: SModel) {
         try {
             for (file in ListSequence.fromList(files)) {
                 try {
