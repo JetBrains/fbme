@@ -14,3 +14,8 @@ toc: false
 * Launch your systems via _4diac FORTE_ runtime.
 * Monitor launched applications and gather their execution logs.
 * Test and analyze your applications by running them on the simulator.
+
+<div class="video-container">
+<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/zq9dkznUdw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
