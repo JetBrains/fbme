@@ -4,7 +4,7 @@ import java.util.*
 
 data class SystemStateUpdate(
     val date: Date?,
-    val info: Array<SystemStateEvent?>) {
+    val info: Array<SystemStateEvent>) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

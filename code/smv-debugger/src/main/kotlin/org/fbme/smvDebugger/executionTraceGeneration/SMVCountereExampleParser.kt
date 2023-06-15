@@ -10,10 +10,11 @@ import kotlin.io.path.pathString
 
 class SMVCountereExampleParser(override var project: MPSProject) : ExecutionTraceParser {
 
-    override fun getUnifiedTrace(arg: String, fbPath: Path, compositeFb: CompositeFBTypeDeclaration) {
+    override fun getUnifiedTrace(arg: String, fbPath: Path, compositeFb: CompositeFBTypeDeclaration): ArrayList<SystemStateUpdate> {
 
         val rawTrace = File(fbPath.pathString).useLines { it.toList() }
         var m: MatchResult? =  null
+        trace.clear()
 
         try {
         for(str in rawTrace){
@@ -47,6 +48,7 @@ class SMVCountereExampleParser(override var project: MPSProject) : ExecutionTrac
         catch (e: Exception) {
             println("HELP")
         }
+        return trace
 
 
     }

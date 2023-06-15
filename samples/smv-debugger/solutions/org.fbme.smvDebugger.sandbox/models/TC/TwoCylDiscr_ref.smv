@@ -652,7 +652,13 @@ next(TwoCylDiscr_inst_beta):= case
 	TRUE : TwoCylDiscr_inst_beta;
 esac;
 
-LTLSPEC F false_var=TRUE
+LTLSPEC G (TwoCylDiscr_inst.HorCTL.EXTEND=TRUE & TwoCylDiscr_inst.VerCTL.EXTEND=TRUE)
+
+
+
+
+
+
 
 
 

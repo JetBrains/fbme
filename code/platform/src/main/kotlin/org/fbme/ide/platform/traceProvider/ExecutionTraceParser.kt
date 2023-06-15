@@ -8,5 +8,5 @@ interface ExecutionTraceParser  {
     var project: MPSProject
     fun getUnifiedTrace(arg : String,
                         fbPath: Path,
-                        compositeFb: CompositeFBTypeDeclaration)
+                        compositeFb: CompositeFBTypeDeclaration): ArrayList<SystemStateUpdate>
 }
