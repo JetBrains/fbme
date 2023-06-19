@@ -15,7 +15,7 @@ import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.fbme.scenes.viewmodel.PositionalCompletionItem
-import java.util.LinkedList
+import java.util.*
 
 object FBCompletionProvider {
     fun getCompletionItems(
@@ -39,35 +39,30 @@ object FBCompletionProvider {
         val allFBTypes = scope.findAllFBTypeDeclarations()
         val existedFBNames = allFBTypes.map { it.name }.toSet()
 
-        val invokeFun: (type: FBTypeDeclaration) -> (String?, Int, Int) -> Unit = { type ->
-            { _: String?, x: Int, y: Int ->
-                val declaration = factory.createFunctionBlockDeclaration(StringIdentifier(type.name))
-                declaration.x = (x / scale).toInt()
-                declaration.y = (y / scale).toInt()
-                declaration.typeReference.setTarget(type)
-                network.functionBlocks.add(declaration)
-            }
+        fun invokeFun(type: FBTypeDeclaration): (String?, Int, Int) -> Unit = { _: String?, x: Int, y: Int ->
+            val declaration = factory.createFunctionBlockDeclaration(StringIdentifier(type.name))
+            declaration.x = (x / scale).toInt()
+            declaration.y = (y / scale).toInt()
+            declaration.typeReference.setTarget(type)
+            network.functionBlocks.add(declaration)
         }
 
-        val createNewType: (
-                type: String,
+        fun createNewType(
+                typeName: String,
                 factory: (name: String, context: EditorContext) -> FBTypeDeclaration
-                ) -> PositionalCompletionItem = {
-                    typeName, factoryFun ->
-            createPositionalCompletionItem(
-                    "New $typeName FB",
-                    "Creates empty $typeName FB"
-            ){
-                parameter: String?, x: Int, y: Int ->
-                val type = createNewCompositeBlock(
-                        project.project,
-                        context,
-                        existedFBNames,
-                        factoryFun
-                ) ?: return@createPositionalCompletionItem
-                invokeFun(type)(parameter, x, y)
-            }
-        }
+        ): PositionalCompletionItem =
+                createPositionalCompletionItem(
+                        "New $typeName FB",
+                        "Creates empty $typeName FB"
+                ) { parameter: String?, x: Int, y: Int ->
+                    val type = createNewCompositeBlock(
+                            project.project,
+                            context,
+                            existedFBNames,
+                            factory
+                    ) ?: return@createPositionalCompletionItem
+                    invokeFun(type)(parameter, x, y)
+                }
 
         allFBTypes.sortedBy { it.name }.forEach { type ->
             result.add(createPositionalCompletionItem(type.name, invokeFun = invokeFun(type)))
