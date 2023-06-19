@@ -16,19 +16,15 @@ class NetworkExtractorAction : AbstractFBEditAction() {
             cell: EditorCell,
             project: MPSProject
     ) {
-        when (val declaration = fbCell.type.declaration) {
-            is CompositeFBTypeDeclaration -> {
-                event.modelAccess.runReadAction {
-                    event.presentation.isEnabled =
-                            declaration.network.functionBlocks.isNotEmpty()
-                                    && declaration.sockets.isEmpty()
-                                    && declaration.plugs.isEmpty()
-                }
-            }
-
-            else -> {
-                notApplicable(event)
-            }
+        val declaration = fbCell.type.declaration
+        if (declaration !is CompositeFBTypeDeclaration) {
+            notApplicable(event)
+            return
+        }
+        event.modelAccess.runReadAction {
+            event.presentation.isEnabled = declaration.network.functionBlocks.isNotEmpty()
+                    && declaration.sockets.isEmpty()
+                    && declaration.plugs.isEmpty()
         }
     }
 
