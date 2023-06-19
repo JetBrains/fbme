@@ -49,19 +49,13 @@ internal class PlatformDeclarationsScope(
         return myRepository.getAdapter(findNode(identifier), FunctionBlockDeclaration::class.java)
     }
 
-    override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> {
-        return myRepository.mpsRepository.modules
-            .flatMap { it.models }
-            .filter {
-                myModel == null ||
-                    myModel.reference == it.reference ||
-                    ModelImports(myModel).importedModels.contains(it.reference)
-            }
-            .flatMap { it.rootNodes }
-            .mapNotNull { myRepository.getAdapter(it, FBTypeDeclaration::class.java) }
-    }
+    override fun findAllFBTypeDeclarations(): List<FBTypeDeclaration> =
+            findAllTypeDeclarations(FBTypeDeclaration::class.java)
 
-    override fun findAllAdapterTypeDeclarations(): List<AdapterTypeDeclaration> {
+    override fun findAllAdapterTypeDeclarations(): List<AdapterTypeDeclaration> =
+            findAllTypeDeclarations(AdapterTypeDeclaration::class.java)
+
+    private fun <T> findAllTypeDeclarations(clazz: Class<T>): List<T> {
         return myRepository.mpsRepository.modules
                 .flatMap { it.models }
                 .filter {
@@ -70,7 +64,7 @@ internal class PlatformDeclarationsScope(
                             ModelImports(myModel).importedModels.contains(it.reference)
                 }
                 .flatMap { it.rootNodes }
-                .mapNotNull { myRepository.getAdapter(it, AdapterTypeDeclaration::class.java) }
+                .mapNotNull { myRepository.getAdapter(it, clazz) }
     }
 
     private fun findNode(identifier: Identifier): SNode? {
