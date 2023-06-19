@@ -16,15 +16,7 @@ class CreateViewAction : AbstractFBEditAction() {
             cell: EditorCell,
             project: MPSProject
     ) {
-        when (fbCell.type.declaration) {
-            is CompositeFBTypeDeclaration -> {
-                event.presentation.isEnabled = false
-            }
-
-            else -> {
-                event.presentation.isEnabled = true
-            }
-        }
+        event.presentation.isEnabled = fbCell.type.declaration !is CompositeFBTypeDeclaration
     }
 
     override fun actionPerformed(event: AnActionEvent) {
