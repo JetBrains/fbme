@@ -260,7 +260,7 @@ class EditableFBTypeCell(
 
     fun addPlugSocketPort(port: FBPortDescriptor, ports: MutableList<Port>, block: EditorCell_Collection, types: List<AdapterTypeDeclaration>, horizontalAlign: CellAlign,
                           padding: StyleAttribute<Padding>) {
-        val typeDeclaration = port.declaration as SocketPluginDeclaration
+        val typeDeclaration = port.declaration as AdapterDeclaration
         val items = types.map {
             object : CompletionItem {
                 override fun getMatchingText(pattern: String?): String = it.name

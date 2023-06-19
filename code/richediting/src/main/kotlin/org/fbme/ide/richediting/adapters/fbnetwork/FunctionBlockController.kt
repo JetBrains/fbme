@@ -26,6 +26,7 @@ import org.fbme.ide.richediting.viewmodel.*
 import org.fbme.lib.iec61499.DeclarationsScope
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.FunctionBlockInstance
 import org.fbme.lib.iec61499.instances.NetworkInstance
@@ -35,6 +36,7 @@ import org.fbme.scenes.cells.button.EditButton
 import org.fbme.scenes.controllers.LayoutUtil.getLineSize
 import org.fbme.scenes.controllers.components.ComponentController
 import org.fbme.scenes.controllers.edited.EditedModel
+import org.fbme.scenes.exceptions.NoEntityException
 import org.jetbrains.mps.openapi.model.SNode
 import java.awt.*
 import java.util.function.Function
@@ -238,15 +240,30 @@ class FunctionBlockController(
 
          if (myPort.target is ParameterDeclaration && source.target is ParameterDeclaration) {
              myPort.target.type = source.target.type
-         } else if (myPort.target is SocketPluginDeclaration && source.target is SocketPluginDeclaration) {
+         } else if (myPort.target is AdapterDeclaration && source.target is AdapterDeclaration) {
              val target = source.target.typeReference.getTarget() ?: return
              myPort.target.typeReference.setTarget(target)
          }
     }
 
     private fun assertMine(port: NetworkPortView): FunctionBlockPortView {
+        if (port is BrokenPortView && port.component == view) {
+            val descriptor = view.findPort(port.declaration!!.name, port.declaration.kind, port.isInput)
+                    ?: throw NoEntityException("Port doesn't belong fb!")
+            return FunctionBlockPortView.create(view, port.declaration, descriptor)
+        }
         require(!(port.component != view || port !is FunctionBlockPortView)) { "invalid port" }
         return port
+    }
+
+    private fun FunctionBlockView.findPort(name: String, kind: EntryKind, isInput: Boolean): FBPortDescriptor? {
+        val ports = when (kind) {
+            EntryKind.EVENT -> this.type.eventInputPorts to this.type.eventOutputPorts
+            EntryKind.DATA -> this.type.dataInputPorts to this.type.dataOutputPorts
+            EntryKind.ADAPTER -> this.type.socketPorts to this.type.plugPorts
+        }
+
+        return (if (isInput) ports.first else ports.second).find { it.name == name }
     }
 
     override fun translateForm(originalForm: Point, dx: Int, dy: Int): Point {

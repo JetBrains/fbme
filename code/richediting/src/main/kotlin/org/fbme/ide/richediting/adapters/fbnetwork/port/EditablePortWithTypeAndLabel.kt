@@ -36,8 +36,6 @@ class EditablePortWithTypeAndLabel(
     ): EditorCell_SceneLabel {
         val typeLabel = object : EditorCell_SceneLabel(context, node, typeName
                 ?: TYPE_DEFAULT_NAME, typeName.isNullOrEmpty()) {
-            override fun setSelected(selected: Boolean) { //do nothing
-            }
         }
 
         //set style

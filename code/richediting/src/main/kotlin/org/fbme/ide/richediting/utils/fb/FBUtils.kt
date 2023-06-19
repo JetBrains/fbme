@@ -103,6 +103,6 @@ object FBUtils {
                 && (a.name == b.name)
                 && (((aDeclaration is EventDeclaration) && (bDeclaration is EventDeclaration))
                 || (aDeclaration is ParameterDeclaration && bDeclaration is ParameterDeclaration && aDeclaration.type == bDeclaration.type)
-                || (aDeclaration is SocketPluginDeclaration && bDeclaration is SocketPluginDeclaration && aDeclaration.typeReference.getTarget() == bDeclaration.typeReference.getTarget()))
+                || (aDeclaration is AdapterDeclaration && bDeclaration is AdapterDeclaration && aDeclaration.typeReference.getTarget() == bDeclaration.typeReference.getTarget()))
     }
 }

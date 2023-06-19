@@ -1,3 +1,3 @@
 package org.fbme.lib.iec61499.declarations
 
-interface PlugDeclaration : SocketPluginDeclaration
+interface PlugDeclaration : AdapterDeclaration
