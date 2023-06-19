@@ -30,7 +30,7 @@ import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.instances.NetworkInstance
-import org.fbme.lib.st.types.DataTypeUtil
+import org.fbme.lib.st.types.DataType
 import org.fbme.scenes.cells.EditorCell_Button
 import org.fbme.scenes.cells.button.PlusButton
 import org.fbme.scenes.viewmodel.CompletionItem
@@ -227,8 +227,8 @@ class EditableFBTypeCell(
         return block
     }
 
-    fun getDataTypeSuggestions(typeDeclaration: ParameterDeclaration): List<CompletionItem> {
-        return DataTypeUtil.getBasicTypes().map {
+    private fun getDataTypeSuggestions(typeDeclaration: ParameterDeclaration): List<CompletionItem> {
+        return DataType.getAllValues().map {
             object : CompletionItem {
                 override fun getMatchingText(pattern: String?): String = it.stringify()
 
