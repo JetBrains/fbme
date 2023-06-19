@@ -190,7 +190,7 @@ class FunctionBlockController(
         when(template.kind) {
             EntryKind.EVENT -> {
                 val list = if (template.isSource) declaration.outputEvents else declaration.inputEvents
-                val identifier = PortActionFactory.IDENTIFIER_FACTORY(name, list.map { it.name }).get()
+                val identifier = PortActionFactory.identifierSupplier(name, list.map { it.name }).get()
                 val nEvent = iec61499Factory.createEventDeclaration(identifier)
                 list.add(nEvent)
                 (fbCell as EditableFBTypeCell).addPort(if (template.isSource) view.type.eventOutputPorts.last() else view.type.eventInputPorts.last())
@@ -198,7 +198,7 @@ class FunctionBlockController(
             }
             EntryKind.DATA -> {
                 val list = if (template.isSource) declaration.outputParameters else declaration.inputParameters
-                val identifier = PortActionFactory.IDENTIFIER_FACTORY(name, list.map { it.name }).get()
+                val identifier = PortActionFactory.identifierSupplier(name, list.map { it.name }).get()
                 val nParameter = iec61499Factory.createParameterDeclaration(identifier)
                 nParameter.type = (source.target as ParameterDeclaration).type
                 list.add(nParameter)
@@ -211,7 +211,7 @@ class FunctionBlockController(
                 }
                 if  (template.isSource) {
                     val list = declaration.plugs
-                    val identifier = PortActionFactory.IDENTIFIER_FACTORY(name, list.map { it.name }).get()
+                    val identifier = PortActionFactory.identifierSupplier(name, list.map { it.name }).get()
                     val nParameter = iec61499Factory.createPlugDeclaration(identifier)
                     val dec = source.target as PlugDeclaration
                     nParameter.typeReference.setTarget(dec.typeReference.getTarget()!!)
@@ -220,7 +220,7 @@ class FunctionBlockController(
                     return FunctionBlockPortView(template.component, list.size - 1, EntryKind.ADAPTER, template.isSource, nParameter)
                 }
                 val list = declaration.sockets
-                val identifier = PortActionFactory.IDENTIFIER_FACTORY(name, list.map { it.name }).get()
+                val identifier = PortActionFactory.identifierSupplier(name, list.map { it.name }).get()
                 val nParameter = iec61499Factory.createSocketDeclaration(identifier)
                 val dec = source.target as SocketDeclaration
                 nParameter.typeReference.setTarget(dec.typeReference.getTarget()!!)
