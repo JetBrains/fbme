@@ -17,7 +17,10 @@ object PortActionFactory {
     fun createInputEventAction(
             declaration: FBInterfaceDeclaration,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Ievent", declaration.inputEvents.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Ievent",
+                    declaration.inputEvents.map { it.name }
+            ),
     ): AddPortAction<EventDeclaration> {
         return AddPortAction(
                 "Add input event port",
@@ -29,7 +32,10 @@ object PortActionFactory {
     fun createOutputEventAction(
             declaration: FBInterfaceDeclaration,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Oevent", declaration.outputEvents.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Oevent",
+                    declaration.outputEvents.map { it.name }
+            ),
     ): AddPortAction<EventDeclaration> {
         return AddPortAction(
                 "Add output event port",
@@ -41,7 +47,10 @@ object PortActionFactory {
     fun createInputParameterAction(
             declaration: FBInterfaceDeclaration,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Idata", declaration.inputParameters.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Idata",
+                    declaration.inputParameters.map { it.name }
+            ),
     ) : AddPortAction<ParameterDeclaration> {
         return AddPortAction(
                 "Add input data port",
@@ -53,7 +62,10 @@ object PortActionFactory {
     fun createOutputParameterAction(
             declaration: FBInterfaceDeclaration,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Odata", declaration.outputParameters.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Odata",
+                    declaration.outputParameters.map { it.name }
+            ),
     ) : AddPortAction<ParameterDeclaration> {
         return AddPortAction(
                 "Add output data port",
@@ -65,7 +77,10 @@ object PortActionFactory {
     fun createSocketAction(
             declaration: FBInterfaceDeclarationWithAdapters,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Socket", declaration.sockets.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Socket",
+                    declaration.sockets.map { it.name }
+            ),
     ) : AddPortAction<SocketDeclaration> {
         return AddPortAction(
                 "Add socket port",
@@ -77,7 +92,10 @@ object PortActionFactory {
     fun createPluginAction(
             declaration: FBInterfaceDeclarationWithAdapters,
             iec61499Factory: IEC61499Factory,
-            identifierFactory: Supplier<Identifier> = IDENTIFIER_FACTORY("Plugin", declaration.plugs.map { it.name }),
+            identifierFactory: Supplier<Identifier> = identifierSupplier(
+                    "Plugin",
+                    declaration.plugs.map { it.name }
+            ),
     ) : AddPortAction<PlugDeclaration> {
         return AddPortAction(
                 "Add plugin port",
@@ -95,7 +113,8 @@ object PortActionFactory {
 
         val ports: MutableList<out Declaration> = when (port.connectionKind) {
             EntryKind.EVENT -> if (port.isInput) fbTypeDeclaration.inputEvents  else fbTypeDeclaration.outputEvents
-            EntryKind.DATA -> if (port.isInput) fbTypeDeclaration.inputParameters else fbTypeDeclaration.outputParameters
+            EntryKind.DATA -> if (port.isInput) fbTypeDeclaration.inputParameters
+            else fbTypeDeclaration.outputParameters
             EntryKind.ADAPTER -> {
                 if (fbTypeDeclaration !is FBInterfaceDeclarationWithAdapters) {
                     return null
@@ -112,15 +131,15 @@ object PortActionFactory {
         return DeletePortAction(port, ports, style)
     }
 
-    val IDENTIFIER_FACTORY: (prefix: String, values: List<String>) -> Supplier<Identifier> = { prefix, names ->
+    fun identifierSupplier(prefix: String, values: List<String>): Supplier<Identifier> {
         var index: Int? = null
 
         val getName: () -> String = {
             "${prefix}${index ?: ""}"
         }
 
-        Supplier {
-            while (names.contains(getName())) {
+        return Supplier {
+            while (values.contains(getName())) {
                 index = (index ?: 0) + 1
             }
 
