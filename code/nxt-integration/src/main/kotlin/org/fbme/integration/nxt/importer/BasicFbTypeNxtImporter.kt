@@ -10,6 +10,7 @@ import org.fbme.lib.iec61499.parser.STConverter.parseExpression
 import org.fbme.lib.iec61499.parser.STConverter.parseStatementListWithDeclarations
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.*
+import org.jetbrains.annotations.NotNull
 
 class BasicFbTypeNxtImporter(arguments: ConverterArguments) : BasicFBTypeConverter(arguments) {
     override fun parseCondition(
@@ -117,6 +118,9 @@ class BasicFbTypeNxtImporter(arguments: ConverterArguments) : BasicFBTypeConvert
             return satisfy
         }
     }
+
+    @NotNull
+    override val stAlgorithmConverter = Companion.stAlgorithmConverter
 
     companion object {
         private val stAlgorithmConverter: StAlgorithmConverter =

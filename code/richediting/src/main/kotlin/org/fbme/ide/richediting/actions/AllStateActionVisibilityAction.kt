@@ -14,8 +14,13 @@ abstract class AllStateActionVisibilityAction : AnAction(), DumbAware {
     abstract val open: Boolean
 
     override fun update(event: AnActionEvent) {
-        event.presentation.isEnabledAndVisible =
-            event.getData(MPSEditorDataKeys.EDITOR_CELL)?.scene != null && event.element<BasicFBTypeDeclaration>() != null
+        if (event.getData(MPSEditorDataKeys.EDITOR_CELL)?.scene == null) {
+            event.presentation.isEnabledAndVisible = false
+            return
+        }
+        event.executeReadAction {
+            event.presentation.isEnabledAndVisible = event.element<BasicFBTypeDeclaration>() != null
+        }
     }
 
     override fun actionPerformed(event: AnActionEvent) {

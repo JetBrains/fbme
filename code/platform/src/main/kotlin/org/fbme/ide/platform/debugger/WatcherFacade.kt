@@ -1,6 +1,7 @@
 package org.fbme.ide.platform.debugger
 
 import com.intellij.openapi.Disposable
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
@@ -23,7 +24,7 @@ class WatcherFacade(project: Project) : Disposable {
     private val watchedValueListeners: MutableMap<WatchableData, MutableSet<WatchedValueListener>> = HashMap()
     private val repository = PlatformRepositoryProvider.getInstance(project.getComponent(MPSProject::class.java))
 
-    private val devicesFacade = project.service<DevicesFacade>()
+    private val devicesFacade get() = ApplicationManager.getApplication().getService(DevicesFacade::class.java)
 
     private val thread: Thread = Thread {
         try {
