@@ -5,7 +5,7 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
-import org.fbme.smvDebugger.executionTraceGeneration.SMVCountereExampleParser
+import org.fbme.smvDebugger.execution.executionTraceGeneration.SMVCountereExampleParser
 import org.fbme.smvDebugger.fb2smv.FB2SMV
 import org.fbme.smvDebugger.fb2smv.SMVFunctionBlockConverter
 import org.fbme.smvDebugger.integration.ServicePathProvider

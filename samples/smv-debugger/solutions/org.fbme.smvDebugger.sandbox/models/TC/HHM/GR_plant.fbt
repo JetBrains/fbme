@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="GR_plant">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+      <Event Name="NDT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="OPEN" Type="BOOL" />
+      <VarDeclaration Name="CLOSE" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1096" y="469" />
+      <ECState Name="INIT" x="1619" y="477">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="OPENNED" x="1616" y="736">
+        <ECAction Output="CNF" Algorithm="OPEN" />
+      </ECState>
+      <ECState Name="CLOSED" x="1596" y="1672">
+        <ECAction Output="CNF" Algorithm="CLOSE" />
+      </ECState>
+      <ECState Name="OPENNING" x="2400" y="1180">
+        <ECAction Output="CNF" Algorithm="moving" />
+      </ECState>
+      <ECState Name="CLOSING" x="716" y="1178">
+        <ECAction Output="CNF" Algorithm="moving" />
+      </ECState>
+      <ECState Name="STOP" x="1596" y="1176">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="OPENNED" x="1617" y="600" Condition="NDT" />
+      <ECTransition Source="CLOSING" Destination="CLOSED" x="1011" y="1533" Condition="NDT" />
+      <ECTransition Source="CLOSED" Destination="OPENNING" x="2104" y="1537" Condition="1" />
+      <ECTransition Source="OPENNING" Destination="OPENNED" x="2132" y="851" Condition="NDT" />
+      <ECTransition Source="OPENNED" Destination="CLOSING" x="1065" y="842" Condition="1" />
+      <ECTransition Source="CLOSING" Destination="STOP" x="1164" y="1057" Condition="1" />
+      <ECTransition Source="STOP" Destination="OPENNING" x="1968" y="1090" Condition="1" />
+      <ECTransition Source="OPENNING" Destination="STOP" x="1965" y="1266" Condition="1" />
+      <ECTransition Source="STOP" Destination="CLOSING" x="1194" y="1293" Condition="1" />
+      <ECTransition Source="INIT" Destination="STOP" x="1872" y="808" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="CLOSED" x="3244" y="1032" Condition="NDT" />
+      <ECTransition Source="START" Destination="INIT" x="1377" y="385" Condition="INIT" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="GRO := FALSE;&amp;#38;#10;GRC := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="OPEN">
+      <ST Text="GRO := TRUE;&amp;#38;#10;GRC := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="moving">
+      <ST Text="GRO := FALSE;&amp;#38;#10;GRC := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CLOSE">
+      <ST Text="GRC := TRUE;&amp;#38;#10;GRO := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="GRO := FALSE;&amp;#38;#10;GRC := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

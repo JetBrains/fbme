@@ -14,7 +14,7 @@
 *** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
 *** Copyright (c) 2007-2010, Niklas Sorensson
 
--- specification  F false_var = TRUE  is false
+-- specification  G (TwoCylDiscr_inst.HorCTL.EXTEND = TRUE & TwoCylDiscr_inst.VerCTL.EXTEND = TRUE)  is false
 -- as demonstrated by the following execution sequence
 Trace Description: LTL Counterexample 
 Trace Type: Counterexample 

@@ -1,4 +1,4 @@
-package org.fbme.smvDebugger.executionTraceGeneration
+package org.fbme.smvDebugger.execution.executionTraceGeneration
 
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.platform.traceProvider.ExecutionTraceParser

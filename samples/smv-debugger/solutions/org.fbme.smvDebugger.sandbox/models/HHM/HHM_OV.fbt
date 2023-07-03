@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="0accf07f-7b62-43ce-bdd3-57d555f8a1ee" Name="HHM_OV" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="17" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="12/07/2022" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="BEHAVIOUR" Type="CMD_bloc" x="3600" y="1080" Namespace="Main" />
+    <FB ID="2" Name="Trigger" Type="ACTUORSbutton" x="2420" y="1660" Namespace="Main" />
+    <FB ID="3" Name="ESTOP" Type="EMGYSTOP" x="2380" y="1020" Namespace="Main" />
+    <FB ID="4" Name="MODE" Type="SELECT_MODE" x="1320" y="1840" Namespace="Main" />
+    <FB ID="5" Name="STbutton" Type="STARTandSTOP" x="1820" y="1140" Namespace="Main" />
+    <FB ID="6" Name="ELcmd" Type="AXE_CMD" x="4920" y="1100" Namespace="Main" />
+    <FB ID="9" UID="7" Name="ELplant" Type="AXE_plant" x="5580" y="1100" Namespace="Main" />
+    <FB ID="10" Name="CRcmd" Type="AXE_CMD" x="4940" y="2140" Namespace="Main" />
+    <FB ID="11" Name="CRplant" Type="AXE_plant" x="5620" y="2140" Namespace="Main" />
+    <FB ID="12" Name="CAcmd" Type="AXE_CMD" x="6680" y="1100" Namespace="Main" />
+    <FB ID="13" Name="CAplant" Type="AXE_plant" x="7340" y="1100" Namespace="Main" />
+    <FB ID="14" Name="GRplant" Type="GR_plant" x="7340" y="2140" Namespace="Main" />
+    <FB ID="15" Name="init" Type="INITswitch" x="1640" y="2460" Namespace="Main" />
+    <FB ID="16" Name="GRcmd" Type="GR_CMD" x="6640" y="2140" Namespace="Main" />
+    <Input Name="INIT" x="600" y="1152" Type="Event" />
+    <Frame Name="FRAME2" X="920" Y="800" Width="3440" Height="2820">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="CMD" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Frame Name="FRAME1" X="1100" Y="920" Width="2100" Height="2580">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="BOARD" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Frame Name="FRAME3" X="4720" Y="920" Width="1380" Height="900">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="ELEVATOR" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Frame Name="FRAME4" X="4720" Y="1960" Width="1400" Height="900">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="CRANE" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Frame Name="FRAME5" X="6460" Y="920" Width="1420" Height="900">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="CART" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Frame Name="FRAME6" X="6480" Y="1980" Width="1400" Height="880">
+      <Parameter Name="BackgroundColor" Value="AliceBlue" />
+      <Parameter Name="TextColor" Value="Black" />
+      <Parameter Name="Font" Value="Microsoft Sans Serif, 10pt" />
+      <Parameter Name="TextAlignment" Value="TopLeft" />
+      <Parameter Name="MoveStyle" Value="AnyContained" />
+      <Parameter Name="Text" Value="GRIPPER" />
+      <Parameter Name="NxtLayerIdentifier" Value="" />
+    </Frame>
+    <Output Name="INITO" x="8300" y="2152" Type="Event" />
+    <EventConnections>
+      <Connection Source="ESTOP.INITO" Destination="BEHAVIOUR.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="ELcmd.INITO" Destination="ELplant.INIT" />
+      <Connection Source="ELcmd.CNF" Destination="ELplant.REQ" />
+      <Connection Source="CRcmd.INITO" Destination="CRplant.INIT" />
+      <Connection Source="CRcmd.CNF" Destination="CRplant.REQ" />
+      <Connection Source="CRplant.CNF" Destination="CRcmd.REQ" dx1="82.25" dx2="120" dy="-180">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="BEHAVIOUR.CNF" Destination="ELcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.CNF" Destination="CRcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAcmd.INITO" Destination="CAplant.INIT" />
+      <Connection Source="CAcmd.CNF" Destination="CAplant.REQ" />
+      <Connection Source="CAplant.CNF" Destination="CAcmd.REQ" dx1="102.25" dx2="120" dy="-180">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELplant.CNF" Destination="ELcmd.REQ" dx1="102.25" dx2="110" dy="-200">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELcmd.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CRcmd.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.CNF" Destination="CAcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAcmd.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="Trigger.INITO" Destination="ESTOP.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="MODE.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="STbutton.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="ESTOP.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="Trigger.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="INIT" Destination="STbutton.INIT" />
+      <Connection Source="STbutton.INITO" Destination="MODE.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="MODE.INITO" Destination="init.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="init.INITO" Destination="Trigger.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="init.CNF" Destination="BEHAVIOUR.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="init.CNF" Destination="CRcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="init.CNF" Destination="ELcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="init.CNF" Destination="CAcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CRcmd.CNF" Destination="init.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="ELcmd.CNF" Destination="init.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAcmd.CNF" Destination="init.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="GRcmd.CNF" Destination="GRplant.REQ" />
+      <Connection Source="GRcmd.INITO" Destination="GRplant.INIT" />
+      <Connection Source="BEHAVIOUR.CNF" Destination="GRcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.INITO" Destination="ELcmd.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="ELplant.INITO" Destination="CRcmd.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CRplant.INITO" Destination="CAcmd.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAplant.INITO" Destination="GRcmd.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="GRplant.INITO" Destination="INITO" />
+      <Connection Source="init.CNF" Destination="GRcmd.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="GRcmd.CNF" Destination="init.REQ">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="MODE.CNF" Destination="Trigger.REQ" dx1="366.375">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="GRplant.CNF" Destination="GRcmd.REQ" dx1="81.5835" dx2="110" dy="-180">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ESTOP.pressed" Destination="BEHAVIOUR.ESTOP" />
+      <Connection Source="STbutton.START" Destination="BEHAVIOUR.START" dx1="732.7917">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="STbutton.STOP" Destination="BEHAVIOUR.STOP" dx1="110" />
+      <Connection Source="Trigger.EL" Destination="BEHAVIOUR.ELtriggered" dx1="252.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Trigger.CR" Destination="BEHAVIOUR.CRtriggered" dx1="252.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Trigger.CA" Destination="BEHAVIOUR.CAtriggered" dx1="252.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Trigger.GR" Destination="BEHAVIOUR.GRtriggered" dx1="252.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELcmd.go" Destination="ELplant.GO" dx1="40" />
+      <Connection Source="BEHAVIOUR.GOEL" Destination="ELcmd.GO">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="BEHAVIOUR.SETEL" Destination="ELcmd.SETPOS_IN">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELplant.PR" Destination="ELcmd.PR" dx1="62.25" dx2="60" dy="280">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELcmd.moving" Destination="BEHAVIOUR.ELM">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ELcmd.pr" Destination="BEHAVIOUR.ELPR">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="CRcmd.go" Destination="CRplant.GO" dx1="40" />
+      <Connection Source="BEHAVIOUR.GOCR" Destination="CRcmd.GO">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.SETCR" Destination="CRcmd.SETPOS_IN">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CRplant.PR" Destination="CRcmd.PR" dx1="40" dx2="60" dy="320">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="CRcmd.pr" Destination="BEHAVIOUR.CRPR">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAcmd.go" Destination="CAplant.GO" dx1="40" />
+      <Connection Source="CAplant.PR" Destination="CAcmd.PR" dx1="40" dx2="70" dy="280">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="CAcmd.pr" Destination="BEHAVIOUR.CAPR">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.GOCA" Destination="CAcmd.GO">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.SETCA" Destination="CAcmd.SETPOS_IN">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="MODE.MODE" Destination="Trigger.MODE" />
+      <Connection Source="init.SystemInited" Destination="BEHAVIOUR.SystemINITED" dx1="1113.75">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="GRcmd.open" Destination="GRplant.OPEN">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="GRcmd.close" Destination="GRplant.CLOSE">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="BEHAVIOUR.OPGR" Destination="GRcmd.OPEN">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="BEHAVIOUR.CLGR" Destination="GRcmd.CLOSE">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="GRplant.GRO" Destination="GRcmd.openned" dx1="40" dx2="100" dy="330">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="GRplant.GRC" Destination="GRcmd.closed" dx1="40" dx2="100" dy="270">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="GRcmd.GRO" Destination="BEHAVIOUR.GRO">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="GRcmd.GRC" Destination="BEHAVIOUR.GRC">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CRcmd.moving" Destination="BEHAVIOUR.CRM">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="CAcmd.moving" Destination="BEHAVIOUR.CAM">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,8 +1,6 @@
-package org.fbme.debugger.executionTraceFactory
+package org.fbme.smvDebugger.executionTraceUnification
 
 import org.fbme.debugger.common.change.OutputEventChange
-import org.fbme.debugger.common.change.StateChange
-import org.fbme.debugger.common.change.TraceChange
 import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.trace.ExecutionTrace

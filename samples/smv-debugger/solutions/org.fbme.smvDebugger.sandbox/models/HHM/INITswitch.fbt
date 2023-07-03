@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="3661b950-4634-4c4d-a4b6-7a25b1e30314" Name="INITswitch" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="18/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="INITswitch" Comment="Normal Execution Request" />
+      <Event Name="REQ">
+        <With Var="ELinited" />
+        <With Var="CRinited" />
+        <With Var="CAinited" />
+        <With Var="GRinited" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="ELinit" />
+        <With Var="SETELinit" />
+        <With Var="CRinit" />
+        <With Var="SETCRinit" />
+        <With Var="CAinit" />
+        <With Var="SETCAinit" />
+        <With Var="GRinit" />
+        <With Var="SystemInited" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ELinited" Type="BOOL" />
+      <VarDeclaration Name="CRinited" Type="BOOL" />
+      <VarDeclaration Name="CAinited" Type="BOOL" />
+      <VarDeclaration Name="GRinited" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ELinit" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="SETELinit" Type="INT" />
+      <VarDeclaration Name="CRinit" Type="BOOL" />
+      <VarDeclaration Name="SETCRinit" Type="INT" />
+      <VarDeclaration Name="CAinit" Type="BOOL" />
+      <VarDeclaration Name="SETCAinit" Type="INT" />
+      <VarDeclaration Name="GRinit" Type="BOOL" />
+      <VarDeclaration Name="SystemInited" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,EL,CR,CA,GR,ALL" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="824.9413" y="797.4118" />
+      <ECState Name="INIT" Comment="Initialization" x="1331.53" y="801.1761">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="ELinit" x="2072" y="836.0001">
+        <ECAction Algorithm="EL" Output="CNF" />
+      </ECState>
+      <ECState Name="CRinit" x="2768" y="832.0001">
+        <ECAction Algorithm="CR" Output="CNF" />
+      </ECState>
+      <ECState Name="CAinit" x="3468" y="832.0001">
+        <ECAction Algorithm="CA" Output="CNF" />
+      </ECState>
+      <ECState Name="GRinit" x="4160" y="844.0001">
+        <ECAction Algorithm="GR" Output="CNF" />
+      </ECState>
+      <ECState Name="SYSTEMinit" x="3704" y="1620">
+        <ECAction Algorithm="ALL" Output="CNF" />
+      </ECState>
+      <ECState Name="STATE1" x="2480" y="1420" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1096.07" y="711.6047">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="262.5079,174.7702,286.2424,174.9486" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="ELinit" Condition="INITswitch" x="1694.46" y="671.0958">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="400.2588,158.8304,445.2551,160.8325" />
+      </ECTransition>
+      <ECTransition Source="ELinit" Destination="CRinit" Condition="ELinited" x="2431.497" y="639.0742">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="586.9202,148.0219,630.2822,147.7246" />
+      </ECTransition>
+      <ECTransition Source="CRinit" Destination="CAinit" Condition="CRinited" x="3108.22" y="648.454">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="754.8442,151.1665,798.099,151.1665" />
+      </ECTransition>
+      <ECTransition Source="CAinit" Destination="GRinit" Condition="CAinited" x="3822.752" y="676.6865">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="936.7535,159.7147,975.3588,160.44" />
+      </ECTransition>
+      <ECTransition Source="GRinit" Destination="SYSTEMinit" Condition="GRinited" x="4147.71" y="1192.306">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1067.203,264.1238,1034.4,325.4135" />
+      </ECTransition>
+      <ECTransition Source="SYSTEMinit" Destination="STATE1" Condition="SystemInited=TRUE" x="2988.802" y="1653.239">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="784.6936,428.0454,702.0189,413.857" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="ELinit" Condition="INITswitch" x="2198.044" y="1081.852">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="558.3044,287.238,530.295,245.9965" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;CAinit:=FALSE;&#xD;&#xA;CRinit:=FALSE;&#xD;&#xA;ELinit:=FALSE;&#xD;&#xA;GRinit:=FALSE;&#xD;&#xA;SystemInited:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="EL">
+      <ST Text=";&#xD;&#xA;ELinit:=TRUE;&#xD;&#xA;SETELinit:=0;&#xD;&#xA;&#xD;&#xA;CAinit:=FALSE;&#xD;&#xA;CRinit:=FALSE;&#xD;&#xA;GRinit:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CR">
+      <ST Text=";&#xD;&#xA;CRinit:=TRUE;&#xD;&#xA;SETCRinit:=0;&#xD;&#xA;&#xD;&#xA;CAinit:=FALSE;&#xD;&#xA;ELinit:=FALSE;&#xD;&#xA;GRinit:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CA">
+      <ST Text=";&#xD;&#xA;CAinit:=TRUE;&#xD;&#xA;SETCAinit:=1;&#xD;&#xA;&#xD;&#xA;CRinit:=FALSE;&#xD;&#xA;ELinit:=FALSE;&#xD;&#xA;GRinit:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="GR">
+      <ST Text=";&#xD;&#xA;GRinit:=TRUE;&#xD;&#xA;&#xD;&#xA;CAinit:=FALSE;&#xD;&#xA;CRinit:=FALSE;&#xD;&#xA;ELinit:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="ALL">
+      <ST Text=";&#xD;&#xA;SystemInited:=TRUE;&#xD;&#xA;CAinit:=FALSE;&#xD;&#xA;CRinit:=FALSE;&#xD;&#xA;ELinit:=FALSE;&#xD;&#xA;GRinit:=FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
