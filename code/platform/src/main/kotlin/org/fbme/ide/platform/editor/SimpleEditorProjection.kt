@@ -29,6 +29,7 @@ open class SimpleEditorProjection(
         get() = ProjectionHeaderInfo(rootElement, subElements, controller.id)
 
     override fun saveState(element: Element) {}
+
     override fun getData(@NonNls string: String): Any? {
         return null
     }

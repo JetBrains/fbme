@@ -12,6 +12,63 @@
   <depends>fbme.richediting</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <mps.LanguageLibrary dir="/languages" />
+    <mps.LanguageLibrary dir="/languages"/>
+    <toolWindow id="Debugger"
+                anchor="bottom"
+                factoryClass="org.fbme.debugger.plugin.DebuggerToolWindowFactory"/>
+    <projectService serviceImplementation="org.fbme.debugger.plugin.DebuggerToolWindow"/>
   </extensions>
+
+  <actions>
+    <group id="debugger.EditorPopupActionGroup">
+
+      <action id="debugger.DisableWatching"
+              class="org.fbme.debugger.plugin.MonitoringAction_DisableWatching"
+              text="Disable Watching for Resource"/>
+      <action id="debugger.EnableWatching"
+              class="org.fbme.debugger.plugin.MonitoringAction_EnableWatching"
+              text="Enable Watching for Resource"/>
+      <action id="debugger.UnwatchECCState"
+              class="org.fbme.debugger.plugin.MonitoringAction_UnwatchECCState"
+              text="Stop Watching for ECC Internal State"/>
+      <action id="debugger.UnwatchFB"
+              class="org.fbme.debugger.plugin.MonitoringAction_UnwatchFB"
+              text="Stop Watching for Function Block"/>
+      <action id="debugger.UnwatchPort"
+              class="org.fbme.debugger.plugin.MonitoringAction_UnwatchPort"
+              text="Stop Watching for Port"/>
+      <action id="debugger.UnwatchSelectedFBs"
+              class="org.fbme.debugger.plugin.MonitoringAction_UnwatchSelectedFBs"
+              text="Stop Watching for Selected Function Blocks"/>
+      <action id="debugger.WatchECCState"
+              class="org.fbme.debugger.plugin.MonitoringAction_WatchECCState"
+              text="Watch for ECC Internal State"/>
+      <action id="debugger.WatchFB"
+              class="org.fbme.debugger.plugin.MonitoringAction_WatchFB"
+              text="Watch for Function Block"/>
+      <action id="debugger.WatchPort"
+              class="org.fbme.debugger.plugin.MonitoringAction_WatchPort"
+              text="Watch for Port"/>
+      <action id="debugger.WatchSelectedFBs"
+              class="org.fbme.debugger.plugin.MonitoringAction_WatchSelectedFBs"
+              text="Watch for Selected Function Blocks"/>
+
+      <separator/>
+
+      <action id="debugger.DeployResource"
+              class="org.fbme.debugger.plugin.DeploymentAction_DeployResource"
+              text="Deploy Resource"/>
+      <action id="debugger.StopResource"
+              class="org.fbme.debugger.plugin.DeploymentAction_StopResource"
+              text="Stop Resource"/>
+
+      <separator/>
+
+      <action id="debugger.SimulateExecution"
+              class="org.fbme.debugger.plugin.SimulateExecutionAction"
+              text="Execute in Simulator"/>
+
+      <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
+    </group>
+  </actions>
 </idea-plugin>
