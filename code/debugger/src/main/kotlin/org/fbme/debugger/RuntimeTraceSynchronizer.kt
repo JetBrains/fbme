@@ -21,7 +21,6 @@ import org.fbme.ide.platform.debugger.WatchableData
 import org.fbme.ide.platform.debugger.WatcherFacade
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
-import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 
 class RuntimeTraceSynchronizer(
     project: Project,

@@ -21,7 +21,6 @@ dependencies {
 }
 
 mps {
-    buildScriptName.set("fbme_platform")
     moduleName.set("org.fbme.platform.lib")
     includeMpsArtifacts(project(":code:language"))
     moduleDependency(project(":code:library"))
