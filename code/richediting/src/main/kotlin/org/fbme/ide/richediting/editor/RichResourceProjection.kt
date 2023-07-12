@@ -6,6 +6,7 @@ import org.fbme.ide.platform.editor.EditorProjectionController
 import org.fbme.ide.platform.editor.HeaderedNodeEditor
 import org.fbme.ide.platform.editor.NavigatableDeclaration
 import org.fbme.ide.platform.editor.SimpleEditorProjection
+import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import org.jdom.Element
@@ -21,16 +22,20 @@ class RichResourceProjection(
         val instance: NetworkInstance,
         project: Project
 ) : SimpleEditorProjection(node, controller, project, name, hints) {
+
+    private val resource = instance.rootInstance.declaration as ResourceDeclaration
+    private val device = resource.container as DeviceDeclaration
+
     override fun getData(@NonNls string: String): Any? = when (string) {
-        RichEditorDataKeys.RESOURCE.name -> instance.rootInstance.declaration
-        RichEditorDataKeys.DEVICE.name -> (instance.rootInstance.declaration as ResourceDeclaration).container
+        RichEditorDataKeys.RESOURCE.name -> resource
+        RichEditorDataKeys.DEVICE.name -> device
         RichEditorDataKeys.NETWORK_INSTANCE.name -> instance
         else -> null
     }
 
     override val subElements: List<NavigatableDeclaration>
         get() = NetworkInstanceNavigationSupport.navigatablePath(project, instance).apply {
-            addFirst(NavigatableDeclaration.build(project, node, "Overview", (instance.rootInstance.declaration as ResourceDeclaration).container.name))
+            addFirst(NavigatableDeclaration.build(project, node, "Overview", device.name))
         }
     override val rootElement: NavigatableDeclaration
         get() = NavigatableDeclaration.build(project, node, "Overview", "Overview")

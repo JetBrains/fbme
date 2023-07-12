@@ -19,18 +19,11 @@ dependencies {
     compileOnly(project(":code:library"))
     compileOnly(project(":code:language"))
     compileOnly(project(":code:platform"))
+    compileOnly(project(":code:scenes"))
     compileOnly(project(":code:richediting"))
-
-//    implementation(compose.desktop.currentOs)
-
-    mpsImplementation(project(":code:library", "mps"))
-    mpsImplementation(project(":code:language", "mps"))
-    mpsImplementation(project(":code:platform", "mps"))
-    mpsImplementation(project(":code:richediting", "mps"))
 }
 
 mps {
-    buildScriptName.set("fbme_debugger")
     moduleName.set("org.fbme.debugger.lib")
 
     moduleDependency(project(":code:library"))

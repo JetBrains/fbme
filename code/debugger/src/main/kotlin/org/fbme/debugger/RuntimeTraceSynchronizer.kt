@@ -7,6 +7,7 @@ import org.fbme.debugger.common.resolveFB
 import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.trace.ExecutionTrace
+import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.typeOfParameter
 import org.fbme.debugger.common.value.Value
 import org.fbme.debugger.common.valueOfParameter
@@ -28,6 +29,12 @@ class RuntimeTraceSynchronizer(
     private val resourceDeclaration: ResourceDeclaration,
     private val trace: ExecutionTrace,
 ) {
+    inner class TraceNode(
+        val traceSegment: List<TraceItem>,
+        val simulator: ResourceSimulator,
+        val parent: TraceNode? = null
+    )
+
     private val watcherFacade = project.service<WatcherFacade>()
     private val readWatchesRequests = mutableListOf<Map<WatchableData, String>>()
 
@@ -72,76 +79,97 @@ class RuntimeTraceSynchronizer(
     }
 
     private fun processReadWatchesRequests() {
-        var currentStateIndex = 0
-        var curSimulator: ResourceSimulator? = null
+        initPorts()
 
-        for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
-            for (parameter in functionBlock.parameters) {
-                val portName = parameter.parameterReference.getTarget()!!.name
-                val value = Value.fromSTLiteral(parameter.value!!)
-                val fbState = (trace[currentStateIndex].state as ResourceState).children[functionBlock.name]!!
-                fbState.inputVariables[portName] = value
-            }
-        }
+        val initialState = trace.items.last().state as ResourceState
 
-        requestsLoop@ for (watches in readWatchesRequests) {
+        val startNode = TraceNode(
+            traceSegment = listOf(trace.items.last()),
+            simulator = ResourceSimulator(resourceDeclaration, initialState)
+        )
+
+        var prevState = initialState
+
+        var candidates = listOf(startNode)
+
+        requestsLoop@ for ((watchesIndex, watches) in readWatchesRequests.withIndex()) {
             val newWatches = watches.mapKeys { it.key.resolve(repository) }
 
-            for (i in currentStateIndex + 1 until trace.size) {
-                if (getChanges(trace[i].state as ResourceState, newWatches).isEmpty()) {
-                    currentStateIndex = i
-                    continue@requestsLoop
-                }
-            }
-            currentStateIndex = trace.size - 1
-
-            val changes = getChanges(trace[currentStateIndex].state as ResourceState, newWatches)
+            val changes = getChanges(prevState, newWatches)
             if (changes.isEmpty()) {
                 continue@requestsLoop
             }
 
-            val currentState = trace[currentStateIndex].state as ResourceState
-
-            for ((path, _) in changes) {
+            val serviceOutputEventChanges = changes.filter { (path, _) ->
+                val fbType = resourceDeclaration.resolvePath(path.dropLast(1))
                 val portName = path.last()
-                val fbPath = path.dropLast(1)
-                val fbState = currentState.resolveFB(fbPath)
-                val typeOfParameter = fbState.typeOfParameter(portName) ?: error("parameter not found")
+                fbType is ServiceInterfaceFBTypeDeclaration && portName in fbType.outputEvents.map { it.name }
+                    || fbType.name == "E_CYCLE" && portName == "EO" // TODO: handle these cases more generic way
+            }
 
-                val newState = currentState.copy()
-
-                val resourceSimulator = ResourceSimulator(
-                    resourceDeclaration,
-                    newState,
-                )
-                val traceSegment = resourceSimulator.trace
-                if (curSimulator != null) {
-                    resourceSimulator.applyContext(curSimulator)
-                }
-                val fbSimulator = resourceSimulator.resolveSimulator(fbPath) as FBSimulator
-
-                when (typeOfParameter) {
-                    "Input Event", "Output Event" -> {
-                        fbSimulator.triggerEvent(portName)
-                        for ((index, traceItem) in traceSegment.drop(1).withIndex()) {
-                            val changesOnSegment = getChanges(traceItem.state as ResourceState, newWatches)
-                            if (changesOnSegment.isEmpty()) {
-                                traceItem.synced = true
-                                currentStateIndex += index + 1
-                                trace.addAll(traceSegment.drop(1))
-                                curSimulator = resourceSimulator
-                                continue@requestsLoop
-                            }
+            if (serviceOutputEventChanges.isNotEmpty()) {
+                val serviceEventPermutations = serviceOutputEventChanges.toList().permutations()
+                val newCandidates = mutableListOf<TraceNode>()
+                candidatesLoop@ for (candidate in candidates) {
+                    val traceSegment = candidate.traceSegment
+                    for (permutation in serviceEventPermutations) {
+                        val simulator = ResourceSimulator(resourceDeclaration, candidate.simulator.state.copy()).also {
+                            it.applyContext(candidate.simulator)
                         }
+                        for ((serviceEventPath, _) in permutation) {
+                            val fbSimulator = simulator.resolveSimulator(serviceEventPath.dropLast(1)) as FBSimulator
+                            fbSimulator.triggerEvent(serviceEventPath.last())
+                        }
+                        newCandidates += TraceNode(
+                            traceSegment = traceSegment + simulator.trace.items.drop(1),
+                            simulator = simulator,
+                            parent = candidate.parent
+                        )
                     }
-
-                    // Skip everything except event triggers
-                    "Input Variable", "Output Variable", "Internal Variable", "ECC State" -> {
-                        // skip
-                    }
-
-                    else -> error("unknown type")
                 }
+                candidates = newCandidates
+            }
+
+            val newCandidates = mutableListOf<TraceNode>()
+            candidatesLoop@ for (candidate in candidates) {
+                val traceSegment = candidate.traceSegment
+                tailSearchLoop@ for ((itemIndex, traceItem) in traceSegment.withIndex()) {
+                    val itemChanges = getChanges(traceItem.state as ResourceState, newWatches)
+                    if (itemChanges.isEmpty()) {
+                        prevState = traceItem.state
+                        newCandidates += TraceNode(
+                            traceSegment = traceSegment.takeLast(traceSegment.size - itemIndex),
+                            simulator = candidate.simulator,
+                            parent = TraceNode(
+                                traceSegment = traceSegment.take(itemIndex),
+                                simulator = candidate.simulator,
+                                parent = candidate.parent
+                            )
+                        )
+                        break@tailSearchLoop
+                    }
+                }
+            }
+            candidates = newCandidates
+        }
+
+        var cur: TraceNode? = candidates.first()
+        val result = mutableListOf<TraceItem>()
+        while (cur != null) {
+            result += cur.traceSegment.reversed()
+            cur = cur.parent
+        }
+        trace.addAll(result.reversed().drop(1))
+    }
+
+    private fun initPorts() {
+        for (functionBlock in resourceDeclaration.allFunctionBlocks()) {
+            for (parameter in functionBlock.parameters) {
+                val portName = parameter.parameterReference.getTarget()!!.name
+                val valueAsLiteral = parameter.value ?: continue
+                val value = Value.fromSTLiteral(valueAsLiteral)
+                val fbState = (trace.first().state as ResourceState).children[functionBlock.name]!!
+                fbState.inputVariables[portName] = value
             }
         }
     }

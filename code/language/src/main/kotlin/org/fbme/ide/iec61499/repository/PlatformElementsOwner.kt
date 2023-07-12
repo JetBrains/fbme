@@ -1,5 +1,6 @@
 package org.fbme.ide.iec61499.repository
 
+import com.intellij.util.castSafelyTo
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.st.STFactory
@@ -17,7 +18,9 @@ open class PlatformElementsOwner {
     }
 
     fun <T> getAdapterNullable(node: SNode?, requiredClass: Class<T>): T? =
-        node?.let { getAdapterRaw(it) }?.let { requiredClass.cast(it) }
+        node?.let { getAdapterRaw(it) }
+            ?.takeIf { requiredClass.isInstance(it) }
+            ?.let { requiredClass.cast(it) }
 
     fun <T> getAdapter(node: SNode, requiredClass: Class<T>): T =
         requiredClass.cast(getAdapterRaw(node))
