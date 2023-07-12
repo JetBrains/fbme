@@ -7,8 +7,8 @@ import kotlin.random.Random
 class FbNetworkConverter(
     fbdInfo: FbdInfo,
     converterArguments: ConverterArguments,
-    startEvent: String = "REQ",
-    endEvent: String? = "CNF"
+    private val startEvent: String = "REQ",
+    private val endEvent: String? = "CNF"
 ) : ConverterBase(converterArguments) {
 
     private val networkEventConverter =
@@ -137,8 +137,10 @@ class FbNetworkConverter(
             val varName = outputVariables[i]
             endpointCoordinates[varName] = createEndpointCoordinate(varName, 500 + (blocksNumber + 3) * 500, 100 * (i + 1))
         }
-        endpointCoordinates["REQ"] = createEndpointCoordinate("REQ", 0, 0)
-        endpointCoordinates["CNF"] = createEndpointCoordinate("CNF", 500 + (blocksNumber + 3) * 500, 0)
+        if (startEvent == "REQ")
+            endpointCoordinates["REQ"] = createEndpointCoordinate("REQ", 0, 0)
+        if (endEvent == "CNF")
+            endpointCoordinates["CNF"] = createEndpointCoordinate("CNF", 500 + (blocksNumber + 3) * 500, 0)
         return endpointCoordinates
     }
 
