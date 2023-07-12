@@ -4,7 +4,7 @@ import java.util.*
 
 data class SystemStateUpdate(
     val date: Date?,
-    val info: Array<SystemStateEvent>) {
+    val info: ArrayList<SystemStateEvent>) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -13,16 +13,14 @@ data class SystemStateUpdate(
         other as SystemStateUpdate
 
         if (date != other.date) return false
-        if (!info.contentEquals(other.info)) return false
+        if (info != other.info) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = date?.hashCode() ?: 0
-        result = 31 * result + info.contentHashCode()
+        result = 31 * result + info.hashCode()
         return result
     }
-
-
 }

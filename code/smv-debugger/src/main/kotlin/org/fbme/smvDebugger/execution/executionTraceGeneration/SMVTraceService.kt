@@ -7,12 +7,14 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.smvDebugger.fb2smv.FB2SMV
 import org.fbme.smvDebugger.integration.ServicePathProvider
 import org.fbme.smvDebugger.integration.SmvService
+import java.io.File
 import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import javax.swing.JOptionPane
+import kotlin.io.path.pathString
 
 
 class SMVTraceService(val project: Project) {
@@ -40,6 +42,7 @@ class SMVTraceService(val project: Project) {
                 return CompletableFuture.supplyAsync(null)
             }
             else{
+              //  val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf(".")) + "_ref_TMP.nutrac").toPath()
                 val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
                 val rez = CompletableFuture.supplyAsync{ trace }
                 return rez

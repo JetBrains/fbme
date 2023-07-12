@@ -11,37 +11,46 @@
     </EventOutputs>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="HorCTL" Type="CylControl" x="2970" y="10" />
+    <FB Name="HorCTL" Type="CylControl" x="2970" y="16" />
     <FB Name="VerCTL" Type="CylControl" x="4130" y="463" />
-    <FB Name="Button" Type="ButtonDs" x="290" y="116" />
+    <FB Name="Button" Type="ButtonDs" x="290" y="119" />
     <FB Name="HorCyl" Type="LinearDA" x="1263" y="13" />
     <FB Name="VerCyl" Type="LinearDA" x="2050" y="463" />
     <DataConnections>
       <Connection Source="HorCyl.HOME" Destination="HorCTL.Retracted" dx1="914" />
-      <Connection Source="HorCyl.END" Destination="HorCTL.Extended" dx1="100" />
-      <Connection Source="Button.Pressed" Destination="HorCTL.START" dx1="1620" />
-      <Connection Source="HorCTL.EXTEND" Destination="HorCyl.FWD" dy="150" dx2="100" dx1="77" />
-      <Connection Source="HorCTL.RETRACT" Destination="HorCyl.BACK" dy="-333" dx2="50" dx1="120" />
+      <Connection Source="HorCyl.END" Destination="HorCTL.Extended" dx1="103" />
+      <Connection Source="Button.Pressed" Destination="HorCTL.START" dx1="1624" />
+      <Connection Source="HorCTL.EXTEND" Destination="HorCyl.FWD" dy="-290" dx2="100" dx1="150" />
+      <Connection Source="HorCTL.RETRACT" Destination="HorCyl.BACK" dy="106" dx2="74" dx1="50" />
       <Connection Source="VerCyl.HOME" Destination="VerCTL.Retracted" dx1="77" />
       <Connection Source="VerCyl.END" Destination="VerCTL.Extended" dx1="126" />
-      <Connection Source="VerCTL.RETRACT" Destination="VerCyl.BACK" dy="107" dx2="100" dx1="50" />
-      <Connection Source="VerCTL.EXTEND" Destination="VerCyl.FWD" dy="159" dx2="150" dx1="100" />
-      <Connection Source="Button.Pressed" Destination="VerCTL.START" dx1="553" />
+      <Connection Source="VerCTL.RETRACT" Destination="VerCyl.BACK" dy="110" dx2="100" dx1="73" />
+      <Connection Source="VerCTL.EXTEND" Destination="VerCyl.FWD" dy="156" dx2="150" dx1="77" />
+      <Connection Source="Button.Pressed" Destination="VerCTL.START" dy="450" dx2="256" dx1="50" />
     </DataConnections>
     <EventConnections>
-      <Connection Source="Button.INITO" Destination="HorCyl.INIT" dx1="100" />
+      <Connection Source="Button.INITO" Destination="HorCyl.INIT" dx1="103" />
       <Connection Source="HorCyl.INITO" Destination="VerCyl.INIT" dx1="77" />
-      <Connection Source="VerCyl.INITO" Destination="HorCTL.INIT" dx1="70" />
-      <Connection Source="HorCTL.CNF" Destination="HorCyl.REQ" dy="303" dx2="120" dx1="180" />
-      <Connection Source="HorCyl.CHG" Destination="HorCTL.REQ" />
+      <Connection Source="VerCyl.INITO" Destination="HorCTL.INIT" dx1="73" />
+      <Connection Source="HorCTL.CNF" Destination="HorCyl.REQ" dy="309" dx2="126" dx1="180" />
+      <Connection Source="HorCyl.CHG" Destination="HorCTL.REQ" dy="-139" dx2="267" dx1="150" />
       <Connection Source="VerCyl.CHG" Destination="VerCTL.REQ" dy="-141" dx2="310" dx1="153" />
-      <Connection Source="HorCTL.INITO" Destination="VerCTL.INIT" dx1="150" />
+      <Connection Source="HorCTL.INITO" Destination="VerCTL.INIT" dx1="154" />
       <Connection Source="VerCTL.CNF" Destination="VerCyl.REQ" dy="309" dx2="177" dx1="207" />
-      <Connection Source="Button.CHG" Destination="VerCTL.REQ" dx1="1233" />
-      <Connection Source="INIT" Destination="Button.INIT" dx1="143" />
+      <Connection Source="Button.CHG" Destination="VerCTL.REQ" dy="203" dx2="310" dx1="183" />
+      <Connection Source="INIT" Destination="Button.INIT" />
       <Connection Source="VerCTL.INITO" Destination="INITO" />
-      <Connection Source="Button.CHG" Destination="HorCTL.REQ" dx1="940" />
-      <Connection Source="VerCTL.INITO" Destination="Button.REQ" dy="-539" dx2="153" dx1="100" />
+      <Connection Source="Button.CHG" Destination="HorCTL.REQ" dy="-239" dx2="333" dx1="260">
+        <BendPoints>
+          <BendPoint x="1023" y="243" />
+          <BendPoint x="1023" y="0" />
+          <BendPoint x="1833" y="0" />
+          <BendPoint x="1833" y="0" />
+          <BendPoint x="2630" y="0" />
+          <BendPoint x="2630" y="140" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="VerCTL.INITO" Destination="Button.REQ" dy="-540" dx2="154" dx1="103" />
     </EventConnections>
     <EndpointCoordinate Name="INITO" x="4993" y="513" />
     <EndpointCoordinate Name="INIT" x="-190" y="170" />
