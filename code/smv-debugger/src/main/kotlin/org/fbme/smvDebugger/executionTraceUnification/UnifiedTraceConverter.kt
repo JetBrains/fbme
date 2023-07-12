@@ -24,13 +24,16 @@ object UnifiedTraceConverter {
                 for (step in e.functionBlockID){
                     tmpState = (initState as? CompositeFBState)?.children?.get(step) //
                     if( null == tmpState && initState?.outputEvents?.get(e.trace[0]) != null){ // event found - we dont have children and event in outputEvents
-                        initState.outputEvents[e.trace[0]] = 1
+                        val curr = initState.outputEvents[e.trace[0]]
+                        if (curr != null) {
+                            initState.outputEvents[e.trace[0]] = curr + 1
+                        }
                         break
                     }
                     initState = tmpState
                 }
 
-                TraceItem(newState, e.trace.asList(), tc)
+                TraceItem(newState, e.functionBlockID, tc)
             } else{
                 null
             }

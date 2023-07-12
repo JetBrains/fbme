@@ -83,7 +83,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
         fbPath: Path, compositeFb: CompositeFBTypeDeclaration,
         project: MPSProject
     ): Path? {
-        project.modelAccess.runReadAction {
+       project.modelAccess.runReadAction {
             val file = File(
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
                       + "." + fileExtention)
@@ -92,7 +92,7 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
             mainFunction?.generateMainFunction(compositeFb, buf)
             file.writeText(buf.toString())
             buf.clear()
-        }
+       }
         return null
     }
 

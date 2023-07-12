@@ -33,15 +33,15 @@ class SMVTraceService(val project: Project) {
       //  executor.submit {
 
             fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
-            val specification = specification
+            val specification = ""//specification
             val counterexample = smvService.verify(fbPath, specification)
             if (counterexample == null) {
                 notifySuccess()
                 return CompletableFuture.supplyAsync(null)
             }
             else{
-                val rez = CompletableFuture.supplyAsync{
-                    unifiedParser.getUnifiedTrace("", counterexample, compositeFb) }
+                val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
+                val rez = CompletableFuture.supplyAsync{ trace }
                 return rez
             }
       //  }

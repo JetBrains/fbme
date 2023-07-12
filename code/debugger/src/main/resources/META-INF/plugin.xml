@@ -19,6 +19,13 @@
     <projectService serviceImplementation="org.fbme.debugger.plugin.DebuggerToolWindow"/>
   </extensions>
 
+  <extensionPoints>
+    <extensionPoint
+            name="traceFactory"
+            interface="org.fbme.debugger.executionTraceFactory.TraceFactory"/>
+  </extensionPoints>
+
+
   <actions>
     <group id="debugger.EditorPopupActionGroup">
 
