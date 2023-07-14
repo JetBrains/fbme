@@ -29,26 +29,27 @@ class SMVTraceService(val project: Project) {
         fbPath: Path,
         compositeFb: CompositeFBTypeDeclaration,
         agr: ArrayList<String>): Future<ArrayList<SystemStateUpdate>> {
-        //val future = CompletableFuture<ArrayList<SystemStateUpdate>>()
 
+        // TODO() this is only for FOR HHM_FV
+        val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("\\")) + "\\execution_trace.txt").toPath()
+        val trace= unifiedParser.getUnifiedTrace("", tmpTrace, compositeFb)
+        val rez = CompletableFuture.supplyAsync{ trace }
+        return rez
 
-      //  executor.submit {
+//            fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
+//            val specification = ""//specification
+//            val counterexample = smvService.verify(fbPath, specification)
+//            if (counterexample == null) {
+//                notifySuccess()
+//                return CompletableFuture.supplyAsync(null)
+//            }
+//            else{
+//              //  val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf(".")) + "_ref_TMP.nutrac").toPath()
+//                val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
+//                val rez = CompletableFuture.supplyAsync{ trace }
+//                return rez
+//            }
 
-            fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
-            val specification = ""//specification
-            val counterexample = smvService.verify(fbPath, specification)
-            if (counterexample == null) {
-                notifySuccess()
-                return CompletableFuture.supplyAsync(null)
-            }
-            else{
-              //  val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf(".")) + "_ref_TMP.nutrac").toPath()
-                val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
-                val rez = CompletableFuture.supplyAsync{ trace }
-                return rez
-            }
-      //  }
-       // return future
     }
 
     companion object {

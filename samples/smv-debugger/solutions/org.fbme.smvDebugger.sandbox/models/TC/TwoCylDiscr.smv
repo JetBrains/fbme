@@ -520,16 +520,10 @@ ASSIGN
 
 -- generateInternalEventConnections
 
-next(VerCyl_INIT):= case
-	(HorCyl_INITO) : TRUE;
-	(VerCyl.event_INIT_reset) : FALSE;
-	TRUE : VerCyl_INIT;
-esac;
-
-next(HorCTL_INIT):= case
-	(VerCyl_INITO) : TRUE;
-	(HorCTL.event_INIT_reset) : FALSE;
-	TRUE : HorCTL_INIT;
+next(HorCyl_INIT):= case
+	(Button_INITO) : TRUE;
+	(HorCyl.event_INIT_reset) : FALSE;
+	TRUE : HorCyl_INIT;
 esac;
 
 next(HorCyl_REQ):= case
@@ -538,16 +532,10 @@ next(HorCyl_REQ):= case
 	TRUE : HorCyl_REQ;
 esac;
 
-next(VerCTL_INIT):= case
-	(HorCTL_INITO) : TRUE;
-	(VerCTL.event_INIT_reset) : FALSE;
-	TRUE : VerCTL_INIT;
-esac;
-
-next(HorCTL_REQ):= case
-	(HorCyl_CHG | Button_CHG) : TRUE;
-	(HorCTL.event_REQ_reset) : FALSE;
-	TRUE : HorCTL_REQ;
+next(VerCyl_INIT):= case
+	(HorCyl_INITO) : TRUE;
+	(VerCyl.event_INIT_reset) : FALSE;
+	TRUE : VerCyl_INIT;
 esac;
 
 next(VerCyl_REQ):= case
@@ -556,16 +544,10 @@ next(VerCyl_REQ):= case
 	TRUE : VerCyl_REQ;
 esac;
 
-next(Button_REQ):= case
-	(VerCTL_INITO) : TRUE;
-	(Button.event_REQ_reset) : FALSE;
-	TRUE : Button_REQ;
-esac;
-
-next(HorCyl_INIT):= case
-	(Button_INITO) : TRUE;
-	(HorCyl.event_INIT_reset) : FALSE;
-	TRUE : HorCyl_INIT;
+next(HorCTL_INIT):= case
+	(VerCyl_INITO) : TRUE;
+	(HorCTL.event_INIT_reset) : FALSE;
+	TRUE : HorCTL_INIT;
 esac;
 
 next(VerCTL_REQ):= case
@@ -574,19 +556,37 @@ next(VerCTL_REQ):= case
 	TRUE : VerCTL_REQ;
 esac;
 
+next(HorCTL_REQ):= case
+	(HorCyl_CHG | Button_CHG) : TRUE;
+	(HorCTL.event_REQ_reset) : FALSE;
+	TRUE : HorCTL_REQ;
+esac;
+
+next(VerCTL_INIT):= case
+	(HorCTL_INITO) : TRUE;
+	(VerCTL.event_INIT_reset) : FALSE;
+	TRUE : VerCTL_INIT;
+esac;
+
 next(Button_INIT):= case
 	((event_INIT & alpha)) : TRUE;
 	(Button.event_INIT_reset) : FALSE;
 	TRUE : Button_INIT;
 esac;
 
+next(Button_REQ):= case
+	(VerCTL_INITO) : TRUE;
+	(Button.event_REQ_reset) : FALSE;
+	TRUE : Button_REQ;
+esac;
+
 DEFINE event_INITO_set:= (VerCTL_INITO );
 DEFINE event_INIT_reset:= alpha;
 DEFINE ExistsInputEvent :=  event_INIT ;
 
-DEFINE omega:= !(HorCyl_CHG | HorCTL_INITO | VerCTL_CNF | VerCyl_CHG | HorCyl_INITO | HorCTL_CNF | VerCTL_INITO | VerCyl_INITO | Button_INITO | Button_CHG);
+DEFINE omega:= !(HorCTL_CNF | Button_INITO | VerCyl_INITO | HorCyl_INITO | HorCyl_CHG | HorCTL_INITO | VerCyl_CHG | Button_CHG | VerCTL_INITO | VerCTL_CNF);
 
-DEFINE phi:= (!ExistsInputEvent) & (!(VerCyl_INIT | HorCTL_INIT | HorCyl_REQ | VerCTL_INIT | HorCTL_REQ | VerCyl_REQ | Button_REQ | HorCyl_INIT | VerCTL_REQ | Button_INIT | HorCyl_CHG | HorCTL_INITO | VerCTL_CNF | VerCyl_CHG | HorCyl_INITO | HorCTL_CNF | VerCTL_INITO | VerCyl_INITO | Button_INITO | Button_CHG ));
+DEFINE phi:= (!ExistsInputEvent) & (!(HorCyl_INIT | HorCyl_REQ | VerCyl_INIT | VerCyl_REQ | HorCTL_INIT | VerCTL_REQ | HorCTL_REQ | VerCTL_INIT | Button_INIT | Button_REQ | HorCTL_CNF | Button_INITO | VerCyl_INITO | HorCyl_INITO | HorCyl_CHG | HorCTL_INITO | VerCyl_CHG | Button_CHG | VerCTL_INITO | VerCTL_CNF ));
 FAIRNESS (alpha)
 FAIRNESS (beta)
 

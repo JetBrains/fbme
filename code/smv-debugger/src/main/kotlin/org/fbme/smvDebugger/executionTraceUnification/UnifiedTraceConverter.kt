@@ -8,6 +8,7 @@ import org.fbme.debugger.common.state.CompositeFBState
 import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
+import org.fbme.debugger.common.value.BooleanValue
 import org.fbme.ide.platform.traceProvider.SystemStateEvent
 import org.fbme.ide.platform.traceProvider.SystemStateEventType
 import org.fbme.ide.platform.traceProvider.SystemStateUpdate
@@ -65,14 +66,40 @@ IF trace ends
 
                 for (step in e.functionBlockID) {
                     tmpState = (initState as? CompositeFBState)?.children?.get(step) //
-                    if (null == tmpState && initState.inputVariables[e.trace[0]] != null) { // event found - we dont have children and event in outputEvents
-                        val curr = initState.inputVariables[e.trace[0]]
-                        if (curr != null) {
-                           // initState.inputVariables[e.trace[0]] = Value(e.trace[1])
+
+                    if (null != tmpState){
+                        if (tmpState!!.inputVariables[e.trace[0]] != null && (e.functionBlockID.last() == step)){
+                            val newValue = e.trace.last().toBoolean()
+                            tmpState!!.inputVariables[e.trace[0]] = BooleanValue(newValue)
+                            break
+                        } else if (tmpState!!.inputVariables[e.trace[0]] != null && (e.functionBlockID.last() != step)){
+                            initState= tmpState as FBState
                         }
                     }
                 }
             },
+
+
+            SystemStateEventType.VO_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+
+                var initState: FBState = state
+                var tmpState: FBState?
+
+                for (step in e.functionBlockID) {
+                    tmpState = (initState as? CompositeFBState)?.children?.get(step) //
+
+                    if (null != tmpState){
+                        if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() == step)){
+                            val newValue = e.trace.last().toBoolean()
+                            tmpState!!.outputVariables[e.trace[0]] = BooleanValue(newValue)
+                            break
+                        } else if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() != step)){
+                            initState= tmpState as FBState
+                        }
+                    }
+                }
+            },
+
 
             SystemStateEventType.Q_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
                 StateChange(e.trace[0])
