@@ -32,6 +32,8 @@
       <concept id="2377145822810446368" name="org.fbme.ide.st.lang.structure.DataTypeDeclaration" flags="ng" index="3r5GIB">
         <child id="2377145822810763976" name="spec" index="3r3idf" />
       </concept>
+      <concept id="2377145822815795417" name="org.fbme.ide.st.lang.structure.AnyRealType" flags="ng" index="3sK6_u" />
+      <concept id="2377145822815795416" name="org.fbme.ide.st.lang.structure.AnyNumericType" flags="ng" index="3sK6_v" />
       <concept id="2377145822813873343" name="org.fbme.ide.st.lang.structure.ArrayTypeSpec" flags="ng" index="3sSFkS">
         <child id="2377145822813873344" name="baseType" index="3sSFl7" />
         <child id="2377145822813873864" name="subranges" index="3sSFtf" />
@@ -1260,6 +1262,34 @@
   </node>
   <node concept="1N5Tt2" id="uLhTRSuiV4">
     <property role="TrG5h" value="EmptyComponentFB" />
+    <node concept="1N5Tq9" id="1XTIfmTkJnX" role="1N5PiV">
+      <node concept="3I$UGD" id="1XTIfmTkJnZ" role="2RhMKC">
+        <ref role="3IAu0i" node="3$DfdMTWd3z" resolve="Idata" />
+      </node>
+      <node concept="3IAvtB" id="1XTIfmTkJo0" role="2RhMK_">
+        <ref role="1N5Pi4" node="1XTIfmTkJnb" resolve="Base" />
+        <ref role="1N5PlF" node="1XTIfmTkJnV" resolve="Idata" />
+      </node>
+      <node concept="bR32z" id="1XTIfmTkJod" role="bPNfo">
+        <property role="bR32p" value="493.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="1XTIfmTkJnb" role="1N5PiY">
+      <property role="TrG5h" value="Base" />
+      <ref role="1N5Tt0" node="1K4MhVwI0cG" resolve="Base" />
+      <node concept="10YbkR" id="1XTIfmTkJnd" role="b_cXm">
+        <property role="10YbkC" value="1206.0" />
+        <property role="10YbkE" value="260.0" />
+      </node>
+    </node>
+    <node concept="2zBDeF" id="3$DfdMTWd3A" role="2zBDeH">
+      <property role="TrG5h" value="Idata" />
+      <node concept="3sK6_u" id="3$DfdMTWd3B" role="2zB7qv" />
+    </node>
+    <node concept="2zBDeF" id="3$DfdMTWd3z" role="2zBDeD">
+      <property role="TrG5h" value="Idata" />
+      <node concept="3sK6_u" id="3$DfdMTWd3$" role="2zB7qv" />
+    </node>
   </node>
   <node concept="2zBDf2" id="4s7KBSjc0Wu">
     <property role="TrG5h" value="EmptyBasicFB" />
@@ -1542,6 +1572,13 @@
   </node>
   <node concept="2zBDf2" id="1K4MhVwI0cG">
     <property role="TrG5h" value="Base" />
+    <node concept="2zBDeF" id="1XTIfmTkJnV" role="2zBDeD">
+      <property role="TrG5h" value="Idata" />
+      <node concept="3sK6_u" id="1XTIfmTkJnW" role="2zB7qv" />
+    </node>
+    <node concept="2zBDe_" id="1XTIfmTkJnu" role="2zBDey">
+      <property role="TrG5h" value="Ievent" />
+    </node>
     <node concept="2zAPAk" id="1K4MhVwI0cH" role="2zAPwY">
       <property role="TrG5h" value="START" />
       <node concept="10YbkR" id="1K4MhVwI0cI" role="2WOQdS">
@@ -1554,43 +1591,20 @@
     <property role="TrG5h" value="My System" />
     <node concept="3KFAOZ" id="3H7zR3p_O3" role="3KFA_7">
       <property role="TrG5h" value="My  System" />
-      <node concept="1N5Tq9" id="1Ey$9uvXL7N" role="1N5PiV">
-        <node concept="3IAhSD" id="1Ey$9uvXL7P" role="2RhMKC">
-          <ref role="1N5Pi4" node="1Ey$9uvXL7B" resolve="Eblock" />
-          <ref role="1N5PlF" node="6LcMoZKB4NX" resolve="res" />
-        </node>
-        <node concept="3IAvtB" id="1Ey$9uvXL7Q" role="2RhMK_">
-          <ref role="1N5Pi4" node="1Ey$9uvXL7B" resolve="Eblock" />
-          <ref role="1N5PlF" node="6LcMoZKB4NO" resolve="value" />
-        </node>
-        <node concept="bR73E" id="4U5v9yBl5eD" role="bPNfo">
-          <property role="bR73D" value="127.0" />
-          <property role="bR73n" value="130.0" />
-          <property role="bR73k" value="96.0" />
+      <node concept="1N5Tt1" id="5_33xSaGbBX" role="1N5PiY">
+        <property role="TrG5h" value="BasicFB" />
+        <ref role="1N5Tt0" node="5_33xSaGbBW" resolve="BasicFB" />
+        <node concept="10YbkR" id="5_33xSaGbBZ" role="b_cXm">
+          <property role="10YbkC" value="366.0" />
+          <property role="10YbkE" value="266.0" />
         </node>
       </node>
-      <node concept="1N5Tt1" id="37MTFSypTOG" role="1N5PiY">
-        <property role="TrG5h" value="Empty block 2" />
-        <ref role="1N5Tt0" node="37MTFSypTOF" resolve="Empty block 1" />
-        <node concept="10YbkR" id="37MTFSypTOI" role="b_cXm">
-          <property role="10YbkC" value="1133.0" />
-          <property role="10YbkE" value="650.0" />
-        </node>
-      </node>
-      <node concept="1N5Tt1" id="1Ey$9uvXL7B" role="1N5PiY">
-        <property role="TrG5h" value="Eblock" />
-        <ref role="1N5Tt0" node="6LcMoZKB4MT" resolve="Empty block" />
-        <node concept="10YbkR" id="1Ey$9uvXL7D" role="b_cXm">
-          <property role="10YbkC" value="423.0" />
-          <property role="10YbkE" value="710.0" />
-        </node>
-      </node>
-      <node concept="1N5Tt1" id="1Ey$9uvXL8j" role="1N5PiY">
-        <property role="TrG5h" value="Empty block 2" />
-        <ref role="1N5Tt0" node="1Ey$9uvXL8i" resolve="Empty block 2" />
-        <node concept="10YbkR" id="1Ey$9uvXL8l" role="b_cXm">
-          <property role="10YbkC" value="1853.0" />
-          <property role="10YbkE" value="1210.0" />
+      <node concept="1N5Tt1" id="5_33xSaGbC9" role="1N5PiY">
+        <property role="TrG5h" value="EmptyCompositeFB" />
+        <ref role="1N5Tt0" node="5_33xSaGbC8" resolve="EmptyCompositeFB" />
+        <node concept="10YbkR" id="5_33xSaGbCb" role="b_cXm">
+          <property role="10YbkC" value="1396.0" />
+          <property role="10YbkE" value="486.0" />
         </node>
       </node>
     </node>
@@ -1624,9 +1638,66 @@
   </node>
   <node concept="1N5Tt2" id="37MTFSypTOF">
     <property role="TrG5h" value="Empty block 1" />
+    <node concept="1N5Tq9" id="7POsQxz6D7H" role="1N5PiV">
+      <node concept="bR33I" id="7POsQxz6D7I" role="bPNfo" />
+      <node concept="3IAhSD" id="7POsQxz6D7J" role="2RhMKC">
+        <ref role="1N5Pi4" node="7POsQxz6D7k" resolve="Composite1" />
+        <ref role="1N5PlF" node="5VLuTnkolRA" resolve="QO" />
+      </node>
+      <node concept="3IAvtB" id="7POsQxz6D7K" role="2RhMK_">
+        <ref role="1N5Pi4" node="7POsQxz6D7q" resolve="Composite2" />
+        <ref role="1N5PlF" node="5VLuTnkLfWR" resolve="A" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="7POsQxz6D7x" role="1N5PiQ">
+      <node concept="bR33I" id="7POsQxz6D7y" role="bPNfo" />
+      <node concept="3YB4oO" id="7POsQxz6D7z" role="2RhMKC">
+        <ref role="1N5Pi4" node="7POsQxz6D7k" resolve="Composite1" />
+        <ref role="1N5Pi3" node="5VLuTnkolR_" resolve="OUT" />
+      </node>
+      <node concept="3Yx0EI" id="7POsQxz6D7$" role="2RhMK_">
+        <ref role="1N5Pi4" node="7POsQxz6D7q" resolve="Composite2" />
+        <ref role="1N5Pi3" node="5VLuTnkIcPb" resolve="X" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="7POsQxz6D7k" role="1N5PiY">
+      <property role="TrG5h" value="Composite1" />
+      <ref role="1N5Tt0" node="5VLuTnkolRw" resolve="Composite1" />
+      <node concept="10YbkR" id="7POsQxz6D7m" role="b_cXm">
+        <property role="10YbkC" value="1280.0" />
+        <property role="10YbkE" value="373.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="7POsQxz6D7q" role="1N5PiY">
+      <property role="TrG5h" value="Composite2" />
+      <ref role="1N5Tt0" node="5VLuTnkBd2b" resolve="Composite2" />
+      <node concept="10YbkR" id="7POsQxz6D7s" role="b_cXm">
+        <property role="10YbkC" value="2063.0" />
+        <property role="10YbkE" value="656.0" />
+      </node>
+    </node>
   </node>
   <node concept="1N5Tt2" id="1Ey$9uvXL8i">
     <property role="TrG5h" value="Empty block 2" />
+  </node>
+  <node concept="1N5Tt2" id="5_33xSaGbBW">
+    <property role="TrG5h" value="BasicFB" />
+    <node concept="2zBDeF" id="5_33xSaGbC5" role="2zBDeH">
+      <property role="TrG5h" value="Odata" />
+      <node concept="3sK6_v" id="5_33xSaGbC6" role="2zB7qv" />
+    </node>
+    <node concept="2zBDe_" id="5_33xSaGbC4" role="2zBDew">
+      <property role="TrG5h" value="Oevent" />
+    </node>
+    <node concept="2zBDeF" id="1pciYAEisay" role="2zBDeH">
+      <property role="TrG5h" value="Odata1" />
+    </node>
+  </node>
+  <node concept="1N5Tt2" id="5_33xSaGbC8">
+    <property role="TrG5h" value="EmptyCompositeFB" />
+  </node>
+  <node concept="2zBDf2" id="7GdVKQJsvHk">
+    <property role="TrG5h" value="Rypert" />
   </node>
 </model>
 
