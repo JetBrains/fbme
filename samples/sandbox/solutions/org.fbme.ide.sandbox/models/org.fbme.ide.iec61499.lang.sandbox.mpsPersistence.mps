@@ -1587,28 +1587,6 @@
       </node>
     </node>
   </node>
-  <node concept="3KFA1X" id="3H7zR3p_O2">
-    <property role="TrG5h" value="My System" />
-    <node concept="3KFAOZ" id="3H7zR3p_O3" role="3KFA_7">
-      <property role="TrG5h" value="My  System" />
-      <node concept="1N5Tt1" id="5_33xSaGbBX" role="1N5PiY">
-        <property role="TrG5h" value="BasicFB" />
-        <ref role="1N5Tt0" node="5_33xSaGbBW" resolve="BasicFB" />
-        <node concept="10YbkR" id="5_33xSaGbBZ" role="b_cXm">
-          <property role="10YbkC" value="366.0" />
-          <property role="10YbkE" value="266.0" />
-        </node>
-      </node>
-      <node concept="1N5Tt1" id="5_33xSaGbC9" role="1N5PiY">
-        <property role="TrG5h" value="EmptyCompositeFB" />
-        <ref role="1N5Tt0" node="5_33xSaGbC8" resolve="EmptyCompositeFB" />
-        <node concept="10YbkR" id="5_33xSaGbCb" role="b_cXm">
-          <property role="10YbkC" value="1396.0" />
-          <property role="10YbkE" value="486.0" />
-        </node>
-      </node>
-    </node>
-  </node>
   <node concept="1N5Tt2" id="6LcMoZKB4MT">
     <property role="TrG5h" value="Empty block" />
     <node concept="2zBDeF" id="6LcMoZKB4NX" role="2zBDeH">
@@ -1695,9 +1673,6 @@
   </node>
   <node concept="1N5Tt2" id="5_33xSaGbC8">
     <property role="TrG5h" value="EmptyCompositeFB" />
-  </node>
-  <node concept="2zBDf2" id="7GdVKQJsvHk">
-    <property role="TrG5h" value="Rypert" />
   </node>
 </model>
 
