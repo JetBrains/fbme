@@ -37,7 +37,7 @@ class PortPath<DeclarationT : Declaration> private constructor(
         @JvmStatic
         fun createEventPortPath(
             functionBlock: FunctionBlockDeclarationBase?,
-            portTarget: EventDeclaration
+            portTarget: EventDeclaration,
         ): PortPath<EventDeclaration> {
             return PortPath(functionBlock, portTarget)
         }
@@ -45,7 +45,7 @@ class PortPath<DeclarationT : Declaration> private constructor(
         @JvmStatic
         fun createDataPortPath(
             functionBlock: FunctionBlockDeclarationBase?,
-            portTarget: ParameterDeclaration
+            portTarget: ParameterDeclaration,
         ): PortPath<ParameterDeclaration> {
             return PortPath(functionBlock, portTarget)
         }
@@ -53,7 +53,7 @@ class PortPath<DeclarationT : Declaration> private constructor(
         @JvmStatic
         fun createPlugPortPath(
             functionBlock: FunctionBlockDeclarationBase?,
-            portTarget: PlugDeclaration
+            portTarget: PlugDeclaration,
         ): PortPath<PlugDeclaration> {
             return PortPath(functionBlock, portTarget)
         }
@@ -61,7 +61,7 @@ class PortPath<DeclarationT : Declaration> private constructor(
         @JvmStatic
         fun createSocketPortPath(
             functionBlock: FunctionBlockDeclarationBase?,
-            portTarget: SocketDeclaration
+            portTarget: SocketDeclaration,
         ): PortPath<SocketDeclaration> {
             return PortPath(functionBlock, portTarget)
         }
@@ -83,5 +83,12 @@ class PortPath<DeclarationT : Declaration> private constructor(
                     }
             }
         }
+
+        @JvmStatic
+        fun createBrokenPortPath(
+                functionBlock: FunctionBlockDeclarationBase?,
+                kind: EntryKind,
+                portName: String
+        ): PortPath<out Declaration> = PortPath(functionBlock, BrokenPortDeclaration(portName, kind, functionBlock))
     }
 }

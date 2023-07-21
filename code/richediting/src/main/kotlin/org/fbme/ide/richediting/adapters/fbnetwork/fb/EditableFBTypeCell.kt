@@ -18,7 +18,10 @@ import jetbrains.mps.openapi.editor.style.StyleAttribute
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.richediting.adapters.fbnetwork.FBConnectionPathPainter
 import org.fbme.ide.richediting.adapters.fbnetwork.actions.cell.DeclarationNameAccessor
-import org.fbme.ide.richediting.adapters.fbnetwork.port.*
+import org.fbme.ide.richediting.adapters.fbnetwork.port.EditablePortLabel
+import org.fbme.ide.richediting.adapters.fbnetwork.port.EditablePortWithTypeAndLabel
+import org.fbme.ide.richediting.adapters.fbnetwork.port.Port
+import org.fbme.ide.richediting.adapters.fbnetwork.port.PortActionFactory
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockView
@@ -122,7 +125,7 @@ class EditableFBTypeCell(
     }
 
     private fun createButton(cellAction: CellAction): EditorCell {
-        val button = EditorCell_Button(context, node, PlusButton(PLUS_BUTTON_SIZE))
+        val button = EditorCell_Button(context, node, PlusButton())
 
         button.setAction(CellActionType.CLICK, cellAction)
 
@@ -176,7 +179,7 @@ class EditableFBTypeCell(
     fun addPort(port: FBPortDescriptor) {
         when (port.connectionKind) {
             EntryKind.EVENT -> {
-                val value = EditablePortLabel(context, node,  port, fbType.declaration)
+                val value = EditablePortLabel(context, node, port, fbType.declaration)
                 if (port.isInput) {
                     (eventPortsContainer.cells.first() as EditorCell_Collection).addEditorCell(value.label)
                     inputEventPorts.add(value)
@@ -185,6 +188,7 @@ class EditableFBTypeCell(
                     outputEventPorts.add(value)
                 }
             }
+
             EntryKind.DATA -> {
                 val typeDeclaration = port.declaration as ParameterDeclaration
                 val value = EditablePortWithTypeAndLabel(context, node, port, fbType.declaration, typeDeclaration.type?.stringify(), getDataTypeSuggestions(typeDeclaration))
@@ -196,6 +200,7 @@ class EditableFBTypeCell(
                     outputDataPorts.add(value)
                 }
             }
+
             EntryKind.ADAPTER -> {
                 val types = scope.findAllAdapterTypeDeclarations()
                 if (port.isInput) {
@@ -364,8 +369,8 @@ class EditableFBTypeCell(
         val yTop = y + height
         val yCenterB = typeNameLabel.y - lineSize / 2
         val yCenterT = typeNameLabel.y + lineSize / 2
-        val xLeftS = x + lineSize
-        val xRightS = xRight - lineSize
+        val xLeftS = x + PLUS_BUTTON_SIZE.toDouble()
+        val xRightS = xRight - PLUS_BUTTON_SIZE.toDouble()
         shape.moveTo(x.toDouble(), y.toDouble())
         shape.lineTo(x.toDouble(), yCenterB)
         shape.lineTo(xLeftS, yCenterB)
@@ -485,7 +490,7 @@ class EditableFBTypeCell(
     private fun addGapForButtons(width: Int, cell: EditorCell_Collection) {
         val left = cell.cells.first()
         val right = cell.cells.last()
-        right.moveTo(width - 15, right.y + cell.height - right.height)
+        right.moveTo(width - PLUS_BUTTON_SIZE, right.y + cell.height - right.height)
         left.moveTo(0, left.y + cell.height - left.height)
     }
 
@@ -510,11 +515,15 @@ class EditableFBTypeCell(
     companion object {
         private const val CENTER_PADDING = 20
         private const val INNER_BORDER_PADDING = 2
-        private const val PLUS_BUTTON_SIZE = 15
+        private const val PLUS_BUTTON_SIZE = 16
 
         private fun portsColumnWidth(ports: Collection<Port>): Int {
-            return ports.maxOfOrNull { if (it is EditablePortWithTypeAndLabel) it.cell.width else (it as EditablePortLabel).label.width }
-                    ?: 0
+            return ports.maxOfOrNull {
+                if (it is EditablePortWithTypeAndLabel)
+                    it.cell.width
+                else
+                    (it as EditablePortLabel).label.width
+            } ?: 0
         }
     }
 }

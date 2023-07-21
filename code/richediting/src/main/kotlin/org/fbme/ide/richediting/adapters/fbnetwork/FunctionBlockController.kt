@@ -95,7 +95,7 @@ class FunctionBlockController(
     }
 
     private fun getEditButton(context: EditorContext, node: SNode): EditorCell_Button {
-        return EditorCell_Button(context, node, if (!editedController.isEdited(view)) EditButton(18) else TickButton(18))
+        return EditorCell_Button(context, node, if (!editedController.isEdited(view)) EditButton() else TickButton())
     }
 
     val fbInstance: FunctionBlockInstance?

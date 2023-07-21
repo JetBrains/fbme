@@ -1,9 +1,11 @@
 package org.fbme.scenes.cells.button
 
+import java.awt.Component
 import java.awt.Graphics2D
 
 interface Button {
-    val height: Int
     val width: Int
-    fun paint(g: Graphics2D, x: Int, y: Int, isDark: Boolean)
+    val height: Int
+    fun paint(c: Component, g: Graphics2D, x: Int, y: Int)
+    fun paintSelection(c: Component, g: Graphics2D, x: Int, y: Int)
 }

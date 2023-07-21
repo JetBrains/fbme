@@ -1,7 +1,7 @@
 package org.fbme.scenes.cells
 
-import com.intellij.util.ui.StartupUiUtil
-import jetbrains.mps.nodeEditor.cells.*
+import jetbrains.mps.nodeEditor.cells.EditorCell_Basic
+import jetbrains.mps.nodeEditor.cells.ParentSettings
 import jetbrains.mps.openapi.editor.EditorContext
 import org.fbme.scenes.cells.button.Button
 import org.jetbrains.mps.openapi.model.SNode
@@ -13,15 +13,13 @@ class EditorCell_Button(
         context: EditorContext,
         node: SNode?,
         private val button: Button
-): EditorCell_Basic(context, node) {
-    val isDark = StartupUiUtil.isUnderDarcula()
-
+) : EditorCell_Basic(context, node) {
     override fun paintContent(g: Graphics, p1: ParentSettings) {
-        button.paint(g.create() as Graphics2D, myX, myY, isDark)
+        button.paint(this.editor, g.create() as Graphics2D, myX, myY)
     }
 
-    override fun paintSelection(g: Graphics?, c: Color?, drawBorder: Boolean, parentSettings: ParentSettings?) {
-        //do nothing
+    override fun paintSelection(g: Graphics, c: Color?, drawBorder: Boolean, parentSettings: ParentSettings?) {
+        button.paintSelection(this.editor, g.create() as Graphics2D, myX, myY)
     }
 
     init {
@@ -31,5 +29,6 @@ class EditorCell_Button(
 
     companion object {
         const val OY_OFFSET = -5
+        const val DEFAULT_SIZE = 14
     }
 }
