@@ -4,6 +4,7 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork
 import org.fbme.scenes.controllers.diagram.DiagramView
@@ -114,14 +115,8 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     }
 
     private fun initConnections(network: FBNetwork, editable: Boolean) {
-        for (connection in network.eventConnections) {
-            addConnection(connection, editable)
-        }
-        for (connection in network.dataConnections) {
-            addConnection(connection, editable)
-        }
-        for (connection in network.adapterConnections) {
-            addConnection(connection, editable)
+        network.allConnections.forEach {
+            addConnection(it, editable)
         }
     }
 
@@ -150,8 +145,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myAuxComponents[view] = exts
         for (parameter in functionBlock.parameters) {
             val parameterDeclaration = parameter.parameterReference.getTarget()
-                ?: // TODO handle broken parameters
-                continue
+                ?: /*TODO handle broken parameters */continue
             val declaration = parameterDeclaration.container as FBInterfaceDeclaration?
             val index = declaration!!.inputParameters.indexOf(parameterDeclaration)
             val oppositePortView = FunctionBlockPortView(view, index, EntryKind.DATA, false, parameterDeclaration)
@@ -164,51 +158,33 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
             myConnectionSources[parameterConnectionView] = inlineValueView
             myConnectionDestinations[parameterConnectionView] = oppositePortView
         }
+
         val ports = HashSet<NetworkPortView>()
-        var i = 0
         myComponentToPorts[view] = ports
-        for (dataInput in type.dataInputPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.DATA, false, dataInput.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.DATA, dataInput.declaration!!)] = port
-            myPorts[port] = view
-        }
-        i = 0
-        for (dataOutput in type.dataOutputPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.DATA, true, dataOutput.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.DATA, dataOutput.declaration!!)] = port
-            myPorts[port] = view
-        }
-        i = 0
-        for (dataInput in type.eventInputPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.EVENT, false, dataInput.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.EVENT, dataInput.declaration!!)] = port
-            myPorts[port] = view
-        }
-        i = 0
-        for (dataOutput in type.eventOutputPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.EVENT, true, dataOutput.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.EVENT, dataOutput.declaration!!)] = port
-            myPorts[port] = view
-        }
-        i = 0
-        for (socket in type.socketPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, false, socket.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.ADAPTER, socket.declaration!!)] = port
-            myPorts[port] = view
-        }
-        i = 0
-        for (plug in type.plugPorts) {
-            val port = FunctionBlockPortView(view, i++, EntryKind.ADAPTER, true, plug.declaration!!)
-            ports.add(port)
-            myPortModelMap[PortPath.createPortPath(functionBlock, EntryKind.ADAPTER, plug.declaration!!)] = port
-            myPorts[port] = view
-        }
+
+        addPortView(type.dataInputPorts, view, ports)
+        addPortView(type.dataOutputPorts, view, ports)
+        addPortView(type.eventInputPorts, view, ports)
+        addPortView(type.eventOutputPorts, view, ports)
+        addPortView(type.socketPorts, view, ports)
+        addPortView(type.plugPorts, view, ports)
         //TODO: add ports templates
+    }
+
+    private fun addPortView(
+            typePorts: List<FBPortDescriptor>,
+            view: FunctionBlockView,
+            ports: HashSet<NetworkPortView>
+    ) {
+        typePorts.forEachIndexed { index, fbPortDescriptor ->
+            val declaration = fbPortDescriptor.declaration!!
+            val port = FunctionBlockPortView(
+                    view, index, fbPortDescriptor.connectionKind, !fbPortDescriptor.isInput, declaration
+            )
+            ports.add(port)
+            myPortModelMap[PortPath.createPortPath(view.component, fbPortDescriptor.connectionKind, declaration)] = port
+            myPorts[port] = view
+        }
     }
 
     fun addConnection(connection: FBNetworkConnection, editable: Boolean): NetworkConnectionView? {
@@ -216,14 +192,21 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myConnectionModelMap[connection] = view
         val source = connection.sourceReference.getTarget()
         val target = connection.targetReference.getTarget()
+        val targetPort = target?.portTarget
+        val sourcePort = source?.portTarget
         val targetView: NetworkPortView?
-        val sourceView: NetworkPortView? = if (source != null) {
+        val sourceView: NetworkPortView? = if (source != null && sourcePort !is BrokenPortDeclaration) {
             myPortModelMap[source]
         } else {
             view.shrink()
-            BrokenPortView()
+
+            if (sourcePort is BrokenPortDeclaration) {
+                BrokenPortView(false, sourcePort, myElementModelMap[sourcePort.functionBlock])
+            } else {
+                BrokenPortView(false)
+            }
         }
-        if (target != null) {
+        if (target != null && targetPort !is BrokenPortDeclaration) {
             targetView = myPortModelMap[target]
             if (sourceView is BrokenPortView) {
                 sourceView.setOpposite(targetView)
@@ -233,13 +216,55 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
                 return null
             }
             view.shrink()
-            val portView = BrokenPortView()
+            val portView = if (targetPort is BrokenPortDeclaration) {
+                BrokenPortView(true, targetPort, myElementModelMap[targetPort.functionBlock])
+            } else {
+                BrokenPortView(true)
+            }
+            (targetPort as BrokenPortDeclaration).functionBlock
             portView.setOpposite(sourceView)
             targetView = portView
         }
+
+        if (sourcePort is BrokenPortDeclaration) {
+            val fb = myElementModelMap[sourcePort.functionBlock]
+            if (fb is FunctionBlockView) {
+                fb.brokenPorts.addPort(sourcePort.name, sourcePort.kind, false)
+                val port = fb.findPort(sourcePort.name, sourcePort.kind, false)
+                if (port != null) {
+                    myPortModelMap[source] = sourceView!!
+                    myPorts[sourceView] = fb
+                    (myComponentToPorts[fb] as HashSet<NetworkPortView>).add(sourceView)
+                }
+            }
+        }
+
+        if (targetPort is BrokenPortDeclaration) {
+            val fb = myElementModelMap[targetPort.functionBlock]
+            if (fb is FunctionBlockView) {
+                fb.brokenPorts.addPort(targetPort.name, targetPort.kind, true)
+                val port = fb.findPort(targetPort.name, targetPort.kind, true)
+                if (port != null) {
+                    myPortModelMap[source] = targetView!!
+                    myPorts[targetView] = fb
+                    (myComponentToPorts[fb] as HashSet<NetworkPortView>).add(targetView)
+                }
+            }
+        }
+
         myConnectionSources[view] = sourceView
         myConnectionDestinations[view] = targetView
         return view
+    }
+
+    private fun FunctionBlockView.findPort(name: String, kind: EntryKind, isInput: Boolean): FBPortDescriptor? {
+        val ports = when (kind) {
+            EntryKind.EVENT -> this.type.eventInputPorts to this.type.eventOutputPorts
+            EntryKind.DATA -> this.type.dataInputPorts to this.type.dataOutputPorts
+            EntryKind.ADAPTER -> this.type.socketPorts to this.type.plugPorts
+        }
+
+        return (if (isInput) ports.first else ports.second).find { it.name == name }
     }
 
     val diagramView: DiagramView<NetworkComponentView, NetworkPortView, NetworkConnectionView> =

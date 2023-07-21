@@ -1127,8 +1127,8 @@
                         </node>
                         <node concept="3cpWs6" id="1KgvZpgeSq6" role="3cqZAp">
                           <node concept="2YIFZM" id="1KgvZpgeSq7" role="3cqZAk">
-                            <ref role="37wK5l" to="g27j:~PortPath.createEventPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.EventDeclaration)" resolve="createEventPortPath" />
                             <ref role="1Pybhc" to="g27j:~PortPath" resolve="PortPath" />
+                            <ref role="37wK5l" to="g27j:~PortPath.createEventPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.EventDeclaration)" resolve="createEventPortPath" />
                             <node concept="10Nm6u" id="1KgvZpgeSq8" role="37wK5m" />
                             <node concept="2OqwBi" id="1KgvZpgeSq9" role="37wK5m">
                               <node concept="37vLTw" id="1KgvZpgeSqa" role="2Oq$k0">
@@ -1816,8 +1816,8 @@
                           <node concept="3clFbS" id="31Fn7oZEZUs" role="3clFbx">
                             <node concept="3cpWs6" id="1KgvZpg7nJm" role="3cqZAp">
                               <node concept="2YIFZM" id="1KgvZpg7sx9" role="3cqZAk">
-                                <ref role="37wK5l" to="g27j:~PortPath.createEventPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.EventDeclaration)" resolve="createEventPortPath" />
                                 <ref role="1Pybhc" to="g27j:~PortPath" resolve="PortPath" />
+                                <ref role="37wK5l" to="g27j:~PortPath.createEventPortPath(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.iec61499.declarations.EventDeclaration)" resolve="createEventPortPath" />
                                 <node concept="37vLTw" id="1KgvZpg7uyy" role="37wK5m">
                                   <ref role="3cqZAo" node="31Fn7oZCjtN" resolve="fb" />
                                 </node>

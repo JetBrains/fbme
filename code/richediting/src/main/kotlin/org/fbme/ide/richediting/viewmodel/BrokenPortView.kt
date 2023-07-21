@@ -1,8 +1,13 @@
 package org.fbme.ide.richediting.viewmodel
 
+import org.fbme.lib.iec61499.fbnetwork.BrokenPortDeclaration
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 
-class BrokenPortView : NetworkComponentView, NetworkPortView {
+class BrokenPortView(
+        val isInput: Boolean,
+        val declaration: BrokenPortDeclaration? = null,
+        private val myComponent: NetworkComponentView? = null
+) : NetworkComponentView, NetworkPortView {
     private var myOpposite: NetworkPortView? = null
 
     override val kind: EntryKind
@@ -10,7 +15,7 @@ class BrokenPortView : NetworkComponentView, NetworkPortView {
     override val isEditable: Boolean
         get() = false
     override val component: NetworkComponentView
-        get() = this
+        get() = myComponent ?: this
 
     override fun equals(other: Any?): Boolean {
         if (this === other) {
