@@ -92,7 +92,7 @@ class SMVUnifiedExecutionTraceAction:  AnAction() {
                 fbTypeDeclaration as CompositeFBTypeDeclaration, arg
             )
 
-            var traceForGUI = UnifiedTraceConverter.convertTrace(rez.get(), fbTypeDeclaration)
+            var traceForGUI = UnifiedTraceConverter.convertTrace(rez.get(), fbTypeDeclaration, mpsProject)
 
             val explanationProducer = ExplanationProducer(traceForGUI, snapshotDeclaration)
             val simulatorPanel = SimulatorPanel(

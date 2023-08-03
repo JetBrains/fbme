@@ -43,24 +43,24 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="2240" y="393" />
-      <ECState Name="wait" x="2412" y="1152">
+      <ECState Name="START" x="0" y="1639" />
+      <ECState Name="wait" x="3433" y="793">
         <ECAction Output="CNF" Algorithm="STOP" />
       </ECState>
-      <ECState Name="go" x="2092" y="1608">
+      <ECState Name="go" x="5526" y="0">
         <ECAction Output="CNF" Algorithm="GO" />
       </ECState>
-      <ECState Name="pr" x="2420" y="2112">
+      <ECState Name="pr" x="1340" y="40">
         <ECAction Output="CNF" Algorithm="PR" />
       </ECState>
-      <ECState Name="INIT" x="2240" y="800">
+      <ECState Name="INIT" x="1793" y="1486">
         <ECAction Output="INITO" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="2239" y="593" Condition="INIT" />
-      <ECTransition Source="wait" Destination="go" x="2276" y="1350" Condition="1" />
-      <ECTransition Source="go" Destination="pr" x="2237" y="1820" Condition="1" />
-      <ECTransition Source="pr" Destination="wait" x="3065" y="1640" Condition="1" />
-      <ECTransition Source="INIT" Destination="wait" x="2405" y="943" Condition="1" />
+      <ECTransition Source="START" Destination="INIT" x="833" y="1786" Condition="INIT" />
+      <ECTransition Source="wait" Destination="go" x="5100" y="859" Condition="1" />
+      <ECTransition Source="go" Destination="pr" x="4053" y="320" Condition="1" />
+      <ECTransition Source="pr" Destination="wait" x="3006" y="1213" Condition="1" />
+      <ECTransition Source="INIT" Destination="wait" x="3006" y="1559" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="pr := FALSE;&amp;#38;#10;moving := TRUE;&amp;#38;#10;setpos_out := 1;&amp;#38;#10;go := TRUE;&amp;#38;#10;" />

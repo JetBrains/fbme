@@ -67,97 +67,97 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="3050" y="181" />
-      <ECState Name="INIT" x="3055" y="556">
+      <ECState Name="START" x="43346" y="2593" />
+      <ECState Name="INIT" x="44960" y="2280">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="CR_01_CA_03" x="3070" y="944">
+      <ECState Name="CR_01_CA_03" x="48653" y="2073">
         <ECAction Output="CNF" Algorithm="GOCA_06" />
       </ECState>
-      <ECState Name="CR_01_03_CA_06" x="2227" y="1666">
+      <ECState Name="CR_01_03_CA_06" x="2086" y="206">
         <ECAction Output="CNF" Algorithm="GOCR_03" />
       </ECState>
-      <ECState Name="GRC_03_GRC_04" x="3107" y="2034">
+      <ECState Name="GRC_03_GRC_04" x="7073" y="486">
         <ECAction Output="CNF" Algorithm="GOCR_01" />
       </ECState>
-      <ECState Name="CR_01_CA_06_f" x="3107" y="2498">
+      <ECState Name="CR_01_CA_06_f" x="12166" y="486">
         <ECAction Output="CNF" Algorithm="GO_CA_CR_EL" />
       </ECState>
-      <ECState Name="EL_03" x="3110" y="3049">
+      <ECState Name="EL_03" x="17406" y="560">
         <ECAction Output="CNF" Algorithm="OPGR" />
       </ECState>
-      <ECState Name="GRO" x="3117" y="3639">
+      <ECState Name="GRO" x="19500" y="486">
         <ECAction Output="CNF" Algorithm="GOCR_01" />
       </ECState>
-      <ECState Name="EL_01" x="6270" y="2610">
+      <ECState Name="EL_01" x="42440" y="486">
         <ECAction Output="CNF" Algorithm="GOCR_01" />
       </ECState>
-      <ECState Name="CR_01_EL_03" x="3137" y="4076">
+      <ECState Name="CR_01_EL_03" x="22393" y="626">
         <ECAction Output="CNF" Algorithm="GOCA_01" />
       </ECState>
-      <ECState Name="CR_01_CA_01_e" x="4203" y="4156">
+      <ECState Name="CR_01_CA_01_e" x="25286" y="626">
         <ECAction Output="CNF" Algorithm="GOCR_02" />
       </ECState>
-      <ECState Name="CR_02_CA_01" x="5285" y="4156">
+      <ECState Name="CR_02_CA_01" x="28179" y="560">
         <ECAction Output="CNF" Algorithm="CLGR" />
       </ECState>
-      <ECState Name="GRC" x="6263" y="4164">
+      <ECState Name="GRC" x="30273" y="486">
         <ECAction Output="CNF" Algorithm="GOCR_01" />
       </ECState>
-      <ECState Name="CR_01_CA_01_f" x="6278" y="3847">
+      <ECState Name="CR_01_CA_01_f" x="32793" y="626">
         <ECAction Output="CNF" Algorithm="GOCA_03" />
       </ECState>
-      <ECState Name="CR_01_CA_03_lid" x="6268" y="3540">
+      <ECState Name="CR_01_CA_03_lid" x="35313" y="626">
         <ECAction Output="CNF" Algorithm="GOCR_03" />
       </ECState>
-      <ECState Name="CR_03_CA_03" x="6268" y="3202">
+      <ECState Name="CR_03_CA_03" x="37826" y="560">
         <ECAction Output="CNF" Algorithm="OPGR" />
       </ECState>
-      <ECState Name="GRO_lid" x="6271" y="2894">
+      <ECState Name="GRO_lid" x="39920" y="626">
         <ECAction Output="CNF" Algorithm="GOEL_01" />
       </ECState>
-      <ECState Name="CR_01_EL_01" x="6257" y="2307">
+      <ECState Name="CR_01_EL_01" x="44960" y="560">
         <ECAction Output="CNF" Algorithm="RESET" />
       </ECState>
-      <ECState Name="CR_01_CA_06_e" x="3071" y="1337">
+      <ECState Name="CR_01_CA_06_e" x="0" y="1719">
         <ECAction Output="CNF" Algorithm="RESET" />
       </ECState>
-      <ECState Name="CR_03_CA_06" x="1923" y="2104">
+      <ECState Name="CR_03_CA_06" x="4980" y="0">
         <ECAction Output="CNF" Algorithm="CLGR" />
       </ECState>
-      <ECState Name="CR_01_04_CA_06" x="4071" y="1668">
+      <ECState Name="CR_01_04_CA_06" x="2086" y="1793">
         <ECAction Output="CNF" Algorithm="GOCR_04" />
       </ECState>
-      <ECState Name="CR_04_CA_06" x="4300" y="2073">
+      <ECState Name="CR_04_CA_06" x="4980" y="1719">
         <ECAction Output="CNF" Algorithm="CLGR" />
       </ECState>
-      <ECState Name="ReadyToDrop" x="1871" y="2524">
+      <ECState Name="ReadyToDrop" x="9966" y="839">
         <ECAction Output="CNF" Algorithm="STOP_CR" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="3052" y="361" Condition="INIT" />
-      <ECTransition Source="CR_01_03_CA_06" Destination="CR_03_CA_06" x="1979" y="1870" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="GRC_03_GRC_04" Destination="ReadyToDrop" x="2505" y="2275" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="EL_03" Destination="GRO" x="3118" y="3339" Condition="1" />
-      <ECTransition Source="GRO" Destination="CR_01_EL_03" x="3130" y="3869" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_01_EL_03" Destination="CR_01_CA_01_e" x="3669" y="4261" Condition="[NOT CAM &amp;#38; CAPR]" />
-      <ECTransition Source="CR_01_CA_01_e" Destination="CR_02_CA_01" x="4731" y="4038" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_02_CA_01" Destination="GRC" x="5797" y="4288" Condition="1" />
-      <ECTransition Source="GRC" Destination="CR_01_CA_01_f" x="6272" y="4025" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_01_CA_01_f" Destination="CR_01_CA_03_lid" x="6279" y="3706" Condition="[NOT CAM &amp;#38; CAPR]" />
-      <ECTransition Source="CR_01_CA_03_lid" Destination="CR_03_CA_03" x="6262" y="3364" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_03_CA_03" Destination="GRO_lid" x="6267" y="3054" Condition="1" />
-      <ECTransition Source="GRO_lid" Destination="EL_01" x="6264" y="2777" Condition="[NOT ELM &amp;#38; ELPR]" />
-      <ECTransition Source="EL_01" Destination="CR_01_EL_01" x="6275" y="2476" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_01_CA_03" Destination="CR_01_CA_06_e" x="3067" y="1135" Condition="[NOT CAM &amp;#38; CAPR]" />
-      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_03_CA_06" x="2500" y="1454" Condition="1" />
-      <ECTransition Source="CR_03_CA_06" Destination="GRC_03_GRC_04" x="2418" y="1947" Condition="1" />
-      <ECTransition Source="INIT" Destination="CR_01_CA_03" x="3069" y="748" Condition="[SystemINITED &amp;#38; (FETP OR SLTP)]" />
-      <ECTransition Source="CR_01_EL_01" Destination="CR_01_CA_03" x="5386" y="901" Condition="1" />
-      <ECTransition Source="CR_01_04_CA_06" Destination="CR_04_CA_06" x="4246" y="1857" Condition="[NOT CRM &amp;#38; CRPR]" />
-      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_04_CA_06" x="3641" y="1440" Condition="1" />
-      <ECTransition Source="CR_04_CA_06" Destination="GRC_03_GRC_04" x="3759" y="1894" Condition="1" />
-      <ECTransition Source="CR_01_CA_06_f" Destination="EL_03" x="3110" y="2773" Condition="[(NOT CRM &amp;#38; CRPR) AND (NOT ELM &amp;#38; ELPR) AND (NOT CAM &amp;#38; CAPR)]" />
-      <ECTransition Source="ReadyToDrop" Destination="CR_01_CA_06_f" x="2419" y="2444" Condition="REQ" />
+      <ECTransition Source="START" Destination="INIT" x="44320" y="2740" Condition="INIT" />
+      <ECTransition Source="CR_01_03_CA_06" Destination="CR_03_CA_06" x="4153" y="873" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="GRC_03_GRC_04" Destination="ReadyToDrop" x="9140" y="1146" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="EL_03" Destination="GRO" x="19073" y="1146" Condition="1" />
+      <ECTransition Source="GRO" Destination="CR_01_EL_03" x="21566" y="1146" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_01_EL_03" Destination="CR_01_CA_01_e" x="24460" y="1146" Condition="[NOT CAM &amp;#38; CAPR]" />
+      <ECTransition Source="CR_01_CA_01_e" Destination="CR_02_CA_01" x="27353" y="1146" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_02_CA_01" Destination="GRC" x="29846" y="1146" Condition="1" />
+      <ECTransition Source="GRC" Destination="CR_01_CA_01_f" x="32153" y="939" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_01_CA_01_f" Destination="CR_01_CA_03_lid" x="34673" y="939" Condition="[NOT CAM &amp;#38; CAPR]" />
+      <ECTransition Source="CR_01_CA_03_lid" Destination="CR_03_CA_03" x="37186" y="939" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_03_CA_03" Destination="GRO_lid" x="39493" y="1146" Condition="1" />
+      <ECTransition Source="GRO_lid" Destination="EL_01" x="41800" y="939" Condition="[NOT ELM &amp;#38; ELPR]" />
+      <ECTransition Source="EL_01" Destination="CR_01_EL_01" x="44320" y="1500" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_01_CA_03" Destination="CR_01_CA_06_e" x="25906" y="3219" Condition="[NOT CAM &amp;#38; CAPR]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_03_CA_06" x="1659" y="2126" Condition="1" />
+      <ECTransition Source="CR_03_CA_06" Destination="GRC_03_GRC_04" x="6646" y="1046" Condition="1" />
+      <ECTransition Source="INIT" Destination="CR_01_CA_03" x="47426" y="2740" Condition="[SystemINITED &amp;#38; (FETP OR SLTP)]" />
+      <ECTransition Source="CR_01_EL_01" Destination="CR_01_CA_03" x="47426" y="2440" Condition="1" />
+      <ECTransition Source="CR_01_04_CA_06" Destination="CR_04_CA_06" x="4153" y="2460" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_04_CA_06" x="1659" y="2460" Condition="1" />
+      <ECTransition Source="CR_04_CA_06" Destination="GRC_03_GRC_04" x="6646" y="1539" Condition="1" />
+      <ECTransition Source="CR_01_CA_06_f" Destination="EL_03" x="15406" y="1146" Condition="[(NOT CRM &amp;#38; CRPR) AND (NOT ELM &amp;#38; ELPR) AND (NOT CAM &amp;#38; CAPR)]" />
+      <ECTransition Source="ReadyToDrop" Destination="CR_01_CA_06_f" x="11686" y="1146" Condition="REQ" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="" />

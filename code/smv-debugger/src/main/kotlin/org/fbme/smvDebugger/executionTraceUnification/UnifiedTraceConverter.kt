@@ -1,5 +1,7 @@
 package org.fbme.smvDebugger.executionTraceUnification
 
+import com.sun.jdi.IntegerValue
+import jetbrains.mps.project.MPSProject
 import org.fbme.debugger.common.change.InputEventChange
 import org.fbme.debugger.common.change.OutputEventChange
 import org.fbme.debugger.common.change.StateChange
@@ -9,11 +11,15 @@ import org.fbme.debugger.common.state.FBState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.trace.TraceItem
 import org.fbme.debugger.common.value.BooleanValue
+import org.fbme.debugger.common.value.IntValue
 import org.fbme.ide.platform.traceProvider.SystemStateEvent
 import org.fbme.ide.platform.traceProvider.SystemStateEventType
 import org.fbme.ide.platform.traceProvider.SystemStateUpdate
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.debugger.common.value.Value
+import org.fbme.lib.st.types.DataType
+import org.fbme.lib.st.types.ElementaryType
+import org.fbme.smvDebugger.fb2smv.AbstractConverters.CFBInfoService
 
 object UnifiedTraceConverter {
     /*
@@ -36,8 +42,8 @@ IF trace ends
     )
 
     private val unifiedStateEvents2SystemChange =
-        mapOf<SystemStateEventType, (SystemStateEvent, CompositeFBState) -> Unit >(
-            SystemStateEventType.EI_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+        mapOf<SystemStateEventType, (SystemStateEvent, CompositeFBState, CompositeFBTypeDeclaration, MPSProject) -> Unit >(
+            SystemStateEventType.EI_UPDATE to { e: SystemStateEvent, state: CompositeFBState, cfb: CompositeFBTypeDeclaration, project: MPSProject ->
 
                 var initState: FBState = state
                 var tmpState: FBState?
@@ -59,7 +65,7 @@ IF trace ends
 
 
 
-            SystemStateEventType.VI_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+            SystemStateEventType.VI_UPDATE to { e: SystemStateEvent, state: CompositeFBState,cfb: CompositeFBTypeDeclaration, project: MPSProject ->
 
                 var initState: FBState = state
                 var tmpState: FBState?
@@ -69,8 +75,14 @@ IF trace ends
 
                     if (null != tmpState){
                         if (tmpState!!.inputVariables[e.trace[0]] != null && (e.functionBlockID.last() == step)){
-                            val newValue = e.trace.last().toBoolean()
-                            tmpState!!.inputVariables[e.trace[0]] = BooleanValue(newValue)
+                            val type = CFBInfoService.getInputVariableTypeByName(e.functionBlockID, e.trace[0],cfb, project) as? ElementaryType
+
+                            if (type == ElementaryType.BOOL){
+                                tmpState!!.inputVariables[e.trace[0]] = BooleanValue(e.trace.last().toBoolean())
+                            }else if(type == ElementaryType.INT){
+                                tmpState!!.inputVariables[e.trace[0]] = IntValue(e.trace.last().toInt())
+                            }
+
                             break
                         } else if (tmpState!!.inputVariables[e.trace[0]] != null && (e.functionBlockID.last() != step)){
                             initState= tmpState as FBState
@@ -80,7 +92,7 @@ IF trace ends
             },
 
 
-            SystemStateEventType.VO_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+            SystemStateEventType.VO_UPDATE to { e: SystemStateEvent, state: CompositeFBState,cfb: CompositeFBTypeDeclaration, project: MPSProject ->
 
                 var initState: FBState = state
                 var tmpState: FBState?
@@ -89,25 +101,33 @@ IF trace ends
                     tmpState = (initState as? CompositeFBState)?.children?.get(step) //
 
                     if (null != tmpState){
-                        if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() == step)){
-                            val newValue = e.trace.last().toBoolean()
-                            tmpState!!.outputVariables[e.trace[0]] = BooleanValue(newValue)
-                            break
-                        } else if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() != step)){
-                            initState= tmpState as FBState
+
+                        if (null != tmpState){
+                            if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() == step)){
+                                val type = CFBInfoService.getOutputVariableTypeByName(e.functionBlockID, e.trace[0],cfb, project) as? ElementaryType
+
+                                if (type == ElementaryType.BOOL){
+                                    tmpState!!.outputVariables[e.trace[0]] = BooleanValue(e.trace.last().toBoolean())
+                                }else if(type == ElementaryType.INT){
+                                    tmpState!!.outputVariables[e.trace[0]] = IntValue(e.trace.last().toInt())
+                                }
+                                break
+                            } else if (tmpState!!.outputVariables[e.trace[0]] != null && (e.functionBlockID.last() != step)){
+                                initState= tmpState as FBState
+                            }
                         }
                     }
                 }
             },
 
 
-            SystemStateEventType.Q_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+            SystemStateEventType.Q_UPDATE to { e: SystemStateEvent, state: CompositeFBState, cfb: CompositeFBTypeDeclaration, project: MPSProject ->
                 StateChange(e.trace[0])
             },
 
 
 
-            SystemStateEventType.EO_UPDATE to { e: SystemStateEvent, state: CompositeFBState ->
+            SystemStateEventType.EO_UPDATE to { e: SystemStateEvent, state: CompositeFBState,cfb: CompositeFBTypeDeclaration, project: MPSProject ->
 
                 var initState: FBState = state
                 var tmpState1: FBState?
@@ -129,7 +149,7 @@ IF trace ends
             },
         )
 
-    fun convertTrace(unifiedTrace: ArrayList<SystemStateUpdate>, cfb: CompositeFBTypeDeclaration): ExecutionTrace {
+    fun convertTrace(unifiedTrace: ArrayList<SystemStateUpdate>, cfb: CompositeFBTypeDeclaration, project: MPSProject): ExecutionTrace {
         var currState = CompositeFBState(cfb)
         val newTrace = ExecutionTrace(currState)
 
@@ -138,7 +158,7 @@ IF trace ends
                 val eventType = systemStateEvent.eventType
                 val getTraceChange = traceChangeFactory[eventType]
 
-                unifiedStateEvents2SystemChange[eventType]?.invoke(systemStateEvent, currState)
+                unifiedStateEvents2SystemChange[eventType]?.invoke(systemStateEvent, currState, cfb, project)
                 // if we have smth important to store
                 if (null != getTraceChange) {
                     newTrace.add(TraceItem(currState, systemStateEvent.functionBlockID, getTraceChange.invoke(systemStateEvent)))

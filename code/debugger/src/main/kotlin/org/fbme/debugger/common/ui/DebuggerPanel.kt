@@ -122,6 +122,7 @@ open class DebuggerPanel(
         watchesTree.showsRootHandles = true
 
         val ml: MouseListener = object : MouseAdapter() {
+            //TODO() add crossplatform isPopupTrigger
             override fun mousePressed(e: MouseEvent) {
                 if (e.button == MouseEvent.BUTTON3 ){
                 //if (e.isPopupTrigger) {

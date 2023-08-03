@@ -3,7 +3,6 @@
 Trace Description: LTL Counterexample 
 Trace Type: Counterexample
   -> State: 3.1 <-
-    HHM_FV_inst.CRcmd.moving = TRUE
     HHM_FV_inst.ELcmd.GO = FALSE
     HHM_FV_inst.ELcmd.SETPOS_IN = 0
     HHM_FV_inst.ELcmd.PR = FALSE

@@ -7,28 +7,17 @@ import org.fbme.ide.platform.traceProvider.SystemStateEventType
 import org.fbme.ide.platform.traceProvider.SystemStateUpdate
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
+import org.fbme.smvDebugger.fb2smv.AbstractConverters.CFBInfoService
 
 object VariableParser {
 
-    fun findFB(fbId: List<String>, compositeFb: CompositeFBTypeDeclaration): FBTypeDeclaration? {
-        var fbs: List<FunctionBlockDeclaration> = compositeFb.network.functionBlocks
-        var curFb: FBTypeDeclaration? = null
-        for(id in fbId){
-            curFb = fbs.stream().filter { it: FunctionBlockDeclaration -> it.name == id
-            }.findFirst()
-                .get().typeReference.getTarget()!!
-            if (curFb is CompositeFBTypeDeclaration){
-                fbs = curFb.network.functionBlocks
-            }
-        }
-        return curFb
-    }
+
 
     private fun getEventType(fbId: List<String>, id: String, compositeFb: CompositeFBTypeDeclaration, project: MPSProject): SystemStateEventType {
 
         var type = SystemStateEventType.EI_UPDATE
         project.modelAccess.runReadAction {
-            var curFb = findFB(fbId, compositeFb)
+            var curFb = CFBInfoService.findFB(fbId, compositeFb)
             val inputEventOpt = curFb!!.inputEvents.stream().filter { eventId: EventDeclaration ->
                 id == eventId.name
             }.findFirst()
@@ -53,7 +42,7 @@ object VariableParser {
     fun getVariableType(fbId: List<String>, id: String, compositeFb: CompositeFBTypeDeclaration, project: MPSProject): SystemStateEventType{
         var type = SystemStateEventType.VV_UPDATE
         project.modelAccess.runReadAction {
-            var curFb = findFB(fbId, compositeFb)
+            var curFb = CFBInfoService.findFB(fbId, compositeFb)
             val inputEventOpt = curFb!!.inputParameters.stream().filter { varId: ParameterDeclaration ->
                 id == varId.name
             }.findFirst()
@@ -99,21 +88,46 @@ object VariableParser {
 
                 val eventInfo = id.split("_")
 
-                if (eventInfo.size == 2) //this is event
+                if (eventInfo.size == 2) //this is event OR variable_name
                 {
-                    if (info == "FALSE"){return null}
+
+                    if (info == "FALSE") {
+                        return null
+                    }
                     var fbId = data.subList(1, data.lastIndex) + eventInfo[0]
 
-                    return SystemStateEvent(
-                                fbId,
-                                getEventType(fbId, eventInfo.last(), compositeFb, project),
-                                arrayOf(eventInfo.last()))
-                } else { //Variable??
-                    val fbId = data.subList(1, data.lastIndex)
-                    return SystemStateEvent(fbId, getVariableType(fbId, id, compositeFb, project),
-                    arrayOf(id, info))
+                    var isEvent = true
+                    // TODO REMOVE LATER, Replace with config file generation
 
+                    project.modelAccess.runReadAction {
+                        try {
+                            var curFb = CFBInfoService.findFB(fbId, compositeFb)
+                        } catch (e: Throwable) {
+                            // this is EVENT
+                            isEvent = false
+                        }
+                    }
+                    if (isEvent) {
+                        return SystemStateEvent(
+                            fbId,
+                            getEventType(fbId, eventInfo.last(), compositeFb, project),
+                            arrayOf(eventInfo.last())
+                        )
+                    } else { //Variable??
+                        val fbId = data.subList(1, data.lastIndex)
+                        return SystemStateEvent(
+                            fbId, getVariableType(fbId, id, compositeFb, project),
+                            arrayOf(id, info)
+                        )
+                    }
+                }else { //Variable??
+                    val fbId = data.subList(1, data.lastIndex)
+                    return SystemStateEvent(
+                        fbId, getVariableType(fbId, id, compositeFb, project),
+                        arrayOf(id, info)
+                    )
                 }
+
             }
         }
         catch (e: Exception) {
