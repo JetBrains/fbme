@@ -1,3 +1,5 @@
+[![JetBrains team project](https://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 # FBME 
 
 **FBME** (Function Blocks Modelling Environment) is an IDE for IEC 61499 standard built on top of 
