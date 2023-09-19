@@ -9,7 +9,6 @@ import jetbrains.mps.extapi.model.SModelData
 import jetbrains.mps.extapi.model.SModelSimpleHeader
 import jetbrains.mps.extapi.persistence.FileDataSource
 import jetbrains.mps.ide.MPSCoreComponents
-import jetbrains.mps.internal.collections.runtime.ISelector
 import jetbrains.mps.internal.collections.runtime.ListSequence
 import jetbrains.mps.persistence.DataLocationAwareModelFactory
 import jetbrains.mps.smodel.SModel.ImportElement
@@ -239,12 +238,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                         val importedModels = model.importedModels()
                         val richHeader = Iec61499ModelHeader(
                             header.modelReference,
-                            ListSequence.fromList(importedModels)
-                                .select(object : ISelector<ImportElement, SModelReference>() {
-                                    override fun select(it: ImportElement): SModelReference {
-                                        return it.modelReference
-                                    }
-                                }).toListSequence()
+                            importedModels.map { it.modelReference }
                         )
                         richHeader.save(headerOS)
                     } finally {
@@ -268,10 +262,16 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                     .getComponent(MPSCoreComponents::class.java).moduleRepository
                 val platformRepository = PlatformRepository(repository)
 
+                val errors = arrayListOf<SModel.Problem>()
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
-                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-                    val document = RootDeclarationPrinter(declaration!!).print()
+                    val document = try {
+                        val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
+                        RootDeclarationPrinter(declaration).print()
+                    } catch (e: Exception) {
+                        errors += PersistenceProblem(SModel.Problem.Kind.Save, e.message, rootNode.name, true)
+                        continue
+                    }
                     val folderName =
                         rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().replace(".", "/")
                     val fileLocalName = rootNode.name + "." + getExtensionOfSource(rootNode, platformRepository)
@@ -289,6 +289,10 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 // Remove deleted/renamed files
                 for (file in trackedSources) {
                     file.delete()
+                }
+
+                if (errors.isNotEmpty()) {
+                    throw ModelSaveException("Multiple errors raised during save", errors, null)
                 }
             } catch (e: IOException) {
                 LOG.error("Exception raised during save", e)

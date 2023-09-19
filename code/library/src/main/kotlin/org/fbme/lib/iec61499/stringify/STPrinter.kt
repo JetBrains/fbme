@@ -2,7 +2,6 @@ package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
-import java.lang.Boolean
 import kotlin.IllegalArgumentException
 import kotlin.Int
 import kotlin.String
@@ -33,50 +32,52 @@ class STPrinter {
     }
 
     private fun appendExpression(expression: Expression?) {
-        if (expression is BinaryExpression) {
-            appendExpression(expression.leftExpression)
-            append(" ")
-            append(expression.operation.alias)
-            append(" ")
-            appendExpression(expression.rightExpression)
-            return
-        }
-        if (expression is UnaryExpression) {
-            val operation = expression.operation
-            append(operation.alias)
-            append(if (operation.isSpaced) " " else "")
-            appendExpression(expression.getInnerExpression())
-            return
-        }
-        if (expression is FunctionCall) {
-            append(expression.functionName)
-            append("(")
-            val actualParameters = expression.actualParameters
-            val last = actualParameters[actualParameters.size - 1]
-            for (actualParameter in actualParameters) {
-                appendExpression(actualParameter)
-                if (actualParameter !== last) {
-                    append(", ")
-                }
+        expression ?: return
+
+        when (expression) {
+            is BinaryExpression -> {
+                appendExpression(expression.leftExpression)
+                append(" ")
+                append(expression.operation.alias)
+                append(" ")
+                appendExpression(expression.rightExpression)
             }
-            append(")")
-            return
+
+            is UnaryExpression -> {
+                val operation = expression.operation
+                append(operation.alias)
+                append(if (operation.isSpaced) " " else "")
+                appendExpression(expression.getInnerExpression())
+            }
+
+            is FunctionCall -> {
+                append(expression.functionName)
+                append("(")
+                val actualParameters = expression.actualParameters
+                val last = actualParameters[actualParameters.size - 1]
+                for (actualParameter in actualParameters) {
+                    appendExpression(actualParameter)
+                    if (actualParameter !== last) {
+                        append(", ")
+                    }
+                }
+                append(")")
+            }
+
+            is ParenthesisExpression -> {
+                append("(")
+                appendExpression(expression.innerExpression)
+                append(")")
+            }
+
+            is Variable -> {
+                appendVariable(expression as Variable?)
+            }
+
+            is Literal<*> -> {
+                appendLiteral(expression)
+            }
         }
-        if (expression is ParenthesisExpression) {
-            append("(")
-            appendExpression(expression.innerExpression)
-            append(")")
-            return
-        }
-        if (expression is Variable) {
-            appendVariable(expression as Variable?)
-            return
-        }
-        if (expression is Literal<*>) {
-            appendLiteral(expression)
-            return
-        }
-        throw IllegalArgumentException("Unrecognized expression $expression")
     }
 
     private fun appendVariable(variable: Variable?) {
@@ -104,9 +105,9 @@ class STPrinter {
     private fun appendLiteral(literal: Literal<*>) {
         val value = literal.value
         when (literal.kind) {
-            LiteralKind.BINARY_BOOL -> append(if (value === Boolean.TRUE) "BOOL#1" else "BOOL#0")
+            LiteralKind.BINARY_BOOL -> append(if (value == true) "BOOL#1" else "BOOL#0")
             LiteralKind.BINARY_INT -> append("2#" + (value as Int).toString(2))
-            LiteralKind.BOOL -> append(if (value === Boolean.TRUE) "TRUE" else "FALSE")
+            LiteralKind.BOOL -> append(if (value == true) "TRUE" else "FALSE")
             LiteralKind.DEC_INT -> append((value as Int).toString())
             LiteralKind.HEX_INT -> append("16#" + (value as Int).toString(16))
             LiteralKind.OCT_INT -> append("8#" + (value as Int).toString(8))
@@ -129,14 +130,14 @@ class STPrinter {
 
     private fun appendStatement(statement: Statement) {
         appendIndent()
-        try {
-            if (statement is AssignmentStatement) {
+        when (statement) {
+            is AssignmentStatement -> {
                 appendVariable(statement.variable)
                 append(" := ")
                 appendExpression(statement.expression)
-                return
             }
-            if (statement is CaseStatement) {
+
+            is CaseStatement -> {
                 append("CASE ")
                 appendExpression(statement.expression)
                 append(" OF ")
@@ -158,16 +159,17 @@ class STPrinter {
                 }
                 appendIndent()
                 append("END_CASE")
+            }
+
+            is EmptyStatement -> {
                 return
             }
-            if (statement is EmptyStatement) {
-                return
-            }
-            if (statement is ExitStatement) {
+
+            is ExitStatement -> {
                 append("EXIT")
-                return
             }
-            if (statement is ForStatement) {
+
+            is ForStatement -> {
                 val controlVariable = statement.controlVariable
                 append("FOR ")
                 append(controlVariable.name)
@@ -186,7 +188,8 @@ class STPrinter {
                 appendIndent()
                 append("END_FOR")
             }
-            if (statement is IfStatement) {
+
+            is IfStatement -> {
                 append("IF ")
                 appendExpression(statement.condition)
                 append(" THEN")
@@ -210,7 +213,8 @@ class STPrinter {
                 appendIndent()
                 append("END_IF")
             }
-            if (statement is RepeatStatement) {
+
+            is RepeatStatement -> {
                 append("REPEAT")
                 appendNewLine()
                 withIndent { appendStatementList(statement.body) }
@@ -219,10 +223,12 @@ class STPrinter {
                 appendExpression(statement.condition)
                 append(" END_REPEAT")
             }
-            if (statement is ReturnStatement) {
+
+            is ReturnStatement -> {
                 append("RETURN")
             }
-            if (statement is WhileStatement) {
+
+            is WhileStatement -> {
                 append("WHILE ")
                 appendExpression(statement.condition)
                 append(" DO")
@@ -231,10 +237,9 @@ class STPrinter {
                 appendIndent()
                 append(" END_WHILE")
             }
-        } finally {
-            append(";")
-            appendNewLine()
         }
+        append(";")
+        appendNewLine()
     }
 
     override fun toString(): String {
