@@ -12,9 +12,10 @@ class ParameterAssignmentsConverter(
         for (parameterElement in parameterElements) {
             val parameter = factory.createParameterAssignment()
             parameter.parameterReference.setTargetName(parameterElement.getAttributeValue("Name"))
-            val valueText = unescapeXML(parameterElement.getAttributeValue("Value"))
-            parameter.value = STConverter.parseLiteral(stFactory, valueText)
             assignments.add(parameter)
+            val valueText = parameterElement.getAttributeValue("Value")?.unescapeXML()
+            valueText ?: continue
+            parameter.value = STConverter.parseLiteral(stFactory, valueText)
         }
     }
 }

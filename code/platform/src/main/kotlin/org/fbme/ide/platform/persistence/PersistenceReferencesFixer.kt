@@ -66,7 +66,9 @@ class PersistenceReferencesFixer(ideaProject: Project) : Disposable {
     }
 
     override fun dispose() {
-        listener.unsubscribeFrom(project.repository)
+        project.modelAccess.runReadAction {
+            listener.unsubscribeFrom(project.repository)
+        }
     }
 
     class Starter : StartupActivity {

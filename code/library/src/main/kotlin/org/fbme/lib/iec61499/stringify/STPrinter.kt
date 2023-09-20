@@ -114,6 +114,7 @@ class STPrinter {
             LiteralKind.STRING -> append("'$value'")
             LiteralKind.WSTRING -> append("\"" + value + "\"")
             LiteralKind.TIME -> append("T#$value")
+            LiteralKind.REAL -> append(value.toString())
             else -> throw IllegalArgumentException("Unrecognized literal $literal")
         }
     }
