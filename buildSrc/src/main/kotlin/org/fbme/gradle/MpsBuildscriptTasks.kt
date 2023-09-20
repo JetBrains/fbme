@@ -26,9 +26,9 @@ fun MpsBuildscriptTasks(project: Project, mpsExtension: MpsExtension) {
         val mpsBinaries by configurations.creating
         val antBinaries by configurations.creating
 
-        val implementation by configurations.getting
+        val compileOnly by configurations.getting
         val mpsImplementation by configurations.getting {
-            extendsFrom(implementation, mpsBinaries)
+            extendsFrom(compileOnly, mpsBinaries)
         }
 
         val mpsInput by configurations.registering {
