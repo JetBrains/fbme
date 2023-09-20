@@ -1,6 +1,7 @@
 package buildTypes
 
 import jetbrains.buildServer.configs.kotlin.AbsoluteId
+import jetbrains.buildServer.configs.kotlin.ArtifactRule
 import jetbrains.buildServer.configs.kotlin.BuildType
 import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
@@ -49,7 +50,10 @@ open class FbmeBuildType(
         dependencies {
             artifacts(mpsArtifactsId) {
                 buildRule = tag("2021.3.3")
-                artifactRules = "MPS-213.*.zip!/MPS 2021.3=>lib/MPS 2021.3"
+                rules = listOf(
+                    ArtifactRule.include("MPS-213.*.zip!/MPS 2021.3", "lib/MPS 2021.3" ),
+                    ArtifactRule.exclude("MPS-213.*-*.zip")
+                )
             }
         }
     }
