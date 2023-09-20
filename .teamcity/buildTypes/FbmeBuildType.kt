@@ -48,8 +48,8 @@ open class FbmeBuildType(
         runWithJbr()
         dependencies {
             artifacts(mpsArtifactsId) {
-                buildRule = tag("2021.3.1")
-                artifactRules = "MPS-213.7172.958.zip!/MPS 2021.3=>lib/MPS 2021.3"
+                buildRule = tag("2021.3.3")
+                artifactRules = "MPS-213.*.zip!/MPS 2021.3=>lib/MPS 2021.3"
             }
         }
     }
