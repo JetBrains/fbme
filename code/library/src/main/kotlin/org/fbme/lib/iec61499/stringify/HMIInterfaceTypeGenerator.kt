@@ -9,6 +9,7 @@ import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 import org.fbme.lib.iec61499.parser.STConverter
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.Expression
+import org.fbme.lib.st.expressions.Literal
 import org.fbme.lib.st.statements.Statement
 import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
@@ -21,8 +22,10 @@ class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, va
     
     fun generateDependents(): List<FBTypeDeclaration> {
         val elements = mutableListOf<FBTypeDeclaration>()
+        val name = getDeclarationName(declaration.name)
+        val identifier = declaration.identifier.toString()
         if (declaration.inputParameters.size > 0) {
-            val outFb = generateDispatchOut(factory, stFactory, declaration.inputParameters, declaration.name)
+            val outFb = generateDispatchOut(factory, stFactory, declaration.inputParameters, name, identifier)
             elements.add(outFb)
         }
         if (declaration.outputParameters.size > 0) {
@@ -30,11 +33,12 @@ class HMIInterfaceTypeGenerator(val declaration: HMIInterfaceTypeDeclaration, va
                 factory,
                 stFactory,
                 declaration.outputParameters,
-                declaration.name
+                name,
+                identifier
             )
             elements.add(inFb)
         }
-        val compositeHMI = generateComposite(factory, stFactory, declaration)
+        val compositeHMI = generateComposite(factory, stFactory, declaration, identifier)
         elements.add(compositeHMI)
         return elements
     }
@@ -49,7 +53,7 @@ companion object {
         ElementaryType.STRING
     )
 
-    fun generateDispatchOut(factory: IEC61499Factory, stFactory: STFactory, outputVars: List<ParameterDeclaration>, name: String = ""): FBTypeDeclaration {
+    fun generateDispatchOut(factory: IEC61499Factory, stFactory: STFactory, outputVars: List<ParameterDeclaration>, name: String = "", identifier: String = ""): FBTypeDeclaration {
         val bfb = factory.createBasicFBTypeDeclaration(null)
         bfb.name = "DISPATCH_OUT_${name}"
 
@@ -59,6 +63,7 @@ companion object {
 
         val nameDeclaration = generateParameterDeclaration(factory, "NAME", ElementaryType.STRING, listOf())
         val mappingDeclaration = generateParameterDeclaration(factory, "MAPPING", ElementaryType.STRING, listOf())
+        mappingDeclaration.initialValue = STConverter.parseLiteral(stFactory, identifier)
         bfb.inputParameters.add(mappingDeclaration)
         bfb.outputParameters.add(nameDeclaration)
 
@@ -118,7 +123,7 @@ companion object {
     }
 
 
-    fun generateDispatchIn(factory: IEC61499Factory, stFactory: STFactory, inputVars: List<ParameterDeclaration>, name: String = ""): FBTypeDeclaration {
+    fun generateDispatchIn(factory: IEC61499Factory, stFactory: STFactory, inputVars: List<ParameterDeclaration>, name: String = "", identifier: String = ""): FBTypeDeclaration {
         val bfb = factory.createBasicFBTypeDeclaration(null)
         bfb.name = "DISPATCH_IN_${name}"
         val startState = factory.createStateDeclaration(null)
@@ -130,6 +135,7 @@ companion object {
         val inConnections = generateTypedConnections(factory, listOf(reqEvent), CONNECTION_TYPES)
         val nameDeclaration = generateParameterDeclaration(factory, "NAME", ElementaryType.STRING, listOf(reqEvent))
         val mappingDeclaration = generateParameterDeclaration(factory, "MAPPING", ElementaryType.STRING, listOf(reqEvent))
+        mappingDeclaration.initialValue = STConverter.parseLiteral(stFactory, identifier)
         bfb.inputParameters.addAll(inConnections)
         bfb.inputParameters.add(nameDeclaration)
         bfb.inputParameters.add(mappingDeclaration)
@@ -244,9 +250,26 @@ companion object {
         return STConverter.parseExpression(stFactory, code)!!
     }
 
-    fun generateComposite(factory: IEC61499Factory, stFactory: STFactory, declaration: HMIInterfaceTypeDeclaration): CompositeFBTypeDeclaration {
+    fun getDeclarationName(name: String): String {
+        if (name.length < 5) {
+            return name
+        }
+        if (name.endsWith("_HMI")) {
+            return name.take(name.length - 4)
+        }
+        if (name.length < 9) {
+            return name
+        }
+        if (name.endsWith("_HMI_CONF")) {
+            return name.take(name.length - 9)
+        }
+        return name
+    }
+
+    fun generateComposite(factory: IEC61499Factory, stFactory: STFactory, declaration: HMIInterfaceTypeDeclaration, identifier: String = ""): CompositeFBTypeDeclaration {
         var cFB = factory.createCompositeFBTypeDeclaration(null)
-        cFB.name = declaration.name + "_HMI"
+        val targetBlockName = getDeclarationName(declaration.name)
+        cFB.name = targetBlockName + "_HMI"
         declaration.inputParameters.forEach {
             if (it.name != "MAPPING") {
                 val pD = factory.createParameterDeclaration(null)
@@ -270,6 +293,7 @@ companion object {
         val mappingInput = factory.createParameterDeclaration(null)
         mappingInput.name = "MAPPING"
         mappingInput.type = ElementaryType.STRING
+        mappingInput.initialValue = STConverter.parseLiteral(stFactory, identifier)
         cFB.inputParameters.add(mappingInput)
         cFB.inputEvents.add(initEvent)
 
@@ -278,7 +302,7 @@ companion object {
 
             cFB.network.functionBlocks.add(generateCommunicationBlock("PUBLISH_1", factory, stFactory))
             cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("JSON_SERIALIZER", factory))
-            cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("DISPATCH_OUT_${declaration.name}", factory))
+            cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("DISPATCH_OUT_$targetBlockName", factory))
 
 //            EVENTS GENERATION
 
@@ -298,7 +322,7 @@ companion object {
                     cFB.inputEvents.add(event)
                     val cEDispatch = factory.createFBNetworkConnection(EntryKind.EVENT)
                     cEDispatch.sourceReference.setFQName(event.name)
-                    cEDispatch.targetReference.setFQName("DISPATCH_OUT_${declaration.name}.${event.name}")
+                    cEDispatch.targetReference.setFQName("DISPATCH_OUT_$targetBlockName.${event.name}")
                     cFB.network.eventConnections.add(cEDispatch)
                 }
 
@@ -313,12 +337,12 @@ companion object {
                 .forEach{
                     val cDDispatch = factory.createFBNetworkConnection(EntryKind.DATA)
                     cDDispatch.sourceReference.setFQName(it.name)
-                    cDDispatch.targetReference.setFQName("DISPATCH_OUT_${declaration.name}.${it.name}")
+                    cDDispatch.targetReference.setFQName("DISPATCH_OUT_$targetBlockName.${it.name}")
                     cFB.network.dataConnections.add(cDDispatch)
                 }
 
             val cDNameSerialize = factory.createFBNetworkConnection(EntryKind.DATA)
-            cDNameSerialize.sourceReference.setFQName("DISPATCH_OUT_${declaration.name}.NAME")
+            cDNameSerialize.sourceReference.setFQName("DISPATCH_OUT_$targetBlockName.NAME")
             cDNameSerialize.targetReference.setFQName("JSON_SERIALIZER.NAME")
             cFB.network.dataConnections.add(cDNameSerialize)
 
@@ -326,11 +350,11 @@ companion object {
 
             HMIInterfaceTypeGenerator.CONNECTION_TYPES.forEach {
                 val cEDispatch = factory.createFBNetworkConnection(EntryKind.EVENT)
-                cEDispatch.sourceReference.setFQName("DISPATCH_OUT_${declaration.name}.IS_${it.name}")
+                cEDispatch.sourceReference.setFQName("DISPATCH_OUT_$targetBlockName.IS_${it.name}")
                 cEDispatch.targetReference.setFQName("JSON_SERIALIZER.IS_${it.name}")
                 cFB.network.eventConnections.add(cEDispatch)
                 val cDDispatch = factory.createFBNetworkConnection(EntryKind.DATA)
-                cDDispatch.sourceReference.setFQName("DISPATCH_OUT_${declaration.name}.${it.name}_VALUE")
+                cDDispatch.sourceReference.setFQName("DISPATCH_OUT_$targetBlockName.${it.name}_VALUE")
                 cDDispatch.targetReference.setFQName("JSON_SERIALIZER.${it.name}_VALUE")
                 cFB.network.dataConnections.add(cDDispatch)
             }
@@ -342,7 +366,7 @@ companion object {
 
             cFB.network.functionBlocks.add(generateCommunicationBlock("SUBSCRIBE_1", factory, stFactory, 65012))
             cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("JSON_DESERIALIZER", factory))
-            cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("DISPATCH_IN_${declaration.name}", factory))
+            cFB.network.functionBlocks.add(generateFunctionDeclarationNoParam("DISPATCH_IN_$targetBlockName", factory))
 
 //            EVENTS GENERATION
 
@@ -358,7 +382,7 @@ companion object {
 
             val cEDeserializeDispatch = factory.createFBNetworkConnection(EntryKind.EVENT)
             cEDeserializeDispatch.sourceReference.setFQName("JSON_DESERIALIZER.RES")
-            cEDeserializeDispatch.targetReference.setFQName("DISPATCH_IN_${declaration.name}.REQ")
+            cEDeserializeDispatch.targetReference.setFQName("DISPATCH_IN_$targetBlockName.REQ")
             cFB.network.eventConnections.add(cEDeserializeDispatch)
 
             declaration.outputParameters.forEach {
@@ -366,7 +390,7 @@ companion object {
                 cFB.outputEvents.add(event)
 
                 val cEDispatchRes = factory.createFBNetworkConnection(EntryKind.EVENT)
-                cEDispatchRes.sourceReference.setFQName("DISPATCH_IN_${declaration.name}.${event.name}")
+                cEDispatchRes.sourceReference.setFQName("DISPATCH_IN_$targetBlockName.${event.name}")
                 cEDispatchRes.targetReference.setFQName(event.name)
                 cFB.network.eventConnections.add(cEDispatchRes)
             }
@@ -380,17 +404,17 @@ companion object {
 
             val cDDeserializeName = factory.createFBNetworkConnection(EntryKind.DATA)
             cDDeserializeName.sourceReference.setFQName("JSON_DESERIALIZER.NAME")
-            cDDeserializeName.targetReference.setFQName("DISPATCH_IN_${declaration.name}.NAME")
+            cDDeserializeName.targetReference.setFQName("DISPATCH_IN_$targetBlockName.NAME")
             cFB.network.dataConnections.add(cDDeserializeName)
 
             val cDMappingDispatch = factory.createFBNetworkConnection(EntryKind.DATA)
             cDMappingDispatch.sourceReference.setFQName("MAPPING")
-            cDMappingDispatch.targetReference.setFQName("DISPATCH_IN_${declaration.name}.MAPPING")
+            cDMappingDispatch.targetReference.setFQName("DISPATCH_IN_$targetBlockName.MAPPING")
             cFB.network.dataConnections.add(cDMappingDispatch)
 
             declaration.outputParameters.forEach {
                 val cEDispatchRes = factory.createFBNetworkConnection(EntryKind.DATA)
-                cEDispatchRes.sourceReference.setFQName("DISPATCH_IN_${declaration.name}.${it.name}")
+                cEDispatchRes.sourceReference.setFQName("DISPATCH_IN_$targetBlockName.${it.name}")
                 cEDispatchRes.targetReference.setFQName(it.name)
                 cFB.network.dataConnections.add(cEDispatchRes)
             }
@@ -398,7 +422,7 @@ companion object {
             HMIInterfaceTypeGenerator.CONNECTION_TYPES.forEach {
                 val cDDispatch = factory.createFBNetworkConnection(EntryKind.DATA)
                 cDDispatch.sourceReference.setFQName("JSON_DESERIALIZER.${it.name}_VALUE")
-                cDDispatch.targetReference.setFQName("DISPATCH_IN_${declaration.name}.${it.name}_VALUE")
+                cDDispatch.targetReference.setFQName("DISPATCH_IN_$targetBlockName.${it.name}_VALUE")
                 cFB.network.dataConnections.add(cDDispatch)
             }
         }

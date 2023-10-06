@@ -3,7 +3,7 @@ package org.fbme.lib.st
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
-import org.fbme.lib.st.types.DerivedType
+import org.fbme.lib.st.types.*
 
 interface STFactory {
     fun createArrayVariable(): ArrayVariable
@@ -25,4 +25,9 @@ interface STFactory {
     fun createReturnStatement(): ReturnStatement
     fun createWhileStatement(): WhileStatement
     fun createDerivedType(identifier: Identifier, debugName: String?): DerivedType
+    fun createArrayType(): ArrayType
+    fun createArrayTypeSizes(): ArrayTypeSizes
+    fun createArrayTypeSubranges(): ArrayTypeSubranges
+    fun createSize(): Size
+    fun createSubrange(): Subrange
 }

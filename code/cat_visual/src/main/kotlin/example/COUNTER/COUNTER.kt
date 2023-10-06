@@ -1,9 +1,11 @@
 package example.COUNTER
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.onClick
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -40,5 +42,5 @@ fun CounterHMI(client: AbstractClient, id: String) {
 fun CounterLampHMI(client: AbstractClient, id: String) {
     PositionedBox(children = {CounterHMI(client, "1")}, x = 200)
     LampHMI(client, "1")
-    PositionedBox(children = {example.COUNTER.ToggleHMI(client, "1")}, x = 300, y = 100)
+    PositionedBox(children = {ToggleHMI(client, "1")}, x = 300, y = 100)
 }
