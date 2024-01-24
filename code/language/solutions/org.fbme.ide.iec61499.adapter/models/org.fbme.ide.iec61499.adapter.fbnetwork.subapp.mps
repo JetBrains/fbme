@@ -134,7 +134,6 @@
         <reference id="2644386474301421078" name="conceptDeclaration" index="359W_E" />
         <reference id="2644386474301421079" name="linkDeclaration" index="359W_F" />
       </concept>
-      <concept id="1139613262185" name="jetbrains.mps.lang.smodel.structure.Node_GetParentOperation" flags="nn" index="1mfA1w" />
       <concept id="1140137987495" name="jetbrains.mps.lang.smodel.structure.SNodeTypeCastExpression" flags="nn" index="1PxgMI" />
       <concept id="1138055754698" name="jetbrains.mps.lang.smodel.structure.SNodeType" flags="in" index="3Tqbb2">
         <reference id="1138405853777" name="concept" index="ehGHo" />
@@ -364,41 +363,20 @@
         <ref role="3uigEE" to="6iyo:~SubappNetwork" resolve="SubappNetwork" />
       </node>
       <node concept="3clFbS" id="1IuIrLUuGWn" role="3clF47">
-        <node concept="3cpWs8" id="1IuIrLUuNdx" role="3cqZAp">
-          <node concept="3cpWsn" id="1IuIrLUuNdy" role="3cpWs9">
-            <property role="TrG5h" value="container" />
-            <node concept="3uibUv" id="1IuIrLUuNdz" role="1tU5fm">
-              <ref role="3uigEE" to="7adg:~Declaration" resolve="Declaration" />
-            </node>
-            <node concept="2OqwBi" id="1IuIrLUuNd$" role="33vP2m">
-              <node concept="37vLTw" id="1IuIrLUuNd_" role="2Oq$k0">
-                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
-              </node>
-              <node concept="liA8E" id="1IuIrLUuNdA" role="2OqNvi">
-                <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
-                <node concept="2OqwBi" id="1IuIrLUuNdB" role="37wK5m">
-                  <node concept="37vLTw" id="1IuIrLUuNdC" role="2Oq$k0">
-                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
-                  </node>
-                  <node concept="1mfA1w" id="1IuIrLUuNdD" role="2OqNvi" />
-                </node>
-                <node concept="3VsKOn" id="1IuIrLUuNdE" role="37wK5m">
-                  <ref role="3VsUkX" to="7adg:~Declaration" resolve="Declaration" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
         <node concept="3clFbF" id="1IuIrLUuNdF" role="3cqZAp">
           <node concept="10QFUN" id="7OvpRfuTzLg" role="3clFbG">
             <node concept="3uibUv" id="7OvpRfuTzO4" role="10QFUM">
               <ref role="3uigEE" to="6iyo:~SubappNetwork" resolve="SubappNetwork" />
             </node>
-            <node concept="2YIFZM" id="1IuIrLUuNdI" role="10QFUP">
-              <ref role="37wK5l" to="g27j:~FBNetwork.extractNetwork(org.fbme.lib.common.Declaration)" resolve="extractNetwork" />
-              <ref role="1Pybhc" to="g27j:~FBNetwork" resolve="FBNetwork" />
-              <node concept="37vLTw" id="1IuIrLUuNdJ" role="37wK5m">
-                <ref role="3cqZAo" node="1IuIrLUuNdy" resolve="container" />
+            <node concept="2OqwBi" id="695$yN3DSRt" role="10QFUP">
+              <node concept="1rXfSq" id="695$yN3DPT0" role="2Oq$k0">
+                <ref role="37wK5l" to="fcfa:1hwo9XLDGQM" resolve="getContainer" />
+                <node concept="3VsKOn" id="695$yN3DS3b" role="37wK5m">
+                  <ref role="3VsUkX" to="cwd8:~DeclarationWithNetwork" resolve="DeclarationWithNetwork" />
+                </node>
+              </node>
+              <node concept="liA8E" id="695$yN3DTIh" role="2OqNvi">
+                <ref role="37wK5l" to="cwd8:~DeclarationWithNetwork.getNetwork()" resolve="getNetwork" />
               </node>
             </node>
           </node>

@@ -143,7 +143,7 @@
   <node concept="1TIwiD" id="3HBlKeoZu2i">
     <property role="EcuMT" value="4280485643802239122" />
     <property role="3GE5qa" value="expressions" />
-    <property role="TrG5h" value="DecIntegerLiteral" />
+    <property role="TrG5h" value="SingedIntegerLiteral" />
     <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
     <node concept="1TJgyi" id="3HBlKeoZu2j" role="1TKVEl">
       <property role="IQ2nx" value="4280485643802239123" />
@@ -608,8 +608,8 @@
   </node>
   <node concept="Az7Fb" id="ahlxKSmN4W">
     <property role="3GE5qa" value="expressions" />
-    <property role="TrG5h" value="DecInteger" />
-    <property role="FLfZY" value="[0-9][_0-9]*" />
+    <property role="TrG5h" value="SignedInteger" />
+    <property role="FLfZY" value="[\\+-]?[0-9][_0-9]*" />
     <property role="3F6X1D" value="185023738903474492" />
   </node>
   <node concept="Az7Fb" id="ahlxKSmN4X">
@@ -944,14 +944,14 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="from" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3HBlKeoZu2i" resolve="DecIntegerLiteral" />
+      <ref role="20lvS9" node="3HBlKeoZu2i" resolve="SingedIntegerLiteral" />
     </node>
     <node concept="1TJgyj" id="23XkovVY3GK" role="1TKVEi">
       <property role="IQ2ns" value="2377145822811274032" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="to" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3HBlKeoZu2i" resolve="DecIntegerLiteral" />
+      <ref role="20lvS9" node="3HBlKeoZu2i" resolve="SingedIntegerLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="23XkovW7YiZ">
@@ -1175,6 +1175,23 @@
       <property role="TrG5h" value="value" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
+  </node>
+  <node concept="1TIwiD" id="3te61Mg3Ziy">
+    <property role="EcuMT" value="3985149231224583330" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="RealLiteral" />
+    <ref role="1TJDcQ" node="2lwHqHjKhl9" resolve="Literal" />
+    <node concept="1TJgyi" id="3te61Mg3Ziz" role="1TKVEl">
+      <property role="IQ2nx" value="3985149231224583331" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" node="3te61Mg3Zi_" resolve="Real" />
+    </node>
+  </node>
+  <node concept="Az7Fb" id="3te61Mg3Zi_">
+    <property role="3F6X1D" value="3985149231224583333" />
+    <property role="3GE5qa" value="expressions" />
+    <property role="TrG5h" value="Real" />
+    <property role="FLfZY" value="[\\+-]?[0-9][_0-9]*.[0-9][_0-9]*([eE][\\+-]?[0-9][_0-9]*)?" />
   </node>
 </model>
 

@@ -11,6 +11,11 @@ dependencies {
     compileOnly(project(":code:language"))
     compileOnly(project(":code:platform"))
 
+    testImplementation(mpsDistribution())
+    testImplementation(project(":code:library"))
+    testImplementation(project(":code:language"))
+    testImplementation(project(":code:platform"))
+
     mpsImplementation(project(":code:library", "mps"))
     mpsImplementation(project(":code:language", "mps"))
     mpsImplementation(project(":code:platform", "mps"))

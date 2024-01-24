@@ -7,7 +7,7 @@ plugins {
 }
 
 val mpsMajor = "2021.3"
-val mpsMinor = "1"
+val mpsMinor = "3"
 
 repositories {
     jcenter()

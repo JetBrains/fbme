@@ -1248,7 +1248,6 @@
     <node concept="1TJgyj" id="uLhTRRtpn2" role="1TKVEi">
       <property role="IQ2ns" value="554302972930397634" />
       <property role="20kJfa" value="functionBlock" />
-      <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="PI_pXYugbu" resolve="FunctionBlockDeclaration" />
     </node>
     <node concept="1TJgyj" id="uLhTRRtpn0" role="1TKVEi">

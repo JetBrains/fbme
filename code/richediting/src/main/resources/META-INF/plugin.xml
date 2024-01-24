@@ -11,6 +11,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <mps.LanguageLibrary dir="/languages"/>
+        <postStartupActivity implementation="org.fbme.ide.richediting.plugin.InspectionsManagerRegistrar" />
     </extensions>
 
     <actions>

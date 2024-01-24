@@ -60,15 +60,17 @@ expression
     ;
 
 literal
-    : DecInteger #dec
-    | BinInteger #bin
-    | OctInteger #oct
-    | HexInteger #hex
-    | String     #string
-    | WString    #wstring
-    | Boolean    #boolean
-    | BooleanBin #booleanBin
-    | Duration   #duration
+    : SingedInteger #dec
+    | DecInteger    #dec
+    | BinInteger    #bin
+    | OctInteger    #oct
+    | HexInteger    #hex
+    | Real          #real
+    | String        #string
+    | WString       #wstring
+    | Boolean       #boolean
+    | BooleanBin    #booleanBin
+    | Duration      #duration
     ;
 
 variable
@@ -93,6 +95,11 @@ BinInteger: '2#'  Bin ('_'|Bin)*;
 OctInteger: '8#'  Oct ('_'|Oct)*;
 HexInteger: '16#' Hex ('_'|Hex)*;
 
+SingedInteger: ('+'|'-')? DecInteger;
+
+fragment Exponent: ('e'|'E') SingedInteger;
+Real: SingedInteger '.' DecInteger Exponent?;
+
 String:  '\'' (('$' [$'LNPRT] | '$' Hex Hex)| ~['\n\r\\])* '\'';
 WString: '"'  (('$' [$"LNPRT] | '$' Hex Hex Hex Hex)| ~["\n\r\\])* '"';
 
@@ -101,14 +108,14 @@ BooleanBin: 'BOOL#'('1'|'0');
 
 Duration: ('T' | 'TIME') '#' '-'? Interval;
 
-Interval: Days | Hours | Minutes | Seconds | Milliseconds;
-FixedPoint: DecInteger ( '.' DecInteger)?;
+fragment Interval: Days | Hours | Minutes | Seconds | Milliseconds;
+fragment FixedPoint: DecInteger ( '.' DecInteger)?;
 
-Days: FixedPoint 'd' | DecInteger 'd' '_' Hours;
-Hours: FixedPoint 'h' | DecInteger 'h' '_' Minutes;
-Minutes: FixedPoint 'm' | DecInteger 'm' '_' Seconds;
-Seconds: FixedPoint 's' | DecInteger 's' '_' Milliseconds;
-Milliseconds: FixedPoint 'ms';
+fragment Days: FixedPoint 'd' | DecInteger 'd' '_' Hours;
+fragment Hours: FixedPoint 'h' | DecInteger 'h' '_' Minutes;
+fragment Minutes: FixedPoint 'm' | DecInteger 'm' '_' Seconds;
+fragment Seconds: FixedPoint 's' | DecInteger 's' '_' Milliseconds;
+fragment Milliseconds: FixedPoint 'ms';
 
 ID: [A-Za-z][A-Za-z_0-9]*;
 
