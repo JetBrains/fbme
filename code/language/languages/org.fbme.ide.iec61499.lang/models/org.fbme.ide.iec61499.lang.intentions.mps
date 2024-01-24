@@ -204,7 +204,7 @@
           <node concept="37vLTI" id="6wjDFs18G_a" role="3clFbG">
             <node concept="3cpWs3" id="6wjDFs18HI6" role="37vLTx">
               <node concept="Xl_RD" id="6wjDFs18HNu" role="3uHU7w">
-                <property role="Xl_RC" value="HMI" />
+                <property role="Xl_RC" value="_HMI_CONF" />
               </node>
               <node concept="2OqwBi" id="6wjDFs18GXf" role="3uHU7B">
                 <node concept="2Sf5sV" id="6wjDFs18GJ3" role="2Oq$k0" />

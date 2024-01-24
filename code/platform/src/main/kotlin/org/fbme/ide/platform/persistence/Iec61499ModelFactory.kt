@@ -274,46 +274,50 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                     .getComponent(MPSCoreComponents::class.java).moduleRepository
                 val platformRepository = PlatformRepository(repository)
 
-                val nodesToDelete = mutableListOf<SNode>()
-                val dependents = mutableListOf<SNode>()
-                for (rootNode in model.rootNodes) {
-                    if (rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().endsWith("_dependent")) {
-//                                c.dropReference(it.link)
-                        nodesToDelete.add(rootNode)
-                        continue
-                    }
-                    val owner = PlatformElementsOwner()
-                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
-                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-
-                    val els = DependentDeclarationGenerator(declaration, conf).generate()
-                    els.forEach { element ->
-                        val node = (element as PlatformElement).node
-                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty() + ".${rootNode.name}_dependent")
-                        dependents.add(node)
-                    }
-                }
-
-                LOG.info("Deleting nodes size: {}", nodesToDelete.size)
-                nodesToDelete.forEach {
-                    model.enterUpdateMode()
-                    model.removeRootNode(it)
-                    it.delete()
-                    model.leaveUpdateMode()
-                }
-                LOG.info("Dependents size: {}", dependents.size)
-                dependents.forEach {
-                    model.enterUpdateMode()
-                    model.addRootNode(it)
-                    model.leaveUpdateMode()
-                }
+//                val nodesToDelete = mutableListOf<SNode>()
+//                val dependents = mutableListOf<SNode>()
+//                for (rootNode in model.rootNodes) {
+//                    if (rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().endsWith("_dependent")) {
+////                                c.dropReference(it.link)
+//                        nodesToDelete.add(rootNode)
+//                        continue
+//                    }
+//                    val owner = PlatformElementsOwner()
+//                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
+//                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
+//
+//                    val dependentGenerator = DependentDeclarationGenerator(declaration, conf)
+//                    val declarationName = dependentGenerator.getName()
+//                    val els = dependentGenerator.generate()
+//                    els.forEach { element ->
+//                        val node = (element as PlatformElement).node
+//                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty() + ".${declarationName}_dependent")
+//                        dependents.add(node)
+//                    }
+//                }
+//
+//                LOG.info("Deleting nodes size: {}", nodesToDelete.size)
+//                nodesToDelete.forEach {
+//                    model.enterUpdateMode()
+//                    model.removeRootNode(it)
+//                    it.delete()
+//                    model.leaveUpdateMode()
+//                }
+//                LOG.info("Dependents size: {}", dependents.size)
+//                dependents.forEach {
+//                    model.enterUpdateMode()
+//                    model.addRootNode(it)
+//                    model.leaveUpdateMode()
+//                }
 
                 val errors = arrayListOf<SModel.Problem>()
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
                     val document = try {
+                        val conf = StandardIec61499ConverterConfiguration(platformRepository.iec61499Factory, platformRepository.stFactory)
+
                         val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-                        RootDeclarationPrinter(declaration).print()
+                        RootDeclarationPrinter(declaration, conf).print()
                     } catch (e: Exception) {
                         errors += PersistenceProblem(SModel.Problem.Kind.Save, e.message, rootNode.name, true)
                         continue

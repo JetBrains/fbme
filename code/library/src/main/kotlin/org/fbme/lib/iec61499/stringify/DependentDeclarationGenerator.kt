@@ -21,4 +21,19 @@ class DependentDeclarationGenerator(private val myDeclaration: Declaration, priv
         return rootElements
     }
 
+    fun getName(): String {
+        val name = when (myDeclaration) {
+            is HMIInterfaceTypeDeclaration -> HMIInterfaceTypeGenerator.getDeclarationName(myDeclaration.name)
+            else -> myDeclaration.name
+        }
+        return name
+    }
+
+    fun getIdentifier(): String {
+        val name = when (myDeclaration) {
+            is HMIInterfaceTypeDeclaration -> HMIInterfaceTypeGenerator.getDeclarationName(myDeclaration.identifier.toString())
+            else -> myDeclaration.name
+        }
+        return name
+    }
 }

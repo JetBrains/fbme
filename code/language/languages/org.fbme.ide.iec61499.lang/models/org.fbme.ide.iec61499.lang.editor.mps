@@ -846,15 +846,8 @@
           <node concept="PMmxH" id="7tln3wNtiJS" role="3EmGlc">
             <ref role="PMmxG" node="1N6Oh7f7bq1" resolve="Folding" />
           </node>
-          <node concept="3F0ifn" id="7tln3wNtiJU" role="2czzBI">
+          <node concept="3F0ifn" id="7u028AewikG" role="2czzBI">
             <property role="3F0ifm" value="" />
-            <property role="ilYzB" value="no temporary variables" />
-            <node concept="Vb9p2" id="7tln3wNtiJV" role="3F10Kt">
-              <property role="Vbekb" value="g1_kEg4/ITALIC" />
-            </node>
-            <node concept="VPM3Z" id="7tln3wNtiJW" role="3F10Kt">
-              <property role="VOm3f" value="true" />
-            </node>
           </node>
         </node>
         <node concept="VPM3Z" id="3tDlCSlV9ZC" role="3F10Kt">
