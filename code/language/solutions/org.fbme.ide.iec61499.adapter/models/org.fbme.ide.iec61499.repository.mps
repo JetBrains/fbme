@@ -93,6 +93,9 @@
         <property id="1176718929932" name="isFinal" index="3TUv4t" />
         <child id="1068431790190" name="initializer" index="33vP2m" />
       </concept>
+      <concept id="1513279640923991009" name="jetbrains.mps.baseLanguage.structure.IGenericClassCreator" flags="ng" index="366HgL">
+        <property id="1513279640906337053" name="inferTypeParams" index="373rjd" />
+      </concept>
       <concept id="1109279763828" name="jetbrains.mps.baseLanguage.structure.TypeVariableDeclaration" flags="ng" index="16euLQ">
         <child id="1214996921760" name="bound" index="3ztrMU" />
       </concept>
@@ -307,6 +310,93 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="2tJIrI" id="1fU$xHHGKBY" role="jymVt" />
+    <node concept="3clFb_" id="1fU$xHHGQoZ" role="jymVt">
+      <property role="TrG5h" value="createCATBlockTypeDeclaration" />
+      <node concept="37vLTG" id="1fU$xHHGQp0" role="3clF46">
+        <property role="TrG5h" value="identifier" />
+        <node concept="3uibUv" id="1fU$xHHGQp1" role="1tU5fm">
+          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+        </node>
+        <node concept="2AHcQZ" id="1fU$xHHGQp2" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="1fU$xHHGQp3" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1fU$xHHGQp4" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="1fU$xHHGQp5" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1fU$xHHGQp6" role="3clF47">
+        <node concept="3clFbF" id="1fU$xHHGQp7" role="3cqZAp">
+          <node concept="2OqwBi" id="1fU$xHHGQp8" role="3clFbG">
+            <node concept="37vLTw" id="1fU$xHHGQp9" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="1fU$xHHGQpa" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="1rXfSq" id="1fU$xHHGQpb" role="37wK5m">
+                <ref role="37wK5l" node="634IrDRwHCB" resolve="create" />
+                <node concept="35c_gC" id="1fU$xHHGQpc" role="37wK5m">
+                  <ref role="35c_gD" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+                </node>
+                <node concept="37vLTw" id="1fU$xHHGQpd" role="37wK5m">
+                  <ref role="3cqZAo" node="1fU$xHHGQp0" resolve="identifier" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1fU$xHHGQpe" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~CATBlockTypeDeclaration" resolve="CATBlockTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1fU$xHHGQpf" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="6lz3dnnwjpO" role="jymVt" />
+    <node concept="2tJIrI" id="6lz3dnnxwaJ" role="jymVt" />
+    <node concept="3clFb_" id="6lz3dnnwBwL" role="jymVt">
+      <property role="TrG5h" value="createHMIBlockTypeDeclaration" />
+      <node concept="37vLTG" id="6lz3dnnxcs5" role="3clF46">
+        <property role="TrG5h" value="identifier" />
+        <node concept="3uibUv" id="6lz3dnnxfdn" role="1tU5fm">
+          <ref role="3uigEE" to="7adg:~Identifier" resolve="Identifier" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="6lz3dnnwBwO" role="3clF47">
+        <node concept="3clFbF" id="6lz3dnnwHal" role="3cqZAp">
+          <node concept="2OqwBi" id="6lz3dnnwMed" role="3clFbG">
+            <node concept="37vLTw" id="6lz3dnnwHak" role="2Oq$k0">
+              <ref role="3cqZAo" node="6YcNwH3_8G_" resolve="myRepository" />
+            </node>
+            <node concept="liA8E" id="6lz3dnnwPcM" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="1rXfSq" id="6lz3dnnwUh0" role="37wK5m">
+                <ref role="37wK5l" node="634IrDRwHCB" resolve="create" />
+                <node concept="35c_gC" id="6lz3dnnwXdp" role="37wK5m">
+                  <ref role="35c_gD" to="xiqq:15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+                </node>
+                <node concept="37vLTw" id="6lz3dnnxhju" role="37wK5m">
+                  <ref role="3cqZAo" node="6lz3dnnxcs5" resolve="identifier" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="6lz3dnnxuwB" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~HMIInterfaceTypeDeclaration" resolve="HMIInterfaceTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="6lz3dnnxF8r" role="1B3o_S" />
+      <node concept="3uibUv" id="6lz3dnnwB0T" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~HMIInterfaceTypeDeclaration" resolve="HMIInterfaceTypeDeclaration" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1fU$xHHGKNH" role="jymVt" />
     <node concept="3clFb_" id="1R0_JUQTxgH" role="jymVt">
       <property role="TrG5h" value="createApplicationDeclaration" />
       <node concept="37vLTG" id="634IrDRwU2x" role="3clF46">
@@ -4025,6 +4115,72 @@
                     <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
                   </node>
                 </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="6lz3dnny9Vy" role="3cqZAp">
+          <node concept="3clFbS" id="6lz3dnny9V$" role="3clFbx">
+            <node concept="3cpWs6" id="6lz3dnnyB8F" role="3cqZAp">
+              <node concept="2ShNRf" id="6lz3dnnyIOp" role="3cqZAk">
+                <node concept="1pGfFk" id="6lz3dnnz6PI" role="2ShVmc">
+                  <property role="373rjd" value="true" />
+                  <ref role="37wK5l" to="go3h:7zgDk8NK7UV" resolve="CATBlockTypeByNode" />
+                  <node concept="1PxgMI" id="6lz3dnnzeSY" role="37wK5m">
+                    <node concept="chp4Y" id="6lz3dnnzm6Q" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="6lz3dnnz7xl" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="6lz3dnnzngL" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="6lz3dnnyoss" role="3clFbw">
+            <node concept="37vLTw" id="6lz3dnnyhfw" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="6lz3dnnyvPR" role="2OqNvi">
+              <node concept="chp4Y" id="6lz3dnnyAor" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:15ruYIbk1Mw" resolve="CATBlockTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="6lz3dnnzvqn" role="3cqZAp">
+          <node concept="3clFbS" id="6lz3dnnzvqp" role="3clFbx">
+            <node concept="3cpWs6" id="6lz3dnn$d94" role="3cqZAp">
+              <node concept="2ShNRf" id="6lz3dnn$kWJ" role="3cqZAk">
+                <node concept="1pGfFk" id="6lz3dnn$m8Q" role="2ShVmc">
+                  <property role="373rjd" value="true" />
+                  <ref role="37wK5l" to="go3h:1ua7aTBYwcW" resolve="HMIInterfaceDeclarationByNode" />
+                  <node concept="1PxgMI" id="6lz3dnn$$YS" role="37wK5m">
+                    <node concept="chp4Y" id="6lz3dnn$GlH" role="3oSUPX">
+                      <ref role="cht4Q" to="xiqq:15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+                    </node>
+                    <node concept="37vLTw" id="6lz3dnn$tvT" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="6lz3dnn$Oi1" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="6lz3dnnzIa9" role="3clFbw">
+            <node concept="37vLTw" id="6lz3dnnzAPT" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="6lz3dnnzPFH" role="2OqNvi">
+              <node concept="chp4Y" id="6lz3dnnzWVH" role="cj9EA">
+                <ref role="cht4Q" to="xiqq:15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
               </node>
             </node>
           </node>

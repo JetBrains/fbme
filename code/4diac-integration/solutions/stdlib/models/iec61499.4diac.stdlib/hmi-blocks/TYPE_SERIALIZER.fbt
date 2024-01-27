@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="TYPE_SERIALIZER" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="valentinnodan" Date="2023-04-21">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="IS_BOOL" Type="Event" Comment="">
+				<With Var="IN_BOOL"/>
+			</Event>
+			<Event Name="IS_INT" Type="Event" Comment="">
+				<With Var="IN_INT"/>
+			</Event>
+			<Event Name="IS_REAL" Type="Event" Comment="">
+				<With Var="IN_REAL"/>
+			</Event>
+			<Event Name="IS_LREAL" Type="Event" Comment="">
+				<With Var="IN_LREAL"/>
+			</Event>
+			<Event Name="IS_STRING" Type="Event" Comment="">
+				<With Var="IN_STRING"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="RES" Type="Event" Comment="">
+				<With Var="TYPE_NAME"/>
+				<With Var="VALUE"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="IN_BOOL" Type="STRING" Comment=""/>
+			<VarDeclaration Name="IN_INT" Type="STRING" Comment=""/>
+			<VarDeclaration Name="IN_REAL" Type="STRING" Comment=""/>
+			<VarDeclaration Name="IN_LREAL" Type="STRING" Comment=""/>
+			<VarDeclaration Name="IN_STRING" Type="STRING" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="TYPE_NAME" Type="STRING" Comment=""/>
+			<VarDeclaration Name="VALUE" Type="STRING" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="547.0588235294117" y="423.52941176470586">
+			</ECState>
+			<ECState Name="SET_BOOL" Comment="" x="1882.3529411764705" y="235.2941176470588">
+				<ECAction Algorithm="setBool" Output="RES"/>
+			</ECState>
+			<ECState Name="SET_INT" Comment="" x="2352.9411764705883" y="470.5882352941176">
+				<ECAction Algorithm="setInt" Output="RES"/>
+			</ECState>
+			<ECState Name="SET_LREAL" Comment="" x="1999.9999999999998" y="941.1764705882352">
+				<ECAction Algorithm="setLreal" Output="RES"/>
+			</ECState>
+			<ECState Name="SET_REAL" Comment="" x="1529.4117647058822" y="1294.1176470588234">
+				<ECAction Algorithm="setReal" Output="RES"/>
+			</ECState>
+			<ECState Name="SET_STRING" Comment="" x="705.8823529411765" y="1411.764705882353">
+				<ECAction Algorithm="setString" Output="RES"/>
+			</ECState>
+			<ECTransition Source="START" Destination="SET_STRING" Condition="IS_STRING" Comment="" x="899.9999999999999" y="1023.5294117647059"/>
+			<ECTransition Source="SET_STRING" Destination="START" Condition="1" Comment="" x="705.8823529411765" y="976.470588235294"/>
+			<ECTransition Source="START" Destination="SET_REAL" Condition="IS_REAL" Comment="" x="1247.0588235294117" y="917.6470588235294"/>
+			<ECTransition Source="SET_REAL" Destination="START" Condition="1" Comment="" x="1170.5882352941176" y="929.4117647058823"/>
+			<ECTransition Source="START" Destination="SET_LREAL" Condition="IS_LREAL" Comment="" x="1523.5294117647059" y="735.2941176470588"/>
+			<ECTransition Source="SET_LREAL" Destination="START" Condition="1" Comment="" x="1352.941176470588" y="770.5882352941176"/>
+			<ECTransition Source="START" Destination="SET_BOOL" Condition="IS_BOOL" Comment="" x="1447.0588235294117" y="382.35294117647055"/>
+			<ECTransition Source="SET_BOOL" Destination="START" Condition="1" Comment="" x="1405.8823529411764" y="435.2941176470588"/>
+			<ECTransition Source="START" Destination="SET_INT" Condition="IS_INT" Comment="" x="1670.5882352941176" y="494.1176470588235"/>
+			<ECTransition Source="SET_INT" Destination="START" Condition="1" Comment="" x="1570.5882352941176" y="552.9411764705882"/>
+		</ECC>
+		<Algorithm Name="setBool" Comment="">
+			<ST><![CDATA[TYPE_NAME := 'BOOL';
+VALUE := IN_BOOL;]]></ST>
+		</Algorithm>
+		<Algorithm Name="setInt" Comment="">
+			<ST><![CDATA[TYPE_NAME := 'INT';
+VALUE := IN_INT;]]></ST>
+		</Algorithm>
+		<Algorithm Name="setReal" Comment="">
+			<ST><![CDATA[TYPE_NAME := 'REAL';
+VALUE := IN_REAL;]]></ST>
+		</Algorithm>
+		<Algorithm Name="setLreal" Comment="">
+			<ST><![CDATA[TYPE_NAME := 'LREAL';
+VALUE := IN_LREAL;]]></ST>
+		</Algorithm>
+		<Algorithm Name="setString" Comment="">
+			<ST><![CDATA[TYPE_NAME := 'STRING';
+VALUE := IN_STRING;]]></ST>
+		</Algorithm>
+	</BasicFB>
+</FBType>

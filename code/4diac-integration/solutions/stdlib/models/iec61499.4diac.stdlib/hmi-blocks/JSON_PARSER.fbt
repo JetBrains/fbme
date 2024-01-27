@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="JSON_PARSER" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="valentinnodan" Date="2023-04-19">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REQ" Type="Event" Comment="">
+				<With Var="DATA"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="RES" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="TYPE"/>
+				<With Var="VALUE"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="DATA" Type="STRING" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="NAME" Type="STRING" Comment=""/>
+			<VarDeclaration Name="TYPE" Type="STRING" Comment=""/>
+			<VarDeclaration Name="VALUE" Type="STRING" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="588.2352941176471" y="470.5882352941176">
+			</ECState>
+			<ECState Name="PARSE" Comment="" x="2300.0" y="641.1764705882352">
+				<ECAction Algorithm="ALG1" Output="RES"/>
+			</ECState>
+			<ECTransition Source="START" Destination="PARSE" Condition="REQ" Comment="" x="1641.1764705882351" y="647.0588235294117"/>
+			<ECTransition Source="PARSE" Destination="START" Condition="1" Comment="" x="1599.9999999999998" y="617.6470588235294"/>
+		</ECC>
+		<Algorithm Name="ALG1" Comment="">
+			<ST><![CDATA[VAR
+     pos : INT;
+     currLen: INT;
+     inString: BOOL;
+     c: STRING;
+     fieldType: STRING;
+     fieldValue: STRING;
+     currField: STRING;
+     step: INT;
+END_VAR;
+step := 1;
+WHILE pos < LEN(DATA) DO
+    c := MID(DATA, step, pos);
+    IF c = '{' THEN (* Start of object *)
+        pos := pos + 1;
+    ELSIF c = '}' THEN (* End of object *)
+    	pos := pos + 1;
+    ELSIF c = '"' or c = '$'' THEN (* Start or end of string *)
+        IF inString THEN (* End of string *)
+            inString := FALSE;
+            pos := pos + 1;
+        ELSE (* Start of string *)
+            inString := TRUE;
+            pos := pos + 1;
+        END_IF;
+    ELSIF c = ':' THEN (* Key-value pair separator *)
+        IF NOT inString THEN (* Outside of string *)
+            currField := fieldValue; 
+            fieldValue := "";
+            pos := pos + 1;
+        ELSE (* Inside of string *)
+            fieldValue := CONCAT(fieldValue, c);
+            pos := pos + 1;
+        END_IF;
+    ELSIF c = ',' THEN (* Value separator *)
+        IF NOT inString THEN (* Outside of string *)
+            IF currField = 'NAME' THEN
+                    NAME := fieldValue;
+            ELSIF currField = 'TYPE' THEN
+                    TYPE :=fieldValue;
+             ELSIF currField = 'VALUE' THEN
+                    VALUE := fieldValue;
+            END_IF;
+            currField := '';
+            fieldValue := '';
+            pos := pos + 1;
+        ELSE (* Inside of string *)
+            fieldValue := CONCAT(fieldValue, c);
+            pos := pos + 1;
+        END_IF;
+    ELSE (* Other characters *)
+        IF inString THEN (* Inside of string *)
+            fieldValue := CONCAT(fieldValue, c);
+            pos := pos + 1;
+        ELSE (* Outside of string *)
+            pos := pos + 1;
+        END_IF;
+    END_IF;
+END_WHILE;
+IF currField = 'NAME' THEN
+        NAME := fieldValue;
+ELSIF currField = 'TYPE' THEN
+        TYPE :=fieldValue;
+ ELSIF currField = 'VALUE' THEN
+        VALUE := fieldValue;
+END_IF;]]></ST>
+		</Algorithm>
+	</BasicFB>
+</FBType>

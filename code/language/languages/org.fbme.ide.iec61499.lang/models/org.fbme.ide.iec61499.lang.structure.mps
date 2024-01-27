@@ -1557,5 +1557,48 @@
       <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
     </node>
   </node>
+  <node concept="1TIwiD" id="15ruYIbk1Mw">
+    <property role="EcuMT" value="1250729573110258848" />
+    <property role="TrG5h" value="CATBlockTypeDeclaration" />
+    <property role="19KtqR" value="true" />
+    <property role="34LRSv" value="cat function block type" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="5cPJ2880EM3" role="1TKVEl">
+      <property role="IQ2nx" value="5995905333262986371" />
+      <property role="TrG5h" value="interfaceFileName" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="gdnNDDKQnZ" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="PrWs8" id="19ypCjbf16I" role="PzmwI">
+      <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
+    <node concept="PrWs8" id="2ZYTOsKyqLM" role="PzmwI">
+      <ref role="PrY4T" node="4s7KBSjc3Il" resolve="IContext" />
+    </node>
+    <node concept="1TJgyj" id="19ypCjbiylf" role="1TKVEi">
+      <property role="IQ2ns" value="1324733960932697423" />
+      <property role="20kJfa" value="blockDeclaration" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="PI_pXYugbt" resolve="CompositeFBTypeDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="19ypCjbiyll" role="1TKVEi">
+      <property role="IQ2ns" value="1324733960932697429" />
+      <property role="20kJfa" value="hmiInterfaceDeclaration" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="15ruYIbk1Mz" resolve="HMIInterfaceTypeDeclaration" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="15ruYIbk1Mz">
+    <property role="EcuMT" value="1250729573110258851" />
+    <property role="TrG5h" value="HMIInterfaceTypeDeclaration" />
+    <property role="34LRSv" value="hmi" />
+    <property role="19KtqR" value="true" />
+    <ref role="1TJDcQ" node="3HBlKeoYsiw" resolve="FBTypeDeclaration" />
+    <node concept="PrWs8" id="19ypCjbpLHk" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
 </model>
 
