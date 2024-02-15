@@ -12,6 +12,7 @@ import jetbrains.mps.openapi.navigation.NavigationSupport
 import jetbrains.mps.persistence.DefaultModelRoot
 import jetbrains.mps.persistence.ModelCannotBeCreatedException
 import jetbrains.mps.project.MPSExtentions
+import jetbrains.mps.project.ModelImporter
 import jetbrains.mps.project.Solution
 import jetbrains.mps.smodel.ModelImports
 import jetbrains.mps.workbench.MPSDataKeys
@@ -80,13 +81,27 @@ class NewLibraryAction : AnAction() {
         val projectPane = ProjectPane.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT))
         projectPane.selectModule(solution, false)
 
-        mpsProject.modelAccess.runWriteAction {
-            mpsProject.repository.modules.forEach { it ->
-                it.models.forEach {
-                    ModelImports(it).addModelImport(model!!.reference)
+
+        val models: ArrayList<ModelImporter> = ArrayList()
+        mpsProject.modelAccess.runReadAction {
+            mpsProject.repository.modules.forEach { module ->
+
+                module.models.forEach {
+//                    ModelImports(it).addModelImport(model!!.reference)
+                    val modelImporter = ModelImporter(it)
+                    modelImporter.prepare(model!!.reference)
+                    models.add(modelImporter)
                 }
             }
         }
+
+        mpsProject.modelAccess.runWriteAction {
+            for (curModel in models){
+                curModel.execute()
+            }
+        }
+
+
     }
 
 }
