@@ -80,9 +80,11 @@ class NewLibraryAction : AnAction() {
         val projectPane = ProjectPane.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT))
         projectPane.selectModule(solution, false)
 
-        mpsProject.repository.modules.forEach {
-            it.models.forEach {
-                ModelImports(it).addModelImport(model!!.reference)
+        mpsProject.modelAccess.runWriteAction {
+            mpsProject.repository.modules.forEach { it ->
+                it.models.forEach {
+                    ModelImports(it).addModelImport(model!!.reference)
+                }
             }
         }
     }
