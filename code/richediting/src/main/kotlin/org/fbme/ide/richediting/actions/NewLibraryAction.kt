@@ -81,27 +81,17 @@ class NewLibraryAction : AnAction() {
         val projectPane = ProjectPane.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT))
         projectPane.selectModule(solution, false)
 
-
-        val models: ArrayList<ModelImporter> = ArrayList()
-        mpsProject.modelAccess.runReadAction {
+        mpsProject.modelAccess.runWriteAction {
             mpsProject.repository.modules.forEach { module ->
-
                 module.models.forEach {
-//                    ModelImports(it).addModelImport(model!!.reference)
                     val modelImporter = ModelImporter(it)
                     modelImporter.prepare(model!!.reference)
-                    models.add(modelImporter)
+                    modelImporter.execute()
                 }
             }
         }
 
-        mpsProject.modelAccess.runWriteAction {
-            for (curModel in models){
-                curModel.execute()
-            }
-        }
-
-
+        
     }
 
 }
