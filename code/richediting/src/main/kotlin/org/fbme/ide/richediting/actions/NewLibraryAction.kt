@@ -21,6 +21,7 @@ import org.fbme.ide.platform.persistence.Iec61499ModelFactory
 import org.fbme.ide.platform.projectWizard.LibraryTemplate
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SModelName
+import org.jetbrains.uast.util.isInstanceOf
 
 class NewLibraryAction : AnAction() {
 
@@ -83,15 +84,19 @@ class NewLibraryAction : AnAction() {
 
         mpsProject.modelAccess.runWriteAction {
             mpsProject.repository.modules.forEach { module ->
-                module.models.forEach {
-                    val modelImporter = ModelImporter(it)
-                    modelImporter.prepare(model!!.reference)
-                    modelImporter.execute()
+                if (module.moduleName != null) {
+                    if (module.moduleName!!.contains("org.fbme")) {
+                        module.models.forEach {
+                            val modelImporter = ModelImporter(it)
+                            modelImporter.prepare(model!!.reference)
+                            modelImporter.execute()
+                        }
+                    }
                 }
             }
         }
 
-        
+
     }
 
 }
