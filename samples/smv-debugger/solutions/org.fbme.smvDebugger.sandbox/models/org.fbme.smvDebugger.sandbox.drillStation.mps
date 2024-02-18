@@ -3,6 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="6594f340-4d73-4027-b7d3-c6ca2e70a53b" name="org.fbme.ide.iec61499.lang" version="0" />
+    <use id="2046780a-246e-4cb0-90fe-56a2b7d92c54" name="org.fbme.ide.st.lang" version="0" />
   </languages>
   <imports>
     <import index="7fvu" ref="r:fa98296a-e4fa-4f84-b917-968f5f770c4b(iec61499.4diac.stdlib)" />

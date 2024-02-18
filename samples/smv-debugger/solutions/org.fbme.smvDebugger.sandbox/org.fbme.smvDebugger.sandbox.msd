@@ -12,8 +12,8 @@
   </facets>
   <sourcePath />
   <dependencies>
-    <dependency reexport="false">b8a7e14f-52ea-4ee2-b17e-26c27da8084c(IEC-61499)</dependency>
-    <dependency reexport="false">b613eb3b-11da-44ff-a31c-79eab36500f4(org.fbme.ide.sandbox)</dependency>
+    <dependency reexport="true">b8a7e14f-52ea-4ee2-b17e-26c27da8084c(IEC-61499)</dependency>
+    <dependency reexport="true">b613eb3b-11da-44ff-a31c-79eab36500f4(org.fbme.ide.sandbox)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />

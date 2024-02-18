@@ -304,10 +304,10 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5PlF" to="7fvu:~E_SWITCH.G" resolve="G" />
         </node>
-        <node concept="bR73E" id="1yZbKy16ao8" role="bPNfo">
-          <property role="bR73D" value="75.0" />
-          <property role="bR73n" value="63.0" />
-          <property role="bR73k" value="75.0" />
+        <node concept="bR73E" id="3LZ90vNOlQ8" role="bPNfo">
+          <property role="bR73D" value="70.0" />
+          <property role="bR73n" value="60.0" />
+          <property role="bR73k" value="63.0" />
         </node>
       </node>
       <node concept="1N5Tqi" id="3wAsKTk6T$j" role="1N5PiQ">
@@ -319,10 +319,10 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EI" resolve="EI" />
         </node>
-        <node concept="bR73E" id="1yZbKy16aob" role="bPNfo">
-          <property role="bR73D" value="122.0" />
-          <property role="bR73n" value="528.0" />
-          <property role="bR73k" value="75.0" />
+        <node concept="bR73E" id="3LZ90vNOlQ6" role="bPNfo">
+          <property role="bR73D" value="103.0" />
+          <property role="bR73n" value="527.0" />
+          <property role="bR73k" value="63.0" />
         </node>
       </node>
       <node concept="1N5Tqi" id="3wAsKTk6T$I" role="1N5PiQ">
@@ -334,7 +334,9 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EO1" resolve="EO1" />
         </node>
-        <node concept="bR33I" id="1yZbKy16ao9" role="bPNfo" />
+        <node concept="bR32z" id="3LZ90vNOlQ5" role="bPNfo">
+          <property role="bR32p" value="136.0" />
+        </node>
       </node>
       <node concept="1N5Tqi" id="3wAsKTk6T$v" role="1N5PiQ">
         <node concept="3Yx0EI" id="3wAsKTk6T$F" role="2RhMK_">
@@ -345,7 +347,9 @@
           <ref role="1N5Pi4" node="3wAsKTk6TzZ" resolve="E_SWITCH" />
           <ref role="1N5Pi3" to="7fvu:~E_SWITCH.EO0" resolve="EO0" />
         </node>
-        <node concept="bR33I" id="1yZbKy16aoa" role="bPNfo" />
+        <node concept="bR32z" id="3LZ90vNOlQ7" role="bPNfo">
+          <property role="bR32p" value="136.0" />
+        </node>
       </node>
       <node concept="1N5Tt1" id="3wAsKTk6SA2" role="1N5PiY">
         <property role="TrG5h" value="E_CYCLE" />
@@ -373,8 +377,8 @@
         <property role="TrG5h" value="E_SWITCH" />
         <ref role="1N5Tt0" to="7fvu:~E_SWITCH" resolve="E_SWITCH" />
         <node concept="10YbkR" id="3IX4BsKohv4" role="b_cXm">
-          <property role="10YbkC" value="128.0" />
-          <property role="10YbkE" value="265.0" />
+          <property role="10YbkC" value="109.0" />
+          <property role="10YbkE" value="260.0" />
         </node>
       </node>
       <node concept="1N5Tqi" id="34yqbtaiM15" role="1N5PiQ">

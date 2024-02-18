@@ -30,6 +30,8 @@ class SMVTraceService(val project: Project) {
         compositeFb: CompositeFBTypeDeclaration,
         agr: ArrayList<String>): Future<ArrayList<SystemStateUpdate>> {
 
+        fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
+
         // TODO() this is only for FOR HHM_FV
         val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("\\")) + "\\execution_trace.txt").toPath()
         val trace= unifiedParser.getUnifiedTrace("", tmpTrace, compositeFb)

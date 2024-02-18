@@ -35,37 +35,37 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="1096" y="469" />
-      <ECState Name="INIT" x="1619" y="477">
+      <ECState Name="START" x="0" y="1013" />
+      <ECState Name="INIT" x="1340" y="633">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="OPENNED" x="1616" y="736">
+      <ECState Name="OPENNED" x="3539" y="633">
         <ECAction Output="CNF" Algorithm="OPEN" />
       </ECState>
-      <ECState Name="CLOSED" x="1596" y="1672">
+      <ECState Name="CLOSED" x="7939" y="0">
         <ECAction Output="CNF" Algorithm="CLOSE" />
       </ECState>
-      <ECState Name="OPENNING" x="2400" y="1180">
+      <ECState Name="OPENNING" x="10033" y="640">
         <ECAction Output="CNF" Algorithm="moving" />
       </ECState>
-      <ECState Name="CLOSING" x="716" y="1178">
+      <ECState Name="CLOSING" x="5740" y="879">
         <ECAction Output="CNF" Algorithm="moving" />
       </ECState>
-      <ECState Name="STOP" x="1596" y="1176">
+      <ECState Name="STOP" x="7939" y="1106">
         <ECAction Output="CNF" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="INIT" Destination="OPENNED" x="1617" y="600" Condition="NDT" />
-      <ECTransition Source="CLOSING" Destination="CLOSED" x="1011" y="1533" Condition="NDT" />
-      <ECTransition Source="CLOSED" Destination="OPENNING" x="2104" y="1537" Condition="1" />
-      <ECTransition Source="OPENNING" Destination="OPENNED" x="2132" y="851" Condition="NDT" />
-      <ECTransition Source="OPENNED" Destination="CLOSING" x="1065" y="842" Condition="1" />
-      <ECTransition Source="CLOSING" Destination="STOP" x="1164" y="1057" Condition="1" />
-      <ECTransition Source="STOP" Destination="OPENNING" x="1968" y="1090" Condition="1" />
-      <ECTransition Source="OPENNING" Destination="STOP" x="1965" y="1266" Condition="1" />
-      <ECTransition Source="STOP" Destination="CLOSING" x="1194" y="1293" Condition="1" />
-      <ECTransition Source="INIT" Destination="STOP" x="1872" y="808" Condition="NDT" />
-      <ECTransition Source="INIT" Destination="CLOSED" x="3244" y="1032" Condition="NDT" />
-      <ECTransition Source="START" Destination="INIT" x="1377" y="385" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="OPENNED" x="3060" y="1160" Condition="NDT" />
+      <ECTransition Source="CLOSING" Destination="CLOSED" x="7459" y="1046" Condition="NDT" />
+      <ECTransition Source="CLOSED" Destination="OPENNING" x="9606" y="833" Condition="1" />
+      <ECTransition Source="OPENNING" Destination="OPENNED" x="7459" y="846" Condition="NDT" />
+      <ECTransition Source="OPENNED" Destination="CLOSING" x="5260" y="1313" Condition="1" />
+      <ECTransition Source="CLOSING" Destination="STOP" x="7459" y="1260" Condition="1" />
+      <ECTransition Source="STOP" Destination="OPENNING" x="9606" y="1440" Condition="1" />
+      <ECTransition Source="OPENNING" Destination="STOP" x="9606" y="1240" Condition="1" />
+      <ECTransition Source="STOP" Destination="CLOSING" x="7459" y="1633" Condition="1" />
+      <ECTransition Source="INIT" Destination="STOP" x="5260" y="1959" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="CLOSED" x="5260" y="606" Condition="NDT" />
+      <ECTransition Source="START" Destination="INIT" x="833" y="1160" Condition="INIT" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="GRO := FALSE;&amp;#38;#10;GRC := FALSE;&amp;#38;#10;" />

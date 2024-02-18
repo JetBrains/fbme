@@ -154,7 +154,7 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
                         for (stat in rez) {
                             buf.append(
                                 "\tS_smv=s2_osm & Q_smv=${st.name}_ecc & " +
-                                        "NA=${st.actions.indexOf(act) + 1} & NI=${stat.second} : (" +
+                                        "NA=${st.actions.indexOf(act) + 1} & NI=${stat.second + 1} : (" +
                                         (stat.first.expression as? Literal<*>)?.value.toString().uppercase() + ");\n"
                             )
                         }
@@ -168,10 +168,25 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
 
         for (id in fb.dataOutputPorts) {
             buf.append("next(${id.name}_) := case\nS_smv=s2_osm & NI=0 & (")
+
             for (st in states) {
-                buf.append("(Q_smv=${st.name}_ecc & NA=1)")//TODO algs
-                if (states.last() != st) buf.append(" | ")
+                for (act in st.actions) {
+                    val body = act.algorithm.getTarget()?.body
+                    if (body is AlgorithmBody.ST) {
+                        val rez = FBInfoService.getOutputsAssignmentsFromAlgBody(id, body) ?: continue;
+                        for (stat in rez){
+                            buf.append("(Q_smv=${st.name}_ecc & NA=1)") //TODO algs
+                        }
+                    //    if () //TODO test when 2 assgnments in 2 state
+//                        if (rez.last() != stat) {
+//                            buf.append(" | ") // TODO not here
+//                        }
+                    }
+                }
+                //todo move here with checks
             }
+
+
             buf.append(") : ${id.name};\n\tTRUE : ${id.name}_;\nesac;\n")
         }
         buf.append("\n")

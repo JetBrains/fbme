@@ -20,12 +20,12 @@ TODO
 
  */
 abstract class AbstractFBDConverter(val fileExtention: String) {
-    val fbTypesSet = HashSet<FBTypeDeclaration>()
-    val buf = StringBuilder()
+    val fbTypesSet = HashSet<FBTypeDeclaration>() //needs to be cleaned each new run
+    val buf = StringBuilder() //needs to be cleaned each new run
     var basicFBConverter: AbstractBasicFBConverter? = null
     var compositeFBConverter: AbstractCompositeFBConverter? = null
     var mainFunction: AbstractMainConverter? = null
-    var data: VerifiersData? = null
+    var data: VerifiersData? = null // TODO can be tuned from UI (NDT)
 
 
     private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
@@ -88,10 +88,12 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
                       + "." + fileExtention)
 
+
             compositeBlockNetworkTraversal(compositeFb)
             mainFunction?.generateMainFunction(compositeFb, buf)
             file.writeText(buf.toString())
             buf.clear()
+           fbTypesSet.clear()
        }
         return null
     }
