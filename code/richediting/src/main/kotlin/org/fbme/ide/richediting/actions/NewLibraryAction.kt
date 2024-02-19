@@ -82,7 +82,9 @@ class NewLibraryAction : AnAction() {
         val projectPane = ProjectPane.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT))
         projectPane.selectModule(solution, false)
 
-        mpsProject.modelAccess.runWriteAction {
+        /*mpsProject.modelAccess.runWriteAction {
+
+            // TODO: use mpsProject.projectModules instead
             mpsProject.repository.modules.forEach { module ->
                 if (module.moduleName != null) {
                     if (module.moduleName!!.contains("org.fbme")) {
@@ -92,6 +94,16 @@ class NewLibraryAction : AnAction() {
                             modelImporter.execute()
                         }
                     }
+                }
+            }
+        }*/
+
+        mpsProject.modelAccess.runWriteAction {
+            mpsProject.projectModules.forEach { module ->
+                module.models.forEach {
+                    val modelImporter = ModelImporter(it)
+                    modelImporter.prepare(model!!.reference)
+                    modelImporter.execute()
                 }
             }
         }
