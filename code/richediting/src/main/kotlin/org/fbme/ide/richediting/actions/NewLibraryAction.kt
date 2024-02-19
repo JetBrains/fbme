@@ -100,6 +100,7 @@ class NewLibraryAction : AnAction() {
 
         mpsProject.modelAccess.runWriteAction {
             mpsProject.projectModules.forEach { module ->
+//                TODO: import created module&model only to module/models with specific facet
                 module.models.forEach {
                     val modelImporter = ModelImporter(it)
                     modelImporter.prepare(model!!.reference)
