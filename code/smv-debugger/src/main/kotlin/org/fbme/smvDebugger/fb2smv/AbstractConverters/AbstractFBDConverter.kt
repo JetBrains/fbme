@@ -49,35 +49,9 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
 
     }
 
-    private fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration) {
-        compositeFBConverter?.generateSignature(compositeFb, buf)
-        compositeFBConverter?.generateFBsInstances(compositeFb, buf)
-        compositeFBConverter?.generateCompositeFBsVariables(compositeFb, buf)
-        compositeFBConverter?.generateInternalDataConnections(compositeFb, buf)
-        compositeFBConverter?.generateInnerFBsEventOutputsUpdate(compositeFb, buf)
-        compositeFBConverter?.generateDispatcher(compositeFb, buf)
-        compositeFBConverter?.generateInternalEventConnections(compositeFb, buf)
-        compositeFBConverter?.generateFooter(compositeFb, buf)
-    }
+    abstract fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration)
 
-    private fun basicFBConversion(fb: FBTypeDescriptor) {
-        data?.ndtExists = false
-        basicFBConverter?.generateSignature(fb, buf)
-        basicFBConverter?.generateLocalVariableDeclaration(fb, buf)
-        basicFBConverter?.generateCountersDeclaration(fb, buf)
-        basicFBConverter?.generateLocalVariableDefinition(fb, buf)
-        basicFBConverter?.generateNonDeterministicVariables(fb, buf)
-        basicFBConverter?.generateECCTransitions(fb, buf)
-        basicFBConverter?.generateOSM(fb, buf)
-        basicFBConverter?.generateNA(fb, buf)
-        basicFBConverter?.generateNI(fb, buf)
-        basicFBConverter?.generateInputVariablesUpdate(fb, buf)
-        basicFBConverter?.generateOutputVariablesUpdate(fb, buf)
-        basicFBConverter?.generateAlphaBeta(fb, buf)
-        basicFBConverter?.generateInputEventsReset(fb, buf)
-        basicFBConverter?.generateOutputEventsSet(fb, buf)
-        basicFBConverter?.generateFooter(fb, buf)
-    }
+    abstract fun basicFBConversion(fb: FBTypeDescriptor)
 
     fun convertFB(
         fbPath: Path, compositeFb: CompositeFBTypeDeclaration,
