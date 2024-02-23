@@ -40,7 +40,6 @@ class NewLibraryAction : AnAction() {
 
         dialog.withFactory {
             val result = NewModuleUtil.createSolution(cfg.moduleName, cfg.moduleLocation.absolutePath, mpsProject)
-//            mpsProject.setVirtualFolder(result, virtualFolder)
             val root = result.modelRoots.iterator().next() as DefaultModelRoot
             model = try {
                 val fullModelName = "NewLibrary@content"
@@ -50,7 +49,6 @@ class NewLibraryAction : AnAction() {
             }
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val initialElement = LibraryTemplate().initModel(mpsProject.project, repository, model!!)
-//            model.module.declaredDependencies
             mpsProject.repository.modelAccess.runReadInEDT {
                 val navigationSupport = NavigationSupport.getInstance()
                 navigationSupport.openNode(mpsProject, initialElement.node, true, false)
@@ -65,7 +63,6 @@ class NewLibraryAction : AnAction() {
 //            val facetFactory = FacetsRegistry.getInstance().getFacetFactory("library")
 //            val libFacet =  facetFactory!!.create(result)
 //            result.moduleDescriptor.addFacetDescriptor(libFacet)
-
 
             mpsProject.save()
             result
@@ -83,22 +80,6 @@ class NewLibraryAction : AnAction() {
 
         val projectPane = ProjectPane.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT))
         projectPane.selectModule(solution, false)
-
-        /*mpsProject.modelAccess.runWriteAction {
-
-            // TODO: use mpsProject.projectModules instead
-            mpsProject.repository.modules.forEach { module ->
-                if (module.moduleName != null) {
-                    if (module.moduleName!!.contains("org.fbme")) {
-                        module.models.forEach {
-                            val modelImporter = ModelImporter(it)
-                            modelImporter.prepare(model!!.reference)
-                            modelImporter.execute()
-                        }
-                    }
-                }
-            }
-        }*/
 
         mpsProject.modelAccess.runWriteAction {
             mpsProject.projectModules.forEach { module ->
