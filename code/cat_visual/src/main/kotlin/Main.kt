@@ -19,10 +19,18 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import androidx.compose.ui.zIndex
-import canvas.items.CustomItem
-import canvas.items.TextItem
+import canvas.items.impl.CustomItem
+import canvas.items.impl.LampItem
+import canvas.items.impl.TextItem
+import canvas.items.interfaces.CanvasItemInterface
+import canvas.items.model.JsonCanvasModel
+import canvas.items.model.toItem
 import connection.*
 import example.COUNTER.CounterLampHMI
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import serializer.SerializationUtils
 import serializer.getConf
 import serializer.getMapping
 import serializer.getPlainMapping
@@ -62,23 +70,27 @@ val client = buildMappingClient("src/main/kotlin/example/COUNTER/COUNTER.xml", "
 //val client = buildMappingClient("src/main/kotlin/example/WATER_TANK/WATER_TANK.xml", "src/main/kotlin/example/WATER_TANK/COMMON_CONF.xml", "json")
 
 @Composable
-fun canvas(itemList: List<String>) {
+fun canvas(
+    itemList: List<CanvasItemInterface>,
+    deleteItem: (String) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth()
             .zIndex(0f),
-//        horizontalAlignment = Alignment.Start,
-
     ) {
         items(itemList.size) { index ->
-            TextItem(text = itemList[index]).getContent()
+            itemList[index].getContent { deleteItem(it)}
         }
     }
 }
 
 @Composable
-fun itemBar(addNewItem: (String) -> Unit) {
+fun itemBar(
+    itemList: List<CanvasItemInterface>,
+    addNewItem: (CanvasItemInterface) -> Unit
+) {
     Column(
         modifier = Modifier
             .background(Color.LightGray)
@@ -90,38 +102,30 @@ fun itemBar(addNewItem: (String) -> Unit) {
         Button(
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
             onClick = {
-                addNewItem("Added text")
+                addNewItem(TextItem(content = "AddedText"))
             }
         ) {
-            Text(text = "Add Item")
+            Text(text = "Add text")
+        }
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            onClick = {
+                addNewItem(LampItem(client = client))
+            }
+        ) {
+            Text(text = "Add lamp")
+        }
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            onClick = {
+                val x = itemList.map {it.toModel()}
+                val json = Json.encodeToString(x)
+                SerializationUtils.saveSnapshot(json)
+            }
+        ) {
+            Text(text = "save")
         }
     }
-}
-
-@Composable
-fun testItem() {
-    var scale by remember { mutableStateOf(1f) }
-    var rotation by remember { mutableStateOf(0f) }
-    var offset by remember { mutableStateOf(Offset.Zero) }
-    val state = rememberTransformableState { zoomChange, offsetChange, rotationChange ->
-        scale *= zoomChange
-        rotation += rotationChange
-        offset += offsetChange
-    }
-    Box(
-        modifier = Modifier
-            .graphicsLayer(
-                scaleX = scale,
-                scaleY = scale,
-                rotationZ = rotation,
-                translationX = offset.x,
-                translationY = offset.y
-            )
-            .transformable(state = state)
-            .background(Color.Blue)
-            .width(50.dp)
-            .height(50.dp)
-    )
 }
 
 fun main() = application {
@@ -130,7 +134,8 @@ fun main() = application {
         title = "Canvas for CAT",
         state = rememberWindowState(width = 600.dp, height = 600.dp)
     ) {
-        var itemList by remember { mutableStateOf(listOf("text1", "text2")) }
+        val listxxx = Json.decodeFromString<List<JsonCanvasModel>>(SerializationUtils.readSnapshot())
+        var itemList by remember { mutableStateOf(listxxx.map { it.toItem(client) }) }
             MaterialTheme {
                 Row(
                     modifier = Modifier
@@ -138,11 +143,14 @@ fun main() = application {
                         .fillMaxHeight(),
                 ) {
 //                CounterLampHMI(client, "1")
-                    itemBar { item ->
+                    itemBar(itemList) { item ->
                         itemList += listOf(item)
                     }
-                    canvas(itemList)
-                    testItem()
+                    canvas(itemList) { idToDelete ->
+                        itemList = itemList.filter { it.id.toString() != idToDelete }
+                        val x = 1
+                        println(itemList.map { it.id })
+                    }
                     client.retrieveValues()
                 }
 

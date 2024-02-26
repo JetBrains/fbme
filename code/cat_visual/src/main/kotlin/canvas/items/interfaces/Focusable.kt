@@ -1,4 +1,4 @@
-package canvas.items
+package canvas.items.interfaces
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
