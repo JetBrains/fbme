@@ -33,16 +33,16 @@ abstract class UDPClient(): AbstractClient() {
 
 class PlainClient(mapping: PlainMapping): UDPClient() {
     init {
-        mapping.inputs.inputs.forEach({
+        mapping.inputs.inputs.forEach {
             registry.getConnection(it.name, TYPE_ID.valueOf(it.type), it.host, it.port)
             inputs.add(it.name)
             inputConnections.add(registry.getConnection(it.name)!!.second)
-        })
-        mapping.outputs.outputs.forEach({
+        }
+        mapping.outputs.outputs.forEach {
             registry.getConnection(it.name, TYPE_ID.valueOf(it.type), it.host, it.port)
             outputs.add(it.name)
             outputConnections.add(registry.getConnection(it.name)!!.second)
-        })
+        }
     }
 
     override fun sendValue(name: String) {
