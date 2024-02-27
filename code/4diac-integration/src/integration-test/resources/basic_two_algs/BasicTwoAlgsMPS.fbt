@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="TwoAlgs">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="event_input1">
+        <With Var="variable_input_int" />
+      </Event>
+      <Event Name="event_input2" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="event_output1">
+        <With Var="variable_output_bool" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="variable_input_int" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="variable_output_bool" Type="BOOL" />
+      <VarDeclaration Name="variable_output_int" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="internal_variable1" Type="STRING" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" x="1622" y="155" />
+      <ECState Name="STOP" x="0" y="0" />
+      <ECState Name="EVAL" x="2294" y="449">
+        <ECAction Output="event_output1" Algorithm="algorithm1" />
+      </ECState>
+      <ECState Name="EVAL2" x="416" y="1222">
+        <ECAction Output="event_output1" Algorithm="ALG_Var2" />
+      </ECState>
+      <ECTransition Source="START" Destination="STOP" x="700" y="238" Condition="1" />
+      <ECTransition Source="START" Destination="EVAL" x="2677" y="55" Condition="event_input1" />
+      <ECTransition Source="START" Destination="EVAL2" x="-172" y="650" Condition="event_input2" />
+    </ECC>
+    <Algorithm Name="algorithm1">
+      <VarDeclaration Name="delta" Type="INT" />
+      <ST Text="delta := 4;&amp;#38;#10;variable_output_bool := TRUE;&amp;#38;#10;variable_output_int := delta + 7;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="ALG_Var2">
+      <VarDeclaration Name="tmpVar" Type="BOOL" />
+      <VarDeclaration Name="tmpVar2" Type="STRING" />
+      <ST Text="tmpVar := TRUE;&amp;#38;#10;tmpVar2 := &amp;#39;novalue&amp;#39;;&amp;#38;#10;variable_output_bool := FALSE;&amp;#38;#10;variable_output_int := 0;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

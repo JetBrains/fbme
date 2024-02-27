@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Case">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="EO1" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="in" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="out" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="955" y="305" />
+      <ECState Name="S2" x="0" y="0">
+        <ECAction Output="EO1" Algorithm="A1" />
+      </ECState>
+      <ECTransition Source="START" Destination="S2" x="0" y="0" Condition="1" />
+    </ECC>
+    <Algorithm Name="A1">
+      <ST Text="CASE in OF &amp;#38;#10;  0 -&amp;#62;&amp;#38;#10;    out := FALSE;&amp;#38;#10;  1 -&amp;#62;&amp;#38;#10;    out := TRUE;&amp;#38;#10;  2 -&amp;#62;&amp;#38;#10;    out := TRUE;&amp;#38;#10;  TRUE -&amp;#62;&amp;#38;#10;    out := FALSE;&amp;#38;#10;END_CASE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

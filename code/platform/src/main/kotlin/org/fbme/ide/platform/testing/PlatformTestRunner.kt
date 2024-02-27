@@ -104,6 +104,7 @@ class PlatformTestRunner(clazz: Class<*>) : BlockJUnit4ClassRunner(loadFromCusto
                     .addFbmePlugin("fbme.scenes")
                     .addFbmePlugin("fbme.formalfb")
                     .addFbmePlugin("fbme.integration.nxt")
+                    .addFbmePlugin("fbme.integration.fordiac")
                 val environment = IdeaEnvironment(config)
                 environment.init()
                 val repository = MPSModuleRepository.getInstance()
