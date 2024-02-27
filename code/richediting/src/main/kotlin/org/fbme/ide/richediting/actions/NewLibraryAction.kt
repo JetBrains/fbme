@@ -70,7 +70,7 @@ class NewLibraryAction : AnAction() {
 
 
 
-        dialog.title = "New Library"
+        dialog.title = "Library"
         dialog.show()
         if (!dialog.isOK) {
             return
