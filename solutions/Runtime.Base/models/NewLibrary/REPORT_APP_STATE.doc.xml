@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>Reports the state of the application back to the IEC 61499 Runtime</p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>The function block allows the application to report the application status back to the IEC 61499 runtime.</p><p>The main usage is to tell the runtime that the application has performed its initialization stages and is ready to proceed with the normal operation. The runtime then enables processes such as updating the data stored in the non-volatile storage, that can be inconsistent during the initialization. This is achieved using STATE = App Initialized.</p><p>The FB can either start automatically as soon as the resource it is located in starts, or explicitely using the START event. Note that the STARTMODE is a parameter (it is not associated with any event) and as such it has to be defined as a constant. If the STARTMODE is implicit, also the TIMEOUT has to be specified as a constant.</p><p>If there is any REPORT_APP_STATE FB in any resource, there has to be exactly one with STARTMODE App Init in the device.</p><p>
+  </p></wysiwyg></section>
+

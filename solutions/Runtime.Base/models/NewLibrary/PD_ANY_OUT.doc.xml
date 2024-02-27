@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is internally used for hardware access </p><p>PD_ANY_OUT implements a function block that writes data into the associated fieldbus process memory.</p><p>It is a generic block. The number of outputs (WR1...WR16) can be chosen from 1 to 16. Datatype BOOL, BYTE, WORD, DWORD and REAL can be selected independently for each output.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'INIT' has to be triggered after every alteration of InitSize or MaxSize and leads to an 'INITO'-Event.</p><p>An incoming 'REQ'-event causes the block to write to fieldbus and leads to an 'CNF'-event.</p><p>
+</p><p><strong> </strong></p><p><strong>Functional Behavior</strong></p><p>'QI': has to be TRUE so that the block can be initialized and is ready to work. It can be set FALSE to deinitialize the block.</p><p>'QO': shows status of the block (TRUE is ready, FALSE is error or deinitialized).</p><p>'BUS_ID': has to be connected with the incoming KBUS -busId- (or the like), to identify the bus the current device is attached to.</p><p>'SLOT_NO': has to be connected with the incoming KBUS -nextSlotNo- (or the like), to get the definition which device values are written to.</p><p>'OFFSET': defines the bit offset of the accessor within the device.</p><p>'PD_USES_MSBF': if this port is set true, process data will be encoded as most significant byte first.</p><p>'STATUS': shows the current accessor status.</p><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

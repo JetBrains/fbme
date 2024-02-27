@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is internally used for symlink connections solely in Hardware CATs.</p><p /><p>It is a generic block and can be defined with 1 to 16 inputs. Each input datatype can be defined independently. (More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p>It serves as the symlinksource and needs a SYMLINKMULTIVARDST with the same parameterizing to fetch the transmitted data.</p><p>Each value input is assigned with it's own path name.</p><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p> 'INIT'-Event input:</p><p>- Performs the initialization and captures the 'QI'-input. </p><p>- - If 'QI' is TRUE the function block is initialized and ready to work, 'QO' is TRUE.</p><p>- - If 'QI' is TRUE the 'INIT' event causes also the first data transmitting without a 'REQ'-event.</p><p>- - If 'QI' is FALSE the function block is deinitialized, 'QO' is false.</p><p>- Each 'INIT' causes an 'INITO'-event.</p><p> </p><p>
+</p><p> 'REQ'-Event input:</p><p>- Produces a 'CNF'-event, if the function block is initialized.</p><p>- If the corresponding SYMLINKMULTIVARDST is initialized, this event produces a 'CNF'-event at the SYMLINKMULTIVARDST function block too.</p><p>- If the corresponding SYMLINKMULTIVARDST is not yet initialized, this event produces a 'CNF'-event at the SYMLINKMULTIVARDST function block when the initialization of this block is done. In this case data is written to the SYMLINKMULTIVARDST when the initialization of this block happens, without a further REQ. Only the last value of each channel that has been sent will be received at the SYMLINKMULTIVARDST. Be sure to have the SYMLINKMULTIVARDST initialized before initializing the SYMLINKMULTIVARSRC, or at least before the second REQ-Event of the SYMLINKMULTIVARSRC is triggered, to prevent the loss of data.</p><p> </p><p> </p><p>
+</p><p> 'INITO'-Event output:</p><p>- This event is fired when the 'INIT'-Event has been processed (successfully or not).</p><p> </p><p>
+</p><p> 'CNF'-Event output:</p><p>- This event is fired after a 'REQ'-event, only if the function block is initialized properly.</p><p> </p><p>
+</p><p><strong>Functional Behavior</strong></p><p /><p> 'QI'-input:</p><p>- If the value is TRUE an initialization is performed, else: the function block will be deinitialized with an INIT-event.</p><p> </p><p> 'NAMEn'-input:</p><p>- Path name, has to be equal at the corresponding SYMLINKMULTIVARDST 'NAMEn'-input. (i.e.: HW_pump1.isOn)</p><p> </p><p> 'VALUEn'-input:</p><p>- Value to be sent to corresponding SYMLINKMULTIVARDST. Datatype can be defined within the interface editor.</p><p> </p><p> 'QO'-output:</p><p>- TRUE if the function block is initialized, FALSE if not.</p><p> </p><p> 'STATUS'-output:</p><p>- Indicates the status of the function block.</p><p>- Possible status codes of 'STATUS'-output:</p><p>      OK                  &lt; status OK &gt;</p><p>      NTF_IVAL        &lt; success, inital values set notification &gt;</p><p> </p><p>- Possible error codes of 'STATUS'-output:</p><p>      ERR_MEM        &lt; out of memory &gt;</p><p>      ERR_SIZE        &lt; illegal size spezification &gt;</p><p>      ERR_PARAM     &lt; parameterization error (empty name or size of zero) &gt;</p><p>      ERR_INDEX      &lt; index value out of range &gt;</p><p>      ERR_NOVALUE &lt; no input value where an output variable is given &gt;</p><p>      ERR_CONV       &lt; conversion of this type not allowed (not possible) &gt;</p><p>      ERR_RANGE     &lt; conversion possible but value has changed &gt;</p><p>      ERR_UNDEF     &lt; no queue with the given name defined &gt;</p><p>      ERR_MDEF       &lt; multiple destination queue FBs defined &gt;<br /></p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

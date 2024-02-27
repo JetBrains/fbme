@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is internally used to query connection states.</p><p>It verifies the presence of a connection.</p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'REQ'-Event input:</p><p>Every REQ captures 'INST_PATHNAME', 'INST_VAR' and QUERY_TYPE and executes the internal logic.</p><p>Outputs NOT_FOUND and CONNECTED are set.</p><p>A CNF-Event is fired.</p><p> </p><p>'CNF'-Event output:</p><p>CNF is fired after each REQ.</p><p> </p><p><strong>Functional Behavior</strong></p><p>'INST_PATHNAME'-input parameter:</p><p>Pathname of that function block instance the connection state is to be checked. The pathname is composed of "${PATH}" and the instance name divided by a dot (i.e.: ${PATH}.FB1, ${PATH}.FB2, etc. or merely ${PATH} if the pathname is generic [for example the QUERY_CONNECTION is used inside of a composite or a CAT and it has to check the connection state of this composite or CAT containing it]).</p><p> </p><p>'INST_VAR'-input parameter:</p><p>Input- or outputname of the instance (FB) to be checked. (i.e. OUT, ...)</p><p>Note: checking the connection state of a variable of a function block (query_type 3): only input variable check is supported. QUERY_CONNECTION does not work with output variable (in that case output 'CONNECTED' shows FALSE anyway, no matter if connected or not).</p><p> </p><p>'QUERY_TYPE'-input parameter:</p><p>This parameter defines what connection type has to be checked. 0,1 and 2 is for Adapter types, 3 has to be chosen if the connection state of an input variable is to be checked.</p><p>0=Adapter Remote, 1=Adapter Locally, 2=Adapter Both, 3 Variable</p><p> </p><p>'NOT_FOUND'-output:</p><p>Output is set to TRUE if the function block to be checked can not be found, Block does not exist respectively the parameter at 'INST_PATHNAME' is not correct.</p><p>Output is set to FALSE if the function block to be checked has been found.</p><p> </p><p>'CONNECTED'-output:</p><p>Output is set to FALSE if no connection at the specified in- or output could be detected. But it's also FALSE if a output variable is defined at 'INST_VAR' with an existing connection, because output variables can not be checked. Further it is set to FALSE if the parameter at 'INST_VAR' or 'QUERY_TYPE' is not correct. There is no other warning if that happens.</p><p>Output is set to TRUE if a connection at the specified in- or output could be detected.</p><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

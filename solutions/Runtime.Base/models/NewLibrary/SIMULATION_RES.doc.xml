@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname>Stanislav</firstname>
+          <surname>Meduna</surname>
+       </personname>
+       <email>stanislav.meduna@nxtcontrol.com</email>
+    </author>
+    <abstract><wysiwyg_a><p>Summary</p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+  </p><p>
+  </p></wysiwyg></section>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements a right bit shift operation of the input value.</p><p>It is a generic block. The number of inputs and accordingly outputs can be chosen from 1 to 16. Each input has one corresponding output with the same type.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>Each triggered 'REQ' executes the internal logic and leads to an 'CNF'-Event.</p><p> </p><p><strong>Functional Behavior</strong></p><p>Shifts the value in 'IN1' by 'N' positions to the right. Bits falling out on the right side are lost. 'N' number of zero(s) bits will be inserted on the left side. The result is written to 'OUT1'. Within a FB different input types may be defined.</p><p> </p><p>For example: </p><p>N := 3</p><p>BYTE:  'IN1': 16#C9 (11001001)  'OUT1': 16#19 (00011001)</p><p>WORD: 'IN2': 16#8F03 (1000111100000011)  'OUT2': 16#11E0 (0001000111100000)</p><p /><p>
+  </p></wysiwyg></section>
+

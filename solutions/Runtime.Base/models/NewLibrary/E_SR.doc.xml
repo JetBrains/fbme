@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements an event-driven bistable Flip-Flop with a dominant Set input. An output event is only generated when the output changes its state.</p><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior </strong>
+  </p><p>The 'EO'-Event output is fired when the 'Q'-output changes its state. Multiple events on the same input, regardless of 'R' or 'Q' would not generate any ouput event(s) on 'EO'.</p><p> </p><p>Timing diagram:</p><div class="img" style="FLOAT: none"><img src="Images/E_SR_TimingDiagram.png" /></div><p>
+</p><p> </p><p>example:</p><p>1) Q is FALSE, event at input 'S', result: Q is TRUE, 'EO' fires an event</p><p>2) Event at input 'S', result: Q is TRUE (does not change its state), 'EO' fires no event</p><p>3) Event at input 'R', result: Q is FALSE, 'EO' fires an event</p><p>4) n-Events at input 'R', result: Q is FALSE (does not change its state), 'EO' fires no event</p><p><br /></p><p><strong>Functional Behavior</strong></p><p>If an event at 'S'-Event input is detected then the 'Q'-output is set to TRUE. If an event at the 'R'-Event input is detected then 'Q'-output is set to FALSE.</p><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

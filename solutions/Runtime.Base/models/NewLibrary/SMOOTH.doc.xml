@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is used to smooth input data and with this the transmitted events.</p><p>It is a generic block. The datatypes of inputs (and accordingly outputs) can be chosen. One function block can be defined with 1 to 16 in- and outputs.</p><p /><p>
+</p><p /><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p> 'INIT'-Event input:</p><p>- Performs the initialization and captures the values from 'TYPE', 'VALCONDITION','TIMEDIFF', 'CYCLE', VALDIFFn'.</p><p> </p><p> 'REQ'-Event input:</p><p>- This event starts the internal logic and produces a 'CNF'-event only if the requirements of the adjusted parameters are fulfilled.</p><p> </p><p> 'INITO'-Event output:</p><p>- This event is fired when the 'INIT'-Event has been processed. </p><p> </p><p> 'CNF'-Event output:</p><p>- This event is fired after a 'REQ'-event, only if the requirements of the adjusted parameters are fulfilled.</p><p>- This event will be fired as well if 'CYCLE' is in use and causes the function block to work before a new 'REQ'-event arrives.</p><p> </p><p><strong>Functional Behavior</strong></p><p> 'TYPE'-input:</p><p>- types to select conditions for smoothing data:</p><p>- 0: no smoohing - each 'REQ' will cause a 'CNF'-event and data passes from input to output, values at 'VALCONDITION', 'TIMEDIFF' or 'VALDIFFn' will be ignored. A constant at 'CYCLE' will cause events in the defined intervall, no matter if any input value has changed. (i.e. t#1s causes events at 'CNF' every second and with that data is passed to output(s).)</p><p>- 1: old/new - new data at input must differ from old data to be passed to output(s) (and cause a 'CNF'-event). If 'VALCONDITION' = 1 all values must have changed. 'VALDIFFn' is ignored.</p><p>- 2: value - value based smoothing, a minimum value difference (definable at 'VALDIFFn' for each input) is neccessary to pass the new value to output (and cause a 'CNF'-event); constants at 'VALCONDITION' and 'VALDIFFn' are active. 'TIMEDIFF' is ignored.</p><p>- 3: time - time based smoothing, a minimum time span has to elapse, before the new value(s) can pass to output(s) (and cause a 'CNF'-event); a constant at 'TIMEDIFF' is active. 'VALCONDITION' and 'VALDIFFn' are ignored.</p><p>- 4: time or value - adjusted parameters for time based smoothing <u>or</u> value based smoothing have to be fulfilled to pass value(s) to output(s) (and cause a 'CNF'-event).</p><p>- 5: time and value - all adjusted parameters for time based smoothing <u>and</u> value based smoothing have to be fulfilled to pass value(s) to output(s) (and cause a 'CNF'-event).</p><p>- 6 and greater: undefined condition, do not use</p><p> </p><p> 'VALCONDITION'-input:</p><p>- Value-based smoothing,</p><p>- 0: values are sent if one of the input values differ enough from the last value</p><p>- 1: values are sent only if the values of all inputs differ enough from their last value</p><p> </p><p> 'TIMEDIFF'-input:</p><p>- For time based smoothing: This value defines the time difference or deflutter time that has to pass before new data will be sent.</p><p> </p><p> 'CYCLE'-input:</p><p>- This value defines how often the value(s) and the 'CNF'-event will be sent at least. (It will overrule all other parameters if it's in use.)</p><p>- If it should not be used, set it on 0s.</p><p> </p><p> 'VALDIFFn'-input:</p><p>- This value defines the minimum difference to occur between the last value written to output and the new input value, to proceed a new writing execution (and with this an event at 'CNF').</p><p>- Datatype depending on 'IN'-input datatype.</p><p> </p><p> 'INn'-input:</p><p>- Data input. Datatype selectable with the interface editor.</p><p> </p><p> 'OUTn'-output:</p><p>- Data output. Datatype depending on 'IN'-input datatype. </p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

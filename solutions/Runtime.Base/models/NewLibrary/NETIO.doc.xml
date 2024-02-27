@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is used to access a TCP or UDP connection</p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p><p>It is equipped with a 16k buffer to cache data (i.e. if the receiving client is not as fast as the sender). If data cannot be received fast enough, so that the buffer gets overcharged, some parts of the datastream will get lost. There is no warning if that happens, but the discarding of received datablocks is minuted in the cyclic log.</p><p>
+  </p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'INIT'-Event input:</p><p>- Captures the QI-input</p><p> - If QI is TRUE: Performs the initialization and applies the PORT and START- and ENDCHARACTER settings. If the TCPIO-Server-functionblock is already running, it will be stopped first. Default communication is TCP, to use UDP the prefix UDP has to be set at input PORT (see below).</p><ul>
+    <li>TCP - only one client can be active at a time, if a second client signs in, the connection to the first client will be closed before the second one can communicate.</li>
+  </ul><p>The success of the operation is shown: 'QO' is set TRUE, 'STATUS' is blank, 'INITO' is fired.</p><p> - If QI is FALSE: Performs the deinitialization of the server functionblock. A potentially opened connection will be closed and a sign-in of a client is no longer possible. 'QO' is set TRUE, when the deinitialization has worked properly, and 'STATUS' is blank.</p><p> - If initialization or deinitialization has not worked properly 'QO' is set to FALSE and STATUS will show an error message.</p><p> </p><p>'REQ'-Event input:</p><p>Each triggered 'REQ' executes the internal logic which means that data at input DATAOUT will be transferred to client and a 'CNF'-Event is fired when the operation was successful.</p><ul>
+    <li>TCP - a client must have signed in, otherwise this event does not work</li>
+    <li>UDP - basically, data will be sent to the client from which the last package has been received, if there was no receiving at all, this event does not work; if it is necessary to send packages to a specific address use the parameter DestIP:DestPort, as described below at item 'PORT'</li>
+  </ul><p>General: address of the client to be sent to is contained at output PEERADDR. The success of the operation is shown at CNF, QO and STATUS.</p><p> </p><p>'ACK'-Event input:</p><p>This event has to be triggered to signalize the end of processing data from an 'IND'-Event. If some further data is available the function block will place it at 'DATAIN' and then fire an 'IND'-Event.</p><p>A triggered 'ACK' with no available data causes the event to remain active and work with the next data.</p><p>As soon as data is available at 'DATAIN'-output an IND-Event is fired to signalize it and this action is finished. If some further data is present, it will be provided at DATAIN and a new IND-Event is fired. This process will be repeated until no further data is available.</p><p> </p><p>'INITO'-Event output:</p><p>This event is fired when an 'INIT'-Event has happened (successfully or not). </p><p> </p><p>'CNF'-Event output:</p><p>This event is fired when 'REQ'-Event has been processed (successfully or not). </p><p> </p><p>'IND'-Event output:</p><p>This event is fired when data has arrived from a client. The data is contained at output DATAIN, the address from the client at PEERADR and any error will be indicated at QO and STATUS.</p><p>
+    <br />
+  </p><p>'ERRIND'-Event output:</p><p>This event is fired when an error is indicated. The error reason can be read at data output 'STATUS'.</p><p> </p><p>
+    <strong>Functional Behavior</strong>   </p><p>'QI'-data input:</p><p>Input Event Qualifier TRUE: initialize will work with an INIT-Event. FALSE: an INIT-Event will deinitialize the functionblock.</p><p> </p><p>'ENDPOINT'-data input:</p><p>This parameter sets the communication port  for the server functionblock to wait for the clients, or for the client to address the server. The portnumber must be in a range from 1 to 65535, depending on operating system (in some case 1024-65535).</p><p>To use TCP set the prefix "TCP:" (or no prefix would use also TCP), to use UDP set the prefix "UDP:" and then the portnumber (i.e.: UDP:1024).</p><p>If there is given only a portnumber (and optionally an IP address first) the FB will work in server mode.</p><p>If there are given [IP address]:portnumber, semicolon, then IP address:port the FB will work in client mode.</p><p>Optionally a local IP and Port can be set. If these parameters are set the FB will operate in client mode, that means the packages (triggered by REQ) will be sent to the given IP/Port address. Receiving Messages will be restricted to the given IP and the Source Port.</p><p>
+    <u>Syntax:</u> PORT = [UDP:|TCP:][[dotAddr:]portNo][;dotAddr:portNo]</p><p>that means in detail: </p><p>for server: [TCP:|UDP:]&lt;localPort&gt;    / in this case the local port can be given as: [&lt;dottedIP&gt;:]&lt;portNumber&gt;  /where port number is the port the FB is listening on and the IP address can be specified to bind the port to a specific interface card indicating that only messages from that interface are accepted (default is any interface).</p><p>
+    <br />
+for client: [TCP:|UDP:][&lt;localPort&gt;];&lt;remotePort&gt;    / In case of a client FB (same syntax as for servers), the local port is optional, indicating that the system may choose any available port number for communication. If specified, the FB will use the given port and optionally the given interface for communication. The remote port has to be given as: &lt;dottedIP&gt;:&lt;portNumber&gt;</p><p>
+    <u>Examples:</u>   </p><ul>
+    <li>PORT = 10001   /   FB operates in TCP server mode, it waits for connection on Port 10001, </li>
+    <li>PORT = ;127.0.0.1:12345  /  TCP client mode, use various local port, connect with server FB on IP address 127.0.0.1 port 12345 (this could only be used internally) - (the server FB should have here PORT = 127.0.0.1:12345)</li>
+    <li>PORT = 4711;127.0.0.1:12345  /  TCP client mode, use local port 4711, connect with server FB on IP address 127.0.0.1 port 12345<br /></li>
+    <li>PORT = UDP:10001   /   FB operates in UDP Server Mode, that means it listens for incoming packages on Port 10001 and sends packages to the source port of the last received UDP message. But in this case a message must have been received first before the FB can send a message.<br /></li>
+    <li>PORT = UDP:10001;10.0.0.1:9001   /   FB operates in UDP Client Mode, that means it listens for incoming packages on Port 10001 from IP 10.0.0.1 - packages from other IPs/ports are dropped, sending will adress packages to 10.0.0.1:9001 (With the use of DestPort 10001, in our example, this mode would allow the sending of UDP messages without having received a package before)</li>
+    <li>PORT = TCP:10.0.0.1:10001;10.0.0.1:9001  /  FB operates in TCP Client Mode, it listens for incoming packages on 10.0.0.1 port 10001 - packages from other IPs/ports are dropped, sending will address packages to 10.0.0.1:90001</li>
+  </ul><p>
+  </p><p>
+  </p><p>
+  </p><p> </p><p>'STARTCHAR', 'ENDCHAR'-data input:</p><p>This parameters are optional. They can be used for structuring a data stream (like TCP) into sentences, lines or blocks. The parameter value can be 1 to 255 (ASCII-table), which is converted into a data byte. If this parameters are used, they will be attached to each data block which is contained at 'DATAOUT'-input after a 'REQ'-Event. That means each data block will be prefixed with the STARTCHAR character, and the ENDCHAR character gets attached to the end and then the block is sent. By receiving data, only that part between this marker bytes are valid and will be transferred to 'DATAIN'-output.</p><p>If parameter STARTCHAR is missing, the transfer begins with the next received Byte. If parameter ENDCHAR is missing, the transfer goes on to the last received byte. If both parameters do not exist, data will be transferred to output DATAIN in the same condition as received.</p><p>A line-by-line data processing with a line end character sequence &lt;CR&gt;&lt;LF&gt;, as it is usual with Microsoft, can be made by setting STARTCHAR to 0 (&lt;NULL&gt;) and ENDCHAR to 13 (&lt;CR&gt;), because the functionblock only permits a single marker byte. This setting produces data parts with an prefixed &lt;LF&gt; additional character. It would have to be picked out of the received data. To avoid this character the STARTCHAR has to be 10 (&lt;LF&gt;), but by this the very beginning of the datastream must be an &lt;LF&gt; (blank line), otherwise the first data part will get lost.</p><p>The maximum block size is 1KByte (1024Bytes). If the received blocks are longer, they will be separated into blocks of 1K automatically. This means the maximum size of data contained at 'DATAIN'-output is 1024 characters. By this measure the system is prevented to get overloaded by unlimited allocating of data. Also all the subsequent function blocks have a defined record length to work with. After receiving a datablock, and separating it into parts if necessary, all parts of the block will be buffered in a queue within the function block to wait for the subsequent processing. The maximum size of buffered data within the queue is 16K. </p><p> </p><p>'SD'-data input:</p><p>Containes data that will be transferred to the client when REQ-Event happens.</p><p>
+    <br />
+  </p><p>'SD_LEN'-data input:</p><p>Contains the number of data bytes to be sent at data input 'SD' with 'REQ'-event. <br /></p><p>
+    <br />
+  </p><p>'QO'-data output:</p><p>Shows the initialization status.</p><p>TRUE means initializing or deinitializing has worked properly</p><p>FALSE means initializing or deinitializing did not work properly, an error has occurred. Error message is set at 'STATUS'.</p><p> </p><p>'STATUS'-data output:</p><p>When an input event ('INIT', 'REQ' or 'ACK') has been successfully processed, the output is blank. Only if an error has occurred it contains the specific error message.</p><p> </p><p>'PEERADDR'-data output:</p><p>Containes the address of the client receiving data or which has last sent some.</p><p> </p><p>'RD'-data output:</p><p>Containes the data received from a client and now ready to be used. An 'IND'-Event will be fired each time when new data is available at this output. An 'ACK'-Event should signalize the end of processing this datablock.</p><p>
+    <br />
+  </p><p>'RD_LEN'-data output:</p><p>Contains the number of data bytes which are read at data output 'RD' with 'IND'-event.</p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p><p>
+  </p></wysiwyg></section>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>The FORCE_IND function block type should be used in applications, especially hardware CATs, to inform the IEC 61499 runtime about any active force mechanism. This is necessary to warn users or operators before leaving some application with activated value forces, which might lead to unexpected behaviour.</p><p>
+  </p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>
+</p><p>'REQ'-Event input:</p><p> The 'active' input variable is copied to the output 'forceActive'. Furthermore the IEC 61499 runtime evaluates the force state of all instances of the FORCE_IND function block in the resource to report a common application force state.</p><p> A 'CNF'-Event is fired</p><p> </p><p>
+  </p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+    <strong>Functional Behavior</strong>
+  </p><p>'active'-input:</p><p> set the force state of the FORCE_IND function block</p><p> </p><p>
+  </p><p>
+</p><p>'forceActive'-output:</p><p> copy of the 'active' input variable</p><p>
+  </p><p>
+  </p><p>
+  </p></wysiwyg></section>
+

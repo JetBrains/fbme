@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is used for initialization sequences.</p><p>EVENTCHAINHEAD belongs to EVENTCHAIN. It implements the head of a selectable number of EVENTCHAIN-blocks that enables you to control the whole chronological order of this chain, because the priority of every EVENTCHAIN can be set (input 'PRIO').</p><p>All EVENTCHAIN-blocks belonging to one EVENTCHAINHEAD have to be named equally (at input 'NAME'). </p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'INIT'-Event input: </p><p>- Performs the initialization </p><p>- Registers and sorts all EVENTCHAIN-blocks belonging to the same chain (same chain-name)</p><p>- Then 'INITO' is fired. </p><p> </p><p>'TRIGGER'-Event input:</p><p>Starts the Eventchain funktionblocks of this chain. When 'TRIGGER' of the EVENTCHAINHEAD is actuated the 'TRIGGER'-Event at the first EVENTCHAIN-block gets its signal to start and fires its 'EO'-output. But the next EVENTCHAIN-block (with a lower priority) will be triggered not until the 'ACK'-event of the active EVENTCHAIN-block gets the signal that this part of the chain is ready. </p><p> </p><p>'TRIGGERNEXT'-Event input:</p><p>Has to be left unconnected, because it is used internally and triggers the following EVENTCHAIN on its own, when the currently active EVENTCHAIN has finished.</p><p> </p><p>'INITO'-Event output:</p><p>Is fired when the funktionblock is initialized. To start the chain immediately, connect this output with the 'TRIGGER'-Event input.</p><p> </p><p>'FINISHED'-Event output:</p><p>Is fired when all EVENTCHAIN funktionblocks of this chain are finished.</p><p> </p><p>'IND'-Event output:</p><p>This event indicates a change of state of 'RUNNING' and every 'INIT'-Event. It is fired directly after 'INIT' (while 'RUNNING' = FALSE) and after that, when 'RUNNING' changes. That means  after  a 'TRIGGER'-Event (TRUE) and after a fired 'FINISHED'-Event (FALSE).</p><p> </p><p><strong>Functional Behavior</strong></p><p>'NAME'-input:</p><p>Datatype is STRING. The name of the chain is to be specified here. In all EVENTCHAIN functionblocks of this chain the same name has to be used. The name can be set only once before the EVENTCHAINHEAD is initiated for the first time. Changings, that are made afterwards will not be recognized within the system.</p><p> </p><p>'INVERT'-input:</p><p>Datatype is BOOL. If it is set TRUE, 0 is the lowest priority range, means the last to process.<br />If it is set FALSE, 0 has the highest priority range. EVENTCHAIN functionblocks with priority 0 will process first.<br /><u>Attention:</u> All EVENTCHAINs belonging to one EVENTCHAINHEAD must have the same setting. If the EVENTCHAINHEAD is set to TRUE while all the appropriate EVENTCHAINs are set to FALSE, they all will not work, because this would be handled like they have another name than the EVENTCHAINHEAD.<br />'INVERT' can be set only once before the EVENTCHAINHEAD is initiated for the first time. Changings, that are made afterwards will not be recognized within the system. </p><p> </p><p>'RUNNING'-output:</p><p>Datatype is BOOL. It shows the state of the chain. It is TRUE when the EVENTCHAINHEAD has started with starting its EVENTCHAIN FBs, and it turns to FALSE again after the last EVENTCHAIN is ready (means, the last EVENTCHAIN has got its 'ACK'-Event and the EVENTCHAINHEAD fires the 'FINISHED'-Event).<br />In case of no existing EVENTCHAIN FBs, or if 'NAME' of the EVENTCHAIN is not set correctly, this output state will never be TRUE.</p><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

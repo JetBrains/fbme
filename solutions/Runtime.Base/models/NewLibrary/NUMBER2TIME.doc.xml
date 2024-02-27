@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block converts an input value into the time format using a scale-factor.</p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p>
+<p>Each triggered 'REQ' executes the internal logic and leads to an 'CNF'-Event.</p>
+<p><strong></strong> </p>
+<p><strong>Functional Behavior</strong></p>
+<p>Multiplies the value from 'IN'-input with the 'FACTOR'-input and converts the result into the time format which is passed to the 'OUT'-output. When 'FACTOR'-input is not set then a value of 1 is used.</p>
+<p> </p></wysiwyg></section>
+

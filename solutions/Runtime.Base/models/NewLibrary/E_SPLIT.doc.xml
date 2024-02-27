@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements an event splitter. One input event generates two output events.</p><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>An event at the 'EI'-Event input generates two events while the first is passed to the 'EO1'-Event output and the second to the 'EO2'-Event output.</p><p> </p><p>Timing diagram:</p><div class="img" style="FLOAT: none"><img src="Images/E_SPLIT_TimingDiagram.png" /></div><p>
+</p><p>Because it is technically not possible that two events emerge completely simultaneously, they will emerge barely consecutively.</p><p><br /></p><p><strong>Functional Behavior</strong></p><p>-</p><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

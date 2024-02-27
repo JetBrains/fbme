@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This generic function block writes values to the u::Lux switch.</p><p>The ULUX_OUT satellite function block has to be used in combination with the ULUX_SWITCH function block.</p><p>The number of in- and outputs can be increased up to 16.</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Behaviour</strong> </p><p>This is a satellite function block bound to the ULUX_SWITCH function block via the SwitchId input.</p><p>The values accessed are addressed via ActorId (zero for switch-global data, non-zero for actor data) and an addressing string specifying a value and optionally sub and sub-sub identification. The exact meaning is out of scope of this description, so this is only a quick overwiew of possible values.</p><p>
+</p><table class="table" style="WIDTH: 50%" cols="5" width="50%" border="2">
+<thead>
+<tr>
+<td width="20%">ValueId</td>
+<td width="10%">Global/Actor</td>
+<td width="15%">SubId</td>
+<td width="15%">SubSubId</td>
+<td width="40%">Description</td></tr></thead>
+<tbody>
+<tr>
+<td>PageIndex</td>
+<td>gobal</td>
+<td>-</td>
+<td>-</td>
+<td>Set the currently active page</td></tr>
+<tr>
+<td>EditValue</td>
+<td>actor</td>
+<td>-</td>
+<td>-</td>
+<td>Edit value of the actor</td></tr>
+<tr>
+<td>RealValue</td>
+<td>actor</td>
+<td>0..3</td>
+<td>-</td>
+<td>Up to 4 values provided to the actor</td></tr>
+<tr>
+<td>LEDColor</td>
+<td>actor</td>
+<td>0..3</td>
+<td>-</td>
+<td>LED color</td></tr>
+<tr>
+<td>LEDBlinkMode</td>
+<td>actor</td>
+<td>0..3</td>
+<td>-</td>
+<td>LED blink mode (see u::Lux docs)</td></tr>
+<tr>
+<td>LEDOverride</td>
+<td>actor</td>
+<td>0..3</td>
+<td>-</td>
+<td>LED is controlled by PLC (not the switch)</td></tr>
+<tr>
+<td>Text</td>
+<td>actor</td>
+<td>0..9</td>
+<td>Color</td>
+<td>Text color</td></tr>
+<tr>
+<td />
+<td />
+<td />
+<td>Visible</td>
+<td>Text is visible</td></tr>
+<tr>
+<td />
+<td />
+<td />
+<td>UseColor</td>
+<td>Color is controlled by PLC</td></tr>
+<tr>
+<td />
+<td />
+<td />
+<td>Text</td>
+<td>Up to 10 texts per actor</td></tr>
+<tr>
+<td />
+<td />
+<td />
+<td>Remove</td>
+<td>Completely remove the text</td></tr></tbody></table><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

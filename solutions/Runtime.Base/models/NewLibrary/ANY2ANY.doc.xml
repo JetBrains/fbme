@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block converts one datatype to another.</p><p>It is a generic block. The number of inputs (and accordingly outputs) can be chosen from 1 to 16.</p><p>The data type of each in- and output can be defined independently.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>Each triggered 'REQ' executes the internal logic and leads to an 'CNF'-Event.</p><p> </p><p><strong>Functional Behavior</strong></p><p>ANY2ANY accepts all sorts of datatypes at the input ('IN1' ... 'INn') and converts them into the selected output datatype if possible. Every input has one corresponding output ('IN1' -&gt; 'OUT1', 'IN2' -&gt; 'OUT2', ... 'INTn' -&gt; 'OUTn'). The input value will be ignored, if the conversion cannot be performed (e.g. STRING to INT will be ignored, except there are only numbers.) Depending on the input values, the operation could also generate overflows/underflows. Information may be lost if the result of the conversion cannot be represented in the 'OUT' type. (e.g. DINT to INT or SINT may result in loss of data, etc.)</p><p>Note: conversions in the form of TIME to REAL, TIME to LREAL, etc. are not supported by ANY2ANY. Use a basic FB for that purpose (conversions like REAL_TO_TIME or TIME_TO_REAL can be executed in structured test - but be careful not to lose data, because REAL generally is to small to hold TIME values).</p><p /><p>
+  </p></wysiwyg></section>
+

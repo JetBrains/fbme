@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements an event demultiplexer. An input event is passed to different selectable outputs.</p><p>
+</p><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'EI'-Event input: At every 'EI'-Event the 'K'-input value selects the 'EOn'-Event output line where the input event is passed.</p><p>'EO0'-, 'EO1'-, 'EO2'-, ...Event outputs: Depending on the value of the 'K'-input only one of this event outputs will pass the event through.</p><p> </p><p>Timing diagram:</p><div class="img" style="FLOAT: none"><img src="Images/E_DEMUX_TimingDiagram.png" /></div><p>
+</p><p> </p><p><strong>Functional Behavior</strong> </p><p>The 'K'-input value selects which 'EOn'-Event output is selected. The 'K' input value is limited to the maximum number of 'EO'-Event outputs. If the value exceeds the limit then no output event is fired.</p><p>
+</p><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

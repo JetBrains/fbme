@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block generates a train of events at one output. The number of events and the interval between the events is configurable. This act of generating events can be started and stopped.</p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>The number of events is defined by the 'N'-input and the time interval between the output events is given by the 'DT'-input.</p><p>When a 'START'-Event is detected, the values of the 'N'-input and the 'DT'-input are read, then 'N' output events at 'EO' are generated with an interval defined by the 'DT'-input. The 'CV'-output is updated at every event with the event index which starts at the value '0'.</p><p>The event generation can be stopped by the 'STOP-Event input. A 'STOP'-Event is ignored when there was no 'START'-Event before.</p><p>A subsequent 'START'-Event can then trigger a new train of output events. </p><p> </p><p><strong>Functional Behavior</strong></p><p>'DT'-input: format is IEC-TIME duration, for example: "t#100ms".</p><p>'N'-input: defines the number of events to be created.</p><p> </p><p>
+  </p></wysiwyg></section>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements an event-driven up-counter with a reset input which changes the state of output 'Q' when a predefined value has been reached.</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>Each 'CU'-Event counts up 'CV' by one and fires a 'CUO'-Event. If the 'PV'-input value is equal or greater than the 'CV' value output value 'Q' shows TRUE. For a restart, the counter needs a reset via the 'R'-Event input.</p><p> </p><p>Timing diagram (example with PV=2):</p><div class="img" style="FLOAT: none"><img src="Images/E_CTU_TimingDiagram.png" /></div><p /><p> </p><p>'CU'-Event input: </p><p>- Increments the value of the 'CV'-output by one</p><p>- Captures the value of the 'PV'-input</p><p>- Fires the 'CUO'-Event</p><p> </p><p>'R'-Event input: </p><p>- Sets 'CV'-output to the value zero</p><p>- Sets 'Q'-output to FALSE</p><p>- Fires the 'RO'-Event</p><p> </p><p><strong>Functional Behavior</strong></p><p>The 'CV'-output value contains the number of triggered 'CU'-Events since startup resp. since the last 'R'-Event. The maximum value at 'PV' must be smaller than 65535.</p><p> </p><p /><p>
+  </p></wysiwyg></section>
+

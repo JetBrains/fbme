@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is internally used for hardware access</p><p>PD_ANY_IN implements a function block that reads data out of the associated fieldbus process memory.</p><p>It is a generic block. The number of inputs (RD1...RD16) can be chosen from 1 to 16. Datatype BOOL, BYTE, WORD, DWORD and REAL can be selected independently for each input.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'INIT' has to be triggered after every alteration of InitSize or MaxSize and leads to an 'INITO'-Event.</p><p>An incoming 'REQ'-event causes the block to read from fieldbus and leads to an 'CNF'-event, but an 'IND'-event is fired anyway after each bus-cycle or bit value change depending on what definition at 'IND_ON_CHG' and 'IND_FACTOR' has been set. For that reason the 'IND'-port may be sufficient in many cases and the 'REQ'- and 'CNF'-port can be left unconnected.</p><p> </p><p /><p><strong>Functional Behavior</strong></p><p>'QI': has to be TRUE so that the block can be initialized and is ready to work. It can be set FALSE to deinitialize the block.</p><p>'QO': shows status of the block (TRUE is ready, FALSE is error or deinitialized).</p><p>'BUS_ID': has to be connected with the incoming KBUS -busId- (or the like), to identify the bus the current device is attached to.</p><p>'SLOT_NO': has to be connected with the KBUS -nextSlotNo- or the like, to get the definition which device values are read from.</p><p>'OFFSET': defines the bit offset of the accessor within the device.</p><p> </p><p>'PD_USES_MSBF':</p><p>- if this port is set TRUE, process data will be encoded as most significant byte first.</p><p>- if this port is set FALSE, process data will be encoded as least significant byte first. </p><p> </p><p>'IND_ON_CHG':</p><p>- when set TRUE, 'IND' will be fired only if bit value has changed, </p><p>- when set FALSE, 'IND' is fired on every IND_FACTOR buscycle.</p><p> </p><p>'IND_FACTOR': value 1...n, defines the factor for the buscycle to fire 'IND'.</p><p>'IND_OFFSET': value 1...n, defines the starting value of 'IND'-count; default is based on SLOT_NO.</p><p>'STATUS': shows the current accessor status.</p><p /><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block provides a high-resolution cyclic event generator with a configurable period and phase which can be started and stopped.</p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p>
+<p>When a 'START'-Event is detected, the values of the 'PERIOD'- and 'PHASE'-inputs are captured and a cyclic timer is started. The 'EO'-Event is fired every time when the timeout calculated by ('PERIOD' + 'PHASE') microseconds expire. Then the timer is restarted. It remains active until a 'STOP'-Event will be applied.</p>
+<p>In the case when a timer is already active and a new 'START'-Event is applied then the timer is restarted with the 'PERIOD' and 'PHASE' settings taken at the new event.</p>
+<p>A 'STOP'-Event cancels a current active timer. It will be ignored when no timer is active.</p>
+<p> </p>
+<p><strong>Functional Behavior</strong></p>
+<p>The 'PERIOD'- and 'PHASE'-input values are interpreted as microseconds.   </p>
+<p>If the 'PERIOD'-input is set to zero then the minimum cycle time is internally limited to a default minimum value. Note: A very small value generates a high frequency of output events which will significantly increase the processor load.</p>
+<p>The 'PHASE'-input can also be set to a zero value. On the other hand, if the value is equal or greater than 'PERIOD' then 'PHASE' is internally truncated to zero.</p>
+<p> </p></wysiwyg></section>
+

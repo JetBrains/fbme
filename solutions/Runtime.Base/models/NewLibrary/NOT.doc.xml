@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block implements a logical NOT.</p><p>It is a generic block. The number of inputs and accordingly outputs can be chosen from 1 to 16. Each input has one corresponding output with the same type.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>Each triggered 'REQ' executes the internal logic and leads to an 'CNF'-Event.</p><p> </p><p><strong>Functional Behavior</strong></p><p>Datatype BOOL: Not is a logical operator, which turns the value of the input 'IN1' ... 'INn' into its opposite and leads the result to the related output 'OUT1' ... 'OUTn'. There is in each case only one input and one output connected together. It leads to output TRUE if the input is FALSE, or to FALSE if the input is TRUE.</p><p> </p><p>
+</p><table class="table" style="HEIGHT: 116px; WIDTH: 100px" cols="2" width="100" border="2">
+<caption>Logic table</caption>
+<thead>
+<tr>
+<td width="100%">In</td>
+<td width="100%">Out</td></tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td></tr>
+<tr>
+<td>1</td>
+<td>0</td></tr></tbody></table><p> </p><p>For all other possible datatypes (BYTE, WORD, DWORD, LWORD) the same functionality is applied. The input is bitwise inverted and the result is stored into the corresponding output. Within a FB different input types may be defined. But an input and its corresponding output have always the same type.</p><p> </p><p>For example: </p><p>BYTE:  'IN1': 16#F7 (11110111)  'OUT1': 16#08 (00001000)</p><p>WORD: 'IN2': 16#F0AF (1111000010101111)  'OUT2': 16#0F50 (0000111101010000)</p><p /><p>
+  </p></wysiwyg></section>
+

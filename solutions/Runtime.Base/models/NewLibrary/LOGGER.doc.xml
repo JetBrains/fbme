@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block provides a logging service which stores the input parameter(s) into a log-file. Different levels for each entry (DEBUG, INFO, WARNING and ERROR) can be selected. </p><p><strong>Note:</strong> The logging level to be allowed for the device can be set in the properties individually for each device. The default setting is 'Info', that means only info, warning and error would be available, but no debug messages. This setting avoids an overstressing of smaller devices. In order to write debug messages to the log, open the device list, select the device and open Configuration → Debug → Log → Level. Set 'Level' to 'Debug' (or e.g. 'Warning' → no Info and no Debug messages would be available). After a change of the device configuration the new configuration has to be loaded to the device by a right-click on the device in the device list and a click on Deploy → Deploy Configuration. After that the device has to be rebootet. (See also in Studio help → 'Test and Troubleshooting' at item 'Log Files'.)</p><p>It is a generic block. The number of 'PARAM'-inputs can be chosen from 1 to 16. The data type of all ports is static.</p><p>(More information about generic blocks: Studio help (press F1) at Solution→Distributed PAC Project→Editors→System Editor)</p><p>
+</p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'INIT'-Event input: </p><p>- Resets the internal settings </p><p>- Captures the 'QI'-input</p><p>- If 'QI' is FALSE then </p><p>    - The 'QO'-output is set to FALSE </p><p>    - 'STATUS'-output is set to "OK"</p><p>- Else</p><p>    - Captures the string at the 'MESSAGE'-input </p><p>    - Parses the string.</p><p>    - If an error is detected then</p><p>        - 'QO'-output is set to FALSE</p><p>        - 'STATUS'-output is set to an error message</p><p>    - Else</p><p>        - Applies the new settings </p><p>        - 'QO'-output is set to TRUE</p><p>        - 'STATUS'-output is set to "OK"</p><p>- The 'INITO'-Event is fired</p><p> </p><p>'REQ'-Event input: </p><p>- If 'QO'-output is FALSE (which means that no successful initialization has been performed) then</p><p>    - 'STATUS'-output is set to "Not initialized"</p><p>    - Performs no processing of 'PARAMn'-inputs.</p><p>- Else</p><p>    - Captures the 'PARAMn'-inputs</p><p>    - Inserts the string of the 'PARAMn'-inputs into the 'MESSAGE' string </p><p>    - If the result exceeds the maximum length then</p><p>        - 'STATUS'-output is set to "Message too long"</p><p>    - Else</p><p>        - 'STATUS'-output is set to "OK"</p><p>    - Stores the result into the log-file</p><p>- The 'CNF'-Event output is fired</p><p> </p><p>'INITO'-Event output:</p><p>This event is fired when the 'INIT'-Event has been processed (successfully or not). </p><p> </p><p>'CNF'-Event output:</p><p>This event is fired when 'REQ'-Event has been processed (successfully or not). </p><p> </p><p><strong>Functional Behavior</strong></p><p>'QI'-input:</p><p>If the value is TRUE then an initialization is performed, else all existing settings are cleared (deinitialization).</p><p> </p><p>'MESSAGE'-input:</p><p>Contains the string to be written to the log-file. The 'PARAM'-inputs are insert at the position(s) defined by the ${N} identifier. ${1} corresponds to 'PARAM1', ${2} to 'PARAM2' and so on. The maximum length of the string result ('MESSAGE' string including also the 'PARAMn' strings) must not exceed 255 characters.</p><p> </p><p>'LEVEL'-input:</p><p>The following values are supported: '0': DEBUG, '1': INFO, '2': WARNING, '3': ERROR. If a value greater than '3' is applied, the 'STATUS'-output is set to "Invalid level".</p><p> </p><p>'DEST'-input:</p><p>The following settings are available: Cyclic, Sporadic.</p><p>Cyclic (default) means, the message is written into the cyclic Log and therefore it will be written just once; if REQ is triggered several times, only the time of last occurrence and the quantity of occurrences will be noted.</p><p>Sporadic means the message is written in the usual Log, where every occurrence is logged as an extra message.</p><p> </p><p>'PARAM1' ... 'PARAM16'-inputs:</p><p>Input string(s) which is(are) inserted into the message string according their position defined in the 'MESSAGE' string at the 'INIT'-Event. </p><p> </p><p>'QO'-output:</p><p>Shows the initialization status. TRUE is initialized, FALSE is not initialized.</p><p> </p><p>'STATUS'-output:</p><p>When an input event ('INIT'- or 'REQ'-Event) has been successfully processed, the output is set to "OK". If an error has occurred then it contains the specific error message.</p><p> </p><p>
+</p><p /><p>
+</p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

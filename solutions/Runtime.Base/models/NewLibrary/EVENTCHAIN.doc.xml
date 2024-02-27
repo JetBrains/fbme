@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block is used for initialization sequences.</p><p>EVENTCHAIN belongs to EVENTCHAINHEAD. It implements a selectable number of chain links that belong to one EVENTCHAINHEAD and enables you to control the whole chronological order of this chain, because the priority of every EVENTCHAIN can be set (input 'PRIO').</p><p>All EVENTCHAIN-blocks belonging to one EVENTCHAINHEAD have to be named equally (at input 'NAME'). </p><p /><p>
+</p><p>'NAME', 'PRIO' and 'INVERT' Do not change </p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'REGISTER'-Event input:</p><p>This input is used internally. It has to be left unconnected. It registers the funktionblock after starting the system.</p><p> </p><p>'TRIGGER'-Event input:</p><p>This input has to be left unconnected, it is used internally when the 'TRIGGER'-eventinput of the EVENTCHAINHEAD is actuated. The 'TRIGGER'-Event of the first EVENTCHAIN-block gets its signal to start and fires its 'EO'-output. But the next EVENTCHAIN-block (with a lower priority) will be triggered not until the 'ACK'-event of the active EVENTCHAIN-block gets the signal that this part of the chain is ready.</p><p> </p><p>'ACK'-Event input:</p><p>Acknowledge of this part of the chain is ready. The next EVENTCHAIN with lower priority is triggered after the delay time (if set).</p><p> </p><p>'EO'-Event output:</p><p>This output is fired as a result of triggering the EVENTCHAIN. The signal triggers the REQ or INIT Event inputs of the corresponding functionblocks, then it is to be looped back to 'ACK'-Event input.</p><p> </p><p><strong>Functional Behavior</strong></p><p>'TIMEOUT'-input:</p><p>Defines the maximum time to wait before an internal 'ACK'-signal is produced. Prevents the chain from unintended dead halt, if it never gets an 'ACK'-signal because of an unexpected fault. After the defined time the next EVENTCHAIN in row will be triggered anyway. (If 'TIMEOUT' value is t#0s it is disabled.) Datatype is TIME.</p><p> </p><p>'DELAY'-input:</p><p>Defines the time to elapse between the incoming 'ACK'-signal and the 'TRIGGER'-signal for the start of the next EVENTCHAIN in row (respectively the 'TRIGGERNEXT'-event of the EVENTCHAINHEAD. Datatype is TIME.</p><p> </p><p>'NAME'-input:</p><p>Datatype is STRING. The name of the chain is to be specified here. In all EVENTCHAIN functionblocks of this chain the same name has to be used. <br />The name can be set only once before the EVENTCHAINHEAD is initiated for the first time. Changings, that are made afterwards will not be recognized within the system. </p><p> </p><p>'PRIO'-input:</p><p>This input is to set priorities. If it is not defined, the order of EVENTCHAIN-processing will be accidentally. Datatype is USINT.<br />This value can be set only once before the EVENTCHAINHEAD is initiated for the first time. Changings, that are made afterwards will not be recognized within the system. </p><p> </p><p>'INVERT'-input:</p><p>Datatype is BOOL. If it is set TRUE, 0 is the lowest priority range, means the last to process. <br />If it is set FALSE, 0 has the highest priority range. If the functionblock has priority 0 it will process first.<br /><u>Attention:</u> All EVENTCHAINs belonging to one EVENTCHAINHEAD must have the same setting. If one of the EVENTCHAINs is set to TRUE while the EVENTCHAINHEAD and all the appropriate EVENTCHAINs are set to FALSE, this one EVENTCHAIN will not work, because this would be handled like it has another name than the EVENTCHAINHEAD.<br />'INVERT' can be set only once before the EVENTCHAINHEAD is initiated for the first time. Changings, that are made afterwards will not be recognized within the system. <br /></p><p /><p>
+</p><p /><p>
+  </p></wysiwyg></section>
+

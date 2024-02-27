@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block measures the time span between two input events.</p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p>
+<p>Each 'REQ'-Event captures the internal time and calculates the difference to the prev. input event. The result is passed to the 'timeDiff'-output and the 'timeDiffUnits'-output. Then a 'CNF'-Event is fired.</p>
+<p>The first 'REQ'-Event is a special case: The time span from start of the runtime until the arrival of the 'REQ'-Event is calculated.</p>
+<p>Another option is to use the START event. In that case the 'START' event captures the time and the 'REQ' event calculates the difference and fires the 'CNF' event.</p>
+<p> </p>
+<p><strong>Functional Behavior</strong></p>
+<p>The 'timeDiff'-output has the the IEC-TIME duration format. </p>
+<p>The format of the 'timeDiffUnits'-output is selected by the 'unit'-input which is the value 0 for seconds, 1 for milliseconds, 2 for microseconds and 3 for nanoseconds. For values above 3, the default to 3 (nanoseconds) is taken. </p>
+<p>Depending on the unit selected, the maximum time span which can be measured is 4s294ms967us295ns if nanoseconds are selected, 1h11m34s967ms295ms if microseconds are selected and approximately 49d17h2m47s. Exceeding these limits causes truncation and seemingly irregular results. </p>
+<p>The resolution of the time difference returned is generally defined by the number of clock ticks per second a particular runtime system is configured at. E.g. given a clock frequency of 1000 ticks per second actually limits the smallest measurable time difference greater than zero to one millisecond no matter what unit is selected.</p>
+<p>If the platform supports high resolution timers the 'timeDiff' is calculated using the resolution provided by them.</p></wysiwyg></section>
+

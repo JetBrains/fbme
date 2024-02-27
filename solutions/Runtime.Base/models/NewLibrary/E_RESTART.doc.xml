@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+  <info>
+    <author>
+       <personname>
+          <firstname></firstname>
+          <surname></surname>
+       </personname>
+       <email></email>
+    </author>
+    <abstract><wysiwyg_a><p>This function block generates several events which indicate different resource start conditions or when the resource will be stopped.</p><p>
+  </p></wysiwyg_a></abstract>
+  </info>
+<wysiwyg><p>
+    <strong>Temporal Behavior</strong> </p><p>'COLD'-Event: Generates one event after a coldstart (power-on boot) of the resource.</p><p>'WARM'-Event: Generates one event after a soft-reset (restart) of the resource.</p><p>'STOP'-Event: Generates one event before the resource is stopped.</p><p> </p><p>
+  </p></wysiwyg></section>
+
