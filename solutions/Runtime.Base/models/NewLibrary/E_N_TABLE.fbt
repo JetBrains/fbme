@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="AEF913832986D9BD" Name="E_N_TABLE" Comment="Generation of a finite train of separate events,table driven" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event processing" Function="Event train generation" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" Comment="Event to start scheduled event outputs">
+        <With Var="DT" />
+        <With Var="N" />
+      </Event>
+      <Event Name="STOP" Comment="Event to stop scheduled event outputs" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO0" Comment="1. event at periods DT,starting at DT[0]after START-EI" />
+      <Event Name="EO1" Comment="2. event at periods DT, starting at DT[1]after EO0, Maximum number of events=DT array size" />
+      <Event Name="EO2" Comment="3. event at periods DT, starting at DT[2]after EO1, Maximum number of events=DT array size" />
+      <Event Name="EO3" Comment="4. event at periods DT, starting at DT[3]after EO2, Maximum number of events=DT array size" />
+      <Event Name="EO4" Comment="5. event at periods DT, starting at DT[4]after EO3, Maximum number of events=DT array size" />
+      <Event Name="EO5" Comment="6. event at periods DT, starting at DT[5]after EO4, Maximum number of events=DT array size" />
+      <Event Name="EO6" Comment="7. event at periods DT, starting at DT[6]after EO5, Maximum number of events=DT array size" />
+      <Event Name="EO7" Comment="8. event at periods DT, starting at DT[7]after EO6, Maximum number of events=DT array size" />
+      <Event Name="EO8" Comment="9. event at periods DT, starting at DT[8]after EO7, Maximum number of events=DT array size" />
+      <Event Name="EO9" Comment="10. event at periods DT, starting at DT[9]after EO8, Maximum number of events=DT array size" />
+      <Event Name="EO10" Comment="11. event at periods DT, starting at DT[10]after EO9, Maximum number of events=DT array size" />
+      <Event Name="EO11" Comment="12. event at periods DT, starting at DT[11]after EO10, Maximum number of events=DT array size" />
+      <Event Name="EO12" Comment="13. event at periods DT, starting at DT[12]after EO11, Maximum number of events=DT array size" />
+      <Event Name="EO13" Comment="14. event at periods DT, starting at DT[13]after EO12, Maximum number of events=DT array size" />
+      <Event Name="EO14" Comment="15. event at periods DT, starting at DT[14]after EO13, Maximum number of events=DT array size" />
+      <Event Name="EO15" Comment="16. event at periods DT, starting at DT[15]after EO14, Maximum number of events=DT array size" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DT" Type="TIME" ArraySize="16" Comment="Periods between events,maximum is implementation dependent" />
+      <VarDeclaration Name="N" Type="UINT" Comment="Number of events to generate,up to size of DT" />
+    </InputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="E_N_TABLE">
+    <ServiceSequence Name="normal_operation" Comment="N=3">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO0" Parameters="DT[0]after START" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO1" Parameters="DT[1]after EO0" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO2" Parameters="DT[2]after EO1" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_N_TABLE" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="no_restart" Comment="N=3">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_N_TABLE" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO0" Parameters="DT[0]after START" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_N_TABLE" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO0" Parameters="DT[1]after previous EO0" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO1" Parameters="DT[1]after EO0" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="cycle_canceled">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_N_TABLE" Event="STOP" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_N_TABLE" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_N_TABLE" Event="EO0" Parameters="DT[0]after START" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

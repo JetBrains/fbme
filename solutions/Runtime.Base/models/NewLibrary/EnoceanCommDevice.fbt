@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="EnoceanCommDevice" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="SensorID" />
+        <With Var="GWAddress" />
+        <With Var="COM" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="RX">
+        <With Var="Type" />
+        <With Var="DataByte0" />
+        <With Var="DataByte1" />
+        <With Var="DataByte2" />
+        <With Var="DataByte3" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" />
+      <VarDeclaration Name="SensorID" Type="DWORD" />
+      <VarDeclaration Name="GWAddress" Type="USINT" InitialValue="0" Comment="Device address of the gateway, this sensor is linked to [0..63]">
+        <Attribute Name="ParameterEditor" Value="NumericUpDown{Minimum=0, Maximum=63, Increment=1}" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Type" Type="USINT" />
+      <VarDeclaration Name="DataByte0" Type="BYTE" />
+      <VarDeclaration Name="DataByte1" Type="BYTE" />
+      <VarDeclaration Name="DataByte2" Type="BYTE" />
+      <VarDeclaration Name="DataByte3" Type="BYTE" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommDevice" />
+</FBType>

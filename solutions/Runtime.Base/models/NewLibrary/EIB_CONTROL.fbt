@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="EIB_CONTROL" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEx3CJPwPTBmx/ci/6I3tPmRq7JVj+OwjjwDG2LxLJoqEsGx/OXURxCjEyzri+NLZaweTm0iF9wn6rJmLWl9n3BvuDnt3DHMi11ELNQej4KrMHfn1tcgHJwuE5GrvIBo48K4s9DYAOvTMs3TKs+ONdBRsrGiejJnBpE0FUmHK24PNuBxJehrd7DNqQxF5GwyKKfbwia/zS7tbz+smcQIrnYUfvY9GhfUu3MRnseAS6iDELrHdPRm0FmlvEAMiYDKeNygYYNu+P5G9iIbvAeOcSJUdESEDc5xdMihbZQDj6baogc4GG+dA6vqJ7rYlHu/Qyl8WPOp5u9BORXVO5B0VTjbtHSPho/Z1PdTvFvjiq0Vb3KtsSoeDL+9AvAjHFY4ynELGukVEGyVvccTc7jcxvDIkz2+pJPGvZj6vrELmCQOTQOZdv9Lsi9guu6ex3zqCTexow6Qm/JKUbSfuKxXYg23X4yrQ93axT6FtW1TXWcR91O8W+OKrRVtxQvjwOvQz4NfHLfh4F5HVp5xxh/To+vaFOZ+P2wu4IpQUMtzTwBKK4+1Ap+lNv0ncmKVQzxx2LjgI8Nl3PSiWeYFD5icRvY5Cv40mqeR96HkgAdZdAQrw8khxEAF2NGtqoI3rG7IMTbQkrexsg3qatqtpnmVvFCzoiS/NVncEZ/x88hwZy4dx1O8W+OKrRVtx49X1/QhOc1NdyTle/+jR78MTD2X07727waOqYVQDasHKxoN8Uc0Bjz3DDkUQNhOS43rO+Nsyws2g4OHeoNzDLahAGK8rmC6UFDLc08ASiOJajdFeS5b5aBS3DnjmK73xOWx87+5QMdTvFvjiq0VbLahAGK8rmC4toQpgjAyGqd1HtIvLcIMeR3s9NHgpvuXt7gFjMsEMS3smDlSNnWz+GSYTYfmPqWRzZsUWmml05HkgAdZdAQrw8khxEAF2NGtqoI3rG7IMTmPZ51BgbbHetqtpnmVvFCzoiS/NVncEZDoukLbA7n5l1O8W+OKrRVtx49X1/QhOc1NdyTle/+jRGRTIFVwZdqG7waOqYVQDasHKxoN8Uc0Bjz3DDkUQNhEui6GBojIFismUOyMiZ0awtcz84Vxz0Bn1t3voD3rGiMlFhAluGa+2tqtpnmVvFCzoiS/NVncEZHuKPtN4wizAJu4YhTjZphrJlDsjImdGsHB9gZIF7bHCyZQ7IyJnRrChWX0b6I3XCCXFuZf0+qkTPskRvMQkB9q2q2meZW8ULOiJL81WdwRkOi6QtsDufmXU7xb44qtFW3Hj1fX9CE5zU13JOV7/6NEZFMgVXBl2obvBo6phVANo23j5gJP44vqyIPBrURZkuislnvlBi7sfBemwFGuj1Bvpi9o8RCiGo/4CS/m3KCOlBDBirwmh7kIIZ+vOnmhcfsmUOyMiZ0awtcz84Vxz0BvLS1OcB1jdL5dlDSLOonsJWsquWPU2QbSg0vG+tjMykVzWXQp4UDuqR3s9NHgpvuXt7gFjMsEMSfS7W46MuJ+oVrHWFrDtnJrDnR9V91/kirgBthwjK9bi9DRyeGJ+E3YqRXnBA77HlSUDvH3xmenLoqMLqHazxe+iHu5UIB4MeyOdc6m8FKjjEmoHNcSP0R9OPu5jvRjMusOdH1X3X+SKuAG2HCMr1uL0NHJ4Yn4Tdc8R6GWIQYnI40GjiXIW2T1xjye/u6aLdbvBo6phVANrMoH84dfdOX+d8BTP7tWn3JH0N+RBPXruBlv0KpunFLpmHAZI5jDcrQMsO+6jdICG+3fZbpVsvDb7rIypwLg9Qip9XgIMqXPXz045ojsLUmpsQPRBLq1P2dTvFvjiq0VYGNsFyh1HQ4iy1GZ/Q+Sq7BOwOgub7nyjyg8x6ACzU/rJlDsjImdGsdcnCYl6m9KTxipwu1csRvuGOYzP7V1ozq6pAsNJuysUeO7YSGDLqE7LFJpLvfClmZAyV4nVFtRhAKDbYmseaU+dsaI27O5fGraraZ5lbxQtCcX559glJDi2sEa5096EBgFiOafEU8UHBp6RdVt0lbtJIYWTRUsSLQ3F5YpirEo0Kg5pNRvpAXEv7rgzluKC89J9ohwow4j2zaDg4d6g3MOCUa8022XN6RugfcGAoAzYlx4wCNNCx211gMrj+Ut1/N5kuXV9uny0Q2MFGtvrFywSMWJFTlGx2abDG6cyH/+k+CQensUr3K2iuY4Qw1Z+4CyxquZvJwyDq/oFlAI3VNqfMIx+Eb/dN3pvGcSizD27SE6Aje9ZjjIKNoXc/XwAiN5kuXV9uny0Q2MFGtvrFywFYXXjYy3PND3DV3WHLvJGYxxM+0WAAY8/qygi1KOaIenGY7dLRTF11O8W+OKrRVgsmQhVUWxAzsvUChCahiRD8tdC3n5AH/XAx+U9FJJJdq6pAsNJuysX35V5clGk5aR5IAHWXQEK8jxLjh94fpXb3kDm40eDp/wpZmslBvGlr/hTi9LVruFvM6O+/3GBrqG7waOqYVQDacrL0RIMcZiUstRmf0PkquzMgA9K1n0jzoU5n4/bC7ghyebAjOSTw6a7NcKoGtFRleVPn5gmWCsz8vSkE9/c153xpBo7txFCIJCpfGrHUkeWgXMH9HmCw9w==" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="oberwal" Date="15.04.2010" Remarks="Template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="IPADDR" />
+      </Event>
+      <Event Name="RECONNECT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="NAME" />
+        <With Var="EIB_ADDR" />
+        <With Var="SERIAL" />
+      </Event>
+      <Event Name="RECONNECTO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" />
+      <VarDeclaration Name="IPADDR" Type="STRING" Comment="Target IP address (a.b.c.d:port)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Status indicator" />
+      <VarDeclaration Name="NAME" Type="STRING" Comment="Name of the target EIB device" />
+      <VarDeclaration Name="EIB_ADDR" Type="STRING" Comment="EIB adress of the target EIB device" />
+      <VarDeclaration Name="SERIAL" Type="STRING" Comment="Serial number of the target EIB device" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

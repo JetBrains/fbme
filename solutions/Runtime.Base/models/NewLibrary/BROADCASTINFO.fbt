@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BROADCASTINFO" Comment="Basic Function Block Type" Namespace="Runtime.Management">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAE4VgwVbPCPAn9q1nfcZf7lfxaEYsgerE9pnLDQloNwU8wrvvDmeMm2mnP+xj8qcBhAdTzu5jpDhNWMAjG1XGKv5sUmn9mv8AHzJ0XoZmZa3mN9jcbVEBzAcHk5tIhfcJ+qyZi1pfZ9wY2aklD1LtR9Uj1dXwvFo7TdlHePVnZtdBYMmJ9isKG7objlVvFnt6CUPqsgqlx/5F1aWcUTpr+pB1lkWC+9TlDejbsYYYMaisvwbEzn4wouQkL6XfLo0psVPt6WuG6CvBW6sIaR3+ZvurPB6IrU6pd+/65qKUNQ3EjH1s7LwxeL1cvlEP6jMUFESCAopWTkoqIPG9A4Wr7eRUcEYmDm0Y5QEnkupYtHYUh4BC/ejqc1iJZo4YMc86+22fyxnFfCA/3E7XaDj+KK+s7YdX8zQyMHd02KUHA4BRE7fB0vzlvf3nIRKLIba4/6MLGw2V+zGDzZsU8gnNh7o4AvzPgL+X1X10zgpkNW7oNxvkH4XxQ+SCrfBs9UrXR8/C80ChkpkUSGnT8SkChEL28cShhyu/l05UqTFlcQWhCpnYLTZCLjnTlYZLT18Y0CkhHP6BL9zA4lqN0V5LlvkRnsxSlSpvMZieTPLzL864Ezr/g7smudWFb3uqcdLk+vPLBrioLBHrFyE6Q5VsVLqZqfc5xzRPJ2zfP+/1JXH0z74NPvQc5sK2q2meZW8ULOiJL81WdwRkWL2G0jdwu0KBzvtPJMU0TGPMR2vIChkjW3PaNpvNIl6zjuod03RQWdOVhktPXxjQKSEc/oEv3MGBJCg2RYQJox9EFOIry7nS6H8dSNF2WYUMZKiIIFd/Y1XxdY6lbOjyvOLY0xdrbiwyqvFEwCfgjqgCJ+LXNQpu4CXYsPtXDAYArAyfJF8gisHKxoN8Uc0Bjz3DDkUQNhBv9aO+yyn/rpmp9znHNE8nbN8/7/UlcfVTTpoYAZKjxxvbA6YOBg0/budbrURSJ+BpuFJofvVv5Nt4+YCT+OL7T0yE/CWTwkgpIRz+gS/cwnYvslUw/N21/zqw9sULqKcygfzh1905f53wFM/u1afckfQ35EE9eu8joC9OeSYMK4wnXKtW5PmJvilR9MumA/pAebarH3PsHssj0kMdAiocEzr/g7smudbHchqchS5Ka7sKymkCttYI1JKwXu8De0Fayq5Y9TZBtYx/2rYFc1etTGStvF6P5WtGZhtg07e8rVdOqGqafNSJpW+jebzJlOrozjxMb5UwOky0NIDLQGyrf6faI9auEPqKx9xyQumjS05ite4ob+bzZfJGH53i9g/k3fP8NOF5vrqiDH3hebnKzaDg4d6g3MO5mzcykgUZjo1FOMfD4G6MTOX3iSRgn3yy1GZ/Q+Sq76v6BZQCN1TanzCMfhG/3Td6bxnEosw9uKpM57aF4dgqV+gzQzHvzDipwMVAnhQJ2o7hR4hwxxyyx3IanIUuSmu7CsppArbWCNSSsF7vA3tBWsquWPU2QbWMf9q2BXNXrUxkrbxej+VqJgC5UFMgAp++prJEPGBpkWeQYTLTSIUsQ2MFGtvrFyyQ64UvBw9aVfZyvgRwtrctn0i3eVoXGesZriKs+HiKCbvBQ2j7dTLjMAHW4Jxx+Pa3BVNXWmG8lESxUXe23BEt+o2xk+/1A4w==" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="15.05.2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="PORT" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="TRUE" Comment="Input event qualifier" />
+      <VarDeclaration Name="PORT" Type="UINT" InitialValue="61499" Comment="UDP port we broadcast the info to" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Status" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

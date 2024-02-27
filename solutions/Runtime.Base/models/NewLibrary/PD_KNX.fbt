@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="PD_KNX" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2014-03-27" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="IOFFSET" />
+        <With Var="KNX_BUS_ID" />
+        <With Var="OOFFSET" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are written to" />
+      <VarDeclaration Name="IOFFSET" Type="UINT" Comment="Defines the bit offset of the accessor into the input process image within the devic" />
+      <VarDeclaration Name="OOFFSET" Type="UINT" Comment="Defines the bit offset of the accessor into the output process image within the devic" />
+      <VarDeclaration Name="KNX_BUS_ID" Type="STRING" Comment="EIB bus identifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="PD_KNX" />
+</FBType>

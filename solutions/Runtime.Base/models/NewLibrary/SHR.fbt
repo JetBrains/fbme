@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="AC26F4B0D254DE42" Name="SHR" Comment="Shift right" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_SHROT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEqQlBXoz7k0Pe5fhEqsOOqnKIG1euWJf6mSTMwdA4tl2dXEicStEVrg4rZ1v9W6+DC2slbu2U0FBWMAjG1XGKv5sUmn9mv8AHenUY2GNRgquhN3ZrzEQ1hs4/kd9zKXw6MzqqAYn0nSmd4gR8LnHh7uXA7iOHiBkbPoLB0xGqX+wuJYTs/3SzkaffGYmDY7Sha0cku89SOJTQiYrFVN7kea76/0Bt48jZWgUtw545iu/Fuqv10WHrQihlYJ4/AKmO+fucyOeOH+9BgGVLFGSX9A9q/pTRp1api6cKrr7FkBBD4veLRWesxh7awJIdHdwpYoByg8cREu/B5ObSIX3CfqsmYtaX2fcG+4Oe3cMcyLXUQs1B6Pgqswd+fW1yAcnC4Tkau8gGjjwriz0NgA69MyzdMqz4410FGysaJ6MmcGkTQVSYcrbg824HEl6Gt3sM2pDEXkbDIop9vCJr/NLu1vP6yZxAiudhR+9j0aF9S7cxGex4BLqIMQusd09GbQWaW8QAyJgMp43KBhg274/kb1xDaIf8vTi6R0RIQNznF0wr7Iy4/fINnXBn6r9Qzw+VDkI6KVDsOx6XxY86nm70E5FdU7kHRVONjcKlpYs7Cqnr4WvImyZcFbRcZas6VbPnLznjPzpDZ2fuTt+lO2toRbo70ZEODFdw3Sv6DrEa0uRxEswWgvM2OzRV79tZD2kkygKGFl0Z1VRQ8oGOGak/Ulmt3paSVDyUfWofQ1rwadRnawQzhKY/o84/kd9zKXw6MzqqAYn0nSlKSt3g9BU6Bd4PbvPbdGV4BrVJ0pjMU+eQJ1y7dZlIb2gkRci1xct7K4s9DYAOvTNjliFC1RqVRsNQd+ySyvPG3smDlSNnWz+XJD6tYUXGBq2q2meZW8UL/kIRjL6LfIEOK/jzJyFfrhRiLOeDHIf4a0jF09J9bMzbdwC5CbNjYLzywa4qCwR6xchOkOVbFS6man3Occ0Tyds3z/v9SVx9xJAHkOr25TN69/KCPHX7SHUiQSdtkTM3jJFazFGyl9fFPBs5pIUipq2q2meZW8ULc8BQg2BtUY3ac8FenHGhEr9M+3Fqs78tdyYpVDPHHYuKyWe+UGLux2Kiit5nx0LyraraZ5lbxQv+QhGMvot8gdHbsUzblwdnPWLRQ06WFcV9nb5D5TgsAvFuN+/BuqfyQxHD8MICJjYKVIW28iclAdx49X1/QhOc1NdyTle/+jS5caoRCoRsQT8vOhreTT5MGPMR2vIChkjW3PaNpvNIl6zjuod03RQWfn7cAkQjk8fc1lfrTQwceQkN8uInhDeTo1FOMfD4G6MLJkIVVFsQM7L1AoQmoYkQ/LXQt5+QB/3+/mjs9MsWAwUHbgI19ZnuhxPNcQH0SBM43ER0TGW/Oi9fL9qfWd9smpnOKibDdUazaDg4d6g3MOCUa8022XN6RugfcGAoAzYlx4wCNNCx25rZ7HqNJ9ZVeK5iX3u3sMdme1R2tbObsz8iPWVv4cQwKgB4LMY5OAwBi6PtrDSthsuwzIlN/C6HIQDGfNhGZakhVlr2JXIoPJqZziomw3VGs2g4OHeoNzDuZs3MpIFGY6NRTjHw+BujEzl94kkYJ98stRmf0Pkqu+r+gWUAjdU2p8wjH4Rv903em8ZxKLMPbmLzzYa65yWWv11lEnlxtn/3ZS1fpZlFkjjwTSm3EGKiUCDgFOYb0EOxzK62dKgN3z+eGU/xSDMo/pmtl6qndZU7Ob1DR4CxXnP9qwXpPYMffY+XHa7APp3Rd6ymXvul3mUvbiOTtLQKw9duS3Erfz2XPn8HILgZUELMBxE9MJH605UqTFlcQWjIgD0SDCAEbo1pwGpUnW3CILjQnjDSyXWIldTQzzRmEH92FJ2P9Fk3bu+O2mZ5Ncp40/fe7kw7nQ==" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="20.12.2010" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;1;1;16" />
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN${CNT}" />
+        <With Var="N" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT${CNT}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN${CNT}" Type="OUT${CNT}" Comment="Argument" />
+      <VarDeclaration Name="N" Type="USINT" InitialValue="1" Comment="Number of bits to shift the argument" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT${CNT}" Type="&lt;BYTE,WORD,DWORD,LWORD&gt;" Comment="Result: IN shifted right N bits" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

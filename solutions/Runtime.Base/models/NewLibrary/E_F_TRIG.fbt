@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_F_TRIG" Comment="Boolean falling edge detection" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="2" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event handling" Function="Edge detection" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.1" Author="medusta" Date="2008-09-09" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Event Input">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Event Output" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Boolean input for falling edge detection" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork />
+</FBType>

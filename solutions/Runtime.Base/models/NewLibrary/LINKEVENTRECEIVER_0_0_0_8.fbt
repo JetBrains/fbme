@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="LINKEVENTRECEIVER" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Event forwarded from the source side" />
+      <Event Name="IND_1" Comment="Event forwarded from the source side" />
+      <Event Name="IND_2" Comment="Event forwarded from the source side" />
+      <Event Name="IND_3" Comment="Event forwarded from the source side" />
+      <Event Name="IND_4" Comment="Event forwarded from the source side" />
+      <Event Name="IND_5" Comment="Event forwarded from the source side" />
+      <Event Name="IND_6" Comment="Event forwarded from the source side" />
+      <Event Name="IND_7" Comment="Event forwarded from the source side" />
+      <Event Name="IND_8" Comment="Event forwarded from the source side" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="CHANID" Type="UINT" Comment="Channel id to receive the data from" />
+      <VarDeclaration Name="EVENTWIREIDS" Type="UINT" ArraySize="0" Comment="Event IDs as of LINKPUBLISHER on the source side" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

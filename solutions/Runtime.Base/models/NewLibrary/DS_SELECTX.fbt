@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="22F8568DF475B028" Name="DS_SELECTX" Comment="Service Interface Function Block Type" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_DS_SELECT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="hoegdan" Date="06.02.2012" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNTX;1;1;64;CNTY;1;1;64" />
+    <EventInputs>
+      <Event Name="REQ${CNTX}" Comment="Request events for dedicated input data sets">
+        <With Var="DI${CNTX,_,CNTY}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="IND" Comment="Indication from Resource">
+        <With Var="OUT${CNTY}" />
+      </Event>
+      <Event Name="CNF${CNTX}" Comment="Confirmation from Resource for a dedicated request">
+        <With Var="OUT${CNTY}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DI${CNTX,_,CNTY}" Type="&lt;ANY&gt;" Comment="Output data to resource" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT${CNTY}" Type="DI${CNTX,_,CNTY}" Comment="Input data from resource" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="DS_SELECT" />
+</FBType>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SYSMONITOR" Comment="Standard system monitor" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1-D.1" Classification="System" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2008-06-12" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="SET" Comment="Request Time Setting">
+        <With Var="QI" />
+        <With Var="CURRTIME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirmation">
+        <With Var="QO" />
+        <With Var="ERROR" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="ERROR" />
+        <With Var="VERSION" />
+        <With Var="SYSTIME" />
+        <With Var="CPULOAD" />
+        <With Var="HDLFREE" />
+        <With Var="HDLUSED" />
+        <With Var="MEMFREE" />
+        <With Var="MEMUSED" />
+        <With Var="MSGSENT" />
+        <With Var="MSGRCVD" />
+        <With Var="NWBOVFL" />
+        <With Var="CYCLEOVFL" />
+      </Event>
+      <Event Name="SETO" Comment="Time Setting Confirmation">
+        <With Var="QO" />
+        <With Var="ERROR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="CURRTIME" Type="STRING" Comment="New date and time to be set (CCYYMMDDhhmmss)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="ERROR" Type="BOOL" Comment="NOT QO, use QO instead" />
+      <VarDeclaration Name="VERSION" Type="STRING" Comment="Current forte version identifier" />
+      <VarDeclaration Name="SYSTIME" Type="WSTRING" Comment="System time in human readable format" />
+      <VarDeclaration Name="CPULOAD" Type="REAL" Comment="CPU usage in load" />
+      <VarDeclaration Name="HDLFREE" Type="UDINT" Comment="Number of unused operating system handles" />
+      <VarDeclaration Name="HDLUSED" Type="UDINT" Comment="Number of used operating system handles" />
+      <VarDeclaration Name="MEMFREE" Type="UDINT" Comment="Physical unallocated memory [KB]" />
+      <VarDeclaration Name="MEMUSED" Type="UDINT" Comment="Physical allocated memory [KB]" />
+      <VarDeclaration Name="MSGSENT" Type="UDINT" Comment="Average number of messages sent [msgs/s" />
+      <VarDeclaration Name="MSGRCVD" Type="UDINT" Comment="Average number of messages received [msgs/s]" />
+      <VarDeclaration Name="NWBOVFL" Type="UDINT" Comment="Number of network buffer overflows" />
+      <VarDeclaration Name="CYCLEOVFL" Type="UDINT" Comment="Number of missed timer events (cycle overflows)" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="SYSMONITOR" />
+</FBType>

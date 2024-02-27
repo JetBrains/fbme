@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="CAB_KNX" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2014-03-27" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="KNX_BUS_ID" />
+        <With Var="MBX_ID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are written to" />
+      <VarDeclaration Name="MBX_ID" Type="UDINT" Comment="User mailbox identifier" />
+      <VarDeclaration Name="KNX_BUS_ID" Type="STRING" Comment="EIB bus identifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="PD_KNX" />
+</FBType>

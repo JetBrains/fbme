@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="COMMCHANNELUDPRECV" Comment="Basic Function Block Type" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="medusta" Date="2009-03-10" Remarks="Template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="OWNADDR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="OWNADDR" Type="STRING" Comment="Own address (IP:port)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Status" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

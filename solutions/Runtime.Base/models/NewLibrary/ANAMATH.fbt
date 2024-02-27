@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="442E8BA737EFFC55" Name="ANAMATH" Comment="Basic Function Block Type For Array Mathematics" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_ANAMATH" />
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="02.08.2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="i;1;1;1" />
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="pv${i}" />
+        <With Var="len" />
+      </Event>
+      <Event Name="RESET" Comment="Reset Internal State Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="tAvg${i}" />
+        <With Var="tMax${i}" />
+        <With Var="tMin${i}" />
+        <With Var="tDeadT${i}" />
+      </Event>
+      <Event Name="RESETO" Comment="Internal State Reset Request Confirmation">
+        <With Var="tAvg${i}" />
+        <With Var="tMax${i}" />
+        <With Var="tMin${i}" />
+        <With Var="tDeadT${i}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="pv${i}" Type="REAL, LREAL, DINT, UDINT" Comment="Input value" />
+      <VarDeclaration Name="len" Type="DINT" Comment="Number of input values" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="tAvg${i}" Type="pv${i}" Comment="Average of the last len input values" />
+      <VarDeclaration Name="tMax${i}" Type="pv${i}" Comment="Maximum of the last len input values" />
+      <VarDeclaration Name="tMin${i}" Type="pv${i}" Comment="Minimum value of the last len input values" />
+      <VarDeclaration Name="tDeadT${i}" Type="pv${i}" Comment="The len last input value" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="ANAMATH" />
+</FBType>

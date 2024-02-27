@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SYMLINKSTATUS" Comment="Basic Function Block Type" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEIzWdhv0gTWXhY5FBZxqokeWZYsYClRQqpnLDQloNwU8wrvvDmeMm2mnP+xj8qcBhAdTzu5jpDhNWMAjG1XGKv5sUmn9mv8AHgjgULrOrtnIQ9AI2FXr4Z861MjWGb1codoN3Am3xKvpyz9of8AHsCgrJ7OlZsjb1gDB6nOmcmm9Gl5tBxfQ+Jx7P5fFYZPRSIp8u87R6v4vB5ObSIX3CfqsmYtaX2fcG+4Oe3cMcyLXUQs1B6Pgqswd+fW1yAcnC4Tkau8gGjjwriz0NgA69MyzdMqz4410FGysaJ6MmcGkTQVSYcrbg824HEl6Gt3sM2pDEXkbDIop9vCJr/NLu1vP6yZxAiudhR+9j0aF9S7cxGex4BLqIMQusd09GbQWaW8QAyJgMp43KBhg274/kb1xDaIf8vTi6R0RIQNznF0yKFtlAOPptqiBzgYb50Dq+H0BxTh+Iw90f1oTTYJh/15FdU7kHRVONjcKlpYs7Cqnr4WvImyZcFbRcZas6VbPnLznjPzpDZ2fuTt+lO2toRbo70ZEODFdw3Sv6DrEa0uRxEswWgvM2OzRV79tZD2kkygKGFl0Z1VRQ8oGOGak/Ulmt3paSVDyUfWofQ1rwadRnawQzhKY/oziWo3RXkuW+3HOMYZXX4oRWsquWPU2Qbbs1ehr8Fysv8Gok/ULe5e2vOLY0xdrbiwyqvFEwCfgjqgCJ+LXNQptoxWryp9FvkMRI6yhUT8oIsHKxoN8Uc0Bjz3DDkUQNhMV5f8HjP97NGPMR2vIChkjW3PaNpvNIl7ofx1I0XZZhQxkqIggV39hICgf71RV/+a84tjTF2tuL5GTvR/uG7kQGdQXAyLp1zlt5U+BM/pQ4dTvFvjiq0VbeyYOVI2dbP4ZJhNh+Y+pZrjA2zWDUJMgeSAB1l0BCvDPeCDNWJCcnuTk/3zFjfTdbeVPgTP6UOJ6gd1YPfwxGnX76o3qHgUMoQqcuIYMJzvdJiW+fi71mraraZ5lbxQtzwFCDYG1Rja2q2meZW8UL/kIRjL6LfIEOK/jzJyFfrsh4aBqZBZ/w59j8FJ7v4cywZhiEJBvYGDAFa35P5faV7UxgRT6Xb2elSu0NpkDsN6zjuod03RQWdOVhktPXxjQKSEc/oEv3MGBJCg2RYQJox9EFOIry7nS6H8dSNF2WYUMZKiIIFd/Y1XxdY6lbOjyvOLY0xdrbiwyqvFEwCfgjqgCJ+LXNQpsw8//zM6VVbgC5SKDOHDkwsmUOyMiZ0awtcz84Vxz0BgFMR2WG3Rk9bvBo6phVANqwcrGg3xRzQGPPcMORRA2E73N/XCSu/GizaDg4d6g3MMtqEAYryuYLpQUMtzTwBKI4lqN0V5LlvocTjEf301rQEDfcS30UfDuht7Jz1CqC0rCuncraRkspbS0jkLg4YVPRxh6MtSRreS3FCDO7af13sHKxoN8Uc0Bjz3DDkUQNhBv9aO+yyn/rpmp9znHNE8nbN8/7/UlcfVTTpoYAZKjxxvbA6YOBg0//gJL+bcoI6UEMGKvCaHuQaK254IlCbFwk2SGbHl2m1LJlDsjImdGsLXM/OFcc9Ab5KSo+a+wRghKXIDg9Ql81bvBo6phVANqwcrGg3xRzQGPPcMORRA2E5yD1lIoZl7du8GjqmFUA2rBysaDfFHNAY89ww5FEDYRY9mnR2vQyyZCfxzz8At7KGPMR2vIChkjW3PaNpvNIl7ofx1I0XZZhQxkqIggV39ipiyMuQvRpFa84tjTF2tuL5uJRL3zxpvCbG3cinjTQqL9GTHKrYtDcL2YgcVinptutqtpnmVvFCzoiS/NVncEZDoukLbA7n5l1O8W+OKrRVtx49X1/QhOc1NdyTle/+jRGRTIFVwZdqG7waOqYVQDasHKxoN8Uc0Bjz3DDkUQNhKs1DxZ38XrgbvBo6phVANqwcrGg3xRzQGPPcMORRA2Elrz7DQ8neOnZBz5jgF2MH6Zqfc5xzRPJ2zfP+/1JXH1h/k+jj6CK0NswndyB61iGpmp9znHNE8nbN8/7/UlcfUfiMpizcx0fueNHhmIUZrStqtpnmVvFC3PAUINgbVGNraraZ5lbxQv+QhGMvot8gXot+EBnALGyyGcSh1iP8u/+ma2Xqqd1lW9rL3obiJqTL2YgcVinptutqtpnmVvFCzoiS/NVncEZDoukLbA7n5l1O8W+OKrRVtx49X1/QhOc1NdyTle/+jRGRTIFVwZdqG7waOqYVQDasHKxoN8Uc0Bjz3DDkUQNhDVlAHNmjpcc2zCd3IHrWIaman3Occ0Tyds3z/v9SVx9Yf5Po4+gitD4hIWyos+lb62q2meZW8ULOiJL81WdwRmHMJULLpIwT0hQ/XP4lzNpraraZ5lbxQs6IkvzVZ3BGRq7ZhtxlKb81TVGf5tNbZt1O8W+OKrRVqzjuod03RQWL8EZ9edwHcfLahAGK8rmC2Kiit5nx0Ly2nPBXpxxoRLGbfQUzaSKXwpIRz+gS/cw4JRrzTbZc3pG6B9wYCgDNiXHjAI00LHb6Hk5XWexpKZHNNk6O+obBh5IAHWXQEK8Ed40+jup8mBAKDbYmseaU+dsaI27O5fGraraZ5lbxQtCcX559glJDi2sEa5096EBNYzTdJ1JXaS5i2Ge4j0oFSvLS3oz8XQDSfxLRCs18VMSCAJ9p8ao1/atdLHtZBhtNqeixYMJ1OQK54h8Ew3yK2UvbiOTtLQKxm30FM2kil8KSEc/oEv3MFeE2lTCXtmco1FOMfD4G6MLJkIVVFsQM7L1AoQmoYkQ/LXQt5+QB/3k+a4u3nN6P0WcmrIK5CB4rzi2NMXa24vYADLNlaWYmMjnXOpvBSo4xJqBzXEj9EfTj7uY70YzLrDnR9V91/kirgBthwjK9bi9DRyeGJ+E3VeGpwf0EzcuoeFUPD6tlgxmcJHXzQhSHa84tjTF2tuL13JNsveYa5LSm6ByRsJQKpKe8YpZdC7BsOdH1X3X+SKuAG2HCMr1uL0NHJ4Yn4TdOEk//DJDfn79x6NwCtdLnwXTtsGNeL7jq0+LrLv7Hm+U1QjQaafrMONdIlS78jATD2grjpIhwHaw50fVfdf5Iq4AbYcIyvW4vQ0cnhifhN2WNfOZVmoZk2RVg0oWvx4fK8tLejPxdANJ/EtEKzXxU/iq29KZkv43+yf6fnGjgr3tfL/KiREh8lp22DdAVV7zdTvFvjiq0VYLJkIVVFsQM7L1AoQmoYkQ/LXQt5+QB/39xuiTG7GTzSxSz6OdZQpu8KcCIhSVuF8KEdBK+XT6NlFiEliyqU7vufDAWgdVNbbVPZon1S92bSElxqTnUmVjVlzz0C1mfyitqtpnmVvFC0Jxfnn2CUkOLawRrnT3oQHOkYuhLFgKD/1LdEvogNNITMKYUBglLI9ejWknHPrApi7GpDDzDUrFFc/1pDkolbdH9aFvFs9sYYZCM8R0D6lHsmUOyMiZ0ax1ycJiXqb0pPGKnC7VyxG+Ts7r8uN6AK3VNUZ/m01tm6uqQLDSbsrFHyvwjFCvAXO+3fZbpVsvDbgvNdx29PAWFEwvFLj5veBD1XC24UrR6m0PoQ8fDv+Ms2g4OHeoNzBPB9kxjtyOuhWsdYWsO2cmOjJ07vN4nUnpfINq3E2FPEgoSVIl3AxFL6n4mN+FkC7yRJfVVVMsYa2q2meZW8ULWd6O9Int9POVqAIrcMSDWwKQmbef4a3Jvt32W6VbLw2NwqWlizsKqTTym7veVUCWV/R6xTB3TBVua7IAv99sxxacaaZS0CTjbvBo6phVANpQ3qzSEHKLHAWbW7x6f/WMkK/jSap5H3oeSAB1l0BCvDySHEQAXY0asVrb/R0ckLxfr/3CPsRTFizDi1ds7OUjQAWj0v4/RDO9/gEU2B0ClR1t0UscKYfL3ODSl1JDReC3TAEPp6o9S5Cv40mqeR96RjDspuDLFMmIV9ArjXj72K2q2meZW8ULM56L79Z0qY99kBR1ZFk6ylDerNIQcoscBZtbvHp/9Yzu/iBwNMF0qgcenZZwcDm2vPz04d2NmeyFV7HArgjJLHUiQSdtkTM3TlRO576qCGqikAIxsHE5xV9EL7fXdVCPPg9kj/mRI25Mpi2A57XhkSyj0250yqeBGPMR2vIChkgufbJDlimMjrJlDsjImdGsM7cvalL53Vk1jNN0nUldpF1b7v/1C4o/TvcpMGZuHuQgSoQqHIpebbJlDsjImdGsbxoeee8AScC9MPfhbO6B4z5LbNenHNDtrlOA6i4HFz3VDshLLk07ghzWjtaCp6ocVrKrlj1NkG2KHH/5I3ov262q2meZW8ULWd6O9Int9POVqAIrcMSDW4soWfx6vFVNHgbSJKfjW/uLDrJvJ/uVj7JlDsjImdGsbxoeee8AScC9MPfhbO6B43Ja85cmVrHeCxt7XCpwQNzqS4p9WPFKUiyj0250yqeBGPMR2vIChkgufbJDlimMjrJlDsjImdGsYAvxIvXlFpQrqb+RKUsoWf0qzywh4QYcrvhS9TKfidfSKICmSwrLUZCv40mqeR96K29xfpkQrTI68+c+g+OSiI/sIusNIwhgoZ6zklNu05oUDFmrCLvTvZRr/jIARaGhHW3RSxwph8uNPJBondf27j0pQZQHj7p+TgvuY7+Cta6KH7f9VeDoLAqCsS90x+UeuQhFNPTo104dXRMuVeBxOAYeMXOBx2XCraAQHjomTzYOdRQZlTytXtW0PpcpujmhVrKrlj1NkG13ARPTPXR2h3veJaq+XIAEVsazAGFEd93UsKQKzLSfHzMMblhpKIeSnhWQVVzMoBorb3F+mRCtMpqOU55VNmxWP4da/4IM7q7ALkGgGD6Ll99K0PjuJTwKHDIjLMWXJme6H8dSNF2WYWqf/RMTyYVWDqgONrmuI/eDAUTKTiU1XBFA0i0ENlkBsnAFYUBDS3kCkJm3n+GtyY65nTXnjMDUFU6tT6JdAzG7fnstRGWQPOQWYKWsINRkwtkwNeAhljCtqtpnmVvFCz/I3iQcXcRFWRh4U1eSNYqDlEIa8hukc0B2D6MlKz9WyGNcNT1adHZ5JG7vhbfCIMgDE+uf4BvyX9TLbKwOK2QW/pPqsSAEY4+3g9GJ1UPwGLYYoK9EArN1O8W+OKrRVs+Gbtni69TIRYw/Sh4/MMI4T7gOMfynZGcfNmHJ03iVih+3/VXg6CxPi2z51wD4fXaxunxvaTEtHV0TLlXgcTjcgelVNJ2Dmt/gtdUClq5WqXspFEe9NFWHN2eROFKIMW7waOqYVQDa4QYl9A3d1nUk9O8ib0hnORiKdrYRPY45AgwP4b87RV0rOZ8bPkoZqy5pMLZmI6gouAOt3CLY6d+UcoLdeD6hpFseDqVwbjAbOX9QK6dAxDzAPjQGiPlUzC6g3TXStmtus2g4OHeoNzBRT/LVcq4GdOLv+dcGmbAd28He1hCOzv4oufUBUa1MjpX8QQnAuoCp4lVLRAdvHVUQUanxi1tuo5JLbTeL4NOwBHFj0Fvcf7JHCYcCDZ6lczvB+qqZ2lzAlGv+MgBFoaGUXdTbU1m17D+6u6aIYo6Sgu9G4JH2gbi4vGlWWc9WVISeS+27DyYJ" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="02.07.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="GSREQ" Comment="Global status request" />
+      <Event Name="VSREQ" Comment="Variable status request">
+        <With Var="VINDEX" />
+      </Event>
+      <Event Name="RESET" Comment="Variable store reset request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="GSCNF" Comment="Global status confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="NVARIABLES" />
+        <With Var="NVALUESETS" />
+        <With Var="NVALUES" />
+        <With Var="NLISTENERS" />
+      </Event>
+      <Event Name="VSCNF" Comment="Variable status confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="VARNAME" />
+        <With Var="NVALUESETS" />
+        <With Var="NVALUES" />
+        <With Var="NLISTENERS" />
+      </Event>
+      <Event Name="RCNF" Comment="Reset confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="NVARIABLES" />
+        <With Var="NVALUESETS" />
+        <With Var="NVALUES" />
+        <With Var="NLISTENERS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Init event qualifier" />
+      <VarDeclaration Name="VINDEX" Type="UDINT" Comment="Variable iterator index" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service status" />
+      <VarDeclaration Name="VARNAME" Type="WSTRING" Comment="Variable name" />
+      <VarDeclaration Name="NVARIABLES" Type="UDINT" Comment="Number of variables defined" />
+      <VarDeclaration Name="NVALUESETS" Type="UDINT" Comment="Number of value sets (array size)" />
+      <VarDeclaration Name="NVALUES" Type="UDINT" Comment="Number of valid values" />
+      <VarDeclaration Name="NLISTENERS" Type="UDINT" Comment="Number of listeners registered" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

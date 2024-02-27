@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="10A4081E2975E4DA" Name="PD_DIRECT_IN" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommonTyped" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_PD_DIRECT_IN" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="PD_USES_MSBF" />
+        <With Var="ADDR${I}" />
+      </Event>
+      <Event Name="REQ" Comment="Process memory read request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation event">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Process memory read request confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${I}" />
+      </Event>
+      <Event Name="IND" Comment="Indication of a process memory change">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are read from or written to" />
+      <VarDeclaration Name="PD_USES_MSBF" Type="BOOL" Comment="Defines process data to be encoded most significant byte first" />
+      <VarDeclaration Name="ADDR${I}" Type="STRING" Comment="Address within the associated device ([!|%](I|Q)(X|B|W|D)&lt;offset&gt;[.&lt;bit-offset&gt;])" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+      <VarDeclaration Name="RD${I}" Type="&lt;BOOL, BYTE, WORD, DWORD&gt;" Comment="Data read from the given address in the associated device" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="PD_DIRECT_IN" />
+</FBType>

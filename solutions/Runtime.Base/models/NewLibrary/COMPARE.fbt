@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="2C6E50B1C25A9A7D" Name="COMPARE" Comment="Compare" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_COMPARE" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="marumil" Date="29.10.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;2;2;2" />
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN${CNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="LT" />
+        <With Var="LE" />
+        <With Var="EQ" />
+        <With Var="NE" />
+        <With Var="GE" />
+        <With Var="GT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN${CNT}" Type="LREAL,DINT,UDINT,DATE,DATE_AND_TIME,TIME,TIME_OF_DAY,STRING" Comment="Argument" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LT" Type="BOOL" Comment="IN1 &lt; IN2" />
+      <VarDeclaration Name="LE" Type="BOOL" Comment="IN1 &lt;= IN2" />
+      <VarDeclaration Name="EQ" Type="BOOL" Comment="IN1 = IN2" />
+      <VarDeclaration Name="NE" Type="BOOL" Comment="IN1 &lt;&gt; IN2" />
+      <VarDeclaration Name="GE" Type="BOOL" Comment="IN1 &gt;= IN2" />
+      <VarDeclaration Name="GT" Type="BOOL" Comment="IN1 &gt; IN2" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="COMPARE" />
+</FBType>

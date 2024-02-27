@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="FILEREADER" Comment="File writer FB" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Data" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-02-16" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="FILENAME" />
+      </Event>
+      <Event Name="REQ" Comment="Read data from the file">
+        <With Var="FILENAME" />
+        <With Var="FBKEY" />
+        <With Var="B1DFL" />
+        <With Var="B2DFL" />
+        <With Var="B3DFL" />
+        <With Var="B4DFL" />
+        <With Var="UI1DFL" />
+        <With Var="UI2DFL" />
+        <With Var="UI3DFL" />
+        <With Var="UI4DFL" />
+        <With Var="R1DFL" />
+        <With Var="R2DFL" />
+        <With Var="R3DFL" />
+        <With Var="R4DFL" />
+        <With Var="EV1DFL" />
+        <With Var="EV2DFL" />
+        <With Var="EV3DFL" />
+        <With Var="EV4DFL" />
+      </Event>
+      <Event Name="REQEVENTS" Comment="After reading the data with REQ trigger sending of the IND_1 to IND_4 as parametrized by EV1 to EV4" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Read confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Store confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="B1" />
+        <With Var="B2" />
+        <With Var="B3" />
+        <With Var="B4" />
+        <With Var="UI1" />
+        <With Var="UI2" />
+        <With Var="UI3" />
+        <With Var="UI4" />
+        <With Var="R1" />
+        <With Var="R2" />
+        <With Var="R3" />
+        <With Var="R4" />
+        <With Var="DEFAULTSUSED" />
+      </Event>
+      <Event Name="IND_1" Comment="Event to send on REQ if EV1 is true">
+        <With Var="B1" />
+        <With Var="B2" />
+        <With Var="B3" />
+        <With Var="B4" />
+        <With Var="UI1" />
+        <With Var="UI2" />
+        <With Var="UI3" />
+        <With Var="UI4" />
+        <With Var="R1" />
+        <With Var="R2" />
+        <With Var="R3" />
+        <With Var="R4" />
+        <With Var="DEFAULTSUSED" />
+      </Event>
+      <Event Name="IND_2" Comment="Event to send on REQ if EV2 is true">
+        <With Var="B1" />
+        <With Var="B2" />
+        <With Var="B3" />
+        <With Var="B4" />
+        <With Var="UI1" />
+        <With Var="UI2" />
+        <With Var="UI3" />
+        <With Var="UI4" />
+        <With Var="R1" />
+        <With Var="R2" />
+        <With Var="R3" />
+        <With Var="R4" />
+        <With Var="DEFAULTSUSED" />
+      </Event>
+      <Event Name="IND_3" Comment="Event to send on REQ if EV3 is true">
+        <With Var="B1" />
+        <With Var="B2" />
+        <With Var="B3" />
+        <With Var="B4" />
+        <With Var="UI1" />
+        <With Var="UI2" />
+        <With Var="UI3" />
+        <With Var="UI4" />
+        <With Var="R1" />
+        <With Var="R2" />
+        <With Var="R3" />
+        <With Var="R4" />
+        <With Var="DEFAULTSUSED" />
+      </Event>
+      <Event Name="IND_4" Comment="Event to send on REQ if EV4 is true">
+        <With Var="B1" />
+        <With Var="B2" />
+        <With Var="B3" />
+        <With Var="B4" />
+        <With Var="UI1" />
+        <With Var="UI2" />
+        <With Var="UI3" />
+        <With Var="UI4" />
+        <With Var="R1" />
+        <With Var="R2" />
+        <With Var="R3" />
+        <With Var="R4" />
+        <With Var="DEFAULTSUSED" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="TRUE" Comment="Input event qualifier" />
+      <VarDeclaration Name="FILENAME" Type="STRING" InitialValue="'persdata.dat'" Comment="Name of the file the data are written to" />
+      <VarDeclaration Name="FBKEY" Type="STRING" InitialValue="'data'" Comment="FB identification inside of the file" />
+      <VarDeclaration Name="B1DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="B2DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="B3DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="B4DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="UI1DFL" Type="UINT" InitialValue="0" Comment="Default value" />
+      <VarDeclaration Name="UI2DFL" Type="UINT" InitialValue="0" Comment="Default value" />
+      <VarDeclaration Name="UI3DFL" Type="UINT" InitialValue="0" Comment="Default value" />
+      <VarDeclaration Name="UI4DFL" Type="UINT" InitialValue="0" Comment="Default value" />
+      <VarDeclaration Name="R1DFL" Type="REAL" InitialValue="0.0" Comment="Default value" />
+      <VarDeclaration Name="R2DFL" Type="REAL" InitialValue="0.0" Comment="Default value" />
+      <VarDeclaration Name="R3DFL" Type="REAL" InitialValue="0.0" Comment="Default value" />
+      <VarDeclaration Name="R4DFL" Type="REAL" InitialValue="0.0" Comment="Default value" />
+      <VarDeclaration Name="EV1DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="EV2DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="EV3DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+      <VarDeclaration Name="EV4DFL" Type="BOOL" InitialValue="FALSE" Comment="Default value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Status" />
+      <VarDeclaration Name="B1" Type="BOOL" Comment="Read variable" />
+      <VarDeclaration Name="B2" Type="BOOL" Comment="Read variable" />
+      <VarDeclaration Name="B3" Type="BOOL" Comment="Read variable" />
+      <VarDeclaration Name="B4" Type="BOOL" Comment="Read variable" />
+      <VarDeclaration Name="UI1" Type="UINT" Comment="Read variable" />
+      <VarDeclaration Name="UI2" Type="UINT" Comment="Read variable" />
+      <VarDeclaration Name="UI3" Type="UINT" Comment="Read variable" />
+      <VarDeclaration Name="UI4" Type="UINT" Comment="Read variable" />
+      <VarDeclaration Name="R1" Type="REAL" Comment="Read variable" />
+      <VarDeclaration Name="R2" Type="REAL" Comment="Read variable" />
+      <VarDeclaration Name="R3" Type="REAL" Comment="Read variable" />
+      <VarDeclaration Name="R4" Type="REAL" Comment="Read variable" />
+      <VarDeclaration Name="DEFAULTSUSED" Type="BOOL" Comment="A default was used for at least one variable" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

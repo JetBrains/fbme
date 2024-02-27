@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="PD_DWORD_IN" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommonTyped" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_PD_DWORD_IN" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="IND_FACTOR" />
+        <With Var="PD_USES_MSBF" />
+      </Event>
+      <Event Name="REQ" Comment="Process memory read request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of a process memory read request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Indication of a process memory change">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are read from or written to" />
+      <VarDeclaration Name="IND_FACTOR" Type="UDINT" Comment="IND fired on every x=IND_FACTOR Cycles  (Valid Range 1-n)" />
+      <VarDeclaration Name="PD_USES_MSBF" Type="BOOL" Comment="Defines process data to be encoded most significant byte first" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+      <VarDeclaration Name="RD${I}" Type="DWORD" Comment="Data read from the associated field bus" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>
