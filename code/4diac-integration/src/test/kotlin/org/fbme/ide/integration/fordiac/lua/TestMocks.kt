@@ -136,6 +136,7 @@ fun createWhileStatement(condition: Expression?, body: MutableList<Statement> = 
 
 fun createAdapterTypeDeclarationMock(descriptor: FBTypeDescriptor, id: Identifier) = mockk<AdapterTypeDeclaration> {
     every { socketTypeDescriptor } returns descriptor
+    every { plugTypeDescriptor } returns descriptor
     every { identifier } returns id
 }
 

@@ -124,8 +124,8 @@ object BasicFBTypeLuaTranslator {
             val plugs = fbTypeDeclaration.typeDescriptor.plugPorts
             val sockets = fbTypeDeclaration.typeDescriptor.socketPorts
 
-            addAdapterConstants(adapterPorts = sockets, offset = plugs.size)
-            addAdapterConstants(adapterPorts = plugs, offset = 0)
+            addAdapterConstants(adapterPorts = sockets, offset = plugs.size, true)
+            addAdapterConstants(adapterPorts = plugs, offset = 0, false)
         }
 
         fbTypeDeclaration.internalVariables.forEach {
@@ -135,11 +135,11 @@ object BasicFBTypeLuaTranslator {
         sb.appendLine()
     }
 
-    private fun addAdapterConstants(adapterPorts: List<FBPortDescriptor>, offset: Int) {
+    private fun addAdapterConstants(adapterPorts: List<FBPortDescriptor>, offset: Int, isSocket: Boolean) {
         adapterPorts.forEach { portDescriptor ->
             val adapterId = portDescriptor.position + offset
 
-            (portDescriptor.declaration as? AdapterTypeDeclaration)?.socketTypeDescriptor?.let {
+            (portDescriptor.declaration as? AdapterTypeDeclaration)?.let { adapterDeclaration ->
                 sb.appendLine()
 
                 val addConstants = { descriptors: List<FBPortDescriptor>, varPrefix: String, flag: Int ->
@@ -149,7 +149,10 @@ object BasicFBTypeLuaTranslator {
                     }
                 }
 
-                with(it) {
+                val typeDescriptor =
+                    if (isSocket) adapterDeclaration.socketTypeDescriptor else adapterDeclaration.plugTypeDescriptor
+
+                with(typeDescriptor) {
                     addConstants(eventOutputPorts, "AEO_", FB_AEO_FLAG)
                     addConstants(eventInputPorts, "AEI_", FB_AEI_FLAG)
                     addConstants(dataOutputPorts, "ADO_", FB_ADO_FLAG)
