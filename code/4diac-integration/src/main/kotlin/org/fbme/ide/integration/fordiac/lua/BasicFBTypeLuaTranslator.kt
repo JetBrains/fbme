@@ -5,7 +5,10 @@ import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.st.expressions.*
+import org.fbme.lib.st.expressions.BinaryOperation.*
 import org.fbme.lib.st.expressions.LiteralKind.*
+import org.fbme.lib.st.expressions.UnaryOperation.NEG
+import org.fbme.lib.st.expressions.UnaryOperation.NOT
 import org.fbme.lib.st.statements.*
 
 
@@ -382,13 +385,13 @@ object BasicFBTypeLuaTranslator {
             is BinaryExpression -> {
                 sb.append("(")
                 expr.leftExpression?.let { addExpression(it) }
-                sb.append(" ${expr.operation.luaAlias} ")
+                sb.append(" ${expr.operation.luaAlias()} ")
                 expr.rightExpression?.let { addExpression(it) }
                 sb.append(")")
             }
 
             is UnaryExpression -> {
-                sb.append(expr.operation.luaAlias)
+                sb.append(expr.operation.luaAlias())
                 if (expr.operation.isSpaced) {
                     sb.append(" ")
                 }
@@ -690,5 +693,33 @@ object BasicFBTypeLuaTranslator {
             .appendLine("}")
             .appendLine()
             .appendLine("return {ECC = executeEvent, interfaceSpec = interfaceSpec, internalVarsInformation = internalVarsInformation}")
+    }
+}
+
+private fun BinaryOperation.luaAlias(): String {
+    return when (this) {
+        ADD -> "+"
+        AMP -> "&"
+        AND -> "and"
+        DIV -> "/"
+        EQ -> "=="
+        GT -> ">"
+        GTE -> ">="
+        LT -> "<"
+        LTE -> "<="
+        MOD -> "%"
+        MUL -> "*"
+        NEQ -> "~="
+        OR -> "or"
+        POW -> "^"
+        SUB -> "-"
+        XOR -> "~"
+    }
+}
+
+private fun UnaryOperation.luaAlias(): String {
+    return when (this) {
+        NOT -> "not"
+        NEG -> "-"
     }
 }
