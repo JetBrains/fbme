@@ -17,7 +17,6 @@ object BasicFBTypeLuaTranslator {
     private const val FB_ADO_FLAG = 201326592
     private const val FB_IN_FLAG = 268435456
     private const val FB_AEI_FLAG = 805306368
-    private const val NEW_LINE: String = "\n"
 
     private val sb = StringBuilder()
     private val memorizedFBData = FBCache()
@@ -93,16 +92,16 @@ object BasicFBTypeLuaTranslator {
     }
 
     private fun addConstants(fbTypeDeclaration: BasicFBTypeDeclaration) {
-        sb.append("local FB_STATE = 0$NEW_LINE")
+        sb.appendLine("local FB_STATE = 0")
 
         for (state in fbTypeDeclaration.ecc.states) {
-            sb.append("local ECC_${state.name} = ${state.index()}$NEW_LINE")
+            sb.appendLine("local ECC_${state.name} = ${state.index()}")
         }
 
         val addEventVars = { events: List<FBPortDescriptor>, varPrefix: String ->
             events.fold(sb) { _, event ->
                 val varName = "$varPrefix${event.name}"
-                sb.append("local $varName = ${event.position}$NEW_LINE")
+                sb.appendLine("local $varName = ${event.position}")
             }
         }
 
@@ -111,7 +110,7 @@ object BasicFBTypeLuaTranslator {
 
         val addVars = { vars: List<FBPortDescriptor>, prefix: String, flag: Int ->
             vars.forEach {
-                sb.append("local $prefix${it.name} = ${flag or it.position}$NEW_LINE")
+                sb.appendLine("local $prefix${it.name} = ${flag or it.position}")
             }
         }
 
@@ -127,10 +126,10 @@ object BasicFBTypeLuaTranslator {
         }
 
         fbTypeDeclaration.internalVariables.forEach {
-            sb.append("local IN_${it.name} = ${FB_IN_FLAG or it.index()}$NEW_LINE")
+            sb.appendLine("local IN_${it.name} = ${FB_IN_FLAG or it.index()}")
         }
 
-        sb.append(NEW_LINE)
+        sb.appendLine()
     }
 
     private fun addAdapterConstants(adapterPorts: List<FBPortDescriptor>, offset: Int) {
@@ -138,12 +137,12 @@ object BasicFBTypeLuaTranslator {
             val adapterId = portDescriptor.position + offset
 
             (portDescriptor.declaration as? AdapterTypeDeclaration)?.socketTypeDescriptor?.let {
-                sb.append(NEW_LINE)
+                sb.appendLine()
 
                 val addConstants = { descriptors: List<FBPortDescriptor>, varPrefix: String, flag: Int ->
                     descriptors.forEach { descriptor ->
                         sb.append("local $varPrefix${portDescriptor.name}_${descriptor.name} = ")
-                        sb.append("${(flag or (adapterId shl 16)) or descriptor.position}$NEW_LINE")
+                            .appendLine("${(flag or (adapterId shl 16)) or descriptor.position}")
                     }
                 }
 
@@ -160,16 +159,16 @@ object BasicFBTypeLuaTranslator {
 
     private fun addVarsPrefix(prefix: String, varNames: Iterable<String>) {
         varNames.forEach {
-            sb.append("  local VAR_${it} = fb[$prefix${it}]$NEW_LINE")
+            sb.appendLine("  local VAR_${it} = fb[$prefix${it}]")
         }
     }
 
     private fun addAdapterVarPrefix(param: ParameterDeclaration, adapterName: String, prefix: String) {
-        sb.append("local VAR_${adapterName}_${param.name} = fb[$prefix${adapterName}_${param.name}]$NEW_LINE")
+        sb.appendLine("local VAR_${adapterName}_${param.name} = fb[$prefix${adapterName}_${param.name}]")
     }
 
     private fun addAdapterVarSuffix(param: ParameterDeclaration, adapterName: String, prefix: String) {
-        sb.append("fb[$prefix${adapterName}_${param.name}] = VAR_${adapterName}_${param.name}$NEW_LINE")
+        sb.appendLine("fb[$prefix${adapterName}_${param.name}] = VAR_${adapterName}_${param.name}")
     }
 
     private fun List<ParameterDeclaration>?.addAdapterVars(
@@ -183,7 +182,7 @@ object BasicFBTypeLuaTranslator {
         fbTypeDeclaration.algorithms.forEach { alg ->
             (alg.body as? AlgorithmBody.ST)?.let { stBody ->
 
-                sb.append("local function alg_${alg.name}(fb)$NEW_LINE")
+                sb.appendLine("local function alg_${alg.name}(fb)")
 
                 val usedVarNames = stBody.statements
                     .filterIsInstance<AssignmentStatement>()
@@ -237,17 +236,17 @@ object BasicFBTypeLuaTranslator {
                         sb.append(" = ${it.initialValue}")
                     }
 
-                    sb.append(NEW_LINE)
+                    sb.appendLine()
                 }
 
                 stBody.statements.forEach { addStatement(it, "  ") }
 
                 usedOutputVarNames.forEach {
-                    sb.append("  fb[DO_${it}] = VAR_${it}$NEW_LINE")
+                    sb.appendLine("  fb[DO_${it}] = VAR_${it}")
                 }
 
                 usedInternalVarNames.forEach {
-                    sb.append("  fb[IN_${it}] = VAR_${it}$NEW_LINE")
+                    sb.appendLine("  fb[IN_${it}] = VAR_${it}")
                 }
 
                 fbTypeDeclaration.sockets.forEach {
@@ -258,7 +257,8 @@ object BasicFBTypeLuaTranslator {
                 }
             } ?: throw IllegalStateException("Language not supported for algorithm ${alg.name}")
 
-            sb.append("end$NEW_LINE$NEW_LINE")
+            sb.appendLine("end")
+                .appendLine()
         }
     }
 
@@ -292,13 +292,13 @@ object BasicFBTypeLuaTranslator {
                     sb.append(", ")
                     addExpression(it)
                 }
-                sb.append(" do$NEW_LINE")
+                sb.appendLine(" do")
                 addStatementSequence(statement.statements, "$indent  ")
                 sb.append("${indent}end")
             }
 
             is CaseStatement -> {
-                sb.append("local function case(val)$NEW_LINE")
+                sb.appendLine("local function case(val)")
                 statement.cases.forEach { clause ->
                     sb.append("$indent  ")
                     if (clause.index() == 0) {
@@ -311,25 +311,25 @@ object BasicFBTypeLuaTranslator {
                         ?: throw NullPointerException(
                             "Expected case literal in position ${clause.index()} of ${statement.expression}"
                         )
-                    sb.append(" then$NEW_LINE")
+                    sb.appendLine(" then")
 
                     addStatementSequence(clause.statements, "$indent    ")
                 }
 
                 statement.elseCase?.let {
-                    sb.append("$indent  else$NEW_LINE")
+                    sb.appendLine("$indent  else")
                     it.forEach { statement -> addStatement(statement, "$indent    ") }
                 }
 
-                sb.append("$indent  end$NEW_LINE")
-                sb.append("${indent}end$NEW_LINE")
-                sb.append("${indent}case(")
+                sb.appendLine("$indent  end")
+                    .appendLine("${indent}end")
+                    .append("${indent}case(")
                 statement.expression?.let { addExpression(it) }
-                sb.append(")$NEW_LINE")
+                sb.appendLine(")")
             }
 
             is RepeatStatement -> {
-                sb.append("repeat$NEW_LINE")
+                sb.appendLine("repeat")
                 addStatementSequence(statement.body, "$indent  ")
                 sb.append("${indent}until ")
                 statement.condition?.let { addExpression(it) }
@@ -338,21 +338,21 @@ object BasicFBTypeLuaTranslator {
             is IfStatement -> {
                 sb.append("if ")
                 statement.condition?.let { addExpression(it) }
-                sb.append(" then$NEW_LINE")
+                sb.appendLine(" then")
                 addStatementSequence(statement.thenClause, "$indent  ")
 
                 statement.elseIfClauses.forEach { clause ->
                     sb.append("${indent}elseif ")
                     clause.condition?.let { addExpression(it) }
-                    sb.append(" then$NEW_LINE")
+                    sb.appendLine(" then")
                     addStatementSequence(clause.body, "$indent  ")
-                    sb.append(NEW_LINE)
+                    sb.appendLine()
                 }
 
                 statement.elseClause?.let { clause ->
-                    sb.append("${indent}else $NEW_LINE")
+                    sb.appendLine("${indent}else ")
                     addStatementSequence(clause, "$indent  ")
-                    sb.append(NEW_LINE)
+                    sb.appendLine()
                 }
 
                 sb.append("${indent}end")
@@ -368,13 +368,13 @@ object BasicFBTypeLuaTranslator {
             is WhileStatement -> {
                 sb.append("while ")
                 statement.condition?.let { addExpression(it) }
-                sb.append(" do$NEW_LINE")
+                sb.appendLine(" do")
                 addStatementSequence(statement.body, "$indent  ")
                 sb.append("${indent}end")
             }
         }
 
-        sb.append(NEW_LINE)
+        sb.appendLine()
     }
 
     private fun addExpression(expr: Expression) {
@@ -467,24 +467,26 @@ object BasicFBTypeLuaTranslator {
 
     private fun addECC(fbTypeDeclaration: BasicFBTypeDeclaration) {
         fbTypeDeclaration.ecc.states.forEach { state ->
-            sb.append("local function enterECC_${state.name}(fb)$NEW_LINE")
-            sb.append("  fb[FB_STATE] = ECC_${state.name}$NEW_LINE")
+            sb.appendLine("local function enterECC_${state.name}(fb)")
+                .appendLine("  fb[FB_STATE] = ECC_${state.name}")
 
             state.actions.forEach { action ->
-                (action.algorithm.getTarget()?.name).let { sb.append("  alg_$it(fb)$NEW_LINE") }
+                (action.algorithm.getTarget()?.name).also { sb.appendLine("  alg_$it(fb)") }
                     ?: throw NullPointerException("Can not find name of algorithm in ECC with state = '${state.name}'")
 
                 action.event.getTarget()?.portTarget?.let {
                     val prefix = memorizedFBData.adapterPrefixByEventId(it.identifier, "AEO_", "EO_")
-                    sb.append("  fb($prefix${it.name})$NEW_LINE")
+                    sb.appendLine("  fb($prefix${it.name})")
                 }
             }
 
-            sb.append("  return true${NEW_LINE}end$NEW_LINE$NEW_LINE")
+            sb.appendLine("  return true")
+                .appendLine("end")
+                .appendLine()
         }
 
-        sb.append("local function transition(fb, id)$NEW_LINE")
-        sb.append("  local STATE = fb[FB_STATE]$NEW_LINE")
+        sb.appendLine("local function transition(fb, id)")
+            .appendLine("  local STATE = fb[FB_STATE]")
 
         addVarsPrefix(prefix = "DI_", memorizedFBData.inputData)
         addVarsPrefix(prefix = "DO_", memorizedFBData.outputData)
@@ -514,9 +516,10 @@ object BasicFBTypeLuaTranslator {
                 noElements = false
                 sb.append("  if ")
             } else {
-                sb.append("$NEW_LINE  elseif ")
+                sb.appendLine()
+                    .append("  elseif ")
             }
-            sb.append("ECC_${state.name} == STATE then$NEW_LINE")
+            sb.appendLine("ECC_${state.name} == STATE then")
             val outTransitions = fbTypeDeclaration.ecc.transitions
                 .filter { t -> t.sourceReference.getTarget()?.name == state.name }
 
@@ -526,13 +529,14 @@ object BasicFBTypeLuaTranslator {
                     noTransitions = false
                     sb.append("    if ")
                 } else {
-                    sb.append("$NEW_LINE    elseif ")
+                    sb.appendLine()
+                        .append("    elseif ")
                 }
                 val conditionEvent = transition.condition.eventReference.getTarget()?.portTarget
 
                 conditionEvent?.let {
                     val prefix = memorizedFBData.adapterPrefixByEventId(conditionEvent.identifier, "AEI_", "EI_")
-                    sb.append("$prefix${conditionEvent.name} == id") // see generateEventVariableName(...)
+                    sb.append("$prefix${conditionEvent.name} == id")
                 } ?: sb.append("true")
 
                 sb.append(" and ")
@@ -541,30 +545,38 @@ object BasicFBTypeLuaTranslator {
             }
 
             if (!noTransitions) {
-                sb.append("$NEW_LINE    else return false${NEW_LINE}    end")
+                sb.appendLine()
+                    .appendLine("    else return false")
+                    .append("    end")
             }
         }
 
         if (!noElements) {
-            sb.append("$NEW_LINE  else return false${NEW_LINE}  end")
+            sb.appendLine()
+                .appendLine("  else return false")
+                .append("  end")
         }
 
-        sb.append("${NEW_LINE}end$NEW_LINE${NEW_LINE}local function executeEvent(fb, id)$NEW_LINE")
-        sb.append("  local modified = transition(fb, id)$NEW_LINE")
-        sb.append("  while modified do$NEW_LINE")
-        sb.append("    modified = transition(fb, -1)$NEW_LINE")
-        sb.append("  end$NEW_LINE")
-        sb.append("end$NEW_LINE$NEW_LINE")
+        sb.appendLine()
+            .appendLine("end")
+            .appendLine()
+            .appendLine("local function executeEvent(fb, id)")
+            .appendLine("  local modified = transition(fb, id)")
+            .appendLine("  while modified do")
+            .appendLine("    modified = transition(fb, -1)")
+            .appendLine("  end")
+            .appendLine("end")
+            .appendLine()
     }
 
     private fun addInterfaceSeq(values: Iterable<String>, transformValue: (String) -> String = { it }) =
         sb.append(values.joinToString(", ", "{", "}") { transformValue(it) })
 
     private fun addInterfaceSpec(fbTypeDeclaration: BasicFBTypeDeclaration) {
-        sb.append("local interfaceSpec = {$NEW_LINE")
-        sb.append("  numEIs = ${fbTypeDeclaration.inputEvents.size},$NEW_LINE")
-        sb.append("  EINames = ")
-        val inputEventNames = fbTypeDeclaration.inputEvents.map { it.name } // todo: copy paste 1
+        sb.appendLine("local interfaceSpec = {")
+            .appendLine("  numEIs = ${fbTypeDeclaration.inputEvents.size},")
+            .append("  EINames = ")
+        val inputEventNames = fbTypeDeclaration.inputEvents.map { it.name }
         addInterfaceSeq(inputEventNames) { "\"$it\"" }
 
         val calcEventPortWith = { events: List<EventDeclaration>, portNames: Set<String> ->
@@ -596,14 +608,17 @@ object BasicFBTypeLuaTranslator {
             memorizedFBData.inputData
         )
 
-        sb.append(",${NEW_LINE}  EIWith = ")
+        sb.appendLine(",")
+            .append("  EIWith = ")
         addInterfaceSeq(eventInputWith.map { it.toString() })
 
-        sb.append(", $NEW_LINE  EIWithIndexes = ")
+        sb.appendLine(",")
+            .append("  EIWithIndexes = ")
         addInterfaceSeq(eventInputWithIndices.map { it.toString() })
 
-        sb.append(", $NEW_LINE  numEOs = ${fbTypeDeclaration.outputEvents.size},$NEW_LINE")
-        sb.append("  EONames = ")
+        sb.appendLine(",")
+            .appendLine("  numEOs = ${fbTypeDeclaration.outputEvents.size},")
+            .append("  EONames = ")
         val outputEventNames = fbTypeDeclaration.outputEvents.map { it.name }
         addInterfaceSeq(outputEventNames) { "\"$it\"" }
 
@@ -612,57 +627,68 @@ object BasicFBTypeLuaTranslator {
             memorizedFBData.outputData
         )
 
-        sb.append(",$NEW_LINE  EOWith = ")
+        sb.appendLine(",")
+            .append("  EOWith = ")
         addInterfaceSeq(eventOutputWith.map { it.toString() })
 
-        sb.append(",$NEW_LINE  EOWithIndexes = ")
+        sb.appendLine(",")
+            .append("  EOWithIndexes = ")
         addInterfaceSeq(eventOutputWithIndices.map { it.toString() })
 
-        sb.append(",$NEW_LINE  numDIs = ${fbTypeDeclaration.typeDescriptor.dataInputPorts.size},$NEW_LINE")
+        sb.appendLine(",")
+            .appendLine("  numDIs = ${fbTypeDeclaration.typeDescriptor.dataInputPorts.size},")
         sb.append("  DINames = ")
         addInterfaceSeq(fbTypeDeclaration.typeDescriptor.dataInputPorts.map { it.name }) { "\"$it\"" }
-        sb.append(",$NEW_LINE  DIDataTypeNames = ")
+        sb.appendLine(",")
+            .append("  DIDataTypeNames = ")
         addInterfaceSeq(fbTypeDeclaration.inputParameters.map {
             it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
         }) { "\"$it\"" }
 
-        sb.append(",$NEW_LINE  numDOs = ${fbTypeDeclaration.typeDescriptor.dataOutputPorts.size},$NEW_LINE")
+        sb.appendLine(",")
+            .appendLine("  numDOs = ${fbTypeDeclaration.typeDescriptor.dataOutputPorts.size},")
         sb.append("  DONames = ")
         addInterfaceSeq(fbTypeDeclaration.typeDescriptor.dataOutputPorts.map { it.name }) { "\"$it\"" }
-        sb.append(",$NEW_LINE  DODataTypeNames = ")
+        sb.appendLine(",")
+            .append("  DODataTypeNames = ")
         addInterfaceSeq(fbTypeDeclaration.outputParameters.map {
             it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
         }) { "\"$it\"" }
 
-        sb.append(",$NEW_LINE  numAdapters = ${fbTypeDeclaration.sockets.size + fbTypeDeclaration.plugs.size},$NEW_LINE")
-        sb.append("  adapterInstanceDefinition = {$NEW_LINE")
+        sb.appendLine(",")
+            .appendLine("  numAdapters = ${fbTypeDeclaration.sockets.size + fbTypeDeclaration.plugs.size},")
+            .appendLine("  adapterInstanceDefinition = {")
 
         fbTypeDeclaration.plugs.forEach {
             sb.append("    {adapterNameID = \"${it.name}\", ")
-            sb.append("adapterTypeNameID \"${it.type.typeName}\", isPlug = true}$NEW_LINE")
+                .appendLine("adapterTypeNameID \"${it.type.typeName}\", isPlug = true}")
         }
 
         fbTypeDeclaration.sockets.forEach {
             sb.append("    {adapterNameID = \"${it.name}\", ")
-            sb.append("adapterTypeNameID \"${it.type.typeName}\", isPlug = false}$NEW_LINE")
+                .appendLine("adapterTypeNameID \"${it.type.typeName}\", isPlug = false}")
         }
 
-        sb.append("  }$NEW_LINE")
-        sb.append("}$NEW_LINE$NEW_LINE")
+        sb.appendLine("  }")
+            .appendLine("}")
+            .appendLine()
     }
 
     private fun addInternalVarsInformation(fbTypeDeclaration: BasicFBTypeDeclaration) {
-        sb.append("local internalVarsInformation = {$NEW_LINE")
-        sb.append("  numIntVars = ${fbTypeDeclaration.internalVariables.size},$NEW_LINE")
-        sb.append("  intVarsNames = ")
+        sb.appendLine("local internalVarsInformation = {")
+            .appendLine("  numIntVars = ${fbTypeDeclaration.internalVariables.size},")
+            .append("  intVarsNames = ")
         addInterfaceSeq(fbTypeDeclaration.internalVariables.map { it.name }) { "\"$it\"" }
 
-        sb.append(",$NEW_LINE  intVarsDataTypeNames = ")
+        sb.appendLine(",")
+            .append("  intVarsDataTypeNames = ")
         addInterfaceSeq(fbTypeDeclaration.internalVariables.map {
             it.type?.stringify() ?: throw NullPointerException("Can not find type of '${it.name}' internal variable")
         }) { "\"$it\"" }
 
-        sb.append("$NEW_LINE}$NEW_LINE$NEW_LINE")
-        sb.append("return {ECC = executeEvent, interfaceSpec = interfaceSpec, internalVarsInformation = internalVarsInformation}$NEW_LINE")
+        sb.appendLine()
+            .appendLine("}")
+            .appendLine()
+            .appendLine("return {ECC = executeEvent, interfaceSpec = interfaceSpec, internalVarsInformation = internalVarsInformation}")
     }
 }
