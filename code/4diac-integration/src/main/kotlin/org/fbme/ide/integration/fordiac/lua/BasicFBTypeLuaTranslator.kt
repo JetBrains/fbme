@@ -25,20 +25,20 @@ object BasicFBTypeLuaTranslator {
     private val memorizedFBData = FBCache()
 
     private class FBCache {
-        var inputData: Set<String> = emptySet() // it is LinkedHashSet, we need the order
-        var outputData: Set<String> = emptySet() // it is LinkedHashSet, we need the order
-        var internal: Set<String> = emptySet()
-        var sockets: Set<String> = emptySet()
-        var plugs: Set<String> = emptySet()
+        var inputDataNames: Set<String> = emptySet() // it is LinkedHashSet, we need the order
+        var outputDataNames: Set<String> = emptySet() // it is LinkedHashSet, we need the order
+        var internalVarNames: Set<String> = emptySet()
+        var socketNames: Set<String> = emptySet()
+        var plugNames: Set<String> = emptySet()
         var adapterIdToIsInput: Map<Identifier?, Boolean> = emptyMap()
         var adapterEvents: MutableSet<Identifier> = mutableSetOf()
 
         fun memorize(fbTypeDeclaration: BasicFBTypeDeclaration) {
-            inputData = fbTypeDeclaration.inputParameters.names()
-            outputData = fbTypeDeclaration.outputParameters.names()
-            internal = fbTypeDeclaration.internalVariables.names()
-            sockets = fbTypeDeclaration.sockets.names()
-            plugs = fbTypeDeclaration.plugs.names()
+            inputDataNames = fbTypeDeclaration.inputParameters.names()
+            outputDataNames = fbTypeDeclaration.outputParameters.names()
+            internalVarNames = fbTypeDeclaration.internalVariables.names()
+            socketNames = fbTypeDeclaration.sockets.names()
+            plugNames = fbTypeDeclaration.plugs.names()
 
             adapterIdToIsInput = calculateAdapterIdToIsInput(fbTypeDeclaration)
             adapterEvents = calculateAdapterEvents(fbTypeDeclaration)
@@ -62,11 +62,11 @@ object BasicFBTypeLuaTranslator {
         private fun <T : Declaration> MutableList<T>.names() = this.map { it.name }.toSet()
 
         fun clear() {
-            inputData = emptySet()
-            outputData = emptySet()
-            internal = emptySet()
-            sockets = emptySet()
-            plugs = emptySet()
+            inputDataNames = emptySet()
+            outputDataNames = emptySet()
+            internalVarNames = emptySet()
+            socketNames = emptySet()
+            plugNames = emptySet()
             adapterIdToIsInput = emptyMap()
             adapterEvents = mutableSetOf()
         }
@@ -208,9 +208,9 @@ object BasicFBTypeLuaTranslator {
                     }
 
                 // intersect fb vars with alg vars and work with this set
-                val usedInputVarNames = usedVarNames.filter { memorizedFBData.inputData.contains(it) }
-                val usedOutputVarNames = usedVarNames.filter { memorizedFBData.outputData.contains(it) }
-                val usedInternalVarNames = usedVarNames.filter { memorizedFBData.internal.contains(it) }
+                val usedInputVarNames = usedVarNames.filter { memorizedFBData.inputDataNames.contains(it) }
+                val usedOutputVarNames = usedVarNames.filter { memorizedFBData.outputDataNames.contains(it) }
+                val usedInternalVarNames = usedVarNames.filter { memorizedFBData.internalVarNames.contains(it) }
 
                 addVarsPrefix(prefix = "DI_", usedInputVarNames)
                 addVarsPrefix(prefix = "DO_", usedOutputVarNames)
@@ -494,9 +494,9 @@ object BasicFBTypeLuaTranslator {
         sb.appendLine("local function transition(fb, id)")
             .appendLine("  local STATE = fb[FB_STATE]")
 
-        addVarsPrefix(prefix = "DI_", memorizedFBData.inputData)
-        addVarsPrefix(prefix = "DO_", memorizedFBData.outputData)
-        addVarsPrefix(prefix = "IN_", memorizedFBData.internal)
+        addVarsPrefix(prefix = "DI_", memorizedFBData.inputDataNames)
+        addVarsPrefix(prefix = "DO_", memorizedFBData.outputDataNames)
+        addVarsPrefix(prefix = "IN_", memorizedFBData.internalVarNames)
 
         val addAdapterVarAssignments = { adapter: AdapterTypeDeclaration, isSocket: Boolean ->
             var inputPrefix = "ADI_"
@@ -611,7 +611,7 @@ object BasicFBTypeLuaTranslator {
 
         val (eventInputWith, eventInputWithIndices) = calcEventPortWith(
             fbTypeDeclaration.inputEvents,
-            memorizedFBData.inputData
+            memorizedFBData.inputDataNames
         )
 
         sb.appendLine(",")
@@ -630,7 +630,7 @@ object BasicFBTypeLuaTranslator {
 
         val (eventOutputWith, eventOutputWithIndices) = calcEventPortWith(
             fbTypeDeclaration.outputEvents,
-            memorizedFBData.outputData
+            memorizedFBData.outputDataNames
         )
 
         sb.appendLine(",")
