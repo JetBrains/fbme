@@ -26,7 +26,9 @@
         <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
         <projectService serviceImplementation="org.fbme.ide.platform.debugger.WatcherFacade"/>
         <applicationService serviceImplementation="org.fbme.ide.platform.debugger.DevicesFacade"/>
+        <treeStructureProvider implementation="org.fbme.ide.platform.TextOnlyTreeStructureProvider"/>
     </extensions>
+
 
     <extensionPoints>
         <extensionPoint name="iec61499projectTemplate"
@@ -41,5 +43,15 @@
 
         <ProjectionController implementation="org.fbme.ide.platform.editor.SourceProjectionControllerProvider" />
     </extensions>
+
+    <actions>
+        <action id="platform.NewLibraryAction"
+                class="org.fbme.ide.platform.NewLibraryAction"
+                text="Library"
+                icon="/icons/lib.svg"/>
+        <action id="platform.ImportLibraryAction"
+                class="org.fbme.ide.platform.ImportLibraryAction"
+                text="Import Library"/>
+    </actions>
 
 </idea-plugin>

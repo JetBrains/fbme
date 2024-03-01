@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.actions
+package org.fbme.ide.platform
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -70,7 +70,7 @@ class NewLibraryAction : AnAction() {
 
 
 
-        dialog.title = "Library"
+        dialog.title = "New Library"
         dialog.show()
         if (!dialog.isOK) {
             return

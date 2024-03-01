@@ -15,11 +15,6 @@
     </extensions>
 
     <actions>
-        <action id="richediting.NewLibraryAction"
-                class="org.fbme.ide.richediting.actions.NewLibraryAction"
-                text="New Library"
-                icon="/icons/lib.svg"
-        />
 
         <group id="richediting.RichEditorPopupGroup">
             <action id="richediting.AddConstantToPort"

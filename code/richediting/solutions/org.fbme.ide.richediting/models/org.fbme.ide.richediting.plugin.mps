@@ -3778,7 +3778,7 @@
                 <node concept="liA8E" id="6VZruCm8d$e" role="2OqNvi">
                   <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
                   <node concept="Xl_RD" id="6VZruCm8e2t" role="37wK5m">
-                    <property role="Xl_RC" value="richediting.NewLibraryAction" />
+                    <property role="Xl_RC" value="platform.NewLibraryAction" />
                   </node>
                 </node>
               </node>
@@ -3786,6 +3786,36 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="9Qxn4Lp17d">
+    <property role="TrG5h" value="LibraryGroup" />
+    <node concept="fu6FP" id="9Qxn4LpaFd" role="ftER_">
+      <node concept="3clFbS" id="9Qxn4LpaFf" role="2VODD2">
+        <node concept="3clFbF" id="9Qxn4LpgK8" role="3cqZAp">
+          <node concept="2OqwBi" id="9Qxn4LphcW" role="3clFbG">
+            <node concept="2WthIp" id="9Qxn4LpgK7" role="2Oq$k0" />
+            <node concept="liA8E" id="9Qxn4Lpiag" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="9Qxn4LpiyI" role="37wK5m">
+                <node concept="2YIFZM" id="9Qxn4Lpiou" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="9Qxn4LpiPw" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="9Qxn4Lpj2T" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ImportLibraryAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="tT9cl" id="9Qxn4Lp18Y" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4HGL" resolve="ProjectActions" />
     </node>
   </node>
 </model>
