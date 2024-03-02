@@ -25,8 +25,8 @@ object BasicFBTypeLuaTranslator {
     private val memorizedFBData = FBCache()
 
     private class FBCache {
-        var inputDataNames: Set<String> = emptySet() // it is LinkedHashSet, we need the order
-        var outputDataNames: Set<String> = emptySet() // it is LinkedHashSet, we need the order
+        var inputDataNames: Set<String> = emptySet()
+        var outputDataNames: Set<String> = emptySet()
         var internalVarNames: Set<String> = emptySet()
         var socketNames: Set<String> = emptySet()
         var plugNames: Set<String> = emptySet()
@@ -59,6 +59,7 @@ object BasicFBTypeLuaTranslator {
             return adapterEvents
         }
 
+        // it is LinkedHashSet, we need the order
         private fun <T : Declaration> MutableList<T>.names() = this.map { it.name }.toSet()
 
         fun clear() {
@@ -575,39 +576,12 @@ object BasicFBTypeLuaTranslator {
             .appendLine()
     }
 
-    private fun addInterfaceSeq(values: Iterable<String>, transformValue: (String) -> String = { it }) =
-        sb.append(values.joinToString(", ", "{", "}") { transformValue(it) })
-
     private fun addInterfaceSpec(fbTypeDeclaration: BasicFBTypeDeclaration) {
         sb.appendLine("local interfaceSpec = {")
             .appendLine("  numEIs = ${fbTypeDeclaration.inputEvents.size},")
             .append("  EINames = ")
         val inputEventNames = fbTypeDeclaration.inputEvents.map { it.name }
-        addInterfaceSeq(inputEventNames) { "\"$it\"" }
-
-        val calcEventPortWith = { events: List<EventDeclaration>, portNames: Set<String> ->
-            val eventPortWithIndices = mutableListOf<Int>()
-            val eventPortWith = mutableListOf<Int>()
-
-            events.forEach { event ->
-                eventPortWithIndices.add(
-                    if (event.associations.isEmpty()) {
-                        -1
-                    } else {
-                        eventPortWith.size
-                    }
-                )
-                event.associations.forEach { assoc ->
-                    // indexOf is correct, because memorizedFBData.input is LinkedHashSet which saves the order
-                    eventPortWith.add(portNames.indexOf(assoc.parameterReference.getTarget()?.name))
-                }
-                if (event.associations.isNotEmpty()) {
-                    eventPortWith.add(255)
-                }
-            }
-
-            eventPortWith to eventPortWithIndices
-        }
+        sb.append(tokensToJsonString(inputEventNames) { it.escape() })
 
         val (eventInputWith, eventInputWithIndices) = calcEventPortWith(
             fbTypeDeclaration.inputEvents,
@@ -616,17 +590,16 @@ object BasicFBTypeLuaTranslator {
 
         sb.appendLine(",")
             .append("  EIWith = ")
-        addInterfaceSeq(eventInputWith.map { it.toString() })
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(eventInputWith))
+            .appendLine(",")
             .append("  EIWithIndexes = ")
-        addInterfaceSeq(eventInputWithIndices.map { it.toString() })
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(eventInputWithIndices))
+            .appendLine(",")
             .appendLine("  numEOs = ${fbTypeDeclaration.outputEvents.size},")
             .append("  EONames = ")
+
         val outputEventNames = fbTypeDeclaration.outputEvents.map { it.name }
-        addInterfaceSeq(outputEventNames) { "\"$it\"" }
+        sb.append(tokensToJsonString(outputEventNames) { it.escape() })
 
         val (eventOutputWith, eventOutputWithIndices) = calcEventPortWith(
             fbTypeDeclaration.outputEvents,
@@ -635,33 +608,29 @@ object BasicFBTypeLuaTranslator {
 
         sb.appendLine(",")
             .append("  EOWith = ")
-        addInterfaceSeq(eventOutputWith.map { it.toString() })
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(eventOutputWith))
+            .appendLine(",")
             .append("  EOWithIndexes = ")
-        addInterfaceSeq(eventOutputWithIndices.map { it.toString() })
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(eventOutputWithIndices))
+            .appendLine(",")
             .appendLine("  numDIs = ${fbTypeDeclaration.typeDescriptor.dataInputPorts.size},")
-        sb.append("  DINames = ")
-        addInterfaceSeq(fbTypeDeclaration.typeDescriptor.dataInputPorts.map { it.name }) { "\"$it\"" }
-        sb.appendLine(",")
+            .append("  DINames = ")
+            .append(tokensToJsonString(memorizedFBData.inputDataNames) { it.escape() })
+            .appendLine(",")
             .append("  DIDataTypeNames = ")
-        addInterfaceSeq(fbTypeDeclaration.inputParameters.map {
-            it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-        }) { "\"$it\"" }
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(fbTypeDeclaration.inputParameters.map {
+                it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
+            }) { it.escape() })
+            .appendLine(",")
             .appendLine("  numDOs = ${fbTypeDeclaration.typeDescriptor.dataOutputPorts.size},")
-        sb.append("  DONames = ")
-        addInterfaceSeq(fbTypeDeclaration.typeDescriptor.dataOutputPorts.map { it.name }) { "\"$it\"" }
-        sb.appendLine(",")
+            .append("  DONames = ")
+            .append(tokensToJsonString(memorizedFBData.outputDataNames) { it.escape() })
+            .appendLine(",")
             .append("  DODataTypeNames = ")
-        addInterfaceSeq(fbTypeDeclaration.outputParameters.map {
-            it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-        }) { "\"$it\"" }
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(fbTypeDeclaration.outputParameters.map {
+                it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
+            }) { it.escape() })
+            .appendLine(",")
             .appendLine("  numAdapters = ${fbTypeDeclaration.sockets.size + fbTypeDeclaration.plugs.size},")
             .appendLine("  adapterInstanceDefinition = {")
 
@@ -684,15 +653,14 @@ object BasicFBTypeLuaTranslator {
         sb.appendLine("local internalVarsInformation = {")
             .appendLine("  numIntVars = ${fbTypeDeclaration.internalVariables.size},")
             .append("  intVarsNames = ")
-        addInterfaceSeq(fbTypeDeclaration.internalVariables.map { it.name }) { "\"$it\"" }
-
-        sb.appendLine(",")
+            .append(tokensToJsonString(memorizedFBData.internalVarNames) { it.escape() })
+            .appendLine(",")
             .append("  intVarsDataTypeNames = ")
-        addInterfaceSeq(fbTypeDeclaration.internalVariables.map {
-            it.type?.stringify() ?: throw NullPointerException("Can not find type of '${it.name}' internal variable")
-        }) { "\"$it\"" }
-
-        sb.appendLine()
+            .append(tokensToJsonString(fbTypeDeclaration.internalVariables.map {
+                it.type?.stringify()
+                    ?: throw NullPointerException("Can not find type of '${it.name}' internal variable")
+            }) { it.escape() })
+            .appendLine()
             .appendLine("}")
             .appendLine()
             .appendLine("return {ECC = executeEvent, interfaceSpec = interfaceSpec, internalVarsInformation = internalVarsInformation}")
