@@ -2,7 +2,10 @@ package org.fbme.ide.integration.fordiac.lua
 
 import io.mockk.every
 import io.mockk.mockk
+import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
+import org.fbme.lib.common.Reference
+import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
@@ -15,6 +18,7 @@ import org.fbme.lib.st.expressions.LiteralKind.*
 import org.fbme.lib.st.expressions.UnaryOperation.NEG
 import org.fbme.lib.st.expressions.UnaryOperation.NOT
 import org.fbme.lib.st.statements.*
+import org.fbme.lib.st.types.DataType
 
 fun createStringLiteralMock(varValue: String) = createLiteralMock(varValue, STRING)
 fun createDecIntLiteralMock(varValue: Int) = createLiteralMock(varValue, DEC_INT)
@@ -134,11 +138,25 @@ fun createWhileStatement(condition: Expression?, body: MutableList<Statement> = 
         every { this@mockk.body } returns body
     }
 
-fun createAdapterTypeDeclarationMock(descriptor: FBTypeDescriptor, id: Identifier) = mockk<AdapterTypeDeclaration> {
-    every { socketTypeDescriptor } returns descriptor
-    every { plugTypeDescriptor } returns descriptor
-    every { identifier } returns id
-}
+fun createAdapterTypeDeclarationMock(
+    name: String = "",
+    identifier: Identifier = StringIdentifier(name),
+    descriptor: FBTypeDescriptor = createFBTypeDescriptorMock(),
+    inputEvents: MutableList<EventDeclaration> = mutableListOf(),
+    outputEvents: MutableList<EventDeclaration> = mutableListOf(),
+    inputParameters: MutableList<ParameterDeclaration> = mutableListOf(),
+    outputParameters: MutableList<ParameterDeclaration> = mutableListOf(),
+) =
+    mockk<AdapterTypeDeclaration> {
+        every { this@mockk.name } returns name
+        every { this@mockk.identifier } returns identifier
+        every { socketTypeDescriptor } returns descriptor
+        every { plugTypeDescriptor } returns descriptor
+        every { this@mockk.inputEvents } returns inputEvents
+        every { this@mockk.outputEvents } returns outputEvents
+        every { this@mockk.inputParameters } returns inputParameters
+        every { this@mockk.outputParameters } returns outputParameters
+    }
 
 fun createAlgorithmMock(
     name: String = "",
@@ -191,7 +209,51 @@ fun createFBTypeDescriptorMock(
     every { getAssociatedVariablesForOutputEvent(any()) } returns associatedVariablesForOutputEvent
 }
 
-// todo: ParameterDeclaration only name?
+fun createParameterDeclarationMock(
+    name: String,
+    identifier: Identifier = StringIdentifier(name),
+    container: Declaration? = null,
+    type: DataType? = null,
+    initialValue: Literal<*>? = null,
+) = mockk<ParameterDeclaration> {
+    every { this@mockk.name } returns name
+    every { this@mockk.identifier } returns identifier
+    every { this@mockk.container } returns container
+    every { this@mockk.type } returns type
+    every { this@mockk.initialValue } returns initialValue
+}
+
+fun <DeclarationT : Declaration> createReferenceMock(
+    target: DeclarationT,
+    presentation: String = "",
+    identifier: Identifier = StringIdentifier(presentation)
+) = mockk<Reference<DeclarationT>> {
+    every { this@mockk.getTarget() } returns target
+    every { this@mockk.identifier } returns identifier
+    every { this@mockk.presentation } returns presentation
+}
+
+fun createEventAssociationMock(
+    parameterReference: Reference<ParameterDeclaration>,
+    container: EventDeclaration? = null
+) =
+    mockk<EventAssociation> {
+        every { this@mockk.parameterReference } returns parameterReference
+        every { this@mockk.container } returns container
+    }
+
+fun createEventDeclarationMock(
+    name: String,
+    identifier: Identifier = StringIdentifier(name),
+    associations: MutableList<EventAssociation> = mutableListOf(),
+    container: Declaration? = null
+) = mockk<EventDeclaration> {
+    every { this@mockk.identifier } returns identifier
+    every { this@mockk.name } returns name
+    every { this@mockk.associations } returns associations
+    every { this@mockk.container } returns container
+}
+
 fun createBasicFBTypeDeclarationMock(
     internalVariables: MutableList<ParameterDeclaration> = mutableListOf(),
     inputEvents: MutableList<EventDeclaration> = mutableListOf(),

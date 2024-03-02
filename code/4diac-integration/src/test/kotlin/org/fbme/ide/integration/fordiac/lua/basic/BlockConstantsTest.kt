@@ -1,7 +1,7 @@
 package org.fbme.ide.integration.fordiac.lua.basic
 
 import io.mockk.every
-import org.fbme.lib.common.StringIdentifier
+import org.fbme.ide.integration.fordiac.lua.*
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind.*
@@ -218,7 +218,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration =
+            createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -282,7 +283,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -346,7 +347,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -410,7 +411,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -474,7 +475,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -538,7 +539,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -602,7 +603,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -666,7 +667,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(typeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -784,7 +785,7 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(adapterTypeDescriptor, StringIdentifier("id"))
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = adapterTypeDescriptor)
 
         val blockTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
