@@ -1,20 +1,12 @@
 package org.fbme.ide.integration.fordiac.lua
 
-import jetbrains.mps.smodel.tempmodel.TempModuleOptions
-import jetbrains.mps.smodel.tempmodel.TemporaryModels
-import org.fbme.ide.iec61499.repository.PlatformElement
-import org.fbme.ide.platform.testing.PlatformTestBase
+import org.fbme.ide.integration.fordiac.lua.FBType.BASIC
 import org.fbme.ide.platform.testing.PlatformTestRunner
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.nio.file.Files
-import java.nio.file.Paths
-import kotlin.math.min
 
 @RunWith(PlatformTestRunner::class)
-class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
+class BasicFBTypeLuaTranslatorTest : TranslatorTestBase() {
 
     @Test
     fun `two algorithms with simple transitions`() {
@@ -40,7 +32,6 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
             expectedOutputPath = "/basic/alg/statements/case/Case_out.lua"
         )
     }
-
 
     @Test
     fun `empty statement`() {
@@ -93,36 +84,9 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
         )
     }
 
-
-    private fun readFile(pathName: String): String {
-        val filePath = Paths.get(pathName)
-        return Files.readAllLines(filePath).joinToString("\n")
-    }
-
-    private fun String.toComparableList(): List<String> =
-        this.split("\n").filter { it.isNotBlank() }.map { it.trimEnd() }
-
-    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) {
-        val fbType = rootConverterByPath(inputBlockPath).convertFBType()
-
-        project.repository.modelAccess.runWriteAction {
-            val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
-            model.addRootNode((fbType as PlatformElement).node)
-
-            val actual = BasicFBTypeLuaTranslator.translate(fbType as BasicFBTypeDeclaration).toComparableList()
-            val expected = readFile("src/integration-test/resources$expectedOutputPath").toComparableList()
-            val maxInd = min(actual.size, expected.size)
-
-            actual.forEachIndexed { ind, el ->
-                if (ind == maxInd) {
-                    return@forEachIndexed
-                }
-                assertEquals(expected[ind], el)
-            }
-
-            require(actual.size == expected.size) {
-                "expected not blank lines amount: ${expected.size}; actual: ${actual.size}"
-            }
-        }
-    }
+    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = testTemplateBase(
+        inputBlockPath = inputBlockPath,
+        expectedOutputPath = expectedOutputPath,
+        fbType = BASIC
+    )
 }
