@@ -1,8 +1,8 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.lua.basic
 
 import io.mockk.every
+import org.fbme.ide.integration.fordiac.lua.*
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.fbme.lib.st.expressions.BinaryOperation
 import org.fbme.lib.st.expressions.BinaryOperation.*
 import org.fbme.lib.st.statements.Statement
 import org.junit.jupiter.api.Test
@@ -79,7 +79,7 @@ class StatementTest {
     @Test
     fun `if statement with empty clauses`() {
         val innerExpr = createDecIntLiteralMock(5)
-        val condition = createBinaryExpression(innerExpr, innerExpr, BinaryOperation.GT)
+        val condition = createBinaryExpression(innerExpr, innerExpr, GT)
         val statement = createIfStatementMock(condition)
         val alg = createAlgorithmMock(statements = mutableListOf(statement))
         every { block.algorithms } returns mutableListOf(alg)
@@ -101,7 +101,7 @@ class StatementTest {
     fun `if statement`() {
         val condition = let {
             val expr = createDecIntLiteralMock(5)
-            createBinaryExpression(expr, expr, BinaryOperation.GT)
+            createBinaryExpression(expr, expr, GT)
         }
 
         val thenClause: MutableList<Statement> = let {
@@ -167,7 +167,7 @@ class StatementTest {
     fun `nested if statement`() {
         val condition = let {
             val expr = createDecIntLiteralMock(5)
-            createBinaryExpression(expr, expr, BinaryOperation.GT)
+            createBinaryExpression(expr, expr, GT)
         }
 
         val thenClause: MutableList<Statement> = let {

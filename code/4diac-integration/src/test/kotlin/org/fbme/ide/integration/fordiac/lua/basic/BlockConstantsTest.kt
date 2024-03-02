@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.lua.basic
 
 import io.mockk.every
 import org.fbme.lib.common.StringIdentifier

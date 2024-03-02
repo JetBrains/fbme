@@ -19,16 +19,16 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `two algorithms with simple transitions`() {
         testTemplate(
-            inputBlockPath = "/basic_two_algs/BasicTwoAlgsMPS.fbt",
-            expectedOutputPath = "/basic_two_algs/BasicTwoAlgs_out.lua"
+            inputBlockPath = "/basic/basic_two_algs/BasicTwoAlgsMPS.fbt",
+            expectedOutputPath = "/basic/basic_two_algs/BasicTwoAlgs_out.lua"
         )
     }
 
     @Test
     fun `assignment statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/assignment/AssignmentMPS.fbt",
-            expectedOutputPath = "/alg/statements/assignment/Assignment_out.lua"
+            inputBlockPath = "/basic/alg/statements/assignment/AssignmentMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/assignment/Assignment_out.lua"
         )
     }
 
@@ -36,8 +36,8 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `case statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/case/CaseMPS.fbt",
-            expectedOutputPath = "/alg/statements/case/Case_out.lua"
+            inputBlockPath = "/basic/alg/statements/case/CaseMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/case/Case_out.lua"
         )
     }
 
@@ -45,16 +45,16 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `empty statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/empty/EmptyMPS.fbt",
-            expectedOutputPath = "/alg/statements/empty/Empty_out.lua"
+            inputBlockPath = "/basic/alg/statements/empty/EmptyMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/empty/Empty_out.lua"
         )
     }
 
     @Test
     fun `exit statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/exit/ExitMPS.fbt",
-            expectedOutputPath = "/alg/statements/exit/Exit_out.lua"
+            inputBlockPath = "/basic/alg/statements/exit/ExitMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/exit/Exit_out.lua"
         )
     }
 
@@ -62,8 +62,8 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `for statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/for/ForMPS.fbt",
-            expectedOutputPath = "/alg/statements/for/For_out.lua"
+            inputBlockPath = "/basic/alg/statements/for/ForMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/for/For_out.lua"
         )
     }
 
@@ -71,8 +71,8 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `repeat statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/repeat/RepeatMPS.fbt",
-            expectedOutputPath = "/alg/statements/repeat/Repeat_out.lua"
+            inputBlockPath = "/basic/alg/statements/repeat/RepeatMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/repeat/Repeat_out.lua"
         )
     }
 
@@ -80,16 +80,16 @@ class BasicFBTypeLuaTranslatorTest : PlatformTestBase() {
     @Test
     fun `while statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/while/WhileMPS.fbt",
-            expectedOutputPath = "/alg/statements/while/While_out.lua"
+            inputBlockPath = "/basic/alg/statements/while/WhileMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/while/While_out.lua"
         )
     }
 
     @Test
     fun `return statement`() {
         testTemplate(
-            inputBlockPath = "/alg/statements/return/ReturnMPS.fbt",
-            expectedOutputPath = "/alg/statements/return/Return_out.lua"
+            inputBlockPath = "/basic/alg/statements/return/ReturnMPS.fbt",
+            expectedOutputPath = "/basic/alg/statements/return/Return_out.lua"
         )
     }
 
