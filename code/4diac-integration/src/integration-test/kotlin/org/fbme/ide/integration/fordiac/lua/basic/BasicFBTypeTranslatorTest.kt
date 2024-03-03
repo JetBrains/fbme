@@ -1,12 +1,13 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.lua.basic
 
 import org.fbme.ide.integration.fordiac.lua.FBType.BASIC
+import org.fbme.ide.integration.fordiac.lua.TranslatorTestBase
 import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(PlatformTestRunner::class)
-class BasicFBTypeLuaTranslatorTest : TranslatorTestBase() {
+class BasicFBTypeTranslatorTest : TranslatorTestBase() {
 
     @Test
     fun `two algorithms with simple transitions`() {

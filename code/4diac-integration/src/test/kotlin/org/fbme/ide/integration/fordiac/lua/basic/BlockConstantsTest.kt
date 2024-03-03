@@ -23,7 +23,7 @@ class BlockConstantsTest {
 
         every { block.ecc } returns ecc
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("FB_STATE", "STATE3")
 
@@ -63,7 +63,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns typeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("event1", "event2")
 
@@ -103,7 +103,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns typeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("event1", "event2")
 
@@ -142,7 +142,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns typeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("data1", "data2")
 
@@ -181,7 +181,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns typeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("data1", "data2")
 
@@ -244,7 +244,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns socketTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
 
@@ -308,7 +308,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns socketTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
 
@@ -372,7 +372,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns socketTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
@@ -436,7 +436,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns socketTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
@@ -500,7 +500,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns plugTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
 
@@ -564,7 +564,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns plugTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
 
@@ -628,7 +628,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns plugTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
@@ -692,7 +692,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns plugTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
@@ -828,7 +828,7 @@ class BlockConstantsTest {
 
         every { block.typeDescriptor } returns blockTypeDescriptor
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("AEO_socket1_event1", "ADI_plug2_data2")
 

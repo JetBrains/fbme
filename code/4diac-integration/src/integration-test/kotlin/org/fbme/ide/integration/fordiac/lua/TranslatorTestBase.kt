@@ -26,13 +26,13 @@ open class TranslatorTestBase : PlatformTestBase() {
                 FBType.BASIC -> {
                     val block = converter.convertFBType()
                     model.addRootNode((block as PlatformElement).node)
-                    BasicFBTypeLuaTranslator.translate(block as BasicFBTypeDeclaration)
+                    BasicFBTypeTranslator.translate(block as BasicFBTypeDeclaration)
                 }
 
                 FBType.ADAPTER -> {
                     val block = converter.convertAdapterType()
                     model.addRootNode((block as PlatformElement).node)
-                    AdapterFBTypeLuaTranslator.translate(block)
+                    AdapterFBTypeTranslator.translate(block)
                 }
 
                 FBType.COMPOSITE -> throw IllegalArgumentException("test template for composite block not implemented yet")
