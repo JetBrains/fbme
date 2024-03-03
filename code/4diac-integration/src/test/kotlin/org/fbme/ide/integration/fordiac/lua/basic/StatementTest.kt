@@ -18,7 +18,7 @@ class StatementTest {
         )
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .split("\n")
             .firstOccurrenceSublist("A1", "end")
 
@@ -39,7 +39,7 @@ class StatementTest {
         )
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("A1", "end")
 
@@ -65,7 +65,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(statement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist(varName, varName)
 
@@ -84,7 +84,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(statement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("if", "end")
 
@@ -142,7 +142,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(statement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("if", "end")
 
@@ -216,7 +216,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(statement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("if", "end", occurrenceNumTo = 2)
 
@@ -265,7 +265,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(forStatement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("for", "end")
 
@@ -307,7 +307,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(caseStatement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .occurrenceSublist("case", "case", occurrenceNumTo = 2)
 
@@ -349,7 +349,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(repeatStatement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("repeat", "until")
 
@@ -384,7 +384,7 @@ class StatementTest {
         val alg = createAlgorithmMock(statements = mutableListOf(whileStatement))
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block)
+        val actual = BasicFBTypeTranslator.translate(block)
             .toComparableList()
             .firstOccurrenceSublist("while", "end")
 

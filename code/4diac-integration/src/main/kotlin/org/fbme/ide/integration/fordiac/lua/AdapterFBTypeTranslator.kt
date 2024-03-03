@@ -3,7 +3,7 @@ package org.fbme.ide.integration.fordiac.lua
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 
-object AdapterFBTypeLuaTranslator {
+object AdapterFBTypeTranslator {
     private val sb = StringBuilder()
 
     fun translate(fbTypeDeclaration: AdapterTypeDeclaration): String {

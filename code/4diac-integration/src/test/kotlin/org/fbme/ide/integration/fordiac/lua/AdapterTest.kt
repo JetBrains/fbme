@@ -78,7 +78,7 @@ class AdapterTest {
 
         every { block.socketTypeDescriptor } returns typeDescriptor
 
-        val actual = AdapterFBTypeLuaTranslator.translate(fbTypeDeclaration = block)
+        val actual = AdapterFBTypeTranslator.translate(fbTypeDeclaration = block)
             .toComparableList()
             .firstOccurrenceSublist(wordFrom = "numEIs", wordTo = "EIWithIndexes")
 
@@ -159,7 +159,7 @@ class AdapterTest {
 
         every { block.socketTypeDescriptor } returns typeDescriptor
 
-        val actual = AdapterFBTypeLuaTranslator.translate(fbTypeDeclaration = block)
+        val actual = AdapterFBTypeTranslator.translate(fbTypeDeclaration = block)
             .toComparableList()
             .firstOccurrenceSublist(wordFrom = "numEOs", wordTo = "EOWithIndexes")
 
@@ -206,7 +206,7 @@ class AdapterTest {
 
         every { block.socketTypeDescriptor } returns typeDescriptor
 
-        val actual = AdapterFBTypeLuaTranslator.translate(fbTypeDeclaration = block)
+        val actual = AdapterFBTypeTranslator.translate(fbTypeDeclaration = block)
             .toComparableList()
             .firstOccurrenceSublist(wordFrom = "numDIs", wordTo = "DIDataTypeNames")
 
@@ -252,7 +252,7 @@ class AdapterTest {
 
         every { block.socketTypeDescriptor } returns typeDescriptor
 
-        val actual = AdapterFBTypeLuaTranslator.translate(fbTypeDeclaration = block)
+        val actual = AdapterFBTypeTranslator.translate(fbTypeDeclaration = block)
             .toComparableList()
             .firstOccurrenceSublist(wordFrom = "numDOs", wordTo = "DODataTypeNames")
 
@@ -267,7 +267,7 @@ class AdapterTest {
 
     @Test
     fun `signature interface spec`() {
-        val actual = AdapterFBTypeLuaTranslator.translate(fbTypeDeclaration = block)
+        val actual = AdapterFBTypeTranslator.translate(fbTypeDeclaration = block)
             .toComparableList()
 
         require(actual.size > 2) { "interface spec must have more than two lines" }

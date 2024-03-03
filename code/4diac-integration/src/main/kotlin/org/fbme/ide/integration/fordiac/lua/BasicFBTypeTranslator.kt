@@ -2,17 +2,15 @@ package org.fbme.ide.integration.fordiac.lua
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
-import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
+import org.fbme.lib.iec61499.declarations.AlgorithmBody
+import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.st.expressions.*
-import org.fbme.lib.st.expressions.BinaryOperation.*
-import org.fbme.lib.st.expressions.LiteralKind.*
-import org.fbme.lib.st.expressions.UnaryOperation.NEG
-import org.fbme.lib.st.expressions.UnaryOperation.NOT
 import org.fbme.lib.st.statements.*
 
-
-object BasicFBTypeLuaTranslator {
+object BasicFBTypeTranslator {
     private const val FB_DI_FLAG = 33554432
     private const val FB_DO_FLAG = 67108864
     private const val FB_AEO_FLAG = 134217728
@@ -412,15 +410,15 @@ object BasicFBTypeLuaTranslator {
 
             is Literal<*> -> {
                 when (expr.kind) {
-                    BINARY_BOOL, BOOL -> {
+                    LiteralKind.BINARY_BOOL, LiteralKind.BOOL -> {
                         sb.append(if (expr.value as Boolean) "true" else "false")
                     }
 
-                    STRING, WSTRING -> {
+                    LiteralKind.STRING, LiteralKind.WSTRING -> {
                         sb.append("\"${expr.value as String}\"")
                     }
 
-                    BINARY_INT, DEC_INT, HEX_INT, OCT_INT, TIME, REAL -> {
+                    LiteralKind.BINARY_INT, LiteralKind.DEC_INT, LiteralKind.HEX_INT, LiteralKind.OCT_INT, LiteralKind.TIME, LiteralKind.REAL -> {
                         sb.append(expr.value)
                     }
 
@@ -669,28 +667,28 @@ object BasicFBTypeLuaTranslator {
 
 private fun BinaryOperation.luaAlias(): String {
     return when (this) {
-        ADD -> "+"
-        AMP -> "&"
-        AND -> "and"
-        DIV -> "/"
-        EQ -> "=="
-        GT -> ">"
-        GTE -> ">="
-        LT -> "<"
-        LTE -> "<="
-        MOD -> "%"
-        MUL -> "*"
-        NEQ -> "~="
-        OR -> "or"
-        POW -> "^"
-        SUB -> "-"
-        XOR -> "~"
+        BinaryOperation.ADD -> "+"
+        BinaryOperation.AMP -> "&"
+        BinaryOperation.AND -> "and"
+        BinaryOperation.DIV -> "/"
+        BinaryOperation.EQ -> "=="
+        BinaryOperation.GT -> ">"
+        BinaryOperation.GTE -> ">="
+        BinaryOperation.LT -> "<"
+        BinaryOperation.LTE -> "<="
+        BinaryOperation.MOD -> "%"
+        BinaryOperation.MUL -> "*"
+        BinaryOperation.NEQ -> "~="
+        BinaryOperation.OR -> "or"
+        BinaryOperation.POW -> "^"
+        BinaryOperation.SUB -> "-"
+        BinaryOperation.XOR -> "~"
     }
 }
 
 private fun UnaryOperation.luaAlias(): String {
     return when (this) {
-        NOT -> "not"
-        NEG -> "-"
+        UnaryOperation.NOT -> "not"
+        UnaryOperation.NEG -> "-"
     }
 }

@@ -272,8 +272,6 @@ class ExpressionTest {
 
     // todo: adapter vars check
 
-    // todo: more complex tests
-
     private fun checkExpression(expr: Expression, expectedVarValue: Any, valueNeedToEscape: Boolean = false) {
         val varName = "var1"
         val assignmentStatement = createAssignmentStatementMock(varName, expr)
@@ -282,7 +280,7 @@ class ExpressionTest {
 
         every { block.algorithms } returns mutableListOf(alg)
 
-        val actual = BasicFBTypeLuaTranslator.translate(block).split("\n").filter { it.contains(varName) }
+        val actual = BasicFBTypeTranslator.translate(block).split("\n").filter { it.contains(varName) }
 
         require(actual.size == 1) { "Program must have exact one occurrence of varName: '$varName'" }
 
