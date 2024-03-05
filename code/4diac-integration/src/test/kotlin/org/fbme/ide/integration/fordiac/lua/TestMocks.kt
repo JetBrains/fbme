@@ -177,6 +177,7 @@ fun createStateDeclarationMock(index: Int, name: String = "", actions: MutableLi
         every { index() } returns index
         every { this@mockk.name } returns name
         every { this@mockk.actions } returns actions
+        every { this@mockk.container } returns null
     }
 
 fun createECCMock(
