@@ -3818,5 +3818,35 @@
       <ref role="tU$_T" to="tprs:hyf4HGL" resolve="ProjectActions" />
     </node>
   </node>
+  <node concept="tC5Ba" id="XKbzpysL71">
+    <property role="TrG5h" value="ExportLibraryGroup" />
+    <node concept="tT9cl" id="XKbzpysL73" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4Jd1" resolve="SolutionActions" />
+    </node>
+    <node concept="fu6FP" id="XKbzpysL75" role="ftER_">
+      <node concept="3clFbS" id="XKbzpysL77" role="2VODD2">
+        <node concept="3clFbF" id="XKbzpysX_i" role="3cqZAp">
+          <node concept="2OqwBi" id="XKbzpysY26" role="3clFbG">
+            <node concept="2WthIp" id="XKbzpysX_h" role="2Oq$k0" />
+            <node concept="liA8E" id="XKbzpysYZq" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="XKbzpysZml" role="37wK5m">
+                <node concept="2YIFZM" id="XKbzpysZfP" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="XKbzpysZC5" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="XKbzpysZD9" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ExportLibraryAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
 </model>
 

@@ -21,26 +21,21 @@ import java.util.zip.ZipInputStream
 class ImportLibraryAction: AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
-        // Get the selected zip file or provide a file chooser dialog
-        // For simplicity, let's assume filePath is the path to the zip file
+
         val filePath = "/Users/emgariko/work/itmo/thesis/fbme_fork/test.zip"
 
-        // Specify the destination directory
         val destinationDir = "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions"
         try {
-            // Create destination directory if it doesn't exist
             val destDir = File(destinationDir)
             if (!destDir.exists()) {
                 destDir.mkdirs()
             }
             ZipInputStream(FileInputStream(filePath)).use { zipInputStream ->
-                // Extract each entry in the zip file
                 var entry: ZipEntry
                 while (zipInputStream.getNextEntry().also { entry = it } != null) {
                     val entryName = entry.name
                     val entryFile = File(destDir, entryName)
 
-                    // Create parent directories if they don't exist
                     File(entryFile.getParent()).mkdirs()
                     FileOutputStream(entryFile).use { fos ->
                         val buffer = ByteArray(1024)
@@ -50,12 +45,10 @@ class ImportLibraryAction: AnAction() {
                         }
                     }
 
-                    // Close the current entry
                     zipInputStream.closeEntry()
                 }
             }
 
-            // Optionally, you can print a message or log success
             println("Unarchive completed successfully!")
         } catch (ex: IOException) {
             ex.printStackTrace()

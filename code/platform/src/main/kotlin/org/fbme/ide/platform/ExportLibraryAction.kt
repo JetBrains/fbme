@@ -29,7 +29,7 @@ class ExportLibraryAction: AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val module = e.getData(MPSCommonDataKeys.CONTEXT_MODULE) ?: return
 
-        zipModule(module, "/Users/emgariko/work/itmo/thesis/fbme_fork/" + module.moduleName)
+        zipModule(module, "/Users/emgariko/work/itmo/thesis/fbme_fork/" + module.moduleName + ".zip")
     }
 
     @Throws(IOException::class)
