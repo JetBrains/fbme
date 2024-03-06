@@ -52,6 +52,9 @@
         <action id="platform.ImportLibraryAction"
                 class="org.fbme.ide.platform.ImportLibraryAction"
                 text="Import Library"/>
+        <action id="platform.ExportLibraryAction"
+                class="org.fbme.ide.platform.ExportLibraryAction"
+                text="Export Library"/>
     </actions>
 
 </idea-plugin>
