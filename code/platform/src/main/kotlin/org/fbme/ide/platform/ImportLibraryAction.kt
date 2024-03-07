@@ -2,61 +2,112 @@ package org.fbme.ide.platform
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.util.indexing.diagnostic.dump.paths.PortableFilePath.*
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.newSolutionDialog.NewModuleUtil
-import jetbrains.mps.kernel.model.SModelUtil
+import jetbrains.mps.persistence.DefaultModelRoot
+import jetbrains.mps.persistence.MementoImpl
+import jetbrains.mps.project.ModuleId
+import jetbrains.mps.project.ProjectPathUtil
 import jetbrains.mps.project.Solution
 import jetbrains.mps.project.StandaloneMPSProject
+import jetbrains.mps.project.structure.modules.ModuleFacetDescriptor
 import jetbrains.mps.project.structure.modules.SolutionDescriptor
-import jetbrains.mps.smodel.SModelRepository
+import jetbrains.mps.smodel.GeneralModuleFactory
+import jetbrains.mps.smodel.ModuleDependencyVersions
+import jetbrains.mps.smodel.language.LanguageRegistry
+import jetbrains.mps.vfs.IFile
+import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.io.IOException
-import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 
 
 class ImportLibraryAction: AnAction() {
 
-    override fun actionPerformed(e: AnActionEvent) {
+    fun unzip(zipFilePath: String, targetDirectoryPath: String) {
+        val buffer = ByteArray(1024)
+        val zipFile = File(zipFilePath)
+        val folder = File(targetDirectoryPath)
+        if (!folder.exists()) {
+            folder.mkdirs()
+        }
 
-        val filePath = "/Users/emgariko/work/itmo/thesis/fbme_fork/test.zip"
+        ZipInputStream(FileInputStream(zipFile)).use { zis ->
+            var zipEntry = zis.nextEntry
+            while (zipEntry != null) {
+                val newFile = File(folder, zipEntry.name)
+                if (zipEntry.isDirectory) {
+                    newFile.mkdirs()
+                } else {
+                    File(newFile.parent).mkdirs()
 
-        val destinationDir = "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions"
-        try {
-            val destDir = File(destinationDir)
-            if (!destDir.exists()) {
-                destDir.mkdirs()
-            }
-            ZipInputStream(FileInputStream(filePath)).use { zipInputStream ->
-                var entry: ZipEntry
-                while (zipInputStream.getNextEntry().also { entry = it } != null) {
-                    val entryName = entry.name
-                    val entryFile = File(destDir, entryName)
-
-                    File(entryFile.getParent()).mkdirs()
-                    FileOutputStream(entryFile).use { fos ->
-                        val buffer = ByteArray(1024)
-                        var bytesRead: Int
-                        while (zipInputStream.read(buffer).also { bytesRead = it } != -1) {
-                            fos.write(buffer, 0, bytesRead)
+                    FileOutputStream(newFile).use { fos ->
+                        var len: Int
+                        BufferedOutputStream(fos, buffer.size).use { bos ->
+                            while (zis.read(buffer).also { len = it } > 0) {
+                                bos.write(buffer, 0, len)
+                            }
                         }
                     }
-
-                    zipInputStream.closeEntry()
                 }
+                zipEntry = zis.nextEntry
             }
-
-            println("Unarchive completed successfully!")
-        } catch (ex: IOException) {
-            ex.printStackTrace()
+            zis.closeEntry()
         }
+    }
+
+    companion object {
+        private fun getModuleFile(namespace: String, rootPath: IFile, extension: String): IFile {
+            return rootPath.findChild(namespace + extension)
+        }
+
+        private fun createNewSolutionDescriptor(namespace: String, descriptorFile: IFile): SolutionDescriptor {
+            val descriptor = SolutionDescriptor()
+            descriptor.namespace = namespace
+            descriptor.id = ModuleId.regular()
+            val moduleLocation = descriptorFile.parent
+            val modelsDir = moduleLocation!!.findChild("models")
+
+            modelsDir.mkdirs()
+            descriptor.modelRootDescriptors.add(
+                DefaultModelRoot.createDescriptor(
+                    modelsDir.parent!!,
+                    *arrayOf(modelsDir)
+                )
+            )
+            descriptor.moduleFacetDescriptors.add(ModuleFacetDescriptor("java", MementoImpl()))
+            ProjectPathUtil.setGeneratorOutputPath(descriptor, moduleLocation!!.findChild("source_gen").path)
+            return descriptor
+        }
+    }
+
+    override fun actionPerformed(e: AnActionEvent) {
+        val zipFilePath = "/Users/emgariko/work/itmo/thesis/fbme_fork/Runtime.Base1.zip"
+        val targetDirectoryPath = "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions"
+
+        unzip(zipFilePath, targetDirectoryPath)
 
         val mpsProject = e.getData(MPSCommonDataKeys.MPS_PROJECT) as StandaloneMPSProject
 
-        val newSolution = NewModuleUtil.createSolution("Runtime.Base1", "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions/Runtime.Base1", mpsProject)
-        
+//        val newSolution = NewModuleUtil.createSolution("Runtime.Base1", "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions/Runtime.Base1", mpsProject)
+
+        val namespace = "Runtime.Base1"
+
+        val descriptorFile = getModuleFile(namespace,
+            mpsProject.getFileSystem().getFile(targetDirectoryPath + "/Runtime.Base1"),
+            ".msd")
+
+        val descriptor = createNewSolutionDescriptor(namespace, descriptorFile)
+        val module = GeneralModuleFactory().instantiate(descriptor, descriptorFile) as Solution
+        mpsProject.addModule(module)
+        ModuleDependencyVersions(
+            (mpsProject.getComponent<LanguageRegistry>(LanguageRegistry::class.java) as LanguageRegistry)!!,
+            mpsProject.getRepository()
+        ).update(module)
+        module.save()
+//        return module
+
+        println("Created?")
     }
 }
