@@ -29,6 +29,10 @@ class ExportLibraryAction: AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val module = e.getData(MPSCommonDataKeys.CONTEXT_MODULE) ?: return
 
+        // TODO: (SEE the same note at the ImportLIbraryAction.kt
+        //  consider rename solution or it's id in .mds or header file in order to avoid id conflicts
+        // while importing exported library
+
         zipModule(module, "/Users/emgariko/work/itmo/thesis/fbme_fork/" + module.moduleName + ".zip")
     }
 

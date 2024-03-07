@@ -6,10 +6,7 @@ import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.newSolutionDialog.NewModuleUtil
 import jetbrains.mps.persistence.DefaultModelRoot
 import jetbrains.mps.persistence.MementoImpl
-import jetbrains.mps.project.ModuleId
-import jetbrains.mps.project.ProjectPathUtil
-import jetbrains.mps.project.Solution
-import jetbrains.mps.project.StandaloneMPSProject
+import jetbrains.mps.project.*
 import jetbrains.mps.project.structure.modules.ModuleFacetDescriptor
 import jetbrains.mps.project.structure.modules.SolutionDescriptor
 import jetbrains.mps.smodel.GeneralModuleFactory
@@ -83,6 +80,9 @@ class ImportLibraryAction: AnAction() {
     }
 
     override fun actionPerformed(e: AnActionEvent) {
+        // TODO: (SEE the same note at the ExportLIbraryAction.kt
+        // consider rename solution or it's id in .mds or header file in order to avoid id conflicts
+
         val zipFilePath = "/Users/emgariko/work/itmo/thesis/fbme_fork/Runtime.Base1.zip"
         val targetDirectoryPath = "/Users/emgariko/work/itmo/thesis/fbme_fork/solutions"
 
@@ -94,18 +94,25 @@ class ImportLibraryAction: AnAction() {
 
         val namespace = "Runtime.Base1"
 
-        val descriptorFile = getModuleFile(namespace,
-            mpsProject.getFileSystem().getFile(targetDirectoryPath + "/Runtime.Base1"),
-            ".msd")
+        mpsProject.modelAccess.runWriteAction {
+//            TODO: are there any issues with specific model(how do IEC61499 model gets loaded?)
 
-        val descriptor = createNewSolutionDescriptor(namespace, descriptorFile)
-        val module = GeneralModuleFactory().instantiate(descriptor, descriptorFile) as Solution
-        mpsProject.addModule(module)
-        ModuleDependencyVersions(
-            (mpsProject.getComponent<LanguageRegistry>(LanguageRegistry::class.java) as LanguageRegistry)!!,
-            mpsProject.getRepository()
-        ).update(module)
-        module.save()
+            val descriptorFile = getModuleFile(namespace,
+                mpsProject.getFileSystem().getFile(targetDirectoryPath + "/Runtime.Base1"),
+                ".msd")
+
+//            NOTE: Before importing I've changed the "ref=" parameter, and haven't changed the uuid of the solution in
+//            .msd file
+            val descriptor = createNewSolutionDescriptor(namespace, descriptorFile)
+            val module = GeneralModuleFactory().instantiate(descriptor, descriptorFile) as Solution
+            mpsProject.addModule(module)
+            ModuleDependencyVersions(
+                (mpsProject.getComponent<LanguageRegistry>(LanguageRegistry::class.java) as LanguageRegistry)!!,
+                mpsProject.getRepository()
+            ).update(module)
+            module.save()
+        }
+
 //        return module
 
         println("Created?")
