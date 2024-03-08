@@ -33,7 +33,10 @@ class ExportLibraryAction: AnAction() {
         //  consider rename solution or it's id in .mds or header file in order to avoid id conflicts
         // while importing exported library
 
-        zipModule(module, "/Users/emgariko/work/itmo/thesis/fbme_fork/" + module.moduleName + ".zip")
+        val mpsProject = e.getData(MPSCommonDataKeys.MPS_PROJECT)
+        val ideaProject = mpsProject!!.project
+        val targetDir = ideaProject.basePath
+        zipModule(module, targetDir + "/" + module.moduleName + ".zip")
     }
 
     @Throws(IOException::class)
