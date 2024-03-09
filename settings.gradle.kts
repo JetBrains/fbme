@@ -10,6 +10,7 @@ include(
     "code:richediting",
     "code:scenes",
     "code:smv-debugger",
+    "code:spin-debugger",
     "code:debugger",
 
     "docs",

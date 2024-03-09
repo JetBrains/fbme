@@ -29,8 +29,8 @@ class FB2SMV: AbstractFBDConverter("smv")  {
         basicFBConverter?.generateNonDeterministicVariables(fb, buf)
         basicFBConverter?.generateECCTransitions(fb, buf)
         basicFBConverter?.generateOSM(fb, buf)
-        basicFBConverter?.generateNA(fb, buf)
-        basicFBConverter?.generateNI(fb, buf)
+        basicFBConverter?.generateNA(fb, buf) // --
+        basicFBConverter?.generateNI(fb, buf) // --
         basicFBConverter?.generateInputVariablesUpdate(fb, buf)
         basicFBConverter?.generateOutputVariablesUpdate(fb, buf)
         basicFBConverter?.generateAlphaBeta(fb, buf)
