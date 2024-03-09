@@ -1,12 +1,13 @@
 package org.fbme.integration.nxt.importer
 
+import com.intellij.notification.Notification
+import com.intellij.notification.NotificationType
+import com.intellij.notification.Notifications
+import com.intellij.openapi.project.Project
 import fbme.integration.nxt.NxtIntegrationIcons
 import jetbrains.mps.extapi.model.SModelSimpleHeader
-import jetbrains.mps.internal.collections.runtime.ListSequence
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SModelOperations
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SNodeUtil
-import jetbrains.mps.util.FileUtil
 import jetbrains.mps.util.JDOMUtil
 import jetbrains.mps.util.NameUtil
 import org.fbme.ide.iec61499.repository.PlatformElement
@@ -25,8 +26,8 @@ import org.jetbrains.mps.openapi.persistence.PersistenceFacade
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
-import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayDeque
 
 
 class NxtImportProjectTemplate : Iec61499ProjectTemplate(
@@ -36,17 +37,30 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
     NxtIntegrationIcons.importProject,
     null
 ) {
-    override fun initModel(repository: PlatformRepository, model: SModel): PlatformElement {
+    override fun initModel(project: Project, repository: PlatformRepository, model: SModel): PlatformElement {
         val settings = settings as NxtImportSystemConfigSolutionSettings
         val nxtImportDirectory = settings.getNxtImportLocation()
         val modelId = SModelId.generate()
         val modelName = settings.moduleName
         val ref = PersistenceFacade.getInstance().createModelReference(null, modelId, modelName)
         val header: SModelSimpleHeader = Iec61499ModelHeader(ref, emptyList())
-        val files = listOf(*File(nxtImportDirectory).listFiles()!!)
-        try {
-            readModel(header, files, model)
-        } catch (e: ModelLoadException) {
+        val entries = loadEntries(locateRootDirectory(File(nxtImportDirectory)))
+        val errorEntries = mutableSetOf<DocumentEntry>()
+        for (entry in entries) {
+            try {
+                loadRootFromFile(header, entry, model)
+            } catch (e: Exception) {
+                errorEntries += entry
+            }
+        }
+        if (errorEntries.isNotEmpty()) {
+            val notification = Notification(
+                "fbme.integration.nxt",
+                "Error during import",
+                "Failed to load ${errorEntries.size} documents: ${errorEntries.joinToString { it.name }}",
+                NotificationType.ERROR
+            )
+            Notifications.Bus.notify(notification, project)
         }
         val first = model.rootNodes.firstOrNull()
         if (first != null) {
@@ -58,33 +72,17 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
     }
 
     @Throws(ModelLoadException::class)
-    fun readModel(header: SModelSimpleHeader, files: List<File>, m: SModel) {
-        try {
-            for (file in ListSequence.fromList(files)) {
-                try {
-                    val fileExt = FileUtil.getExtension(file.name)
-                    val fqName =
-                        com.intellij.openapi.util.io.FileUtil.getNameWithoutExtension(file).replace('/', '.')
-                    if (!supportedFileExtension(fileExt)) {
-                        continue
-                    }
-                    BufferedReader(FileReader(file)).use { reader ->
-                        val doc = JDOMUtil.loadDocument(reader)
-                        val node = convertRootNode(header.modelReference, doc, fileExt)
-                        if (node != null) {
-                            val virtualPackage = NameUtil.namespaceFromLongName(fqName)
-                            if (virtualPackage != null && virtualPackage.isNotEmpty()) {
-                                node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, virtualPackage)
-                            }
-                            SModelOperations.addRootNode(m, node)
-                        }
-                    }
-                } catch (e: Exception) {
-                    throw IOException("cannot read model for nxt project import", e)
+    fun loadRootFromFile(header: SModelSimpleHeader, entry: DocumentEntry, model: SModel) {
+        BufferedReader(FileReader(entry.file)).use { reader ->
+            val doc = JDOMUtil.loadDocument(reader)
+            val node = convertRootNode(header.modelReference, doc, entry.file.extension)
+            if (node != null) {
+                val virtualPackage = NameUtil.namespaceFromLongName(entry.name)
+                if (virtualPackage != null && virtualPackage.isNotEmpty()) {
+                    node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, virtualPackage)
                 }
+                model.addRootNode(node)
             }
-        } catch (e: IOException) {
-            throw ModelLoadException("Exception during load", emptyList(), e)
         }
     }
 
@@ -104,7 +102,7 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         }
     }
 
-    private fun supportedFileExtension(fileExt: String?): Boolean {
+    private fun supportedFileExtension(fileExt: String): Boolean {
         return fileExt == Iec61499ModelFactory.FBT_FILE_EXT
                 || fileExt == Iec61499ModelFactory.ADP_FILE_EXT
                 || fileExt == Iec61499ModelFactory.SUB_FILE_EXT
@@ -112,5 +110,32 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
                 || fileExt == Iec61499ModelFactory.DEV_FILE_EXT
                 || fileExt == Iec61499ModelFactory.SYS_FILE_EXT
                 || fileExt == Iec61499ModelFactory.SEG_FILE_EXT
+    }
+
+    private fun locateRootDirectory(nxtImportDirectory: File): File {
+        val files = nxtImportDirectory.list() ?: return nxtImportDirectory
+        if (files.contains("IEC61499") && files.any { it.endsWith("sln") }) {
+            return nxtImportDirectory.resolve("IEC61499")
+        }
+        return nxtImportDirectory
+    }
+
+    private fun loadEntries(rootDirectory: File): Sequence<DocumentEntry> = sequence {
+        val queue = ArrayDeque<DocumentEntry>()
+        queue.add(DocumentEntry("", rootDirectory))
+        while (queue.isNotEmpty()) {
+            val entry = queue.removeFirst()
+            if (entry.file.isFile && supportedFileExtension(entry.file.extension)) yield(entry)
+            queue.addAll(entry.nestedDocuments)
+        }
+    }
+
+
+    data class DocumentEntry(val name: String, val file: File) {
+
+        private fun nestedName(nestedName: String) = if (name.isEmpty()) nestedName else "$name.$nestedName"
+
+        val nestedDocuments
+            get() = file.listFiles()?.map { DocumentEntry(nestedName(it.nameWithoutExtension), it) } ?: emptyList()
     }
 }

@@ -1,5 +1,6 @@
 package org.fbme.ide.platform.projectWizard
 
+import com.intellij.openapi.project.Project
 import fbme.platform.PlatformIcons
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepository
@@ -13,7 +14,7 @@ class SystemTemplate : Iec61499ProjectTemplate(
     "system"
 ) {
 
-    override fun initModel(repository: PlatformRepository, model: SModel): PlatformElement {
+    override fun initModel(project: Project, repository: PlatformRepository, model: SModel): PlatformElement {
         val system = repository.iec61499Factory.createSystemDeclaration(null)
         val application = repository.iec61499Factory.createApplicationDeclaration(null)
 

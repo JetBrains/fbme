@@ -26,7 +26,7 @@ class BasicFbTypeNxtImporter(arguments: ConverterArguments) : BasicFBTypeConvert
         val openBracketIndex = rawCondition.indexOf('[')
         val closeBracketIndex = rawCondition.lastIndexOf(']')
         if (openBracketIndex == -1) {
-            val guardCondition = parseExpression(stFactory, unescapeXML(rawCondition))
+            val guardCondition = parseExpression(stFactory, rawCondition.unescapeXML())
             val checker = TransitionImportChecker(fbtd)
             checker.checkTransition(guardCondition)
             if (checker.satisfies()) {
@@ -44,7 +44,7 @@ class BasicFbTypeNxtImporter(arguments: ConverterArguments) : BasicFBTypeConvert
         if (openBracketIndex > 0) {
             condition.eventReference.setFQName(rawCondition.substring(0, openBracketIndex))
         }
-        val guardConditionText = unescapeXML(rawCondition.substring(openBracketIndex + 1, closeBracketIndex))
+        val guardConditionText = rawCondition.substring(openBracketIndex + 1, closeBracketIndex).unescapeXML()
         condition.setGuardCondition(parseExpression(stFactory, guardConditionText)!!)
     }
 

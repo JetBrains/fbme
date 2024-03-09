@@ -23,7 +23,7 @@ import java.io.StringReader
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-class HeaderedNodeEditor(val baseNode: SNode, mpsProject: Project) : BaseNodeEditor(mpsProject) {
+class HeaderedNodeEditor(val baseNode: SNode, mpsProject: Project) : BaseNodeEditor(mpsProject, baseNode.reference) {
     private val myVirtualFile: MPSNodeVirtualFile
     private val headerPanel: JPanel
     private val headerInfoPanel = ProjectionHeaderInfoPanel(this, mpsProject)

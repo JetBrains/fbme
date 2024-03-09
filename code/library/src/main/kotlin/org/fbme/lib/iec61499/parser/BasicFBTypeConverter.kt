@@ -92,8 +92,9 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         if (openBracketIndex > 0) {
             condition.eventReference.setFQName(rawCondition.substring(0, openBracketIndex))
         }
-        val guardConditionText = unescapeXML(rawCondition.substring(openBracketIndex + 1, closeBracketIndex))
-        condition.setGuardCondition(STConverter.parseExpression(stFactory, guardConditionText)!!)
+        val guardConditionText = rawCondition.substring(openBracketIndex + 1, closeBracketIndex).unescapeXML()
+        val expression = STConverter.parseExpression(stFactory, guardConditionText) ?: return
+        condition.setGuardCondition(expression)
     }
 
     fun interface StAlgorithmConverter {
@@ -133,7 +134,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
             if (stBodyElement != null) {
                 val st = factory.createAlgorithmBody(AlgorithmLanguage.ST)
                 algorithmDeclaration.body = st
-                val stText = unescapeXML(stBodyElement.getAttributeValue("Text"))
+                val stText = stBodyElement.getAttributeValue("Text")?.unescapeXML()
                 if (stText != null) {
                     stAlgorithmConverter.convert(factory, stFactory, algorithmDeclaration, st, stText)
                 }
@@ -143,7 +144,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
                 val unknown =
                     factory.createAlgorithmBody(AlgorithmLanguage.unknown(otherBodyElement.getAttributeValue("Language")))
                 algorithmDeclaration.body = unknown
-                val text = unescapeXML(otherBodyElement.getAttributeValue("Text"))
+                val text = otherBodyElement.getAttributeValue("Text")?.unescapeXML()
                 if (text != null) {
                     unknown.text = text
                 }
