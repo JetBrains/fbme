@@ -14,7 +14,6 @@ class NetworkConnectionView {
     val isEditable: Boolean
     val associatedNode: SNode
     val kind: EntryKind
-    val socketNumberLabel: Int? = null
 
     constructor(connection: FBNetworkConnection, editable: Boolean) {
         myConnection = connection
