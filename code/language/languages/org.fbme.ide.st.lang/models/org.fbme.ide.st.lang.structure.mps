@@ -822,7 +822,7 @@
     <property role="EcuMT" value="2377145822810446367" />
     <property role="3GE5qa" value="datatypes" />
     <property role="TrG5h" value="DerivedType" />
-    <ref role="1TJDcQ" node="23XkovW7Yj2" resolve="NongenericType" />
+    <ref role="1TJDcQ" node="23XkovW7Yj2" resolve="NonGenericType" />
     <node concept="1TJgyj" id="23XkovVW7bF" role="1TKVEi">
       <property role="IQ2ns" value="2377145822810764011" />
       <property role="20kJfa" value="declaration" />
@@ -870,7 +870,7 @@
     <property role="3GE5qa" value="datatypes" />
     <property role="TrG5h" value="ElementaryType" />
     <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" node="23XkovW7Yj2" resolve="NongenericType" />
+    <ref role="1TJDcQ" node="23XkovW7Yj2" resolve="NonGenericType" />
   </node>
   <node concept="1TIwiD" id="23XkovVW7b7">
     <property role="EcuMT" value="2377145822810763975" />
@@ -965,7 +965,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="baseType" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="23XkovW7Yj2" resolve="NongenericType" />
+      <ref role="20lvS9" node="23XkovW7Yj2" resolve="NonGenericType" />
     </node>
     <node concept="1TJgyj" id="23XkovW7Yr8" role="1TKVEi">
       <property role="IQ2ns" value="2377145822813873864" />
@@ -978,7 +978,7 @@
   <node concept="1TIwiD" id="23XkovW7Yj2">
     <property role="EcuMT" value="2377145822813873346" />
     <property role="3GE5qa" value="datatypes" />
-    <property role="TrG5h" value="NongenericType" />
+    <property role="TrG5h" value="NonGenericType" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" node="3HBlKeoYKVW" resolve="DataType" />
   </node>
@@ -1192,6 +1192,72 @@
     <property role="3GE5qa" value="expressions" />
     <property role="TrG5h" value="Real" />
     <property role="FLfZY" value="[\\+-]?[0-9][_0-9]*.[0-9][_0-9]*([eE][\\+-]?[0-9][_0-9]*)?" />
+  </node>
+  <node concept="1TIwiD" id="xMzeUwj0qQ">
+    <property role="EcuMT" value="608703856167880374" />
+    <property role="3GE5qa" value="datatypes.array" />
+    <property role="TrG5h" value="ArrayType" />
+    <property role="34LRSv" value="ARRAY" />
+    <ref role="1TJDcQ" node="23XkovW7Yj2" resolve="NonGenericType" />
+    <node concept="1TJgyj" id="xMzeUwj0If" role="1TKVEi">
+      <property role="IQ2ns" value="608703856167881615" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="baseType" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="23XkovW7Yj2" resolve="NonGenericType" />
+    </node>
+    <node concept="1TJgyj" id="xMzeUwj0Ii" role="1TKVEi">
+      <property role="IQ2ns" value="608703856167881618" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="dimensions" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="xMzeUwj0Ie" resolve="ArrayTypeDimensions" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="xMzeUwj0Ie">
+    <property role="EcuMT" value="608703856167881614" />
+    <property role="3GE5qa" value="datatypes.array" />
+    <property role="TrG5h" value="ArrayTypeDimensions" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+  </node>
+  <node concept="1TIwiD" id="xMzeUwj0Tg">
+    <property role="EcuMT" value="608703856167882320" />
+    <property role="3GE5qa" value="datatypes.array" />
+    <property role="TrG5h" value="ArrayTypeSizes" />
+    <property role="34LRSv" value="sizes" />
+    <ref role="1TJDcQ" node="xMzeUwj0Ie" resolve="ArrayTypeDimensions" />
+    <node concept="1TJgyj" id="xMzeUwj0Th" role="1TKVEi">
+      <property role="IQ2ns" value="608703856167882321" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="sizes" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="xMzeUwj0Tj" resolve="Size" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="xMzeUwj0Tj">
+    <property role="TrG5h" value="Size" />
+    <property role="EcuMT" value="608703856167882323" />
+    <property role="34LRSv" value="Size" />
+    <node concept="1TJgyi" id="xMzeUwj0Tk" role="1TKVEl">
+      <property role="IQ2nx" value="608703856167882324" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="xMzeUwj0Tm">
+    <property role="EcuMT" value="608703856167882326" />
+    <property role="3GE5qa" value="datatypes.array" />
+    <property role="TrG5h" value="ArrayTypeSubranges" />
+    <property role="34LRSv" value="subranges" />
+    <ref role="1TJDcQ" node="xMzeUwj0Ie" resolve="ArrayTypeDimensions" />
+    <node concept="1TJgyj" id="xMzeUwj0U8" role="1TKVEi">
+      <property role="IQ2ns" value="608703856167882376" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="subranges" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="23XkovW7YhJ" resolve="Subrange" />
+    </node>
   </node>
 </model>
 

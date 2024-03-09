@@ -3754,6 +3754,181 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="3clFb_" id="372W27dYCok" role="jymVt">
+      <property role="TrG5h" value="createArrayType" />
+      <node concept="3Tm1VV" id="372W27dYCol" role="1B3o_S" />
+      <node concept="2AHcQZ" id="372W27dYCon" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="372W27dYCoo" role="3clF45">
+        <ref role="3uigEE" to="a9j9:~ArrayType" resolve="ArrayType" />
+      </node>
+      <node concept="3clFbS" id="372W27dYCop" role="3clF47">
+        <node concept="3clFbF" id="372W27dYHvl" role="3cqZAp">
+          <node concept="2OqwBi" id="372W27dYHvm" role="3clFbG">
+            <node concept="37vLTw" id="372W27dYHvn" role="2Oq$k0">
+              <ref role="3cqZAo" node="634IrDRwCmn" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="372W27dYHvo" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="372W27dZQU3" role="37wK5m">
+                <node concept="3zrR0B" id="372W27dZQU4" role="2ShVmc">
+                  <node concept="3Tqbb2" id="372W27dZQU5" role="3zrR0E">
+                    <ref role="ehGHo" to="gpgy:xMzeUwj0qQ" resolve="ArrayType" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="372W27dYHvq" role="37wK5m">
+                <ref role="3VsUkX" to="a9j9:~ArrayType" resolve="ArrayType" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="372W27dYCoq" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="372W27dYCot" role="jymVt">
+      <property role="TrG5h" value="createArrayTypeSizes" />
+      <node concept="3Tm1VV" id="372W27dYCou" role="1B3o_S" />
+      <node concept="2AHcQZ" id="372W27dYCow" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="372W27dYCox" role="3clF45">
+        <ref role="3uigEE" to="a9j9:~ArrayTypeSizes" resolve="ArrayTypeSizes" />
+      </node>
+      <node concept="3clFbS" id="372W27dYCoy" role="3clF47">
+        <node concept="3clFbF" id="372W27dZzwl" role="3cqZAp">
+          <node concept="2OqwBi" id="372W27dZzwm" role="3clFbG">
+            <node concept="37vLTw" id="372W27dZzwn" role="2Oq$k0">
+              <ref role="3cqZAo" node="634IrDRwCmn" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="372W27dZzwo" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="372W27dZQ0K" role="37wK5m">
+                <node concept="3zrR0B" id="372W27dZQ0L" role="2ShVmc">
+                  <node concept="3Tqbb2" id="372W27dZQ0M" role="3zrR0E">
+                    <ref role="ehGHo" to="gpgy:xMzeUwj0Tg" resolve="ArrayTypeSizes" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="372W27dZzwq" role="37wK5m">
+                <ref role="3VsUkX" to="a9j9:~ArrayTypeSizes" resolve="ArrayTypeSizes" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="372W27dYCoz" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="372W27dYCoA" role="jymVt">
+      <property role="TrG5h" value="createArrayTypeSubranges" />
+      <node concept="3Tm1VV" id="372W27dYCoB" role="1B3o_S" />
+      <node concept="2AHcQZ" id="372W27dYCoD" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="372W27dYCoE" role="3clF45">
+        <ref role="3uigEE" to="a9j9:~ArrayTypeSubranges" resolve="ArrayTypeSubranges" />
+      </node>
+      <node concept="3clFbS" id="372W27dYCoF" role="3clF47">
+        <node concept="3clFbF" id="372W27dZBIu" role="3cqZAp">
+          <node concept="2OqwBi" id="372W27dZBIv" role="3clFbG">
+            <node concept="37vLTw" id="372W27dZBIw" role="2Oq$k0">
+              <ref role="3cqZAo" node="634IrDRwCmn" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="372W27dZBIx" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="372W27dZOUE" role="37wK5m">
+                <node concept="3zrR0B" id="372W27dZOUF" role="2ShVmc">
+                  <node concept="3Tqbb2" id="372W27dZOUG" role="3zrR0E">
+                    <ref role="ehGHo" to="gpgy:xMzeUwj0Tm" resolve="ArrayTypeSubranges" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="372W27dZBIz" role="37wK5m">
+                <ref role="3VsUkX" to="a9j9:~ArrayTypeSubranges" resolve="ArrayTypeSubranges" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="372W27dYCoG" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="372W27dYCoJ" role="jymVt">
+      <property role="TrG5h" value="createSize" />
+      <node concept="3Tm1VV" id="372W27dYCoK" role="1B3o_S" />
+      <node concept="2AHcQZ" id="372W27dYCoM" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="372W27dYCoN" role="3clF45">
+        <ref role="3uigEE" to="a9j9:~Size" resolve="Size" />
+      </node>
+      <node concept="3clFbS" id="372W27dYCoO" role="3clF47">
+        <node concept="3clFbF" id="372W27dZFjU" role="3cqZAp">
+          <node concept="2OqwBi" id="372W27dZFjV" role="3clFbG">
+            <node concept="37vLTw" id="372W27dZFjW" role="2Oq$k0">
+              <ref role="3cqZAo" node="634IrDRwCmn" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="372W27dZFjX" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="372W27dZO3v" role="37wK5m">
+                <node concept="3zrR0B" id="372W27dZO3w" role="2ShVmc">
+                  <node concept="3Tqbb2" id="372W27dZO3x" role="3zrR0E">
+                    <ref role="ehGHo" to="gpgy:xMzeUwj0Tj" resolve="Size" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="372W27dZFjZ" role="37wK5m">
+                <ref role="3VsUkX" to="a9j9:~Size" resolve="Size" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="372W27dYCoP" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="372W27dYCoS" role="jymVt">
+      <property role="TrG5h" value="createSubrange" />
+      <node concept="3Tm1VV" id="372W27dYCoT" role="1B3o_S" />
+      <node concept="2AHcQZ" id="372W27dYCoV" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="372W27dYCoW" role="3clF45">
+        <ref role="3uigEE" to="a9j9:~Subrange" resolve="Subrange" />
+      </node>
+      <node concept="3clFbS" id="372W27dYCoX" role="3clF47">
+        <node concept="3clFbF" id="372W27dZJbq" role="3cqZAp">
+          <node concept="2OqwBi" id="372W27dZJbr" role="3clFbG">
+            <node concept="37vLTw" id="372W27dZJbs" role="2Oq$k0">
+              <ref role="3cqZAo" node="634IrDRwCmn" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="372W27dZJbt" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2ShNRf" id="372W27dZMXt" role="37wK5m">
+                <node concept="3zrR0B" id="372W27dZMXu" role="2ShVmc">
+                  <node concept="3Tqbb2" id="372W27dZMXv" role="3zrR0E">
+                    <ref role="ehGHo" to="gpgy:23XkovW7YhJ" resolve="Subrange" />
+                  </node>
+                </node>
+              </node>
+              <node concept="3VsKOn" id="372W27dZJbv" role="37wK5m">
+                <ref role="3VsUkX" to="a9j9:~Subrange" resolve="Subrange" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="372W27dYCoY" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
   </node>
   <node concept="312cEu" id="5vstEPJ8LFK">
     <property role="TrG5h" value="MpsBridgeImpl" />
@@ -5657,6 +5832,166 @@
             <node concept="1mIQ4w" id="5PNKLYIcC7" role="2OqNvi">
               <node concept="chp4Y" id="5PNKLYIsmH" role="cj9EA">
                 <ref role="cht4Q" to="xiqq:1fUwyp9CzsN" resolve="EndpointCoordinate" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="372W27e6Y_W" role="3cqZAp">
+          <node concept="3clFbS" id="372W27e6Y_X" role="3clFbx">
+            <node concept="3cpWs6" id="372W27e6Y_Y" role="3cqZAp">
+              <node concept="2ShNRf" id="372W27e6Y_Z" role="3cqZAk">
+                <node concept="1pGfFk" id="372W27e6YA0" role="2ShVmc">
+                  <ref role="37wK5l" to="sm75:372W27e7qFQ" resolve="ArrayTypeByNode" />
+                  <node concept="1PxgMI" id="372W27e6YA1" role="37wK5m">
+                    <node concept="37vLTw" id="372W27e6YA2" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="372W27e6YA3" role="3oSUPX">
+                      <ref role="cht4Q" to="gpgy:xMzeUwj0qQ" resolve="ArrayType" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="372W27e6YA4" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="372W27e6YA5" role="3clFbw">
+            <node concept="37vLTw" id="372W27e6YA6" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="372W27e6YA7" role="2OqNvi">
+              <node concept="chp4Y" id="372W27e6YA8" role="cj9EA">
+                <ref role="cht4Q" to="gpgy:xMzeUwj0qQ" resolve="ArrayType" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="3TBATCWscw3" role="3cqZAp">
+          <node concept="3clFbS" id="3TBATCWscw4" role="3clFbx">
+            <node concept="3cpWs6" id="3TBATCWscw5" role="3cqZAp">
+              <node concept="2ShNRf" id="3TBATCWscw6" role="3cqZAk">
+                <node concept="1pGfFk" id="3TBATCWscw7" role="2ShVmc">
+                  <ref role="37wK5l" to="sm75:3TBATCWqySl" resolve="ArrayTypeSizesByNode" />
+                  <node concept="1PxgMI" id="3TBATCWscw8" role="37wK5m">
+                    <node concept="37vLTw" id="3TBATCWscw9" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="3TBATCWscwa" role="3oSUPX">
+                      <ref role="cht4Q" to="gpgy:xMzeUwj0Tg" resolve="ArrayTypeSizes" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="3TBATCWscwb" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="3TBATCWscwc" role="3clFbw">
+            <node concept="37vLTw" id="3TBATCWscwd" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="3TBATCWscwe" role="2OqNvi">
+              <node concept="chp4Y" id="3TBATCWscwf" role="cj9EA">
+                <ref role="cht4Q" to="gpgy:xMzeUwj0Tg" resolve="ArrayTypeSizes" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="3TBATCWsDcJ" role="3cqZAp">
+          <node concept="3clFbS" id="3TBATCWsDcK" role="3clFbx">
+            <node concept="3cpWs6" id="3TBATCWsDcL" role="3cqZAp">
+              <node concept="2ShNRf" id="3TBATCWsDcM" role="3cqZAk">
+                <node concept="1pGfFk" id="3TBATCWsDcN" role="2ShVmc">
+                  <ref role="37wK5l" to="sm75:3TBATCWqGJq" resolve="ArrayTypeSubrangesByNode" />
+                  <node concept="1PxgMI" id="3TBATCWsDcO" role="37wK5m">
+                    <node concept="37vLTw" id="3TBATCWsDcP" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="3TBATCWsDcQ" role="3oSUPX">
+                      <ref role="cht4Q" to="gpgy:xMzeUwj0Tm" resolve="ArrayTypeSubranges" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="3TBATCWsDcR" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="3TBATCWsDcS" role="3clFbw">
+            <node concept="37vLTw" id="3TBATCWsDcT" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="3TBATCWsDcU" role="2OqNvi">
+              <node concept="chp4Y" id="3TBATCWsDcV" role="cj9EA">
+                <ref role="cht4Q" to="gpgy:xMzeUwj0Tm" resolve="ArrayTypeSubranges" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="3TBATCWt1gF" role="3cqZAp">
+          <node concept="3clFbS" id="3TBATCWt1gG" role="3clFbx">
+            <node concept="3cpWs6" id="3TBATCWt1gH" role="3cqZAp">
+              <node concept="2ShNRf" id="3TBATCWt1gI" role="3cqZAk">
+                <node concept="1pGfFk" id="3TBATCWt1gJ" role="2ShVmc">
+                  <ref role="37wK5l" to="sm75:3TBATCWqPpF" resolve="SubrangeByNode" />
+                  <node concept="1PxgMI" id="3TBATCWt1gK" role="37wK5m">
+                    <node concept="37vLTw" id="3TBATCWt1gL" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="3TBATCWt1gM" role="3oSUPX">
+                      <ref role="cht4Q" to="gpgy:23XkovW7YhJ" resolve="Subrange" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="3TBATCWt1gN" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="3TBATCWt1gO" role="3clFbw">
+            <node concept="37vLTw" id="3TBATCWt1gP" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="3TBATCWt1gQ" role="2OqNvi">
+              <node concept="chp4Y" id="3TBATCWt1gR" role="cj9EA">
+                <ref role="cht4Q" to="gpgy:23XkovW7YhJ" resolve="Subrange" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbJ" id="3TBATCWtAyF" role="3cqZAp">
+          <node concept="3clFbS" id="3TBATCWtAyG" role="3clFbx">
+            <node concept="3cpWs6" id="3TBATCWtAyH" role="3cqZAp">
+              <node concept="2ShNRf" id="3TBATCWtAyI" role="3cqZAk">
+                <node concept="1pGfFk" id="3TBATCWtAyJ" role="2ShVmc">
+                  <ref role="37wK5l" to="sm75:3TBATCWru35" resolve="SizeByNode" />
+                  <node concept="1PxgMI" id="3TBATCWtAyK" role="37wK5m">
+                    <node concept="37vLTw" id="3TBATCWtAyL" role="1m5AlR">
+                      <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+                    </node>
+                    <node concept="chp4Y" id="3TBATCWtAyM" role="3oSUPX">
+                      <ref role="cht4Q" to="gpgy:xMzeUwj0Tj" resolve="Size" />
+                    </node>
+                  </node>
+                  <node concept="37vLTw" id="3TBATCWtAyN" role="37wK5m">
+                    <ref role="3cqZAo" node="5vstEPJ9Nho" resolve="myOwner" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="3TBATCWtAyO" role="3clFbw">
+            <node concept="37vLTw" id="3TBATCWtAyP" role="2Oq$k0">
+              <ref role="3cqZAo" node="5vstEPJ97q$" resolve="node" />
+            </node>
+            <node concept="1mIQ4w" id="3TBATCWtAyQ" role="2OqNvi">
+              <node concept="chp4Y" id="3TBATCWtAyR" role="cj9EA">
+                <ref role="cht4Q" to="gpgy:xMzeUwj0Tj" resolve="Size" />
               </node>
             </node>
           </node>

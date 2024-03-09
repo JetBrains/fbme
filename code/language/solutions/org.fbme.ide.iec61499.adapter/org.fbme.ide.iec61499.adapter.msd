@@ -17,7 +17,7 @@
     <dependency reexport="false">8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)</dependency>
     <dependency reexport="false">3f233e7f-b8a6-46d2-a57f-795d56775243(Annotations)</dependency>
     <dependency reexport="false">6594f340-4d73-4027-b7d3-c6ca2e70a53b(org.fbme.ide.iec61499.lang)</dependency>
-    <dependency reexport="false">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
+    <dependency reexport="true">1db6de07-b355-4c0f-9979-75b4ac1e8215(org.fbme.lib)</dependency>
     <dependency reexport="false">14f8fb68-9526-41ae-a986-e33a7382fe12(org.fbme.ide.util.lang)</dependency>
     <dependency reexport="false">6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)</dependency>
     <dependency reexport="false">491a88b6-52bd-4c4e-a61a-8496046b69aa(org.fbme.ide.attributes)</dependency>

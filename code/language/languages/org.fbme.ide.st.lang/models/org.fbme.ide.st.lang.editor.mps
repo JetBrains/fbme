@@ -9089,7 +9089,7 @@
     </node>
   </node>
   <node concept="3ICUPy" id="3Sv$YXXqkXu">
-    <ref role="aqKnT" to="gpgy:23XkovW7Yj2" resolve="NongenericType" />
+    <ref role="aqKnT" to="gpgy:23XkovW7Yj2" resolve="NonGenericType" />
     <node concept="22hDWj" id="6pYQ4mCjF2g" role="22hAXT" />
     <node concept="1Qtc8_" id="3Sv$YXXqkXv" role="IW6Ez">
       <node concept="L$LW2" id="3Sv$YXXZ_5W" role="1Qtc8A" />
@@ -9991,6 +9991,58 @@
     <property role="3GE5qa" value="expressions" />
     <ref role="aqKnT" to="gpgy:3te61Mg3Ziy" resolve="RealLiteral" />
     <node concept="22hDWj" id="22BHT1el4NX" role="22hAXT" />
+  </node>
+  <node concept="24kQdi" id="xMzeUwj0IJ">
+    <property role="3GE5qa" value="datatypes.array" />
+    <ref role="1XX52x" to="gpgy:xMzeUwj0qQ" resolve="ArrayType" />
+    <node concept="3EZMnI" id="xMzeUwj0IL" role="2wV5jI">
+      <node concept="3F0ifn" id="xMzeUwj0IV" role="3EZMnx">
+        <property role="3F0ifm" value="ARRAY" />
+        <ref role="1k5W1q" node="3HBlKeoYLK_" resolve="Keyword" />
+      </node>
+      <node concept="3F0ifn" id="xMzeUwj0J1" role="3EZMnx">
+        <property role="3F0ifm" value="[" />
+      </node>
+      <node concept="3F1sOY" id="xMzeUwj0JV" role="3EZMnx">
+        <ref role="1NtTu8" to="gpgy:xMzeUwj0Ii" resolve="dimensions" />
+      </node>
+      <node concept="3F0ifn" id="xMzeUwj0J9" role="3EZMnx">
+        <property role="3F0ifm" value="]" />
+      </node>
+      <node concept="3F0ifn" id="xMzeUwj0Jp" role="3EZMnx">
+        <property role="3F0ifm" value="OF" />
+      </node>
+      <node concept="3F1sOY" id="xMzeUwj0J_" role="3EZMnx">
+        <ref role="1NtTu8" to="gpgy:xMzeUwj0If" resolve="baseType" />
+      </node>
+      <node concept="l2Vlx" id="xMzeUwj0IO" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="xMzeUwj0TL">
+    <property role="3GE5qa" value="datatypes.array" />
+    <ref role="1XX52x" to="gpgy:xMzeUwj0Tg" resolve="ArrayTypeSizes" />
+    <node concept="3F2HdR" id="xMzeUwj0TS" role="2wV5jI">
+      <property role="2czwfO" value="," />
+      <property role="Q2I2d" value="g$1Qtxb/punctuation" />
+      <ref role="1NtTu8" to="gpgy:xMzeUwj0Th" resolve="sizes" />
+      <node concept="l2Vlx" id="xMzeUwj0U6" role="2czzBx" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="xMzeUwj0U$">
+    <property role="3GE5qa" value="datatypes.array" />
+    <ref role="1XX52x" to="gpgy:xMzeUwj0Tm" resolve="ArrayTypeSubranges" />
+    <node concept="3F2HdR" id="xMzeUwj0UA" role="2wV5jI">
+      <property role="2czwfO" value="," />
+      <property role="Q2I2d" value="g$1Qtxb/punctuation" />
+      <ref role="1NtTu8" to="gpgy:xMzeUwj0U8" resolve="subranges" />
+      <node concept="l2Vlx" id="xMzeUwj0UC" role="2czzBx" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="31xUmiuWy$L">
+    <ref role="1XX52x" to="gpgy:xMzeUwj0Tj" resolve="Size" />
+    <node concept="3F0A7n" id="31xUmiuWy$N" role="2wV5jI">
+      <ref role="1NtTu8" to="gpgy:xMzeUwj0Tk" resolve="value" />
+    </node>
   </node>
 </model>
 

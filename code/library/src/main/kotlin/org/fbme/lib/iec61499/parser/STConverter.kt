@@ -10,6 +10,7 @@ import org.fbme.lib.st.parser.STLexer
 import org.fbme.lib.st.parser.STParser
 import org.fbme.lib.st.parser.STParser.*
 import org.fbme.lib.st.statements.Statement
+import org.fbme.lib.st.types.ArrayTypeDimensions
 import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.lib.st.types.GenericType
@@ -62,6 +63,32 @@ object STConverter {
             }
         }
         return factory.createDerivedType(StringIdentifier(text), text)
+    }
+
+    fun parseArrayDimensions(factory: STFactory, text: String): ArrayTypeDimensions? {
+        val arrayDimensionsCtx = createParser(text).arrayTypeDimensions()
+        if (arrayDimensionsCtx is ArrayTypeSubrangesContext) {
+            val subranges = factory.createArrayTypeSubranges()
+            val subrangeCtxs = arrayDimensionsCtx.subranges
+            for (subrangeCtx in subrangeCtxs) {
+                val subrange = factory.createSubrange()
+                subrange.from = subrangeCtx.from.text.toInt()
+                subrange.to = subrangeCtx.to.text.toInt()
+                subranges.subranges += subrange
+            }
+            return subranges
+        }
+        if (arrayDimensionsCtx is ArrayTypeSizesContext) {
+            val sizes = factory.createArrayTypeSizes()
+            val sizeCtxs = arrayDimensionsCtx.sizes
+            for (sizeCtx in sizeCtxs) {
+                val size = factory.createSize()
+                size.value = sizeCtx.text.toInt()
+                sizes.sizes += size
+            }
+            return sizes
+        }
+        return null
     }
 
     private fun extractStatementList(factory: STFactory, statementListCtx: StatementListContext): List<Statement> {
