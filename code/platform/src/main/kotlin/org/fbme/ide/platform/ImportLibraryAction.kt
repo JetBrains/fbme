@@ -88,6 +88,7 @@ class ImportLibraryAction: AnAction() {
         }
 
         private fun handleSelectedFilePath(filePath: String, e: AnActionEvent) {
+//            :TODO: get module name from it's descriptor file
             val moduleName = filePath.split("/").last().split(".").first()
 
             val mpsProject = e.getData(MPSCommonDataKeys.MPS_PROJECT) as StandaloneMPSProject
