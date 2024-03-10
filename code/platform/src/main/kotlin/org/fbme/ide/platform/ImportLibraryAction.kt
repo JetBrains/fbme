@@ -89,7 +89,8 @@ class ImportLibraryAction: AnAction() {
 
         private fun handleSelectedFilePath(filePath: String, e: AnActionEvent) {
 //            :TODO: get module name from it's descriptor file
-            val moduleName = filePath.split("/").last().split(".").first()
+//            path/to/archive/weird_name.zip
+            val moduleName = filePath.split("/").last().dropLast(4)
 
             val mpsProject = e.getData(MPSCommonDataKeys.MPS_PROJECT) as StandaloneMPSProject
 
@@ -120,6 +121,8 @@ class ImportLibraryAction: AnAction() {
             }
 
 //        return module
+
+            // TODO: add as a dependency
 
             println("Created?")
         }
