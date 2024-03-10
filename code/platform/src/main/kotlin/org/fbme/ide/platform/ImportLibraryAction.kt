@@ -88,6 +88,8 @@ class ImportLibraryAction: AnAction() {
         }
 
         private fun handleSelectedFilePath(filePath: String, e: AnActionEvent) {
+            val moduleName = filePath.split("/").last().split(".").first()
+
             val mpsProject = e.getData(MPSCommonDataKeys.MPS_PROJECT) as StandaloneMPSProject
 
             val zipFilePath = filePath
@@ -95,13 +97,13 @@ class ImportLibraryAction: AnAction() {
 
             unzip(zipFilePath, targetDirectoryPath)
 
-            val namespace = "Runtime.Base1"
+            val namespace = moduleName
 
             mpsProject.modelAccess.runWriteAction {
 //            TODO: are there any issues with specific model(how do IEC61499 model gets loaded?)
 
                 val descriptorFile = getModuleFile(namespace,
-                    mpsProject.getFileSystem().getFile(targetDirectoryPath + "/Runtime.Base1"),
+                    mpsProject.getFileSystem().getFile(targetDirectoryPath + "/" + moduleName),
                     ".msd")
 
 //            NOTE: Before importing I've changed the "ref=" parameter, and haven't changed the uuid of the solution in
