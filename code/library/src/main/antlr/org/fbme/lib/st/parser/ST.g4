@@ -86,9 +86,18 @@ statementListWithVariableDeclarations
     ;
 
 variablesDeclaration
-   : name=ID ':' type=ID ';'
-   ;
+    : name=ID ':' type=ID ';'
+    ;
 
+
+subrange
+    : from=(SingedInteger|DecInteger) '..' to=(SingedInteger|DecInteger)
+    ;
+
+arrayTypeDimensions
+    : subranges+=subrange (',' subranges+=subrange)*    #arrayTypeSubranges
+    | sizes+=DecInteger (',' sizes+=DecInteger)*        #arrayTypeSizes
+    ;
 
 DecInteger:       Dec ('_'|Dec)*;
 BinInteger: '2#'  Bin ('_'|Bin)*;
