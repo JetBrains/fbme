@@ -24,7 +24,7 @@ class AdapterSwitchGenerator(
     fun generateRouter(
         name: String,
         model: SModel,
-        socketAdapterTypeDeclaration: AdapterTypeDeclaration,
+        adapter: AdapterTypeDeclaration,
         outputsCount: Int,
         outputRouterName: String,
         plugAdapterTypeDeclaration: AdapterTypeDeclaration? = null,
@@ -37,12 +37,12 @@ class AdapterSwitchGenerator(
         model.addRootNodes(routerDeclaration, virtualPackage = virtualPackage)
 
         val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
-        socket.typeReference.setTarget(socketAdapterTypeDeclaration)
+        socket.typeReference.setTarget(adapter)
         routerDeclaration.sockets += socket
 
         for (i in 0 until outputsCount) {
             val plug = factory.createPlugDeclaration(StringIdentifier("plug_$i"))
-            plug.typeReference.setTarget(plugAdapterTypeDeclaration ?: socketAdapterTypeDeclaration)
+            plug.typeReference.setTarget(plugAdapterTypeDeclaration ?: adapter)
             routerDeclaration.plugs += plug
         }
         addSocketToPlugsSwitch(
@@ -166,7 +166,9 @@ class AdapterSwitchGenerator(
             network = network,
             outputToInput = false,
         ).associateBy { it.second.name }
-        val routerParameterDeclaration = outputParameters.first { it.name == routerName }
+        val routerParameterDeclaration = routerName?.let { router ->
+            outputParameters.first { it.name == router }
+        }
         val startState = factory.createStateDeclaration(StringIdentifier("Start"))
         switchDeclaration.ecc.states += startState
         for ((i, plug) in sources.withIndex()) {

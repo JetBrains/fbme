@@ -2,10 +2,9 @@ package org.fbme.ide.extensions.utils
 
 import jetbrains.mps.smodel.tempmodel.TempModuleOptions
 import jetbrains.mps.smodel.tempmodel.TemporaryModels
-import org.fbme.extensions.adapter.ExtendedAdapterUtils
+import org.fbme.extensions.adapter.AdapterRevealService
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.platform.testing.PlatformTestBase
-import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
@@ -16,14 +15,11 @@ import org.jdom.output.XMLOutputter
 import org.jetbrains.kotlin.utils.addToStdlib.cast
 import org.jetbrains.mps.openapi.model.SModel
 import org.junit.Test
-import org.junit.runner.RunWith
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-
-@RunWith(PlatformTestRunner::class)
-class ExtendedAdapterUtilsTest : PlatformTestBase() {
-    private val extendedAdapterUtils = ExtendedAdapterUtils(factory, stFactory, repository, ::getPublishSubscribeBlock)
+class AdapterRevealServiceTest : PlatformTestBase() {
+    private val adapterRevealService = AdapterRevealService(factory, stFactory, repository, ::getPublishSubscribeBlock)
     private val publishSubscribeMap: Map<String, FBTypeDeclaration> = mapOf(
         "PUBLISH_5" to rootConverterByPath("/source/publishSubscribes/PUBLISH_5.fbt").convertFBType(),
         "SUBSCRIBE_5" to rootConverterByPath("/source/publishSubscribes/SUBSCRIBE_5.fbt").convertFBType()
@@ -46,7 +42,7 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
         project.repository.modelAccess.runWriteAction {
             val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
             model.addRootNode((extendedAdapterType as PlatformElement).node)
-            val revealDeclarations = extendedAdapterUtils.revealDeclarations(extendedAdapterType, null)
+            val revealDeclarations = adapterRevealService.revealDeclarations(extendedAdapterType, null)
 
             assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
             assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
@@ -76,7 +72,7 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
             model.addRootNode((extendedAdapterType as PlatformElement).node)
             model.addRootNode((example as PlatformElement).node)
 
-            val revealDeclarations = extendedAdapterUtils.revealAdapter(extendedAdapterType, model)
+            val revealDeclarations = adapterRevealService.revealAdapter(extendedAdapterType, model)
 
             assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
             assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
@@ -108,10 +104,10 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
             model.addRootNode((composite as PlatformElement).node)
             model.addRootNode((publishSubscribeMap["PUBLISH_5"] as PlatformElement).node)
             model.addRootNode((publishSubscribeMap["SUBSCRIBE_5"] as PlatformElement).node)
-            val revealDeclarations = extendedAdapterUtils.revealDeclarations(extendedAdapterType, model)
+            val revealDeclarations = adapterRevealService.revealDeclarations(extendedAdapterType, model)
             val functionBlockDeclaration =
                 composite.cast<CompositeFBTypeDeclaration>().network.functionBlocks.first { it.name == "BaseBlock1" }
-            extendedAdapterUtils.revealAdapterWithNet(
+            adapterRevealService.revealAdapterWithNetBlocks(
                 revealResult = revealDeclarations,
                 block = functionBlockDeclaration,
                 port = functionBlockDeclaration.type.plugPorts[0],
@@ -144,10 +140,10 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
             model.addRootNode((composite as PlatformElement).node)
             model.addRootNode((publishSubscribeMap["PUBLISH_5"] as PlatformElement).node)
             model.addRootNode((publishSubscribeMap["SUBSCRIBE_5"] as PlatformElement).node)
-            val revealDeclarations = extendedAdapterUtils.revealDeclarations(extendedAdapterType, model)
+            val revealDeclarations = adapterRevealService.revealDeclarations(extendedAdapterType, model)
             val functionBlockDeclaration =
                 composite.cast<CompositeFBTypeDeclaration>().network.functionBlocks.first { it.name == "BaseBlock1" }
-            extendedAdapterUtils.revealAdapterWithNet(
+            adapterRevealService.revealAdapterWithNetBlocks(
                 revealResult = revealDeclarations,
                 block = functionBlockDeclaration,
                 port = functionBlockDeclaration.type.socketPorts[0],

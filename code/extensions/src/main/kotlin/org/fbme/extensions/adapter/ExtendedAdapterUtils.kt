@@ -58,47 +58,7 @@ class ExtendedAdapterUtils(
             (declaration as? PlugDeclaration)?.typeReference?.getTarget()
     }
 
-    data class RevealDeclarationsResult(
-        val extendedAdapter: ExtendedAdapterTypeDeclaration,
-        val routerAdapter: AdapterTypeDeclaration?,
-        val leftAdapter: AdapterTypeDeclaration,
-        val middleAdapter: AdapterTypeDeclaration,
-        val rightAdapter: AdapterTypeDeclaration,
-        val leftBlockDeclaration: CompositeFBTypeDeclaration?,
-        val rightBlockDeclaration: CompositeFBTypeDeclaration?,
-        var leftPublishSubscribeAdapter: CompositeFBTypeDeclaration? = null,
-        var rightPublishSubscribeAdapter: CompositeFBTypeDeclaration? = null,
-        val routers: MutableMap<Int, CompositeFBTypeDeclaration> = mutableMapOf(),
-    ) {
-        fun getFarLeftAdapter(): AdapterTypeDeclaration = routerAdapter ?: leftAdapter
-
-        fun getFarRightAdapter(): AdapterTypeDeclaration = rightAdapter
-    }
-
-    fun revealAdapter(
-        extendedAdapter: ExtendedAdapterTypeDeclaration,
-        currentModel: SModel,
-    ): RevealDeclarationsResult {
-        val revealDeclarations = revealDeclarations(extendedAdapter, currentModel)
-        val declarationsResults = listOf(revealDeclarations)
-        val identifiersToRevealResult =
-            declarationsResults.associateBy { it.extendedAdapter.identifier }
-
-        revealAdapterInNetworks(
-            currentModel = currentModel,
-            modelToCheck = currentModel,
-            identifiersToRevealResult = identifiersToRevealResult,
-        )
-        for (revealResult in declarationsResults) {
-            val node = (revealResult.extendedAdapter as? PlatformElement)?.node
-            if (node != null) {
-                currentModel.removeRootNode(node)
-            }
-        }
-        return revealDeclarations
-    }
-
-    fun revealAdapterWithNet(
+    fun revealAdapterWithNetBlocks(
         revealResult: RevealDeclarationsResult,
         block: FunctionBlockDeclaration,
         port: FBPortDescriptor,
@@ -145,70 +105,12 @@ class ExtendedAdapterUtils(
         }
     }
 
-    private fun revealAdapterInAllNetworks(
-        currentModel: SModel,
-        identifiersToRevealResult: Map<Identifier, RevealDeclarationsResult>
-    ) {
-        for (module in currentModel.repository.modules) {
-            for (model in module.models) {
-                revealAdapterInNetworks(
-                    currentModel = currentModel,
-                    modelToCheck = model,
-                    identifiersToRevealResult = identifiersToRevealResult
-                )
-            }
-        }
-    }
-
-    private fun revealAdapterInNetworks(
-        currentModel: SModel,
-        modelToCheck: SModel,
-        identifiersToRevealResult: Map<Identifier, RevealDeclarationsResult>
-    ) {
-        val rootNodes = modelToCheck.rootNodes.toList()
-        for (node in rootNodes) {
-            val fbTypeDeclaration = owner.adapterOrNull<FBTypeDeclaration>(node)
-            if (fbTypeDeclaration != null) {
-                fbTypeDeclaration.sockets.forEach {
-                    val revealDeclarationsResult = identifiersToRevealResult[it.typeReference.getTarget()?.identifier]
-                    if (revealDeclarationsResult != null) {
-                        it.typeReference.setTarget(revealDeclarationsResult.getFarRightAdapter())
-                    }
-                }
-                fbTypeDeclaration.plugs.forEach {
-                    val revealDeclarationsResult = identifiersToRevealResult[it.typeReference.getTarget()?.identifier]
-                    if (revealDeclarationsResult != null) {
-                        it.typeReference.setTarget(revealDeclarationsResult.getFarLeftAdapter())
-                    }
-                }
-            }
-        }
-        for (node in rootNodes) {
-            val declarationWithNetwork = owner.adapterOrNull<DeclarationWithNetwork>(node)
-            if (declarationWithNetwork != null) {
-                val sourceIdentifiersToRevealResult =
-                    identifiersToRevealResult.mapKeys { it.value.getFarLeftAdapter().identifier }
-                revealExtendedAdaptersInNetwork(
-                    network = declarationWithNetwork.network,
-                    identifiersToRevealResult = sourceIdentifiersToRevealResult,
-                    model = currentModel,
-                    withPublishSubscribe = false,
-                )
-            }
-        }
-    }
-
-    fun revealDeclarations(
+    fun createDeclarations(
         extendedAdapter: ExtendedAdapterTypeDeclaration,
         model: SModel?,
     ): RevealDeclarationsResult {
         val name = extendedAdapter.name
         val FBInterfaceDeclarationUtils = FBInterfaceDeclarationUtils(factory)
-        val leftAdapter = FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
-            name = "Left_$name",
-            fbTypeDescriptor = extendedAdapter.getCustomNetworkComponents()[1].block.type,
-            reversed = false,
-        )
         val routerAdapter = if (extendedAdapter.outputRouter != null) {
             FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
                 name = "RouterAdapter_$name",
@@ -219,6 +121,15 @@ class ExtendedAdapterUtils(
             null
         }
         val leftNetwork = extendedAdapter.leftNetwork
+        val leftAdapter = FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+            name = "Left_$name",
+            fbTypeDescriptor = if (leftNetwork != null) {
+                leftNetwork.getCustomNetworkComponents()[1].block.type
+            } else {
+                extendedAdapter.plugTypeDescriptor
+            },
+            reversed = false,
+        )
         val middleAdapter = if (leftNetwork == null ||
             (extendedAdapter.internalFbSocketInterface?.isEmpty() != false &&
                     extendedAdapter.internalNetworksInterface?.isEmpty() != false)
@@ -282,7 +193,7 @@ class ExtendedAdapterUtils(
         )
     }
 
-    private fun revealExtendedAdaptersInNetwork(
+    fun revealExtendedAdaptersInNetwork(
         network: FBNetwork,
         identifiersToRevealResult: Map<Identifier, RevealDeclarationsResult>,
         model: SModel,
@@ -354,7 +265,7 @@ class ExtendedAdapterUtils(
         network.adapterConnections.removeIf { it in connectionsToRemove }
     }
 
-    private fun revealLeftPart(
+    fun revealLeftPart(
         revealResult: RevealDeclarationsResult,
         sourcePort: PortPath<*>,
         network: FBNetwork,
@@ -373,7 +284,7 @@ class ExtendedAdapterUtils(
                 switchGenerator.generateRouter(
                     name = "${adapterType.name}_$connectionsCount",
                     model = model,
-                    socketAdapterTypeDeclaration = checkNotNull(revealResult.routerAdapter),
+                    adapter = checkNotNull(revealResult.routerAdapter),
                     plugAdapterTypeDeclaration = revealResult.leftAdapter,
                     outputsCount = connectionsCount,
                     outputRouterName = outputRouter.name,

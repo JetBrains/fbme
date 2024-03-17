@@ -53,6 +53,7 @@
         <child id="4280485643801969834" name="inputVariables" index="2zBDeD" />
         <child id="4280485643801969838" name="outputVariables" index="2zBDeH" />
       </concept>
+      <concept id="3018159903918047621" name="org.fbme.ide.iec61499.lang.structure.AdapterTypeDeclaration" flags="ng" index="XJABO" />
       <concept id="6049904230683977455" name="org.fbme.ide.iec61499.lang.structure.Position" flags="ng" index="10YbkR">
         <property id="6049904230683977456" name="x" index="10YbkC" />
         <property id="6049904230683977458" name="y" index="10YbkE" />
@@ -637,7 +638,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK93h" role="3YHajr">
       <property role="TrG5h" value="CurrentState" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK93i" role="2oiNrz">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -645,7 +646,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK92L" role="3YHajr">
       <property role="TrG5h" value="Adp_DeliveryService" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK92M" role="2oiNrz">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -653,7 +654,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK92P" role="3YHajr">
       <property role="TrG5h" value="Adp_Jack" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK92Q" role="2oiNrz">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -665,7 +666,7 @@
     <property role="3GE5qa" value="enas" />
     <node concept="3IBQi5" id="1TXM2wdK93u" role="3YHajr">
       <property role="TrG5h" value="CommandOut" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK93v" role="2oiNrz">
         <property role="10YbkC" value="1450.0" />
         <property role="10YbkE" value="389.0" />
@@ -673,7 +674,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK93y" role="3YHajr">
       <property role="TrG5h" value="Adp_Command" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK93z" role="2oiNrz">
         <property role="10YbkC" value="710.0" />
         <property role="10YbkE" value="213.0" />
@@ -681,7 +682,7 @@
     </node>
     <node concept="3Iw0dE" id="1TXM2wdK93q" role="3YHajY">
       <property role="TrG5h" value="Adp_DeliveryService" />
-      <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3Iw0dH" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK93r" role="2oiVCh">
         <property role="10YbkC" value="413.0" />
         <property role="10YbkE" value="809.0" />
@@ -693,7 +694,7 @@
     <property role="TrG5h" value="Pneumatics" />
     <node concept="3Iw0dE" id="1TXM2wdK93H" role="3YHajY">
       <property role="TrG5h" value="&gt;&gt;Input" />
-      <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3Iw0dH" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK93I" role="2oiVCh">
         <property role="10YbkC" value="763.0" />
         <property role="10YbkE" value="246.0" />
@@ -979,7 +980,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK990" role="3YHajr">
       <property role="TrG5h" value="&gt;&gt;Output" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK991" role="2oiNrz">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -987,7 +988,7 @@
     </node>
     <node concept="3Iw0dE" id="1TXM2wdK98w" role="3YHajY">
       <property role="TrG5h" value="&gt;&gt;Input" />
-      <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3Iw0dH" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK98x" role="2oiVCh">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -995,7 +996,7 @@
     </node>
     <node concept="3Iw0dE" id="1TXM2wdK9cX" role="3YHajY">
       <property role="TrG5h" value="&gt;&gt;CommandIp" />
-      <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3Iw0dH" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK9cY" role="2oiVCh">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -1035,7 +1036,7 @@
     </node>
     <node concept="3IBQi5" id="1TXM2wdK9bd" role="3YHajr">
       <property role="TrG5h" value="&gt;&gt;Output" />
-      <ref role="3IBQi8" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3IBQi8" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK9be" role="2oiNrz">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -1043,7 +1044,7 @@
     </node>
     <node concept="3Iw0dE" id="1TXM2wdK9bf" role="3YHajY">
       <property role="TrG5h" value="&gt;&gt;Input" />
-      <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
+      <ref role="3Iw0dH" node="74_85cSHVf9" resolve="Adapter" />
       <node concept="10YbkR" id="1TXM2wdK9bg" role="2oiVCh">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
@@ -1065,6 +1066,10 @@
     <node concept="2zBDe_" id="1TXM2wdK9bm" role="2zBDey">
       <property role="TrG5h" value="INIT" />
     </node>
+  </node>
+  <node concept="XJABO" id="74_85cSHVf9">
+    <property role="3GE5qa" value="enas" />
+    <property role="TrG5h" value="Adapter" />
   </node>
 </model>
 

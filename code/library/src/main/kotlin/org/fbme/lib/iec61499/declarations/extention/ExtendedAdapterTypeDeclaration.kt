@@ -6,9 +6,8 @@ import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.ExtendedPlugType
 import org.fbme.lib.iec61499.descriptors.ExtendedSocketType
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
-import org.fbme.lib.iec61499.fbnetwork.CustomNetworkComponentProvider
 
-interface ExtendedAdapterTypeDeclaration : CustomNetworkComponentProvider, AdapterTypeDeclaration {
+interface ExtendedAdapterTypeDeclaration : AdapterTypeDeclaration {
     var leftNetwork: AdapterNetworkDeclaration?
     var rightNetwork: AdapterNetworkDeclaration?
 
