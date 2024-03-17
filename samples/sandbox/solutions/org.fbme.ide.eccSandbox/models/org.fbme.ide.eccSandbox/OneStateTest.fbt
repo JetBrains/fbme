@@ -17,6 +17,7 @@
     <Algorithm Name="NewAlgorithm1">
       <ST Text="" />
     </Algorithm>
+    <Algorithm Name="" />
   </BasicFB>
 </FBType>
 

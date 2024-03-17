@@ -59,6 +59,9 @@
             <action id="richediting.NewAlgorithmAction"
                     class="org.fbme.ide.richediting.actions.NewAlgorithmAction"
                     text="New Algorithm..."/>
+            <action id="richediting.GenerateAdapterRouterAction"
+                    class="org.fbme.ide.richediting.actions.GenerateAdapterRouterAction"
+                    text="Generate Adapter Router"/>
             <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
         </group>
     </actions>
