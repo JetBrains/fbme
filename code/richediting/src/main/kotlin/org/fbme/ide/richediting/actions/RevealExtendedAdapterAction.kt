@@ -9,8 +9,8 @@ import jetbrains.mps.ide.dialogs.project.creation.ModelCreateHelper
 import jetbrains.mps.model.ModelDeleteHelper
 import jetbrains.mps.project.AbstractModule
 import jetbrains.mps.project.MPSProject
+import org.fbme.extensions.adapter.AdapterRevealService
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
-import org.fbme.extensions.adapter.ExtendedAdapterUtils
 import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.jetbrains.mps.openapi.model.SModelName
 
@@ -34,7 +34,7 @@ class RevealExtendedAdapterAction : AnAction(), DumbAware {
         val extendedAdapter = node?.let {
             repository.adapterOrNull<ExtendedAdapterTypeDeclaration>(node)
         } ?: return@executeWriteActionInEditor
-        val extendedAdapterUtils = ExtendedAdapterUtils(
+        val adapterRevealService = AdapterRevealService(
             factory = factory,
             stFactory = repository.stFactory,
             owner = PlatformRepositoryProvider.getInstance(project),
@@ -55,6 +55,6 @@ class RevealExtendedAdapterAction : AnAction(), DumbAware {
             .createModel()
         val nodeCopy = modelCopy.rootNodes.first { it.name == extendedAdapter.name }
         val extendedAdapterCopy = repository.adapter<ExtendedAdapterTypeDeclaration>(nodeCopy)
-        extendedAdapterUtils.revealAdapter(extendedAdapterCopy, modelCopy)
+        adapterRevealService.revealAdapter(extendedAdapterCopy, modelCopy)
     }
 }

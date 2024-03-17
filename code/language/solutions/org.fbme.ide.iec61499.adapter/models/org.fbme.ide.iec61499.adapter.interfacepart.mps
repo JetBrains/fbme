@@ -63,7 +63,6 @@
       <concept id="1145552977093" name="jetbrains.mps.baseLanguage.structure.GenericNewExpression" flags="nn" index="2ShNRf">
         <child id="1145553007750" name="creator" index="2ShVmc" />
       </concept>
-      <concept id="1070475354124" name="jetbrains.mps.baseLanguage.structure.ThisExpression" flags="nn" index="Xjq3P" />
       <concept id="1070475587102" name="jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" flags="nn" index="XkiVB" />
       <concept id="1070475926800" name="jetbrains.mps.baseLanguage.structure.StringLiteral" flags="nn" index="Xl_RD">
         <property id="1070475926801" name="value" index="Xl_RC" />
@@ -7861,7 +7860,7 @@
               <ref role="37wK5l" to="cwd8:~DeclarationWithNetwork.getNetwork()" resolve="getNetwork" />
             </node>
             <node concept="1rXfSq" id="6lXlVCvaPt1" role="2Oq$k0">
-              <ref role="37wK5l" node="6lXlVCvaIWJ" resolve="getAdapterTypeDeclaration" />
+              <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
             </node>
           </node>
         </node>
@@ -8268,43 +8267,6 @@
         </node>
       </node>
       <node concept="2AHcQZ" id="1NXU$uX8BUG" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-    </node>
-    <node concept="2tJIrI" id="1NXU$uX8BUH" role="jymVt" />
-    <node concept="3clFb_" id="1NXU$uX8BUI" role="jymVt">
-      <property role="TrG5h" value="getNetwork" />
-      <node concept="3Tm1VV" id="1NXU$uX8BUJ" role="1B3o_S" />
-      <node concept="2AHcQZ" id="1NXU$uX8BUK" role="2AJF6D">
-        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
-      </node>
-      <node concept="3uibUv" id="1NXU$uX8BUL" role="3clF45">
-        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
-      </node>
-      <node concept="3clFbS" id="1NXU$uX8BUM" role="3clF47">
-        <node concept="3clFbF" id="1NXU$uX8BUN" role="3cqZAp">
-          <node concept="2ShNRf" id="1NXU$uX8BUO" role="3clFbG">
-            <node concept="1pGfFk" id="1NXU$uX8BUP" role="2ShVmc">
-              <ref role="37wK5l" to="rwq3:15kNBKVeKFj" resolve="NetworkWithCustomComponentsByNode" />
-              <node concept="37vLTw" id="1NXU$uX8BUQ" role="37wK5m">
-                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
-              </node>
-              <node concept="2OqwBi" id="1NXU$uX8BUR" role="37wK5m">
-                <node concept="37vLTw" id="1NXU$uX8BUS" role="2Oq$k0">
-                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
-                </node>
-                <node concept="3TrEf2" id="1NXU$uX8BUT" role="2OqNvi">
-                  <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
-                </node>
-              </node>
-              <node concept="37vLTw" id="1NXU$uX8BUU" role="37wK5m">
-                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="2AHcQZ" id="1NXU$uX8BUV" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
@@ -8759,117 +8721,6 @@
         </node>
       </node>
       <node concept="2AHcQZ" id="vNJiUUGscT" role="2AJF6D">
-        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
-      </node>
-    </node>
-    <node concept="2tJIrI" id="1NXU$uX8BWc" role="jymVt" />
-    <node concept="3clFb_" id="1NXU$uX8BWd" role="jymVt">
-      <property role="TrG5h" value="getCustomNetworkComponents" />
-      <node concept="3Tm1VV" id="1NXU$uX8BWe" role="1B3o_S" />
-      <node concept="2AHcQZ" id="1NXU$uX8BWf" role="2AJF6D">
-        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
-      </node>
-      <node concept="3uibUv" id="1NXU$uX8BWg" role="3clF45">
-        <ref role="3uigEE" to="33ny:~List" resolve="List" />
-        <node concept="3uibUv" id="1NXU$uX8BWh" role="11_B2D">
-          <ref role="3uigEE" to="g27j:~CustomNetworkComponent" resolve="CustomNetworkComponent" />
-        </node>
-      </node>
-      <node concept="3clFbS" id="1NXU$uX8BWi" role="3clF47">
-        <node concept="3cpWs8" id="1NXU$uX8BWj" role="3cqZAp">
-          <node concept="3cpWsn" id="1NXU$uX8BWk" role="3cpWs9">
-            <property role="TrG5h" value="plugNode" />
-            <node concept="3uibUv" id="1NXU$uX8BWl" role="1tU5fm">
-              <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
-            </node>
-            <node concept="2ShNRf" id="1NXU$uX8BWm" role="33vP2m">
-              <node concept="1pGfFk" id="1NXU$uX8BWn" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" node="27ZLyP6Yqsk" resolve="ExtendedPlugDeclarationByNode" />
-                <node concept="2OqwBi" id="1NXU$uX8BWo" role="37wK5m">
-                  <node concept="2OqwBi" id="1NXU$uX8BWp" role="2Oq$k0">
-                    <node concept="37vLTw" id="1NXU$uX8BWq" role="2Oq$k0">
-                      <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
-                    </node>
-                    <node concept="3TrEf2" id="1NXU$uX8BWr" role="2OqNvi">
-                      <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
-                    </node>
-                  </node>
-                  <node concept="3TrEf2" id="1NXU$uX8BWs" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6zKsEr497IW" resolve="plugBlock" />
-                  </node>
-                </node>
-                <node concept="37vLTw" id="1NXU$uX8BWt" role="37wK5m">
-                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3cpWs8" id="1NXU$uX8BWu" role="3cqZAp">
-          <node concept="3cpWsn" id="1NXU$uX8BWv" role="3cpWs9">
-            <property role="TrG5h" value="socketNode" />
-            <node concept="3uibUv" id="1NXU$uX8BWw" role="1tU5fm">
-              <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
-            </node>
-            <node concept="2ShNRf" id="1NXU$uX8BWx" role="33vP2m">
-              <node concept="1pGfFk" id="1NXU$uX8BWy" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" node="27ZLyP6Yqvi" resolve="ExtendedSocketDeclarationByNode" />
-                <node concept="2OqwBi" id="1NXU$uX8BWz" role="37wK5m">
-                  <node concept="2OqwBi" id="1NXU$uX8BW$" role="2Oq$k0">
-                    <node concept="37vLTw" id="1NXU$uX8BW_" role="2Oq$k0">
-                      <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
-                    </node>
-                    <node concept="3TrEf2" id="1NXU$uX8BWA" role="2OqNvi">
-                      <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
-                    </node>
-                  </node>
-                  <node concept="3TrEf2" id="1NXU$uX8BWB" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6zKsEr497J1" resolve="socketBlock" />
-                  </node>
-                </node>
-                <node concept="37vLTw" id="1NXU$uX8BWC" role="37wK5m">
-                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-        <node concept="3clFbF" id="1NXU$uX8BWD" role="3cqZAp">
-          <node concept="2YIFZM" id="1NXU$uX8BWE" role="3clFbG">
-            <ref role="37wK5l" to="33ny:~List.of(java.lang.Object,java.lang.Object)" resolve="of" />
-            <ref role="1Pybhc" to="33ny:~List" resolve="List" />
-            <node concept="2ShNRf" id="1NXU$uX8BWF" role="37wK5m">
-              <node concept="1pGfFk" id="1NXU$uX8BWG" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="g27j:~CustomNetworkComponent.&lt;init&gt;(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.common.Element,boolean)" resolve="CustomNetworkComponent" />
-                <node concept="37vLTw" id="1NXU$uX8BWH" role="37wK5m">
-                  <ref role="3cqZAo" node="1NXU$uX8BWk" resolve="plugNode" />
-                </node>
-                <node concept="Xjq3P" id="1NXU$uX8BWI" role="37wK5m" />
-                <node concept="3clFbT" id="1NXU$uX8BWJ" role="37wK5m">
-                  <property role="3clFbU" value="true" />
-                </node>
-              </node>
-            </node>
-            <node concept="2ShNRf" id="1NXU$uX8BWK" role="37wK5m">
-              <node concept="1pGfFk" id="1NXU$uX8BWL" role="2ShVmc">
-                <property role="373rjd" value="true" />
-                <ref role="37wK5l" to="g27j:~CustomNetworkComponent.&lt;init&gt;(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.common.Element,boolean)" resolve="CustomNetworkComponent" />
-                <node concept="37vLTw" id="1NXU$uX8BWM" role="37wK5m">
-                  <ref role="3cqZAo" node="1NXU$uX8BWv" resolve="socketNode" />
-                </node>
-                <node concept="Xjq3P" id="1NXU$uX8BWN" role="37wK5m" />
-                <node concept="3clFbT" id="1NXU$uX8BWO" role="37wK5m">
-                  <property role="3clFbU" value="true" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="2AHcQZ" id="1NXU$uX8BWP" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
