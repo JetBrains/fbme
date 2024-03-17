@@ -62,6 +62,12 @@ interface NetworkInstance : Instance {
         }
 
         @JvmStatic
+        fun createForAdapter(adapter: AdapterTypeDeclaration, parent: Instance?): NetworkInstance {
+            val networkDeclaration = adapter.network
+            return RegularNetworkInstance(parent, networkDeclaration, adapter)
+        }
+
+        @JvmStatic
         @JvmOverloads
         fun createForDeclaration(declaration: Declaration, parent: Instance? = null): NetworkInstance {
             var decl: Declaration? = declaration
@@ -76,6 +82,7 @@ interface NetworkInstance : Instance {
                 is ApplicationDeclaration -> createForApplication(decl, parent)
                 is ResourceDeclaration -> createForResource(decl, parent)
                 is DeviceDeclaration -> createForImplicitResourceOfDevice(decl, parent)
+                is AdapterTypeDeclaration -> createForAdapter(decl, parent)
                 else -> throw IllegalArgumentException("Unknown kind of declaration: " + decl!!.javaClass)
             }
         }

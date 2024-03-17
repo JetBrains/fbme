@@ -1441,6 +1441,85 @@
           <property role="VOm3f" value="true" />
         </node>
       </node>
+      <node concept="3F0ifn" id="6Ta09_h1jLV" role="3EZMnx">
+        <property role="3F0ifm" value="ROUTER_PARAMS" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="6Ta09_h1jOG" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="6Ta09_h1jH7" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:5Q727Wu2out" resolve="inputRouter" />
+        <node concept="ljvvj" id="6Ta09_h1jKj" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="6Ta09_h1jIj" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:5Q727Wu2ouv" resolve="outputRouter" />
+        <node concept="ljvvj" id="6Ta09_h1jKl" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="6Ta09_h1jN3" role="3EZMnx">
+        <property role="3F0ifm" value="END_ROUTER_PARAMS" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="6Ta09_h1jOE" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="1kzHNgmZGTm" role="3EZMnx">
+        <property role="3F0ifm" value="SOCKET_INTERNAL_PARAMS" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="1kzHNgmZGTn" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="6N4aHQUezZP" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+        <node concept="ljvvj" id="6N4aHQUezZQ" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="1kzHNgmZGUK" role="3EZMnx">
+        <property role="3F0ifm" value="PLUG_INTERNAL_PARAMS" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="1kzHNgmZGUL" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="Nr4k4hHK5n" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+        <node concept="ljvvj" id="Nr4k4hHK5o" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="1kzHNgmZGVg" role="3EZMnx">
+        <property role="3F0ifm" value="END_INTERNAL_PARAMS" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="1kzHNgmZGVh" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="1kzHNgmZTh6" role="3EZMnx">
+        <property role="3F0ifm" value="NETWORK" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="1kzHNgmZTh7" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="4$p41zrwDuX" role="3EZMnx">
+        <ref role="1NtTu8" to="xiqq:6N4aHQUcxJy" resolve="fbNetwork" />
+        <node concept="ljvvj" id="4$p41zrwDwj" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0ifn" id="1kzHNgmZTiG" role="3EZMnx">
+        <property role="3F0ifm" value="END_NETWORK" />
+        <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
+        <node concept="ljvvj" id="1kzHNgmZTiH" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
       <node concept="3F0ifn" id="2ByE74knc6M" role="3EZMnx">
         <property role="3F0ifm" value="END_ADAPTER" />
         <ref role="1k5W1q" node="3HBlKeoYKWR" resolve="RootKeyword" />
@@ -4379,6 +4458,44 @@
       <node concept="2kknPJ" id="3Sv$YXXVo9n" role="2klrvf">
         <ref role="2ZyFGn" to="gpgy:2lwHqHjKhl9" resolve="Literal" />
       </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="6N4aHQUg0OF">
+    <property role="3GE5qa" value="block" />
+    <ref role="1XX52x" to="xiqq:6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+    <node concept="3EZMnI" id="6N4aHQUg0OK" role="2wV5jI">
+      <node concept="l2Vlx" id="6N4aHQUg0ON" role="2iSdaV" />
+      <node concept="PMmxH" id="6N4aHQUg0Pz" role="3EZMnx">
+        <ref role="PMmxG" node="2ByE74knc05" resolve="InterfaceList" />
+        <node concept="ljvvj" id="6N4aHQUg0P$" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="4$p41zrwDsp">
+    <property role="3GE5qa" value="adapter" />
+    <ref role="1XX52x" to="xiqq:4$p41zrwDsm" resolve="AdapterNetworkDeclaration" />
+    <node concept="3EZMnI" id="4$p41zrwDsr" role="2wV5jI">
+      <node concept="PMmxH" id="4$p41zrwDsO" role="3EZMnx">
+        <ref role="PMmxG" node="2lwHqHknvrQ" resolve="FBNetwork_FBS" />
+        <node concept="lj46D" id="1pa$D_7zWvB" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+        <node concept="ljvvj" id="1pa$D_7zWw7" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="PMmxH" id="4$p41zrwDtm" role="3EZMnx">
+        <ref role="PMmxG" node="2lwHqHknvus" resolve="FBNetwork_Connections" />
+        <node concept="ljvvj" id="4$p41zrwDtn" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+        <node concept="lj46D" id="1pa$D_7zWwc" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="l2Vlx" id="4$p41zrwDsu" role="2iSdaV" />
     </node>
   </node>
 </model>

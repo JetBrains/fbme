@@ -24,8 +24,11 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class FBConnectionController(context: EditorContext, view: NetworkConnectionView) :
-    ConnectionController<FBConnectionCursor, FBConnectionPath> {
+class FBConnectionController(
+    context: EditorContext,
+    view: NetworkConnectionView,
+    private val sourceConnectionNumber: Int?,
+) : ConnectionController<FBConnectionCursor, FBConnectionPath> {
     private val kind: EntryKind
     private val isEditable: Boolean
     private val fakeCell: EditorCell_Collection
@@ -54,6 +57,15 @@ class FBConnectionController(context: EditorContext, view: NetworkConnectionView
             FBConnectionPathPainter.setupRegularPathPaint(g, scale(1).toFloat())
         }
         painter.paint(g, selected)
+        val printConnectionNumber = when (kind) {
+            EntryKind.EVENT, EntryKind.DATA -> false
+            EntryKind.ADAPTER -> true
+        }
+        if (sourceConnectionNumber != null && printConnectionNumber) {
+            val point = path.targetPosition
+            g.color = g.color.brighter()
+            g.drawString(sourceConnectionNumber.toString(), point.x - 10, point.y)
+        }
     }
 
     override fun paintTrace(path: FBConnectionPath, graphics: Graphics) {

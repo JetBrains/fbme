@@ -59,9 +59,16 @@ class ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>(
     }
 
     private fun init() {
-        val viewConnections = diagramController.connections
-        for (connection in viewConnections) {
-            connections[connection] = ConnectionEntry(this@ConnectionsFacility, connection)
+        val sourcesConnectionsCount = diagramController.connections.groupBy { connection ->
+            diagramController.getSource(connection)
+        }
+        sourcesConnectionsCount.forEach { (_, controllerConnections) ->
+            val hasMultipleConnections = controllerConnections.size > 1
+            for (i in controllerConnections.indices) {
+                val number = if (hasMultipleConnections) i else null
+                val connection = controllerConnections[i]
+                connections[connection] = ConnectionEntry(this@ConnectionsFacility, connection, number)
+            }
         }
     }
 

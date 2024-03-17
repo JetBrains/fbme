@@ -30,27 +30,27 @@
   <BasicFB>
     <ECC>
       <ECState Name="START" x="552" y="429" />
-      <ECState Name="INIT" x="923" y="141">
+      <ECState Name="INIT" x="2446" y="-80">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="RESET" x="1380" y="660">
+      <ECState Name="RESET" x="4840" y="646">
         <ECAction Output="CNF" Algorithm="RESET" />
         <ECAction Output="E_RESET" />
       </ECState>
-      <ECState Name="PAUSED" x="1400" y="1256">
+      <ECState Name="PAUSED" x="3199" y="2586">
         <ECAction Output="CNF" Algorithm="PAUSED" />
         <ECAction Output="E_PAUSE" />
       </ECState>
-      <ECState Name="RUN" x="1516" y="1868">
+      <ECState Name="RUN" x="866" y="3313">
         <ECAction Output="CNF" Algorithm="RUN" />
         <ECAction Output="E_START" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="731" y="204" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="RESET" x="1217" y="350" Condition="1" />
-      <ECTransition Source="RESET" Destination="PAUSED" x="1895" y="959" Condition="RESET_DONE" />
-      <ECTransition Source="PAUSED" Destination="RUN" x="1822" y="1568" Condition="START" />
-      <ECTransition Source="RUN" Destination="PAUSED" x="977" y="1606" Condition="PAUSE" />
-      <ECTransition Source="PAUSED" Destination="RESET" x="920" y="966" Condition="RESET" />
+      <ECTransition Source="START" Destination="INIT" x="726" y="199" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="RESET" x="4440" y="766" Condition="1" />
+      <ECTransition Source="RESET" Destination="PAUSED" x="3613" y="1460" Condition="RESET_DONE" />
+      <ECTransition Source="PAUSED" Destination="RUN" x="1799" y="1546" Condition="START" />
+      <ECTransition Source="RUN" Destination="PAUSED" x="953" y="1579" Condition="PAUSE" />
+      <ECTransition Source="PAUSED" Destination="RESET" x="4240" y="1773" Condition="RESET" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="startLED := FALSE;&amp;#38;#10;pauseLED := FALSE;&amp;#38;#10;resetLED := TRUE;&amp;#38;#10;" />
