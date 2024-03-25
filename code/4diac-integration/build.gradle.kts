@@ -31,6 +31,7 @@ dependencies {
     mpsImplementation(project(":code:platform", "mps"))
 
     compileOnly(project(":code:library"))
+    compileOnly("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.1")
 
     testImplementation("io.mockk:mockk:1.13.9") {
         exclude(group="org.jetbrains.kotlin")
@@ -39,6 +40,7 @@ dependencies {
     testImplementation(kotlin("reflect"))
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.4.2")
     testImplementation(project(":code:library"))
+    testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.1")
 
     integrationTestImplementation(mpsDistribution())
     integrationTestImplementation(project(":code:platform"))
