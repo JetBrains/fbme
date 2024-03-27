@@ -2,10 +2,7 @@ package org.fbme.ide.integration.fordiac.lua
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
-import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
-import org.fbme.lib.iec61499.declarations.AlgorithmBody
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
@@ -43,9 +40,10 @@ object BasicFBTypeTranslator {
         }
 
         private fun calculateAdapterIdToIsInput(fbTypeDeclaration: BasicFBTypeDeclaration): Map<Identifier?, Boolean> {
-            val idToIsInput = { port: FBPortDescriptor -> port.declaration?.identifier to port.isInput }
-            val socketIdToIsInput = fbTypeDeclaration.typeDescriptor.socketPorts.associate(idToIsInput)
-            val plugIdToIsInput = fbTypeDeclaration.typeDescriptor.socketPorts.associate(idToIsInput)
+            val idToIsInputSocket = { port: FBPortDescriptor -> port.declaration?.identifier to !port.isInput }
+            val socketIdToIsInput = fbTypeDeclaration.typeDescriptor.socketPorts.associate(idToIsInputSocket)
+            val idToIsInputPlug = { port: FBPortDescriptor -> port.declaration?.identifier to port.isInput }
+            val plugIdToIsInput = fbTypeDeclaration.typeDescriptor.socketPorts.associate(idToIsInputPlug)
             return socketIdToIsInput + plugIdToIsInput
         }
 
@@ -53,7 +51,13 @@ object BasicFBTypeTranslator {
             val adapterEvents = mutableSetOf<Identifier>()
             fbTypeDeclaration.sockets.forEach { socket ->
                 adapterEvents.addAll(socket.typeReference.getTarget()?.inputEvents?.map { it.identifier } ?: listOf())
+                adapterEvents.addAll(socket.typeReference.getTarget()?.outputEvents?.map { it.identifier } ?: listOf())
             }
+            fbTypeDeclaration.plugs.forEach { plug ->
+                adapterEvents.addAll(plug.typeReference.getTarget()?.inputEvents?.map { it.identifier } ?: listOf())
+                adapterEvents.addAll(plug.typeReference.getTarget()?.outputEvents?.map { it.identifier } ?: listOf())
+            }
+
             return adapterEvents
         }
 
@@ -119,13 +123,7 @@ object BasicFBTypeTranslator {
         addVars(fbTypeDeclaration.typeDescriptor.dataInputPorts, "DI_", FB_DI_FLAG)
         addVars(fbTypeDeclaration.typeDescriptor.dataOutputPorts, "DO_", FB_DO_FLAG)
 
-        run {
-            val plugs = fbTypeDeclaration.typeDescriptor.plugPorts
-            val sockets = fbTypeDeclaration.typeDescriptor.socketPorts
-
-            addAdapterConstants(adapterPorts = sockets, offset = plugs.size, true)
-            addAdapterConstants(adapterPorts = plugs, offset = 0, false)
-        }
+        addAdapterConstants(fbTypeDeclaration)
 
         fbTypeDeclaration.internalVariables.forEach {
             sb.appendLine("local IN_${it.name} = ${FB_IN_FLAG or it.index()}")
@@ -134,31 +132,56 @@ object BasicFBTypeTranslator {
         sb.appendLine()
     }
 
-    private fun addAdapterConstants(adapterPorts: List<FBPortDescriptor>, offset: Int, isSocket: Boolean) {
-        adapterPorts.forEach { portDescriptor ->
-            val adapterId = portDescriptor.position + offset
+    private fun addAdapterConstants(fb: BasicFBTypeDeclaration) {
+        fb.typeDescriptor.socketPorts.forEach { portDescriptor ->
+            val adapterId = portDescriptor.position + fb.typeDescriptor.plugPorts.size
 
-            (portDescriptor.declaration as? AdapterTypeDeclaration)?.let { adapterDeclaration ->
+            val addConstants = { descriptors: List<FBPortDescriptor>, varPrefix: String, flag: Int ->
+                descriptors.forEach { descriptor ->
+                    sb.append("local $varPrefix${portDescriptor.name}_${descriptor.name} = ")
+                        .appendLine("${(flag or (adapterId shl 16)) or descriptor.position}")
+                }
+            }
+
+            (portDescriptor.declaration as? SocketDeclaration)?.let { adapterDeclaration ->
                 sb.appendLine()
 
-                val addConstants = { descriptors: List<FBPortDescriptor>, varPrefix: String, flag: Int ->
-                    descriptors.forEach { descriptor ->
-                        sb.append("local $varPrefix${portDescriptor.name}_${descriptor.name} = ")
-                            .appendLine("${(flag or (adapterId shl 16)) or descriptor.position}")
-                    }
-                }
+                val typeDescriptor = adapterDeclaration.typeReference.getTarget()?.socketTypeDescriptor
 
-                val typeDescriptor =
-                    if (isSocket) adapterDeclaration.socketTypeDescriptor else adapterDeclaration.plugTypeDescriptor
-
-                with(typeDescriptor) {
-                    addConstants(eventOutputPorts, "AEO_", FB_AEO_FLAG)
-                    addConstants(eventInputPorts, "AEI_", FB_AEI_FLAG)
-                    addConstants(dataOutputPorts, "ADO_", FB_ADO_FLAG)
-                    addConstants(dataInputPorts, "ADI_", FB_ADI_FLAG)
+                typeDescriptor?.let {
+                    addConstants(it.eventInputPorts, "AEO_", FB_AEO_FLAG)
+                    addConstants(it.eventOutputPorts, "AEI_", FB_AEI_FLAG)
+                    addConstants(it.dataInputPorts, "ADO_", FB_ADI_FLAG)
+                    addConstants(it.dataOutputPorts, "ADI_", FB_ADO_FLAG)
                 }
             }
         }
+
+        fb.typeDescriptor.plugPorts.forEach { portDescriptor ->
+            val adapterId = portDescriptor.position
+
+            val addConstants = { descriptors: List<FBPortDescriptor>, varPrefix: String, flag: Int ->
+                descriptors.forEach { descriptor ->
+                    sb.append("local $varPrefix${portDescriptor.name}_${descriptor.name} = ")
+                        .appendLine("${(flag or (adapterId shl 16)) or descriptor.position}")
+                }
+            }
+
+            (portDescriptor.declaration as? PlugDeclaration)?.let { adapterDeclaration ->
+                sb.appendLine()
+
+                val typeDescriptor = adapterDeclaration.typeReference.getTarget()?.plugTypeDescriptor
+
+                typeDescriptor?.let {
+                    addConstants(it.eventInputPorts, "AEO_", FB_AEO_FLAG)
+                    addConstants(it.eventOutputPorts, "AEI_", FB_AEI_FLAG)
+                    addConstants(it.dataInputPorts, "ADO_", FB_ADI_FLAG)
+                    addConstants(it.dataOutputPorts, "ADI_", FB_ADO_FLAG)
+                }
+            }
+        }
+
+        sb.appendLine()
     }
 
 
@@ -169,11 +192,11 @@ object BasicFBTypeTranslator {
     }
 
     private fun addAdapterVarPrefix(param: ParameterDeclaration, adapterName: String, prefix: String) {
-        sb.appendLine("local VAR_${adapterName}_${param.name} = fb[$prefix${adapterName}_${param.name}]")
+        sb.appendLine("  local VAR_${adapterName}_${param.name} = fb[$prefix${adapterName}_${param.name}]")
     }
 
     private fun addAdapterVarSuffix(param: ParameterDeclaration, adapterName: String, prefix: String) {
-        sb.appendLine("fb[$prefix${adapterName}_${param.name}] = VAR_${adapterName}_${param.name}")
+        sb.appendLine("  fb[$prefix${adapterName}_${param.name}] = VAR_${adapterName}_${param.name}")
     }
 
     private fun List<ParameterDeclaration>?.addAdapterVars(
@@ -182,6 +205,47 @@ object BasicFBTypeTranslator {
         addParamFunc: (param: ParameterDeclaration, adapterName: String, prefix: String) -> Unit
     ) = this?.forEach { param -> addParamFunc(param, adapterName, prefix) }
 
+    private fun addPlugVarAssignments(plug: PlugDeclaration, isPrefix: Boolean) {
+        var inputPrefix = "ADI_"
+        var outputPrefix = "ADO_"
+        if (memorizedFBData.adapterIdToIsInput[plug.identifier] == true) {
+            inputPrefix = "ADO_"
+            outputPrefix = "ADI_"
+        }
+        val addAdapterParamFunc = if (isPrefix) ::addAdapterVarPrefix else ::addAdapterVarSuffix
+        val adapter = plug.typeReference.getTarget()
+        adapter?.inputParameters.addAdapterVars(plug.name, inputPrefix, addAdapterParamFunc)
+        adapter?.outputParameters.addAdapterVars(plug.name, outputPrefix, addAdapterParamFunc)
+    }
+
+    private fun addSocketVarAssignments(socket: SocketDeclaration, isPrefix: Boolean) {
+        var inputPrefix = "ADI_"
+        var outputPrefix = "ADO_"
+        if (memorizedFBData.adapterIdToIsInput[socket.identifier] == true) {
+            inputPrefix = "ADO_"
+            outputPrefix = "ADI_"
+        }
+        val addAdapterParamFunc = if (isPrefix) ::addAdapterVarPrefix else ::addAdapterVarSuffix
+        val adapter = socket.typeReference.getTarget()
+        adapter?.inputParameters.addAdapterVars(socket.name, inputPrefix, addAdapterParamFunc)
+        adapter?.outputParameters.addAdapterVars(socket.name, outputPrefix, addAdapterParamFunc)
+    }
+
+    private fun addAdapterVarAssignments(fb: BasicFBTypeDeclaration, isPrefix: Boolean) {
+        fb.sockets.forEach {
+            addSocketVarAssignments(it, isPrefix)
+        }
+        fb.plugs.forEach {
+            addPlugVarAssignments(it, isPrefix)
+        }
+    }
+
+    private fun AlgorithmBody.ST.calculateUsedVariableNames(): List<String> {
+        val varNames = ArrayList<String>()
+        this.statements.forEach { varNames.addVars(it) }
+
+        return varNames
+    }
 
     private fun addAlgorithms(fbTypeDeclaration: BasicFBTypeDeclaration) {
         fbTypeDeclaration.algorithms.forEach { alg ->
@@ -215,24 +279,7 @@ object BasicFBTypeTranslator {
                 addVarsPrefix(prefix = "DO_", usedOutputVarNames)
                 addVarsPrefix(prefix = "IN_", usedInternalVarNames)
 
-                val addAdapterVarAssignments = { adapter: AdapterTypeDeclaration, isPrefix: Boolean ->
-                    var inputPrefix = "ADI_"
-                    var outputPrefix = "ADO_"
-                    if (memorizedFBData.adapterIdToIsInput[adapter.identifier] == true) {
-                        inputPrefix = "ADO_"
-                        outputPrefix = "ADI_"
-                    }
-                    val addAdapterParamFunc = if (isPrefix) ::addAdapterVarPrefix else ::addAdapterVarSuffix
-                    adapter.inputParameters.addAdapterVars(adapter.name, inputPrefix, addAdapterParamFunc)
-                    adapter.outputParameters.addAdapterVars(adapter.name, outputPrefix, addAdapterParamFunc)
-                }
-
-                fbTypeDeclaration.sockets.forEach { socket ->
-                    socket.typeReference.getTarget()?.let { addAdapterVarAssignments(it, true) }
-                }
-                fbTypeDeclaration.plugs.forEach { plug ->
-                    plug.typeReference.getTarget()?.let { addAdapterVarAssignments(it, true) }
-                }
+                addAdapterVarAssignments(fbTypeDeclaration, isPrefix = true)
 
                 alg.temporaryVariables.forEach {
                     sb.append("  local VAR_${it.name}")
@@ -254,12 +301,7 @@ object BasicFBTypeTranslator {
                     sb.appendLine("  fb[IN_${it}] = VAR_${it}")
                 }
 
-                fbTypeDeclaration.sockets.forEach {
-                    it.typeReference.getTarget()?.let { it1 -> addAdapterVarAssignments(it1, false) }
-                }
-                fbTypeDeclaration.plugs.forEach {
-                    it.typeReference.getTarget()?.let { it1 -> addAdapterVarAssignments(it1, false) }
-                }
+                addAdapterVarAssignments(fbTypeDeclaration, isPrefix = false)
             } ?: throw IllegalStateException("Language not supported for algorithm ${alg.name}")
 
             sb.appendLine("end")
@@ -469,7 +511,6 @@ object BasicFBTypeTranslator {
         }
     }
 
-
     private fun addECC(fbTypeDeclaration: BasicFBTypeDeclaration) {
         fbTypeDeclaration.ecc.states.forEach { state ->
             sb.appendLine("local function enterECC_${state.name}(fb)")
@@ -497,23 +538,7 @@ object BasicFBTypeTranslator {
         addVarsPrefix(prefix = "DO_", memorizedFBData.outputDataNames)
         addVarsPrefix(prefix = "IN_", memorizedFBData.internalVarNames)
 
-        val addAdapterVarAssignments = { adapter: AdapterTypeDeclaration, isSocket: Boolean ->
-            var inputPrefix = "ADI_"
-            var outputPrefix = "ADO_"
-            if (isSocket) {
-                inputPrefix = "ADO_"
-                outputPrefix = "ADI_"
-            }
-            adapter.inputParameters.addAdapterVars(adapter.name, inputPrefix, ::addAdapterVarPrefix)
-            adapter.outputParameters.addAdapterVars(adapter.name, outputPrefix, ::addAdapterVarPrefix)
-        }
-
-        fbTypeDeclaration.sockets.forEach { socket ->
-            socket.typeReference.getTarget()?.let { addAdapterVarAssignments(it, true) }
-        }
-        fbTypeDeclaration.plugs.forEach { plug ->
-            plug.typeReference.getTarget()?.let { addAdapterVarAssignments(it, false) }
-        }
+        addAdapterVarAssignments(fbTypeDeclaration, isPrefix = true)
 
         var noElements = true
         fbTypeDeclaration.ecc.states.forEach { state ->
@@ -632,14 +657,22 @@ object BasicFBTypeTranslator {
             .appendLine("  numAdapters = ${fbTypeDeclaration.sockets.size + fbTypeDeclaration.plugs.size},")
             .appendLine("  adapterInstanceDefinition = {")
 
-        fbTypeDeclaration.plugs.forEach {
-            sb.append("    {adapterNameID = \"${it.name}\", ")
-                .appendLine("adapterTypeNameID \"${it.type.typeName}\", isPlug = true}")
+        fbTypeDeclaration.plugs.forEachIndexed { ind, plug ->
+            sb.append("    {adapterNameID = \"${plug.name}\", ")
+                .append("adapterTypeNameID = \"${plug.type.typeName}\", isPlug = true}")
+            if (ind != fbTypeDeclaration.plugs.lastIndex || fbTypeDeclaration.sockets.isNotEmpty()) {
+                sb.append(",")
+            }
+            sb.appendLine()
         }
 
-        fbTypeDeclaration.sockets.forEach {
-            sb.append("    {adapterNameID = \"${it.name}\", ")
-                .appendLine("adapterTypeNameID \"${it.type.typeName}\", isPlug = false}")
+        fbTypeDeclaration.sockets.forEachIndexed { ind, socket ->
+            sb.append("    {adapterNameID = \"${socket.name}\", ")
+                .append("adapterTypeNameID = \"${socket.type.typeName}\", isPlug = false}")
+            if (ind != fbTypeDeclaration.plugs.lastIndex) {
+                sb.append(",")
+            }
+            sb.appendLine()
         }
 
         sb.appendLine("  }")
