@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="d02cd6c5-3b5a-449b-a24b-c0cde3bd360f" Name="GR_CMD" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="18/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+        <With Var="openned" />
+        <With Var="closed" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+        <With Var="openned" />
+        <With Var="closed" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="open" />
+        <With Var="close" />
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="open" />
+        <With Var="close" />
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="OPEN" Type="BOOL" />
+      <VarDeclaration Name="CLOSE" Type="BOOL" />
+      <VarDeclaration Name="openned" Type="BOOL" />
+      <VarDeclaration Name="closed" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="open" Type="BOOL" />
+      <VarDeclaration Name="close" Type="BOOL" />
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="initialization,OPEN,CLOSE,OPENNED,CLOSED" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1836.941" y="601.4117" />
+      <ECState Name="initialization" x="1844" y="996">
+        <ECAction Algorithm="initialization" Output="INITO" />
+      </ECState>
+      <ECState Name="OPEN" x="2756" y="2024">
+        <ECAction Algorithm="OPEN" Output="CNF" />
+      </ECState>
+      <ECState Name="CLOSE" x="1036" y="2000">
+        <ECAction Algorithm="CLOSE" Output="CNF" />
+      </ECState>
+      <ECState Name="OPENNED" x="1860" y="1432">
+        <ECAction Algorithm="OPENNED" Output="CNF" />
+      </ECState>
+      <ECState Name="CLOSED" x="1852" y="2516">
+        <ECAction Algorithm="CLOSED" Output="CNF" />
+      </ECState>
+      <ECTransition Source="initialization" Destination="OPENNED" Condition="openned" x="1845.851" y="1189.352">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="463.1837,280.1146,458.9636,310.4531" />
+      </ECTransition>
+      <ECTransition Source="OPEN" Destination="OPENNED" Condition="openned" x="2350.713" y="1743.294">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="621.5233,457.4528,559.966,416.7434" />
+      </ECTransition>
+      <ECTransition Source="CLOSE" Destination="CLOSED" Condition="closed" x="1420.25" y="2249.996">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="326.2439,544.6762,380.547,578.988" />
+      </ECTransition>
+      <ECTransition Source="OPENNED" Destination="CLOSE" Condition="CLOSE" x="1421.875" y="1727.164">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="378.0395,415.4981,329.0362,449.9446" />
+      </ECTransition>
+      <ECTransition Source="CLOSED" Destination="OPEN" Condition="OPEN" x="2347.254" y="2274.142">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="563.608,585.7119,614.1863,552.0496" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="initialization" Condition="INIT" x="1841.54" y="806.9481">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="460.1721,190.3351,460.711,214.5127" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="initialization">
+      <ST Text=";&#xD;&#xA;open:=TRUE;&#xD;&#xA;close:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="OPEN">
+      <ST Text="open:=TRUE;&#xD;&#xA;close:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CLOSE">
+      <ST Text="open:=FALSE;&#xD;&#xA;close:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="OPENNED">
+      <ST Text="GRO:=TRUE;&#xD;&#xA;GRC:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CLOSED">
+      <ST Text="GRO:=FALSE;&#xD;&#xA;GRC:=TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

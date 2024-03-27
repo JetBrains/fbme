@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="INITswitch">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="INITswitch" />
+      <Event Name="REQ">
+        <With Var="ELinited" />
+        <With Var="CRinited" />
+        <With Var="CAinited" />
+        <With Var="GRinited" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF">
+        <With Var="ELinit" />
+        <With Var="SETELinit" />
+        <With Var="CRinit" />
+        <With Var="SETCRinit" />
+        <With Var="CAinit" />
+        <With Var="SETCAinit" />
+        <With Var="GRinit" />
+        <With Var="SystemInited" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ELinited" Type="BOOL" />
+      <VarDeclaration Name="CRinited" Type="BOOL" />
+      <VarDeclaration Name="CAinited" Type="BOOL" />
+      <VarDeclaration Name="GRinited" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ELinit" Type="BOOL" />
+      <VarDeclaration Name="SETELinit" Type="INT" />
+      <VarDeclaration Name="CRinit" Type="BOOL" />
+      <VarDeclaration Name="SETCRinit" Type="INT" />
+      <VarDeclaration Name="CAinit" Type="BOOL" />
+      <VarDeclaration Name="SETCAinit" Type="INT" />
+      <VarDeclaration Name="GRinit" Type="BOOL" />
+      <VarDeclaration Name="SystemInited" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="824" y="797" />
+      <ECState Name="INIT" x="1331" y="801">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="ELinit" x="2072" y="836">
+        <ECAction Output="CNF" Algorithm="EL" />
+      </ECState>
+      <ECState Name="CRinit" x="2768" y="832">
+        <ECAction Output="CNF" Algorithm="CR" />
+      </ECState>
+      <ECState Name="CAinit" x="3468" y="832">
+        <ECAction Output="CNF" Algorithm="CA" />
+      </ECState>
+      <ECState Name="GRinit" x="4160" y="844">
+        <ECAction Output="CNF" Algorithm="GR" />
+      </ECState>
+      <ECState Name="SYSTEMinit" x="3704" y="1620">
+        <ECAction Output="CNF" Algorithm="ALL" />
+      </ECState>
+      <ECState Name="STATE1" x="2480" y="1420" />
+      <ECTransition Source="START" Destination="INIT" x="1096" y="711" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="ELinit" x="1694" y="671" Condition="INITswitch" />
+      <ECTransition Source="ELinit" Destination="CRinit" x="2431" y="639" Condition="1" />
+      <ECTransition Source="CRinit" Destination="CAinit" x="3108" y="648" Condition="1" />
+      <ECTransition Source="CAinit" Destination="GRinit" x="3822" y="676" Condition="1" />
+      <ECTransition Source="GRinit" Destination="SYSTEMinit" x="4147" y="1192" Condition="1" />
+      <ECTransition Source="SYSTEMinit" Destination="STATE1" x="2988" y="1653" Condition="1" />
+      <ECTransition Source="STATE1" Destination="ELinit" x="2198" y="1081" Condition="INITswitch" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="CAinit := FALSE;&amp;#38;#10;CRinit := FALSE;&amp;#38;#10;ELinit := FALSE;&amp;#38;#10;GRinit := FALSE;&amp;#38;#10;SystemInited := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="EL">
+      <ST Text="ELinit := TRUE;&amp;#38;#10;SETELinit := 0;&amp;#38;#10;CAinit := FALSE;&amp;#38;#10;CRinit := FALSE;&amp;#38;#10;GRinit := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CR">
+      <ST Text="CRinit := TRUE;&amp;#38;#10;SETCRinit := 0;&amp;#38;#10;CAinit := FALSE;&amp;#38;#10;ELinit := FALSE;&amp;#38;#10;GRinit := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CA">
+      <ST Text="CAinit := TRUE;&amp;#38;#10;SETCAinit := 1;&amp;#38;#10;CRinit := FALSE;&amp;#38;#10;ELinit := FALSE;&amp;#38;#10;GRinit := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GR">
+      <ST Text="GRinit := TRUE;&amp;#38;#10;CAinit := FALSE;&amp;#38;#10;CRinit := FALSE;&amp;#38;#10;ELinit := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="ALL">
+      <ST Text="SystemInited := TRUE;&amp;#38;#10;CAinit := FALSE;&amp;#38;#10;CRinit := FALSE;&amp;#38;#10;ELinit := FALSE;&amp;#38;#10;GRinit := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

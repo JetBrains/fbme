@@ -1,0 +1,318 @@
+MODULE TwoCylDiscr(event_INIT, event_INITO, alpha, beta)
+VAR  HorCTL  : CylControl (HorCTL_INIT,HorCTL_REQ,HorCTL_INITO, HorCTL_CNF, HorCyl_HOME, HorCyl_END, Button_Pressed, HorCTL_EXTEND, HorCTL_RETRACT, alpha, beta);
+VAR  VerCTL  : CylControl (VerCTL_INIT,VerCTL_REQ,VerCTL_INITO, VerCTL_CNF, HorCyl_HOME, HorCyl_END, Button_Pressed, VerCTL_EXTEND, VerCTL_RETRACT, alpha, beta);
+VAR  Button  : ButtonDs (Button_INIT,Button_REQ,Button_INITO, Button_CHG, Button_LightOn, Button_Pressed, alpha, beta);
+VAR  HorCyl  : LinearDA (HorCyl_INIT,HorCyl_REQ,HorCyl_INITO, HorCyl_CHG, HorCTL_EXTEND, HorCTL_RETRACT, HorCyl_HOME, HorCyl_END, alpha, beta);
+VAR  VerCyl  : LinearDA (VerCyl_INIT,VerCyl_REQ,VerCyl_INITO, VerCyl_CHG, HorCTL_EXTEND, HorCTL_RETRACT, VerCyl_HOME, VerCyl_END, alpha, beta);
+
+
+-- generateCompositeFBsVariables
+
+VAR HorCTL_INIT : boolean;
+VAR HorCTL_REQ : boolean;
+VAR HorCTL_INITO : boolean;
+VAR HorCTL_CNF : boolean;
+VAR HorCTL_EXTEND : boolean;
+VAR HorCTL_RETRACT : boolean;
+VAR HorCTL_alpha : boolean;
+VAR HorCTL_beta : boolean;
+
+VAR VerCTL_INIT : boolean;
+VAR VerCTL_REQ : boolean;
+VAR VerCTL_INITO : boolean;
+VAR VerCTL_CNF : boolean;
+VAR VerCTL_EXTEND : boolean;
+VAR VerCTL_RETRACT : boolean;
+VAR VerCTL_alpha : boolean;
+VAR VerCTL_beta : boolean;
+
+VAR Button_INIT : boolean;
+VAR Button_REQ : boolean;
+VAR Button_INITO : boolean;
+VAR Button_CHG : boolean;
+VAR Button_LightOn : boolean;
+VAR Button_Pressed : boolean;
+VAR Button_alpha : boolean;
+VAR Button_beta : boolean;
+
+VAR HorCyl_INIT : boolean;
+VAR HorCyl_REQ : boolean;
+VAR HorCyl_INITO : boolean;
+VAR HorCyl_CHG : boolean;
+VAR HorCyl_HOME : boolean;
+VAR HorCyl_END : boolean;
+VAR HorCyl_alpha : boolean;
+VAR HorCyl_beta : boolean;
+
+VAR VerCyl_INIT : boolean;
+VAR VerCyl_REQ : boolean;
+VAR VerCyl_INITO : boolean;
+VAR VerCyl_CHG : boolean;
+VAR VerCyl_HOME : boolean;
+VAR VerCyl_END : boolean;
+VAR VerCyl_alpha : boolean;
+VAR VerCyl_beta : boolean;
+
+
+
+ASSIGN
+init(HorCTL_INIT) := FALSE;
+init(HorCTL_REQ) := FALSE;
+init(HorCTL_INITO) := FALSE;
+init(HorCTL_CNF) := FALSE;
+init(HorCTL_EXTEND) := FALSE;
+init(HorCTL_RETRACT) := FALSE;
+init( HorCTL_alpha) := FALSE;
+init( HorCTL_beta) := FALSE;
+
+init(VerCTL_INIT) := FALSE;
+init(VerCTL_REQ) := FALSE;
+init(VerCTL_INITO) := FALSE;
+init(VerCTL_CNF) := FALSE;
+init(VerCTL_EXTEND) := FALSE;
+init(VerCTL_RETRACT) := FALSE;
+init( VerCTL_alpha) := FALSE;
+init( VerCTL_beta) := FALSE;
+
+init(Button_INIT) := FALSE;
+init(Button_REQ) := FALSE;
+init(Button_INITO) := FALSE;
+init(Button_CHG) := FALSE;
+init(Button_LightOn) := FALSE;
+init(Button_Pressed) := FALSE;
+init( Button_alpha) := FALSE;
+init( Button_beta) := FALSE;
+
+init(HorCyl_INIT) := FALSE;
+init(HorCyl_REQ) := FALSE;
+init(HorCyl_INITO) := FALSE;
+init(HorCyl_CHG) := FALSE;
+init(HorCyl_HOME) := FALSE;
+init(HorCyl_END) := FALSE;
+init( HorCyl_alpha) := FALSE;
+init( HorCyl_beta) := FALSE;
+
+init(VerCyl_INIT) := FALSE;
+init(VerCyl_REQ) := FALSE;
+init(VerCyl_INITO) := FALSE;
+init(VerCyl_CHG) := FALSE;
+init(VerCyl_HOME) := FALSE;
+init(VerCyl_END) := FALSE;
+init( VerCyl_alpha) := FALSE;
+init( VerCyl_beta) := FALSE;
+
+
+
+-- generateInternalDataConnections
+
+
+-- generateInnerFBsEventOutputsUpdate
+
+next(Button_INITO) := case
+	Button.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(HorCyl_INITO) := case
+	HorCyl.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(VerCyl_INITO) := case
+	VerCyl.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(HorCTL_CNF) := case
+	HorCTL.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(HorCyl_CHG) := case
+	HorCyl.event_CHG_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(VerCyl_CHG) := case
+	VerCyl.event_CHG_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(HorCTL_INITO) := case
+	HorCTL.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(VerCTL_CNF) := case
+	VerCTL.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(Button_CHG) := case
+	Button.event_CHG_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(VerCTL_INITO) := case
+	VerCTL.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+-- DISPATCHER
+
+next(HorCTL_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	HorCTL.alpha_reset : FALSE;
+	TRUE : HorCTL_alpha;
+esac;
+next(HorCTL_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	HorCTL.beta_set : FALSE;
+	TRUE : HorCTL_beta;
+esac;
+next(VerCTL_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	VerCTL.alpha_reset : FALSE;
+	TRUE : VerCTL_alpha;
+esac;
+next(VerCTL_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	VerCTL.beta_set : FALSE;
+	TRUE : VerCTL_beta;
+esac;
+next(Button_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	Button.alpha_reset : FALSE;
+	TRUE : Button_alpha;
+esac;
+next(Button_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	Button.beta_set : FALSE;
+	TRUE : Button_beta;
+esac;
+next(HorCyl_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	HorCyl.alpha_reset : FALSE;
+	TRUE : HorCyl_alpha;
+esac;
+next(HorCyl_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	HorCyl.beta_set : FALSE;
+	TRUE : HorCyl_beta;
+esac;
+next(VerCyl_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	VerCyl.alpha_reset : FALSE;
+	TRUE : VerCyl_alpha;
+esac;
+next(VerCyl_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	VerCyl.beta_set : FALSE;
+	TRUE : VerCyl_beta;
+esac;
+DEFINE beta_set:= VerCyl_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+-- generateInternalEventConnections
+
+next(HorCTL_REQ):= case
+	(HorCyl_CHG | Button_CHG) : TRUE;
+	(HorCTL.event_REQ_reset) : FALSE;
+	TRUE : HorCTL_REQ;
+esac;
+
+next(HorCTL_INIT):= case
+	(VerCyl_INITO) : TRUE;
+	(HorCTL.event_INIT_reset) : FALSE;
+	TRUE : HorCTL_INIT;
+esac;
+
+next(HorCyl_REQ):= case
+	(HorCTL_CNF) : TRUE;
+	(HorCyl.event_REQ_reset) : FALSE;
+	TRUE : HorCyl_REQ;
+esac;
+
+next(VerCyl_REQ):= case
+	(VerCTL_CNF) : TRUE;
+	(VerCyl.event_REQ_reset) : FALSE;
+	TRUE : VerCyl_REQ;
+esac;
+
+next(VerCTL_REQ):= case
+	(VerCyl_CHG | Button_CHG) : TRUE;
+	(VerCTL.event_REQ_reset) : FALSE;
+	TRUE : VerCTL_REQ;
+esac;
+
+next(VerCTL_INIT):= case
+	(HorCTL_INITO) : TRUE;
+	(VerCTL.event_INIT_reset) : FALSE;
+	TRUE : VerCTL_INIT;
+esac;
+
+next(HorCyl_INIT):= case
+	(Button_INITO) : TRUE;
+	(HorCyl.event_INIT_reset) : FALSE;
+	TRUE : HorCyl_INIT;
+esac;
+
+next(VerCyl_INIT):= case
+	(HorCyl_INITO) : TRUE;
+	(VerCyl.event_INIT_reset) : FALSE;
+	TRUE : VerCyl_INIT;
+esac;
+
+next(Button_REQ):= case
+	(VerCTL_INITO) : TRUE;
+	(Button.event_REQ_reset) : FALSE;
+	TRUE : Button_REQ;
+esac;
+
+next(Button_INIT):= case
+	((event_INIT & alpha)) : TRUE;
+	(Button.event_INIT_reset) : FALSE;
+	TRUE : Button_INIT;
+esac;
+
+DEFINE event_INITO_set:= (VerCTL_INITO );
+DEFINE event_INIT_reset:= alpha;
+DEFINE ExistsInputEvent :=  event_INIT ;
+
+DEFINE omega:= !(Button_CHG | HorCyl_CHG | HorCTL_INITO | VerCTL_INITO | HorCyl_INITO | VerCyl_CHG | HorCTL_CNF | VerCTL_CNF | Button_INITO | VerCyl_INITO);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(HorCTL_REQ | HorCTL_INIT | HorCyl_REQ | VerCyl_REQ | VerCTL_REQ | VerCTL_INIT | HorCyl_INIT | VerCyl_INIT | Button_REQ | Button_INIT | Button_CHG | HorCyl_CHG | HorCTL_INITO | VerCTL_INITO | HorCyl_INITO | VerCyl_CHG | HorCTL_CNF | VerCTL_CNF | Button_INITO | VerCyl_INITO ));
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE main()
+VAR TwoCylDiscr_inst : TwoCylDiscr (TwoCylDiscr_inst_INIT, TwoCylDiscr_inst_INITO,  TwoCylDiscr_inst_alpha, TwoCylDiscr_inst_beta);
+
+VAR TwoCylDiscr_inst_INIT : boolean;
+VAR TwoCylDiscr_inst_INITO : boolean;
+VAR TwoCylDiscr_inst_alpha : boolean;
+VAR TwoCylDiscr_inst_beta : boolean;
+VAR false_var : boolean;
+
+ASSIGN
+init(false_var):= FALSE;
+next(false_var):= FALSE;
+init (TwoCylDiscr_inst_INIT) := TRUE;
+init (TwoCylDiscr_inst_INITO) := TRUE;
+init(TwoCylDiscr_inst_alpha):= TRUE;
+init(TwoCylDiscr_inst_beta):= FALSE;
+
+next(TwoCylDiscr_inst_INIT):= case
+TwoCylDiscr_inst.event_INIT_reset : FALSE;
+	TRUE : TwoCylDiscr_inst_INIT;
+esac;
+next(TwoCylDiscr_inst_INITO):= case
+TwoCylDiscr_inst.event_INITO_set : TRUE;
+	TRUE : TwoCylDiscr_inst_INITO;
+esac;
+next(TwoCylDiscr_inst_alpha):= case
+	TwoCylDiscr_inst_beta : TRUE;
+	TwoCylDiscr_inst.alpha_reset : FALSE;
+	TRUE : TwoCylDiscr_inst_alpha;
+esac;
+next(TwoCylDiscr_inst_beta):= case
+	TwoCylDiscr_inst_beta : FALSE;
+	TwoCylDiscr_inst.beta_set : TRUE;
+	TRUE : TwoCylDiscr_inst_beta;
+esac;
+
+LTLSPEC F false_var=TRUE
