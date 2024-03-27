@@ -197,7 +197,7 @@ class BlockConstantsTest {
 
     @Test
     fun `global socket event input variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             eventInputPorts = listOf(
                 FBPortDescriptor(
                     name = "event1",
@@ -218,8 +218,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration =
-            createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val socketDeclaration = createSocketDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -229,7 +229,7 @@ class BlockConstantsTest {
                     position = 0,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 ),
                 FBPortDescriptor(
                     name = "socket2",
@@ -237,71 +237,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
-                )
-            )
-        )
-
-        every { block.typeDescriptor } returns socketTypeDescriptor
-
-        val actual = BasicFBTypeTranslator.translate(block)
-            .toComparableList()
-            .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
-
-        val expected = listOf(
-            "local AEI_socket1_event1 = 805306368",
-            "local AEI_socket1_event2 = 805306369",
-            "local AEI_socket2_event1 = 805371904",
-            "local AEI_socket2_event2 = 805371905",
-        )
-
-        checkUniqueValues(lst = expected)
-
-        verifyResults(expected, actual)
-    }
-
-    @Test
-    fun `global socket event output variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
-            eventOutputPorts = listOf(
-                FBPortDescriptor(
-                    name = "event1",
-                    connectionKind = EVENT,
-                    position = 0,
-                    isInput = true,
-                    isValid = true,
-                    declaration = null
-                ),
-                FBPortDescriptor(
-                    name = "event2",
-                    connectionKind = EVENT,
-                    position = 1,
-                    isInput = true,
-                    isValid = true,
-                    declaration = null
-                )
-            )
-        )
-
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
-
-        val socketTypeDescriptor = createFBTypeDescriptorMock(
-            socketPorts = listOf(
-                FBPortDescriptor(
-                    name = "socket1",
-                    connectionKind = ADAPTER,
-                    position = 0,
-                    isInput = true,
-                    isValid = true,
-                    declaration = adapterTypeDeclaration
-                ),
-                FBPortDescriptor(
-                    name = "socket2",
-                    connectionKind = ADAPTER,
-                    position = 1,
-                    isInput = true,
-                    isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 )
             )
         )
@@ -325,8 +261,73 @@ class BlockConstantsTest {
     }
 
     @Test
+    fun `global socket event output variables`() {
+        val portDescriptor = createFBTypeDescriptorMock(
+            eventOutputPorts = listOf(
+                FBPortDescriptor(
+                    name = "event1",
+                    connectionKind = EVENT,
+                    position = 0,
+                    isInput = true,
+                    isValid = true,
+                    declaration = null
+                ),
+                FBPortDescriptor(
+                    name = "event2",
+                    connectionKind = EVENT,
+                    position = 1,
+                    isInput = true,
+                    isValid = true,
+                    declaration = null
+                )
+            )
+        )
+
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val socketDeclaration = createSocketDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
+
+        val socketTypeDescriptor = createFBTypeDescriptorMock(
+            socketPorts = listOf(
+                FBPortDescriptor(
+                    name = "socket1",
+                    connectionKind = ADAPTER,
+                    position = 0,
+                    isInput = true,
+                    isValid = true,
+                    declaration = socketDeclaration
+                ),
+                FBPortDescriptor(
+                    name = "socket2",
+                    connectionKind = ADAPTER,
+                    position = 1,
+                    isInput = true,
+                    isValid = true,
+                    declaration = socketDeclaration
+                )
+            )
+        )
+
+        every { block.typeDescriptor } returns socketTypeDescriptor
+
+        val actual = BasicFBTypeTranslator.translate(block)
+            .toComparableList()
+            .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
+
+        val expected = listOf(
+            "local AEI_socket1_event1 = 805306368",
+            "local AEI_socket1_event2 = 805306369",
+            "local AEI_socket2_event1 = 805371904",
+            "local AEI_socket2_event2 = 805371905",
+        )
+
+        checkUniqueValues(lst = expected)
+
+        verifyResults(expected, actual)
+    }
+
+    @Test
     fun `global socket data input variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             dataInputPorts = listOf(
                 FBPortDescriptor(
                     name = "data1",
@@ -347,7 +348,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val socketDeclaration = createSocketDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -357,7 +359,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 ),
                 FBPortDescriptor(
                     name = "socket2",
@@ -365,7 +367,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 )
             )
         )
@@ -377,10 +379,10 @@ class BlockConstantsTest {
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
         val expected = listOf(
-            "local ADI_socket1_data1 = 167837697",
-            "local ADI_socket1_data2 = 167837698",
-            "local ADI_socket2_data1 = 167903233",
-            "local ADI_socket2_data2 = 167903234",
+            "local ADO_socket1_data1 = 167837697",
+            "local ADO_socket1_data2 = 167837698",
+            "local ADO_socket2_data1 = 167903233",
+            "local ADO_socket2_data2 = 167903234",
         )
 
         checkUniqueValues(lst = expected)
@@ -390,7 +392,7 @@ class BlockConstantsTest {
 
     @Test
     fun `global socket data output variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             dataOutputPorts = listOf(
                 FBPortDescriptor(
                     name = "data1",
@@ -411,7 +413,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val socketDeclaration = createSocketDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val socketTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -421,7 +424,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 ),
                 FBPortDescriptor(
                     name = "socket2",
@@ -429,7 +432,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 )
             )
         )
@@ -441,10 +444,10 @@ class BlockConstantsTest {
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
         val expected = listOf(
-            "local ADO_socket1_data1 = 201392129",
-            "local ADO_socket1_data2 = 201392130",
-            "local ADO_socket2_data1 = 201457665",
-            "local ADO_socket2_data2 = 201457666",
+            "local ADI_socket1_data1 = 201392129",
+            "local ADI_socket1_data2 = 201392130",
+            "local ADI_socket2_data1 = 201457665",
+            "local ADI_socket2_data2 = 201457666",
         )
 
         checkUniqueValues(lst = expected)
@@ -476,6 +479,7 @@ class BlockConstantsTest {
         )
 
         val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val plugDeclaration = createPlugDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -485,7 +489,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 ),
                 FBPortDescriptor(
                     name = "plug2",
@@ -493,71 +497,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
-                )
-            )
-        )
-
-        every { block.typeDescriptor } returns plugTypeDescriptor
-
-        val actual = BasicFBTypeTranslator.translate(block)
-            .toComparableList()
-            .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
-
-        val expected = listOf(
-            "local AEI_plug1_event1 = 805371905",
-            "local AEI_plug1_event2 = 805371906",
-            "local AEI_plug2_event1 = 805437441",
-            "local AEI_plug2_event2 = 805437442",
-        )
-
-        checkUniqueValues(lst = expected)
-
-        verifyResults(expected, actual)
-    }
-
-    @Test
-    fun `global plug event output variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
-            eventOutputPorts = listOf(
-                FBPortDescriptor(
-                    name = "event1",
-                    connectionKind = EVENT,
-                    position = 1,
-                    isInput = true,
-                    isValid = true,
-                    declaration = null
-                ),
-                FBPortDescriptor(
-                    name = "event2",
-                    connectionKind = EVENT,
-                    position = 2,
-                    isInput = true,
-                    isValid = true,
-                    declaration = null
-                )
-            )
-        )
-
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
-
-        val plugTypeDescriptor = createFBTypeDescriptorMock(
-            plugPorts = listOf(
-                FBPortDescriptor(
-                    name = "plug1",
-                    connectionKind = ADAPTER,
-                    position = 1,
-                    isInput = true,
-                    isValid = true,
-                    declaration = adapterTypeDeclaration
-                ),
-                FBPortDescriptor(
-                    name = "plug2",
-                    connectionKind = ADAPTER,
-                    position = 2,
-                    isInput = true,
-                    isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 )
             )
         )
@@ -581,8 +521,73 @@ class BlockConstantsTest {
     }
 
     @Test
+    fun `global plug event output variables`() {
+        val portDescriptor = createFBTypeDescriptorMock(
+            eventOutputPorts = listOf(
+                FBPortDescriptor(
+                    name = "event1",
+                    connectionKind = EVENT,
+                    position = 1,
+                    isInput = true,
+                    isValid = true,
+                    declaration = null
+                ),
+                FBPortDescriptor(
+                    name = "event2",
+                    connectionKind = EVENT,
+                    position = 2,
+                    isInput = true,
+                    isValid = true,
+                    declaration = null
+                )
+            )
+        )
+
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val plugDeclaration = createPlugDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
+
+        val plugTypeDescriptor = createFBTypeDescriptorMock(
+            plugPorts = listOf(
+                FBPortDescriptor(
+                    name = "plug1",
+                    connectionKind = ADAPTER,
+                    position = 1,
+                    isInput = true,
+                    isValid = true,
+                    declaration = plugDeclaration
+                ),
+                FBPortDescriptor(
+                    name = "plug2",
+                    connectionKind = ADAPTER,
+                    position = 2,
+                    isInput = true,
+                    isValid = true,
+                    declaration = plugDeclaration
+                )
+            )
+        )
+
+        every { block.typeDescriptor } returns plugTypeDescriptor
+
+        val actual = BasicFBTypeTranslator.translate(block)
+            .toComparableList()
+            .occurrenceSublist("event1", "event2", occurrenceNumTo = 2)
+
+        val expected = listOf(
+            "local AEI_plug1_event1 = 805371905",
+            "local AEI_plug1_event2 = 805371906",
+            "local AEI_plug2_event1 = 805437441",
+            "local AEI_plug2_event2 = 805437442",
+        )
+
+        checkUniqueValues(lst = expected)
+
+        verifyResults(expected, actual)
+    }
+
+    @Test
     fun `global plug data input variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             dataInputPorts = listOf(
                 FBPortDescriptor(
                     name = "data1",
@@ -603,7 +608,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val plugDeclaration = createPlugDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -613,7 +619,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 ),
                 FBPortDescriptor(
                     name = "plug2",
@@ -621,7 +627,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = true,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 )
             )
         )
@@ -633,10 +639,10 @@ class BlockConstantsTest {
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
         val expected = listOf(
-            "local ADI_plug1_data1 = 167837697",
-            "local ADI_plug1_data2 = 167837698",
-            "local ADI_plug2_data1 = 167903233",
-            "local ADI_plug2_data2 = 167903234",
+            "local ADO_plug1_data1 = 167837697",
+            "local ADO_plug1_data2 = 167837698",
+            "local ADO_plug2_data1 = 167903233",
+            "local ADO_plug2_data2 = 167903234",
         )
 
         checkUniqueValues(lst = expected)
@@ -646,7 +652,7 @@ class BlockConstantsTest {
 
     @Test
     fun `global plug data output variables`() {
-        val typeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             dataOutputPorts = listOf(
                 FBPortDescriptor(
                     name = "data1",
@@ -667,7 +673,8 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = typeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val plugDeclaration = createPlugDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val plugTypeDescriptor = createFBTypeDescriptorMock(
             plugPorts = listOf(
@@ -677,7 +684,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 ),
                 FBPortDescriptor(
                     name = "plug2",
@@ -685,7 +692,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 )
             )
         )
@@ -697,10 +704,10 @@ class BlockConstantsTest {
             .occurrenceSublist("data1", "data2", occurrenceNumTo = 2)
 
         val expected = listOf(
-            "local ADO_plug1_data1 = 201392129",
-            "local ADO_plug1_data2 = 201392130",
-            "local ADO_plug2_data1 = 201457665",
-            "local ADO_plug2_data2 = 201457666",
+            "local ADI_plug1_data1 = 201392129",
+            "local ADI_plug1_data2 = 201392130",
+            "local ADI_plug2_data1 = 201457665",
+            "local ADI_plug2_data2 = 201457666",
         )
 
         checkUniqueValues(lst = expected)
@@ -710,7 +717,7 @@ class BlockConstantsTest {
 
     @Test
     fun `global socket and plug variables`() {
-        val adapterTypeDescriptor = createFBTypeDescriptorMock(
+        val portDescriptor = createFBTypeDescriptorMock(
             dataInputPorts = listOf(
                 FBPortDescriptor(
                     name = "data1",
@@ -785,7 +792,9 @@ class BlockConstantsTest {
             )
         )
 
-        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = adapterTypeDescriptor)
+        val adapterTypeDeclaration = createAdapterTypeDeclarationMock(descriptor = portDescriptor)
+        val plugDeclaration = createPlugDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
+        val socketDeclaration = createSocketDeclarationMock(typeReference = createReferenceMock(adapterTypeDeclaration))
 
         val blockTypeDescriptor = createFBTypeDescriptorMock(
             socketPorts = listOf(
@@ -795,7 +804,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 ),
                 FBPortDescriptor(
                     name = "socket2",
@@ -803,7 +812,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = socketDeclaration
                 )
             ),
             plugPorts = listOf(
@@ -813,7 +822,7 @@ class BlockConstantsTest {
                     position = 1,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 ),
                 FBPortDescriptor(
                     name = "plug2",
@@ -821,7 +830,7 @@ class BlockConstantsTest {
                     position = 2,
                     isInput = false,
                     isValid = true,
-                    declaration = adapterTypeDeclaration
+                    declaration = plugDeclaration
                 )
             )
         )
@@ -837,37 +846,37 @@ class BlockConstantsTest {
             "local AEO_socket1_event2 = 134414338",
             "local AEI_socket1_event1 = 805502977",
             "local AEI_socket1_event2 = 805502978",
-            "local ADO_socket1_data1 = 201523201",
-            "local ADO_socket1_data2 = 201523202",
-            "local ADI_socket1_data1 = 167968769",
-            "local ADI_socket1_data2 = 167968770",
+            "local ADO_socket1_data1 = 167968769",
+            "local ADO_socket1_data2 = 167968770",
+            "local ADI_socket1_data1 = 201523201",
+            "local ADI_socket1_data2 = 201523202",
 
             "local AEO_socket2_event1 = 134479873",
             "local AEO_socket2_event2 = 134479874",
             "local AEI_socket2_event1 = 805568513",
             "local AEI_socket2_event2 = 805568514",
-            "local ADO_socket2_data1 = 201588737",
-            "local ADO_socket2_data2 = 201588738",
-            "local ADI_socket2_data1 = 168034305",
-            "local ADI_socket2_data2 = 168034306",
+            "local ADO_socket2_data1 = 168034305",
+            "local ADO_socket2_data2 = 168034306",
+            "local ADI_socket2_data1 = 201588737",
+            "local ADI_socket2_data2 = 201588738",
 
             "local AEO_plug1_event1 = 134283265",
             "local AEO_plug1_event2 = 134283266",
             "local AEI_plug1_event1 = 805371905",
             "local AEI_plug1_event2 = 805371906",
-            "local ADO_plug1_data1 = 201392129",
-            "local ADO_plug1_data2 = 201392130",
-            "local ADI_plug1_data1 = 167837697",
-            "local ADI_plug1_data2 = 167837698",
+            "local ADO_plug1_data1 = 167837697",
+            "local ADO_plug1_data2 = 167837698",
+            "local ADI_plug1_data1 = 201392129",
+            "local ADI_plug1_data2 = 201392130",
 
             "local AEO_plug2_event1 = 134348801",
             "local AEO_plug2_event2 = 134348802",
             "local AEI_plug2_event1 = 805437441",
             "local AEI_plug2_event2 = 805437442",
-            "local ADO_plug2_data1 = 201457665",
-            "local ADO_plug2_data2 = 201457666",
-            "local ADI_plug2_data1 = 167903233",
-            "local ADI_plug2_data2 = 167903234",
+            "local ADO_plug2_data1 = 167903233",
+            "local ADO_plug2_data2 = 167903234",
+            "local ADI_plug2_data1 = 201457665",
+            "local ADI_plug2_data2 = 201457666",
         )
 
         checkUniqueValues(lst = expected)

@@ -158,6 +158,30 @@ fun createAdapterTypeDeclarationMock(
         every { this@mockk.outputParameters } returns outputParameters
     }
 
+fun createSocketDeclarationMock(
+    typeReference: Reference<AdapterTypeDeclaration>,
+    name: String = "",
+    identifier: Identifier = StringIdentifier(name),
+    container: FBInterfaceDeclarationWithAdapters? = null,
+) = mockk<SocketDeclaration> {
+    every { this@mockk.typeReference } returns typeReference
+    every { this@mockk.name } returns name
+    every { this@mockk.identifier } returns identifier
+    every { this@mockk.container } returns container
+}
+
+fun createPlugDeclarationMock(
+    typeReference: Reference<AdapterTypeDeclaration>,
+    name: String = "",
+    identifier: Identifier = StringIdentifier(name),
+    container: FBInterfaceDeclarationWithAdapters? = null,
+) = mockk<PlugDeclaration> {
+    every { this@mockk.typeReference } returns typeReference
+    every { this@mockk.name } returns name
+    every { this@mockk.identifier } returns identifier
+    every { this@mockk.container } returns container
+}
+
 fun createAlgorithmMock(
     name: String = "",
     statements: MutableList<Statement> = mutableListOf(),

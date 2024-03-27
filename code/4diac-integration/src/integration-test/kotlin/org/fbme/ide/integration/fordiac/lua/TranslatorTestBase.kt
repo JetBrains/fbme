@@ -5,7 +5,7 @@ import jetbrains.mps.smodel.tempmodel.TemporaryModels
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.math.min
@@ -15,7 +15,8 @@ open class TranslatorTestBase : PlatformTestBase() {
     fun testTemplateBase(
         inputBlockPath: String,
         expectedOutputPath: String,
-        fbType: FBType
+        fbType: FBType,
+        additionalAdapterInputBlockPath: String = ""
     ) {
         val converter = rootConverterByPath(inputBlockPath)
 
@@ -36,6 +37,14 @@ open class TranslatorTestBase : PlatformTestBase() {
                 }
 
                 FBType.COMPOSITE -> throw IllegalArgumentException("test template for composite block not implemented yet")
+
+                FBType.BASIC_WITH_ADAPTER -> {
+                    val block = converter.convertFBType()
+                    model.addRootNode((block as PlatformElement).node)
+                    val adapterBlock = rootConverterByPath(additionalAdapterInputBlockPath).convertAdapterType()
+                    model.addRootNode((adapterBlock as PlatformElement).node)
+                    BasicFBTypeTranslator.translate(block as BasicFBTypeDeclaration)
+                }
             }.toComparableList()
 
             val expected = readFile("src/integration-test/resources$expectedOutputPath").toComparableList()
@@ -45,7 +54,7 @@ open class TranslatorTestBase : PlatformTestBase() {
                 if (ind == maxInd) {
                     return@forEachIndexed
                 }
-                Assert.assertEquals(expected[ind], el)
+                assertEquals(expected[ind], el)
             }
 
             require(actual.size == expected.size) {
@@ -64,5 +73,5 @@ open class TranslatorTestBase : PlatformTestBase() {
 }
 
 enum class FBType {
-    BASIC, ADAPTER, COMPOSITE
+    BASIC, ADAPTER, COMPOSITE, BASIC_WITH_ADAPTER
 }
