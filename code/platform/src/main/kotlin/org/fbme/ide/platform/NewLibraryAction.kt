@@ -40,6 +40,7 @@ class NewLibraryAction : AnAction() {
 
         dialog.withFactory {
             val result = NewModuleUtil.createSolution(cfg.moduleName, cfg.moduleLocation.absolutePath, mpsProject)
+
             val root = result.modelRoots.iterator().next() as DefaultModelRoot
             model = try {
                 val fullModelName = "NewLibrary@content"
@@ -47,6 +48,7 @@ class NewLibraryAction : AnAction() {
             } catch (e: ModelCannotBeCreatedException) {
                 throw RuntimeException("Model can not be created", e)
             }
+
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val initialElement = LibraryTemplate().initModel(mpsProject.project, repository, model!!)
             mpsProject.repository.modelAccess.runReadInEDT {
