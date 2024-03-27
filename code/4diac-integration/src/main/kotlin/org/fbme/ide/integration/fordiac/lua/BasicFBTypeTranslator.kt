@@ -184,7 +184,6 @@ object BasicFBTypeTranslator {
         sb.appendLine()
     }
 
-
     private fun addVarsPrefix(prefix: String, varNames: Iterable<String>) {
         varNames.forEach {
             sb.appendLine("  local VAR_${it} = fb[$prefix${it}]")
@@ -253,22 +252,7 @@ object BasicFBTypeTranslator {
 
                 sb.appendLine("local function alg_${alg.name}(fb)")
 
-                val usedVarNames = stBody.statements
-                    .filterIsInstance<AssignmentStatement>()
-                    .mapNotNull {
-                        when (val v = it.variable) {
-                            is VariableReference -> {
-                                v.reference.getTarget()?.name
-                            }
-
-                            is ArrayVariable -> {
-                                (v.subscribedVariable as? VariableReference)
-                                    ?.reference?.getTarget()?.name
-                            }
-
-                            null -> null
-                        }
-                    }
+                val usedVarNames = stBody.calculateUsedVariableNames()
 
                 // intersect fb vars with alg vars and work with this set
                 val usedInputVarNames = usedVarNames.filter { memorizedFBData.inputDataNames.contains(it) }
@@ -724,4 +708,114 @@ private fun UnaryOperation.luaAlias(): String {
         UnaryOperation.NOT -> "not"
         UnaryOperation.NEG -> "-"
     }
+}
+
+private typealias VariableNames = MutableList<String>
+
+private fun VariableNames.addVars(variable: Variable) {
+    when (variable) {
+        is VariableReference -> {
+            variable.reference.getTarget()?.name?.let { add(it) }
+        }
+
+        is ArrayVariable -> {
+            (variable.subscribedVariable as? VariableReference)?.reference?.getTarget()?.name?.let { add(it) }
+            variable.subscripts.filterNotNull().forEach { addVars(it) }
+        }
+    }
+}
+
+private fun VariableNames.addVars(expr: Expression) {
+    when (expr) {
+        is BinaryExpression -> {
+            expr.leftExpression?.let { addVars(it) }
+            expr.rightExpression?.let { addVars(it) }
+        }
+
+        is UnaryExpression -> expr.getInnerExpression()?.let { addVars(it) }
+        is ParenthesisExpression -> addVars(expr.innerExpression)
+        is Literal<*> -> {} // do nothing
+        is Variable -> addVars(expr)
+        is FunctionCall -> expr.actualParameters.filterNotNull().forEach { addVars(it) }
+    }
+}
+
+private fun VariableNames.addVars(statement: Statement) {
+    when (statement) {
+        is AssignmentStatement -> addVars(statement)
+        is ExitStatement -> addVars(statement)
+        is ForStatement -> addVars(statement)
+        is CaseStatement -> addVars(statement)
+        is RepeatStatement -> addVars(statement)
+        is IfStatement -> addVars(statement)
+        is EmptyStatement -> addVars(statement)
+        is ReturnStatement -> addVars(statement)
+        is WhileStatement -> addVars(statement)
+    }
+}
+
+private fun VariableNames.addVars(statement: AssignmentStatement) {
+    statement.variable?.let { addVars(it) }
+    statement.expression?.let { addVars(it) }
+}
+
+private fun VariableNames.addVars(statement: ExitStatement) {
+    // no variables to add
+}
+
+private fun VariableNames.addVars(statement: ForStatement) {
+    with(statement.controlVariable) {
+        beginExpression?.let { addVars(it) }
+        endExpression?.let { addVars(it) }
+        stepExpression?.let { addVars(it) }
+    }
+
+    statement.statements.forEach { addVars(it) }
+}
+
+private fun VariableNames.addVars(statement: CaseStatement) {
+    statement.expression?.let { addVars(it) }
+
+    statement.cases.forEach { caseElem ->
+        caseElem.statements.forEach { addVars(it) }
+    }
+
+    statement.elseCase?.let { statements ->
+        statements.forEach { addVars(it) }
+    }
+}
+
+private fun VariableNames.addVars(statement: RepeatStatement) {
+    statement.condition?.let { addVars(it) }
+    statement.body.forEach { addVars(it) }
+}
+
+private fun VariableNames.addVars(statement: IfStatement) {
+    with(statement) {
+        condition?.let { addVars(it) }
+
+        thenClause.forEach { addVars(it) }
+
+        elseIfClauses.forEach { clause ->
+            clause.condition?.let { addVars(it) }
+            clause.body.forEach { addVars(it) }
+        }
+
+        elseClause?.let { statements ->
+            statements.forEach { addVars(it) }
+        }
+    }
+}
+
+private fun VariableNames.addVars(statement: EmptyStatement) {
+    // no variables to add
+}
+
+private fun VariableNames.addVars(statement: ReturnStatement) {
+    // no variables to add
+}
+
+private fun VariableNames.addVars(statement: WhileStatement) {
+    statement.condition?.let { addVars(it) }
+    statement.body.forEach { addVars(it) }
 }
