@@ -1,147 +1,145 @@
 package org.fbme.spinDebugger.fb2spin
 
+import arrow.core.partially1
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.st.types.ArrayType
+import org.fbme.lib.st.types.ArrayTypeSizes
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.lib.st.types.GenericType
-import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractBasicFBConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
+import org.fbme.spinDebugger.utils.*
 
-const val TAB = "    "
-const val NEW_LINE = "\n"
-fun <T> List<T>.appendTo(
-    buf: StringBuilder,
-    prefix: String,
-    separator: String,
-    suffix: String = "",
-    toString: (T) -> String = { it.toString() }) {
-
-    buf.append(prefix)
-    for (i in indices) {
-        buf.append(toString(get(i)))
-        if (i != size - 1)
-            buf.append(separator)
-    }
-    buf.append(suffix)
-}
-
-fun StringBuilder.append(prefix: String, suffix: String, body: StringBuilder.() -> Unit) {
-    append(prefix)
-    body()
-    append(suffix)
-}
-
-
-
-
-class SPINFunctionBlockConverter(private val data: VerifiersData) : AbstractBasicFBConverter {
-
-    override fun generateFooter(fb: FBTypeDescriptor, buf: StringBuilder) {
-
+class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDescriptor) : AbstractSPINFBConverter(d, b, f) {
+    fun generateLabels() {
+        generateWaitEvents()
+        generateS0OSM()
     }
 
-    override fun generateOutputEventsSet(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
+
+    fun generateS1OSM() {
+        appendXTABNewLineConst(1, "s1_osm:")
     }
 
-    override fun generateInputEventsReset(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateAlphaBeta(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateOutputVariablesUpdate(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateInputVariablesUpdate(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateCountersDeclaration(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateNI(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateNA(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateOSM(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateECCTransitions(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateLocalVariableDefinition(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
-    }
-
-    fun generateLabels(fb: FBTypeDescriptor, buf: StringBuilder) {
-        generateWaitEvents(fb, buf)
-    }
-
-    fun generateS0OSM(fb: FBTypeDescriptor, buf: StringBuilder) {
-        buf.append("  s0_osm:\n")
-        val append1Indent = { s: String -> buf.append(TAB, "\n") { append(s) } }
-        //TODO timestamps?
-
+    fun generateS0OSM() {
+        appendXTABNewLineConst(1, "s0_osm:")
+        appendXTABNewLineBody(1) {
+            (fb.declaration as BasicFBTypeDeclaration).ecc.transitions.appendTo(this, ", ", "bit ", ";") {
+                "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name}"
+            }
+        }
+        appendXTABNewLineBody(1) {
+            fb.eventInputPorts.appendTo(this, ", ", "bit ", ";") { "selectEI_${it.name}" }
+        }
+        val listPastEIs = mutableListOf<FBPortDescriptor>()
+        fb.eventInputPorts.forEach {
+            appendXTABNewLineBody(1) {
+                listPastEIs.appendTo(this, " && ", "selectEI_${it.name} = ", " || nempty(EI_${it.name});") { ei -> "!selectEI_${ei.name}" }
+            }
+            listPastEIs += it
+        }
+        // TODO In example exists select_REQ, maybe for performance or correctness
+        (fb.declaration as BasicFBTypeDeclaration).ecc.transitions.forEach {
+            appendXTABNewLineConst(1, "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name} = ${it.condition.getGuardCondition()}")
+        }
+        appendXTABNewLineConst(1, "if")
+        fb.eventInputPorts.forEach {
+            appendXTABNewLineConst(1, ":: d_step { selectEI_${it.name} -> ")
+            appendXTABNewLineConst(2, "EI_${it.name}?true;")
+            appendXTABNewLineConst(2, "selectEI = ${fb.typeName}_s_${it.name};")
+            appendXTABNewLineConst(1, "}")
+        }
+        appendXTABNewLineConst(1, ":: (!ExistsInputEvent) -> goto done;")
+        appendXTABNewLineConst(1, "fi")
+        appendXTABNewLineConst(1, "do")
+        fb.eventInputPorts.forEach {
+            appendXTABNewLineConst(1, ":: nempty(EI_${it.name}) -> EI_${it.name}?true;")
+        }
+        appendXTABNewLineConst(1, ":: else -> break;")
+        appendXTABNewLineConst(1, "od")
 
     }
 
-    fun generateWaitEvents(fb: FBTypeDescriptor, buf: StringBuilder) {
-        buf.append("  wait_events:\n")
-        val append1Indent = { s: String -> buf.append(TAB, "\n") { append(s) } }
+    fun generateWaitEvents() {
         listOf(
+            "wait_events:",
             "end:",
             "alpha?true;"
-        ).forEach { append1Indent(it) }
-        fb.eventInputPorts.appendTo(buf, "ExistsInputEvent =", " || ", ";\n") { "nempty(EI_${it.name})" }
-
-        // TODO Do we need timestamps?
+        ).forEach(::appendXTABNewLineConst.partially1(1))
+        appendXTABNewLineBody(1) {
+            fb.eventInputPorts.appendTo(this, " || ", "ExistsInputEvent =", ";")
+                { "nempty(EI_${it.name})" }
+        }
+        appendXTABNewLineConst(1, "if")
+        fb.eventInputPorts.forEach { ei ->
+            appendXTABNewLineConst(1, ":: d_step { nempty(EI_${ei.name} -> ")
+            (ei.declaration as EventDeclaration).associations.forEach {ea ->
+                val parameter = ea.parameterReference.getTarget()
+                when(val type = parameter?.type) {
+                    is ElementaryType -> {
+                        appendXTABNewLineConst(2, "DI_${parameter.name}?${parameter.name};")
+                    }
+                    is ArrayType -> {
+                        appendXTABNewLineBody(2) {
+                            append("DI_${parameter.name}?")
+                            when (val dims = type.dimensions) {
+                                is ArrayTypeSizes -> {
+                                    if (dims.sizes.size == 1) {
+                                        repeat(dims.sizes[0].value - 1) {
+                                            append("${parameter.name}[${it}],")
+                                        }
+                                        append("${parameter.name}[${dims.sizes[0].value}];")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            appendXTABNewLineConst(1, "}")
+        }
+        appendXTABNewLineConst(1, "fi")
     }
 
-    fun generateTypes(fb: FBTypeDescriptor, buf: StringBuilder) {
+    fun generateTypes() {
         buf.append("mtype:${fb.typeName}_Selected = {")
-        val listTimeStates = listOf("INIT", "REQ", "POS_TIMEOUT_EXCEED", "NONE")
-        for (st in listTimeStates)
-            buf.append("${fb.typeName}_s_$st${if (st != listTimeStates.last()) ", " else "}\n"}")
+        fb.eventInputPorts.forEach {
+            buf.append("${fb.typeName}_s_${it.name},")
+        }
+        buf.append("${fb.typeName}_s_NONE};\n")
         buf.append("mtype:${fb.typeName}_ECC={")
         val statesECC = (fb.declaration as BasicFBTypeDeclaration).ecc.states
         for (st in statesECC)
-            buf.append("${st.name}_ecc${if (st != statesECC.last()) ", " else "}"}")
+            buf.append("${st.name}_ecc${if (st != statesECC.last()) ", " else "};"}")
     }
 
-    override fun generateLocalVariableDeclaration(fb: FBTypeDescriptor, buf: StringBuilder) {
-        val appendWithIndent = { s: String -> buf.append(TAB, "\n") { append(s) } }
+    fun generateLocalVariableDeclaration() {
         val declareDataPort: (FBPortDescriptor) -> Unit = { d: FBPortDescriptor ->
             val decl = (d.declaration as ParameterDeclaration)
             val type = decl.type
             val initV = decl.initialValue
             when (type) {
                 is ElementaryType -> {
-                    // TODO arrays don't declare right
-                    appendWithIndent(
+                    appendXTABNewLineConst(1 ,
                         "${data.typesMap[type]} ${d.name} = ${
                             if (initV != null) initV.value else data.typesInitValMap[type]
                         };"
                     )
                 }
-                is GenericType -> {
-                    /*
-                    buf.append("${data.typesMap[type.dec]} ${d.name} = ${
-                                if (initV != null) initV.value else data.typesInitValMap[type]
-                        };\n")
-                    */
+                is ArrayType -> {
+                    appendXTABNewLineBody(1) {
+                        append("${data.typesMap[type.baseType]} ${d.name}[")
+                        when (val dims = type.dimensions) {
+                            is ArrayTypeSizes -> {
+                                if (dims.sizes.size == 1) {
+                                    append("${dims.sizes[0]}];")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -154,11 +152,11 @@ class SPINFunctionBlockConverter(private val data: VerifiersData) : AbstractBasi
             "mtype:${fb.typeName}_ECC Q = START_ecc;",
             "mtype:${fb.typeName}_Selected selectEI = ${fb.typeName}_s_NONE;",
             "Event e_REQ;"
-        ).forEach { appendWithIndent(it) }
+        ).forEach(::appendXTABNewLineConst.partially1(1))
 
     }
 
-    override fun generateSignature(fb: FBTypeDescriptor, buf: StringBuilder) {
+    fun generateSignature() {
         buf.append("proctype ${fb.typeName}(chan")
         for (ie in fb.eventInputPorts) {
             //if( !data.ndtCheck(ie.declaration as EventDeclaration)) {
@@ -170,9 +168,5 @@ class SPINFunctionBlockConverter(private val data: VerifiersData) : AbstractBasi
         for (id in fb.dataInputPorts) buf.append("VI_${id.name},") // Value Input
         for (od in fb.dataOutputPorts) buf.append("VO_${od.name}_,") // Value Output
         buf.append("alpha, beta)\n")
-    }
-
-    override fun generateNonDeterministicVariables(fb: FBTypeDescriptor, buf: StringBuilder) {
-        TODO("Not yet implemented")
     }
 }
