@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting;
+package org.fbme.ide.platform;
 
 import jetbrains.mps.extapi.module.ModuleFacetBase;
 import org.jetbrains.annotations.NotNull;

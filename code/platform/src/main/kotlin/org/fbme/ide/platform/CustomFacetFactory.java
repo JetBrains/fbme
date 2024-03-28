@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting;
+package org.fbme.ide.platform;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.module.FacetsFacade;
@@ -21,4 +21,6 @@ public class CustomFacetFactory implements FacetsFacade.FacetFactory {
     public String getPresentation() {
         return "Library";
     }
+
+    public static CustomFacetFactory CUSTOM_FACET_FACTORY = new CustomFacetFactory();
 }

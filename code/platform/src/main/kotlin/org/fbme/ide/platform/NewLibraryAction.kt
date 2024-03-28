@@ -2,6 +2,7 @@ package org.fbme.ide.platform
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import jetbrains.mps.extapi.module.FacetsRegistry
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.newSolutionDialog.NewModuleUtil
 import jetbrains.mps.ide.projectPane.ProjectPane
@@ -51,20 +52,22 @@ class NewLibraryAction : AnAction() {
 
             val repository = PlatformRepositoryProvider.getInstance(mpsProject)
             val initialElement = LibraryTemplate().initModel(mpsProject.project, repository, model!!)
+
             mpsProject.repository.modelAccess.runReadInEDT {
                 val navigationSupport = NavigationSupport.getInstance()
                 navigationSupport.openNode(mpsProject, initialElement.node, true, false)
                 navigationSupport.selectInTree(mpsProject, initialElement.node, false)
             }
 
-//            NOTE: companion object with JVMStatic field turns off the new lib button for some reason
-//            if (FacetsFacade.getInstance().getFacetFactory("library") == null) {
-//                FacetsFacade.getInstance().addFactory("library", customFacetFactory)
-//            }
+            val facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
 
-//            val facetFactory = FacetsRegistry.getInstance().getFacetFactory("library")
-//            val libFacet =  facetFactory!!.create(result)
-//            result.moduleDescriptor.addFacetDescriptor(libFacet)
+            val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)
+            if (facetsRegistry.getFacetFactory("library") == null) {
+                facetsRegistry.addFactory("library", facetFactory)
+            }
+
+            val libFacet = facetFactory.create(result)
+            result.moduleDescriptor.addFacetDescriptor(libFacet)
 
             mpsProject.save()
             result
