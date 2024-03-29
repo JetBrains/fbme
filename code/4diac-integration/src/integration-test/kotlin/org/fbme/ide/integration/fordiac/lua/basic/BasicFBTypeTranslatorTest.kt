@@ -1,8 +1,9 @@
 package org.fbme.ide.integration.fordiac.lua.basic
 
+import org.fbme.ide.integration.fordiac.lua.FBType.ADAPTER
 import org.fbme.ide.integration.fordiac.lua.FBType.BASIC
-import org.fbme.ide.integration.fordiac.lua.FBType.BASIC_WITH_ADAPTER
 import org.fbme.ide.integration.fordiac.lua.TranslatorTestBase
+import org.fbme.ide.integration.fordiac.lua.TypeInfo
 import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -88,15 +89,13 @@ class BasicFBTypeTranslatorTest : TranslatorTestBase() {
 
     @Test
     fun `basic block with adapter`() = testTemplateBase(
-        inputBlockPath = "/basic/adapter/BasicWithAdapterMPS.fbt",
-        expectedOutputPath = "/basic/adapter/BasicWithAdapter_out.lua",
-        fbType = BASIC_WITH_ADAPTER,
-        additionalAdapterInputBlockPath = "/basic/adapter/AdaptMPS.adp"
+        mainFB = TypeInfo(filePath = "/lua/basic/adapter/BasicWithAdapterMPS.fbt", type = BASIC),
+        expectedOutputPath = "/lua/basic/adapter/BasicWithAdapter_out.lua",
+        additionalFBs = listOf(TypeInfo(filePath = "/lua/basic/adapter/AdaptMPS.adp", type = ADAPTER)),
     )
 
     private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = testTemplateBase(
-        inputBlockPath = inputBlockPath,
+        mainFB = TypeInfo(filePath = inputBlockPath, type = BASIC),
         expectedOutputPath = expectedOutputPath,
-        fbType = BASIC
     )
 }
