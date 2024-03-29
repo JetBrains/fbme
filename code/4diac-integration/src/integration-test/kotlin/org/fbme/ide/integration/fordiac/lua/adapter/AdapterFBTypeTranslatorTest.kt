@@ -11,16 +11,16 @@ class AdapterFBTypeTranslatorTest : TranslatorTestBase() {
     @Test
     fun simple() {
         testTemplate(
-            inputBlockPath = "/adapter/simple/SimpleAdapterMPS.adp",
-            expectedOutputPath = "/adapter/simple/SimpleAdapter_out.lua"
+            inputBlockPath = "/lua/adapter/simple/SimpleAdapterMPS.adp",
+            expectedOutputPath = "/lua/adapter/simple/SimpleAdapter_out.lua"
         )
     }
 
     @Test
     fun `with associations`() {
         testTemplate(
-            inputBlockPath = "/adapter/with_associations/AssocAdapterMPS.adp",
-            expectedOutputPath = "/adapter/with_associations/AssocAdapter_out.lua"
+            inputBlockPath = "/lua/adapter/with_associations/AssocAdapterMPS.adp",
+            expectedOutputPath = "/lua/adapter/with_associations/AssocAdapter_out.lua"
         )
     }
 
