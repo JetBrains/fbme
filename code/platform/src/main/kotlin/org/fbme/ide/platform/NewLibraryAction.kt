@@ -59,14 +59,20 @@ class NewLibraryAction : AnAction() {
                 navigationSupport.selectInTree(mpsProject, initialElement.node, false)
             }
 
-            val facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
+            var facetFactory: CustomFacetFactory? = null
+            try {
+                facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
+            } catch (e: Throwable) {
+                println(e.stackTrace)
+                println(e.message)
+            }
 
             val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)
             if (facetsRegistry.getFacetFactory("library") == null) {
-                facetsRegistry.addFactory("library", facetFactory)
+                facetsRegistry.addFactory("library", facetFactory!!)
             }
 
-            val libFacet = facetFactory.create(result)
+            val libFacet = facetFactory!!.create(result)
             result.moduleDescriptor.addFacetDescriptor(libFacet)
 
             mpsProject.save()
