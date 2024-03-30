@@ -8,8 +8,6 @@ import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.statements.*
 
 object BasicFBTypeTranslator {
-    private const val FB_DI_FLAG = 33554432
-    private const val FB_DO_FLAG = 67108864
     private const val FB_AEO_FLAG = 134217728
     private const val FB_ADI_FLAG = 167772160
     private const val FB_ADO_FLAG = 201326592
@@ -88,7 +86,10 @@ object BasicFBTypeTranslator {
         addConstants(fbTypeDeclaration)
         addAlgorithms(fbTypeDeclaration)
         addECC(fbTypeDeclaration)
-        addInterfaceSpec(fbTypeDeclaration)
+        sb.addInterfaceSpec(
+            type = fbTypeDeclaration,
+            dataNames = DataNames(input = memorizedFBData.inputDataNames, output = memorizedFBData.outputDataNames)
+        )
         addInternalVarsInformation(fbTypeDeclaration)
 
         val res = sb.toString()
@@ -104,24 +105,8 @@ object BasicFBTypeTranslator {
             sb.appendLine("local ECC_${state.name} = ${state.index()}")
         }
 
-        val addEventVars = { events: List<FBPortDescriptor>, varPrefix: String ->
-            events.fold(sb) { _, event ->
-                val varName = "$varPrefix${event.name}"
-                sb.appendLine("local $varName = ${event.position}")
-            }
-        }
-
-        addEventVars(fbTypeDeclaration.typeDescriptor.eventInputPorts, "EI_")
-        addEventVars(fbTypeDeclaration.typeDescriptor.eventOutputPorts, "EO_")
-
-        val addVars = { vars: List<FBPortDescriptor>, prefix: String, flag: Int ->
-            vars.forEach {
-                sb.appendLine("local $prefix${it.name} = ${flag or it.position}")
-            }
-        }
-
-        addVars(fbTypeDeclaration.typeDescriptor.dataInputPorts, "DI_", FB_DI_FLAG)
-        addVars(fbTypeDeclaration.typeDescriptor.dataOutputPorts, "DO_", FB_DO_FLAG)
+        sb.addEventConstants(fbTypeDeclaration.typeDescriptor)
+        sb.addVariableConstants(fbTypeDeclaration.typeDescriptor)
 
         addAdapterConstants(fbTypeDeclaration)
 
@@ -580,87 +565,6 @@ object BasicFBTypeTranslator {
             .appendLine("    modified = transition(fb, -1)")
             .appendLine("  end")
             .appendLine("end")
-            .appendLine()
-    }
-
-    private fun addInterfaceSpec(fbTypeDeclaration: BasicFBTypeDeclaration) {
-        sb.appendLine("local interfaceSpec = {")
-            .appendLine("  numEIs = ${fbTypeDeclaration.inputEvents.size},")
-            .append("  EINames = ")
-        val inputEventNames = fbTypeDeclaration.inputEvents.map { it.name }
-        sb.append(tokensToJsonString(inputEventNames) { it.escape() })
-
-        val (eventInputWith, eventInputWithIndices) = calcEventPortWith(
-            fbTypeDeclaration.inputEvents,
-            memorizedFBData.inputDataNames
-        )
-
-        sb.appendLine(",")
-            .append("  EIWith = ")
-            .append(tokensToJsonString(eventInputWith))
-            .appendLine(",")
-            .append("  EIWithIndexes = ")
-            .append(tokensToJsonString(eventInputWithIndices))
-            .appendLine(",")
-            .appendLine("  numEOs = ${fbTypeDeclaration.outputEvents.size},")
-            .append("  EONames = ")
-
-        val outputEventNames = fbTypeDeclaration.outputEvents.map { it.name }
-        sb.append(tokensToJsonString(outputEventNames) { it.escape() })
-
-        val (eventOutputWith, eventOutputWithIndices) = calcEventPortWith(
-            fbTypeDeclaration.outputEvents,
-            memorizedFBData.outputDataNames
-        )
-
-        sb.appendLine(",")
-            .append("  EOWith = ")
-            .append(tokensToJsonString(eventOutputWith))
-            .appendLine(",")
-            .append("  EOWithIndexes = ")
-            .append(tokensToJsonString(eventOutputWithIndices))
-            .appendLine(",")
-            .appendLine("  numDIs = ${fbTypeDeclaration.typeDescriptor.dataInputPorts.size},")
-            .append("  DINames = ")
-            .append(tokensToJsonString(memorizedFBData.inputDataNames) { it.escape() })
-            .appendLine(",")
-            .append("  DIDataTypeNames = ")
-            .append(tokensToJsonString(fbTypeDeclaration.inputParameters.map {
-                it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-            }) { it.escape() })
-            .appendLine(",")
-            .appendLine("  numDOs = ${fbTypeDeclaration.typeDescriptor.dataOutputPorts.size},")
-            .append("  DONames = ")
-            .append(tokensToJsonString(memorizedFBData.outputDataNames) { it.escape() })
-            .appendLine(",")
-            .append("  DODataTypeNames = ")
-            .append(tokensToJsonString(fbTypeDeclaration.outputParameters.map {
-                it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-            }) { it.escape() })
-            .appendLine(",")
-            .appendLine("  numAdapters = ${fbTypeDeclaration.sockets.size + fbTypeDeclaration.plugs.size},")
-            .appendLine("  adapterInstanceDefinition = {")
-
-        fbTypeDeclaration.plugs.forEachIndexed { ind, plug ->
-            sb.append("    {adapterNameID = \"${plug.name}\", ")
-                .append("adapterTypeNameID = \"${plug.type.typeName}\", isPlug = true}")
-            if (ind != fbTypeDeclaration.plugs.lastIndex || fbTypeDeclaration.sockets.isNotEmpty()) {
-                sb.append(",")
-            }
-            sb.appendLine()
-        }
-
-        fbTypeDeclaration.sockets.forEachIndexed { ind, socket ->
-            sb.append("    {adapterNameID = \"${socket.name}\", ")
-                .append("adapterTypeNameID = \"${socket.type.typeName}\", isPlug = false}")
-            if (ind != fbTypeDeclaration.plugs.lastIndex) {
-                sb.append(",")
-            }
-            sb.appendLine()
-        }
-
-        sb.appendLine("  }")
-            .appendLine("}")
             .appendLine()
     }
 
