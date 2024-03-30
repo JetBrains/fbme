@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BasicBlock">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EVENT1">
+        <With Var="input_var" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EVENT3" />
+      <Event Name="EVENT4">
+        <With Var="output_var" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="input_var" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="output_var" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

@@ -6,6 +6,7 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 import org.junit.Assert.assertEquals
@@ -28,7 +29,7 @@ open class TranslatorTestBase : PlatformTestBase() {
             val actual = when (mainFB.type) {
                 FBType.BASIC -> BasicFBTypeTranslator.translate(block as BasicFBTypeDeclaration)
                 FBType.ADAPTER -> AdapterFBTypeTranslator.translate(block as AdapterTypeDeclaration)
-                FBType.COMPOSITE -> throw IllegalArgumentException("test template for composite block not implemented yet")
+                FBType.COMPOSITE -> CompositeFBTypeTranslator.translate(block as CompositeFBTypeDeclaration)
             }.toComparableList()
 
             val expected = readFile("src/integration-test/resources$expectedOutputPath").toComparableList()
