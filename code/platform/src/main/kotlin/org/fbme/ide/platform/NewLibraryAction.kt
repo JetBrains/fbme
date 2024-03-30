@@ -61,7 +61,7 @@ class NewLibraryAction : AnAction() {
                 navigationSupport.selectInTree(mpsProject, initialElement.node, false)
             }
 
-            var facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
+            val facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
 
 //            TODO: add factory at the FBME start
             val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)
@@ -72,9 +72,9 @@ class NewLibraryAction : AnAction() {
             val libFacet = facetFactory.create(result)
             result.moduleDescriptor.addFacetDescriptor(libFacet)
 //            result.moduleDescriptor.moduleFacetDescriptors.add(ModuleFacetDescriptor("library", MementoImpl()))
+            result.setModuleDescriptor(result.moduleDescriptor, true)
             result.save()
 
-            mpsProject.save()
             result
         }
 
