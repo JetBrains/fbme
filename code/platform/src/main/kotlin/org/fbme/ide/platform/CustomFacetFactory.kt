@@ -5,9 +5,6 @@ import org.jetbrains.mps.openapi.module.SModule
 import org.jetbrains.mps.openapi.module.SModuleFacet
 
 class CustomFacetFactory : FacetFactory {
-    override fun isApplicable(module: SModule): Boolean {
-        return super.isApplicable(module)
-    }
 
     override fun create(sModule: SModule): SModuleFacet {
         return CustomFacet(sModule)
