@@ -1,5 +1,6 @@
-package org.fbme.ide.integration.fordiac.deploy
+package org.fbme.ide.integration.fordiac.deploy.communication
 
+import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
 import java.io.*
 import java.net.InetSocketAddress
 import java.net.Socket

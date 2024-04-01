@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.deploy
+package org.fbme.ide.integration.fordiac.deploy.communication
 
 import org.junit.After
 import org.junit.Test

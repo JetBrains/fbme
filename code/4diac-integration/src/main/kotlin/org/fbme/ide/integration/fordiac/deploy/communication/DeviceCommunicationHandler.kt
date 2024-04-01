@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.deploy
+package org.fbme.ide.integration.fordiac.deploy.communication
 
 /**
  * An interface representing a communication handler for a device.
