@@ -16,12 +16,14 @@
         <DataSourceFactoryRuleProvider
                 implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
         <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
+        <facetTabFactory facetType="library" className="org.fbme.ide.platform.CustomFacetTabFactory"/>
     </extensions>
     <extensions defaultExtensionNs="jetbrains.mps">
         <NodeEditorFactory implementation="org.fbme.ide.platform.editor.PlatformEditorFactory"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
+
         <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
         <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
         <projectService serviceImplementation="org.fbme.ide.platform.debugger.WatcherFacade"/>
@@ -30,6 +32,7 @@
 
 
     <extensionPoints>
+
         <extensionPoint name="iec61499projectTemplate"
                         interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
         <extensionPoint name="ProjectionController"
