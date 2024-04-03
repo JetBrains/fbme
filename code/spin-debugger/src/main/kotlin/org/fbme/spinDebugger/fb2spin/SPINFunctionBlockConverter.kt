@@ -13,15 +13,40 @@ import org.fbme.lib.st.types.GenericType
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 import org.fbme.spinDebugger.utils.*
 
-class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDescriptor) : AbstractSPINFBConverter(d, b, f) {
+class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDescriptor) :
+    AbstractSPINFBConverter(d, b, f) {
     fun generateLabels() {
         generateWaitEvents()
         generateS0OSM()
+        generateS1OSM()
     }
-
 
     fun generateS1OSM() {
         appendXTABNewLineConst(1, "s1_osm:")
+        val transitions = (fb.declaration as BasicFBTypeDeclaration).ecc.transitions
+        val stateToFromTransitions = transitions.groupBy { it.sourceReference.getTarget() }
+        appendXTABNewLineBody(1) {
+            append("ExistsEnabledECTran = ")
+            stateToFromTransitions.entries.forEach { (state, transitions) ->
+                transitions.appendTo(this, " || ", "(", ")") { tr ->
+                    "(Q == ${fb.typeName}_${state?.name}_ecc && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name})"
+                    // TODO here miss conditions?
+                }
+            }
+            append(";")
+        }
+        appendXTABNewLineConst(1, "atomic {")
+        appendXTABNewLineConst(2, "if")
+        stateToFromTransitions.entries.forEach { (state, transitions) ->
+            transitions.forEach { tr ->
+                appendXTABNewLineBody(2) {
+                    append(":: (Q == ${fb.typeName}_${state?.name}_ecc && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name}) -> ")
+                    // add && selectEI_*
+                }
+            }
+        }
+        appendXTABNewLineConst(2, "fi")
+        appendXTABNewLineConst(1, "}")
     }
 
     fun generateS0OSM() {
@@ -31,19 +56,33 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDes
                 "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name}"
             }
         }
-        appendXTABNewLineBody(1) {
-            fb.eventInputPorts.appendTo(this, ", ", "bit ", ";") { "selectEI_${it.name}" }
-        }
+        // ISSC from Modelling pp.316
         val listPastEIs = mutableListOf<FBPortDescriptor>()
         fb.eventInputPorts.forEach {
             appendXTABNewLineBody(1) {
-                listPastEIs.appendTo(this, " && ", "selectEI_${it.name} = ", " || nempty(EI_${it.name});") { ei -> "!selectEI_${ei.name}" }
+                listPastEIs.appendTo(
+                    this,
+                    " && ",
+                    "bit selectEI_${it.name} = nempty(EI_${it.name}) && ",
+                    " && "
+                ) { ei -> "!selectEI_${ei.name}" }
+                (fb as BasicFBTypeDeclaration).ecc.transitions.filter { tr ->
+                    tr.condition.eventReference.getTarget()?.declarations?.contains(
+                        it.declaration
+                    ) ?: false
+                }.mapNotNull { tr ->
+                    tr.sourceReference.getTarget()
+                }.appendTo(this, " || ", "(", ");") { st -> "Q == ${fb.typeName}_${st.name}_ecc" }
             }
             listPastEIs += it
         }
-        // TODO In example exists select_REQ, maybe for performance or correctness
+        // TODO In example doesn't exist selectEI_REQ in LiftSensor, maybe for performance
         (fb.declaration as BasicFBTypeDeclaration).ecc.transitions.forEach {
-            appendXTABNewLineConst(1, "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name} = ${it.condition.getGuardCondition()}")
+            appendXTABNewLineConst(
+                1,
+                "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name} = ${it.condition.getGuardCondition()}"
+            )
+            // TODO fix conditions, they maybe can be wrong (in ST syntax, maybe I need convert that to Promela syntax)
         }
         appendXTABNewLineConst(1, "if")
         fb.eventInputPorts.forEach {
@@ -71,14 +110,14 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDes
         ).forEach(::appendXTABNewLineConst.partially1(1))
         appendXTABNewLineBody(1) {
             fb.eventInputPorts.appendTo(this, " || ", "ExistsInputEvent =", ";")
-                { "nempty(EI_${it.name})" }
+            { "nempty(EI_${it.name})" }
         }
         appendXTABNewLineConst(1, "if")
         fb.eventInputPorts.forEach { ei ->
             appendXTABNewLineConst(1, ":: d_step { nempty(EI_${ei.name} -> ")
-            (ei.declaration as EventDeclaration).associations.forEach {ea ->
+            (ei.declaration as EventDeclaration).associations.forEach { ea ->
                 val parameter = ea.parameterReference.getTarget()
-                when(val type = parameter?.type) {
+                when (val type = parameter?.type) {
                     is ElementaryType -> {
                         appendXTABNewLineConst(2, "DI_${parameter.name}?${parameter.name};")
                     }
@@ -113,7 +152,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDes
         buf.append("mtype:${fb.typeName}_ECC={")
         val statesECC = (fb.declaration as BasicFBTypeDeclaration).ecc.states
         for (st in statesECC)
-            buf.append("${st.name}_ecc${if (st != statesECC.last()) ", " else "};"}")
+            buf.append("${fb.typeName}_${st.name}_ecc${if (st != statesECC.last()) ", " else "};"}")
     }
 
     fun generateLocalVariableDeclaration() {
@@ -123,12 +162,14 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDes
             val initV = decl.initialValue
             when (type) {
                 is ElementaryType -> {
-                    appendXTABNewLineConst(1 ,
+                    appendXTABNewLineConst(
+                        1,
                         "${data.typesMap[type]} ${d.name} = ${
                             if (initV != null) initV.value else data.typesInitValMap[type]
                         };"
                     )
                 }
+
                 is ArrayType -> {
                     appendXTABNewLineBody(1) {
                         append("${data.typesMap[type.baseType]} ${d.name}[")
@@ -149,7 +190,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder,f: FBTypeDes
         listOf(
             "bit ExistsInputEvent = 0;",
             "bit ExistsEnabledECTran = 0;",
-            "mtype:${fb.typeName}_ECC Q = START_ecc;",
+            "mtype:${fb.typeName}_ECC Q = ${fb.typeName}_START_ecc;",
             "mtype:${fb.typeName}_Selected selectEI = ${fb.typeName}_s_NONE;",
             "Event e_REQ;"
         ).forEach(::appendXTABNewLineConst.partially1(1))

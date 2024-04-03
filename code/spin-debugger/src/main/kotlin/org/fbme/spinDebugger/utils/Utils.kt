@@ -3,7 +3,7 @@ package org.fbme.spinDebugger.utils
 const val TAB = "    "
 const val NEW_LINE = "\n"
 
-fun <T> List<T>.appendLambdaBoolTo(
+fun <T> Collection<T>.appendLambdaBoolTo(
     buf: StringBuilder,
     separator: String,
     prefix: String = "",
@@ -14,14 +14,17 @@ fun <T> List<T>.appendLambdaBoolTo(
     }) {
 
     buf.append(prefix)
-    for (i in indices) {
-        if (i != size - 1 && buf.appendT(get(i)) )
+    var all = size;
+    forEach {
+        if(all != 0 && buf.appendT(it)) {
             buf.append(separator)
+        }
+        all--;
     }
     buf.append(suffix)
 }
 
-fun <T> List<T>.appendLambdaTo(
+fun <T> Collection<T>.appendLambdaTo(
     buf: StringBuilder,
     separator: String,
     prefix: String = "",
@@ -31,17 +34,11 @@ fun <T> List<T>.appendLambdaTo(
         true
     }
 
-fun <T> List<T>.appendTo(
+fun <T> Collection<T>.appendTo(
     buf: StringBuilder,
     separator: String,
     prefix: String = "",
     suffix: String = "",
-    toString: (T) -> String = { it.toString() }) = appendLambdaTo(buf, separator, prefix, suffix) { obj ->
+    toString: StringBuilder.(T) -> String = { it.toString() }) = appendLambdaTo(buf, separator, prefix, suffix) { obj ->
         append(toString(obj))
     }
-
-fun StringBuilder.appendPreSuf(prefix: String, suffix: String, body: StringBuilder.() -> Unit) {
-    append(prefix)
-    body()
-    append(suffix)
-}
