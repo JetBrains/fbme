@@ -62,11 +62,18 @@
             <action id="richediting.GenerateAdapterRouterAction"
                     class="org.fbme.ide.richediting.actions.GenerateAdapterRouterAction"
                     text="Generate Adapter Router"/>
+            <action id="richediting.RevealExtendedAdapterAction"
+                    class="org.fbme.ide.richediting.actions.RevealExtendedAdapterAction"
+                    text="Convert to Standard Elements"/>
             <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
         </group>
     </actions>
 
     <extensions defaultExtensionNs="fbme.platform">
+        <ProjectionController
+                implementation="org.fbme.ide.richediting.editor.providers.AdapterLeftNetworkControllerProvider" />
+        <ProjectionController
+                implementation="org.fbme.ide.richediting.editor.providers.AdapterRightNetworkControllerProvider" />
         <ProjectionController
                 implementation="org.fbme.ide.richediting.editor.providers.AlgorithmProjectionControllerProvider" />
         <ProjectionController

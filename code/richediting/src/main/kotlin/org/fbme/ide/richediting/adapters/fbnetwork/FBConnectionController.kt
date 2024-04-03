@@ -8,6 +8,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors
+import org.fbme.ide.richediting.utils.ExtendedAdapterUtils
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
@@ -29,6 +30,7 @@ class FBConnectionController(
     view: NetworkConnectionView,
     private val sourceConnectionNumber: Int?,
 ) : ConnectionController<FBConnectionCursor, FBConnectionPath> {
+    private val isExtendedAdapter: Boolean
     private val kind: EntryKind
     private val isEditable: Boolean
     private val fakeCell: EditorCell_Collection
@@ -50,7 +52,11 @@ class FBConnectionController(
             g.color = highlightColor
             painter.paint(g, false)
         }
-        g.color = DiagramColors.getColorFor(kind, isEditable)
+        g.color = if (isExtendedAdapter) {
+            DiagramColors.EXTENDED_ADAPTER
+        } else {
+            DiagramColors.getColorFor(kind, isEditable)
+        }
         if (selected) {
             FBConnectionPathPainter.setupSelectedPathPaint(g, scale(1).toFloat())
         } else {
@@ -470,6 +476,7 @@ class FBConnectionController(
         kind = view.kind
         isEditable = view.isEditable
         val associatedNode = view.associatedNode
+        isExtendedAdapter = view.connection?.let { ExtendedAdapterUtils.isExtendedAdapterConnection(it) } ?: false
         fakeCell = FakeCells.createCollection(context, associatedNode)
         val connectionPaths: Iterator<SNode> =
             SNodeOperations.ofConcept(SNodeOperations.getChildren(associatedNode), CONCEPTS.`ConnectionPath$IA`)

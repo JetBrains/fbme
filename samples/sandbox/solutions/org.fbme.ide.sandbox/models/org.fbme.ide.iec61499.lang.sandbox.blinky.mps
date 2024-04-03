@@ -57,7 +57,15 @@
         <child id="7561669834935925692" name="plugBlock" index="2GP0$q" />
         <child id="7561669834935925697" name="socketBlock" index="2GP0_B" />
       </concept>
-      <concept id="4638275915577578977" name="org.fbme.ide.iec61499.lang.structure.ExtendedSocketDeclaration" flags="ng" index="2u7yaZ" />
+      <concept id="4638275915577578977" name="org.fbme.ide.iec61499.lang.structure.InternalSocketDeclaration" flags="ng" index="2u7yaZ" />
+      <concept id="2089083396006376419" name="org.fbme.ide.iec61499.lang.structure.ExtendedAdapterTypeDeclaration" flags="ng" index="2xRpA$">
+        <child id="1881408560477943873" name="rightFbNetwork" index="6HEdv" />
+        <child id="926353119522521423" name="fbToPlugInterface" index="tr10e" />
+        <child id="6739364709441046431" name="outputRouter" index="13zCZw" />
+        <child id="6739364709441046429" name="inputRouter" index="13zCZy" />
+        <child id="7837436383331437378" name="socketToFbInterface" index="3mXm6v" />
+        <child id="7837436383331490786" name="leftFbNetwork" index="3mXz4Z" />
+      </concept>
       <concept id="4280485643802119831" name="org.fbme.ide.iec61499.lang.structure.StateDeclaration" flags="ng" index="2zAPAk">
         <child id="4280485643802119923" name="actions" index="2zAPBK" />
         <child id="6110000670794348100" name="position" index="2WOQdS" />
@@ -93,7 +101,7 @@
         <child id="7206730950341598650" name="guardCondition" index="2EVYSB" />
         <child id="3296901243641762237" name="event" index="2N3Qeb" />
       </concept>
-      <concept id="7561669834935924547" name="org.fbme.ide.iec61499.lang.structure.ExtendedPlugDeclaration" flags="ng" index="2GP0n_" />
+      <concept id="7561669834935924547" name="org.fbme.ide.iec61499.lang.structure.InternalPlugDeclaration" flags="ng" index="2GP0n_" />
       <concept id="2250044605250911586" name="org.fbme.ide.iec61499.lang.structure.DeviceDeclaration" flags="ng" index="2JYBV7">
         <reference id="2250044605250911589" name="type" index="2JYBV0" />
         <child id="2250044605250911600" name="resources" index="2JYBVl" />
@@ -111,11 +119,11 @@
         <child id="4280485643801969838" name="outputVariables" index="2zBDeH" />
       </concept>
       <concept id="3018159903918047621" name="org.fbme.ide.iec61499.lang.structure.AdapterTypeDeclaration" flags="ng" index="XJABO">
-        <child id="926353119522521423" name="fbToPlugInterface" index="tr10e" />
-        <child id="6739364709441046431" name="outputRouter" index="13zCZw" />
-        <child id="6739364709441046429" name="inputRouter" index="13zCZy" />
-        <child id="7837436383331437378" name="socketToFbInterface" index="3mXm6v" />
-        <child id="7837436383331490786" name="fbNetwork" index="3mXz4Z" />
+        <child id="926353119522521423" name="fbToPlugInterface" index="tr10f" />
+        <child id="6739364709441046431" name="outputRouter" index="13zCZx" />
+        <child id="6739364709441046429" name="inputRouter" index="13zCZz" />
+        <child id="7837436383331437378" name="socketToFbInterface" index="3mXm6w" />
+        <child id="7837436383331490786" name="fbNetwork" index="3mXz50" />
       </concept>
       <concept id="6049904230683977455" name="org.fbme.ide.iec61499.lang.structure.Position" flags="ng" index="10YbkR">
         <property id="6049904230683977456" name="x" index="10YbkC" />
@@ -148,7 +156,7 @@
         <reference id="3589220129093721144" name="adapterType" index="3IBQi8" />
         <child id="7816599728425079530" name="position" index="2oiNrz" />
       </concept>
-      <concept id="3588174944504668265" name="org.fbme.ide.iec61499.lang.structure.ExtendedAdapterFBDeclaration" flags="ng" index="3ISU9K">
+      <concept id="3588174944504668265" name="org.fbme.ide.iec61499.lang.structure.InternalAdapterFBDeclaration" flags="ng" index="3ISU9K">
         <child id="3588174944504668271" name="position" index="3ISU9Q" />
       </concept>
       <concept id="7558503085816725073" name="org.fbme.ide.iec61499.lang.structure.ComponentEndpoint" flags="ng" index="3JaoNj">
@@ -295,12 +303,53 @@
         </node>
       </node>
     </node>
+    <node concept="3KU5ap" id="1NXU$uX8738" role="3KORhB">
+      <node concept="3KU5ao" id="1NXU$uX8739" role="3KUfge">
+        <ref role="3KUfjk" node="1NXU$uX85Zl" resolve="CompositeBlock1" />
+        <node concept="3KU5aq" id="1NXU$uX873a" role="3KUfjq">
+          <ref role="3KU5al" node="3wAsKTk6SA0" resolve="BlinkTestApp" />
+        </node>
+      </node>
+      <node concept="3KUfg5" id="1NXU$uX873b" role="3KUfg8">
+        <ref role="3KLd9v" node="1NXU$uX871O" resolve="composite1" />
+        <node concept="3KQLYX" id="1NXU$uX873c" role="3KLd9t">
+          <ref role="3KQLYW" node="3wAsKTk8JYk" resolve="Testee" />
+          <ref role="3KQLYY" node="3wAsKTk8K0R" resolve="Blinky_RES" />
+        </node>
+      </node>
+    </node>
+    <node concept="3KU5ap" id="1NXU$uX872z" role="3KORhB">
+      <node concept="3KU5ao" id="1NXU$uX872$" role="3KUfge">
+        <ref role="3KUfjk" node="1NXU$uX85Z8" resolve="CompositeBlock" />
+        <node concept="3KU5aq" id="1NXU$uX872W" role="3KUfjq">
+          <ref role="3KU5al" node="3wAsKTk6SA0" resolve="BlinkTestApp" />
+        </node>
+      </node>
+      <node concept="3KUfg5" id="1NXU$uX872A" role="3KUfg8">
+        <ref role="3KLd9v" node="1NXU$uX8720" resolve="composite2" />
+        <node concept="3KQLYX" id="1NXU$uX872B" role="3KLd9t">
+          <ref role="3KQLYW" node="3wAsKTk8JYk" resolve="Testee" />
+          <ref role="3KQLYY" node="3wAsKTk8K0R" resolve="Blinky_RES" />
+        </node>
+      </node>
+    </node>
     <node concept="2JYBV7" id="3wAsKTk8JYk" role="3KFA_1">
       <property role="TrG5h" value="Testee" />
       <ref role="2JYBV0" to="7fvu:~FORTE_PC" resolve="FORTE_PC" />
       <node concept="1LUxBN" id="3wAsKTk8K0R" role="2JYBVl">
         <property role="TrG5h" value="Blinky_RES" />
         <ref role="1LUxBM" to="7fvu:~EMB_RES" resolve="EMB_RES" />
+        <node concept="3IAhBk" id="1NXU$uX872n" role="3IAhBJ">
+          <node concept="3YV02_" id="1NXU$uX872p" role="2RhMKC">
+            <ref role="3YV02y" node="1NXU$uX871O" resolve="composite1" />
+            <ref role="3YV03s" node="27ZLyP6Y5iI" resolve="plug" />
+          </node>
+          <node concept="3YV9EJ" id="1NXU$uX872q" role="2RhMK_">
+            <ref role="3YV9Vn" node="1NXU$uX8720" resolve="composite2" />
+            <ref role="3YV9Vh" node="27ZLyP6Y5iE" resolve="socket" />
+          </node>
+          <node concept="bR33I" id="5steIi6yGZU" role="bPNfo" />
+        </node>
         <node concept="1N5Tqi" id="3wAsKTk8K1T" role="1N5PiQ">
           <node concept="3YB4oO" id="3wAsKTk8K1U" role="2RhMKC">
             <ref role="1N5Pi4" node="3wAsKTk8K19" resolve="E_CYCLE" />
@@ -381,6 +430,22 @@
             <property role="10YbkE" value="49.0" />
           </node>
         </node>
+        <node concept="1N5Tt1" id="1NXU$uX871O" role="1N5PiY">
+          <property role="TrG5h" value="composite1" />
+          <ref role="1N5Tt0" node="27ZLyP6Y5iC" resolve="CompositeBlock" />
+          <node concept="10YbkR" id="1NXU$uX871P" role="b_cXm">
+            <property role="10YbkC" value="656.0" />
+            <property role="10YbkE" value="826.0" />
+          </node>
+        </node>
+        <node concept="1N5Tt1" id="1NXU$uX8720" role="1N5PiY">
+          <property role="TrG5h" value="composite2" />
+          <ref role="1N5Tt0" node="27ZLyP6Y5iC" resolve="CompositeBlock" />
+          <node concept="10YbkR" id="1NXU$uX8721" role="b_cXm">
+            <property role="10YbkC" value="1463.0" />
+            <property role="10YbkE" value="823.0" />
+          </node>
+        </node>
         <node concept="1N5Tqi" id="5OPYJ1hokFf" role="1N5PiQ">
           <node concept="3YB4oO" id="5OPYJ1hokFd" role="2RhMKC">
             <ref role="1N5Pi4" to="7fvu:~EMB_RES.START" resolve="START" />
@@ -407,6 +472,19 @@
             <property role="bR32p" value="240.0" />
           </node>
         </node>
+        <node concept="3IAhBk" id="75ZKjllo_4b" role="3IAhBJ">
+          <node concept="3YV02_" id="75ZKjllo_4d" role="2RhMKC">
+            <ref role="3YV02y" node="1NXU$uX871O" resolve="composite1" />
+            <ref role="3YV03s" node="5f2QmZcXPy5" resolve="plugEA" />
+          </node>
+          <node concept="3YV9EJ" id="75ZKjllo_4e" role="2RhMK_">
+            <ref role="3YV9Vn" node="1NXU$uX8720" resolve="composite2" />
+            <ref role="3YV9Vh" node="5f2QmZcXPxV" resolve="socketEA" />
+          </node>
+          <node concept="bR32z" id="75ZKjllo_4f" role="bPNfo">
+            <property role="bR32p" value="150.0" />
+          </node>
+        </node>
       </node>
       <node concept="1LUwhx" id="3wAsKTk8K0G" role="180RAs">
         <ref role="1LUwhw" to="7fvu:~FORTE_PC.MGR_ID" resolve="MGR_ID" />
@@ -417,6 +495,19 @@
     </node>
     <node concept="3KFAOZ" id="3wAsKTk6SA0" role="3KFA_7">
       <property role="TrG5h" value="BlinkTestApp" />
+      <node concept="3IAhBk" id="1NXU$uX85Z_" role="3IAhBJ">
+        <node concept="3YV02_" id="1NXU$uX85ZB" role="2RhMKC">
+          <ref role="3YV02y" node="1NXU$uX85Zl" resolve="CompositeBlock" />
+          <ref role="3YV03s" node="27ZLyP6Y5iI" resolve="plug" />
+        </node>
+        <node concept="3YV9EJ" id="1NXU$uX85ZC" role="2RhMK_">
+          <ref role="3YV9Vn" node="1NXU$uX85Z8" resolve="CompositeBlock" />
+          <ref role="3YV9Vh" node="27ZLyP6Y5iE" resolve="socket" />
+        </node>
+        <node concept="bR32z" id="1NXU$uX85ZD" role="bPNfo">
+          <property role="bR32p" value="193.0" />
+        </node>
+      </node>
       <node concept="1N5Tq9" id="19RKY2xImJ4" role="1N5PiV">
         <node concept="3IAhSD" id="19RKY2xImJl" role="2RhMKC">
           <ref role="1N5Pi4" node="3wAsKTk6TzW" resolve="E_SR" />
@@ -516,6 +607,22 @@
           <property role="bR32p" value="50.0" />
         </node>
       </node>
+      <node concept="1N5Tt1" id="1NXU$uX85Z8" role="1N5PiY">
+        <property role="TrG5h" value="CompositeBlock2" />
+        <ref role="1N5Tt0" node="27ZLyP6Y5iC" resolve="CompositeBlock" />
+        <node concept="10YbkR" id="1NXU$uX85Za" role="b_cXm">
+          <property role="10YbkC" value="1083.0" />
+          <property role="10YbkE" value="976.0" />
+        </node>
+      </node>
+      <node concept="1N5Tt1" id="1NXU$uX85Zl" role="1N5PiY">
+        <property role="TrG5h" value="CompositeBlock1" />
+        <ref role="1N5Tt0" node="27ZLyP6Y5iC" resolve="CompositeBlock" />
+        <node concept="10YbkR" id="1NXU$uX85Zn" role="b_cXm">
+          <property role="10YbkC" value="216.0" />
+          <property role="10YbkE" value="1093.0" />
+        </node>
+      </node>
     </node>
   </node>
   <node concept="XJABO" id="55$H0fDlLwW">
@@ -538,26 +645,26 @@
     <node concept="2zBDe_" id="3Ofqz6FCMFA" role="2zBDew">
       <property role="TrG5h" value="A_O_Event" />
     </node>
-    <node concept="2zBDeF" id="6N4aHQUc1mS" role="13zCZy">
+    <node concept="2zBDeF" id="6N4aHQUc1mS" role="13zCZz">
       <property role="TrG5h" value="A" />
       <node concept="2zB9wT" id="6N4aHQUc1mW" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="6N4aHQUg61s" role="3mXm6v">
+    <node concept="3mx2vR" id="6N4aHQUg61s" role="3mXm6w">
       <property role="TrG5h" value="s" />
       <node concept="2zBDe_" id="1kzHNgmZGWm" role="2zBDey">
         <property role="TrG5h" value="SOCKET_EVENT_INPUT" />
       </node>
     </node>
-    <node concept="2zBDeF" id="6N4aHQUg6di" role="13zCZw">
+    <node concept="2zBDeF" id="6N4aHQUg6di" role="13zCZx">
       <property role="TrG5h" value="b" />
       <node concept="3r5wd7" id="6N4aHQUg6dm" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="1kzHNgmZpAa" role="tr10e">
+    <node concept="3mx2vR" id="1kzHNgmZpAa" role="tr10f">
       <node concept="2zBDe_" id="E2GZeoz$9f" role="2zBDey">
         <property role="TrG5h" value="PLUG_EVENT_INPUT" />
       </node>
     </node>
-    <node concept="2iASse" id="3o0XHr62ily" role="3mXz4Z">
+    <node concept="2iASse" id="3o0XHr62ily" role="3mXz50">
       <node concept="1qmbkl" id="E2GZeoz1Vc" role="3rj3o">
         <ref role="2zR1Pb" node="21BXg9V1kXA" resolve="I_Event" />
         <node concept="10YbkR" id="E2GZeoz1Vd" role="1qmfRk">
@@ -678,24 +785,24 @@
         <ref role="3YV9Vn" node="27ZLyP6Y6jL" resolve="ExtendedAdapterExample_router" />
         <ref role="3YV9Vh" node="27ZLyP6Y5bF" resolve="socket" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6Po" role="bPNfo">
-        <property role="bR32p" value="23.0" />
+      <node concept="bR32z" id="4uMrEeW2tN9" role="bPNfo">
+        <property role="bR32p" value="310.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1lAErR$Uytj" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock1" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1lAErR$Uytl" role="b_cXm">
-        <property role="10YbkC" value="346.0" />
-        <property role="10YbkE" value="630.0" />
+        <property role="10YbkC" value="-183.0" />
+        <property role="10YbkE" value="613.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1lAErR$Uyto" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock2" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1lAErR$Uytq" role="b_cXm">
-        <property role="10YbkC" value="2053.0" />
-        <property role="10YbkE" value="406.0" />
+        <property role="10YbkC" value="2083.0" />
+        <property role="10YbkE" value="383.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="27ZLyP6Y5ay" role="1N5PiY">
@@ -718,24 +825,24 @@
       <property role="TrG5h" value="BaseBlock1" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1TXM2wdK6MB" role="b_cXm">
-        <property role="10YbkC" value="426.0" />
-        <property role="10YbkE" value="1839.0" />
+        <property role="10YbkC" value="-270.0" />
+        <property role="10YbkE" value="1966.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6MC" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock2" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1TXM2wdK6MD" role="b_cXm">
-        <property role="10YbkC" value="1260.0" />
-        <property role="10YbkE" value="1463.0" />
+        <property role="10YbkC" value="1296.0" />
+        <property role="10YbkE" value="1313.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6ME" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock3" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1TXM2wdK6MF" role="b_cXm">
-        <property role="10YbkC" value="1260.0" />
-        <property role="10YbkE" value="1796.0" />
+        <property role="10YbkC" value="1306.0" />
+        <property role="10YbkE" value="1759.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6MG" role="1N5PiY">
@@ -751,7 +858,7 @@
       <ref role="1N5Tt0" node="27ZLyP6Y5bE" resolve="ExtendedAdapterExample_router" />
       <node concept="10YbkR" id="27ZLyP6Y6jN" role="b_cXm">
         <property role="10YbkC" value="983.0" />
-        <property role="10YbkE" value="720.0" />
+        <property role="10YbkE" value="713.0" />
       </node>
     </node>
     <node concept="3IAhBk" id="27ZLyP6Y6ky" role="3IAhBJ">
@@ -763,8 +870,8 @@
         <ref role="3YV9Vn" node="1lAErR$Uyto" resolve="BaseBlock2" />
         <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6wU" role="bPNfo">
-        <property role="bR32p" value="130.0" />
+      <node concept="bR32z" id="p4_fAXOcyC" role="bPNfo">
+        <property role="bR32p" value="143.0" />
       </node>
     </node>
     <node concept="3IAhBk" id="27ZLyP6Y6kK" role="3IAhBJ">
@@ -776,8 +883,8 @@
         <ref role="3YV9Vn" node="27ZLyP6Y5ay" resolve="BaseBlock3" />
         <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6Ng" role="bPNfo">
-        <property role="bR32p" value="287.0" />
+      <node concept="bR32z" id="p4_fAXOcyt" role="bPNfo">
+        <property role="bR32p" value="280.0" />
       </node>
     </node>
     <node concept="3IAhBk" id="27ZLyP6Y6l2" role="3IAhBJ">
@@ -789,47 +896,91 @@
         <ref role="3YV9Vn" node="27ZLyP6Y5aF" resolve="BaseBlock4" />
         <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6Pq" role="bPNfo">
-        <property role="bR32p" value="103.0" />
+      <node concept="bR32z" id="p4_fAXOcyq" role="bPNfo">
+        <property role="bR32p" value="100.0" />
       </node>
     </node>
-    <node concept="3IAhBk" id="1TXM2wdK6NA" role="3IAhBJ">
-      <node concept="3YV02_" id="1TXM2wdK6NC" role="2RhMKC">
-        <ref role="3YV02y" node="1TXM2wdK6MA" resolve="BaseBlock1" />
-        <ref role="3YV03s" node="1lAErR$UysR" resolve="plug" />
+    <node concept="1N5Tt1" id="43a7K48E579" role="1N5PiY">
+      <property role="TrG5h" value="InternalFB_EA2" />
+      <ref role="1N5Tt0" node="43a7K48E4Yq" resolve="InternalFB_EA2" />
+      <node concept="10YbkR" id="43a7K48E578" role="b_cXm">
+        <property role="10YbkC" value="-170.0" />
+        <property role="10YbkE" value="1436.0" />
       </node>
-      <node concept="3YV9EJ" id="1TXM2wdK6ND" role="2RhMK_">
+    </node>
+    <node concept="3IAhBk" id="43a7K48E57a" role="3IAhBJ">
+      <node concept="3YV02_" id="43a7K48E57c" role="2RhMKC">
+        <ref role="3YV02y" node="1TXM2wdK6MA" resolve="BaseBlock1" />
+        <ref role="3YV03s" node="56cWBwOlRRJ" resolve="plugEA" />
+      </node>
+      <node concept="3YV9EJ" id="43a7K48E57d" role="2RhMK_">
+        <ref role="3YV9Vn" node="43a7K48E579" resolve="InternalFB_EA2" />
+        <ref role="3YV9Vh" node="43a7K48E4Yu" resolve="socket" />
+      </node>
+      <node concept="bR73E" id="43a7K48E581" role="bPNfo">
+        <property role="bR73D" value="134.0" />
+        <property role="bR73n" value="-407.0" />
+        <property role="bR73k" value="130.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="43a7K48E57f" role="1N5PiY">
+      <property role="TrG5h" value="EA2_3_router" />
+      <ref role="1N5Tt0" node="43a7K48E4Yw" resolve="EA2_3_router" />
+      <node concept="10YbkR" id="43a7K48E57e" role="b_cXm">
+        <property role="10YbkC" value="533.0" />
+        <property role="10YbkE" value="1390.0" />
+      </node>
+    </node>
+    <node concept="3IAhBk" id="43a7K48E57g" role="3IAhBJ">
+      <node concept="3YV02_" id="43a7K48E57i" role="2RhMKC">
+        <ref role="3YV02y" node="43a7K48E579" resolve="InternalFB_EA2" />
+        <ref role="3YV03s" node="43a7K48E4Yv" resolve="plug" />
+      </node>
+      <node concept="3YV9EJ" id="43a7K48E57j" role="2RhMK_">
+        <ref role="3YV9Vn" node="43a7K48E57f" resolve="EA2_3_router" />
+        <ref role="3YV9Vh" node="43a7K48E4Yx" resolve="socket" />
+      </node>
+      <node concept="bR32z" id="43a7K48E582" role="bPNfo">
+        <property role="bR32p" value="150.0" />
+      </node>
+    </node>
+    <node concept="3IAhBk" id="43a7K48E57k" role="3IAhBJ">
+      <node concept="3YV02_" id="43a7K48E57m" role="2RhMKC">
+        <ref role="3YV02y" node="43a7K48E57f" resolve="EA2_3_router" />
+        <ref role="3YV03s" node="43a7K48E4Y$" resolve="plug_0" />
+      </node>
+      <node concept="3YV9EJ" id="43a7K48E57n" role="2RhMK_">
         <ref role="3YV9Vn" node="1TXM2wdK6MC" resolve="BaseBlock2" />
-        <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
+        <ref role="3YV9Vh" node="56cWBwOlRR_" resolve="socketEA" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6P7" role="bPNfo">
-        <property role="bR32p" value="174.0" />
+      <node concept="bR32z" id="43a7K48E57P" role="bPNfo">
+        <property role="bR32p" value="167.0" />
       </node>
     </node>
-    <node concept="3IAhBk" id="1TXM2wdK6O0" role="3IAhBJ">
-      <node concept="3YV02_" id="1TXM2wdK6O2" role="2RhMKC">
-        <ref role="3YV02y" node="1TXM2wdK6MA" resolve="BaseBlock1" />
-        <ref role="3YV03s" node="1lAErR$UysR" resolve="plug" />
+    <node concept="3IAhBk" id="43a7K48E57o" role="3IAhBJ">
+      <node concept="3YV02_" id="43a7K48E57q" role="2RhMKC">
+        <ref role="3YV02y" node="43a7K48E57f" resolve="EA2_3_router" />
+        <ref role="3YV03s" node="43a7K48E4YB" resolve="plug_1" />
       </node>
-      <node concept="3YV9EJ" id="1TXM2wdK6O3" role="2RhMK_">
+      <node concept="3YV9EJ" id="43a7K48E57r" role="2RhMK_">
         <ref role="3YV9Vn" node="1TXM2wdK6ME" resolve="BaseBlock3" />
-        <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
+        <ref role="3YV9Vh" node="56cWBwOlRR_" resolve="socketEA" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6Pb" role="bPNfo">
-        <property role="bR32p" value="174.0" />
+      <node concept="bR32z" id="43a7K48E57Q" role="bPNfo">
+        <property role="bR32p" value="170.0" />
       </node>
     </node>
-    <node concept="3IAhBk" id="1TXM2wdK6Ou" role="3IAhBJ">
-      <node concept="3YV02_" id="1TXM2wdK6Ow" role="2RhMKC">
-        <ref role="3YV02y" node="1TXM2wdK6MA" resolve="BaseBlock1" />
-        <ref role="3YV03s" node="1lAErR$UysR" resolve="plug" />
+    <node concept="3IAhBk" id="43a7K48E57s" role="3IAhBJ">
+      <node concept="3YV02_" id="43a7K48E57u" role="2RhMKC">
+        <ref role="3YV02y" node="43a7K48E57f" resolve="EA2_3_router" />
+        <ref role="3YV03s" node="43a7K48E4YE" resolve="plug_2" />
       </node>
-      <node concept="3YV9EJ" id="1TXM2wdK6Ox" role="2RhMK_">
+      <node concept="3YV9EJ" id="43a7K48E57v" role="2RhMK_">
         <ref role="3YV9Vn" node="1TXM2wdK6MG" resolve="BaseBlock4" />
-        <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
+        <ref role="3YV9Vh" node="56cWBwOlRR_" resolve="socketEA" />
       </node>
-      <node concept="bR32z" id="1TXM2wdK6Pd" role="bPNfo">
-        <property role="bR32p" value="177.0" />
+      <node concept="bR32z" id="43a7K48E57S" role="bPNfo">
+        <property role="bR32p" value="150.0" />
       </node>
     </node>
   </node>
@@ -2352,7 +2503,7 @@
     <node concept="2zBDe_" id="6VIdscZVr9R" role="2zBDey">
       <property role="TrG5h" value="additionalInput" />
     </node>
-    <node concept="2iASse" id="3o0XHr62L02" role="3mXz4Z" />
+    <node concept="2iASse" id="3o0XHr62L02" role="3mXz50" />
   </node>
   <node concept="2zBDf2" id="6VIdscZVraU">
     <property role="TrG5h" value="RetryEcc" />
@@ -2426,10 +2577,26 @@
         <property role="10YbkE" value="0.0" />
       </node>
     </node>
+    <node concept="3IBQi5" id="56cWBwOlRRJ" role="3YHajr">
+      <property role="TrG5h" value="plugEA" />
+      <ref role="3IBQi8" node="zLFK_aQjBx" resolve="EA2" />
+      <node concept="10YbkR" id="56cWBwOlRRK" role="2oiNrz">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
+    </node>
     <node concept="3Iw0dE" id="1lAErR$UysL" role="3YHajY">
       <property role="TrG5h" value="socket" />
       <ref role="3Iw0dH" node="55$H0fDlLwW" resolve="Adapter" />
       <node concept="10YbkR" id="1lAErR$UysM" role="2oiVCh">
+        <property role="10YbkC" value="0.0" />
+        <property role="10YbkE" value="0.0" />
+      </node>
+    </node>
+    <node concept="3Iw0dE" id="56cWBwOlRR_" role="3YHajY">
+      <property role="TrG5h" value="socketEA" />
+      <ref role="3Iw0dH" node="43a7K48E4Yi" resolve="Right_EA2" />
+      <node concept="10YbkR" id="56cWBwOlRRA" role="2oiVCh">
         <property role="10YbkC" value="0.0" />
         <property role="10YbkE" value="0.0" />
       </node>
@@ -2487,7 +2654,7 @@
     <node concept="1N5Tq9" id="27ZLyP6Y5dO" role="1N5PiV">
       <node concept="3IAhSD" id="27ZLyP6Y5dQ" role="2RhMKC">
         <ref role="1N5Pi4" node="27ZLyP6Y5bF" resolve="ExtendedAdapterExample_socket" />
-        <ref role="1N5PlF" node="27ZLyP6Y5aj" resolve="O_Data" />
+        <ref role="1N5PlF" node="27ZLyP6Y6i4" resolve="O_Data" />
       </node>
       <node concept="3IAvtB" id="27ZLyP6Y5nV" role="2RhMK_">
         <ref role="1N5Pi4" node="27ZLyP6Y5bS" resolve="LeftSwitch" />
@@ -2500,7 +2667,7 @@
     <node concept="1N5Tqi" id="27ZLyP6Y5d$" role="1N5PiQ">
       <node concept="3YB4oO" id="27ZLyP6Y5dA" role="2RhMKC">
         <ref role="1N5Pi4" node="27ZLyP6Y5bF" resolve="ExtendedAdapterExample_socket" />
-        <ref role="1N5Pi3" node="27ZLyP6Y59W" resolve="O_event" />
+        <ref role="1N5Pi3" node="27ZLyP6Y6ia" resolve="O_event" />
       </node>
       <node concept="3Yx0EI" id="27ZLyP6Y5nF" role="2RhMK_">
         <ref role="1N5Pi4" node="27ZLyP6Y5bS" resolve="LeftSwitch" />
@@ -2528,7 +2695,7 @@
     </node>
     <node concept="3Iw0dE" id="27ZLyP6Y5bF" role="3YHajY">
       <property role="TrG5h" value="socket" />
-      <ref role="3Iw0dH" node="27ZLyP6Y59O" resolve="ExtendedAdapterExample" />
+      <ref role="3Iw0dH" node="27ZLyP6Y6i3" resolve="ExtendedAdapterExample" />
       <node concept="10YbkR" id="27ZLyP6Y5bH" role="2oiVCh">
         <property role="10YbkC" value="-26.0" />
         <property role="10YbkE" value="1263.0" />
@@ -2643,7 +2810,7 @@
       </node>
       <node concept="3Yx0EI" id="27ZLyP6Y5fF" role="2RhMK_">
         <ref role="1N5Pi4" node="27ZLyP6Y5bF" resolve="ExtendedAdapterExample_socket" />
-        <ref role="1N5Pi3" node="27ZLyP6Y59U" resolve="I_event" />
+        <ref role="1N5Pi3" node="27ZLyP6Y6ib" resolve="I_event" />
       </node>
       <node concept="bR73E" id="27ZLyP6Y6jJ" role="bPNfo">
         <property role="bR73D" value="130.0" />
@@ -2697,7 +2864,7 @@
       </node>
       <node concept="3IAvtB" id="27ZLyP6Y5fV" role="2RhMK_">
         <ref role="1N5Pi4" node="27ZLyP6Y5bF" resolve="ExtendedAdapterExample_socket" />
-        <ref role="1N5PlF" node="27ZLyP6Y5ac" resolve="I_Data" />
+        <ref role="1N5PlF" node="27ZLyP6Y6i8" resolve="I_Data" />
       </node>
       <node concept="bR73E" id="27ZLyP6Y5p9" role="bPNfo">
         <property role="bR73D" value="130.0" />
@@ -2791,7 +2958,7 @@
             <property role="2zAFug" value="0" />
           </node>
           <node concept="2zAFuc" id="27ZLyP6Y5ce" role="398zGN">
-            <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+            <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
           </node>
         </node>
       </node>
@@ -2805,7 +2972,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cl" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cm" role="1y1qVS">
@@ -2813,7 +2980,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5ds" resolve="O_Data_0" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5co" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cp" role="1y1qVS">
@@ -2821,7 +2988,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dx" resolve="O_Data_1" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cr" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cs" role="1y1qVS">
@@ -2829,7 +2996,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dz" resolve="O_Data_2" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cu" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
         </node>
@@ -2905,7 +3072,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cN" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cO" role="1y1qVS">
@@ -2913,7 +3080,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5ds" resolve="O_Data_0" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cQ" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cR" role="1y1qVS">
@@ -2921,7 +3088,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dx" resolve="O_Data_1" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cT" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5cU" role="1y1qVS">
@@ -2929,7 +3096,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dz" resolve="O_Data_2" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5cW" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
         </node>
@@ -2964,7 +3131,7 @@
             <property role="2zAFug" value="1" />
           </node>
           <node concept="2zAFuc" id="27ZLyP6Y5cG" role="398zGN">
-            <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+            <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
           </node>
         </node>
       </node>
@@ -2987,7 +3154,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5dh" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5di" role="1y1qVS">
@@ -2995,7 +3162,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5ds" resolve="O_Data_0" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5dk" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5dl" role="1y1qVS">
@@ -3003,7 +3170,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dx" resolve="O_Data_1" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5dn" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
           <node concept="1y1qS$" id="27ZLyP6Y5do" role="1y1qVS">
@@ -3011,7 +3178,7 @@
               <ref role="2zAFuj" node="27ZLyP6Y5dz" resolve="O_Data_2" />
             </node>
             <node concept="2zAFuc" id="27ZLyP6Y5dq" role="1y1qST">
-              <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+              <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
             </node>
           </node>
         </node>
@@ -3046,7 +3213,7 @@
             <property role="2zAFug" value="2" />
           </node>
           <node concept="2zAFuc" id="27ZLyP6Y5da" role="398zGN">
-            <ref role="2zAFuj" node="27ZLyP6Y5aj" resolve="O_Data" />
+            <ref role="2zAFuj" node="27ZLyP6Y5du" resolve="O_Data" />
           </node>
         </node>
       </node>
@@ -3327,6 +3494,40 @@
   </node>
   <node concept="1N5Tt2" id="27ZLyP6Y5iC">
     <property role="TrG5h" value="CompositeBlock" />
+    <node concept="1N5Tt1" id="75ZKjlljE3j" role="1N5PiY">
+      <property role="TrG5h" value="PUBLISH_4" />
+      <ref role="1N5Tt0" to="7fvu:~PUBLISH_4" resolve="PUBLISH_4" />
+      <node concept="10YbkR" id="75ZKjlljE3l" role="b_cXm">
+        <property role="10YbkC" value="1286.0" />
+        <property role="10YbkE" value="1726.0" />
+      </node>
+    </node>
+    <node concept="1N5Tq9" id="2iqry72fQV" role="1N5PiV">
+      <node concept="3IAhSD" id="2iqry72fQX" role="2RhMKC">
+        <ref role="1N5Pi4" node="5f2QmZcXPxV" resolve="socketEA" />
+        <ref role="1N5PlF" node="1YAnAaAosSy" resolve="Data_O" />
+      </node>
+      <node concept="3IAvtB" id="2iqry72fQY" role="2RhMK_">
+        <ref role="1N5Pi4" node="27ZLyP6Y5iE" resolve="socket" />
+        <ref role="1N5PlF" node="27ZLyP6Y6i8" resolve="I_Data" />
+      </node>
+      <node concept="bR32z" id="4uMrEeW2tR5" role="bPNfo">
+        <property role="bR32p" value="194.0" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="2iqry72fQA" role="1N5PiQ">
+      <node concept="3YB4oO" id="2iqry72fQC" role="2RhMKC">
+        <ref role="1N5Pi4" node="5f2QmZcXPxV" resolve="socketEA" />
+        <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+      </node>
+      <node concept="3Yx0EI" id="2iqry72fQD" role="2RhMK_">
+        <ref role="1N5Pi4" node="27ZLyP6Y5iE" resolve="socket" />
+        <ref role="1N5Pi3" node="27ZLyP6Y6ib" resolve="I_event" />
+      </node>
+      <node concept="bR32z" id="4uMrEeW2tQT" role="bPNfo">
+        <property role="bR32p" value="167.0" />
+      </node>
+    </node>
     <node concept="2zBDeF" id="1TXM2wdK6C8" role="2zBDeH">
       <property role="TrG5h" value="O_data" />
       <node concept="2zB9wT" id="1TXM2wdK6C9" role="2zB7qv" />
@@ -3345,16 +3546,53 @@
       <property role="TrG5h" value="plug" />
       <ref role="3IBQi8" node="27ZLyP6Y6i3" resolve="ExtendedAdapterExample" />
       <node concept="10YbkR" id="27ZLyP6Y5iJ" role="2oiNrz">
-        <property role="10YbkC" value="2029.0" />
-        <property role="10YbkE" value="550.0" />
+        <property role="10YbkC" value="2116.0" />
+        <property role="10YbkE" value="1313.0" />
+      </node>
+    </node>
+    <node concept="3IBQi5" id="5f2QmZcXPy5" role="3YHajr">
+      <property role="TrG5h" value="plugEA" />
+      <ref role="3IBQi8" node="zLFK_aQjBx" resolve="EA2" />
+      <node concept="10YbkR" id="5f2QmZcXPy6" role="2oiNrz">
+        <property role="10YbkC" value="1190.0" />
+        <property role="10YbkE" value="753.0" />
       </node>
     </node>
     <node concept="3Iw0dE" id="27ZLyP6Y5iE" role="3YHajY">
       <property role="TrG5h" value="socket" />
       <ref role="3Iw0dH" node="27ZLyP6Y6i3" resolve="ExtendedAdapterExample" />
       <node concept="10YbkR" id="27ZLyP6Y5iF" role="2oiVCh">
-        <property role="10YbkC" value="1120.0" />
-        <property role="10YbkE" value="520.0" />
+        <property role="10YbkC" value="1336.0" />
+        <property role="10YbkE" value="333.0" />
+      </node>
+    </node>
+    <node concept="3Iw0dE" id="5f2QmZcXPxV" role="3YHajY">
+      <property role="TrG5h" value="socketEA" />
+      <ref role="3Iw0dH" node="zLFK_aQjBx" resolve="EA2" />
+      <node concept="10YbkR" id="5f2QmZcXPxW" role="2oiVCh">
+        <property role="10YbkC" value="310.0" />
+        <property role="10YbkE" value="670.0" />
+      </node>
+    </node>
+    <node concept="1N5Tqi" id="2iqry72_Vc" role="1N5PiQ">
+      <node concept="3YB4oO" id="2iqry72_Ve" role="2RhMKC">
+        <ref role="1N5Pi4" node="5f2QmZcXPxV" resolve="socketEA" />
+        <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+      </node>
+      <node concept="3Yx0EI" id="2iqry72_Vf" role="2RhMK_">
+        <ref role="1N5Pi4" node="5f2QmZcXPy5" resolve="plugEA" />
+        <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+      </node>
+      <node concept="bR32z" id="4uMrEeW2tQJ" role="bPNfo">
+        <property role="bR32p" value="134.0" />
+      </node>
+    </node>
+    <node concept="1N5Tt1" id="75ZKjlljE3w" role="1N5PiY">
+      <property role="TrG5h" value="SUBSCRIBE_4" />
+      <ref role="1N5Tt0" to="7fvu:~SUBSCRIBE_4" resolve="SUBSCRIBE_4" />
+      <node concept="10YbkR" id="75ZKjlljE3y" role="b_cXm">
+        <property role="10YbkC" value="2550.0" />
+        <property role="10YbkE" value="1709.0" />
       </node>
     </node>
   </node>
@@ -3374,7 +3612,7 @@
     <node concept="2zBDe_" id="27ZLyP6Y6ib" role="2zBDey">
       <property role="TrG5h" value="I_event" />
     </node>
-    <node concept="2iASse" id="27ZLyP6Y6ic" role="3mXz4Z">
+    <node concept="2iASse" id="27ZLyP6Y6ic" role="3mXz50">
       <node concept="1N5Tt1" id="69pqbmD27Hn" role="1N5PiY">
         <property role="TrG5h" value="BaseBlock2" />
         <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
@@ -3422,16 +3660,16 @@
         </node>
       </node>
     </node>
-    <node concept="2zBDeF" id="27ZLyP6Y6ih" role="13zCZy">
+    <node concept="2zBDeF" id="27ZLyP6Y6ih" role="13zCZz">
       <property role="TrG5h" value="router" />
       <node concept="3r5wd7" id="27ZLyP6Y6ii" role="2zB7qv" />
     </node>
-    <node concept="2zBDeF" id="27ZLyP6Y6ij" role="13zCZw">
+    <node concept="2zBDeF" id="27ZLyP6Y6ij" role="13zCZx">
       <property role="TrG5h" value="sender_number" />
       <node concept="3r5wd7" id="27ZLyP6Y6ik" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="27ZLyP6Y6lV" role="3mXm6v" />
-    <node concept="3mx2vR" id="27ZLyP6Y6lX" role="tr10e">
+    <node concept="3mx2vR" id="27ZLyP6Y6lV" role="3mXm6w" />
+    <node concept="3mx2vR" id="27ZLyP6Y6lX" role="tr10f">
       <node concept="2zBDe_" id="27ZLyP6Y6m9" role="2zBDew">
         <property role="TrG5h" value="Plug_O_event" />
       </node>
@@ -3475,22 +3713,24 @@
         <ref role="3YV9Vn" node="1TXM2wdK6xF" resolve="BaseBlock2" />
         <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
       </node>
-      <node concept="bR33I" id="1TXM2wdK6Mz" role="bPNfo" />
+      <node concept="bR32z" id="7WEJ4dJLVXk" role="bPNfo">
+        <property role="bR32p" value="90.0" />
+      </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6xD" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock1" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1TXM2wdK6xE" role="b_cXm">
-        <property role="10YbkC" value="816.0" />
-        <property role="10YbkE" value="1006.0" />
+        <property role="10YbkC" value="283.0" />
+        <property role="10YbkE" value="1013.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6xF" role="1N5PiY">
       <property role="TrG5h" value="BaseBlock2" />
       <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
       <node concept="10YbkR" id="1TXM2wdK6xG" role="b_cXm">
-        <property role="10YbkC" value="1493.0" />
-        <property role="10YbkE" value="1009.0" />
+        <property role="10YbkC" value="2306.0" />
+        <property role="10YbkE" value="849.0" />
       </node>
     </node>
     <node concept="1N5Tt1" id="1TXM2wdK6z2" role="1N5PiY">
@@ -3679,7 +3919,7 @@
     <node concept="2zBDe_" id="1TXM2wdK6_h" role="2zBDey">
       <property role="TrG5h" value="Socket_I_event" />
     </node>
-    <node concept="2iASse" id="1TXM2wdK6_5" role="3mXz4Z">
+    <node concept="2iASse" id="1TXM2wdK6_5" role="3mXz50">
       <node concept="2GP0n_" id="1TXM2wdK6_6" role="2GP0$q">
         <property role="TrG5h" value="Plug Connection" />
         <node concept="10YbkR" id="1TXM2wdK6_7" role="3ISU9Q">
@@ -3716,19 +3956,19 @@
     <node concept="2zBDe_" id="1TXM2wdK6KS" role="2zBDew">
       <property role="TrG5h" value="A_O_Event" />
     </node>
-    <node concept="2zBDeF" id="1TXM2wdK6KT" role="13zCZy">
+    <node concept="2zBDeF" id="1TXM2wdK6KT" role="13zCZz">
       <property role="TrG5h" value="A" />
       <node concept="2zB9wT" id="1TXM2wdK6KU" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="1TXM2wdK6KV" role="3mXm6v">
+    <node concept="3mx2vR" id="1TXM2wdK6KV" role="3mXm6w">
       <property role="TrG5h" value="s" />
     </node>
-    <node concept="2zBDeF" id="1TXM2wdK6KX" role="13zCZw">
+    <node concept="2zBDeF" id="1TXM2wdK6KX" role="13zCZx">
       <property role="TrG5h" value="b" />
       <node concept="3r5wd7" id="1TXM2wdK6KY" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="1TXM2wdK6KZ" role="tr10e" />
-    <node concept="2iASse" id="1TXM2wdK6L1" role="3mXz4Z">
+    <node concept="3mx2vR" id="1TXM2wdK6KZ" role="tr10f" />
+    <node concept="2iASse" id="1TXM2wdK6L1" role="3mXz50">
       <node concept="1qmbkl" id="1TXM2wdK6L2" role="3rj3o">
         <ref role="2zR1Pb" node="1TXM2wdK6KN" resolve="A_I_Event" />
         <node concept="10YbkR" id="1TXM2wdK6L3" role="1qmfRk">
@@ -3854,7 +4094,7 @@
     <node concept="2zBDe_" id="1TXM2wdK6Qa" role="2zBDey">
       <property role="TrG5h" value="I_event" />
     </node>
-    <node concept="2iASse" id="1TXM2wdK6Qb" role="3mXz4Z">
+    <node concept="2iASse" id="1TXM2wdK6Qb" role="3mXz50">
       <node concept="1N5Tt1" id="1TXM2wdK6Qc" role="1N5PiY">
         <property role="TrG5h" value="BaseBlock2" />
         <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
@@ -4126,15 +4366,15 @@
         </node>
       </node>
     </node>
-    <node concept="2zBDeF" id="1TXM2wdK6Ro" role="13zCZy">
+    <node concept="2zBDeF" id="1TXM2wdK6Ro" role="13zCZz">
       <property role="TrG5h" value="router" />
       <node concept="3r5wd7" id="1TXM2wdK6Rp" role="2zB7qv" />
     </node>
-    <node concept="2zBDeF" id="1TXM2wdK6Rq" role="13zCZw">
+    <node concept="2zBDeF" id="1TXM2wdK6Rq" role="13zCZx">
       <property role="TrG5h" value="sender_number" />
       <node concept="3r5wd7" id="1TXM2wdK6Rr" role="2zB7qv" />
     </node>
-    <node concept="3mx2vR" id="1TXM2wdK6Rs" role="3mXm6v">
+    <node concept="3mx2vR" id="1TXM2wdK6Rs" role="3mXm6w">
       <node concept="2zBDe_" id="1TXM2wdK6Rt" role="2zBDey">
         <property role="TrG5h" value="Socket_I_event" />
       </node>
@@ -4150,7 +4390,7 @@
         <property role="TrG5h" value="Socket_O_event" />
       </node>
     </node>
-    <node concept="3mx2vR" id="1TXM2wdK6Rz" role="tr10e">
+    <node concept="3mx2vR" id="1TXM2wdK6Rz" role="tr10f">
       <node concept="2zBDe_" id="1TXM2wdK6R$" role="2zBDew">
         <property role="TrG5h" value="Plug_O_event" />
       </node>
@@ -4615,6 +4855,214 @@
     </node>
     <node concept="2zBDe_" id="1TXM2wdK9bm" role="2zBDey">
       <property role="TrG5h" value="INIT" />
+    </node>
+  </node>
+  <node concept="2xRpA$" id="zLFK_aQjBx">
+    <property role="TrG5h" value="EA2" />
+    <node concept="2zBDeF" id="1YAnAaAosSy" role="2zBDeH">
+      <property role="TrG5h" value="Data_O" />
+      <node concept="2zB9wT" id="1YAnAaAosSA" role="2zB7qv" />
+    </node>
+    <node concept="2zBDeF" id="1YAnAaAosSr" role="2zBDeD">
+      <property role="TrG5h" value="Data_I" />
+      <node concept="3r5wd7" id="1YAnAaAosSv" role="2zB7qv" />
+    </node>
+    <node concept="2zBDe_" id="1YAnAaAosSp" role="2zBDew">
+      <property role="TrG5h" value="Event_O" />
+    </node>
+    <node concept="2zBDe_" id="1YAnAaAosSn" role="2zBDey">
+      <property role="TrG5h" value="Event_I" />
+    </node>
+    <node concept="2iASse" id="zLFK_aQjBy" role="3mXz4Z">
+      <property role="TrG5h" value="network1" />
+      <node concept="3IAhBk" id="43a7K48E59v" role="3IAhBJ">
+        <node concept="3YV02_" id="43a7K48E59x" role="2RhMKC">
+          <ref role="3YV02y" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="3YV03s" node="1lAErR$UysR" resolve="plug" />
+        </node>
+        <node concept="3YV9EJ" id="43a7K48E59y" role="2RhMK_">
+          <ref role="3YV9Vn" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
+        </node>
+        <node concept="bR32z" id="5d0CGpFWejd" role="bPNfo">
+          <property role="bR32p" value="597.0" />
+        </node>
+      </node>
+      <node concept="1N5Tt1" id="43a7K48E58z" role="1N5PiY">
+        <property role="TrG5h" value="BaseBlock" />
+        <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
+        <node concept="10YbkR" id="43a7K48E58_" role="b_cXm">
+          <property role="10YbkC" value="536.0" />
+          <property role="10YbkE" value="1326.0" />
+        </node>
+      </node>
+      <node concept="2GP0n_" id="zLFK_aQjBz" role="2GP0$q">
+        <property role="TrG5h" value="Plug Connection" />
+        <node concept="10YbkR" id="zLFK_aQjB$" role="3ISU9Q">
+          <property role="10YbkC" value="2126.0" />
+          <property role="10YbkE" value="126.0" />
+        </node>
+      </node>
+      <node concept="2u7yaZ" id="zLFK_aQjB_" role="2GP0_B">
+        <property role="TrG5h" value="Socket Connection" />
+        <node concept="10YbkR" id="zLFK_aQjBA" role="3ISU9Q">
+          <property role="10YbkC" value="576.0" />
+          <property role="10YbkE" value="290.0" />
+        </node>
+      </node>
+      <node concept="1N5Tt1" id="43a7K48E58I" role="1N5PiY">
+        <property role="TrG5h" value="BaseBlock" />
+        <ref role="1N5Tt0" node="1lAErR$Uysj" resolve="BaseBlock" />
+        <node concept="10YbkR" id="43a7K48E58K" role="b_cXm">
+          <property role="10YbkC" value="2023.0" />
+          <property role="10YbkE" value="1470.0" />
+        </node>
+      </node>
+      <node concept="1N5Tqi" id="43a7K48E58P" role="1N5PiQ">
+        <node concept="3YB4oO" id="43a7K48E58R" role="2RhMKC">
+          <ref role="1N5Pi4" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="1N5Pi3" node="1lAErR$Uysr" resolve="O_event" />
+        </node>
+        <node concept="3Yx0EI" id="43a7K48E58S" role="2RhMK_">
+          <ref role="1N5Pi4" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="1N5Pi3" node="1lAErR$Uysn" resolve="I_event" />
+        </node>
+        <node concept="bR32z" id="5d0CGpFWej9" role="bPNfo">
+          <property role="bR32p" value="597.0" />
+        </node>
+      </node>
+      <node concept="1N5Tq9" id="43a7K48E597" role="1N5PiV">
+        <node concept="3IAhSD" id="43a7K48E599" role="2RhMKC">
+          <ref role="1N5Pi4" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="1N5PlF" node="1lAErR$UysC" resolve="O_data" />
+        </node>
+        <node concept="3IAvtB" id="43a7K48E59a" role="2RhMK_">
+          <ref role="1N5Pi4" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="1N5PlF" node="1lAErR$Uysv" resolve="I_data" />
+        </node>
+        <node concept="bR32z" id="5d0CGpFWejb" role="bPNfo">
+          <property role="bR32p" value="597.0" />
+        </node>
+      </node>
+      <node concept="1N5Tqi" id="43a7K48E59D" role="1N5PiQ">
+        <node concept="3YB4oO" id="43a7K48E59F" role="2RhMKC">
+          <ref role="1N5Pi4" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="1N5Pi3" node="1lAErR$Uysr" resolve="O_event" />
+        </node>
+        <node concept="3Yx0EI" id="43a7K48E59G" role="2RhMK_">
+          <ref role="1N5Pi4" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="1N5Pi3" node="1lAErR$Uysn" resolve="I_event" />
+        </node>
+        <node concept="bR73E" id="5d0CGpFWejc" role="bPNfo">
+          <property role="bR73D" value="130.0" />
+          <property role="bR73n" value="-780.0" />
+          <property role="bR73k" value="130.0" />
+        </node>
+      </node>
+      <node concept="1N5Tq9" id="43a7K48E59Z" role="1N5PiV">
+        <node concept="3IAhSD" id="43a7K48E5a1" role="2RhMKC">
+          <ref role="1N5Pi4" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="1N5PlF" node="1lAErR$UysC" resolve="O_data" />
+        </node>
+        <node concept="3IAvtB" id="43a7K48E5a2" role="2RhMK_">
+          <ref role="1N5Pi4" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="1N5PlF" node="1lAErR$Uysv" resolve="I_data" />
+        </node>
+        <node concept="bR73E" id="5d0CGpFWeje" role="bPNfo">
+          <property role="bR73D" value="130.0" />
+          <property role="bR73n" value="-446.0" />
+          <property role="bR73k" value="130.0" />
+        </node>
+      </node>
+      <node concept="3IAhBk" id="43a7K48E5al" role="3IAhBJ">
+        <node concept="3YV02_" id="43a7K48E5an" role="2RhMKC">
+          <ref role="3YV02y" node="43a7K48E58I" resolve="BaseBlock" />
+          <ref role="3YV03s" node="1lAErR$UysR" resolve="plug" />
+        </node>
+        <node concept="3YV9EJ" id="43a7K48E5ao" role="2RhMK_">
+          <ref role="3YV9Vn" node="43a7K48E58z" resolve="BaseBlock" />
+          <ref role="3YV9Vh" node="1lAErR$UysL" resolve="socket" />
+        </node>
+        <node concept="bR73E" id="5d0CGpFWeja" role="bPNfo">
+          <property role="bR73D" value="130.0" />
+          <property role="bR73n" value="-446.0" />
+          <property role="bR73k" value="130.0" />
+        </node>
+      </node>
+      <node concept="1N5Tqi" id="5VrGpiki5uG" role="1N5PiQ">
+        <node concept="3YB4oO" id="5VrGpiki5uI" role="2RhMKC">
+          <ref role="1N5Pi4" node="zLFK_aQjB_" resolve="Socket Connection" />
+          <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+        </node>
+        <node concept="3Yx0EI" id="5VrGpiki5uJ" role="2RhMK_">
+          <ref role="1N5Pi4" node="zLFK_aQjBz" resolve="Plug Connection" />
+          <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+        </node>
+        <node concept="bR32z" id="5VrGpiki5vi" role="bPNfo">
+          <property role="bR32p" value="607.0" />
+        </node>
+      </node>
+      <node concept="1N5Tq9" id="5VrGpiki5uY" role="1N5PiV">
+        <node concept="3IAhSD" id="5VrGpiki5v0" role="2RhMKC">
+          <ref role="1N5Pi4" node="zLFK_aQjB_" resolve="Socket Connection" />
+          <ref role="1N5PlF" node="1YAnAaAosSy" resolve="Data_O" />
+        </node>
+        <node concept="3IAvtB" id="5VrGpiki5v1" role="2RhMK_">
+          <ref role="1N5Pi4" node="zLFK_aQjBz" resolve="Plug Connection" />
+          <ref role="1N5PlF" node="1YAnAaAosSy" resolve="Data_O" />
+        </node>
+        <node concept="bR32z" id="5VrGpiki5vj" role="bPNfo">
+          <property role="bR32p" value="533.0" />
+        </node>
+      </node>
+    </node>
+    <node concept="3mx2vR" id="5f2QmZcXPz9" role="3mXm6v">
+      <node concept="2zBDe_" id="fKYe1wD09M" role="2zBDey">
+        <property role="TrG5h" value="Socket_I_Event" />
+      </node>
+    </node>
+    <node concept="2zBDeF" id="fKYe1wD09$" role="13zCZy">
+      <property role="TrG5h" value="I_router" />
+      <node concept="3r5wd7" id="fKYe1wD09C" role="2zB7qv" />
+    </node>
+    <node concept="2zBDeF" id="fKYe1wD09F" role="13zCZw">
+      <property role="TrG5h" value="O_router" />
+      <node concept="3r5wd7" id="fKYe1wD09J" role="2zB7qv" />
+    </node>
+    <node concept="3mx2vR" id="fKYe1wD09O" role="tr10e">
+      <node concept="2zBDe_" id="fKYe1wD09Q" role="2zBDey">
+        <property role="TrG5h" value="Plug_I_Event" />
+      </node>
+    </node>
+    <node concept="2iASse" id="8ULS8pCShL" role="6HEdv">
+      <property role="TrG5h" value="network2" />
+      <node concept="1N5Tqi" id="5d0CGpFWehB" role="1N5PiQ">
+        <node concept="3YB4oO" id="5d0CGpFWehD" role="2RhMKC">
+          <ref role="1N5Pi4" node="8ULS8pCShO" resolve="Socket Connection" />
+          <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+        </node>
+        <node concept="3Yx0EI" id="5d0CGpFWehE" role="2RhMK_">
+          <ref role="1N5Pi4" node="8ULS8pCShM" resolve="Plug Connection" />
+          <ref role="1N5Pi3" node="1YAnAaAosSp" resolve="Event_O" />
+        </node>
+        <node concept="bR32z" id="5d0CGpFWehF" role="bPNfo">
+          <property role="bR32p" value="470.0" />
+        </node>
+      </node>
+      <node concept="2GP0n_" id="8ULS8pCShM" role="2GP0$q">
+        <property role="TrG5h" value="Plug Connection" />
+        <node concept="10YbkR" id="8ULS8pCShN" role="3ISU9Q">
+          <property role="10YbkC" value="2076.0" />
+          <property role="10YbkE" value="949.0" />
+        </node>
+      </node>
+      <node concept="2u7yaZ" id="8ULS8pCShO" role="2GP0_B">
+        <property role="TrG5h" value="Socket Connection" />
+        <node concept="10YbkR" id="8ULS8pCShP" role="3ISU9Q">
+          <property role="10YbkC" value="466.0" />
+          <property role="10YbkE" value="1006.0" />
+        </node>
+      </node>
     </node>
   </node>
 </model>

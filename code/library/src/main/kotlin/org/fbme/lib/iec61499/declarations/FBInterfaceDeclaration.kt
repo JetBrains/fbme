@@ -2,6 +2,7 @@ package org.fbme.lib.iec61499.declarations
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.iec61499.descriptors.SocketType
 
 interface FBInterfaceDeclaration : Declaration {
     val inputEvents: MutableList<EventDeclaration>
@@ -17,7 +18,7 @@ interface FBInterfaceDeclaration : Declaration {
                 return this.typeDescriptor
             }
             if (this is AdapterTypeDeclaration) {
-                return this.socketTypeDescriptor
+                return SocketType(this)
             }
             throw IllegalArgumentException("Unknown declaration with FB interface: " + this.javaClass.name)
         }
