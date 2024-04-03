@@ -21,6 +21,9 @@ object DiagramColors {
     val ADAPTER = Color(0xEE8822)
 
     @JvmField
+    val EXTENDED_ADAPTER: Color = Color.RED
+
+    @JvmField
     val EVENT_RO = Color(0x88AACC)
 
     @JvmField

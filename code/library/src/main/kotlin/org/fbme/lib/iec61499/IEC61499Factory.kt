@@ -2,6 +2,7 @@ package org.fbme.lib.iec61499
 
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
@@ -13,6 +14,7 @@ import org.fbme.lib.iec61499.fbnetwork.subapp.SubapplicationDeclaration
 
 interface IEC61499Factory {
     fun createAdapterTypeDeclaration(identifier: Identifier?): AdapterTypeDeclaration
+    fun createExtendedAdapterTypeDeclaration(identifier: Identifier?): ExtendedAdapterTypeDeclaration
     fun createAlgorithmDeclaration(identifier: Identifier?): AlgorithmDeclaration
     fun <BodyT : AlgorithmBody> createAlgorithmBody(language: AlgorithmLanguage<BodyT>): BodyT
     fun createApplicationDeclaration(identifier: Identifier?): ApplicationDeclaration

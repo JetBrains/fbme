@@ -9,8 +9,7 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.*
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
-import org.fbme.ide.iec61499.repository.PlatformElement
-import org.fbme.lib.common.StringIdentifier
+import org.fbme.ide.richediting.utils.SwitchGenerator
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.st.expressions.*
@@ -47,44 +46,17 @@ class GenerateAdapterRouterAction : AnAction(), DumbAware {
         } ?: return
         event.executeWriteActionInEditor {
             val repository = event.repository
-            val factory = repository.iec61499Factory
             val node = event.getRequiredData(MPSCommonDataKeys.NODE)
             val adapterTypeDeclaration = repository.adapter<AdapterTypeDeclaration>(node)
             val adapterName = adapterTypeDeclaration.name
             val model = event.getRequiredData(MPSCommonDataKeys.CONTEXT_MODEL)
-
-            val routerDeclaration = factory.createCompositeFBTypeDeclaration(
-                StringIdentifier("${adapterName}_router")
-            )
-            model.addRootNode((routerDeclaration as PlatformElement).node)
-
-            val socket = factory.createSocketDeclaration(StringIdentifier("${adapterName}_socket"))
-            socket.typeReference.setTarget(adapterTypeDeclaration)
-            routerDeclaration.sockets.add(socket)
-
-            for (i in 0 until outputsCount) {
-                val plug = factory.createPlugDeclaration(StringIdentifier("${adapterName}_plug$i"))
-                plug.typeReference.setTarget(adapterTypeDeclaration)
-                routerDeclaration.plugs.add(plug)
-            }
-            val switchGenerator = SwitchGenerator(factory, repository.stFactory)
-            switchGenerator.addSocketPlugsSwitch(
-                adapterName = "${adapterName}_internalLeftSwitch",
-                model = model,
-                root = routerDeclaration,
-                socket = socket,
-                plugs = routerDeclaration.plugs,
-                socketToPlug = true,
-                routerName = routerName,
-            )
-            switchGenerator.addSocketPlugsSwitch(
-                adapterName = "${adapterName}_internalRightSwitch",
-                model = model,
-                root = routerDeclaration,
-                socket = socket,
-                plugs = routerDeclaration.plugs,
-                socketToPlug = false,
-                routerName = routerName,
+            val switchGenerator = SwitchGenerator(repository.iec61499Factory, repository.stFactory)
+            switchGenerator.generateRouter(
+                adapterName,
+                model,
+                adapterTypeDeclaration,
+                outputsCount,
+                routerName
             )
         }
     }

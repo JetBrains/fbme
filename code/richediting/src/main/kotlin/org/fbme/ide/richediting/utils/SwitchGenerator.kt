@@ -1,7 +1,7 @@
-package org.fbme.ide.richediting.actions
+package org.fbme.ide.richediting.utils
 
-import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.lib.common.Declaration
+import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
@@ -34,6 +34,51 @@ class SwitchGenerator(
         val target: FunctionBlockDeclarationBase?,
     )
 
+    fun generateRouter(
+        name: String,
+        model: SModel,
+        adapterTypeDeclaration: AdapterTypeDeclaration,
+        outputsCount: Int,
+        routerName: String,
+        virtualPackage: String? = null,
+    ): CompositeFBTypeDeclaration {
+        val routerDeclaration = factory.createCompositeFBTypeDeclaration(
+            StringIdentifier("${name}_router")
+        )
+        model.addRootNodes(routerDeclaration, virtualPackage = virtualPackage)
+
+        val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
+        socket.typeReference.setTarget(adapterTypeDeclaration)
+        routerDeclaration.sockets.add(socket)
+
+        for (i in 0 until outputsCount) {
+            val plug = factory.createPlugDeclaration(StringIdentifier("plug_$i"))
+            plug.typeReference.setTarget(adapterTypeDeclaration)
+            routerDeclaration.plugs.add(plug)
+        }
+        addSocketPlugsSwitch(
+            adapterName = "${name}_leftSwitch",
+            model = model,
+            root = routerDeclaration,
+            socket = socket,
+            plugs = routerDeclaration.plugs,
+            socketToPlug = true,
+            routerName = routerName,
+            virtualPackage = virtualPackage,
+        )
+        addSocketPlugsSwitch(
+            adapterName = "${name}_rightSwitch",
+            model = model,
+            root = routerDeclaration,
+            socket = socket,
+            plugs = routerDeclaration.plugs,
+            socketToPlug = false,
+            routerName = routerName,
+            virtualPackage = virtualPackage,
+        )
+        return routerDeclaration
+    }
+
     fun addSocketPlugsSwitch(
         adapterName: String,
         model: SModel,
@@ -42,6 +87,7 @@ class SwitchGenerator(
         plugs: List<PlugDeclaration>,
         socketToPlug: Boolean,
         routerName: String,
+        virtualPackage: String? = null,
     ): FunctionBlockDeclaration {
         createdEvents.clear()
         createdParams.clear()
@@ -87,7 +133,7 @@ class SwitchGenerator(
             createdParams.firstOrNull { it.sourceParam.name == routerName }?.sourceParam,
         )
 
-        model.addRootNode((switchDeclaration as PlatformElement).node)
+        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
         root.network.functionBlocks.add(switchBlock)
         createdEvents.asSequence()
             .map { it.toNetworkConnection() }
@@ -110,7 +156,7 @@ class SwitchGenerator(
     ) {
         val nameToParameterDeclaration = sourceParameters.associate { sourceDeclaration ->
             val newDeclaration = sourceDeclaration.copy(nameSuffix = nameSuffix)
-            sourceDeclaration.name to ParameterCopyAndConnectObject(
+            sourceDeclaration.identifier to ParameterCopyAndConnectObject(
                 sourceParam = sourceDeclaration,
                 createdParam = newDeclaration,
                 input = input,
@@ -132,12 +178,12 @@ class SwitchGenerator(
                 target = targetBlockDeclaration,
             )
         }
-        createdEvents.addAll(newEventDeclarations)
-        createdParams.addAll(nameToParameterDeclaration.values)
+        createdEvents += newEventDeclarations
+        createdParams += nameToParameterDeclaration.values
         val eventDeclarations = if (input) switchType.inputEvents else switchType.outputEvents
-        eventDeclarations.addAll(newEventDeclarations.map { it.createdEvent })
+        eventDeclarations += newEventDeclarations.map { it.createdEvent }
         val paramsDeclarations = if (input) switchType.inputParameters else switchType.outputParameters
-        paramsDeclarations.addAll(nameToCreatedParameterDeclaration.values)
+        paramsDeclarations += nameToCreatedParameterDeclaration.values
     }
 
     private fun configureEcc(
@@ -177,13 +223,15 @@ class SwitchGenerator(
         val state = factory.createStateDeclaration(
             StringIdentifier(outputEventDeclaration.name + "_state")
         )
+        switchDeclaration.ecc.states += state
         val backTransition = factory.createStateTransition()
+        switchDeclaration.ecc.transitions += backTransition
         backTransition.sourceReference.setTarget(state)
         backTransition.targetReference.setTarget(start)
         val toNewStateTransition = factory.createStateTransition()
         toNewStateTransition.sourceReference.setTarget(start)
         toNewStateTransition.targetReference.setTarget(state)
-        toNewStateTransition.condition.eventReference.setFQName(inputEventDeclaration.identifier.toString())
+        toNewStateTransition.condition.eventReference.setFQName(inputEventDeclaration.name)
         if (routeVariableDeclaration != null) {
             val equality = stFactory.createBinaryExpression(BinaryOperation.EQ)
 
@@ -195,6 +243,7 @@ class SwitchGenerator(
             equality.leftExpression = createVariable(routeVariableDeclaration)
             toNewStateTransition.condition.setGuardCondition(equality)
         }
+        switchDeclaration.ecc.transitions += toNewStateTransition
 
         val stateAction = factory.createStateAction()
 
@@ -206,17 +255,16 @@ class SwitchGenerator(
             val assignment = stFactory.createAssignmentStatement()
             assignment.variable = createVariable(variable)
             assignment.expression = createVariable(assignable)
-            algorithmBody.statements.add(assignment)
+            algorithmBody.statements += assignment
             algorithmDeclaration.body = algorithmBody
             stateAction.algorithm.setTarget(algorithmDeclaration)
         }
-        stateAction.event.setFQName(outputEventDeclaration.identifier.toString())
+        stateAction.event.setFQName(outputEventDeclaration.name)
 
-        state.actions.add(stateAction)
-        switchDeclaration.algorithms.add(algorithmDeclaration)
-        switchDeclaration.ecc.states.add(state)
-        switchDeclaration.ecc.transitions.add(toNewStateTransition)
-        switchDeclaration.ecc.transitions.add(backTransition)
+        state.actions += stateAction
+        switchDeclaration.algorithms += algorithmDeclaration
+
+
     }
 
     private fun createVariable(routeVariableDeclaration: VariableDeclaration): VariableReference {
@@ -268,14 +316,14 @@ class SwitchGenerator(
 
     private fun EventDeclaration.copy(
         nameSuffix: String?,
-        nameToParameterDeclaration: Map<String, ParameterDeclaration>
+        nameToParameterDeclaration: Map<Identifier, ParameterDeclaration>
     ): EventDeclaration {
         val declaration = factory.createEventDeclaration(identifier)
         declaration.name = name.withSuffix(nameSuffix)
         declaration.associations.addAll(associations.map { eventAssociation ->
             val association = factory.createEventAssociation()
             eventAssociation.parameterReference.getTarget()
-                ?.let { nameToParameterDeclaration[it.name] }
+                ?.let { nameToParameterDeclaration[it.identifier] }
                 ?.run { association.parameterReference.setTarget(this) }
             association
         })

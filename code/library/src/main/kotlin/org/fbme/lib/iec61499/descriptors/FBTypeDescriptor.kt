@@ -27,6 +27,8 @@ data class FBTypeDescriptorImpl(
 ) : FBTypeDescriptor {
 
     override fun getAssociatedVariablesForInputEvent(eventNumber: Int): List<Int> = listOf()
+//        FBTypeDescriptorUtils.getAssociatedVariablesForInputEvent(myDeclaration, eventNumber)
 
     override fun getAssociatedVariablesForOutputEvent(eventNumber: Int): List<Int> = listOf()
+//        FBTypeDescriptorUtils.getAssociatedVariablesForOutputEvent(myDeclaration, eventNumber)
 }

@@ -236,6 +236,7 @@
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <property id="1193676396447" name="virtualPackage" index="3GE5qa" />
         <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
       </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
@@ -6344,6 +6345,7 @@
   </node>
   <node concept="312cEu" id="1gxnmuNYXam">
     <property role="TrG5h" value="FBNetworkDeclarationByNode" />
+    <property role="3GE5qa" value="extention" />
     <node concept="3clFbW" id="1gxnmuNZqqa" role="jymVt">
       <node concept="3cqZAl" id="1gxnmuNZqqb" role="3clF45" />
       <node concept="3Tm1VV" id="1gxnmuNZqqc" role="1B3o_S" />
@@ -6448,6 +6450,7 @@
   </node>
   <node concept="312cEu" id="15kNBKVeJ$8">
     <property role="TrG5h" value="NetworkWithCustomComponentsByNode" />
+    <property role="3GE5qa" value="extention" />
     <node concept="2tJIrI" id="15kNBKVeKnQ" role="jymVt" />
     <node concept="3Tm1VV" id="15kNBKVeJ$9" role="1B3o_S" />
     <node concept="3uibUv" id="15kNBKVeJB7" role="1zkMxy">
