@@ -10,12 +10,10 @@ import jetbrains.mps.ide.ui.dialogs.modules.NameLocationPanel
 import jetbrains.mps.ide.ui.dialogs.modules.NewModuleDialog
 import jetbrains.mps.openapi.navigation.NavigationSupport
 import jetbrains.mps.persistence.DefaultModelRoot
-import jetbrains.mps.persistence.MementoImpl
 import jetbrains.mps.persistence.ModelCannotBeCreatedException
 import jetbrains.mps.project.MPSExtentions
 import jetbrains.mps.project.ModelImporter
 import jetbrains.mps.project.Solution
-import jetbrains.mps.project.structure.modules.ModuleFacetDescriptor
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.persistence.Iec61499ModelFactory
 import org.fbme.ide.platform.projectWizard.LibraryTemplate
@@ -61,7 +59,7 @@ class NewLibraryAction : AnAction() {
                 navigationSupport.selectInTree(mpsProject, initialElement.node, false)
             }
 
-            val facetFactory = CustomFacetFactory.CUSTOM_FACET_FACTORY
+            val facetFactory = LibraryFacetFactory.CUSTOM_FACET_FACTORY
 
 //            TODO: add factory at the FBME start
             val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)

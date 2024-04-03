@@ -4,10 +4,10 @@ import org.jetbrains.mps.openapi.module.FacetsFacade.FacetFactory
 import org.jetbrains.mps.openapi.module.SModule
 import org.jetbrains.mps.openapi.module.SModuleFacet
 
-class CustomFacetFactory : FacetFactory {
+class LibraryFacetFactory : FacetFactory {
 
     override fun create(sModule: SModule): SModuleFacet {
-        return CustomFacet(sModule)
+        return LibraryFacet(sModule)
     }
 
     override fun getPresentation(): String {
@@ -15,6 +15,6 @@ class CustomFacetFactory : FacetFactory {
     }
 
     companion object {
-        var CUSTOM_FACET_FACTORY = CustomFacetFactory()
+        var CUSTOM_FACET_FACTORY = LibraryFacetFactory()
     }
 }

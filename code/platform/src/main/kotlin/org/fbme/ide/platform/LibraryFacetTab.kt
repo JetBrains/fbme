@@ -1,4 +1,4 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.org.fbme.ide.platform
 
 import com.intellij.ui.components.JBLabel
 import com.intellij.uiDesigner.core.GridConstraints
@@ -6,13 +6,14 @@ import com.intellij.uiDesigner.core.GridLayoutManager
 import com.intellij.util.ui.JBInsets
 import com.intellij.util.ui.JBUI
 import jetbrains.mps.ide.ui.dialogs.properties.tabs.BaseTab
+import org.fbme.ide.platform.LibraryFacet
 import org.jetbrains.mps.openapi.module.SModuleFacet
 import org.jetbrains.mps.openapi.ui.persistence.FacetTab
 import java.awt.Dimension
 import javax.swing.JPanel
 import javax.swing.JTextField
 
-class CustomFacetTab(val moduleFacet: CustomFacet): BaseTab(), FacetTab {
+class LibraryFacetTab(val moduleFacet: LibraryFacet): BaseTab(), FacetTab {
     private var myTextField: JTextField? = null
 
     override fun init() {
