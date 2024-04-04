@@ -15,36 +15,74 @@ import org.fbme.spinDebugger.utils.*
 
 class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDescriptor) :
     AbstractSPINFBConverter(d, b, f) {
+        val stateToFromTransitions =
+            (fb.declaration as BasicFBTypeDeclaration).ecc.transitions.groupBy { it.sourceReference.getTarget() }
+
     fun generateLabels() {
         generateWaitEvents()
         generateS0OSM()
         generateS1OSM()
+        generateS2OSM()
     }
+
+    fun generateS2OSM() {
+        appendXTABNewLineConst(1, "s2_osm:")
+        appendXTABNewLineConst(1, "d_step {")
+        appendXTABNewLineConst(2, "if ")
+        (fb.declaration as BasicFBTypeDeclaration).ecc.states.forEach { st ->
+            appendXTABNewLineConst(2, ":: Q == ${fb.typeName}_${st.name}_ecc ->")
+            st.actions.forEach {
+                var wasAppended = false
+                val algo = it.algorithm.getTarget()
+                algo?.body.toString().split(Regex("\\n")).forEach { line ->
+                    wasAppended = true
+                    appendXTABNewLineConst(3, line)
+                }
+                if(it.event.getTarget()?.portTarget != null) {
+                    wasAppended = true
+                    appendXTABNewLineConst(3, "EO_${it.event.getTarget()?.portTarget?.name}?true;")
+                }
+                // TODO make flush of data variables
+                if (!wasAppended) {
+                    appendXTABNewLineConst(3, "skip;")
+                }
+            }
+        }
+    }
+
 
     fun generateS1OSM() {
         appendXTABNewLineConst(1, "s1_osm:")
-        val transitions = (fb.declaration as BasicFBTypeDeclaration).ecc.transitions
-        val stateToFromTransitions = transitions.groupBy { it.sourceReference.getTarget() }
-        appendXTABNewLineBody(1) {
-            append("ExistsEnabledECTran = ")
-            stateToFromTransitions.entries.forEach { (state, transitions) ->
-                transitions.appendTo(this, " || ", "(", ")") { tr ->
-                    "(Q == ${fb.typeName}_${state?.name}_ecc && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name})"
-                    // TODO here miss conditions?
+        appendXTABNewLineBody(2) {
+            stateToFromTransitions.entries.appendLambdaTo(
+                this,
+                " || ",
+                "ExistsEnabledECTran = ",
+                ";"
+            ) { (state, transitions) ->
+                transitions.appendTo(this, " || ", "(Q == ${fb.typeName}_${state?.name}_ecc && (", "))") { tr ->
+                    "trans_${state?.name}_${tr.targetReference.getTarget()?.name}"
                 }
             }
-            append(";")
         }
         appendXTABNewLineConst(1, "atomic {")
         appendXTABNewLineConst(2, "if")
         stateToFromTransitions.entries.forEach { (state, transitions) ->
             transitions.forEach { tr ->
-                appendXTABNewLineBody(2) {
-                    append(":: (Q == ${fb.typeName}_${state?.name}_ecc && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name}) -> ")
-                    // add && selectEI_*
+                appendXTABNewLineConst(
+                    2,
+                    ""
+                )
+                appendXTABNewLineBody(2, ) {
+                    append(":: Q == ${fb.typeName}_${state?.name}_ecc")
+                    append(" && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name}")
+                    append(" && select_EI == ${fb.typeName}_s_${tr.condition.eventReference.getTarget()?.portTarget?.name}")
+                    append(" -> Q = ${fb.typeName}_${tr.targetReference.getTarget()?.name}_ecc;")
                 }
+                // TODO In examples exists additional && selectEI_*, but in formal model he absents
             }
         }
+        appendXTABNewLineConst(2, "!ExistsEnabledECTran -> goto done;")
         appendXTABNewLineConst(2, "fi")
         appendXTABNewLineConst(1, "}")
     }
@@ -89,6 +127,31 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
             appendXTABNewLineConst(1, ":: d_step { selectEI_${it.name} -> ")
             appendXTABNewLineConst(2, "EI_${it.name}?true;")
             appendXTABNewLineConst(2, "selectEI = ${fb.typeName}_s_${it.name};")
+            (it.declaration as EventDeclaration).associations.forEach {
+                val parameter = it.parameterReference.getTarget()
+                when (val type = parameter?.type) {
+                    is ElementaryType -> {
+                        appendXTABNewLineConst(2, "DI_${parameter.name}?${parameter.name};")
+                    }
+
+                    is ArrayType -> {
+                        appendXTABNewLineBody(2) {
+                            append("DI_${parameter.name}?")
+                            when (val dims = type.dimensions) {
+                                is ArrayTypeSizes -> {
+                                    if (dims.sizes.size == 1) {
+                                        repeat(dims.sizes[0].value - 1) {
+                                            append("${parameter.name}[${it}],")
+                                        }
+                                        append("${parameter.name}[${dims.sizes[0].value}];")
+                                    }
+                                    // TODO fix for multidimensional arrays
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             appendXTABNewLineConst(1, "}")
         }
         appendXTABNewLineConst(1, ":: (!ExistsInputEvent) -> goto done;")
@@ -121,6 +184,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
                     is ElementaryType -> {
                         appendXTABNewLineConst(2, "DI_${parameter.name}?${parameter.name};")
                     }
+
                     is ArrayType -> {
                         appendXTABNewLineBody(2) {
                             append("DI_${parameter.name}?")
