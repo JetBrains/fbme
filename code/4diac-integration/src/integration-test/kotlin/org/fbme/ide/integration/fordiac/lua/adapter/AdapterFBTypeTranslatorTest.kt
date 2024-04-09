@@ -3,11 +3,8 @@ package org.fbme.ide.integration.fordiac.lua.adapter
 import org.fbme.ide.integration.fordiac.lua.FBType.ADAPTER
 import org.fbme.ide.integration.fordiac.lua.TranslatorTestBase
 import org.fbme.ide.integration.fordiac.lua.TypeInfo
-import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(PlatformTestRunner::class)
 class AdapterFBTypeTranslatorTest : TranslatorTestBase() {
     @Test
     fun simple() {
