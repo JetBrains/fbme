@@ -37,7 +37,6 @@ class EthernetDeviceCommunicationHandlerTest {
             val iecTag: Byte = 80
             val prefix = byteArrayOf(iecTag, 0, 0, iecTag, 0, request.length.toByte())
 
-            println("\tbefore assert")
             assert((prefix + request.toByteArray()).contentEquals(message))
 
             writer.write(byteArrayOf(0, 0, response.length.toByte()) + response.toByteArray())
