@@ -29,6 +29,7 @@ open class TranslatorTestBase : PlatformTestBase() {
                 BASIC -> BasicFBTypeTranslator.translate(block as BasicFBTypeDeclaration)
                 ADAPTER -> AdapterFBTypeTranslator.translate(block as AdapterTypeDeclaration)
                 COMPOSITE -> CompositeFBTypeTranslator.translate(block as CompositeFBTypeDeclaration)
+                else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 
             val expected = readFile("src/integration-test/resources$expectedOutputPath").toComparableList()

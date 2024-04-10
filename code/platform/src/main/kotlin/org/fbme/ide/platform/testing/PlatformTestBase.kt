@@ -10,10 +10,10 @@ import org.fbme.ide.iec61499.repository.PlatformIdentifier
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.converter.PlatformConverter
-import org.fbme.ide.platform.testing.FBType.ADAPTER
+import org.fbme.ide.platform.testing.FBType.*
+import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.fbme.lib.iec61499.parser.IdentifierLocus
 import org.fbme.lib.iec61499.parser.RootConverter
 import org.fbme.lib.st.STFactory
@@ -68,14 +68,18 @@ abstract class PlatformTestBase {
         }
     }
 
-    protected fun SModel.addTypes(fbs: List<TypeInfo>) {
-        fbs.forEach { addType(it) }
-    }
+    protected fun SModel.addTypes(fbs: List<TypeInfo>): List<Declaration> = fbs.map { addType(it) }
 
-    protected fun SModel.addType(fb: TypeInfo): FBInterfaceDeclaration {
+    protected fun SModel.addType(fb: TypeInfo): Declaration {
+        val converter = rootConverterByPath(fb.filePath)
         val parsedBlock = when (fb.type) {
-            ADAPTER -> rootConverterByPath(fb.filePath).convertAdapterType()
-            else -> rootConverterByPath(fb.filePath).convertFBType()
+            ADAPTER -> converter.convertAdapterType()
+            COMPOSITE, BASIC -> converter.convertFBType()
+            SUBAPPLICATION -> converter.convertSubapplicationType()
+            RESOURCE -> converter.convertResourceType()
+            DEVICE -> converter.convertDeviceType()
+            SEGMENT -> converter.convertSegmentType()
+            SYSTEM -> converter.convertSystemConfiguration()
         }
         addRootNode((parsedBlock as PlatformElement).node)
 
@@ -119,7 +123,7 @@ abstract class PlatformTestBase {
 }
 
 enum class FBType {
-    BASIC, ADAPTER, COMPOSITE
+    BASIC, ADAPTER, COMPOSITE, SUBAPPLICATION, RESOURCE, DEVICE, SEGMENT, SYSTEM
 }
 
 data class TypeInfo(val filePath: String, val type: FBType)
