@@ -23,7 +23,13 @@ sourceSets {
     }
 }
 
-val integrationTestImplementation: Configuration by configurations.getting
+val integrationTestImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.implementation.get())
+}
+
+val integrationTestRuntimeOnly: Configuration by configurations.getting {
+    extendsFrom(configurations.runtimeOnly.get())
+}
 
 dependencies {
     mpsImplementation(project(":code:library", "mps"))
@@ -31,7 +37,7 @@ dependencies {
     mpsImplementation(project(":code:platform", "mps"))
 
     compileOnly(project(":code:library"))
-    compileOnly("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.1")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0")
 
     testImplementation("io.mockk:mockk:1.13.9") {
         exclude(group="org.jetbrains.kotlin")
@@ -40,7 +46,6 @@ dependencies {
     testImplementation(kotlin("reflect"))
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.4.2")
     testImplementation(project(":code:library"))
-    testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.1")
 
     integrationTestImplementation(mpsDistribution())
     integrationTestImplementation(project(":code:platform"))
