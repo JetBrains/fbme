@@ -1,9 +1,10 @@
 package org.fbme.ide.integration.fordiac.lua.basic
 
-import org.fbme.ide.integration.fordiac.lua.FBType.ADAPTER
-import org.fbme.ide.integration.fordiac.lua.FBType.BASIC
+
 import org.fbme.ide.integration.fordiac.lua.TranslatorTestBase
-import org.fbme.ide.integration.fordiac.lua.TypeInfo
+import org.fbme.ide.platform.testing.FBType.ADAPTER
+import org.fbme.ide.platform.testing.FBType.BASIC
+import org.fbme.ide.platform.testing.TypeInfo
 import org.junit.Test
 
 class BasicFBTypeTranslatorTest : TranslatorTestBase() {

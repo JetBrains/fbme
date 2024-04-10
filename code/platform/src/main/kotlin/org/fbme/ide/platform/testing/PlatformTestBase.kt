@@ -4,19 +4,22 @@ import jetbrains.mps.project.Project
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SModelReference
 import jetbrains.mps.smodel.SNodePointer
-import jetbrains.mps.tool.environment.Environment
 import jetbrains.mps.util.JDOMUtil
+import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformIdentifier
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.platform.converter.PlatformConverter
+import org.fbme.ide.platform.testing.FBType.ADAPTER
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.fbme.lib.iec61499.parser.IdentifierLocus
 import org.fbme.lib.iec61499.parser.RootConverter
 import org.fbme.lib.st.STFactory
 import org.jdom.Element
 import org.jdom.JDOMException
+import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SModelName
 import org.jetbrains.mps.openapi.persistence.PersistenceFacade
 import org.junit.AfterClass
@@ -65,6 +68,20 @@ abstract class PlatformTestBase {
         }
     }
 
+    protected fun SModel.addTypes(fbs: List<TypeInfo>) {
+        fbs.forEach { addType(it) }
+    }
+
+    protected fun SModel.addType(fb: TypeInfo): FBInterfaceDeclaration {
+        val parsedBlock = when (fb.type) {
+            ADAPTER -> rootConverterByPath(fb.filePath).convertAdapterType()
+            else -> rootConverterByPath(fb.filePath).convertFBType()
+        }
+        addRootNode((parsedBlock as PlatformElement).node)
+
+        return parsedBlock
+    }
+
     // FIXME copied from Iec61499ModelFactory
     private class PlatformIdentifierLocus(private val reference: SModelReference) : IdentifierLocus {
 
@@ -100,3 +117,9 @@ abstract class PlatformTestBase {
         }
     }
 }
+
+enum class FBType {
+    BASIC, ADAPTER, COMPOSITE
+}
+
+data class TypeInfo(val filePath: String, val type: FBType)
