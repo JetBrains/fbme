@@ -11,7 +11,18 @@ import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserExceptio
 enum class ErrorReason {
     NULL,
     UNSUPPORTED_TYPE,
-    UNSUPPORTED_COMMAND;
+    INVALID_DST,
+    NOT_READY,
+    UNSUPPORTED_CMD,
+    INVALID_OBJECT,
+    INVALID_OPERATION,
+    OVERFLOW,
+    NULL_POINTER,
+    INTERRUPTED,
+    UNKNOWN,
+    INVALID_STATE,
+    DUPLICATE_OBJECT,
+    NO_SUCH_OBJECT;
 
     companion object {
         /**
@@ -23,11 +34,8 @@ enum class ErrorReason {
         @JvmStatic
         fun fromString(reason: String?): ErrorReason {
             return reason?.let {
-                when (reason) {
-                    "UNSUPPORTED_TYPE" -> UNSUPPORTED_TYPE
-                    "UNSUPPORTED_CMD" -> UNSUPPORTED_COMMAND
-                    else -> throw ResponseParserException(message = "Failed recognising value of Reason: '$reason'")
-                }
+                ErrorReason.values().find { it.name == reason }
+                    ?: throw ResponseParserException(message = "Failed recognising value of Reason: '$reason'")
             } ?: NULL
         }
     }

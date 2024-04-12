@@ -33,7 +33,7 @@ class ResponseParserTest {
     fun `unsupported command response`() {
         val xmlResponse = "<Response ID=\"7\" Reason=\"UNSUPPORTED_CMD\"/>"
         val actualResponse = parseIDResponse(rawResponse = xmlResponse)
-        val expected = IDResponse(id = 7, errorReason = UNSUPPORTED_COMMAND)
+        val expected = IDResponse(id = 7, errorReason = UNSUPPORTED_CMD)
         assertEquals(expected, actualResponse)
     }
 
