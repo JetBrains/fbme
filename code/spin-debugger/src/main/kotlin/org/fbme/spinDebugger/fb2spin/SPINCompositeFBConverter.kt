@@ -6,6 +6,11 @@ import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractCompositeFBConvert
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 
 class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDescriptor): AbstractSPINFBConverter(d, b, f) {
+    fun generateLocalVariableDefinition() {
+        fb as CompositeFBTypeDeclaration
+
+    }
+
     fun generateDispatch() {
 
     }

@@ -1,5 +1,6 @@
 package org.fbme.spinDebugger.fb2spin
 
+import arrow.core.partially1
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
@@ -13,15 +14,15 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
         private val stateToFromTransitions =
             (fb.declaration as BasicFBTypeDeclaration).ecc.transitions.groupBy { it.sourceReference.getTarget() }
 
+
+    private var forCount = 0
     private fun StringBuilder.appendStatement(tabCount: Int, st: Statement) {
         when (st) {
-            is AssignmentStatement -> {
-                appendXTABNewLineBody(tabCount) {
-                    appendPromelaExpression(st.variable)
-                    append(" = ")
-                    appendPromelaExpression(st.expression)
-                    append(";")
-                }
+            is AssignmentStatement -> appendXTABNewLineBody(tabCount) {
+                appendPromelaExpression(st.variable)
+                append(" = ")
+                appendPromelaExpression(st.expression)
+                append(";")
             }
             is CaseStatement -> {
                 appendXTABNewLineConst(tabCount, "if")
@@ -44,7 +45,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
                         appendStatement(tabCount + 1, st)
                     }
                 }
-                appendXTABNewLineConst(tabCount, "fi")
+                appendXTABNewLineConst(tabCount, "fi;")
             }
             is EmptyStatement -> {
                 TODO()
@@ -53,18 +54,29 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
                 TODO()
             }
             is ForStatement -> {
-                // TODO fix for stepped execution
+                val oldForCount = forCount
+                forCount++
                 appendXTABNewLineBody(tabCount) {
-                    append("for (${st.controlVariable.name}, ")
+                    append("byte ${st.controlVariable.name}$oldForCount = ")
                     appendPromelaExpression(st.controlVariable.beginExpression)
-                    append(", ")
-                    appendPromelaExpression(st.controlVariable.endExpression)
-                    append(")")
+                    append(";")
                 }
+                appendXTABNewLineConst(tabCount, "do")
+                appendXTABNewLineBody(tabCount) {
+                    append(":: ${st.controlVariable.name}$oldForCount >= ") // TODO for in ST is inclusive or exclusive?
+                    appendPromelaExpression(st.controlVariable.endExpression)
+                    append(" -> break")
+                }
+                appendXTABNewLineConst(tabCount, ":: else ->")
                 st.statements.forEach {
                     appendStatement(tabCount + 1, it)
                 }
-                appendXTABNewLineConst(tabCount, "rof(${st.controlVariable.name})")
+                appendXTABNewLineBody(tabCount + 1) {
+                    append("${st.controlVariable.name}$oldForCount = ${st.controlVariable.name}$oldForCount + ")
+                    appendPromelaExpression(st.controlVariable.stepExpression)
+                    append(";")
+                }
+                appendXTABNewLineConst(tabCount, "do;")
             }
             is IfStatement -> {
                 appendXTABNewLineConst(tabCount, "if")
@@ -82,7 +94,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
                         appendStatement(tabCount + 1, it)
                     }
                 }
-                appendXTABNewLineConst(tabCount, "fi")
+                appendXTABNewLineConst(tabCount, "fi;")
             }
             is RepeatStatement -> {
                 // TODO is REPEAT reverse version of while
@@ -101,7 +113,7 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
                     appendStatement(tabCount + 1, it)
                 }
                 appendXTABNewLineConst(tabCount, ":: else -> break;")
-                appendXTABNewLineConst(tabCount, "od")
+                appendXTABNewLineConst(tabCount, "od;")
             }
             else -> {
                 TODO()
@@ -328,34 +340,6 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
     }
 
     fun generateLocalVariableDeclaration() {
-        val declareDataPort: (FBPortDescriptor) -> Unit = { d: FBPortDescriptor ->
-            val decl = (d.declaration as ParameterDeclaration)
-            val type = decl.type
-            val initV = decl.initialValue
-            variableNameToType[d.name] = type!!
-            when (type) {
-                is ElementaryType -> {
-                    buf.appendXTABNewLineConst(
-                        1,
-                        "${data.typesMap[type]} ${d.name} = ${
-                            if (initV != null) initV.value else data.typesInitValMap[type]
-                        };"
-                    )
-                }
-                is ArrayType -> {
-                    buf.appendXTABNewLineBody(1) {
-                        append("${data.typesMap[type.baseType]} ${d.name}[")
-                        append(when (val dims = type.dimensions) {
-                                is ArrayTypeSizes -> dims.sizes.map(Size::value).reduce(Int::times)
-                                is ArrayTypeSubranges -> dims.subranges.map { it.to - it.from }.reduce(Int::times)
-                                else -> 0
-                            })
-                        append("] = ${data.typesInitValMap[type.baseType]};")
-                    }
-                }
-            }
-        }
-
         fb.dataInputPorts.forEach(declareDataPort)
         fb.dataOutputPorts.forEach(declareDataPort)
         listOf(
@@ -368,17 +352,4 @@ class SPINFunctionBlockConverter(d: VerifiersData, b: StringBuilder, f: FBTypeDe
 
     }
 
-    fun generateSignature() {
-        buf.append("proctype ${fb.typeName}(chan")
-        for (ie in fb.eventInputPorts) {
-            //if( !data.ndtCheck(ie.declaration as EventDeclaration)) {
-            buf.append("EI_${ie.name},")
-            //}
-        }
-
-        for (oe in fb.eventOutputPorts) buf.append("EO_${oe.name},") // Event Output
-        for (id in fb.dataInputPorts) buf.append("VI_${id.name},") // Value Input
-        for (od in fb.dataOutputPorts) buf.append("VO_${od.name}_,") // Value Output
-        buf.append("alpha, beta)\n")
-    }
 }

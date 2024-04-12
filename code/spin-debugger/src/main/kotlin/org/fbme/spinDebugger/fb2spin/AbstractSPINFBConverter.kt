@@ -1,6 +1,8 @@
 package org.fbme.spinDebugger.fb2spin
 
 import arrow.core.memoize
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.*
@@ -12,6 +14,48 @@ import org.fbme.spinDebugger.utils.appendLambdaTo
 
 open class AbstractSPINFBConverter(protected val data: VerifiersData, protected var buf: StringBuilder, protected var fb: FBTypeDescriptor) {
     protected val variableNameToType = mutableMapOf<String, DataType>()
+
+    val declareDataPort: (FBPortDescriptor) -> Unit = { d: FBPortDescriptor ->
+        val decl = (d.declaration as ParameterDeclaration)
+        val type = decl.type
+        val initV = decl.initialValue
+        variableNameToType[d.name] = type!!
+        when (type) {
+            is ElementaryType -> {
+                buf.appendXTABNewLineConst(
+                    1,
+                    "${data.typesMap[type]} ${d.name} = ${
+                        if (initV != null) initV.value else data.typesInitValMap[type]
+                    };"
+                )
+            }
+            is ArrayType -> {
+                buf.appendXTABNewLineBody(1) {
+                    append("${data.typesMap[type.baseType]} ${d.name}[")
+                    append(when (val dims = type.dimensions) {
+                        is ArrayTypeSizes -> dims.sizes.map(Size::value).reduce(Int::times)
+                        is ArrayTypeSubranges -> dims.subranges.map { it.to - it.from }.reduce(Int::times)
+                        else -> 0
+                    })
+                    append("] = ${data.typesInitValMap[type.baseType]};")
+                }
+            }
+        }
+    }
+
+    fun generateSignature() {
+        buf.append("proctype ${fb.typeName}(chan")
+        for (ie in fb.eventInputPorts) {
+            //if( !data.ndtCheck(ie.declaration as EventDeclaration)) {
+            buf.append("EI_${ie.name},")
+            //}
+        }
+
+        for (oe in fb.eventOutputPorts) buf.append("EO_${oe.name},") // Event Output
+        for (id in fb.dataInputPorts) buf.append("VI_${id.name},") // Value Input
+        for (od in fb.dataOutputPorts) buf.append("VO_${od.name}_,") // Value Output
+        buf.append("alpha, beta)\n")
+    }
 
     protected fun StringBuilder.appendPromelaExpression(exp: Expression?) {
         when(exp) {
