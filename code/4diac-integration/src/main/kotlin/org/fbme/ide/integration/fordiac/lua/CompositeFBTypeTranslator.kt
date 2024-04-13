@@ -109,7 +109,7 @@ object CompositeFBTypeTranslator {
 
         sb.appendLine("${INDENT_TAB1}fannedOutEventConnections = {")
         fannedOutEventConnections.forEachIndexed { ind, connection ->
-            val succeed = addFannedOutConnectionInfo(fb, connection, originalEventConnections, eventSourceToConnections)
+            val succeed = addFannedOutConnectionInfo(fb, connection, eventSourceToConnections, isDataConnection = false)
             if (!succeed) {
                 sb.append("$INDENT_TAB1{dstID = \"${connection.targetReference.getTarget()?.portTarget?.name}\", -1}")
             }
@@ -164,17 +164,31 @@ object CompositeFBTypeTranslator {
     private fun addFannedOutConnectionInfo(
         fb: CompositeFBTypeDeclaration,
         connection: FBNetworkConnection,
-        originalConnections: List<FBNetworkConnection>,
         sourceToConnections: Map<Declaration, List<FBNetworkConnection>>,
+        isDataConnection: Boolean
     ): Boolean {
         val targetName = connection.targetReference.getTarget()?.portTarget?.name
         val source = connection.sourceReference.getTarget()?.portTarget
         val targetFB = connection.targetReference.getTarget()?.functionBlock
 
         targetFB?.let {
+            val connections = if (isDataConnection) fb.network.dataConnections else fb.network.eventConnections
+
+            val filteredConnections = connections.filter {
+                val srcPort = it.sourceReference.getTarget()?.portTarget ?: return@filter false
+                val size = sourceToConnections[srcPort]?.size ?: return@filter false
+                if (size == 1) {
+                    return@filter true
+                }
+                if (size > 0) {
+                    val conn = sourceToConnections[srcPort]?.get(0) ?: return@filter false
+                    return@filter conn == it
+                }
+                return@filter false
+            }
             sb.append(
                 "$INDENT_TAB2{connectionNum = ${
-                    originalConnections.indexOf(sourceToConnections[source]?.get(0))
+                    filteredConnections.indexOf(sourceToConnections[source]?.get(0))
                 }"
             )
             sb.append(", ")
@@ -189,7 +203,7 @@ object CompositeFBTypeTranslator {
         fb: CompositeFBTypeDeclaration,
         connectedBlock: FunctionBlockDeclarationBase,
         portName: String,
-        id: String
+        id: String,
     ) {
         sb.append("${id}ID = \"${portName}\", ${id}FBNum = ")
 
@@ -206,7 +220,7 @@ object CompositeFBTypeTranslator {
             }
 
             else -> {
-                sb.append(connectedBlock.index() + fb.plugs.size)
+                sb.append(connectedBlock.index())
             }
         }
     }
@@ -238,7 +252,7 @@ object CompositeFBTypeTranslator {
 
         sb.appendLine("${INDENT_TAB1}fannedOutDataConnections = {")
         fannedOutDataConnections.forEachIndexed { ind, connection ->
-            val succeed = addFannedOutConnectionInfo(fb, connection, originalDataConnections, dataSourceToConnections)
+            val succeed = addFannedOutConnectionInfo(fb, connection, dataSourceToConnections, isDataConnection = true)
             if (!succeed) {
                 sb.append("$INDENT_TAB2{dstID = \"${connection.targetReference.getTarget()?.portTarget?.name}\", dstFBNum = -1}")
             }

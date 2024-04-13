@@ -40,18 +40,18 @@ local fbnSpec = {
   eventConnections = {
     {srcID = "Event1", srcFBNum = -1, dstID = "input_event1", dstFBNum = 65537},
     {srcID = "output_event1", srcFBNum = 65537, dstID = "Event4", dstFBNum = -1},
-    {srcID = "EVENT3", srcFBNum = 2, dstID = "Event3", dstFBNum = -1},
-    {srcID = "EVENT4", srcFBNum = 2, dstID = "Event4", dstFBNum = -1},
-    {srcID = "Event2", srcFBNum = -1, dstID = "EVENT1", dstFBNum = 2},
-    {srcID = "CNF", srcFBNum = 1, dstID = "Event3", dstFBNum = -1}
+    {srcID = "EVENT3", srcFBNum = 1, dstID = "Event3", dstFBNum = -1},
+    {srcID = "EVENT4", srcFBNum = 1, dstID = "Event4", dstFBNum = -1},
+    {srcID = "Event2", srcFBNum = -1, dstID = "EVENT1", dstFBNum = 1},
+    {srcID = "CNF", srcFBNum = 0, dstID = "Event3", dstFBNum = -1}
   },
   fannedOutEventConnections = {
-    {connectionNum = 0, dstID = "REQ", dstFBNum = 1},
+    {connectionNum = 0, dstID = "REQ", dstFBNum = 0},
     {connectionNum = 5, dstID = "output_event1", dstFBNum = 65536}
   },
   dataConnections = {
-    {srcID = "InputVar2", srcFBNum = -1, dstID = "input_var", dstFBNum = 2},
-    {srcID = "output_var", srcFBNum = 2, dstID = "output_data1", dstFBNum = 65536}
+    {srcID = "InputVar2", srcFBNum = -1, dstID = "input_var", dstFBNum = 1},
+    {srcID = "output_var", srcFBNum = 1, dstID = "output_data1", dstFBNum = 65536}
   },
   fannedOutDataConnections = {
     {dstID = "OutputVar2", dstFBNum = -1},
