@@ -38,7 +38,7 @@ class EthernetDeviceCommunicationHandler : DeviceCommunicationHandler {
      */
     override fun connect(address: String, port: Int) {
         val socketAddress = InetSocketAddress(address, port)
-        val timeout = 1000
+        val timeout = 3000
 
         try {
             socket = Socket().also {
