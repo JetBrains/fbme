@@ -14,21 +14,3 @@ interface FBTypeDescriptor {
     fun getAssociatedVariablesForInputEvent(eventNumber: Int): List<Int>
     fun getAssociatedVariablesForOutputEvent(eventNumber: Int): List<Int>
 }
-
-data class FBTypeDescriptorImpl(
-    override val typeName: String,
-    override val declaration: Declaration?,
-    override val eventInputPorts: List<FBPortDescriptor> = listOf(),
-    override val eventOutputPorts: List<FBPortDescriptor> = listOf(),
-    override val dataInputPorts: List<FBPortDescriptor> = listOf(),
-    override val dataOutputPorts: List<FBPortDescriptor> = listOf(),
-    override val socketPorts: List<FBPortDescriptor> = listOf(),
-    override val plugPorts: List<FBPortDescriptor> = listOf(),
-) : FBTypeDescriptor {
-
-    override fun getAssociatedVariablesForInputEvent(eventNumber: Int): List<Int> = listOf()
-//        FBTypeDescriptorUtils.getAssociatedVariablesForInputEvent(myDeclaration, eventNumber)
-
-    override fun getAssociatedVariablesForOutputEvent(eventNumber: Int): List<Int> = listOf()
-//        FBTypeDescriptorUtils.getAssociatedVariablesForOutputEvent(myDeclaration, eventNumber)
-}

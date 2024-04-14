@@ -1614,14 +1614,14 @@
     <property role="EcuMT" value="4638275915577578977" />
     <property role="3GE5qa" value="adapter.extention" />
     <property role="TrG5h" value="InternalSocketDeclaration" />
-    <property role="34LRSv" value="extended plug" />
+    <property role="34LRSv" value="internal socket" />
     <ref role="1TJDcQ" node="37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
   </node>
   <node concept="1TIwiD" id="6zKsEr497t3">
     <property role="EcuMT" value="7561669834935924547" />
     <property role="3GE5qa" value="adapter.extention" />
     <property role="TrG5h" value="InternalPlugDeclaration" />
-    <property role="34LRSv" value="extended plug" />
+    <property role="34LRSv" value="internal plug" />
     <ref role="1TJDcQ" node="37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
   </node>
   <node concept="1TIwiD" id="6N4aHQUg0OE">
@@ -1653,13 +1653,19 @@
     <node concept="1TJgyj" id="6N4aHQUckH2" role="1TKVEi">
       <property role="IQ2ns" value="7837436383331437378" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="socketToFbInterface" />
+      <property role="20kJfa" value="internalFbSocketInterface" />
       <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
     </node>
     <node concept="1TJgyj" id="Nr4k4hHK5f" role="1TKVEi">
       <property role="IQ2ns" value="926353119522521423" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="fbToPlugInterface" />
+      <property role="20kJfa" value="internalFbPlugInterface" />
+      <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+    </node>
+    <node concept="1TJgyj" id="vNJiUUGBWo" role="1TKVEi">
+      <property role="IQ2ns" value="573009586004590360" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="internalNetworksInterface" />
       <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
     </node>
     <node concept="1TJgyj" id="6N4aHQUcxJy" role="1TKVEi">

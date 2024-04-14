@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.descriptors
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 
-class SocketType(private val myDeclaration: AdapterTypeDeclaration) : FBTypeDescriptor {
+open class SocketType(protected open val myDeclaration: AdapterTypeDeclaration) : FBTypeDescriptor {
     override val declaration: Declaration
         get() = myDeclaration
     override val typeName: String

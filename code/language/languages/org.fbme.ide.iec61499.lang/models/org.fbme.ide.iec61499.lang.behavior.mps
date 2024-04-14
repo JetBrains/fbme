@@ -943,6 +943,27 @@
   <node concept="13h7C7" id="5L1OxDuoomP">
     <property role="3GE5qa" value="adapter" />
     <ref role="13h7C2" to="xiqq:37fub3vk1KP" resolve="PlugDeclaration" />
+    <node concept="13hLZK" id="5L1OxDuoomQ" role="13h7CW">
+      <node concept="3clFbS" id="5L1OxDuoomR" role="2VODD2">
+        <node concept="3clFbF" id="6LU90BOcjjC" role="3cqZAp">
+          <node concept="37vLTI" id="6LU90BOcjjD" role="3clFbG">
+            <node concept="2ShNRf" id="6LU90BOcjjE" role="37vLTx">
+              <node concept="3zrR0B" id="6LU90BOcjjF" role="2ShVmc">
+                <node concept="3Tqbb2" id="6LU90BOcjjG" role="3zrR0E">
+                  <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="6LU90BOcjjH" role="37vLTJ">
+              <node concept="13iPFW" id="6LU90BOcjjI" role="2Oq$k0" />
+              <node concept="3TrEf2" id="6LU90BOcjjJ" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6LU90BOchbE" resolve="position" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="13i0hz" id="2TBM1D9LBM" role="13h7CS">
       <property role="TrG5h" value="adapterType" />
       <property role="13i0it" value="true" />
@@ -961,27 +982,6 @@
               <node concept="13iPFW" id="2TBM1D9MuH" role="2Oq$k0" />
               <node concept="3TrEf2" id="2TBM1D9Njs" role="2OqNvi">
                 <ref role="3Tt5mk" to="xiqq:37fub3vk1KS" resolve="adapterType" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="13hLZK" id="5L1OxDuoomQ" role="13h7CW">
-      <node concept="3clFbS" id="5L1OxDuoomR" role="2VODD2">
-        <node concept="3clFbF" id="6LU90BOcjjC" role="3cqZAp">
-          <node concept="37vLTI" id="6LU90BOcjjD" role="3clFbG">
-            <node concept="2ShNRf" id="6LU90BOcjjE" role="37vLTx">
-              <node concept="3zrR0B" id="6LU90BOcjjF" role="2ShVmc">
-                <node concept="3Tqbb2" id="6LU90BOcjjG" role="3zrR0E">
-                  <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
-                </node>
-              </node>
-            </node>
-            <node concept="2OqwBi" id="6LU90BOcjjH" role="37vLTJ">
-              <node concept="13iPFW" id="6LU90BOcjjI" role="2Oq$k0" />
-              <node concept="3TrEf2" id="6LU90BOcjjJ" role="2OqNvi">
-                <ref role="3Tt5mk" to="xiqq:6LU90BOchbE" resolve="position" />
               </node>
             </node>
           </node>
@@ -1022,11 +1022,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1D9WGX" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1D9WGY" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                     </node>
                   </node>
                 </node>
@@ -1092,11 +1092,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1Da_Fk" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1Da_Fl" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                     </node>
                   </node>
                 </node>
@@ -1192,11 +1192,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1Daa$W" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1Daa$X" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                     </node>
                   </node>
                 </node>
@@ -1319,11 +1319,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1Dahxc" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1Dahxd" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                     </node>
                   </node>
                 </node>
@@ -1444,11 +1444,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1DaDCC" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1DaDCD" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                     </node>
                   </node>
                 </node>
@@ -1514,11 +1514,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1DaI6o" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1DaI6p" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                     </node>
                   </node>
                 </node>
@@ -1584,11 +1584,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1DaJHU" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1DaJHV" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                     </node>
                   </node>
                 </node>
@@ -1654,11 +1654,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="2TBM1DaLhk" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="2TBM1DaLhl" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                     </node>
                   </node>
                 </node>
@@ -5397,7 +5397,7 @@
         <node concept="3clFbF" id="7hIs$SzQLjX" role="3cqZAp">
           <node concept="37vLTI" id="7hIs$SzQM0M" role="3clFbG">
             <node concept="Xl_RD" id="7hIs$SzQMci" role="37vLTx">
-              <property role="Xl_RC" value="Plug Connection" />
+              <property role="Xl_RC" value="Plug_Connection" />
             </node>
             <node concept="2OqwBi" id="7hIs$SzQLoW" role="37vLTJ">
               <node concept="13iPFW" id="7hIs$SzQLjV" role="2Oq$k0" />
@@ -5454,11 +5454,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="4Bm_L9_gnRZ" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="4Bm_L9_gnS0" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                     </node>
                   </node>
                 </node>
@@ -5467,6 +5467,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllmund" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllmnr6" resolve="shouldAddPlugInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUGPY3" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUGPY4" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUGSAO" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUGSAP" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUGSAQ" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjlll5uD" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUGSAR" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUGSAS" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUGSAT" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUGSAU" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUGSAV" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUGSAW" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUGSAX" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUGSAY" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllkJwN" role="3cqZAp">
@@ -5524,11 +5553,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllm71g" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllm71h" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                     </node>
                   </node>
                 </node>
@@ -5537,6 +5566,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllmyU2" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllmnr6" resolve="shouldAddPlugInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUGZIL" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUGZIM" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUH271" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUH272" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUH273" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllm70W" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUH274" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUH275" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUH276" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUH277" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUH278" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUH279" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUH27a" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUH27b" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllm71_" role="3cqZAp">
@@ -5594,11 +5652,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllm_yg" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllm_yh" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                     </node>
                   </node>
                 </node>
@@ -5607,6 +5665,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllm_yi" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllmnr6" resolve="shouldAddPlugInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUHfi7" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUHfi8" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUHity" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUHitz" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUHit$" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllm_xW" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUHit_" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUHitA" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUHitB" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUHitC" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUHitD" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUHitE" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUHitF" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUHitG" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllm_yj" role="3cqZAp">
@@ -5664,11 +5751,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllmG33" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                        <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllmG34" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                     </node>
                   </node>
                 </node>
@@ -5677,6 +5764,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllmG35" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllmnr6" resolve="shouldAddPlugInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUHt1z" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUHt1$" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUHuJG" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUHuJH" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUHuJI" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllmG2J" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUHuJJ" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUHuJK" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUHuJL" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUHuJM" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUHuJN" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUHuJO" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUHuJP" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUHuJQ" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllmG36" role="3cqZAp">
@@ -5771,11 +5887,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllnAgO" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllnAgP" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                     </node>
                   </node>
                 </node>
@@ -5784,6 +5900,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllnAgQ" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllnrE0" resolve="shouldAddSocketInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUHMUB" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUHMUC" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUHO2H" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUHO2I" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUHO2J" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllnAgw" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUHO2K" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUHO2L" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUHO2M" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUHO2N" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUHO2O" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUHO2P" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUHO2Q" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUHO2R" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllnAgR" role="3cqZAp">
@@ -5841,11 +5986,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllnRoi" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllnRoj" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                     </node>
                   </node>
                 </node>
@@ -5854,6 +5999,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllnRok" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllnrE0" resolve="shouldAddSocketInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUHVok" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUHVol" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUI2Hf" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUI2Hg" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUI2Hh" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllnRnY" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUI2Hi" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUI2Hj" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUI2Hk" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUI2Hl" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUI2Hm" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUI2Hn" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUI2Ho" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUI2Hp" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllnRol" role="3cqZAp">
@@ -5911,11 +6085,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjllo536" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjllo537" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                     </node>
                   </node>
                 </node>
@@ -5924,6 +6098,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjllo538" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllnrE0" resolve="shouldAddSocketInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUHYA7" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUHYA8" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUI8Fj" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUI8Fk" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUI8Fl" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjllo52M" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUI8Fm" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUI8Fn" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUI8Fo" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUI8Fp" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUI8Fq" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUI8Fr" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUI8Fs" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUI8Ft" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjllo539" role="3cqZAp">
@@ -5981,11 +6184,11 @@
                         </node>
                       </node>
                       <node concept="3TrEf2" id="75ZKjlloo8M" role="2OqNvi">
-                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                        <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                       </node>
                     </node>
                     <node concept="3Tsc0h" id="75ZKjlloo8N" role="2OqNvi">
-                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                     </node>
                   </node>
                 </node>
@@ -5994,6 +6197,35 @@
           </node>
           <node concept="BsUDl" id="75ZKjlloo8O" role="3clFbw">
             <ref role="37wK5l" node="75ZKjllnrE0" resolve="shouldAddSocketInterface" />
+          </node>
+          <node concept="9aQIb" id="vNJiUUI0YI" role="9aQIa">
+            <node concept="3clFbS" id="vNJiUUI0YJ" role="9aQI4">
+              <node concept="3clFbF" id="vNJiUUIg7l" role="3cqZAp">
+                <node concept="2OqwBi" id="vNJiUUIg7m" role="3clFbG">
+                  <node concept="37vLTw" id="vNJiUUIg7n" role="2Oq$k0">
+                    <ref role="3cqZAo" node="75ZKjlloo8u" resolve="list" />
+                  </node>
+                  <node concept="X8dFx" id="vNJiUUIg7o" role="2OqNvi">
+                    <node concept="2OqwBi" id="vNJiUUIg7p" role="25WWJ7">
+                      <node concept="2OqwBi" id="vNJiUUIg7q" role="2Oq$k0">
+                        <node concept="2OqwBi" id="vNJiUUIg7r" role="2Oq$k0">
+                          <node concept="13iPFW" id="vNJiUUIg7s" role="2Oq$k0" />
+                          <node concept="2qgKlT" id="vNJiUUIg7t" role="2OqNvi">
+                            <ref role="37wK5l" node="45HU4TLVT_9" resolve="adapterType" />
+                          </node>
+                        </node>
+                        <node concept="3TrEf2" id="vNJiUUIg7u" role="2OqNvi">
+                          <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                        </node>
+                      </node>
+                      <node concept="3Tsc0h" id="vNJiUUIg7v" role="2OqNvi">
+                        <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
           </node>
         </node>
         <node concept="3cpWs6" id="75ZKjlloo8P" role="3cqZAp">
@@ -6028,7 +6260,7 @@
         <node concept="3clFbF" id="41utPVuh5H0" role="3cqZAp">
           <node concept="37vLTI" id="41utPVuh5H1" role="3clFbG">
             <node concept="Xl_RD" id="41utPVuh5H2" role="37vLTx">
-              <property role="Xl_RC" value="Socket Connection" />
+              <property role="Xl_RC" value="Socket_Connection" />
             </node>
             <node concept="2OqwBi" id="41utPVuh5H3" role="37vLTJ">
               <node concept="13iPFW" id="41utPVuh5H4" role="2Oq$k0" />
@@ -6154,11 +6386,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXjnp" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXjnq" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                 </node>
               </node>
             </node>
@@ -6201,11 +6433,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXjnI" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXjnJ" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                 </node>
               </node>
             </node>
@@ -6248,11 +6480,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXjo3" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXjo4" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                 </node>
               </node>
             </node>
@@ -6295,11 +6527,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXjoo" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                    <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXjop" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                 </node>
               </node>
             </node>
@@ -6369,11 +6601,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXDQc" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXDQd" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
                 </node>
               </node>
             </node>
@@ -6416,11 +6648,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXDQx" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXDQy" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsix" resolve="inputEvents" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiz" resolve="outputEvents" />
                 </node>
               </node>
             </node>
@@ -6493,11 +6725,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="45HU4TLXDQQ" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="45HU4TLXDQR" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
                 </node>
               </node>
             </node>
@@ -6597,11 +6829,11 @@
                     </node>
                   </node>
                   <node concept="3TrEf2" id="6zwYR5fHbmm" role="2OqNvi">
-                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                    <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                   </node>
                 </node>
                 <node concept="3Tsc0h" id="6zwYR5fHbmn" role="2OqNvi">
-                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiE" resolve="inputVariables" />
+                  <ref role="3TtcxE" to="xiqq:3HBlKeoYsiI" resolve="outputVariables" />
                 </node>
               </node>
             </node>

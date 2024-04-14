@@ -27,6 +27,7 @@ import org.fbme.ide.platform.converter.PlatformConverter.create
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.fbme.lib.iec61499.stringify.RootDeclarationPrinter
 import org.jdom.Document
 import org.jetbrains.mps.openapi.model.SModel
@@ -48,6 +49,7 @@ import java.util.stream.Collectors
 class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
     private fun supportedFileExtension(fileExt: String): Boolean {
         return fileExt == FBT_FILE_EXT
+                || fileExt == EXT_ADP_FILE_EXT
                 || fileExt == ADP_FILE_EXT
                 || fileExt == SUB_FILE_EXT
                 || fileExt == RES_FILE_EXT
@@ -306,6 +308,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
 
         const val FBT_FILE_EXT = "fbt"
         const val ADP_FILE_EXT = "adp"
+        const val EXT_ADP_FILE_EXT = "eadp"
         const val SUB_FILE_EXT = "app"
         const val RES_FILE_EXT = "res"
         const val DEV_FILE_EXT = "dev"
@@ -338,6 +341,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
             val converter = create(owner, reference, doc)
             return when (fileExtension) {
                 FBT_FILE_EXT -> (converter.convertFBType() as PlatformElement).node
+                EXT_ADP_FILE_EXT -> (converter.convertExtendedAdapterType() as PlatformElement).node
                 ADP_FILE_EXT -> (converter.convertAdapterType() as PlatformElement).node
                 SUB_FILE_EXT -> (converter.convertSubapplicationType() as PlatformElement).node
                 RES_FILE_EXT -> (converter.convertResourceType() as PlatformElement).node
@@ -352,6 +356,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
             val element = owner.getAdapter(node, RootElement::class.java)
             return when (element) {
                 is FBTypeDeclaration -> FBT_FILE_EXT
+                is ExtendedAdapterTypeDeclaration -> EXT_ADP_FILE_EXT
                 is AdapterTypeDeclaration -> ADP_FILE_EXT
                 is SubapplicationTypeDeclaration -> SUB_FILE_EXT
                 is ResourceTypeDeclaration -> RES_FILE_EXT

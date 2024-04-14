@@ -1,20 +1,25 @@
 package org.fbme.ide.richediting.utils
 
-import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
-import org.fbme.lib.iec61499.fbnetwork.*
+import org.fbme.lib.iec61499.fbnetwork.EntryKind
+import org.fbme.lib.iec61499.fbnetwork.FBNetwork
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 import org.fbme.lib.st.STFactory
-import org.fbme.lib.st.expressions.*
+import org.fbme.lib.st.expressions.VariableDeclaration
 import org.jetbrains.mps.openapi.model.SModel
 
-class SwitchGenerator(
+class AdapterSwitchGenerator(
     private val factory: IEC61499Factory,
-    private val stFactory: STFactory,
+    stFactory: STFactory,
 ) {
+    private val factoryUtils: IEC61499FactoryUtils = IEC61499FactoryUtils(factory)
+    private val stFactoryUtils: STFactoryUtils = STFactoryUtils(stFactory)
     private val createdEvents = mutableListOf<EventCopyAndConnectObject>()
     private val createdParams = mutableListOf<ParameterCopyAndConnectObject>()
 
@@ -37,9 +42,11 @@ class SwitchGenerator(
     fun generateRouter(
         name: String,
         model: SModel,
-        adapterTypeDeclaration: AdapterTypeDeclaration,
+        socketAdapterTypeDeclaration: AdapterTypeDeclaration,
         outputsCount: Int,
-        routerName: String,
+        outputRouterName: String,
+        plugAdapterTypeDeclaration: AdapterTypeDeclaration? = null,
+        inputRouterName: String? = null,
         virtualPackage: String? = null,
     ): CompositeFBTypeDeclaration {
         val routerDeclaration = factory.createCompositeFBTypeDeclaration(
@@ -48,38 +55,164 @@ class SwitchGenerator(
         model.addRootNodes(routerDeclaration, virtualPackage = virtualPackage)
 
         val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
-        socket.typeReference.setTarget(adapterTypeDeclaration)
-        routerDeclaration.sockets.add(socket)
+        socket.typeReference.setTarget(socketAdapterTypeDeclaration)
+        routerDeclaration.sockets += socket
 
         for (i in 0 until outputsCount) {
             val plug = factory.createPlugDeclaration(StringIdentifier("plug_$i"))
-            plug.typeReference.setTarget(adapterTypeDeclaration)
-            routerDeclaration.plugs.add(plug)
+            plug.typeReference.setTarget(plugAdapterTypeDeclaration ?: socketAdapterTypeDeclaration)
+            routerDeclaration.plugs += plug
         }
-        addSocketPlugsSwitch(
+        addSocketToPlugsSwitch(
             adapterName = "${name}_leftSwitch",
             model = model,
-            root = routerDeclaration,
-            socket = socket,
-            plugs = routerDeclaration.plugs,
-            socketToPlug = true,
-            routerName = routerName,
+            network = routerDeclaration.network,
+            source = socket,
+            targets = routerDeclaration.plugs,
+            routerName = outputRouterName,
             virtualPackage = virtualPackage,
         )
-        addSocketPlugsSwitch(
+        addPlugsToSocketSwitch(
             adapterName = "${name}_rightSwitch",
             model = model,
-            root = routerDeclaration,
-            socket = socket,
-            plugs = routerDeclaration.plugs,
-            socketToPlug = false,
-            routerName = routerName,
+            network = routerDeclaration.network,
+            sources = routerDeclaration.plugs,
+            target = socket,
+            routerName = inputRouterName,
             virtualPackage = virtualPackage,
         )
         return routerDeclaration
     }
 
-    fun addSocketPlugsSwitch(
+    private fun addSocketToPlugsSwitch(
+        adapterName: String,
+        model: SModel,
+        network: FBNetwork,
+        source: FunctionBlockDeclarationBase,
+        targets: List<PlugDeclaration>,
+        routerName: String,
+        virtualPackage: String? = null,
+    ): FunctionBlockDeclaration {
+        val switchFBIdentifier = StringIdentifier(adapterName)
+        val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
+        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
+        val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, network)
+        val inputParameters = factoryUtils.copyParametersAndConnect(
+            destination = switchDeclaration.inputParameters,
+            destinationBlock = switchBlock,
+            source = source.type.dataOutputPorts.map { it.declaration as ParameterDeclaration },
+            sourceBlock = source,
+            network = network,
+        ).map { it.second }
+        val routerParameterDeclaration = inputParameters.first { it.name == routerName }
+        val inputEvents = factoryUtils.copyEventsAndConnect(
+            destination = switchDeclaration.inputEvents,
+            destinationBlock = switchBlock,
+            source = source.type.eventOutputPorts.map { it.declaration as EventDeclaration },
+            sourceBlock = source,
+            network = network,
+        ).associateBy { it.second.name }
+        val startState = factory.createStateDeclaration(StringIdentifier("Start"))
+        switchDeclaration.ecc.states += startState
+        for ((i, plug) in targets.withIndex()) {
+            val parametersAndCopies = factoryUtils.copyParametersAndConnect(
+                destination = switchDeclaration.outputParameters,
+                destinationBlock = switchBlock,
+                source = plug.type.dataInputPorts.map { it.declaration as ParameterDeclaration },
+                sourceBlock = plug,
+                network = network,
+                outputToInput = false,
+            )
+            parametersAndCopies.forEach { it.second.name += "_$i" }
+            factoryUtils.copyEventsAndConnect(
+                destination = switchDeclaration.outputEvents,
+                destinationBlock = switchBlock,
+                source = plug.type.eventInputPorts.map { it.declaration as EventDeclaration },
+                sourceBlock = plug,
+                network = network,
+                outputToInput = false,
+            ).forEach { (sourceEvent, createdEvent) ->
+                createdEvent.name += "_$i"
+                addState(
+                    switchDeclaration = switchDeclaration,
+                    start = startState,
+                    inputEventDeclaration = checkNotNull(inputEvents[sourceEvent.name]?.second),
+                    outputEventDeclaration = createdEvent,
+                    assignableToVariableParameters = inputParameters.zip(parametersAndCopies.map { it.second }),
+                    number = i,
+                    outputRouteVariable = routerParameterDeclaration,
+                    inputRouteVariable = null,
+                )
+            }
+        }
+        return switchBlock
+    }
+
+    private fun addPlugsToSocketSwitch(
+        adapterName: String,
+        model: SModel,
+        network: FBNetwork,
+        sources: List<PlugDeclaration>,
+        target: FunctionBlockDeclarationBase,
+        routerName: String?,
+        virtualPackage: String? = null,
+    ): FunctionBlockDeclaration {
+        val switchFBIdentifier = StringIdentifier(adapterName)
+        val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
+        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
+        val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, network)
+        val outputParameters = factoryUtils.copyParametersAndConnect(
+            destination = switchDeclaration.outputParameters,
+            destinationBlock = switchBlock,
+            source = target.type.dataInputPorts.map { it.declaration as ParameterDeclaration },
+            sourceBlock = target,
+            network = network,
+            outputToInput = false,
+        ).map { it.second }
+        val outputEvents = factoryUtils.copyEventsAndConnect(
+            destination = switchDeclaration.outputEvents,
+            destinationBlock = switchBlock,
+            source = target.type.eventInputPorts.map { it.declaration as EventDeclaration },
+            sourceBlock = target,
+            network = network,
+            outputToInput = false,
+        ).associateBy { it.second.name }
+        val routerParameterDeclaration = outputParameters.first { it.name == routerName }
+        val startState = factory.createStateDeclaration(StringIdentifier("Start"))
+        switchDeclaration.ecc.states += startState
+        for ((i, plug) in sources.withIndex()) {
+            val parametersAndCopies = factoryUtils.copyParametersAndConnect(
+                destination = switchDeclaration.inputParameters,
+                destinationBlock = switchBlock,
+                source = plug.type.dataOutputPorts.map { it.declaration as ParameterDeclaration },
+                sourceBlock = plug,
+                network = network,
+            )
+            parametersAndCopies.forEach { it.second.name += "_$i" }
+            factoryUtils.copyEventsAndConnect(
+                destination = switchDeclaration.inputEvents,
+                destinationBlock = switchBlock,
+                source = plug.type.eventOutputPorts.map { it.declaration as EventDeclaration },
+                sourceBlock = plug,
+                network = network,
+            ).forEach { (sourceEvent, createdEvent) ->
+                createdEvent.name += "_$i"
+                addState(
+                    switchDeclaration = switchDeclaration,
+                    start = startState,
+                    inputEventDeclaration = createdEvent,
+                    outputEventDeclaration = checkNotNull(outputEvents[sourceEvent.name]?.second),
+                    assignableToVariableParameters = parametersAndCopies.map { it.second }.zip(outputParameters),
+                    number = i,
+                    outputRouteVariable = null,
+                    inputRouteVariable = routerParameterDeclaration,
+                )
+            }
+        }
+        return switchBlock
+    }
+
+    private fun addSocketPlugsSwitch(
         adapterName: String,
         model: SModel,
         root: CompositeFBTypeDeclaration,
@@ -94,8 +227,7 @@ class SwitchGenerator(
 
         val switchFBIdentifier = StringIdentifier(adapterName)
         val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
-        val switchBlock = factory.createFunctionBlockDeclaration(switchFBIdentifier)
-        switchBlock.typeReference.setTarget(switchDeclaration)
+        val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, root.network)
 
         val socketAdapterType = checkNotNull(socket.typeReference.getTarget())
         val eventsToCopy = if (socketToPlug) socketAdapterType.outputEvents else socketAdapterType.inputEvents
@@ -134,7 +266,6 @@ class SwitchGenerator(
         )
 
         model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
-        root.network.functionBlocks.add(switchBlock)
         createdEvents.asSequence()
             .map { it.toNetworkConnection() }
             .toCollection(root.network.eventConnections)
@@ -193,7 +324,7 @@ class SwitchGenerator(
         routerParameterDeclaration: ParameterDeclaration?,
     ) {
         val startState = factory.createStateDeclaration(StringIdentifier("Start"))
-        switchDeclaration.ecc.states.add(startState)
+        switchDeclaration.ecc.states += startState
         for (i in eventDeclarations.indices) {
             val (inputEvent, outputEvents) = eventDeclarations[i]
             for (j in outputEvents.indices) {
@@ -203,9 +334,10 @@ class SwitchGenerator(
                     start = startState,
                     inputEventDeclaration = inputEvent,
                     outputEventDeclaration = outputEvent,
-                    parameterDeclarations = parameterDeclarations,
+                    assignableToVariableParameters = parameterDeclarations,
                     number = j,
-                    routeVariableDeclaration = routerParameterDeclaration,
+                    outputRouteVariable = routerParameterDeclaration,
+                    inputRouteVariable = null,
                 )
             }
         }
@@ -216,10 +348,11 @@ class SwitchGenerator(
         start: StateDeclaration,
         inputEventDeclaration: EventDeclaration,
         outputEventDeclaration: EventDeclaration,
-        parameterDeclarations: List<Pair<ParameterDeclaration, ParameterDeclaration>>,
+        assignableToVariableParameters: List<Pair<ParameterDeclaration, ParameterDeclaration>>,
         number: Int,
-        routeVariableDeclaration: VariableDeclaration?,
-    ) {
+        outputRouteVariable: VariableDeclaration?,
+        inputRouteVariable: VariableDeclaration?,
+    ): StateAction {
         val state = factory.createStateDeclaration(
             StringIdentifier(outputEventDeclaration.name + "_state")
         )
@@ -232,16 +365,10 @@ class SwitchGenerator(
         toNewStateTransition.sourceReference.setTarget(start)
         toNewStateTransition.targetReference.setTarget(state)
         toNewStateTransition.condition.eventReference.setFQName(inputEventDeclaration.name)
-        if (routeVariableDeclaration != null) {
-            val equality = stFactory.createBinaryExpression(BinaryOperation.EQ)
-
-            val numberLiteral = stFactory.createLiteral(LiteralKind.DEC_INT) as Literal<Int?>
-
-            numberLiteral.value = number
-            equality.rightExpression = numberLiteral
-
-            equality.leftExpression = createVariable(routeVariableDeclaration)
-            toNewStateTransition.condition.setGuardCondition(equality)
+        if (outputRouteVariable != null) {
+            toNewStateTransition.condition.setGuardCondition(
+                stFactoryUtils.intEquality(outputRouteVariable, number)
+            )
         }
         switchDeclaration.ecc.transitions += toNewStateTransition
 
@@ -251,67 +378,50 @@ class SwitchGenerator(
             StringIdentifier(outputEventDeclaration.name + "_algorithm")
         )
         val algorithmBody = factory.createAlgorithmBody(AlgorithmLanguage.ST)
-        for ((assignable, variable) in parameterDeclarations) {
-            val assignment = stFactory.createAssignmentStatement()
-            assignment.variable = createVariable(variable)
-            assignment.expression = createVariable(assignable)
-            algorithmBody.statements += assignment
-            algorithmDeclaration.body = algorithmBody
-            stateAction.algorithm.setTarget(algorithmDeclaration)
+        for ((assignable, variable) in assignableToVariableParameters) {
+            algorithmBody.statements += stFactoryUtils.createAssign(variable, stFactoryUtils.createVariable(assignable))
         }
+        if (inputRouteVariable != null) {
+            algorithmBody.statements += stFactoryUtils.createAssign(
+                variable = inputRouteVariable,
+                assignable = stFactoryUtils.createIntLiteral(number),
+            )
+        }
+        algorithmDeclaration.body = algorithmBody
+        stateAction.algorithm.setTarget(algorithmDeclaration)
         stateAction.event.setFQName(outputEventDeclaration.name)
 
         state.actions += stateAction
         switchDeclaration.algorithms += algorithmDeclaration
-
-
+        return stateAction
     }
 
-    private fun createVariable(routeVariableDeclaration: VariableDeclaration): VariableReference {
-        val variableReference = stFactory.createVariableReference()
-        variableReference.reference.setTarget(routeVariableDeclaration)
-        return variableReference
-    }
-
-    private fun createNetworkConnection(
-        kind: EntryKind,
-        source: FunctionBlockDeclarationBase?,
-        sourcePortTarget: Declaration,
-        target: FunctionBlockDeclarationBase?,
-        targetPortTarget: Declaration,
-    ): FBNetworkConnection {
-        val connection = factory.createFBNetworkConnection(kind)
-        connection.sourceReference.setTarget(PortPath.createPortPath(source, kind, sourcePortTarget))
-        connection.targetReference.setTarget(PortPath.createPortPath(target, kind, targetPortTarget))
-        return connection
-    }
-
-    private fun EventCopyAndConnectObject.toNetworkConnection() = if (input) createNetworkConnection(
+    private fun EventCopyAndConnectObject.toNetworkConnection() = if (input) factoryUtils.createNetworkConnection(
         kind = EntryKind.EVENT,
         source = source,
         sourcePortTarget = sourceEvent,
         target = target,
-        targetPortTarget = createdEvent,
-    ) else createNetworkConnection(
+        targetPortTarget = createdEvent
+    ) else factoryUtils.createNetworkConnection(
         kind = EntryKind.EVENT,
         source = target,
         sourcePortTarget = createdEvent,
         target = source,
-        targetPortTarget = sourceEvent,
+        targetPortTarget = sourceEvent
     )
 
-    private fun ParameterCopyAndConnectObject.toNetworkConnection() = if (input) createNetworkConnection(
+    private fun ParameterCopyAndConnectObject.toNetworkConnection() = if (input) factoryUtils.createNetworkConnection(
         kind = EntryKind.DATA,
         source = source,
         sourcePortTarget = sourceParam,
         target = target,
-        targetPortTarget = createdParam,
-    ) else createNetworkConnection(
+        targetPortTarget = createdParam
+    ) else factoryUtils.createNetworkConnection(
         kind = EntryKind.DATA,
         source = target,
         sourcePortTarget = createdParam,
         target = source,
-        targetPortTarget = sourceParam,
+        targetPortTarget = sourceParam
     )
 
     private fun EventDeclaration.copy(
