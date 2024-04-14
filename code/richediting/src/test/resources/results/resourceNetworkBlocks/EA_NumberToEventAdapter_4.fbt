@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
 
-<FBType Name="NumberToEventAdapter_4">
+<FBType Name="EA_NumberToEventAdapter_4">
   <InterfaceList>
     <EventInputs>
       <Event Name="IND" />

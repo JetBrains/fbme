@@ -6,8 +6,10 @@ import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.extapi.persistence.ModelFactoryService
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.dialogs.project.creation.ModelCreateHelper
+import jetbrains.mps.model.ModelDeleteHelper
 import jetbrains.mps.project.AbstractModule
 import jetbrains.mps.project.MPSProject
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.richediting.utils.ExtendedAdapterUtils
 import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.jetbrains.mps.openapi.model.SModelName
@@ -32,17 +34,27 @@ class RevealExtendedAdapterAction : AnAction(), DumbAware {
         val extendedAdapter = node?.let {
             repository.adapterOrNull<ExtendedAdapterTypeDeclaration>(node)
         } ?: return@executeWriteActionInEditor
-        val extendedAdapterUtils = ExtendedAdapterUtils(factory, repository.stFactory, project)
+        val extendedAdapterUtils = ExtendedAdapterUtils(
+            factory = factory,
+            stFactory = repository.stFactory,
+            owner = PlatformRepositoryProvider.getInstance(project),
+        )
+        val newSModelName = SModelName("${model.name}_extensions_revealed")
+        val existedModule = model.module.models.firstOrNull { it.name == newSModelName }
+        if (existedModule != null) {
+            ModelDeleteHelper(existedModule).delete()
+        }
         val modelCopy = ModelCreateHelper(
             project,
             model.module as AbstractModule,
-            SModelName("${model.name}_clone"),
+            newSModelName,
             model.modelRoot,
             project.getComponent(ModelFactoryService::class.java).factoryTypes.first(),
         )
             .setClone(model, false)
             .createModel()
-        extendedAdapterUtils.revealAdapter(extendedAdapter, modelCopy)
+        val nodeCopy = modelCopy.rootNodes.first { it.name == extendedAdapter.name }
+        val extendedAdapterCopy = repository.adapter<ExtendedAdapterTypeDeclaration>(nodeCopy)
+        extendedAdapterUtils.revealAdapter(extendedAdapterCopy, modelCopy)
     }
-
 }
