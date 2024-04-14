@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ExtendedAdapterType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<ExtendedAdapterType Name="EA">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E_I" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="E_O" />
+      <Event Name="E_O_2" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="D_I" Type="INT" />
+      <VarDeclaration Name="D_I_2" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="D_O" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <leftNetwork Name="network1">
+    <FBNetwork>
+      <DataConnections>
+        <Connection Source="Plug_Connection.D_I" Destination="Socket_Connection.D_I" dy="-590" dx2="130" dx1="130" />
+      </DataConnections>
+      <EventConnections>
+        <Connection Source="Socket_Connection.E_O" Destination="Plug_Connection.E_O" dx1="-256" />
+        <Connection Source="Plug_Connection.E_I" Destination="Socket_Connection.SS_I_E" dy="-822" dx2="130" dx1="130" />
+      </EventConnections>
+    </FBNetwork>
+  </leftNetwork>
+  <rightNetwork Name="network2">
+    <FBNetwork>
+      <DataConnections>
+        <Connection Source="Plug_Connection.D_I" Destination="Socket_Connection.D_I" dy="77" dx2="97" dx1="131" />
+      </DataConnections>
+      <EventConnections>
+        <Connection Source="Plug_Connection.E_I" Destination="Socket_Connection.E_I" dy="174" dx2="147" dx1="241" />
+      </EventConnections>
+    </FBNetwork>
+  </rightNetwork>
+  <inputRouter>
+    <VarDeclaration Name="I_router" Type="INT" />
+  </inputRouter>
+  <outputRouter>
+    <VarDeclaration Name="O_router" Type="INT" />
+  </outputRouter>
+  <internalFbSocketInterface Name="internalFbSocketInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="SS_I_E" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="SS_O_E" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="SS_I_D" Type="DATE" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="SS_O_D" Type="DATE" />
+      </OutputVars>
+    </InterfaceList>
+  </internalFbSocketInterface>
+  <internalFbPlugInterface Name="internalFbPlugInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="PS_I_E" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="PS_O_E" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="PS_I_D" Type="INT" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="PS_O_D" Type="INT" />
+      </OutputVars>
+    </InterfaceList>
+  </internalFbPlugInterface>
+  <internalNetworksInterface Name="internalNetworksInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="BN_I_E" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="BN_O_E" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="BN_I_D" Type="INT" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="BN_O_D" Type="INT" />
+      </OutputVars>
+    </InterfaceList>
+  </internalNetworksInterface>
+</ExtendedAdapterType>
+
