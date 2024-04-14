@@ -535,7 +535,7 @@ class ExtendedAdapterUtils(
             typeDescriptor.eventOutputPorts.size
         ) { number ->
             createNumberToEventConverter(
-                name = "NumberToEventAdapter_$number",
+                name = "${name}_NumberToEventAdapter_$number",
                 inputCount = number,
             ).also { currentModel.addRootNodes(it, virtualPackage = VIRTUAL_PACKAGE_NAME) }
         }
