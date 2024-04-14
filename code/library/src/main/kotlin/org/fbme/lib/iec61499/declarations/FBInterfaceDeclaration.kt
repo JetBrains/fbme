@@ -22,4 +22,19 @@ interface FBInterfaceDeclaration : Declaration {
             }
             throw IllegalArgumentException("Unknown declaration with FB interface: " + this.javaClass.name)
         }
+
+    fun isEmpty(): Boolean = inputEvents.isEmpty() &&
+            outputEvents.isEmpty() &&
+            inputParameters.isEmpty() &&
+            outputParameters.isEmpty()
+
+    fun copyEvents(declaration: FBInterfaceDeclaration) {
+        inputEvents += declaration.inputEvents.map { it.copy() as EventDeclaration }
+        outputEvents += declaration.outputEvents.map { it.copy() as EventDeclaration }
+    }
+
+    fun copyParameters(declaration: FBInterfaceDeclaration) {
+        inputParameters += declaration.inputParameters.map { it.copy() as ParameterDeclaration }
+        outputParameters += declaration.outputParameters.map { it.copy() as ParameterDeclaration }
+    }
 }

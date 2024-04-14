@@ -7984,7 +7984,7 @@
               <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
             </node>
             <node concept="liA8E" id="27ZLyP6YwYk" role="2OqNvi">
-              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.internalFbPlugDescriptor()" resolve="internalFbPlugDescriptor" />
+              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.getInternalFbPlugDescriptor()" resolve="getInternalFbPlugDescriptor" />
             </node>
           </node>
         </node>
@@ -8045,7 +8045,7 @@
               <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
             </node>
             <node concept="liA8E" id="3FdyjDbdmsU" role="2OqNvi">
-              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.internalFbSocketDescriptor()" resolve="internalFbSocketDescriptor" />
+              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.getInternalFbSocketDescriptor()" resolve="getInternalFbSocketDescriptor" />
             </node>
           </node>
         </node>
@@ -8342,6 +8342,61 @@
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
+    <node concept="3clFb_" id="8tubMuKqjW" role="jymVt">
+      <property role="TrG5h" value="setLeftNetwork" />
+      <node concept="3Tm1VV" id="8tubMuKqjX" role="1B3o_S" />
+      <node concept="3cqZAl" id="8tubMuKqjZ" role="3clF45" />
+      <node concept="37vLTG" id="8tubMuKqk0" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="8tubMuKqk1" role="1tU5fm">
+          <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="8tubMuKqk2" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="8tubMuKqk7" role="3clF47">
+        <node concept="3clFbF" id="8tubMuK$Up" role="3cqZAp">
+          <node concept="37vLTI" id="8tubMuKEdf" role="3clFbG">
+            <node concept="3K4zz7" id="8tubMuKKy7" role="37vLTx">
+              <node concept="10Nm6u" id="8tubMuKLns" role="3K4E3e" />
+              <node concept="2OqwBi" id="8tubMuKWJl" role="3K4GZi">
+                <node concept="1eOMI4" id="8tubMuKRGm" role="2Oq$k0">
+                  <node concept="10QFUN" id="8tubMuKRGj" role="1eOMHV">
+                    <node concept="3uibUv" id="8tubMuKT1y" role="10QFUM">
+                      <ref role="3uigEE" node="rF7$qOKkkl" resolve="AdapterNetworkDeclarationByNode" />
+                    </node>
+                    <node concept="37vLTw" id="8tubMuKUnN" role="10QFUP">
+                      <ref role="3cqZAo" node="8tubMuKqk0" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="8tubMuKZqm" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="8tubMuKHcw" role="3K4Cdx">
+                <node concept="10Nm6u" id="8tubMuKIK9" role="3uHU7w" />
+                <node concept="37vLTw" id="8tubMuKF29" role="3uHU7B">
+                  <ref role="3cqZAo" node="8tubMuKqk0" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="8tubMuKAkJ" role="37vLTJ">
+              <node concept="37vLTw" id="8tubMuK$Uo" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="8tubMuKC5E" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="8tubMuKqk8" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
     <node concept="3clFb_" id="1Cs6LSsEJKk" role="jymVt">
       <property role="TrG5h" value="getRightNetwork" />
       <node concept="3Tm1VV" id="1Cs6LSsEJKl" role="1B3o_S" />
@@ -8375,9 +8430,64 @@
         </node>
       </node>
     </node>
+    <node concept="3clFb_" id="8tubMuKqk9" role="jymVt">
+      <property role="TrG5h" value="setRightNetwork" />
+      <node concept="3Tm1VV" id="8tubMuKqka" role="1B3o_S" />
+      <node concept="3cqZAl" id="8tubMuKqkc" role="3clF45" />
+      <node concept="37vLTG" id="8tubMuKqkd" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="8tubMuKqke" role="1tU5fm">
+          <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="8tubMuKqkf" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="8tubMuKqkk" role="3clF47">
+        <node concept="3clFbF" id="8tubMuL3Hv" role="3cqZAp">
+          <node concept="37vLTI" id="8tubMuL3Hw" role="3clFbG">
+            <node concept="3K4zz7" id="8tubMuL3Hx" role="37vLTx">
+              <node concept="10Nm6u" id="8tubMuL3Hy" role="3K4E3e" />
+              <node concept="2OqwBi" id="8tubMuL3Hz" role="3K4GZi">
+                <node concept="1eOMI4" id="8tubMuL3H$" role="2Oq$k0">
+                  <node concept="10QFUN" id="8tubMuL3H_" role="1eOMHV">
+                    <node concept="3uibUv" id="8tubMuL3HA" role="10QFUM">
+                      <ref role="3uigEE" node="rF7$qOKkkl" resolve="AdapterNetworkDeclarationByNode" />
+                    </node>
+                    <node concept="37vLTw" id="8tubMuL3HB" role="10QFUP">
+                      <ref role="3cqZAo" node="8tubMuKqkd" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="8tubMuL3HC" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="8tubMuL3HD" role="3K4Cdx">
+                <node concept="10Nm6u" id="8tubMuL3HE" role="3uHU7w" />
+                <node concept="37vLTw" id="8tubMuL3HF" role="3uHU7B">
+                  <ref role="3cqZAo" node="8tubMuKqkd" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="8tubMuL3HG" role="37vLTJ">
+              <node concept="37vLTw" id="8tubMuL3HH" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="8tubMuL3HI" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:1Cs6LSsEFx1" resolve="rightFbNetwork" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="8tubMuKqkl" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
     <node concept="2tJIrI" id="1Cs6LSsEIrK" role="jymVt" />
     <node concept="3clFb_" id="1NXU$uX8BUX" role="jymVt">
-      <property role="TrG5h" value="getSocketToFbInterface" />
+      <property role="TrG5h" value="getInternalFbSocketInterface" />
       <node concept="3Tm1VV" id="1NXU$uX8BUY" role="1B3o_S" />
       <node concept="2AHcQZ" id="1NXU$uX8BUZ" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -8398,7 +8508,7 @@
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
                 </node>
                 <node concept="3TrEf2" id="1NXU$uX8BV8" role="2OqNvi">
-                  <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                  <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
                 </node>
               </node>
               <node concept="3VsKOn" id="1NXU$uX8BV9" role="37wK5m">
@@ -8414,7 +8524,7 @@
     </node>
     <node concept="2tJIrI" id="1NXU$uX8BVb" role="jymVt" />
     <node concept="3clFb_" id="1NXU$uX8BVc" role="jymVt">
-      <property role="TrG5h" value="setSocketToFbInterface" />
+      <property role="TrG5h" value="setInternalFbSocketInterface" />
       <node concept="3Tm1VV" id="1NXU$uX8BVd" role="1B3o_S" />
       <node concept="3cqZAl" id="1NXU$uX8BVe" role="3clF45" />
       <node concept="37vLTG" id="1NXU$uX8BVf" role="3clF46">
@@ -8458,7 +8568,7 @@
                 <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
               </node>
               <node concept="3TrEf2" id="1NXU$uX8BVy" role="2OqNvi">
-                <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="socketToFbInterface" />
+                <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
               </node>
             </node>
           </node>
@@ -8470,7 +8580,7 @@
     </node>
     <node concept="2tJIrI" id="1NXU$uX8BV$" role="jymVt" />
     <node concept="3clFb_" id="1NXU$uX8BV_" role="jymVt">
-      <property role="TrG5h" value="getFbToPlugInterface" />
+      <property role="TrG5h" value="getInternalFbPlugInterface" />
       <node concept="3Tm1VV" id="1NXU$uX8BVA" role="1B3o_S" />
       <node concept="2AHcQZ" id="1NXU$uX8BVB" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
@@ -8491,7 +8601,7 @@
                   <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
                 </node>
                 <node concept="3TrEf2" id="1NXU$uX8BVK" role="2OqNvi">
-                  <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                  <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
                 </node>
               </node>
               <node concept="3VsKOn" id="1NXU$uX8BVL" role="37wK5m">
@@ -8507,7 +8617,7 @@
     </node>
     <node concept="2tJIrI" id="1NXU$uX8BVN" role="jymVt" />
     <node concept="3clFb_" id="1NXU$uX8BVO" role="jymVt">
-      <property role="TrG5h" value="setFbToPlugInterface" />
+      <property role="TrG5h" value="setInternalFbPlugInterface" />
       <node concept="3Tm1VV" id="1NXU$uX8BVP" role="1B3o_S" />
       <node concept="3cqZAl" id="1NXU$uX8BVQ" role="3clF45" />
       <node concept="37vLTG" id="1NXU$uX8BVR" role="3clF46">
@@ -8551,13 +8661,104 @@
                 <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
               </node>
               <node concept="3TrEf2" id="1NXU$uX8BWa" role="2OqNvi">
-                <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="fbToPlugInterface" />
+                <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
               </node>
             </node>
           </node>
         </node>
       </node>
       <node concept="2AHcQZ" id="1NXU$uX8BWb" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="vNJiUUGscw" role="jymVt">
+      <property role="TrG5h" value="getInternalNetworksInterface" />
+      <node concept="3Tm1VV" id="vNJiUUGscx" role="1B3o_S" />
+      <node concept="2AHcQZ" id="vNJiUUGscz" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="vNJiUUGsc$" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+      </node>
+      <node concept="3clFbS" id="vNJiUUGscD" role="3clF47">
+        <node concept="3clFbF" id="vNJiUUGA8Z" role="3cqZAp">
+          <node concept="2OqwBi" id="vNJiUUGA90" role="3clFbG">
+            <node concept="37vLTw" id="vNJiUUGA91" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="vNJiUUGA92" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="vNJiUUGA93" role="37wK5m">
+                <node concept="37vLTw" id="vNJiUUGA94" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="vNJiUUGA95" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="vNJiUUGA96" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="vNJiUUGscE" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="vNJiUUGscH" role="jymVt">
+      <property role="TrG5h" value="setInternalNetworksInterface" />
+      <node concept="3Tm1VV" id="vNJiUUGscI" role="1B3o_S" />
+      <node concept="3cqZAl" id="vNJiUUGscK" role="3clF45" />
+      <node concept="37vLTG" id="vNJiUUGscL" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="vNJiUUGscM" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+        </node>
+        <node concept="2AHcQZ" id="vNJiUUGscN" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="vNJiUUGscS" role="3clF47">
+        <node concept="3clFbF" id="vNJiUUGzOk" role="3cqZAp">
+          <node concept="37vLTI" id="vNJiUUGzOl" role="3clFbG">
+            <node concept="3K4zz7" id="vNJiUUGzOm" role="37vLTx">
+              <node concept="10Nm6u" id="vNJiUUGzOn" role="3K4E3e" />
+              <node concept="2OqwBi" id="vNJiUUGzOo" role="3K4GZi">
+                <node concept="1eOMI4" id="vNJiUUGzOp" role="2Oq$k0">
+                  <node concept="10QFUN" id="vNJiUUGzOq" role="1eOMHV">
+                    <node concept="3uibUv" id="vNJiUUGzOr" role="10QFUM">
+                      <ref role="3uigEE" node="Nr4k4hHWlv" resolve="DeclarationWithInterfaceSectionByNode" />
+                    </node>
+                    <node concept="37vLTw" id="vNJiUUGzOs" role="10QFUP">
+                      <ref role="3cqZAo" node="vNJiUUGscL" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="vNJiUUGzOt" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="vNJiUUGzOu" role="3K4Cdx">
+                <node concept="10Nm6u" id="vNJiUUGzOv" role="3uHU7w" />
+                <node concept="37vLTw" id="vNJiUUGzOw" role="3uHU7B">
+                  <ref role="3cqZAo" node="vNJiUUGscL" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="vNJiUUGzOx" role="37vLTJ">
+              <node concept="37vLTw" id="vNJiUUGzOy" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="vNJiUUGzOz" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="vNJiUUGscT" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
       </node>
     </node>
