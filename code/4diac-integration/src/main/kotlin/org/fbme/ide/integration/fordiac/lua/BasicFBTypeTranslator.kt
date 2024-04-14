@@ -486,8 +486,7 @@ object BasicFBTypeTranslator {
                 .appendLine("  fb[FB_STATE] = ECC_${state.name}")
 
             state.actions.forEach { action ->
-                (action.algorithm.getTarget()?.name).also { sb.appendLine("  alg_$it(fb)") }
-                    ?: throw NullPointerException("Can not find name of algorithm in ECC with state = '${state.name}'")
+                (action.algorithm.getTarget()?.name)?.let { sb.appendLine("  alg_$it(fb)") }
 
                 action.event.getTarget()?.portTarget?.let {
                     val prefix = memorizedFBData.adapterPrefixByEventId(it.identifier, "AEO_", "EO_")
