@@ -3,6 +3,7 @@ package org.fbme.ide.integration.fordiac.parser
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
+import org.fbme.ide.integration.fordiac.parser.ErrorReason.NULL
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException
 
 /**
@@ -58,6 +59,8 @@ data class IDResponse(
         @JacksonXmlProperty(localName = "Reason")
         errorReason: String?
     ) : this(id, ErrorReason.fromString(errorReason))
+
+    fun didSucceed() = errorReason == NULL
 }
 
 private fun String?.parseNameList() = this?.split(", ")?.map(String::trim)?.toList() ?: emptyList()
