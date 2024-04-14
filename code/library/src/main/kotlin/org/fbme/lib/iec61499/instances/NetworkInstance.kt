@@ -3,7 +3,6 @@ package org.fbme.lib.iec61499.instances
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.declarations.extention.AdapterNetworkDeclaration
-import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 
@@ -64,12 +63,6 @@ interface NetworkInstance : Instance {
         }
 
         @JvmStatic
-        fun createForAdapter(adapter: ExtendedAdapterTypeDeclaration, parent: Instance?): NetworkInstance {
-            val networkDeclaration = adapter.network
-            return RegularNetworkInstance(parent, networkDeclaration, adapter)
-        }
-
-        @JvmStatic
         fun createForAdapterNetwork(adapterNetworkDeclaration: AdapterNetworkDeclaration, parent: Instance?): NetworkInstance {
             val networkDeclaration = adapterNetworkDeclaration.network
             return RegularNetworkInstance(parent, networkDeclaration, adapterNetworkDeclaration)
@@ -91,7 +84,6 @@ interface NetworkInstance : Instance {
                 is ResourceDeclaration -> createForResource(decl, parent)
                 is DeviceDeclaration -> createForImplicitResourceOfDevice(decl, parent)
                 is AdapterNetworkDeclaration -> createForAdapterNetwork(decl, parent)
-                is ExtendedAdapterTypeDeclaration -> createForAdapter(decl, parent)
                 else -> throw IllegalArgumentException("Unknown kind of declaration: " + decl!!.javaClass)
             }
         }
