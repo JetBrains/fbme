@@ -38,6 +38,7 @@ dependencies {
 
     compileOnly(project(":code:library"))
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
 
     testImplementation("io.mockk:mockk:1.13.9") {
         exclude(group="org.jetbrains.kotlin")
