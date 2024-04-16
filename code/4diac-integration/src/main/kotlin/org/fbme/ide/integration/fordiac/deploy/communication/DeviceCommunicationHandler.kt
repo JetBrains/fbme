@@ -1,5 +1,7 @@
 package org.fbme.ide.integration.fordiac.deploy.communication
 
+import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
+
 /**
  * An interface representing a communication handler for a device.
  * <p>
@@ -41,6 +43,8 @@ interface DeviceCommunicationHandler : AutoCloseable {
      * This method terminates the connection established with the remote device,
      * releasing any associated resources and closing the communication channels.
      * </p>
+     *
+     * @throws DeploymentException if an error occurs while closing IO stream.
      */
     fun disconnect()
 
