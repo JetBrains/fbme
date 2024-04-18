@@ -37,7 +37,9 @@ dependencies {
     mpsImplementation(project(":code:platform", "mps"))
 
     compileOnly(project(":code:library"))
+    compileOnly(project(":code:platform"))
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0")
+    compileOnly(mpsDistribution())
     implementation("org.apache.logging.log4j:log4j-core:2.23.1")
 
     testImplementation("io.mockk:mockk:1.13.9") {
@@ -47,6 +49,7 @@ dependencies {
     testImplementation(kotlin("reflect"))
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.4.2")
     testImplementation(project(":code:library"))
+    testImplementation(project(":code:platform"))
 
     integrationTestImplementation(mpsDistribution())
     integrationTestImplementation(project(":code:platform"))

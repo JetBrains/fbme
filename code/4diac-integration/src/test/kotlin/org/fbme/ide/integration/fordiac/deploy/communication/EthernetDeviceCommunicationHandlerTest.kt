@@ -1,12 +1,14 @@
 package org.fbme.ide.integration.fordiac.deploy.communication
 
 import io.mockk.*
-import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
+import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.platform.commons.util.ReflectionUtils
-import java.io.*
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.IOException
 import java.lang.reflect.Field
 import java.net.Socket
 

@@ -1,6 +1,4 @@
-package org.fbme.ide.integration.fordiac.deploy.communication
-
-import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
+package org.fbme.ide.platform.deploy.communication
 
 /**
  * An interface representing a communication handler for a device.

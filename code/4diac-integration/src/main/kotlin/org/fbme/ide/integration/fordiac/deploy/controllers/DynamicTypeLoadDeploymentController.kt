@@ -2,12 +2,12 @@ package org.fbme.ide.integration.fordiac.deploy.controllers
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
 import org.fbme.ide.integration.fordiac.lua.AdapterFBTypeTranslator
 import org.fbme.ide.integration.fordiac.lua.ForteLuaTranslator
 import org.fbme.ide.integration.fordiac.parser.ResponseParser.parseIDResponse
 import org.fbme.ide.integration.fordiac.parser.ResponseParser.parseNameListResponse
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException
+import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration

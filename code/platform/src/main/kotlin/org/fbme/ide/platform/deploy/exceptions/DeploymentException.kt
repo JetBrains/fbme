@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.deploy.exceptions
+package org.fbme.ide.platform.deploy.exceptions
 
 import java.io.IOException
 

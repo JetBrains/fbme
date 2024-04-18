@@ -1,7 +1,9 @@
 package org.fbme.ide.integration.fordiac.deploy.controllers
 
-import org.fbme.ide.integration.fordiac.deploy.communication.DeviceCommunicationHandler
-import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
+import org.fbme.ide.integration.fordiac.deploy.communication.EthernetDeviceCommunicationHandler
+import org.fbme.ide.platform.deploy.communication.DeviceCommunicationHandler
+import org.fbme.ide.platform.deploy.controllers.DeviceController
+import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 
 abstract class AbstractDeviceController(
@@ -39,4 +41,6 @@ abstract class AbstractDeviceController(
     }
 
     protected fun isFBNotLoaded(typeName: String) = !fbTypes.contains(typeName)
+
+    override fun createDeviceCommunicationHandler(): DeviceCommunicationHandler = EthernetDeviceCommunicationHandler()
 }

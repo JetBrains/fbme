@@ -2,11 +2,12 @@ package org.fbme.ide.integration.fordiac.deploy.controllers
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.fbme.ide.integration.fordiac.deploy.exceptions.DeploymentException
 import org.fbme.ide.integration.fordiac.parser.IDResponse
 import org.fbme.ide.integration.fordiac.parser.ResponseParser.parseIDResponse
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException.Companion.createErrorMessage
+import org.fbme.ide.platform.debugger.Watchable
+import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printLiteral
@@ -335,6 +336,62 @@ open class DeploymentController(
         } else {
             logger.error(rawResponse)
         }
+    }
+
+    override fun addWatch(watchable: Watchable): Boolean {
+        val request = format(ADD_WATCH, nextId(), watchable.serializeSource(), "*")
+        logger.info(request)
+        var didRequestSucceed = false
+        var rawResponse = ""
+
+        try {
+            rawResponse = sendRequest(destination = watchable.path.root.name, request = request)
+            val response = parseIDResponse(rawResponse)
+            didRequestSucceed = response.didSucceed()
+            logResponse(rawResponse, response)
+        } catch (e: DeploymentException) {
+            logger.error("Failed to send request for adding watch '$watchable'.", e)
+        } catch (e: ResponseParserException) {
+            logger.error(createErrorMessage(rawResponse, request), e)
+        }
+
+        return didRequestSucceed
+    }
+
+    override fun removeWatch(watchable: Watchable): Boolean {
+        val request = format(DELETE_WATCH, nextId(), watchable.serializeSource(), "*")
+        logger.info(request)
+        var didRequestSucceed = false
+        var rawResponse = ""
+
+        try {
+            rawResponse = sendRequest(destination = watchable.path.root.name, request = request)
+            val response = parseIDResponse(rawResponse)
+            didRequestSucceed = response.didSucceed()
+            logResponse(rawResponse, response)
+        } catch (e: DeploymentException) {
+            logger.error("Failed to send request for deleting watch '$watchable'.", e)
+        } catch (e: ResponseParserException) {
+            logger.error(createErrorMessage(rawResponse, request), e)
+        }
+
+        return didRequestSucceed
+    }
+
+    override fun readWatches(): String {
+        val request = format(READ_WATCHES, nextId())
+        logger.info(request)
+        var rawResponse = ""
+
+        try {
+            rawResponse = sendRequest(destination = "", request = request)
+            return rawResponse
+            // todo: logger?
+        } catch (e: DeploymentException) {
+            logger.error("Failed to send request for reading watches.", e)
+        }
+
+        return ""
     }
 
     companion object {

@@ -1,7 +1,7 @@
-package org.fbme.ide.integration.fordiac.deploy.controllers
+package org.fbme.ide.platform.deploy.controllers
 
-import org.fbme.ide.integration.fordiac.deploy.communication.DeviceCommunicationHandler
-import org.fbme.ide.integration.fordiac.deploy.communication.EthernetDeviceCommunicationHandler
+import org.fbme.ide.platform.debugger.Watchable
+import org.fbme.ide.platform.deploy.communication.DeviceCommunicationHandler
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 
@@ -13,7 +13,7 @@ interface DeviceController : AutoCloseable {
         disconnect()
     }
 
-    fun createDeviceCommunicationHandler(): DeviceCommunicationHandler = EthernetDeviceCommunicationHandler()
+    fun createDeviceCommunicationHandler(): DeviceCommunicationHandler
 
     fun createNetwork(resource: ResourceDeclaration): Boolean
     fun createResource(resource: ResourceDeclaration): Boolean
@@ -33,7 +33,10 @@ interface DeviceController : AutoCloseable {
     fun queryResources(): List<ResourceDeclaration>
 
     // monitoring commands
-//    fun readWatches(): String
-//    fun addWatch(watchable: Watchable): Boolean
-//    fun removeWatch(watchable: Watchable): Boolean
+    fun readWatches(): String
+    fun addWatch(watchable: Watchable): Boolean
+    fun removeWatch(watchable: Watchable): Boolean
+//    fun triggerEvent(element: MonitoringBaseElement)
+//    fun forceValue(element: MonitoringBaseElement, String value)
+//    fun clearForce(element: MonitoringBaseElement)
 }
