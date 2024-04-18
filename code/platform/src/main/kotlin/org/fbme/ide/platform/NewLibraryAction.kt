@@ -41,7 +41,7 @@ class NewLibraryAction : AnAction() {
 
         dialog.withFactory {
             val result = NewModuleUtil.createSolution(cfg.moduleName, cfg.moduleLocation.absolutePath, mpsProject)
-
+            
             val root = result.modelRoots.iterator().next() as DefaultModelRoot
             model = try {
                 val fullModelName = "NewLibrary@content"
@@ -62,14 +62,14 @@ class NewLibraryAction : AnAction() {
             val facetFactory = LibraryFacetFactory.CUSTOM_FACET_FACTORY
 
 //            TODO: add factory at the FBME start
-            val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)
-            if (facetsRegistry.getFacetFactory("library") == null) {
-                facetsRegistry.addFactory("library", facetFactory)
-            }
+//            val facetsRegistry: FacetsRegistry = mpsProject.getComponent<FacetsRegistry>(FacetsRegistry::class.java)
+//            if (facetsRegistry.getFacetFactory("library") == null) {
+//                facetsRegistry.addFactory("library", facetFactory)
+//            }
 
-            val libFacet = facetFactory.create(result)
-            result.moduleDescriptor.addFacetDescriptor(libFacet)
-//            result.moduleDescriptor.moduleFacetDescriptors.add(ModuleFacetDescriptor("library", MementoImpl()))
+//            val libFacet = facetFactory.create(result)
+//            result.moduleDescriptor.addFacetDescriptor(libFacet)
+////            result.moduleDescriptor.moduleFacetDescriptors.add(ModuleFacetDescriptor("library", MementoImpl()))
             result.setModuleDescriptor(result.moduleDescriptor, true)
             result.save()
 
