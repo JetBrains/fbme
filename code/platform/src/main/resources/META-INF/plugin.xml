@@ -57,6 +57,9 @@
         <action id="platform.ExportLibraryAction"
                 class="org.fbme.ide.platform.ExportLibraryAction"
                 text="Export Library"/>
+        <action id="platform.ImportNxtLibAction"
+                class="org.fbme.ide.platform.ImportNxtLibraryAction"
+                text="Import Nxt Library"/>
     </actions>
 
 </idea-plugin>
