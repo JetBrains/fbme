@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="DoorSensor">
+    <InterfaceList>
+        <EventInputs>
+            <Event Name="REQ">
+                <With Var="DoorPos"/>
+            </Event>
+        </EventInputs>
+        <EventOutputs>
+            <Event Name="CNF">
+                <With Var="doorOpen"/>
+            </Event>
+        </EventOutputs>
+        <InputVars>
+            <VarDeclaration Name="DoorPos" ArraySize="5" Type="INT"/>
+        </InputVars>
+        <OutputVars>
+            <VarDeclaration Name="doorOpen" ArraySize="5" Type="BOOL"/>
+        </OutputVars>
+    </InterfaceList>
+    <BasicFB>
+        <InternalVars>
+            <VarDeclaration Name="prevPos" ArraySize="5" Type="INT" InitialValue="-1"/>
+        </InternalVars>
+        <ECC>
+            <ECState Name="START" x="700" y="400"/>
+            <ECState Name="update" x="1100" y="1200">
+                <ECAction Output="CNF" Algorithm="UPD"/>
+            </ECState>
+            <ECState Name="Wait" x="1200" y="700"/>
+            <ECTransition Source="Wait" Destination="update" x="1275" y="960"
+                          Condition="REQ[(NOT (DoorPos[4] = prevPos[4])) OR NOT (DoorPos[3] = prevPos[3]) OR NOT (DoorPos[0] = prevPos[0]) OR (NOT (DoorPos[1] = prevPos[1])) OR (NOT (DoorPos[2] = prevPos[2]))]"/>
+            <ECTransition Source="update" Destination="Wait" x="1030" y="950" Condition="1"/>
+            <ECTransition Source="START" Destination="Wait" x="1000" y="480" Condition="1"/>
+        </ECC>
+        <Algorithm Name="initialize">
+            <ST Text="prevPos[0] := DoorPos[0];&amp;#38;#10;prevPos[1] := DoorPos[1];&amp;#38;#10;prevPos[2] := DoorPos[2];&amp;#38;#10;"/>
+        </Algorithm>
+        <Algorithm Name="UPD">
+            <ST Text="doorOpen[0] := DoorPos[0] = 10;&amp;#38;#10;doorOpen[1] := DoorPos[1] = 10;&amp;#38;#10;doorOpen[2] := DoorPos[2] = 10;&amp;#38;#10;doorOpen[3] := DoorPos[3] = 10;&amp;#38;#10;doorOpen[4] := DoorPos[4] = 10;&amp;#38;#10;prevPos[0] := DoorPos[0];&amp;#38;#10;prevPos[1] := DoorPos[1];&amp;#38;#10;prevPos[2] := DoorPos[2];&amp;#38;#10;prevPos[3] := DoorPos[3];&amp;#38;#10;prevPos[4] := DoorPos[4];&amp;#38;#10;"/>
+        </Algorithm>
+    </BasicFB>
+</FBType>
+

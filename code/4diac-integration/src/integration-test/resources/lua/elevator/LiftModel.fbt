@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="LiftModel">
+    <InterfaceList>
+        <EventInputs>
+            <Event Name="INIT">
+                <With Var="motorUp" />
+                <With Var="motorDown" />
+            </Event>
+            <Event Name="REQ">
+                <With Var="motorUp" />
+                <With Var="motorDown" />
+            </Event>
+            <Event Name="TICK" />
+        </EventInputs>
+        <EventOutputs>
+            <Event Name="INITO" />
+            <Event Name="GO" />
+            <Event Name="STOP" />
+            <Event Name="UPD">
+                <With Var="CarPos" />
+            </Event>
+        </EventOutputs>
+        <InputVars>
+            <VarDeclaration Name="motorUp" Type="BOOL" />
+            <VarDeclaration Name="motorDown" Type="BOOL" />
+        </InputVars>
+        <OutputVars>
+            <VarDeclaration Name="CarPos" Type="INT" />
+        </OutputVars>
+    </InterfaceList>
+    <BasicFB>
+        <InternalVars>
+            <VarDeclaration Name="Position" Type="DINT" />
+            <VarDeclaration Name="direction" Type="DINT" />
+        </InternalVars>
+        <ECC>
+            <ECState Name="START" x="940" y="555" />
+            <ECState Name="INIT" x="100" y="1200">
+                <ECAction Output="INITO" Algorithm="INIT" />
+            </ECState>
+            <ECState Name="REQ" x="1030" y="1360">
+                <ECAction Output="UPD" Algorithm="REQ" />
+            </ECState>
+            <ECState Name="Tick" x="1400" y="100">
+                <ECAction Output="UPD" Algorithm="TICK" />
+            </ECState>
+            <ECState Name="GO" x="0" y="200">
+                <ECAction Output="GO" Algorithm="REQ" />
+            </ECState>
+            <ECState Name="STOP" x="2000" y="1100">
+                <ECAction Output="STOP" Algorithm="REQ" />
+                <ECAction Output="UPD" />
+            </ECState>
+            <ECTransition Source="START" Destination="INIT" x="740" y="860" Condition="INIT" />
+            <ECTransition Source="INIT" Destination="START" x="405" y="730" Condition="1" />
+            <ECTransition Source="START" Destination="GO" x="475" y="590" Condition="REQ[((direction = -1 &amp;#38; motorUp))]" />
+            <ECTransition Source="START" Destination="Tick" x="1100" y="310" Condition="TICK" />
+            <ECTransition Source="Tick" Destination="START" x="1280" y="380" Condition="1" />
+            <ECTransition Source="START" Destination="STOP" x="1375" y="750" Condition="REQ[(motorUp &amp;#38; motorDown)]" />
+            <ECTransition Source="GO" Destination="START" x="545" y="495" Condition="1" />
+            <ECTransition Source="STOP" Destination="START" x="1305" y="890" Condition="1" />
+            <ECTransition Source="START" Destination="REQ" x="1065" y="955" Condition="REQ[((motorUp &amp;#38; direction = 1))]" />
+            <ECTransition Source="REQ" Destination="START" x="975" y="885" Condition="1" />
+        </ECC>
+        <Algorithm Name="INIT">
+            <ST Text="Position := 1;&amp;#38;#10;direction := 0;&amp;#38;#10;CarPos := Position;&amp;#38;#10;" />
+        </Algorithm>
+        <Algorithm Name="REQ">
+            <ST Text="&#13;&#10;IF motorUp THEN &#13;&#10; direction := 1;&#13;&#10;ELSIF motorDown THEN &#13;&#10;  direction := -1;&#13;&#10;ELSE &#13;&#10;  direction := 0;&#13;&#10;END_IF; &#10;CarPos := Position;"/>
+        </Algorithm>
+        <Algorithm Name="TICK">
+            <ST Text="Position := 0;&amp;#38;#10;CarPos := Position;&amp;#38;#10;" />
+        </Algorithm>
+    </BasicFB>
+</FBType>

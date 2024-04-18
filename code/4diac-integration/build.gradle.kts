@@ -53,6 +53,7 @@ dependencies {
     integrationTestImplementation(project(":code:library"))
     integrationTestImplementation(project(":code:nxt-integration"))
     integrationTestImplementation(project(":code:language"))
+    integrationTestImplementation("org.testcontainers:testcontainers:1.19.7")
 }
 
 mps {
