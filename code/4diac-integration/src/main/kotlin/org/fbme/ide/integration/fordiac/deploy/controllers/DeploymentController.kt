@@ -9,6 +9,7 @@ import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserExceptio
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException.Companion.createErrorMessage
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
+import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printLiteral
 import java.text.MessageFormat.format
 
 open class DeploymentController(
@@ -23,11 +24,11 @@ open class DeploymentController(
     }
 
     override fun createNetwork(resource: ResourceDeclaration): Boolean {
-        var errorOccurred = false
+        var didRequestSucceed = true
 
-        fun executeFunctionWithCheck(function: () -> Boolean) {
-            if (!errorOccurred) {
-                errorOccurred = !function()
+        fun executeFunctionWithCheck(command: () -> Boolean) {
+            if (didRequestSucceed) {
+                didRequestSucceed = command()
             }
         }
 
@@ -42,7 +43,7 @@ open class DeploymentController(
         resource.network.eventConnections.forEach { executeFunctionWithCheck {  createConnection(resource, it) } }
         resource.network.dataConnections.forEach { executeFunctionWithCheck { createConnection(resource, it) } }
 
-        return errorOccurred
+        return didRequestSucceed
     }
 
     override fun createResource(resource: ResourceDeclaration): Boolean {
@@ -67,7 +68,7 @@ open class DeploymentController(
 
     override fun writeResourceParameter(resource: ResourceDeclaration, parameter: ParameterAssignment): Boolean {
         val paramName = parameter.parameterReference.getTarget()?.name
-        val request = format(parameterMessage(), nextId(), parameter.value, "${resource.name}.$paramName")
+        val request = format(parameterMessage(), nextId(), printLiteral(parameter.value!!), "${resource.name}.$paramName")
         logger.info(request)
         var didRequestSucceed = false
         var rawResponse = ""
@@ -95,7 +96,7 @@ open class DeploymentController(
         val request = format(
             parameterMessage(),
             nextId(),
-            parameter.value,
+            printLiteral(parameter.value!!),
             "${parentFB?.name}.$paramName"
         )
         logger.info(request)
@@ -223,7 +224,7 @@ open class DeploymentController(
 
     override fun writeDeviceParameter(device: DeviceDeclaration, parameter: ParameterAssignment): Boolean {
         val paramName = parameter.parameterReference.getTarget()?.name
-        val request = format(parameterMessage(), id, parameter.value, paramName)
+        val request = format(parameterMessage(), id, printLiteral(parameter.value!!), paramName)
         id++
         logger.info(request)
         var didRequestSucceed = false
