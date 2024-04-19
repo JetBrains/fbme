@@ -97,7 +97,6 @@ class ImportNxtLibraryAction: AnAction() {
         }
 
         private fun convertRootNode(reference: SModelReference, doc: Document, fileExtension: String?): SNode? {
-            // TODO: how this is expected to be used or smth ???
             val owner = PlatformElementsOwner()
             val configuration = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
             val converter = PlatformConverter.create(configuration, reference, doc)
