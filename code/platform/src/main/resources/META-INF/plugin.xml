@@ -16,7 +16,7 @@
         <DataSourceFactoryRuleProvider
                 implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
         <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
-        <facetTabFactory facetType="library" className="org.fbme.ide.platform.CustomFacetTabFactory"/>
+        <facetTabFactory facetType="library" className="org.fbme.ide.platform.LibraryFacetTabFactory"/>
     </extensions>
     <extensions defaultExtensionNs="jetbrains.mps">
         <NodeEditorFactory implementation="org.fbme.ide.platform.editor.PlatformEditorFactory"/>

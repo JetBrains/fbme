@@ -36,6 +36,10 @@ import org.jetbrains.mps.openapi.model.SNode
 import org.jetbrains.mps.openapi.persistence.ModelLoadException
 import org.jetbrains.mps.openapi.persistence.PersistenceFacade
 import java.io.*
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.util.stream.Collectors
 import javax.swing.JComponent
 import javax.swing.JLabel
 import javax.swing.JPanel
@@ -44,8 +48,44 @@ class ImportNxtLibraryAction: AnAction() {
 
     companion object {
 
+        val NAMESPACES_FILE_EXTENSION = ".iecproj"
+        val NAMESPACES_XML_TAG = "Namespaces"
+        val NAMESPACE_XML_TAG = "Ns"
+        val NAMESPACE_PARAMETER_XML_TAG = "Name"
+        val FB_XML_TAG = "FB"
+        val FB_PARAMETER_XML_TAG = "Name"
+
+        fun extractNamespaces(folderPath: String): HashMap<String, String> {
+            val result = HashMap<String, String>()
+
+            val iecprojFilePath = Files.walk(Paths.get(folderPath))
+                .filter { path: Path -> path.toString().endsWith(NAMESPACES_FILE_EXTENSION) }
+                .collect(Collectors.toList())
+                .firstOrNull() ?: throw RuntimeException("No .iecproj file found in the directory")
+
+            BufferedReader(FileReader(iecprojFilePath.toFile())).use { reader ->
+                val doc = JDOMUtil.loadDocument(reader)
+                val rootElement = doc.rootElement
+
+                val namespacesElement = rootElement.getChild(NAMESPACES_XML_TAG, rootElement.namespace)
+
+                for (nsElement in namespacesElement.getChildren(NAMESPACE_XML_TAG, rootElement.namespace)) {
+                    val namespaceName = nsElement.getAttributeValue(NAMESPACE_PARAMETER_XML_TAG)
+                    val fbNames = nsElement.getChildren(FB_XML_TAG, rootElement.namespace)
+                        .map { it.getAttributeValue(FB_PARAMETER_XML_TAG) }
+                    // for all fbNames in the namespace, add the namespaceName to the result
+                    fbNames.forEach { result[it] = namespaceName }
+                }
+            }
+
+            return result
+        }
+
+
         fun initModel(project: Project, repository: PlatformRepository, model: SModel, moduleName: String, folderPath: String): PlatformElement {
             val nxtLibNamespaceFolder = "$folderPath/Files"
+
+            val namespaces = extractNamespaces(folderPath)
 
             val modelId = SModelId.generate()
             val modelName = "Library@content"
@@ -58,7 +98,7 @@ class ImportNxtLibraryAction: AnAction() {
             val errorEntries = mutableSetOf<File>()
             for (entry in entries) {
                 try {
-                    loadRootFromFile(header, entry, model)
+                    loadRootFromFile(header, entry, model, namespaces)
                 } catch (e: Exception) {
 //                    errorEntries += entry
                 }
@@ -82,15 +122,15 @@ class ImportNxtLibraryAction: AnAction() {
         }
 
         @Throws(ModelLoadException::class)
-        fun loadRootFromFile(header: SModelSimpleHeader, documentFile: File, model: SModel) {
+        fun loadRootFromFile(header: SModelSimpleHeader, documentFile: File, model: SModel, namespaces: HashMap<String, String>) {
             BufferedReader(FileReader(documentFile)).use { reader ->
                 val doc = JDOMUtil.loadDocument(reader)
                 val node = convertRootNode(header.modelReference, doc, documentFile.extension)
                 if (node != null) {
-//                    val virtualPackage = NameUtil.namespaceFromLongName(documentFile.name)
-//                    if (virtualPackage != null && virtualPackage.isNotEmpty()) {
-//                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, virtualPackage)
-//                    }
+                    val virtualPackage = namespaces[documentFile.name]
+                    if (virtualPackage != null && virtualPackage.isNotEmpty()) {
+                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, virtualPackage)
+                    }
                     model.addRootNode(node)
                 }
             }
@@ -147,11 +187,10 @@ class ImportNxtLibraryAction: AnAction() {
                 val moduleName = File(folderPath).name
 
                 val moduleDir = mpsProject.project.basePath + "/solutions/" + moduleName
-
                 val solution = NewModuleUtil.createSolution(moduleName, moduleDir, mpsProject)
                 val root = solution.modelRoots.iterator().next() as DefaultModelRoot
                 val model = try {
-                    root.createModel(SModelName(moduleName), null,
+                    root.createModel(SModelName("Library@content"), null,
                         Iec61499ModelFactory.DST,
                         Iec61499ModelFactory.TYPE
                     )
@@ -186,7 +225,7 @@ class ImportNxtLibraryAction: AnAction() {
                 title = "Import NxtLib"
             }
 
-            override fun createCenterPanel(): JComponent? {
+            override fun createCenterPanel(): JComponent {
                 return panel
             }
         }
