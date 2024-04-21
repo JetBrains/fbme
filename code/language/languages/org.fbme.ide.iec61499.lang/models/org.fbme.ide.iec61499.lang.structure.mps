@@ -539,8 +539,26 @@
     <property role="19KtqR" value="true" />
     <property role="3GE5qa" value="adapter" />
     <ref role="1TJDcQ" node="2ByE74knaXi" resolve="DeclarationWithInterface" />
+    <node concept="1TJgyj" id="7GRDQWyucNa" role="1TKVEi">
+      <property role="IQ2ns" value="8878749286145772746" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="controlEvent" />
+      <ref role="20lvS9" node="3HBlKeoYsiA" resolve="EventDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="7GRDQWyucNc" role="1TKVEi">
+      <property role="IQ2ns" value="8878749286145772748" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="controlInputs" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
+    </node>
     <node concept="1QGGSu" id="4dW98DtmzF9" role="rwd14">
       <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/adapter.svg" />
+    </node>
+    <node concept="1TJgyi" id="7GRDQWyuTZ3" role="1TKVEl">
+      <property role="IQ2nx" value="8878749286145957827" />
+      <property role="TrG5h" value="count" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
   </node>
   <node concept="1TIwiD" id="37fub3vjRJq">

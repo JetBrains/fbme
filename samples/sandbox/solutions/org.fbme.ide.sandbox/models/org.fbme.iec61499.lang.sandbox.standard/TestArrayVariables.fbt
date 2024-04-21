@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="TestArrayVariables">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="EI">
+        <With Var="ArraySizeInput" />
+        <With Var="ArraySizesInput" />
+        <With Var="ArraySubrangeInput" />
+        <With Var="ArraySubrangesInput" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="EO">
+        <With Var="Result" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ArraySizeInput" ArraySize="10" Type="INT" />
+      <VarDeclaration Name="ArraySizesInput" ArraySize="10, 5" Type="INT" />
+      <VarDeclaration Name="ArraySubrangeInput" ArraySize="-5..10" Type="INT" />
+      <VarDeclaration Name="ArraySubrangesInput" ArraySize="5..10, -3..3" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Result" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+    <Algorithm Name="TestAlg">
+      <ST Text="Result := ArraySizeInput[0] + ArraySizesInput[1, 2] + ArraySubrangeInput[-3] + ArraySubrangesInput[6, 0];&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+
