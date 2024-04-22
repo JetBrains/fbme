@@ -60,6 +60,9 @@
         <action id="platform.ImportNxtLibAction"
                 class="org.fbme.ide.platform.ImportNxtLibraryAction"
                 text="Import Nxt Library"/>
+        <action id="platform.SetNamespaceAction"
+                class="org.fbme.ide.platform.SetNamespaceAction"
+                text="Set Namespace"/>
     </actions>
 
 </idea-plugin>

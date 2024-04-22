@@ -3812,6 +3812,26 @@
             </node>
           </node>
         </node>
+        <node concept="3clFbF" id="6GCs3ZEl6Al" role="3cqZAp">
+          <node concept="2OqwBi" id="6GCs3ZEl78e" role="3clFbG">
+            <node concept="2WthIp" id="6GCs3ZEl6Aj" role="2Oq$k0" />
+            <node concept="liA8E" id="6GCs3ZEl8cS" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="6GCs3ZEl91Q" role="37wK5m">
+                <node concept="2YIFZM" id="6GCs3ZEl8Vl" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="6GCs3ZEl9m1" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="6GCs3ZEl9AP" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ImportNxtLibAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
       </node>
     </node>
     <node concept="tT9cl" id="9Qxn4Lp18Y" role="2f5YQi">
@@ -3846,6 +3866,36 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="2iSq5VJxrIX">
+    <property role="TrG5h" value="CreateNamespaceGroup" />
+    <node concept="fu6FP" id="2iSq5VJxrSZ" role="ftER_">
+      <node concept="3clFbS" id="2iSq5VJxrT1" role="2VODD2">
+        <node concept="3clFbF" id="2iSq5VJxuQk" role="3cqZAp">
+          <node concept="2OqwBi" id="2iSq5VJxvj8" role="3clFbG">
+            <node concept="2WthIp" id="2iSq5VJxuQj" role="2Oq$k0" />
+            <node concept="liA8E" id="2iSq5VJxwhU" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="2iSq5VJxwKi" role="37wK5m">
+                <node concept="2YIFZM" id="2iSq5VJxw_M" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="2iSq5VJxx2U" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="2iSq5VJxxg$" role="37wK5m">
+                    <property role="Xl_RC" value="platform.SetNamespaceAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="tT9cl" id="2iSq5VJxxHS" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4Gvz" resolve="NodeActions" />
     </node>
   </node>
 </model>
