@@ -1,5 +1,6 @@
 package org.fbme.ide.platform.org.fbme.ide.platform
 
+import com.intellij.openapi.ui.VerticalFlowLayout
 import com.intellij.ui.components.JBLabel
 import com.intellij.uiDesigner.core.GridConstraints
 import com.intellij.uiDesigner.core.GridLayoutManager
@@ -10,11 +11,23 @@ import org.fbme.ide.platform.LibraryFacet
 import org.jetbrains.mps.openapi.module.SModuleFacet
 import org.jetbrains.mps.openapi.ui.persistence.FacetTab
 import java.awt.Dimension
+import javax.swing.BorderFactory
+import javax.swing.JLabel
 import javax.swing.JPanel
 import javax.swing.JTextField
 
 class LibraryFacetTab(val moduleFacet: LibraryFacet): BaseTab(), FacetTab {
     private var myTextField: JTextField? = null
+
+    private fun displayAllNamespaces() {
+        val namespacesPanel = JPanel(VerticalFlowLayout())
+        moduleFacet.getAllNamespaces().forEach { (node, namespace) ->
+            val label = JLabel("Node ID: ${node.nodeId}, Name: ${node.name}, Namespace: $namespace")
+            label.border = BorderFactory.createEmptyBorder(10, 10, 10, 10) // Add space around the label
+            namespacesPanel.add(label)
+        }
+        tabComponent.add(namespacesPanel)
+    }
 
     override fun init() {
         val content = JPanel()
@@ -69,6 +82,8 @@ class LibraryFacetTab(val moduleFacet: LibraryFacet): BaseTab(), FacetTab {
                 false
             )
         )
+
+        displayAllNamespaces()
 
         tabComponent = outerPanel
     }
