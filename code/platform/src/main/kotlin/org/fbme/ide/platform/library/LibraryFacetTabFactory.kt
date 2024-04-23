@@ -1,6 +1,7 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library
 
-import org.fbme.ide.platform.org.fbme.ide.platform.LibraryFacetTab
+import org.fbme.ide.platform.library.util.LibraryFacet
+import org.fbme.ide.platform.library.LibraryFacetTab
 import org.jetbrains.mps.openapi.ui.persistence.FacetTab
 import org.jetbrains.mps.openapi.ui.persistence.TabFactory
 

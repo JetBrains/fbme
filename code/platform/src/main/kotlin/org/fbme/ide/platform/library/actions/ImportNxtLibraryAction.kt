@@ -1,4 +1,4 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library.actions
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
@@ -20,7 +20,6 @@ import jetbrains.mps.project.*
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SNodeUtil
 import jetbrains.mps.util.JDOMUtil
-import jetbrains.mps.util.NameUtil
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.ide.iec61499.repository.PlatformRepository

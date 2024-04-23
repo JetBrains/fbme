@@ -1,9 +1,7 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.ui.Messages
-import com.intellij.openapi.util.NlsSafe
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.project.Solution
 import jetbrains.mps.vfs.IFile

@@ -1,4 +1,4 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

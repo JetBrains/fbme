@@ -1,4 +1,4 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library.util
 
 import jetbrains.mps.extapi.module.ModuleFacetBase
 import org.fbme.ide.iec61499.repository.PlatformElement

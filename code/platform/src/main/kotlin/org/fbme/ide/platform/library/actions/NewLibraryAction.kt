@@ -1,8 +1,7 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import jetbrains.mps.extapi.module.FacetsRegistry
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.ide.newSolutionDialog.NewModuleUtil
 import jetbrains.mps.ide.projectPane.ProjectPane
@@ -15,6 +14,7 @@ import jetbrains.mps.project.MPSExtentions
 import jetbrains.mps.project.ModelImporter
 import jetbrains.mps.project.Solution
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
+import org.fbme.ide.platform.library.LibraryFacetFactory
 import org.fbme.ide.platform.persistence.Iec61499ModelFactory
 import org.fbme.ide.platform.projectWizard.LibraryTemplate
 import org.jetbrains.mps.openapi.model.SModel

@@ -16,7 +16,7 @@
         <DataSourceFactoryRuleProvider
                 implementationClass="org.fbme.ide.platform.persistence.Iec61499DataSourceFactoryRule"/>
         <projectGroupTemplateEP implementation="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplateGroup"/>
-        <facetTabFactory facetType="library" className="org.fbme.ide.platform.LibraryFacetTabFactory"/>
+        <facetTabFactory facetType="library" className="org.fbme.ide.platform.library.LibraryFacetTabFactory"/>
     </extensions>
     <extensions defaultExtensionNs="jetbrains.mps">
         <NodeEditorFactory implementation="org.fbme.ide.platform.editor.PlatformEditorFactory"/>
@@ -48,20 +48,20 @@
 
     <actions>
         <action id="platform.NewLibraryAction"
-                class="org.fbme.ide.platform.NewLibraryAction"
+                class="org.fbme.ide.platform.library.actions.NewLibraryAction"
                 text="Library"
                 icon="/icons/lib.svg"/>
         <action id="platform.ImportLibraryAction"
-                class="org.fbme.ide.platform.ImportLibraryAction"
+                class="org.fbme.ide.platform.library.actions.ImportLibraryAction"
                 text="Import Library"/>
         <action id="platform.ExportLibraryAction"
-                class="org.fbme.ide.platform.ExportLibraryAction"
+                class="org.fbme.ide.platform.library.actions.ExportLibraryAction"
                 text="Export Library"/>
         <action id="platform.ImportNxtLibAction"
-                class="org.fbme.ide.platform.ImportNxtLibraryAction"
+                class="org.fbme.ide.platform.library.actions.ImportNxtLibraryAction"
                 text="Import Nxt Library"/>
         <action id="platform.SetNamespaceAction"
-                class="org.fbme.ide.platform.SetNamespaceAction"
+                class="org.fbme.ide.platform.library.actions.SetNamespaceAction"
                 text="Set Namespace"/>
     </actions>
 

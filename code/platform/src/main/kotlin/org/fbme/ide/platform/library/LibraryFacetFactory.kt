@@ -1,5 +1,6 @@
-package org.fbme.ide.platform
+package org.fbme.ide.platform.library
 
+import org.fbme.ide.platform.library.util.LibraryFacet
 import org.jetbrains.mps.openapi.module.FacetsFacade.FacetFactory
 import org.jetbrains.mps.openapi.module.SModule
 import org.jetbrains.mps.openapi.module.SModuleFacet

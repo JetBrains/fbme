@@ -1,4 +1,4 @@
-package org.fbme.ide.platform.org.fbme.ide.platform
+package org.fbme.ide.platform.library
 
 import com.intellij.openapi.ui.VerticalFlowLayout
 import com.intellij.ui.components.JBLabel
@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager
 import com.intellij.util.ui.JBInsets
 import com.intellij.util.ui.JBUI
 import jetbrains.mps.ide.ui.dialogs.properties.tabs.BaseTab
-import org.fbme.ide.platform.LibraryFacet
+import org.fbme.ide.platform.library.util.LibraryFacet
 import org.jetbrains.mps.openapi.module.SModuleFacet
 import org.jetbrains.mps.openapi.ui.persistence.FacetTab
 import java.awt.Dimension
