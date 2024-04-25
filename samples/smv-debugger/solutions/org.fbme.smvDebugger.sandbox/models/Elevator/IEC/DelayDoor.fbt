@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="DelayDoor">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ">
+        <With Var="open" />
+      </Event>
+      <Event Name="Moved" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF">
+        <With Var="doorPos" />
+      </Event>
+      <Event Name="Move" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="open" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="doorPos" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="400" y="200" />
+      <ECState Name="Opened" x="1000" y="1300">
+        <ECAction Output="CNF" Algorithm="Open" />
+      </ECState>
+      <ECState Name="Move" x="1000" y="800">
+        <ECAction Output="Move" />
+      </ECState>
+      <ECState Name="Closed" x="1000" y="300">
+        <ECAction Output="CNF" Algorithm="Close" />
+      </ECState>
+      <ECTransition Source="Opened" Destination="Move" x="1490" y="1135" Condition="REQ[open]" />
+      <ECTransition Source="Move" Destination="Opened" x="770" y="1090" Condition="Moved[open]" />
+      <ECTransition Source="START" Destination="Closed" x="825" y="160" Condition="1" />
+      <ECTransition Source="Move" Destination="Closed" x="1455" y="555" Condition="Moved[open]" />
+      <ECTransition Source="Closed" Destination="Move" x="785" y="545" Condition="REQ[open]" />
+    </ECC>
+    <Algorithm Name="Open">
+      <ST Text="doorPos := 10;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="Close">
+      <ST Text="doorPos := 0;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+
