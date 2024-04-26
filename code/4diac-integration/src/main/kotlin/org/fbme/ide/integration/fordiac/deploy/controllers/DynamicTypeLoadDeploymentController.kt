@@ -14,6 +14,13 @@ import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import java.text.MessageFormat.format
 
+/**
+ * A specialized deployment controller that handles dynamic loading of FB types and adapter types
+ * during the deployment process.
+ * This class implements 4diac FORTE With Dynamic Type Load configuration.
+ *
+ * @param device The device declaration associated with this controller.
+ */
 class DynamicTypeLoadDeploymentController(
     private val device: DeviceDeclaration,
 ) : DeploymentController(device) {
@@ -34,6 +41,9 @@ class DynamicTypeLoadDeploymentController(
         }
     }
 
+    /**
+     * Queries the available FB types from the device and updates the internal list.
+     */
     private fun queryFBTypes() {
         val request = format(QUERY_FB_TYPES, nextId())
         logger.info(request)
@@ -51,6 +61,9 @@ class DynamicTypeLoadDeploymentController(
         }
     }
 
+    /**
+     * Queries the available adapter types from the device and updates the internal list.
+     */
     private fun queryAdapterTypes() {
         val request = format(QUERY_ADAPTER_TYPES, nextId())
         logger.info(request)
@@ -68,6 +81,11 @@ class DynamicTypeLoadDeploymentController(
         }
     }
 
+    /**
+     * Creates adapter types if they are not already present for the given FB type.
+     *
+     * @param fb The function block type declaration.
+     */
     private fun createAdapterTypesIfAbsent(fb: FBTypeDeclaration) {
         val usedAdapterTypes =
             (fb.sockets.mapNotNull { it.typeReference.getTarget() } +
@@ -85,6 +103,12 @@ class DynamicTypeLoadDeploymentController(
         }
     }
 
+    /**
+     * Sends a request to create an adapter type.
+     *
+     * @param request The request string to create the adapter type.
+     * @param adapterTypeName The name of the adapter type to create.
+     */
     private fun sendCreateAdapterTypeRequest(request: String, adapterTypeName: String) {
         var rawResponse = ""
 
@@ -105,6 +129,13 @@ class DynamicTypeLoadDeploymentController(
         }
     }
 
+    /**
+     * Overrides the createFBInstance method to handle dynamic loading of FB types and adapter types.
+     *
+     * @param resource The resource declaration.
+     * @param fb The function block type declaration.
+     * @return true if the creation is successful, false otherwise.
+     */
     override fun createFBInstance(resource: ResourceDeclaration, fb: FBTypeDeclaration): Boolean {
         var didRequestSucceed = false
 
@@ -128,6 +159,12 @@ class DynamicTypeLoadDeploymentController(
         return didRequestSucceed
     }
 
+    /**
+     * Creates an FB type on the device.
+     *
+     * @param fb The function block type declaration.
+     * @return true if the creation is successful, false otherwise.
+     */
     fun createFBType(fb: FBTypeDeclaration): Boolean {
         var didRequestSucceed = false
         val typeName = fb.typeDescriptor.typeName
@@ -159,6 +196,12 @@ class DynamicTypeLoadDeploymentController(
         return didRequestSucceed
     }
 
+    /**
+     * Creates composite network FB types if needed.
+     *
+     * @param composite The composite function block type declaration.
+     * @return true if the creation is successful, false otherwise.
+     */
     private fun createCompositeNetworkFBTypes(composite: CompositeFBTypeDeclaration): Boolean {
         var didSucceed = true
 

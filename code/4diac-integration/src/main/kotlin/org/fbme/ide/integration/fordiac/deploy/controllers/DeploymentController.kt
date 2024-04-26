@@ -13,12 +13,23 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printLiteral
 import java.text.MessageFormat.format
 
+/**
+ * A controller responsible for deploying resources, managing connections, and executing operations on device.
+ * This class implements default 4diac FORTE configuration.
+ *
+ * @param device The device declaration associated with this controller.
+ */
 open class DeploymentController(
     device: DeviceDeclaration,
 ) : AbstractDeviceController(device) {
     private val logger: Logger = LogManager.getLogger(this::class.qualifiedName)
     private var id = 0L
 
+    /**
+     * Generates the next unique ID for requests.
+     *
+     * @return The next unique ID.
+     */
     protected fun nextId(): String {
         id++
         return id.toString()
