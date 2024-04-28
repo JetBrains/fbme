@@ -13,19 +13,19 @@ import java.lang.reflect.Field
 import java.net.Socket
 
 
-class EthernetDeviceCommunicationHandlerTest {
+class TCPDeviceCommunicationHandlerTest {
     private val inputStreamMock = mockk<DataInputStream>()
     private val outputStreamMock = mockk<DataOutputStream>()
     private val socketMock = mockk<Socket> {
         every { getInputStream() } returns inputStreamMock
         every { getOutputStream() } returns outputStreamMock
     }
-    private val handler = EthernetDeviceCommunicationHandler()
+    private val handler = TCPDeviceCommunicationHandler()
 
     init {
         val field: Field = ReflectionUtils
             .findFields(
-                EthernetDeviceCommunicationHandler::class.java, { f: Field -> f.name == "socket" },
+                TCPDeviceCommunicationHandler::class.java, { f: Field -> f.name == "socket" },
                 ReflectionUtils.HierarchyTraversalMode.TOP_DOWN
             )[0]
 

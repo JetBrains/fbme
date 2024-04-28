@@ -7,7 +7,7 @@ import java.net.InetSocketAddress
 import java.net.Socket
 
 /**
- * An implementation of {@link DeviceCommunicationHandler} for communication with an Ethernet-connected device.
+ * An implementation of {@link DeviceCommunicationHandler} for communication with an TCP-connected device.
  * <p>
  * This class provides methods to connect to a specified address and port, close the communication channels,
  * send requests to the device, and check the current connection status. It uses an underlying socket for
@@ -17,7 +17,7 @@ import java.net.Socket
  * @author Aliev Ruslan
  * @version 1.0
  */
-class EthernetDeviceCommunicationHandler : DeviceCommunicationHandler {
+class TCPDeviceCommunicationHandler : DeviceCommunicationHandler {
     private var socket: Socket = Socket()
     private var inputStream: DataInputStream? = null
     private var outputStream: DataOutputStream? = null

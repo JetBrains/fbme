@@ -1,6 +1,6 @@
 package org.fbme.ide.integration.fordiac.deploy.controllers
 
-import org.fbme.ide.integration.fordiac.deploy.communication.EthernetDeviceCommunicationHandler
+import org.fbme.ide.integration.fordiac.deploy.communication.TCPDeviceCommunicationHandler
 import org.fbme.ide.platform.deploy.communication.DeviceCommunicationHandler
 import org.fbme.ide.platform.deploy.controllers.DeviceController
 import org.fbme.ide.platform.deploy.exceptions.DeploymentException
@@ -86,5 +86,5 @@ abstract class AbstractDeviceController(
      *
      * @return An instance of DeviceCommunicationHandler.
      */
-    override fun createDeviceCommunicationHandler(): DeviceCommunicationHandler = EthernetDeviceCommunicationHandler()
+    override fun createDeviceCommunicationHandler(): DeviceCommunicationHandler = TCPDeviceCommunicationHandler()
 }

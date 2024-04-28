@@ -6,8 +6,8 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.net.ServerSocket
 
-class EthernetDeviceCommunicationHandlerTest {
-    private val handler = EthernetDeviceCommunicationHandler()
+class TCPDeviceCommunicationHandlerTest {
+    private val handler = TCPDeviceCommunicationHandler()
     private val port = 9999
 
     private fun serverThread(code: (writer: OutputStream, reader: InputStream) -> Unit) = Thread {
