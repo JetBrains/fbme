@@ -13,7 +13,7 @@ import org.fbme.lib.iec61499.declarations.DeviceDeclaration
  * @param device The device declaration associated with this controller.
  */
 abstract class AbstractDeviceController(
-    private val device: DeviceDeclaration
+    protected val device: DeviceDeclaration
 ) : DeviceController {
     private val communicationHandler: DeviceCommunicationHandler = this.createDeviceCommunicationHandler()
     protected var fbTypes: MutableSet<String> = mutableSetOf()

@@ -22,7 +22,7 @@ import java.text.MessageFormat.format
  * @param device The device declaration associated with this controller.
  */
 class DynamicTypeLoadDeploymentController(
-    private val device: DeviceDeclaration,
+    device: DeviceDeclaration,
 ) : DeploymentController(device) {
     private val logger: Logger = LogManager.getLogger(this::class.qualifiedName)
 

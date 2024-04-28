@@ -213,7 +213,7 @@ open class DeploymentController(
         return didRequestSucceed
     }
 
-    override fun startDevice(device: DeviceTypeDeclaration): Boolean {
+    override fun startDevice(): Boolean {
         val request = format(START, id)
         id++
         logger.info(request)
@@ -234,7 +234,7 @@ open class DeploymentController(
         return didRequestSucceed
     }
 
-    override fun writeDeviceParameter(device: DeviceDeclaration, parameter: ParameterAssignment): Boolean {
+    override fun writeDeviceParameter(parameter: ParameterAssignment): Boolean {
         val paramName = parameter.parameterReference.getTarget()?.name
         val request = format(parameterMessage(), id, printLiteral(parameter.value!!), paramName)
         id++
@@ -304,7 +304,7 @@ open class DeploymentController(
         throw UnsupportedOperationException("Failed deleting the connection '$sourceName' -> '$targetName'.")
     }
 
-    override fun killDevice(device: DeviceTypeDeclaration): Boolean {
+    override fun killDevice(): Boolean {
         val request = format(KILL_DEVICE, nextId())
         logger.info(request)
         var didRequestSucceed = false

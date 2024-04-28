@@ -95,17 +95,16 @@ interface DeviceController : AutoCloseable {
     fun writeFBParameter(resource: ResourceDeclaration, parameter: ParameterAssignment): Boolean
 
     /**
-     * Writes a parameter value to the specified device.
+     * Writes a parameter value to the associated device.
      *
      * This method sends a request to the device to write the specified parameter value to the given device.
      *
      * **Precondition**: This `DeviceController` must be connected to the device.
      *
-     * @param device The device declaration containing the parameter.
      * @param parameter The parameter assignment specifying the parameter to write.
      * @return true if the parameter write operation is successful, false otherwise.
      */
-    fun writeDeviceParameter(device: DeviceDeclaration, parameter: ParameterAssignment): Boolean
+    fun writeDeviceParameter(parameter: ParameterAssignment): Boolean
 
     /**
      * Creates an instance of a function block within a resource.
@@ -152,10 +151,9 @@ interface DeviceController : AutoCloseable {
      *
      * **Precondition**: This `DeviceController` must be connected to the device.
      *
-     * @param device The device type declaration to start.
      * @return true if the device start operation is successful, false otherwise.
      */
-    fun startDevice(device: DeviceTypeDeclaration): Boolean
+    fun startDevice(): Boolean
 
     /**
      * Deletes the specified resource from the device.
@@ -202,10 +200,9 @@ interface DeviceController : AutoCloseable {
      *
      * **Precondition**: This `DeviceController` must be connected to the device.
      *
-     * @param device The device type declaration to kill.
      * @return true if the device termination is successful, false otherwise.
      */
-    fun killDevice(device: DeviceTypeDeclaration): Boolean
+    fun killDevice(): Boolean
 
     /**
      * Queries the resources available on the device.
