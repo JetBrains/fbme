@@ -250,13 +250,9 @@ object BasicFBTypeTranslator {
 
                 addAdapterVarAssignments(fbTypeDeclaration, isPrefix = true)
 
-                alg.temporaryVariables.forEach {
-                    sb.append("  local VAR_${it.name}")
-
-                    if (it.initialValue != null) {
-                        sb.append(" = ${it.initialValue}")
-                    }
-
+                alg.temporaryVariables.forEach { tempVar ->
+                    sb.append("  local VAR_${tempVar.name}")
+                    tempVar.initialValue?.let { sb.append(" = ${it.value}") }
                     sb.appendLine()
                 }
 
