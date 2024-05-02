@@ -10,7 +10,7 @@ import jetbrains.mps.model.ModelDeleteHelper
 import jetbrains.mps.project.AbstractModule
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
-import org.fbme.ide.richediting.utils.ExtendedAdapterUtils
+import org.fbme.extensions.adapter.ExtendedAdapterUtils
 import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.jetbrains.mps.openapi.model.SModelName
 

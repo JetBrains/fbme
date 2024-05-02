@@ -1,7 +1,8 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.ide.extensions.utils
 
 import jetbrains.mps.smodel.tempmodel.TempModuleOptions
 import jetbrains.mps.smodel.tempmodel.TemporaryModels
+import org.fbme.extensions.adapter.ExtendedAdapterUtils
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.ide.platform.testing.PlatformTestRunner
@@ -20,7 +21,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 
-//@LoadFrom("org.fbme.richediting.lib")
 @RunWith(PlatformTestRunner::class)
 class ExtendedAdapterUtilsTest : PlatformTestBase() {
     private val extendedAdapterUtils = ExtendedAdapterUtils(factory, stFactory, repository, ::getPublishSubscribeBlock)
@@ -121,9 +121,9 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
 
             assertEqualStrings(routerAdapter, assertNotNull(revealDeclarations.routerAdapter?.toDocument()))
             checkNode(model, "$networkPath/LeftCompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
-            checkNode(model, "$networkPath/EA_LeftPublishSubscribeAdapter_0.fbt", "EA_LeftPublishSubscribeAdapter_0")
-            checkNode(model, "$networkPath/EA_EventToNumberAdapter_4.fbt", "EA_EventToNumberAdapter_4")
-            checkNode(model, "$networkPath/EA_NumberToEventAdapter_4.fbt", "EA_NumberToEventAdapter_4")
+            checkNode(model, "$networkPath/EA_LeftPublishSubscribeAdapter.fbt", "EA_LeftPublishSubscribeAdapter")
+            checkNode(model, "$networkPath/EventToNumberAdapter_4.fbt", "EventToNumberAdapter_4")
+            checkNode(model, "$networkPath/NumberToEventAdapter_4.fbt", "NumberToEventAdapter_4")
         }
     }
 
@@ -157,9 +157,9 @@ class ExtendedAdapterUtilsTest : PlatformTestBase() {
 
             assertEqualStrings(routerAdapter, assertNotNull(revealDeclarations.routerAdapter?.toDocument()))
             checkNode(model, "$networkPath/RightCompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
-            checkNode(model, "$networkPath/EA_RightPublishSubscribeAdapter_1.fbt", "EA_RightPublishSubscribeAdapter_1")
-            checkNode(model, "$networkPath/EA_EventToNumberAdapter_4.fbt", "EA_EventToNumberAdapter_4")
-            checkNode(model, "$networkPath/EA_NumberToEventAdapter_4.fbt", "EA_NumberToEventAdapter_4")
+            checkNode(model, "$networkPath/EA_RightPublishSubscribeAdapter.fbt", "EA_RightPublishSubscribeAdapter")
+            checkNode(model, "$networkPath/EventToNumberAdapter_4.fbt", "EventToNumberAdapter_4")
+            checkNode(model, "$networkPath/NumberToEventAdapter_4.fbt", "NumberToEventAdapter_4")
         }
     }
 

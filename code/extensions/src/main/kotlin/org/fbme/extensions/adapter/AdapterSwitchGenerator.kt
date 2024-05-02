@@ -1,12 +1,12 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.adapter
 
-import org.fbme.lib.common.Identifier
+import org.fbme.extensions.utils.IEC61499FactoryUtils
+import org.fbme.extensions.utils.STFactoryUtils
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
-import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
@@ -20,24 +20,6 @@ class AdapterSwitchGenerator(
 ) {
     private val factoryUtils: IEC61499FactoryUtils = IEC61499FactoryUtils(factory)
     private val stFactoryUtils: STFactoryUtils = STFactoryUtils(stFactory)
-    private val createdEvents = mutableListOf<EventCopyAndConnectObject>()
-    private val createdParams = mutableListOf<ParameterCopyAndConnectObject>()
-
-    private data class EventCopyAndConnectObject(
-        val sourceEvent: EventDeclaration,
-        val createdEvent: EventDeclaration,
-        val input: Boolean,
-        val source: FunctionBlockDeclarationBase?,
-        val target: FunctionBlockDeclarationBase?,
-    )
-
-    private data class ParameterCopyAndConnectObject(
-        val sourceParam: ParameterDeclaration,
-        val createdParam: ParameterDeclaration,
-        val input: Boolean,
-        val source: FunctionBlockDeclarationBase?,
-        val target: FunctionBlockDeclarationBase?,
-    )
 
     fun generateRouter(
         name: String,
@@ -133,9 +115,16 @@ class AdapterSwitchGenerator(
                 outputToInput = false,
             ).forEach { (sourceEvent, createdEvent) ->
                 createdEvent.name += "_$i"
+                for (association in createdEvent.associations) {
+                    val oldName = association.parameterReference.getTarget()?.name
+                    if (oldName != null) {
+                        association.parameterReference.setTargetName(oldName + "_$i")
+                    }
+                }
                 addState(
                     switchDeclaration = switchDeclaration,
                     start = startState,
+                    name = createdEvent.name,
                     inputEventDeclaration = checkNotNull(inputEvents[sourceEvent.name]?.second),
                     outputEventDeclaration = createdEvent,
                     assignableToVariableParameters = inputParameters.zip(parametersAndCopies.map { it.second }),
@@ -197,9 +186,16 @@ class AdapterSwitchGenerator(
                 network = network,
             ).forEach { (sourceEvent, createdEvent) ->
                 createdEvent.name += "_$i"
+                for (association in createdEvent.associations) {
+                    val oldName = association.parameterReference.getTarget()?.name
+                    if (oldName != null) {
+                        association.parameterReference.setTargetName(oldName + "_$i")
+                    }
+                }
                 addState(
                     switchDeclaration = switchDeclaration,
                     start = startState,
+                    name = createdEvent.name,
                     inputEventDeclaration = createdEvent,
                     outputEventDeclaration = checkNotNull(outputEvents[sourceEvent.name]?.second),
                     assignableToVariableParameters = parametersAndCopies.map { it.second }.zip(outputParameters),
@@ -212,140 +208,10 @@ class AdapterSwitchGenerator(
         return switchBlock
     }
 
-    private fun addSocketPlugsSwitch(
-        adapterName: String,
-        model: SModel,
-        root: CompositeFBTypeDeclaration,
-        socket: SocketDeclaration,
-        plugs: List<PlugDeclaration>,
-        socketToPlug: Boolean,
-        routerName: String,
-        virtualPackage: String? = null,
-    ): FunctionBlockDeclaration {
-        createdEvents.clear()
-        createdParams.clear()
-
-        val switchFBIdentifier = StringIdentifier(adapterName)
-        val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
-        val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, root.network)
-
-        val socketAdapterType = checkNotNull(socket.typeReference.getTarget())
-        val eventsToCopy = if (socketToPlug) socketAdapterType.outputEvents else socketAdapterType.inputEvents
-        val paramsToCopy =
-            (if (socketToPlug) socketAdapterType.outputParameters else socketAdapterType.inputParameters)
-//                    .filter { it.name != routerName }
-        createConnections(
-            sourceEvents = eventsToCopy,
-            sourceParameters = paramsToCopy,
-            switchType = switchDeclaration,
-            sourceBlockDeclaration = socket,
-            targetBlockDeclaration = switchBlock,
-            input = socketToPlug,
-        )
-        for (i in plugs.indices) {
-            val plugDeclaration = plugs[i]
-            createConnections(
-                sourceEvents = eventsToCopy,
-                sourceParameters = paramsToCopy,
-                switchType = switchDeclaration,
-                sourceBlockDeclaration = plugDeclaration,
-                targetBlockDeclaration = switchBlock,
-                input = !socketToPlug,
-                nameSuffix = "_$i",
-            )
-        }
-        configureEcc(
-            switchDeclaration = switchDeclaration,
-            eventDeclarations = createdEvents.groupBy { it.sourceEvent.name }
-                .flatMap { (_, value) ->
-                    val (inputs, outputs) = value.partition { it.input }
-                    inputs.map { input -> input.createdEvent to outputs.map { it.createdEvent } }
-                },
-            parameterDeclarations = createdParams.map { it.sourceParam to it.createdParam },
-            createdParams.firstOrNull { it.sourceParam.name == routerName }?.sourceParam,
-        )
-
-        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
-        createdEvents.asSequence()
-            .map { it.toNetworkConnection() }
-            .toCollection(root.network.eventConnections)
-        createdParams.asSequence()
-            .map { it.toNetworkConnection() }
-            .toCollection(root.network.dataConnections)
-
-        return switchBlock
-    }
-
-    private fun createConnections(
-        sourceEvents: List<EventDeclaration>,
-        sourceParameters: List<ParameterDeclaration>,
-        switchType: BasicFBTypeDeclaration,
-        sourceBlockDeclaration: FunctionBlockDeclarationBase?,
-        targetBlockDeclaration: FunctionBlockDeclarationBase?,
-        input: Boolean,
-        nameSuffix: String? = null,
-    ) {
-        val nameToParameterDeclaration = sourceParameters.associate { sourceDeclaration ->
-            val newDeclaration = sourceDeclaration.copy(nameSuffix = nameSuffix)
-            sourceDeclaration.identifier to ParameterCopyAndConnectObject(
-                sourceParam = sourceDeclaration,
-                createdParam = newDeclaration,
-                input = input,
-                source = sourceBlockDeclaration,
-                target = targetBlockDeclaration,
-            )
-        }
-        val nameToCreatedParameterDeclaration = nameToParameterDeclaration.mapValues { it.value.createdParam }
-        val newEventDeclarations = sourceEvents.map { eventDeclaration ->
-            val newDeclaration = eventDeclaration.copy(
-                nameSuffix = nameSuffix,
-                nameToParameterDeclaration = nameToCreatedParameterDeclaration
-            )
-            EventCopyAndConnectObject(
-                sourceEvent = eventDeclaration,
-                createdEvent = newDeclaration,
-                input = input,
-                source = sourceBlockDeclaration,
-                target = targetBlockDeclaration,
-            )
-        }
-        createdEvents += newEventDeclarations
-        createdParams += nameToParameterDeclaration.values
-        val eventDeclarations = if (input) switchType.inputEvents else switchType.outputEvents
-        eventDeclarations += newEventDeclarations.map { it.createdEvent }
-        val paramsDeclarations = if (input) switchType.inputParameters else switchType.outputParameters
-        paramsDeclarations += nameToCreatedParameterDeclaration.values
-    }
-
-    private fun configureEcc(
-        switchDeclaration: BasicFBTypeDeclaration,
-        eventDeclarations: List<Pair<EventDeclaration, List<EventDeclaration>>>,
-        parameterDeclarations: List<Pair<ParameterDeclaration, ParameterDeclaration>>,
-        routerParameterDeclaration: ParameterDeclaration?,
-    ) {
-        val startState = factory.createStateDeclaration(StringIdentifier("Start"))
-        switchDeclaration.ecc.states += startState
-        for (i in eventDeclarations.indices) {
-            val (inputEvent, outputEvents) = eventDeclarations[i]
-            for (j in outputEvents.indices) {
-                val outputEvent = outputEvents[j]
-                addState(
-                    switchDeclaration = switchDeclaration,
-                    start = startState,
-                    inputEventDeclaration = inputEvent,
-                    outputEventDeclaration = outputEvent,
-                    assignableToVariableParameters = parameterDeclarations,
-                    number = j,
-                    outputRouteVariable = routerParameterDeclaration,
-                    inputRouteVariable = null,
-                )
-            }
-        }
-    }
-
     private fun addState(
         switchDeclaration: BasicFBTypeDeclaration,
         start: StateDeclaration,
+        name: String,
         inputEventDeclaration: EventDeclaration,
         outputEventDeclaration: EventDeclaration,
         assignableToVariableParameters: List<Pair<ParameterDeclaration, ParameterDeclaration>>,
@@ -354,7 +220,7 @@ class AdapterSwitchGenerator(
         inputRouteVariable: VariableDeclaration?,
     ): StateAction {
         val state = factory.createStateDeclaration(
-            StringIdentifier(outputEventDeclaration.name + "_state")
+            StringIdentifier(name + "_state")
         )
         switchDeclaration.ecc.states += state
         val backTransition = factory.createStateTransition()
@@ -375,7 +241,7 @@ class AdapterSwitchGenerator(
         val stateAction = factory.createStateAction()
 
         val algorithmDeclaration = factory.createAlgorithmDeclaration(
-            StringIdentifier(outputEventDeclaration.name + "_algorithm")
+            StringIdentifier(name + "_algorithm")
         )
         val algorithmBody = factory.createAlgorithmBody(AlgorithmLanguage.ST)
         for ((assignable, variable) in assignableToVariableParameters) {
@@ -394,62 +260,5 @@ class AdapterSwitchGenerator(
         state.actions += stateAction
         switchDeclaration.algorithms += algorithmDeclaration
         return stateAction
-    }
-
-    private fun EventCopyAndConnectObject.toNetworkConnection() = if (input) factoryUtils.createNetworkConnection(
-        kind = EntryKind.EVENT,
-        source = source,
-        sourcePortTarget = sourceEvent,
-        target = target,
-        targetPortTarget = createdEvent
-    ) else factoryUtils.createNetworkConnection(
-        kind = EntryKind.EVENT,
-        source = target,
-        sourcePortTarget = createdEvent,
-        target = source,
-        targetPortTarget = sourceEvent
-    )
-
-    private fun ParameterCopyAndConnectObject.toNetworkConnection() = if (input) factoryUtils.createNetworkConnection(
-        kind = EntryKind.DATA,
-        source = source,
-        sourcePortTarget = sourceParam,
-        target = target,
-        targetPortTarget = createdParam
-    ) else factoryUtils.createNetworkConnection(
-        kind = EntryKind.DATA,
-        source = target,
-        sourcePortTarget = createdParam,
-        target = source,
-        targetPortTarget = sourceParam
-    )
-
-    private fun EventDeclaration.copy(
-        nameSuffix: String?,
-        nameToParameterDeclaration: Map<Identifier, ParameterDeclaration>
-    ): EventDeclaration {
-        val declaration = factory.createEventDeclaration(identifier)
-        declaration.name = name.withSuffix(nameSuffix)
-        declaration.associations.addAll(associations.map { eventAssociation ->
-            val association = factory.createEventAssociation()
-            eventAssociation.parameterReference.getTarget()
-                ?.let { nameToParameterDeclaration[it.identifier] }
-                ?.run { association.parameterReference.setTarget(this) }
-            association
-        })
-        return declaration
-    }
-
-    private fun ParameterDeclaration.copy(nameSuffix: String?): ParameterDeclaration {
-        val declaration = factory.createParameterDeclaration(identifier)
-        declaration.name = name.withSuffix(nameSuffix)
-        declaration.type = type
-        return declaration
-    }
-
-    private fun String.withSuffix(nameSuffix: String?) = if (nameSuffix == null) {
-        this
-    } else {
-        this + nameSuffix
     }
 }

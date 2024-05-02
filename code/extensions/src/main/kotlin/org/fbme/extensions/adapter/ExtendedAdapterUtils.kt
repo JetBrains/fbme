@@ -1,7 +1,10 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.adapter
 
 import jetbrains.mps.smodel.ModelImports
 import jetbrains.mps.smodel.SNodeUtil
+import org.fbme.extensions.utils.FBInterfaceDeclarationUtils
+import org.fbme.extensions.utils.IEC61499FactoryUtils
+import org.fbme.extensions.utils.STFactoryUtils
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.lib.common.Declaration
@@ -14,8 +17,6 @@ import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.BinaryOperation
-import org.fbme.lib.st.expressions.Literal
-import org.fbme.lib.st.expressions.LiteralKind
 import org.fbme.lib.st.types.ElementaryType
 import org.jetbrains.mps.openapi.model.SModel
 
@@ -30,9 +31,9 @@ class ExtendedAdapterUtils(
     private val switchGenerator = AdapterSwitchGenerator(factory, stFactory)
     private val numberToEventFbTypes: MutableMap<Int, BasicFBTypeDeclaration> = mutableMapOf()
     private val eventToNumberFbTypes: MutableMap<Int, BasicFBTypeDeclaration> = mutableMapOf()
+    private fun getPackageName(name: String) = "generated/$name"
 
     companion object {
-        private const val VIRTUAL_PACKAGE_NAME = "generated"
 
         fun isExtendedAdapterConnection(connection: FBNetworkConnection) =
             getSourceExtendedAdapterType(connection) != null &&
@@ -88,6 +89,12 @@ class ExtendedAdapterUtils(
             modelToCheck = currentModel,
             identifiersToRevealResult = identifiersToRevealResult,
         )
+        for (revealResult in declarationsResults) {
+            val node = (revealResult.extendedAdapter as? PlatformElement)?.node
+            if (node != null) {
+                currentModel.removeRootNode(node)
+            }
+        }
         return revealDeclarations
     }
 
@@ -261,7 +268,7 @@ class ExtendedAdapterUtils(
             rightAdapter,
             leftBlock,
             rightBlock,
-            virtualPackage = VIRTUAL_PACKAGE_NAME,
+            virtualPackage = getPackageName(extendedAdapter.name),
         )
         return RevealDeclarationsResult(
             extendedAdapter = extendedAdapter,
@@ -371,7 +378,7 @@ class ExtendedAdapterUtils(
                     outputsCount = connectionsCount,
                     outputRouterName = outputRouter.name,
                     inputRouterName = adapterType.inputRouter?.name,
-                    virtualPackage = VIRTUAL_PACKAGE_NAME,
+                    virtualPackage = getPackageName(adapterType.name),
                 )
             }
         }
@@ -406,23 +413,24 @@ class ExtendedAdapterUtils(
         val adapterType = revealResult.extendedAdapter
         val leftPublishSubscribeAdapter = revealResult.leftPublishSubscribeAdapter ?: run {
             val leftCompositeFBType = factory.createCompositeFBTypeDeclaration(
-                StringIdentifier("${adapterType.name}_LeftPublishSubscribeAdapter_$number")
+                StringIdentifier("${adapterType.name}_LeftPublishSubscribeAdapter")
             )
             val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
             socket.typeReference.setTarget(revealResult.middleAdapter)
             leftCompositeFBType.sockets += socket
-            model.addRootNodes(leftCompositeFBType, virtualPackage = VIRTUAL_PACKAGE_NAME)
+            model.addRootNodes(leftCompositeFBType, virtualPackage = getPackageName(adapterType.name))
             createPublishSubscribeAdapter(
                 compositeFBType = leftCompositeFBType,
                 declaration = socket,
                 currentModel = model,
-                name = adapterType.name,
+                packageName = adapterType.name,
             )
         }
         revealResult.leftPublishSubscribeAdapter = leftPublishSubscribeAdapter
         val leftPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
             blockType = leftPublishSubscribeAdapter,
             network = network,
+            name = "${leftPublishSubscribeAdapter.name}_$number",
         )
         addPublishSubscribeBlocks(
             source = leftPublishSubscribeAdapterBlock,
@@ -463,23 +471,24 @@ class ExtendedAdapterUtils(
         val adapterType = revealResult.extendedAdapter
         val rightPublishSubscribeAdapter = revealResult.rightPublishSubscribeAdapter ?: run {
             val rightCompositeFBType = factory.createCompositeFBTypeDeclaration(
-                StringIdentifier("${adapterType.name}_RightPublishSubscribeAdapter_$number")
+                StringIdentifier("${adapterType.name}_RightPublishSubscribeAdapter")
             )
             val plug = factory.createPlugDeclaration(StringIdentifier("plug"))
             plug.typeReference.setTarget(revealResult.middleAdapter)
             rightCompositeFBType.plugs += plug
-            model.addRootNodes(rightCompositeFBType, virtualPackage = VIRTUAL_PACKAGE_NAME)
+            model.addRootNodes(rightCompositeFBType, virtualPackage = getPackageName(adapterType.name))
             createPublishSubscribeAdapter(
                 compositeFBType = rightCompositeFBType,
                 declaration = plug,
                 currentModel = model,
-                name = adapterType.name,
+                packageName = adapterType.name
             )
         }
         revealResult.rightPublishSubscribeAdapter = rightPublishSubscribeAdapter
         val rightPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
             blockType = rightPublishSubscribeAdapter,
             network = network,
+            name = "${rightPublishSubscribeAdapter.name}_$number",
         )
         addPublishSubscribeBlocks(
             source = rightPublishSubscribeAdapterBlock,
@@ -516,7 +525,7 @@ class ExtendedAdapterUtils(
         compositeFBType: CompositeFBTypeDeclaration,
         declaration: FunctionBlockDeclarationBase,
         currentModel: SModel,
-        name: String,
+        packageName: String,
     ): CompositeFBTypeDeclaration {
         val typeDescriptor = declaration.type
 
@@ -524,9 +533,9 @@ class ExtendedAdapterUtils(
             typeDescriptor.eventOutputPorts.size
         ) { number ->
             createEventToNumberConverter(
-                name = "${name}_EventToNumberAdapter_$number",
+                name = "EventToNumberAdapter_$number",
                 inputCount = number,
-            ).also { currentModel.addRootNodes(it, virtualPackage = VIRTUAL_PACKAGE_NAME) }
+            ).also { currentModel.addRootNodes(it, virtualPackage = getPackageName(packageName)) }
         }
 
         val eventToNumberBlock = factoryUtils.addFunctionalBlock(eventToNumberFbType, compositeFBType.network)
@@ -535,9 +544,9 @@ class ExtendedAdapterUtils(
             typeDescriptor.eventOutputPorts.size
         ) { number ->
             createNumberToEventConverter(
-                name = "${name}_NumberToEventAdapter_$number",
+                name = "NumberToEventAdapter_$number",
                 inputCount = number,
-            ).also { currentModel.addRootNodes(it, virtualPackage = VIRTUAL_PACKAGE_NAME) }
+            ).also { currentModel.addRootNodes(it, virtualPackage = getPackageName(packageName)) }
         }
 
         val numberToEventBlock = factoryUtils.addFunctionalBlock(numberToEventFbType, compositeFBType.network)
@@ -624,21 +633,17 @@ class ExtendedAdapterUtils(
         val parameterOutput = factory.createParameterDeclaration(StringIdentifier("I_E_number"))
         parameterOutput.type = ElementaryType.INT
         basicFbType.outputParameters += parameterOutput
+        val outputAssociation = factory.createEventAssociation()
+        outputAssociation.parameterReference.setTarget(parameterOutput)
+        outputEvent.associations += outputAssociation
         val start = factory.createStateDeclaration(StringIdentifier("Start"))
         basicFbType.ecc.states += start
         for (i in basicFbType.inputEvents.indices) {
             val event = basicFbType.inputEvents[i]
             val state = factory.createStateDeclaration(StringIdentifier(event.name))
             basicFbType.ecc.states += state
-            val startToState = factory.createStateTransition()
-            basicFbType.ecc.transitions += startToState
-            startToState.sourceReference.setTarget(start)
-            startToState.targetReference.setTarget(state)
-            startToState.condition.eventReference.setFQName(event.name)
-            val stateToStart = factory.createStateTransition()
-            basicFbType.ecc.transitions += stateToStart
-            stateToStart.sourceReference.setTarget(state)
-            stateToStart.targetReference.setTarget(start)
+            basicFbType.ecc.transitions += factoryUtils.createStateTransition(start, state, event)
+            basicFbType.ecc.transitions += factoryUtils.createStateTransition(state, start)
 
             val stateAction = factory.createStateAction()
             state.actions += stateAction
@@ -648,15 +653,11 @@ class ExtendedAdapterUtils(
             )
             val algorithmBody = factory.createAlgorithmBody(AlgorithmLanguage.ST)
             algorithmDeclaration.body = algorithmBody
-            val assignment = stFactory.createAssignmentStatement()
-            val variableReference = stFactory.createVariableReference()
-            variableReference.reference.setTarget(parameterOutput)
-            assignment.variable = variableReference
-            val literal = stFactory.createLiteral(LiteralKind.DEC_INT) as Literal<Int?>
-            literal.value = i
-            assignment.expression = literal
 
-            algorithmBody.statements += assignment
+            algorithmBody.statements += stFactoryUtils.createAssign(
+                variable = parameterOutput,
+                assignable = stFactoryUtils.createIntLiteral(i),
+            )
             stateAction.algorithm.setTarget(algorithmDeclaration)
             basicFbType.algorithms += algorithmDeclaration
         }
@@ -675,6 +676,9 @@ class ExtendedAdapterUtils(
         val parameterInput = factory.createParameterDeclaration(StringIdentifier("O_E_number"))
         parameterInput.type = ElementaryType.INT
         basicFbType.inputParameters += parameterInput
+        val inputAssociation = factory.createEventAssociation()
+        inputAssociation.parameterReference.setTarget(parameterInput)
+        inputEvent.associations += inputAssociation
         val start = factory.createStateDeclaration(StringIdentifier("Start"))
         basicFbType.ecc.states += start
         for (i in basicFbType.outputEvents.indices) {
@@ -688,12 +692,8 @@ class ExtendedAdapterUtils(
             startToState.targetReference.setTarget(state)
 
             val equality = stFactory.createBinaryExpression(BinaryOperation.EQ)
-            val numberLiteral = stFactory.createLiteral(LiteralKind.DEC_INT) as Literal<Int?>
-            numberLiteral.value = i
-            equality.rightExpression = numberLiteral
-            val variableReference = stFactory.createVariableReference()
-            variableReference.reference.setTarget(parameterInput)
-            equality.leftExpression = variableReference
+            equality.rightExpression = stFactoryUtils.createIntLiteral(i)
+            equality.leftExpression = stFactoryUtils.createVariable(parameterInput)
 
             val stateToStart = factory.createStateTransition()
             basicFbType.ecc.transitions += stateToStart
@@ -795,7 +795,6 @@ class ExtendedAdapterUtils(
         socket.name = "Socket_Connection"
         composite.sockets += socket
 
-        // add port connections
         composite.network.copyElements(network)
         return composite
     }

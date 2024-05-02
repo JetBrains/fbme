@@ -6,7 +6,7 @@ import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.project.MPSProject
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
-import org.fbme.ide.richediting.utils.SystemUtils
+import org.fbme.extensions.adapter.SystemUtils
 import org.fbme.lib.iec61499.declarations.SystemDeclaration
 
 class SyncSystemResources : AnAction(), DumbAware {
