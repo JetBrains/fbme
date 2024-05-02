@@ -92,19 +92,15 @@ abstract class PlatformTestBase {
         lateinit var project: Project
 
         @JvmStatic
-        var environment: Environment? = null
-
-        @JvmStatic
         @BeforeClass
         fun initProject() {
-            project = environment!!.createEmptyProject()
-            PlatformRepositoryProvider.init(project)
+            project = IdeaTestEnvironment.ourEnvironment.createEmptyProject()
         }
 
         @JvmStatic
         @AfterClass
         fun disposeProject() {
-            environment!!.closeProject(project)
+            IdeaTestEnvironment.ourEnvironment.closeProject(project)
         }
     }
 }
