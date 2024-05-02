@@ -5,7 +5,7 @@
   <InterfaceList />
   <FBNetwork>
     <FB Name="BaseBlock1" Type="BaseBlock" x="590" y="486" />
-    <FB Name="EA_RightPublishSubscribeAdapter_1" Type="EA_RightPublishSubscribeAdapter_1" x="0" y="0" />
+    <FB Name="EA_RightPublishSubscribeAdapter_1" Type="EA_RightPublishSubscribeAdapter" x="0" y="0" />
     <FB Name="Publish_Right_EA_1" Type="PUBLISH_5" x="0" y="0" />
     <FB Name="Subscribe_Right_EA_1" Type="SUBSCRIBE_5" x="0" y="0" />
     <FB Name="EA_network2_1" Type="EA_network2" x="0" y="0" />

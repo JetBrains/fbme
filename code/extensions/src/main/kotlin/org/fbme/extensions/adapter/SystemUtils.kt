@@ -1,5 +1,6 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.adapter
 
+import org.fbme.extensions.utils.IEC61499FactoryUtils
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.SystemDeclaration

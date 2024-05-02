@@ -9,7 +9,7 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.*
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
-import org.fbme.ide.richediting.utils.AdapterSwitchGenerator
+import org.fbme.extensions.adapter.AdapterSwitchGenerator
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.st.expressions.*

@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.utils
 
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.*
@@ -9,11 +9,8 @@ class STFactoryUtils(
 ) {
     fun intEquality(variable: VariableDeclaration, number: Int): BinaryExpression {
         val equality = stFactory.createBinaryExpression(BinaryOperation.EQ)
-
-        val numberLiteral = createIntLiteral(number)
-        equality.rightExpression = numberLiteral
-
         equality.leftExpression = createVariable(variable)
+        equality.rightExpression = createIntLiteral(number)
         return equality
     }
 

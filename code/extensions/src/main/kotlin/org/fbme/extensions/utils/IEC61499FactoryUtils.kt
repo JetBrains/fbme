@@ -1,15 +1,31 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.utils
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.ecc.StateDeclaration
+import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.iec61499.fbnetwork.*
 
 class IEC61499FactoryUtils(
     private val factory: IEC61499Factory,
 ) {
+    fun createStateTransition(
+        source: StateDeclaration,
+        target: StateDeclaration,
+        eventCondition: EventDeclaration? = null,
+    ): StateTransition {
+        val transition = factory.createStateTransition()
+        transition.sourceReference.setTarget(source)
+        transition.targetReference.setTarget(target)
+        if (eventCondition != null) {
+            transition.condition.eventReference.setFQName(eventCondition.name)
+        }
+        return transition
+    }
+
     fun createNetworkConnection(
         kind: EntryKind,
         source: FunctionBlockDeclarationBase?,
@@ -39,10 +55,19 @@ class IEC61499FactoryUtils(
         name: String? = null,
     ): FunctionBlockDeclaration {
         val block = factory.createFunctionBlockDeclaration(blockType.identifier)
-        block.name = name ?: blockType.name
+        block.name = getUnusedName(
+            name ?: blockType.name,
+            network.functionBlocks.asSequence().map { it.name }.toSet()
+        )
         block.typeReference.setTarget(blockType)
         network.functionBlocks += block
         return block
+    }
+
+    private fun getUnusedName(newName: String, names: Set<String>): String = if (newName in names) {
+        getUnusedName("${newName}_", names)
+    } else {
+        newName
     }
 
     fun copyEventsAndConnect(

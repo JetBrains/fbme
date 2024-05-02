@@ -8,7 +8,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Collection
 import jetbrains.mps.openapi.editor.EditorContext
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
 import org.fbme.ide.richediting.adapters.fbnetwork.fb.DiagramColors
-import org.fbme.ide.richediting.utils.ExtendedAdapterUtils
+import org.fbme.extensions.adapter.ExtendedAdapterUtils
 import org.fbme.ide.richediting.viewmodel.NetworkConnectionView
 import org.fbme.lib.iec61499.fbnetwork.ConnectionPath
 import org.fbme.lib.iec61499.fbnetwork.EntryKind

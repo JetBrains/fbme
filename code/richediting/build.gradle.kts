@@ -13,15 +13,12 @@ dependencies {
     compileOnly(project(":code:library"))
     compileOnly(project(":code:language"))
     compileOnly(project(":code:platform"))
+    compileOnly(project(":code:extensions"))
 
+    implementation(project(":code:extensions"))
     implementation("org.eclipse.elk:org.eclipse.elk.alg.layered:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.core:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.graph:0.7.1")
-
-    testImplementation(mpsDistribution())
-    testImplementation(project(":code:library"))
-    testImplementation(project(":code:language"))
-    testImplementation(project(":code:platform"))
 
     mpsImplementation(project(":code:language", "mps"))
     mpsImplementation(project(":code:platform", "mps"))
@@ -35,13 +32,6 @@ mps {
     moduleDependency(project(":code:library"))
     moduleDependency(project(":code:platform"))
     moduleDependency(project(":code:scenes"))
-}
-
-val test by tasks.getting(Test::class) {
-    dependsOn(
-        ":code:library:buildDistPlugin",
-        "buildDistPlugin"
-    )
 }
 
 val compileKotlin by tasks.getting(KotlinCompile::class) {

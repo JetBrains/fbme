@@ -1,4 +1,4 @@
-package org.fbme.ide.richediting.utils
+package org.fbme.extensions.utils
 
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
