@@ -13,17 +13,5 @@ abstract class PrinterBase<ElementT : Element>(protected val element: ElementT) 
             }
             parent.addContent(child)
         }
-
-        @JvmStatic
-        protected fun escapeXML(text: String?): String? {
-            var text = text ?: return null
-            text = text.replace("\n", "&#10;")
-            text = text.replace("\"", "&#34;")
-            text = text.replace("&", "&#38;")
-            text = text.replace("'", "&#39;")
-            text = text.replace("<", "&#60;")
-            text = text.replace(">", "&#62;")
-            return text
-        }
     }
 }
