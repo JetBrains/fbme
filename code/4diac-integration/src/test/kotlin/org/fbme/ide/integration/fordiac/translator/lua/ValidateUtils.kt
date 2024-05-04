@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.math.min

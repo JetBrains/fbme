@@ -2,8 +2,8 @@ package org.fbme.ide.integration.fordiac.deploy.controllers
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.fbme.ide.integration.fordiac.lua.AdapterFBTypeTranslator
-import org.fbme.ide.integration.fordiac.lua.ForteLuaTranslator
+import org.fbme.ide.integration.fordiac.translator.lua.AdapterFBTypeTranslator
+import org.fbme.ide.integration.fordiac.translator.lua.ForteLuaTranslator
 import org.fbme.ide.integration.fordiac.parser.ResponseParser.parseIDResponse
 import org.fbme.ide.integration.fordiac.parser.ResponseParser.parseNameListResponse
 import org.fbme.ide.integration.fordiac.parser.exceptions.ResponseParserException

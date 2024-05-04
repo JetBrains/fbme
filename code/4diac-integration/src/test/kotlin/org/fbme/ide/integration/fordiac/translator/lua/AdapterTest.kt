@@ -1,6 +1,7 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import io.mockk.every
+import org.fbme.ide.integration.fordiac.translator.lua.AdapterFBTypeTranslator
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.EntryKind.DATA
 import org.fbme.lib.iec61499.fbnetwork.EntryKind.EVENT

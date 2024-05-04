@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import io.mockk.every
 import io.mockk.mockk

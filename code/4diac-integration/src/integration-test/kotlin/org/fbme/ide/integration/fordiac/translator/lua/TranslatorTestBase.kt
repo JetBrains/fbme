@@ -1,7 +1,10 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import jetbrains.mps.smodel.tempmodel.TempModuleOptions
 import jetbrains.mps.smodel.tempmodel.TemporaryModels
+import org.fbme.ide.integration.fordiac.translator.lua.AdapterFBTypeTranslator
+import org.fbme.ide.integration.fordiac.translator.lua.BasicFBTypeTranslator
+import org.fbme.ide.integration.fordiac.translator.lua.CompositeFBTypeTranslator
 import org.fbme.ide.platform.testing.FBType.*
 import org.fbme.ide.platform.testing.PlatformTestBase
 import org.fbme.ide.platform.testing.TypeInfo

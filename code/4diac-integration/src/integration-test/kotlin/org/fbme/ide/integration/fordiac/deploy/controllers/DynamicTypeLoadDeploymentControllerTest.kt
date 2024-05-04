@@ -48,7 +48,7 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
     fun `create basic fb type`() {
         testTemplate(
             systemFB = TypeInfo(filePath = "/deploy/SystemDeviceMPS.sys", type = SYSTEM),
-            additionalFBs = listOf(TypeInfo(filePath = "/lua/basic/basic_two_algs/BasicTwoAlgsMPS.fbt", BASIC))
+            additionalFBs = listOf(TypeInfo(filePath = "/translator/basic/basic_two_algs/BasicTwoAlgsMPS.fbt", BASIC))
         ) { system, declarations ->
             val controller = DynamicTypeLoadDeploymentController(system.devices[0])
             controller.connect()
@@ -64,10 +64,10 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
         testTemplate(
             systemFB = TypeInfo(filePath = "/deploy/SystemDeviceMPS.sys", type = SYSTEM),
             additionalFBs = listOf(
-                TypeInfo(filePath = "/lua/composite/CompositeMPS.fbt", COMPOSITE),
-                TypeInfo(filePath = "/lua/basic/adapter/AdaptMPS.adp", type = ADAPTER),
-                TypeInfo(filePath = "/lua/composite/BasicBlockMPS.fbt", BASIC),
-                TypeInfo(filePath = "/lua/composite/BBMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/CompositeMPS.fbt", COMPOSITE),
+                TypeInfo(filePath = "/translator/basic/adapter/AdaptMPS.adp", type = ADAPTER),
+                TypeInfo(filePath = "/translator/composite/BasicBlockMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/BBMPS.fbt", BASIC),
             )
         ) { system, declarations ->
             val controller = DynamicTypeLoadDeploymentController(system.devices[0])
@@ -100,7 +100,7 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
         testTemplate(
             systemFB = TypeInfo(filePath = "/deploy/SystemDeviceMPS.sys", type = SYSTEM),
             additionalFBs = listOf(
-                TypeInfo(filePath = "/lua/basic/basic_two_algs/BasicTwoAlgsMPS.fbt", type = BASIC)
+                TypeInfo(filePath = "/translator/basic/basic_two_algs/BasicTwoAlgsMPS.fbt", type = BASIC)
             )
         ) { system, declarations ->
             val device = system.devices[0]
@@ -120,10 +120,10 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
         testTemplate(
             systemFB = TypeInfo(filePath = "/deploy/SystemDeviceMPS.sys", type = SYSTEM),
             additionalFBs = listOf(
-                TypeInfo(filePath = "/lua/composite/CompositeMPS.fbt", COMPOSITE),
-                TypeInfo(filePath = "/lua/basic/adapter/AdaptMPS.adp", type = ADAPTER),
-                TypeInfo(filePath = "/lua/composite/BasicBlockMPS.fbt", BASIC),
-                TypeInfo(filePath = "/lua/composite/BBMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/CompositeMPS.fbt", COMPOSITE),
+                TypeInfo(filePath = "/translator/basic/adapter/AdaptMPS.adp", type = ADAPTER),
+                TypeInfo(filePath = "/translator/composite/BasicBlockMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/BBMPS.fbt", BASIC),
             )
         ) { system, declarations ->
             val device = system.devices[0]
@@ -143,10 +143,10 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
         testTemplate(
             systemFB = TypeInfo(filePath = "/deploy/SystemDeviceMPS.sys", type = SYSTEM),
             additionalFBs = listOf(
-                TypeInfo(filePath = "/lua/composite/CompositeMPS.fbt", COMPOSITE),
-                TypeInfo(filePath = "/lua/basic/adapter/AdaptMPS.adp", type = ADAPTER),
-                TypeInfo(filePath = "/lua/composite/BasicBlockMPS.fbt", BASIC),
-                TypeInfo(filePath = "/lua/composite/BBMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/CompositeMPS.fbt", COMPOSITE),
+                TypeInfo(filePath = "/translator/basic/adapter/AdaptMPS.adp", type = ADAPTER),
+                TypeInfo(filePath = "/translator/composite/BasicBlockMPS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/composite/BBMPS.fbt", BASIC),
             )
         ) { system, declarations ->
             val device = system.devices[0]
@@ -166,20 +166,20 @@ class DynamicTypeLoadDeploymentControllerTest : PlatformTestBase() {
 //    @Test // fixme: not working even in 4diac ide...
     fun `elevator app`() {
         testTemplate(
-            systemFB = TypeInfo(filePath = "/lua/elevator/System.sys", type = SYSTEM),
+            systemFB = TypeInfo(filePath = "/translator/elevator/System.sys", type = SYSTEM),
             additionalFBs = listOf(
-                TypeInfo(filePath = "/lua/elevator/Elevator.fbt", type = COMPOSITE),
-                TypeInfo(filePath = "/lua/elevator/BasicControlTS.fbt", BASIC),
-                TypeInfo(filePath = "/lua/elevator/BasicControlTS5.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/ControlTS.fbt", type = COMPOSITE),
-                TypeInfo(filePath = "/lua/elevator/DelayDoor.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/Door.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/DoorModel.fbt", type = COMPOSITE),
-                TypeInfo(filePath = "/lua/elevator/DoorSensor.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/LiftModel.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/LiftSensor.fbt", type = BASIC),
-                TypeInfo(filePath = "/lua/elevator/Model.fbt", type = COMPOSITE),
-                TypeInfo(filePath = "/lua/elevator/Sensors.fbt", type = COMPOSITE),
+                TypeInfo(filePath = "/translator/elevator/Elevator.fbt", type = COMPOSITE),
+                TypeInfo(filePath = "/translator/elevator/BasicControlTS.fbt", BASIC),
+                TypeInfo(filePath = "/translator/elevator/BasicControlTS5.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/ControlTS.fbt", type = COMPOSITE),
+                TypeInfo(filePath = "/translator/elevator/DelayDoor.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/Door.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/DoorModel.fbt", type = COMPOSITE),
+                TypeInfo(filePath = "/translator/elevator/DoorSensor.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/LiftModel.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/LiftSensor.fbt", type = BASIC),
+                TypeInfo(filePath = "/translator/elevator/Model.fbt", type = COMPOSITE),
+                TypeInfo(filePath = "/translator/elevator/Sensors.fbt", type = COMPOSITE),
             )
         ) { system, declarations ->
             val device = system.devices[0]

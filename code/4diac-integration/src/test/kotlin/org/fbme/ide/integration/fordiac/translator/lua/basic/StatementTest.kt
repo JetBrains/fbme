@@ -1,7 +1,7 @@
-package org.fbme.ide.integration.fordiac.lua.basic
+package org.fbme.ide.integration.fordiac.translator.lua.basic
 
 import io.mockk.every
-import org.fbme.ide.integration.fordiac.lua.*
+import org.fbme.ide.integration.fordiac.translator.lua.*
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.st.expressions.BinaryOperation.*
 import org.fbme.lib.st.statements.Statement

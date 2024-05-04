@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
@@ -12,7 +12,7 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 object CompositeFBTypeTranslator {
     private val sb = StringBuilder()
     private const val INDENT_TAB1: String = "  "
-    private const val INDENT_TAB2: String = "${INDENT_TAB1}$INDENT_TAB1"
+    private const val INDENT_TAB2: String = "$INDENT_TAB1$INDENT_TAB1"
     private const val ADAPTER_MARKER = 0x10000
 
     fun translate(fbTypeDeclaration: CompositeFBTypeDeclaration): String {
@@ -49,7 +49,7 @@ object CompositeFBTypeTranslator {
         }
         sb.appendLine("${INDENT_TAB1}internalFBs = {")
             .appendLine(fbList)
-            .appendLine("${INDENT_TAB1}},")
+            .appendLine("$INDENT_TAB1},")
     }
 
     private fun extractParametersFromFBs(fbs: List<FunctionBlockDeclaration>): List<List<String>> {
@@ -77,7 +77,7 @@ object CompositeFBTypeTranslator {
         }
         sb.appendLine("${INDENT_TAB1}parameters = {")
             .appendLine(paramDeclaration)
-            .appendLine("${INDENT_TAB1}},")
+            .appendLine("$INDENT_TAB1},")
 
         return params.size
     }
@@ -105,7 +105,7 @@ object CompositeFBTypeTranslator {
             )
         }
 
-        sb.appendLine("${INDENT_TAB1}},")
+        sb.appendLine("$INDENT_TAB1},")
 
         sb.appendLine("${INDENT_TAB1}fannedOutEventConnections = {")
         fannedOutEventConnections.forEachIndexed { ind, connection ->
@@ -116,7 +116,7 @@ object CompositeFBTypeTranslator {
             addComma(ind, fannedOutEventConnections.lastIndex)
         }
 
-        sb.appendLine("${INDENT_TAB1}},")
+        sb.appendLine("$INDENT_TAB1},")
 
         return ComputedConnectionsAmount(originalEventConnections, fannedOutEventConnections)
     }
@@ -133,20 +133,20 @@ object CompositeFBTypeTranslator {
         val targetFB = connection.targetReference.getTarget()?.functionBlock
 
         if (sourceFB != null && targetFB != null) {
-            sb.append("${INDENT_TAB2}{")
+            sb.append("$INDENT_TAB2{")
             addPortInfo(fb = fb, connectedBlock = sourceFB, portName = sourceName!!, id = "src")
             sb.append(", ")
             addPortInfo(fb = fb, connectedBlock = targetFB, portName = targetName!!, id = "dst")
             sb.append("}")
         } else if (sourceFB == null && targetFB == null) {
-            sb.append("${INDENT_TAB2}{srcID = \"${sourceName}\", ")
+            sb.append("$INDENT_TAB2{srcID = \"${sourceName}\", ")
                 .append("srcFBNum = -1, dstID = \"${targetName}\", dstFBNum = -1}")
         } else if (targetFB == null) {
-            sb.append("${INDENT_TAB2}{")
+            sb.append("$INDENT_TAB2{")
             addPortInfo(fb = fb, connectedBlock = sourceFB!!, portName = sourceName!!, id = "src")
             sb.append(", dstID = \"${targetName}\", dstFBNum = -1}")
         } else {
-            sb.append("${INDENT_TAB2}{srcID = \"${sourceName}\", srcFBNum = -1, ")
+            sb.append("$INDENT_TAB2{srcID = \"${sourceName}\", srcFBNum = -1, ")
             addPortInfo(fb = fb, connectedBlock = targetFB, portName = targetName!!, id = "dst")
             sb.append("}")
         }
@@ -248,7 +248,7 @@ object CompositeFBTypeTranslator {
             )
         }
 
-        sb.appendLine("${INDENT_TAB1}},")
+        sb.appendLine("$INDENT_TAB1},")
 
         sb.appendLine("${INDENT_TAB1}fannedOutDataConnections = {")
         fannedOutDataConnections.forEachIndexed { ind, connection ->
@@ -259,7 +259,7 @@ object CompositeFBTypeTranslator {
             addComma(ind, fannedOutDataConnections.lastIndex)
         }
 
-        sb.appendLine("${INDENT_TAB1}},")
+        sb.appendLine("$INDENT_TAB1},")
 
         return ComputedConnectionsAmount(originalDataConnections, fannedOutDataConnections)
     }

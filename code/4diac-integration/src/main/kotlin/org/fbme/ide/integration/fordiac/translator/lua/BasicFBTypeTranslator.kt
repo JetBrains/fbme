@@ -1,4 +1,4 @@
-package org.fbme.ide.integration.fordiac.lua
+package org.fbme.ide.integration.fordiac.translator.lua
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
@@ -196,7 +196,7 @@ object BasicFBTypeTranslator {
             inputPrefix = "ADO_"
             outputPrefix = "ADI_"
         }
-        val addAdapterParamFunc = if (isPrefix) ::addAdapterVarPrefix else ::addAdapterVarSuffix
+        val addAdapterParamFunc = if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
         val adapter = plug.typeReference.getTarget()
         adapter?.inputParameters.addAdapterVars(plug.name, inputPrefix, addAdapterParamFunc)
         adapter?.outputParameters.addAdapterVars(plug.name, outputPrefix, addAdapterParamFunc)
@@ -209,7 +209,7 @@ object BasicFBTypeTranslator {
             inputPrefix = "ADO_"
             outputPrefix = "ADI_"
         }
-        val addAdapterParamFunc = if (isPrefix) ::addAdapterVarPrefix else ::addAdapterVarSuffix
+        val addAdapterParamFunc = if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
         val adapter = socket.typeReference.getTarget()
         adapter?.inputParameters.addAdapterVars(socket.name, inputPrefix, addAdapterParamFunc)
         adapter?.outputParameters.addAdapterVars(socket.name, outputPrefix, addAdapterParamFunc)
