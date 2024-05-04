@@ -5,13 +5,18 @@ import org.junit.Test
 import java.io.InputStream
 import java.io.OutputStream
 import java.net.ServerSocket
+import java.util.concurrent.CountDownLatch
+import kotlin.properties.Delegates
 
 class TCPDeviceCommunicationHandlerTest {
     private val handler = TCPDeviceCommunicationHandler()
-    private val port = 9999
+    private var port by Delegates.notNull<Int>()
+    private val latch = CountDownLatch(1) // to wait port initialization
 
     private fun serverThread(code: (writer: OutputStream, reader: InputStream) -> Unit) = Thread {
-        val server = ServerSocket(port)
+        val server = ServerSocket(0)
+        port = server.localPort
+        latch.countDown()
         val client = server.accept()
 
         code(client.outputStream, client.inputStream)
@@ -46,6 +51,7 @@ class TCPDeviceCommunicationHandlerTest {
 
         thread.start()
 
+        latch.await()
         handler.connect("localhost", port)
         val actualResponse = handler.send(destination = "", request = request)
 
