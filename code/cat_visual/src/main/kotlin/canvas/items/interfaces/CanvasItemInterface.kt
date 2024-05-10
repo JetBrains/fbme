@@ -23,6 +23,7 @@ interface CanvasItemInterface {
     enum class Type {
         TEXT,
         LAMP,
+        TOGGLE,
         UNKNOWN,
     }
 }

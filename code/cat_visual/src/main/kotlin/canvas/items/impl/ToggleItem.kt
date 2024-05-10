@@ -1,37 +1,23 @@
 package canvas.items.impl
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import canvas.items.Draggable
 import canvas.items.interfaces.CanvasItemInterface
 import canvas.items.interfaces.Focusable
-import canvas.items.model.Input
-import canvas.items.model.Output
-import canvas.items.model.figures.Round
 import connection.AbstractClient
-import connection.field.ConnectionField
-import lib.elements.DARK_RADIAL_BRUSH
-import lib.elements.LIGHT_RADIAL_BRUSH
-import lib.elements.METALLIC_BRUSH
 import java.util.*
 
-class LampItem(
+class ToggleItem(
     override val id: UUID = UUID.randomUUID(),
     override var x: Float = 0f,
     override var y: Float = 0f,
@@ -46,28 +32,34 @@ class LampItem(
     client = client,
 ), Draggable, Focusable {
 
-    override val type = CanvasItemInterface.Type.LAMP
+
+    override val type = CanvasItemInterface.Type.TOGGLE
 
     @Composable
     override fun getContent(deleteCurrentItem: (String) -> Unit) {
-        val isLighting = remember { mutableStateOf(false) }
         val localDensity = LocalDensity.current
         val xPosition = remember { mutableStateOf(x) }
         val yPosition = remember { mutableStateOf(y) }
+        val focusRequester = remember { FocusRequester() }
+        val color = remember { mutableStateOf(Color.Black) }
+        val checkedStateToggle = remember { mutableStateOf(false) }
         var connectMenu by remember { mutableStateOf( false) }
         var expandedDropDownMenu by remember { mutableStateOf(false) }
         val idStaq by remember {mutableStateOf(id.toString())}
         Box(
-            modifier = modifier
-                .makeDraggable(localDensity, xPosition, yPosition)
-                .background(brush = if (isLighting.value) LIGHT_RADIAL_BRUSH else DARK_RADIAL_BRUSH)
-                .border(width = 10.dp, brush = METALLIC_BRUSH, shape = RectangleShape)
+            modifier.makeDraggable(localDensity, xPosition, yPosition)
+                .makeFocusable(focusRequester, color)
                 .clickable{
                     expandedDropDownMenu = !expandedDropDownMenu
                 }
-                .width(60.dp)
-                .height(60.dp)
         ) {
+            Switch(
+                modifier = modifier
+                    .size(50.dp)
+                    .wrapContentSize(),
+                checked = checkedStateToggle.value,
+                onCheckedChange = {checkedStateToggle.value = !checkedStateToggle.value},
+            )
             DropdownMenu(
                 expanded = expandedDropDownMenu,
                 onDismissRequest = {
@@ -104,7 +96,7 @@ class LampItem(
                         },
                     ) {
                         Text(
-                            text = "Lamp 1",
+                            text = "Toggle 1",
                             modifier = Modifier
                                 .padding(10.dp),
                             fontSize = 15.sp,

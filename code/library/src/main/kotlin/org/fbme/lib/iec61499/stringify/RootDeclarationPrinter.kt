@@ -8,14 +8,14 @@ import org.jdom.DocType
 import org.jdom.Document
 import org.jdom.Element
 
-class RootDeclarationPrinter(private val myDeclaration: Declaration, val converterArguments: Iec61499ConverterConfiguration) {
+class RootDeclarationPrinter(private val myDeclaration: Declaration) {
     fun print(): Document {
         val rootElement: Element = when (myDeclaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> BasicFBTypePrinter(myDeclaration).print()
             is CompositeFBTypeDeclaration -> CompositeFBTypePrinter(myDeclaration).print()
             is CATBlockTypeDeclaration -> CATBlockTypePrinter(myDeclaration).print()
-            is HMIInterfaceTypeDeclaration -> HMIBlockPrinter(myDeclaration, converterArguments).print()
+            is HMIInterfaceTypeDeclaration -> HMIBlockPrinter(myDeclaration).print()
             is DeviceTypeDeclaration -> DeviceTypePrinter(myDeclaration).print()
             is ResourceTypeDeclaration -> ResourceTypePrinter(myDeclaration).print()
             is ServiceInterfaceFBTypeDeclaration -> ServiceInterfaceFBTypePrinter(myDeclaration).print()

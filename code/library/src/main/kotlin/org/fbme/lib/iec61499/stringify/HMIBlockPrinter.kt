@@ -4,11 +4,11 @@ import org.fbme.lib.iec61499.declarations.HMIInterfaceTypeDeclaration
 import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 import org.jdom.Element
 
-class HMIBlockPrinter(declaration: HMIInterfaceTypeDeclaration, val converterArguments: Iec61499ConverterConfiguration) :
+class HMIBlockPrinter(declaration: HMIInterfaceTypeDeclaration) :
     DeclarationPrinterBase<HMIInterfaceTypeDeclaration>(declaration, "HMIDeclaration") {
 
-    val factory = converterArguments.entryFactory
-    val stFactory = converterArguments.stEntryFactory
+//    val factory = converterArguments.entryFactory
+//    val stFactory = converterArguments.stEntryFactory
     override fun printDeclarationBody(element: Element) {
         element.addContent(FBInterfacePrinterWithAdapters(this.element).print())
 //        val cFB = CompositeFBTypePrinter(HMIInterfaceTypeGenerator.generateComposite(factory, stFactory, this.element)).print().children
