@@ -9,18 +9,11 @@ import jetbrains.mps.extapi.model.SModelData
 import jetbrains.mps.extapi.model.SModelSimpleHeader
 import jetbrains.mps.extapi.persistence.FileDataSource
 import jetbrains.mps.ide.MPSCoreComponents
-import jetbrains.mps.internal.collections.runtime.ISelector
 import jetbrains.mps.internal.collections.runtime.ListSequence
 import jetbrains.mps.persistence.DataLocationAwareModelFactory
 import jetbrains.mps.smodel.SModel.ImportElement
 import jetbrains.mps.smodel.SModelId
 import jetbrains.mps.smodel.SNodeUtil
-import jetbrains.mps.smodel.adapter.ids.SContainmentLinkId
-import jetbrains.mps.smodel.adapter.ids.SPropertyId
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory
-import jetbrains.mps.smodel.adapter.structure.link.SContainmentLinkAdapter
-import jetbrains.mps.smodel.adapter.structure.link.SContainmentLinkAdapterById
-import jetbrains.mps.smodel.adapter.structure.property.SPropertyAdapter
 import jetbrains.mps.util.FileUtil
 import jetbrains.mps.util.JDOMUtil
 import jetbrains.mps.util.NameUtil
@@ -30,14 +23,10 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.ide.platform.MpsLanguages
-import org.fbme.ide.platform.converter.PlatformConverter
 import org.fbme.ide.platform.converter.PlatformConverter.create
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
 import org.fbme.lib.iec61499.declarations.*
-import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
-import org.fbme.lib.iec61499.parser.StandardIec61499ConverterConfiguration
-import org.fbme.lib.iec61499.stringify.DependentDeclarationGenerator
 import org.fbme.lib.iec61499.stringify.RootDeclarationPrinter
 import org.jdom.Document
 import org.jetbrains.mps.openapi.model.SModel
@@ -55,7 +44,6 @@ import java.io.InputStreamReader
 import java.io.OutputStream
 import java.util.*
 import java.util.stream.Collectors
-import kotlin.io.path.Path
 
 class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
     private fun supportedFileExtension(fileExt: String): Boolean {
@@ -66,7 +54,6 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 || fileExt == DEV_FILE_EXT
                 || fileExt == SYS_FILE_EXT
                 || fileExt == SEG_FILE_EXT
-                || fileExt == CFG_FILE_EXT
     }
 
     override fun supports(dataSource: DataSource): Boolean {
@@ -251,12 +238,7 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                         val importedModels = model.importedModels()
                         val richHeader = Iec61499ModelHeader(
                             header.modelReference,
-                            ListSequence.fromList(importedModels)
-                                .select(object : ISelector<ImportElement, SModelReference>() {
-                                    override fun select(it: ImportElement): SModelReference {
-                                        return it.modelReference
-                                    }
-                                }).toListSequence()
+                            importedModels.map { it.modelReference }
                         )
                         richHeader.save(headerOS)
                     } finally {
@@ -280,46 +262,16 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                     .getComponent(MPSCoreComponents::class.java).moduleRepository
                 val platformRepository = PlatformRepository(repository)
 
-                val nodesToDelete = mutableListOf<SNode>()
-                val dependents = mutableListOf<SNode>()
-                for (rootNode in model.rootNodes) {
-                    if (rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().endsWith("_dependent")) {
-//                                c.dropReference(it.link)
-                        nodesToDelete.add(rootNode)
-                        continue
-                    }
-                    val owner = PlatformElementsOwner()
-                    val conf = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
-                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-
-                    val els = DependentDeclarationGenerator(declaration, conf).generate()
-                    els.forEach { element ->
-                        val node = (element as PlatformElement).node
-                        node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty() + ".${rootNode.name}_dependent")
-                        dependents.add(node)
-                    }
-                }
-
-                LOG.info("Deleting nodes size: {}", nodesToDelete.size)
-                nodesToDelete.forEach {
-                    model.enterUpdateMode()
-                    model.removeRootNode(it)
-                    it.delete()
-                    model.leaveUpdateMode()
-                }
-                LOG.info("Dependents size: {}", dependents.size)
-                dependents.forEach {
-                    model.enterUpdateMode()
-                    model.addRootNode(it)
-                    model.leaveUpdateMode()
-                }
-
+                val errors = arrayListOf<SModel.Problem>()
                 //  Write nodes to xml files
                 for (rootNode in model.rootNodes) {
-                    val conf = StandardIec61499ConverterConfiguration(platformRepository.iec61499Factory, platformRepository.stFactory)
-
-                    val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
-                    val document = RootDeclarationPrinter(declaration!!, conf).print()
+                    val document = try {
+                        val declaration = platformRepository.getAdapter(rootNode, Declaration::class.java)
+                        RootDeclarationPrinter(declaration).print()
+                    } catch (e: Exception) {
+                        errors += PersistenceProblem(SModel.Problem.Kind.Save, e.message, rootNode.name, true)
+                        continue
+                    }
                     val folderName =
                         rootNode.getProperty(SNodeUtil.property_BaseConcept_virtualPackage).orEmpty().replace(".", "/")
                     val fileLocalName = rootNode.name + "." + getExtensionOfSource(rootNode, platformRepository)
@@ -338,14 +290,16 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 for (file in trackedSources) {
                     file.delete()
                 }
+
+                if (errors.isNotEmpty()) {
+                    throw ModelSaveException("Multiple errors raised during save", errors, null)
+                }
             } catch (e: IOException) {
                 LOG.error("Exception raised during save", e)
                 throw ModelSaveException("Exception raised during save", emptyList(), e)
             }
         }
     }
-
-
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Iec61499ModelFactory::class.java)
@@ -357,7 +311,6 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
         const val DEV_FILE_EXT = "dev"
         const val SEG_FILE_EXT = "seg"
         const val SYS_FILE_EXT = "sys"
-        const val CFG_FILE_EXT = "cfg"
         const val HEADER_FILE_EXT = "iec61499"
         const val HEADER_FILE = "header.iec61499"
 
@@ -391,7 +344,6 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 DEV_FILE_EXT -> (converter.convertDeviceType() as PlatformElement).node
                 SEG_FILE_EXT -> (converter.convertSegmentType() as PlatformElement).node
                 SYS_FILE_EXT -> (converter.convertSystemConfiguration() as PlatformElement).node
-                CFG_FILE_EXT -> (converter.convertCATConfiguration() as PlatformElement).node
                 else -> null
             }
         }
@@ -406,7 +358,6 @@ class Iec61499ModelFactory : ModelFactory, DataLocationAwareModelFactory {
                 is DeviceTypeDeclaration -> DEV_FILE_EXT
                 is SegmentTypeDeclaration -> SEG_FILE_EXT
                 is SystemDeclaration -> SYS_FILE_EXT
-                is CATBlockTypeDeclaration -> CFG_FILE_EXT
                 else -> null
             }
         }

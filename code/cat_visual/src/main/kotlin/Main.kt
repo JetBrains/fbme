@@ -22,6 +22,7 @@ import androidx.compose.ui.zIndex
 import canvas.items.impl.CustomItem
 import canvas.items.impl.LampItem
 import canvas.items.impl.TextItem
+import canvas.items.impl.ToggleItem
 import canvas.items.interfaces.CanvasItemInterface
 import canvas.items.model.JsonCanvasModel
 import canvas.items.model.toItem
@@ -94,29 +95,62 @@ fun itemBar(
     Column(
         modifier = Modifier
             .background(Color.LightGray)
-            .width(100.dp)
+            .width(140.dp)
             .fillMaxHeight()
             .zIndex(-2f),
         horizontalAlignment = Alignment.End,
     ) {
         Button(
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
             onClick = {
                 addNewItem(TextItem(content = "AddedText"))
             }
         ) {
-            Text(text = "Add text")
+            Text(text = "Text")
         }
         Button(
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
             onClick = {
                 addNewItem(LampItem(client = client))
             }
         ) {
-            Text(text = "Add lamp")
+            Text(text = "Lamp")
         }
         Button(
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
+            onClick = {
+                addNewItem(ToggleItem(client = client))
+            }
+        ) {
+            Text(text = "Toggle")
+        }
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
+            onClick = {
+                addNewItem(LampItem(client = client))
+            }
+        ) {
+            Text(text = "Box")
+        }
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
+            onClick = {
+                addNewItem(LampItem(client = client))
+            }
+        ) {
+            Text(text = "CheckBox")
+        }
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
+            onClick = {
+                addNewItem(LampItem(client = client))
+            }
+        ) {
+            Text(text = "RadioButton")
+        }
+
+        Button(
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally).width(130.dp),
             onClick = {
                 val x = itemList.map {it.toModel()}
                 val json = Json.encodeToString(x)
@@ -142,7 +176,6 @@ fun main() = application {
                         .fillMaxWidth()
                         .fillMaxHeight(),
                 ) {
-//                CounterLampHMI(client, "1")
                     itemBar(itemList) { item ->
                         itemList += listOf(item)
                     }

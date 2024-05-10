@@ -26,11 +26,11 @@ class SerializationUtils {
         private const val PATH: String = "/Users/sj/IdeaProjects/fbme/code/cat_visual/src/main/kotlin/serializer/saved"
 
         fun saveSnapshot(json: String) {
-            File(PATH, "test.json").writeText(json)
+            File(PATH, "example.json").writeText(json)
         }
 
         fun readSnapshot(): String {
-            return File(PATH, "test.json").readText()
+            return File(PATH, "example.json").readText()
         }
     }
 }
