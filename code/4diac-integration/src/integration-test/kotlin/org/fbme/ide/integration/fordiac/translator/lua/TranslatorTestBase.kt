@@ -18,7 +18,7 @@ import kotlin.math.min
 
 open class TranslatorTestBase : PlatformTestBase() {
 
-    internal fun testTemplateBase(
+    internal fun luaTestTemplateBase(
         mainFB: TypeInfo,
         expectedOutputPath: String,
         additionalFBs: List<TypeInfo> = listOf()
@@ -29,25 +29,30 @@ open class TranslatorTestBase : PlatformTestBase() {
             model.addTypes(additionalFBs)
 
             val actual = when (mainFB.type) {
-                BASIC -> BasicFBTypeTranslator.translate(block as BasicFBTypeDeclaration)
-                ADAPTER -> AdapterFBTypeTranslator.translate(block as AdapterTypeDeclaration)
-                COMPOSITE -> CompositeFBTypeTranslator.translate(block as CompositeFBTypeDeclaration)
+                BASIC -> translate(block as BasicFBTypeDeclaration)
+                ADAPTER -> translate(block as AdapterTypeDeclaration)
+                COMPOSITE -> translate(block as CompositeFBTypeDeclaration)
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 
             val expected = readFile("src/integration-test/resources$expectedOutputPath").toComparableList()
-            val maxInd = min(actual.size, expected.size)
+            expected.compareLineByLine(actual)
+        }
+    }
 
-            actual.forEachIndexed { ind, el ->
-                if (ind == maxInd) {
-                    return@forEachIndexed
-                }
-                assertEquals(expected[ind], el)
-            }
+    private fun List<String>.compareLineByLine(actual: List<String>) {
+        val expected = this
+        val maxInd = min(actual.size, expected.size)
 
-            require(actual.size == expected.size) {
-                "expected not blank lines amount: ${expected.size}; actual: ${actual.size}"
+        actual.forEachIndexed { ind, el ->
+            if (ind == maxInd) {
+                return@forEachIndexed
             }
+            assertEquals(expected[ind], el)
+        }
+
+        require(actual.size == expected.size) {
+            "expected not blank lines amount: ${expected.size}; actual: ${actual.size}"
         }
     }
 

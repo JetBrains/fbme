@@ -86,13 +86,13 @@ class BasicFBTypeTranslatorTest : TranslatorTestBase() {
     }
 
     @Test
-    fun `basic block with adapter`() = testTemplateBase(
+    fun `basic block with adapter`() = luaTestTemplateBase(
         mainFB = TypeInfo(filePath = "/translator/basic/adapter/BasicWithAdapterMPS.fbt", type = BASIC),
         expectedOutputPath = "/translator/basic/adapter/lua/BasicWithAdapter_out.lua",
         additionalFBs = listOf(TypeInfo(filePath = "/translator/basic/adapter/AdaptMPS.adp", type = ADAPTER)),
     )
 
-    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = testTemplateBase(
+    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = luaTestTemplateBase(
         mainFB = TypeInfo(filePath = inputBlockPath, type = BASIC),
         expectedOutputPath = expectedOutputPath,
     )

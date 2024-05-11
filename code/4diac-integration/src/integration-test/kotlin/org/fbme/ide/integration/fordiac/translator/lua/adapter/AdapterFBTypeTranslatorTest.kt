@@ -22,7 +22,7 @@ class AdapterFBTypeTranslatorTest : TranslatorTestBase() {
         )
     }
 
-    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = testTemplateBase(
+    private fun testTemplate(inputBlockPath: String, expectedOutputPath: String) = luaTestTemplateBase(
         mainFB = TypeInfo(filePath = inputBlockPath, type = ADAPTER),
         expectedOutputPath = expectedOutputPath,
     )

@@ -24,7 +24,7 @@ class CompositeFBTypeTranslatorTest : TranslatorTestBase() {
         inputBlockPath: String,
         expectedOutputPath: String,
         additionalFBs: List<TypeInfo> = listOf()
-    ) = testTemplateBase(
+    ) = luaTestTemplateBase(
         mainFB = TypeInfo(filePath = inputBlockPath, type = COMPOSITE),
         expectedOutputPath = expectedOutputPath,
         additionalFBs = additionalFBs
