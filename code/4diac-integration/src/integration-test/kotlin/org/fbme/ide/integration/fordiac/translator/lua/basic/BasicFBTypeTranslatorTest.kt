@@ -7,7 +7,7 @@ import org.fbme.ide.platform.testing.FBType.BASIC
 import org.fbme.ide.platform.testing.TypeInfo
 import org.junit.Test
 
-class BasicFBTypeImplTranslatorFBTypeTranslatorTest : TranslatorTestBase() {
+class BasicFBTypeTranslatorTest : TranslatorTestBase() {
 
     @Test
     fun `two algorithms with simple transitions`() {
