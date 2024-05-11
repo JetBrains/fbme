@@ -11,7 +11,7 @@ class CompositeFBTypeTranslatorTest : TranslatorTestBase() {
     fun `two basic and adapter`() {
         testTemplate(
             inputBlockPath = "/translator/composite/CompositeMPS.fbt",
-            expectedOutputPath = "/translator/composite/composite_out.lua",
+            expectedOutputPath = "/translator/composite/lua/composite_out.lua",
             additionalFBs = listOf(
                 TypeInfo(filePath = "/translator/basic/adapter/AdaptMPS.adp", type = ADAPTER),
                 TypeInfo(filePath = "/translator/composite/BBMPS.fbt", type = BASIC),

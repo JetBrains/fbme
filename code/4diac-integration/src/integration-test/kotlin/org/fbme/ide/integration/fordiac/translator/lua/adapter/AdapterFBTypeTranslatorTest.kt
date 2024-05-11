@@ -10,7 +10,7 @@ class AdapterFBTypeTranslatorTest : TranslatorTestBase() {
     fun simple() {
         testTemplate(
             inputBlockPath = "/translator/adapter/simple/SimpleAdapterMPS.adp",
-            expectedOutputPath = "/translator/adapter/simple/SimpleAdapter_out.lua"
+            expectedOutputPath = "/translator/adapter/simple/lua/SimpleAdapter_out.lua"
         )
     }
 
@@ -18,7 +18,7 @@ class AdapterFBTypeTranslatorTest : TranslatorTestBase() {
     fun `with associations`() {
         testTemplate(
             inputBlockPath = "/translator/adapter/with_associations/AssocAdapterMPS.adp",
-            expectedOutputPath = "/translator/adapter/with_associations/AssocAdapter_out.lua"
+            expectedOutputPath = "/translator/adapter/with_associations/lua/AssocAdapter_out.lua"
         )
     }
 
