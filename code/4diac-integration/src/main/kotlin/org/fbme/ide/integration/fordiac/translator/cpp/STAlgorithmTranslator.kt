@@ -10,7 +10,6 @@ import org.fbme.lib.st.expressions.LiteralKind.*
 import org.fbme.lib.st.statements.*
 import org.fbme.lib.st.types.ArrayType
 
-// todo: make it classic class
 object STAlgorithmTranslator {
     private val tempVarsCache = mutableSetOf<Identifier>()
 
@@ -29,9 +28,6 @@ object STAlgorithmTranslator {
 
         return sb.toString()
     }
-
-    fun extractTemporaryVarTypeNames(algorithm: AlgorithmDeclaration): List<String> =
-        algorithm.temporaryVariables.map { it.type!!.stringify() }
 
     private fun translateStatementSequence(statements: List<Statement>, indent: String): String {
         val sb = StringBuilder()
@@ -72,7 +68,6 @@ object STAlgorithmTranslator {
 
     private fun translateStatement(statement: ExitStatement, indent: String) = "${indent}break;"
 
-    // fixme: calculate loopVarIndex (hard logic!)
     private fun translateStatement(statement: ForStatement, indent: String): String {
         val sb = StringBuilder()
         val controlVarName = "st_${statement.controlVariable.name}"
@@ -299,7 +294,6 @@ object STAlgorithmTranslator {
         return sb.toString()
     }
 
-    // fixme:
     fun translateExpression(expression: VariableReference): String =
         constructVarAccess(expression.reference.getTarget()!!)
 
@@ -342,8 +336,6 @@ object STAlgorithmTranslator {
         val sb = StringBuilder()
 
         this.temporaryVariables.forEach { v ->
-            // todo: some located vars... What does it mean? generateLocalVariables method
-
             sb.append("  CIEC_${v.type!!.stringify()} ${constructVarAccessLocal(v.name)}")
 
             if (v is ArrayType) {

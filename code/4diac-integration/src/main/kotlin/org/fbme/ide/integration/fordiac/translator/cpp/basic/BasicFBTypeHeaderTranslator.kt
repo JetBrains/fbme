@@ -128,7 +128,6 @@ class BasicFBTypeHeaderTranslator(private val fb: BasicFBTypeDeclaration) : Abst
     override fun constructHeaderIncludes(): String {
         val s = StringBuilder()
         s.appendLine("#include \"basicfb.h\"")
-//            .append(super.constructHeaderIncludes())
             .append(this.constructTypeIncludes(fb.inputParameters + fb.outputParameters + fb.internalVariables))
             .append(this.constructAdapterIncludes(this.type()))
 

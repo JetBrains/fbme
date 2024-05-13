@@ -83,7 +83,6 @@ abstract class AbstractTranslator(isHeader: Boolean) {
 
     protected fun constructAdapterIncludes(type: FBInterfaceDeclaration): String {
         val sb = StringBuilder()
-        // todo: cache
         val typeNames =
             (type.templateTypeDescriptor.socketPorts.map { (it.declaration as SocketDeclaration).type.typeName } +
                     type.templateTypeDescriptor.plugPorts.map { (it.declaration as PlugDeclaration).type.typeName }

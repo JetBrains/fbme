@@ -54,8 +54,6 @@ open class TranslatorTestBase : PlatformTestBase() {
             val block = model.addType(mainFB)
             model.addTypes(additionalFBs)
 
-            // todo: add header translation and check
-
             val actualHeader = when (mainFB.type) {
                 BASIC -> BasicFBTypeHeaderTranslator(block as BasicFBTypeDeclaration).translate()
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
@@ -79,8 +77,6 @@ open class TranslatorTestBase : PlatformTestBase() {
     private fun List<String>.compareLineByLine(actual: List<String>) {
         val expected = this
         val maxInd = min(actual.size, expected.size)
-
-        // todo: remove me actual.joinToString("\n")
 
         actual.forEachIndexed { ind, el ->
             if (ind == maxInd) {
