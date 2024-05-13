@@ -1,6 +1,6 @@
 package org.fbme.ide.integration.fordiac.translator.lua.composite
 
-import org.fbme.ide.integration.fordiac.translator.lua.TranslatorTestBase
+import org.fbme.ide.integration.fordiac.translator.TranslatorTestBase
 import org.fbme.ide.platform.testing.FBType.*
 import org.fbme.ide.platform.testing.TypeInfo
 import org.junit.Test

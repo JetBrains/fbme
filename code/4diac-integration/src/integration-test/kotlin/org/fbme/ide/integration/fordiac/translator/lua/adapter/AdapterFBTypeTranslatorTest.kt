@@ -1,6 +1,6 @@
 package org.fbme.ide.integration.fordiac.translator.lua.adapter
 
-import org.fbme.ide.integration.fordiac.translator.lua.TranslatorTestBase
+import org.fbme.ide.integration.fordiac.translator.TranslatorTestBase
 import org.fbme.ide.platform.testing.FBType.ADAPTER
 import org.fbme.ide.platform.testing.TypeInfo
 import org.junit.Test
