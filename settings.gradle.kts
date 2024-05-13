@@ -18,3 +18,7 @@ include(
     "samples:sandbox",
     "samples:smv-debugger"
 )
+include("code:lib-managment")
+findProject(":code:lib-managment")?.name = "lib-managment"
+include("code:lib-management")
+findProject(":code:lib-management")?.name = "lib-management"
