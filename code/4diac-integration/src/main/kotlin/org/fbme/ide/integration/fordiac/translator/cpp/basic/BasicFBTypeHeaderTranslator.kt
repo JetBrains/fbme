@@ -43,7 +43,7 @@ class BasicFBTypeHeaderTranslator(private val fb: BasicFBTypeDeclaration) : Abst
                 )
             )
 
-        addAccessors(this.type().sockets + this.type().plugs, indent = "  ")
+        sb.append(constructAccessors(type().sockets + type().plugs, indent = "  "))
         addAlgorithms(indent = "  ")
         addStates(indent = "  ")
 
@@ -100,27 +100,6 @@ class BasicFBTypeHeaderTranslator(private val fb: BasicFBTypeDeclaration) : Abst
             .append(", ")
             .append(fb.sockets.size + fb.plugs.size)
             .appendLine(");")
-    }
-
-
-    private fun addAccessors(adapters: Iterable<FunctionBlockDeclarationBase>, indent: String) {
-        adapters.forEachIndexed { index, adapter ->
-            sb.append(indent)
-                .append("FORTE_")
-                .append(adapter.type.typeName)
-                .append("& ")
-                .append(EXPORT_PREFIX)
-                .append(adapter.name)
-                .appendLine("() {")
-                .append(indent)
-                .append("  return (*static_cast<FORTE_")
-                .append(adapter.type.typeName)
-                .append("*>(m_apoAdapters[")
-                .append(index)
-                .appendLine("]));")
-                .append(indent)
-                .appendLine("};")
-        }
     }
 
     private fun addInitialValueAssignmentDeclaration() = sb.appendLine("virtual void setInitialValues();")

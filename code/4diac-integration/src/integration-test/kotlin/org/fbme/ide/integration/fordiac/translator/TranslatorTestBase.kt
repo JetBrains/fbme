@@ -4,6 +4,8 @@ import jetbrains.mps.smodel.tempmodel.TempModuleOptions
 import jetbrains.mps.smodel.tempmodel.TemporaryModels
 import org.fbme.ide.integration.fordiac.translator.cpp.basic.BasicFBTypeHeaderTranslator
 import org.fbme.ide.integration.fordiac.translator.cpp.basic.BasicFBTypeImplTranslator
+import org.fbme.ide.integration.fordiac.translator.cpp.composite.CompositeFBTypeHeaderTranslator
+import org.fbme.ide.integration.fordiac.translator.cpp.composite.CompositeFBTypeImplTranslator
 import org.fbme.ide.integration.fordiac.translator.lua.AdapterFBTypeTranslator.translate
 import org.fbme.ide.integration.fordiac.translator.lua.BasicFBTypeTranslator.translate
 import org.fbme.ide.integration.fordiac.translator.lua.CompositeFBTypeTranslator.translate
@@ -56,6 +58,7 @@ open class TranslatorTestBase : PlatformTestBase() {
 
             val actualHeader = when (mainFB.type) {
                 BASIC -> BasicFBTypeHeaderTranslator(block as BasicFBTypeDeclaration).translate()
+                COMPOSITE -> CompositeFBTypeHeaderTranslator(block as CompositeFBTypeDeclaration).translate()
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 
@@ -65,7 +68,7 @@ open class TranslatorTestBase : PlatformTestBase() {
             val actualImpl = when (mainFB.type) {
                 BASIC -> BasicFBTypeImplTranslator(block as BasicFBTypeDeclaration).translate()
 //                ADAPTER -> AdapterFBTypeTranslator.translate(block as AdapterTypeDeclaration)
-//                COMPOSITE -> CompositeFBTypeTranslator.translate(block as CompositeFBTypeDeclaration)
+                COMPOSITE -> CompositeFBTypeImplTranslator(block as CompositeFBTypeDeclaration).translate()
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 

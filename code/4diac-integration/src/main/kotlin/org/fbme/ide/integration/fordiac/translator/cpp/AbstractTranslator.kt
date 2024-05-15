@@ -3,6 +3,7 @@ package org.fbme.ide.integration.fordiac.translator.cpp
 import org.fbme.ide.integration.fordiac.translator.lua.calcEventPortWith
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 import org.fbme.lib.st.types.ArrayType
 
 abstract class AbstractTranslator(isHeader: Boolean) {
@@ -115,7 +116,9 @@ abstract class AbstractTranslator(isHeader: Boolean) {
         return sb.toString()
     }
 
-    protected fun constructFBDeclaration() = "DECLARE_FIRMWARE_FB(${this.constructFBClassName()})"
+    protected fun constructFBDeclaration(indent: String = "") =
+        "${indent}DECLARE_FIRMWARE_FB(${this.constructFBClassName()})"
+
     protected fun contructFBDefinition() = "DEFINE_FIRMWARE_FB(${this.constructFBClassName()}, " +
             "${this.constructFORTEString(this.type().name)})"
 
@@ -342,7 +345,8 @@ abstract class AbstractTranslator(isHeader: Boolean) {
         return sb.toString()
     }
 
-    protected fun constructFBInterfaceSpecDeclaration() = "static const SFBInterfaceSpec scm_stFBInterfaceSpec;"
+    protected fun constructFBInterfaceSpecDeclaration(indent: String = "") =
+        "${indent}static const SFBInterfaceSpec scm_stFBInterfaceSpec;"
 
     protected fun constructFBInterfaceSpecDefinition(): String {
         val sb = StringBuilder()
@@ -439,6 +443,30 @@ abstract class AbstractTranslator(isHeader: Boolean) {
         return sb.toString()
     }
 
+    protected fun constructAccessors(adapters: Iterable<FunctionBlockDeclarationBase>, indent: String): String {
+        val s = StringBuilder()
+
+        adapters.forEachIndexed { index, adapter ->
+            s.append(indent)
+                .append("FORTE_")
+                .append(adapter.type.typeName)
+                .append("& ")
+                .append(EXPORT_PREFIX)
+                .append(adapter.name)
+                .appendLine("() {")
+                .append(indent)
+                .append("  return (*static_cast<FORTE_")
+                .append(adapter.type.typeName)
+                .append("*>(m_apoAdapters[")
+                .append(index)
+                .appendLine("]));")
+                .append(indent)
+                .appendLine("};")
+        }
+
+        return s.toString()
+    }
+
     protected fun constructAccessors(
         parameters: Iterable<ParameterDeclaration>,
         functionName: String,
@@ -492,10 +520,6 @@ abstract class AbstractTranslator(isHeader: Boolean) {
     }
 
     companion object {
-        private const val SYNTHETIC_URI_NAME = "__synthetic"
-        private const val URI_SEPERATOR = "."
-        private const val FB_URI_EXTENSION = "xtextfbt"
-        private const val ST_URI_EXTENSION = "st"
         internal const val EXPORT_PREFIX = "st_"
     }
 }
