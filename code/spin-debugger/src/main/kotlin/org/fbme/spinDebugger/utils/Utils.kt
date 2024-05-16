@@ -1,7 +1,21 @@
 package org.fbme.spinDebugger.utils
 
+import org.fbme.lib.st.types.ArrayType
+import org.fbme.lib.st.types.ArrayTypeSizes
+import org.fbme.lib.st.types.ArrayTypeSubranges
+
 const val TAB = "    "
 const val NEW_LINE = "\n"
+
+typealias Dimensions = List<Int>
+
+fun ArrayType.getRealDimensions() : Dimensions {
+    return when(val dims = dimensions) {
+        is ArrayTypeSizes -> dims.sizes.map { it.value }
+        is ArrayTypeSubranges -> dims.subranges.map { it.to - it.from }
+        else -> emptyList()
+    }
+}
 
 fun <T> Collection<T>.appendLambdaBoolIndexedTo(
     buf: StringBuilder,

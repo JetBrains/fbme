@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Composite Function Block Type" Name="ControlTS">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="Andrei" Date="6/3/2016" Organization="nxtControl GmbH" Remarks="template" Version="0.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Initialization Request" Name="INIT" Type="Event">
+        <With Var="AtFloor"/>
+        <With Var="DoorOpened"/>
+        <With Var="ButtonAt"/>
+        <With Var="ButtonFor"/>
+      </Event>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
+        <With Var="ButtonAt"/>
+        <With Var="ButtonFor"/>
+        <With Var="AtFloor"/>
+        <With Var="DoorOpened"/>
+      </Event>
+      <Event Comment="" Name="UPD" Type="Event">
+        <With Var="AtFloor"/>
+        <With Var="DoorOpened"/>
+        <With Var="ButtonFor"/>
+        <With Var="ButtonAt"/>
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
+        <With Var="MoveUp"/>
+        <With Var="MoveDown"/>
+        <With Var="Open"/>
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ArraySize="5" Comment="" Name="ButtonAt" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="ButtonFor" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="Input event qualifier" Name="AtFloor" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="DoorOpened" Type="BOOL"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Comment="Output event qualifier" Name="MoveUp" Type="BOOL"/>
+      <VarDeclaration Comment="" Name="MoveDown" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="Open" Type="BOOL"/>
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Comment="" Name="correctionWait" Type="E_DELAY" x="2700.0" y="600.0"/>
+    <FB Comment="" Name="BasicControl" Type="BasicControlTS5" x="1300.0" y="300.0">
+      <Parameter Name="initialFloor" Value="2"/>
+    </FB>
+    <DataConnections>
+      <Connection Comment="" Destination="BasicControl.AtFloor" Source="AtFloor" dx1="460.0"/>
+      <Connection Comment="" Destination="BasicControl.DoorOpened" Source="DoorOpened" dx1="460.0"/>
+      <Connection Comment="" Destination="BasicControl.Button" Source="ButtonAt" dx1="460.0"/>
+      <Connection Comment="" Destination="BasicControl.Req" Source="ButtonFor" dx1="460.0"/>
+      <Connection Comment="" Destination="MoveUp" Source="BasicControl.liftUp" dx1="1165.0"/>
+      <Connection Comment="" Destination="MoveDown" Source="BasicControl.liftDown" dx1="1165.0"/>
+      <Connection Comment="" Destination="Open" Source="BasicControl.door" dx1="1165.0"/>
+    </DataConnections>
+    <EventConnections>
+      <Connection Comment="" Destination="BasicControl.INIT" Source="INIT" dx1="40.0"/>
+      <Connection Comment="" Destination="BasicControl.REQ" Source="REQ" dx1="225.0"/>
+      <Connection Comment="" Destination="BasicControl.REQ" Source="UPD" dx1="40.0"/>
+      <Connection Comment="" Destination="BasicControl.POS_TIMEOUT_EXCEED" Source="correctionWait.EO" dx1="60.0" dx2="60.0" dy="635.0"/>
+      <Connection Comment="" Destination="CNF" Source="BasicControl.CNF" dx1="800.0"/>
+      <Connection Comment="" Destination="correctionWait.START" Source="BasicControl.POS_TIMEOUT" dx1="215.0"/>
+    </EventConnections>
+  </FBNetwork>
+</FBType>

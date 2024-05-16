@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Basic Function Block Type" Name="BasicControlTS">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="Andrei" Date="6/17/2016" Organization="nxtControl GmbH" Remarks="Template" Version="0.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Initialization Request" Name="INIT" Type="Event">
+        <With Var="AtFloor"/>
+        <With Var="DoorOpened"/>
+        <With Var="Button"/>
+        <With Var="Req"/>
+        <With Var="EventDelay"/>
+        <With Var="MaxSafeDelay"/>
+      </Event>
+      <Event Comment="" Name="POS_TIMEOUT_EXCEED" Type="Event"/>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
+        <With Var="AtFloor"/>
+        <With Var="DoorOpened"/>
+        <With Var="Button"/>
+        <With Var="Req"/>
+        <With Var="EventDelay"/>
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Initialization Confirm" Name="INITO" Type="Event">
+        <With Var="liftUp"/>
+        <With Var="liftDown"/>
+        <With Var="door"/>
+      </Event>
+      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
+        <With Var="liftUp"/>
+        <With Var="liftDown"/>
+        <With Var="door"/>
+      </Event>
+      <Event Comment="" Name="POS_TIMEOUT" Type="Event"/>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ArraySize="5" Comment="Input event qualifier" Name="AtFloor" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="DoorOpened" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="Button" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="Req" Type="BOOL"/>
+      <VarDeclaration Comment="" Name="EventDelay" Type="INT"/>
+      <VarDeclaration Comment="" Name="MaxSafeDelay" Type="INT"/>
+      <VarDeclaration Comment="" InitialValue="2" Name="initialFloor" Type="INT"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Comment="" Name="liftUp" Type="BOOL"/>
+      <VarDeclaration Comment="Output event qualifier" Name="liftDown" Type="BOOL"/>
+      <VarDeclaration ArraySize="5" Comment="" Name="door" Type="BOOL"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="2030.0" y="175.0"/>
+      <ECState Comment="Initialization" Name="INIT" x="2645.0" y="180.0">
+        <ECAction Algorithm="INIT" Output="INITO"/>
+      </ECState>
+      <ECState Comment="" Name="AtFloor" x="1680.0" y="2090.0">
+        <ECAction Algorithm="Stop"/>
+        <ECAction Algorithm="OpenDoors" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="GoUp" x="1000.0" y="1000.0">
+        <ECAction Algorithm="GoUp" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Wait" x="2340.0" y="700.0">
+        <ECAction Algorithm="Stop" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="DoorOpened" x="100.0" y="1800.0">
+        <ECAction Algorithm="CloseDoors" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="GoDown" x="3100.0" y="1200.0">
+        <ECAction Algorithm="GoDown" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="CorrectDown" x="800.0" y="1600.0">
+        <ECAction Algorithm="GoDown" Output="CNF"/>
+        <ECAction Output="POS_TIMEOUT"/>
+      </ECState>
+      <ECState Comment="" Name="CorrectUp" x="3000.0" y="1800.0">
+        <ECAction Algorithm="GoUp" Output="CNF"/>
+        <ECAction Output="POS_TIMEOUT"/>
+      </ECState>
+      <ECTransition Comment="" Condition="INIT" Destination="INIT" Source="START" x="2350.0" y="200.0"/>
+      <ECTransition Comment="" Condition="1" Destination="Wait" Source="INIT" x="2570.0" y="445.0"/>
+      <ECTransition Comment="" Condition="[REQ AND EventDelay &lt;= MaxSafeDelay AND (&#13;&#10; (AtFloor[1] AND (Button[1] OR Req[1])) OR &#13;&#10; (AtFloor[2] AND (Button[2] OR Req[2])))]" Destination="AtFloor" Source="GoUp" x="1495.0" y="1240.0"/>
+      <ECTransition Comment="" Condition="[(AtFloor[0] AND (Button[0] OR Req[0])) OR &#13;&#10;(AtFloor[1] AND (Button[1] OR Req[1])) OR &#13;&#10;(AtFloor[2] AND (Button[2] OR Req[2]))]" Destination="AtFloor" Source="Wait" x="2275.0" y="1105.0"/>
+      <ECTransition Comment="" Condition="[(AtFloor[0] AND (Button[1] OR Req[1] OR Button[2] OR Req[2]))&#13;&#10;OR (AtFloor[1] AND (Button[2] OR Req[2]))]" Destination="GoUp" Source="Wait" x="1330.0" y="895.0"/>
+      <ECTransition Comment="" Condition="REQ[DoorOpened[0] OR DoorOpened[1] OR DoorOpened[2]]" Destination="DoorOpened" Source="AtFloor" x="1170.0" y="2285.0"/>
+      <ECTransition Comment="" Condition="[REQ AND EventDelay &lt;= MaxSafeDelay AND (&#13;&#10; (AtFloor[1] AND (Button[1] OR Req[1])) OR &#13;&#10; (AtFloor[0] AND (Button[0] OR Req[0])))]" Destination="AtFloor" Source="GoDown" x="2410.0" y="1680.0"/>
+      <ECTransition Comment="" Condition="REQ[EventDelay &gt; MaxSafeDelay AND (&#13;&#10;(AtFloor[1] AND (Button[1] OR Req[1])) OR &#13;&#10;(AtFloor[2] AND (Button[2] OR Req[2])))]" Destination="CorrectDown" Source="GoUp" x="875.0" y="1215.0"/>
+      <ECTransition Comment="" Condition="REQ[EventDelay &gt; MaxSafeDelay AND (&#13;&#10;(AtFloor[1] AND (Button[1] OR Req[1])) OR &#13;&#10;(AtFloor[0] AND (Button[0] OR Req[0])))]" Destination="CorrectUp" Source="GoDown" x="3680.0" y="1460.0"/>
+      <ECTransition Comment="" Condition="[(AtFloor[2] AND (Button[1] OR Req[1] OR Button[0] OR Req[0]))&#13;&#10;OR (AtFloor[1] AND (Button[0] OR Req[0]))]" Destination="GoDown" Source="Wait" x="3545.0" y="955.0"/>
+      <ECTransition Comment="" Condition="REQ[(AtFloor[0] AND NOT DoorOpened[0]) OR (AtFloor[1] AND NOT DoorOpened[1]) OR (AtFloor[2] AND NOT DoorOpened[2])]" Destination="Wait" Source="DoorOpened" x="550.0" y="250.0"/>
+      <ECTransition Comment="" Condition="POS_TIMEOUT_EXCEED" Destination="Wait" Source="CorrectUp" x="5480.0" y="670.0"/>
+      <ECTransition Comment="" Condition="POS_TIMEOUT_EXCEED" Destination="Wait" Source="CorrectDown" x="205.0" y="575.0"/>
+    </ECC>
+    <Algorithm Comment="Initialization algorithm" Name="INIT">
+      <ST Text="liftDown := FALSE;&#13;&#10;liftUp := FALSE;"/>
+    </Algorithm>
+    <Algorithm Comment="" Name="GoDown">
+      <ST Text="liftDown := TRUE;&#13;&#10;liftUp := FALSE;"/>
+    </Algorithm>
+    <Algorithm Comment="" Name="Stop">
+      <ST Text="liftDown := FALSE;&#13;&#10;liftUp := FALSE;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="GoUp">
+      <ST Text=";&#13;&#10;liftUp :=TRUE;&#13;&#10;liftDown := FALSE;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="OpenDoors">
+      <ST Text="door[0] := AtFloor[0];&#10;door[1] := AtFloor[1];&#10;door[2] := AtFloor[2];"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="CloseDoors">
+      <ST Text="door[0] := FALSE;&#10;door[1] := FALSE;&#10;door[2] := FALSE;"/>
+    </Algorithm>
+  </BasicFB>
+</FBType>

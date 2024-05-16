@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Basic Function Block Type" Name="LiftModel">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="vshatrov" Date="4/20/2019" Organization="nxtControl GmbH" Remarks="Template" Version="0.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Initialization Request" Name="INIT" Type="Event">
+        <With Var="motorUp"/>
+        <With Var="motorDown"/>
+      </Event>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
+        <With Var="motorUp"/>
+        <With Var="motorDown"/>
+      </Event>
+      <Event Comment="" Name="TICK" Type="Event"/>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="" Name="INITO" Type="Event"/>
+      <Event Comment="Initialization Confirm" Name="GO" Type="Event"/>
+      <Event Comment="Execution Confirmation" Name="STOP" Type="Event"/>
+      <Event Comment="" Name="UPD" Type="Event">
+        <With Var="CarPos"/>
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Comment="Input event qualifier" Name="motorUp" Type="BOOL"/>
+      <VarDeclaration Comment="" Name="motorDown" Type="BOOL"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Comment="Output event qualifier" Name="CarPos" Type="INT"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Comment="" Name="Position" Type="DINT"/>
+      <VarDeclaration Comment="" Name="direction" Type="DINT"/>
+    </InternalVars>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="940.0" y="555.0"/>
+      <ECState Comment="Initialization" Name="INIT" x="100.0" y="1200.0">
+        <ECAction Algorithm="INIT" Output="INITO"/>
+      </ECState>
+      <ECState Comment="Normal execution" Name="REQ" x="1030.0" y="1360.0">
+        <ECAction Algorithm="REQ" Output="UPD"/>
+      </ECState>
+      <ECState Comment="" Name="Tick" x="1400.0" y="100.0">
+        <ECAction Algorithm="TICK" Output="UPD"/>
+      </ECState>
+      <ECState Comment="" Name="GO" x="0.0" y="200.0">
+        <ECAction Algorithm="REQ" Output="GO"/>
+      </ECState>
+      <ECState Comment="" Name="STOP" x="2000.0" y="1100.0">
+        <ECAction Algorithm="REQ" Output="STOP"/>
+        <ECAction Output="UPD"/>
+      </ECState>
+      <ECTransition Comment="" Condition="INIT" Destination="INIT" Source="START" x="740.0" y="860.0"/>
+      <ECTransition Comment="" Condition="1" Destination="START" Source="INIT" x="405.0" y="730.0"/>
+      <ECTransition Comment="" Condition="REQ[((direction = -1 &amp; motorUp) | (direction = 1 &amp; motorDown) | (direction = 0 &amp; (motorUp | motorDown)))]" Destination="GO" Source="START" x="475.0" y="590.0"/>
+      <ECTransition Comment="" Condition="TICK" Destination="Tick" Source="START" x="1100.0" y="310.0"/>
+      <ECTransition Comment="" Condition="1" Destination="START" Source="Tick" x="1280.0" y="380.0"/>
+      <ECTransition Comment="" Condition="REQ[(!motorUp &amp; !motorDown)]" Destination="STOP" Source="START" x="1375.0" y="750.0"/>
+      <ECTransition Comment="" Condition="1" Destination="START" Source="GO" x="545.0" y="495.0"/>
+      <ECTransition Comment="" Condition="1" Destination="START" Source="STOP" x="1305.0" y="890.0"/>
+      <ECTransition Comment="" Condition="REQ[((motorUp &amp; direction = 1) | (motorDown &amp; direction = -1))]" Destination="REQ" Source="START" x="1065.0" y="955.0"/>
+      <ECTransition Comment="" Condition="1" Destination="START" Source="REQ" x="975.0" y="885.0"/>
+    </ECC>
+    <Algorithm Comment="Initialization algorithm" Name="INIT">
+      <ST Text=";&#13;&#10;&#13;&#10;Position := 1; (*Floor 0*)&#13;&#10;direction := 0;&#10;CarPos := Position;"/>
+    </Algorithm>
+    <Algorithm Comment="Normally executed algorithm" Name="REQ">
+      <ST Text="&#13;&#10;IF motorUp THEN &#13;&#10; direction := 1;&#13;&#10;ELSIF motorDown THEN &#13;&#10;  direction := -1;&#13;&#10;ELSE &#13;&#10;  direction := 0;&#13;&#10;END_IF; &#10;CarPos := Position;"/>
+    </Algorithm>
+    <Algorithm Comment="" Name="TICK">
+      <ST Text="&#13;&#10;Position := LIMIT(0, Position + direction, 6);&#13;&#10;CarPos := Position;"/>
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Template for a simple Basic Function Block Type" Name="DoorSensor">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="jetbrains" Date="2019-05-09" Version="1.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
+        <With Var="DoorPos"/>
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
+        <With Var="doorOpen"/>
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ArraySize="5" Comment="Input event qualifier" Name="DoorPos" Type="INT"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ArraySize="5" Comment="" Name="doorOpen" Type="BOOL"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration ArraySize="5" Comment="Internal Variable" InitialValue="-1" Name="prevPos" Type="INT"/>
+    </InternalVars>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="700.0" y="400.0"/>
+      <ECState Comment="" Name="update" x="1100.0" y="1200.0">
+        <ECAction Algorithm="UPD" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Wait" x="1200.0" y="700.0"/>
+      <ECTransition Comment="" Condition="REQ[(NOT (DoorPos[4] = prevPos[4])) OR  NOT (DoorPos[3] = prevPos[3]) OR  NOT (DoorPos[0] = prevPos[0]) OR &#13;&#10;(NOT (DoorPos[1] = prevPos[1])) OR &#13;&#10;(NOT (DoorPos[2] = prevPos[2]))]" Destination="update" Source="Wait" x="1275.0" y="960.0"/>
+      <ECTransition Comment="" Condition="1" Destination="Wait" Source="update" x="1030.0" y="950.0"/>
+      <ECTransition Comment="" Condition="1" Destination="Wait" Source="START" x="1000.0" y="480.0"/>
+    </ECC>
+    <Algorithm Comment="Initialization algorithm" Name="initialize">
+      <ST Text="prevPos[0]  := DoorPos[0];&#13;&#10;prevPos[1]  := DoorPos[1];&#13;&#10;prevPos[2]  := DoorPos[2];"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="UPD">
+      <ST Text="doorOpen[0] := DoorPos[0] = 10;&#13;&#10;doorOpen[1] := DoorPos[1] = 10;&#13;&#10;doorOpen[2] := DoorPos[2] = 10;&#10;doorOpen[3] := DoorPos[3] = 10;&#10;doorOpen[4] := DoorPos[4] = 10;&#13;&#10;prevPos[0] := DoorPos[0];&#13;&#10;prevPos[1] := DoorPos[1];&#13;&#10;prevPos[2] := DoorPos[2];&#10;prevPos[3] := DoorPos[3];&#10;prevPos[4] := DoorPos[4];"/>
+    </Algorithm>
+  </BasicFB>
+</FBType>
