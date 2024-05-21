@@ -116,13 +116,13 @@ abstract class AbstractTranslator(isHeader: Boolean) {
         return sb.toString()
     }
 
-    protected fun constructFBDeclaration(indent: String = "") =
+    protected open fun constructFBDeclaration(indent: String = "") =
         "${indent}DECLARE_FIRMWARE_FB(${this.constructFBClassName()})"
 
     protected open fun constructFBDefinition() = "DEFINE_FIRMWARE_FB(${this.constructFBClassName()}, " +
             "${this.constructFORTEString(this.type().name)})"
 
-    protected fun constructEventConstants(events: List<EventDeclaration>, indent: String): String {
+    protected open fun constructEventConstants(events: List<EventDeclaration>, indent: String): String {
         val sb = StringBuilder()
 
         events.forEachIndexed { ind, event ->
@@ -345,10 +345,10 @@ abstract class AbstractTranslator(isHeader: Boolean) {
         return sb.toString()
     }
 
-    protected fun constructFBInterfaceSpecDeclaration(indent: String = "") =
+    protected open fun constructFBInterfaceSpecDeclaration(indent: String = "") =
         "${indent}static const SFBInterfaceSpec scm_stFBInterfaceSpec;"
 
-    protected fun constructFBInterfaceSpecDefinition(): String {
+    protected open fun constructFBInterfaceSpecDefinition(): String {
         val sb = StringBuilder()
 
         sb.append("const SFBInterfaceSpec ")
