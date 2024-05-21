@@ -28,7 +28,7 @@ class CompositeFBTypeImplTranslator(private val fb: CompositeFBTypeDeclaration) 
 
     fun translate(): String {
         sb.appendLine(this.constructImplIncludes())
-            .appendLine(this.contructFBDefinition())
+            .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())
             .appendLine(this.constructFBInterfaceSpecDefinition())
 

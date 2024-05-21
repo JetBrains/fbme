@@ -119,7 +119,7 @@ abstract class AbstractTranslator(isHeader: Boolean) {
     protected fun constructFBDeclaration(indent: String = "") =
         "${indent}DECLARE_FIRMWARE_FB(${this.constructFBClassName()})"
 
-    protected fun contructFBDefinition() = "DEFINE_FIRMWARE_FB(${this.constructFBClassName()}, " +
+    protected open fun constructFBDefinition() = "DEFINE_FIRMWARE_FB(${this.constructFBClassName()}, " +
             "${this.constructFORTEString(this.type().name)})"
 
     protected fun constructEventConstants(events: List<EventDeclaration>, indent: String): String {

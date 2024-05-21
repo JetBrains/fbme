@@ -25,7 +25,7 @@ class BasicFBTypeImplTranslator(private val fb: BasicFBTypeDeclaration) : Abstra
 
     fun translate(): String {
         sb.appendLine(this.constructImplIncludes())
-            .appendLine(this.contructFBDefinition())
+            .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())
             .appendLine(this.constructFBInterfaceSpecDefinition())
         addInternalVarDefinition()
