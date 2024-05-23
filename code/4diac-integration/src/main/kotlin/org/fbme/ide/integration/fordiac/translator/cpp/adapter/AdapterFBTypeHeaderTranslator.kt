@@ -10,7 +10,7 @@ class AdapterFBTypeHeaderTranslator(private val fb: AdapterTypeDeclaration) : Ab
     override val baseClass: String = "CAdapter"
     override fun type(): AdapterTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructIncludeGuardStart())
             .append(this.constructHeaderIncludes())
             .appendLine(this.constructFBClassHeader())

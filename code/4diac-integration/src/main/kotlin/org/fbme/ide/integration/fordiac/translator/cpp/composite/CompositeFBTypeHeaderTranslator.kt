@@ -11,7 +11,7 @@ class CompositeFBTypeHeaderTranslator(private val fb: CompositeFBTypeDeclaration
     override val baseClass = "CCompositeFB"
     override fun type(): FBInterfaceDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructIncludeGuardStart())
             .appendLine(this.constructHeaderIncludes())
             .appendLine(this.constructFBClassHeader())

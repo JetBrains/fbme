@@ -2,7 +2,6 @@ package org.fbme.ide.integration.fordiac.translator.cpp.basic
 
 import org.fbme.ide.integration.fordiac.translator.cpp.AbstractTranslator
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase
 
 class BasicFBTypeHeaderTranslator(private val fb: BasicFBTypeDeclaration) : AbstractTranslator(isHeader = true) {
     private val sb = StringBuilder()
@@ -11,7 +10,7 @@ class BasicFBTypeHeaderTranslator(private val fb: BasicFBTypeDeclaration) : Abst
 
     override fun type(): BasicFBTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructIncludeGuardStart())
             .appendLine(this.constructHeaderIncludes())
             .appendLine(this.constructFBClassHeader())

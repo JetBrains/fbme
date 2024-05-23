@@ -23,7 +23,7 @@ class BasicFBTypeImplTranslator(private val fb: BasicFBTypeDeclaration) : Abstra
 
     override fun type(): BasicFBTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructImplIncludes())
             .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())
@@ -43,14 +43,6 @@ class BasicFBTypeImplTranslator(private val fb: BasicFBTypeDeclaration) : Abstra
         sb.clear()
 
         return res
-    }
-
-    private fun addInternalVarDelcaration(fb: BasicFBTypeDeclaration) {
-        if (fb.internalVariables.isNotEmpty()) {
-            sb.appendLine("static const CStringDictionary::TStringId scm_anInternalsNames[];")
-                .appendLine("static const CStringDictionary::TStringId scm_anInternalsTypeIds[];")
-                .appendLine("static const SInternalVarsInformation scm_stInternalVars;")
-        }
     }
 
     private fun addInitialAssignment(parameter: ParameterDeclaration) {

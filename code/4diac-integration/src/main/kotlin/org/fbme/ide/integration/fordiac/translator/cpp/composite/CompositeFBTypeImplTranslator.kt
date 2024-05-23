@@ -26,7 +26,7 @@ class CompositeFBTypeImplTranslator(private val fb: CompositeFBTypeDeclaration) 
     override val baseClass: String = "CCompositeFB"
     override fun type(): CompositeFBTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructImplIncludes())
             .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())

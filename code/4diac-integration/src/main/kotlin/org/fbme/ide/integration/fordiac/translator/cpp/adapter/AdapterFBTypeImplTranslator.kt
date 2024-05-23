@@ -9,7 +9,7 @@ class AdapterFBTypeImplTranslator(private val fb: AdapterTypeDeclaration) : Abst
     override val baseClass: String = "CAdapter"
     override fun type(): AdapterTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.append(this.constructImplIncludes())
             .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())

@@ -12,7 +12,7 @@ class ServiceInterfaceFBTypeHeaderTranslator(private val fb: ServiceInterfaceFBT
 
     override fun type(): ServiceInterfaceFBTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructIncludeGuardStart())
             .appendLine(this.constructHeaderIncludes())
             .appendLine(this.constructFBClassHeader())

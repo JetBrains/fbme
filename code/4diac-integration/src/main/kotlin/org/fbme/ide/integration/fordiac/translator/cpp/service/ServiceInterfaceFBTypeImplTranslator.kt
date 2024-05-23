@@ -12,7 +12,7 @@ class ServiceInterfaceFBTypeImplTranslator(private val fb: ServiceInterfaceFBTyp
 
     override fun type(): ServiceInterfaceFBTypeDeclaration = fb
 
-    fun translate(): String {
+    override fun translate(): String {
         sb.appendLine(this.constructImplIncludes())
             .appendLine(this.constructFBDefinition())
             .appendLine(this.constructFBInterfaceDefinition())

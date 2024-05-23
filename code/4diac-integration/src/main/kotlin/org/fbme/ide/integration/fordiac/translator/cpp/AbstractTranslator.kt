@@ -12,6 +12,8 @@ abstract class AbstractTranslator(isHeader: Boolean) {
 
     protected abstract fun type(): FBInterfaceDeclaration
 
+    abstract fun translate(): String
+
     protected fun fileName(): String = this.baseClass + fileNameExtension
 
     protected fun constructIncludeGuardStart(): String {
