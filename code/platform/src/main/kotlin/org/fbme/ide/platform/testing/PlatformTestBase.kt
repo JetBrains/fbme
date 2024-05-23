@@ -74,7 +74,7 @@ abstract class PlatformTestBase {
         val converter = rootConverterByPath(fb.filePath)
         val parsedBlock = when (fb.type) {
             ADAPTER -> converter.convertAdapterType()
-            COMPOSITE, BASIC -> converter.convertFBType()
+            COMPOSITE, BASIC, SERVICE_INTERFACE -> converter.convertFBType()
             SUBAPPLICATION -> converter.convertSubapplicationType()
             RESOURCE -> converter.convertResourceType()
             DEVICE -> converter.convertDeviceType()
@@ -123,7 +123,7 @@ abstract class PlatformTestBase {
 }
 
 enum class FBType {
-    BASIC, ADAPTER, COMPOSITE, SUBAPPLICATION, RESOURCE, DEVICE, SEGMENT, SYSTEM
+    BASIC, ADAPTER, COMPOSITE, SERVICE_INTERFACE, SUBAPPLICATION, RESOURCE, DEVICE, SEGMENT, SYSTEM
 }
 
 data class TypeInfo(val filePath: String, val type: FBType)

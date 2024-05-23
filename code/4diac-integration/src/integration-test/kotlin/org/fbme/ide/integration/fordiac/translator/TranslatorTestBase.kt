@@ -8,6 +8,8 @@ import org.fbme.ide.integration.fordiac.translator.cpp.basic.BasicFBTypeHeaderTr
 import org.fbme.ide.integration.fordiac.translator.cpp.basic.BasicFBTypeImplTranslator
 import org.fbme.ide.integration.fordiac.translator.cpp.composite.CompositeFBTypeHeaderTranslator
 import org.fbme.ide.integration.fordiac.translator.cpp.composite.CompositeFBTypeImplTranslator
+import org.fbme.ide.integration.fordiac.translator.cpp.service.ServiceInterfaceFBTypeHeaderTranslator
+import org.fbme.ide.integration.fordiac.translator.cpp.service.ServiceInterfaceFBTypeImplTranslator
 import org.fbme.ide.integration.fordiac.translator.lua.AdapterFBTypeTranslator.translate
 import org.fbme.ide.integration.fordiac.translator.lua.BasicFBTypeTranslator.translate
 import org.fbme.ide.integration.fordiac.translator.lua.CompositeFBTypeTranslator.translate
@@ -17,6 +19,7 @@ import org.fbme.ide.platform.testing.TypeInfo
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
 import org.junit.Assert.assertEquals
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -62,6 +65,7 @@ open class TranslatorTestBase : PlatformTestBase() {
                 BASIC -> BasicFBTypeHeaderTranslator(block as BasicFBTypeDeclaration).translate()
                 ADAPTER -> AdapterFBTypeHeaderTranslator(block as AdapterTypeDeclaration).translate()
                 COMPOSITE -> CompositeFBTypeHeaderTranslator(block as CompositeFBTypeDeclaration).translate()
+                SERVICE_INTERFACE -> ServiceInterfaceFBTypeHeaderTranslator(block as ServiceInterfaceFBTypeDeclaration).translate()
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 
@@ -72,6 +76,7 @@ open class TranslatorTestBase : PlatformTestBase() {
                 BASIC -> BasicFBTypeImplTranslator(block as BasicFBTypeDeclaration).translate()
                 ADAPTER -> AdapterFBTypeImplTranslator(block as AdapterTypeDeclaration).translate()
                 COMPOSITE -> CompositeFBTypeImplTranslator(block as CompositeFBTypeDeclaration).translate()
+                SERVICE_INTERFACE -> ServiceInterfaceFBTypeImplTranslator(block as ServiceInterfaceFBTypeDeclaration).translate()
                 else -> throw UnsupportedOperationException("Translator of ${mainFB.type} is not supported.")
             }.toComparableList()
 
