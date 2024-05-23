@@ -57,51 +57,51 @@ class LibraryFacet(module: SModule) : ModuleFacetBase(FACET_TYPE, module) {
     fun getAllNamespaces(): Map<SNode, String> {
         return namespaces
     }
-
-    /**
-     * Save the current state of the namespaces map to a Memento object.
-     *
-     * @param memento The Memento object to save to.
-     */
-    override fun save(memento: Memento) {
-        memento.clear()
-        namespaces.forEach { (node, namespace) ->
-            val child = memento.createChild(NAMESPACES_KEY)
-            child.put(GENERATED_KEY, node.nodeId.toString())
-            child.put(PATH_KEY, namespace)
-        }
-    }
-
-    /**
-     * Load the state of the namespaces map from a Memento object.
-     *
-     * @param memento The Memento object to load from.
-     */
-    override fun load(memento: Memento) {
-        namespaces.clear()
-        memento.getChildren(NAMESPACES_KEY).forEach { child ->
-            val nodeId = child.get(GENERATED_KEY)
-            val namespace = child.get(PATH_KEY)
-            if (nodeId != null && namespace != null) {
-                val node =
-                    namespaces[node] = namespace
-            }
-        }
-    }
-
-    /**
-     * Converts an SNode to a PlatformElement.
-     *
-     * @param node The SNode to be converted.
-     * @param reference The SModelReference for the model that the SNode belongs to.
-     * @param doc The Document that represents the XML structure of the SNode.
-     * @return The converted PlatformElement.
-     */
-    fun convertSNodeToPlatformElement(node: SNode, reference: SModelReference, doc: Document): PlatformElement {
-        val owner = PlatformElementsOwner()
-        val configuration = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
-        val converter = PlatformConverter.create(configuration, reference, doc)
-        return converter.convert(node) as PlatformElement
-    }
+//
+//    /**
+//     * Save the current state of the namespaces map to a Memento object.
+//     *
+//     * @param memento The Memento object to save to.
+//     */
+//    override fun save(memento: Memento) {
+//        memento.clear()
+//        namespaces.forEach { (node, namespace) ->
+//            val child = memento.createChild(NAMESPACES_KEY)
+//            child.put(GENERATED_KEY, node.nodeId.toString())
+//            child.put(PATH_KEY, namespace)
+//        }
+//    }
+//
+//    /**
+//     * Load the state of the namespaces map from a Memento object.
+//     *
+//     * @param memento The Memento object to load from.
+//     */
+//    override fun load(memento: Memento) {
+//        namespaces.clear()
+//        memento.getChildren(NAMESPACES_KEY).forEach { child ->
+//            val nodeId = child.get(GENERATED_KEY)
+//            val namespace = child.get(PATH_KEY)
+//            if (nodeId != null && namespace != null) {
+//                val node =
+//                    namespaces[node] = namespace
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Converts an SNode to a PlatformElement.
+//     *
+//     * @param node The SNode to be converted.
+//     * @param reference The SModelReference for the model that the SNode belongs to.
+//     * @param doc The Document that represents the XML structure of the SNode.
+//     * @return The converted PlatformElement.
+//     */
+//    fun convertSNodeToPlatformElement(node: SNode, reference: SModelReference, doc: Document): PlatformElement {
+//        val owner = PlatformElementsOwner()
+//        val configuration = PlatformConverter.STANDARD_CONFIG_FACTORY.createConfiguration(owner)
+//        val converter = PlatformConverter.create(configuration, reference, doc)
+//        return converter.convert(node) as PlatformElement
+//    }
 
 }

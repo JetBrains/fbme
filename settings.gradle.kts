@@ -22,3 +22,5 @@ include("code:lib-managment")
 findProject(":code:lib-managment")?.name = "lib-managment"
 include("code:lib-management")
 findProject(":code:lib-management")?.name = "lib-management"
+include("code:library-management")
+findProject(":code:library-management")?.name = "library-management"
