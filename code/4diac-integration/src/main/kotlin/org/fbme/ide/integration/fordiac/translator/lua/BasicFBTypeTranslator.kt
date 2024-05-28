@@ -584,7 +584,7 @@ object BasicFBTypeTranslator {
 private fun BinaryOperation.luaAlias(): String {
     return when (this) {
         BinaryOperation.ADD -> "+"
-        BinaryOperation.AMP -> "&"
+        BinaryOperation.AMP -> "and"
         BinaryOperation.AND -> "and"
         BinaryOperation.DIV -> "/"
         BinaryOperation.EQ -> "=="
