@@ -60,7 +60,7 @@ object CompositeFBTypeTranslator {
                 params.add(
                     listOf(
                         fbs.indexOf(fb).toString(),
-                        v.parameterReference.getTarget()!!.name,
+                        v.parameterReference.presentation,
                         v.value!!.toString()
                     )
                 )
