@@ -49,14 +49,6 @@ interface FBNetwork : Element {
             return components
         }
 
-    fun copyElements(network: FBNetwork) {
-        functionBlocks += network.functionBlocks.map { it.copy() as FunctionBlockDeclaration }
-        adapterConnections += network.adapterConnections.map { it.copy() as FBNetworkConnection }
-        dataConnections += network.dataConnections.map { it.copy() as FBNetworkConnection }
-        eventConnections += network.eventConnections.map { it.copy() as FBNetworkConnection }
-        endpointCoordinates += network.endpointCoordinates.map { it.copy() as EndpointCoordinate }
-    }
-
     companion object {
         @JvmStatic
         fun extractNetwork(declaration: Declaration?): FBNetwork? {

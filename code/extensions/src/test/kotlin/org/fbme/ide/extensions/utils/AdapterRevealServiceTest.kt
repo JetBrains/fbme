@@ -42,13 +42,13 @@ class AdapterRevealServiceTest : PlatformTestBase() {
         project.repository.modelAccess.runWriteAction {
             val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
             model.addRootNode((extendedAdapterType as PlatformElement).node)
-            val revealDeclarations = adapterRevealService.revealDeclarations(extendedAdapterType, null)
+            val revealDeclarations = adapterRevealService.revealDeclarations(extendedAdapterType, model)
 
-            assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
-            assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
             assertEqualStrings(leftAdapter, revealDeclarations.leftAdapter.toDocument())
             assertEqualStrings(middleAdapter, revealDeclarations.middleAdapter.toDocument())
             assertEqualStrings(rightAdapter, revealDeclarations.rightAdapter.toDocument())
+            assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
+            assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
         }
     }
 
@@ -74,11 +74,11 @@ class AdapterRevealServiceTest : PlatformTestBase() {
 
             val revealDeclarations = adapterRevealService.revealAdapter(extendedAdapterType, model)
 
-            assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
-            assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
             assertEqualStrings(leftAdapter, revealDeclarations.leftAdapter.toDocument())
             assertEqualStrings(middleAdapter, revealDeclarations.middleAdapter.toDocument())
             assertEqualStrings(rightAdapter, revealDeclarations.rightAdapter.toDocument())
+            assertEqualStrings(leftBlock, assertNotNull(revealDeclarations.leftBlockDeclaration).toDocument())
+            assertEqualStrings(rightBlock, assertNotNull(revealDeclarations.rightBlockDeclaration).toDocument())
             assertEqualStrings(routerAdapter, assertNotNull(revealDeclarations.routerAdapter?.toDocument()))
             checkNode(model, "$resultPath/CompositeBlock.fbt", "CompositeBlock")
             checkNode(model, "$resultPath/EA_2_leftSwitch.fbt", "EA_2_leftSwitch")
@@ -116,8 +116,8 @@ class AdapterRevealServiceTest : PlatformTestBase() {
             )
 
             assertEqualStrings(routerAdapter, assertNotNull(revealDeclarations.routerAdapter?.toDocument()))
-            checkNode(model, "$networkPath/LeftCompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
-            checkNode(model, "$networkPath/EA_LeftPublishSubscribeAdapter.fbt", "EA_LeftPublishSubscribeAdapter")
+            checkNode(model, "$networkPath/left/CompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
+            checkNode(model, "$networkPath/left/EA_LeftPublishSubscribeAdapter.fbt", "EA_LeftPublishSubscribeAdapter")
             checkNode(model, "$networkPath/EventToNumberAdapter_4.fbt", "EventToNumberAdapter_4")
             checkNode(model, "$networkPath/NumberToEventAdapter_4.fbt", "NumberToEventAdapter_4")
         }
@@ -152,8 +152,8 @@ class AdapterRevealServiceTest : PlatformTestBase() {
             )
 
             assertEqualStrings(routerAdapter, assertNotNull(revealDeclarations.routerAdapter?.toDocument()))
-            checkNode(model, "$networkPath/RightCompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
-            checkNode(model, "$networkPath/EA_RightPublishSubscribeAdapter.fbt", "EA_RightPublishSubscribeAdapter")
+            checkNode(model, "$networkPath/right/CompositeBlockWithoutConnections.fbt", "CompositeBlockWithoutConnections")
+            checkNode(model, "$networkPath/right/EA_RightPublishSubscribeAdapter.fbt", "EA_RightPublishSubscribeAdapter")
             checkNode(model, "$networkPath/EventToNumberAdapter_4.fbt", "EventToNumberAdapter_4")
             checkNode(model, "$networkPath/NumberToEventAdapter_4.fbt", "NumberToEventAdapter_4")
         }

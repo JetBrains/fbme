@@ -96,7 +96,7 @@ internal object FBTypeDescriptorUtils {
     }
 }
 
-fun Sequence<EventDeclaration>.toEventPortDescriptors(isInput: Boolean) = mapIndexed { index, event ->
+internal fun Sequence<EventDeclaration>.toEventPortDescriptors(isInput: Boolean) = mapIndexed { index, event ->
     FBPortDescriptor(
         name = event.name,
         connectionKind = EntryKind.EVENT,
@@ -107,7 +107,7 @@ fun Sequence<EventDeclaration>.toEventPortDescriptors(isInput: Boolean) = mapInd
     )
 }
 
-fun Sequence<ParameterDeclaration>.toParametersPortDescriptors(isInput: Boolean) =
+internal fun Sequence<ParameterDeclaration>.toParametersPortDescriptors(isInput: Boolean) =
     mapIndexed { index, event ->
         FBPortDescriptor(
             name = event.name,

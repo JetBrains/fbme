@@ -13,7 +13,6 @@ dependencies {
     compileOnly(project(":code:library"))
     compileOnly(project(":code:language"))
     compileOnly(project(":code:platform"))
-    compileOnly(project(":code:extensions"))
 
     implementation(project(":code:extensions"))
     implementation("org.eclipse.elk:org.eclipse.elk.alg.layered:0.7.1")

@@ -4,18 +4,18 @@
 <FBType Name="EA_network2">
   <InterfaceList>
     <Plugs>
-      <AdapterDeclaration Name="Plug_Connection" Type="Right_EA" x="0" />
+      <AdapterDeclaration Name="plug" Type="Right_EA" x="0" />
     </Plugs>
     <Sockets>
-      <AdapterDeclaration Name="Socket_Connection" Type="Middle_EA" />
+      <AdapterDeclaration Name="socket" Type="Middle_EA" />
     </Sockets>
   </InterfaceList>
   <FBNetwork>
     <DataConnections>
-      <Connection Source="Plug_Connection.D_I" Destination="Socket_Connection.D_I" dy="77" dx2="97" dx1="131" />
+      <Connection Source="plug.D_I" Destination="socket.D_I" dy="77" dx2="97" dx1="131" />
     </DataConnections>
     <EventConnections>
-      <Connection Source="Plug_Connection.E_I" Destination="Socket_Connection.E_I" dy="174" dx2="147" dx1="241" />
+      <Connection Source="plug.E_I" Destination="socket.E_I" dy="174" dx2="147" dx1="241" />
     </EventConnections>
   </FBNetwork>
 </FBType>

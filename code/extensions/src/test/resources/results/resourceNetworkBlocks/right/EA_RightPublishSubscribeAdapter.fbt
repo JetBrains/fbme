@@ -4,10 +4,22 @@
 <FBType Name="EA_RightPublishSubscribeAdapter">
   <InterfaceList>
     <EventInputs>
-      <Event Name="IND" />
+      <Event Name="IND">
+        <With Var="O_E_number" />
+        <With Var="O_data1" />
+        <With Var="O_data2" />
+        <With Var="N_I_data1" />
+        <With Var="N_I_data2" />
+      </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="REQ" />
+      <Event Name="REQ">
+        <With Var="I_E_number" />
+        <With Var="I_data1" />
+        <With Var="I_data2" />
+        <With Var="N_O_data1" />
+        <With Var="N_O_data2" />
+      </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="O_E_number" Type="INT" />

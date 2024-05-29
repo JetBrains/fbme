@@ -4,32 +4,32 @@
 <FBType Name="EA_network2">
   <InterfaceList>
     <Plugs>
-      <AdapterDeclaration Name="Plug_Connection" Type="Right_EA" x="0" />
+      <AdapterDeclaration Name="plug" Type="Right_EA" x="0" />
     </Plugs>
     <Sockets>
-      <AdapterDeclaration Name="Socket_Connection" Type="Middle_EA" />
+      <AdapterDeclaration Name="socket" Type="Middle_EA" />
     </Sockets>
   </InterfaceList>
   <FBNetwork>
     <DataConnections>
-      <Connection Source="Socket_Connection.O_data1" Destination="Plug_Connection.O_data1" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Socket_Connection.O_data2" Destination="Plug_Connection.O_data2" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Socket_Connection.N_I_data1" Destination="Plug_Connection.P_I_data1" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Socket_Connection.N_I_data2" Destination="Plug_Connection.P_I_data2" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Plug_Connection.I_data1" Destination="Socket_Connection.I_data1" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.I_data2" Destination="Socket_Connection.I_data2" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.P_O_data1" Destination="Socket_Connection.N_O_data1" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.P_O_data2" Destination="Socket_Connection.N_O_data2" dy="133" dx2="134" dx1="133" />
+      <Connection Source="socket.O_data1" Destination="plug.O_data1" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="socket.O_data2" Destination="plug.O_data2" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="socket.N_I_data1" Destination="plug.P_I_data1" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="socket.N_I_data2" Destination="plug.P_I_data2" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="plug.I_data1" Destination="socket.I_data1" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.I_data2" Destination="socket.I_data2" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.P_O_data1" Destination="socket.N_O_data1" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.P_O_data2" Destination="socket.N_O_data2" dy="133" dx2="134" dx1="133" />
     </DataConnections>
     <EventConnections>
-      <Connection Source="Socket_Connection.O_event1" Destination="Plug_Connection.O_event1" dx1="177" />
-      <Connection Source="Socket_Connection.O_event2" Destination="Plug_Connection.O_event2" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Socket_Connection.N_I_Event1" Destination="Plug_Connection.P_I_Event1" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Socket_Connection.N_I_Event2" Destination="Plug_Connection.P_I_Event2" dy="-133" dx2="133" dx1="133" />
-      <Connection Source="Plug_Connection.I_event1" Destination="Socket_Connection.I_event1" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.I_event2" Destination="Socket_Connection.I_event2" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.P_O_Event1" Destination="Socket_Connection.N_O_Event1" dy="133" dx2="134" dx1="133" />
-      <Connection Source="Plug_Connection.P_O_Event2" Destination="Socket_Connection.N_O_Event2" dy="133" dx2="134" dx1="133" />
+      <Connection Source="socket.O_event1" Destination="plug.O_event1" dx1="177" />
+      <Connection Source="socket.O_event2" Destination="plug.O_event2" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="socket.N_I_Event1" Destination="plug.P_I_Event1" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="socket.N_I_Event2" Destination="plug.P_I_Event2" dy="-133" dx2="133" dx1="133" />
+      <Connection Source="plug.I_event1" Destination="socket.I_event1" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.I_event2" Destination="socket.I_event2" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.P_O_Event1" Destination="socket.N_O_Event1" dy="133" dx2="134" dx1="133" />
+      <Connection Source="plug.P_O_Event2" Destination="socket.N_O_Event2" dy="133" dx2="134" dx1="133" />
     </EventConnections>
   </FBNetwork>
 </FBType>

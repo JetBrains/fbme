@@ -2,12 +2,14 @@ package org.fbme.extensions.utils
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.IEC61499Factory
+import org.fbme.lib.iec61499.declarations.EventAssociation
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.iec61499.fbnetwork.*
+import org.fbme.lib.st.expressions.Expression
 
 class IEC61499FactoryUtils(
     private val factory: IEC61499Factory,
@@ -16,12 +18,16 @@ class IEC61499FactoryUtils(
         source: StateDeclaration,
         target: StateDeclaration,
         eventCondition: EventDeclaration? = null,
+        condition: Expression? = null,
     ): StateTransition {
         val transition = factory.createStateTransition()
         transition.sourceReference.setTarget(source)
         transition.targetReference.setTarget(target)
         if (eventCondition != null) {
             transition.condition.eventReference.setFQName(eventCondition.name)
+        }
+        if (condition != null) {
+            transition.condition.setGuardCondition(condition)
         }
         return transition
     }
@@ -49,6 +55,14 @@ class IEC61499FactoryUtils(
         return connection
     }
 
+    fun createAssociation(
+        declaration: ParameterDeclaration,
+    ): EventAssociation {
+        val eventAssociation = factory.createEventAssociation()
+        eventAssociation.parameterReference.setTarget(declaration)
+        return eventAssociation
+    }
+
     fun addFunctionalBlock(
         blockType: FBTypeDeclaration,
         network: FBNetwork,
@@ -64,22 +78,36 @@ class IEC61499FactoryUtils(
         return block
     }
 
-    private fun getUnusedName(newName: String, names: Set<String>): String = if (newName in names) {
-        getUnusedName("${newName}_", names)
+    private fun getUnusedName(name: String, usedNames: Set<String>): String = if (name in usedNames) {
+        getUnusedName(name, usedNames, 2)
     } else {
-        newName
+        name
+    }
+
+    private fun getUnusedName(name: String, usedNames: Set<String>, id: Int): String {
+        val nextName = "${name}_$id"
+        return if (nextName in usedNames) {
+            getUnusedName(name, usedNames, id + 1)
+        } else {
+            nextName
+        }
     }
 
     fun copyEventsAndConnect(
         destination: MutableList<EventDeclaration>,
         destinationBlock: FunctionBlockDeclarationBase?,
-        source: List<EventDeclaration>,
+        sources: List<EventDeclaration>,
         sourceBlock: FunctionBlockDeclarationBase?,
         network: FBNetwork,
         outputToInput: Boolean = true,
+        keepAssociations: Boolean = false,
     ): List<Pair<EventDeclaration, EventDeclaration>> {
-        val eventsAndCopies = source.map {
-            it to it.copy() as EventDeclaration
+        val eventsAndCopies = sources.map { source ->
+            val copy = source.copy() as EventDeclaration
+            if (!keepAssociations) {
+                copy.associations.clear()
+            }
+            source to copy
         }
         destination += eventsAndCopies.map { it.second }
 

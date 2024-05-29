@@ -59,15 +59,15 @@
             <action id="richediting.NewAlgorithmAction"
                     class="org.fbme.ide.richediting.actions.NewAlgorithmAction"
                     text="New Algorithm..."/>
-            <action id="richediting.GenerateAdapterRouterAction"
-                    class="org.fbme.ide.richediting.actions.GenerateAdapterRouterAction"
-                    text="Generate Adapter Router"/>
             <action id="richediting.RevealExtendedAdapterAction"
                     class="org.fbme.ide.richediting.actions.RevealExtendedAdapterAction"
-                    text="Convert to Standard Elements"/>
+                    text="Convert Extended Adapter to Standard Elements"/>
+            <action id="richediting.RevealAllExtendedAdaptersAction"
+                    class="org.fbme.ide.richediting.actions.RevealAllExtendedAdaptersAction"
+                    text="Convert Extended Adapters to Standard Elements"/>
             <action id="richediting.SyncSystemResources"
                     class="org.fbme.ide.richediting.actions.SyncSystemResources"
-                    text="Synchronise System Resources"/>
+                    text="Synchronize System Resources"/>
             <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
         </group>
     </actions>

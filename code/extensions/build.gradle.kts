@@ -21,7 +21,11 @@ dependencies {
 }
 
 mps {
-    moduleName.set("org.fbme.extensions.lib")
+    moduleName.set("org.fbme.platform.lib")
+}
+
+val compileKotlin by tasks.getting(KotlinCompile::class) {
+    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
 }
 
 val test by tasks.getting(Test::class) {
@@ -31,6 +35,6 @@ val test by tasks.getting(Test::class) {
     )
 }
 
-val compileKotlin by tasks.getting(KotlinCompile::class) {
-    kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
+val copyLibs by tasks.getting(Copy::class) {
+    dependsOn(":code:language:jar")
 }

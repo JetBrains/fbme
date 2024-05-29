@@ -4,7 +4,9 @@
 <FBType Name="NumberToEventAdapter_4">
   <InterfaceList>
     <EventInputs>
-      <Event Name="IND" />
+      <Event Name="IND">
+        <With Var="O_E_number" />
+      </Event>
     </EventInputs>
     <EventOutputs>
       <Event Name="O_0" />
@@ -31,13 +33,13 @@
       <ECState Name="O_3" x="0" y="0">
         <ECAction Output="O_3" />
       </ECState>
-      <ECTransition Source="Start" Destination="O_0" x="0" y="0" Condition="[O_E_number = 0]" />
+      <ECTransition Source="Start" Destination="O_0" x="0" y="0" Condition="IND[O_E_number = 0]" />
       <ECTransition Source="O_0" Destination="Start" x="0" y="0" Condition="1" />
-      <ECTransition Source="Start" Destination="O_1" x="0" y="0" Condition="[O_E_number = 1]" />
+      <ECTransition Source="Start" Destination="O_1" x="0" y="0" Condition="IND[O_E_number = 1]" />
       <ECTransition Source="O_1" Destination="Start" x="0" y="0" Condition="1" />
-      <ECTransition Source="Start" Destination="O_2" x="0" y="0" Condition="[O_E_number = 2]" />
+      <ECTransition Source="Start" Destination="O_2" x="0" y="0" Condition="IND[O_E_number = 2]" />
       <ECTransition Source="O_2" Destination="Start" x="0" y="0" Condition="1" />
-      <ECTransition Source="Start" Destination="O_3" x="0" y="0" Condition="[O_E_number = 3]" />
+      <ECTransition Source="Start" Destination="O_3" x="0" y="0" Condition="IND[O_E_number = 3]" />
       <ECTransition Source="O_3" Destination="Start" x="0" y="0" Condition="1" />
     </ECC>
   </BasicFB>
