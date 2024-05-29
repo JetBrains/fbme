@@ -3,10 +3,7 @@ package org.fbme.extensions.utils
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
-import org.fbme.lib.iec61499.declarations.EventDeclaration
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
-import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 
 class FBInterfaceDeclarationUtils(
@@ -20,10 +17,10 @@ class FBInterfaceDeclarationUtils(
         ) = copy(
             reversed = reversed,
             declaration = target,
-            outputEvents = source.outputEvents.map { it.copy() as EventDeclaration },
-            inputEvents = source.inputEvents.map { it.copy() as EventDeclaration },
-            parameterOutputs = source.outputParameters.map { it.copy() as ParameterDeclaration },
-            parametersInputs = source.inputParameters.map { it.copy() as ParameterDeclaration },
+            outputEvents = source.outputEvents,
+            inputEvents = source.inputEvents,
+            parameterOutputs = source.outputParameters,
+            parametersInputs = source.inputParameters,
         )
 
         fun copyPorts(
@@ -33,14 +30,12 @@ class FBInterfaceDeclarationUtils(
         ) = copy(
             reversed = reversed,
             declaration = declaration,
-            outputEvents = fbTypeDescriptor.eventOutputPorts
-                .map { checkNotNull(it.declaration?.copy() as? EventDeclaration) },
-            inputEvents = fbTypeDescriptor.eventInputPorts
-                .map { checkNotNull(it.declaration?.copy() as? EventDeclaration) },
+            outputEvents = fbTypeDescriptor.eventOutputPorts.map { checkNotNull(it.declaration as EventDeclaration) },
+            inputEvents = fbTypeDescriptor.eventInputPorts.map { checkNotNull(it.declaration as EventDeclaration) },
             parameterOutputs = fbTypeDescriptor.dataOutputPorts
-                .map { checkNotNull(it.declaration?.copy() as? ParameterDeclaration) },
+                .map { checkNotNull(it.declaration as ParameterDeclaration) },
             parametersInputs = fbTypeDescriptor.dataInputPorts
-                .map { checkNotNull(it.declaration?.copy() as? ParameterDeclaration) }
+                .map { checkNotNull(it.declaration as ParameterDeclaration) },
         )
 
         fun copy(
@@ -49,19 +44,45 @@ class FBInterfaceDeclarationUtils(
             outputEvents: List<EventDeclaration>,
             inputEvents: List<EventDeclaration>,
             parameterOutputs: List<ParameterDeclaration>,
-            parametersInputs: List<ParameterDeclaration>
+            parametersInputs: List<ParameterDeclaration>,
         ) {
             if (reversed) {
-                declaration.inputEvents += outputEvents
-                declaration.outputEvents += inputEvents
-                declaration.inputParameters += parameterOutputs
-                declaration.outputParameters += parametersInputs
+                copy(
+                    reversed = false,
+                    declaration = declaration,
+                    outputEvents = inputEvents,
+                    inputEvents = outputEvents,
+                    parameterOutputs = parametersInputs,
+                    parametersInputs = parameterOutputs,
+                )
                 return
             }
-            declaration.inputEvents += inputEvents
-            declaration.outputEvents += outputEvents
-            declaration.inputParameters += parametersInputs
-            declaration.outputParameters += parameterOutputs
+            val newParametersInputs = parametersInputs.map { it.copy() as ParameterDeclaration }
+            declaration.inputParameters += newParametersInputs
+            val newParameterOutputs = parameterOutputs.map { it.copy() as ParameterDeclaration }
+            declaration.outputParameters += newParameterOutputs
+
+            declaration.inputEvents += inputEvents.map { event ->
+                (event.copy() as EventDeclaration).also { newEvent ->
+                    newEvent.associations.replaceAll { copyAssociation(it, newParametersInputs) }
+                }
+            }
+            declaration.outputEvents += outputEvents.map { event ->
+                (event.copy() as EventDeclaration).also { newEvent ->
+                    newEvent.associations.replaceAll { copyAssociation(it, newParameterOutputs) }
+                }
+            }
+        }
+
+        fun copyAssociation(
+            association: EventAssociation,
+            newParametersInputs: List<ParameterDeclaration>
+        ): EventAssociation {
+            val newAssociation = association.copy() as EventAssociation
+            newAssociation.parameterReference.setTarget(
+                newParametersInputs.first { it.name == association.parameterReference.getTarget()?.name }
+            )
+            return newAssociation
         }
     }
 
@@ -96,5 +117,4 @@ class FBInterfaceDeclarationUtils(
         copyPorts(adapterTypeDeclaration, fbTypeDescriptor, reversed)
         return adapterTypeDeclaration
     }
-
 }

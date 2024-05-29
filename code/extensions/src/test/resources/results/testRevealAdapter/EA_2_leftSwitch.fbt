@@ -4,10 +4,18 @@
 <FBType Name="EA_2_leftSwitch">
   <InterfaceList>
     <EventInputs>
-      <Event Name="O_event1" />
-      <Event Name="O_event2" />
-      <Event Name="S_O_Event1" />
-      <Event Name="S_O_Event2" />
+      <Event Name="O_event1">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="O_event2">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="S_O_Event1">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="S_O_Event2">
+        <With Var="O_router" />
+      </Event>
     </EventInputs>
     <EventOutputs>
       <Event Name="O_event1_0" />
@@ -82,28 +90,28 @@
       <ECTransition Source="Start" Destination="S_O_Event2_1_state" x="0" y="0" Condition="S_O_Event2[O_router = 1]" />
     </ECC>
     <Algorithm Name="O_event1_0_algorithm">
-      <ST Text="O_data1_0 := O_data1;&amp;#38;#10;O_data2_0 := O_data2;&amp;#38;#10;S_O_data1_0 := S_O_data1;&amp;#38;#10;S_O_data2_0 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_0 := O_data1;&#xA;O_data2_0 := O_data2;&#xA;S_O_data1_0 := S_O_data1;&#xA;S_O_data2_0 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="O_event2_0_algorithm">
-      <ST Text="O_data1_0 := O_data1;&amp;#38;#10;O_data2_0 := O_data2;&amp;#38;#10;S_O_data1_0 := S_O_data1;&amp;#38;#10;S_O_data2_0 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_0 := O_data1;&#xA;O_data2_0 := O_data2;&#xA;S_O_data1_0 := S_O_data1;&#xA;S_O_data2_0 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="S_O_Event1_0_algorithm">
-      <ST Text="O_data1_0 := O_data1;&amp;#38;#10;O_data2_0 := O_data2;&amp;#38;#10;S_O_data1_0 := S_O_data1;&amp;#38;#10;S_O_data2_0 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_0 := O_data1;&#xA;O_data2_0 := O_data2;&#xA;S_O_data1_0 := S_O_data1;&#xA;S_O_data2_0 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="S_O_Event2_0_algorithm">
-      <ST Text="O_data1_0 := O_data1;&amp;#38;#10;O_data2_0 := O_data2;&amp;#38;#10;S_O_data1_0 := S_O_data1;&amp;#38;#10;S_O_data2_0 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_0 := O_data1;&#xA;O_data2_0 := O_data2;&#xA;S_O_data1_0 := S_O_data1;&#xA;S_O_data2_0 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="O_event1_1_algorithm">
-      <ST Text="O_data1_1 := O_data1;&amp;#38;#10;O_data2_1 := O_data2;&amp;#38;#10;S_O_data1_1 := S_O_data1;&amp;#38;#10;S_O_data2_1 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_1 := O_data1;&#xA;O_data2_1 := O_data2;&#xA;S_O_data1_1 := S_O_data1;&#xA;S_O_data2_1 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="O_event2_1_algorithm">
-      <ST Text="O_data1_1 := O_data1;&amp;#38;#10;O_data2_1 := O_data2;&amp;#38;#10;S_O_data1_1 := S_O_data1;&amp;#38;#10;S_O_data2_1 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_1 := O_data1;&#xA;O_data2_1 := O_data2;&#xA;S_O_data1_1 := S_O_data1;&#xA;S_O_data2_1 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="S_O_Event1_1_algorithm">
-      <ST Text="O_data1_1 := O_data1;&amp;#38;#10;O_data2_1 := O_data2;&amp;#38;#10;S_O_data1_1 := S_O_data1;&amp;#38;#10;S_O_data2_1 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_1 := O_data1;&#xA;O_data2_1 := O_data2;&#xA;S_O_data1_1 := S_O_data1;&#xA;S_O_data2_1 := S_O_data2;&#xA;" />
     </Algorithm>
     <Algorithm Name="S_O_Event2_1_algorithm">
-      <ST Text="O_data1_1 := O_data1;&amp;#38;#10;O_data2_1 := O_data2;&amp;#38;#10;S_O_data1_1 := S_O_data1;&amp;#38;#10;S_O_data2_1 := S_O_data2;&amp;#38;#10;" />
+      <ST Text="O_data1_1 := O_data1;&#xA;O_data2_1 := O_data2;&#xA;S_O_data1_1 := S_O_data1;&#xA;S_O_data2_1 := S_O_data2;&#xA;" />
     </Algorithm>
   </BasicFB>
 </FBType>

@@ -16,7 +16,6 @@ import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclarati
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.st.STFactory
-import org.fbme.lib.st.expressions.BinaryOperation
 import org.fbme.lib.st.types.ElementaryType
 import org.jetbrains.mps.openapi.model.SModel
 
@@ -58,65 +57,27 @@ class ExtendedAdapterUtils(
             (declaration as? PlugDeclaration)?.typeReference?.getTarget()
     }
 
-    fun revealAdapterWithNetBlocks(
-        revealResult: RevealDeclarationsResult,
-        block: FunctionBlockDeclaration,
-        port: FBPortDescriptor,
-        count: Int,
-        model: SModel,
-    ) = if (port.isInput) {
-        val network = checkNotNull(block.container)
-        revealRightPart(
-            revealResult = revealResult,
-            leftPort = createRightPublishSubscribeAdapter(
-                revealResult = revealResult,
-                network = network,
-                number = 1,
-                model = model,
-            ),
-            rightPort = block.getPort(port),
-            network = network,
-            number = 1,
-        )
-    } else {
-        val network = checkNotNull(block.container)
-        val portPaths = revealLeftPart(
-            revealResult = revealResult,
-            sourcePort = block.getPort(port),
-            network = network,
-            model = model,
-            connectionsCount = count,
-        )
-        for ((number, connectionSourcePort) in portPaths.withIndex()) {
-            val publishSubscribeAdapter = createLeftPublishSubscribeAdapter(
-                revealResult = revealResult,
-                network = network,
-                number = number,
-                model = model,
-            )
-
-            network.adapterConnections += factoryUtils.createConnection(
-                source = connectionSourcePort,
-                target = publishSubscribeAdapter.getPort(
-                    publishSubscribeAdapter.type.socketPorts.first()
-                ),
-                entryKind = EntryKind.ADAPTER,
-            )
-        }
-    }
-
     fun createDeclarations(
         extendedAdapter: ExtendedAdapterTypeDeclaration,
-        model: SModel?,
+        model: SModel,
     ): RevealDeclarationsResult {
         val name = extendedAdapter.name
         val FBInterfaceDeclarationUtils = FBInterfaceDeclarationUtils(factory)
         val routerAdapter = if (extendedAdapter.outputRouter != null) {
-            FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+            val adapter = FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
                 name = "RouterAdapter_$name",
                 fbTypeDescriptor = extendedAdapter.plugTypeDescriptor,
                 reversed = true,
             )
+            for (event in adapter.outputEvents) {
+                event.associations += factoryUtils.createAssociation(adapter.outputParameters.last())
+            }
+            if (extendedAdapter.inputRouter != null) {
+                for (event in adapter.inputEvents) {
+                    event.associations += factoryUtils.createAssociation(adapter.inputParameters.last())
+                }
+            }
+            adapter
         } else {
             null
         }
@@ -172,7 +133,7 @@ class ExtendedAdapterUtils(
                 network = it.network,
             )
         }
-        model?.addRootNodes(
+        model.addRootNodes(
             routerAdapter,
             leftAdapter,
             middleAdapter,
@@ -181,6 +142,12 @@ class ExtendedAdapterUtils(
             rightBlock,
             virtualPackage = getPackageName(extendedAdapter.name),
         )
+        if (leftBlock != null) {
+            updateInternalAdapterPorts(leftBlock)
+        }
+        if (rightBlock != null) {
+            updateInternalAdapterPorts(rightBlock)
+        }
         return RevealDeclarationsResult(
             extendedAdapter = extendedAdapter,
             routerAdapter = routerAdapter,
@@ -191,6 +158,143 @@ class ExtendedAdapterUtils(
             rightBlockDeclaration = rightBlock,
             routers = mutableMapOf(),
         )
+    }
+
+    private data class ConnectionInfo(
+        val connection: FBNetworkConnection,
+        val source: Boolean,
+        val portPath: PortPath<*>,
+    ) {
+        val portName: String get() = portPath.portTarget.name
+    }
+
+    fun changeBlockPorts(
+        fbTypeDeclaration: FBTypeDeclaration,
+        identifiersToRevealResult: Map<Identifier, RevealDeclarationsResult>
+    ) {
+        val socketsToChange = fbTypeDeclaration.sockets.filter { socket ->
+            identifiersToRevealResult[socket.typeReference.getTarget()?.identifier] != null
+        }
+        val plugsToChange = fbTypeDeclaration.plugs.filter { plug ->
+            identifiersToRevealResult[plug.typeReference.getTarget()?.identifier] != null
+        }
+        when (fbTypeDeclaration) {
+            is CompositeFBTypeDeclaration -> {
+                val network = fbTypeDeclaration.network
+                val networkConnections = network.eventConnections.asSequence()
+                    .plus(network.dataConnections)
+                    .plus(network.adapterConnections)
+                    .toList()
+
+                val blockToConnections = networkConnections.asSequence()
+                    .flatMap { connection ->
+                        val targetPortPath = connection.targetReference.getTarget()
+                        val target = targetPortPath?.functionBlock
+                            ?.let { it.identifier to ConnectionInfo(connection, false, targetPortPath) }
+                        val sourcePortPath = connection.sourceReference.getTarget()
+                        val source = sourcePortPath?.functionBlock
+                            ?.let { it.identifier to ConnectionInfo(connection, true, sourcePortPath) }
+                        listOfNotNull(target, source)
+                    }
+                    .groupBy({ it.first }, { it.second })
+                for (socket in socketsToChange) {
+                    val connectionToTargetPort = blockToConnections[socket.identifier] ?: continue
+                    val result = identifiersToRevealResult[socket.typeReference.getTarget()?.identifier] ?: continue
+                    changePorts(connectionToTargetPort, socket)
+                    socket.typeReference.setTarget(result.getFarRightAdapter())
+                }
+                for (plug in plugsToChange) {
+                    val connectionToTargetPort = blockToConnections[plug.identifier] ?: continue
+                    val result = identifiersToRevealResult[plug.typeReference.getTarget()?.identifier] ?: continue
+                    changePorts(connectionToTargetPort, plug)
+                    plug.typeReference.setTarget(result.getFarLeftAdapter())
+                }
+            }
+
+            is BasicFBTypeDeclaration -> {
+                for (socket in socketsToChange) {
+                    val result = identifiersToRevealResult[socket.typeReference.getTarget()?.identifier] ?: continue
+                    socket.typeReference.setTarget(result.getFarRightAdapter())
+                }
+                for (plug in plugsToChange) {
+                    val result = identifiersToRevealResult[plug.typeReference.getTarget()?.identifier] ?: continue
+                    plug.typeReference.setTarget(result.getFarLeftAdapter())
+                }
+            }
+
+            is ServiceInterfaceFBTypeDeclaration -> error("Extended adapters cannot be used in service interface block")
+        }
+    }
+
+    private fun changePorts(
+        connectionToTargetPort: List<ConnectionInfo>,
+        block: FunctionBlockDeclarationBase,
+    ) {
+        for (connectionInfo in connectionToTargetPort) {
+            if (connectionInfo.source) {
+                val ports = when (connectionInfo.connection.kind) {
+                    EntryKind.EVENT -> block.type.eventOutputPorts
+                    EntryKind.DATA -> block.type.dataOutputPorts
+                    EntryKind.ADAPTER -> block.type.plugPorts
+                }
+                connectionInfo.connection.sourceReference.setTarget(
+                    block.getPort(ports.first { it.name == connectionInfo.portName }),
+                )
+            } else {
+                val ports = when (connectionInfo.connection.kind) {
+                    EntryKind.EVENT -> block.type.eventInputPorts
+                    EntryKind.DATA -> block.type.dataInputPorts
+                    EntryKind.ADAPTER -> block.type.socketPorts
+                }
+                connectionInfo.connection.targetReference.setTarget(
+                    block.getPort(ports.first { it.name == connectionInfo.portName }),
+                )
+            }
+        }
+    }
+
+    fun revealAdapterWithNetBlocks(
+        revealResult: RevealDeclarationsResult,
+        block: FunctionBlockDeclaration,
+        port: FBPortDescriptor,
+        count: Int,
+        model: SModel,
+    ) = if (port.isInput) {
+        val network = checkNotNull(block.container)
+        revealRightPart(
+            revealResult = revealResult,
+            leftPort = createRightPublishSubscribeAdapter(
+                revealResult = revealResult,
+                network = network,
+                model = model,
+            ),
+            rightPort = block.getPort(port),
+            network = network,
+        )
+    } else {
+        val network = checkNotNull(block.container)
+        val portPaths = revealLeftPart(
+            revealResult = revealResult,
+            sourcePort = block.getPort(port),
+            network = network,
+            model = model,
+            connectionsCount = count,
+        )
+        for (connectionSourcePort in portPaths) {
+            val publishSubscribeAdapter = createLeftPublishSubscribeAdapter(
+                revealResult = revealResult,
+                network = network,
+                model = model,
+            )
+
+            network.adapterConnections += factoryUtils.createConnection(
+                source = connectionSourcePort,
+                target = publishSubscribeAdapter.getPort(
+                    publishSubscribeAdapter.type.socketPorts.first()
+                ),
+                entryKind = EntryKind.ADAPTER,
+            )
+        }
     }
 
     fun revealExtendedAdaptersInNetwork(
@@ -223,11 +327,10 @@ class ExtendedAdapterUtils(
                 connectionsCount = connections.size,
             )
             if (withPublishSubscribe) {
-                for ((number, connectionSourcePort) in portsBeforePublishBlocks.withIndex()) {
+                for (connectionSourcePort in portsBeforePublishBlocks) {
                     val publishSubscribeAdapter = createLeftPublishSubscribeAdapter(
                         revealResult = revealResult,
                         network = network,
-                        number = number,
                         model = model,
                     )
 
@@ -250,7 +353,6 @@ class ExtendedAdapterUtils(
                         createRightPublishSubscribeAdapter(
                             revealResult = revealResult,
                             network = network,
-                            number = i,
                             model = model,
                         )
                     } else {
@@ -258,7 +360,6 @@ class ExtendedAdapterUtils(
                     },
                     rightPort = checkNotNull(connection.targetReference.getTarget()),
                     network = network,
-                    number = i,
                 )
             }
         }
@@ -284,8 +385,8 @@ class ExtendedAdapterUtils(
                 switchGenerator.generateRouter(
                     name = "${adapterType.name}_$connectionsCount",
                     model = model,
-                    adapter = checkNotNull(revealResult.routerAdapter),
-                    plugAdapterTypeDeclaration = revealResult.leftAdapter,
+                    source = checkNotNull(revealResult.routerAdapter),
+                    target = revealResult.leftAdapter,
                     outputsCount = connectionsCount,
                     outputRouterName = outputRouter.name,
                     inputRouterName = adapterType.inputRouter?.name,
@@ -305,12 +406,12 @@ class ExtendedAdapterUtils(
             )
             routerBlock.type.plugPorts.map { routerBlock.getPort(it) }
         }
-        return portsBeforePublishBlocks.mapIndexed { index, it ->
+        return portsBeforePublishBlocks.map {
             connectBlockReturnPlugPort(
                 blockDeclaration = revealResult.leftBlockDeclaration,
                 sourcePort = it,
                 network = network,
-                name = revealResult.leftBlockDeclaration?.let { "${it.name}_$index" },
+                name = revealResult.leftBlockDeclaration?.name,
             )
         }
     }
@@ -318,7 +419,6 @@ class ExtendedAdapterUtils(
     private fun createLeftPublishSubscribeAdapter(
         revealResult: RevealDeclarationsResult,
         network: FBNetwork,
-        number: Int,
         model: SModel,
     ): FunctionBlockDeclaration {
         val adapterType = revealResult.extendedAdapter
@@ -341,13 +441,12 @@ class ExtendedAdapterUtils(
         val leftPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
             blockType = leftPublishSubscribeAdapter,
             network = network,
-            name = "${leftPublishSubscribeAdapter.name}_$number",
         )
         addPublishSubscribeBlocks(
             source = leftPublishSubscribeAdapterBlock,
             network = network,
             currentModel = model,
-            name = "Left_${adapterType.name}_$number",
+            name = "Left_${adapterType.name}",
         )
         return leftPublishSubscribeAdapterBlock
     }
@@ -357,13 +456,12 @@ class ExtendedAdapterUtils(
         leftPort: PortPath<out Declaration>,
         rightPort: PortPath<out Declaration>,
         network: FBNetwork,
-        number: Int,
     ) {
         val portBeforeSocketBlock = connectBlockReturnPlugPort(
             blockDeclaration = revealResult.rightBlockDeclaration,
             sourcePort = leftPort,
             network = network,
-            name = revealResult.rightBlockDeclaration?.let { "${it.name}_$number" }
+            name = revealResult.rightBlockDeclaration?.name,
         )
 
         network.adapterConnections += factoryUtils.createConnection(
@@ -376,7 +474,6 @@ class ExtendedAdapterUtils(
     private fun createRightPublishSubscribeAdapter(
         revealResult: RevealDeclarationsResult,
         network: FBNetwork,
-        number: Int,
         model: SModel,
     ): PortPath<PlugDeclaration> {
         val adapterType = revealResult.extendedAdapter
@@ -399,13 +496,12 @@ class ExtendedAdapterUtils(
         val rightPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
             blockType = rightPublishSubscribeAdapter,
             network = network,
-            name = "${rightPublishSubscribeAdapter.name}_$number",
         )
         addPublishSubscribeBlocks(
             source = rightPublishSubscribeAdapterBlock,
             network = network,
             currentModel = model,
-            name = "Right_${adapterType.name}_$number",
+            name = "Right_${adapterType.name}",
         )
         return PortPath.createPlugPortPath(
             functionBlock = rightPublishSubscribeAdapterBlock,
@@ -452,7 +548,7 @@ class ExtendedAdapterUtils(
         val eventToNumberBlock = factoryUtils.addFunctionalBlock(eventToNumberFbType, compositeFBType.network)
 
         val numberToEventFbType = numberToEventFbTypes.computeIfAbsent(
-            typeDescriptor.eventOutputPorts.size
+            typeDescriptor.eventInputPorts.size
         ) { number ->
             createNumberToEventConverter(
                 name = "NumberToEventAdapter_$number",
@@ -462,14 +558,14 @@ class ExtendedAdapterUtils(
 
         val numberToEventBlock = factoryUtils.addFunctionalBlock(numberToEventFbType, compositeFBType.network)
 
-        // events: inputs -> numberToEventBlock -> socket -> eventToNumberBlock -> outputs
-        // data: inputs -> numberToEventBlock
-        // data: eventToNumberBlock -> outputs
-        // data: inputs -> socket -> outputs
+        // event way: inputs -> numberToEventBlock -> socket -> eventToNumberBlock -> outputs
+        // data way: inputs -> numberToEventBlock
+        // data way: eventToNumberBlock -> outputs
+        // data way: inputs -> socket -> outputs
         factoryUtils.copyEventsAndConnect(
             destination = compositeFBType.inputEvents,
             destinationBlock = null,
-            source = numberToEventFbType.inputEvents,
+            sources = numberToEventFbType.inputEvents,
             sourceBlock = numberToEventBlock,
             network = compositeFBType.network,
             outputToInput = false,
@@ -503,7 +599,7 @@ class ExtendedAdapterUtils(
         factoryUtils.copyEventsAndConnect(
             destination = compositeFBType.outputEvents,
             destinationBlock = null,
-            source = eventToNumberFbType.outputEvents,
+            sources = eventToNumberFbType.outputEvents,
             sourceBlock = eventToNumberBlock,
             network = compositeFBType.network
         )
@@ -529,6 +625,12 @@ class ExtendedAdapterUtils(
             sourceBlock = declaration,
             network = compositeFBType.network
         )
+        for (newInput in compositeFBType.inputEvents) {
+            newInput.associations += compositeFBType.inputParameters.map { factoryUtils.createAssociation(it) }
+        }
+        for (newOutput in compositeFBType.outputEvents) {
+            newOutput.associations += compositeFBType.outputParameters.map { factoryUtils.createAssociation(it) }
+        }
         return compositeFBType
     }
 
@@ -544,9 +646,7 @@ class ExtendedAdapterUtils(
         val parameterOutput = factory.createParameterDeclaration(StringIdentifier("I_E_number"))
         parameterOutput.type = ElementaryType.INT
         basicFbType.outputParameters += parameterOutput
-        val outputAssociation = factory.createEventAssociation()
-        outputAssociation.parameterReference.setTarget(parameterOutput)
-        outputEvent.associations += outputAssociation
+        outputEvent.associations += factoryUtils.createAssociation(parameterOutput)
         val start = factory.createStateDeclaration(StringIdentifier("Start"))
         basicFbType.ecc.states += start
         for (i in basicFbType.inputEvents.indices) {
@@ -596,21 +696,13 @@ class ExtendedAdapterUtils(
             val event = basicFbType.outputEvents[i]
             val state = factory.createStateDeclaration(StringIdentifier(event.name))
             basicFbType.ecc.states += state
-            val startToState = factory.createStateTransition()
-            basicFbType.ecc.transitions += startToState
-            startToState.condition.setGuardCondition(stFactoryUtils.intEquality(parameterInput, i))
-            startToState.sourceReference.setTarget(start)
-            startToState.targetReference.setTarget(state)
-
-            val equality = stFactory.createBinaryExpression(BinaryOperation.EQ)
-            equality.rightExpression = stFactoryUtils.createIntLiteral(i)
-            equality.leftExpression = stFactoryUtils.createVariable(parameterInput)
-
-            val stateToStart = factory.createStateTransition()
-            basicFbType.ecc.transitions += stateToStart
-            stateToStart.sourceReference.setTarget(state)
-            stateToStart.targetReference.setTarget(start)
-
+            basicFbType.ecc.transitions += factoryUtils.createStateTransition(
+                source = start,
+                target = state,
+                eventCondition = inputEvent,
+                condition = stFactoryUtils.intEquality(parameterInput, i)
+            )
+            basicFbType.ecc.transitions += factoryUtils.createStateTransition(state, start)
             val stateAction = factory.createStateAction()
             state.actions += stateAction
             stateAction.event.setFQName(event.name)
@@ -698,16 +790,53 @@ class ExtendedAdapterUtils(
 
         val plug = factory.createPlugDeclaration(rightAdapter.identifier)
         plug.typeReference.setTarget(rightAdapter)
-        plug.name = "Plug_Connection"
+        plug.name = "plug"
         composite.plugs += plug
 
         val socket = factory.createSocketDeclaration(leftAdapter.identifier)
         socket.typeReference.setTarget(leftAdapter)
-        socket.name = "Socket_Connection"
+        socket.name = "socket"
         composite.sockets += socket
 
-        composite.network.copyElements(network)
+        composite.network.functionBlocks += network.functionBlocks.map { it.copy() as FunctionBlockDeclaration }
+        composite.network.adapterConnections += network.adapterConnections.map { it.copy() as FBNetworkConnection }
+        composite.network.eventConnections += network.eventConnections.map { it.copy() as FBNetworkConnection }
+        composite.network.dataConnections += network.dataConnections.map { it.copy() as FBNetworkConnection }
+        composite.network.endpointCoordinates += network.endpointCoordinates.map { it.copy() as EndpointCoordinate }
         return composite
+    }
+
+    private fun updateInternalAdapterPorts(block: CompositeFBTypeDeclaration) {
+        val plug = block.plugs.first()
+        val socket = block.sockets.first()
+        for (connection in block.network.eventConnections.asSequence()
+            .plus(block.network.dataConnections)
+            .plus(block.network.adapterConnections)
+            .toList()) {
+            val source = connection.sourceReference.getTarget()
+            val newSource = getPortForInternalAdapterBlock(source, plug, socket)
+            if (newSource != null) {
+                connection.sourceReference.setTarget(newSource)
+            }
+            val target = connection.targetReference.getTarget()
+            val newTarget = getPortForInternalAdapterBlock(target, plug, socket)
+            if (newTarget != null) {
+                connection.targetReference.setTarget(newTarget)
+            }
+        }
+    }
+
+    private fun getPortForInternalAdapterBlock(
+        port: PortPath<*>?,
+        plug: PlugDeclaration,
+        socket: SocketDeclaration,
+    ): PortPath<out Declaration>? {
+        if (port?.functionBlock?.name == "Plug_Connection") {
+            return plug.ports.first { it.portTarget.name == port.portTarget.name }
+        } else if (port?.functionBlock?.name == "Socket_Connection") {
+            return socket.ports.first { it.portTarget.name == port.portTarget.name }
+        }
+        return null
     }
 }
 

@@ -30,10 +30,10 @@
       <ECTransition Source="RESET" Destination="SET" x="1073" y="979" Condition="S" />
     </ECC>
     <Algorithm Name="SET">
-      <ST Text="Q := TRUE;&amp;#38;#10;" />
+      <ST Text="Q := TRUE;&#10;" />
     </Algorithm>
     <Algorithm Name="RESET">
-      <ST Text="Q := FALSE;&amp;#38;#10;" />
+      <ST Text="Q := FALSE;&#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

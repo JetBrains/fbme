@@ -24,10 +24,10 @@ class AdapterSwitchGenerator(
     fun generateRouter(
         name: String,
         model: SModel,
-        adapter: AdapterTypeDeclaration,
+        source: AdapterTypeDeclaration,
         outputsCount: Int,
         outputRouterName: String,
-        plugAdapterTypeDeclaration: AdapterTypeDeclaration? = null,
+        target: AdapterTypeDeclaration? = null,
         inputRouterName: String? = null,
         virtualPackage: String? = null,
     ): CompositeFBTypeDeclaration {
@@ -37,12 +37,12 @@ class AdapterSwitchGenerator(
         model.addRootNodes(routerDeclaration, virtualPackage = virtualPackage)
 
         val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
-        socket.typeReference.setTarget(adapter)
+        socket.typeReference.setTarget(source)
         routerDeclaration.sockets += socket
 
         for (i in 0 until outputsCount) {
             val plug = factory.createPlugDeclaration(StringIdentifier("plug_$i"))
-            plug.typeReference.setTarget(plugAdapterTypeDeclaration ?: adapter)
+            plug.typeReference.setTarget(target ?: source)
             routerDeclaration.plugs += plug
         }
         addSocketToPlugsSwitch(
@@ -90,10 +90,18 @@ class AdapterSwitchGenerator(
         val inputEvents = factoryUtils.copyEventsAndConnect(
             destination = switchDeclaration.inputEvents,
             destinationBlock = switchBlock,
-            source = source.type.eventOutputPorts.map { it.declaration as EventDeclaration },
+            sources = source.type.eventOutputPorts.map { it.declaration as EventDeclaration },
             sourceBlock = source,
             network = network,
-        ).associateBy { it.second.name }
+            keepAssociations = true,
+        ).onEach { (_, event) ->
+            for (association in event.associations) {
+                val name = association.parameterReference.getTarget()?.name
+                if (name != null) {
+                    association.parameterReference.setTargetName(name)
+                }
+            }
+        }.associateBy { it.second.name }
         val startState = factory.createStateDeclaration(StringIdentifier("Start"))
         switchDeclaration.ecc.states += startState
         for ((i, plug) in targets.withIndex()) {
@@ -109,10 +117,11 @@ class AdapterSwitchGenerator(
             factoryUtils.copyEventsAndConnect(
                 destination = switchDeclaration.outputEvents,
                 destinationBlock = switchBlock,
-                source = plug.type.eventInputPorts.map { it.declaration as EventDeclaration },
+                sources = plug.type.eventInputPorts.map { it.declaration as EventDeclaration },
                 sourceBlock = plug,
                 network = network,
                 outputToInput = false,
+                keepAssociations = true,
             ).forEach { (sourceEvent, createdEvent) ->
                 createdEvent.name += "_$i"
                 for (association in createdEvent.associations) {
@@ -161,11 +170,19 @@ class AdapterSwitchGenerator(
         val outputEvents = factoryUtils.copyEventsAndConnect(
             destination = switchDeclaration.outputEvents,
             destinationBlock = switchBlock,
-            source = target.type.eventInputPorts.map { it.declaration as EventDeclaration },
+            sources = target.type.eventInputPorts.map { it.declaration as EventDeclaration },
             sourceBlock = target,
             network = network,
             outputToInput = false,
-        ).associateBy { it.second.name }
+            keepAssociations = true,
+        ).onEach { (_, event) ->
+            for (association in event.associations) {
+                val name = association.parameterReference.getTarget()?.name
+                if (name != null) {
+                    association.parameterReference.setTargetName(name)
+                }
+            }
+        }.associateBy { it.second.name }
         val routerParameterDeclaration = routerName?.let { router ->
             outputParameters.first { it.name == router }
         }
@@ -183,9 +200,10 @@ class AdapterSwitchGenerator(
             factoryUtils.copyEventsAndConnect(
                 destination = switchDeclaration.inputEvents,
                 destinationBlock = switchBlock,
-                source = plug.type.eventOutputPorts.map { it.declaration as EventDeclaration },
+                sources = plug.type.eventOutputPorts.map { it.declaration as EventDeclaration },
                 sourceBlock = plug,
                 network = network,
+                keepAssociations = true,
             ).forEach { (sourceEvent, createdEvent) ->
                 createdEvent.name += "_$i"
                 for (association in createdEvent.associations) {

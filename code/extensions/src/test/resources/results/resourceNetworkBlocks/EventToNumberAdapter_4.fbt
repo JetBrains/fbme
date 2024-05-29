@@ -10,7 +10,9 @@
       <Event Name="I_3" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="REQ" />
+      <Event Name="REQ">
+        <With Var="I_E_number" />
+      </Event>
     </EventOutputs>
     <OutputVars>
       <VarDeclaration Name="I_E_number" Type="INT" />
@@ -41,16 +43,16 @@
       <ECTransition Source="I_3" Destination="Start" x="0" y="0" Condition="1" />
     </ECC>
     <Algorithm Name="I_0_algorithm">
-      <ST Text="I_E_number := 0;&amp;#38;#10;" />
+      <ST Text="I_E_number := 0;&#xA;" />
     </Algorithm>
     <Algorithm Name="I_1_algorithm">
-      <ST Text="I_E_number := 1;&amp;#38;#10;" />
+      <ST Text="I_E_number := 1;&#xA;" />
     </Algorithm>
     <Algorithm Name="I_2_algorithm">
-      <ST Text="I_E_number := 2;&amp;#38;#10;" />
+      <ST Text="I_E_number := 2;&#xA;" />
     </Algorithm>
     <Algorithm Name="I_3_algorithm">
-      <ST Text="I_E_number := 3;&amp;#38;#10;" />
+      <ST Text="I_E_number := 3;&#xA;" />
     </Algorithm>
   </BasicFB>
 </FBType>

@@ -25,4 +25,18 @@ class ExtendedPlugType(override val myDeclaration: ExtendedAdapterTypeDeclaratio
             .run { myDeclaration.inputRouter?.let { plus(it) } ?: this }
             .toParametersPortDescriptors(isInput = false)
             .toList()
+
+    override fun getAssociatedVariablesForInputEvent(eventNumber: Int): List<Int> {
+        if (myDeclaration.inputRouter != null) {
+            return super.getAssociatedVariablesForInputEvent(eventNumber) + dataOutputPorts.size
+        }
+        return super.getAssociatedVariablesForInputEvent(eventNumber)
+    }
+
+    override fun getAssociatedVariablesForOutputEvent(eventNumber: Int): List<Int> {
+        if (myDeclaration.outputRouter != null) {
+            return super.getAssociatedVariablesForInputEvent(eventNumber) + dataInputPorts.size
+        }
+        return super.getAssociatedVariablesForOutputEvent(eventNumber)
+    }
 }

@@ -4,16 +4,32 @@
 <AdapterType Name="RouterAdapter_EA">
   <InterfaceList>
     <EventInputs>
-      <Event Name="I_event1" />
-      <Event Name="I_event2" />
-      <Event Name="S_I_Event1" />
-      <Event Name="S_I_Event2" />
+      <Event Name="I_event1">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="I_event2">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="S_I_Event1">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="S_I_Event2">
+        <With Var="I_router" />
+      </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="O_event1" />
-      <Event Name="O_event2" />
-      <Event Name="S_O_Event1" />
-      <Event Name="S_O_Event2" />
+      <Event Name="O_event1">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="O_event2">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="S_O_Event1">
+        <With Var="O_router" />
+      </Event>
+      <Event Name="S_O_Event2">
+        <With Var="O_router" />
+      </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="I_data1" Type="INT" />
