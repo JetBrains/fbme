@@ -12,3 +12,25 @@ such as running 4diac FORTE in Docker and parsing real function blocks from reso
 
 ## Requirements for `integration-tests`:
 - `deploy` and `cmake` test packages require Docker daemon running.
+
+## package `cmake`
+ - `builders` - 4diac FORTE executable builders. There are local and docker builders.
+ - `shell` - contains classes to run system commands locally or in docker environment.
+
+## package `deploy`
+- `communication` - contains TCP handler to transfer data between 4diac FORTE and FBME.
+- `controllers` - classes in this package use `communication`, `parser`, `translator` packages to 
+handle user commands during configuration of 4diac FORTE. This package provides a high-level abstraction.
+
+
+## package `parser`
+- No subpackages.
+
+## package `translator`
+- `cpp` - translators for C++. These translators translate function blocks into C++ code representation 
+compatible with 4diac FORTE.
+- `lua` - translators for Lua. These translators translate function blocks into Lua code representation 
+compatible with 4diac FORTE.
+
+## package `validators`
+- No subpackages.
