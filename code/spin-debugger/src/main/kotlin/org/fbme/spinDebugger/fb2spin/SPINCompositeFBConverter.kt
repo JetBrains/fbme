@@ -8,19 +8,18 @@ import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.types.*
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractCompositeFBConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
-import org.fbme.spinDebugger.utils.appendLambdaTo
-import org.fbme.spinDebugger.utils.appendTo
+import org.fbme.spinDebugger.utils.*
 
-class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
-    AbstractSPINFBConverter(d, b) {
+class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
+    AbstractSPINFBConverter<CompositeFBTypeDeclaration>(d) {
     fun generateTypes() {
         buf.run {
             appendXTABNewLineBody(0) {
-                (fb.declaration as CompositeFBTypeDeclaration).network.allComponents.appendLambdaTo(
+                fb.network.allComponents.appendLambdaTo(
                     this,
                     ", ",
-                    "mtype:${fb.typeName}_dispatch = {",
-                    ", DONE_turn_${fb.typeName}};"
+                    "mtype:${fb.name}_dispatch = {",
+                    ", DONE_turn_${fb.name}};"
                 ) {
                     append("${it.name}_turn")
                 }
@@ -30,11 +29,11 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
 
     fun generateSignature() {
             buf.run {
-                append("proctype ${fb.typeName}(chan")
-                fb.eventInputPorts.appendLambdaTo(this, ", ") { "EI_${it.name}" }
-                fb.eventOutputPorts.appendLambdaTo(this, ", ") { "EO_${it.name}" }
-                fb.dataInputPorts.appendLambdaTo(this, ", ") { "DI_${it.name}" }
-                fb.dataOutputPorts.appendLambdaTo(this, ", ") { "DO_${it.name}" }
+                append("proctype ${fb.name}(chan")
+                fb.inputEvents.appendLambdaTo(this, ", ") { "EI_${it.name}" }
+                fb.outputEvents.appendLambdaTo(this, ", ") { "EO_${it.name}" }
+                fb.inputParameters.appendLambdaTo(this, ", ") { "DI_${it.name}" }
+                fb.outputParameters.appendLambdaTo(this, ", ") { "DO_${it.name}" }
                 append("alpha, beta, phi)")
             }
         }
@@ -45,9 +44,9 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                 "bit ExistsInputEvent = 0;",
                 "bit omega = 0;",
                 "bit phi_var = 0;", // TODO sometimes it's missed?
-                "mtype:${fb.typeName}_dispatch dispatch_state = ${(fb.declaration as CompositeFBTypeDeclaration).network.allComponents[0].name}_turn;"
+                "mtype:${fb.name}_dispatch dispatch_state = ${fb.network.functionBlocks[0].name}_turn;"
             ).forEach { appendXTABNewLineConst(1, it) }
-            (fb.declaration as CompositeFBTypeDeclaration).network.allComponents.forEach { comp ->
+            fb.network.functionBlocks.forEach { comp ->
                 comp.type.eventInputPorts.forEach { eventInputPort ->
                     appendXTABNewLineBody(1) {
                         append("chan ${comp.name}_EI_${eventInputPort.name} = [1] of {Event}; ") // TODO sometimes it can be simplified from Event to bit
@@ -68,18 +67,8 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                                 }
 
                                 is ArrayType -> {
-                                    val s = when (val dims = type.dimensions) {
-                                        is ArrayTypeSizes -> {
-                                            dims.sizes.map(Size::value).reduce(Int::times)
-                                        }
-
-                                        is ArrayTypeSubranges -> {
-                                            dims.subranges.map { it.to - it.from }.reduce(Int::times)
-                                        }
-
-                                        else -> 0
-                                    }
-                                    append("chan ${comp.name}_${typeDataPort}_${dataPort.name} = [$s] of {")
+                                    val s = type.getRealDimensions().reduce(Int::times)
+                                    append("chan ${comp.name}_${typeDataPort}_${dataPort.name} = [1] of {")
                                     val promelaType = data.typesMap[type.baseType]
                                     repeat(s - 1) {
                                         append("$promelaType, ")
@@ -104,7 +93,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
     fun generateRunInit() {
         buf.run {
             appendXTABNewLineConst(1, "atomic {")
-            (fb.declaration as CompositeFBTypeDeclaration).network.allComponents.forEach { comp ->
+            fb.network.allComponents.forEach { comp ->
                 appendXTABNewLineBody(2) {
                     append("run ${comp.type.typeName}(")
                     comp.type.eventInputPorts.forEach {
@@ -135,18 +124,18 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
         buf.run {
             appendXTABNewLineConst(0, "dispatch:")
             appendXTABNewLineConst(1, "if")
-            val comps = (fb.declaration as CompositeFBTypeDeclaration).network.allComponents
+            val comps = fb.network.allComponents
             comps.forEachIndexed { ind, component ->
                 appendXTABNewLineConst(1, ":: atomic { dispatch_state == ${component.name}_turn} -> ")
                 appendXTABNewLineConst(2, "${component.name}_alpha!true;")
                 appendXTABNewLineConst(2, "${component.name}_beta?true;")
                 appendXTABNewLineConst(
                     2,
-                    "dispatch_state = ${if (ind + 1 != comps.size) "${comps[ind + 1].name}_turn" else "DONE_turn_${fb.typeName}"};"
+                    "dispatch_state = ${if (ind + 1 != comps.size) "${comps[ind + 1].name}_turn" else "DONE_turn_${fb.name}"};"
                 )
                 appendXTABNewLineConst(1, "}")
             }
-            appendXTABNewLineConst(1, ":: dispatch_state == DONE_turn_${fb.typeName} -> skip;")
+            appendXTABNewLineConst(1, ":: dispatch_state == DONE_turn_${fb.name} -> skip;")
             appendXTABNewLineConst(1, "fi;")
             appendXTABNewLineConst(1, "goto read_component_event_outputs;")
         }
@@ -157,7 +146,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
             appendXTABNewLineConst(0, "read_component_event_outputs:")
             appendXTABNewLineConst(1, "atomic {")
             appendXTABNewLineBody(2) {
-                (fb.declaration as CompositeFBTypeDeclaration).network.allComponents.appendLambdaTo(
+                fb.network.allComponents.appendLambdaTo(
                     this,
                     " && ",
                     "omega = ",
@@ -169,7 +158,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                 }
             }
             appendXTABNewLineConst(2, "if")
-            (fb.declaration as CompositeFBTypeDeclaration).network.allComponents.forEach { comp ->
+            fb.network.allComponents.forEach { comp ->
                 comp.type.eventOutputPorts.forEach { eventOutputPort ->
                     appendXTABNewLineConst(2, ":: nempty(${comp.name}_EO_${eventOutputPort.name}) ->")
                     appendXTABNewLineConst(3, "${comp.name}_EO_${eventOutputPort.name}?true;")
@@ -183,17 +172,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                                     }
 
                                     is ArrayType -> {
-                                        val s = when (val dims = type.dimensions) {
-                                            is ArrayTypeSizes -> {
-                                                dims.sizes.map(Size::value).reduce(Int::times)
-                                            }
-
-                                            is ArrayTypeSubranges -> {
-                                                dims.subranges.map { it.to - it.from }.reduce(Int::times)
-                                            }
-
-                                            else -> 0
-                                        }
+                                        val s = type.getRealDimensions().reduce(Int::times)
                                         repeat(s) {
                                             append("buf_${comp.name}_${parameter.name}[$it]")
                                             append(if (it + 1 != s) ", " else ";")
@@ -202,7 +181,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                                 }
                             }
                         }
-                    (fb.declaration as CompositeFBTypeDeclaration).network.eventConnections.filter { it.sourceReference.getTarget()?.functionBlock == comp } // TODO is it correct?
+                    fb.network.eventConnections.filter { it.sourceReference.getTarget()?.functionBlock == comp } // TODO is it correct?
                         .forEach { eventConn ->
                             eventConn.targetReference.getTarget()?.let { target ->
                                 val nameChannel = target.functionBlock?.name?.let { targetName ->
@@ -217,7 +196,7 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                         }
                     val params =
                         (eventOutputPort.declaration as EventDeclaration).associations.map { it.parameterReference.getTarget() }
-                    (fb.declaration as CompositeFBTypeDeclaration).network.dataConnections.filter {
+                    fb.network.dataConnections.filter {
                         params.contains(
                             it.sourceReference.getTarget()?.portTarget as ParameterDeclaration
                         )
@@ -275,8 +254,8 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
                 }
 
             }
-            appendXTABNewLineConst(2, ":: (omega && dispatch_state == DONE_turn_${fb.typeName}) -> goto done;")
-            appendXTABNewLineConst(2, ":: (omega && dispatch_state != DONE_turn_${fb.typeName}) -> goto dispatch;")
+            appendXTABNewLineConst(2, ":: (omega && dispatch_state == DONE_turn_${fb.name}) -> goto done;")
+            appendXTABNewLineConst(2, ":: (omega && dispatch_state != DONE_turn_${fb.name}) -> goto dispatch;")
             appendXTABNewLineConst(2, "fi;")
             appendXTABNewLineConst(1, "}")
         }
@@ -289,5 +268,31 @@ class SPINCompositeFBConverter(d: VerifiersData, b: StringBuilder, ) :
         generateDispatch()
         generateReadComponentEventOutputs()
         generateRunInit()
+    }
+
+    // for backward compatibility
+
+    override fun generateFBsInstances(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateCompositeFBsVariables(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateInternalDataConnections(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateInnerFBsEventOutputsUpdate(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateDispatcher(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateInternalEventConnections(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateFooter(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
+    }
+
+    override fun generateSignature(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
     }
 }

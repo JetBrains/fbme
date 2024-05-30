@@ -1,0 +1,805 @@
+spin: Performance2.pml:110, warning, d_step inside atomic
+spin: Performance2.pml:111, warning, d_step inside atomic
+spin: Performance2.pml:121, warning, d_step inside atomic
+spin: Performance2.pml:122, warning, d_step inside atomic
+spin: Performance2.pml:183, warning, d_step inside d_step (ignored)
+spin: Performance2.pml:217, warning, d_step inside atomic
+spin: Performance2.pml:218, warning, d_step inside atomic
+spin: Performance2.pml:219, warning, d_step inside atomic
+spin: Performance2.pml:228, warning, d_step inside atomic
+spin: Performance2.pml:229, warning, d_step inside atomic
+ltl p1: [] (<> ((complete) && ((res==-(1)))))
+spin: Performance2.pml:0, warning, proctype Performance2, 'int   RES' variable is never used (other than in print stmnts)
+spin: Performance2.pml:0, warning, proctype :init:, 'int   lastpid' variable is never used (other than in print stmnts)
+starting claim 3
+using statement merging
+MSC: ~G line 3
+  1:	proc  - (p1:1) _spin_nvr.tmp:3 (state 1)	[(!((complete&&(res==-(1)))))]
+
+Never claim moves to line 3	[(!((complete&&(res==-(1)))))]
+Starting Performance2 with pid 2
+  2:	proc  0 (:init::1) Performance2.pml:261 (state 1)	[(run Performance2(EI_REQ,EO_CNF,VO_RES,alpha,beta))]
+
+  3:	proc  0 (:init::1) Performance2.pml:262 (state -)	[values: 1!1]
+  3:	proc  0 (:init::1) Performance2.pml:262 (state 2)	[EI_REQ!1]
+		queue 1 (:init:(0):EI_REQ): [1]
+
+MSC: ~G line 8
+  4:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+Never claim moves to line 8	[(!((complete&&(res==-(1)))))]
+Starting ALU with pid 3
+  5:	proc  1 (Performance2:1) Performance2.pml:169 (state 1)	[(run ALU(ALU1_EI_SUM,ALU1_EI_DIFF,ALU1_EO_CNF,ALU1_VI_A,ALU1_VI_B,ALU1_VO_RES,ALU1_alpha,ALU1_beta))]
+
+Starting ALU with pid 4
+  6:	proc  1 (Performance2:1) Performance2.pml:170 (state 2)	[(run ALU(ALU2_EI_SUM,ALU2_EI_DIFF,ALU2_EO_CNF,ALU2_VI_A,ALU2_VI_B,ALU2_VO_RES,ALU2_alpha,ALU2_beta))]
+
+  7:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+  8:	proc  0 (:init::1) Performance2.pml:266 (state -)	[values: 4!1]
+  8:	proc  0 (:init::1) Performance2.pml:266 (state 4)	[alpha!1]
+
+  9:	proc  1 (Performance2:1) Performance2.pml:175 (state -)	[values: 4?1]
+  9:	proc  1 (Performance2:1) Performance2.pml:175 (state 4)	[alpha?1]
+
+ 10:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 11:	proc  1 (Performance2:1) Performance2.pml:176 (state 5)	[dispatch_state = 3]
+		Performance2(1):dispatch_state = 3
+
+ 12:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 13:	proc  1 (Performance2:1) Performance2.pml:179 (state 6)	[ExistsInputEvent = nempty(EI_REQ)]
+		Performance2(1):ExistsInputEvent = 1
+
+ 14:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:182 (state 19)	[(nempty(EI_REQ))]
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:183 (state 15)	[sub-sequence]
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:183 (state 11)	[DO]
+		queue 6 (Performance2(1):ALU1_EI_SUM): 
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:183 (state 10)	[goto :b6]
+		queue 6 (Performance2(1):ALU1_EI_SUM): 
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:183 (state 14)	[(1)]
+		queue 6 (Performance2(1):ALU1_EI_SUM): 
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:184 (state -)	[values: 6!1]
+ 15:	proc  1 (Performance2:1) Performance2.pml:184 (state 16)	[ALU1_EI_SUM!1]
+		queue 6 (Performance2(1):ALU1_EI_SUM): [1]
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:185 (state -)	[values: 9!1]
+ 15:	proc  1 (Performance2:1) Performance2.pml:185 (state 17)	[ALU1_VI_A!1]
+		queue 9 (Performance2(1):ALU1_VI_A): [1]
+		queue 6 (Performance2(1):ALU1_EI_SUM): [1]
+
+ 15:	proc  1 (Performance2:1) Performance2.pml:186 (state -)	[values: 10!0]
+ 15:	proc  1 (Performance2:1) Performance2.pml:186 (state 18)	[ALU1_VI_B!0]
+		queue 10 (Performance2(1):ALU1_VI_B): [0]
+		queue 9 (Performance2(1):ALU1_VI_A): [1]
+		queue 6 (Performance2(1):ALU1_EI_SUM): [1]
+
+ 16:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 17:	proc  1 (Performance2:1) Performance2.pml:193 (state 24)	[((dispatch_state==3))]
+
+ 18:	proc  1 (Performance2:1) Performance2.pml:194 (state -)	[values: 12!1]
+ 18:	proc  1 (Performance2:1) Performance2.pml:194 (state 25)	[ALU1_alpha!1]
+
+ 19:	proc  2 (ALU:1) Performance2.pml:28 (state -)	[values: 12?1]
+ 19:	proc  2 (ALU:1) Performance2.pml:28 (state 1)	[alpha?1]
+
+ 20:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 21:	proc  2 (ALU:1) Performance2.pml:29 (state 2)	[ExistsInputEvent = (nempty(EI_SUM)||nempty(EI_DIFF))]
+		ALU(2):ExistsInputEvent = 1
+
+ 22:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 23:	proc  2 (ALU:1) Performance2.pml:34 (state 3)	[(nempty(VI_A))]
+
+ 24:	proc  2 (ALU:1) Performance2.pml:34 (state -)	[values: 9?1]
+ 24:	proc  2 (ALU:1) Performance2.pml:34 (state 4)	[VI_A?A]
+		ALU(2):A = 1
+		queue 9 (ALU(2):VI_A): 
+
+ 25:	proc  2 (ALU:1) Performance2.pml:35 (state 5)	[(nempty(VI_B))]
+
+ 26:	proc  2 (ALU:1) Performance2.pml:35 (state -)	[values: 10?0]
+ 26:	proc  2 (ALU:1) Performance2.pml:35 (state 6)	[VI_B?B]
+		ALU(2):B = 0
+		queue 10 (ALU(2):VI_B): 
+
+ 27:	proc  2 (ALU:1) Performance2.pml:36 (state 7)	[((empty(VI_A)&&empty(VI_B)))]	<merge 0 now @11>
+
+ 28:	proc  2 (ALU:1) Performance2.pml:33 (state 11)	[break]
+
+ 29:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s0_osm, Q=3 
+ 30:	proc  2 (ALU:1) Performance2.pml:41 (state 13)	[printf('ALU:s0_osm, Q=%d \\n',Q)]
+
+ 31:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 32:	proc  2 (ALU:1) Performance2.pml:42 (state 14)	[trans_START_PositiveOp = 0]	<merge 18 now @15>
+		ALU(2):trans_START_PositiveOp = 0
+
+ 32:	proc  2 (ALU:1) Performance2.pml:42 (state 15)	[trans_START_NegativeOp = 0]	<merge 18 now @16>
+		ALU(2):trans_START_NegativeOp = 0
+		ALU(2):trans_START_PositiveOp = 0
+
+ 32:	proc  2 (ALU:1) Performance2.pml:42 (state 16)	[trans_NegativeOp_START = 0]	<merge 18 now @17>
+		ALU(2):trans_NegativeOp_START = 0
+		ALU(2):trans_START_NegativeOp = 0
+		ALU(2):trans_START_PositiveOp = 0
+
+ 32:	proc  2 (ALU:1) Performance2.pml:44 (state 17)	[trans_PositiveOp_START = 0]	<merge 18 now @18>
+		ALU(2):trans_PositiveOp_START = 0
+		ALU(2):trans_NegativeOp_START = 0
+		ALU(2):trans_START_NegativeOp = 0
+		ALU(2):trans_START_PositiveOp = 0
+
+ 33:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 34:	proc  2 (ALU:1) Performance2.pml:44 (state 18)	[trans_START_PositiveOp = nempty(EI_SUM)]
+		ALU(2):trans_START_PositiveOp = 1
+
+ 35:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 36:	proc  2 (ALU:1) Performance2.pml:45 (state 19)	[trans_START_NegativeOp = nempty(EI_DIFF)]
+		ALU(2):trans_START_NegativeOp = 0
+
+ 37:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 38:	proc  2 (ALU:1) Performance2.pml:46 (state 20)	[trans_NegativeOp_START = 1]	<merge 24 now @21>
+		ALU(2):trans_NegativeOp_START = 1
+
+ 38:	proc  2 (ALU:1) Performance2.pml:47 (state 21)	[trans_PositiveOp_START = 1]	<merge 24 now @22>
+		ALU(2):trans_PositiveOp_START = 1
+		ALU(2):trans_NegativeOp_START = 1
+
+ 38:	proc  2 (ALU:1) Performance2.pml:49 (state 22)	[selectEI_SUM = 0]	<merge 24 now @23>
+		ALU(2):selectEI_SUM = 0
+		ALU(2):trans_PositiveOp_START = 1
+		ALU(2):trans_NegativeOp_START = 1
+
+ 38:	proc  2 (ALU:1) Performance2.pml:50 (state 23)	[selectEI_DIFF = 0]	<merge 24 now @24>
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):trans_PositiveOp_START = 1
+		ALU(2):trans_NegativeOp_START = 1
+
+ 39:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 40:	proc  2 (ALU:1) Performance2.pml:50 (state 24)	[selectEI_SUM = nempty(EI_SUM)]
+		ALU(2):selectEI_SUM = 1
+
+ 41:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 42:	proc  2 (ALU:1) Performance2.pml:51 (state 25)	[selectEI_DIFF = (!(selectEI_SUM)&&nempty(EI_DIFF))]
+		ALU(2):selectEI_DIFF = 0
+
+ 43:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 44:	proc  2 (ALU:1) Performance2.pml:56 (state 26)	[(selectEI_SUM)]
+
+ 45:	proc  2 (ALU:1) Performance2.pml:57 (state -)	[values: 6?1]
+ 45:	proc  2 (ALU:1) Performance2.pml:57 (state 27)	[EI_SUM?1]
+		queue 6 (ALU(2):EI_SUM): 
+
+ 46:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 47:	proc  2 (ALU:1) Performance2.pml:70 (state 44)	[else]
+
+ 48:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 49:	proc  2 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(2):ExistsEnabledECTran = 1
+
+ 50:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  1 
+ 51:	proc  2 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+ 52:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 53:	proc  2 (ALU:1) Performance2.pml:87 (state 52)	[((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM))]	<merge 0 now @53>
+
+ 53:	proc  2 (ALU:1) Performance2.pml:87 (state 53)	[Q = 2]	<merge 114 now @66>
+		ALU(2):Q = 2
+
+ 53:	proc  2 (ALU:1) Performance2.pml:94 (state 66)	[selectEI_SUM = 0]	<merge 114 now @67>
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 2
+
+ 53:	proc  2 (ALU:1) Performance2.pml:95 (state 67)	[selectEI_DIFF = 0]	<merge 114 now @69>
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 2
+
+ALU:s2_osm, Q=2
+ 53:	proc  2 (ALU:1) Performance2.pml:98 (state 69)	[printf('ALU:s2_osm, Q=%d\\n',Q)]	<merge 114 now @114>
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 2
+
+ 54:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 55:	proc  2 (ALU:1) Performance2.pml:103 (state 72)	[((Q==2))]	<merge 0 now @73>
+
+ 55:	proc  2 (ALU:1) Performance2.pml:106 (state 73)	[RES = (A+B)]
+		ALU(2):RES = 1
+
+ 56:	proc  2 (ALU:1) Performance2.pml:110 (state 81)	[.(goto)]
+
+ 56:	proc  2 (ALU:1) Performance2.pml:110 (state 77)	[DO]
+		queue 11 (ALU(2):VO_RES): 
+
+ 56:	proc  2 (ALU:1) Performance2.pml:110 (state 76)	[goto :b2]
+		queue 11 (ALU(2):VO_RES): 
+
+ 56:	proc  2 (ALU:1) Performance2.pml:110 (state 79)	[break]
+		queue 11 (ALU(2):VO_RES): 
+
+ 56:	proc  2 (ALU:1) Performance2.pml:110 (state 80)	[(1)]
+		queue 11 (ALU(2):VO_RES): 
+
+ 57:	proc  2 (ALU:1) Performance2.pml:111 (state 89)	[.(goto)]
+
+ 57:	proc  2 (ALU:1) Performance2.pml:111 (state 85)	[DO]
+		queue 8 (ALU(2):EO_CNF): 
+
+ 57:	proc  2 (ALU:1) Performance2.pml:111 (state 84)	[goto :b3]
+		queue 8 (ALU(2):EO_CNF): 
+
+ 57:	proc  2 (ALU:1) Performance2.pml:111 (state 87)	[break]
+		queue 8 (ALU(2):EO_CNF): 
+
+ 57:	proc  2 (ALU:1) Performance2.pml:111 (state 88)	[(1)]
+		queue 8 (ALU(2):EO_CNF): 
+
+ 58:	proc  2 (ALU:1) Performance2.pml:112 (state -)	[values: 11!1]
+ 58:	proc  2 (ALU:1) Performance2.pml:112 (state 90)	[VO_RES!RES]
+		queue 11 (ALU(2):VO_RES): [1]
+
+ 59:	proc  2 (ALU:1) Performance2.pml:113 (state -)	[values: 8!1]
+ 59:	proc  2 (ALU:1) Performance2.pml:113 (state 91)	[EO_CNF!1]
+		queue 8 (ALU(2):EO_CNF): [1]
+
+ 60:	proc  2 (ALU:1) Performance2.pml:126 (state 113)	[.(goto)]
+
+ 61:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 62:	proc  2 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(2):ExistsEnabledECTran = 1
+
+ 63:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  1 
+ 64:	proc  2 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+ 65:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 66:	proc  2 (ALU:1) Performance2.pml:89 (state 56)	[(((Q==2)&&trans_NegativeOp_START))]	<merge 0 now @57>
+
+ 66:	proc  2 (ALU:1) Performance2.pml:89 (state 57)	[Q = 3]	<merge 114 now @66>
+		ALU(2):Q = 3
+
+ 66:	proc  2 (ALU:1) Performance2.pml:94 (state 66)	[selectEI_SUM = 0]	<merge 114 now @67>
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 3
+
+ 66:	proc  2 (ALU:1) Performance2.pml:95 (state 67)	[selectEI_DIFF = 0]	<merge 114 now @69>
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 3
+
+ALU:s2_osm, Q=3
+ 66:	proc  2 (ALU:1) Performance2.pml:98 (state 69)	[printf('ALU:s2_osm, Q=%d\\n',Q)]	<merge 114 now @114>
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):Q = 3
+
+ 67:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 68:	proc  2 (ALU:1) Performance2.pml:102 (state 70)	[((Q==3))]
+
+ 69:	proc  2 (ALU:1) Performance2.pml:102 (state 71)	[(1)]	<merge 0 now @50>
+
+ 70:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 71:	proc  2 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(2):ExistsEnabledECTran = 0
+
+ 72:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  0 
+ 73:	proc  2 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+ 74:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 75:	proc  2 (ALU:1) Performance2.pml:91 (state 60)	[(!(ExistsEnabledECTran))]	<merge 0 now @116>
+
+ 76:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 77:	proc  2 (ALU:1) Performance2.pml:134 (state -)	[values: 13!1]
+ 77:	proc  2 (ALU:1) Performance2.pml:134 (state 116)	[beta!1]
+
+ 78:	proc  1 (Performance2:1) Performance2.pml:195 (state -)	[values: 13?1]
+ 78:	proc  1 (Performance2:1) Performance2.pml:195 (state 26)	[ALU1_beta?1]	<merge 0 now @27>
+
+ 78:	proc  1 (Performance2:1) Performance2.pml:196 (state 27)	[dispatch_state = 2]
+		Performance2(1):dispatch_state = 2
+
+ 79:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 80:	proc  1 (Performance2:1) Performance2.pml:210 (state 39)	[omega = (empty(ALU1_EO_CNF)&&empty(ALU2_EO_CNF))]
+		Performance2(1):omega = 0
+
+ 81:	proc  1 (Performance2:1) Performance2.pml:213 (state 40)	[(nempty(ALU1_EO_CNF))]
+
+ 82:	proc  1 (Performance2:1) Performance2.pml:214 (state -)	[values: 8?1]
+ 82:	proc  1 (Performance2:1) Performance2.pml:214 (state 41)	[ALU1_EO_CNF?1]
+		queue 8 (Performance2(1):ALU1_EO_CNF): 
+
+ 83:	proc  1 (Performance2:1) Performance2.pml:215 (state -)	[values: 11?1]
+ 83:	proc  1 (Performance2:1) Performance2.pml:215 (state 42)	[ALU1_VO_RES?buf_ALU1_RES]
+		Performance2(1):buf_ALU1_RES = 1
+		queue 11 (Performance2(1):ALU1_VO_RES): 
+
+ 84:	proc  1 (Performance2:1) Performance2.pml:217 (state 50)	[.(goto)]
+
+ 84:	proc  1 (Performance2:1) Performance2.pml:217 (state 46)	[DO]
+		queue 14 (Performance2(1):ALU2_EI_SUM): 
+
+ 84:	proc  1 (Performance2:1) Performance2.pml:217 (state 45)	[goto :b7]
+		queue 14 (Performance2(1):ALU2_EI_SUM): 
+
+ 84:	proc  1 (Performance2:1) Performance2.pml:217 (state 48)	[break]
+		queue 14 (Performance2(1):ALU2_EI_SUM): 
+
+ 84:	proc  1 (Performance2:1) Performance2.pml:217 (state 49)	[(1)]
+		queue 14 (Performance2(1):ALU2_EI_SUM): 
+
+ 85:	proc  1 (Performance2:1) Performance2.pml:218 (state 58)	[.(goto)]
+
+ 85:	proc  1 (Performance2:1) Performance2.pml:218 (state 54)	[DO]
+		queue 17 (Performance2(1):ALU2_VI_A): 
+
+ 85:	proc  1 (Performance2:1) Performance2.pml:218 (state 53)	[goto :b8]
+		queue 17 (Performance2(1):ALU2_VI_A): 
+
+ 85:	proc  1 (Performance2:1) Performance2.pml:218 (state 56)	[break]
+		queue 17 (Performance2(1):ALU2_VI_A): 
+
+ 85:	proc  1 (Performance2:1) Performance2.pml:218 (state 57)	[(1)]
+		queue 17 (Performance2(1):ALU2_VI_A): 
+
+ 86:	proc  1 (Performance2:1) Performance2.pml:219 (state 66)	[.(goto)]
+
+ 86:	proc  1 (Performance2:1) Performance2.pml:219 (state 62)	[DO]
+		queue 18 (Performance2(1):ALU2_VI_B): 
+
+ 86:	proc  1 (Performance2:1) Performance2.pml:219 (state 61)	[goto :b9]
+		queue 18 (Performance2(1):ALU2_VI_B): 
+
+ 86:	proc  1 (Performance2:1) Performance2.pml:219 (state 64)	[break]
+		queue 18 (Performance2(1):ALU2_VI_B): 
+
+ 86:	proc  1 (Performance2:1) Performance2.pml:219 (state 65)	[(1)]
+		queue 18 (Performance2(1):ALU2_VI_B): 
+
+ 87:	proc  1 (Performance2:1) Performance2.pml:220 (state -)	[values: 14!1]
+ 87:	proc  1 (Performance2:1) Performance2.pml:220 (state 67)	[ALU2_EI_SUM!1]
+		queue 14 (Performance2(1):ALU2_EI_SUM): [1]
+
+ 88:	proc  1 (Performance2:1) Performance2.pml:221 (state -)	[values: 17!1]
+ 88:	proc  1 (Performance2:1) Performance2.pml:221 (state 68)	[ALU2_VI_A!buf_ALU1_RES]
+		queue 17 (Performance2(1):ALU2_VI_A): [1]
+
+ 89:	proc  1 (Performance2:1) Performance2.pml:222 (state -)	[values: 18!1]
+ 89:	proc  1 (Performance2:1) Performance2.pml:222 (state 69)	[ALU2_VI_B!1]
+		queue 18 (Performance2(1):ALU2_VI_B): [1]
+
+ 90:	proc  1 (Performance2:1) Performance2.pml:236 (state 96)	[.(goto)]
+
+ 91:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 92:	proc  1 (Performance2:1) Performance2.pml:210 (state 39)	[omega = (empty(ALU1_EO_CNF)&&empty(ALU2_EO_CNF))]
+		Performance2(1):omega = 1
+
+ 93:	proc  1 (Performance2:1) Performance2.pml:234 (state 93)	[((omega&&(dispatch_state!=1)))]	<merge 0 now @36>
+
+ 94:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 95:	proc  1 (Performance2:1) Performance2.pml:198 (state 29)	[((dispatch_state==2))]
+
+ 96:	proc  1 (Performance2:1) Performance2.pml:199 (state -)	[values: 20!1]
+ 96:	proc  1 (Performance2:1) Performance2.pml:199 (state 30)	[ALU2_alpha!1]
+
+ 97:	proc  3 (ALU:1) Performance2.pml:28 (state -)	[values: 20?1]
+ 97:	proc  3 (ALU:1) Performance2.pml:28 (state 1)	[alpha?1]
+
+ 98:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ 99:	proc  3 (ALU:1) Performance2.pml:29 (state 2)	[ExistsInputEvent = (nempty(EI_SUM)||nempty(EI_DIFF))]
+		ALU(3):ExistsInputEvent = 1
+
+100:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+101:	proc  3 (ALU:1) Performance2.pml:34 (state 3)	[(nempty(VI_A))]
+
+102:	proc  3 (ALU:1) Performance2.pml:34 (state -)	[values: 17?1]
+102:	proc  3 (ALU:1) Performance2.pml:34 (state 4)	[VI_A?A]
+		ALU(3):A = 1
+		queue 17 (ALU(3):VI_A): 
+
+103:	proc  3 (ALU:1) Performance2.pml:35 (state 5)	[(nempty(VI_B))]
+
+104:	proc  3 (ALU:1) Performance2.pml:35 (state -)	[values: 18?1]
+104:	proc  3 (ALU:1) Performance2.pml:35 (state 6)	[VI_B?B]
+		ALU(3):B = 1
+		queue 18 (ALU(3):VI_B): 
+
+105:	proc  3 (ALU:1) Performance2.pml:36 (state 7)	[((empty(VI_A)&&empty(VI_B)))]	<merge 0 now @11>
+
+106:	proc  3 (ALU:1) Performance2.pml:33 (state 11)	[break]
+
+107:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s0_osm, Q=3 
+108:	proc  3 (ALU:1) Performance2.pml:41 (state 13)	[printf('ALU:s0_osm, Q=%d \\n',Q)]
+
+109:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+110:	proc  3 (ALU:1) Performance2.pml:42 (state 14)	[trans_START_PositiveOp = 0]	<merge 18 now @15>
+		ALU(3):trans_START_PositiveOp = 0
+
+110:	proc  3 (ALU:1) Performance2.pml:42 (state 15)	[trans_START_NegativeOp = 0]	<merge 18 now @16>
+		ALU(3):trans_START_NegativeOp = 0
+		ALU(3):trans_START_PositiveOp = 0
+
+110:	proc  3 (ALU:1) Performance2.pml:42 (state 16)	[trans_NegativeOp_START = 0]	<merge 18 now @17>
+		ALU(3):trans_NegativeOp_START = 0
+		ALU(3):trans_START_NegativeOp = 0
+		ALU(3):trans_START_PositiveOp = 0
+
+110:	proc  3 (ALU:1) Performance2.pml:44 (state 17)	[trans_PositiveOp_START = 0]	<merge 18 now @18>
+		ALU(3):trans_PositiveOp_START = 0
+		ALU(3):trans_NegativeOp_START = 0
+		ALU(3):trans_START_NegativeOp = 0
+		ALU(3):trans_START_PositiveOp = 0
+
+111:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+112:	proc  3 (ALU:1) Performance2.pml:44 (state 18)	[trans_START_PositiveOp = nempty(EI_SUM)]
+		ALU(3):trans_START_PositiveOp = 1
+
+113:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+114:	proc  3 (ALU:1) Performance2.pml:45 (state 19)	[trans_START_NegativeOp = nempty(EI_DIFF)]
+		ALU(3):trans_START_NegativeOp = 0
+
+115:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+116:	proc  3 (ALU:1) Performance2.pml:46 (state 20)	[trans_NegativeOp_START = 1]	<merge 24 now @21>
+		ALU(3):trans_NegativeOp_START = 1
+
+116:	proc  3 (ALU:1) Performance2.pml:47 (state 21)	[trans_PositiveOp_START = 1]	<merge 24 now @22>
+		ALU(3):trans_PositiveOp_START = 1
+		ALU(3):trans_NegativeOp_START = 1
+
+116:	proc  3 (ALU:1) Performance2.pml:49 (state 22)	[selectEI_SUM = 0]	<merge 24 now @23>
+		ALU(3):selectEI_SUM = 0
+		ALU(3):trans_PositiveOp_START = 1
+		ALU(3):trans_NegativeOp_START = 1
+
+116:	proc  3 (ALU:1) Performance2.pml:50 (state 23)	[selectEI_DIFF = 0]	<merge 24 now @24>
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):trans_PositiveOp_START = 1
+		ALU(3):trans_NegativeOp_START = 1
+
+117:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+118:	proc  3 (ALU:1) Performance2.pml:50 (state 24)	[selectEI_SUM = nempty(EI_SUM)]
+		ALU(3):selectEI_SUM = 1
+
+119:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+120:	proc  3 (ALU:1) Performance2.pml:51 (state 25)	[selectEI_DIFF = (!(selectEI_SUM)&&nempty(EI_DIFF))]
+		ALU(3):selectEI_DIFF = 0
+
+121:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+122:	proc  3 (ALU:1) Performance2.pml:56 (state 26)	[(selectEI_SUM)]
+
+123:	proc  3 (ALU:1) Performance2.pml:57 (state -)	[values: 14?1]
+123:	proc  3 (ALU:1) Performance2.pml:57 (state 27)	[EI_SUM?1]
+		queue 14 (ALU(3):EI_SUM): 
+
+124:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+125:	proc  3 (ALU:1) Performance2.pml:70 (state 44)	[else]
+
+126:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+127:	proc  3 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(3):ExistsEnabledECTran = 1
+
+128:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  1 
+129:	proc  3 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+130:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+131:	proc  3 (ALU:1) Performance2.pml:87 (state 52)	[((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM))]	<merge 0 now @53>
+
+131:	proc  3 (ALU:1) Performance2.pml:87 (state 53)	[Q = 2]	<merge 114 now @66>
+		ALU(3):Q = 2
+
+131:	proc  3 (ALU:1) Performance2.pml:94 (state 66)	[selectEI_SUM = 0]	<merge 114 now @67>
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 2
+
+131:	proc  3 (ALU:1) Performance2.pml:95 (state 67)	[selectEI_DIFF = 0]	<merge 114 now @69>
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 2
+
+ALU:s2_osm, Q=2
+131:	proc  3 (ALU:1) Performance2.pml:98 (state 69)	[printf('ALU:s2_osm, Q=%d\\n',Q)]	<merge 114 now @114>
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 2
+
+132:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+133:	proc  3 (ALU:1) Performance2.pml:103 (state 72)	[((Q==2))]	<merge 0 now @73>
+
+133:	proc  3 (ALU:1) Performance2.pml:106 (state 73)	[RES = (A+B)]
+		ALU(3):RES = 2
+
+134:	proc  3 (ALU:1) Performance2.pml:110 (state 81)	[.(goto)]
+
+134:	proc  3 (ALU:1) Performance2.pml:110 (state 77)	[DO]
+		queue 19 (ALU(3):VO_RES): 
+
+134:	proc  3 (ALU:1) Performance2.pml:110 (state 76)	[goto :b2]
+		queue 19 (ALU(3):VO_RES): 
+
+134:	proc  3 (ALU:1) Performance2.pml:110 (state 79)	[break]
+		queue 19 (ALU(3):VO_RES): 
+
+134:	proc  3 (ALU:1) Performance2.pml:110 (state 80)	[(1)]
+		queue 19 (ALU(3):VO_RES): 
+
+135:	proc  3 (ALU:1) Performance2.pml:111 (state 89)	[.(goto)]
+
+135:	proc  3 (ALU:1) Performance2.pml:111 (state 85)	[DO]
+		queue 16 (ALU(3):EO_CNF): 
+
+135:	proc  3 (ALU:1) Performance2.pml:111 (state 84)	[goto :b3]
+		queue 16 (ALU(3):EO_CNF): 
+
+135:	proc  3 (ALU:1) Performance2.pml:111 (state 87)	[break]
+		queue 16 (ALU(3):EO_CNF): 
+
+135:	proc  3 (ALU:1) Performance2.pml:111 (state 88)	[(1)]
+		queue 16 (ALU(3):EO_CNF): 
+
+136:	proc  3 (ALU:1) Performance2.pml:112 (state -)	[values: 19!2]
+136:	proc  3 (ALU:1) Performance2.pml:112 (state 90)	[VO_RES!RES]
+		queue 19 (ALU(3):VO_RES): [2]
+
+137:	proc  3 (ALU:1) Performance2.pml:113 (state -)	[values: 16!1]
+137:	proc  3 (ALU:1) Performance2.pml:113 (state 91)	[EO_CNF!1]
+		queue 16 (ALU(3):EO_CNF): [1]
+
+138:	proc  3 (ALU:1) Performance2.pml:126 (state 113)	[.(goto)]
+
+139:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+140:	proc  3 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(3):ExistsEnabledECTran = 1
+
+141:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  1 
+142:	proc  3 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+143:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+144:	proc  3 (ALU:1) Performance2.pml:89 (state 56)	[(((Q==2)&&trans_NegativeOp_START))]	<merge 0 now @57>
+
+144:	proc  3 (ALU:1) Performance2.pml:89 (state 57)	[Q = 3]	<merge 114 now @66>
+		ALU(3):Q = 3
+
+144:	proc  3 (ALU:1) Performance2.pml:94 (state 66)	[selectEI_SUM = 0]	<merge 114 now @67>
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 3
+
+144:	proc  3 (ALU:1) Performance2.pml:95 (state 67)	[selectEI_DIFF = 0]	<merge 114 now @69>
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 3
+
+ALU:s2_osm, Q=3
+144:	proc  3 (ALU:1) Performance2.pml:98 (state 69)	[printf('ALU:s2_osm, Q=%d\\n',Q)]	<merge 114 now @114>
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):Q = 3
+
+145:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+146:	proc  3 (ALU:1) Performance2.pml:102 (state 70)	[((Q==3))]
+
+147:	proc  3 (ALU:1) Performance2.pml:102 (state 71)	[(1)]	<merge 0 now @50>
+
+148:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+149:	proc  3 (ALU:1) Performance2.pml:76 (state 50)	[ExistsEnabledECTran = ((((((Q==3)&&trans_START_PositiveOp)&&selectEI_SUM)||(((Q==3)&&trans_START_NegativeOp)&&selectEI_DIFF))||((Q==2)&&trans_NegativeOp_START))||((Q==1)&&trans_PositiveOp_START))]
+		ALU(3):ExistsEnabledECTran = 0
+
+150:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+ALU:s1_osm EEC  0 
+151:	proc  3 (ALU:1) Performance2.pml:82 (state 51)	[printf('ALU:s1_osm EEC  %d \\n',ExistsEnabledECTran)]
+
+152:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+153:	proc  3 (ALU:1) Performance2.pml:91 (state 60)	[(!(ExistsEnabledECTran))]	<merge 0 now @116>
+
+154:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+155:	proc  3 (ALU:1) Performance2.pml:134 (state -)	[values: 21!1]
+155:	proc  3 (ALU:1) Performance2.pml:134 (state 116)	[beta!1]
+
+156:	proc  1 (Performance2:1) Performance2.pml:200 (state -)	[values: 21?1]
+156:	proc  1 (Performance2:1) Performance2.pml:200 (state 31)	[ALU2_beta?1]	<merge 0 now @32>
+
+156:	proc  1 (Performance2:1) Performance2.pml:201 (state 32)	[dispatch_state = 1]
+		Performance2(1):dispatch_state = 1
+
+157:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+158:	proc  1 (Performance2:1) Performance2.pml:210 (state 39)	[omega = (empty(ALU1_EO_CNF)&&empty(ALU2_EO_CNF))]
+		Performance2(1):omega = 0
+
+159:	proc  1 (Performance2:1) Performance2.pml:224 (state 70)	[(nempty(ALU2_EO_CNF))]
+
+160:	proc  1 (Performance2:1) Performance2.pml:225 (state -)	[values: 16?1]
+160:	proc  1 (Performance2:1) Performance2.pml:225 (state 71)	[ALU2_EO_CNF?1]
+		queue 16 (Performance2(1):ALU2_EO_CNF): 
+
+161:	proc  1 (Performance2:1) Performance2.pml:226 (state -)	[values: 19?2]
+161:	proc  1 (Performance2:1) Performance2.pml:226 (state 72)	[ALU2_VO_RES?buf_ALU2_RES]
+		Performance2(1):buf_ALU2_RES = 2
+		queue 19 (Performance2(1):ALU2_VO_RES): 
+
+162:	proc  1 (Performance2:1) Performance2.pml:228 (state 80)	[.(goto)]
+
+162:	proc  1 (Performance2:1) Performance2.pml:228 (state 76)	[DO]
+		queue 2 (Performance2(1):EO_CNF): 
+
+162:	proc  1 (Performance2:1) Performance2.pml:228 (state 75)	[goto :b10]
+		queue 2 (Performance2(1):EO_CNF): 
+
+162:	proc  1 (Performance2:1) Performance2.pml:228 (state 78)	[break]
+		queue 2 (Performance2(1):EO_CNF): 
+
+162:	proc  1 (Performance2:1) Performance2.pml:228 (state 79)	[(1)]
+		queue 2 (Performance2(1):EO_CNF): 
+
+163:	proc  1 (Performance2:1) Performance2.pml:229 (state 88)	[.(goto)]
+
+163:	proc  1 (Performance2:1) Performance2.pml:229 (state 84)	[DO]
+		queue 3 (Performance2(1):VO_RES): 
+
+163:	proc  1 (Performance2:1) Performance2.pml:229 (state 83)	[goto :b11]
+		queue 3 (Performance2(1):VO_RES): 
+
+163:	proc  1 (Performance2:1) Performance2.pml:229 (state 86)	[break]
+		queue 3 (Performance2(1):VO_RES): 
+
+163:	proc  1 (Performance2:1) Performance2.pml:229 (state 87)	[(1)]
+		queue 3 (Performance2(1):VO_RES): 
+
+164:	proc  1 (Performance2:1) Performance2.pml:230 (state -)	[values: 2!1]
+164:	proc  1 (Performance2:1) Performance2.pml:230 (state 89)	[EO_CNF!1]
+		queue 2 (Performance2(1):EO_CNF): [1]
+
+165:	proc  1 (Performance2:1) Performance2.pml:231 (state -)	[values: 3!2]
+165:	proc  1 (Performance2:1) Performance2.pml:231 (state 90)	[VO_RES!buf_ALU2_RES]
+		queue 3 (Performance2(1):VO_RES): [2]
+
+166:	proc  1 (Performance2:1) Performance2.pml:236 (state 96)	[.(goto)]
+
+167:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+168:	proc  1 (Performance2:1) Performance2.pml:210 (state 39)	[omega = (empty(ALU1_EO_CNF)&&empty(ALU2_EO_CNF))]
+		Performance2(1):omega = 1
+
+169:	proc  1 (Performance2:1) Performance2.pml:233 (state 91)	[((omega&&(dispatch_state==1)))]	<merge 0 now @100>
+
+170:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+171:	proc  1 (Performance2:1) Performance2.pml:241 (state -)	[values: 5!1]
+171:	proc  1 (Performance2:1) Performance2.pml:241 (state 99)	[beta!1]
+
+172:	proc  0 (:init::1) Performance2.pml:267 (state -)	[values: 5?1]
+172:	proc  0 (:init::1) Performance2.pml:267 (state 5)	[beta?1]
+
+173:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+174:	proc  0 (:init::1) Performance2.pml:269 (state -)	[values: 2?1]
+174:	proc  0 (:init::1) Performance2.pml:269 (state 6)	[EO_CNF?1]
+		queue 2 (:init:(0):EO_CNF): 
+
+175:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+176:	proc  0 (:init::1) Performance2.pml:270 (state -)	[values: 3?2]
+176:	proc  0 (:init::1) Performance2.pml:270 (state 7)	[VO_RES?res]
+		res = 2
+		queue 3 (:init:(0):VO_RES): 
+
+177:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+Result: 2
+178:	proc  0 (:init::1) Performance2.pml:273 (state 8)	[printf('Result: %d\\n',res)]
+
+179:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+180:	proc  0 (:init::1) Performance2.pml:274 (state 9)	[complete = 1]
+		complete = 1
+
+<<<<<START OF CYCLE>>>>>
+181:	proc  - (p1:1) _spin_nvr.tmp:8 (state 8)	[(!((complete&&(res==-(1)))))]
+
+spin: trail ends after 181 steps
+#processes: 4
+		res = 2
+		complete = 1
+181:	proc  3 (ALU:1) Performance2.pml:28 (state 1)
+		ALU(3):selectEI_DIFF = 0
+		ALU(3):selectEI_SUM = 0
+		ALU(3):trans_PositiveOp_START = 1
+		ALU(3):trans_NegativeOp_START = 1
+		ALU(3):trans_START_NegativeOp = 0
+		ALU(3):trans_START_PositiveOp = 1
+		ALU(3):Q = 3
+		ALU(3):ExistsEnabledECTran = 0
+		ALU(3):ExistsInputEvent = 1
+		ALU(3):RES = 2
+		ALU(3):B = 1
+		ALU(3):A = 1
+181:	proc  2 (ALU:1) Performance2.pml:28 (state 1)
+		ALU(2):selectEI_DIFF = 0
+		ALU(2):selectEI_SUM = 0
+		ALU(2):trans_PositiveOp_START = 1
+		ALU(2):trans_NegativeOp_START = 1
+		ALU(2):trans_START_NegativeOp = 0
+		ALU(2):trans_START_PositiveOp = 1
+		ALU(2):Q = 3
+		ALU(2):ExistsEnabledECTran = 0
+		ALU(2):ExistsInputEvent = 1
+		ALU(2):RES = 1
+		ALU(2):B = 0
+		ALU(2):A = 1
+181:	proc  1 (Performance2:1) Performance2.pml:175 (state 4)
+		Performance2(1):buf_ALU2_RES = 2
+		Performance2(1):buf_ALU1_RES = 1
+		Performance2(1):RES = 0
+		Performance2(1):omega = 1
+		Performance2(1):dispatch_state = 1
+		Performance2(1):ExistsInputEvent = 1
+181:	proc  0 (:init::1) Performance2.pml:275 (state 10)
+		:init:(0):lastpid = 0
+MSC: ~G line 7
+181:	proc  - (p1:1) _spin_nvr.tmp:7 (state 10)
+4 processes created
+Exit-Status 0

@@ -7,6 +7,30 @@ import org.fbme.lib.st.types.ArrayTypeSubranges
 const val TAB = "    "
 const val NEW_LINE = "\n"
 
+private val _appendXTAB: StringBuilder.(Int) -> () -> Unit = { i: Int ->
+    val tabs = TAB.repeat(i);
+    {
+        this.append(tabs)
+    }
+}
+
+val appendNewLine: StringBuilder.() -> Unit = {
+    append(NEW_LINE)
+}
+
+//    val appendXTAB: StringBuilder.(Int) -> () -> Unit = _appendXTAB.memoize()
+val appendXTAB: StringBuilder.(Int) -> () -> Unit = _appendXTAB
+
+fun StringBuilder.appendXTABNewLineBody(i: Int, body: StringBuilder.() -> Unit) {
+    appendXTAB(i)
+    this.body()
+    appendNewLine()
+}
+
+fun StringBuilder.appendXTABNewLineConst(i: Int, str: String) = appendXTABNewLineBody(i) {
+    append(str)
+}
+
 typealias Dimensions = List<Int>
 
 fun ArrayType.getRealDimensions() : Dimensions {

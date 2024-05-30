@@ -1,34 +1,34 @@
 package org.fbme.spinDebugger.fb2spin
 
+import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.*
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
-import org.fbme.spinDebugger.utils.NEW_LINE
-import org.fbme.spinDebugger.utils.TAB
-import org.fbme.spinDebugger.utils.appendLambdaIndexedTo
-import org.fbme.spinDebugger.utils.appendLambdaTo
+import org.fbme.smvDebugger.panel.mvc.ConditionModel
+import org.fbme.spinDebugger.utils.*
+import org.fbme.smvDebugger.panel.condition.Expression as ConditionExpression
 
-abstract class AbstractSPINFBConverter(
-    protected val data: VerifiersData,
-    var buf: StringBuilder,
-) {
-    lateinit var fb: FBTypeDescriptor
+abstract class AbstractSPINFBConverter<T : FBTypeDeclaration>(
+    protected val data: VerifiersData
+): SPINFBConverter {
+    lateinit var buf: StringBuilder
+    lateinit var fb: T
+    lateinit var specification: List<ConditionExpression>
 
     protected val variableNameToType = mutableMapOf<String, DataType>()
 
-    val declareDataPort: (FBPortDescriptor) -> Unit = { d: FBPortDescriptor ->
-        val decl = (d.declaration as ParameterDeclaration)
+    val declareDataPort: (ParameterDeclaration) -> Unit = { decl ->
         val type = decl.type
         val initV = decl.initialValue
-        variableNameToType[d.name] = type!!
+        variableNameToType[decl.name] = type!!
         when (type) {
             is ElementaryType -> {
                 buf.appendXTABNewLineConst(
                     1,
-                    "${data.typesMap[type]} ${d.name} = ${
+                    "${data.typesMap[type]} ${decl.name} = ${
                         if (initV != null) initV.value else data.typesInitValMap[type]
                     };"
                 )
@@ -36,7 +36,7 @@ abstract class AbstractSPINFBConverter(
 
             is ArrayType -> {
                 buf.appendXTABNewLineBody(1) {
-                    append("${data.typesMap[type.baseType]} ${d.name}[")
+                    append("${data.typesMap[type.baseType]} ${decl.name}[")
                     append(
                         when (val dims = type.dimensions) {
                             is ArrayTypeSizes -> dims.sizes.map(Size::value).reduce(Int::times)
@@ -120,31 +120,5 @@ abstract class AbstractSPINFBConverter(
             is VariableReference -> append(exp.reference.identifier)
             null -> TODO()
         }
-    }
-
-    abstract fun convert()
-
-    private val _appendXTAB: StringBuilder.(Int) -> () -> Unit = { i: Int ->
-        val tabs = TAB.repeat(i);
-        {
-            buf.append(tabs)
-        }
-    }
-
-    val appendNewLine: StringBuilder.() -> Unit = {
-        append(NEW_LINE)
-    }
-
-//    val appendXTAB: StringBuilder.(Int) -> () -> Unit = _appendXTAB.memoize()
-    val appendXTAB: StringBuilder.(Int) -> () -> Unit = _appendXTAB
-
-    fun StringBuilder.appendXTABNewLineBody(i: Int, body: StringBuilder.() -> Unit) {
-        appendXTAB(i)
-        buf.body()
-        appendNewLine()
-    }
-
-    fun StringBuilder.appendXTABNewLineConst(i: Int, str: String) = appendXTABNewLineBody(i) {
-        append(str)
     }
 }
