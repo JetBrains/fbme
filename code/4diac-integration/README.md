@@ -12,6 +12,8 @@ such as running 4diac FORTE in Docker and parsing real function blocks from reso
 
 ## Requirements for `integration-tests`:
 - `deploy` and `cmake` test packages require Docker daemon running.
+- if you get `org.testcontainers.containers.ContainerFetchException: Can't get Docker image: RemoteDockerImage(`
+error, try enabling VPN.
 
 ## package `cmake`
  - `builders` - 4diac FORTE executable builders. There are local and docker builders.
