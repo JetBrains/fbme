@@ -3,6 +3,7 @@ package org.fbme.ide.integration.fordiac.translator.lua
 import org.fbme.lib.iec61499.declarations.FBTypeDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
+import org.fbme.lib.st.types.ArrayType
 
 internal typealias Script = StringBuilder
 
@@ -77,18 +78,14 @@ internal fun Script.addInterfaceSpec(type: FBTypeDeclaration, dataNames: DataNam
         .append(tokensToJsonString(dataNames.input) { it.escape() })
         .appendLine(",")
         .append("  DIDataTypeNames = ")
-        .append(tokensToJsonString(type.inputParameters.map {
-            it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-        }) { it.escape() })
+        .append(type.inputParameters.toJsonString())
         .appendLine(",")
         .appendLine("  numDOs = ${type.typeDescriptor.dataOutputPorts.size},")
         .append("  DONames = ")
         .append(tokensToJsonString(dataNames.output) { it.escape() })
         .appendLine(",")
         .append("  DODataTypeNames = ")
-        .append(tokensToJsonString(type.outputParameters.map {
-            it.type?.stringify() ?: throw NullPointerException("Can not recognize type of parameter '${it.name}'")
-        }) { it.escape() })
+        .append(type.outputParameters.toJsonString())
         .appendLine(",")
         .appendLine("  numAdapters = ${type.sockets.size + type.plugs.size},")
         .appendLine("  adapterInstanceDefinition = {")

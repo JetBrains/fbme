@@ -5,6 +5,7 @@ import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.st.expressions.*
+import org.fbme.lib.st.expressions.LiteralKind.*
 import org.fbme.lib.st.statements.*
 
 object BasicFBTypeTranslator {
@@ -196,7 +197,8 @@ object BasicFBTypeTranslator {
             inputPrefix = "ADO_"
             outputPrefix = "ADI_"
         }
-        val addAdapterParamFunc = if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
+        val addAdapterParamFunc =
+            if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
         val adapter = plug.typeReference.getTarget()
         adapter?.inputParameters.addAdapterVars(plug.name, inputPrefix, addAdapterParamFunc)
         adapter?.outputParameters.addAdapterVars(plug.name, outputPrefix, addAdapterParamFunc)
@@ -209,7 +211,8 @@ object BasicFBTypeTranslator {
             inputPrefix = "ADO_"
             outputPrefix = "ADI_"
         }
-        val addAdapterParamFunc = if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
+        val addAdapterParamFunc =
+            if (isPrefix) BasicFBTypeTranslator::addAdapterVarPrefix else BasicFBTypeTranslator::addAdapterVarSuffix
         val adapter = socket.typeReference.getTarget()
         adapter?.inputParameters.addAdapterVars(socket.name, inputPrefix, addAdapterParamFunc)
         adapter?.outputParameters.addAdapterVars(socket.name, outputPrefix, addAdapterParamFunc)
@@ -224,8 +227,8 @@ object BasicFBTypeTranslator {
         }
     }
 
-    private fun AlgorithmBody.ST.calculateUsedVariableNames(): List<String> {
-        val varNames = ArrayList<String>()
+    private fun AlgorithmBody.ST.calculateUsedVariableNames(): Set<String> {
+        val varNames = mutableSetOf<String>()
         this.statements.forEach { varNames.addVars(it) }
 
         return varNames
@@ -417,15 +420,15 @@ object BasicFBTypeTranslator {
 
             is Literal<*> -> {
                 when (expr.kind) {
-                    LiteralKind.BINARY_BOOL, LiteralKind.BOOL -> {
+                    BINARY_BOOL, BOOL -> {
                         sb.append(if (expr.value as Boolean) "true" else "false")
                     }
 
-                    LiteralKind.STRING, LiteralKind.WSTRING -> {
+                    STRING, WSTRING -> {
                         sb.append("\"${expr.value as String}\"")
                     }
 
-                    LiteralKind.BINARY_INT, LiteralKind.DEC_INT, LiteralKind.HEX_INT, LiteralKind.OCT_INT, LiteralKind.TIME, LiteralKind.REAL -> {
+                    BINARY_INT, DEC_INT, HEX_INT, OCT_INT, TIME, REAL -> {
                         sb.append(expr.value)
                     }
 
@@ -570,10 +573,7 @@ object BasicFBTypeTranslator {
             .append(tokensToJsonString(memorizedFBData.internalVarNames) { it.escape() })
             .appendLine(",")
             .append("  intVarsDataTypeNames = ")
-            .append(tokensToJsonString(fbTypeDeclaration.internalVariables.map {
-                it.type?.stringify()
-                    ?: throw NullPointerException("Can not find type of '${it.name}' internal variable")
-            }) { it.escape() })
+            .append(fbTypeDeclaration.internalVariables.toJsonString())
             .appendLine()
             .appendLine("}")
             .appendLine()
@@ -609,7 +609,7 @@ private fun UnaryOperation.luaAlias(): String {
     }
 }
 
-private typealias VariableNames = MutableList<String>
+private typealias VariableNames = MutableSet<String>
 
 private fun VariableNames.addVars(variable: Variable) {
     when (variable) {
