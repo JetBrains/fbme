@@ -2,8 +2,6 @@ package org.fbme.spinDebugger
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.ui.content.ContentFactory
 import jetbrains.mps.project.MPSProject
@@ -24,15 +22,8 @@ import org.fbme.ide.richediting.inspections.InspectionManagerImpl
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.instances.NetworkInstance
-import org.fbme.lib.st.expressions.BinaryOperation
-import org.fbme.lib.st.types.ElementaryType
 import org.fbme.smvDebugger.executionTraceUnification.UnifiedTraceConverter
-import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 import org.fbme.spinDebugger.execution.SPINTraceFactory
-import org.fbme.spinDebugger.fb2spin.SPINCompositeFBConverter
-import org.fbme.spinDebugger.fb2spin.SPINFunctionBlockConverter
-import kotlin.io.path.Path
-import kotlin.io.path.bufferedWriter
 
 class SPINAction : AnAction() {
     val spinTraceFactory = SPINTraceFactory()
@@ -48,10 +39,12 @@ class SPINAction : AnAction() {
             val arg = ArrayList<String>()
 
             val fbTypeDeclaration = style.get(RichEditorStyleAttributes.FB)?.type?.declaration
-                ?: style.get(RichEditorStyleAttributes.NETWORK)?.container
-                    ?.let { it as? FBTypeDeclaration ?: it as? ResourceDeclaration }
-                ?: style.get(RichEditorStyleAttributes.ECC)?.container!!
+                        ?: style.get(RichEditorStyleAttributes.NETWORK)?.container
+                            ?.let { it as? FBTypeDeclaration ?: it as? ResourceDeclaration }
+                        ?: style.get(RichEditorStyleAttributes.ECC)?.container
+                        ?: style.get(RichEditorStyleAttributes.TYPE)?.declaration!!
 
+            /*
             val snapshot: DeclarationSnapshot = DeclarationSnapshot.create(fbTypeDeclaration)
             val snapshotDeclaration: Declaration = snapshot.snapshotDeclaration
             val typeName = snapshotDeclaration.name
@@ -67,7 +60,7 @@ class SPINAction : AnAction() {
                 val manager: InspectionManager = InspectionManagerImpl.getInstance(cell.editorComponent)!!
                 val networkInstance: NetworkInstance = cell.style.get(RichEditorStyleAttributes.NETWORK_INSTANCE)
                 manager.installInspector(networkInstance) { }!!
-            }
+            }*/
 
             val fbPath = java.nio.file.Path.of(Iec61499Persistence.getPathToElement((fbTypeDeclaration as PlatformElement).node))
             val rez = spinTraceFactory.generateTrace(
@@ -75,7 +68,7 @@ class SPINAction : AnAction() {
                 fbTypeDeclaration as CompositeFBTypeDeclaration, arg
             )
 
-            var traceForGUI = UnifiedTraceConverter.convertTrace(rez.get(), fbTypeDeclaration, mpsProject)
+            /*var traceForGUI = UnifiedTraceConverter.convertTrace(rez.get(), fbTypeDeclaration, mpsProject)
 
             val explanationProducer = ExplanationProducer(traceForGUI, snapshotDeclaration)
             val simulatorPanel = SimulatorPanel(
@@ -96,7 +89,9 @@ class SPINAction : AnAction() {
 
             toolWindow.contentManager.addContent(content)
             toolWindow.contentManager.setSelectedContent(content, true)
-            toolWindow.show()
+            toolWindow.show()*/
         }
+
+        println("SPINAction executed!")
     }
 }

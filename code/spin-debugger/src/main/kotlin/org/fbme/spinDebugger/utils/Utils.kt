@@ -4,7 +4,7 @@ import org.fbme.lib.st.types.ArrayType
 import org.fbme.lib.st.types.ArrayTypeSizes
 import org.fbme.lib.st.types.ArrayTypeSubranges
 
-const val TAB = "    "
+const val TAB = "\t"
 const val NEW_LINE = "\n"
 
 private val _appendXTAB: StringBuilder.(Int) -> () -> Unit = { i: Int ->
@@ -22,7 +22,7 @@ val appendNewLine: StringBuilder.() -> Unit = {
 val appendXTAB: StringBuilder.(Int) -> () -> Unit = _appendXTAB
 
 fun StringBuilder.appendXTABNewLineBody(i: Int, body: StringBuilder.() -> Unit) {
-    appendXTAB(i)
+    appendXTAB(i)()
     this.body()
     appendNewLine()
 }
@@ -50,13 +50,10 @@ fun <T> Collection<T>.appendLambdaBoolIndexedTo(
         append(it.toString())
         true
     }) {
-
     buf.append(prefix)
-    var all = size;
     forEachIndexed { index, t ->
-        if(all != 1 && buf.appendT(index, t))
+        if(buf.appendT(index, t) && index != size - 1)
             buf.append(separator)
-        all--
     }
     buf.append(suffix)
 }

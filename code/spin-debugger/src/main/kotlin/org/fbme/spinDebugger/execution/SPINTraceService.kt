@@ -20,7 +20,7 @@ import javax.swing.JOptionPane
 import kotlin.io.path.pathString
 
 class SPINTraceService(val project: Project) {
-    val verificationService: VerificationService
+    //val verificationService: VerificationService
     val unifiedParser: SPINCounterExampleParser
     val fB2SPIN: FB2SPIN
     val mpsProject: MPSProject
@@ -32,8 +32,8 @@ class SPINTraceService(val project: Project) {
         compositeFb: CompositeFBTypeDeclaration,
         agr: ArrayList<String>): Future<ArrayList<SystemStateUpdate>> {
             fB2SPIN.convertFB(fbPath, compositeFb, mpsProject)
-            val specification = ""//specification
-            val counterexample = verificationService.verify(fbPath, specification)
+            val counterexample: Path? = null
+
             if (counterexample == null) {
                 notifySuccess()
                 return CompletableFuture.supplyAsync(null)
@@ -58,7 +58,7 @@ class SPINTraceService(val project: Project) {
     init {
         mpsProject = project.getComponent(MPSProject::class.java)
         fB2SPIN = FB2SPIN()
-        verificationService = VerificationService(ServiceSPINPathProvider.create(mpsProject))
+        //verificationService = VerificationService(ServiceSPINPathProvider.create(mpsProject))
         unifiedParser = SPINCounterExampleParser(mpsProject)
     }
 

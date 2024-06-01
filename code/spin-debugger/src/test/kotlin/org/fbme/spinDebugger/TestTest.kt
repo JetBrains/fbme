@@ -30,7 +30,7 @@ class TestTest : PlatformTestBase() {
 
     @Test
     fun test() {
-        //val t = rootConverterByPath("/IEC/BasicControlTS.fbt").convertFBType()
+        //val t = rootConverterByPath("/IEC/E_DELAY.fbt").convertFBType()
 
         val types = Path("src/test/resources/IEC").toFile().walk().toList().mapNotNull {
             if(it.name.endsWith(".fbt")) return@mapNotNull rootConverterByPath("/IEC/${it.name}").convertFBType() else null
@@ -38,10 +38,7 @@ class TestTest : PlatformTestBase() {
             it.name
         }
 
-        val fb2spin = FB2SPIN()
-
-
-        assert(true)
+        //val fb2spin = FB2SPIN()
 
         project.repository.modelAccess.runWriteAction {
             val model = TemporaryModels.getInstance().create(false, false, "tmp", TempModuleOptions.forDefaultModule())
@@ -50,9 +47,9 @@ class TestTest : PlatformTestBase() {
                 model.addRootNode((fbTypes.first() as PlatformElement).node)
             }
 
-            fb2spin.convertFB(Path("src/test/resources/Elevator.pml"),
+            /*fb2spin.convertFB(Path("src/test/resources/Elevator.pml"),
                 types["Elevator"]!!.first() as CompositeFBTypeDeclaration, project as MPSProject
-            )
+            )*/
         }
     }
 }

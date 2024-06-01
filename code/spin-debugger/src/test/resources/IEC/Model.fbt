@@ -45,9 +45,6 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Comment="" Name="tick" Type="E_CYCLE" x="900.0" y="0.0">
-      <Parameter Name="DT" Value="T#2ms"/>
-    </FB>
     <FB Comment="" Name="liftModel" Type="LiftModel" x="800.0" y="500.0"/>
     <FB Comment="" Name="Door0" Type="Door" x="900.0" y="1100.0"/>
     <FB Comment="" Name="Door1" Type="Door" x="900.0" y="1400.0"/>
@@ -62,9 +59,6 @@
     <EventConnections>
       <Connection Comment="" Destination="liftModel.INIT" Source="INIT" dx1="200.0"/>
       <Connection Comment="" Destination="liftModel.REQ" Source="REQ" dx1="75.0"/>
-      <Connection Comment="" Destination="liftModel.TICK" Source="tick.EO" dx1="45.0" dx2="90.0" dy="350.0"/>
-      <Connection Comment="" Destination="tick.START" Source="liftModel.GO" dx1="55.0" dx2="70.0" dy="-110.0"/>
-      <Connection Comment="" Destination="tick.STOP" Source="liftModel.STOP" dx1="75.0" dx2="50.0" dy="-170.0"/>
       <Connection Comment="" Destination="UPD" Source="liftModel.UPD" dx1="375.0"/>
       <Connection Comment="" Destination="INITO" Source="liftModel.INITO" dx1="375.0"/>
       <Connection Comment="" Destination="UPD" Source="Door0.CNF" dx1="395.0"/>

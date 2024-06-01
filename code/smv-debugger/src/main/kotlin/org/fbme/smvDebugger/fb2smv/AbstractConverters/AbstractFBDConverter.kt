@@ -27,6 +27,9 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
     var mainFunction: AbstractMainConverter? = null
     var data: VerifiersData? = null // TODO can be tuned from UI (NDT)
 
+    open fun generateHeader(compositeFb: CompositeFBTypeDeclaration) {
+
+    }
 
     private fun compositeBlockNetworkTraversal(compositeFb: CompositeFBTypeDeclaration){
         if( fbTypesSet.contains(compositeFb)) return
@@ -62,12 +65,12 @@ abstract class AbstractFBDConverter(val fileExtention: String) {
                     fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("."))
                       + "." + fileExtention)
 
-
+            generateHeader(compositeFb)
             compositeBlockNetworkTraversal(compositeFb)
             mainFunction?.generateMainFunction(compositeFb, buf)
             file.writeText(buf.toString())
             buf.clear()
-           fbTypesSet.clear()
+            fbTypesSet.clear()
        }
         return null
     }

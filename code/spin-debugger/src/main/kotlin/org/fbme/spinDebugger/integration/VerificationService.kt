@@ -13,7 +13,7 @@ class VerificationService(provider: ServiceSPINPathProvider) {
     private val spinTrailGenerationService = SPINTrailGenerationService(provider.spinServicePath)
 
     fun verify(modelPath: Path, specification: String): Path? {
-        return try {
+        try {
             val spinTrailPath = spinVerificationService.getTrailPath(modelPath, specification)
             val rawCounterExamplePath = spinTrailGenerationService.getRawCounterExample(modelPath)
             if (rawCounterExamplePath.isEmpty) {

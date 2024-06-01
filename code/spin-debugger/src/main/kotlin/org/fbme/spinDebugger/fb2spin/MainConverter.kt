@@ -15,23 +15,25 @@ class MainConverter(
 ) : AbstractMainConverter {
     override fun generateMainFunction(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
         buf.run {
-            appendXTABNewLineConst(0, "active proctype App {")
+            appendXTABNewLineConst(0, "active proctype App() {")
             listOf(
                 "int lastpid;",
                 "bit phi = 0;",
                 "bit gamma = 0;",
-                "int minDi;"
+                "int minDi;",
+                "int Tmax = 1000;",
+                "byte i;"
             ).forEach { appendXTABNewLineConst(1, it) }
             fbc.inputEvents.forEach {
                 appendXTABNewLineConst(
                     1,
-                    "chan ${fbc.name}_EI_${it.name} = [1] of bit;"
+                    "chan ${fbc.name}_EI_${it.name} = [1] of {bit};"
                 )
             }
             fbc.outputEvents.forEach {
                 appendXTABNewLineConst(
                     1,
-                    "chan ${fbc.name}_EO_${it.name} = [1] of bit;"
+                    "chan ${fbc.name}_EO_${it.name} = [1] of {bit};"
                 )
             }
             val declareDataChannel = { typeDataPort: String ->
@@ -63,9 +65,8 @@ class MainConverter(
                 buf.appendXTABNewLineBody(1) {
                     append("chan ${fbc.name}_DI_${it.name} = [1] of {")
                     when (val t = it.type) {
-                        is ElementaryType -> {
+                        is ElementaryType ->
                             append("${data.typesMap[t]}};")
-                        }
 
                         is ArrayType -> {
                             val size = t.getRealDimensions().reduce(Int::times)
@@ -78,25 +79,49 @@ class MainConverter(
                 }
             }
 
-            buf.appendXTABNewLineConst(1, "chan ${fbc.name}_alpha = [0] of bit;")
-            buf.appendXTABNewLineConst(1, "chan ${fbc.name}_beta = [0] of bit;")
-            buf.appendXTABNewLineConst(1, "chan ${fbc.name}_phi = [0] of bit;")
+            appendXTABNewLineConst(1, "chan ${fbc.name}_alpha = [0] of {bit};")
+            appendXTABNewLineConst(1, "chan ${fbc.name}_beta = [0] of {bit};")
+            appendXTABNewLineConst(1, "chan ${fbc.name}_phi = [0] of {bit};")
 
-            buf.appendXTABNewLineConst(1, "atomic {")
-            buf.appendXTABNewLineBody(2) {
-                append("run ${fbc.name}(")
-                fbc.inputEvents.forEach { buf.appendXTABNewLineConst(1, "${fbc.name}_EI_${it.name}, ") }
-                fbc.outputEvents.forEach { buf.appendXTABNewLineConst(1, "${fbc.name}_EO_${it.name}, ") }
-                fbc.inputParameters.forEach { buf.append(1, "${fbc.name}_VI_${it.name}, ") }
-                fbc.outputParameters.forEach { buf.append(1, "${fbc.name}_VO_${it.name}, ") }
-                append("${fbc.name}_alpha, ${fbc.name}_beta, ${fbc.name}_phi")
-
+            appendXTABNewLineConst(1, "atomic {")
+            appendXTABNewLineConst(2, "pid pid_${fbc.name} ")
+            appendXTABNewLineBody(2) {
+                append("pid_${fbc.name} = run ${fbc.name}(")
+                fbc.inputEvents.forEach { buf.append("${fbc.name}_EI_${it.name}, ") }
+                fbc.outputEvents.forEach { buf.append("${fbc.name}_EO_${it.name}, ") }
+                fbc.inputParameters.forEach { buf.append("${fbc.name}_VI_${it.name}, ") }
+                fbc.outputParameters.forEach { buf.append("${fbc.name}_VO_${it.name}, ") }
+                append("${fbc.name}_alpha, ${fbc.name}_beta, ${fbc.name}_phi);")
             }
-
-
-            buf.appendXTABNewLineConst(0, "}")
+            appendXTABNewLineConst(2, "${fbc.name}_EI_INIT!true;")
+            appendXTABNewLineConst(1, "}")
+            appendXTABNewLineConst(1, "dispatch:")
+            appendXTABNewLineConst(2, "${fbc.name}_alpha!true;")
+            appendXTABNewLineConst(2, "${fbc.name}_beta?true;")
+            appendXTABNewLineConst(2, "atomic {")
+            appendXTABNewLineConst(3, "${fbc.name}_phi?phi;")
+            appendXTABNewLineConst(3, "gamma = empty(${fbc.name}_EI_INIT) && phi;")
+            appendXTABNewLineConst(3, "if")
+            appendXTABNewLineConst(4, ":: gamma -> goto timeScheduler")
+            appendXTABNewLineConst(4, ":: else -> goto dispatch")
+            appendXTABNewLineConst(3, "fi")
+            appendXTABNewLineConst(1, "timeScheduler:")
+            appendXTABNewLineConst(3, "i = 0")
+            appendXTABNewLineConst(3, "do")
+            appendXTABNewLineConst(3, ":: i > 256 -> break")
+            appendXTABNewLineConst(3, ":: else -> {")
+            appendXTABNewLineConst(4, "if")
+            appendXTABNewLineConst(4, ":: timers[i] > 0 && minDi < 0 -> minDi = timers[i]")
+            appendXTABNewLineConst(4, ":: timers[i] > 0 && timers[i] < minDi -> minDi = timers[i]")
+            appendXTABNewLineConst(4, "fi")
+            appendXTABNewLineConst(4, "i++")
+            appendXTABNewLineConst(3, "}")
+            appendXTABNewLineConst(3, "od")
+            appendXTABNewLineConst(3, "systemclock = systemclock + minDi")
+            appendXTABNewLineConst(2, "}")
+            appendXTABNewLineConst(1, "goto dispatch;")
+            appendXTABNewLineConst(1, "done:")
+            appendXTABNewLineConst(0, "}")
         }
-
-
     }
 }

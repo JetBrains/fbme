@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
 <FBType Name="Elevator_HMI" Namespace="Main" GUID="8040576A81A98D23" Comment="Service Interface Function Block Type" >
-  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
   <Attribute Name="HMI.Alias" Value="" />
   <Identification Standard="61499-2" />
   <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="vshatrov" Date="4/20/2019" Remarks="template" />

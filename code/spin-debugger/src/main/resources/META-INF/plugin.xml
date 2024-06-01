@@ -12,19 +12,20 @@
     <depends>fbme.smvDebugger</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <projectService
+                serviceImplementation="org.fbme.spinDebugger.execution.SPINTraceService"/>
         <mps.LanguageLibrary dir="/languages"/>
     </extensions>
-
-    <actions>
-        <group id="richediting.RichEditorPopupGroup">
-            <action id="spinDebugger.SPINAction"
-                    class="org.fbme.spinDebugger.SPINAction"
-                    text="Model checking with SPIN"/>
-            <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
-        </group>
-    </actions>
     <extensions defaultExtensionNs="fbme.debugger">
         <traceFactory
                 implementation="org.fbme.spinDebugger.execution.SPINTraceFactory"/>
     </extensions>
+
+    <actions>
+        <action id="spinDebugger.SPINAction"
+                class="org.fbme.spinDebugger.SPINAction"
+                text="Model checking with SPIN">
+            <add-to-group group-id="richediting.RichEditorPopupGroup" anchor="next" relative-to-action=""/>
+        </action>
+    </actions>
 </idea-plugin>

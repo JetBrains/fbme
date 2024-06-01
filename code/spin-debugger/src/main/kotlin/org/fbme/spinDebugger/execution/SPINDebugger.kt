@@ -5,16 +5,9 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
-import org.fbme.smvDebugger.execution.executionTraceGeneration.SMVCountereExampleParser
-import org.fbme.smvDebugger.fb2smv.FB2SMV
-import org.fbme.smvDebugger.integration.ServicePathProvider
-import org.fbme.smvDebugger.integration.SmvService
-import org.fbme.smvDebugger.model.Counterexample
-import org.fbme.smvDebugger.model.CounterexampleParser
 import org.fbme.smvDebugger.panel.DebugPanelService
 import org.fbme.spinDebugger.counterexample.SPINCounterExampleParser
 import org.fbme.spinDebugger.fb2spin.FB2SPIN
-import org.fbme.spinDebugger.fb2spin.MainConverter
 import org.fbme.spinDebugger.integration.ServiceSPINPathProvider
 import org.fbme.spinDebugger.integration.VerificationService
 import java.nio.file.Path
@@ -23,7 +16,7 @@ import javax.swing.JOptionPane
 import javax.swing.JPanel
 
 class SPINDebugger(project: MPSProject) {
-    private val spinService: VerificationService
+    //private val spinService: VerificationService
     private val debugPanelService: DebugPanelService
     private val ideaProject: Project
     private val unifiedParser: SPINCounterExampleParser
@@ -60,14 +53,14 @@ class SPINDebugger(project: MPSProject) {
     private fun verify(fbPath: Path, compositeFb: CompositeFBTypeDeclaration): JPanel? {
         val specification = specification
 
-        val counterexample = spinService.verify(fbPath, specification)
-        if (counterexample == null) {
-            notifySuccess()
-            return null
-        }
+        //val counterexample = spinService.verify(fbPath, specification)
+        //if (counterexample == null) {
+        //    notifySuccess()
+        //    return null
+        //}
 
 
-        val trace = unifiedParser.getUnifiedTrace("", counterexample,  compositeFb)
+        //val trace = unifiedParser.getUnifiedTrace("", counterexample,  compositeFb)
         return null
         //return debugPanelService.run(compositeFb, counterexample.get())
     }
@@ -82,7 +75,7 @@ class SPINDebugger(project: MPSProject) {
     }
 
     init {
-        spinService = VerificationService(ServiceSPINPathProvider.create(project))
+        //spinService = VerificationService(ServiceSPINPathProvider.create(project))
         debugPanelService = DebugPanelService(project)
         ideaProject = project.project
         mpsProject = project

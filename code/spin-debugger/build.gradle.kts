@@ -7,9 +7,6 @@ plugins {
     kotlin
 }
 
-group = "FBME.code"
-version = "v0.0.1"
-
 repositories {
     mavenCentral()
 }
@@ -17,11 +14,10 @@ repositories {
 dependencies {
     compileOnly(mpsDistribution())
     compileOnly(project(":code:library"))
-    compileOnly(project(":code:platform"))
     compileOnly(project(":code:debugger"))
     compileOnly(project(":code:smv-debugger"))
     compileOnly(project(":code:richediting"))
-    compileOnly(project(":code:language"))
+    implementation(project(":code:platform"))
     implementation(project(":code:language"))
     testImplementation(project(":code:platform"))
     testImplementation(project(":code:smv-debugger"))

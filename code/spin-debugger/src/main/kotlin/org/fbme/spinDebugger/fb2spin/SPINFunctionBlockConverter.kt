@@ -1,7 +1,6 @@
 package org.fbme.spinDebugger.fb2spin
 
 import org.fbme.lib.iec61499.declarations.*
-import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.statements.*
 import org.fbme.lib.st.types.*
@@ -119,17 +118,17 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
     }
 
     fun generateSignature() {
-        buf.append("proctype ${(fb.container as FBTypeDescriptor).typeName}(chan")
+        buf.append("proctype ${fb.typeDescriptor.typeName}(chan ")
         for (ie in fb.inputEvents) {
             //if( !data.ndtCheck(ie.declaration as EventDeclaration)) {
-            buf.append("EI_${ie.name},")
+            buf.append("EI_${ie.name}, ")
             //}
         }
 
-        for (oe in fb.outputEvents) buf.append("EO_${oe.name},") // Event Output
-        for (id in fb.inputParameters) buf.append("VI_${id.name},") // Value Input
-        for (od in fb.outputParameters) buf.append("VO_${od.name}_,") // Value Output
-        buf.append("alpha, beta)\n")
+        for (oe in fb.outputEvents) buf.append("EO_${oe.name}, ") // Event Output
+        for (id in fb.inputParameters) buf.append("DI_${id.name}, ") // Value Input
+        for (od in fb.outputParameters) buf.append("DO_${od.name}, ") // Value Output
+        buf.append("alpha, beta) {\n")
     }
 
     fun generateDone() {
@@ -137,6 +136,7 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
             appendXTABNewLineConst(1, "done:")
             appendXTABNewLineConst(2, "beta?true;")
             appendXTABNewLineConst(2, "alpha!true;")
+            appendXTABNewLineConst(0, "}")
         }
     }
 
@@ -155,9 +155,9 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
                 }
             }
         fb.ecc.states.forEach { st ->
-            appendXTABNewLineConst(2, ":: Q == ${fb.name}_${st.name}_ecc ->")
+            appendXTABNewLineConst(2, ":: Q == ${fb.name}_${st.name}_ecc -> {")
+            var wasAppended = false
             st.actions.forEach {
-                var wasAppended = false
                 when(val algo = it.algorithm.getTarget()?.body) {
                     is AlgorithmBody.ST -> {
                         algo.statements.forEach { st ->
@@ -178,7 +178,7 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
                             when(par.type) {
                                 is ElementaryType -> {
                                     declareResetChannel("DO_${par.name}", 1, 4)
-                                    appendXTABNewLineConst(3, "DO_${par.name}!${par.name}")
+                                    appendXTABNewLineConst(4, "DO_${par.name}!${par.name}")
                                 }
                                 is ArrayType -> {
                                     val fullSize = (par.type as ArrayType).getRealDimensions().reduce(Int::times)
@@ -198,21 +198,25 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
                     appendXTABNewLineConst(3, "}")
                 }
                 // TODO make flush of data variables
-                
-
-                if (!wasAppended) {
-                    buf.appendXTABNewLineConst(3, "skip;")
-                }
             }
-        }}
+            if (!wasAppended) {
+                buf.appendXTABNewLineConst(3, "skip;")
+            }
+            appendXTABNewLineConst(2, "}")
+        }
+            appendXTABNewLineConst(2, "fi")
+        appendXTABNewLineConst(2, "}")
+        }
     }
 
 
     fun generateS1OSM() {
         val stateToFromTransitions = fb.ecc.transitions.groupBy { it.sourceReference.getTarget() }
 
-        buf.run { appendXTABNewLineConst(1, "s1_osm:")
-        appendXTABNewLineBody(2) {
+        buf.run {
+            appendXTABNewLineConst(1, "s1_osm:")
+            appendXTABNewLineConst(1, "printf(\"s1_osm\\n\");")
+            appendXTABNewLineBody(1) {
             stateToFromTransitions.entries.appendLambdaTo(
                 this,
                 " || ",
@@ -231,13 +235,15 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
                 appendXTABNewLineBody(2, ) {
                     append(":: Q == ${fb.name}_${state?.name}_ecc")
                     append(" && trans_${tr.sourceReference.getTarget()?.name}_${tr.targetReference.getTarget()?.name}")
-                    append(" && select_EI == ${fb.name}_s_${tr.condition.eventReference.getTarget()?.portTarget?.name}")
+                    tr.condition.eventReference.getTarget()?.portTarget?.name?.let { event ->
+                        append(" && selectEI == ${fb.name}_s_${event}")
+                    }
                     append(" -> Q = ${fb.name}_${tr.targetReference.getTarget()?.name}_ecc;")
                 }
                 // TODO In examples exists additional && selectEI_*, but in formal model he absents
             }
         }
-        appendXTABNewLineConst(2, "!ExistsEnabledECTran -> goto done;")
+        appendXTABNewLineConst(2, ":: !ExistsEnabledECTran -> goto done;")
         appendXTABNewLineConst(2, "fi")
         appendXTABNewLineConst(1, "}")}
     }
@@ -245,6 +251,7 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
     fun generateS0OSM() {
         buf.run {
             appendXTABNewLineConst(1, "s0_osm:")
+            appendXTABNewLineConst(1, "printf(\"s0_osm\\n\");")
             appendXTABNewLineBody(1) {
                 fb.ecc.transitions.appendTo(this, ", ", "bit ", ";") {
                     "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name}"
@@ -253,30 +260,45 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
             // ISSC from Modelling pp.316
             val listPastEIs = mutableListOf<EventDeclaration>()
             fb.inputEvents.forEach {
+                append("bit selectEI_${it.name};")
                 appendXTABNewLineBody(1) {
                     listPastEIs.appendTo(
                         this,
-                        " && ",
-                        "bit selectEI_${it.name} = nempty(EI_${it.name}) && ",
-                        " && "
-                    ) { ei -> "!selectEI_${ei.name}" }
-                    fb.ecc.transitions.filter { tr ->
-                        tr.condition.eventReference.getTarget()?.declarations?.contains(
-                            it.container
-                        ) ?: false
+                        "",
+                        "selectEI_${it.name} = nempty(EI_${it.name}) ",
+                        ""
+                    ) { ei -> "&& !selectEI_${ei.name} " }
+                    val transes = fb.ecc.transitions.filter { tr ->
+                        tr.condition.eventReference.getTarget()?.portTarget == it
                     }.mapNotNull { tr ->
                         tr.sourceReference.getTarget()
-                    }.appendTo(this, " || ", "(", ");") { st -> "Q == ${fb.name}_${st.name}_ecc" }
+                    }
+                    if(transes.isNotEmpty())
+                        transes.appendTo(this, " || ", " && (", ");") { st -> "Q == ${fb.name}_${st.name}_ecc" }
+                    else
+                        append(";")
                 }
                 listPastEIs += it
             }
             // TODO In example doesn't exist selectEI_REQ in LiftSensor, maybe for performance
             fb.ecc.transitions.forEach {
-                appendXTABNewLineConst(
-                    1,
-                    "trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name} = "
-                )
-                appendPromelaExpression(it.condition.getGuardCondition())
+                appendXTABNewLineBody(1) {
+                    append("trans_${it.sourceReference.getTarget()?.name}_${it.targetReference.getTarget()?.name} = ")
+                    var wasSkipped = true
+                    it.condition.eventReference.getTarget()?.portTarget?.let { event ->
+                        append("selectEI_${event.name}")
+                        wasSkipped = false
+                    }
+                    it.condition.getGuardCondition()?.let { guard ->
+                        if(!wasSkipped) append(" && ")
+                        appendPromelaExpression(guard)
+                        wasSkipped = false
+                    }
+                    if(wasSkipped) {
+                        append("true")
+                    }
+                    append(";")
+                }
                 // TODO fix conditions, they maybe can be wrong (in ST syntax, maybe I need convert that to Promela syntax)
             }
             appendXTABNewLineConst(1, "if")
@@ -316,7 +338,15 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
             fb.inputEvents.forEach {
                 appendXTABNewLineConst(1, ":: nempty(EI_${it.name}) -> EI_${it.name}?true;")
             }
-            appendXTABNewLineConst(1, ":: else -> break;")
+            appendXTABNewLineBody(1) {
+                append(":: ")
+                fb.inputEvents.forEach {
+                    append("empty(EI_${it.name})")
+                    if(it != fb.inputEvents.last())
+                        append(" || ")
+                }
+                append(" -> break;")
+            }
             appendXTABNewLineConst(1, "od")
         }
     }
@@ -329,12 +359,12 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
                 "alpha?true;"
             ).forEach { appendXTABNewLineConst(1, it) }
             appendXTABNewLineBody(1) {
-                fb.inputEvents.appendTo(this, " || ", "ExistsInputEvent =", ";")
+                fb.inputEvents.appendTo(this, " || ", "ExistsInputEvent = ", ";")
                 { "nempty(EI_${it.name})" }
             }
             appendXTABNewLineConst(1, "if")
             fb.inputEvents.forEach { ei ->
-                appendXTABNewLineConst(1, ":: d_step { nempty(EI_${ei.name} -> ")
+                appendXTABNewLineConst(1, ":: d_step { nempty(EI_${ei.name}) -> ")
                 ei.associations.forEach { ea ->
                     val parameter = ea.parameterReference.getTarget()
                     when (val type = parameter?.type) {
@@ -366,7 +396,7 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
     }
 
     fun generateTypes() {
-        buf.run { append("mtype:${fb.name}_Selected = {")
+        buf.run { append("\nmtype:${fb.name}_Selected = {")
         fb.inputEvents.forEach {
             append("${fb.name}_s_${it.name},")
         }
@@ -374,7 +404,7 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
         append("mtype:${fb.name}_ECC={")
         val statesECC = fb.ecc.states
         for (st in statesECC)
-            append("${fb.name}_${st.name}_ecc${if (st != statesECC.last()) ", " else "};"}")
+            append("${fb.name}_${st.name}_ecc${if (st != statesECC.last()) ", " else "};\n"}")
     }}
 
     fun generateLocalVariableDeclaration() {
@@ -392,14 +422,93 @@ class SPINFunctionBlockConverter(d: VerifiersData) :
     }
 
     override fun convert() {
-        generateTypes()
-        generateSignature()
-        generateLocalVariableDeclaration()
-        generateWaitEvents()
-        generateS0OSM()
-        generateS1OSM()
-        generateS2OSM()
-        generateDone()
+        when (fb.name) {
+            "E_CYCLE" -> {
+                """
+                    |proctype E_CYCLE(chan EI_START, EI_STOP, EO, DI_Dt, alpha, beta) {
+                    |   timer[_pid] = -1
+                    |   int cycleLong = -1;
+                    |   bit ExistsInputEvent = 0;
+                    |   wait_events:
+                    |	end:
+                    |	alpha?true;
+                    |
+                    |	if
+                    |	:: timer[_pid] == 0 -> 
+                    |		EO!true;
+                    |		if
+                    |		:: nempty(DI_Dt) -> {
+                    |		    DI_Dt?cycleLong;
+                    |		    timer[_pid] = cycleLong;
+                    |		}
+                    |		:: else -> timer[_pid] = cycleLong; 
+                    |	:: else -> skip;
+                    |	fi 
+                    |	ExistsInputEvent = nempty(EI_START) || nempty(EI_STOP);
+                    |	atomic {
+                    |		if
+                    |		:: nempty(EI_START) -> {
+                    |			EI_START?true; 
+                    |			DI_Dt?cycleLong;
+                    |			timer[_pid] = cycleLong;
+                    |		}
+                    |		:: nempty(EI_STOP) -> { 
+                    |			EI_STOP?true;
+                    |			timer[_pid] = -1;
+                    |		}
+                    |		:: !ExistsInputEvent -> skip;
+                    |		fi 
+                    |	}
+                    |done:
+                    |	beta!true;
+                    |	goto wait_events; 
+                    |}
+                """.trimMargin()
+
+            }
+            "E_DELAY" -> {
+                """
+                    |proctype E_DELAY(chan EI_INIT, EI_STOP, EO_TIMEOUT, DI_Dt, alpha, beta) {
+                    |   timer[_pid] = -1
+                    |   bit ExistsInputEvent = 0;
+                    |   wait_events:
+                    |	end:
+                    |	alpha?true;
+                    |	if
+                    |	:: timer[_pid] == 0 -> 
+                    |		EO_TIMEOUT!true;
+                    |		timer[_pid] = -1; 
+                    |	:: else -> skip;
+                    |	fi 
+                    |	ExistsInputEvent = nempty(EI_INIT) || nempty(EI_STOP);
+                    |	atomic {
+                    |		if
+                    |		:: nempty(EI_INIT) -> 
+                    |			EI_INIT?true; 
+                    |			DI_Dt?timer[_pid];
+                    |		:: nempty(EI_STOP) -> 
+                    |			EI_STOP?true;
+                    |			timer[_pid] = -1;
+                    |		:: !ExistsInputEvent -> skip;
+                    |		fi 
+                    |	}
+                    |done:
+                    |	beta!true;
+                    |	goto wait_events; 
+                    |}
+                """.trimMargin()
+            }
+            else -> {
+                generateTypes()
+                generateSignature()
+                generateLocalVariableDeclaration()
+                generateWaitEvents()
+                generateS0OSM()
+                generateS1OSM()
+                generateS2OSM()
+                generateDone()
+            }
+        }
     }
 
     // for backward compatibility

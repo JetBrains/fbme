@@ -1,18 +1,25 @@
 package org.fbme.spinDebugger.fb2spin
 
+import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.expressions.BinaryOperation
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractFBDConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
-import org.fbme.smvDebugger.fb2smv.MainConverter
-import org.fbme.smvDebugger.fb2smv.SMVCompositeFBConverter
-import org.fbme.smvDebugger.fb2smv.SMVFunctionBlockConverter
+import org.fbme.spinDebugger.utils.appendXTABNewLineConst
+import java.nio.file.Path
 
 class FB2SPIN : AbstractFBDConverter("pml") {
+    override fun generateHeader(compositeFb: CompositeFBTypeDeclaration) {
+        buf.run {
+            appendXTABNewLineConst(0, "int systemclock = 0;")
+            appendXTABNewLineConst(0, "typedef Event {bit v; int ts_born; int ts_last};")
+            appendXTABNewLineConst(0, "int timers[256] = -1;")
+        }
+    }
+
     override fun compositeFBConversion(compositeFb: CompositeFBTypeDeclaration) {
         (compositeFBConverter as SPINCompositeFBConverter).fb = compositeFb
         (compositeFBConverter as SPINCompositeFBConverter).convert()
@@ -28,11 +35,13 @@ class FB2SPIN : AbstractFBDConverter("pml") {
             typesMap = mapOf(
                 ElementaryType.BOOL to "bit",
                 ElementaryType.INT to "int",
+                ElementaryType.DINT to "int",
                 ElementaryType.BYTE to "byte"
             ),
             typesInitValMap = mapOf(
                 ElementaryType.BOOL to "0",
                 ElementaryType.INT to "0",
+                ElementaryType.DINT to "0",
                 ElementaryType.BYTE to "0",
             ),
             binaryOperationsConvertionMap = mapOf(

@@ -18,6 +18,11 @@ abstract class AbstractSPINFBConverter<T : FBTypeDeclaration>(
     lateinit var fb: T
     lateinit var specification: List<ConditionExpression>
 
+    companion object {
+        val eventDataPorts = listOf("CNF", "UPD", "REQ", "INIT", "INITTO")
+    }
+
+
     protected val variableNameToType = mutableMapOf<String, DataType>()
 
     val declareDataPort: (ParameterDeclaration) -> Unit = { decl ->
@@ -50,14 +55,43 @@ abstract class AbstractSPINFBConverter<T : FBTypeDeclaration>(
         }
     }
 
+    fun Expression.isAbleToExpress() : Boolean {
+        return when (this) {
+            is BinaryExpression -> leftExpression?.isAbleToExpress() ?: false && rightExpression?.isAbleToExpress() ?: false
+            is FunctionCall -> actualParameters.all { it?.isAbleToExpress() ?: false }
+            is Literal<*> -> true
+            is ParenthesisExpression -> innerExpression.isAbleToExpress()
+            is UnaryExpression -> getInnerExpression()?.isAbleToExpress() ?: false
+            is ArrayVariable -> (subscribedVariable?.isAbleToExpress() ?: false) && subscripts.all { it?.isAbleToExpress() ?: false }
+            is VariableReference -> true
+            else -> false
+        }
+    }
+
     protected fun StringBuilder.appendPromelaExpression(exp: Expression?) {
         when (exp) {
             is BinaryExpression -> {
-                append("(")
-                appendPromelaExpression(exp.leftExpression)
-                append(") ${data.binaryOperationsConvertionMap[exp.operation]} (")
-                appendPromelaExpression(exp.rightExpression)
-                append(")")
+                var countAbleToExpress = 0
+                if (exp.leftExpression?.isAbleToExpress() == true) countAbleToExpress++
+                if (exp.rightExpression?.isAbleToExpress() == true) countAbleToExpress++
+                when(countAbleToExpress) {
+                    1 -> {
+                        append("(")
+                        if (exp.leftExpression?.isAbleToExpress() == true)
+                            appendPromelaExpression(exp.leftExpression)
+                        else
+                            appendPromelaExpression(exp.rightExpression)
+                        append(")")
+                    }
+                    2 -> {
+                        append("(")
+                        appendPromelaExpression(exp.leftExpression)
+                        append(" ${data.binaryOperationsConvertionMap[exp.operation]!!} ")
+                        appendPromelaExpression(exp.rightExpression)
+                        append(")")
+                    }
+                }
+
             }
 
             is FunctionCall -> {
@@ -81,7 +115,11 @@ abstract class AbstractSPINFBConverter<T : FBTypeDeclaration>(
             }
 
             is UnaryExpression -> {
-                append(exp.operation.alias)
+                when(exp.operation) {
+                    UnaryOperation.NEG -> append("-")
+                    UnaryOperation.NOT -> append("!")
+                    else -> append(exp.operation.alias)
+                }
                 // TODO convert unary operation to promela equivalent
                 // TODO what is isSpaced
                 append(if (exp.operation.isSpaced) " (" else "(")
@@ -117,8 +155,12 @@ abstract class AbstractSPINFBConverter<T : FBTypeDeclaration>(
                 }
             }
 
-            is VariableReference -> append(exp.reference.identifier)
-            null -> TODO()
+            is VariableReference -> {
+                append(exp.reference.presentation)
+            }
+            null -> {
+
+            }
         }
     }
 }
