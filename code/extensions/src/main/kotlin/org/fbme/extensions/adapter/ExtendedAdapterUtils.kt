@@ -1,11 +1,9 @@
 package org.fbme.extensions.adapter
 
-import jetbrains.mps.smodel.ModelImports
-import jetbrains.mps.smodel.SNodeUtil
 import org.fbme.extensions.utils.FBInterfaceDeclarationUtils
 import org.fbme.extensions.utils.IEC61499FactoryUtils
+import org.fbme.extensions.utils.SModelUtils
 import org.fbme.extensions.utils.STFactoryUtils
-import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Identifier
@@ -21,13 +19,15 @@ import org.jetbrains.mps.openapi.model.SModel
 
 class ExtendedAdapterUtils(
     private val factory: IEC61499Factory,
-    private val stFactory: STFactory,
-    private val owner: PlatformRepository,
+    stFactory: STFactory,
+    owner: PlatformRepository,
     private val publishSubscribeProvider: ((name: String) -> FBTypeDeclaration)? = null,
 ) {
+    private val sModelUtils: SModelUtils = SModelUtils(owner)
+    private val fbInterfaceDeclarationUtils = FBInterfaceDeclarationUtils(factory)
     private val factoryUtils: IEC61499FactoryUtils = IEC61499FactoryUtils(factory)
     private val stFactoryUtils: STFactoryUtils = STFactoryUtils(stFactory)
-    private val switchGenerator = AdapterSwitchGenerator(factory, stFactory)
+    private val switchGenerator = AdapterSwitchGenerator(factory, owner, stFactory)
     private val numberToEventFbTypes: MutableMap<Int, BasicFBTypeDeclaration> = mutableMapOf()
     private val eventToNumberFbTypes: MutableMap<Int, BasicFBTypeDeclaration> = mutableMapOf()
     private fun getPackageName(name: String) = "generated/$name"
@@ -62,47 +62,68 @@ class ExtendedAdapterUtils(
         model: SModel,
     ): RevealDeclarationsResult {
         val name = extendedAdapter.name
-        val FBInterfaceDeclarationUtils = FBInterfaceDeclarationUtils(factory)
         val routerAdapter = if (extendedAdapter.outputRouter != null) {
-            val adapter = FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
-                name = "RouterAdapter_$name",
-                fbTypeDescriptor = extendedAdapter.plugTypeDescriptor,
-                reversed = true,
-            )
-            for (event in adapter.outputEvents) {
-                event.associations += factoryUtils.createAssociation(adapter.outputParameters.last())
-            }
-            if (extendedAdapter.inputRouter != null) {
-                for (event in adapter.inputEvents) {
-                    event.associations += factoryUtils.createAssociation(adapter.inputParameters.last())
+            val routerName = "RouterAdapter_$name"
+            findDeclarationOrCreate(
+                name = routerName,
+                model = model,
+                virtualPackage = getPackageName(extendedAdapter.name),
+            ) {
+                val adapter = fbInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+                    name = routerName,
+                    fbTypeDescriptor = extendedAdapter.plugTypeDescriptor,
+                    reversed = true,
+                )
+                // create associations with router parameters
+                for (event in adapter.outputEvents) {
+                    event.associations += factoryUtils.createAssociation(adapter.outputParameters.last())
                 }
+                if (extendedAdapter.inputRouter != null) {
+                    for (event in adapter.inputEvents) {
+                        event.associations += factoryUtils.createAssociation(adapter.inputParameters.last())
+                    }
+                }
+                adapter
             }
-            adapter
         } else {
             null
         }
         val leftNetwork = extendedAdapter.leftNetwork
-        val leftAdapter = FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
-            name = "Left_$name",
-            fbTypeDescriptor = if (leftNetwork != null) {
-                leftNetwork.getCustomNetworkComponents()[1].block.type
-            } else {
-                extendedAdapter.plugTypeDescriptor
-            },
-            reversed = false,
-        )
+        val leftAdapterName = "Left_$name"
+        val leftAdapter = findDeclarationOrCreate(
+            name = leftAdapterName,
+            model = model,
+            virtualPackage = getPackageName(extendedAdapter.name),
+        ) {
+            fbInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+                name = leftAdapterName,
+                fbTypeDescriptor = if (leftNetwork != null) {
+                    leftNetwork.getCustomNetworkComponents()[1].block.type
+                } else {
+                    extendedAdapter.plugTypeDescriptor
+                },
+                reversed = false,
+            )
+        }
         val middleAdapter = if (leftNetwork == null ||
             (extendedAdapter.internalFbSocketInterface?.isEmpty() != false &&
                     extendedAdapter.internalNetworksInterface?.isEmpty() != false)
         ) {
             leftAdapter
         } else {
-            FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
-                name = "Middle_$name",
-                identifier = extendedAdapter.identifier,
-                fbTypeDescriptor = leftNetwork.getCustomNetworkComponents()[0].block.type,
-                reversed = true,
-            )
+            val middleAdapterName = "Middle_$name"
+            findDeclarationOrCreate(
+                name = middleAdapterName,
+                model = model,
+                virtualPackage = getPackageName(extendedAdapter.name),
+            ) {
+                fbInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+                    name = middleAdapterName,
+                    identifier = extendedAdapter.identifier,
+                    fbTypeDescriptor = leftNetwork.getCustomNetworkComponents()[0].block.type,
+                    reversed = true,
+                )
+            }
         }
         val rightAdapter = if (
             extendedAdapter.rightNetwork == null ||
@@ -111,43 +132,54 @@ class ExtendedAdapterUtils(
         ) {
             middleAdapter
         } else {
-            FBInterfaceDeclarationUtils.generateAdapterFromDescriptor(
-                name = "Right_$name",
-                fbTypeDescriptor = extendedAdapter.socketTypeDescriptor,
-            )
+            val rightAdapterName = "Right_$name"
+            findDeclarationOrCreate(
+                name = rightAdapterName,
+                model = model,
+                virtualPackage = getPackageName(extendedAdapter.name),
+            ) {
+                fbInterfaceDeclarationUtils.generateAdapterFromDescriptor(
+                    name = rightAdapterName,
+                    fbTypeDescriptor = extendedAdapter.socketTypeDescriptor,
+                )
+            }
         }
 
-        val leftBlock = leftNetwork?.let {
-            createCompositeFB(
-                name = "${extendedAdapter.name}_${it.name}",
-                leftAdapter = leftAdapter,
-                rightAdapter = middleAdapter,
-                network = it.network,
-            )
+        val leftBlock = leftNetwork?.let { adapterNetworkDeclaration ->
+            val leftBlockName = "${extendedAdapter.name}_${adapterNetworkDeclaration.name}"
+            val existedBlock: CompositeFBTypeDeclaration? = sModelUtils.findOneDeclarationOrNull(leftBlockName, model)
+            if (existedBlock != null) {
+                existedBlock
+            } else {
+                val compositeFB = createCompositeFB(
+                    name = leftBlockName,
+                    leftAdapter = leftAdapter,
+                    rightAdapter = middleAdapter,
+                    network = adapterNetworkDeclaration.network,
+                )
+                sModelUtils.addDeclarationToModel(compositeFB, model, getPackageName(extendedAdapter.name))
+                updateInternalAdapterPorts(compositeFB)
+                compositeFB
+            }
         }
-        val rightBlock = extendedAdapter.rightNetwork?.let {
-            createCompositeFB(
-                name = "${extendedAdapter.name}_${it.name}",
-                leftAdapter = middleAdapter,
-                rightAdapter = rightAdapter,
-                network = it.network,
-            )
+        val rightBlock = extendedAdapter.rightNetwork?.let { adapterNetworkDeclaration ->
+            val rightBlockName = "${extendedAdapter.name}_${adapterNetworkDeclaration.name}"
+            val existedBlock: CompositeFBTypeDeclaration? = sModelUtils.findOneDeclarationOrNull(rightBlockName, model)
+            if (existedBlock != null) {
+                existedBlock
+            } else {
+                val compositeFB = createCompositeFB(
+                    name = rightBlockName,
+                    leftAdapter = middleAdapter,
+                    rightAdapter = rightAdapter,
+                    network = adapterNetworkDeclaration.network,
+                )
+                sModelUtils.addDeclarationToModel(compositeFB, model, getPackageName(extendedAdapter.name))
+                updateInternalAdapterPorts(compositeFB)
+                compositeFB
+            }
         }
-        model.addRootNodes(
-            routerAdapter,
-            leftAdapter,
-            middleAdapter,
-            rightAdapter,
-            leftBlock,
-            rightBlock,
-            virtualPackage = getPackageName(extendedAdapter.name),
-        )
-        if (leftBlock != null) {
-            updateInternalAdapterPorts(leftBlock)
-        }
-        if (rightBlock != null) {
-            updateInternalAdapterPorts(rightBlock)
-        }
+
         return RevealDeclarationsResult(
             extendedAdapter = extendedAdapter,
             routerAdapter = routerAdapter,
@@ -198,15 +230,15 @@ class ExtendedAdapterUtils(
                     }
                     .groupBy({ it.first }, { it.second })
                 for (socket in socketsToChange) {
-                    val connectionToTargetPort = blockToConnections[socket.identifier] ?: continue
+                    val connectionsToSourcePort = blockToConnections[socket.identifier] ?: continue
                     val result = identifiersToRevealResult[socket.typeReference.getTarget()?.identifier] ?: continue
-                    changePorts(connectionToTargetPort, socket)
+                    changePorts(connectionsToSourcePort, socket)
                     socket.typeReference.setTarget(result.getFarRightAdapter())
                 }
                 for (plug in plugsToChange) {
-                    val connectionToTargetPort = blockToConnections[plug.identifier] ?: continue
+                    val connectionsToTargetPort = blockToConnections[plug.identifier] ?: continue
                     val result = identifiersToRevealResult[plug.typeReference.getTarget()?.identifier] ?: continue
-                    changePorts(connectionToTargetPort, plug)
+                    changePorts(connectionsToTargetPort, plug)
                     plug.typeReference.setTarget(result.getFarLeftAdapter())
                 }
             }
@@ -227,10 +259,10 @@ class ExtendedAdapterUtils(
     }
 
     private fun changePorts(
-        connectionToTargetPort: List<ConnectionInfo>,
+        connectionInfos: List<ConnectionInfo>,
         block: FunctionBlockDeclarationBase,
     ) {
-        for (connectionInfo in connectionToTargetPort) {
+        for (connectionInfo in connectionInfos) {
             if (connectionInfo.source) {
                 val ports = when (connectionInfo.connection.kind) {
                     EntryKind.EVENT -> block.type.eventOutputPorts
@@ -382,16 +414,18 @@ class ExtendedAdapterUtils(
             null
         } else {
             revealResult.routers.computeIfAbsent(connectionsCount) {
-                switchGenerator.generateRouter(
-                    name = "${adapterType.name}_$connectionsCount",
-                    model = model,
-                    source = checkNotNull(revealResult.routerAdapter),
-                    target = revealResult.leftAdapter,
-                    outputsCount = connectionsCount,
-                    outputRouterName = outputRouter.name,
-                    inputRouterName = adapterType.inputRouter?.name,
-                    virtualPackage = getPackageName(adapterType.name),
-                )
+                val name = "${adapterType.name}_$connectionsCount"
+                sModelUtils.findOneDeclarationOrNull("${name}_router", model)
+                    ?: switchGenerator.generateRouter(
+                        name = name,
+                        model = model,
+                        source = checkNotNull(revealResult.routerAdapter),
+                        target = revealResult.leftAdapter,
+                        outputsCount = connectionsCount,
+                        outputRouterName = outputRouter.name,
+                        inputRouterName = adapterType.inputRouter?.name,
+                        virtualPackage = getPackageName(adapterType.name),
+                    )
             }
         }
 
@@ -423,19 +457,23 @@ class ExtendedAdapterUtils(
     ): FunctionBlockDeclaration {
         val adapterType = revealResult.extendedAdapter
         val leftPublishSubscribeAdapter = revealResult.leftPublishSubscribeAdapter ?: run {
-            val leftCompositeFBType = factory.createCompositeFBTypeDeclaration(
-                StringIdentifier("${adapterType.name}_LeftPublishSubscribeAdapter")
-            )
-            val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
-            socket.typeReference.setTarget(revealResult.middleAdapter)
-            leftCompositeFBType.sockets += socket
-            model.addRootNodes(leftCompositeFBType, virtualPackage = getPackageName(adapterType.name))
-            createPublishSubscribeAdapter(
-                compositeFBType = leftCompositeFBType,
-                declaration = socket,
-                currentModel = model,
-                packageName = adapterType.name,
-            )
+            val name = "${adapterType.name}_LeftPublishSubscribeAdapter"
+            val existedDeclaration = sModelUtils.findOneDeclarationOrNull<CompositeFBTypeDeclaration>(name, model)
+            if (existedDeclaration != null) {
+                existedDeclaration
+            } else {
+                val leftCompositeFBType = factory.createCompositeFBTypeDeclaration(StringIdentifier(name))
+                val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
+                socket.typeReference.setTarget(revealResult.middleAdapter)
+                leftCompositeFBType.sockets += socket
+                sModelUtils.addDeclarationToModel(leftCompositeFBType, model, getPackageName(adapterType.name))
+                createPublishSubscribeAdapter(
+                    compositeFBType = leftCompositeFBType,
+                    declaration = socket,
+                    currentModel = model,
+                    packageName = adapterType.name,
+                )
+            }
         }
         revealResult.leftPublishSubscribeAdapter = leftPublishSubscribeAdapter
         val leftPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
@@ -478,19 +516,23 @@ class ExtendedAdapterUtils(
     ): PortPath<PlugDeclaration> {
         val adapterType = revealResult.extendedAdapter
         val rightPublishSubscribeAdapter = revealResult.rightPublishSubscribeAdapter ?: run {
-            val rightCompositeFBType = factory.createCompositeFBTypeDeclaration(
-                StringIdentifier("${adapterType.name}_RightPublishSubscribeAdapter")
-            )
-            val plug = factory.createPlugDeclaration(StringIdentifier("plug"))
-            plug.typeReference.setTarget(revealResult.middleAdapter)
-            rightCompositeFBType.plugs += plug
-            model.addRootNodes(rightCompositeFBType, virtualPackage = getPackageName(adapterType.name))
-            createPublishSubscribeAdapter(
-                compositeFBType = rightCompositeFBType,
-                declaration = plug,
-                currentModel = model,
-                packageName = adapterType.name
-            )
+            val name = "${adapterType.name}_RightPublishSubscribeAdapter"
+            val existedDeclaration = sModelUtils.findOneDeclarationOrNull<CompositeFBTypeDeclaration>(name, model)
+            if (existedDeclaration != null) {
+                existedDeclaration
+            } else {
+                val rightCompositeFBType = factory.createCompositeFBTypeDeclaration(StringIdentifier(name))
+                val plug = factory.createPlugDeclaration(StringIdentifier("plug"))
+                plug.typeReference.setTarget(revealResult.middleAdapter)
+                rightCompositeFBType.plugs += plug
+                sModelUtils.addDeclarationToModel(rightCompositeFBType, model, getPackageName(adapterType.name))
+                createPublishSubscribeAdapter(
+                    compositeFBType = rightCompositeFBType,
+                    declaration = plug,
+                    currentModel = model,
+                    packageName = adapterType.name
+                )
+            }
         }
         revealResult.rightPublishSubscribeAdapter = rightPublishSubscribeAdapter
         val rightPublishSubscribeAdapterBlock = factoryUtils.addFunctionalBlock(
@@ -539,10 +581,17 @@ class ExtendedAdapterUtils(
         val eventToNumberFbType = eventToNumberFbTypes.computeIfAbsent(
             typeDescriptor.eventOutputPorts.size
         ) { number ->
-            createEventToNumberConverter(
-                name = "EventToNumberAdapter_$number",
-                inputCount = number,
-            ).also { currentModel.addRootNodes(it, virtualPackage = getPackageName(packageName)) }
+            val name = "EventToNumberAdapter_$number"
+            findDeclarationOrCreate(
+                name = name,
+                model = currentModel,
+                virtualPackage = getPackageName(packageName),
+            ) {
+                createEventToNumberConverter(
+                    name = name,
+                    inputCount = number,
+                )
+            }
         }
 
         val eventToNumberBlock = factoryUtils.addFunctionalBlock(eventToNumberFbType, compositeFBType.network)
@@ -550,10 +599,17 @@ class ExtendedAdapterUtils(
         val numberToEventFbType = numberToEventFbTypes.computeIfAbsent(
             typeDescriptor.eventInputPorts.size
         ) { number ->
-            createNumberToEventConverter(
-                name = "NumberToEventAdapter_$number",
-                inputCount = number,
-            ).also { currentModel.addRootNodes(it, virtualPackage = getPackageName(packageName)) }
+            val name = "NumberToEventAdapter_$number"
+            findDeclarationOrCreate(
+                name = name,
+                model = currentModel,
+                virtualPackage = getPackageName(packageName),
+            ) {
+                createNumberToEventConverter(
+                    name = "NumberToEventAdapter_$number",
+                    inputCount = number,
+                )
+            }
         }
 
         val numberToEventBlock = factoryUtils.addFunctionalBlock(numberToEventFbType, compositeFBType.network)
@@ -772,13 +828,8 @@ class ExtendedAdapterUtils(
     private fun getFBTypeFrom4diacModel(
         currentModel: SModel,
         nodeName: String,
-    ): FBTypeDeclaration = publishSubscribeProvider?.invoke(nodeName) ?: owner.adapter(
-        ModelImports(currentModel).importedModels
-            .first { it.modelName == "iec61499.4diac.stdlib" }
-            .resolve(owner.mpsRepository)
-            .rootNodes
-            .first { it.name == nodeName }
-    )
+    ): FBTypeDeclaration = publishSubscribeProvider?.invoke(nodeName)
+        ?: sModelUtils.getFBTypeFrom4diacModel(currentModel, nodeName)
 
     private fun createCompositeFB(
         name: String,
@@ -838,24 +889,27 @@ class ExtendedAdapterUtils(
         }
         return null
     }
-}
 
-fun SModel.addRootNodes(
-    vararg declarations: Declaration?,
-    virtualPackage: String? = null,
-) {
-    val distinctDeclarations = declarations.associateBy { it?.name }
-    rootNodes.filter { distinctDeclarations[it.name] != null }
-        .forEach { removeRootNode(it) }
-
-    for (declaration in distinctDeclarations.values) {
-        if (declaration == null) {
-            continue
+    /**
+     * Tries to find exactly one declaration with provided name in provided model,
+     * returns it if type of declaration matched with expected.
+     * Otherwise, returns declaration from producer and adds it to the model
+     * and removes all other nodes with provided name.
+     *
+     * This method helps to prevent reference invalidation after second application of the reveal algorithm
+     */
+    private inline fun <reified T: Declaration> findDeclarationOrCreate(
+        name: String,
+        model: SModel,
+        virtualPackage: String?,
+        declarationProvider: () -> T,
+    ): T {
+        val existedDeclaration = sModelUtils.findOneDeclarationOrNull<T>(name, model)
+        if (existedDeclaration != null) {
+            return existedDeclaration
         }
-        val node = (declaration as PlatformElement).node
-        if (!virtualPackage.isNullOrEmpty()) {
-            node.setProperty(SNodeUtil.property_BaseConcept_virtualPackage, virtualPackage)
-        }
-        addRootNode(node)
+        val newDeclaration = declarationProvider()
+        sModelUtils.addDeclarationToModel(newDeclaration, model, virtualPackage)
+        return newDeclaration
     }
 }
