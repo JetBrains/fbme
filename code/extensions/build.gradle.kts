@@ -17,7 +17,6 @@ dependencies {
     testImplementation(project(":code:library"))
     testImplementation(project(":code:language"))
     testImplementation(project(":code:platform"))
-
 }
 
 mps {
@@ -31,6 +30,7 @@ val compileKotlin by tasks.getting(KotlinCompile::class) {
 val test by tasks.getting(Test::class) {
     dependsOn(
         ":code:library:buildDistPlugin",
+        ":code:platform:buildDistPlugin",
         "buildDistPlugin"
     )
 }

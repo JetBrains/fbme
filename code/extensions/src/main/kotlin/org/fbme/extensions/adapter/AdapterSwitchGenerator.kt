@@ -1,7 +1,9 @@
 package org.fbme.extensions.adapter
 
 import org.fbme.extensions.utils.IEC61499FactoryUtils
+import org.fbme.extensions.utils.SModelUtils
 import org.fbme.extensions.utils.STFactoryUtils
+import org.fbme.ide.iec61499.repository.PlatformRepository
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.*
@@ -16,10 +18,12 @@ import org.jetbrains.mps.openapi.model.SModel
 
 class AdapterSwitchGenerator(
     private val factory: IEC61499Factory,
+    owner: PlatformRepository,
     stFactory: STFactory,
 ) {
     private val factoryUtils: IEC61499FactoryUtils = IEC61499FactoryUtils(factory)
     private val stFactoryUtils: STFactoryUtils = STFactoryUtils(stFactory)
+    private val sModelUtils: SModelUtils = SModelUtils(owner)
 
     fun generateRouter(
         name: String,
@@ -34,7 +38,7 @@ class AdapterSwitchGenerator(
         val routerDeclaration = factory.createCompositeFBTypeDeclaration(
             StringIdentifier("${name}_router")
         )
-        model.addRootNodes(routerDeclaration, virtualPackage = virtualPackage)
+        sModelUtils.addDeclarationToModel(routerDeclaration, model, virtualPackage)
 
         val socket = factory.createSocketDeclaration(StringIdentifier("socket"))
         socket.typeReference.setTarget(source)
@@ -77,7 +81,7 @@ class AdapterSwitchGenerator(
     ): FunctionBlockDeclaration {
         val switchFBIdentifier = StringIdentifier(adapterName)
         val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
-        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
+        sModelUtils.addDeclarationToModel(switchDeclaration, model, virtualPackage)
         val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, network)
         val inputParameters = factoryUtils.copyParametersAndConnect(
             destination = switchDeclaration.inputParameters,
@@ -157,7 +161,7 @@ class AdapterSwitchGenerator(
     ): FunctionBlockDeclaration {
         val switchFBIdentifier = StringIdentifier(adapterName)
         val switchDeclaration = factory.createBasicFBTypeDeclaration(switchFBIdentifier)
-        model.addRootNodes(switchDeclaration, virtualPackage = virtualPackage)
+        sModelUtils.addDeclarationToModel(switchDeclaration, model, virtualPackage)
         val switchBlock = factoryUtils.addFunctionalBlock(switchDeclaration, network)
         val outputParameters = factoryUtils.copyParametersAndConnect(
             destination = switchDeclaration.outputParameters,
