@@ -144,7 +144,7 @@ class ExpressionTest {
     @Test
     fun `binary ampersand`() {
         val innerExpr = createDecIntLiteralMock(1)
-        checkExpression(expr = createBinaryExpression(innerExpr, innerExpr, AMP), expectedVarValue = "(1 & 1)")
+        checkExpression(expr = createBinaryExpression(innerExpr, innerExpr, AMP), expectedVarValue = "(1 and 1)")
     }
 
     @Test
