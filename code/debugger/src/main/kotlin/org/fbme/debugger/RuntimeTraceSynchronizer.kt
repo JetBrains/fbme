@@ -97,6 +97,7 @@ class RuntimeTraceSynchronizer(
         trace.addAll(traceItems)
     }
 
+    @OptIn(ExperimentalStdlibApi::class)
     private fun partialTrace(
         initialState: ResourceState,
         uniqueResolvedWatches: List<Map<Watchable, String>>
@@ -141,6 +142,7 @@ class RuntimeTraceSynchronizer(
         }
     }
 
+    @OptIn(ExperimentalStdlibApi::class)
     private fun fullTrace(
         initialState: ResourceState,
         uniqueResolvedWatches: List<Map<Watchable, String>>
