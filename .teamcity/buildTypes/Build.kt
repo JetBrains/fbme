@@ -11,6 +11,6 @@ object Build : FbmeBuildType(
             "+:build/startup => build/startup/\n" +
             "+:build/build-*.xml => build"
 
-        gradleStep("clean assembleRcpShared -x test")
+        gradleStep("clean build assembleRcpShared")
     }
 )
