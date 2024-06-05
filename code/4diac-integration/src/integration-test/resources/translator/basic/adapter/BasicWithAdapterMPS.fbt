@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BasicWithAdapter">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+    </OutputVars>
+    <Plugs>
+      <AdapterDeclaration Name="PLUG1" Type="Adapt" />
+    </Plugs>
+    <Sockets>
+      <AdapterDeclaration Name="SOCKET1" Type="Adapt" />
+    </Sockets>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+      <ECState Name="Init" x="0" y="0">
+        <ECAction Output="INITO" Algorithm="initialize" />
+      </ECState>
+      <ECState Name="DeInit" x="0" y="0">
+        <ECAction Output="INITO" Algorithm="deInitialize" />
+      </ECState>
+      <ECState Name="Initialized" x="0" y="0" />
+      <ECState Name="NormalOp" x="0" y="0">
+        <ECAction Output="INITO" Algorithm="normalOp" />
+      </ECState>
+      <ECTransition Source="START" Destination="Init" x="0" y="0" Condition="INIT[TRUE = QI]" />
+      <ECTransition Source="Init" Destination="Initialized" x="0" y="0" Condition="1" />
+      <ECTransition Source="Initialized" Destination="NormalOp" x="0" y="0" Condition="1" />
+      <ECTransition Source="NormalOp" Destination="Initialized" x="0" y="0" Condition="1" />
+      <ECTransition Source="Initialized" Destination="DeInit" x="0" y="0" Condition="INIT[FALSE = QI]" />
+      <ECTransition Source="DeInit" Destination="START" x="0" y="0" Condition="1" />
+    </ECC>
+    <Algorithm Name="initialize">
+      <ST Text="QO := QI;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="normalOp">
+      <ST Text="QO := QI;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="deInitialize">
+      <ST Text="QO := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+
