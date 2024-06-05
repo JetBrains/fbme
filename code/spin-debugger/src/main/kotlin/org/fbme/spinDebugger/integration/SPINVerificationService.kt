@@ -7,6 +7,14 @@ import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 import java.util.Optional
 
+/**
+ * SPINVerificationService is a class that verifies SPIN models.
+ * It extends the AbstractIntegrationService.
+ *
+ * @property binaryPath the path to the SPIN binary.
+ * @constructor Creates a new instance of SPINVerificationService.
+ * @param spinBinaryPath the path to the SPIN binary.
+ */
 class SPINVerificationService(spinBinaryPath : Path?): AbstractIntegrationService(spinBinaryPath) {
     fun getTrailPath(promelaModelPath: Path, specification: String) : Optional<Path> {
         addSpecification(promelaModelPath, specification)
@@ -16,8 +24,8 @@ class SPINVerificationService(spinBinaryPath : Path?): AbstractIntegrationServic
         return Optional.of(promelaModelPath)
     }
 
-    override fun getCommand(modelPath: Path): String {
-        return "$binaryPath -search -DVECTORSZ=2048 -DNOREDUCE -DNFAIR=5 -a -f -n -m1000000 $modelPath"
+    override fun getCommand(path: Path): String {
+        return "$binaryPath -search -DVECTORSZ=2048 -DNOREDUCE -DNFAIR=5 -a -f -n -m1000000 $path"
     }
 
     private fun addSpecification(spinPath: Path, specification: String) {

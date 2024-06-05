@@ -10,6 +10,13 @@ import org.fbme.spinDebugger.utils.appendXTABNewLineBody
 import org.fbme.spinDebugger.utils.appendXTABNewLineConst
 import org.fbme.spinDebugger.utils.getRealDimensions
 
+/**
+ * MainConverter class is responsible for generating the main function of the Promela code.
+ * It extends the AbstractMainConverter class.
+ *
+ * @property data VerifiersData object that contains the mapping of types.
+ */
+
 class MainConverter(
     private val data: VerifiersData,
 ) : AbstractMainConverter {
@@ -60,10 +67,12 @@ class MainConverter(
                 }
             }
 
+            fbc.inputParameters.forEach(declareDataChannel("VI"))
+            fbc.outputParameters.forEach(declareDataChannel("VO"))
 
             fbc.inputParameters.forEach {
                 buf.appendXTABNewLineBody(1) {
-                    append("chan ${fbc.name}_DI_${it.name} = [1] of {")
+                    append("chan ${fbc.name}_VI_${it.name} = [1] of {")
                     when (val t = it.type) {
                         is ElementaryType ->
                             append("${data.typesMap[t]}};")

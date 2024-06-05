@@ -26,7 +26,7 @@ import org.fbme.smvDebugger.executionTraceUnification.UnifiedTraceConverter
 import org.fbme.spinDebugger.execution.SPINTraceFactory
 
 class SPINAction : AnAction() {
-    val spinTraceFactory = SPINTraceFactory()
+    private val spinTraceFactory = SPINTraceFactory()
 
     override fun actionPerformed(event: AnActionEvent) {
         event.executeWriteActionInEditor {

@@ -25,7 +25,7 @@
         <action id="spinDebugger.SPINAction"
                 class="org.fbme.spinDebugger.SPINAction"
                 text="Model checking with SPIN">
-            <add-to-group group-id="richediting.RichEditorPopupGroup" anchor="next" relative-to-action=""/>
+            <add-to-group group-id="richediting.RichEditorPopupGroup" anchor="after" relative-to-action="smvDebugger.SMVUnifiedExecutionTraceAction"/>
         </action>
     </actions>
 </idea-plugin>

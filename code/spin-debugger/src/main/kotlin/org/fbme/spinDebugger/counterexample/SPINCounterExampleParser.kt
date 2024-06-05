@@ -29,9 +29,6 @@ class SPINCounterExampleParser(override var project: MPSProject) : ExecutionTrac
         } catch (e: Exception) {
             println("HELP")
         }
-
-
-
         return trace
     }
 }

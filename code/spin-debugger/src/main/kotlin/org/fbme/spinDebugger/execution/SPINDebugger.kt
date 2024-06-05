@@ -15,13 +15,25 @@ import javax.swing.JComponent
 import javax.swing.JOptionPane
 import javax.swing.JPanel
 
-class SPINDebugger(project: MPSProject) {
+/**
+ * SPINDebugger is a class that provides functionality for debugging SPIN programs.
+ * It uses several services and parsers to perform its tasks.
+ *
+ * @property debugPanelService service for managing the debug panel.
+ * @property ideaProject the IntelliJ IDEA project.
+ * @property unifiedParser parser for SPIN counterexamples.
+ * @property fB2SPIN converter for Function Block to SPIN.
+ * @property mpsProject the MPS project.
+ * @constructor Initializes the debugger with the given project.
+ * @param mpsProject the MPS project.
+ */
+class SPINDebugger(private val mpsProject: MPSProject) {
     //private val spinService: VerificationService
-    private val debugPanelService: DebugPanelService
-    private val ideaProject: Project
-    private val unifiedParser: SPINCounterExampleParser
-    private val fB2SPIN: FB2SPIN
-    private val mpsProject: MPSProject
+    //spinService = VerificationService(ServiceSPINPathProvider.create(project))
+    private val debugPanelService: DebugPanelService = DebugPanelService(mpsProject)
+    private val ideaProject: Project = mpsProject.project
+    private val unifiedParser: SPINCounterExampleParser = SPINCounterExampleParser(mpsProject)
+    private val fB2SPIN: FB2SPIN = FB2SPIN()
 
     fun run(
         fbPath: Path,
@@ -47,7 +59,7 @@ class SPINDebugger(project: MPSProject) {
         val file = FileChooser.chooseFile(descriptor, ideaProject, null) ?: return null
         val counterexample = unifiedParser.getUnifiedTrace("", file.toNioPath(), compositeFb)
         return null
-    //return debugPanelService.run(compositeFb, Counterexample(counterexample))
+        //return debugPanelService.run(compositeFb, Counterexample(counterexample))
     }
 
     private fun verify(fbPath: Path, compositeFb: CompositeFBTypeDeclaration): JPanel? {
@@ -72,14 +84,5 @@ class SPINDebugger(project: MPSProject) {
         private fun notifySuccess() {
             JOptionPane.showMessageDialog(null, "Success")
         }
-    }
-
-    init {
-        //spinService = VerificationService(ServiceSPINPathProvider.create(project))
-        debugPanelService = DebugPanelService(project)
-        ideaProject = project.project
-        mpsProject = project
-        fB2SPIN = FB2SPIN()
-        unifiedParser = SPINCounterExampleParser(project)
     }
 }

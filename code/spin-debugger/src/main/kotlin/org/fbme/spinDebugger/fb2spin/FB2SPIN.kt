@@ -1,6 +1,5 @@
 package org.fbme.spinDebugger.fb2spin
 
-import jetbrains.mps.project.MPSProject
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
@@ -9,13 +8,19 @@ import org.fbme.lib.st.types.ElementaryType
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractFBDConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
 import org.fbme.spinDebugger.utils.appendXTABNewLineConst
-import java.nio.file.Path
+
+/**
+ * FB2SPIN class is responsible for converting Function Block Diagrams (FBD) to Promela code.
+ * It extends the AbstractFBDConverter class.
+ *
+ * @property data VerifiersData object that contains the mapping of types.
+ */
 
 class FB2SPIN : AbstractFBDConverter("pml") {
     override fun generateHeader(compositeFb: CompositeFBTypeDeclaration) {
         buf.run {
             appendXTABNewLineConst(0, "int systemclock = 0;")
-            appendXTABNewLineConst(0, "typedef Event {bit v; int ts_born; int ts_last};")
+            appendXTABNewLineConst(0, "typedef Event {int ts_born; int ts_last};")
             appendXTABNewLineConst(0, "int timers[256] = -1;")
         }
     }

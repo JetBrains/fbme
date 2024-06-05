@@ -4,7 +4,6 @@ import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
-import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.types.*
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.AbstractCompositeFBConverter
 import org.fbme.smvDebugger.fb2smv.AbstractConverters.VerifiersData
@@ -12,7 +11,7 @@ import org.fbme.spinDebugger.utils.*
 
 class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
     AbstractSPINFBConverter<CompositeFBTypeDeclaration>(d) {
-    fun generateTypes() {
+    private fun generateTypes() {
         buf.run {
             appendXTABNewLineBody(0) {
                 fb.network.functionBlocks.appendLambdaTo(
@@ -27,7 +26,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateSignature() {
+    private fun generateSignature() {
         buf.run {
             append("proctype ${fb.name}(chan ")
             for (event in fb.inputEvents) append("EI_${event.name}, ")
@@ -38,7 +37,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateLocalVariableDefinition() {
+    private fun generateLocalVariableDefinition() {
         buf.run {
             listOf(
                 "bit ExistsInputEvent = 0;",
@@ -118,7 +117,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateRunInit() {
+    private fun generateRunInit() {
         buf.run {
             appendXTABNewLineConst(1, "atomic {")
             fb.network.allComponents.forEach { comp ->
@@ -148,7 +147,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateDispatch() {
+    private fun generateDispatch() {
         buf.run {
             appendXTABNewLineConst(0, "dispatch:")
             appendXTABNewLineConst(1, "printf(\"dispatch_state = %d\\n\", dispatch_state);")
@@ -170,7 +169,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateReadComponentEventOutputs() {
+    private fun generateReadComponentEventOutputs() {
         buf.run {
             appendXTABNewLineConst(0, "read_component_event_outputs:")
             appendXTABNewLineConst(1, "atomic {")
@@ -293,15 +292,15 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateDone() {
+    private fun generateDone() {
         buf.run {
             appendXTABNewLineConst(1, "done:")
             appendXTABNewLineConst(2, "atomic {")
             appendXTABNewLineConst(3, "beta!true;")
             appendXTABNewLineBody(3) {
                 append("phi_var = true")
-                val composteBlocks = fb.network.functionBlocks.filterIsInstance<CompositeFBTypeDeclaration>()
-                for (it in composteBlocks)
+                val compositeBlocks = fb.network.functionBlocks.filterIsInstance<CompositeFBTypeDeclaration>()
+                for (it in compositeBlocks)
                     append(" && ${it.name}_phi_var")
                 for (funBlock in fb.network.functionBlocks) {
                     for (it in funBlock.type.eventInputPorts)
@@ -319,7 +318,7 @@ class SPINCompositeFBConverter(d: VerifiersData) : AbstractCompositeFBConverter,
         }
     }
 
-    fun generateWaitEvents() {
+    private fun generateWaitEvents() {
         buf.run {
             appendXTABNewLineConst(1, "wait_events:")
             appendXTABNewLineConst(1, "end:")
