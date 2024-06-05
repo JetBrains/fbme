@@ -15,10 +15,7 @@ import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.components.BorderLayoutPanel
 import jetbrains.mps.nodeEditor.MPSColors
 import org.fbme.debugger.RuntimeTraceSynchronizer
-import org.fbme.debugger.common.change.InitialChange
-import org.fbme.debugger.common.change.InputEventChange
-import org.fbme.debugger.common.change.OutputEventChange
-import org.fbme.debugger.common.change.StateChange
+import org.fbme.debugger.common.change.*
 import org.fbme.debugger.common.resolvePath
 import org.fbme.debugger.common.resolveValue
 import org.fbme.debugger.common.trace.ExecutionTrace
@@ -381,6 +378,10 @@ open class DebuggerPanel(
                             "${path.plus("\$ECC").joinToString(".")} → ${change.state}",
                             SimpleTextAttributes.REGULAR_ATTRIBUTES
                         )
+                    }
+
+                    is ComplexChange -> {
+                        append("Complex change", SimpleTextAttributes.REGULAR_ATTRIBUTES, changePadding, 2)
                     }
                 }
             }

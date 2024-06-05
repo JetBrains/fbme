@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Empty">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="EO1" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="627" y="-16" />
+      <ECState Name="S2" x="1083" y="972">
+        <ECAction Output="EO1" Algorithm="A1" />
+      </ECState>
+      <ECTransition Source="START" Destination="S2" x="0" y="0" Condition="1" />
+    </ECC>
+    <Algorithm Name="A1">
+      <ST Text="" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

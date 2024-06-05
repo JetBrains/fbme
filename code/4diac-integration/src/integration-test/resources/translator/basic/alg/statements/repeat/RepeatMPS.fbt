@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Repeat">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="EO1" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="266" y="383" />
+      <ECState Name="S2" x="1733" y="244">
+        <ECAction Output="EO1" Algorithm="A1" />
+      </ECState>
+      <ECTransition Source="START" Destination="S2" x="1294" y="244" Condition="1" />
+    </ECC>
+    <Algorithm Name="A1">
+      <VarDeclaration Name="Index" Type="INT" />
+      <VarDeclaration Name="Sum" Type="INT" />
+      <ST Text="Index := 0;&amp;#38;#10;Sum := 0;&amp;#38;#10;WHILE Index &amp;#62;= 10 DO&amp;#38;#10;  Sum := Sum + Index;&amp;#38;#10;  Index := Index + 1;&amp;#38;#10; END_WHILE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Model">
+    <InterfaceList>
+        <EventInputs>
+            <Event Name="INIT">
+                <With Var="motorUp"/>
+                <With Var="motorDown"/>
+                <With Var="door"/>
+            </Event>
+            <Event Name="REQ">
+                <With Var="motorUp"/>
+                <With Var="motorDown"/>
+                <With Var="door"/>
+            </Event>
+        </EventInputs>
+        <EventOutputs>
+            <Event Name="INITO">
+                <With Var="buttonFloor"/>
+                <With Var="requestFloor"/>
+                <With Var="CarPos"/>
+                <With Var="doorPos"/>
+            </Event>
+            <Event Name="CNF">
+                <With Var="buttonFloor"/>
+                <With Var="requestFloor"/>
+            </Event>
+            <Event Name="UPD">
+                <With Var="CarPos"/>
+                <With Var="doorPos"/>
+            </Event>
+        </EventOutputs>
+        <InputVars>
+            <VarDeclaration Name="motorUp" Type="BOOL"/>
+            <VarDeclaration Name="motorDown" Type="BOOL"/>
+            <VarDeclaration Name="door" ArraySize="5" Type="BOOL"/>
+        </InputVars>
+        <OutputVars>
+            <VarDeclaration Name="buttonFloor" ArraySize="5" Type="BOOL"/>
+            <VarDeclaration Name="requestFloor" ArraySize="5" Type="BOOL"/>
+            <VarDeclaration Name="CarPos" Type="INT"/>
+            <VarDeclaration Name="doorPos" ArraySize="5" Type="INT"/>
+        </OutputVars>
+    </InterfaceList>
+    <FBNetwork>
+        <FB Name="tick" Type="E_CYCLE" x="1152" y="58">
+            <Parameter Name="DT" Value="T#2ms"/>
+        </FB>
+        <FB Name="liftModel" Type="LiftModel" x="800" y="500"/>
+        <FB Name="Door0" Type="Door" x="900" y="1100"/>
+        <FB Name="Door1" Type="Door" x="900" y="1400"/>
+        <FB Name="Door2" Type="Door" x="900" y="1700"/>
+        <DataConnections>
+            <Connection Source="motorUp" Destination="liftModel.motorUp" dx1="40"/>
+            <Connection Source="motorDown" Destination="liftModel.motorDown" dx1="40"/>
+            <Connection Source="liftModel.CarPos" Destination="CarPos" dx1="375"/>
+            <Connection Source="Door0.doorPos" Destination="doorPos" dx1="395"/>
+            <Connection Source="door" Destination="Door0.open" dx1="225"/>
+        </DataConnections>
+        <EventConnections>
+            <Connection Source="INIT" Destination="liftModel.INIT" dx1="200"/>
+            <Connection Source="REQ" Destination="liftModel.REQ" dx1="75"/>
+            <Connection Source="tick.EO" Destination="liftModel.TICK" dy="350" dx2="90" dx1="45"/>
+            <Connection Source="liftModel.GO" Destination="tick.START" dy="-110" dx2="70" dx1="55"/>
+            <Connection Source="liftModel.STOP" Destination="tick.STOP" dy="-170" dx2="50" dx1="75"/>
+            <Connection Source="liftModel.UPD" Destination="UPD" dx1="375"/>
+            <Connection Source="liftModel.INITO" Destination="INITO" dx1="375"/>
+            <Connection Source="Door0.CNF" Destination="UPD" dx1="395"/>
+            <Connection Source="REQ" Destination="Door0.REQ" dx1="225"/>
+            <Connection Source="Door1.CNF" Destination="UPD" dx1="395"/>
+            <Connection Source="Door2.CNF" Destination="UPD" dx1="395"/>
+            <Connection Source="REQ" Destination="Door1.REQ" dx1="225"/>
+            <Connection Source="REQ" Destination="Door2.REQ" dx1="225"/>
+        </EventConnections>
+    </FBNetwork>
+</FBType>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Service">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" />
+      <Event Name="REQ2" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="QI2" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+      <VarDeclaration Name="QO2" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>
+

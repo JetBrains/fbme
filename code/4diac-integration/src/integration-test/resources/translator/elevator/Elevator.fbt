@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Elevator">
+    <InterfaceList>
+        <EventInputs>
+            <Event Name="INIT"/>
+        </EventInputs>
+        <EventOutputs>
+            <Event Name="INITO"/>
+        </EventOutputs>
+    </InterfaceList>
+    <FBNetwork>
+        <FB Name="model" Type="Model" x="1600" y="100"/>
+        <FB Name="Controller" Type="ControlTS" x="600" y="100"/>
+        <FB Name="Sensors" Type="Sensors" x="2800" y="400"/>
+        <DataConnections>
+            <Connection Source="Controller.MoveUp" Destination="model.motorUp"/>
+            <Connection Source="Controller.MoveDown" Destination="model.motorDown"/>
+            <Connection Source="model.CarPos" Destination="Sensors.CarPos" dx1="160"/>
+        </DataConnections>
+        <EventConnections>
+            <Connection Source="INIT" Destination="model.INIT" dx1="1385"/>
+            <Connection Source="INIT" Destination="Controller.INIT" dx1="220"/>
+            <Connection Source="model.CNF" Destination="Controller.REQ" dy="-175" dx2="60" dx1="60"/>
+            <Connection Source="Controller.CNF" Destination="model.REQ" dx1="120"/>
+            <Connection Source="model.INITO" Destination="Sensors.INIT" dx1="160"/>
+            <Connection Source="model.UPD" Destination="Sensors.REQ" dx1="160"/>
+            <Connection Source="Sensors.CNF" Destination="Controller.UPD" dy="-475" dx2="60" dx1="60"/>
+        </EventConnections>
+    </FBNetwork>
+</FBType>
+

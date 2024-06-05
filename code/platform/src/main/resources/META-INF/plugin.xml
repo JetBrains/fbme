@@ -33,6 +33,8 @@
                         interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
         <extensionPoint name="ProjectionController"
                         interface="org.fbme.ide.platform.editor.EditorProjectionControllerProvider"/>
+        <extensionPoint name="DeviceControllerFactoryEP"
+                        interface="org.fbme.ide.platform.deploy.controllers.DeviceControllerFactory"/>
     </extensionPoints>
 
     <extensions defaultExtensionNs="fbme.platform">

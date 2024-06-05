@@ -9,23 +9,20 @@ import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.ui.content.ContentFactory
+import org.fbme.ide.platform.debugger.DevicesFacade
 import org.fbme.debugger.RuntimeTraceSynchronizer
+import org.fbme.ide.platform.debugger.WatchedValueListener
+import org.fbme.ide.platform.debugger.WatcherFacade
 import org.fbme.debugger.common.state.ResourceState
 import org.fbme.debugger.common.trace.ExecutionTrace
 import org.fbme.debugger.common.ui.DebuggerPanel
 import org.fbme.debugger.explanation.ExplanationProducer
 import org.fbme.ide.iec61499.snashot.DeclarationSnapshot.Companion.create
-import org.fbme.ide.platform.debugger.DevicesFacade
-import org.fbme.ide.platform.debugger.WatchedValueListener
-import org.fbme.ide.platform.debugger.WatcherFacade
 import org.fbme.ide.richediting.actions.*
-import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.inspections.Inspection
 import org.fbme.ide.richediting.inspections.InspectionManagerImpl
-import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
-import org.fbme.lib.iec61499.fbnetwork.PortPath
 import org.fbme.lib.iec61499.instances.NetworkInstance
 import java.io.IOException
 
@@ -51,12 +48,12 @@ class DeploymentAction_DeployResource : AnAction(), DumbAware {
             val networkInstance = NetworkInstance.createForResource(resourceDeclaration)
             val inspector = manager.installInspector(networkInstance) { }!!
 
-            object : Task.Backgroundable(project, "Deploying Resource") {
+            object : Task.Backgroundable(project, "Deploying resource") {
                 override fun run(indicator: ProgressIndicator) {
                     mpsProject.modelAccess.runReadAction {
                         try {
                             val connection = devicesFacade.attach(deviceDeclaration)
-                            connection.createResourceNetwork(resourceDeclaration)
+                            connection.createNetwork(resourceDeclaration)
                             watcherFacade.watchResourceNetwork(resourceDeclaration)
                             watcherFacade.addWatchedValueListenersResourceNetwork(resourceDeclaration) { path ->
                                 WatchedValueListener { newValue ->
