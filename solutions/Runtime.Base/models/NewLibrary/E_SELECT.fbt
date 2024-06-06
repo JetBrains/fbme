@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_SELECT" Comment="Selection between two events" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event processing" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI0" Comment="Input event,selected when G=0">
+        <With Var="G" />
+      </Event>
+      <Event Name="EI1" Comment="Input event,selected when G=1">
+        <With Var="G" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Output Event" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Select EI0 when G=0,EI1 when G=1" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

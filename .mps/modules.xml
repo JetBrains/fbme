@@ -31,6 +31,7 @@
       <modulePath path="$PROJECT_DIR$/samples/smv-debugger/solutions/org.fbme.smvDebugger.sandbox/org.fbme.smvDebugger.sandbox.msd" folder="samples.smv debugger" />
       <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/buildsolution/org.fbme.samples.statisticsPlugin.build.msd" folder="samples.statistics plugin" />
       <modulePath path="$PROJECT_DIR$/samples/statistics-plugin/solutions/org.fbme.samples.statisticsPlugin/org.fbme.samples.statisticsPlugin.msd" folder="samples.statistics plugin" />
+      <modulePath path="$PROJECT_DIR$/solutions/Runtime.Base/Runtime.Base.msd" folder="" />
     </projectModules>
   </component>
 </project>

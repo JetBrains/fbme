@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="COMMCHANNEL" Comment="Basic Function Block Type" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="milos" Date="2007-06-14" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="PROTO" />
+        <With Var="OWNADDR" />
+        <With Var="PEERADDR" />
+        <With Var="ID" />
+        <With Var="ALIVE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="CLNTQO" />
+        <With Var="CLNTSTATUS" />
+        <With Var="SRVRQO" />
+        <With Var="SRVRSTATUS" />
+      </Event>
+      <Event Name="CLNTESTABLISHED" Comment="Client (outgoing) connection established (TCP mode only)">
+        <With Var="CLNTSTATUS" />
+      </Event>
+      <Event Name="CLNTCLOSED" Comment="Client (outgoing) connection closed (TCP mode only)">
+        <With Var="CLNTSTATUS" />
+      </Event>
+      <Event Name="SRVRESTABLISHED" Comment="Server (incoming) connection established">
+        <With Var="SRVRSTATUS" />
+      </Event>
+      <Event Name="SRVRCLOSED" Comment="Server (incoming) connection closed">
+        <With Var="SRVRSTATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="PROTO" Type="BYTE" InitialValue="2" Comment="Mode 0: TCP w/keepalive and reconnect, 1: UDP w/buffering, 2: UDP realtime (no buffering, no keepalive)">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=TCP = 0|UDP = 1|UDP RT = 2}" />
+      </VarDeclaration>
+      <VarDeclaration Name="OWNADDR" Type="STRING" Comment="Own address (IP:port, ignored for PROTO other than TCP KA or UDP KA)" />
+      <VarDeclaration Name="PEERADDR" Type="STRING" Comment="Peer address (IP:port)" />
+      <VarDeclaration Name="ID" Type="ULINT" Comment="Channel ID" />
+      <VarDeclaration Name="ALIVE" Type="UINT" Comment="Keepalive interval [ms]" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CLNTQO" Type="BOOL" Comment="Client output event qualifier" />
+      <VarDeclaration Name="CLNTSTATUS" Type="WSTRING" Comment="Client status" />
+      <VarDeclaration Name="SRVRQO" Type="BOOL" Comment="Server output event qualifier" />
+      <VarDeclaration Name="SRVRSTATUS" Type="WSTRING" Comment="Server status" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

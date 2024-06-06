@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="CC9A046F013430E9" Name="SERIALIO" Comment="Service Interface Function Block for reading and writing serial lines" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2009-11-14" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="COM" />
+        <With Var="STARTCHAR" />
+        <With Var="ENDCHAR" />
+      </Event>
+      <Event Name="REQ" Comment="Write data request">
+        <With Var="QI" />
+        <With Var="DATAOUT" />
+      </Event>
+      <Event Name="ACK" Comment="Input data processed acknowledgement">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Write data request confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Data read indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DATAIN" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" Comment="Communication channel properties delimited by single SPACE characters: {dev=name|baudrate=bps|bits=width|stopbits=[1|2]|parity=[none|even|odd]}" />
+      <VarDeclaration Name="STARTCHAR" Type="USINT" Comment="Record start character (optional)" />
+      <VarDeclaration Name="ENDCHAR" Type="USINT" Comment="Record end character (optional)" />
+      <VarDeclaration Name="DATAOUT" Type="STRING" Comment="Data to be sent with every REQ event" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Error information" />
+      <VarDeclaration Name="DATAIN" Type="STRING" Comment="Data read with every IND event" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="56190AB0CF4E1BB8" Name="CALC_FORMULAR" Comment="Calculator" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_CALC_FORMULAR" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="marumil" Date="24.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="INCNT;2;2;16;OUTCNT;1;1;8" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialize - compile the formulas">
+        <With Var="FORMULA${OUTCNT}" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="X${INCNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirmation">
+        <With Var="COMPILESTATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="RUNTIMESTATUS" />
+        <With Var="Y${OUTCNT}" />
+      </Event>
+      <Event Name="ERR" Comment="Execution Error">
+        <With Var="RUNTIMESTATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="FORMULA${OUTCNT}" Type="STRING" Comment="Formula" />
+      <VarDeclaration Name="X${INCNT}" Type="&lt;LREAL, SINT,INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, BOOL&gt;" Comment="Argument" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="COMPILESTATUS" Type="STRING" Comment="Compilation status" />
+      <VarDeclaration Name="RUNTIMESTATUS" Type="STRING" Comment="Execution status" />
+      <VarDeclaration Name="Y${OUTCNT}" Type="&lt;LREAL, SINT,INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, BOOL&gt;" Comment="Result" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="CALC_FORMULAR" />
+</FBType>

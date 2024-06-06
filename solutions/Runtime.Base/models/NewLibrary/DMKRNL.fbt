@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="DMKRNL" Comment="Device Management Kernel Block" Namespace="Runtime.Management">
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAE+Xy0ZEIe4WMBOEdpQwAUf2S19z9IM31LAy5zqIucyMNbQmf0OJgBAwDOJjJzBR7QIhvb7U8hOTKBO36HWlBnuzvtptrUc70vj9NzBZEJa8i2hFWS3MaTl2iJUJsKSu/NApIXff5YSnYKFF/37Ce5G0Agdl7+aC+/3BZFtqKT8ZpAj6hMji15V/P6yZxAiudhR+9j0aF9S7cxGex4BLqIMQusd09GbQWaW8QAyJgMp43KBhg274/kb2Ihu8B45xIlR0RIQNznF0wr7Iy4/fINnXBn6r9Qzw+VcB4DM+wz80O4zHbSaRJ7y1mt3paSVDyUfWofQ1rwadRnawQzhKY/oziWo3RXkuW+3HOMYZXX4oRWsquWPU2Qbbs1ehr8Fysv8Gok/ULe5e2vOLY0xdrbi9dyTbL3mGuSw7R9/dnxSliqAIn4tc1Cm3XgGS4t0pFoO5efBIU6A+p1IkEnbZEzN4yRWsxRspfX6NK2hK7ihDezaDg4d6g3MJ1++qN6h4FDNl4Q3lXnF/Qy/5jn7UOpDNu51utRFIn4Gm4Umh+9W/mOAjw2Xc9KJZ5gUPmJxG9jZx82YcnTeJUqAHgsxjk4DJfxEJU0ymksu/4pgSYnW5HIHFbKKMpv4q2q2meZW8UL/kIRjL6LfIFwtPZKho2rc8v+LFaw/v801lObuAholQy0EmL+cItziAXHLuBO5s37bvBo6phVANqKyWe+UGLux8F6bAUa6PUGioVnb4SaqzJH9YXZ4yzbmL/xLb5ipfu6oBuzgZtsrK7xORtxTWJ5D3U7xb44qtFW3smDlSNnWz+GSYTYfmPqWV0oOrk2iLLIwrKnFnKxAVd25voa7eyvBmzcKZ7OckHkrU9sPWDEPjBQ5mphyr4+/ZM4t+1NGnhLP5gtLgZGYP423j5gJP44vpckPq1hRcYG2nPBXpxxoRLaBcJJFd4O0ncmKVQzxx2LjgI8Nl3PSiWeYFD5icRvY1N7jJJdJgYGKgB4LMY5OAwWj9AqQl/gjAwYQWGpU3Iw37QdwLpzT8+8/zqFCcPVn1cIlb6WFb0Vpmp9znHNE8nbN8/7/UlcfdumlOrNmTqwraraZ5lbxQs6IkvzVZ3BGZDdEvwpFN3+NiOG7EDDgwyyZQ7IyJnRrBwfYGSBe2xwZS9uI5O0tAraBcJJFd4O0ncmKVQzxx2LbwRmkhH5NqQstRmf0Pkqu+r+gWUAjdU2p8wjH4Rv903em8ZxKLMPbi61JHh84bsvlfoM0Mx78w4qcDFQJ4UCds9XwNO8bOM7g74cUJI9YLc2K2V63F06nTC7Q+1cl8ojVrKrlj1NkG1jH/atgVzV61MZK28Xo/la3+J3F3EJtisxVhmdx3dRrfflXlyUaTlpHkgAdZdAQrzEciWdbC56jREol3UdMv0qXGscywqI31Dyg8x6ACzU/kiny2KdPfnTxmuIqz4eIoIKSEc/oEv3MOCUa8022XN6RugfcGAoAzYlx4wCNNCx24vwoE9UzkOBRzTZOjvqGwYeSAB1l0BCvBTP2tt9mR5bU7vqBNQ0RkbofgyMtLa4MLpwL2ze6LJAsOdH1X3X+SKuAG2HCMr1uL0NHJ4Yn4TdV4anB/QTNy6h4VQ8Pq2WDGZwkdfNCFIdrzi2NMXa24u6BTYcFsL3veh2izqnrsegJj1ar9498h8o9ETGoi3YEEDDzQFSdjVTRO3wdL85b3+qHGloBlVPnHPcS9crBRDgdAT/QA7ZhuH3EaP9UvuUFeJV0SyI2XuAzwNRH/0F0IzuGmWiIGUaEl2sRowNnIih5iYHBrFPq56ZhwGSOYw3K+aqQUaYpVii1B4Wg9lDFxEkCb0yQshOiO98329csBuzlApk/UXdrE2BO36HWlBnuzvtptrUc70v2qjzLcfpMs91O8W+OKrRVl2sRowNnIihgWK5UqTP4u8CuLEzYYCmZAAdiaZ19jm+6NJwuqalEgEI89PtxVRmwdbn2rqE9K9s+tbssKmSxTh2wwxdIje9nUCVTU+f8SSGGrW04kli0VKzaDg4d6g3MH5KsAK1eKDFKbm33oCVOfUKSEc/oEv3MFpSsr+W5MfSikd7E9VKeiYk3S4P5y8pQSakiTvPn9UiMwxuWGkoh5JlZq0cJatyQWUTjzTsM7wAZMrjb+Jk7pUkweg7RPqrItLsBJ+m6rLbKbm33oCVOfUYina2ET2OOWVmrRwlq3JBd+/mouURri8zDG5YaSiHkog5ODTep7LWZROPNOwzvADyVPDPmijLR6vVW+y8rGikcAHo+18IcZtI5svKm0pYtB9/ltB7nPeqs2g4OHeoNzBaUrK/luTH0opHexPVSnomDeGXrFG8n9NhT0Wa7NtkeIoft/1V4OgseEEcnx/YOhiNWjcMRPAN28OC9BUxBSItJSmLIuDFfV8yDkPY1yla83pyOuXp1WkZOE+4DjH8p2S83mSZpQW/toiGMKfryEdgsnAFYUBDS3l9be/POFwaoofu7eWEpmb5AdB0JKqgI2mzaDg4d6g3MFpSsr+W5MfSikd7E9VKeiappNDXV7v9wp3R2YQMXEIOlfxBCcC6gKm6k8EMddTfigV1Jg0kjERfYmCgPqpiPQlAuvZuXba0Id3gMeP5gN8iLudXbm06B1RX1mxFWOvFQ27waOqYVQDac8BQg2BtUY3T02HoOqDdD0vMto3qclqX4xPyd7OcfcB6cjrl6dVpGeXv3vwQ4ikar8z/m1eAiExgiZUXKrWxmVkNlWB8tCWniBG71C+hOtaycAVhQENLeTszT+vr21VmUM6G82YDsJkff5bQe5z3qrNoODh3qDcwWlKyv5bkx9KKR3sT1Up6JuVcsg165vZl+tCYgijT7znes9i1YIQvRRx5j7n+L5/kxxakWWzI6ZkZOaQdHmBHibJlDsjImdGs738PC/h0XG4OqA42ua4j916s25cxcod+Oox0viS9mpUzDG5YaSiHkjoRZyNt1QfwXZa3reQO2hpI1HZRH7vUS27eSHlWTy/VmGHQlUrjaAC+ygRNzBSykJVFT9QCIEqeVrKrlj1NkG3T02HoOqDdDz0pQZQHj7p+9kuh0UYPelrMYy9Rp5+ah7JwBWFAQ0t5aRcjGjaNCYE3aMG+abxy8iTB6DtE+qsi0uwEn6bqstspubfegJU59RiKdrYRPY45l20HJBtqB6PhKx9xA302NdIogKZLCstRCSdZF+aEhHt7Z/VLlyyRqysZjQ4VAXFGbvBo6phVANqvzP+bV4CITGCJlRcqtbGZ+uulTDmowThLdcpR/FczPIoft/1V4OgshC//BK/lYwQweX4a14JB4Hm+lvGuUPy6ZD+AyCL2iPyyZQ7IyJnRrO9/Dwv4dFxuDqgONrmuI/dvK7tDlGUVDzAaioNbJLoDyGNcNT1adHaqEx8T4T+yuz+AQgjjd6TerE8WIPSZCbUR4zeDDJTC2DIOQ9jXKVrzenI65enVaRk4T7gOMfynZAvm1JcyHbGLeUVYqQ+00JwzDG5YaSiHkoc8UKeRPSaZXyYIql0UgDG7tX9X2u+Aldn4F8E+wrb1iTXrvvsCCBWAw+ppRlklvfJUIcSaPgOQNWCF+W0NHqy4LIOv0InOgrf6d7MRHI6OFkH1X9MDxgy4vGlWWc9WVISeS+27DyYJ" />
+  <Identification Standard="61499 Demo ITA" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="medusta" Date="2008-01-29" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization/Termination">
+        <With Var="QI" />
+        <With Var="ID" />
+      </Event>
+      <Event Name="START" Comment="Start all resources" />
+      <Event Name="STOP" Comment="Stop all resources" />
+      <Event Name="KILL" Comment="Forcibly kill the runtime" />
+      <Event Name="LIC_RECHECK" Comment="Re-check the licensing information" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization/Termination Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="1=Initiate,0=Terminate" />
+      <VarDeclaration Name="ID" Type="WSTRING" Comment="Server ID" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="1=Initiated,0=Terminated" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="&quot;OK&quot;or Reason for Termination" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork />
+</FBType>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="RTWatchdog" Comment="Watchdog" Namespace="Runtime.Management">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2011-07-01" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization">
+        <With Var="QI" />
+        <With Var="ACTION" />
+      </Event>
+      <Event Name="START" Comment="Activate the watchdog. After starting the RESET event has to be called periodically.">
+        <With Var="ACTION" />
+      </Event>
+      <Event Name="RESET" Comment="Reset the watchdog interval." />
+      <Event Name="STOP" Comment="Deactivate the watchdog. If hardware watchdog that cannot be disabled is used, the nxtRT61499F will continue to reset it on its own." />
+      <Event Name="TRIGGER" Comment="Immediately perform the watchdog expire action." />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+      </Event>
+      <Event Name="STARTO" Comment="Start confirmation">
+        <With Var="EXPIRETIME" />
+      </Event>
+      <Event Name="RESETO" Comment="Reset confirmation" />
+      <Event Name="STOPO" Comment="Stop confirmation" />
+      <Event Name="EXPIRED" Comment="Watchdog expired (if Action = Event)" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="TRUE" Comment="If FALSE the watchdog has no function" />
+      <VarDeclaration Name="ACTION" Type="USINT" InitialValue="1" Comment="Action to perform on expire (default is platform-dependent). If the platform provides a hardware watchdog, only Reboot is able to use it (other types use software one).">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Default = 0|No action = 1|Event = 2|Log = 3|Exit = 4|Reboot = 5}" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Init Output Qualifier" />
+      <VarDeclaration Name="EXPIRETIME" Type="TIME" Comment="Maximum interval between the RESET events (platform-dependent, at least 1 second)" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="RTWatchdog">
+    <ServiceSequence Name="wdexpire">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RTWatchdog" Event="expire" />
+        <OutputPrimitive Interface="RESOURCE" Event="expire action" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="3058FDC7ECF79F4F" Name="ENOCEAN_STCEVC_DEV" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="winkhub" Date="10/22/2015" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+        <With Var="InterfaceID" />
+        <With Var="Com" />
+        <With Var="GatewayAddress" />
+      </Event>
+      <Event Name="REQ" Comment="send GatewayCommand">
+        <With Var="QI" />
+        <With Var="GatewayAddress" />
+        <With Var="GatewayCommand" />
+      </Event>
+      <Event Name="AEP_QUERY" Comment="refresh the AepList and produce an AEP_IND event ">
+        <With Var="QI" />
+      </Event>
+      <Event Name="AEP_ADD" Comment="add a new actuator with AepPath and AepId to the AepList and produce an AEP_IND event">
+        <With Var="QI" />
+        <With Var="GatewayAddress" />
+        <With Var="AepPath" />
+        <With Var="AepId" />
+      </Event>
+      <Event Name="AEP_DEL" Comment="delete actuator AepPath from the AepList and produce an AEP_IND event. AepPath * deletes all, (blank) deletes AepId.">
+        <With Var="QI" />
+        <With Var="GatewayAddress" />
+        <With Var="AepPath" />
+        <With Var="AepId" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="INIT confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="incoming message from gateway">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="Message" />
+      </Event>
+      <Event Name="AEP_IND" Comment="AEP_* confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="AepList" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier">
+        <Attribute Name="Configuration.Parameter.DefaultConstant" Value="TRUE" />
+      </VarDeclaration>
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="Internal Connection Name">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="Com" Type="STRING" Comment="Communication channel properties delimited by single SPACE characters: {dev=name baudrate=bps bits=width stopbits=[1|2] parity=[none|even|odd]}  use dev=/dev/ttyAPP0 syntax in Linux">
+        <Attribute Name="Configuration.Parameter.DefaultConstant" Value="'dev=COM1 baudrate=9600 bits=8 stopbits=1 parity=odd'" />
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="GatewayAddress" Type="USINT" Comment="Gateway DIP switch 0..63">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="GatewayCommand" Type="STRING" Comment="send gateway command, hex format, Sync-header, checksum and gateway address is auto filled">
+        <Attribute Name="Configuration.Parameter.DefaultConstant" Value="'AB 58 00 00 00 00 00000000 00 00'" />
+      </VarDeclaration>
+      <VarDeclaration Name="AepPath" Type="STRING" Comment="name for AEP ADD, name for AEP_DEL, * deletes all, '' (empty) deletes AepId" />
+      <VarDeclaration Name="AepId" Type="UINT" Comment="Tx-Id for AEP_ADD and AEP_DEL 0..127" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier. True signal OK, False Failure. see STATUS for error message." />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="information and error" />
+      <VarDeclaration Name="Message" Type="STRING" Comment="information of RX or TX telegram" />
+      <VarDeclaration Name="AepList" Type="STRING" Comment="all registered actuator end points, &lt;apath0&gt;,&lt;aid0&gt;|&lt;apath1&gt;,&lt;aid1&gt;|&lt;apathN&gt;,&lt;aidN&gt;" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="ENOCEAN_STCEVC_DEV" />
+</FBType>

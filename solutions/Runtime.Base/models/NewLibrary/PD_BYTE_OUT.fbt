@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="PD_BYTE_OUT" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommonTyped" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_PD_BYTE_OUT" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+      </Event>
+      <Event Name="REQ" Comment="Process memory write request">
+        <With Var="QI" />
+        <With Var="WR${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of process memory write request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are written to" />
+      <VarDeclaration Name="WR${I}" Type="BYTE" Comment="Data to be written to fieldbus process memory" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

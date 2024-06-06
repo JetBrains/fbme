@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="EVENTCHAINHEAD" Comment="Head of the EVENTCHAIN list" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event Processing" Function="Chain of events" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2009-10-07" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Register and sort all the FBs in the named chain..">
+        <With Var="NAME" />
+        <With Var="INVERT" />
+      </Event>
+      <Event Name="TRIGGER" Comment="Trigger the chain." />
+      <Event Name="TRIGGERNEXT" Comment="Trigger the next FB in the chain. Used internally, leave unconnected." />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Ack the initialization. Loop to TRIGGER to immediately start the chain." />
+      <Event Name="FINISHED" Comment="The whole chain was processed." />
+      <Event Name="IND" Comment="Fires after INIT and then if the running state changes">
+        <With Var="RUNNING" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="STRING" Comment="Name of the chain this FB is part of." />
+      <VarDeclaration Name="INVERT" Type="BOOL" InitialValue="FALSE" Comment="If FALSE, 0 is the highest prio (first to process), if TRUE, 0 is lowest (last to process)." />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RUNNING" Type="BOOL" Comment="The event chain is running" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EVENTCHAINHEAD">
+    <ServiceSequence Name="trigger">
+      <ServiceTransaction>
+        <InputPrimitive Interface="EVENTCHAINHEAD" Event="INIT" Parameters="NAME,INVERT" />
+        <OutputPrimitive Interface="EVENTCHAINHEAD" Event="INITO" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="EVENTCHAINHEAD" Event="TRIGGER" />
+        <OutputPrimitive Interface="resource" Event="trigger_first" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

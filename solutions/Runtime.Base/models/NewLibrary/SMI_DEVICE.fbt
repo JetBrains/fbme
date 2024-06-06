@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SMI_DEVICE" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="InterfaceID" />
+      </Event>
+      <Event Name="UP">
+        <With Var="SlaveID" />
+        <With Var="MotorID" />
+      </Event>
+      <Event Name="DOWN">
+        <With Var="SlaveID" />
+        <With Var="MotorID" />
+      </Event>
+      <Event Name="STOP">
+        <With Var="SlaveID" />
+        <With Var="MotorID" />
+      </Event>
+      <Event Name="SETPOS">
+        <With Var="Position" />
+      </Event>
+      <Event Name="SETTILT">
+        <With Var="Tilt" />
+      </Event>
+      <Event Name="GETSTATUS">
+        <With Var="SlaveID" />
+        <With Var="MotorID" />
+      </Event>
+      <Event Name="SETID">
+        <With Var="SerialNo" />
+        <With Var="MotorID" />
+        <With Var="ManuID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="RX">
+        <With Var="AbsolutPos" />
+        <With Var="TiltPos" />
+        <With Var="Status" />
+        <With Var="CycleCnt" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="Unique identifier of the communication interface to the SMI gateway" />
+      <VarDeclaration Name="SlaveID" Type="BYTE" Comment="Address of the SMI gateway" />
+      <VarDeclaration Name="MotorID" Type="BYTE" />
+      <VarDeclaration Name="Position" Type="UINT" />
+      <VarDeclaration Name="Tilt" Type="SINT" />
+      <VarDeclaration Name="SerialNo" Type="DWORD" />
+      <VarDeclaration Name="ManuID" Type="USINT" Comment="Manufacturer ID" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="AbsolutPos" Type="UINT" />
+      <VarDeclaration Name="TiltPos" Type="SINT" />
+      <VarDeclaration Name="Status" Type="BYTE" />
+      <VarDeclaration Name="CycleCnt" Type="UDINT" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommDevice" />
+</FBType>

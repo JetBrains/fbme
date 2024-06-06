@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_TRAIN" Comment="Generation of a finite train of events" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" Comment="Event to start scheduled event outputs">
+        <With Var="DT" />
+        <With Var="N" />
+      </Event>
+      <Event Name="STOP" Comment="Event to stop scheduled event outputs" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="N events at period DT,starting at DT after START">
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DT" Type="TIME" Comment="Period between events" />
+      <VarDeclaration Name="N" Type="UINT" Comment="Number of events to generate" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CV" Type="UINT" Comment="EO index(0 N-1)" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="E_TRAIN">
+    <ServiceSequence Name="normal_operation" Comment="N=3">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=1" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=2" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_TRAIN" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=0" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="no_restart" Comment="N=3">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_TRAIN" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=1" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=2" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_TRAIN" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=0" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="cycle_canceled">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_TRAIN" Event="STOP" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_TRAIN" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_TRAIN" Event="EO" Parameters="CV=0" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

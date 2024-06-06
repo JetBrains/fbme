@@ -51,6 +51,7 @@
     <import index="r791" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:javax.swing.text(JDK/)" implicit="true" />
     <import index="1hzy" ref="fa2f156c-8927-4ca1-847f-ba6f9ea8f1a5/java:org.fbme.ide.richediting.viewmodel(org.fbme.richediting.lib/)" implicit="true" />
     <import index="t4dg" ref="r:c03388ee-0de1-4aa4-a041-89cc983818e2(org.fbme.ide.iec61499.lang.behavior)" implicit="true" />
+    <import index="tprs" ref="r:00000000-0000-4000-0000-011c895904a4(jetbrains.mps.ide.actions)" implicit="true" />
   </imports>
   <registry>
     <language id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin">
@@ -58,6 +59,7 @@
       <concept id="1207145163717" name="jetbrains.mps.lang.plugin.structure.ElementListContents" flags="ng" index="ftmFs">
         <child id="1207145201301" name="reference" index="ftvYc" />
       </concept>
+      <concept id="1207145360364" name="jetbrains.mps.lang.plugin.structure.BuildGroupBlock" flags="in" index="fu6FP" />
       <concept id="1203071646776" name="jetbrains.mps.lang.plugin.structure.ActionDeclaration" flags="ng" index="sE7Ow">
         <property id="1205250923097" name="caption" index="2uzpH1" />
         <property id="7458746815261976739" name="requiredAccess" index="2YLI8m" />
@@ -3753,6 +3755,147 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="7mSJsq73vIV">
+    <property role="TrG5h" value="NewLibraryGroup" />
+    <node concept="tT9cl" id="7mSJsq73vIX" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4HSg" resolve="ProjectNewActions" />
+      <ref role="2f8Tey" to="tprs:56$IWKxeQ2A" resolve="languageExt" />
+    </node>
+    <node concept="fu6FP" id="6VZruCm6ttv" role="ftER_">
+      <node concept="3clFbS" id="6VZruCm6ttx" role="2VODD2">
+        <node concept="3clFbF" id="6VZruCm8c05" role="3cqZAp">
+          <node concept="2OqwBi" id="6VZruCm8ct8" role="3clFbG">
+            <node concept="2WthIp" id="6VZruCm8c04" role="2Oq$k0" />
+            <node concept="liA8E" id="6VZruCm8cYr" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="6VZruCm8dq8" role="37wK5m">
+                <node concept="2YIFZM" id="6VZruCm8dhl" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="6VZruCm8d$e" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="6VZruCm8e2t" role="37wK5m">
+                    <property role="Xl_RC" value="platform.NewLibraryAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="9Qxn4Lp17d">
+    <property role="TrG5h" value="LibraryGroup" />
+    <node concept="fu6FP" id="9Qxn4LpaFd" role="ftER_">
+      <node concept="3clFbS" id="9Qxn4LpaFf" role="2VODD2">
+        <node concept="3clFbF" id="9Qxn4LpgK8" role="3cqZAp">
+          <node concept="2OqwBi" id="9Qxn4LphcW" role="3clFbG">
+            <node concept="2WthIp" id="9Qxn4LpgK7" role="2Oq$k0" />
+            <node concept="liA8E" id="9Qxn4Lpiag" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="9Qxn4LpiyI" role="37wK5m">
+                <node concept="2YIFZM" id="9Qxn4Lpiou" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="9Qxn4LpiPw" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="9Qxn4Lpj2T" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ImportLibraryAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="6GCs3ZEl6Al" role="3cqZAp">
+          <node concept="2OqwBi" id="6GCs3ZEl78e" role="3clFbG">
+            <node concept="2WthIp" id="6GCs3ZEl6Aj" role="2Oq$k0" />
+            <node concept="liA8E" id="6GCs3ZEl8cS" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="6GCs3ZEl91Q" role="37wK5m">
+                <node concept="2YIFZM" id="6GCs3ZEl8Vl" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="6GCs3ZEl9m1" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="6GCs3ZEl9AP" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ImportNxtLibAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="tT9cl" id="9Qxn4Lp18Y" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4HGL" resolve="ProjectActions" />
+    </node>
+  </node>
+  <node concept="tC5Ba" id="XKbzpysL71">
+    <property role="TrG5h" value="ExportLibraryGroup" />
+    <node concept="tT9cl" id="XKbzpysL73" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4Jd1" resolve="SolutionActions" />
+    </node>
+    <node concept="fu6FP" id="XKbzpysL75" role="ftER_">
+      <node concept="3clFbS" id="XKbzpysL77" role="2VODD2">
+        <node concept="3clFbF" id="XKbzpysX_i" role="3cqZAp">
+          <node concept="2OqwBi" id="XKbzpysY26" role="3clFbG">
+            <node concept="2WthIp" id="XKbzpysX_h" role="2Oq$k0" />
+            <node concept="liA8E" id="XKbzpysYZq" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="XKbzpysZml" role="37wK5m">
+                <node concept="2YIFZM" id="XKbzpysZfP" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="XKbzpysZC5" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="XKbzpysZD9" role="37wK5m">
+                    <property role="Xl_RC" value="platform.ExportLibraryAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="tC5Ba" id="2iSq5VJxrIX">
+    <property role="TrG5h" value="CreateNamespaceGroup" />
+    <node concept="fu6FP" id="2iSq5VJxrSZ" role="ftER_">
+      <node concept="3clFbS" id="2iSq5VJxrT1" role="2VODD2">
+        <node concept="3clFbF" id="2iSq5VJxuQk" role="3cqZAp">
+          <node concept="2OqwBi" id="2iSq5VJxvj8" role="3clFbG">
+            <node concept="2WthIp" id="2iSq5VJxuQj" role="2Oq$k0" />
+            <node concept="liA8E" id="2iSq5VJxwhU" role="2OqNvi">
+              <ref role="37wK5l" to="qkt:~DefaultActionGroup.add(com.intellij.openapi.actionSystem.AnAction)" resolve="add" />
+              <node concept="2OqwBi" id="2iSq5VJxwKi" role="37wK5m">
+                <node concept="2YIFZM" id="2iSq5VJxw_M" role="2Oq$k0">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getInstance()" resolve="getInstance" />
+                  <ref role="1Pybhc" to="qkt:~ActionManager" resolve="ActionManager" />
+                </node>
+                <node concept="liA8E" id="2iSq5VJxx2U" role="2OqNvi">
+                  <ref role="37wK5l" to="qkt:~ActionManager.getAction(java.lang.String)" resolve="getAction" />
+                  <node concept="Xl_RD" id="2iSq5VJxxg$" role="37wK5m">
+                    <property role="Xl_RC" value="platform.SetNamespaceAction" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="tT9cl" id="2iSq5VJxxHS" role="2f5YQi">
+      <ref role="tU$_T" to="tprs:hyf4Gvz" resolve="NodeActions" />
     </node>
   </node>
 </model>

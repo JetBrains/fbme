@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SNTPCLIENT" Comment="Basic Function Block Type" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEDSVhI4ja4Dwwo4DtqTatCa84tjTF2tuLcEyWWdYd+u8MjyTEP+uIIc1rJRxyuYzU5p/1HUujFDuegyow+GqUWHOTegHpfLzpww5ZDAShs+xnr3oPyoCSm+Og/QqWPG2uLQKL5T4S+5ReAeQiCt8JPyK1SaI6D0ekK4s9DYAOvTNXL5RD+ozFBeOhzq5sn2BMA1X6Sq204so7AcR7sJRmW/HwaVDwPmwqUPtlID66ZJ2tn2HIhoZmai3ZOiGyllWzNC0jYHdZpiXF3LGEbD1SHc5zE64n4QS0wh6Y7K8+AqUq3n1m8DP3gUln9Ocdj/eu7bndVAlX+EuIloxvLM5TpZRQZv7twFrREOUeWb5T0lwWeQPdAoKjde92ZUsyRMWboYkIT+7m71YvnjVqz+pjqgYlM2THc+JjL/bnGjzCm2G6TteYWttldlDygY4ZqT9S2nPBXpxxoRIvOeM/OkNnZ0eZtLrfARIWJy/aL42a5sSYxOsmioqLli854z86Q2dn7k7fpTtraEXo2+ca0YKveMdz/5TP8Xtgd1HtIvLcIMe4P71B0PNNadzWV+tNDBx5islnvlBi7sfBemwFGuj1BiuZBnitWedQFapisi7+AJEBe8LrOSpag0m6HAzmSNIE4y+tOS47j3l1IkEnbZEzN4yRWsxRspfX6NK2hK7ihDezaDg4d6g3MJ1++qN6h4FDk6KzKPDiErW3n6YYkQ/mmLNoODh3qDcwnX76o3qHgUM2XhDeVecX9K4dRnBDUEwwbvBo6phVANqwcrGg3xRzQGPPcMORRA2E1q4+zEnxYEJu8GjqmFUA2rBysaDfFHNAY89ww5FEDYRIu2rvzsJFv5R4eskMJiwjdSJBJ22RMzeMkVrMUbKX1w0ZHY7na2n38rOrB1ICU4iPjbg0L2UQHtu51utRFIn4Gm4Umh+9W/mOAjw2Xc9KJZ5gUPmJxG9jJLNPuDs6ULK+3fZbpVsvDYN5NWQEakZaJfyMFzMAMyg7y3RWx4ziYT+YLS4GRmD+Nt4+YCT+OL6XJD6tYUXGBtpzwV6ccaES2gXCSRXeDtJ3JilUM8cdi44CPDZdz0olnmBQ+YnEb2NTe4ySXSYGBioAeCzGOTgMFo/QKkJf4IwMGEFhqVNyMNaxOIbiwKBInqB3Vg9/DEadfvqjeoeBQ53gQZVzRvSesen1LnkWj3H/gJL+bcoI6UEMGKvCaHuQCSdZF+aEhHt1O8W+OKrRVtx49X1/QhOc1NdyTle/+jSjmH3biDYwdBj/TmNrKS9h27nW61EUifgabhSaH71b+Y4CPDZdz0olnmBQ+YnEb2M7RrQez+Rrb77d9lulWy8N3fU+N4B2yvu4CXYsPtXDAQC5SKDOHDkwsmUOyMiZ0awtcz84Vxz0BvLS1OcB1jdL5dlDSLOonsJ1IkEnbZEzN4yRWsxRspfXodECkw9SduU48YL3cjN4Q7JlDsjImdGsHB9gZIF7bHBlL24jk7S0CtoFwkkV3g7SdyYpVDPHHYtvBGaSEfk2pCy1GZ/Q+Sq76v6BZQCN1TanzCMfhG/3Td6bxnEosw9uLrUkeHzhuy+V+gzQzHvzDkaE53hJEON18dMUc68xennNEpzE6ovVDB5IAHWXQEK8KKubvMbpRQGSl0TaTSF1WpOdRl5tJ6vos2g4OHeoNzDglGvNNtlzekboH3BgKAM2JceMAjTQsdu47dvOjW/E0JmHAZI5jDcrQMsO+6jdICG+3fZbpVsvDc59e0F8k8aB7MbkTvFRO1km9zL7WzFt03dXopCEL1nLOulUrsTYLezcBfiTh3sCSK61wez0LhUd6v6BZQCN1TanzCMfhG/3Td6bxnEosw9uTsMvmbsTaJALJHrZFk8rojuZ9QNyL9/oah5p38uzyEUWNZmlVmEVIcTiq2O2COkxHqShDflmHriiI0rks6wipo39xo08RUswwHxrZpBrtRrTZ80o+rVZo4lMjIFViCnEsu3yElC9k7/wYFGlh6I6OVayq5Y9TZBtYx/2rYFc1etTGStvF6P5Wk75RJkO0f6+ep4tE6G41gs7mfUDci/f6Goead/Ls8hFFjWZpVZhFSG8OoumcgwQFS72v3YipXzzAtDZi880nCK7liP042lIzv8Y0H4qd91YbUjXfyxYRIJiEfWXB9P8lQz1v6wrRmQB6v6BZQCN1TanzCMfhG/3Td6bxnEosw9u8Gok/ULe5e3Jq1ngx5fIMAJDq9Ym3y/8QMb8ekfa+PQ1824JwiNiSB8dp/MPU7igoWQZrjUEjyYtnf23O6BD39GpEVfW/n+wgX9AIXZROSY9xmuVOGBNh1ZI8TOtAqRgraraZ5lbxQtCcX559glJDi2sEa5096EBRuq04XkGKO94chHngx+mp68CyKmRcPlZ8KcCIhSVuF8fk83IFQWCzLXnzXcyBrOLxxa0easH1e8eSAB1l0BCvEPC7qParJZ3ymthxEIuX4ju7mXnMlU9Es8s/KVATEoCf/z4SWyWsr2wqX9zyvqgPPn0aVv11yXoZS9uI5O0tArGbfQUzaSKXwpIRz+gS/cwV4TaVMJe2ZyjUU4x8PgbowsmQhVUWxAzsvUChCahiRD8tdC3n5AH/eT5ri7ec3o/RZyasgrkIHivOLY0xdrbi9gAMs2VpZiYyOdc6m8FKjjEmoHNcSP0R9OPu5jvRjMusOdH1X3X+SKuAG2HCMr1uL0NHJ4Yn4TdV4anB/QTNy6h4VQ8Pq2WDFxjye/u6aLdKgB4LMY5OAynNlrMXmn/sTi1t+LPZH88EwwsnIbVbZvvKmoMsNm38NaXgR0FoPKssOdH1X3X+SKuAG2HCMr1uL0NHJ4Yn4Tdw1kMrg+SVRMWOHkxkQwDIsmqiZB2IaD7KgB4LMY5OAyAyyR2OfzUeX1fatcP2avkEtZNgN7Hw87dIgadvUqY01BLWJRq0Vk8ZS9uI5O0tArD125LcSt/PZc+fwcguBlQQswHET0wkfrTlSpMWVxBaLi8aVZZz1ZUhJ5L7bsPJgk=" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="19.06.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="SERVERS" />
+        <With Var="INTERVAL" />
+        <With Var="TIMEOUT" />
+        <With Var="INITRETRIES" />
+        <With Var="MAXDIFFTOSYNC" />
+      </Event>
+      <Event Name="REQ" Comment="Force the synchronization" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="LASTDIFF" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="STATUS" />
+        <With Var="LASTDIFF" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="TRUE" Comment="Input event qualifier" />
+      <VarDeclaration Name="SERVERS" Type="STRING" Comment="Comma-delimited list of server:port entries to try" />
+      <VarDeclaration Name="INTERVAL" Type="UINT" InitialValue="15" Comment="Query interval in minutes, 0 to only sync on REQ event" />
+      <VarDeclaration Name="TIMEOUT" Type="UINT" InitialValue="5" Comment="Timeout in seconds for the time server replies" />
+      <VarDeclaration Name="INITRETRIES" Type="UINT" InitialValue="6" Comment="Number of retries of initial time sync" />
+      <VarDeclaration Name="MAXDIFFTOSYNC" Type="UDINT" InitialValue="60000" Comment="Max difference in ms to sync (ignored at INIT sync)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Status of the last sync attempt" />
+      <VarDeclaration Name="LASTDIFF" Type="DINT" Comment="Time difference in ms at last sync" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

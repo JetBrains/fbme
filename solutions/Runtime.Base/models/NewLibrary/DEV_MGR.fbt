@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="DEV_MGR" Comment="Device Management Service Interface" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2000-07-24" Remarks="Simplified for XML encoding." />
+  <VersionInfo Organization="Rockwell Automation" Version="1.0" Author="JHC" Date="2000-05-16" Remarks="File type changed to &quot;.fbt&quot;" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-03-19" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization/Termination">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Service Request">
+        <With Var="QI" />
+        <With Var="DST" />
+        <With Var="RQST" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization/Termination Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Service Confirmation">
+        <With Var="RESP" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="DST" Type="STRING" Comment="Destination for RQST" />
+      <VarDeclaration Name="RQST" Type="STRING" Comment="XML-encoded Request" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="RESP" Type="STRING" Comment="XML-encoded Response" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="DEV_MGR">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="DEV_MGR" Event="INIT+" />
+        <OutputPrimitive Interface="manager" Event="init" />
+        <OutputPrimitive Interface="DEV_MGR" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="DEV_MGR" Event="INIT+" />
+        <OutputPrimitive Interface="manager" Event="init" />
+        <OutputPrimitive Interface="DEV_MGR" Event="INITO-" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="normal_request">
+      <ServiceTransaction>
+        <InputPrimitive Interface="DEV_MGR" Event="REQ+" Parameters="RQST" />
+        <OutputPrimitive Interface="manager" Event="serviceRequest" Parameters="RQST" />
+        <OutputPrimitive Interface="DEV_MGR" Event="CNF+" Parameters="RESP" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="DEV_MGR" Event="REQ-" />
+        <OutputPrimitive Interface="DEV_MGR" Event="CNF-" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="DEV_MGR" Event="INIT-" />
+        <OutputPrimitive Interface="manager" Event="terminate" />
+        <OutputPrimitive Interface="DEV_MGR" Event="INITO-" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="device_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="manager" Event="terminated" />
+        <OutputPrimitive Interface="DEV_MGR" Event="INITO-" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

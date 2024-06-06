@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_CTU" Comment="Event-Driven Up Counter" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1-A.18" Classification="Event-driven blocks" Function="Up-counter" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="MS" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CU" Comment="Count Up">
+        <With Var="PV" />
+      </Event>
+      <Event Name="R" Comment="Reset" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CUO" Comment="Count Up Output Event">
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+      <Event Name="RO" Comment="Reset Output Event">
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PV" Type="UINT" Comment="Preset Value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" Comment="CV&gt;=PV" />
+      <VarDeclaration Name="CV" Type="UINT" Comment="Counter Value" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

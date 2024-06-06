@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BM_ETHERCAT" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Runtime.FBType.WeakImplementingType" Value="Runtime.Fieldbus#BM_SIMBUS" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Other" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SIMULATION" />
+      </Event>
+      <Event Name="CONFIG" Comment="Configure the devices on the bus">
+        <With Var="QI" />
+      </Event>
+      <Event Name="SET_STATE" Comment="Set a dedicated EtherCAT state">
+        <With Var="STATE" />
+        <With Var="STARTUP_MODE" />
+      </Event>
+      <Event Name="REQ" Comment="Bus cycle request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="RESTART" Comment="Reset the bus and restart">
+        <With Var="QI" />
+        <With Var="STATE" />
+      </Event>
+      <Event Name="CMD_SET">
+        <With Var="CMD" />
+        <With Var="CMD_ADP" />
+        <With Var="CMD_ADO" />
+        <With Var="CMD_DATA" />
+      </Event>
+      <Event Name="CMD_REQ" />
+      <Event Name="START_SCAN" />
+      <Event Name="SCAN_QUERY">
+        <With Var="SCAN_SEL_ITEM" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+      </Event>
+      <Event Name="CONFIGO" Comment="Bus configuration confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+      </Event>
+      <Event Name="CNF" Comment="Bus cycle request confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+        <With Var="CYCLE_CNT" />
+        <With Var="CYCLE_TIME" />
+        <With Var="STATEO" />
+        <With Var="ECS_COUNT" />
+        <With Var="ECS_WC" />
+        <With Var="ECS_STATES" />
+        <With Var="HC_STATE" />
+        <With Var="HC_ERROR" />
+      </Event>
+      <Event Name="CMD_RSP">
+        <With Var="RSP" />
+        <With Var="RSP_ADP" />
+        <With Var="RSP_ADO" />
+        <With Var="RSP_DATA" />
+        <With Var="RSP_WC" />
+        <With Var="RSP_CNT" />
+      </Event>
+      <Event Name="SCAN_RSP">
+        <With Var="SCAN_STATE" />
+        <With Var="SCAN_CNT" />
+      </Event>
+      <Event Name="SCAN_ITEM_IND" Comment="will fires on every Slave property as a result of a Scan (SCAN START) ">
+        <With Var="SCAN_ITEM_DATA" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Uniquely identifies a bus in a device" />
+      <VarDeclaration Name="SIMULATION" Type="BOOL" Comment="Puts the bus into simulation mode" />
+      <VarDeclaration Name="STATE" Type="UDINT" Comment="Requested Ethercat state (1 .. INIT, 2 .. PREOP, 4 .. SAFEOP, 8 .. OP)" />
+      <VarDeclaration Name="CMD" Type="WORD" Comment="EC Command (see Ethercat technical referenz)" />
+      <VarDeclaration Name="CMD_ADP" Type="INT" Comment="EC Slave Address depending on EC Command" />
+      <VarDeclaration Name="CMD_ADO" Type="UINT" Comment="EC Slave Physical Memory(Register) offset" />
+      <VarDeclaration Name="CMD_DATA" Type="STRING" Comment="Data in ASCII Hex (Stringlen / 2 = Datalen)" />
+      <VarDeclaration Name="STARTUP_MODE" Type="UINT" Comment="0=COLDSTART (Autoincrement Addr), 1=Coldstart (store alias), 2=HOTCONNECT (warmstart)" />
+      <VarDeclaration Name="SCAN_SEL_ITEM" Type="UINT" Comment="0=SCAN(for Devices),1=SCAN_AUTO_ALIAS(Store Alias in SII EEProm)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays the current status of the bus" />
+      <VarDeclaration Name="ERROR_CODE" Type="DINT" Comment="Error code of the bus" />
+      <VarDeclaration Name="ERROR_ARG" Type="DINT" Comment="Additional error information" />
+      <VarDeclaration Name="CYCLE_CNT" Type="UDINT" Comment="The number of cycles the bus has executed" />
+      <VarDeclaration Name="CYCLE_TIME" Type="UDINT" Comment="Time of the last read/write cycle of the bus" />
+      <VarDeclaration Name="STATEO" Type="UDINT" Comment="Current Ethercat state" />
+      <VarDeclaration Name="ECS_COUNT" Type="UDINT" Comment="Ethercat Slave (ECS) count in Configuration" />
+      <VarDeclaration Name="ECS_WC" Type="UDINT" Comment="Ethercat Slave (ECS) Working Count (active slaves)" />
+      <VarDeclaration Name="ECS_STATES" Type="WORD" Comment="Ethercat Slave (ECS) ORed states of all active slaves" />
+      <VarDeclaration Name="RSP" Type="DINT" Comment="EC Command Result (0 = OK, otherwise error result)" />
+      <VarDeclaration Name="RSP_ADP" Type="INT" Comment="EC Address result (may be incremented by ECS)" />
+      <VarDeclaration Name="RSP_ADO" Type="UINT" Comment="the same as give by the CMD_ADO" />
+      <VarDeclaration Name="RSP_DATA" Type="STRING" Comment="Data received from ECS" />
+      <VarDeclaration Name="RSP_WC" Type="UINT" Comment="Working Count result processed by ECS" />
+      <VarDeclaration Name="RSP_CNT" Type="SINT" Comment="incremented by every RSP received" />
+      <VarDeclaration Name="HC_STATE" Type="UDINT" Comment="HotConnect State" />
+      <VarDeclaration Name="HC_ERROR" Type="WORD" Comment="HotConnect Error Result" />
+      <VarDeclaration Name="SCAN_STATE" Type="WORD" />
+      <VarDeclaration Name="SCAN_CNT" Type="UINT" />
+      <VarDeclaration Name="SCAN_ITEM_DATA" Type="STRING" Comment="Item property of a ECS (SCAN)" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

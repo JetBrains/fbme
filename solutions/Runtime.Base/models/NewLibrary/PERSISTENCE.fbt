@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="BB198C1905A31BA8" Name="PERSISTENCE" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_PERSISTENCE" />
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Data" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="medusta" Date="18.03.2010" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+      </Event>
+      <Event Name="READ" Comment="Reads the persistent data. If none are found, defaults are used.">
+        <With Var="default${I}" />
+      </Event>
+      <Event Name="WRITE" Comment="Stores the input data to the persistent storage.">
+        <With Var="input${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="READCNF" Comment="Read Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="defaultsUsed" />
+        <With Var="output${I}" />
+      </Event>
+      <Event Name="WRITECNF" Comment="Write Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="defaultsUsed" />
+        <With Var="output${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="input${I}" Type="&lt;BOOL,BYTE,WORD,DWORD,LWORD,STRING,WSTRING,SINT,INT,DINT,LINT,USINT,UINT,ULINT,UDINT,LREAL,REAL,TIME,TIME_OF_DAY,DATE,DATE_AND_TIME,BOOL[1..256],BYTE[1..256],WORD[1..256],DWORD[1..256],LWORD[1..256],SINT[1..256],INT[1..256],DINT[1..256],LINT[1..256],USINT[1..256],UINT[1..256],ULINT[1..256],UDINT[1..256],LREAL[1..256],REAL[1..256],TIME[1..256],TIME_OF_DAY[1..256],DATE[1..256],DATE_AND_TIME[1..256],STRING[1..256],WSTRING[1..256]&gt;" Comment="Input data to be written to data file" />
+      <VarDeclaration Name="default${I}" Type="input${I}" Comment="Default data for use before input data is available" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration Name="defaultsUsed" Type="BOOL" Comment="Default values were used" />
+      <VarDeclaration Name="output${I}" Type="input${I}" Comment="Data output" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

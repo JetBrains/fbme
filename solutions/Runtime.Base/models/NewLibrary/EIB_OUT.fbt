@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="EIB_OUT" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_EIB_OUT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="oberwal" Date="15.04.2010" Remarks="Template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="EIB_ADDR${I}" />
+      </Event>
+      <Event Name="REQ${I}" Comment="Normal Execution Request">
+        <With Var="QI" />
+        <With Var="EIB_ADDR${I}" />
+        <With Var="EIB_VALUE${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND">
+        <With Var="ONLINE" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Unique EIB bus identifier" />
+      <VarDeclaration Name="EIB_ADDR${I}" Type="STRING" Comment="EIB group address (a.b.c)" />
+      <VarDeclaration Name="EIB_VALUE${I}" Type="&lt;BOOL,BYTE,WORD,DWORD,REAL,STRING&gt;" Comment="Value for the EIB variable" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Status indicator" />
+      <VarDeclaration Name="ONLINE" Type="BOOL" Comment="Gateway online status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

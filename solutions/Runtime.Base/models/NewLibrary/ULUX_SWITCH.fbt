@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ULUX_SWITCH" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="medusta" Date="10/13/2014" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initializes and registers (QI=true) or unregisters (QI=false) the switch at the u::Lux infrastructure">
+        <With Var="QI" />
+        <With Var="MACAddress" />
+        <With Var="IPAddress" />
+        <With Var="IPNetmaskWidth" />
+        <With Var="IPGateway" />
+        <With Var="SwitchId" />
+        <With Var="DestinationIP" />
+        <With Var="Firmware" />
+      </Event>
+      <Event Name="SET_IP" Comment="Sets the IP of the switch. If MACAddress is 00:00:00:00:00:00, waits for the commisioning message from the switch">
+        <With Var="MACAddress" />
+        <With Var="IPAddress" />
+        <With Var="IPNetmaskWidth" />
+        <With Var="IPGateway" />
+        <With Var="DestinationIP" />
+      </Event>
+      <Event Name="ERASE_IP" Comment="Erases the IP of the switch">
+        <With Var="MACAddress" />
+      </Event>
+      <Event Name="START" Comment="Starts the switch" />
+      <Event Name="RESTART" Comment="Reboots the switch and starts again" />
+      <Event Name="STOP" Comment="Stops the switch" />
+      <Event Name="COMMISSION" Comment="Waits for a physical action on the switch to report its MAC address. The MACAddress input has to be 00:00:00:00:00:00, otherwise the event has no effect">
+        <With Var="MACAddress" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="State" />
+        <With Var="Error" />
+        <With Var="StateStr" />
+      </Event>
+      <Event Name="SET_IP_CNF" Comment="Confirms the setting of the IP address (might take tens of seconds)">
+        <With Var="State" />
+        <With Var="Error" />
+        <With Var="StateStr" />
+      </Event>
+      <Event Name="ERASE_IP_CNF" Comment="Confirms the erasing of the IP address (might take tens of seconds)">
+        <With Var="State" />
+        <With Var="StateStr" />
+        <With Var="Error" />
+      </Event>
+      <Event Name="START_CNF" Comment="Confirms the start request. The actual start can take tens of seconds, if the firmware has to be flashed first">
+        <With Var="State" />
+        <With Var="Error" />
+        <With Var="StateStr" />
+      </Event>
+      <Event Name="RESTART_CNF" Comment="Confirms the restart request. The actual start can take tens of seconds, if the firmware has to be flashed first">
+        <With Var="State" />
+        <With Var="Error" />
+        <With Var="StateStr" />
+      </Event>
+      <Event Name="STOP_CNF" Comment="Confirms the stop request">
+        <With Var="State" />
+        <With Var="StateStr" />
+        <With Var="Error" />
+      </Event>
+      <Event Name="STATE_IND" Comment="Indicates the state change">
+        <With Var="MACAddressOut" />
+        <With Var="State" />
+        <With Var="Error" />
+        <With Var="StateStr" />
+        <With Var="ActorList" />
+      </Event>
+      <Event Name="CONFIGURED_IND" Comment="Indicates that the switch has a valid IP configuration and can be started">
+        <With Var="State" />
+        <With Var="StateStr" />
+        <With Var="Error" />
+        <With Var="ActorList" />
+      </Event>
+      <Event Name="RUNNING_IND" Comment="Indicates that the switch provided all current values and is running">
+        <With Var="State" />
+        <With Var="StateStr" />
+        <With Var="Error" />
+        <With Var="ActorList" />
+      </Event>
+      <Event Name="COMMISSIONED_IND" Comment="Indicates that the switch reported its MAC address">
+        <With Var="State" />
+        <With Var="StateStr" />
+        <With Var="Error" />
+        <With Var="MACAddressOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="INIT qualifier" />
+      <VarDeclaration Name="Firmware" Type="STRING" Comment="Firmware to load into the switch">
+        <Attribute Name="Configuration.DeployFiles" Value="" />
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="SwitchId" Type="STRING" Comment="Unique name of the switch">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="MACAddress" Type="STRING" Comment="MAC address (format: xx:xx:xx:xx:xx:xx) of the switch or 00:00:00:00:00:00 if it is to be get via an action performed on the physical switch">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="IPAddress" Type="STRING" Comment="IP address (dotted quad)">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="IPNetmaskWidth" Type="USINT" Comment="Width of the netmask in bits (8-30 or 0 for class default)">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="IPGateway" Type="STRING" Comment="IP gateway (dotted quad)">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="DestinationIP" Type="STRING" Comment="Comma-separated list of up to 3 additional IP adresses (dotted quads) for notifications">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="INITO qualifier" />
+      <VarDeclaration Name="MACAddressOut" Type="STRING" Comment="Actual retrieved MAC address" />
+      <VarDeclaration Name="State" Type="USINT" Comment="Switch state" />
+      <VarDeclaration Name="StateStr" Type="STRING" Comment="Human-readable switch state" />
+      <VarDeclaration Name="Error" Type="STRING" Comment="Reason for the ERROR state" />
+      <VarDeclaration Name="ActorList" Type="STRING" Comment="Comma-separated list of actors configured for the switch" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="ULUX_SWITCH">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_confirm">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="CNF+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="REQ-" Parameters="SD" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_error">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_response">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="IND+" Parameters="RD" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="RSP" Parameters="QI,SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="response" Parameters="QI,SD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD,QI=FALSE" />
+        <OutputPrimitive Interface="RESOURCE" Event="inhibited" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="error_indication">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="error" Parameters="STATUS" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="IND-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="ULUX_SWITCH" Event="INIT-" />
+        <OutputPrimitive Interface="RESOURCE" Event="terminate" />
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="resource_initiated_termination">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="ULUX_SWITCH" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

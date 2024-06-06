@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ETHERCAT_SLAVE" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="mayehor" Date="07.10.2010" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="nxtControl ethercat" Version="1.5" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NR" />
+      </Event>
+      <Event Name="SET_STATE" Comment="Service Request">
+        <With Var="STATE" />
+      </Event>
+      <Event Name="QUERY_STATE" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND">
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+        <With Var="STATEO" />
+        <With Var="ERROR" />
+        <With Var="ACTUAL_STATE" />
+        <With Var="WC_ERROR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Service Parameters" />
+      <VarDeclaration Name="SLOT_NR" Type="DINT" Comment="Output data to resource" />
+      <VarDeclaration Name="STATE" Type="DINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration Name="DIAGNOSTICS" Type="STRING" />
+      <VarDeclaration Name="STATEO" Type="DINT" />
+      <VarDeclaration Name="ERROR" Type="DINT" />
+      <VarDeclaration Name="ACTUAL_STATE" Type="DINT" Comment="Actual Ethercat Slave State after QUERY_STATE" />
+      <VarDeclaration Name="WC_ERROR" Type="BOOL" Comment="FALSE = QUERY_STATE Confirms OK, TRUE = QUERY_STATE Confirms ERROR (Slave missing)" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="APPLICATION">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="APPLICATION" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="APPLICATION" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_confirm">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="APPLICATION" Event="CNF+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="REQ-" Parameters="SD" />
+        <OutputPrimitive Interface="APPLICATION" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_error">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="APPLICATION" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_response">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="RSP" Parameters="QI,SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="response" Parameters="QI,SD" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD" />
+        <OutputPrimitive Interface="APPLICATION" Event="IND+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD,QI=FALSE" />
+        <OutputPrimitive Interface="RESOURCE" Event="inhibited" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="error_indication">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="error" Parameters="STATUS" />
+        <OutputPrimitive Interface="APPLICATION" Event="IND-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="APPLICATION" Event="INIT-" />
+        <OutputPrimitive Interface="RESOURCE" Event="terminate" />
+        <OutputPrimitive Interface="APPLICATION" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="resource_initiated_termination">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="APPLICATION" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

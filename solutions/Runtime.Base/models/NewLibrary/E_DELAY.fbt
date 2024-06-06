@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_DELAY" Comment="Delayed propagation of an event-Cancellable" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event processing" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" Comment="Begin Delay">
+        <With Var="DT" />
+      </Event>
+      <Event Name="STOP" Comment="Cancel Delay" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Delayed Event" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DT" Type="TIME" Comment="Delay Time" />
+    </InputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="E_DELAY">
+    <ServiceSequence Name="event_delay">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_DELAY" Event="START" Parameters="DT" />
+        <OutputPrimitive Interface="E_DELAY" Event="EO" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="delay_canceled">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_DELAY" Event="STOP" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_DELAY" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="no_multiple_delay">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_DELAY" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <OutputPrimitive Interface="E_DELAY" Event="EO" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_DELAY" Event="START" Parameters="DT" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="REPORT_APP_STATE" Comment="Service Interface Function Block Type" Namespace="Runtime.Management">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="medusta" Date="11.04.2012" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" Comment="Start the FB. If STARTMODE = Automatic, it will be started automatically.">
+        <With Var="TIMEOUT" />
+      </Event>
+      <Event Name="REPORT" Comment="Report the application status">
+        <With Var="STATE" />
+        <With Var="MESSAGE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Confirmation of the START and REPORT">
+        <With Var="ACTIVE" />
+        <With Var="TIMED_OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="STARTMODE" Type="USINT" InitialValue="0" Comment="Start mode. 0 = start when the parent resource starts, 1 = start when the START event is received. Has to be a constant (there is no WITH event)">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Automatic = 0|START Event = 1}" />
+      </VarDeclaration>
+      <VarDeclaration Name="TIMEOUT" Type="TIME" InitialValue="t#0ms" Comment="If not null and the REPORT event does not arrive in the specified time, it will be triggered automatically. For STARTMODE = 0 it has to be a constant." />
+      <VarDeclaration Name="STATE" Type="USINT" InitialValue="0" Comment="Application state to report">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=App Initialized = 0|Log Only = 255}" />
+      </VarDeclaration>
+      <VarDeclaration Name="MESSAGE" Type="STRING" Comment="Message to log into the system log" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ACTIVE" Type="BOOL" Comment="The FB is active and has not yet received a REPORT event" />
+      <VarDeclaration Name="TIMED_OUT" Type="BOOL" Comment="The timeout was reached" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="REPORT_APP_STATE">
+    <ServiceSequence Name="Start">
+      <ServiceTransaction>
+        <InputPrimitive Interface="REPORT_APP_STATE" Event="START" Parameters="TIMEOUT" />
+        <OutputPrimitive Interface="RESOURCE" Event="Starts the FB" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="Report App Initialized">
+      <ServiceTransaction>
+        <InputPrimitive Interface="REPORT_APP_STATE" Event="REPORT" Parameters="STATE,MESSAGE" />
+        <OutputPrimitive Interface="RESOURCE" Event="Enables persistent value writing" />
+        <OutputPrimitive Interface="RESOURCE" Event="Logs the event to system log" />
+        <OutputPrimitive Interface="REPORT_APP_STATE" Event="CNF" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="Report Other">
+      <ServiceTransaction>
+        <InputPrimitive Interface="REPORT_APP_STATE" Event="REPORT" Parameters="STATE,MESSAGE" />
+        <OutputPrimitive Interface="RESOURCE" Event="Logs the event" />
+        <OutputPrimitive Interface="REPORT_APP_STATE" Event="CNF" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="Timeout Elapsed">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="RESOURCE" Event="Do the same as if REPORT triggered" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

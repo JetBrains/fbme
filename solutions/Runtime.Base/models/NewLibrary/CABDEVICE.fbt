@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="CABDEVICE" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="NINPUTBITS" />
+        <With Var="NOUTPUTBITS" />
+      </Event>
+      <Event Name="CAB_ERR_ACK" Comment="CAB bus error acknowledge request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="MODULE_ERR_ACK" Comment="Module error acknowledge request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CAB_ERR_IND" Comment="CAB bus error indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="CABERRORCODE" />
+        <With Var="CABERRORARG" />
+        <With Var="CABERRORTIME" />
+      </Event>
+      <Event Name="MODULE_ERR_IND" Comment="Module error indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="MODULEERRORCODE" />
+        <With Var="MODULEERRORARG" />
+        <With Var="MODULEERRORTIME" />
+      </Event>
+      <Event Name="STATEIND" Comment="State change indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="STATE" />
+        <With Var="ONLINE" />
+        <With Var="APPSTATE" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Identifies the bus the current device is attached to" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the number of the slot on the bus occupied by the current device (0..)" />
+      <VarDeclaration Name="NINPUTBITS" Type="UINT" Comment="Defines the number of bits the device occupies in the input process image of the bus (0..)" />
+      <VarDeclaration Name="NOUTPUTBITS" Type="UINT" Comment="Defines the number of bits the device occupies in the output process image of the bus (0..)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current status" />
+      <VarDeclaration Name="CABERRORCODE" Type="UDINT" Comment="CAB bus error code" />
+      <VarDeclaration Name="CABERRORARG" Type="DATE_AND_TIME" Comment="CAB bus error argument" />
+      <VarDeclaration Name="CABERRORTIME" Type="DATE_AND_TIME" Comment="CAB bus error time" />
+      <VarDeclaration Name="MODULEERRORCODE" Type="UDINT" Comment="Module error code" />
+      <VarDeclaration Name="MODULEERRORARG" Type="UDINT" Comment="Module error argument" />
+      <VarDeclaration Name="MODULEERRORTIME" Type="DATE_AND_TIME" Comment="Module error time" />
+      <VarDeclaration Name="STATE" Type="UDINT" Comment="Reflects the modules current operational state" />
+      <VarDeclaration Name="ONLINE" Type="BOOL" Comment="Reflects the modules online state" />
+      <VarDeclaration Name="APPSTATE" Type="DWORD" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

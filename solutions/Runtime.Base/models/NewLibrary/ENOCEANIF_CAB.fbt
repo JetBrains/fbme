@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ENOCEANIF_CAB" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="SlotNo" />
+        <With Var="MbxID" />
+        <With Var="BusID" />
+        <With Var="InterfaceID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="Status" />
+      </Event>
+      <Event Name="IND" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="Message" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BusID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SlotNo" Type="UDINT" Comment="Defines the device on the bus where values are written to" />
+      <VarDeclaration Name="MbxID" Type="UDINT" Comment="User mailbox identifier" />
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="Uniquely identifies the current enocean interface" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Status" Type="STRING" />
+      <VarDeclaration Name="Message" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommInterface" />
+</FBType>

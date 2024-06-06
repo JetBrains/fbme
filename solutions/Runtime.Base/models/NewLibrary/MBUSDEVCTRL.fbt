@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5B86EA208A763F23" Name="MBUSDEVCTRL" Comment="MBus slave device control function block" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_MBUSDEVCTRL" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="09.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;1" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initializes the FB to interface to an MBus slave device">
+        <With Var="QI" />
+        <With Var="COM" />
+        <With Var="DEVID" />
+      </Event>
+      <Event Name="REQ" Comment="Asynchronously requests a datagram from an MBus slave device">
+        <With Var="DEVID" />
+        <With Var="CTRINDEX${I}" />
+      </Event>
+      <Event Name="GET" Comment="Get information about another countger in the current datagram">
+        <With Var="CTRINDEX${I}" />
+      </Event>
+      <Event Name="SET" Comment="Set parameters for the given device">
+        <With Var="DEVID" />
+        <With Var="BAUDRATE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Output data valid confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="IDENTNO" />
+        <With Var="MANID" />
+        <With Var="MANIDENT" />
+        <With Var="VERSION" />
+        <With Var="MEDIUMID" />
+        <With Var="MEDIUMNAME" />
+        <With Var="ACCESSNO" />
+        <With Var="DEVSTATUS" />
+        <With Var="APPBUSY" />
+        <With Var="APPERROR" />
+        <With Var="PWRLOW" />
+        <With Var="PERMERROR" />
+        <With Var="TEMPERROR" />
+        <With Var="SIGNATURE" />
+        <With Var="CTRVALUE${I}" />
+        <With Var="CTRDIB${I}" />
+        <With Var="CTRVIB${I}" />
+        <With Var="CTRCODE${I}" />
+        <With Var="CTRFUNC${I}" />
+        <With Var="CTRTEXT${I}" />
+        <With Var="CTRMULT${I}" />
+        <With Var="CTRUNIT${I}" />
+      </Event>
+      <Event Name="GETO" Comment="Device counter get confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="IDENTNO" />
+        <With Var="MANID" />
+        <With Var="MANIDENT" />
+        <With Var="VERSION" />
+        <With Var="MEDIUMID" />
+        <With Var="MEDIUMNAME" />
+        <With Var="ACCESSNO" />
+        <With Var="DEVSTATUS" />
+        <With Var="APPBUSY" />
+        <With Var="APPERROR" />
+        <With Var="PWRLOW" />
+        <With Var="PERMERROR" />
+        <With Var="TEMPERROR" />
+        <With Var="SIGNATURE" />
+        <With Var="CTRVALUE${I}" />
+        <With Var="CTRDIB${I}" />
+        <With Var="CTRVIB${I}" />
+        <With Var="CTRCODE${I}" />
+        <With Var="CTRFUNC${I}" />
+        <With Var="CTRTEXT${I}" />
+        <With Var="CTRMULT${I}" />
+        <With Var="CTRUNIT${I}" />
+      </Event>
+      <Event Name="SETO" Comment="Device parameter set confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Initialize event input qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" Comment="Defines media characteristica (dev=COM1: [baudrate=1200] [debug=0])" />
+      <VarDeclaration Name="DEVID" Type="UDINT" Comment="Defines the primary address of an MBus slave device (1..250)" />
+      <VarDeclaration Name="BAUDRATE" Type="UDINT" Comment="Defines a new baudrate for the given device (300, 600, 1200, 2400, 4800, 9600)" />
+      <VarDeclaration Name="CTRINDEX${I}" Type="UDINT" Comment="Defines the index of the counter in the MBus datagram (0..)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Initialize event output qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="In case of IO failure holds a human readable error message" />
+      <VarDeclaration Name="IDENTNO" Type="UDINT" Comment="Manufacturer or customer identification number (0..99999999)" />
+      <VarDeclaration Name="MANID" Type="UDINT" Comment="Manufacturer identfier (0..65535)" />
+      <VarDeclaration Name="MANIDENT" Type="STRING" Comment="Manufacturer identfier in human readable form (3 character string)" />
+      <VarDeclaration Name="VERSION" Type="UDINT" Comment="Device version number (0..255)" />
+      <VarDeclaration Name="MEDIUMID" Type="UDINT" Comment="Medium identification number (0..255)" />
+      <VarDeclaration Name="MEDIUMNAME" Type="STRING" Comment="Medium identification in human readable form" />
+      <VarDeclaration Name="ACCESSNO" Type="UDINT" Comment="Device access counter (0..255)" />
+      <VarDeclaration Name="DEVSTATUS" Type="UDINT" Comment="Device status indicator (0..255)" />
+      <VarDeclaration Name="APPBUSY" Type="BOOL" Comment="From DEVSTATUS: the application is busy" />
+      <VarDeclaration Name="APPERROR" Type="BOOL" Comment="From DEVSTATUS: any application error" />
+      <VarDeclaration Name="PWRLOW" Type="BOOL" Comment="From DEVSTATUS: low power indicator" />
+      <VarDeclaration Name="PERMERROR" Type="BOOL" Comment="From DEVSTATUS: the error condition is permanent" />
+      <VarDeclaration Name="TEMPERROR" Type="BOOL" Comment="From DEVSTATUS: the error condition is temporary" />
+      <VarDeclaration Name="SIGNATURE" Type="UDINT" Comment="Encryption signature (0..65535)" />
+      <VarDeclaration Name="CTRVALUE${I}" Type="ANY_ELEMENTARY" Comment="Current value of the selected counter" />
+      <VarDeclaration Name="CTRDIB${I}" Type="STRING" Comment="Data information block (1..11 bytes) in hexadecimal format" />
+      <VarDeclaration Name="CTRVIB${I}" Type="STRING" Comment="Value information block (1..11 bytes) in hexadecimal format" />
+      <VarDeclaration Name="CTRCODE${I}" Type="STRING" Comment="Description of the values encoding format" />
+      <VarDeclaration Name="CTRFUNC${I}" Type="STRING" Comment="Description of the functionality of the current counter value" />
+      <VarDeclaration Name="CTRTEXT${I}" Type="STRING" Comment="General text explaining what the counter is supposed to measure" />
+      <VarDeclaration Name="CTRMULT${I}" Type="LREAL" Comment="Multiplier to be applied to the counters raw value displayed above" />
+      <VarDeclaration Name="CTRUNIT${I}" Type="STRING" Comment="Description the unit of the counters value" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="MBUSDEVCTRL" />
+</FBType>

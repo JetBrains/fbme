@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="68346A3AE15D763D" Name="EVENTSCHEDULER" Comment="Event schedule function block" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_EVENTSCHED" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="09.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;64" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization event">
+        <With Var="QI" />
+        <With Var="SCHEDULE" />
+        <With Var="FIRSTCHANNEL" />
+        <With Var="MAXINITTIME" />
+      </Event>
+      <Event Name="SET" Comment="Set new schedule event">
+        <With Var="SCHEDULE" />
+        <With Var="MAXINITTIME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Init done notification">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="CHANNEL${I}" />
+      </Event>
+      <Event Name="SETO" Comment="Set new schedule done notification">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="CHANNEL${I}" />
+      </Event>
+      <Event Name="IND" Comment="Output state changed indicator">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="CHANNEL${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Initialize event input qualifier" />
+      <VarDeclaration Name="FIRSTCHANNEL" Type="UDINT" Comment="Defines the number of the first valid channel which corresponds to CHANNEL0" />
+      <VarDeclaration Name="MAXINITTIME" Type="TIME" Comment="Defines the timespan to go back to look for initialization events" />
+      <VarDeclaration Name="SCHEDULE" Type="STRING" Comment="Defines a list of schedulable events (min hr day mon wday year ch val; ...)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event status qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Error information" />
+      <VarDeclaration Name="CHANNEL${I}" Type="DINT" Comment="Outputs the value for the channel given by FIRSTCHANNEL+i" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EVENTSCHEDULER" />
+</FBType>

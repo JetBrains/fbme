@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SYSLOGLOGGER" Comment="Sends the logged messages to a syslog server" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="18.12.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="SERVER" />
+        <With Var="FACILITY" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="TRUE" Comment="Input event qualifier" />
+      <VarDeclaration Name="SERVER" Type="STRING" Comment="Destination host (on supported platforms use &quot;API&quot; to use the syslog API instead of UDP)" />
+      <VarDeclaration Name="FACILITY" Type="USINT" InitialValue="16" Comment="Syslog facility as of RFC 3164">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=User-level = 1|System daemons = 3|Local 0 = 16|Local 1 = 17|Local 2 = 18|Local 3 = 19|Local 4 = 20|Local 5 = 21|Local 6 = 22|Local 7 = 23}" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Status of the initialization" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>
