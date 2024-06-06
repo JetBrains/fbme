@@ -19,7 +19,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class AdapterRevealServiceTest : PlatformTestBase() {
-    private val adapterRevealService = AdapterRevealService(factory, stFactory, repository, ::getPublishSubscribeBlock)
+    private val adapterRevealService = AdapterRevealService(repository, ::getPublishSubscribeBlock)
     private val publishSubscribeMap: Map<String, FBTypeDeclaration> = mapOf(
         "PUBLISH_5" to rootConverterByPath("/source/publishSubscribes/PUBLISH_5.fbt").convertFBType(),
         "SUBSCRIBE_5" to rootConverterByPath("/source/publishSubscribes/SUBSCRIBE_5.fbt").convertFBType()

@@ -6,7 +6,6 @@ import com.intellij.openapi.project.DumbAware
 import jetbrains.mps.ide.actions.MPSCommonDataKeys
 import jetbrains.mps.project.MPSProject
 import org.fbme.extensions.adapter.AdapterRevealService
-import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 
 class RevealExtendedAdapterAction : AnAction(), DumbAware {
@@ -21,7 +20,6 @@ class RevealExtendedAdapterAction : AnAction(), DumbAware {
 
     override fun actionPerformed(event: AnActionEvent) = event.executeWriteActionInEditor {
         val repository = event.repository
-        val factory = repository.iec61499Factory
         val node = event.getData(MPSCommonDataKeys.NODE)
         val model = event.getRequiredData(MPSCommonDataKeys.CONTEXT_MODEL)
         val project: MPSProject = event.getRequiredData(MPSCommonDataKeys.MPS_PROJECT)
@@ -29,11 +27,7 @@ class RevealExtendedAdapterAction : AnAction(), DumbAware {
         val extendedAdapter = node?.let {
             repository.adapterOrNull<ExtendedAdapterTypeDeclaration>(node)
         } ?: return@executeWriteActionInEditor
-        val adapterRevealService = AdapterRevealService(
-            factory = factory,
-            stFactory = repository.stFactory,
-            owner = PlatformRepositoryProvider.getInstance(project),
-        )
+        val adapterRevealService = AdapterRevealService(owner = repository)
         val modelCopy = copyModel(model, project, "${model.name}_extensions_revealed")
         val nodeCopy = modelCopy.rootNodes.first { it.name == extendedAdapter.name }
         val extendedAdapterCopy = repository.adapter<ExtendedAdapterTypeDeclaration>(nodeCopy)

@@ -21,14 +21,19 @@ import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SNode
 
 class AdapterRevealService(
-    factory: IEC61499Factory,
-    stFactory: STFactory,
     private val owner: PlatformRepository,
     publishSubscribeProvider: ((name: String) -> FBTypeDeclaration)? = null,
 ): AdapterRevealApi {
-    private val extendedAdapterUtils: ExtendedAdapterUtils =
-        ExtendedAdapterUtils(factory, stFactory, owner, publishSubscribeProvider)
-    private val factoryUtils: IEC61499FactoryUtils = IEC61499FactoryUtils(factory)
+    private val extendedAdapterUtils: ExtendedAdapterUtils
+    private val factoryUtils: IEC61499FactoryUtils
+
+    init {
+        val stFactory: STFactory = owner.stFactory
+        val factory: IEC61499Factory = owner.iec61499Factory
+        extendedAdapterUtils = ExtendedAdapterUtils(factory, stFactory, owner, publishSubscribeProvider)
+        factoryUtils = IEC61499FactoryUtils(factory)
+    }
+
 
     override fun revealAdapter(
         extendedAdapter: ExtendedAdapterTypeDeclaration,

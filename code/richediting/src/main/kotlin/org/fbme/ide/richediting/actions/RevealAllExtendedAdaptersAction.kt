@@ -10,7 +10,6 @@ import jetbrains.mps.model.ModelDeleteHelper
 import jetbrains.mps.project.AbstractModule
 import jetbrains.mps.project.MPSProject
 import org.fbme.extensions.adapter.AdapterRevealService
-import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.jetbrains.mps.openapi.model.EditableSModel
 import org.jetbrains.mps.openapi.model.SModel
 import org.jetbrains.mps.openapi.model.SModelName
@@ -22,15 +21,9 @@ class RevealAllExtendedAdaptersAction : AnAction(), DumbAware {
     }
 
     override fun actionPerformed(event: AnActionEvent) = event.executeWriteActionInEditor {
-        val repository = event.repository
-        val factory = repository.iec61499Factory
         val model = event.getRequiredData(MPSCommonDataKeys.CONTEXT_MODEL)
         val project = event.getRequiredData(MPSCommonDataKeys.MPS_PROJECT)
-        val adapterRevealService = AdapterRevealService(
-            factory = factory,
-            stFactory = repository.stFactory,
-            owner = PlatformRepositoryProvider.getInstance(project),
-        )
+        val adapterRevealService = AdapterRevealService(owner = event.repository)
         val modelCopy = copyModel(model, project, "${model.name}_extensions_revealed")
         adapterRevealService.revealModel(modelCopy)
     }
