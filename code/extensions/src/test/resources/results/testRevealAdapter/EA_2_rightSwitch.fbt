@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EA_2_rightSwitch">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="I_event1_0" />
+      <Event Name="I_event2_0" />
+      <Event Name="S_I_Event1_0" />
+      <Event Name="S_I_Event2_0" />
+      <Event Name="I_event1_1" />
+      <Event Name="I_event2_1" />
+      <Event Name="S_I_Event1_1" />
+      <Event Name="S_I_Event2_1" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="I_event1">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="I_event2">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="S_I_Event1">
+        <With Var="I_router" />
+      </Event>
+      <Event Name="S_I_Event2">
+        <With Var="I_router" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="I_data1_0" Type="INT" />
+      <VarDeclaration Name="I_data2_0" Type="INT" />
+      <VarDeclaration Name="S_I_data1_0" Type="INT" />
+      <VarDeclaration Name="S_I_data2_0" Type="INT" />
+      <VarDeclaration Name="I_data1_1" Type="INT" />
+      <VarDeclaration Name="I_data2_1" Type="INT" />
+      <VarDeclaration Name="S_I_data1_1" Type="INT" />
+      <VarDeclaration Name="S_I_data2_1" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="I_data1" Type="INT" />
+      <VarDeclaration Name="I_data2" Type="INT" />
+      <VarDeclaration Name="S_I_data1" Type="INT" />
+      <VarDeclaration Name="S_I_data2" Type="INT" />
+      <VarDeclaration Name="I_router" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="Start" x="0" y="0" />
+      <ECState Name="I_event1_0_state" x="0" y="0">
+        <ECAction Output="I_event1" Algorithm="I_event1_0_algorithm" />
+      </ECState>
+      <ECState Name="I_event2_0_state" x="0" y="0">
+        <ECAction Output="I_event2" Algorithm="I_event2_0_algorithm" />
+      </ECState>
+      <ECState Name="S_I_Event1_0_state" x="0" y="0">
+        <ECAction Output="S_I_Event1" Algorithm="S_I_Event1_0_algorithm" />
+      </ECState>
+      <ECState Name="S_I_Event2_0_state" x="0" y="0">
+        <ECAction Output="S_I_Event2" Algorithm="S_I_Event2_0_algorithm" />
+      </ECState>
+      <ECState Name="I_event1_1_state" x="0" y="0">
+        <ECAction Output="I_event1" Algorithm="I_event1_1_algorithm" />
+      </ECState>
+      <ECState Name="I_event2_1_state" x="0" y="0">
+        <ECAction Output="I_event2" Algorithm="I_event2_1_algorithm" />
+      </ECState>
+      <ECState Name="S_I_Event1_1_state" x="0" y="0">
+        <ECAction Output="S_I_Event1" Algorithm="S_I_Event1_1_algorithm" />
+      </ECState>
+      <ECState Name="S_I_Event2_1_state" x="0" y="0">
+        <ECAction Output="S_I_Event2" Algorithm="S_I_Event2_1_algorithm" />
+      </ECState>
+      <ECTransition Source="I_event1_0_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_event1_0_state" x="0" y="0" Condition="I_event1_0" />
+      <ECTransition Source="I_event2_0_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_event2_0_state" x="0" y="0" Condition="I_event2_0" />
+      <ECTransition Source="S_I_Event1_0_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="S_I_Event1_0_state" x="0" y="0" Condition="S_I_Event1_0" />
+      <ECTransition Source="S_I_Event2_0_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="S_I_Event2_0_state" x="0" y="0" Condition="S_I_Event2_0" />
+      <ECTransition Source="I_event1_1_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_event1_1_state" x="0" y="0" Condition="I_event1_1" />
+      <ECTransition Source="I_event2_1_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_event2_1_state" x="0" y="0" Condition="I_event2_1" />
+      <ECTransition Source="S_I_Event1_1_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="S_I_Event1_1_state" x="0" y="0" Condition="S_I_Event1_1" />
+      <ECTransition Source="S_I_Event2_1_state" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="S_I_Event2_1_state" x="0" y="0" Condition="S_I_Event2_1" />
+    </ECC>
+    <Algorithm Name="I_event1_0_algorithm">
+      <ST Text="I_data1 := I_data1_0;&#xA;I_data2 := I_data2_0;&#xA;S_I_data1 := S_I_data1_0;&#xA;S_I_data2 := S_I_data2_0;&#xA;I_router := 0;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_event2_0_algorithm">
+      <ST Text="I_data1 := I_data1_0;&#xA;I_data2 := I_data2_0;&#xA;S_I_data1 := S_I_data1_0;&#xA;S_I_data2 := S_I_data2_0;&#xA;I_router := 0;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="S_I_Event1_0_algorithm">
+      <ST Text="I_data1 := I_data1_0;&#xA;I_data2 := I_data2_0;&#xA;S_I_data1 := S_I_data1_0;&#xA;S_I_data2 := S_I_data2_0;&#xA;I_router := 0;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="S_I_Event2_0_algorithm">
+      <ST Text="I_data1 := I_data1_0;&#xA;I_data2 := I_data2_0;&#xA;S_I_data1 := S_I_data1_0;&#xA;S_I_data2 := S_I_data2_0;&#xA;I_router := 0;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_event1_1_algorithm">
+      <ST Text="I_data1 := I_data1_1;&#xA;I_data2 := I_data2_1;&#xA;S_I_data1 := S_I_data1_1;&#xA;S_I_data2 := S_I_data2_1;&#xA;I_router := 1;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_event2_1_algorithm">
+      <ST Text="I_data1 := I_data1_1;&#xA;I_data2 := I_data2_1;&#xA;S_I_data1 := S_I_data1_1;&#xA;S_I_data2 := S_I_data2_1;&#xA;I_router := 1;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="S_I_Event1_1_algorithm">
+      <ST Text="I_data1 := I_data1_1;&#xA;I_data2 := I_data2_1;&#xA;S_I_data1 := S_I_data1_1;&#xA;S_I_data2 := S_I_data2_1;&#xA;I_router := 1;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="S_I_Event2_1_algorithm">
+      <ST Text="I_data1 := I_data1_1;&#xA;I_data2 := I_data2_1;&#xA;S_I_data1 := S_I_data1_1;&#xA;S_I_data2 := S_I_data2_1;&#xA;I_router := 1;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

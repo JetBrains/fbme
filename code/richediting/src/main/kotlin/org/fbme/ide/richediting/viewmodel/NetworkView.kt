@@ -1,5 +1,6 @@
 package org.fbme.ide.richediting.viewmodel
 
+import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.IEC61499Factory
@@ -16,7 +17,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     private val myAuxComponents: MutableMap<NetworkComponentView, Set<NetworkComponentView>> = HashMap()
     private val myComponentToPorts: MutableMap<NetworkComponentView, Set<NetworkPortView>> = HashMap()
     private val myPorts: MutableMap<NetworkPortView, NetworkComponentView> = HashMap()
-    private val myConnectionSources: MutableMap<NetworkConnectionView, NetworkPortView?> = HashMap()
+    private val myConnectionSources: MutableMap<NetworkConnectionView, NetworkPortView?> = LinkedHashMap()
     private val myConnectionDestinations: MutableMap<NetworkConnectionView, NetworkPortView?> = HashMap()
     private val myElementModelMap: MutableMap<Element?, NetworkComponentView> = HashMap()
     private val myPortModelMap: MutableMap<PortPath<*>?, NetworkPortView> = HashMap()
@@ -44,6 +45,16 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     }
 
     private fun initFBs(network: FBNetwork, editable: Boolean) {
+        for (component in network.customNetworkComponents) {
+            addFunctionBlock(
+                functionBlock = component.block,
+                view = FunctionBlockView(
+                    component = component.block,
+                    isEditable = component.editable,
+                    associatedNode = (component.associatedElement as PlatformElement).node
+                )
+            )
+        }
         for (functionBlock in network.functionBlocks) {
             addFunctionBlock(functionBlock, editable)
         }
@@ -140,8 +151,15 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myComponentToPorts[view] = setOf<NetworkPortView>(view)
     }
 
-    private fun addFunctionBlock(functionBlock: FunctionBlockDeclarationBase, editable: Boolean) {
-        val view = FunctionBlockView(functionBlock, editable)
+    private fun addFunctionBlock(
+        functionBlock: FunctionBlockDeclarationBase,
+        editable: Boolean
+    ) = addFunctionBlock(functionBlock, FunctionBlockView(functionBlock, editable))
+
+    private fun addFunctionBlock(
+        functionBlock: FunctionBlockDeclarationBase,
+        view: FunctionBlockView,
+    ) {
         myElementModelMap[functionBlock] = view
         myMainComponents.add(view)
         val type = functionBlock.type

@@ -9,7 +9,7 @@ class DiagramFacility<CompT, PortT, ConnT, CFormT>(
     private val componentSettings: DiagramComponentSettingProvider<CompT, CFormT>
 ) {
     private val components: MutableSet<CompT> = HashSet()
-    private val edges: MutableSet<ConnT> = HashSet()
+    private val edges: MutableSet<ConnT> = LinkedHashSet()
     private val componentToPorts: MutableMap<CompT, Set<PortT>> = HashMap()
     private val portToComponent: MutableMap<PortT, CompT> = HashMap()
     private val connectionToSource: MutableMap<ConnT, PortT> = HashMap()

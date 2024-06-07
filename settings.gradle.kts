@@ -3,6 +3,7 @@ rootProject.name = "FBME"
 include(
     "code:4diac-integration",
     "code:enas",
+    "code:extensions",
     "code:language",
     "code:library",
     "code:nxt-integration",

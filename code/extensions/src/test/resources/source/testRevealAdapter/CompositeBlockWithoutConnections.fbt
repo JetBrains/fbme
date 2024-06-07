@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeBlockWithoutConnections">
+  <InterfaceList />
+  <FBNetwork>
+    <FB Name="BaseBlock1" Type="BaseBlock" x="590" y="486" />
+  </FBNetwork>
+</FBType>
+

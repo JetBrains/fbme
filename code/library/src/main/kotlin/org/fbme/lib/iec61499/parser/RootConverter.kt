@@ -1,6 +1,7 @@
 package org.fbme.lib.iec61499.parser
 
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.jdom.Document
 
 class RootConverter(
@@ -22,6 +23,10 @@ class RootConverter(
 
     fun convertAdapterType(): AdapterTypeDeclaration {
         return AdapterTypeConverter(arguments()).extract()
+    }
+
+    fun convertExtendedAdapterType(): ExtendedAdapterTypeDeclaration {
+        return ExtendedAdapterTypeConverter(arguments()).extract()
     }
 
     fun convertSubapplicationType(): SubapplicationTypeDeclaration {

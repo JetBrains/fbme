@@ -13,9 +13,6 @@ import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.inspections.ECCInspectionsFacility
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
-import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.ecc.ECC
 import org.fbme.lib.iec61499.ecc.StateAction
 import org.fbme.lib.iec61499.ecc.StateDeclaration
@@ -154,7 +151,8 @@ object ECCEditors {
         return object : ConnectionControllerFactory<StateTransition, ECTransitionCursor, ECTransitionPath> {
             override fun create(
                 context: EditorContext,
-                view: StateTransition
+                view: StateTransition,
+                sourceConnectionNumber: Int?
             ): ConnectionController<ECTransitionCursor, ECTransitionPath> {
                 val transitionNode = (view as PlatformElement).node
                 val cell = createTransitionCell(context, transitionNode)

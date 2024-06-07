@@ -39,11 +39,13 @@ object FBNetworkEditors {
         object : ConnectionControllerFactory<NetworkConnectionView, FBConnectionCursor, FBConnectionPath> {
             override fun create(
                 context: EditorContext,
-                view: NetworkConnectionView
+                view: NetworkConnectionView,
+                sourceConnectionNumber: Int?,
             ): ConnectionController<FBConnectionCursor, FBConnectionPath> {
                 return FBConnectionController(
                     context,
-                    view
+                    view,
+                    sourceConnectionNumber,
                 )
             }
         }

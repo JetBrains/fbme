@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.descriptors
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 
-class PlugType(private val myDeclaration: AdapterTypeDeclaration) : FBTypeDescriptor {
+open class PlugType(protected open val myDeclaration: AdapterTypeDeclaration) : FBTypeDescriptor {
     override val typeName: String
         get() = myDeclaration.name
     override val declaration: Declaration

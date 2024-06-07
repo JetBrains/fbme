@@ -17,6 +17,14 @@ class IEC61499FactoryTest : PlatformTestBase() {
     }
 
     @Test
+    fun createExtendedAdapterTypeDeclaration() {
+        val identifier = StringIdentifier("TestExtendedAdapterTypeDeclaration")
+        val element = factory.createExtendedAdapterTypeDeclaration(identifier)
+        Assert.assertNotNull(element)
+        Assert.assertEquals("TestExtendedAdapterTypeDeclaration", element.name)
+    }
+
+    @Test
     fun createAlgorithmDeclaration() {
         val identifier = StringIdentifier("TestAlgorithmDeclaration")
         val element = factory.createAlgorithmDeclaration(identifier)

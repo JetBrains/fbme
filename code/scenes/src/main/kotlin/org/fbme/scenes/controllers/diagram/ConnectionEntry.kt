@@ -5,10 +5,15 @@ import java.awt.Rectangle
 
 internal class ConnectionEntry<CompT, PortT, ConnT, CursorT, PathT>(
     private val connectionsFacility: ConnectionsFacility<CompT, PortT, ConnT, CursorT, PathT>,
-    val connection: ConnT
+    val connection: ConnT,
+    sourceConnectionNumber: Int?,
 ) {
     val controller: ConnectionController<CursorT, PathT> =
-        connectionsFacility.controllerFactory.create(connectionsFacility.scene.editorContext, connection)
+        connectionsFacility.controllerFactory.create(
+            context = connectionsFacility.scene.editorContext,
+            view = connection,
+            sourceConnectionNumber = sourceConnectionNumber,
+        )
     private val pathProvider: (Point, Point) -> PathT = connectionsFacility.connectionSynchronizer.getPath(connection)
     var modelPath: PathT
     var transformedPath: PathT? = null

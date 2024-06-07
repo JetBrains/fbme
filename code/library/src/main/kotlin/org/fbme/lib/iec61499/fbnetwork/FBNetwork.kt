@@ -2,10 +2,15 @@ package org.fbme.lib.iec61499.fbnetwork
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
-import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.DeclarationWithNetwork
+import org.fbme.lib.iec61499.declarations.EventDeclaration
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import java.util.*
 
 interface FBNetwork : Element {
+    /*readonly*/
+    val customNetworkComponents: List<CustomNetworkComponent>
+
     /*readonly*/
     val contextComponents: List<FunctionBlockDeclarationBase>
 
@@ -54,3 +59,13 @@ interface FBNetwork : Element {
         }
     }
 }
+
+interface CustomNetworkComponentProvider {
+    fun getCustomNetworkComponents(): List<CustomNetworkComponent>
+}
+
+data class CustomNetworkComponent(
+    val block: FunctionBlockDeclarationBase,
+    val associatedElement: Element,
+    val editable: Boolean = false,
+)

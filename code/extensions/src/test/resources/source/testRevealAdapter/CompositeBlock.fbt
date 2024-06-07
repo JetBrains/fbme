@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeBlock">
+  <InterfaceList />
+  <FBNetwork>
+    <FB Name="BaseBlock1" Type="BaseBlock" x="590" y="486" />
+    <FB Name="BaseBlock2" Type="BaseBlock" x="1553" y="310" />
+    <FB Name="BaseBlock3" Type="BaseBlock" x="1556" y="733" />
+    <AdapterConnections>
+      <Connection Source="BaseBlock1.plug" Destination="BaseBlock2.socket" dx1="230" />
+      <Connection Source="BaseBlock1.plug" Destination="BaseBlock3.socket" dx1="220" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>
+

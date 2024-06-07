@@ -2,6 +2,7 @@ package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.declarations.extention.ExtendedAdapterTypeDeclaration
 import org.jdom.DocType
 import org.jdom.Document
 import org.jdom.Element
@@ -9,6 +10,7 @@ import org.jdom.Element
 class RootDeclarationPrinter(private val myDeclaration: Declaration) {
     fun print(): Document {
         val rootElement: Element = when (myDeclaration) {
+            is ExtendedAdapterTypeDeclaration -> ExtendedAdapterTypePrinter(myDeclaration).print()
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> BasicFBTypePrinter(myDeclaration).print()
             is CompositeFBTypeDeclaration -> CompositeFBTypePrinter(myDeclaration).print()

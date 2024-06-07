@@ -1,7 +1,9 @@
 package org.fbme.lib.iec61499.descriptors
 
+import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclarationWithAdapters
+import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 
 internal object FBTypeDescriptorUtils {
@@ -93,3 +95,26 @@ internal object FBTypeDescriptorUtils {
         return list
     }
 }
+
+internal fun Sequence<EventDeclaration>.toEventPortDescriptors(isInput: Boolean) = mapIndexed { index, event ->
+    FBPortDescriptor(
+        name = event.name,
+        connectionKind = EntryKind.EVENT,
+        position = index,
+        isInput = isInput,
+        isValid = true,
+        declaration = event,
+    )
+}
+
+internal fun Sequence<ParameterDeclaration>.toParametersPortDescriptors(isInput: Boolean) =
+    mapIndexed { index, event ->
+        FBPortDescriptor(
+            name = event.name,
+            connectionKind = EntryKind.DATA,
+            position = index,
+            isInput = isInput,
+            isValid = true,
+            declaration = event,
+        )
+    }
