@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="JSON_DESERIALIZER" Comment="Composite FB wrapping other FBs">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="valentinnodan" Date="2023-04-20">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
+				<With Var="DATA"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="RES" Type="Event" Comment="Execution Confirmation">
+				<With Var="BOOL_VALUE"/>
+				<With Var="INT_VALUE"/>
+				<With Var="STRING_VALUE"/>
+				<With Var="REAL_VALUE"/>
+				<With Var="LREAL_VALUE"/>
+				<With Var="NAME"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="DATA" Type="STRING" Comment="Input event qualifier"/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="NAME" Type="STRING" Comment=""/>
+			<VarDeclaration Name="BOOL_VALUE" Type="BOOL" Comment="Output event qualifier"/>
+			<VarDeclaration Name="INT_VALUE" Type="INT" Comment=""/>
+			<VarDeclaration Name="STRING_VALUE" Type="STRING" Comment=""/>
+			<VarDeclaration Name="REAL_VALUE" Type="REAL" Comment=""/>
+			<VarDeclaration Name="LREAL_VALUE" Type="LREAL" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<FBNetwork>
+		<FB Name="TYPE_DETECTOR" Type="TYPE_DETECTOR" Comment="" x="1529.4117647058822" y="-235.2941176470588">
+		</FB>
+		<FB Name="JSON_PARSER" Type="JSON_PARSER" Comment="" x="470.5882352941176" y="-1058.8235294117646">
+		</FB>
+		<FB Name="F_STRING_TO_BOOL" Type="F_STRING_TO_BOOL" Comment="" x="3764.705882352941" y="-588.2352941176471">
+		</FB>
+		<FB Name="F_STRING_TO_INT" Type="F_STRING_TO_INT" Comment="" x="3764.705882352941" y="0.0">
+		</FB>
+		<FB Name="F_STRING_TO_REAL" Type="F_STRING_TO_REAL" Comment="" x="3764.705882352941" y="588.2352941176471">
+		</FB>
+		<FB Name="F_STRING_TO_LREAL" Type="F_STRING_TO_LREAL" Comment="" x="3764.705882352941" y="1176.4705882352941">
+		</FB>
+		<EventConnections>
+			<Connection Source="REQ" Destination="JSON_PARSER.REQ" Comment="" dx1="294.11764705882354"/>
+			<Connection Source="JSON_PARSER.RES" Destination="TYPE_DETECTOR.REQ" Comment="" dx1="129.41176470588235"/>
+			<Connection Source="TYPE_DETECTOR.IS_BOOL" Destination="F_STRING_TO_BOOL.REQ" Comment="" dx1="670.5882352941176"/>
+			<Connection Source="F_STRING_TO_BOOL.CNF" Destination="RES" Comment="" dx1="241.17647058823528"/>
+			<Connection Source="TYPE_DETECTOR.IS_INT" Destination="F_STRING_TO_INT.REQ" Comment="" dx1="494.1176470588235"/>
+			<Connection Source="TYPE_DETECTOR.IS_REAL" Destination="F_STRING_TO_REAL.REQ" Comment="" dx1="670.5882352941176"/>
+			<Connection Source="TYPE_DETECTOR.IS_LREAL" Destination="F_STRING_TO_LREAL.REQ" Comment="" dx1="670.5882352941176"/>
+			<Connection Source="F_STRING_TO_INT.CNF" Destination="RES" Comment="" dx1="558.8235294117646"/>
+			<Connection Source="F_STRING_TO_REAL.CNF" Destination="RES" Comment="" dx1="535.2941176470588"/>
+			<Connection Source="F_STRING_TO_LREAL.CNF" Destination="RES" Comment="" dx1="511.7647058823529"/>
+			<Connection Source="TYPE_DETECTOR.IS_STRING" Destination="RES" Comment="" dx1="1723.5294117647059"/>
+		</EventConnections>
+		<DataConnections>
+			<Connection Source="DATA" Destination="JSON_PARSER.DATA" Comment="" dx1="294.11764705882354"/>
+			<Connection Source="JSON_PARSER.TYPE" Destination="TYPE_DETECTOR.TYPE_NAME" Comment="" dx1="129.41176470588235"/>
+			<Connection Source="JSON_PARSER.VALUE" Destination="F_STRING_TO_BOOL.IN" Comment="" dx1="1270.5882352941176"/>
+			<Connection Source="JSON_PARSER.VALUE" Destination="F_STRING_TO_INT.IN" Comment="" dx1="1558.8235294117646"/>
+			<Connection Source="F_STRING_TO_BOOL.OUT" Destination="BOOL_VALUE" Comment="" dx1="241.17647058823528"/>
+			<Connection Source="JSON_PARSER.NAME" Destination="NAME" Comment="" dx1="1652.941176470588"/>
+			<Connection Source="JSON_PARSER.VALUE" Destination="F_STRING_TO_REAL.IN" Comment="" dx1="1247.0588235294117"/>
+			<Connection Source="JSON_PARSER.VALUE" Destination="F_STRING_TO_LREAL.IN" Comment="" dx1="1247.0588235294117"/>
+			<Connection Source="F_STRING_TO_INT.OUT" Destination="INT_VALUE" Comment="" dx1="558.8235294117646"/>
+			<Connection Source="F_STRING_TO_REAL.OUT" Destination="REAL_VALUE" Comment="" dx1="535.2941176470588"/>
+			<Connection Source="F_STRING_TO_LREAL.OUT" Destination="LREAL_VALUE" Comment="" dx1="511.7647058823529"/>
+			<Connection Source="JSON_PARSER.VALUE" Destination="STRING_VALUE" Comment="" dx1="2300.0"/>
+		</DataConnections>
+	</FBNetwork>
+</FBType>

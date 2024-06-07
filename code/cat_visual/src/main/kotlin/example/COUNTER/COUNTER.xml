@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping id="1">
+    <Inputs>
+        <Input name="LAMP" type="BOOL"/>
+        <Input name="COUNT" type="STRING"/>
+    </Inputs>
+    <Outputs>
+        <Output name="TOGGLE" type="BOOL"/>
+    </Outputs>
+</Mapping>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<Host host="" />
+<Port port="" />
+<Mapping id="1">
+    <Inputs>
+        <Input id="" type="BOOL"/>
+    </Inputs>
+    <Outputs>
+        <Output id="" type="BOOL" />
+    </Outputs>
+</Mapping>
+-->

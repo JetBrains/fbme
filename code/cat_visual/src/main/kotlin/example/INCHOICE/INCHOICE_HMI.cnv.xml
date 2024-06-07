@@ -1,0 +1,17 @@
+<!--support architecture-->
+<Mapping>
+    <EventInputs>
+        <Event Name="REQ" Map="REQ_1">CHOICES</Event>
+    </EventInputs>
+    <EventOutputs>
+        <Event Name="CNF" Map="IND_1">I</Event>
+        <Event Name="CHQ" Map="IND_2" />
+    </EventOutputs>
+    <Inputs>
+        <Input Name="CHOICES" Type="STRING" Map="SD_1" />
+    </Inputs>
+    <Outputs>
+        <Output Name="OUT" Type="STRING" Map="RD_1" />
+        <Output Name="I" Type="UINT" Map="RD_2" />
+    </Outputs>
+</Mapping>

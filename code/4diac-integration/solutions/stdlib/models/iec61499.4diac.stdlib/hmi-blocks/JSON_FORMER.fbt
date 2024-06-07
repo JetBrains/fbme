@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="JSON_FORMER" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="valentinnodan" Date="2023-04-20">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REQ" Type="Event" Comment="">
+				<With Var="NAME"/>
+				<With Var="TYPE"/>
+				<With Var="VALUE"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="RES" Type="Event" Comment="">
+				<With Var="DATA_MSG"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="NAME" Type="STRING" Comment=""/>
+			<VarDeclaration Name="TYPE" Type="STRING" Comment=""/>
+			<VarDeclaration Name="VALUE" Type="STRING" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="DATA_MSG" Type="STRING" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="547.0588235294117" y="423.52941176470586">
+			</ECState>
+			<ECState Name="FORM_MSG" Comment="" x="2470.5882352941176" y="588.2352941176471">
+				<ECAction Algorithm="formMessage" Output="RES"/>
+			</ECState>
+			<ECTransition Source="START" Destination="FORM_MSG" Condition="REQ" Comment="" x="1658.8235294117646" y="770.5882352941176"/>
+			<ECTransition Source="FORM_MSG" Destination="START" Condition="1" Comment="" x="1623.5294117647059" y="488.235294117647"/>
+		</ECC>
+		<Algorithm Name="formMessage" Comment="">
+			<ST><![CDATA[VAR
+	openBrace: STRING;
+	closeBrace: STRING;
+	quote: STRING;
+	splitter: STRING;
+	separator: STRING;
+	nameMsg:STRING;
+	typeMsg: STRING;
+	valueMsg: STRING;
+	valueName: STRING;
+	nameName: STRING;
+	typeName: STRING;
+END_VAR;
+quote := '"';
+openBrace := '{';
+closeBrace := '}';
+splitter:= ':';
+separator:=',';
+nameName:='NAME';
+typeName:='TYPE';
+valueName:='VALUE';
+nameMsg:=CONCAT(quote, nameName, quote, splitter, quote, NAME, quote);
+typeMsg:=CONCAT(quote, typeName, quote, splitter, quote, TYPE, quote);
+valueMsg:=CONCAT(quote, valueName, quote, splitter, quote, VALUE, quote);
+DATA_MSG:=CONCAT(CONCAT(openBrace, CONCAT(nameMsg, separator)), CONCAT(CONCAT(typeMsg, separator), CONCAT(valueMsg, closeBrace)));]]></ST>
+		</Algorithm>
+	</BasicFB>
+</FBType>

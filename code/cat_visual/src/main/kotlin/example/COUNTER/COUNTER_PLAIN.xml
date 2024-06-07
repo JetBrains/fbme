@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+    <Inputs>
+        <Input name="LAMP" type="BOOL" host="225.0.0.1" port="65000"/>
+        <Input name="COUNT" type="INT" host="225.0.0.2" port="65003"/>
+    </Inputs>
+    <Outputs>
+        <Output name="TOGGLE" type="BOOL" host="225.0.0.1" port="65001"/>
+    </Outputs>
+</Mapping>

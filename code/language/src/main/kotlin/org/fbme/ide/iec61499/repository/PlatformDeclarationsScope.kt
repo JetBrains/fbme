@@ -18,6 +18,10 @@ internal class PlatformDeclarationsScope(
         return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }
 
+    override fun findCATBlockTypeDeclaration(identifier: Identifier): CATBlockTypeDeclaration? {
+        return findNode(identifier)?.let {repository.getAdapter(it, CATBlockTypeDeclaration::class.java)}
+    }
+
     override fun findBasicFBTypeDeclaration(identifier: Identifier): BasicFBTypeDeclaration? {
         return findNode(identifier)?.let { repository.adapterOrNull(it) }
     }

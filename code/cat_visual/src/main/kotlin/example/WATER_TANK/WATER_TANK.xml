@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+    <Inputs>
+        <Input name="lampIndicator1" type="BOOL"/>
+        <Input name="lampIndicator2" type="BOOL"/>
+        <Input name="tankIndicator" type="REAL"/>
+        <Input name="outputIndicator" type="REAL"/>
+        <Input name="stateInlet" type="BOOL"/>
+        <Input name="stateHeat" type="BOOL"/>
+        <Input name="stateOutlet" type="BOOL"/>
+    </Inputs>
+    <Outputs>
+        <Output name="knob1" type="REAL"/>
+        <Output name="knob2" type="REAL"/>
+    </Outputs>
+</Mapping>

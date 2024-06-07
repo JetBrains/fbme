@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ant-antlr">
+    <CLASSES>
+      <root url="jar:///usr/share/ant/lib/ant-antlr.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

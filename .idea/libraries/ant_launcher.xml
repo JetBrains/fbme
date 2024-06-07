@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ant-launcher">
+    <CLASSES>
+      <root url="jar:///usr/share/ant/lib/ant-launcher.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

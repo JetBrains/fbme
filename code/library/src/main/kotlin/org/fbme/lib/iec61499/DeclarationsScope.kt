@@ -6,6 +6,7 @@ import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 
 interface DeclarationsScope {
     fun findCompositeFBTypeDeclaration(identifier: Identifier): CompositeFBTypeDeclaration?
+    fun findCATBlockTypeDeclaration(identifier: Identifier): CATBlockTypeDeclaration?
     fun findBasicFBTypeDeclaration(identifier: Identifier): BasicFBTypeDeclaration?
     fun findServiceFBTypeDeclaration(identifier: Identifier): ServiceInterfaceFBTypeDeclaration?
     fun findAdapterTypeDeclaration(identifier: Identifier): AdapterTypeDeclaration?

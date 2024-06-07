@@ -201,7 +201,6 @@
         <child id="1073389446424" name="childCellModel" index="3EZMnx" />
       </concept>
       <concept id="1073389577006" name="jetbrains.mps.lang.editor.structure.CellModel_Constant" flags="sn" stub="3610246225209162225" index="3F0ifn">
-        <property id="1082639509531" name="nullText" index="ilYzB" />
         <property id="1073389577007" name="text" index="3F0ifm" />
       </concept>
       <concept id="1073389658414" name="jetbrains.mps.lang.editor.structure.CellModel_Property" flags="sg" stub="730538219796134133" index="3F0A7n" />
@@ -851,12 +850,8 @@
       <node concept="pj6Ft" id="7GyesCp9Ttt" role="3F10Kt">
         <property role="VOm3f" value="true" />
       </node>
-      <node concept="3F0ifn" id="7GyesCp9Ttx" role="2czzBI">
+      <node concept="3F0ifn" id="7u028AewiT7" role="2czzBI">
         <property role="3F0ifm" value="" />
-        <property role="ilYzB" value="no statements" />
-        <node concept="Vb9p2" id="7GyesCplzfZ" role="3F10Kt">
-          <property role="Vbekb" value="g1_kEg4/ITALIC" />
-        </node>
       </node>
     </node>
   </node>

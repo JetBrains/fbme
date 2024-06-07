@@ -18,6 +18,8 @@ interface IEC61499Factory {
     fun createApplicationDeclaration(identifier: Identifier?): ApplicationDeclaration
     fun createBasicFBTypeDeclaration(identifier: Identifier?): BasicFBTypeDeclaration
     fun createCompositeFBTypeDeclaration(identifier: Identifier?): CompositeFBTypeDeclaration
+    fun createCATBlockTypeDeclaration(identifier: Identifier?): CATBlockTypeDeclaration
+    fun createHMIBlockTypeDeclaration(identifier: Identifier?): HMIInterfaceTypeDeclaration
     fun createDeviceDeclaration(identifier: Identifier?): DeviceDeclaration
     fun createDeviceTypeDeclaration(identifier: Identifier?): DeviceTypeDeclaration
     fun createParameterAssignment(): ParameterAssignment

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "7039d520-eb99-468f-9d7b-78c770588bb8",
+    "x": 250.0,
+    "y": -148.0,
+    "inputs": [],
+    "outputs": [],
+    "content": "Другой текст",
+    "type": "TEXT"
+  },
+  {
+    "id": "9728343a-a291-4d53-81bd-f4a95d2fec51",
+    "x": 421.75,
+    "y": 72.0,
+    "inputs": ["A8B344E30F0BAEE1"],
+    "outputs": ["A8B344E30FJH72F1"],
+    "content": "Тест",
+    "type": "TEXT"
+  },
+  {
+    "id": "1b4267f9-3d0f-43c5-b2db-a2a021725783",
+    "x": 246.0,
+    "y": 227.75,
+    "inputs": ["A8B344E30F0BAEE1"],
+    "outputs": ["A8B344E30FJH72F1"],
+    "content": "null",
+    "type": "LAMP"
+  },
+  {
+    "id": "c65328fe-8452-45d7-a054-454ed65aa2a6",
+    "x": 601.75,
+    "y": 132.0,
+    "inputs": ["B8B344E30F0BAEE1"],
+    "outputs": ["C8B344E30FJH72F1"],
+    "content": "null",
+    "type": "TOGGLE"
+  }
+]
