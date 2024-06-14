@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Sensors">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="CarPos" />
+        <With Var="DoorPos" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="CarPos" />
+        <With Var="DoorPos" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF">
+        <With Var="elevatorAtFloor" />
+        <With Var="doorOpen" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CarPos" Type="INT" />
+      <VarDeclaration Name="DoorPos" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="elevatorAtFloor" Type="BOOL" />
+      <VarDeclaration Name="doorOpen" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="LiftSensor" Type="LiftSensor" x="1100" y="0" />
+    <FB Name="DoorSensor" Type="DoorSensor" x="1100" y="500" />
+    <DataConnections>
+      <Connection Source="CarPos" Destination="LiftSensor.CarPos" dx1="395" />
+      <Connection Source="DoorPos" Destination="DoorSensor.DoorPos" dx1="445" />
+      <Connection Source="DoorSensor.doorOpen" Destination="doorOpen" dx1="395" />
+      <Connection Source="LiftSensor.elevatorAtFloor" Destination="elevatorAtFloor" dx1="1430" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="REQ" Destination="LiftSensor.REQ" dx1="445" />
+      <Connection Source="LiftSensor.CNF" Destination="CNF" dx1="375" />
+      <Connection Source="REQ" Destination="DoorSensor.REQ" dx1="445" />
+      <Connection Source="DoorSensor.CNF" Destination="CNF" dx1="395" />
+      <Connection Source="INIT" Destination="LiftSensor.INIT" dx1="415" />
+      <Connection Source="LiftSensor.INITO" Destination="INITO" dx1="1430" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

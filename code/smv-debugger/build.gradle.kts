@@ -1,4 +1,5 @@
 import org.fbme.gradle.moduleDependency
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     mps
@@ -10,6 +11,10 @@ dependencies {
     compileOnly(project(":code:library"))
     compileOnly(project(":code:platform"))
     compileOnly(project(":code:richediting"))
+    compileOnly(project(":code:debugger"))
+
+
+    compileOnly(project(":code:language"))
 
     testImplementation(mpsDistribution())
 
@@ -21,5 +26,9 @@ mps {
     buildScriptName.set("fbme_smvdebugger")
     moduleName.set("org.fbme.smv-debugger.lib")
     moduleDependency(project(":code:library"))
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.freeCompilerArgs += "-Xjvm-default=enable"
 }
 

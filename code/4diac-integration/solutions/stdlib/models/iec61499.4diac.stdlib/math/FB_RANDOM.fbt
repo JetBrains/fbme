@@ -1,48 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<FBType Comment="Adds two REAL values" Name="FB_RANDOM">
-  <Identification Classification="Mathematic" Function="RANDOM" Standard="61499-1" Type="Mathematical function"
-  		Description="Copyright (c) 2012 Profactor GmbH&#13;&#10; &#13;&#10;This program and the accompanying materials are made&#13;&#10;available under the terms of the Eclipse Public License 2.0&#13;&#10;which is available at https://www.eclipse.org/legal/epl-2.0/&#13;&#10;&#13;&#10;SPDX-License-Identifier: EPL-2.0"/>
-  <VersionInfo Author="Gerhard Ebenhofer" Date="2012-05-31" Organization="Profactor GmbH" Version="1.0"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="FB_RANDOM">
   <InterfaceList>
     <EventInputs>
-      <Event Comment="Initializes the random with the specified seed, if not called the generated values will always be identical" Name="INIT" Type="Event">
-        <With Var="SEED"/>
+      <Event Name="INIT">
+        <With Var="SEED" />
       </Event>
-      <Event Comment="Calculates a new random number between 0 and 1" Name="REQ" Type="Event"/>
+      <Event Name="REQ" />
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Type="Event"/>
-      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
-        <With Var="VAL"/>
+      <Event Name="INITO" />
+      <Event Name="CNF">
+        <With Var="VAL" />
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Comment="the seed to initialize the random, a seed of 0 (zero) uses the current systemtime as seed" InitialValue="0" Name="SEED" Type="UINT"/>
+      <VarDeclaration Name="SEED" Type="UINT" InitialValue="0" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Comment="Function output" Name="VAL" Type="REAL"/>
+      <VarDeclaration Name="VAL" Type="REAL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Comment="Initial State" Name="START" x="855.0" y="285.0"/>
-      <ECState Comment="Normal execution" Name="REQ" x="215.0" y="755.0">
-        <ECAction Algorithm="REQ" Output="CNF"/>
+      <ECState Name="START" x="855" y="285" />
+      <ECState Name="REQ" x="215" y="755">
+        <ECAction Output="CNF" Algorithm="REQ" />
       </ECState>
-      <ECState Comment="" Name="State" x="2015.0" y="430.0">
-        <ECAction Algorithm="INIT" Output="INITO"/>
+      <ECState Name="State" x="2015" y="430">
+        <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECTransition Comment="" Condition="REQ" Destination="REQ" Source="START" x="555.0" y="600.0"/>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="REQ" x="215.0" y="425.0"/>
-      <ECTransition Comment="" Condition="INIT" Destination="State" Source="START" x="1705.0" y="320.0"/>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="State" x="1585.0" y="680.0"/>
+      <ECTransition Source="START" Destination="REQ" x="555" y="600" Condition="REQ" />
+      <ECTransition Source="REQ" Destination="START" x="215" y="425" Condition="1" />
+      <ECTransition Source="START" Destination="State" x="1705" y="320" Condition="INIT" />
+      <ECTransition Source="State" Destination="START" x="1585" y="680" Condition="1" />
     </ECC>
-    <Algorithm Comment="ALG" Name="INIT">
-      <Other Language="AnyText" Text="// WARNING - Don't forget to add #include &lt;time.h&gt;&#13;&#10;&#13;&#10;if (SEED() == 0) {&#13;&#10;  srand( (unsigned int) time(NULL) );&#13;&#10;} else {&#13;&#10;  srand( SEED() );&#13;&#10;}"/>
+    <Algorithm Name="INIT">
+      <Other Language="AnyText" Text="// WARNING - Don&amp;#39;t forget to add #include &amp;#60;time.h&amp;#62;&amp;#38;#10;&amp;#38;#10;if (SEED() == 0) {&amp;#38;#10;  srand( (unsigned int) time(NULL) );&amp;#38;#10;} else {&amp;#38;#10;  srand( SEED() );&amp;#38;#10;}" />
     </Algorithm>
-    <Algorithm Comment="Normally executed algorithm" Name="REQ">
-      <Other Language="AnyText" Text="VAL() = (TForteFloat) ((rand() % 32767) / 100000.0); // RAND_MAX is a constant defined in &lt;cstdlib&gt;. Its default value may vary between implementations but it is granted to be at least 32767.&#10;"/>
+    <Algorithm Name="REQ">
+      <Other Language="AnyText" Text="VAL() = (TForteFloat) ((rand() % 32767) / 100000.0); // RAND_MAX is a constant defined in &amp;#60;cstdlib&amp;#62;. Its default value may vary between implementations but it is granted to be at least 32767." />
     </Algorithm>
   </BasicFB>
 </FBType>
+

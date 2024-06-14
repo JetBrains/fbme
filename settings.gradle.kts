@@ -6,11 +6,12 @@ include(
     "code:language",
     "code:library",
     "code:nxt-integration",
-        "code:platform",
+    "code:platform",
     "code:richediting",
     "code:scenes",
     "code:smv-debugger",
     "code:debugger",
+    "code:bottom-up-building",
 
     "docs",
 
@@ -18,3 +19,4 @@ include(
     "samples:sandbox",
     "samples:smv-debugger"
 )
+findProject(":code:bottom-up-building")?.name = "bottom-up-building"

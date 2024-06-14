@@ -1,0 +1,1428 @@
+MODULE AXE_CMD(event_INIT,event_REQ,event_INITO,event_CNF,GO_,SETPOS_IN_,PR_,go_,setpos_out_,moving_,pr_,alpha, beta)
+VAR GO : boolean;
+VAR SETPOS_IN : null;
+VAR PR : boolean;
+VAR go : boolean;
+VAR setpos_out : null;
+VAR moving : boolean;
+VAR pr : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,wait_ecc,go_ecc,pr_ecc,INIT_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..4;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(GO):= FALSE;
+init(SETPOS_IN):= null;
+init(PR):= FALSE;
+init(go):= FALSE;
+init(setpos_out):= null;
+init(moving):= FALSE;
+init(pr):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=wait_ecc & S_smv=s1_osm  : go_ecc;
+	Q_smv=go_ecc & S_smv=s1_osm  : pr_ecc;
+	Q_smv=pr_ecc & S_smv=s1_osm  : wait_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : wait_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=wait_ecc & NA < 1 ) | (Q_smv=go_ecc & NA < 1 ) | (Q_smv=pr_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=wait_ecc & NA = 1) | (Q_smv=go_ecc & NA = 1) | (Q_smv=pr_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 4 ) | (Q_smv=wait_ecc & NA = 1  & NI < 4 ) | (Q_smv=go_ecc & NA = 1  & NI < 4 ) | (Q_smv=pr_ecc & NA = 1  & NI < 4 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 4 )) : (NI + 1) mod 5;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 4) | (Q_smv=wait_ecc & NA = 1 & NI = 4) | (Q_smv=go_ecc & NA = 1 & NI = 4) | (Q_smv=pr_ecc & NA = 1 & NI = 4) | (Q_smv=INIT_ecc & NA = 1 & NI = 4)) :  0 ;	TRUE : NI;
+esac;
+next(GO) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : GO_ ;
+	TRUE : GO;
+esac;
+
+next(SETPOS_IN) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : SETPOS_IN_ ;
+	TRUE : SETPOS_IN;
+esac;
+
+next(PR) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : PR_ ;
+	TRUE : PR;
+esac;
+
+next(go) := case
+	S_smv=s2_osm & Q_smv=wait_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=go_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=pr_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : go;
+esac;
+next(setpos_out) := case
+	S_smv=s2_osm & Q_smv=go_ecc & NA=1 & NI=2 : (NULL);
+	TRUE : setpos_out;
+esac;
+next(moving) := case
+	S_smv=s2_osm & Q_smv=wait_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=go_ecc & NA=1 & NI=3 : (TRUE);
+	S_smv=s2_osm & Q_smv=pr_ecc & NA=1 & NI=3 : (FALSE);
+	TRUE : moving;
+esac;
+next(pr) := case
+	S_smv=s2_osm & Q_smv=wait_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=go_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=pr_ecc & NA=1 & NI=2 : (TRUE);
+	TRUE : pr;
+esac;
+
+next(go_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=wait_ecc & NA=1)(Q_smv=go_ecc & NA=1)(Q_smv=pr_ecc & NA=1)) : go;
+	TRUE : go_;
+esac;
+next(setpos_out_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=go_ecc & NA=1)) : setpos_out;
+	TRUE : setpos_out_;
+esac;
+next(moving_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=wait_ecc & NA=1)(Q_smv=go_ecc & NA=1)(Q_smv=pr_ecc & NA=1)) : moving;
+	TRUE : moving_;
+esac;
+next(pr_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=wait_ecc & NA=1)(Q_smv=go_ecc & NA=1)(Q_smv=pr_ecc & NA=1)) : pr;
+	TRUE : pr_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=wait_ecc & NA = 1) | (Q_smv=go_ecc & NA = 1) | (Q_smv=pr_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=wait_ecc  ) | (Q_smv=go_ecc  ) | (Q_smv=pr_ecc  ) | (Q_smv=INIT_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE AXE_plant_FV(event_INIT,event_REQ,event_INITO,event_CNF,GO_,POS_IN_,PR_,POS_OUT_,alpha, beta)
+VAR GO : boolean;
+VAR POS_IN : null;
+VAR PR : boolean;
+VAR POS_OUT : null;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,HOME_ecc,GO_ecc,END_ecc,STOP_ecc,INIT_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+VAR NDT : boolean;
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(GO):= FALSE;
+init(POS_IN):= null;
+init(PR):= FALSE;
+init(POS_OUT):= null;
+init(NA):= 0;
+init(NI):= 0;
+
+-- _NonDeterministicVariableInitBlock
+init(NDT):= { TRUE , FALSE };
+
+next(NDT):= case
+	Q_smv=GO_ecc & S_smv=s1_osm : {TRUE,FALSE};
+	TRUE : NDT;
+esac;
+
+next(Q_smv):= case
+	Q_smv=HOME_ecc & S_smv=s1_osm  : GO_ecc;
+	Q_smv=STOP_ecc & S_smv=s1_osm  : GO_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm  : STOP_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm & NDT : END_ecc;
+	Q_smv=END_ecc & S_smv=s1_osm  : HOME_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : GO_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=HOME_ecc & NA < 1 ) | (Q_smv=GO_ecc & NA < 1 ) | (Q_smv=END_ecc & NA < 1 ) | (Q_smv=STOP_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=HOME_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=END_ecc & NA = 1) | (Q_smv=STOP_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=HOME_ecc & NA = 1  & NI < 2 ) | (Q_smv=GO_ecc & NA = 1  & NI < 2 ) | (Q_smv=END_ecc & NA = 1  & NI < 2 ) | (Q_smv=STOP_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=HOME_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=END_ecc & NA = 1 & NI = 2) | (Q_smv=STOP_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(GO) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : GO_ ;
+	TRUE : GO;
+esac;
+
+next(POS_IN) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : POS_IN_ ;
+	TRUE : POS_IN;
+esac;
+
+next(PR) := case
+	S_smv=s2_osm & Q_smv=HOME_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=END_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=STOP_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : PR;
+esac;
+next(POS_OUT) := case
+	S_smv=s2_osm & Q_smv=END_ecc & NA=1 & NI=2 : (NULL);
+	S_smv=s2_osm & Q_smv=STOP_ecc & NA=1 & NI=2 : (5);
+	TRUE : POS_OUT;
+esac;
+
+next(PR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=HOME_ecc & NA=1)(Q_smv=END_ecc & NA=1)(Q_smv=STOP_ecc & NA=1)(Q_smv=INIT_ecc & NA=1)) : PR;
+	TRUE : PR_;
+esac;
+next(POS_OUT_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=END_ecc & NA=1)(Q_smv=STOP_ecc & NA=1)) : POS_OUT;
+	TRUE : POS_OUT_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+DEFINE event_NDT_reset:= (alpha & ( event_INIT | event_REQ )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=HOME_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=END_ecc & NA = 1) | (Q_smv=STOP_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ | NDT ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=HOME_ecc  ) | (Q_smv=GO_ecc   & (  ( NDT )  ) ) | (Q_smv=END_ecc  ) | (Q_smv=STOP_ecc  ) | (Q_smv=INIT_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE AXE_plant_FV_Without_NDT(event_INIT,event_REQ,event_INITO,event_CNF,GO_,POS_IN_,PR_,POS_OUT_,alpha, beta)
+VAR GO : boolean;
+VAR POS_IN : null;
+VAR PR : boolean;
+VAR POS_OUT : null;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,HOME_ecc,GO_ecc,END_ecc,INIT_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(GO):= FALSE;
+init(POS_IN):= null;
+init(PR):= FALSE;
+init(POS_OUT):= null;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=HOME_ecc & S_smv=s1_osm  : GO_ecc;
+	Q_smv=GO_ecc & S_smv=s1_osm  : END_ecc;
+	Q_smv=END_ecc & S_smv=s1_osm  : HOME_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : GO_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=HOME_ecc & NA < 1 ) | (Q_smv=GO_ecc & NA < 1 ) | (Q_smv=END_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=HOME_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=END_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=HOME_ecc & NA = 1  & NI < 2 ) | (Q_smv=GO_ecc & NA = 1  & NI < 2 ) | (Q_smv=END_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=HOME_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=END_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(GO) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : GO_ ;
+	TRUE : GO;
+esac;
+
+next(POS_IN) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : POS_IN_ ;
+	TRUE : POS_IN;
+esac;
+
+next(PR) := case
+	S_smv=s2_osm & Q_smv=HOME_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=END_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : PR;
+esac;
+next(POS_OUT) := case
+	S_smv=s2_osm & Q_smv=END_ecc & NA=1 & NI=2 : (NULL);
+	TRUE : POS_OUT;
+esac;
+
+next(PR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=HOME_ecc & NA=1)(Q_smv=END_ecc & NA=1)(Q_smv=INIT_ecc & NA=1)) : PR;
+	TRUE : PR_;
+esac;
+next(POS_OUT_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=END_ecc & NA=1)) : POS_OUT;
+	TRUE : POS_OUT_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=HOME_ecc & NA = 1) | (Q_smv=GO_ecc & NA = 1) | (Q_smv=END_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=HOME_ecc  ) | (Q_smv=GO_ecc  ) | (Q_smv=END_ecc  ) | (Q_smv=INIT_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE GR_plant_Without_NDT(event_INIT,event_REQ,event_INITO,event_CNF,OPEN_,CLOSE_,GRO_,GRC_,alpha, beta)
+VAR OPEN : boolean;
+VAR CLOSE : boolean;
+VAR GRO : boolean;
+VAR GRC : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,OPENNED_ecc,CLOSED_ecc,OPENNING_ecc,CLOSING_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(OPEN):= FALSE;
+init(CLOSE):= FALSE;
+init(GRO):= FALSE;
+init(GRC):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=CLOSING_ecc & S_smv=s1_osm  : CLOSED_ecc;
+	Q_smv=CLOSED_ecc & S_smv=s1_osm  : OPENNING_ecc;
+	Q_smv=OPENNING_ecc & S_smv=s1_osm  : OPENNED_ecc;
+	Q_smv=OPENNED_ecc & S_smv=s1_osm  : CLOSING_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=CLOSING_ecc & S_smv=s1_osm  : OPENNING_ecc;
+	Q_smv=OPENNING_ecc & S_smv=s1_osm  : CLOSING_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : CLOSING_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm  : OPENNING_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=OPENNED_ecc & NA < 1 ) | (Q_smv=CLOSED_ecc & NA < 1 ) | (Q_smv=OPENNING_ecc & NA < 1 ) | (Q_smv=CLOSING_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=OPENNED_ecc & NA = 1) | (Q_smv=CLOSED_ecc & NA = 1) | (Q_smv=OPENNING_ecc & NA = 1) | (Q_smv=CLOSING_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=OPENNED_ecc & NA = 1  & NI < 2 ) | (Q_smv=CLOSED_ecc & NA = 1  & NI < 2 ) | (Q_smv=OPENNING_ecc & NA = 1  & NI < 2 ) | (Q_smv=CLOSING_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=OPENNED_ecc & NA = 1 & NI = 2) | (Q_smv=CLOSED_ecc & NA = 1 & NI = 2) | (Q_smv=OPENNING_ecc & NA = 1 & NI = 2) | (Q_smv=CLOSING_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(OPEN) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : OPEN_ ;
+	TRUE : OPEN;
+esac;
+
+next(CLOSE) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : CLOSE_ ;
+	TRUE : CLOSE;
+esac;
+
+next(GRO) := case
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=OPENNED_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CLOSED_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=OPENNING_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=CLOSING_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : GRO;
+esac;
+next(GRC) := case
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=OPENNED_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CLOSED_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=OPENNING_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CLOSING_ecc & NA=1 & NI=2 : (FALSE);
+	TRUE : GRC;
+esac;
+
+next(GRO_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=OPENNED_ecc & NA=1)(Q_smv=CLOSED_ecc & NA=1)(Q_smv=OPENNING_ecc & NA=1)(Q_smv=CLOSING_ecc & NA=1)) : GRO;
+	TRUE : GRO_;
+esac;
+next(GRC_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=OPENNED_ecc & NA=1)(Q_smv=CLOSED_ecc & NA=1)(Q_smv=OPENNING_ecc & NA=1)(Q_smv=CLOSING_ecc & NA=1)) : GRC;
+	TRUE : GRC_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=OPENNED_ecc & NA = 1) | (Q_smv=CLOSED_ecc & NA = 1) | (Q_smv=OPENNING_ecc & NA = 1) | (Q_smv=CLOSING_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc  ) | (Q_smv=OPENNED_ecc  ) | (Q_smv=CLOSED_ecc  ) | (Q_smv=OPENNING_ecc  ) | (Q_smv=CLOSING_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE GR_CMD(event_INIT,event_REQ,event_INITO,event_CNF,OPEN_,CLOSE_,openned_,closed_,open_,close_,GRO_,GRC_,alpha, beta)
+VAR OPEN : boolean;
+VAR CLOSE : boolean;
+VAR openned : boolean;
+VAR closed : boolean;
+VAR open : boolean;
+VAR close : boolean;
+VAR GRO : boolean;
+VAR GRC : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,initialization_ecc,OPEN_ecc,CLOSE_ecc,OPENNED_ecc,CLOSED_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(OPEN):= FALSE;
+init(CLOSE):= FALSE;
+init(openned):= FALSE;
+init(closed):= FALSE;
+init(open):= FALSE;
+init(close):= FALSE;
+init(GRO):= FALSE;
+init(GRC):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=initialization_ecc & S_smv=s1_osm  : OPENNED_ecc;
+	Q_smv=OPEN_ecc & S_smv=s1_osm  : OPENNED_ecc;
+	Q_smv=CLOSE_ecc & S_smv=s1_osm  : CLOSED_ecc;
+	Q_smv=OPENNED_ecc & S_smv=s1_osm  : CLOSE_ecc;
+	Q_smv=CLOSED_ecc & S_smv=s1_osm  : OPEN_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : initialization_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=initialization_ecc & NA < 1 ) | (Q_smv=OPEN_ecc & NA < 1 ) | (Q_smv=CLOSE_ecc & NA < 1 ) | (Q_smv=OPENNED_ecc & NA < 1 ) | (Q_smv=CLOSED_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=initialization_ecc & NA = 1) | (Q_smv=OPEN_ecc & NA = 1) | (Q_smv=CLOSE_ecc & NA = 1) | (Q_smv=OPENNED_ecc & NA = 1) | (Q_smv=CLOSED_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=initialization_ecc & NA = 1  & NI < 2 ) | (Q_smv=OPEN_ecc & NA = 1  & NI < 2 ) | (Q_smv=CLOSE_ecc & NA = 1  & NI < 2 ) | (Q_smv=OPENNED_ecc & NA = 1  & NI < 2 ) | (Q_smv=CLOSED_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=initialization_ecc & NA = 1 & NI = 2) | (Q_smv=OPEN_ecc & NA = 1 & NI = 2) | (Q_smv=CLOSE_ecc & NA = 1 & NI = 2) | (Q_smv=OPENNED_ecc & NA = 1 & NI = 2) | (Q_smv=CLOSED_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(OPEN) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : OPEN_ ;
+	TRUE : OPEN;
+esac;
+
+next(CLOSE) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : CLOSE_ ;
+	TRUE : CLOSE;
+esac;
+
+next(openned) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : openned_ ;
+	TRUE : openned;
+esac;
+
+next(closed) := case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : closed_ ;
+	TRUE : closed;
+esac;
+
+next(open) := case
+	S_smv=s2_osm & Q_smv=initialization_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=OPEN_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CLOSE_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : open;
+esac;
+next(close) := case
+	S_smv=s2_osm & Q_smv=initialization_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=OPEN_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CLOSE_ecc & NA=1 & NI=2 : (TRUE);
+	TRUE : close;
+esac;
+next(GRO) := case
+	S_smv=s2_osm & Q_smv=OPENNED_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CLOSED_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : GRO;
+esac;
+next(GRC) := case
+	S_smv=s2_osm & Q_smv=OPENNED_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CLOSED_ecc & NA=1 & NI=2 : (TRUE);
+	TRUE : GRC;
+esac;
+
+next(open_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=initialization_ecc & NA=1)(Q_smv=OPEN_ecc & NA=1)(Q_smv=CLOSE_ecc & NA=1)) : open;
+	TRUE : open_;
+esac;
+next(close_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=initialization_ecc & NA=1)(Q_smv=OPEN_ecc & NA=1)(Q_smv=CLOSE_ecc & NA=1)) : close;
+	TRUE : close_;
+esac;
+next(GRO_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=OPENNED_ecc & NA=1)(Q_smv=CLOSED_ecc & NA=1)) : GRO;
+	TRUE : GRO_;
+esac;
+next(GRC_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=OPENNED_ecc & NA=1)(Q_smv=CLOSED_ecc & NA=1)) : GRC;
+	TRUE : GRC_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=initialization_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=OPEN_ecc & NA = 1) | (Q_smv=CLOSE_ecc & NA = 1) | (Q_smv=OPENNED_ecc & NA = 1) | (Q_smv=CLOSED_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=initialization_ecc  ) | (Q_smv=OPEN_ecc  ) | (Q_smv=CLOSE_ecc  ) | (Q_smv=OPENNED_ecc  ) | (Q_smv=CLOSED_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE CMD_bloc_FV(event_INIT,event_REQ,event_INITO,event_CNF,SystemINITED_,ELPR_,CRPR_,CAPR_,GRO_,GRC_,ELM_,CRM_,CAM_,FETP_,SLTP_,GOEL_,SETEL_,GOCR_,SETCR_,GOCA_,SETCA_,OPGR_,CLGR_,alpha, beta)
+VAR SystemINITED : boolean;
+VAR ELPR : boolean;
+VAR CRPR : boolean;
+VAR CAPR : boolean;
+VAR GRO : boolean;
+VAR GRC : boolean;
+VAR ELM : boolean;
+VAR CRM : boolean;
+VAR CAM : boolean;
+VAR FETP : boolean;
+VAR SLTP : boolean;
+VAR GOEL : boolean;
+VAR SETEL : null;
+VAR GOCR : boolean;
+VAR SETCR : null;
+VAR GOCA : boolean;
+VAR SETCA : null;
+VAR OPGR : boolean;
+VAR CLGR : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,INIT_ecc,CR_01_CA_03_ecc,CR_01_03_CA_06_ecc,GRC_03_GRC_04_ecc,CR_01_CA_06_f_ecc,EL_03_ecc,GRO_ecc,EL_01_ecc,CR_01_EL_03_ecc,CR_01_CA_01_e_ecc,CR_02_CA_01_ecc,GRC_ecc,CR_01_CA_01_f_ecc,CR_01_CA_03_lid_ecc,CR_03_CA_03_ecc,GRO_lid_ecc,CR_01_EL_01_ecc,CR_01_CA_06_e_ecc,CR_03_CA_06_ecc,CR_01_04_CA_06_ecc,CR_04_CA_06_ecc,ReadyToDrop_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..6;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(SystemINITED):= FALSE;
+init(ELPR):= FALSE;
+init(CRPR):= FALSE;
+init(CAPR):= FALSE;
+init(GRO):= FALSE;
+init(GRC):= FALSE;
+init(ELM):= FALSE;
+init(CRM):= FALSE;
+init(CAM):= FALSE;
+init(FETP):= FALSE;
+init(SLTP):= FALSE;
+init(GOEL):= FALSE;
+init(SETEL):= null;
+init(GOCR):= FALSE;
+init(SETCR):= null;
+init(GOCA):= FALSE;
+init(SETCA):= null;
+init(OPGR):= FALSE;
+init(CLGR):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT : INIT_ecc;
+	Q_smv=CR_01_03_CA_06_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_03_CA_06_ecc;
+	Q_smv=GRC_03_GRC_04_ecc & S_smv=s1_osm & !( CRM) CRPR : ReadyToDrop_ecc;
+	Q_smv=EL_03_ecc & S_smv=s1_osm  : GRO_ecc;
+	Q_smv=GRO_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_01_EL_03_ecc;
+	Q_smv=CR_01_EL_03_ecc & S_smv=s1_osm & !( CAM) CAPR : CR_01_CA_01_e_ecc;
+	Q_smv=CR_01_CA_01_e_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_02_CA_01_ecc;
+	Q_smv=CR_02_CA_01_ecc & S_smv=s1_osm  : GRC_ecc;
+	Q_smv=GRC_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_01_CA_01_f_ecc;
+	Q_smv=CR_01_CA_01_f_ecc & S_smv=s1_osm & !( CAM) CAPR : CR_01_CA_03_lid_ecc;
+	Q_smv=CR_01_CA_03_lid_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_03_CA_03_ecc;
+	Q_smv=CR_03_CA_03_ecc & S_smv=s1_osm  : GRO_lid_ecc;
+	Q_smv=GRO_lid_ecc & S_smv=s1_osm & !( ELM) ELPR : EL_01_ecc;
+	Q_smv=EL_01_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_01_EL_01_ecc;
+	Q_smv=CR_01_CA_03_ecc & S_smv=s1_osm & !( CAM) CAPR : CR_01_CA_06_e_ecc;
+	Q_smv=CR_01_CA_06_e_ecc & S_smv=s1_osm  : CR_01_03_CA_06_ecc;
+	Q_smv=CR_03_CA_06_ecc & S_smv=s1_osm  : GRC_03_GRC_04_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm &  SystemINITED : CR_01_CA_03_ecc;
+	Q_smv=CR_01_EL_01_ecc & S_smv=s1_osm  : CR_01_CA_03_ecc;
+	Q_smv=CR_01_04_CA_06_ecc & S_smv=s1_osm & !( CRM) CRPR : CR_04_CA_06_ecc;
+	Q_smv=CR_01_CA_06_e_ecc & S_smv=s1_osm  : CR_01_04_CA_06_ecc;
+	Q_smv=CR_04_CA_06_ecc & S_smv=s1_osm  : GRC_03_GRC_04_ecc;
+	Q_smv=CR_01_CA_06_f_ecc & S_smv=s1_osm &  & & : EL_03_ecc;
+	Q_smv=ReadyToDrop_ecc & S_smv=s1_osm & event_REQ : CR_01_CA_06_f_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=INIT_ecc & NA < 1 ) | (Q_smv=CR_01_CA_03_ecc & NA < 1 ) | (Q_smv=CR_01_03_CA_06_ecc & NA < 1 ) | (Q_smv=GRC_03_GRC_04_ecc & NA < 1 ) | (Q_smv=CR_01_CA_06_f_ecc & NA < 1 ) | (Q_smv=EL_03_ecc & NA < 1 ) | (Q_smv=GRO_ecc & NA < 1 ) | (Q_smv=EL_01_ecc & NA < 1 ) | (Q_smv=CR_01_EL_03_ecc & NA < 1 ) | (Q_smv=CR_01_CA_01_e_ecc & NA < 1 ) | (Q_smv=CR_02_CA_01_ecc & NA < 1 ) | (Q_smv=GRC_ecc & NA < 1 ) | (Q_smv=CR_01_CA_01_f_ecc & NA < 1 ) | (Q_smv=CR_01_CA_03_lid_ecc & NA < 1 ) | (Q_smv=CR_03_CA_03_ecc & NA < 1 ) | (Q_smv=GRO_lid_ecc & NA < 1 ) | (Q_smv=CR_01_EL_01_ecc & NA < 1 ) | (Q_smv=CR_01_CA_06_e_ecc & NA < 1 ) | (Q_smv=CR_03_CA_06_ecc & NA < 1 ) | (Q_smv=CR_01_04_CA_06_ecc & NA < 1 ) | (Q_smv=CR_04_CA_06_ecc & NA < 1 ) | (Q_smv=ReadyToDrop_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=CR_01_CA_03_ecc & NA = 1) | (Q_smv=CR_01_03_CA_06_ecc & NA = 1) | (Q_smv=GRC_03_GRC_04_ecc & NA = 1) | (Q_smv=CR_01_CA_06_f_ecc & NA = 1) | (Q_smv=EL_03_ecc & NA = 1) | (Q_smv=GRO_ecc & NA = 1) | (Q_smv=EL_01_ecc & NA = 1) | (Q_smv=CR_01_EL_03_ecc & NA = 1) | (Q_smv=CR_01_CA_01_e_ecc & NA = 1) | (Q_smv=CR_02_CA_01_ecc & NA = 1) | (Q_smv=GRC_ecc & NA = 1) | (Q_smv=CR_01_CA_01_f_ecc & NA = 1) | (Q_smv=CR_01_CA_03_lid_ecc & NA = 1) | (Q_smv=CR_03_CA_03_ecc & NA = 1) | (Q_smv=GRO_lid_ecc & NA = 1) | (Q_smv=CR_01_EL_01_ecc & NA = 1) | (Q_smv=CR_01_CA_06_e_ecc & NA = 1) | (Q_smv=CR_03_CA_06_ecc & NA = 1) | (Q_smv=CR_01_04_CA_06_ecc & NA = 1) | (Q_smv=CR_04_CA_06_ecc & NA = 1) | (Q_smv=ReadyToDrop_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 6 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_03_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_03_CA_06_ecc & NA = 1  & NI < 6 ) | (Q_smv=GRC_03_GRC_04_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_06_f_ecc & NA = 1  & NI < 6 ) | (Q_smv=EL_03_ecc & NA = 1  & NI < 6 ) | (Q_smv=GRO_ecc & NA = 1  & NI < 6 ) | (Q_smv=EL_01_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_EL_03_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_01_e_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_02_CA_01_ecc & NA = 1  & NI < 6 ) | (Q_smv=GRC_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_01_f_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_03_lid_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_03_CA_03_ecc & NA = 1  & NI < 6 ) | (Q_smv=GRO_lid_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_EL_01_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_CA_06_e_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_03_CA_06_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_01_04_CA_06_ecc & NA = 1  & NI < 6 ) | (Q_smv=CR_04_CA_06_ecc & NA = 1  & NI < 6 ) | (Q_smv=ReadyToDrop_ecc & NA = 1  & NI < 6 )) : (NI + 1) mod 7;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 6) | (Q_smv=INIT_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_03_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_03_CA_06_ecc & NA = 1 & NI = 6) | (Q_smv=GRC_03_GRC_04_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_06_f_ecc & NA = 1 & NI = 6) | (Q_smv=EL_03_ecc & NA = 1 & NI = 6) | (Q_smv=GRO_ecc & NA = 1 & NI = 6) | (Q_smv=EL_01_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_EL_03_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_01_e_ecc & NA = 1 & NI = 6) | (Q_smv=CR_02_CA_01_ecc & NA = 1 & NI = 6) | (Q_smv=GRC_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_01_f_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_03_lid_ecc & NA = 1 & NI = 6) | (Q_smv=CR_03_CA_03_ecc & NA = 1 & NI = 6) | (Q_smv=GRO_lid_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_EL_01_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_CA_06_e_ecc & NA = 1 & NI = 6) | (Q_smv=CR_03_CA_06_ecc & NA = 1 & NI = 6) | (Q_smv=CR_01_04_CA_06_ecc & NA = 1 & NI = 6) | (Q_smv=CR_04_CA_06_ecc & NA = 1 & NI = 6) | (Q_smv=ReadyToDrop_ecc & NA = 1 & NI = 6)) :  0 ;	TRUE : NI;
+esac;
+next(SystemINITED) := case
+	alpha & S_smv=s0_osm & (event_REQ) : SystemINITED_ ;
+	TRUE : SystemINITED;
+esac;
+
+next(ELPR) := case
+	alpha & S_smv=s0_osm & (event_REQ) : ELPR_ ;
+	TRUE : ELPR;
+esac;
+
+next(CRPR) := case
+	alpha & S_smv=s0_osm & (event_REQ) : CRPR_ ;
+	TRUE : CRPR;
+esac;
+
+next(CAPR) := case
+	alpha & S_smv=s0_osm & (event_REQ) : CAPR_ ;
+	TRUE : CAPR;
+esac;
+
+next(GRO) := case
+	alpha & S_smv=s0_osm & (event_REQ) : GRO_ ;
+	TRUE : GRO;
+esac;
+
+next(GRC) := case
+	alpha & S_smv=s0_osm & (event_REQ) : GRC_ ;
+	TRUE : GRC;
+esac;
+
+next(ELM) := case
+	alpha & S_smv=s0_osm & (event_REQ) : ELM_ ;
+	TRUE : ELM;
+esac;
+
+next(CRM) := case
+	alpha & S_smv=s0_osm & (event_REQ) : CRM_ ;
+	TRUE : CRM;
+esac;
+
+next(CAM) := case
+	alpha & S_smv=s0_osm & (event_REQ) : CAM_ ;
+	TRUE : CAM;
+esac;
+
+next(FETP) := case
+	alpha & S_smv=s0_osm & (event_REQ) : FETP_ ;
+	TRUE : FETP;
+esac;
+
+next(SLTP) := case
+	alpha & S_smv=s0_osm & (event_REQ) : SLTP_ ;
+	TRUE : SLTP;
+esac;
+
+next(GOEL) := case
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_03_CA_06_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRC_03_GRC_04_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=5 : (TRUE);
+	S_smv=s2_osm & Q_smv=EL_03_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=EL_01_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_03_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_e_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_02_CA_01_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRC_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_f_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_lid_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_03_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_lid_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_01_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_e_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_06_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_04_CA_06_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_04_CA_06_ecc & NA=1 & NI=4 : (FALSE);
+	TRUE : GOEL;
+esac;
+next(SETEL) := case
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=6 : (2);
+	S_smv=s2_osm & Q_smv=GRO_lid_ecc & NA=1 & NI=2 : (1);
+	TRUE : SETEL;
+esac;
+next(GOCR) := case
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_03_CA_06_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=GRC_03_GRC_04_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=3 : (TRUE);
+	S_smv=s2_osm & Q_smv=EL_03_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=EL_01_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_03_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_e_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_02_CA_01_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRC_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_f_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_lid_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_03_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_lid_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_01_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_e_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_06_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_04_CA_06_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_04_CA_06_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=ReadyToDrop_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : GOCR;
+esac;
+next(SETCR) := case
+	S_smv=s2_osm & Q_smv=CR_01_03_CA_06_ecc & NA=1 & NI=2 : (3);
+	S_smv=s2_osm & Q_smv=GRC_03_GRC_04_ecc & NA=1 & NI=2 : (1);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=4 : (4);
+	S_smv=s2_osm & Q_smv=GRO_ecc & NA=1 & NI=2 : (1);
+	S_smv=s2_osm & Q_smv=EL_01_ecc & NA=1 & NI=2 : (1);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_e_ecc & NA=1 & NI=2 : (2);
+	S_smv=s2_osm & Q_smv=GRC_ecc & NA=1 & NI=2 : (1);
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_lid_ecc & NA=1 & NI=2 : (3);
+	S_smv=s2_osm & Q_smv=CR_01_04_CA_06_ecc & NA=1 & NI=2 : (3);
+	TRUE : SETCR;
+esac;
+next(GOCA) := case
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_03_CA_06_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRC_03_GRC_04_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=EL_03_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=EL_01_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_03_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_e_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_02_CA_01_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRC_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_f_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_lid_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_03_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=GRO_lid_ecc & NA=1 & NI=3 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_01_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_e_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_06_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_04_CA_06_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_04_CA_06_ecc & NA=1 & NI=5 : (FALSE);
+	TRUE : GOCA;
+esac;
+next(SETCA) := case
+	S_smv=s2_osm & Q_smv=CR_01_CA_03_ecc & NA=1 & NI=2 : (3);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_f_ecc & NA=1 & NI=2 : (2);
+	S_smv=s2_osm & Q_smv=CR_01_EL_03_ecc & NA=1 & NI=2 : (1);
+	S_smv=s2_osm & Q_smv=CR_01_CA_01_f_ecc & NA=1 & NI=2 : (2);
+	TRUE : SETCA;
+esac;
+next(OPGR) := case
+	S_smv=s2_osm & Q_smv=EL_03_ecc & NA=1 & NI=2 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_02_CA_01_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_03_ecc & NA=1 & NI=2 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_01_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_e_ecc & NA=1 & NI=4 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_06_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_04_CA_06_ecc & NA=1 & NI=2 : (FALSE);
+	TRUE : OPGR;
+esac;
+next(CLGR) := case
+	S_smv=s2_osm & Q_smv=EL_03_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_02_CA_01_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_03_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_EL_01_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_01_CA_06_e_ecc & NA=1 & NI=5 : (FALSE);
+	S_smv=s2_osm & Q_smv=CR_03_CA_06_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CR_04_CA_06_ecc & NA=1 & NI=1 : (TRUE);
+	TRUE : CLGR;
+esac;
+
+next(GOEL_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_03_ecc & NA=1)(Q_smv=CR_01_03_CA_06_ecc & NA=1)(Q_smv=GRC_03_GRC_04_ecc & NA=1)(Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=EL_03_ecc & NA=1)(Q_smv=GRO_ecc & NA=1)(Q_smv=EL_01_ecc & NA=1)(Q_smv=CR_01_EL_03_ecc & NA=1)(Q_smv=CR_01_CA_01_e_ecc & NA=1)(Q_smv=CR_02_CA_01_ecc & NA=1)(Q_smv=GRC_ecc & NA=1)(Q_smv=CR_01_CA_01_f_ecc & NA=1)(Q_smv=CR_01_CA_03_lid_ecc & NA=1)(Q_smv=CR_03_CA_03_ecc & NA=1)(Q_smv=GRO_lid_ecc & NA=1)(Q_smv=CR_01_EL_01_ecc & NA=1)(Q_smv=CR_01_CA_06_e_ecc & NA=1)(Q_smv=CR_03_CA_06_ecc & NA=1)(Q_smv=CR_01_04_CA_06_ecc & NA=1)(Q_smv=CR_04_CA_06_ecc & NA=1)) : GOEL;
+	TRUE : GOEL_;
+esac;
+next(SETEL_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=GRO_lid_ecc & NA=1)) : SETEL;
+	TRUE : SETEL_;
+esac;
+next(GOCR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_03_ecc & NA=1)(Q_smv=CR_01_03_CA_06_ecc & NA=1)(Q_smv=GRC_03_GRC_04_ecc & NA=1)(Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=EL_03_ecc & NA=1)(Q_smv=GRO_ecc & NA=1)(Q_smv=EL_01_ecc & NA=1)(Q_smv=CR_01_EL_03_ecc & NA=1)(Q_smv=CR_01_CA_01_e_ecc & NA=1)(Q_smv=CR_02_CA_01_ecc & NA=1)(Q_smv=GRC_ecc & NA=1)(Q_smv=CR_01_CA_01_f_ecc & NA=1)(Q_smv=CR_01_CA_03_lid_ecc & NA=1)(Q_smv=CR_03_CA_03_ecc & NA=1)(Q_smv=GRO_lid_ecc & NA=1)(Q_smv=CR_01_EL_01_ecc & NA=1)(Q_smv=CR_01_CA_06_e_ecc & NA=1)(Q_smv=CR_03_CA_06_ecc & NA=1)(Q_smv=CR_01_04_CA_06_ecc & NA=1)(Q_smv=CR_04_CA_06_ecc & NA=1)(Q_smv=ReadyToDrop_ecc & NA=1)) : GOCR;
+	TRUE : GOCR_;
+esac;
+next(SETCR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_03_CA_06_ecc & NA=1)(Q_smv=GRC_03_GRC_04_ecc & NA=1)(Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=GRO_ecc & NA=1)(Q_smv=EL_01_ecc & NA=1)(Q_smv=CR_01_CA_01_e_ecc & NA=1)(Q_smv=GRC_ecc & NA=1)(Q_smv=CR_01_CA_03_lid_ecc & NA=1)(Q_smv=CR_01_04_CA_06_ecc & NA=1)) : SETCR;
+	TRUE : SETCR_;
+esac;
+next(GOCA_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_03_ecc & NA=1)(Q_smv=CR_01_03_CA_06_ecc & NA=1)(Q_smv=GRC_03_GRC_04_ecc & NA=1)(Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=EL_03_ecc & NA=1)(Q_smv=GRO_ecc & NA=1)(Q_smv=EL_01_ecc & NA=1)(Q_smv=CR_01_EL_03_ecc & NA=1)(Q_smv=CR_01_CA_01_e_ecc & NA=1)(Q_smv=CR_02_CA_01_ecc & NA=1)(Q_smv=GRC_ecc & NA=1)(Q_smv=CR_01_CA_01_f_ecc & NA=1)(Q_smv=CR_01_CA_03_lid_ecc & NA=1)(Q_smv=CR_03_CA_03_ecc & NA=1)(Q_smv=GRO_lid_ecc & NA=1)(Q_smv=CR_01_EL_01_ecc & NA=1)(Q_smv=CR_01_CA_06_e_ecc & NA=1)(Q_smv=CR_03_CA_06_ecc & NA=1)(Q_smv=CR_01_04_CA_06_ecc & NA=1)(Q_smv=CR_04_CA_06_ecc & NA=1)) : GOCA;
+	TRUE : GOCA_;
+esac;
+next(SETCA_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_03_ecc & NA=1)(Q_smv=CR_01_CA_06_f_ecc & NA=1)(Q_smv=CR_01_EL_03_ecc & NA=1)(Q_smv=CR_01_CA_01_f_ecc & NA=1)) : SETCA;
+	TRUE : SETCA_;
+esac;
+next(OPGR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=EL_03_ecc & NA=1)(Q_smv=CR_02_CA_01_ecc & NA=1)(Q_smv=CR_03_CA_03_ecc & NA=1)(Q_smv=CR_01_EL_01_ecc & NA=1)(Q_smv=CR_01_CA_06_e_ecc & NA=1)(Q_smv=CR_03_CA_06_ecc & NA=1)(Q_smv=CR_04_CA_06_ecc & NA=1)) : OPGR;
+	TRUE : OPGR_;
+esac;
+next(CLGR_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=EL_03_ecc & NA=1)(Q_smv=CR_02_CA_01_ecc & NA=1)(Q_smv=CR_03_CA_03_ecc & NA=1)(Q_smv=CR_01_EL_01_ecc & NA=1)(Q_smv=CR_01_CA_06_e_ecc & NA=1)(Q_smv=CR_03_CA_06_ecc & NA=1)(Q_smv=CR_04_CA_06_ecc & NA=1)) : CLGR;
+	TRUE : CLGR_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= (S_smv=s1_osm);
+DEFINE event_REQ_reset:= (alpha & ( event_INIT )) | (S_smv=s1_osm);
+
+DEFINE event_INITO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA = 1)) ;
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=CR_01_CA_03_ecc & NA = 1) | (Q_smv=CR_01_03_CA_06_ecc & NA = 1) | (Q_smv=GRC_03_GRC_04_ecc & NA = 1) | (Q_smv=CR_01_CA_06_f_ecc & NA = 1) | (Q_smv=EL_03_ecc & NA = 1) | (Q_smv=GRO_ecc & NA = 1) | (Q_smv=EL_01_ecc & NA = 1) | (Q_smv=CR_01_EL_03_ecc & NA = 1) | (Q_smv=CR_01_CA_01_e_ecc & NA = 1) | (Q_smv=CR_02_CA_01_ecc & NA = 1) | (Q_smv=GRC_ecc & NA = 1) | (Q_smv=CR_01_CA_01_f_ecc & NA = 1) | (Q_smv=CR_01_CA_03_lid_ecc & NA = 1) | (Q_smv=CR_03_CA_03_ecc & NA = 1) | (Q_smv=GRO_lid_ecc & NA = 1) | (Q_smv=CR_01_EL_01_ecc & NA = 1) | (Q_smv=CR_01_CA_06_e_ecc & NA = 1) | (Q_smv=CR_03_CA_06_ecc & NA = 1) | (Q_smv=CR_01_04_CA_06_ecc & NA = 1) | (Q_smv=CR_04_CA_06_ecc & NA = 1) | (Q_smv=ReadyToDrop_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_INIT )  ) ) | (Q_smv=INIT_ecc   & (  ( ( SystemINITED)  )  ) ) | (Q_smv=CR_01_CA_03_ecc   & (  ( (!( CAM) CAPR)  )  ) ) | (Q_smv=CR_01_03_CA_06_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=GRC_03_GRC_04_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_01_CA_06_f_ecc   & (  ( ( & &)  )  ) ) | (Q_smv=EL_03_ecc  ) | (Q_smv=GRO_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=EL_01_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_01_EL_03_ecc   & (  ( (!( CAM) CAPR)  )  ) ) | (Q_smv=CR_01_CA_01_e_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_02_CA_01_ecc  ) | (Q_smv=GRC_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_01_CA_01_f_ecc   & (  ( (!( CAM) CAPR)  )  ) ) | (Q_smv=CR_01_CA_03_lid_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_03_CA_03_ecc  ) | (Q_smv=GRO_lid_ecc   & (  ( (!( ELM) ELPR)  )  ) ) | (Q_smv=CR_01_EL_01_ecc  ) | (Q_smv=CR_01_CA_06_e_ecc  ) | (Q_smv=CR_03_CA_06_ecc  ) | (Q_smv=CR_01_04_CA_06_ecc   & (  ( (!( CRM) CRPR)  )  ) ) | (Q_smv=CR_04_CA_06_ecc  ) | (Q_smv=ReadyToDrop_ecc   & (  ( event_REQ )  ) );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE HHM_FV_PART_1(event_INIT, event_INITO, alpha, beta)
+VAR  ELcmd  : AXE_CMD (ELcmd_INIT,ELcmd_REQ,ELcmd_INITO, ELcmd_CNF, BEHAVIOUR_GOEL, BEHAVIOUR_SETEL, ELplant_PR, ELcmd_go, ELcmd_setpos_out, ELcmd_moving, ELcmd_pr, alpha, beta);
+VAR  ELplant  : AXE_plant_FV (ELplant_INIT,ELplant_REQ,ELplant_NDT,ELplant_INITO, ELplant_CNF, ELcmd_go, ELcmd_setpos_out, ELplant_PR, ELplant_POS_OUT, alpha, beta);
+VAR  CRcmd  : AXE_CMD (CRcmd_INIT,CRcmd_REQ,CRcmd_INITO, CRcmd_CNF, BEHAVIOUR_GOEL, BEHAVIOUR_SETEL, ELplant_PR, CRcmd_go, CRcmd_setpos_out, CRcmd_moving, CRcmd_pr, alpha, beta);
+VAR  CRplant  : AXE_plant_FV_Without_NDT (CRplant_INIT,CRplant_REQ,CRplant_INITO, CRplant_CNF, CRcmd_go, CRcmd_setpos_out, CRplant_PR, CRplant_POS_OUT, alpha, beta);
+VAR  CAcmd  : AXE_CMD (CAcmd_INIT,CAcmd_REQ,CAcmd_INITO, CAcmd_CNF, BEHAVIOUR_GOEL, BEHAVIOUR_SETEL, ELplant_PR, CAcmd_go, CAcmd_setpos_out, CAcmd_moving, CAcmd_pr, alpha, beta);
+VAR  CAplant  : AXE_plant_FV_Without_NDT (CAplant_INIT,CAplant_REQ,CAplant_INITO, CAplant_CNF, CRcmd_go, CRcmd_setpos_out, CAplant_PR, CAplant_POS_OUT, alpha, beta);
+VAR  GRplant  : GR_plant_Without_NDT (GRplant_INIT,GRplant_REQ,GRplant_INITO, GRplant_CNF, GRcmd_open, GRcmd_close, GRplant_GRO, GRplant_GRC, alpha, beta);
+VAR  GRcmd  : GR_CMD (GRcmd_INIT,GRcmd_REQ,GRcmd_INITO, GRcmd_CNF, BEHAVIOUR_OPGR, BEHAVIOUR_CLGR, GRplant_GRO, GRplant_GRC, GRcmd_open, GRcmd_close, GRcmd_GRO, GRcmd_GRC, alpha, beta);
+VAR  BEHAVIOUR  : CMD_bloc_FV (BEHAVIOUR_INIT,BEHAVIOUR_REQ,BEHAVIOUR_INITO, BEHAVIOUR_CNF, BEHAVIOUR_SystemINITED, ELcmd_pr, CRcmd_pr, CAcmd_pr, GRcmd_GRO, GRcmd_GRC, ELcmd_moving, CRcmd_moving, CAcmd_moving, BEHAVIOUR_FETP, BEHAVIOUR_SLTP, BEHAVIOUR_GOEL, BEHAVIOUR_SETEL, BEHAVIOUR_GOCR, BEHAVIOUR_SETCR, BEHAVIOUR_GOCA, BEHAVIOUR_SETCA, BEHAVIOUR_OPGR, BEHAVIOUR_CLGR, alpha, beta);
+
+
+-- generateCompositeFBsVariables
+
+VAR ELcmd_INIT : boolean;
+VAR ELcmd_REQ : boolean;
+VAR ELcmd_INITO : boolean;
+VAR ELcmd_CNF : boolean;
+VAR ELcmd_go : boolean;
+VAR ELcmd_setpos_out : null;
+VAR ELcmd_moving : boolean;
+VAR ELcmd_pr : boolean;
+VAR ELcmd_alpha : boolean;
+VAR ELcmd_beta : boolean;
+
+VAR ELplant_INIT : boolean;
+VAR ELplant_REQ : boolean;
+VAR ELplant_INITO : boolean;
+VAR ELplant_CNF : boolean;
+VAR ELplant_PR : boolean;
+VAR ELplant_POS_OUT : null;
+VAR ELplant_alpha : boolean;
+VAR ELplant_beta : boolean;
+
+VAR CRcmd_INIT : boolean;
+VAR CRcmd_REQ : boolean;
+VAR CRcmd_INITO : boolean;
+VAR CRcmd_CNF : boolean;
+VAR CRcmd_go : boolean;
+VAR CRcmd_setpos_out : null;
+VAR CRcmd_moving : boolean;
+VAR CRcmd_pr : boolean;
+VAR CRcmd_alpha : boolean;
+VAR CRcmd_beta : boolean;
+
+VAR CRplant_INIT : boolean;
+VAR CRplant_REQ : boolean;
+VAR CRplant_INITO : boolean;
+VAR CRplant_CNF : boolean;
+VAR CRplant_PR : boolean;
+VAR CRplant_POS_OUT : null;
+VAR CRplant_alpha : boolean;
+VAR CRplant_beta : boolean;
+
+VAR CAcmd_INIT : boolean;
+VAR CAcmd_REQ : boolean;
+VAR CAcmd_INITO : boolean;
+VAR CAcmd_CNF : boolean;
+VAR CAcmd_go : boolean;
+VAR CAcmd_setpos_out : null;
+VAR CAcmd_moving : boolean;
+VAR CAcmd_pr : boolean;
+VAR CAcmd_alpha : boolean;
+VAR CAcmd_beta : boolean;
+
+VAR CAplant_INIT : boolean;
+VAR CAplant_REQ : boolean;
+VAR CAplant_INITO : boolean;
+VAR CAplant_CNF : boolean;
+VAR CAplant_PR : boolean;
+VAR CAplant_POS_OUT : null;
+VAR CAplant_alpha : boolean;
+VAR CAplant_beta : boolean;
+
+VAR GRplant_INIT : boolean;
+VAR GRplant_REQ : boolean;
+VAR GRplant_INITO : boolean;
+VAR GRplant_CNF : boolean;
+VAR GRplant_GRO : boolean;
+VAR GRplant_GRC : boolean;
+VAR GRplant_alpha : boolean;
+VAR GRplant_beta : boolean;
+
+VAR GRcmd_INIT : boolean;
+VAR GRcmd_REQ : boolean;
+VAR GRcmd_INITO : boolean;
+VAR GRcmd_CNF : boolean;
+VAR GRcmd_open : boolean;
+VAR GRcmd_close : boolean;
+VAR GRcmd_GRO : boolean;
+VAR GRcmd_GRC : boolean;
+VAR GRcmd_alpha : boolean;
+VAR GRcmd_beta : boolean;
+
+VAR BEHAVIOUR_INIT : boolean;
+VAR BEHAVIOUR_REQ : boolean;
+VAR BEHAVIOUR_INITO : boolean;
+VAR BEHAVIOUR_CNF : boolean;
+VAR BEHAVIOUR_SystemINITED : boolean;
+VAR BEHAVIOUR_FETP : boolean;
+VAR BEHAVIOUR_SLTP : boolean;
+VAR BEHAVIOUR_GOEL : boolean;
+VAR BEHAVIOUR_SETEL : null;
+VAR BEHAVIOUR_GOCR : boolean;
+VAR BEHAVIOUR_SETCR : null;
+VAR BEHAVIOUR_GOCA : boolean;
+VAR BEHAVIOUR_SETCA : null;
+VAR BEHAVIOUR_OPGR : boolean;
+VAR BEHAVIOUR_CLGR : boolean;
+VAR BEHAVIOUR_alpha : boolean;
+VAR BEHAVIOUR_beta : boolean;
+
+
+
+ASSIGN
+init(ELcmd_INIT) := FALSE;
+init(ELcmd_REQ) := FALSE;
+init(ELcmd_INITO) := FALSE;
+init(ELcmd_CNF) := FALSE;
+init(ELcmd_go) := FALSE;
+init(ELcmd_setpos_out) := null;
+init(ELcmd_moving) := FALSE;
+init(ELcmd_pr) := FALSE;
+init( ELcmd_alpha) := FALSE;
+init( ELcmd_beta) := FALSE;
+
+init(ELplant_INIT) := FALSE;
+init(ELplant_REQ) := FALSE;
+init(ELplant_INITO) := FALSE;
+init(ELplant_CNF) := FALSE;
+init(ELplant_PR) := FALSE;
+init(ELplant_POS_OUT) := null;
+init( ELplant_alpha) := FALSE;
+init( ELplant_beta) := FALSE;
+
+init(CRcmd_INIT) := FALSE;
+init(CRcmd_REQ) := FALSE;
+init(CRcmd_INITO) := FALSE;
+init(CRcmd_CNF) := FALSE;
+init(CRcmd_go) := FALSE;
+init(CRcmd_setpos_out) := null;
+init(CRcmd_moving) := FALSE;
+init(CRcmd_pr) := FALSE;
+init( CRcmd_alpha) := FALSE;
+init( CRcmd_beta) := FALSE;
+
+init(CRplant_INIT) := FALSE;
+init(CRplant_REQ) := FALSE;
+init(CRplant_INITO) := FALSE;
+init(CRplant_CNF) := FALSE;
+init(CRplant_PR) := FALSE;
+init(CRplant_POS_OUT) := null;
+init( CRplant_alpha) := FALSE;
+init( CRplant_beta) := FALSE;
+
+init(CAcmd_INIT) := FALSE;
+init(CAcmd_REQ) := FALSE;
+init(CAcmd_INITO) := FALSE;
+init(CAcmd_CNF) := FALSE;
+init(CAcmd_go) := FALSE;
+init(CAcmd_setpos_out) := null;
+init(CAcmd_moving) := FALSE;
+init(CAcmd_pr) := FALSE;
+init( CAcmd_alpha) := FALSE;
+init( CAcmd_beta) := FALSE;
+
+init(CAplant_INIT) := FALSE;
+init(CAplant_REQ) := FALSE;
+init(CAplant_INITO) := FALSE;
+init(CAplant_CNF) := FALSE;
+init(CAplant_PR) := FALSE;
+init(CAplant_POS_OUT) := null;
+init( CAplant_alpha) := FALSE;
+init( CAplant_beta) := FALSE;
+
+init(GRplant_INIT) := FALSE;
+init(GRplant_REQ) := FALSE;
+init(GRplant_INITO) := FALSE;
+init(GRplant_CNF) := FALSE;
+init(GRplant_GRO) := FALSE;
+init(GRplant_GRC) := FALSE;
+init( GRplant_alpha) := FALSE;
+init( GRplant_beta) := FALSE;
+
+init(GRcmd_INIT) := FALSE;
+init(GRcmd_REQ) := FALSE;
+init(GRcmd_INITO) := FALSE;
+init(GRcmd_CNF) := FALSE;
+init(GRcmd_open) := FALSE;
+init(GRcmd_close) := FALSE;
+init(GRcmd_GRO) := FALSE;
+init(GRcmd_GRC) := FALSE;
+init( GRcmd_alpha) := FALSE;
+init( GRcmd_beta) := FALSE;
+
+init(BEHAVIOUR_INIT) := FALSE;
+init(BEHAVIOUR_REQ) := FALSE;
+init(BEHAVIOUR_INITO) := FALSE;
+init(BEHAVIOUR_CNF) := FALSE;
+init(BEHAVIOUR_SystemINITED) := FALSE;
+init(BEHAVIOUR_FETP) := FALSE;
+init(BEHAVIOUR_SLTP) := FALSE;
+init(BEHAVIOUR_GOEL) := FALSE;
+init(BEHAVIOUR_SETEL) := null;
+init(BEHAVIOUR_GOCR) := FALSE;
+init(BEHAVIOUR_SETCR) := null;
+init(BEHAVIOUR_GOCA) := FALSE;
+init(BEHAVIOUR_SETCA) := null;
+init(BEHAVIOUR_OPGR) := FALSE;
+init(BEHAVIOUR_CLGR) := FALSE;
+init( BEHAVIOUR_alpha) := FALSE;
+init( BEHAVIOUR_beta) := FALSE;
+
+
+
+-- generateInternalDataConnections
+
+
+-- generateInnerFBsEventOutputsUpdate
+
+next(ELcmd_INITO) := case
+	ELcmd.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(ELcmd_CNF) := case
+	ELcmd.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CRcmd_INITO) := case
+	CRcmd.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CRcmd_CNF) := case
+	CRcmd.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CRplant_CNF) := case
+	CRplant.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CAcmd_INITO) := case
+	CAcmd.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CAcmd_CNF) := case
+	CAcmd.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CAplant_CNF) := case
+	CAplant.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(ELplant_CNF) := case
+	ELplant.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(GRcmd_CNF) := case
+	GRcmd.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(GRcmd_INITO) := case
+	GRcmd.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(BEHAVIOUR_CNF) := case
+	BEHAVIOUR.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(BEHAVIOUR_INITO) := case
+	BEHAVIOUR.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(ELplant_INITO) := case
+	ELplant.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CRplant_INITO) := case
+	CRplant.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(CAplant_INITO) := case
+	CAplant.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(GRplant_CNF) := case
+	GRplant.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(GRplant_INITO) := case
+	GRplant.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+-- DISPATCHER
+
+next(ELcmd_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	ELcmd.alpha_reset : FALSE;
+	TRUE : ELcmd_alpha;
+esac;
+next(ELcmd_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	ELcmd.beta_set : FALSE;
+	TRUE : ELcmd_beta;
+esac;
+next(ELplant_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	ELplant.alpha_reset : FALSE;
+	TRUE : ELplant_alpha;
+esac;
+next(ELplant_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	ELplant.beta_set : FALSE;
+	TRUE : ELplant_beta;
+esac;
+next(CRcmd_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	CRcmd.alpha_reset : FALSE;
+	TRUE : CRcmd_alpha;
+esac;
+next(CRcmd_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	CRcmd.beta_set : FALSE;
+	TRUE : CRcmd_beta;
+esac;
+next(CRplant_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	CRplant.alpha_reset : FALSE;
+	TRUE : CRplant_alpha;
+esac;
+next(CRplant_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	CRplant.beta_set : FALSE;
+	TRUE : CRplant_beta;
+esac;
+next(CAcmd_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	CAcmd.alpha_reset : FALSE;
+	TRUE : CAcmd_alpha;
+esac;
+next(CAcmd_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	CAcmd.beta_set : FALSE;
+	TRUE : CAcmd_beta;
+esac;
+next(CAplant_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	CAplant.alpha_reset : FALSE;
+	TRUE : CAplant_alpha;
+esac;
+next(CAplant_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	CAplant.beta_set : FALSE;
+	TRUE : CAplant_beta;
+esac;
+next(GRplant_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	GRplant.alpha_reset : FALSE;
+	TRUE : GRplant_alpha;
+esac;
+next(GRplant_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	GRplant.beta_set : FALSE;
+	TRUE : GRplant_beta;
+esac;
+next(GRcmd_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	GRcmd.alpha_reset : FALSE;
+	TRUE : GRcmd_alpha;
+esac;
+next(GRcmd_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	GRcmd.beta_set : FALSE;
+	TRUE : GRcmd_beta;
+esac;
+next(BEHAVIOUR_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	BEHAVIOUR.alpha_reset : FALSE;
+	TRUE : BEHAVIOUR_alpha;
+esac;
+next(BEHAVIOUR_beta):= case
+	beta & omega & !ExistsInputEvent : TRUE;
+	BEHAVIOUR.beta_set : FALSE;
+	TRUE : BEHAVIOUR_beta;
+esac;
+DEFINE beta_set:= BEHAVIOUR_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+-- generateInternalEventConnections
+
+next(BEHAVIOUR_INIT):= case
+	((event_INIT & alpha)) : TRUE;
+	(BEHAVIOUR.event_INIT_reset) : FALSE;
+	TRUE : BEHAVIOUR_INIT;
+esac;
+
+next(ELcmd_INIT):= case
+	(BEHAVIOUR_INITO) : TRUE;
+	(ELcmd.event_INIT_reset) : FALSE;
+	TRUE : ELcmd_INIT;
+esac;
+
+next(GRcmd_REQ):= case
+	(BEHAVIOUR_CNF | GRplant_CNF) : TRUE;
+	(GRcmd.event_REQ_reset) : FALSE;
+	TRUE : GRcmd_REQ;
+esac;
+
+next(CRplant_INIT):= case
+	(CRcmd_INITO) : TRUE;
+	(CRplant.event_INIT_reset) : FALSE;
+	TRUE : CRplant_INIT;
+esac;
+
+next(ELplant_INIT):= case
+	(ELcmd_INITO) : TRUE;
+	(ELplant.event_INIT_reset) : FALSE;
+	TRUE : ELplant_INIT;
+esac;
+
+next(CRcmd_REQ):= case
+	(CRplant_CNF | BEHAVIOUR_CNF) : TRUE;
+	(CRcmd.event_REQ_reset) : FALSE;
+	TRUE : CRcmd_REQ;
+esac;
+
+next(CAplant_INIT):= case
+	(CAcmd_INITO) : TRUE;
+	(CAplant.event_INIT_reset) : FALSE;
+	TRUE : CAplant_INIT;
+esac;
+
+next(CAcmd_REQ):= case
+	(CAplant_CNF | BEHAVIOUR_CNF) : TRUE;
+	(CAcmd.event_REQ_reset) : FALSE;
+	TRUE : CAcmd_REQ;
+esac;
+
+next(GRplant_INIT):= case
+	(GRcmd_INITO) : TRUE;
+	(GRplant.event_INIT_reset) : FALSE;
+	TRUE : GRplant_INIT;
+esac;
+
+next(CAcmd_INIT):= case
+	(CRplant_INITO) : TRUE;
+	(CAcmd.event_INIT_reset) : FALSE;
+	TRUE : CAcmd_INIT;
+esac;
+
+next(CRcmd_INIT):= case
+	(ELplant_INITO) : TRUE;
+	(CRcmd.event_INIT_reset) : FALSE;
+	TRUE : CRcmd_INIT;
+esac;
+
+next(ELplant_REQ):= case
+	(ELcmd_CNF) : TRUE;
+	(ELplant.event_REQ_reset) : FALSE;
+	TRUE : ELplant_REQ;
+esac;
+
+next(BEHAVIOUR_REQ):= case
+	(ELcmd_CNF | CRcmd_CNF | CAcmd_CNF | GRcmd_CNF) : TRUE;
+	(BEHAVIOUR.event_REQ_reset) : FALSE;
+	TRUE : BEHAVIOUR_REQ;
+esac;
+
+next(GRplant_REQ):= case
+	(GRcmd_CNF) : TRUE;
+	(GRplant.event_REQ_reset) : FALSE;
+	TRUE : GRplant_REQ;
+esac;
+
+next(GRcmd_INIT):= case
+	(CAplant_INITO) : TRUE;
+	(GRcmd.event_INIT_reset) : FALSE;
+	TRUE : GRcmd_INIT;
+esac;
+
+next(CRplant_REQ):= case
+	(CRcmd_CNF) : TRUE;
+	(CRplant.event_REQ_reset) : FALSE;
+	TRUE : CRplant_REQ;
+esac;
+
+next(CAplant_REQ):= case
+	(CAcmd_CNF) : TRUE;
+	(CAplant.event_REQ_reset) : FALSE;
+	TRUE : CAplant_REQ;
+esac;
+
+next(ELcmd_REQ):= case
+	(ELplant_CNF | BEHAVIOUR_CNF) : TRUE;
+	(ELcmd.event_REQ_reset) : FALSE;
+	TRUE : ELcmd_REQ;
+esac;
+
+DEFINE event_INITO_set:= (GRplant_INITO );
+DEFINE event_INIT_reset:= alpha;
+DEFINE ExistsInputEvent :=  event_INIT ;
+
+DEFINE omega:= !(ELcmd_INITO | CRplant_CNF | ELplant_INITO | CAcmd_CNF | BEHAVIOUR_INITO | GRplant_INITO | CRplant_INITO | CAplant_INITO | CRcmd_CNF | BEHAVIOUR_CNF | CAplant_CNF | GRcmd_CNF | ELplant_CNF | CRcmd_INITO | CAcmd_INITO | GRplant_CNF | ELcmd_CNF | GRcmd_INITO);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(BEHAVIOUR_INIT | ELcmd_INIT | GRcmd_REQ | CRplant_INIT | ELplant_INIT | CRcmd_REQ | CAplant_INIT | CAcmd_REQ | GRplant_INIT | CAcmd_INIT | CRcmd_INIT | ELplant_REQ | BEHAVIOUR_REQ | GRplant_REQ | GRcmd_INIT | CRplant_REQ | CAplant_REQ | ELcmd_REQ | ELcmd_INITO | CRplant_CNF | ELplant_INITO | CAcmd_CNF | BEHAVIOUR_INITO | GRplant_INITO | CRplant_INITO | CAplant_INITO | CRcmd_CNF | BEHAVIOUR_CNF | CAplant_CNF | GRcmd_CNF | ELplant_CNF | CRcmd_INITO | CAcmd_INITO | GRplant_CNF | ELcmd_CNF | GRcmd_INITO ));
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE main()
+VAR HHM_FV_PART_1_inst : HHM_FV_PART_1 (HHM_FV_PART_1_inst_INIT, HHM_FV_PART_1_inst_INITO,  HHM_FV_PART_1_inst_alpha, HHM_FV_PART_1_inst_beta);
+
+VAR HHM_FV_PART_1_inst_INIT : boolean;
+VAR HHM_FV_PART_1_inst_INITO : boolean;
+VAR HHM_FV_PART_1_inst_alpha : boolean;
+VAR HHM_FV_PART_1_inst_beta : boolean;
+VAR false_var : boolean;
+
+ASSIGN
+init(false_var):= FALSE;
+next(false_var):= FALSE;
+init (HHM_FV_PART_1_inst_INIT) := TRUE;
+init (HHM_FV_PART_1_inst_INITO) := TRUE;
+init(HHM_FV_PART_1_inst_alpha):= TRUE;
+init(HHM_FV_PART_1_inst_beta):= FALSE;
+
+next(HHM_FV_PART_1_inst_INIT):= case
+HHM_FV_PART_1_inst.event_INIT_reset : FALSE;
+	TRUE : HHM_FV_PART_1_inst_INIT;
+esac;
+next(HHM_FV_PART_1_inst_INITO):= case
+HHM_FV_PART_1_inst.event_INITO_set : TRUE;
+	TRUE : HHM_FV_PART_1_inst_INITO;
+esac;
+next(HHM_FV_PART_1_inst_alpha):= case
+	HHM_FV_PART_1_inst_beta : TRUE;
+	HHM_FV_PART_1_inst.alpha_reset : FALSE;
+	TRUE : HHM_FV_PART_1_inst_alpha;
+esac;
+next(HHM_FV_PART_1_inst_beta):= case
+	HHM_FV_PART_1_inst_beta : FALSE;
+	HHM_FV_PART_1_inst.beta_set : TRUE;
+	TRUE : HHM_FV_PART_1_inst_beta;
+esac;
+
+LTLSPEC F false_var=TRUE

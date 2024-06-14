@@ -1,0 +1,1595 @@
+MODULE Event(valueI, timestamp)
+VAR value : boolean;
+VAR ts_last : 0..40;
+VAR ts_born : 0..40;
+
+ASSIGN
+init(value):= valueI;
+init(ts_last):= timestamp;
+init(ts_born):= timestamp;
+
+MODULE BasicControlTS(event_INIT, event_REQ, event_POS_TIMEOUT_EXCEED, event_CNF, event_POS_TIMEOUT, AtFloor_, DoorOpened_, Button_, Req_, initialFloor_, liftUp_, liftDown_, door_, TGlobal, alpha, beta)
+VAR AtFloor : array 0..2 of boolean;
+VAR DoorOpened : array 0..2 of boolean;
+VAR Button : array 0..2 of boolean;
+VAR Req : array 0..2 of boolean;
+DEFINE MaxSafeDelay:= 1;
+DEFINE EventDelay := systemclock - event_REQ.ts_born; 
+VAR liftUp : boolean;
+VAR liftDown : boolean;
+VAR door : array 0..2 of boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc, INIT_ecc, AtFloor_ecc, GoUp_ecc, Wait_ecc, DoorOpened_ecc, GoDown_ecc, CorrectDown_ecc, CorrectUp_ecc};
+
+VAR NA: 0..2;
+VAR NI: 0..3;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(AtFloor[0]):= FALSE;
+init(AtFloor[1]):= FALSE;
+init(AtFloor[2]):= FALSE;
+init(DoorOpened[0]):= FALSE;
+init(DoorOpened[1]):= FALSE;
+init(DoorOpened[2]):= FALSE;
+init(Button[0]):= FALSE;
+init(Button[1]):= FALSE;
+init(Button[2]):= FALSE;
+init(Req[0]):= FALSE;
+init(Req[1]):= FALSE;
+init(Req[2]):= FALSE;
+init(liftUp):= FALSE;
+init(liftDown):= FALSE;
+init(door[0]):= FALSE;
+init(door[1]):= FALSE;
+init(door[2]):= FALSE;
+
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & (event_INIT) : INIT_ecc;
+	Q_smv=INIT_ecc & S_smv=s1_osm : Wait_ecc;
+	Q_smv=GoUp_ecc & S_smv=s1_osm & ((event_REQ.value   &   EventDelay <= MaxSafeDelay   &   (
+ (AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+ (AtFloor[2]   &   (Button[2]   |   Req[2])))
+	)) : AtFloor_ecc;
+	Q_smv=Wait_ecc & S_smv=s1_osm & (((AtFloor[0]   &   (Button[0]   |   Req[0]))   |   
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[2]   &   (Button[2]   |   Req[2])))) : AtFloor_ecc;
+	Q_smv=Wait_ecc & S_smv=s1_osm & (((AtFloor[0]   &   (Button[1]   |   Req[1]   |   Button[2]   |   Req[2]))
+  |   (AtFloor[1]   &   (Button[2]   |   Req[2])))) : GoUp_ecc;
+	Q_smv=AtFloor_ecc & S_smv=s1_osm & (event_REQ.value & (DoorOpened[0]   |   DoorOpened[1]   |   DoorOpened[2])) : DoorOpened_ecc;
+	Q_smv=GoDown_ecc & S_smv=s1_osm & ((event_REQ.value   &   EventDelay <= MaxSafeDelay   &   (
+ (AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+ (AtFloor[0]   &   (Button[0]   |   Req[0]))))) : AtFloor_ecc;
+	Q_smv=GoUp_ecc & S_smv=s1_osm & (event_REQ.value & (EventDelay > MaxSafeDelay   &   (
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[2]   &   (Button[2]   |   Req[2]))))) : CorrectDown_ecc;
+	Q_smv=CorrectDown_ecc & S_smv=s1_osm & (event_POS_TIMEOUT_EXCEED) : Wait_ecc;
+	Q_smv=CorrectUp_ecc & S_smv=s1_osm & (event_POS_TIMEOUT_EXCEED) : Wait_ecc;
+	Q_smv=GoDown_ecc & S_smv=s1_osm & (event_REQ.value & (EventDelay > MaxSafeDelay   &  ( 
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[0]   &   (Button[0]   |   Req[0]))))) : CorrectUp_ecc;
+	Q_smv=Wait_ecc & S_smv=s1_osm & (((AtFloor[2]   &   (Button[1]   |   Req[1]   |   Button[0]   |   Req[0]))
+  |   (AtFloor[1]   &   (Button[0]   |   Req[0])))) : GoDown_ecc;
+	Q_smv=DoorOpened_ecc & S_smv=s1_osm & (event_REQ.value & ((AtFloor[0]   &    ! DoorOpened[0])   |   (AtFloor[1]   &    ! DoorOpened[1])   |   (AtFloor[2]   &    ! DoorOpened[2]))) : Wait_ecc;
+	TRUE : Q_smv;
+esac;
+
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1) | (Q_smv=INIT_ecc & NA < 1) | (Q_smv=AtFloor_ecc & NA < 2) | (Q_smv=GoUp_ecc & NA < 1) | (Q_smv=Wait_ecc & NA < 1) | (Q_smv=DoorOpened_ecc & NA < 1) | (Q_smv=GoDown_ecc & NA < 1) | (Q_smv=CorrectDown_ecc & NA < 2) | (Q_smv=CorrectUp_ecc & NA < 2)): (NA + 1) mod 3;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=INIT_ecc & NA = 1) | (Q_smv=AtFloor_ecc & NA = 2) | (Q_smv=GoUp_ecc & NA = 1) | (Q_smv=Wait_ecc & NA = 1) | (Q_smv=DoorOpened_ecc & NA = 1) | (Q_smv=GoDown_ecc & NA = 1) | (Q_smv=CorrectDown_ecc & NA = 2) | (Q_smv=CorrectUp_ecc & NA = 2)):  0 ;
+	TRUE : NA;
+esac;
+
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI < 1) | (Q_smv=INIT_ecc & NA = 1 & NI < 2) | (Q_smv=AtFloor_ecc & NA = 1 & NI < 2) | (Q_smv=AtFloor_ecc & NA = 2 & NI < 3) | (Q_smv=GoUp_ecc & NA = 1 & NI < 2) | (Q_smv=Wait_ecc & NA = 1 & NI < 2) | (Q_smv=DoorOpened_ecc & NA = 1 & NI < 3) | (Q_smv=GoDown_ecc & NA = 1 & NI < 2) | (Q_smv=CorrectDown_ecc & NA = 1 & NI < 2) | (Q_smv=CorrectDown_ecc & NA = 2 & NI < 1) | (Q_smv=CorrectUp_ecc & NA = 1 & NI < 2) | (Q_smv=CorrectUp_ecc & NA = 2 & NI < 1)):(NI + 1) mod 4;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=AtFloor_ecc & NA = 1 & NI = 2) | (Q_smv=AtFloor_ecc & NA = 2 & NI = 3) | (Q_smv=GoUp_ecc & NA = 1 & NI = 2) | (Q_smv=Wait_ecc & NA = 1 & NI = 2) | (Q_smv=DoorOpened_ecc & NA = 1 & NI = 3) | (Q_smv=GoDown_ecc & NA = 1 & NI = 2) | (Q_smv=CorrectDown_ecc & NA = 1 & NI = 2) | (Q_smv=CorrectDown_ecc & NA = 2 & NI = 1) | (Q_smv=CorrectUp_ecc & NA = 1 & NI = 2) | (Q_smv=CorrectUp_ecc & NA = 2 & NI = 1)): 0 ;
+	TRUE : NI;
+esac;
+
+next(AtFloor[0]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : AtFloor_[0] ;
+	TRUE : AtFloor[0];
+esac;
+next(AtFloor[1]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : AtFloor_[1] ;
+	TRUE : AtFloor[1];
+esac;
+next(AtFloor[2]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : AtFloor_[2] ;
+	TRUE : AtFloor[2];
+esac;
+next(DoorOpened[0]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : DoorOpened_[0] ;
+	TRUE : DoorOpened[0];
+esac;
+next(DoorOpened[1]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : DoorOpened_[1] ;
+	TRUE : DoorOpened[1];
+esac;
+next(DoorOpened[2]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : DoorOpened_[2] ;
+	TRUE : DoorOpened[2];
+esac;
+next(Button[0]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Button_[0] ;
+	TRUE : Button[0];
+esac;
+next(Button[1]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Button_[1] ;
+	TRUE : Button[1];
+esac;
+next(Button[2]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Button_[2] ;
+	TRUE : Button[2];
+esac;
+next(Req[0]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Req_[0] ;
+	TRUE : Req[0];
+esac;
+next(Req[1]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Req_[1] ;
+	TRUE : Req[1];
+esac;
+next(Req[2]):= case
+	alpha & S_smv=s0_osm & (event_INIT | event_REQ.value) : Req_[2] ;
+	TRUE : Req[2];
+esac;
+
+
+next(liftUp):= case
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=GoDown_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CorrectDown_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=AtFloor_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=Wait_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=GoUp_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CorrectUp_ecc & NA=1 & NI=1 : (TRUE);
+	TRUE : liftUp;
+esac;
+next(liftDown):= case
+	S_smv=s2_osm & Q_smv=INIT_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=GoDown_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=CorrectDown_ecc & NA=1 & NI=1 : (TRUE);
+	S_smv=s2_osm & Q_smv=AtFloor_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=Wait_ecc & NA=1 & NI=1 : (FALSE);
+	S_smv=s2_osm & Q_smv=GoUp_ecc & NA=1 & NI=2 : (FALSE);
+	S_smv=s2_osm & Q_smv=CorrectUp_ecc & NA=1 & NI=2 : (FALSE);
+	TRUE : liftDown;
+esac;
+next(door[0]):= case
+	S_smv=s2_osm & Q_smv=AtFloor_ecc & NA=2 & NI=1 : (AtFloor[0]);
+	S_smv=s2_osm & Q_smv=DoorOpened_ecc & NA=1 & NI=1 : (FALSE);
+	TRUE : door[0];
+esac;
+next(door[1]):= case
+	S_smv=s2_osm & Q_smv=AtFloor_ecc & NA=2 & NI=2 : (AtFloor[1]);
+	S_smv=s2_osm & Q_smv=DoorOpened_ecc & NA=1 & NI=2 : (FALSE);
+	TRUE : door[1];
+esac;
+next(door[2]):= case
+	S_smv=s2_osm & Q_smv=AtFloor_ecc & NA=2 & NI=3 : (AtFloor[2]);
+	S_smv=s2_osm & Q_smv=DoorOpened_ecc & NA=1 & NI=3 : (FALSE);
+	TRUE : door[2];
+esac;
+
+next(liftUp_):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1)) : liftUp;
+	TRUE : liftUp_;
+esac;
+next(liftDown_):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1)) : liftDown;
+	TRUE : liftDown_;
+esac;
+next(door_[0]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1)) : door[0];
+	TRUE : door_[0];
+esac;
+next(door_[1]):= case
+	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1)) : door[1];
+	TRUE : door_[1];
+esac;
+next(door_[2]):= case
+	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1)) : door[2];
+	TRUE : door_[2];
+esac;
+
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= 	S_smv=s1_osm;
+DEFINE event_POS_TIMEOUT_EXCEED_reset:= 	(alpha & (event_INIT)) | (S_smv=s1_osm);
+DEFINE event_REQ_reset:= 	(alpha & (event_INIT | event_POS_TIMEOUT_EXCEED)) | (S_smv=s1_osm);
+
+
+DEFINE event_INITO_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1));
+DEFINE event_CNF_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=AtFloor_ecc & NA=2) | (Q_smv=GoUp_ecc & NA=1) | (Q_smv=Wait_ecc & NA=1) | (Q_smv=DoorOpened_ecc & NA=1) | (Q_smv=GoDown_ecc & NA=1) | (Q_smv=CorrectDown_ecc & NA=1) | (Q_smv=CorrectUp_ecc & NA=1));
+DEFINE event_POS_TIMEOUT_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=CorrectDown_ecc & NA=2) | (Q_smv=CorrectUp_ecc & NA=2));
+
+DEFINE ExistsInputEvent:= event_INIT | event_REQ.value | event_POS_TIMEOUT_EXCEED;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc  & ((event_INIT))) | (Q_smv=INIT_ecc) | (Q_smv=AtFloor_ecc  & ((event_REQ.value & (DoorOpened[0]   |   DoorOpened[1]   |   DoorOpened[2])))) | (Q_smv=GoUp_ecc  & (((event_REQ.value   &   EventDelay <= MaxSafeDelay   &   (
+ (AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+ (AtFloor[2]   &   (Button[2]   |   Req[2]))))) | (event_REQ.value & (EventDelay > MaxSafeDelay   &  ( 
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[2]   &   (Button[2]   |   Req[2]))))))) | (Q_smv=Wait_ecc  & ((((AtFloor[0]   &   (Button[0]   |   Req[0]))   |   
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[2]   &   (Button[2]   |   Req[2])))) | (((AtFloor[0]   &   (Button[1]   |   Req[1]   |   Button[2]   |   Req[2]))
+  |   (AtFloor[1]   &   (Button[2]   |   Req[2])))) | (((AtFloor[2]   &   (Button[1]   |   Req[1]   |   Button[0]   |   Req[0]))
+  |   (AtFloor[1]   &   (Button[0]   |   Req[0])))))) | (Q_smv=DoorOpened_ecc  & ((event_REQ.value & ((AtFloor[0]   &    ! DoorOpened[0])   |   (AtFloor[1]   &    ! DoorOpened[1])   |   (AtFloor[2]   &    ! DoorOpened[2]))))) | (Q_smv=GoDown_ecc  & (((event_REQ.value   &   EventDelay <= MaxSafeDelay   &   (
+ (AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+ (AtFloor[0]   &   (Button[0]   |   Req[0]))))) | (event_REQ.value & (EventDelay > MaxSafeDelay   &   (
+(AtFloor[1]   &   (Button[1]   |   Req[1]))   |   
+(AtFloor[0]   &   (Button[0]   |   Req[0]))))))) | (Q_smv=CorrectDown_ecc  & ((event_POS_TIMEOUT_EXCEED))) | (Q_smv=CorrectUp_ecc  & ((event_POS_TIMEOUT_EXCEED)));
+
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE LiftSensor(event_REQ, event_CNF, CarPos_, elevatorAtFloor_, TGlobal, alpha, beta)
+VAR CarPos : 0..10;
+VAR elevatorAtFloor : array 0..2 of boolean;
+VAR prevPos : -1..10;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc, update_ecc, Wait_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..4;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(CarPos):= 0;
+init(elevatorAtFloor[0]):= FALSE;
+init(elevatorAtFloor[1]):= FALSE;
+init(elevatorAtFloor[2]):= FALSE;
+init(prevPos):= -1;
+
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=Wait_ecc & S_smv=s1_osm & (event_REQ & ( ! (prevPos = CarPos) )) : update_ecc;
+	Q_smv=update_ecc & S_smv=s1_osm : Wait_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm : update_ecc;
+	TRUE : Q_smv;
+esac;
+
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1) | (Q_smv=update_ecc & NA < 1) | (Q_smv=Wait_ecc & NA < 1)): (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=update_ecc & NA = 1) | (Q_smv=Wait_ecc & NA = 1)):  0 ;
+	TRUE : NA;
+esac;
+
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI < 1) | (Q_smv=update_ecc & NA = 1 & NI < 4) | (Q_smv=Wait_ecc & NA = 1 & NI < 1)):(NI + 1) mod 5;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=update_ecc & NA = 1 & NI = 4) | (Q_smv=Wait_ecc & NA = 1 & NI = 1)): 0 ;
+	TRUE : NI;
+esac;
+
+next(CarPos):= case
+	alpha & S_smv=s0_osm & (event_REQ) : CarPos_ ;
+	TRUE : CarPos;
+esac;
+
+next(elevatorAtFloor[0]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=1 : (CarPos = 1);
+	TRUE : elevatorAtFloor[0];
+esac;
+next(elevatorAtFloor[1]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=2 : (CarPos = 3);
+	TRUE : elevatorAtFloor[1];
+esac;
+next(elevatorAtFloor[2]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=3 : (CarPos = 5);
+	TRUE : elevatorAtFloor[2];
+esac;
+
+next(prevPos):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=4 : (CarPos);
+	TRUE : prevPos;
+esac;
+
+next(elevatorAtFloor_[0]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : elevatorAtFloor[0];
+	TRUE : elevatorAtFloor_[0];
+esac;
+next(elevatorAtFloor_[1]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : elevatorAtFloor[1];
+	TRUE : elevatorAtFloor_[1];
+esac;
+next(elevatorAtFloor_[2]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : elevatorAtFloor[2];
+	TRUE : elevatorAtFloor_[2];
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_REQ_reset:= (S_smv=s1_osm);
+
+DEFINE event_CNF_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1));
+
+DEFINE ExistsInputEvent:= event_REQ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc) | (Q_smv=update_ecc) | (Q_smv=Wait_ecc  & ((event_REQ &  ! (prevPos = CarPos))));
+
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE DoorSensor(event_REQ, event_CNF, DoorPos_, doorOpen_, TGlobal, alpha, beta)
+VAR DoorPos : array 0..2 of 0..10;
+VAR doorOpen : array 0..2 of boolean;
+VAR prevPos : array 0..2 of -1..10;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc, update_ecc, Wait_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..6;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(DoorPos[0]):= 0;
+init(DoorPos[1]):= 0;
+init(DoorPos[2]):= 0;
+init(doorOpen[0]):= FALSE;
+init(doorOpen[1]):= FALSE;
+init(doorOpen[2]):= FALSE;
+init(prevPos[0]):= 0;
+init(prevPos[1]):= 0;
+init(prevPos[2]):= 0;
+
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=Wait_ecc & S_smv=s1_osm & (event_REQ & ( ! (DoorPos[0] = prevPos[0]))   |   
+( ! (DoorPos[1] = prevPos[1]))   |   
+( ! (DoorPos[2] = prevPos[2]))) : update_ecc;
+	Q_smv=update_ecc & S_smv=s1_osm : Wait_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm : Wait_ecc;
+	TRUE : Q_smv;
+esac;
+
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1) | (Q_smv=update_ecc & NA < 1) | (Q_smv=Wait_ecc & NA < 1)): (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=update_ecc & NA = 1) | (Q_smv=Wait_ecc & NA = 1)):  0 ;
+	TRUE : NA;
+esac;
+
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI < 1) | (Q_smv=update_ecc & NA = 1 & NI < 6) | (Q_smv=Wait_ecc & NA = 1 & NI < 1)):(NI + 1) mod 7;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=update_ecc & NA = 1 & NI = 6) | (Q_smv=Wait_ecc & NA = 1 & NI = 1)): 0 ;
+	TRUE : NI;
+esac;
+
+next(DoorPos[0]):= case
+	alpha & S_smv=s0_osm & (event_REQ) : DoorPos_[0] ;
+	TRUE : DoorPos[0];
+esac;
+next(DoorPos[1]):= case
+	alpha & S_smv=s0_osm & (event_REQ) : DoorPos_[1] ;
+	TRUE : DoorPos[1];
+esac;
+next(DoorPos[2]):= case
+	alpha & S_smv=s0_osm & (event_REQ) : DoorPos_[2] ;
+	TRUE : DoorPos[2];
+esac;
+next(doorOpen[0]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=1 : (DoorPos[0] = 10);
+	TRUE : doorOpen[0];
+esac;
+next(doorOpen[1]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=2 : (DoorPos[1] = 10);
+	TRUE : doorOpen[1];
+esac;
+next(doorOpen[2]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=3 : (DoorPos[2] = 10);
+	TRUE : doorOpen[2];
+esac;
+next(prevPos[0]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=4 : (((DoorPos[0] - 49) mod 50) + 49);
+	TRUE : prevPos[0];
+esac;
+next(prevPos[1]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=5 : (((DoorPos[1] - 49) mod 50) + 49);
+	TRUE : prevPos[1];
+esac;
+next(prevPos[2]):= case
+	S_smv=s2_osm & Q_smv=update_ecc & NA=1 & NI=6 : (((DoorPos[2] - 49) mod 50) + 49);
+	TRUE : prevPos[2];
+esac;
+
+next(doorOpen_[0]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : doorOpen[0];
+	TRUE : doorOpen_[0];
+esac;
+next(doorOpen_[1]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : doorOpen[1];
+	TRUE : doorOpen_[1];
+esac;
+next(doorOpen_[2]):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1)) : doorOpen[2];
+	TRUE : doorOpen_[2];
+esac;
+
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_REQ_reset:= 	S_smv=s1_osm;
+
+DEFINE event_CNF_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=update_ecc & NA=1));
+
+DEFINE ExistsInputEvent:= event_REQ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc) | (Q_smv=update_ecc) | (Q_smv=Wait_ecc  & ((event_REQ & ( ! (DoorPos[0] = prevPos[0]))   |   
+( ! (DoorPos[1] = prevPos[1]))   |   
+( ! (DoorPos[2] = prevPos[2])))));
+
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE ControlTS(event_INIT, event_REQ, event_UPD, event_CNF, ButtonAt_, ButtonFor_, AtFloor_, DoorOpened_, MoveUp_, MoveDown_, Open_, initialFloor, TGlobal, alpha, beta)
+VAR INVOKEDBY : Event(FALSE, TGlobal);
+VAR correctionWait : E_DELAY (correctionWait_START, correctionWait_STOP, correctionWait_EO, correctionWait_Dt, correctionWait_Di, correctionWait_Do, TGlobal, correctionWait_alpha, correctionWait_beta);
+VAR BasicControl : BasicControlTS (BasicControl_INIT, BasicControl_REQ, BasicControl_POS_TIMEOUT_EXCEED, BasicControl_CNF, BasicControl_POS_TIMEOUT, BasicControl_AtFloor, BasicControl_DoorOpened, BasicControl_Button, BasicControl_Req, initialFloor, BasicControl_liftUp, BasicControl_liftDown, BasicControl_door, TGlobal, BasicControl_alpha, BasicControl_beta);
+
+VAR correctionWait_START : boolean;
+VAR correctionWait_STOP : boolean;
+VAR correctionWait_EO : boolean;
+--VAR correctionWait_Dt : 0..99;
+VAR correctionWait_Di : -1..4;
+VAR correctionWait_Do : -1..4;
+VAR correctionWait_alpha : boolean;
+VAR correctionWait_beta : boolean;
+
+VAR BasicControl_INIT : boolean;
+VAR BasicControl_REQ : Event(FALSE, TGlobal);
+VAR BasicControl_POS_TIMEOUT_EXCEED : boolean;
+VAR BasicControl_CNF : boolean;
+VAR BasicControl_POS_TIMEOUT : boolean;
+VAR BasicControl_AtFloor : array 0..2 of boolean;
+VAR BasicControl_DoorOpened : array 0..2 of boolean;
+VAR BasicControl_Button : array 0..2 of boolean;
+VAR BasicControl_Req : array 0..2 of boolean;
+VAR BasicControl_liftUp : boolean;
+VAR BasicControl_liftDown : boolean;
+VAR BasicControl_door : array 0..2 of boolean;
+VAR BasicControl_alpha : boolean;
+VAR BasicControl_beta : boolean;
+
+
+DEFINE
+	correctionWait_Dt := ((systemclock - event_UPD.ts_born - 2) mod 3) + 2;
+
+
+ASSIGN
+init(event_INIT):= FALSE;
+init(event_REQ):= FALSE;
+init(event_CNF):= FALSE;
+init(correctionWait_alpha):= FALSE;
+init(correctionWait_beta):= FALSE;
+
+init(BasicControl_INIT):= FALSE;
+init(BasicControl_CNF):= FALSE;
+init(BasicControl_POS_TIMEOUT):= FALSE;
+init(BasicControl_POS_TIMEOUT_EXCEED):= FALSE;
+
+init(BasicControl_AtFloor[0]):= FALSE;
+init(BasicControl_AtFloor[1]):= FALSE;
+init(BasicControl_AtFloor[2]):= FALSE;
+init(BasicControl_DoorOpened[0]):= FALSE;
+init(BasicControl_DoorOpened[1]):= FALSE;
+init(BasicControl_DoorOpened[2]):= FALSE;
+init(BasicControl_Button[0]):= FALSE;
+init(BasicControl_Button[1]):= FALSE;
+init(BasicControl_Button[2]):= FALSE;
+init(BasicControl_Req[0]):= FALSE;
+init(BasicControl_Req[1]):= FALSE;
+init(BasicControl_Req[2]):= FALSE;
+init(BasicControl_liftUp):= FALSE;
+init(BasicControl_liftDown):= FALSE;
+init(BasicControl_door[0]):= FALSE;
+init(BasicControl_door[1]):= FALSE;
+init(BasicControl_door[2]):= FALSE;
+init(BasicControl_alpha):= FALSE;
+init(BasicControl_beta):= FALSE;
+
+init(correctionWait_STOP) := FALSE;
+next(correctionWait_STOP) := correctionWait_STOP;
+next(INVOKEDBY.value):= case
+	event_INIT : event_INIT;
+	event_REQ : event_REQ;
+	event_UPD.value : event_UPD.value;
+	TRUE : INVOKEDBY.value;
+esac;
+next(INVOKEDBY.ts_last):= case
+	event_REQ : systemclock;
+	event_UPD.value : event_UPD.ts_last;
+	TRUE : INVOKEDBY.ts_last;
+esac;
+next(INVOKEDBY.ts_born):= case
+	event_REQ : systemclock;
+	event_UPD.value : event_UPD.ts_born;
+	TRUE : INVOKEDBY.ts_born;
+esac;
+
+-- _internalDataConnections
+next(BasicControl_DoorOpened[0]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : DoorOpened_[0] ;
+	TRUE : BasicControl_DoorOpened[0];
+esac;
+
+next(BasicControl_DoorOpened[1]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : DoorOpened_[1] ;
+	TRUE : BasicControl_DoorOpened[1];
+esac;
+
+next(BasicControl_DoorOpened[2]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : DoorOpened_[2] ;
+	TRUE : BasicControl_DoorOpened[2];
+esac;
+
+next(BasicControl_AtFloor[0]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : AtFloor_[0] ;
+	TRUE : BasicControl_AtFloor[0];
+esac;
+
+next(BasicControl_AtFloor[1]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : AtFloor_[1] ;
+	TRUE : BasicControl_AtFloor[1];
+esac;
+
+next(BasicControl_AtFloor[2]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : AtFloor_[2] ;
+	TRUE : BasicControl_AtFloor[2];
+esac;
+
+next(BasicControl_Req[0]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonFor_[0] ;
+	TRUE : BasicControl_Req[0];
+esac;
+
+next(BasicControl_Req[1]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonFor_[1] ;
+	TRUE : BasicControl_Req[1];
+esac;
+
+next(BasicControl_Req[2]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonFor_[2] ;
+	TRUE : BasicControl_Req[2];
+esac;
+
+next(BasicControl_Button[0]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonAt_[0] ;
+	TRUE : BasicControl_Button[0];
+esac;
+
+next(BasicControl_Button[1]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonAt_[1] ;
+	TRUE : BasicControl_Button[1];
+esac;
+
+next(BasicControl_Button[2]):= case
+	alpha & (event_INIT | event_REQ | event_UPD.value) : ButtonAt_[2] ;
+	TRUE : BasicControl_Button[2];
+esac;
+
+
+next(MoveUp_):= case
+	(BasicControl_CNF) : BasicControl_liftUp;
+	TRUE : MoveUp_;
+esac;
+
+next(MoveDown_):= case
+	(BasicControl_CNF) : BasicControl_liftDown;
+	TRUE : MoveDown_;
+esac;
+
+next(Open_[0]):= case
+	(BasicControl_CNF) : BasicControl_door[0];
+	TRUE : Open_[0];
+esac;
+
+next(Open_[1]):= case
+	(BasicControl_CNF) : BasicControl_door[1];
+	TRUE : Open_[1];
+esac;
+
+next(Open_[2]):= case
+	(BasicControl_CNF) : BasicControl_door[2];
+	TRUE : Open_[2];
+esac;
+
+
+-- ComponentEventOutputs
+init(correctionWait_EO) := FALSE;
+next(correctionWait_EO):= case
+	correctionWait.event_EO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(BasicControl_CNF):= case
+	BasicControl.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(BasicControl_POS_TIMEOUT):= case
+	BasicControl.event_POS_TIMEOUT_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+
+-- ---DISPATCHER--- --
+-- *************** --
+next(correctionWait_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	correctionWait.alpha_reset : FALSE;
+	TRUE : correctionWait_alpha;
+esac;
+next(correctionWait_beta):= case
+	correctionWait_beta & omega : FALSE;
+	correctionWait.beta_set : TRUE;
+	TRUE : correctionWait_beta;
+esac;
+next(BasicControl_alpha):= case
+	correctionWait_beta & omega : TRUE;
+	BasicControl.alpha_reset : FALSE;
+	TRUE : BasicControl_alpha;
+esac;
+next(BasicControl_beta):= case
+	BasicControl_beta & omega : FALSE;
+	BasicControl.beta_set : TRUE;
+	TRUE : BasicControl_beta;
+esac;
+DEFINE beta_set:= BasicControl_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+
+-- _internalEventConnections
+next(BasicControl_INIT):= case
+	(event_INIT & alpha) : event_INIT;
+	(BasicControl.event_INIT_reset) : FALSE;
+	TRUE : BasicControl_INIT;
+esac;
+
+next(BasicControl_REQ.value):= case
+	(event_REQ & alpha) : event_REQ;
+	(event_UPD.value & alpha) : event_UPD.value;
+	(BasicControl.event_REQ_reset) : FALSE;
+	TRUE : BasicControl_REQ.value;
+esac;
+next(BasicControl_REQ.ts_born):= case
+	(event_REQ & alpha) : systemclock;
+	(event_UPD.value & alpha) : event_UPD.ts_born;
+	TRUE : BasicControl_REQ.ts_born;
+esac;
+next(BasicControl_REQ.ts_last):= case
+	(event_REQ & alpha) : systemclock;
+	(event_UPD.value & alpha) : event_UPD.ts_last;
+	TRUE : BasicControl_REQ.ts_last;
+esac;
+
+next(BasicControl_POS_TIMEOUT_EXCEED):= case
+	correctionWait_EO : correctionWait_EO;
+	(BasicControl.event_POS_TIMEOUT_EXCEED_reset) : FALSE;
+	TRUE : BasicControl_POS_TIMEOUT_EXCEED;
+esac;
+
+init(correctionWait_START) := FALSE;
+next(correctionWait_START):= case
+	BasicControl_POS_TIMEOUT : BasicControl_POS_TIMEOUT;
+	(correctionWait.event_START_reset) : FALSE;
+	TRUE : correctionWait_START;
+esac;
+
+DEFINE event_CNF_set:= 	BasicControl_CNF;
+
+DEFINE event_INIT_reset:= alpha;
+DEFINE event_REQ_reset:= alpha;
+DEFINE event_UPD_reset:= alpha;
+DEFINE ExistsInputEvent:= event_INIT | event_REQ | event_UPD.value;
+
+DEFINE omega:= !(BasicControl_CNF | BasicControl_POS_TIMEOUT | correctionWait_EO);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(correctionWait_START | correctionWait_STOP | correctionWait_EO | BasicControl_INIT | BasicControl_REQ.value | BasicControl_POS_TIMEOUT_EXCEED  | BasicControl_CNF | BasicControl_POS_TIMEOUT));
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+
+MODULE Door(open, alpha)
+VAR state : {opened, closed};
+
+ASSIGN
+init(state):=closed;
+next(state):=case
+	alpha & open : opened;
+	alpha & !open : closed;
+	TRUE : state;
+esac;
+
+DEFINE doorPos := case 
+	state = closed : 0;
+	state = opened : 10;
+	TRUE: 0;
+esac;
+DEFINE event_CNF_set := (state=closed & open) | (state=opened & !open);
+
+
+MODULE Model(event_INIT, event_REQ, event_INITO, event_CNF, event_UPD, motorUp_, motorDown_, door_, buttonFloor_, requestFloor_, CarPos_, doorPos_, initialFloor, TGlobal, alpha, beta)
+VAR door2 : Door(door_[2], alpha);
+VAR door1 : Door(door_[1], alpha);
+VAR door0 : Door(door_[0], alpha);
+
+DEFINE Dt_ := 2;
+VAR Di_ : -1..4;
+VAR Do_ : -1..4;
+
+VAR Position : {f2_, f2, f2_1, f1, f1_0, f0, f0_};
+VAR direction : -1..1;
+
+
+ASSIGN
+init(event_INIT):= FALSE;
+init(event_REQ):= FALSE;
+init(event_INITO):= FALSE;
+init(event_CNF):= FALSE;
+init(event_UPD):= FALSE;
+
+init(Position):=case 
+    initialFloor = 0 : f0;
+    initialFloor = 1 : f1;
+    initialFloor = 2 : f2;
+    TRUE : f0;
+esac;
+init(Do_):=0;
+init(direction):=0;
+
+next(direction):=case
+	alpha & motorUp_ : 1;
+	alpha & motorDown_ : -1;
+	alpha : 0;
+	TRUE: direction;
+esac;
+
+next(Position):=case
+	alpha & direction = 1 & Position=f0_  & Di_=0 : f0;
+	alpha & direction = 1 & Position=f0   & Di_=0 : f1_0;
+	alpha & direction = 1 & Position=f1_0 & Di_=0 : f1;
+	alpha & direction = 1 & Position=f1   & Di_=0 : f2_1;
+	alpha & direction = 1 & Position=f2_1 & Di_=0 : f2;
+	alpha & direction = 1 & Position=f2   & Di_=0 : f2_;
+	
+	alpha & direction = -1 & Position=f0   & Di_=0 : f0_;
+	alpha & direction = -1 & Position=f1_0 & Di_=0 : f0;
+	alpha & direction = -1 & Position=f1   & Di_=0 : f1_0;
+	alpha & direction = -1 & Position=f2_1 & Di_=0 : f1;
+	alpha & direction = -1 & Position=f2   & Di_=0 : f2_1;
+	alpha & direction = -1 & Position=f2_  & Di_=0 : f2;
+	TRUE : Position;
+esac;
+
+
+-- _internalDataConnections
+next(doorPos_[0]):= case
+	TRUE : door0.doorPos;
+esac;
+
+next(doorPos_[1]):= case
+	TRUE : door1.doorPos;
+esac;
+
+next(doorPos_[2]):= case
+	TRUE : door2.doorPos;
+esac;
+
+next(CarPos_):= case
+	Position = f0_ : 0;
+	Position = f0 : 1;
+	Position = f1_0 : 2;
+	Position = f1 : 3;
+	Position = f2_1 : 4;
+	Position = f2 : 5;
+	Position = f2_ : 6;
+	TRUE : CarPos_;
+esac;
+
+------------TIME-----------------------
+next(Do_):= case
+	-- counter stop and reser
+	alpha & (!motorUp_) & (!motorDown_) : -1;
+	alpha & direction=-1 & motorUp_ : Dt_;
+	alpha & direction=1 & motorDown_ : Dt_;
+	alpha & (direction=0) & (motorUp_ | motorDown_) : Dt_;
+	-- general counter rules
+	alpha & Di_=0 : Dt_;
+	Di_ >= 0 : Di_;
+
+	TRUE : Do_;
+esac;
+------------------------------------
+
+
+DEFINE beta_set:= alpha & !ExistsInputEvent;
+DEFINE alpha_reset:= alpha & !ExistsInputEvent;
+DEFINE event_UPD_set:= 	alpha & (door0.event_CNF_set | door1.event_CNF_set | door2.event_CNF_set | Di_=0);
+DEFINE event_INITO_set:= alpha & event_INIT;
+DEFINE event_CNF_set := FALSE;
+DEFINE event_INIT_reset:= alpha;
+DEFINE event_REQ_reset:= alpha;
+DEFINE ExistsInputEvent:= event_INIT | event_REQ;
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+
+MODULE Sensors(event_INIT, event_REQ, event_INITO, event_CNF, CarPos_, DoorPos_, elevatorAtFloor_, doorOpen_, TGlobal, alpha, beta)
+VAR INVOKEDBY : Event(FALSE, TGlobal);
+VAR LiftSensor : LiftSensor (LiftSensor_REQ, LiftSensor_CNF, LiftSensor_CarPos, LiftSensor_elevatorAtFloor, TGlobal, LiftSensor_alpha, LiftSensor_beta);
+VAR DoorSensor : DoorSensor (DoorSensor_REQ, DoorSensor_CNF, DoorSensor_DoorPos, DoorSensor_doorOpen, TGlobal, DoorSensor_alpha, DoorSensor_beta);
+
+VAR LiftSensor_REQ : boolean;
+VAR LiftSensor_CNF : boolean;
+VAR LiftSensor_CarPos : 0..10;
+VAR LiftSensor_elevatorAtFloor : array 0..2 of boolean;
+VAR LiftSensor_alpha : boolean;
+VAR LiftSensor_beta : boolean;
+
+VAR DoorSensor_REQ : boolean;
+VAR DoorSensor_CNF : boolean;
+VAR DoorSensor_DoorPos : array 0..2 of 0..10;
+VAR DoorSensor_doorOpen : array 0..2 of boolean;
+VAR DoorSensor_alpha : boolean;
+VAR DoorSensor_beta : boolean;
+
+ASSIGN
+init(event_INIT):= FALSE;
+init(event_REQ):= FALSE;
+init(event_INITO):= FALSE;
+
+init(LiftSensor_CNF) := FALSE;
+init(LiftSensor_REQ):= FALSE;
+init(LiftSensor_CarPos):= 0;
+init(LiftSensor_elevatorAtFloor[0]):= FALSE;
+init(LiftSensor_elevatorAtFloor[1]):= FALSE;
+init(LiftSensor_elevatorAtFloor[2]):= FALSE;
+init(LiftSensor_alpha):= FALSE;
+init(LiftSensor_beta):= FALSE;
+
+init(DoorSensor_CNF) := FALSE;
+init(DoorSensor_REQ) := FALSE;
+init(DoorSensor_DoorPos[0]):= 0;
+init(DoorSensor_DoorPos[1]):= 0;
+init(DoorSensor_DoorPos[2]):= 0;
+init(DoorSensor_doorOpen[0]):= FALSE;
+init(DoorSensor_doorOpen[1]):= FALSE;
+init(DoorSensor_doorOpen[2]):= FALSE;
+init(DoorSensor_alpha):= FALSE;
+init(DoorSensor_beta):= FALSE;
+
+
+next(INVOKEDBY.value):= case
+	event_INIT : event_INIT;
+	event_REQ : event_REQ;
+	TRUE : INVOKEDBY.value;
+esac;
+next(INVOKEDBY.ts_last):= case
+    alpha: systemclock;
+	TRUE : INVOKEDBY.ts_last;
+esac;
+next(INVOKEDBY.ts_born):= case
+    alpha: systemclock;
+	TRUE : INVOKEDBY.ts_born;
+esac;
+
+-- _internalDataConnections
+next(LiftSensor_CarPos):= case
+	alpha & (event_INIT | event_REQ) : CarPos_ ;
+	TRUE : LiftSensor_CarPos;
+esac;
+
+next(DoorSensor_DoorPos[0]):= case
+	alpha & (event_INIT | event_REQ) : DoorPos_[0] ;
+	TRUE : DoorSensor_DoorPos[0];
+esac;
+
+next(DoorSensor_DoorPos[1]):= case
+	alpha & (event_INIT | event_REQ) : DoorPos_[1] ;
+	TRUE : DoorSensor_DoorPos[1];
+esac;
+
+next(DoorSensor_DoorPos[2]):= case
+	alpha & (event_INIT | event_REQ) : DoorPos_[2] ;
+	TRUE : DoorSensor_DoorPos[2];
+esac;
+
+next(doorOpen_[0]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : DoorSensor_doorOpen[0];
+	TRUE : doorOpen_[0];
+esac;
+
+next(doorOpen_[1]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : DoorSensor_doorOpen[1];
+	TRUE : doorOpen_[1];
+esac;
+
+next(doorOpen_[2]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : DoorSensor_doorOpen[2];
+	TRUE : doorOpen_[2];
+esac;
+
+next(elevatorAtFloor_[0]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : LiftSensor_elevatorAtFloor[0];
+	TRUE : elevatorAtFloor_[0];
+esac;
+
+next(elevatorAtFloor_[1]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : LiftSensor_elevatorAtFloor[1];
+	TRUE : elevatorAtFloor_[1];
+esac;
+
+next(elevatorAtFloor_[2]):= case
+	(LiftSensor_CNF | DoorSensor_CNF) : LiftSensor_elevatorAtFloor[2];
+	TRUE : elevatorAtFloor_[2];
+esac;
+
+
+
+-- ComponentEventOutputs
+next(LiftSensor_CNF):= case
+	LiftSensor.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(DoorSensor_CNF):= case
+	DoorSensor.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+
+-- ---DISPATCHER--- --
+-- *************** --
+next(LiftSensor_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	LiftSensor.alpha_reset : FALSE;
+	TRUE : LiftSensor_alpha;
+esac;
+next(LiftSensor_beta):= case
+	LiftSensor_beta & omega : FALSE;
+	LiftSensor.beta_set : TRUE;
+	TRUE : LiftSensor_beta;
+esac;
+next(DoorSensor_alpha):= case
+	LiftSensor_beta & omega : TRUE;
+	DoorSensor.alpha_reset : FALSE;
+	TRUE : DoorSensor_alpha;
+esac;
+next(DoorSensor_beta):= case
+	DoorSensor_beta & omega : FALSE;
+	DoorSensor.beta_set : TRUE;
+	TRUE : DoorSensor_beta;
+esac;
+DEFINE beta_set:= DoorSensor_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+
+-- _internalEventConnections
+next(LiftSensor_REQ):= case
+	(event_REQ & alpha) : event_REQ;
+	(LiftSensor.event_REQ_reset) : FALSE;
+	TRUE : LiftSensor_REQ;
+esac;
+
+next(DoorSensor_REQ):= case
+	(event_REQ & alpha) : event_REQ;
+	(DoorSensor.event_REQ_reset) : FALSE;
+	TRUE : DoorSensor_REQ;
+esac;
+
+
+
+DEFINE event_CNF_set:= 	DoorSensor_CNF | LiftSensor_CNF;
+
+DEFINE event_INIT_reset:= alpha;
+DEFINE event_REQ_reset:= alpha;
+DEFINE ExistsInputEvent:= event_INIT | event_REQ;
+
+DEFINE omega:= !(LiftSensor_CNF | DoorSensor_CNF);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(LiftSensor_REQ | LiftSensor_CNF | DoorSensor_REQ | DoorSensor_CNF));
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE Elevator(event_INIT, event_INITO, TGlobal, alpha, beta)
+VAR Controller : ControlTS (Controller_INIT, Controller_REQ, Controller_UPD, Controller_CNF,
+	 model_buttonFloor, model_requestFloor, queue.out.AtFloor, queue.out.DoorOpened,
+	   Controller_MoveUp, Controller_MoveDown, Controller_Open, initialFloor, TGlobal, Controller_alpha, Controller_beta);
+VAR model : Model (model_INIT, model_REQ, model_INITO, model_CNF, model_UPD, Controller_MoveUp, Controller_MoveDown, Controller_Open, model_buttonFloor, model_requestFloor, model_CarPos, model_doorPos, initialFloor, TGlobal, model_alpha, model_beta);
+VAR Sensors : Sensors (Sensors_INIT, Sensors_REQ, Sensors_INITO, Sensors_CNF, model_CarPos, model_doorPos, Sensors_elevatorAtFloor, Sensors_doorOpen, TGlobal, Sensors_alpha, Sensors_beta);
+VAR queue : DataDelayQueue(Sensors_CNF.value, Sensors_CNF, Sensors_elevatorAtFloor, Sensors_doorOpen);
+
+
+VAR Controller_INIT : boolean;
+VAR Controller_REQ : boolean;
+VAR Controller_UPD : Event(FALSE, TGlobal);
+VAR Controller_CNF : boolean;
+VAR Controller_MoveUp : boolean;
+VAR Controller_MoveDown : boolean;
+VAR Controller_Open : array 0..2 of boolean;
+VAR Controller_alpha : boolean;
+VAR Controller_beta : boolean;
+
+VAR model_INIT : boolean;
+VAR model_REQ : boolean;
+VAR model_INITO : boolean;
+VAR model_CNF : boolean;
+VAR model_UPD : boolean;
+VAR model_buttonFloor : array 0..2 of boolean;
+VAR model_requestFloor : array 0..2 of boolean;
+VAR model_CarPos : 0..10;
+VAR model_doorPos : array 0..2 of 0..10;
+VAR model_alpha : boolean;
+VAR model_beta : boolean;
+
+VAR Sensors_INIT : boolean;
+VAR Sensors_REQ : boolean;
+VAR Sensors_INITO : boolean;
+VAR Sensors_CNF : Event(FALSE, TGlobal);
+VAR Sensors_elevatorAtFloor : array 0..2 of boolean;
+VAR Sensors_doorOpen : array 0..2 of boolean;
+VAR Sensors_alpha : boolean;
+VAR Sensors_beta : boolean;
+
+
+
+-- test case
+VAR Button_press : -1..2;
+VAR tripsCnt : 0..5;
+VAR trip: boolean;
+VAR initialFloor : 0..2;
+DEFINE MaxTrips := 1;
+
+ASSIGN
+Button_press := case
+	(tripsCnt < MaxTrips & beta & (Controller.BasicControl.Q_smv = Wait_ecc & queue.out.AtFloor[0])) : 0..2;
+	(tripsCnt < MaxTrips & beta & (Controller.BasicControl.Q_smv = Wait_ecc & queue.out.AtFloor[1])) : 0..2;
+	(tripsCnt < MaxTrips & beta & (Controller.BasicControl.Q_smv = Wait_ecc & queue.out.AtFloor[2])) : 0..2;
+	TRUE : -1;
+esac; 
+
+init(initialFloor) := 0..2; --
+next(initialFloor) := initialFloor;
+init(trip) := FALSE;
+next(trip) := Button_press != -1;
+init(tripsCnt) := 0;
+next(tripsCnt) := case
+	trip = FALSE & Button_press != -1 : (tripsCnt + 1) mod (MaxTrips + 1);
+	TRUE : tripsCnt;
+esac;
+
+next(model_buttonFloor[0]) := case
+	Button_press = 0 : TRUE;
+	Sensors_doorOpen[0]: FALSE;
+	TRUE : model_buttonFloor[0];
+esac;
+next(model_buttonFloor[1]) := case
+	Button_press = 1 : TRUE;
+	Sensors_doorOpen[1]: FALSE;
+	TRUE : model_buttonFloor[1];
+esac;
+next(model_buttonFloor[2]) := case
+	Button_press = 2 : TRUE;
+	Sensors_doorOpen[2]: FALSE;
+	TRUE : model_buttonFloor[2];
+esac;
+
+------
+
+init(event_INITO):= FALSE;
+init(Controller_MoveUp):= FALSE;
+init(Controller_MoveDown):= FALSE;
+init(Controller_Open[0]):= FALSE;
+init(Controller_Open[1]):= FALSE;
+init(Controller_Open[2]):= FALSE;
+init(Controller_alpha):= FALSE;
+init(Controller_beta):= FALSE;
+
+init(model_buttonFloor[0]):= FALSE;
+init(model_buttonFloor[1]):= FALSE;
+init(model_buttonFloor[2]):= FALSE;
+model_requestFloor[0]:= FALSE;
+model_requestFloor[1]:= FALSE;
+model_requestFloor[2]:= FALSE;
+init(model_CarPos):= 0;
+init(model_doorPos[0]):= 0;
+init(model_doorPos[1]):= 0;
+init(model_doorPos[2]):= 0;
+init(model_alpha):= FALSE;
+init(model_beta):= FALSE;
+
+init(Sensors_elevatorAtFloor[0]):= FALSE;
+init(Sensors_elevatorAtFloor[1]):= FALSE;
+init(Sensors_elevatorAtFloor[2]):= FALSE;
+init(Sensors_doorOpen[0]):= FALSE;
+init(Sensors_doorOpen[1]):= FALSE;
+init(Sensors_doorOpen[2]):= FALSE;
+init(Sensors_alpha):= FALSE;
+init(Sensors_beta):= FALSE;
+
+
+next(Sensors_INITO) := Sensors_INITO;
+-- _internalDataConnections
+
+-- ComponentEventOutputs
+next(Controller_CNF):= case
+	Controller.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(model_CNF):= case
+	model.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(model_INITO):= case
+	model.event_INITO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(model_UPD):= case
+	model.event_UPD_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(Sensors_CNF.value):= case
+	Sensors.event_CNF_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(Sensors_CNF.ts_last):= case
+	Sensors.event_CNF_set : systemclock;
+	TRUE : Sensors_CNF.ts_last;
+esac;
+next(Sensors_CNF.ts_born):= case
+	Sensors.event_CNF_set : Sensors.INVOKEDBY.ts_born;
+	TRUE : Sensors_CNF.ts_born;
+esac;
+
+
+-- ---DISPATCHER--- --
+-- *************** --
+next(model_alpha):= case
+	alpha & omega & !ExistsInputEvent: TRUE;
+	model.alpha_reset : FALSE;
+	TRUE : model_alpha;
+esac;
+next(model_beta):= case
+	model_beta & omega : FALSE;
+	model.beta_set : TRUE;
+	TRUE : model_beta;
+esac;
+next(Sensors_alpha):= case
+	model_beta & omega : TRUE;
+	Sensors.alpha_reset : FALSE;
+	TRUE : Sensors_alpha;
+esac;
+next(Sensors_beta):= case
+	Sensors_beta & omega : FALSE;
+	Sensors.beta_set : TRUE;
+	TRUE : Sensors_beta;
+esac;
+next(Controller_alpha):= case
+	Sensors_beta & omega : TRUE;
+	Controller.alpha_reset : FALSE;
+	TRUE : Controller_alpha;
+esac;
+next(Controller_beta):= case
+	Controller_beta & omega : FALSE;
+	Controller.beta_set : TRUE;
+	TRUE : Controller_beta;
+esac;
+
+DEFINE beta_set:= Controller_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+
+-- _internalEventConnections
+next(Controller_INIT):= case
+	(event_INIT & alpha) : event_INIT;
+	(Controller.event_INIT_reset) : FALSE;
+	TRUE : Controller_INIT;
+esac;
+
+next(model_INIT):= case
+	(event_INIT & alpha) : event_INIT;
+	(model.event_INIT_reset) : FALSE;
+	TRUE : model_INIT;
+esac;
+
+next(model_REQ):= case
+	Controller_CNF : Controller_CNF;
+	(model.event_REQ_reset) : FALSE;
+	TRUE : model_REQ;
+esac;
+
+next(Controller_REQ):= case
+	model_CNF : model_CNF;
+	(Controller.event_REQ_reset) : FALSE;
+	Button_press != -1 : TRUE; -- TRIGGER REQ
+	TRUE : Controller_REQ;
+esac;
+
+next(Sensors_INIT):= case
+	model_INITO : model_INITO;
+	(Sensors.event_INIT_reset) : FALSE;
+	TRUE : Sensors_INIT;
+esac;
+
+next(Sensors_REQ):= case
+	(event_INIT & alpha) : event_INIT;
+	model_UPD : model_UPD;
+	(Sensors.event_REQ_reset) : FALSE;
+	TRUE : Sensors_REQ;
+esac;
+
+next(Controller_UPD.value):= case
+	queue.event_CNF_set : queue.out.event.value;
+	(Controller.event_UPD_reset) : FALSE;
+	TRUE : Controller_UPD.value;
+esac;
+
+next(Controller_UPD.ts_born):= case
+	queue.event_CNF_set : queue.out.event.ts_born;
+	TRUE : Controller_UPD.ts_born;
+esac;
+
+next(Controller_UPD.ts_last):= case
+	queue.event_CNF_set : queue.out.event.ts_last;
+	TRUE : Controller_UPD.ts_last;
+esac;
+
+
+
+DEFINE event_INIT_reset:= alpha;
+DEFINE ExistsInputEvent:= event_INIT;
+
+DEFINE omega:= !(Controller_CNF | model_CNF | model_INITO | model_UPD | Sensors_CNF.value);
+
+DEFINE phi:= Controller.phi & Sensors.phi & (!ExistsInputEvent) & (!(Controller_INIT | Controller_REQ | Controller_UPD.value | Controller_CNF | model_INIT | model_REQ | model_INITO | model_CNF | model_UPD | Sensors_INIT | Sensors_REQ | Sensors_INITO | Sensors_CNF.value));
+
+DEFINE systemclock:= TGlobal;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+
+
+MODULE MESSAGE_UPD(
+		PUSH, event_in, AtFloor_in, DoorOpened_in,
+ 		POP, event_out, AtFloor_out, DoorOpened_out
+	)
+VAR event : Event(FALSE, 0);
+VAR AtFloor : array 0..2 of boolean;
+VAR DoorOpened : array 0..2 of boolean;
+
+ASSIGN
+init(AtFloor[0]) := FALSE;
+init(AtFloor[1]) := FALSE;
+init(AtFloor[2]) := FALSE;
+init(DoorOpened[0]) := FALSE;
+init(DoorOpened[1]) := FALSE;
+init(DoorOpened[2]) := FALSE;
+
+next(event.value) := case
+	PUSH : event_in.value;
+	POP : event_out.value;
+	TRUE : event.value;
+esac;
+next(event.ts_last) := case
+	PUSH : event_in.ts_last;
+	POP : event_out.ts_last;
+	TRUE : event.ts_last;
+esac;
+next(event.ts_born) := case
+	PUSH : event_in.ts_born;
+	POP : event_out.ts_born;
+	TRUE : event.ts_born;
+esac;
+next(AtFloor[0]) := case
+	PUSH : AtFloor_in[0];
+	POP : AtFloor_out[0];
+	TRUE : AtFloor[0];
+esac;
+next(DoorOpened[0]) := case
+	PUSH : DoorOpened_in[0];
+	POP : DoorOpened_out[0];
+	TRUE : DoorOpened[0];
+esac;
+next(AtFloor[1]) := case
+	PUSH : AtFloor_in[1];
+	POP : AtFloor_out[1];
+	TRUE : AtFloor[1];
+esac;
+next(DoorOpened[1]) := case
+	PUSH : DoorOpened_in[1];
+	POP : DoorOpened_out[1];
+	TRUE : DoorOpened[1];
+esac;
+next(AtFloor[2]) := case
+	PUSH : AtFloor_in[2];
+	POP : AtFloor_out[2];
+	TRUE : AtFloor[2];
+esac;
+next(DoorOpened[2]) := case
+	PUSH : DoorOpened_in[2];
+	POP : DoorOpened_out[2];
+	TRUE : DoorOpened[2];
+esac;
+
+MODULE DataDelayQueue(PUSH, event_in, AtFloor_in, DoorOpened_in)
+
+VAR cell_0: MESSAGE_UPD(PUSH & cnt = 0, event_in, AtFloor_in, DoorOpened_in,
+						POP & cnt > 1, cell_1.event, cell_1.AtFloor, cell_1.DoorOpened);
+VAR cell_1: MESSAGE_UPD(PUSH & cnt = 1, event_in, AtFloor_in, DoorOpened_in,
+						POP & cnt > 2, cell_2.event, cell_2.AtFloor, cell_2.DoorOpened);
+VAR cell_2: MESSAGE_UPD(PUSH & cnt = 2, event_in, AtFloor_in, DoorOpened_in,
+						POP & cnt > 3, cell_2.event, cell_2.AtFloor, cell_2.DoorOpened);
+VAR out:  MESSAGE_UPD(FALSE, event_in, AtFloor_in, DoorOpened_in,
+						POP & cnt > 0, cell_0.event, cell_0.AtFloor, cell_0.DoorOpened);
+VAR cnt : 0..2;
+--VAR Dt_ : 0..2;
+VAR Di : -1..4;
+VAR Do : -1..4;
+VAR event_CNF_set : boolean;
+DEFINE MAX_LENGTH := 2;
+DEFINE POP := (Di=0);
+
+ASSIGN
+--init(Dt_) := 1; -- 
+--next(Dt_) := 1; --
+init(cnt):=0;
+init(Do):=-1;
+
+next(cnt):=case
+	PUSH & cnt < MAX_LENGTH : cnt + 1;
+	POP  & cnt > 0 : cnt - 1;
+	TRUE : cnt;
+esac;
+
+init(event_CNF_set) := FALSE;
+next(event_CNF_set) := case
+	(cnt>0 & POP) : TRUE;
+	TRUE : FALSE;
+esac;
+
+------------TIME-----------------------
+next(Do):= case
+	cnt = 0 & PUSH : 0..2; -- start on push to empty queue -- 0..2 Dt
+	cnt > 1 & POP : 0..2; -- reset if not last item popped -- 0..2
+	cnt = 1 & POP : -1;	-- stop if last item popped
+	-- general rules
+	Di >= 0 : Di;
+	TRUE : Do;
+esac;
+------------------------------------
+
+
+
+MODULE E_DELAY(event_START, event_STOP, event_EO, Dt_, Di_, Do_, TGlobal, alpha, beta)
+
+ASSIGN
+init(Do_):= -1;
+next(Do_):= case
+
+	alpha & event_START : Dt_;
+	alpha & event_STOP : -1;
+	alpha & Di_ = 0 : -1 ;
+	Di_ >= 0 : Di_;
+	TRUE: Do_; 	TRUE : Do_;
+esac;
+DEFINE systemclock:= TGlobal;
+DEFINE event_START_reset:= alpha;
+DEFINE event_STOP_reset:= alpha;
+DEFINE event_EO_set:= (alpha & Di_=0);
+DEFINE alpha_reset:= alpha;
+DEFINE beta_set:= alpha;
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE TimeScheduler(D1i, D1o, D2i, D2o, D3i, D3o, beta, gamma)
+VAR V1 : -1..4;
+VAR V2 : -1..4;
+VAR V3 : -1..4;
+VAR DMin : -1..4;
+VAR TGlobal : 0..40;
+
+ASSIGN
+init(TGlobal):= 0;
+
+V1:=case
+	D1o >= 0 : D1o;
+	TRUE : 4;
+esac;
+V2:=case
+	D2o >= 0 : D2o;
+	TRUE : 4;
+esac;
+V3:=case
+	D3o >= 0 : D3o;
+	TRUE : 4;
+esac;
+
+-- min
+DMin:=case
+	((V1<=V2) & (V1<=V3)) : V1;
+	((V2<=V1) & (V2<=V3)) : V2;
+	((V3<=V1) & (V3<=V2)) : V3;
+	TRUE: 0;
+esac;
+
+D1i:= case
+	(TGlobal < Tmax) & beta & gamma & D1o > 0 : ((D1o - DMin - 2) mod 3) + 2;
+	TRUE : D1o;
+esac;
+D2i:= case
+	(TGlobal < Tmax) & beta & gamma & D2o > 0 : ((D2o - DMin - 2) mod 3) + 2;
+	TRUE : D2o;
+esac;
+D3i:= case
+	(TGlobal < Tmax) & beta & gamma & D3o > 0 : ((D3o - DMin - 2) mod 3) + 2;
+	TRUE : D3o;
+esac;
+next(TGlobal):= case
+	(TGlobal < Tmax) & beta & gamma & (D1o > 0 | D2o > 0 | D3o > 0) : ((TGlobal + DMin - 20) mod 21) + 20;
+	--(TGlobal < Tmax) & beta & gamma & (D1o < 0 & D2o < 0 & D3o < 0) : ((TGlobal + 1 - 20) mod 21) + 20; -- global time increment for test case
+	TRUE : TGlobal;
+esac;
+DEFINE Tmax:= 40; -- 50
+
+MODULE main()
+VAR Elevator_inst : Elevator (Elevator_inst_INIT, Elevator_inst_INITO, TGlobal, Elevator_inst_alpha, Elevator_inst_beta);
+VAR TimeSched : TimeScheduler (
+	 Elevator_inst.Controller.correctionWait_Di, Elevator_inst.Controller.correctionWait_Do,
+	  Elevator_inst.model.Di_, Elevator_inst.model.Do_,
+	  Elevator_inst.queue.Di, Elevator_inst.queue.Do,
+	   Elevator_inst_beta, gamma);
+VAR Elevator_inst_INIT : boolean;
+VAR Elevator_inst_INITO : boolean;
+VAR Elevator_inst_alpha : boolean;
+VAR Elevator_inst_beta : boolean;
+
+VAR false_var : boolean;
+
+ASSIGN
+init(false_var):= FALSE;
+next(false_var) := FALSE;
+
+init(Elevator_inst_INIT) := TRUE; -- TRIGGER INIT
+init(Elevator_inst_alpha):= TRUE;
+init(Elevator_inst_beta):= FALSE;
+next(Elevator_inst_INIT):= case
+	Elevator_inst.event_INIT_reset : FALSE;
+	TRUE : Elevator_inst_INIT;
+esac;
+
+next(Elevator_inst_INITO):= case
+	TRUE : Elevator_inst_INITO;
+esac;
+
+next(Elevator_inst_alpha):= case
+	Elevator_inst_beta : TRUE;
+	Elevator_inst.alpha_reset : FALSE;
+	TRUE : Elevator_inst_alpha;
+esac;
+next(Elevator_inst_beta):= case
+	Elevator_inst_beta : FALSE;
+	Elevator_inst.beta_set : TRUE;
+	TRUE : Elevator_inst_beta;
+esac;
+
+DEFINE TGlobal := TimeSched.TGlobal;
+--DEFINE lift :=  Elevator_inst.model.liftModel;
+DEFINE gamma := (
+					!(
+						 (Elevator_inst_INITO)
+						 --	| Floor0_Sensor_CNF 
+                         --	| Floor1_Sensor_CNF 
+                         --	| Floor2_Sensor_CNF  
+					) 
+					& Elevator_inst.phi
+				);
+
+
+DEFINE AtFloor0 := Elevator_inst.Sensors.LiftSensor_elevatorAtFloor[0];
+DEFINE AtFloor1 := Elevator_inst.Sensors.LiftSensor_elevatorAtFloor[1];
+DEFINE AtFloor2 := Elevator_inst.Sensors.LiftSensor_elevatorAtFloor[2];
+DEFINE DoorOpen0 := Elevator_inst.Sensors.DoorSensor_doorOpen[0];
+DEFINE DoorOpen1 := Elevator_inst.Sensors.DoorSensor_doorOpen[1];
+DEFINE DoorOpen2 := Elevator_inst.Sensors.DoorSensor_doorOpen[2];
+DEFINE Button0 := Elevator_inst.Button_press = 0;
+DEFINE Button1 := Elevator_inst.Button_press = 1;
+DEFINE Button2 := Elevator_inst.Button_press = 2;
+
+
+
+-- LTLSPEC G TimeSched.TGlobal < 10
+--LTLSPEC G !elevator.AtFloor0
+
+-- safety
+LTLSPEC G (DoorOpen0 -> AtFloor0)
+LTLSPEC G (DoorOpen1 -> AtFloor1)
+LTLSPEC G (DoorOpen2 -> AtFloor2)
+
+-- elevator response
+LTLSPEC G (Elevator_inst.Button_press = 0 -> F AtFloor0) -- waitAt0
+LTLSPEC G (Elevator_inst.Button_press = 1 -> F AtFloor1)
+LTLSPEC G (Elevator_inst.Button_press = 2 -> F AtFloor2)
+
+-- negative 
+--LTLSPEC G (Button2 -> F AtFloor0)
+--LTLSPEC G (Button1 -> F AtFloor2)
+--LTLSPEC G (Button0 -> F AtFloor1)
+
+
+--
+LTLSPEC F (Elevator_inst.Button_press != -1)
+--LTLSPEC G !(Elevator_inst.Button_press = 2 & F )
+LTLSPEC F (AtFloor0)
+--LTLSPEC F (Elevator_inst.Button_press = 2 & F AtFloor2)
+
+-- QUEUE check
+--LTLSPEC G (daltaDelay0.cnt < 2)
+--LTLSPEC G (daltaDelay1.cnt < 2)
+--LTLSPEC G (daltaDelay2.cnt < 2)
+-- QUEUE safety check
+LTLSPEC G !((AtFloor0 & AtFloor1) | (AtFloor0 & AtFloor2) | (AtFloor1 & AtFloor2))

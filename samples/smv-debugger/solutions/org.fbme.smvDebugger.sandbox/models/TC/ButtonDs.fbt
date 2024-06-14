@@ -29,18 +29,20 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="580" y="1006" />
-      <ECState Name="INIT" x="1926" y="773">
+      <ECState Name="START" x="580" y="1019" />
+      <ECState Name="INIT" x="1913" y="766">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="OFF" x="3859" y="773">
+      <ECState Name="OFF" x="3859" y="779">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
       <ECState Name="PRESSED" x="0" y="0">
         <ECAction Output="CHG" Algorithm="aPRESS" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="1420" y="1153" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="OFF" x="3379" y="1153" Condition="REQ" />
+      <ECTransition Source="START" Destination="INIT" x="1420" y="1160" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="OFF" x="3366" y="1160" Condition="REQ" />
+      <ECTransition Source="INIT" Destination="INIT" x="2526" y="1140" Condition="1" />
+      <ECTransition Source="INIT" Destination="INIT" x="2526" y="1140" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="Pressed := FALSE;&amp;#38;#10;" />

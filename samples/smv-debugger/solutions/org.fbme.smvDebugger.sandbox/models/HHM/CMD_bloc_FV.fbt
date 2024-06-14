@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="f1a759f0-7902-47f2-a07a-7c5e9bad24d0" Name="CMD_bloc_FV" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="13/06/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="SystemINITED" />
+        <With Var="ELPR" />
+        <With Var="CRPR" />
+        <With Var="CAPR" />
+        <With Var="GRO" />
+        <With Var="GRC" />
+        <With Var="ELM" />
+        <With Var="CRM" />
+        <With Var="CAM" />
+        <With Var="FETP" />
+        <With Var="SLTP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="SystemINITED" Type="BOOL" />
+      <VarDeclaration Name="ELPR" Type="BOOL" />
+      <VarDeclaration Name="CRPR" Type="BOOL" />
+      <VarDeclaration Name="CAPR" Type="BOOL" />
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+      <VarDeclaration Name="ELM" Type="BOOL" />
+      <VarDeclaration Name="CRM" Type="BOOL" />
+      <VarDeclaration Name="CAM" Type="BOOL" />
+      <VarDeclaration Name="FETP" Type="BOOL" />
+      <VarDeclaration Name="SLTP" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="GOEL" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="SETEL" Type="INT" />
+      <VarDeclaration Name="GOCR" Type="BOOL" />
+      <VarDeclaration Name="SETCR" Type="INT" />
+      <VarDeclaration Name="GOCA" Type="BOOL" />
+      <VarDeclaration Name="SETCA" Type="INT" />
+      <VarDeclaration Name="OPGR" Type="BOOL" />
+      <VarDeclaration Name="CLGR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,GOCA_06,GOCR_03,GOCR_04,CLGR,GOCR_01,GOCA_03,GOCR_06,GOEL_03,OPGR,GOCR_02,GOEL_01,RESET,GOCA_01,STOP,GO_CA_CR_EL,STOP_CR" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="3050.941" y="181.4067" />
+      <ECState Name="INIT" Comment="Initialization" x="3055.531" y="556.1713">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="CR_01_CA_03" x="3070.5" y="944.5">
+        <ECAction Algorithm="GOCA_06" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_03_CA_06" x="2227.167" y="1666.333">
+        <ECAction Algorithm="GOCR_03" Output="CNF" />
+      </ECState>
+      <ECState Name="GRC_03_GRC_04" x="3107.166" y="2034.666">
+        <ECAction Algorithm="GOCR_01" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_f" x="3107.444" y="2498.555">
+        <ECAction Algorithm="GO_CA_CR_EL" Output="CNF" />
+      </ECState>
+      <ECState Name="EL_03" x="3110.714" y="3049.572">
+        <ECAction Algorithm="OPGR" Output="CNF" />
+      </ECState>
+      <ECState Name="GRO" x="3117.714" y="3639.428">
+        <ECAction Algorithm="GOCR_01" Output="CNF" />
+      </ECState>
+      <ECState Name="EL_01" x="6270.729" y="2610.064">
+        <ECAction Algorithm="GOCR_01" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_EL_03" x="3137.746" y="4076.382">
+        <ECAction Algorithm="GOCA_01" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_e" x="4203.889" y="4156.31">
+        <ECAction Algorithm="GOCR_02" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_02_CA_01" x="5285.556" y="4156.532">
+        <ECAction Algorithm="CLGR" Output="CNF" />
+      </ECState>
+      <ECState Name="GRC" x="6263.205" y="4164.944">
+        <ECAction Algorithm="GOCR_01" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_f" x="6278.763" y="3847.722">
+        <ECAction Algorithm="GOCA_03" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_CA_03_lid" x="6268.666" y="3540.262">
+        <ECAction Algorithm="GOCR_03" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_03_CA_03" x="6268.666" y="3202.707">
+        <ECAction Algorithm="OPGR" Output="CNF" />
+      </ECState>
+      <ECState Name="GRO_lid" x="6271.776" y="2894.706">
+        <ECAction Algorithm="GOEL_01" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_EL_01" x="6257.556" y="2307.484">
+        <ECAction Algorithm="RESET" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_e" x="3071.452" y="1337.333">
+        <ECAction Algorithm="RESET" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_03_CA_06" x="1923.143" y="2104.024">
+        <ECAction Algorithm="CLGR" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_01_04_CA_06" x="4071.333" y="1668">
+        <ECAction Algorithm="GOCR_04" Output="CNF" />
+      </ECState>
+      <ECState Name="CR_04_CA_06" x="4300.333" y="2073.215">
+        <ECAction Algorithm="CLGR" Output="CNF" />
+      </ECState>
+      <ECState Name="ReadyToDrop" x="1871.111" y="2524.713">
+        <ECAction Algorithm="STOP_CR" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="3052.891" y="361.9558">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="763.0812,78.65315,763.3258,101.1859" />
+      </ECTransition>
+      <ECTransition Source="CR_01_03_CA_06" Destination="CR_03_CA_06" Condition="[NOT CRM &amp; CRPR]" x="1979.048" y="1870.742">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="498.5049,449.3895,482.5469,483.5752" />
+      </ECTransition>
+      <ECTransition Source="GRC_03_GRC_04" Destination="ReadyToDrop" Condition="[NOT CRM &amp; CRPR]" x="2505.212" y="2275.004">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="667.9975,552.2719,587.0389,584.4493" />
+      </ECTransition>
+      <ECTransition Source="EL_03" Destination="GRO" Condition="GRO" x="3118.589" y="3339.353">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="779.7526,814.1799,780.0484,854.6386" />
+      </ECTransition>
+      <ECTransition Source="GRO" Destination="CR_01_EL_03" Condition="[NOT CRM &amp; CRPR]" x="3130.903" y="3869.101">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="782.314,954.3486,783.4948,982.0678" />
+      </ECTransition>
+      <ECTransition Source="CR_01_EL_03" Destination="CR_01_CA_01_e" Condition="[NOT CAM &amp; CAPR]" x="3669.936" y="4261.056">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="895.076,1070.6,943.311,1075.349" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_01_e" Destination="CR_02_CA_01" Condition="[NOT CRM &amp; CRPR]" x="4731.577" y="4038.063">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1153.51,1004.07,1210.989,1003.932" />
+      </ECTransition>
+      <ECTransition Source="CR_02_CA_01" Destination="GRC" Condition="GRC" x="5797.191" y="4288.406">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1422.984,1078.806,1476.716,1078.771" />
+      </ECTransition>
+      <ECTransition Source="GRC" Destination="CR_01_CA_01_f" Condition="[NOT CRM &amp; CRPR]" x="6272.3" y="4025.82">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1567.653,1016.947,1568.521,999.2109" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_01_f" Destination="CR_01_CA_03_lid" Condition="[NOT CAM &amp; CAPR]" x="6279.154" y="3706.779">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1570.349,936.2228,1569.701,919.2981" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_03_lid" Destination="CR_03_CA_03" Condition="[NOT CRM &amp; CRPR]" x="6262.88" y="3364.059">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1565.424,850.1143,1565.509,830.6776" />
+      </ECTransition>
+      <ECTransition Source="CR_03_CA_03" Destination="GRO_lid" Condition="GRO" x="6267.893" y="3054.914">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1566.789,772.7329,1566.961,755.7585" />
+      </ECTransition>
+      <ECTransition Source="GRO_lid" Destination="EL_01" Condition="[NOT ELM &amp; ELPR]" x="6264.447" y="2777.248">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1565.926,703.895,1565.829,688.8727" />
+      </ECTransition>
+      <ECTransition Source="EL_01" Destination="CR_01_EL_01" Condition="[NOT CRM &amp; CRPR]" x="6275.507" y="2476.751">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1568.866,637.8127,1569.585,603.5593" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_03" Destination="CR_01_CA_06_e" Condition="[NOT CAM &amp; CAPR]" x="3067.76" y="1135.077">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="766.7858,271.2621,766.7825,295.3035" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_03_CA_06" Condition="FETP" x="2500.69" y="1454.174">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="634.8727,354.7446,607.2818,365.5427" />
+      </ECTransition>
+      <ECTransition Source="CR_03_CA_06" Destination="GRC_03_GRC_04" Condition="GRC" x="2418.205" y="1947.575">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="584.7756,482.4558,619.783,479.475" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="CR_01_CA_03" Condition="[SystemINITED &amp; (FETP OR SLTP)]" x="3069.123" y="748.4447">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="767.1456,175.1218,767.9971,198.7854" />
+      </ECTransition>
+      <ECTransition Source="CR_01_EL_01" Destination="CR_01_CA_03" Condition="1" x="5386.768" y="901.6011">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1518.4,221.6618,1277.585,117.056" />
+      </ECTransition>
+      <ECTransition Source="CR_01_04_CA_06" Destination="CR_04_CA_06" Condition="[NOT CRM &amp; CRPR]" x="4246.75" y="1857.517">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1057.91,449.8911,1070.77,476.6858" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_04_CA_06" Condition="SLTP" x="3641.992" y="1440.507">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="884.8607,347.3354,933.978,364.5859" />
+      </ECTransition>
+      <ECTransition Source="CR_04_CA_06" Destination="GRC_03_GRC_04" Condition="GRC" x="3759.56" y="1894.894">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="974.44,466.2712,910.243,463.3649" />
+      </ECTransition>
+      <ECTransition Source="CR_01_CA_06_f" Destination="EL_03" Condition="[(NOT CRM &amp; CRPR) AND (NOT ELM &amp; ELPR ) AND (NOT CAM &amp; CAPR)]" x="3110.608" y="2773.743">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="777.6429,674.7985,777.835,712.0195" />
+      </ECTransition>
+      <ECTransition Source="ReadyToDrop" Destination="CR_01_CA_06_f" Condition="REQ" x="2419.346" y="2444.124">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="575.5551,609.2199,625.3909,607.4243" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="GOCA_06">
+      <ST Text=";&#xD;&#xA;GOCA := TRUE;&#xD;&#xA;SETCA := 3;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCR := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_03">
+      <ST Text=";&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 3;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_04">
+      <ST Text=";&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 3;&#xD;&#xA;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="CLGR">
+      <ST Text=";&#xD;&#xA;CLGR := TRUE;&#xD;&#xA;OPGR := FALSE;&#xD;&#xA;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_01">
+      <ST Text=";&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 1;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;&#xD;&#xA;FETP := FALSE;&#xD;&#xA;SLTP := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_03">
+      <ST Text=";&#xD;&#xA;GOCA := TRUE;&#xD;&#xA;SETCA := 2;&#xD;&#xA;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_06">
+      <ST Text=";&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 4;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_03">
+      <ST Text=";&#xD;&#xA;GOEL := TRUE;&#xD;&#xA;SETEL := 2;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="OPGR">
+      <ST Text=";&#xD;&#xA;CLGR := FALSE;&#xD;&#xA;OPGR := TRUE;&#xD;&#xA;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_01">
+      <ST Text=";&#xD;&#xA;GOCA := TRUE;&#xD;&#xA;SETCA := 1;&#xD;&#xA;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_02">
+      <ST Text=";&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 2;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_01">
+      <ST Text=";&#xD;&#xA;GOEL := TRUE;&#xD;&#xA;SETEL := 1;&#xD;&#xA;&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text=";&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;OPGR := FALSE;&#xD;&#xA;CLGR := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text=";&#xD;&#xA;GOCA := FALSE;&#xD;&#xA;GOCR := FALSE;&#xD;&#xA;GOEL := FALSE;&#xD;&#xA;OPGR := FALSE;&#xD;&#xA;CLGR := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="GO_CA_CR_EL">
+      <ST Text="GOCA := TRUE;&#xD;&#xA;SETCA := 2;&#xD;&#xA;&#xD;&#xA;GOCR := TRUE;&#xD;&#xA;SETCR := 4;&#xD;&#xA;&#xD;&#xA;GOEL := TRUE;&#xD;&#xA;SETEL := 2;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="STOP_CR">
+      <ST Text="GOCR := FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="SELECT_MODE">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="AUTO" />
+      <Event Name="MANU" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF">
+        <With Var="MODE" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="MODE" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1528" y="445" />
+      <ECState Name="AUTO" x="1368" y="768">
+        <ECAction Output="CNF" Algorithm="AUTO" />
+      </ECState>
+      <ECState Name="MANU" x="1948" y="1012">
+        <ECAction Output="CNF" Algorithm="MANU" />
+      </ECState>
+      <ECState Name="INIT" x="1812" y="588">
+        <ECAction Output="INITO" Algorithm="RESET" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="AUTO" x="1520" y="605" Condition="AUTO" />
+      <ECTransition Source="INIT" Destination="MANU" x="2093" y="741" Condition="MANU" />
+      <ECTransition Source="AUTO" Destination="MANU" x="1461" y="993" Condition="MANU" />
+      <ECTransition Source="MANU" Destination="AUTO" x="1668" y="910" Condition="AUTO" />
+      <ECTransition Source="START" Destination="INIT" x="1761" y="447" Condition="INIT" />
+    </ECC>
+    <Algorithm Name="AUTO">
+      <ST Text="MODE := &amp;#39;AUTO&amp;#39;;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="MANU">
+      <ST Text="MODE := &amp;#39;MANU&amp;#39;;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text="MODE := &amp;#39;&amp;#39;;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

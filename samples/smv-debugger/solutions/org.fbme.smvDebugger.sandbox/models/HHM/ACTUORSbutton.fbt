@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="24c664eb-83e5-4c84-a8bc-2b83dbf26939" Name="ACTUORSbutton" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="05/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="REQ">
+        <With Var="MODE" />
+      </Event>
+      <Event Name="el" Comment="Normal Execution Request" />
+      <Event Name="ca" />
+      <Event Name="cr" />
+      <Event Name="gr" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="EL" />
+        <With Var="CA" />
+        <With Var="CR" />
+        <With Var="GR" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="EL" />
+        <With Var="CA" />
+        <With Var="CR" />
+        <With Var="GR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MODE" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="EL" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="CR" Type="BOOL" />
+      <VarDeclaration Name="CA" Type="BOOL" />
+      <VarDeclaration Name="GR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,EL,CA,CR,GR,AUTO" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1460.941" y="761.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="2031.53" y="749.1763">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="EL" x="1656" y="332">
+        <ECAction Algorithm="EL" Output="CNF" />
+      </ECState>
+      <ECState Name="CA" x="1660" y="1152">
+        <ECAction Algorithm="CA" Output="CNF" />
+      </ECState>
+      <ECState Name="CR" x="2276" y="1152">
+        <ECAction Algorithm="CR" Output="CNF" />
+      </ECState>
+      <ECState Name="GR" x="2308" y="324">
+        <ECAction Algorithm="GR" Output="CNF" />
+      </ECState>
+      <ECState Name="AUTOmode" x="2920" y="748">
+        <ECAction Algorithm="AUTO" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1759.883" y="752.1086">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="425.0305,188.2407,454.0984,187.6174" />
+      </ECTransition>
+      <ECTransition Source="EL" Destination="INIT" Condition="1" x="1770.68" y="567.9036">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="428.06,131.1013,451.5254,157.1689" />
+      </ECTransition>
+      <ECTransition Source="GR" Destination="INIT" Condition="1" x="2249.142" y="575.3568">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="573.4492,134.0076,556.9457,160.0567" />
+      </ECTransition>
+      <ECTransition Source="CA" Destination="INIT" Condition="1" x="1783.726" y="920.4299">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="432.2338,240.5129,455.4085,214.9653" />
+      </ECTransition>
+      <ECTransition Source="CR" Destination="INIT" Condition="1" x="2252.923" y="918.2869">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="574.7693,239.6309,560.0032,214.465" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="EL" Condition="el" x="1915.591" y="505.4332">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="494.1036,137.0981,470.6383,111.0305" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="GR" Condition="gr" x="2099.32" y="503.497">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="513.8555,136.0622,530.3897,110.2338" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="CA" Condition="ca" x="1908.804" y="1004.076">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="491.288,242.1607,468.3486,267.0323" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="CR" Condition="cr" x="2076.182" y="965.5806">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="508.2852,230.518,522.8712,254.771" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="AUTOmode" Condition="MODE='AUTO'" x="2456.875" y="642.494">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.7553,155.2045,641.9604,155.7223" />
+      </ECTransition>
+      <ECTransition Source="AUTOmode" Destination="INIT" Condition="MODE='MANU'" x="2482.504" y="853.5012">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="650.2664,218.2423,595.3705,218.8768" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;CA:=FALSE;&#xD;&#xA;EL:=FALSE;&#xD;&#xA;CR:=FALSE;&#xD;&#xA;GR:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="EL" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;EL:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="CA">
+      <ST Text=";&#xD;&#xA;CA:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="CR">
+      <ST Text=";&#xD;&#xA;CR:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="GR">
+      <ST Text=";&#xD;&#xA;GR:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="AUTO">
+      <ST Text=";&#xD;&#xA;CA:=TRUE;&#xD;&#xA;EL:=TRUE;&#xD;&#xA;CR:=TRUE;&#xD;&#xA;GR:=TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
