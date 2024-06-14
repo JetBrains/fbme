@@ -11,6 +11,7 @@ include(
     "code:scenes",
     "code:smv-debugger",
     "code:debugger",
+    "code:bottom-up-building",
 
     "docs",
 
@@ -18,3 +19,4 @@ include(
     "samples:sandbox",
     "samples:smv-debugger"
 )
+findProject(":code:bottom-up-building")?.name = "bottom-up-building"
