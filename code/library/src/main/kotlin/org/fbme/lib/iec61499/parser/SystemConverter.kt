@@ -59,8 +59,10 @@ class SystemConverter(arguments: ConverterArguments) : DeclarationConverterBase<
         val mappingElements = element.getChildren("Mapping")
         for (mappingElement in mappingElements) {
             val mapping = factory.createMapping()
-            mapping.applicationFBReference.setFQName(mappingElement.getAttributeValue("From"))
-            mapping.resourceFBReference.setFQName(mappingElement.getAttributeValue("To"))
+            val from = mappingElement.getAttributeValue("From")
+            val to = mappingElement.getAttributeValue("To").plus(".").plus(from.split(".")[1])
+            mapping.applicationFBReference.setFQName(from)
+            mapping.resourceFBReference.setFQName(to)
             mappings.add(mapping)
         }
     }
