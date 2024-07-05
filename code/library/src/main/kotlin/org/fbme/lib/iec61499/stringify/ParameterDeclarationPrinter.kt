@@ -7,12 +7,12 @@ import org.jdom.Element
 class ParameterDeclarationPrinter(declaration: ParameterDeclaration) :
     DeclarationPrinterBase<ParameterDeclaration>(declaration, "VarDeclaration") {
     override fun printDeclarationBody(element: Element) {
-        val type = requireNotNull(this.element.type)
+        val type = this.element.type
         if (type is ArrayType) {
-            element.setAttribute("ArraySize", requireNotNull(type.dimensions).stringify())
-            element.setAttribute("Type", requireNotNull(type.baseType).stringify())
+            type.dimensions?.stringify()?.let { element.setAttribute("ArraySize", it) }
+            type.baseType?.stringify()?.let { element.setAttribute("Type", it) }
         } else {
-            element.setAttribute("Type", type.stringify())
+            type?.stringify()?.let { element.setAttribute("Type", it) }
         }
         val initialValue = this.element.initialValue
         if (initialValue != null) {
