@@ -19,4 +19,14 @@
   <extensions defaultExtensionNs="fbme.platform">
     <iec61499projectTemplate implementation="org.fbme.integration.nxt.importer.NxtImportProjectTemplate" />
   </extensions>
+
+  <actions>
+    <group id="richediting.RichEditorPopupGroup1">
+      <action id="org.fbme.integration.nxt.exporter"
+              class="org.fbme.integration.nxt.exporter.ExportAction"
+              text="Exporting in nxt format"/>
+      <add-to-group group-id="jetbrains.mps.ide.editor.actions.EditorPopup_ActionGroup" anchor="last"/>
+    </group>
+  </actions>
+
 </idea-plugin>
