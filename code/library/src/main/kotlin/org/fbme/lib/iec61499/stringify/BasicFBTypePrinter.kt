@@ -147,8 +147,8 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
             ParameterDeclarationPrinter.printAll(this.element.temporaryVariables, element)
             if (language === AlgorithmLanguage.ST) {
                 val st = Element("ST")
-                val alg_data_in_nxt_format = STPrinter.printStatementList((body as AlgorithmBody.ST).statements).trim()
-                st.setContent(CDATA(alg_data_in_nxt_format))
+                val algorithmsNextFormat = STPrinter.printStatementList((body as AlgorithmBody.ST).statements).trim()
+                st.setContent(CDATA(algorithmsNextFormat))
                 element.addContent(st)
             } else if (AlgorithmLanguage.isUnknown(language)) {
                 val other = Element("Other")
