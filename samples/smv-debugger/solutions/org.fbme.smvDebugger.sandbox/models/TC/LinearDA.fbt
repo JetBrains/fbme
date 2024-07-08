@@ -35,37 +35,37 @@
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Name="START" x="844" y="401" />
-      <ECState Name="INIT" x="1631" y="398">
+      <ECState Name="START" x="0" y="1919" />
+      <ECState Name="INIT" x="866" y="2500">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
-      <ECState Name="stHOME" x="1636" y="776">
+      <ECState Name="stHOME" x="4140" y="99">
         <ECAction Output="CHG" Algorithm="POS1" />
       </ECState>
-      <ECState Name="stEND" x="1645" y="1894">
+      <ECState Name="stEND" x="8686" y="1286">
         <ECAction Output="CHG" Algorithm="POS2" />
       </ECState>
-      <ECState Name="ddMOVETO" x="239" y="1493">
+      <ECState Name="ddMOVETO" x="6913" y="1286">
         <ECAction Output="CHG" Algorithm="MOV" />
       </ECState>
-      <ECState Name="ddRETURN" x="3053" y="1599">
+      <ECState Name="ddRETURN" x="1340" y="46">
         <ECAction Output="CHG" Algorithm="MOV" />
       </ECState>
-      <ECState Name="stSTOP" x="1613" y="1346">
+      <ECState Name="stSTOP" x="4140" y="1200">
         <ECAction Output="CHG" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="1243" y="399" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="stHOME" x="1636" y="594" Condition="NDT" />
-      <ECTransition Source="stHOME" Destination="ddMOVETO" x="653" y="1019" Condition="[FWD]" />
-      <ECTransition Source="stEND" Destination="ddRETURN" x="2426" y="1899" Condition="[BACK]" />
-      <ECTransition Source="ddMOVETO" Destination="stEND" x="733" y="1886" Condition="NDT" />
-      <ECTransition Source="ddRETURN" Destination="stHOME" x="2560" y="1046" Condition="NDT" />
-      <ECTransition Source="ddRETURN" Destination="stSTOP" x="2373" y="1180" Condition="[NOT FWD AND NOT BACK]" />
-      <ECTransition Source="stSTOP" Destination="ddRETURN" x="2233" y="1659" Condition="[BACK]" />
-      <ECTransition Source="stSTOP" Destination="ddMOVETO" x="973" y="1613" Condition="[FWD]" />
-      <ECTransition Source="ddMOVETO" Destination="stSTOP" x="906" y="1186" Condition="[NOT FWD AND NOT BACK]" />
-      <ECTransition Source="INIT" Destination="stSTOP" x="1846" y="966" Condition="NDT" />
-      <ECTransition Source="INIT" Destination="stEND" x="3332" y="1294" Condition="NDT" />
+      <ECTransition Source="START" Destination="INIT" x="826" y="2060" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="stHOME" x="1726" y="1266" Condition="NDT" />
+      <ECTransition Source="stHOME" Destination="ddMOVETO" x="6286" y="633" Condition="[FWD]" />
+      <ECTransition Source="stEND" Destination="ddRETURN" x="5926" y="66" Condition="[BACK]" />
+      <ECTransition Source="ddMOVETO" Destination="stEND" x="8200" y="1733" Condition="NDT" />
+      <ECTransition Source="ddRETURN" Destination="stHOME" x="3133" y="419" Condition="NDT" />
+      <ECTransition Source="ddRETURN" Destination="stSTOP" x="3126" y="1520" Condition="[NOT FWD AND NOT BACK]" />
+      <ECTransition Source="stSTOP" Destination="ddRETURN" x="3126" y="1853" Condition="[BACK]" />
+      <ECTransition Source="stSTOP" Destination="ddMOVETO" x="6133" y="1186" Condition="[FWD]" />
+      <ECTransition Source="ddMOVETO" Destination="stSTOP" x="5920" y="1919" Condition="[NOT FWD AND NOT BACK]" />
+      <ECTransition Source="INIT" Destination="stSTOP" x="3333" y="2320" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="stEND" x="6159" y="3166" Condition="NDT" />
     </ECC>
     <Algorithm Name="INIT">
       <ST Text="HOME := TRUE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BasicControlTS">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="AtFloor" />
+        <With Var="DoorOpened" />
+        <With Var="Button" />
+        <With Var="Req" />
+        <With Var="EventDelay" />
+        <With Var="MaxSafeDelay" />
+      </Event>
+      <Event Name="POS_TIMEOUT_EXCEED" />
+      <Event Name="REQ">
+        <With Var="AtFloor" />
+        <With Var="DoorOpened" />
+        <With Var="Button" />
+        <With Var="Req" />
+        <With Var="EventDelay" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="liftUp" />
+        <With Var="liftDown" />
+        <With Var="door" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="liftUp" />
+        <With Var="liftDown" />
+        <With Var="door" />
+      </Event>
+      <Event Name="POS_TIMEOUT" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="AtFloor" Type="BOOL" />
+      <VarDeclaration Name="DoorOpened" Type="BOOL" />
+      <VarDeclaration Name="Button" Type="BOOL" />
+      <VarDeclaration Name="Req" Type="BOOL" />
+      <VarDeclaration Name="EventDelay" Type="INT" />
+      <VarDeclaration Name="MaxSafeDelay" Type="INT" />
+      <VarDeclaration Name="initialFloor" Type="INT" InitialValue="2" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="liftUp" Type="BOOL" />
+      <VarDeclaration Name="liftDown" Type="BOOL" />
+      <VarDeclaration Name="door" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="906" y="3053" />
+      <ECState Name="INIT" x="7199" y="2673">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="AtFloor" x="23260" y="5933">
+        <ECAction Algorithm="Stop" />
+        <ECAction Output="CNF" Algorithm="OpenDoors" />
+      </ECState>
+      <ECState Name="GoUp" x="0" y="4820">
+        <ECAction Output="CNF" Algorithm="GoUp" />
+      </ECState>
+      <ECState Name="Wait" x="16706" y="3459">
+        <ECAction Output="CNF" Algorithm="Stop" />
+      </ECState>
+      <ECState Name="DoorOpened" x="8313" y="6279">
+        <ECAction Output="CNF" Algorithm="CloseDoors" />
+      </ECState>
+      <ECState Name="GoDown" x="0" y="173">
+        <ECAction Output="CNF" Algorithm="GoDown" />
+      </ECState>
+      <ECState Name="CorrectDown" x="7199" y="4666">
+        <ECAction Output="CNF" Algorithm="GoDown" />
+        <ECAction Output="POS_TIMEOUT" />
+      </ECState>
+      <ECState Name="CorrectUp" x="7199" y="99">
+        <ECAction Output="CNF" Algorithm="GoUp" />
+        <ECAction Output="POS_TIMEOUT" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="3659" y="3199" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="Wait" x="13019" y="3199" Condition="1" />
+      <ECTransition Source="GoUp" Destination="AtFloor" x="13019" y="7566" Condition="[REQ AND EventDelay &amp;#60;= MaxSafeDelay AND ((AtFloor[1] AND (Button[1] OR Req[1])) OR (AtFloor[2] AND (Button[2] OR Req[2])))]" />
+      <ECTransition Source="Wait" Destination="AtFloor" x="21260" y="6666" Condition="[(AtFloor[0] AND (Button[0] OR Req[0])) OR (AtFloor[1] AND (Button[1] OR Req[1])) OR (AtFloor[2] AND (Button[2] OR Req[2]))]" />
+      <ECTransition Source="Wait" Destination="GoUp" x="7819" y="4126" Condition="[(AtFloor[0] AND (Button[1] OR Req[1] OR Button[2] OR Req[2])) OR (AtFloor[1] AND (Button[2] OR Req[2]))]" />
+      <ECTransition Source="AtFloor" Destination="DoorOpened" x="17873" y="6899" Condition="REQ[DoorOpened[0] OR DoorOpened[1] OR DoorOpened[2]]" />
+      <ECTransition Source="GoDown" Destination="AtFloor" x="13019" y="206" Condition="[REQ AND EventDelay &amp;#60;= MaxSafeDelay AND ((AtFloor[1] AND (Button[1] OR Req[1])) OR (AtFloor[0] AND (Button[0] OR Req[0])))]" />
+      <ECTransition Source="GoUp" Destination="CorrectDown" x="3659" y="5413" Condition="REQ[EventDelay &amp;#62; MaxSafeDelay AND ((AtFloor[1] AND (Button[1] OR Req[1])) OR (AtFloor[2] AND (Button[2] OR Req[2])))]" />
+      <ECTransition Source="GoDown" Destination="CorrectUp" x="3659" y="1120" Condition="REQ[EventDelay &amp;#62; MaxSafeDelay AND ((AtFloor[1] AND (Button[1] OR Req[1])) OR (AtFloor[0] AND (Button[0] OR Req[0])))]" />
+      <ECTransition Source="Wait" Destination="GoDown" x="7819" y="1993" Condition="[(AtFloor[2] AND (Button[1] OR Req[1] OR Button[0] OR Req[0])) OR (AtFloor[1] AND (Button[0] OR Req[0]))]" />
+      <ECTransition Source="DoorOpened" Destination="Wait" x="13019" y="6699" Condition="REQ[(AtFloor[0] AND NOT DoorOpened[0]) OR (AtFloor[1] AND NOT DoorOpened[1]) OR (AtFloor[2] AND NOT DoorOpened[2])]" />
+      <ECTransition Source="CorrectUp" Destination="Wait" x="13019" y="1539" Condition="POS_TIMEOUT_EXCEED" />
+      <ECTransition Source="CorrectDown" Destination="Wait" x="13019" y="5346" Condition="POS_TIMEOUT_EXCEED" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="liftDown := FALSE;&amp;#38;#10;liftUp := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GoDown">
+      <ST Text="liftDown := TRUE;&amp;#38;#10;liftUp := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="Stop">
+      <ST Text="liftDown := FALSE;&amp;#38;#10;liftUp := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GoUp">
+      <ST Text="liftUp := TRUE;&amp;#38;#10;liftDown := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="OpenDoors">
+      <ST Text="door[0] := AtFloor[0];&amp;#38;#10;door[1] := AtFloor[1];&amp;#38;#10;door[2] := AtFloor[2];&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CloseDoors">
+      <ST Text="door[0] := FALSE;&amp;#38;#10;door[1] := FALSE;&amp;#38;#10;door[2] := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

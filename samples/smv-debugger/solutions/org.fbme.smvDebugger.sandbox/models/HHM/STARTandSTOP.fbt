@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="4cdc1cd3-45bc-430f-a887-553fce6ec31b" Name="STARTandSTOP" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="05/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="start" />
+      <Event Name="stop" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="START" />
+        <With Var="STOP" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="START" />
+        <With Var="STOP" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="START" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STOP" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,start,stop" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1756.941" y="373.4118" />
+      <ECState Name="INIT" Comment="Initialization" x="2147.529" y="369.1761">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="START_pressed" x="1948" y="792">
+        <ECAction Algorithm="start" Output="CNF" />
+      </ECState>
+      <ECState Name="STOP_pressed" x="2528" y="648">
+        <ECAction Algorithm="stop" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1961.702" y="279.0456">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="481.3357,66.69357,500.1235,66.15156" />
+      </ECTransition>
+      <ECTransition Source="START_pressed" Destination="INIT" Condition="1" x="2098.83" y="613.708">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="520.1424,169.5817,533.0927,142.7924" />
+      </ECTransition>
+      <ECTransition Source="STOP_pressed" Destination="INIT" Condition="1" x="2190.536" y="540.3379">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="551.8618,144.8068,537.5793,130.3799" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START_pressed" Condition="start" x="1908.996" y="570.5421">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="476.3516,128.9881,464.5013,154.6086" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="STOP_pressed" Condition="stop" x="2398.233" y="439.1648">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="590.1654,97.30233,613.1238,114.327" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;START:=FALSE;&#xD;&#xA;STOP:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="start">
+      <ST Text=";&#xD;&#xA;START:=TRUE;" />
+    </Algorithm>
+    <Algorithm Name="stop">
+      <ST Text=";&#xD;&#xA;STOP:=TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

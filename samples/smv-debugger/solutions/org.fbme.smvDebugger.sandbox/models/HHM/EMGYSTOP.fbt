@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="a818b761-1be5-4078-9612-77dbf7e66f31" Name="EMGYSTOP" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="05/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="press" Comment="Normal Execution Request" />
+      <Event Name="release" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="pressed" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="pressed" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="pressed" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,PRESSED" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1956.941" y="601.4117" />
+      <ECState Name="pressed" x="1592" y="1088">
+        <ECAction Algorithm="PRESSED" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" x="1600" y="768">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1717.641" y="632.7855">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="437.1667,151.2663,419.5847,160.6323" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="pressed" Condition="press" x="1437.245" y="925.3174">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="353.6397,222.2747,351.4858,239.9369" />
+      </ECTransition>
+      <ECTransition Source="pressed" Destination="INIT" Condition="release" x="1758.198" y="934.3959">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="446.3718,243.1147,446.4037,225.1493" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;pressed:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="PRESSED" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;pressed:=TRUE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

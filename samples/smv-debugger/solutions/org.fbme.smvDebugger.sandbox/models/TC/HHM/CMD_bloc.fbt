@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CMD_bloc">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ">
+        <With Var="ESTOP" />
+        <With Var="START" />
+        <With Var="STOP" />
+        <With Var="ELtriggered" />
+        <With Var="CRtriggered" />
+        <With Var="CAtriggered" />
+        <With Var="GRtriggered" />
+        <With Var="SystemINITED" />
+        <With Var="ELPR" />
+        <With Var="CRPR" />
+        <With Var="CAPR" />
+        <With Var="GRO" />
+        <With Var="GRC" />
+        <With Var="ELM" />
+        <With Var="CRM" />
+        <With Var="CAM" />
+        <With Var="HCP" />
+        <With Var="SBTP" />
+        <With Var="SBCP" />
+        <With Var="FETP" />
+        <With Var="SLTP" />
+        <With Var="GRTP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ESTOP" Type="BOOL" />
+      <VarDeclaration Name="START" Type="BOOL" />
+      <VarDeclaration Name="STOP" Type="BOOL" />
+      <VarDeclaration Name="ELtriggered" Type="BOOL" />
+      <VarDeclaration Name="CRtriggered" Type="BOOL" />
+      <VarDeclaration Name="CAtriggered" Type="BOOL" />
+      <VarDeclaration Name="GRtriggered" Type="BOOL" />
+      <VarDeclaration Name="SystemINITED" Type="BOOL" />
+      <VarDeclaration Name="ELPR" Type="BOOL" />
+      <VarDeclaration Name="CRPR" Type="BOOL" />
+      <VarDeclaration Name="CAPR" Type="BOOL" />
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+      <VarDeclaration Name="ELM" Type="BOOL" />
+      <VarDeclaration Name="CRM" Type="BOOL" />
+      <VarDeclaration Name="CAM" Type="BOOL" />
+      <VarDeclaration Name="FETP" Type="BOOL" />
+      <VarDeclaration Name="SLTP" Type="BOOL" />
+      <VarDeclaration Name="HCP" Type="BOOL" />
+      <VarDeclaration Name="SBTP" Type="BOOL" />
+      <VarDeclaration Name="SBCP" Type="BOOL" />
+      <VarDeclaration Name="GRTP" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="GOEL" Type="BOOL" />
+      <VarDeclaration Name="SETEL" Type="INT" />
+      <VarDeclaration Name="GOCR" Type="BOOL" />
+      <VarDeclaration Name="SETCR" Type="INT" />
+      <VarDeclaration Name="GOCA" Type="BOOL" />
+      <VarDeclaration Name="SETCA" Type="INT" />
+      <VarDeclaration Name="OPGR" Type="BOOL" />
+      <VarDeclaration Name="CLGR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="i" Type="INT" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" x="3060" y="521" />
+      <ECState Name="INIT" x="3055" y="861">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="CR_01_CA_03" x="3040" y="1199">
+        <ECAction Output="CNF" Algorithm="GOCA_06" />
+      </ECState>
+      <ECState Name="CR_01_03_CA_06" x="2347" y="1661">
+        <ECAction Output="CNF" Algorithm="GOCR_03" />
+      </ECState>
+      <ECState Name="CR_01_04_CA_06" x="3726" y="1663">
+        <ECAction Output="CNF" Algorithm="GOCR_04" />
+      </ECState>
+      <ECState Name="GRC_03_GRC_04" x="3107" y="2034">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_f" x="3107" y="2409">
+        <ECAction Output="CNF" Algorithm="GOCA_03" />
+      </ECState>
+      <ECState Name="CR_01_CA_03_T" x="3074" y="2799">
+        <ECAction Output="CNF" Algorithm="GOCR_06" />
+      </ECState>
+      <ECState Name="CR_06_CA_03" x="3071" y="3158">
+        <ECAction Output="CNF" Algorithm="GOEL_03" />
+      </ECState>
+      <ECState Name="EL_03" x="3070" y="3466">
+        <ECAction Output="CNF" Algorithm="OPGR" />
+      </ECState>
+      <ECState Name="GRO" x="3072" y="3828">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="EL_01" x="6270" y="2610">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_EL_03" x="3074" y="4150">
+        <ECAction Output="CNF" Algorithm="GOCA_01" />
+      </ECState>
+      <ECState Name="END" x="6253" y="2021">
+        <ECAction Output="CNF" Algorithm="RESET" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_e" x="4203" y="4156">
+        <ECAction Output="CNF" Algorithm="GOCR_02" />
+      </ECState>
+      <ECState Name="CR_02_CA_01" x="5285" y="4156">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="GRC" x="6263" y="4164">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_f" x="6278" y="3847">
+        <ECAction Output="CNF" Algorithm="GOCA_03" />
+      </ECState>
+      <ECState Name="CR_01_CA_03_lid" x="6268" y="3540">
+        <ECAction Output="CNF" Algorithm="GOCR_03" />
+      </ECState>
+      <ECState Name="CR_03_CA_03" x="6268" y="3202">
+        <ECAction Output="CNF" Algorithm="OPGR" />
+      </ECState>
+      <ECState Name="GRO_lid" x="6271" y="2894">
+        <ECAction Output="CNF" Algorithm="GOEL_01" />
+      </ECState>
+      <ECState Name="CR_01_EL_01" x="6257" y="2307">
+        <ECAction Output="CNF" Algorithm="RESET" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_e" x="3036" y="1542">
+        <ECAction Output="CNF" Algorithm="RESET" />
+      </ECState>
+      <ECState Name="CR_03_CA_06" x="2068" y="2044">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="CR_04_CA_06" x="4270" y="2018">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="STOP" x="829" y="1239">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="STOP2" x="5078" y="1520">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="STOP3" x="1282" y="2949">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="STOP4" x="4670" y="4860">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="STOP5" x="7808" y="3338">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="EMGYSTOP" x="268" y="2634">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="EMGYSTOP2" x="7256" y="4738">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="EMGYSTOP3" x="6380" y="1200">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="3059" y="685" Condition="INIT" />
+      <ECTransition Source="CR_01_03_CA_06" Destination="CR_03_CA_06" x="2106" y="1836" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; GRTP &amp;#38; GRtriggered]" />
+      <ECTransition Source="CR_01_04_CA_06" Destination="CR_04_CA_06" x="4086" y="1815" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; GRTP &amp;#38; GRtriggered]" />
+      <ECTransition Source="GRC_03_GRC_04" Destination="CR_01_CA_06_f" x="3108" y="2218" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; CAtriggered]" />
+      <ECTransition Source="CR_01_CA_06_f" Destination="CR_01_CA_03_T" x="3093" y="2622" Condition="[NOT CAM &amp;#38; CAPR &amp;#38; NOT SBCP &amp;#38; NOT SBTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_01_CA_03_T" Destination="CR_06_CA_03" x="3072" y="2986" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; ELtriggered]" />
+      <ECTransition Source="CR_06_CA_03" Destination="EL_03" x="3072" y="3298" Condition="[NOT ELM &amp;#38; ELPR &amp;#38; SBTP &amp;#38; GRtriggered]" />
+      <ECTransition Source="EL_03" Destination="GRO" x="3075" y="3644" Condition="[GRO &amp;#38; GRTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="GRO" Destination="CR_01_EL_03" x="3078" y="3996" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; HCP &amp;#38; CAtriggered]" />
+      <ECTransition Source="CR_01_EL_03" Destination="CR_01_CA_01_e" x="3685" y="4295" Condition="[NOT CAM &amp;#38; CAPR &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_01_CA_01_e" Destination="CR_02_CA_01" x="4731" y="4038" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; GRtriggered]" />
+      <ECTransition Source="CR_02_CA_01" Destination="GRC" x="5797" y="4288" Condition="[GRC &amp;#38; GRTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="GRC" Destination="CR_01_CA_01_f" x="6272" y="4025" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; CAtriggered]" />
+      <ECTransition Source="CR_01_CA_01_f" Destination="CR_01_CA_03_lid" x="6279" y="3706" Condition="[NOT CAM &amp;#38; CAPR &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_01_CA_03_lid" Destination="CR_03_CA_03" x="6262" y="3364" Condition="[NOT CRM &amp;#38; CRPR &amp;#38; GRtriggered]" />
+      <ECTransition Source="CR_03_CA_03" Destination="GRO_lid" x="6267" y="3054" Condition="[GRO &amp;#38; GRTP &amp;#38; ELtriggered]" />
+      <ECTransition Source="GRO_lid" Destination="EL_01" x="6264" y="2777" Condition="[NOT ELM &amp;#38; ELPR &amp;#38; NOT GRTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="EL_01" Destination="CR_01_EL_01" x="6275" y="2476" Condition="[NOT CRM &amp;#38; CRPR]" />
+      <ECTransition Source="END" Destination="START" x="5164" y="652" Condition="1" />
+      <ECTransition Source="CR_01_CA_03" Destination="CR_01_CA_06_e" x="3035" y="1366" Condition="[NOT CAM &amp;#38; CAPR]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_03_CA_06" x="2559" y="1508" Condition="[FETP &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_04_CA_06" x="3609" y="1453" Condition="[SLTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_03_CA_06" Destination="GRC_03_GRC_04" x="2546" y="1913" Condition="[GRC &amp;#38; GRTP &amp;#38; NOT FETP &amp;#38; CRtriggered]" />
+      <ECTransition Source="CR_04_CA_06" Destination="GRC_03_GRC_04" x="3710" y="1917" Condition="[GRC &amp;#38; GRTP &amp;#38; NOT SLTP &amp;#38; CRtriggered]" />
+      <ECTransition Source="INIT" Destination="STOP" x="1447" y="602" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_03" Destination="STOP" x="1955" y="923" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="STOP" x="1919" y="1308" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_03_CA_06" Destination="STOP" x="1323" y="1692" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_03_CA_06" Destination="STOP" x="633" y="2060" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_04_CA_06" Destination="STOP2" x="4380" y="1356" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_04_CA_06" Destination="STOP2" x="4639" y="1770" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="EL_01" Destination="STOP2" x="5568" y="2281" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_EL_01" Destination="STOP2" x="5750" y="1803" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="GRC_03_GRC_04" Destination="STOP3" x="1985" y="2352" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_06_f" Destination="STOP3" x="2253" y="2607" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_03_T" Destination="STOP3" x="2082" y="2960" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_06_CA_03" Destination="STOP3" x="2048" y="3185" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="EL_03" Destination="STOP3" x="1839" y="3418" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="GRO" Destination="STOP3" x="1223" y="3876" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_EL_03" Destination="STOP4" x="3198" y="4767" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_01_e" Destination="STOP4" x="4519" y="4413" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_02_CA_01" Destination="STOP4" x="5184" y="4548" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="GRC" Destination="STOP4" x="5952" y="4783" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_01_f" Destination="STOP5" x="7288" y="3892" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_01_CA_03_lid" Destination="STOP5" x="6946" y="3414" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="CR_03_CA_03" Destination="STOP5" x="7044" y="3083" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="GRO_lid" Destination="STOP5" x="7469" y="2674" Condition="[STOP OR ESTOP]" />
+      <ECTransition Source="STOP" Destination="INIT" x="1258" y="427" Condition="[START &amp;#38; i = 1]" />
+      <ECTransition Source="STOP" Destination="CR_01_03_CA_06" x="1404" y="1569" Condition="[START &amp;#38; i = 4]" />
+      <ECTransition Source="STOP" Destination="CR_03_CA_06" x="921" y="1922" Condition="[START &amp;#38; i = 5]" />
+      <ECTransition Source="STOP" Destination="CR_01_CA_06_e" x="1705" y="1437" Condition="[START &amp;#38; i = 3]" />
+      <ECTransition Source="STOP" Destination="CR_01_CA_03" x="2002" y="1095" Condition="[START &amp;#38; i = 2]" />
+      <ECTransition Source="STOP3" Destination="GRC_03_GRC_04" x="2192" y="2417" Condition="[START &amp;#38; i = 6]" />
+      <ECTransition Source="STOP3" Destination="CR_01_CA_06_f" x="2281" y="2755" Condition="[START &amp;#38; i = 7]" />
+      <ECTransition Source="STOP3" Destination="CR_01_CA_03_T" x="2201" y="3037" Condition="[START &amp;#38; i = 8]" />
+      <ECTransition Source="STOP3" Destination="CR_06_CA_03" x="2071" y="3318" Condition="[START &amp;#38; i = 9]" />
+      <ECTransition Source="STOP3" Destination="EL_03" x="1808" y="3620" Condition="[START &amp;#38; i = 10]" />
+      <ECTransition Source="STOP3" Destination="GRO" x="1573" y="3707" Condition="[START &amp;#38; i = 11]" />
+      <ECTransition Source="STOP4" Destination="CR_01_EL_03" x="3546" y="4573" Condition="[START &amp;#38; i = 12]" />
+      <ECTransition Source="STOP4" Destination="CR_01_CA_01_e" x="4206" y="4543" Condition="[START &amp;#38; i = 13]" />
+      <ECTransition Source="STOP4" Destination="CR_02_CA_01" x="4909" y="4451" Condition="[START &amp;#38; i = 14]" />
+      <ECTransition Source="STOP4" Destination="GRC" x="5662" y="4635" Condition="[START &amp;#38; i = 15]" />
+      <ECTransition Source="STOP5" Destination="CR_01_CA_01_f" x="7442" y="4022" Condition="[START &amp;#38; i = 16]" />
+      <ECTransition Source="STOP5" Destination="CR_01_CA_03_lid" x="7093" y="3652" Condition="[START &amp;#38; i = 17]" />
+      <ECTransition Source="STOP5" Destination="CR_03_CA_03" x="7095" y="3303" Condition="[START &amp;#38; i = 18]" />
+      <ECTransition Source="STOP5" Destination="GRO_lid" x="7341" y="2815" Condition="[START &amp;#38; i = 19]" />
+      <ECTransition Source="STOP2" Destination="CR_01_04_CA_06" x="4477" y="1500" Condition="[START &amp;#38; i = 4]" />
+      <ECTransition Source="STOP2" Destination="CR_04_CA_06" x="4828" y="1855" Condition="[START &amp;#38; i = 5]" />
+      <ECTransition Source="STOP2" Destination="CR_01_EL_01" x="5602" y="1975" Condition="[START &amp;#38; i = 21]" />
+      <ECTransition Source="STOP2" Destination="EL_01" x="5381" y="2423" Condition="[START &amp;#38; i = 20]" />
+      <ECTransition Source="STOP3" Destination="EMGYSTOP" x="785" y="2877" Condition="1" />
+      <ECTransition Source="STOP" Destination="EMGYSTOP" x="341" y="1839" Condition="[ESTOP]" />
+      <ECTransition Source="EMGYSTOP" Destination="START" x="598" y="486" Condition="[NOT ESTOP]" />
+      <ECTransition Source="STOP4" Destination="EMGYSTOP2" x="5993" y="5281" Condition="[ESTOP]" />
+      <ECTransition Source="STOP5" Destination="EMGYSTOP2" x="7724" y="4125" Condition="1" />
+      <ECTransition Source="STOP2" Destination="EMGYSTOP3" x="5687" y="1287" Condition="[ESTOP]" />
+      <ECTransition Source="EMGYSTOP3" Destination="START" x="4919" y="344" Condition="[NOT ESTOP]" />
+      <ECTransition Source="EMGYSTOP2" Destination="START" x="8328" y="1409" Condition="[NOT ESTOP]" />
+      <ECTransition Source="INIT" Destination="CR_01_CA_03" x="3056" y="1029" Condition="[START &amp;#38; SystemINITED &amp;#38; (FETP OR SLTP) &amp;#38; CAtriggered]" />
+      <ECTransition Source="CR_01_EL_01" Destination="END" x="6255" y="2179" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="i := 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_06">
+      <ST Text="GOCA := TRUE;&amp;#38;#10;SETCA := 1320;&amp;#38;#10;i := i + 1;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_03">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := 54;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_04">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := 81;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CLGR">
+      <ST Text="CLGR := TRUE;&amp;#38;#10;OPGR := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_01">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := -2;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;FETP := FALSE;&amp;#38;#10;SLTP := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_03">
+      <ST Text="GOCA := TRUE;&amp;#38;#10;SETCA := 538;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_06">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := 261;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_03">
+      <ST Text="GOEL := TRUE;&amp;#38;#10;SETEL := 274;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="OPGR">
+      <ST Text="CLGR := FALSE;&amp;#38;#10;OPGR := TRUE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_01">
+      <ST Text="GOCA := TRUE;&amp;#38;#10;SETCA := 10;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_02">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := 41;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_XX">
+      <ST Text="GOCR := TRUE;&amp;#38;#10;SETCR := 0;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_01">
+      <ST Text="GOEL := TRUE;&amp;#38;#10;SETEL := -2;&amp;#38;#10;GOCA := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text="GOCA := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;OPGR := FALSE;&amp;#38;#10;CLGR := FALSE;&amp;#38;#10;i := i + 1;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="GOCA := FALSE;&amp;#38;#10;GOCR := FALSE;&amp;#38;#10;GOEL := FALSE;&amp;#38;#10;OPGR := FALSE;&amp;#38;#10;CLGR := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

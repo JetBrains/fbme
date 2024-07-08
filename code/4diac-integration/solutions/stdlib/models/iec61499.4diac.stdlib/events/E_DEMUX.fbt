@@ -1,51 +1,50 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<FBType Comment="Event demultiplexor" Name="E_DEMUX">
-  <Identification Description="Copyright (c) 2017 fortiss GmbH&#13;&#10; &#13;&#10;This program and the accompanying materials are made&#13;&#10;available under the terms of the Eclipse Public License 2.0&#13;&#10;which is available at https://www.eclipse.org/legal/epl-2.0/&#13;&#10;&#13;&#10;SPDX-License-Identifier: EPL-2.0" Standard="61499-1 Annex A"/>
-  <VersionInfo Author="Alois Zoitl" Date="2017-09-22" Organization="fortiss GmbH" Remarks="initial API and implementation and/or initial documentation" Version="1.0"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="E_DEMUX">
   <InterfaceList>
     <EventInputs>
-      <Event Comment="" Name="EI" Type="Event">
-        <With Var="K"/>
+      <Event Name="EI">
+        <With Var="K" />
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Comment="" Name="EO0" Type="Event"/>
-      <Event Comment="" Name="EO1" Type="Event"/>
-      <Event Comment="" Name="EO2" Type="Event"/>
-      <Event Comment="" Name="EO3" Type="Event"/>
+      <Event Name="EO0" />
+      <Event Name="EO1" />
+      <Event Name="EO2" />
+      <Event Name="EO3" />
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Comment="" Name="K" Type="UINT"/>
+      <VarDeclaration Name="K" Type="UINT" />
     </InputVars>
-    <OutputVars/>
   </InterfaceList>
   <BasicFB>
     <ECC>
-      <ECState Comment="Initial State" Name="START" x="1100.0" y="200.0"/>
-      <ECState Comment="" Name="State" x="1200.0" y="1000.0"/>
-      <ECState Comment="" Name="State_1" x="-55.0" y="600.0">
-        <ECAction Output="EO0"/>
+      <ECState Name="START" x="1100" y="200" />
+      <ECState Name="State" x="1200" y="1000" />
+      <ECState Name="State_1" x="-55" y="600">
+        <ECAction Output="EO0" />
       </ECState>
-      <ECState Comment="" Name="State_2" x="600.0" y="600.0">
-        <ECAction Output="EO1"/>
+      <ECState Name="State_2" x="600" y="600">
+        <ECAction Output="EO1" />
       </ECState>
-      <ECState Comment="" Name="State_3" x="1565.0" y="600.0">
-        <ECAction Output="EO2"/>
+      <ECState Name="State_3" x="1565" y="600">
+        <ECAction Output="EO2" />
       </ECState>
-      <ECState Comment="" Name="State_4" x="2200.0" y="600.0">
-        <ECAction Output="EO3"/>
+      <ECState Name="State_4" x="2200" y="600">
+        <ECAction Output="EO3" />
       </ECState>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="State_1" x="705.0" y="495.0"/>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="State_2" x="1065.0" y="500.0"/>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="State_3" x="1470.0" y="510.0"/>
-      <ECTransition Comment="" Condition="1" Destination="START" Source="State_4" x="1755.0" y="485.0"/>
-      <ECTransition Comment="" Condition="EI" Destination="State" Source="START" x="1440.0" y="690.0"/>
-      <ECTransition Comment="" Condition="[K = 0]" Destination="State_1" Source="State" x="565.0" y="1070.0"/>
-      <ECTransition Comment="" Condition="[K = 1]" Destination="State_2" Source="State" x="1020.0" y="870.0"/>
-      <ECTransition Comment="" Condition="[K = 2]" Destination="State_3" Source="State" x="1450.0" y="865.0"/>
-      <ECTransition Comment="" Condition="[K = 3]" Destination="State_4" Source="State" x="1785.0" y="870.0"/>
-      <ECTransition Comment="" Condition="[K &gt; 3]" Destination="START" Source="State" x="1210.0" y="645.0"/>
+      <ECTransition Source="State_1" Destination="START" x="705" y="495" Condition="1" />
+      <ECTransition Source="State_2" Destination="START" x="1065" y="500" Condition="1" />
+      <ECTransition Source="State_3" Destination="START" x="1470" y="510" Condition="1" />
+      <ECTransition Source="State_4" Destination="START" x="1755" y="485" Condition="1" />
+      <ECTransition Source="START" Destination="State" x="1440" y="690" Condition="EI" />
+      <ECTransition Source="State" Destination="State_1" x="565" y="1070" Condition="[K = 0]" />
+      <ECTransition Source="State" Destination="State_2" x="1020" y="870" Condition="[K = 1]" />
+      <ECTransition Source="State" Destination="State_3" x="1450" y="865" Condition="[K = 2]" />
+      <ECTransition Source="State" Destination="State_4" x="1785" y="870" Condition="[K = 3]" />
+      <ECTransition Source="State" Destination="START" x="1210" y="645" Condition="[K &amp;#62; 3]" />
     </ECC>
   </BasicFB>
 </FBType>
+

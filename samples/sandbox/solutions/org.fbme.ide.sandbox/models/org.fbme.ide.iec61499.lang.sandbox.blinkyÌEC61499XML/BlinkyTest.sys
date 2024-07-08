@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<System Name="BlinkyTest">
+  <Application Name="BlinkTestApp">
+    <SubAppNetwork>
+      <FB Name="E_CYCLE" Type="E_CYCLE" x="1215" y="0">
+        <Parameter Name="DT" Value="T#1000ms" />
+      </FB>
+      <FB Name="E_SR" Type="E_SR" x="656" y="265" />
+      <FB Name="E_SWITCH" Type="E_SWITCH" x="109" y="260" />
+      <DataConnections>
+        <Connection Source="E_SR.Q" Destination="E_SWITCH.G" dy="60" dx2="63" dx1="70" />
+      </DataConnections>
+      <EventConnections>
+        <Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" dy="527" dx2="63" dx1="103" />
+        <Connection Source="E_SWITCH.EO1" Destination="E_SR.R" dx1="136" />
+        <Connection Source="E_SWITCH.EO0" Destination="E_SR.S" dx1="136" />
+        <Connection Source="E_SR.EO" Destination="E_CYCLE.START" dx1="50" />
+      </EventConnections>
+    </SubAppNetwork>
+  </Application>
+  <Device Name="Testee" Type="FORTE_PC">
+    <Parameter Name="MGR_ID" Value="'localhost:61499'" />
+    <Resource Name="Blinky_RES" Type="EMB_RES">
+      <FBNetwork>
+        <FB Name="E_CYCLE" Type="E_CYCLE" x="670" y="40">
+          <Parameter Name="DT" Value="T#1000ms" />
+        </FB>
+        <FB Name="E_SR" Type="E_SR" x="2107" y="50" />
+        <FB Name="E_SWITCH" Type="E_SWITCH" x="1463" y="49" />
+        <DataConnections>
+          <Connection Source="E_SR.Q" Destination="E_SWITCH.G" dy="57" dx2="173" dx1="74" />
+        </DataConnections>
+        <EventConnections>
+          <Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" dx1="224" />
+          <Connection Source="E_SWITCH.EO0" Destination="E_SR.S" />
+          <Connection Source="E_SWITCH.EO1" Destination="E_SR.R" />
+          <Connection Source="START.COLD" Destination="E_CYCLE.START" dx1="36" />
+          <Connection Source="START.WARM" Destination="E_CYCLE.START" dx1="139" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+  <Mapping From="BlinkTestApp.E_CYCLE" To="Testee.Blinky_RES.E_CYCLE" />
+  <Mapping From="BlinkTestApp.E_SR" To="Testee.Blinky_RES.E_SR" />
+  <Mapping From="BlinkTestApp.E_SWITCH" To="Testee.Blinky_RES.E_SWITCH" />
+  <Segment Name="Ethernet1" Type="Ethernet" />
+  <Link CommResource="Testee" SegmentName="Ethernet1" />
+</System>
+

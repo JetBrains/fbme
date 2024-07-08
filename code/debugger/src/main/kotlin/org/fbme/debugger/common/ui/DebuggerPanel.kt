@@ -1,5 +1,6 @@
 package org.fbme.debugger.common.ui
 
+import com.intellij.codeInsight.hints.presentation.MouseButton
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
@@ -118,8 +119,10 @@ open class DebuggerPanel(
         watchesTree.showsRootHandles = true
 
         val ml: MouseListener = object : MouseAdapter() {
+            //TODO() add crossplatform isPopupTrigger
             override fun mousePressed(e: MouseEvent) {
-                if (e.isPopupTrigger) {
+                if (e.button == MouseEvent.BUTTON3 ){
+                //if (e.isPopupTrigger) {
                     val popup = JBPopupMenu()
                     val explainItem = JBMenuItem("Why?", AllIcons.Debugger.Question_badge)
                     explainItem.addActionListener {

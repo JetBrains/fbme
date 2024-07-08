@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="HHM_FV">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="ELcmd" Type="AXE_CMD" x="1963" y="23" />
+    <FB Name="ELplant" Type="AXE_plant_FV" x="3203" y="20" />
+    <FB Name="CRcmd" Type="AXE_CMD" x="4283" y="380" />
+    <FB Name="CRplant" Type="AXE_plant_FV" x="5566" y="943" />
+    <FB Name="CAcmd" Type="AXE_CMD" x="6599" y="1150" />
+    <FB Name="CAplant" Type="AXE_plant_FV" x="7839" y="1150" />
+    <FB Name="GRplant" Type="GR_plant_FV" x="9783" y="1150" />
+    <FB Name="GRcmd" Type="GR_CMD" x="8890" y="1150" />
+    <FB Name="BEHAVIOUR" Type="CMD_bloc_FV" x="606" y="29">
+      <Parameter Name="FETP" Value="TRUE" />
+      <Parameter Name="SLTP" Value="FALSE" />
+      <Parameter Name="SystemINITED" Value="TRUE" />
+    </FB>
+    <DataConnections>
+      <Connection Source="ELcmd.go" Destination="ELplant.GO" dx1="337" />
+      <Connection Source="ELplant.PR" Destination="ELcmd.PR" dy="-340" dx2="310" dx1="233" />
+      <Connection Source="CRcmd.go" Destination="CRplant.GO" dx1="330" />
+      <Connection Source="CRplant.PR" Destination="CRcmd.PR" dy="200" dx2="314" dx1="203" />
+      <Connection Source="CAcmd.go" Destination="CAplant.GO" dx1="340" />
+      <Connection Source="CAplant.PR" Destination="CAcmd.PR" dy="157" dx2="236" dx1="183" />
+      <Connection Source="GRcmd.open" Destination="GRplant.OPEN" dx1="127" />
+      <Connection Source="GRcmd.close" Destination="GRplant.CLOSE" dx1="77" />
+      <Connection Source="GRplant.GRO" Destination="GRcmd.openned" dy="157" dx2="73" dx1="130" />
+      <Connection Source="GRplant.GRC" Destination="GRcmd.closed" dy="107" dx2="77" dx1="103" />
+      <Connection Source="BEHAVIOUR.GOEL" Destination="ELcmd.GO" dx1="350" />
+      <Connection Source="BEHAVIOUR.SETEL" Destination="ELcmd.SETPOS_IN" dx1="323" />
+      <Connection Source="ELcmd.moving" Destination="BEHAVIOUR.ELM" dy="-389" dx2="347" dx1="180" />
+      <Connection Source="ELcmd.pr" Destination="BEHAVIOUR.ELPR" dy="-439" dx2="270" dx1="363" />
+      <Connection Source="BEHAVIOUR.GOCR" Destination="CRcmd.GO" dy="103" dx2="314" dx1="300" />
+      <Connection Source="BEHAVIOUR.SETCR" Destination="CRcmd.SETPOS_IN" dy="56" dx2="150" dx1="250" />
+      <Connection Source="CRcmd.pr" Destination="BEHAVIOUR.CRPR" dy="664" dx2="294" dx1="290">
+        <BendPoints>
+          <BendPoint x="5230" y="806" />
+          <BendPoint x="5230" y="1470" />
+          <BendPoint x="3886" y="1470" />
+          <BendPoint x="3886" y="1470" />
+          <BendPoint x="2886" y="1470" />
+          <BendPoint x="2886" y="1473" />
+          <BendPoint x="1393" y="1473" />
+          <BendPoint x="1393" y="1629" />
+          <BendPoint x="199" y="1629" />
+          <BendPoint x="199" y="403" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="CAcmd.pr" Destination="BEHAVIOUR.CAPR" dy="57" dx2="394" dx1="264" />
+      <Connection Source="BEHAVIOUR.GOCA" Destination="CAcmd.GO" dy="970" dx2="236" dx1="250" />
+      <Connection Source="BEHAVIOUR.SETCA" Destination="CAcmd.SETPOS_IN" dx1="200" />
+      <Connection Source="BEHAVIOUR.OPGR" Destination="GRcmd.OPEN" dy="1033" dx2="203" dx1="200" />
+      <Connection Source="BEHAVIOUR.CLGR" Destination="GRcmd.CLOSE" dy="983" dx2="154" dx1="177" />
+      <Connection Source="GRcmd.GRO" Destination="BEHAVIOUR.GRO" dy="-1523" dx2="397" dx1="103" />
+      <Connection Source="GRcmd.GRC" Destination="BEHAVIOUR.GRC" dy="-1576" dx2="447" dx1="180" />
+      <Connection Source="CRcmd.moving" Destination="BEHAVIOUR.CRM" dy="714" dx2="297" dx1="153">
+        <BendPoints>
+          <BendPoint x="5203" y="756" />
+          <BendPoint x="5203" y="1470" />
+          <BendPoint x="2910" y="1470" />
+          <BendPoint x="2910" y="1470" />
+          <BendPoint x="1366" y="1470" />
+          <BendPoint x="1366" y="1629" />
+          <BendPoint x="223" y="1629" />
+          <BendPoint x="223" y="653" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="CAcmd.moving" Destination="BEHAVIOUR.CAM" dy="-1523" dx2="471" dx1="183" />
+      <Connection Source="ELcmd.setpos_out" Destination="ELplant.POS_IN" dx1="100" />
+      <Connection Source="CRcmd.setpos_out" Destination="CRplant.POS_IN" dx1="80" />
+      <Connection Source="CAcmd.setpos_out" Destination="CAplant.POS_IN" dx1="100" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="ELcmd.INITO" Destination="ELplant.INIT" dx1="233" />
+      <Connection Source="ELcmd.CNF" Destination="ELplant.REQ" dx1="236" />
+      <Connection Source="CRcmd.INITO" Destination="CRplant.INIT" dx1="337" />
+      <Connection Source="CRcmd.CNF" Destination="CRplant.REQ" dx1="337" />
+      <Connection Source="CRplant.CNF" Destination="CRcmd.REQ" dy="397" dx2="260" dx1="153" />
+      <Connection Source="CAcmd.INITO" Destination="CAplant.INIT" />
+      <Connection Source="CAcmd.CNF" Destination="CAplant.REQ" />
+      <Connection Source="CAplant.CNF" Destination="CAcmd.REQ" dy="360" dx2="234" dx1="180" />
+      <Connection Source="ELplant.CNF" Destination="ELcmd.REQ" dy="-140" dx2="233" dx1="157" />
+      <Connection Source="GRcmd.CNF" Destination="GRplant.REQ" />
+      <Connection Source="GRcmd.INITO" Destination="GRplant.INIT" />
+      <Connection Source="BEHAVIOUR.CNF" Destination="ELcmd.REQ" dx1="403" />
+      <Connection Source="BEHAVIOUR.CNF" Destination="CRcmd.REQ" dx1="403" />
+      <Connection Source="ELcmd.CNF" Destination="BEHAVIOUR.REQ" dy="-140" dx2="370" dx1="236" />
+      <Connection Source="CRcmd.CNF" Destination="BEHAVIOUR.REQ" dy="-500" dx2="370" dx1="233" />
+      <Connection Source="BEHAVIOUR.CNF" Destination="CAcmd.REQ" dy="1320" dx2="234" dx1="403" />
+      <Connection Source="CAcmd.CNF" Destination="BEHAVIOUR.REQ" dy="-136" dx2="370" dx1="237">
+        <BendPoints>
+          <BendPoint x="7523" y="1276" />
+          <BendPoint x="7523" y="1140" />
+          <BendPoint x="6253" y="1140" />
+          <BendPoint x="6253" y="1633" />
+          <BendPoint x="1416" y="1633" />
+          <BendPoint x="1416" y="1633" />
+          <BendPoint x="150" y="1633" />
+          <BendPoint x="150" y="153" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="BEHAVIOUR.CNF" Destination="GRcmd.REQ" dy="1480" dx2="257" dx1="403">
+        <BendPoints>
+          <BendPoint x="1643" y="153" />
+          <BendPoint x="1643" y="1633" />
+          <BendPoint x="6279" y="1633" />
+          <BendPoint x="6279" y="1636" />
+          <BendPoint x="8546" y="1636" />
+          <BendPoint x="8546" y="1276" />
+        </BendPoints>
+      </Connection>
+      <Connection Source="BEHAVIOUR.INITO" Destination="ELcmd.INIT" dx1="373" />
+      <Connection Source="ELplant.INITO" Destination="CRcmd.INIT" dx1="126" />
+      <Connection Source="CRplant.INITO" Destination="CAcmd.INIT" dx1="163" />
+      <Connection Source="CAplant.INITO" Destination="GRcmd.INIT" />
+      <Connection Source="GRplant.CNF" Destination="GRcmd.REQ" dy="-1276" dx2="257" dx1="103" />
+      <Connection Source="GRcmd.CNF" Destination="BEHAVIOUR.REQ" dy="-1276" dx2="370" dx1="130" />
+      <Connection Source="INIT" Destination="BEHAVIOUR.INIT" />
+      <Connection Source="GRplant.INITO" Destination="INITO" />
+    </EventConnections>
+    <EndpointCoordinate Name="INIT" x="-190" y="80" />
+    <EndpointCoordinate Name="INITO" x="10410" y="1200" />
+  </FBNetwork>
+</FBType>
+

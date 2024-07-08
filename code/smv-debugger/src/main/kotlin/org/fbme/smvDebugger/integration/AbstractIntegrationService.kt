@@ -3,21 +3,24 @@ package org.fbme.smvDebugger.integration
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.file.Path
+import kotlin.io.path.pathString
 
 abstract class AbstractIntegrationService(protected val binaryPath: Path?) {
     protected fun runProcess(path: Path): String {
         val command = getCommand(path)
         val builder = ProcessBuilder()
-        builder.command(command)
+        val args = command.split(" ")
+        builder.command(args)
+
         return try {
             val process = builder.start()
-            process.waitFor()
             val reader = BufferedReader(InputStreamReader(process.inputStream))
             val sb = StringBuilder()
             var line: String? = ""
             while (reader.readLine().also { line = it } != null) {
                 sb.append(line).append("\n")
             }
+            process.waitFor()
             sb.toString()
         } catch (e: Exception) {
             throw RuntimeException(e)

@@ -68,7 +68,7 @@
       <ECTransition Source="READY" Destination="CLEAR_SLEDGE" x="3469" y="846" Condition="CLEAR" />
       <ECTransition Source="READY" Destination="CHECK" x="4723" y="1630" Condition="[occupied[0] = FALSE]" />
       <ECTransition Source="READY" Destination="CHECK" x="4407" y="1907" Condition="[occupied[1] = FALSE]" />
-      <ECTransition Source="READY" Destination="PLACE2" x="2023" y="2523" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = FALSE]" />
+      <ECTransition Source="READY" Destination="PLACE2" x="1659" y="2973" Condition="PLACE_WP[occupied[0] = TRUE AND occupied[1] = FALSE]" />
       <ECTransition Source="PLACE2" Destination="CHECK" x="4930" y="4069" Condition="1" />
       <ECTransition Source="READY" Destination="GET1" x="1400" y="623" Condition="[occupied[0] = TRUE]" />
       <ECTransition Source="GET1" Destination="READY" x="1461" y="1100" Condition="_RETURN" />

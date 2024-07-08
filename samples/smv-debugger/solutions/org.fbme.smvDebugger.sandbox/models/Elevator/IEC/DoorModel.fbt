@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="DoorModel">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ">
+        <With Var="open" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF">
+        <With Var="doorPosition" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="open" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="doorPosition" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="doorWait" Type="E_DELAY" x="1800" y="400">
+      <Parameter Name="DT" Value="T#2ms" />
+    </FB>
+    <FB Name="Door" Type="DelayDoor" x="1100" y="0" />
+    <DataConnections>
+      <Connection Source="open" Destination="Door.open" dx1="460" />
+      <Connection Source="Door.doorPos" Destination="doorPosition" dx1="870" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="REQ" Destination="Door.REQ" dx1="460" />
+      <Connection Source="doorWait.EO" Destination="Door.Moved" dy="345" dx2="60" dx1="60" />
+      <Connection Source="Door.CNF" Destination="CNF" dx1="580" />
+      <Connection Source="Door.Move" Destination="doorWait.START" dx1="95" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+
