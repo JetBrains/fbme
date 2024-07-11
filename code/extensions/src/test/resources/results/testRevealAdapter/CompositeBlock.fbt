@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeBlock">
+  <InterfaceList />
+  <FBNetwork>
+    <FB Name="BaseBlock1" Type="BaseBlock" x="590" y="486" />
+    <FB Name="BaseBlock2" Type="BaseBlock" x="1553" y="310" />
+    <FB Name="BaseBlock3" Type="BaseBlock" x="1556" y="733" />
+    <FB Name="EA_2_router" Type="EA_2_router" x="0" y="0" />
+    <FB Name="EA_network1" Type="EA_network1" x="0" y="0" />
+    <FB Name="EA_network1_2" Type="EA_network1" x="0" y="0" />
+    <FB Name="EA_network2" Type="EA_network2" x="0" y="0" />
+    <FB Name="EA_network2_2" Type="EA_network2" x="0" y="0" />
+    <AdapterConnections>
+      <Connection Source="BaseBlock1.plug" Destination="EA_2_router.socket" />
+      <Connection Source="EA_2_router.plug_0" Destination="EA_network1.socket" />
+      <Connection Source="EA_2_router.plug_1" Destination="EA_network1_2.socket" />
+      <Connection Source="EA_network1.plug" Destination="EA_network2.socket" />
+      <Connection Source="EA_network2.plug" Destination="BaseBlock2.socket" />
+      <Connection Source="EA_network1_2.plug" Destination="EA_network2_2.socket" />
+      <Connection Source="EA_network2_2.plug" Destination="BaseBlock3.socket" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>

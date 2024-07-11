@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EA_LeftPublishSubscribeAdapter">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="IND">
+        <With Var="O_E_number" />
+        <With Var="I_data1" />
+        <With Var="I_data2" />
+        <With Var="N_O_data1" />
+        <With Var="N_O_data2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="REQ">
+        <With Var="I_E_number" />
+        <With Var="O_data1" />
+        <With Var="O_data2" />
+        <With Var="N_I_data1" />
+        <With Var="N_I_data2" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="O_E_number" Type="INT" />
+      <VarDeclaration Name="I_data1" Type="INT" />
+      <VarDeclaration Name="I_data2" Type="INT" />
+      <VarDeclaration Name="N_O_data1" Type="INT" />
+      <VarDeclaration Name="N_O_data2" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="I_E_number" Type="INT" />
+      <VarDeclaration Name="O_data1" Type="INT" />
+      <VarDeclaration Name="O_data2" Type="INT" />
+      <VarDeclaration Name="N_I_data1" Type="INT" />
+      <VarDeclaration Name="N_I_data2" Type="INT" />
+    </OutputVars>
+    <Sockets>
+      <AdapterDeclaration Name="socket" Type="Middle_EA" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="EventToNumberAdapter_4" Type="EventToNumberAdapter_4" x="0" y="0" />
+    <FB Name="NumberToEventAdapter_4" Type="NumberToEventAdapter_4" x="0" y="0" />
+    <DataConnections>
+      <Connection Source="O_E_number" Destination="NumberToEventAdapter_4.O_E_number" />
+      <Connection Source="EventToNumberAdapter_4.I_E_number" Destination="I_E_number" />
+      <Connection Source="I_data1" Destination="socket.I_data1" />
+      <Connection Source="I_data2" Destination="socket.I_data2" />
+      <Connection Source="N_O_data1" Destination="socket.N_O_data1" />
+      <Connection Source="N_O_data2" Destination="socket.N_O_data2" />
+      <Connection Source="socket.O_data1" Destination="O_data1" />
+      <Connection Source="socket.O_data2" Destination="O_data2" />
+      <Connection Source="socket.N_I_data1" Destination="N_I_data1" />
+      <Connection Source="socket.N_I_data2" Destination="N_I_data2" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="IND" Destination="NumberToEventAdapter_4.IND" />
+      <Connection Source="NumberToEventAdapter_4.O_0" Destination="socket.I_event1" />
+      <Connection Source="NumberToEventAdapter_4.O_1" Destination="socket.I_event2" />
+      <Connection Source="NumberToEventAdapter_4.O_2" Destination="socket.N_O_Event1" />
+      <Connection Source="NumberToEventAdapter_4.O_3" Destination="socket.N_O_Event2" />
+      <Connection Source="socket.O_event1" Destination="EventToNumberAdapter_4.I_0" />
+      <Connection Source="socket.O_event2" Destination="EventToNumberAdapter_4.I_1" />
+      <Connection Source="socket.N_I_Event1" Destination="EventToNumberAdapter_4.I_2" />
+      <Connection Source="socket.N_I_Event2" Destination="EventToNumberAdapter_4.I_3" />
+      <Connection Source="EventToNumberAdapter_4.REQ" Destination="REQ" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>

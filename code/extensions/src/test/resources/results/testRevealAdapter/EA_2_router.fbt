@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EA_2_router">
+  <InterfaceList>
+    <Plugs>
+      <AdapterDeclaration Name="plug_0" Type="Left_EA" x="0" />
+      <AdapterDeclaration Name="plug_1" Type="Left_EA" x="0" />
+    </Plugs>
+    <Sockets>
+      <AdapterDeclaration Name="socket" Type="RouterAdapter_EA" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="EA_2_leftSwitch" Type="EA_2_leftSwitch" x="0" y="0" />
+    <FB Name="EA_2_rightSwitch" Type="EA_2_rightSwitch" x="0" y="0" />
+    <DataConnections>
+      <Connection Source="socket.O_data1" Destination="EA_2_leftSwitch.O_data1" />
+      <Connection Source="socket.O_data2" Destination="EA_2_leftSwitch.O_data2" />
+      <Connection Source="socket.S_O_data1" Destination="EA_2_leftSwitch.S_O_data1" />
+      <Connection Source="socket.S_O_data2" Destination="EA_2_leftSwitch.S_O_data2" />
+      <Connection Source="socket.O_router" Destination="EA_2_leftSwitch.O_router" />
+      <Connection Source="EA_2_leftSwitch.O_data1_0" Destination="plug_0.O_data1" />
+      <Connection Source="EA_2_leftSwitch.O_data2_0" Destination="plug_0.O_data2" />
+      <Connection Source="EA_2_leftSwitch.S_O_data1_0" Destination="plug_0.S_O_data1" />
+      <Connection Source="EA_2_leftSwitch.S_O_data2_0" Destination="plug_0.S_O_data2" />
+      <Connection Source="EA_2_leftSwitch.O_data1_1" Destination="plug_1.O_data1" />
+      <Connection Source="EA_2_leftSwitch.O_data2_1" Destination="plug_1.O_data2" />
+      <Connection Source="EA_2_leftSwitch.S_O_data1_1" Destination="plug_1.S_O_data1" />
+      <Connection Source="EA_2_leftSwitch.S_O_data2_1" Destination="plug_1.S_O_data2" />
+      <Connection Source="EA_2_rightSwitch.I_data1" Destination="socket.I_data1" />
+      <Connection Source="EA_2_rightSwitch.I_data2" Destination="socket.I_data2" />
+      <Connection Source="EA_2_rightSwitch.S_I_data1" Destination="socket.S_I_data1" />
+      <Connection Source="EA_2_rightSwitch.S_I_data2" Destination="socket.S_I_data2" />
+      <Connection Source="EA_2_rightSwitch.I_router" Destination="socket.I_router" />
+      <Connection Source="plug_0.I_data1" Destination="EA_2_rightSwitch.I_data1_0" />
+      <Connection Source="plug_0.I_data2" Destination="EA_2_rightSwitch.I_data2_0" />
+      <Connection Source="plug_0.S_I_data1" Destination="EA_2_rightSwitch.S_I_data1_0" />
+      <Connection Source="plug_0.S_I_data2" Destination="EA_2_rightSwitch.S_I_data2_0" />
+      <Connection Source="plug_1.I_data1" Destination="EA_2_rightSwitch.I_data1_1" />
+      <Connection Source="plug_1.I_data2" Destination="EA_2_rightSwitch.I_data2_1" />
+      <Connection Source="plug_1.S_I_data1" Destination="EA_2_rightSwitch.S_I_data1_1" />
+      <Connection Source="plug_1.S_I_data2" Destination="EA_2_rightSwitch.S_I_data2_1" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="socket.O_event1" Destination="EA_2_leftSwitch.O_event1" />
+      <Connection Source="socket.O_event2" Destination="EA_2_leftSwitch.O_event2" />
+      <Connection Source="socket.S_O_Event1" Destination="EA_2_leftSwitch.S_O_Event1" />
+      <Connection Source="socket.S_O_Event2" Destination="EA_2_leftSwitch.S_O_Event2" />
+      <Connection Source="EA_2_leftSwitch.O_event1_0" Destination="plug_0.O_event1" />
+      <Connection Source="EA_2_leftSwitch.O_event2_0" Destination="plug_0.O_event2" />
+      <Connection Source="EA_2_leftSwitch.S_O_Event1_0" Destination="plug_0.S_O_Event1" />
+      <Connection Source="EA_2_leftSwitch.S_O_Event2_0" Destination="plug_0.S_O_Event2" />
+      <Connection Source="EA_2_leftSwitch.O_event1_1" Destination="plug_1.O_event1" />
+      <Connection Source="EA_2_leftSwitch.O_event2_1" Destination="plug_1.O_event2" />
+      <Connection Source="EA_2_leftSwitch.S_O_Event1_1" Destination="plug_1.S_O_Event1" />
+      <Connection Source="EA_2_leftSwitch.S_O_Event2_1" Destination="plug_1.S_O_Event2" />
+      <Connection Source="EA_2_rightSwitch.I_event1" Destination="socket.I_event1" />
+      <Connection Source="EA_2_rightSwitch.I_event2" Destination="socket.I_event2" />
+      <Connection Source="EA_2_rightSwitch.S_I_Event1" Destination="socket.S_I_Event1" />
+      <Connection Source="EA_2_rightSwitch.S_I_Event2" Destination="socket.S_I_Event2" />
+      <Connection Source="plug_0.I_event1" Destination="EA_2_rightSwitch.I_event1_0" />
+      <Connection Source="plug_0.I_event2" Destination="EA_2_rightSwitch.I_event2_0" />
+      <Connection Source="plug_0.S_I_Event1" Destination="EA_2_rightSwitch.S_I_Event1_0" />
+      <Connection Source="plug_0.S_I_Event2" Destination="EA_2_rightSwitch.S_I_Event2_0" />
+      <Connection Source="plug_1.I_event1" Destination="EA_2_rightSwitch.I_event1_1" />
+      <Connection Source="plug_1.I_event2" Destination="EA_2_rightSwitch.I_event2_1" />
+      <Connection Source="plug_1.S_I_Event1" Destination="EA_2_rightSwitch.S_I_Event1_1" />
+      <Connection Source="plug_1.S_I_Event2" Destination="EA_2_rightSwitch.S_I_Event2_1" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

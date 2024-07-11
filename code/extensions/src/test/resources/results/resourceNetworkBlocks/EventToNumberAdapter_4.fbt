@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EventToNumberAdapter_4">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="I_0" />
+      <Event Name="I_1" />
+      <Event Name="I_2" />
+      <Event Name="I_3" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="REQ">
+        <With Var="I_E_number" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="I_E_number" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="Start" x="0" y="0" />
+      <ECState Name="I_0" x="0" y="0">
+        <ECAction Output="REQ" Algorithm="I_0_algorithm" />
+      </ECState>
+      <ECState Name="I_1" x="0" y="0">
+        <ECAction Output="REQ" Algorithm="I_1_algorithm" />
+      </ECState>
+      <ECState Name="I_2" x="0" y="0">
+        <ECAction Output="REQ" Algorithm="I_2_algorithm" />
+      </ECState>
+      <ECState Name="I_3" x="0" y="0">
+        <ECAction Output="REQ" Algorithm="I_3_algorithm" />
+      </ECState>
+      <ECTransition Source="Start" Destination="I_0" x="0" y="0" Condition="I_0" />
+      <ECTransition Source="I_0" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_1" x="0" y="0" Condition="I_1" />
+      <ECTransition Source="I_1" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_2" x="0" y="0" Condition="I_2" />
+      <ECTransition Source="I_2" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="I_3" x="0" y="0" Condition="I_3" />
+      <ECTransition Source="I_3" Destination="Start" x="0" y="0" Condition="1" />
+    </ECC>
+    <Algorithm Name="I_0_algorithm">
+      <ST Text="I_E_number := 0;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_1_algorithm">
+      <ST Text="I_E_number := 1;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_2_algorithm">
+      <ST Text="I_E_number := 2;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="I_3_algorithm">
+      <ST Text="I_E_number := 3;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

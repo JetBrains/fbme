@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ExtendedAdapterType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<ExtendedAdapterType Name="EA">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="I_event1" />
+      <Event Name="I_event2" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="O_event1" />
+      <Event Name="O_event2" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="I_data1" Type="INT" />
+      <VarDeclaration Name="I_data2" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="O_data1" Type="INT" />
+      <VarDeclaration Name="O_data2" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <leftNetwork Name="network1">
+    <FBNetwork>
+      <DataConnections>
+        <Connection Source="Plug_Connection.I_data1" Destination="Socket_Connection.I_data1" dy="-134" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.I_data2" Destination="Socket_Connection.I_data2" dy="310" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.N_O_data1" Destination="Socket_Connection.S_I_data1" dy="-134" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.N_O_data2" Destination="Socket_Connection.S_I_data2" dy="-134" dx2="133" dx1="130" />
+        <Connection Source="Socket_Connection.O_data1" Destination="Plug_Connection.O_data1" dx1="387" />
+        <Connection Source="Socket_Connection.O_data2" Destination="Plug_Connection.O_data2" dx1="387" />
+        <Connection Source="Socket_Connection.S_O_data1" Destination="Plug_Connection.N_I_data1" dx1="387" />
+        <Connection Source="Socket_Connection.S_O_data2" Destination="Plug_Connection.N_I_data2" dx1="387" />
+      </DataConnections>
+      <EventConnections>
+        <Connection Source="Socket_Connection.O_event1" Destination="Plug_Connection.O_event1" dx1="387" />
+        <Connection Source="Socket_Connection.O_event2" Destination="Plug_Connection.O_event2" dx1="387" />
+        <Connection Source="Socket_Connection.S_O_Event1" Destination="Plug_Connection.O_event2" dx1="387" />
+        <Connection Source="Socket_Connection.S_O_Event2" Destination="Plug_Connection.N_I_Event2" dx1="387" />
+        <Connection Source="Plug_Connection.I_event1" Destination="Socket_Connection.I_event1" dy="-134" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.I_event2" Destination="Socket_Connection.I_event2" dy="-130" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.N_O_Event1" Destination="Socket_Connection.S_I_Event1" dy="-130" dx2="133" dx1="130" />
+        <Connection Source="Plug_Connection.N_O_Event2" Destination="Socket_Connection.S_I_Event2" dy="-130" dx2="133" dx1="130" />
+      </EventConnections>
+    </FBNetwork>
+  </leftNetwork>
+  <rightNetwork Name="network2">
+    <FBNetwork>
+      <DataConnections>
+        <Connection Source="Socket_Connection.O_data1" Destination="Plug_Connection.O_data1" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Socket_Connection.O_data2" Destination="Plug_Connection.O_data2" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Socket_Connection.N_I_data1" Destination="Plug_Connection.P_I_data1" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Socket_Connection.N_I_data2" Destination="Plug_Connection.P_I_data2" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Plug_Connection.I_data1" Destination="Socket_Connection.I_data1" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.I_data2" Destination="Socket_Connection.I_data2" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.P_O_data1" Destination="Socket_Connection.N_O_data1" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.P_O_data2" Destination="Socket_Connection.N_O_data2" dy="133" dx2="134" dx1="133" />
+      </DataConnections>
+      <EventConnections>
+        <Connection Source="Socket_Connection.O_event1" Destination="Plug_Connection.O_event1" dx1="177" />
+        <Connection Source="Socket_Connection.O_event2" Destination="Plug_Connection.O_event2" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Socket_Connection.N_I_Event1" Destination="Plug_Connection.P_I_Event1" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Socket_Connection.N_I_Event2" Destination="Plug_Connection.P_I_Event2" dy="-133" dx2="133" dx1="133" />
+        <Connection Source="Plug_Connection.I_event1" Destination="Socket_Connection.I_event1" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.I_event2" Destination="Socket_Connection.I_event2" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.P_O_Event1" Destination="Socket_Connection.N_O_Event1" dy="133" dx2="134" dx1="133" />
+        <Connection Source="Plug_Connection.P_O_Event2" Destination="Socket_Connection.N_O_Event2" dy="133" dx2="134" dx1="133" />
+      </EventConnections>
+    </FBNetwork>
+  </rightNetwork>
+  <inputRouter>
+    <VarDeclaration Name="I_router" Type="INT" />
+  </inputRouter>
+  <outputRouter>
+    <VarDeclaration Name="O_router" Type="INT" />
+  </outputRouter>
+  <internalFbSocketInterface Name="internalFbSocketInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="S_I_Event1" />
+        <Event Name="S_I_Event2" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="S_O_Event1" />
+        <Event Name="S_O_Event2" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="S_I_data1" Type="INT" />
+        <VarDeclaration Name="S_I_data2" Type="INT" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="S_O_data1" Type="INT" />
+        <VarDeclaration Name="S_O_data2" Type="INT" />
+      </OutputVars>
+    </InterfaceList>
+  </internalFbSocketInterface>
+  <internalFbPlugInterface Name="internalFbPlugInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="P_I_Event1" />
+        <Event Name="P_I_Event2" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="P_O_Event1" />
+        <Event Name="P_O_Event2" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="P_I_data1" Type="INT" />
+        <VarDeclaration Name="P_I_data2" Type="INT" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="P_O_data1" Type="INT" />
+        <VarDeclaration Name="P_O_data2" Type="INT" />
+      </OutputVars>
+    </InterfaceList>
+  </internalFbPlugInterface>
+  <internalNetworksInterface Name="internalNetworksInterface">
+    <InterfaceList>
+      <EventInputs>
+        <Event Name="N_I_Event1" />
+        <Event Name="N_I_Event2" />
+      </EventInputs>
+      <EventOutputs>
+        <Event Name="N_O_Event1" />
+        <Event Name="N_O_Event2" />
+      </EventOutputs>
+      <InputVars>
+        <VarDeclaration Name="N_I_data1" Type="INT" />
+        <VarDeclaration Name="N_I_data2" Type="INT" />
+      </InputVars>
+      <OutputVars>
+        <VarDeclaration Name="N_O_data1" Type="INT" />
+        <VarDeclaration Name="N_O_data2" Type="INT" />
+      </OutputVars>
+    </InterfaceList>
+  </internalNetworksInterface>
+</ExtendedAdapterType>
+

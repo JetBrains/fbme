@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EA_network2">
+  <InterfaceList>
+    <Plugs>
+      <AdapterDeclaration Name="plug" Type="Right_EA" x="0" />
+    </Plugs>
+    <Sockets>
+      <AdapterDeclaration Name="socket" Type="Middle_EA" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <DataConnections>
+      <Connection Source="plug.D_I" Destination="socket.D_I" dy="77" dx2="97" dx1="131" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="plug.E_I" Destination="socket.E_I" dy="174" dx2="147" dx1="241" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

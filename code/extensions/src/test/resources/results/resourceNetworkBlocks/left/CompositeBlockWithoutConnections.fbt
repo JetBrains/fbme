@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CompositeBlockWithoutConnections">
+  <InterfaceList />
+  <FBNetwork>
+    <FB Name="BaseBlock1" Type="BaseBlock" x="590" y="486" />
+    <FB Name="EA_2_router" Type="EA_2_router" x="0" y="0" />
+    <FB Name="EA_network1" Type="EA_network1" x="0" y="0" />
+    <FB Name="EA_network1_2" Type="EA_network1" x="0" y="0" />
+    <FB Name="EA_LeftPublishSubscribeAdapter" Type="EA_LeftPublishSubscribeAdapter" x="0" y="0" />
+    <FB Name="Publish_Left_EA" Type="PUBLISH_5" x="0" y="0" />
+    <FB Name="Subscribe_Left_EA" Type="SUBSCRIBE_5" x="0" y="0" />
+    <FB Name="EA_LeftPublishSubscribeAdapter_2" Type="EA_LeftPublishSubscribeAdapter" x="0" y="0" />
+    <FB Name="Publish_Left_EA_2" Type="PUBLISH_5" x="0" y="0" />
+    <FB Name="Subscribe_Left_EA_2" Type="SUBSCRIBE_5" x="0" y="0" />
+    <DataConnections>
+      <Connection Source="EA_LeftPublishSubscribeAdapter.I_E_number" Destination="Publish_Left_EA.SD_1" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter.O_data1" Destination="Publish_Left_EA.SD_2" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter.O_data2" Destination="Publish_Left_EA.SD_3" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter.N_I_data1" Destination="Publish_Left_EA.SD_4" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter.N_I_data2" Destination="Publish_Left_EA.SD_5" />
+      <Connection Source="Subscribe_Left_EA.RD_1" Destination="EA_LeftPublishSubscribeAdapter.O_E_number" />
+      <Connection Source="Subscribe_Left_EA.RD_2" Destination="EA_LeftPublishSubscribeAdapter.I_data1" />
+      <Connection Source="Subscribe_Left_EA.RD_3" Destination="EA_LeftPublishSubscribeAdapter.I_data2" />
+      <Connection Source="Subscribe_Left_EA.RD_4" Destination="EA_LeftPublishSubscribeAdapter.N_O_data1" />
+      <Connection Source="Subscribe_Left_EA.RD_5" Destination="EA_LeftPublishSubscribeAdapter.N_O_data2" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.I_E_number" Destination="Publish_Left_EA_2.SD_1" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.O_data1" Destination="Publish_Left_EA_2.SD_2" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.O_data2" Destination="Publish_Left_EA_2.SD_3" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.N_I_data1" Destination="Publish_Left_EA_2.SD_4" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.N_I_data2" Destination="Publish_Left_EA_2.SD_5" />
+      <Connection Source="Subscribe_Left_EA_2.RD_1" Destination="EA_LeftPublishSubscribeAdapter_2.O_E_number" />
+      <Connection Source="Subscribe_Left_EA_2.RD_2" Destination="EA_LeftPublishSubscribeAdapter_2.I_data1" />
+      <Connection Source="Subscribe_Left_EA_2.RD_3" Destination="EA_LeftPublishSubscribeAdapter_2.I_data2" />
+      <Connection Source="Subscribe_Left_EA_2.RD_4" Destination="EA_LeftPublishSubscribeAdapter_2.N_O_data1" />
+      <Connection Source="Subscribe_Left_EA_2.RD_5" Destination="EA_LeftPublishSubscribeAdapter_2.N_O_data2" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="EA_LeftPublishSubscribeAdapter.REQ" Destination="Publish_Left_EA.REQ" />
+      <Connection Source="Subscribe_Left_EA.IND" Destination="EA_LeftPublishSubscribeAdapter.IND" />
+      <Connection Source="EA_LeftPublishSubscribeAdapter_2.REQ" Destination="Publish_Left_EA_2.REQ" />
+      <Connection Source="Subscribe_Left_EA_2.IND" Destination="EA_LeftPublishSubscribeAdapter_2.IND" />
+    </EventConnections>
+    <AdapterConnections>
+      <Connection Source="BaseBlock1.plug" Destination="EA_2_router.socket" />
+      <Connection Source="EA_2_router.plug_0" Destination="EA_network1.socket" />
+      <Connection Source="EA_2_router.plug_1" Destination="EA_network1_2.socket" />
+      <Connection Source="EA_network1.plug" Destination="EA_LeftPublishSubscribeAdapter.socket" />
+      <Connection Source="EA_network1_2.plug" Destination="EA_LeftPublishSubscribeAdapter_2.socket" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>

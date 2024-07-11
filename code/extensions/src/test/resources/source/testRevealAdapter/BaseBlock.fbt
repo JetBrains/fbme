@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="BaseBlock">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="I_event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="O_event" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="I_data" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="O_data" Type="BOOL" />
+    </OutputVars>
+    <Plugs>
+      <AdapterDeclaration Name="plug" Type="EA" x="0" />
+    </Plugs>
+    <Sockets>
+      <AdapterDeclaration Name="socket" Type="EA" />
+    </Sockets>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1520" y="879">
+        <ECAction Output="plug.O_event1" Algorithm="s" />
+      </ECState>
+      <ECState Name="Test" x="2140" y="1320" />
+    </ECC>
+    <Algorithm Name="s">
+      <VarDeclaration Name="a" Type="INT" />
+      <ST Text="a := 1;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

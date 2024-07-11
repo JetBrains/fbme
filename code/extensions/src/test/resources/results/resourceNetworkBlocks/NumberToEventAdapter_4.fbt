@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="NumberToEventAdapter_4">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="IND">
+        <With Var="O_E_number" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="O_0" />
+      <Event Name="O_1" />
+      <Event Name="O_2" />
+      <Event Name="O_3" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="O_E_number" Type="INT" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="Start" x="0" y="0" />
+      <ECState Name="O_0" x="0" y="0">
+        <ECAction Output="O_0" />
+      </ECState>
+      <ECState Name="O_1" x="0" y="0">
+        <ECAction Output="O_1" />
+      </ECState>
+      <ECState Name="O_2" x="0" y="0">
+        <ECAction Output="O_2" />
+      </ECState>
+      <ECState Name="O_3" x="0" y="0">
+        <ECAction Output="O_3" />
+      </ECState>
+      <ECTransition Source="Start" Destination="O_0" x="0" y="0" Condition="IND[O_E_number = 0]" />
+      <ECTransition Source="O_0" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="O_1" x="0" y="0" Condition="IND[O_E_number = 1]" />
+      <ECTransition Source="O_1" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="O_2" x="0" y="0" Condition="IND[O_E_number = 2]" />
+      <ECTransition Source="O_2" Destination="Start" x="0" y="0" Condition="1" />
+      <ECTransition Source="Start" Destination="O_3" x="0" y="0" Condition="IND[O_E_number = 3]" />
+      <ECTransition Source="O_3" Destination="Start" x="0" y="0" Condition="1" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

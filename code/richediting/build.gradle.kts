@@ -14,6 +14,7 @@ dependencies {
     compileOnly(project(":code:language"))
     compileOnly(project(":code:platform"))
 
+    implementation(project(":code:extensions"))
     implementation("org.eclipse.elk:org.eclipse.elk.alg.layered:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.core:0.7.1")
     implementation("org.eclipse.elk:org.eclipse.elk.graph:0.7.1")

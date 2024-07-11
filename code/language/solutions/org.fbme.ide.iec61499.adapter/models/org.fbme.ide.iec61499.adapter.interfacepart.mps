@@ -27,6 +27,7 @@
     <import index="fcfa" ref="r:ee522dab-c61c-457c-91bc-e4dac8b7bbab(org.fbme.ide.iec61499.adapter.common)" />
     <import index="sm75" ref="r:4a1e3170-2b3f-429d-845f-93bf3a5a9633(org.fbme.ide.iec61499.adapter.st)" />
     <import index="uvki" ref="ce018f97-56b9-4ee7-9b5f-2d462b6628bf/java:org.fbme.ide.iec61499.repository(org.fbme.platform.lib/)" />
+    <import index="tn9o" ref="1db6de07-b355-4c0f-9979-75b4ac1e8215/java:org.fbme.lib.iec61499.declarations.extention(org.fbme.lib/)" />
     <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
     <import index="tpcu" ref="r:00000000-0000-4000-0000-011c89590282(jetbrains.mps.lang.core.behavior)" implicit="true" />
     <import index="gpgy" ref="r:70ba2090-1a36-4ca3-87ef-116d9af7b3ac(org.fbme.ide.st.lang.structure)" implicit="true" />
@@ -128,6 +129,9 @@
       </concept>
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
+      </concept>
+      <concept id="1068580123137" name="jetbrains.mps.baseLanguage.structure.BooleanConstant" flags="nn" index="3clFbT">
+        <property id="1068580123138" name="value" index="3clFbU" />
       </concept>
       <concept id="1068580123140" name="jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" flags="ig" index="3clFbW" />
       <concept id="1068580320020" name="jetbrains.mps.baseLanguage.structure.IntegerConstant" flags="nn" index="3cmrfG">
@@ -237,6 +241,7 @@
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <property id="1193676396447" name="virtualPackage" index="3GE5qa" />
         <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
       </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
@@ -966,11 +971,15 @@
   </node>
   <node concept="312cEu" id="1R4IoyQK9Hs">
     <property role="TrG5h" value="AdapterTypeByNode" />
+    <node concept="15s5l7" id="3lxC_YgG41c" role="lGtFl">
+      <property role="1eyWvh" value="FLAVOUR_ISSUE_KIND=&quot;typesystem (typesystem)&quot;;FLAVOUR_MESSAGE=&quot;Error: The type @AdapterTypeByNode.T extends node&lt;AdapterTypeDeclaration&gt; is not a valid substitute for the bounded parameter T&quot;;FLAVOUR_RULE_ID=&quot;[r:00000000-0000-4000-0000-011c895902c5(jetbrains.mps.baseLanguage.typesystem)/6871159928248660343]&quot;;" />
+      <property role="huDt6" value="Error: The type @AdapterTypeByNode.T extends node&lt;AdapterTypeDeclaration&gt; is not a valid substitute for the bounded parameter T" />
+    </node>
     <node concept="3Tm1VV" id="1R4IoyQK9Ht" role="1B3o_S" />
     <node concept="3uibUv" id="1R4IoyQK9IH" role="1zkMxy">
       <ref role="3uigEE" node="1R4IoyQ_1A_" resolve="FBInterfaceDeclarationByNode" />
-      <node concept="3Tqbb2" id="1R4IoyQKatd" role="11_B2D">
-        <ref role="ehGHo" to="xiqq:2ByE74knc65" resolve="AdapterTypeDeclaration" />
+      <node concept="16syzq" id="3lxC_YgBXBS" role="11_B2D">
+        <ref role="16sUi3" node="3lxC_YgAoFb" resolve="T" />
       </node>
     </node>
     <node concept="3uibUv" id="1R4IoyQKawr" role="EKbjA">
@@ -993,8 +1002,8 @@
       </node>
       <node concept="37vLTG" id="1R4IoyQKaxA" role="3clF46">
         <property role="TrG5h" value="node" />
-        <node concept="3Tqbb2" id="1R4IoyQKa_f" role="1tU5fm">
-          <ref role="ehGHo" to="xiqq:2ByE74knc65" resolve="AdapterTypeDeclaration" />
+        <node concept="16syzq" id="3lxC_YgClfb" role="1tU5fm">
+          <ref role="16sUi3" node="3lxC_YgAoFb" resolve="T" />
         </node>
       </node>
       <node concept="37vLTG" id="1v1P8mMut_e" role="3clF46">
@@ -1002,6 +1011,12 @@
         <node concept="3uibUv" id="QE5Kxyj0Yi" role="1tU5fm">
           <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
         </node>
+      </node>
+    </node>
+    <node concept="16euLQ" id="3lxC_YgAoFb" role="16eVyc">
+      <property role="TrG5h" value="T" />
+      <node concept="3Tqbb2" id="3lxC_YgBbWt" role="3ztrMU">
+        <ref role="ehGHo" to="xiqq:2ByE74knc65" resolve="AdapterTypeDeclaration" />
       </node>
     </node>
   </node>
@@ -7657,6 +7672,1276 @@
       </node>
       <node concept="2AHcQZ" id="5er1YemvTTn" role="2AJF6D">
         <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+  </node>
+  <node concept="312cEu" id="Nr4k4hHWlv">
+    <property role="TrG5h" value="DeclarationWithInterfaceSectionByNode" />
+    <node concept="3Tm1VV" id="Nr4k4hHWlw" role="1B3o_S" />
+    <node concept="3uibUv" id="Nr4k4hHXAz" role="1zkMxy">
+      <ref role="3uigEE" node="1R4IoyQ_1A_" resolve="FBInterfaceDeclarationByNode" />
+      <node concept="3Tqbb2" id="Nr4k4hHYWK" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+      </node>
+    </node>
+    <node concept="3clFbW" id="Nr4k4hHZrg" role="jymVt">
+      <node concept="3cqZAl" id="Nr4k4hHZrh" role="3clF45" />
+      <node concept="3Tm1VV" id="uAIUa0TgO7" role="1B3o_S" />
+      <node concept="37vLTG" id="Nr4k4hHZrn" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="Nr4k4hHZKw" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="Nr4k4hHZrp" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="Nr4k4hHZrq" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="Nr4k4hHZrr" role="3clF47">
+        <node concept="XkiVB" id="Nr4k4hHZrs" role="3cqZAp">
+          <ref role="37wK5l" node="1R4IoyQ_Trz" resolve="FBInterfaceDeclarationByNode" />
+          <node concept="37vLTw" id="Nr4k4hHZrt" role="37wK5m">
+            <ref role="3cqZAo" node="Nr4k4hHZrn" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="Nr4k4hHZru" role="37wK5m">
+            <ref role="3cqZAo" node="Nr4k4hHZrp" resolve="owner" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="Ct_VTJz4rZ" role="jymVt" />
+    <node concept="3uibUv" id="dU6sbJIP0p" role="EKbjA">
+      <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+    </node>
+    <node concept="3uibUv" id="Ct_VTJz3W_" role="EKbjA">
+      <ref role="3uigEE" to="7adg:~RootElement" resolve="RootElement" />
+    </node>
+  </node>
+  <node concept="312cEu" id="6zKsEr48AUk">
+    <property role="TrG5h" value="AdapterFBDeclarationByNode" />
+    <property role="1sVAO0" value="true" />
+    <property role="3GE5qa" value="extention" />
+    <node concept="2tJIrI" id="6zKsEr48NIW" role="jymVt" />
+    <node concept="3Tm1VV" id="6zKsEr48AUl" role="1B3o_S" />
+    <node concept="3uibUv" id="6zKsEr48C1h" role="1zkMxy">
+      <ref role="3uigEE" to="rwq3:3VhUp_YMiEx" resolve="FunctionBlockDeclarationBaseByNode" />
+      <node concept="3Tqbb2" id="6zKsEr48CSQ" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
+      </node>
+    </node>
+    <node concept="3clFbW" id="6zKsEr48C74" role="jymVt">
+      <node concept="3cqZAl" id="6zKsEr48C75" role="3clF45" />
+      <node concept="3Tm1VV" id="6zKsEr48C76" role="1B3o_S" />
+      <node concept="37vLTG" id="6zKsEr48C7b" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="6zKsEr48JbL" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="6zKsEr48C7d" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="6zKsEr48C7e" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="6zKsEr48C7f" role="3clF47">
+        <node concept="XkiVB" id="6zKsEr48C7g" role="3cqZAp">
+          <ref role="37wK5l" to="rwq3:3VhUp_YMkxn" resolve="FunctionBlockDeclarationBaseByNode" />
+          <node concept="37vLTw" id="6zKsEr48C7h" role="37wK5m">
+            <ref role="3cqZAo" node="6zKsEr48C7b" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="6zKsEr48C7i" role="37wK5m">
+            <ref role="3cqZAo" node="6zKsEr48C7d" resolve="owner" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="6lXlVCvaU8F" role="jymVt" />
+    <node concept="3clFb_" id="3VhUp_YNpl9" role="jymVt">
+      <property role="TrG5h" value="getPosition" />
+      <node concept="3Tqbb2" id="3VhUp_YNplb" role="3clF45">
+        <ref role="ehGHo" to="xiqq:5fP$Xwj3irJ" resolve="Position" />
+      </node>
+      <node concept="3Tmbuc" id="3VhUp_YNplc" role="1B3o_S" />
+      <node concept="3clFbS" id="3VhUp_YNpld" role="3clF47">
+        <node concept="3clFbF" id="3VhUp_YNpE9" role="3cqZAp">
+          <node concept="2OqwBi" id="3VhUp_YNpSv" role="3clFbG">
+            <node concept="37vLTw" id="1IuIrLUuCdu" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+            </node>
+            <node concept="3TrEf2" id="3VhUp_YNqiE" role="2OqNvi">
+              <ref role="3Tt5mk" to="xiqq:37bKxBva61J" resolve="position" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="3VhUp_YNple" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="3lxP5h4evqk" role="jymVt" />
+    <node concept="3clFb_" id="3VhUp_YWvnW" role="jymVt">
+      <property role="TrG5h" value="getParameters" />
+      <node concept="3Tm1VV" id="3VhUp_YWvnX" role="1B3o_S" />
+      <node concept="3uibUv" id="3VhUp_YWvnZ" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="6YcNwH3u36O" role="11_B2D">
+          <ref role="3uigEE" to="cwd8:~ParameterAssignment" resolve="ParameterAssignment" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="3VhUp_YWvo6" role="3clF47">
+        <node concept="3clFbF" id="3VhUp_YWxL9" role="3cqZAp">
+          <node concept="2ShNRf" id="3VhUp_YWxL7" role="3clFbG">
+            <node concept="1pGfFk" id="5poOURFiJQV" role="2ShVmc">
+              <ref role="37wK5l" to="fcfa:1R0_JUQUUZN" resolve="AdaptedNodesList" />
+              <node concept="3uibUv" id="6YcNwH3u3ME" role="1pMfVU">
+                <ref role="3uigEE" to="cwd8:~ParameterAssignment" resolve="ParameterAssignment" />
+              </node>
+              <node concept="2OqwBi" id="3VhUp_YWyAA" role="37wK5m">
+                <node concept="37vLTw" id="1IuIrLUuF9z" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3Tsc0h" id="3VhUp_YWzi3" role="2OqNvi">
+                  <ref role="3TtcxE" to="xiqq:37bKxBva61I" resolve="parameters" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="3VhUp_YWzVQ" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~ParameterAssignment" resolve="ParameterAssignment" />
+              </node>
+              <node concept="37vLTw" id="1IuIrLUuFzs" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="3VhUp_YWvo7" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="2AHcQZ" id="6zKsEr4aJnS" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="7hIs$SzNeh0" role="jymVt" />
+    <node concept="3clFb_" id="6R6Y0TFsG69" role="jymVt">
+      <property role="TrG5h" value="setName" />
+      <node concept="3Tm1VV" id="6R6Y0TFsG6a" role="1B3o_S" />
+      <node concept="3cqZAl" id="6R6Y0TFsG6b" role="3clF45" />
+      <node concept="37vLTG" id="6R6Y0TFsG6c" role="3clF46">
+        <property role="TrG5h" value="name" />
+        <node concept="3uibUv" id="6R6Y0TFsG6d" role="1tU5fm">
+          <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+        </node>
+        <node concept="2AHcQZ" id="6R6Y0TFsG6e" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="6R6Y0TFsG6r" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="3clFbS" id="6R6Y0TFsG6A" role="3clF47" />
+    </node>
+    <node concept="2tJIrI" id="7hIs$SzNfe6" role="jymVt" />
+    <node concept="3clFb_" id="1IuIrLUuGVS" role="jymVt">
+      <property role="TrG5h" value="getContainer" />
+      <node concept="3Tm1VV" id="1IuIrLUuGVT" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1IuIrLUuGVV" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="1IuIrLUuH__" role="3clF45">
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+      </node>
+      <node concept="3clFbS" id="1IuIrLUuGWn" role="3clF47">
+        <node concept="3clFbF" id="695$yN3DH3E" role="3cqZAp">
+          <node concept="2OqwBi" id="695$yN3DKyo" role="3clFbG">
+            <node concept="liA8E" id="695$yN3DL_5" role="2OqNvi">
+              <ref role="37wK5l" to="cwd8:~DeclarationWithNetwork.getNetwork()" resolve="getNetwork" />
+            </node>
+            <node concept="1rXfSq" id="6lXlVCvaPt1" role="2Oq$k0">
+              <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1IuIrLUuGWo" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="3FdyjDbcWY8" role="jymVt" />
+    <node concept="3clFb_" id="3FdyjDbcR4g" role="jymVt">
+      <property role="TrG5h" value="getAdapterNetworkTypeDeclaration" />
+      <node concept="3clFbS" id="3FdyjDbcR4h" role="3clF47">
+        <node concept="3cpWs6" id="3FdyjDbcR4i" role="3cqZAp">
+          <node concept="2OqwBi" id="3FdyjDbcR4j" role="3cqZAk">
+            <node concept="37vLTw" id="3FdyjDbcR4k" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="3FdyjDbcR4l" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2OqwBi" id="3FdyjDbcR4n" role="37wK5m">
+                <node concept="37vLTw" id="3FdyjDbcR4o" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="1mfA1w" id="3FdyjDbcR4p" role="2OqNvi" />
+              </node>
+              <node concept="3VsKOn" id="3FdyjDbcR4r" role="37wK5m">
+                <ref role="3VsUkX" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tmbuc" id="3FdyjDbcR4s" role="1B3o_S" />
+      <node concept="3uibUv" id="3FdyjDbcR4t" role="3clF45">
+        <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="3FdyjDbcQcU" role="jymVt" />
+    <node concept="2tJIrI" id="6lXlVCvaMFI" role="jymVt" />
+    <node concept="3clFb_" id="6lXlVCvaIWJ" role="jymVt">
+      <property role="TrG5h" value="getAdapterTypeDeclaration" />
+      <node concept="3clFbS" id="6lXlVCvaIWM" role="3clF47">
+        <node concept="3cpWs6" id="6lXlVCvaK_v" role="3cqZAp">
+          <node concept="2OqwBi" id="6lXlVCvaK_x" role="3cqZAk">
+            <node concept="37vLTw" id="6lXlVCvaK_y" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="6lXlVCvaK_z" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2OqwBi" id="Hw2mfXnROG" role="37wK5m">
+                <node concept="2OqwBi" id="6lXlVCvaK_$" role="2Oq$k0">
+                  <node concept="37vLTw" id="6lXlVCvaK__" role="2Oq$k0">
+                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                  </node>
+                  <node concept="1mfA1w" id="6lXlVCvaK_A" role="2OqNvi" />
+                </node>
+                <node concept="1mfA1w" id="Hw2mfXnSIR" role="2OqNvi" />
+              </node>
+              <node concept="3VsKOn" id="6lXlVCvaK_B" role="37wK5m">
+                <ref role="3VsUkX" to="tn9o:~ExtendedAdapterTypeDeclaration" resolve="ExtendedAdapterTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tmbuc" id="27ZLyP6YuCP" role="1B3o_S" />
+      <node concept="3uibUv" id="6lXlVCvaIHc" role="3clF45">
+        <ref role="3uigEE" to="tn9o:~ExtendedAdapterTypeDeclaration" resolve="ExtendedAdapterTypeDeclaration" />
+      </node>
+    </node>
+  </node>
+  <node concept="312cEu" id="27ZLyP6Yp4k">
+    <property role="TrG5h" value="ExtendedPlugDeclarationByNode" />
+    <property role="3GE5qa" value="extention" />
+    <node concept="3Tm1VV" id="27ZLyP6Yp4l" role="1B3o_S" />
+    <node concept="3uibUv" id="27ZLyP6Yqpg" role="1zkMxy">
+      <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
+    </node>
+    <node concept="3clFbW" id="27ZLyP6Yqsk" role="jymVt">
+      <node concept="3cqZAl" id="27ZLyP6Yqsl" role="3clF45" />
+      <node concept="3Tm1VV" id="27ZLyP6Yqsm" role="1B3o_S" />
+      <node concept="37vLTG" id="27ZLyP6Yqsn" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="27ZLyP6Yqso" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:6zKsEr497t3" resolve="InternalPlugDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="27ZLyP6Yqsp" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="27ZLyP6Yqsq" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="27ZLyP6Yqsv" role="3clF47">
+        <node concept="XkiVB" id="27ZLyP6Yqsw" role="3cqZAp">
+          <ref role="37wK5l" node="6zKsEr48C74" resolve="AdapterFBDeclarationByNode" />
+          <node concept="37vLTw" id="27ZLyP6Yqsx" role="37wK5m">
+            <ref role="3cqZAo" node="27ZLyP6Yqsn" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="27ZLyP6Yqsy" role="37wK5m">
+            <ref role="3cqZAo" node="27ZLyP6Yqsp" resolve="owner" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="27ZLyP6YqtU" role="jymVt" />
+    <node concept="3clFb_" id="27ZLyP6YtIj" role="jymVt">
+      <property role="TrG5h" value="getType" />
+      <node concept="3Tm1VV" id="27ZLyP6YtIk" role="1B3o_S" />
+      <node concept="2AHcQZ" id="27ZLyP6YtIm" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="27ZLyP6YtIn" role="3clF45">
+        <ref role="3uigEE" to="ntnl:~FBTypeDescriptor" resolve="FBTypeDescriptor" />
+      </node>
+      <node concept="3clFbS" id="27ZLyP6YtIy" role="3clF47">
+        <node concept="3clFbF" id="27ZLyP6YvrG" role="3cqZAp">
+          <node concept="2OqwBi" id="27ZLyP6Yw2u" role="3clFbG">
+            <node concept="1rXfSq" id="27ZLyP6YvrD" role="2Oq$k0">
+              <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
+            </node>
+            <node concept="liA8E" id="27ZLyP6YwYk" role="2OqNvi">
+              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.getInternalFbPlugDescriptor()" resolve="getInternalFbPlugDescriptor" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="27ZLyP6YtIz" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+  </node>
+  <node concept="312cEu" id="27ZLyP6Yqvf">
+    <property role="TrG5h" value="ExtendedSocketDeclarationByNode" />
+    <property role="3GE5qa" value="extention" />
+    <node concept="3Tm1VV" id="27ZLyP6Yqvg" role="1B3o_S" />
+    <node concept="3uibUv" id="27ZLyP6Yqvh" role="1zkMxy">
+      <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
+    </node>
+    <node concept="3clFbW" id="27ZLyP6Yqvi" role="jymVt">
+      <node concept="3cqZAl" id="27ZLyP6Yqvj" role="3clF45" />
+      <node concept="3Tm1VV" id="27ZLyP6Yqvk" role="1B3o_S" />
+      <node concept="37vLTG" id="27ZLyP6Yqvl" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="27ZLyP6Yqvm" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:41utPVug5nx" resolve="InternalSocketDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="27ZLyP6Yqvn" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="27ZLyP6Yqvo" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="27ZLyP6Yqvp" role="3clF47">
+        <node concept="XkiVB" id="27ZLyP6Yqvq" role="3cqZAp">
+          <ref role="37wK5l" node="6zKsEr48C74" resolve="AdapterFBDeclarationByNode" />
+          <node concept="37vLTw" id="27ZLyP6Yqvr" role="37wK5m">
+            <ref role="3cqZAo" node="27ZLyP6Yqvl" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="27ZLyP6Yqvs" role="37wK5m">
+            <ref role="3cqZAo" node="27ZLyP6Yqvn" resolve="owner" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="6IAh9C3Lza4" role="jymVt" />
+    <node concept="3clFb_" id="27ZLyP6Yx6f" role="jymVt">
+      <property role="TrG5h" value="getType" />
+      <node concept="3Tm1VV" id="27ZLyP6Yx6g" role="1B3o_S" />
+      <node concept="2AHcQZ" id="27ZLyP6Yx6h" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="27ZLyP6Yx6i" role="3clF45">
+        <ref role="3uigEE" to="ntnl:~FBTypeDescriptor" resolve="FBTypeDescriptor" />
+      </node>
+      <node concept="3clFbS" id="27ZLyP6Yx6j" role="3clF47">
+        <node concept="3clFbF" id="3FdyjDbdmsR" role="3cqZAp">
+          <node concept="2OqwBi" id="3FdyjDbdmsS" role="3clFbG">
+            <node concept="1rXfSq" id="3FdyjDbdmsT" role="2Oq$k0">
+              <ref role="37wK5l" node="3FdyjDbcR4g" resolve="getAdapterNetworkTypeDeclaration" />
+            </node>
+            <node concept="liA8E" id="3FdyjDbdmsU" role="2OqNvi">
+              <ref role="37wK5l" to="tn9o:~AdapterNetworkDeclaration.getInternalFbSocketDescriptor()" resolve="getInternalFbSocketDescriptor" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="27ZLyP6Yx6o" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+  </node>
+  <node concept="312cEu" id="1NXU$uX8qIK">
+    <property role="TrG5h" value="ExtendedAdapterTypeByNode" />
+    <property role="3GE5qa" value="extention" />
+    <node concept="3clFbW" id="1NXU$uX8BTi" role="jymVt">
+      <node concept="3cqZAl" id="1NXU$uX8BTj" role="3clF45" />
+      <node concept="3Tm1VV" id="1NXU$uX8BTk" role="1B3o_S" />
+      <node concept="3clFbS" id="1NXU$uX8BTl" role="3clF47">
+        <node concept="XkiVB" id="1NXU$uX8BTm" role="3cqZAp">
+          <ref role="37wK5l" node="1R4IoyQKaxv" resolve="AdapterTypeByNode" />
+          <node concept="37vLTw" id="1NXU$uX8BTn" role="37wK5m">
+            <ref role="3cqZAo" node="1NXU$uX8BTp" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="1NXU$uX8BTo" role="37wK5m">
+            <ref role="3cqZAo" node="1NXU$uX8BTr" resolve="repository" />
+          </node>
+        </node>
+      </node>
+      <node concept="37vLTG" id="1NXU$uX8BTp" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="1NXU$uX8BTq" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:1NXU$uX87fz" resolve="ExtendedAdapterTypeDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="1NXU$uX8BTr" role="3clF46">
+        <property role="TrG5h" value="repository" />
+        <node concept="3uibUv" id="1NXU$uX8BTs" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BTt" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BTu" role="jymVt">
+      <property role="TrG5h" value="getInputRouter" />
+      <node concept="3Tm1VV" id="1NXU$uX8BTv" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1NXU$uX8BTw" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="1NXU$uX8BTx" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BTy" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BTz" role="3cqZAp">
+          <node concept="2OqwBi" id="1NXU$uX8BT$" role="3clFbG">
+            <node concept="37vLTw" id="1NXU$uX8BT_" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="1NXU$uX8BTA" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="1NXU$uX8BTB" role="37wK5m">
+                <node concept="37vLTw" id="1NXU$uX8BTC" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="1NXU$uX8BTD" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:5Q727Wu2out" resolve="inputRouter" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1NXU$uX8BTE" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BTF" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BTG" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BTH" role="jymVt">
+      <property role="TrG5h" value="getOutputRouter" />
+      <node concept="3Tm1VV" id="1NXU$uX8BTI" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1NXU$uX8BTJ" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="1NXU$uX8BTK" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BTL" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BTM" role="3cqZAp">
+          <node concept="2OqwBi" id="1NXU$uX8BTN" role="3clFbG">
+            <node concept="37vLTw" id="1NXU$uX8BTO" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="1NXU$uX8BTP" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="1NXU$uX8BTQ" role="37wK5m">
+                <node concept="37vLTw" id="1NXU$uX8BTR" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="1NXU$uX8BTS" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:5Q727Wu2ouv" resolve="outputRouter" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1NXU$uX8BTT" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BTU" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BTV" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BTW" role="jymVt">
+      <property role="TrG5h" value="setInputRouter" />
+      <node concept="3Tm1VV" id="1NXU$uX8BTX" role="1B3o_S" />
+      <node concept="3cqZAl" id="1NXU$uX8BTY" role="3clF45" />
+      <node concept="37vLTG" id="1NXU$uX8BTZ" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="1NXU$uX8BU0" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="1NXU$uX8BU1" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BU2" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BU3" role="3cqZAp">
+          <node concept="37vLTI" id="1NXU$uX8BU4" role="3clFbG">
+            <node concept="3K4zz7" id="1NXU$uX8BU5" role="37vLTx">
+              <node concept="10Nm6u" id="1NXU$uX8BU6" role="3K4E3e" />
+              <node concept="2OqwBi" id="1NXU$uX8BU7" role="3K4GZi">
+                <node concept="1eOMI4" id="1NXU$uX8BU8" role="2Oq$k0">
+                  <node concept="10QFUN" id="1NXU$uX8BU9" role="1eOMHV">
+                    <node concept="37vLTw" id="1NXU$uX8BUa" role="10QFUP">
+                      <ref role="3cqZAo" node="1NXU$uX8BTZ" resolve="declaration" />
+                    </node>
+                    <node concept="3uibUv" id="1NXU$uX8BUb" role="10QFUM">
+                      <ref role="3uigEE" node="_2FpOZmNmF" resolve="ParameterDeclarationByNode" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="1NXU$uX8BUc" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="1NXU$uX8BUd" role="3K4Cdx">
+                <node concept="10Nm6u" id="1NXU$uX8BUe" role="3uHU7w" />
+                <node concept="37vLTw" id="1NXU$uX8BUf" role="3uHU7B">
+                  <ref role="3cqZAo" node="1NXU$uX8BTZ" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="1NXU$uX8BUg" role="37vLTJ">
+              <node concept="37vLTw" id="1NXU$uX8BUh" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="1NXU$uX8BUi" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:5Q727Wu2out" resolve="inputRouter" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BUj" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BUk" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BUl" role="jymVt">
+      <property role="TrG5h" value="setOutputRouter" />
+      <node concept="3Tm1VV" id="1NXU$uX8BUm" role="1B3o_S" />
+      <node concept="3cqZAl" id="1NXU$uX8BUn" role="3clF45" />
+      <node concept="37vLTG" id="1NXU$uX8BUo" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="1NXU$uX8BUp" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~ParameterDeclaration" resolve="ParameterDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="1NXU$uX8BUq" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BUr" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BUs" role="3cqZAp">
+          <node concept="37vLTI" id="1NXU$uX8BUt" role="3clFbG">
+            <node concept="3K4zz7" id="1NXU$uX8BUu" role="37vLTx">
+              <node concept="10Nm6u" id="1NXU$uX8BUv" role="3K4E3e" />
+              <node concept="2OqwBi" id="1NXU$uX8BUw" role="3K4GZi">
+                <node concept="1eOMI4" id="1NXU$uX8BUx" role="2Oq$k0">
+                  <node concept="10QFUN" id="1NXU$uX8BUy" role="1eOMHV">
+                    <node concept="37vLTw" id="1NXU$uX8BUz" role="10QFUP">
+                      <ref role="3cqZAo" node="1NXU$uX8BUo" resolve="declaration" />
+                    </node>
+                    <node concept="3uibUv" id="1NXU$uX8BU$" role="10QFUM">
+                      <ref role="3uigEE" node="_2FpOZmNmF" resolve="ParameterDeclarationByNode" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="1NXU$uX8BU_" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="1NXU$uX8BUA" role="3K4Cdx">
+                <node concept="10Nm6u" id="1NXU$uX8BUB" role="3uHU7w" />
+                <node concept="37vLTw" id="1NXU$uX8BUC" role="3uHU7B">
+                  <ref role="3cqZAo" node="1NXU$uX8BUo" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="1NXU$uX8BUD" role="37vLTJ">
+              <node concept="37vLTw" id="1NXU$uX8BUE" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="1NXU$uX8BUF" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:5Q727Wu2ouv" resolve="outputRouter" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BUG" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="rF7$qOKwEk" role="jymVt" />
+    <node concept="3clFb_" id="rF7$qOKrED" role="jymVt">
+      <property role="TrG5h" value="getLeftNetwork" />
+      <node concept="3Tm1VV" id="rF7$qOKrEE" role="1B3o_S" />
+      <node concept="3uibUv" id="rF7$qOKrEG" role="3clF45">
+        <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+      </node>
+      <node concept="3clFbS" id="rF7$qOKrEH" role="3clF47">
+        <node concept="3clFbF" id="rF7$qOLcz2" role="3cqZAp">
+          <node concept="2OqwBi" id="rF7$qOLdlA" role="3clFbG">
+            <node concept="37vLTw" id="rF7$qOLcz0" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="rF7$qOLeBM" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="rF7$qOLh3$" role="37wK5m">
+                <node concept="37vLTw" id="rF7$qOLgbY" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="rF7$qOLj1t" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="rF7$qOLw0N" role="37wK5m">
+                <ref role="3VsUkX" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="rF7$qOKrEQ" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="8tubMuKqjW" role="jymVt">
+      <property role="TrG5h" value="setLeftNetwork" />
+      <node concept="3Tm1VV" id="8tubMuKqjX" role="1B3o_S" />
+      <node concept="3cqZAl" id="8tubMuKqjZ" role="3clF45" />
+      <node concept="37vLTG" id="8tubMuKqk0" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="8tubMuKqk1" role="1tU5fm">
+          <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="8tubMuKqk2" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="8tubMuKqk7" role="3clF47">
+        <node concept="3clFbF" id="8tubMuK$Up" role="3cqZAp">
+          <node concept="37vLTI" id="8tubMuKEdf" role="3clFbG">
+            <node concept="3K4zz7" id="8tubMuKKy7" role="37vLTx">
+              <node concept="10Nm6u" id="8tubMuKLns" role="3K4E3e" />
+              <node concept="2OqwBi" id="8tubMuKWJl" role="3K4GZi">
+                <node concept="1eOMI4" id="8tubMuKRGm" role="2Oq$k0">
+                  <node concept="10QFUN" id="8tubMuKRGj" role="1eOMHV">
+                    <node concept="3uibUv" id="8tubMuKT1y" role="10QFUM">
+                      <ref role="3uigEE" node="rF7$qOKkkl" resolve="AdapterNetworkDeclarationByNode" />
+                    </node>
+                    <node concept="37vLTw" id="8tubMuKUnN" role="10QFUP">
+                      <ref role="3cqZAo" node="8tubMuKqk0" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="8tubMuKZqm" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="8tubMuKHcw" role="3K4Cdx">
+                <node concept="10Nm6u" id="8tubMuKIK9" role="3uHU7w" />
+                <node concept="37vLTw" id="8tubMuKF29" role="3uHU7B">
+                  <ref role="3cqZAo" node="8tubMuKqk0" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="8tubMuKAkJ" role="37vLTJ">
+              <node concept="37vLTw" id="8tubMuK$Uo" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="8tubMuKC5E" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6N4aHQUcxJy" resolve="leftFbNetwork" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="8tubMuKqk8" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="1Cs6LSsEJKk" role="jymVt">
+      <property role="TrG5h" value="getRightNetwork" />
+      <node concept="3Tm1VV" id="1Cs6LSsEJKl" role="1B3o_S" />
+      <node concept="2AHcQZ" id="rF7$qOKzfn" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+      <node concept="3uibUv" id="1Cs6LSsEJKn" role="3clF45">
+        <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+      </node>
+      <node concept="3clFbS" id="1Cs6LSsEJKo" role="3clF47">
+        <node concept="3clFbF" id="rF7$qOLnQM" role="3cqZAp">
+          <node concept="2OqwBi" id="rF7$qOLnQN" role="3clFbG">
+            <node concept="37vLTw" id="rF7$qOLnQO" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="rF7$qOLnQP" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="rF7$qOLnQQ" role="37wK5m">
+                <node concept="37vLTw" id="rF7$qOLnQR" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="rF7$qOLnQS" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:1Cs6LSsEFx1" resolve="rightFbNetwork" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="rF7$qOLxf8" role="37wK5m">
+                <ref role="3VsUkX" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="3clFb_" id="8tubMuKqk9" role="jymVt">
+      <property role="TrG5h" value="setRightNetwork" />
+      <node concept="3Tm1VV" id="8tubMuKqka" role="1B3o_S" />
+      <node concept="3cqZAl" id="8tubMuKqkc" role="3clF45" />
+      <node concept="37vLTG" id="8tubMuKqkd" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="8tubMuKqke" role="1tU5fm">
+          <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+        </node>
+        <node concept="2AHcQZ" id="8tubMuKqkf" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="8tubMuKqkk" role="3clF47">
+        <node concept="3clFbF" id="8tubMuL3Hv" role="3cqZAp">
+          <node concept="37vLTI" id="8tubMuL3Hw" role="3clFbG">
+            <node concept="3K4zz7" id="8tubMuL3Hx" role="37vLTx">
+              <node concept="10Nm6u" id="8tubMuL3Hy" role="3K4E3e" />
+              <node concept="2OqwBi" id="8tubMuL3Hz" role="3K4GZi">
+                <node concept="1eOMI4" id="8tubMuL3H$" role="2Oq$k0">
+                  <node concept="10QFUN" id="8tubMuL3H_" role="1eOMHV">
+                    <node concept="3uibUv" id="8tubMuL3HA" role="10QFUM">
+                      <ref role="3uigEE" node="rF7$qOKkkl" resolve="AdapterNetworkDeclarationByNode" />
+                    </node>
+                    <node concept="37vLTw" id="8tubMuL3HB" role="10QFUP">
+                      <ref role="3cqZAo" node="8tubMuKqkd" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="8tubMuL3HC" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="8tubMuL3HD" role="3K4Cdx">
+                <node concept="10Nm6u" id="8tubMuL3HE" role="3uHU7w" />
+                <node concept="37vLTw" id="8tubMuL3HF" role="3uHU7B">
+                  <ref role="3cqZAo" node="8tubMuKqkd" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="8tubMuL3HG" role="37vLTJ">
+              <node concept="37vLTw" id="8tubMuL3HH" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="8tubMuL3HI" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:1Cs6LSsEFx1" resolve="rightFbNetwork" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="8tubMuKqkl" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1Cs6LSsEIrK" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BUX" role="jymVt">
+      <property role="TrG5h" value="getInternalFbSocketInterface" />
+      <node concept="3Tm1VV" id="1NXU$uX8BUY" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1NXU$uX8BUZ" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="1NXU$uX8BV0" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BV1" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BV2" role="3cqZAp">
+          <node concept="2OqwBi" id="1NXU$uX8BV3" role="3clFbG">
+            <node concept="37vLTw" id="1NXU$uX8BV4" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="1NXU$uX8BV5" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="1NXU$uX8BV6" role="37wK5m">
+                <node concept="37vLTw" id="1NXU$uX8BV7" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="1NXU$uX8BV8" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1NXU$uX8BV9" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BVa" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BVb" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BVc" role="jymVt">
+      <property role="TrG5h" value="setInternalFbSocketInterface" />
+      <node concept="3Tm1VV" id="1NXU$uX8BVd" role="1B3o_S" />
+      <node concept="3cqZAl" id="1NXU$uX8BVe" role="3clF45" />
+      <node concept="37vLTG" id="1NXU$uX8BVf" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="1NXU$uX8BVg" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+        </node>
+        <node concept="2AHcQZ" id="1NXU$uX8BVh" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BVi" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BVj" role="3cqZAp">
+          <node concept="37vLTI" id="1NXU$uX8BVk" role="3clFbG">
+            <node concept="3K4zz7" id="1NXU$uX8BVl" role="37vLTx">
+              <node concept="10Nm6u" id="1NXU$uX8BVm" role="3K4E3e" />
+              <node concept="2OqwBi" id="1NXU$uX8BVn" role="3K4GZi">
+                <node concept="1eOMI4" id="1NXU$uX8BVo" role="2Oq$k0">
+                  <node concept="10QFUN" id="1NXU$uX8BVp" role="1eOMHV">
+                    <node concept="3uibUv" id="1NXU$uX8BVq" role="10QFUM">
+                      <ref role="3uigEE" node="Nr4k4hHWlv" resolve="DeclarationWithInterfaceSectionByNode" />
+                    </node>
+                    <node concept="37vLTw" id="1NXU$uX8BVr" role="10QFUP">
+                      <ref role="3cqZAo" node="1NXU$uX8BVf" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="1NXU$uX8BVs" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="1NXU$uX8BVt" role="3K4Cdx">
+                <node concept="10Nm6u" id="1NXU$uX8BVu" role="3uHU7w" />
+                <node concept="37vLTw" id="1NXU$uX8BVv" role="3uHU7B">
+                  <ref role="3cqZAo" node="1NXU$uX8BVf" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="1NXU$uX8BVw" role="37vLTJ">
+              <node concept="37vLTw" id="1NXU$uX8BVx" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="1NXU$uX8BVy" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:6N4aHQUckH2" resolve="internalFbSocketInterface" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BVz" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BV$" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BV_" role="jymVt">
+      <property role="TrG5h" value="getInternalFbPlugInterface" />
+      <node concept="3Tm1VV" id="1NXU$uX8BVA" role="1B3o_S" />
+      <node concept="2AHcQZ" id="1NXU$uX8BVB" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="1NXU$uX8BVC" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BVD" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BVE" role="3cqZAp">
+          <node concept="2OqwBi" id="1NXU$uX8BVF" role="3clFbG">
+            <node concept="37vLTw" id="1NXU$uX8BVG" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="1NXU$uX8BVH" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="1NXU$uX8BVI" role="37wK5m">
+                <node concept="37vLTw" id="1NXU$uX8BVJ" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="1NXU$uX8BVK" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="1NXU$uX8BVL" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BVM" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="1NXU$uX8BVN" role="jymVt" />
+    <node concept="3clFb_" id="1NXU$uX8BVO" role="jymVt">
+      <property role="TrG5h" value="setInternalFbPlugInterface" />
+      <node concept="3Tm1VV" id="1NXU$uX8BVP" role="1B3o_S" />
+      <node concept="3cqZAl" id="1NXU$uX8BVQ" role="3clF45" />
+      <node concept="37vLTG" id="1NXU$uX8BVR" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="1NXU$uX8BVS" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+        </node>
+        <node concept="2AHcQZ" id="1NXU$uX8BVT" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="1NXU$uX8BVU" role="3clF47">
+        <node concept="3clFbF" id="1NXU$uX8BVV" role="3cqZAp">
+          <node concept="37vLTI" id="1NXU$uX8BVW" role="3clFbG">
+            <node concept="3K4zz7" id="1NXU$uX8BVX" role="37vLTx">
+              <node concept="10Nm6u" id="1NXU$uX8BVY" role="3K4E3e" />
+              <node concept="2OqwBi" id="1NXU$uX8BVZ" role="3K4GZi">
+                <node concept="1eOMI4" id="1NXU$uX8BW0" role="2Oq$k0">
+                  <node concept="10QFUN" id="1NXU$uX8BW1" role="1eOMHV">
+                    <node concept="3uibUv" id="1NXU$uX8BW2" role="10QFUM">
+                      <ref role="3uigEE" node="Nr4k4hHWlv" resolve="DeclarationWithInterfaceSectionByNode" />
+                    </node>
+                    <node concept="37vLTw" id="1NXU$uX8BW3" role="10QFUP">
+                      <ref role="3cqZAo" node="1NXU$uX8BVR" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="1NXU$uX8BW4" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="1NXU$uX8BW5" role="3K4Cdx">
+                <node concept="10Nm6u" id="1NXU$uX8BW6" role="3uHU7w" />
+                <node concept="37vLTw" id="1NXU$uX8BW7" role="3uHU7B">
+                  <ref role="3cqZAo" node="1NXU$uX8BVR" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="1NXU$uX8BW8" role="37vLTJ">
+              <node concept="37vLTw" id="1NXU$uX8BW9" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="1NXU$uX8BWa" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:Nr4k4hHK5f" resolve="internalFbPlugInterface" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="1NXU$uX8BWb" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="vNJiUUGscw" role="jymVt">
+      <property role="TrG5h" value="getInternalNetworksInterface" />
+      <node concept="3Tm1VV" id="vNJiUUGscx" role="1B3o_S" />
+      <node concept="2AHcQZ" id="vNJiUUGscz" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+      </node>
+      <node concept="3uibUv" id="vNJiUUGsc$" role="3clF45">
+        <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+      </node>
+      <node concept="3clFbS" id="vNJiUUGscD" role="3clF47">
+        <node concept="3clFbF" id="vNJiUUGA8Z" role="3cqZAp">
+          <node concept="2OqwBi" id="vNJiUUGA90" role="3clFbG">
+            <node concept="37vLTw" id="vNJiUUGA91" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="vNJiUUGA92" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapterNullable(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapterNullable" />
+              <node concept="2OqwBi" id="vNJiUUGA93" role="37wK5m">
+                <node concept="37vLTw" id="vNJiUUGA94" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="3TrEf2" id="vNJiUUGA95" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+                </node>
+              </node>
+              <node concept="3VsKOn" id="vNJiUUGA96" role="37wK5m">
+                <ref role="3VsUkX" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="vNJiUUGscE" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="vNJiUUGscH" role="jymVt">
+      <property role="TrG5h" value="setInternalNetworksInterface" />
+      <node concept="3Tm1VV" id="vNJiUUGscI" role="1B3o_S" />
+      <node concept="3cqZAl" id="vNJiUUGscK" role="3clF45" />
+      <node concept="37vLTG" id="vNJiUUGscL" role="3clF46">
+        <property role="TrG5h" value="declaration" />
+        <node concept="3uibUv" id="vNJiUUGscM" role="1tU5fm">
+          <ref role="3uigEE" to="cwd8:~DeclarationWithInterfaceSection" resolve="DeclarationWithInterfaceSection" />
+        </node>
+        <node concept="2AHcQZ" id="vNJiUUGscN" role="2AJF6D">
+          <ref role="2AI5Lk" to="mhfm:~Nullable" resolve="Nullable" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="vNJiUUGscS" role="3clF47">
+        <node concept="3clFbF" id="vNJiUUGzOk" role="3cqZAp">
+          <node concept="37vLTI" id="vNJiUUGzOl" role="3clFbG">
+            <node concept="3K4zz7" id="vNJiUUGzOm" role="37vLTx">
+              <node concept="10Nm6u" id="vNJiUUGzOn" role="3K4E3e" />
+              <node concept="2OqwBi" id="vNJiUUGzOo" role="3K4GZi">
+                <node concept="1eOMI4" id="vNJiUUGzOp" role="2Oq$k0">
+                  <node concept="10QFUN" id="vNJiUUGzOq" role="1eOMHV">
+                    <node concept="3uibUv" id="vNJiUUGzOr" role="10QFUM">
+                      <ref role="3uigEE" node="Nr4k4hHWlv" resolve="DeclarationWithInterfaceSectionByNode" />
+                    </node>
+                    <node concept="37vLTw" id="vNJiUUGzOs" role="10QFUP">
+                      <ref role="3cqZAo" node="vNJiUUGscL" resolve="declaration" />
+                    </node>
+                  </node>
+                </node>
+                <node concept="liA8E" id="vNJiUUGzOt" role="2OqNvi">
+                  <ref role="37wK5l" to="fcfa:1IuIrLUoZ3S" resolve="getNode" />
+                </node>
+              </node>
+              <node concept="3clFbC" id="vNJiUUGzOu" role="3K4Cdx">
+                <node concept="10Nm6u" id="vNJiUUGzOv" role="3uHU7w" />
+                <node concept="37vLTw" id="vNJiUUGzOw" role="3uHU7B">
+                  <ref role="3cqZAo" node="vNJiUUGscL" resolve="declaration" />
+                </node>
+              </node>
+            </node>
+            <node concept="2OqwBi" id="vNJiUUGzOx" role="37vLTJ">
+              <node concept="37vLTw" id="vNJiUUGzOy" role="2Oq$k0">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3TrEf2" id="vNJiUUGzOz" role="2OqNvi">
+                <ref role="3Tt5mk" to="xiqq:vNJiUUGBWo" resolve="internalNetworksInterface" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="vNJiUUGscT" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
+      </node>
+    </node>
+    <node concept="3Tm1VV" id="1NXU$uX8qIL" role="1B3o_S" />
+    <node concept="3uibUv" id="1NXU$uX8HaY" role="1zkMxy">
+      <ref role="3uigEE" node="1R4IoyQK9Hs" resolve="AdapterTypeByNode" />
+      <node concept="3Tqbb2" id="1NXU$uX8HaZ" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:1NXU$uX87fz" resolve="ExtendedAdapterTypeDeclaration" />
+      </node>
+    </node>
+    <node concept="3uibUv" id="3lxC_YgA7TL" role="EKbjA">
+      <ref role="3uigEE" to="tn9o:~ExtendedAdapterTypeDeclaration" resolve="ExtendedAdapterTypeDeclaration" />
+    </node>
+  </node>
+  <node concept="312cEu" id="rF7$qOKkkl">
+    <property role="3GE5qa" value="extention" />
+    <property role="TrG5h" value="AdapterNetworkDeclarationByNode" />
+    <node concept="3Tm1VV" id="rF7$qOKkkm" role="1B3o_S" />
+    <node concept="3uibUv" id="rF7$qOK_4U" role="EKbjA">
+      <ref role="3uigEE" to="tn9o:~AdapterNetworkDeclaration" resolve="AdapterNetworkDeclaration" />
+    </node>
+    <node concept="3clFbW" id="rF7$qOKXkl" role="jymVt">
+      <node concept="3cqZAl" id="rF7$qOKXkm" role="3clF45" />
+      <node concept="3Tm1VV" id="rF7$qOKXkn" role="1B3o_S" />
+      <node concept="37vLTG" id="rF7$qOKXks" role="3clF46">
+        <property role="TrG5h" value="node" />
+        <node concept="3Tqbb2" id="rF7$qOKXwT" role="1tU5fm">
+          <ref role="ehGHo" to="xiqq:4$p41zrwDsm" resolve="AdapterNetworkDeclaration" />
+        </node>
+      </node>
+      <node concept="37vLTG" id="rF7$qOKXku" role="3clF46">
+        <property role="TrG5h" value="owner" />
+        <node concept="3uibUv" id="rF7$qOKXkv" role="1tU5fm">
+          <ref role="3uigEE" to="uvki:~PlatformElementsOwner" resolve="PlatformElementsOwner" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="rF7$qOKXkw" role="3clF47">
+        <node concept="XkiVB" id="rF7$qOKXkx" role="3cqZAp">
+          <ref role="37wK5l" to="fcfa:1IuIrLUpCCt" resolve="PlatformDeclarationBase" />
+          <node concept="37vLTw" id="rF7$qOKXky" role="37wK5m">
+            <ref role="3cqZAo" node="rF7$qOKXks" resolve="node" />
+          </node>
+          <node concept="37vLTw" id="rF7$qOKXkz" role="37wK5m">
+            <ref role="3cqZAo" node="rF7$qOKXku" resolve="owner" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="rF7$qOKXRB" role="jymVt" />
+    <node concept="3clFb_" id="rF7$qOK_5N" role="jymVt">
+      <property role="TrG5h" value="getNetwork" />
+      <node concept="3Tm1VV" id="rF7$qOK_5O" role="1B3o_S" />
+      <node concept="2AHcQZ" id="rF7$qOK_5Q" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="rF7$qOK_5R" role="3clF45">
+        <ref role="3uigEE" to="g27j:~FBNetwork" resolve="FBNetwork" />
+      </node>
+      <node concept="3clFbS" id="rF7$qOK_5S" role="3clF47">
+        <node concept="3clFbF" id="rF7$qOK_5V" role="3cqZAp">
+          <node concept="2ShNRf" id="rF7$qOL8Kc" role="3clFbG">
+            <node concept="1pGfFk" id="rF7$qOL8Kd" role="2ShVmc">
+              <ref role="37wK5l" to="rwq3:15kNBKVeKFj" resolve="NetworkWithCustomComponentsByNode" />
+              <node concept="37vLTw" id="rF7$qOL8Ke" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="37vLTw" id="rF7$qOL8Kg" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="37vLTw" id="rF7$qOL8Ki" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="rF7$qOK_5T" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="rF7$qOKY10" role="jymVt" />
+    <node concept="3uibUv" id="rF7$qOKVxK" role="1zkMxy">
+      <ref role="3uigEE" to="fcfa:1IuIrLUpCCg" resolve="PlatformDeclarationBase" />
+      <node concept="3Tqbb2" id="rF7$qOKWL6" role="11_B2D">
+        <ref role="ehGHo" to="xiqq:4$p41zrwDsm" resolve="AdapterNetworkDeclaration" />
+      </node>
+    </node>
+    <node concept="3clFb_" id="rF7$qOKWYq" role="jymVt">
+      <property role="TrG5h" value="getContainer" />
+      <node concept="3Tm1VV" id="rF7$qOKWYr" role="1B3o_S" />
+      <node concept="3uibUv" id="rF7$qOKWYu" role="3clF45">
+        <ref role="3uigEE" to="tn9o:~ExtendedAdapterTypeDeclaration" resolve="ExtendedAdapterTypeDeclaration" />
+      </node>
+      <node concept="3clFbS" id="rF7$qOKWYE" role="3clF47">
+        <node concept="3clFbF" id="rF7$qOKWYH" role="3cqZAp">
+          <node concept="2OqwBi" id="rF7$qOL0p7" role="3clFbG">
+            <node concept="37vLTw" id="rF7$qOL0hu" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="rF7$qOL0MN" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="2OqwBi" id="rF7$qOL5Cs" role="37wK5m">
+                <node concept="37vLTw" id="rF7$qOL5qM" role="2Oq$k0">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                </node>
+                <node concept="1mfA1w" id="rF7$qOL6f9" role="2OqNvi" />
+              </node>
+              <node concept="3VsKOn" id="rF7$qOL768" role="37wK5m">
+                <ref role="3VsUkX" to="tn9o:~ExtendedAdapterTypeDeclaration" resolve="ExtendedAdapterTypeDeclaration" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="rF7$qOKWYF" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
+      </node>
+    </node>
+    <node concept="2tJIrI" id="amO7iVH1hc" role="jymVt" />
+    <node concept="3clFb_" id="amO7iVGAfC" role="jymVt">
+      <property role="TrG5h" value="getCustomNetworkComponents" />
+      <node concept="3Tm1VV" id="amO7iVGAfD" role="1B3o_S" />
+      <node concept="2AHcQZ" id="amO7iVGAfF" role="2AJF6D">
+        <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
+      </node>
+      <node concept="3uibUv" id="amO7iVGAfG" role="3clF45">
+        <ref role="3uigEE" to="33ny:~List" resolve="List" />
+        <node concept="3uibUv" id="amO7iVGAfH" role="11_B2D">
+          <ref role="3uigEE" to="g27j:~CustomNetworkComponent" resolve="CustomNetworkComponent" />
+        </node>
+      </node>
+      <node concept="3clFbS" id="amO7iVGAfU" role="3clF47">
+        <node concept="3cpWs8" id="amO7iVGXaL" role="3cqZAp">
+          <node concept="3cpWsn" id="amO7iVGXaM" role="3cpWs9">
+            <property role="TrG5h" value="plugNode" />
+            <node concept="3uibUv" id="amO7iVGXaN" role="1tU5fm">
+              <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
+            </node>
+            <node concept="2ShNRf" id="amO7iVGXaO" role="33vP2m">
+              <node concept="1pGfFk" id="amO7iVGXaP" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" node="27ZLyP6Yqsk" resolve="ExtendedPlugDeclarationByNode" />
+                <node concept="2OqwBi" id="amO7iVGXaQ" role="37wK5m">
+                  <node concept="37vLTw" id="amO7iVGXaS" role="2Oq$k0">
+                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                  </node>
+                  <node concept="3TrEf2" id="amO7iVGXaU" role="2OqNvi">
+                    <ref role="3Tt5mk" to="xiqq:6zKsEr497IW" resolve="plugBlock" />
+                  </node>
+                </node>
+                <node concept="37vLTw" id="amO7iVGXaV" role="37wK5m">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3cpWs8" id="amO7iVGXaW" role="3cqZAp">
+          <node concept="3cpWsn" id="amO7iVGXaX" role="3cpWs9">
+            <property role="TrG5h" value="socketNode" />
+            <node concept="3uibUv" id="amO7iVGXaY" role="1tU5fm">
+              <ref role="3uigEE" node="6zKsEr48AUk" resolve="AdapterFBDeclarationByNode" />
+            </node>
+            <node concept="2ShNRf" id="amO7iVGXaZ" role="33vP2m">
+              <node concept="1pGfFk" id="amO7iVGXb0" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" node="27ZLyP6Yqvi" resolve="ExtendedSocketDeclarationByNode" />
+                <node concept="2OqwBi" id="amO7iVGXb1" role="37wK5m">
+                  <node concept="37vLTw" id="amO7iVGXb3" role="2Oq$k0">
+                    <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+                  </node>
+                  <node concept="3TrEf2" id="amO7iVGXb5" role="2OqNvi">
+                    <ref role="3Tt5mk" to="xiqq:6zKsEr497J1" resolve="socketBlock" />
+                  </node>
+                </node>
+                <node concept="37vLTw" id="amO7iVGXb6" role="37wK5m">
+                  <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3clFbF" id="amO7iVGXb7" role="3cqZAp">
+          <node concept="2YIFZM" id="amO7iVGXb8" role="3clFbG">
+            <ref role="37wK5l" to="33ny:~List.of(java.lang.Object,java.lang.Object)" resolve="of" />
+            <ref role="1Pybhc" to="33ny:~List" resolve="List" />
+            <node concept="2ShNRf" id="amO7iVGXb9" role="37wK5m">
+              <node concept="1pGfFk" id="amO7iVGXba" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" to="g27j:~CustomNetworkComponent.&lt;init&gt;(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.common.Element,boolean)" resolve="CustomNetworkComponent" />
+                <node concept="37vLTw" id="amO7iVGXbb" role="37wK5m">
+                  <ref role="3cqZAo" node="amO7iVGXaM" resolve="plugNode" />
+                </node>
+                <node concept="1rXfSq" id="amO7iVH3JK" role="37wK5m">
+                  <ref role="37wK5l" node="rF7$qOKWYq" resolve="getContainer" />
+                </node>
+                <node concept="3clFbT" id="amO7iVGXbd" role="37wK5m">
+                  <property role="3clFbU" value="true" />
+                </node>
+              </node>
+            </node>
+            <node concept="2ShNRf" id="amO7iVGXbe" role="37wK5m">
+              <node concept="1pGfFk" id="amO7iVGXbf" role="2ShVmc">
+                <property role="373rjd" value="true" />
+                <ref role="37wK5l" to="g27j:~CustomNetworkComponent.&lt;init&gt;(org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclarationBase,org.fbme.lib.common.Element,boolean)" resolve="CustomNetworkComponent" />
+                <node concept="37vLTw" id="amO7iVGXbg" role="37wK5m">
+                  <ref role="3cqZAo" node="amO7iVGXaX" resolve="socketNode" />
+                </node>
+                <node concept="1rXfSq" id="amO7iVH5Rh" role="37wK5m">
+                  <ref role="37wK5l" node="rF7$qOKWYq" resolve="getContainer" />
+                </node>
+                <node concept="3clFbT" id="amO7iVGXbi" role="37wK5m">
+                  <property role="3clFbU" value="true" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="2AHcQZ" id="amO7iVGAfV" role="2AJF6D">
+        <ref role="2AI5Lk" to="wyt6:~Override" />
       </node>
     </node>
   </node>

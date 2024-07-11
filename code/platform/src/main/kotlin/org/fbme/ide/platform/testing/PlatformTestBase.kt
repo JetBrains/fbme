@@ -17,6 +17,7 @@ import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.parser.IdentifierLocus
 import org.fbme.lib.iec61499.parser.RootConverter
 import org.fbme.lib.st.STFactory
+import org.jdom.Document
 import org.jdom.Element
 import org.jdom.JDOMException
 import org.jetbrains.mps.openapi.model.SModel
@@ -43,6 +44,9 @@ abstract class PlatformTestBase {
 
     fun rootConverterByPath(input: String, config: PlatformConverter.DefaultConfigurationFactory) =
         createConverter(requireNotNull(this::class.java.getResourceAsStream(input)), config)
+
+    fun createDocumentByPath(input: String): Document =
+        JDOMUtil.loadDocument(requireNotNull(this::class.java.getResourceAsStream(input)))
 
     private fun createConverter(stream: InputStream): RootConverter {
         return createConverter(stream, null)

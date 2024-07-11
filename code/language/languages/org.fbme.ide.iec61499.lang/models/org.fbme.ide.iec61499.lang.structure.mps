@@ -539,26 +539,8 @@
     <property role="19KtqR" value="true" />
     <property role="3GE5qa" value="adapter" />
     <ref role="1TJDcQ" node="2ByE74knaXi" resolve="DeclarationWithInterface" />
-    <node concept="1TJgyj" id="7GRDQWyucNa" role="1TKVEi">
-      <property role="IQ2ns" value="8878749286145772746" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="controlEvent" />
-      <ref role="20lvS9" node="3HBlKeoYsiA" resolve="EventDeclaration" />
-    </node>
-    <node concept="1TJgyj" id="7GRDQWyucNc" role="1TKVEi">
-      <property role="IQ2ns" value="8878749286145772748" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="controlInputs" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
-    </node>
     <node concept="1QGGSu" id="4dW98DtmzF9" role="rwd14">
       <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/adapter.svg" />
-    </node>
-    <node concept="1TJgyi" id="7GRDQWyuTZ3" role="1TKVEl">
-      <property role="IQ2nx" value="8878749286145957827" />
-      <property role="TrG5h" value="count" />
-      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
   </node>
   <node concept="1TIwiD" id="37fub3vjRJq">
@@ -1574,6 +1556,147 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
     </node>
+  </node>
+  <node concept="1TIwiD" id="37bKxBva61D">
+    <property role="EcuMT" value="3588174944504668265" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="InternalAdapterFBDeclaration" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="1TJgyj" id="37bKxBva61I" role="1TKVEi">
+      <property role="IQ2ns" value="3588174944504668270" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="parameters" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
+    </node>
+    <node concept="1TJgyj" id="37bKxBva61J" role="1TKVEi">
+      <property role="IQ2ns" value="3588174944504668271" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="position" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5fP$Xwj3irJ" resolve="Position" />
+    </node>
+    <node concept="PrWs8" id="37bKxBva61E" role="PzmwI">
+      <ref role="PrY4T" node="5L1OxDukYbT" resolve="IComponent" />
+    </node>
+    <node concept="PrWs8" id="37bKxBva61F" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="4$p41zrwDsm">
+    <property role="EcuMT" value="5267258938134533910" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="AdapterNetworkDeclaration" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="4$p41zrwDsn" role="PzmwI">
+      <ref role="PrY4T" node="2lwHqHjRxfO" resolve="IWithFBNetwork" />
+    </node>
+    <node concept="PrWs8" id="1gxnmuNZeZ6" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="6zKsEr497IW" role="1TKVEi">
+      <property role="IQ2ns" value="7561669834935925692" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="plugBlock" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="6zKsEr497t3" resolve="InternalPlugDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="6zKsEr497J1" role="1TKVEi">
+      <property role="IQ2ns" value="7561669834935925697" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="socketBlock" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="41utPVug5nx" resolve="InternalSocketDeclaration" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="41utPVug5nx">
+    <property role="EcuMT" value="4638275915577578977" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="InternalSocketDeclaration" />
+    <property role="34LRSv" value="internal socket" />
+    <ref role="1TJDcQ" node="37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
+  </node>
+  <node concept="1TIwiD" id="6zKsEr497t3">
+    <property role="EcuMT" value="7561669834935924547" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="InternalPlugDeclaration" />
+    <property role="34LRSv" value="internal plug" />
+    <ref role="1TJDcQ" node="37bKxBva61D" resolve="InternalAdapterFBDeclaration" />
+  </node>
+  <node concept="1TIwiD" id="6N4aHQUg0OE">
+    <property role="EcuMT" value="7837436383332404522" />
+    <property role="TrG5h" value="DeclarationWithInterfaceSection" />
+    <property role="3GE5qa" value="block" />
+    <property role="34LRSv" value="&quot;declaration block&quot;" />
+    <ref role="1TJDcQ" node="2ByE74knaXi" resolve="DeclarationWithInterface" />
+  </node>
+  <node concept="1TIwiD" id="1NXU$uX87fz">
+    <property role="EcuMT" value="2089083396006376419" />
+    <property role="TrG5h" value="ExtendedAdapterTypeDeclaration" />
+    <property role="34LRSv" value="extended adapter type" />
+    <property role="19KtqR" value="true" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <ref role="1TJDcQ" node="2ByE74knc65" resolve="AdapterTypeDeclaration" />
+    <node concept="1TJgyj" id="5Q727Wu2out" role="1TKVEi">
+      <property role="IQ2ns" value="6739364709441046429" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="inputRouter" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="5Q727Wu2ouv" role="1TKVEi">
+      <property role="IQ2ns" value="6739364709441046431" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="outputRouter" />
+      <ref role="20lvS9" node="3HBlKeoYsiC" resolve="ParameterDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="6N4aHQUckH2" role="1TKVEi">
+      <property role="IQ2ns" value="7837436383331437378" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="internalFbSocketInterface" />
+      <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+    </node>
+    <node concept="1TJgyj" id="Nr4k4hHK5f" role="1TKVEi">
+      <property role="IQ2ns" value="926353119522521423" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="internalFbPlugInterface" />
+      <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+    </node>
+    <node concept="1TJgyj" id="vNJiUUGBWo" role="1TKVEi">
+      <property role="IQ2ns" value="573009586004590360" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="internalNetworksInterface" />
+      <ref role="20lvS9" node="6N4aHQUg0OE" resolve="DeclarationWithInterfaceSection" />
+    </node>
+    <node concept="1TJgyj" id="6N4aHQUcxJy" role="1TKVEi">
+      <property role="IQ2ns" value="7837436383331490786" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="leftFbNetwork" />
+      <ref role="20lvS9" node="4$p41zrwDsm" resolve="AdapterNetworkDeclaration" />
+    </node>
+    <node concept="1TJgyj" id="1Cs6LSsEFx1" role="1TKVEi">
+      <property role="IQ2ns" value="1881408560477943873" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="rightFbNetwork" />
+      <ref role="20lvS9" node="4$p41zrwDsm" resolve="AdapterNetworkDeclaration" />
+    </node>
+    <node concept="1QGGSu" id="1NXU$uX87f$" role="rwd14">
+      <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/adapter.svg" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="45HU4TLWIOQ">
+    <property role="EcuMT" value="4714679808543616310" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="ExtendedSocketDeclaration" />
+    <property role="34LRSv" value="extended socket" />
+    <ref role="1TJDcQ" node="37fub3vjRJq" resolve="SocketDeclaration" />
+  </node>
+  <node concept="1TIwiD" id="45HU4TLXcXo">
+    <property role="EcuMT" value="4714679808543739736" />
+    <property role="3GE5qa" value="adapter.extention" />
+    <property role="TrG5h" value="ExtendedPlugDeclaration" />
+    <property role="34LRSv" value="extended plug" />
+    <ref role="1TJDcQ" node="37fub3vk1KP" resolve="PlugDeclaration" />
   </node>
 </model>
 
