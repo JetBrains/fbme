@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="4E42C5B40AFCEA95" Name="ENOCEAN_IN" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="winkhub" Date="10/20/2015" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization. Must occur after INIT of Master-InterfaceID. QI=false for de-Init">
+        <With Var="QI" />
+        <With Var="InterfaceID" />
+        <With Var="SensorID" />
+        <With Var="MatchBaseID" />
+      </Event>
+      <Event Name="SETID" Comment="lightweight init">
+        <With Var="QI" />
+        <With Var="SensorID" />
+        <With Var="MatchBaseID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="RecSensorID" />
+      </Event>
+      <Event Name="IND" Comment="message received">
+        <With Var="QO" />
+        <With Var="PkType" />
+        <With Var="DataByte0" />
+        <With Var="DataByte1" />
+        <With Var="DataByte2" />
+        <With Var="DataByte3" />
+        <With Var="RecSensorID" />
+        <With Var="StatusByte" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier">
+        <Attribute Name="Configuration.Parameter.DefaultConstant" Value="TRUE" />
+      </VarDeclaration>
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="ENOCEAN_STCEVC_DEV or ENOCEAN_CAB master">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="SensorID" Type="DWORD" Comment="EnOcean URID of Sender. BaseID, 0=any">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="MatchBaseID" Type="BOOL" Comment="0=exact match, 1=baseIDmatch (skip right zero bits)">
+        <Attribute Name="Configuration.Parameter.DefaultConstant" Value="FALSE" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="PkType" Type="BYTE" Comment="TYPE/ORG/RORG/CHOICE " />
+      <VarDeclaration Name="DataByte0" Type="BYTE" Comment="Input data from resource" />
+      <VarDeclaration Name="DataByte1" Type="BYTE" />
+      <VarDeclaration Name="DataByte2" Type="BYTE" />
+      <VarDeclaration Name="DataByte3" Type="BYTE" Comment="first transmitted data byte, contains RPS or 1BS data" />
+      <VarDeclaration Name="RecSensorID" Type="DWORD" Comment="received EnOcean sender ID" />
+      <VarDeclaration Name="StatusByte" Type="BYTE" Comment="received status byte" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="ENOCEAN_IN" />
+</FBType>

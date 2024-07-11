@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BC_PROFIBUS" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="mayehor" Date="21.08.2011" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="FLAGS" />
+        <With Var="SLAVE_BUS_ID" />
+      </Event>
+      <Event Name="DIAGCFM" Comment="Diagnostics output clear request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+      </Event>
+      <Event Name="DIAGIND" Comment="Diagnostics information available indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+        <With Var="CFG" />
+        <With Var="PRM" />
+        <With Var="IDENT" />
+        <With Var="SLAVE_ADR" />
+        <With Var="DIAG_STATUS1" />
+        <With Var="DIAG_STATUS2" />
+        <With Var="DIAG_STATUS3" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Identifies the bus the current device is attached to" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the number of the slot on the bus occupied by the current device (0..)" />
+      <VarDeclaration Name="FLAGS" Type="DWORD" Comment="Various general operation flags" />
+      <VarDeclaration Name="SLAVE_BUS_ID" Type="STRING" Comment="Defines the name for the slave bus referenced by all slave devices" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" />
+      <VarDeclaration Name="DIAGNOSTICS" Type="STRING" Comment="The manufacturer specific device diagnostics string" />
+      <VarDeclaration Name="CFG" Type="STRING" />
+      <VarDeclaration Name="PRM" Type="STRING" />
+      <VarDeclaration Name="IDENT" Type="WORD" />
+      <VarDeclaration Name="SLAVE_ADR" Type="USINT" />
+      <VarDeclaration Name="DIAG_STATUS1" Type="BYTE" />
+      <VarDeclaration Name="DIAG_STATUS2" Type="BYTE" />
+      <VarDeclaration Name="DIAG_STATUS3" Type="BYTE" />
+    </OutputVars>
+  </InterfaceList>
+  <Service />
+</FBType>

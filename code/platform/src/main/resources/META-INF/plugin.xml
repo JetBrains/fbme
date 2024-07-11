@@ -22,13 +22,16 @@
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
+
         <projectService serviceImplementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer"/>
         <postStartupActivity implementation="org.fbme.ide.platform.persistence.PersistenceReferencesFixer$Starter"/>
         <projectService serviceImplementation="org.fbme.ide.platform.debugger.WatcherFacade"/>
         <applicationService serviceImplementation="org.fbme.ide.platform.debugger.DevicesFacade"/>
     </extensions>
 
+
     <extensionPoints>
+
         <extensionPoint name="iec61499projectTemplate"
                         interface="org.fbme.ide.platform.projectWizard.Iec61499ProjectTemplate"/>
         <extensionPoint name="ProjectionController"
@@ -43,5 +46,6 @@
 
         <ProjectionController implementation="org.fbme.ide.platform.editor.SourceProjectionControllerProvider" />
     </extensions>
+
 
 </idea-plugin>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="A128E104A16985E2" Name="SYMLINKMULTIVARSRC" Comment="Multiple variables single value symbolic link source FB" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.System#DYNGEN_SYMLINKMVAR" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="milos" Date="2008-10-02" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initializes the symbolic link data source FB with N (1 &lt;= N &lt;= 16) variables">
+        <With Var="QI" />
+        <With Var="NAME${I}" />
+        <With Var="VALUE${I}" />
+      </Event>
+      <Event Name="REQ" Comment="Data write request">
+        <With Var="NAME${I}" />
+        <With Var="VALUE${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of data write request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="INIT event input qualifier" />
+      <VarDeclaration Name="NAME${I}" Type="STRING" InitialValue="'$${PATH}'" Comment="Names a symbolic link variable" />
+      <VarDeclaration Name="VALUE${I}" Type="&lt;ANY_ELEMENTARY&gt;" Comment="New value(i) for the named variable element" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="FB status indicator" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="SYMLINKMULTIVARSRC" />
+</FBType>

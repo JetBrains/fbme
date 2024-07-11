@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="C935AA9090B32F11" Name="MUL" Comment="Multiply" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_MUL" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEWYDI+rIqPy77bEPrVzNE4/t+JHOO5y0FBLMghHwAHlPoqMLqHazxe1ppq7ri7cbTSvteHUPh2R2egyow+GqUWHOTegHpfLzpR61tEKkkxR/kbQ2/d/rxHJtYvmxANN+1lagCK3DEg1s2xAg9Mok1cPd22/c2QJq/+57Cf51zKqHEWtfJtSqRiBdNsdYsXkC6cyBkWT9Bjreir1pumJ2/S22YZTETblCu+rNP7p/J1lfYeFcRdGuAR5NSVQG8pf3bcqM+OXHl8I+dl75d0oRViLhbXKfJo34UenUY2GNRgqsxaEnhKADLd0jX2fE47yX9tFxlqzpVs+ebWL5sQDTftZWoAitwxINbW6USzfXvSKb5/faq1WCHMIYp3byPUeHjSEs1hAXnLE4HcEaNDC63wh1lkWC+9TlDejbsYYYMaisvwbEzn4wouQkL6XfLo0psVPt6WuG6CvBW6sIaR3+ZvurPB6IrU6pd+/65qKUNQ3EjH1s7LwxeL1cvlEP6jMUFESCAopWTkoqIPG9A4Wr7eRUcEYmDm0Y5QEnkupYtHYVt3owamJ5dQmJHzpglSx5sVDFK0eDBHob3E7XaDj+KK+s7YdX8zQyMHd02KUHA4BRE7fB0vzlvf3nIRKLIba4/6MLGw2V+zGDzZsU8gnNh7o4AvzPgL+X1X10zgpkNW7oNxvkH4XxQ+SCrfBs9UrXR8/C80ChkpkUSGnT8SkChEL28cShhyu/l05UqTFlcQWiSljnMJlUuYuOg/QqWPG2uO6X7AlJMTUSAFYELKmG+4MUbZo3fkDmDF/g/4S8TGQeFzGtfXFLsQb2HRrqprzFo3KUDL2pW2XWS/66iHfRdZ9pzwV6ccaESUkTlnrThw8x7e4BYzLBDEt7Jg5UjZ1s/hkmE2H5j6lmlBUrvNqkdaKFkGa41BI8mjZdU1lhSwJsVcHnp3iR6DG0JK3sbIN6mraraZ5lbxQs6IkvzVZ3BGQ3snKV4BazR2T+VUYq1UcOzaDg4d6g3MMtqEAYryuYLpQUMtzTwBKLMEZmodaF1FDjumPBNMQ5z3smDlSNnWz/T0yE/CWTwkgpIRz+gS/cwOJajdFeS5b55n4h5bEAmi8hnEodYj/LvVCppZQ4B0MrhkpK0aY8ny3dPMr25gkMwsRaShPO1P2n/gJL+bcoI6UEMGKvCaHuQw4+xVBoxC+OtqtpnmVvFC3PAUINgbVGN2nPBXpxxoRI0PXB7MieJx8fRBTiK8u50EMXBcsMLAoQDKoOzfU7o/Vayq5Y9TZBtYx/2rYFc1etTGStvF6P5WjUXJ3kRAa9Nv11lEnlxtn8VlNIpAI5xMCO2XDmi1s8t18N6fqCjiI98IuLZXFWXdTqwu59UsCcgBOakq7Edg3kPLJDwPtGubr51jcMCNIEy6KjC6h2s8Xs+mOc7tU1HSHVpZxROmv6kZS9uI5O0tArGbfQUzaSKXwpIRz+gS/cwV4TaVMJe2ZyjUU4x8PgbowsmQhVUWxAzsvUChCahiRD8tdC3n5AH/WPlYeZiysZL5ePqUXgqJIiRuBWUQF+jZ77d9lulWy8N3QtYgSs82AdC1m2FIDUWvC4LOaCsxNL7bvBo6phVANpysvREgxxmJSy1GZ/Q+Sq7MyAD0rWfSPOhTmfj9sLuCHJ5sCM5JPDprs1wqga0VGV5U+fmCZYKzPy9KQT39zXnfGkGju3EUIhO/0OV12aawh4xbOaEhdylPVClRoDeREm4vGlWWc9WVISeS+27DyYJ" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="marumil" Date="24.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;2;2;16" />
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN${CNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN${CNT}" Type="LREAL, SINT,INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL" Comment="Argument" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="IN${CNT}" Comment="Result: IN1 * IN2 * ..." />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="MUL" />
+</FBType>

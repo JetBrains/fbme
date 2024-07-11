@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="1417F3ECB4D0739E" Name="SYMLINKMULTIVALDST" Comment="Single variable multiple value symbolic link destination FB" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.System#DYNGEN_SYMLINKMVAL" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="milos" Date="2008-10-02" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initializes the symbolic link data destination FB with N (1 &lt;= N &lt;= 16) outputs">
+        <With Var="QI" />
+        <With Var="NAME" />
+        <With Var="INDEX" />
+      </Event>
+      <Event Name="REQ" Comment="Explicit data read request">
+        <With Var="INDEX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="VALUE${I}" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of data read request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="VALUE${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="INIT event input qualifier" />
+      <VarDeclaration Name="NAME" Type="STRING" InitialValue="'$${PATH}'" Comment="Name of the one dimensional multi value variable" />
+      <VarDeclaration Name="INDEX" Type="DINT" Comment="Index of the multi value elelment in the array" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration Name="VALUE${I}" Type="&lt;ANY_ELEMENTARY&gt;" Comment="current value(i) in the named variable array element" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="SYMLINKMULTIVALDST" />
+</FBType>

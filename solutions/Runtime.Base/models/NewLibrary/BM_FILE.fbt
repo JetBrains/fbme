@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BM_FILE" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Runtime.FBType.WeakImplementingType" Value="Runtime.Fieldbus#BM_SIMBUS" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2010-05-06" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Other" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="PATH_IN" />
+        <With Var="PATH_OUT" />
+        <With Var="FORMAT" />
+        <With Var="SCHEDULE" />
+      </Event>
+      <Event Name="CONFIG" Comment="Configure the devices on the bus">
+        <With Var="QI" />
+      </Event>
+      <Event Name="RESTART" Comment="Reset the bus and restart">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Bus cycle request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+        <With Var="USED_PATH_IN" />
+        <With Var="USED_PATH_OUT" />
+      </Event>
+      <Event Name="CONFIGO" Comment="Bus configuration confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+      </Event>
+      <Event Name="CNF" Comment="Bus cycle request confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+        <With Var="CYCLE_CNT" />
+        <With Var="CYCLE_TIME" />
+        <With Var="NRETRIES" />
+        <With Var="NMISSED" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Uniquely identifies a bus in a device" />
+      <VarDeclaration Name="PATH_IN" Type="STRING" Comment="Path of the file providing the input data" />
+      <VarDeclaration Name="PATH_OUT" Type="STRING" Comment="Path of the file the output data will be written to" />
+      <VarDeclaration Name="FORMAT" Type="USINT" Comment="Format of the input/output data">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Raw = 0|AutomationX = 1}" />
+      </VarDeclaration>
+      <VarDeclaration Name="SCHEDULE" Type="STRING" Comment="If not empty, a comma separated list of seconds the update cycle should be performed at. In this case REQ is not necessary." />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays the current status of the bus" />
+      <VarDeclaration Name="ERROR_CODE" Type="DINT" Comment="Error code of the bus" />
+      <VarDeclaration Name="ERROR_ARG" Type="DINT" Comment="Additional error information" />
+      <VarDeclaration Name="CYCLE_CNT" Type="UDINT" Comment="The number of cycles the bus has executed" />
+      <VarDeclaration Name="CYCLE_TIME" Type="UDINT" Comment="Time of the last read/write cycle of the bus" />
+      <VarDeclaration Name="NRETRIES" Type="UDINT" Comment="Number of retries after the last error" />
+      <VarDeclaration Name="USED_PATH_IN" Type="STRING" Comment="Full path of file used for input process image" />
+      <VarDeclaration Name="USED_PATH_OUT" Type="STRING" Comment="Full path of file used for ouput process image" />
+      <VarDeclaration Name="NMISSED" Type="UDINT" Comment="Number of cycles missed because the data could not be read/written in time" />
+    </OutputVars>
+  </InterfaceList>
+  <Service />
+</FBType>

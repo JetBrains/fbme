@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_HRCYCLE" Comment="High resolution periodic generation of an event" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEh91eDfvRgSOcdUSz0FkSWioAeCzGOTgM+T5EU7VXmvbjRwnPtAXphn+ilU14hgRzw6PC51ZSKLBpQAkASjcX7/fL6fZYqUCNjyXHrAt5KB/AMbYvEsmiofH6u6cmy4ej6IPaAVlT6x3B5ObSIX3CfqsmYtaX2fcGNmpJQ9S7UfVI9XV8LxaO03ZR3j1Z2bXQWDJifYrChu6G45VbxZ7egsjlQ/nmFKkPdTvFvjiq0VbOtTI1hm9XKHaDdwJt8Sr60tZj/r4jGgojfoVKTPw+zr8cw8cNKihxYFiz4YJT1mAwViXbmiBw4zsBxHuwlGZb8fBpUPA+bCpQ+2UgPrpkna2fYciGhmZqCUq8veckATPch7VTAFwjcJ/UPH3qFxYN9sG/0OupnEIi9owi73S1MwBdHiGpGjZh2zBydXJjpFotDKBaveqpa8xIE3IaZF3DdX8J1/f9zSkCkzwDm3CdNy/25xo8wpthcgNxggYIerQdsvHVFkFyaUIzBJ/pBcfPgQI7gFaMsVq8gYvZEAWuv4CbjghYA0cyguZLWgJY33n5BZC3ayYexEeqix8P6hk01VxR2ftfP3GGhoeOs0yLgv6hYDK2DfUQ9l24fvq2oIfz8LzQKGSmRRIadPxKQKEQechEoshtrj+KJKDf3E2SaXmQesemeLzEb00bh8MrUlCimBOH2fPh1ejCxsNlfsxglVCL4GMzfuS7UtTyoUKOxR79UPAUDpWslA4UWCp8rG847pjwTTEOc7ofx1I0XZZhQxkqIggV39i4mkHyopEEn684tjTF2tuLtG7VAOE0KrD+XzGgkkxUM90GhOUeaLWM0h8WL3VINW2TOMtnEbaWFnUiQSdtkTM3jJFazFGyl9cphGmxZh+FJgFX0TvEPGpXpmp9znHNE8nbN8/7/UlcfQohirkJodVMdTvFvjiq0Vas47qHdN0UFi/BGfXncB3H3smDlSNnWz+GSYTYfmPqWQbVA3TMdYswvt32W6VbLw2xBr6spy2o+2kPtRSpiNICYRew4C92F5EWZSnp85iAJZKe8YpZdC7BNt4+YCT+OL6XJD6tYUXGBtpzwV6ccaES2gXCSRXeDtJ3JilUM8cdi44CPDZdz0olnmBQ+YnEb2Oqu38+B3Ow4r2RHHjAGrx0P/RhCjVnotfTt7PXGv/0z5PcQbhAyv+5Lc9CXVX5j4b5PkNSuj8l3Mi75AQQmMGc+eM+Cz5jctPac8FenHGhEjQ9cHsyJ4nHx9EFOIry7nQQxcFywwsChAMqg7N9Tuj9VrKrlj1NkG1jH/atgVzV61MZK28Xo/lalDvtd2tqK57P3hFBKbq8wT9wZ9KABb39rzi2NMXa24ucXViPtLj1YOsy8LVXhi/STlP7/Gc16GwYPXEfifuykyKENNcLI373dTvFvjiq0VYLJkIVVFsQM7L1AoQmoYkQ/LXQt5+QB/0/kwqrbkqhcQJDq9Ym3y/8pjw4vgcnyIa9kRx4wBq8dCncEBeqylVqIhny1rPkgKdsJHamnUsuZtUjNDU3fgvKGmuJ/QC8ogUIUI8RL7lDotMxui8U01yAbvBo6phVANos2lCQFS/GbxWsdYWsO2cmOjJ07vN4nUnpfINq3E2FPBbg4dpG4aPPJFySSeQUpFgoeeM9q3znASXmT+3qvrfjVcok+P6EBD2vrBenDcVs51RpJDoc+8+bmVWfO9V/Y12eoHdWD38MRquBLrlV+GR2vFIrj33uHE+cW6S+QHoVkYdqyf9Y0V+MQNSqYslkZx1sEgB+CjY04I/T6JoVxg4R5b5OgRhRCVyyZQ7IyJnRrH0u1uOjLifqTjhwcd3fmoI0/RIdAjZBSNsBmSwofNetw+hzppPPQS0es/jFONmI1HMrETeZWx8QraraZ5lbxQsESkUQejTXXLpgXG3zIvZG8UYGEYE1PCNUaSQ6HPvPm5lVnzvVf2Ndw3zIiNsSwxHWuSCf8Ki7/1ayq5Y9TZBtjeq1YIApqRfogkqwBJc7jcFwE1+FAUpKbBIAfgo2NOCP0+iaFcYOEeW+ToEYUQlcsmUOyMiZ0ax9Ltbjoy4n6k44cHHd35qCNP0SHQI2QUjbAZksKHzXrcPoc6aTz0EtHrP4xTjZiNRzKxE3mVsfEK2q2meZW8ULBEpFEHo011y6YFxt8yL2RvFGBhGBNTwjVGkkOhz7z5uZVZ871X9jXcN8yIjbEsMR1rkgn/Cou/9WsquWPU2QbY3qtWCAKakX6IJKsASXO43BcBNfhQFKSmwSAH4KNjTgj9PomhXGDhHlvk6BGFEJXLJlDsjImdGsfS7W46MuJ+pOOHBx3d+agjT9Eh0CNkFIrLdjU64lKqDr5MvBt/dde153UWB4S/r+lGOmklrsSyDStjj4SJ+1Bm0kMArlcNhgKJfzXVt8n2yzaDg4d6g3MATsDoLm+58ozEGzUDcnfhbGmBGYTTTRbR4xbOaEhdylmgJMj6yZ4tnDfMiI2xLDEUhZB/32KJ66cqvq0VxVdmZhaOipbsT1DPbKCuvarY9ueNKuLnkwOBB1O8W+OKrRVjXWCUNznQYF7pW+nBjA9rc88PEcahDxX62q2meZW8ULJLJqcgosXDKKEioir4Vzd5XQo/e8UjQs/4CS/m3KCOmzw0XzjdgheZ8UFDa816Nq9xGj/VL7lBXIKYqpjdQDg+bOvLG0hEqLGDaS3ERc/AzMMEqEDjxsjKZqfc5xzRPJ8yWPFJVNAx5I23YE6MZ6+bf3gA1Wl2AVRqmFkESjrKENVhzKY/e15ZC6/Q0OYUhndTvFvjiq0VY11glDc50GBe6VvpwYwPa3PPDxHGoQ8V/ac8FenHGhEo3qtWCAKakXvFIrj33uHE/ac8FenHGhEu5KF2FY/blsCIO/0UkCjLhbyq7tbD3D6MIDhCCqFmAFWJh+RdDt6Pn+DzIh/byaumpKYHrAO5pY4NOxgJFNJ4iYAQLZVPk2zBDFwXLDCwKEumBcbfMi9kbxRgYRgTU8I1RpJDoc+8+bmVWfO9V/Y13DfMiI2xLDET7Vbn+5fxtxraraZ5lbxQsESkUQejTXXLpgXG3zIvZG8UYGEYE1PCNKICr42AaKVBi58mxaZAk5x949TVgC4dkmQ8psEv6lms67TCQxT7jxsmUOyMiZ0ax5VuojeaNpe4oSKiKvhXN3ldCj97xSNCy/+Dt7jZipju6VvpwYwPa3PPDxHGoQ8V+tqtpnmVvFC28EZpIR+Takz7FYlWBaUXBJyb4q3K6RKe32aFUMg3BKnHVEs9BZElrH3j1NWALh2dxa1r/ckoXdRWui2PKvy2TFwrL6HIhWGD06O4tHFn/ubvBo6phVANo3/ihU91Hl7gfHXKP4vOHaMzqwhA40jrmCwPhmTjQC0IM/Wqf6/xqvpumMRyKQIMo2Mb+jPRKk3xAXAzE8/5sXMHWaFfZmVO2kIYRuP2qbS8NzStSmYH76aEs7NwxsrKDTus1HhTPT/2pKYHrAO5pY4NOxgJFNJ4iYAQLZVPk2zDAmX/iHFcRIVAYVPkdaPvOM0KaubNcoO6Zqfc5xzRPJWHLDK8Y5HMOng4kAmQeuYcwAdbgnHH49jlDblnevYBDFK+g1hrGLe4kW18n24kP1cVwYw4qJJPB1IkEnbZEzN+NRwhfpCFOBTjhwcd3fmoI0/RIdAjZBSKy3Y1OuJSqg6+TLwbf3XXtK4Yx2M3xSZbHp9S55Fo9x07rNR4Uz0/9qSmB6wDuaWODTsYCRTSeImAEC2VT5Nsx5VuojeaNpe7P3y3qoDMo3rBvl46Vhrqqg/MnS1sCoNm7vjtpmeTXKeNP33u5MO50=" />
+  <Identification Standard="61499-1" Classification="Event Processing" Function="High Resolution Cyclic Event Generation" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2010-09-20" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" Comment="Start generating periodical events">
+        <With Var="PERIOD" />
+        <With Var="PHASE" />
+      </Event>
+      <Event Name="STOP" Comment="Stop generating periodical events" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Periodic event at period DT,starting at DT after START" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PERIOD" Type="UDINT" Comment="Period between events in microseconds" />
+      <VarDeclaration Name="PHASE" Type="UDINT" Comment="Phase shift in microseconds (has to be less than PERIOD)" />
+    </InputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="E_HRCYCLE">
+    <ServiceSequence Name="event_cycle">
+      <ServiceTransaction>
+        <InputPrimitive Interface="resource" Event="timeout" />
+        <OutputPrimitive Interface="E_HRCYCLE" Event="EO" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="resource" Event="timeout" />
+        <OutputPrimitive Interface="E_HRCYCLE" Event="EO" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_HRCYCLE" Event="START" Parameters="PERIOD,PHASE" />
+        <OutputPrimitive Interface="resource" Event="start_cycling" Parameters="PERIOD,PHASE" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="resource" Event="timeout" />
+        <OutputPrimitive Interface="E_HRCYCLE" Event="EO" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="cycle_canceled">
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_HRCYCLE" Event="STOP" />
+        <OutputPrimitive Interface="resource" Event="stop_cycling" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="E_HRCYCLE" Event="START" Parameters="PERIOD,PHASE" />
+        <OutputPrimitive Interface="resource" Event="start_cycling" Parameters="PERIOD,PHASE" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="resource" Event="timeout" />
+        <OutputPrimitive Interface="E_HRCYCLE" Event="EO" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

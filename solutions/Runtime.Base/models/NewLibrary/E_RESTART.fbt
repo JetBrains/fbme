@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_RESTART" Comment="Generation of Restart Events" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1-A.1" Description="Generation of restart events" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="COLD" Comment="Cold Restart" />
+      <Event Name="WARM" Comment="Warm Restart" />
+      <Event Name="STOP" Comment="Resource is Stopping" />
+    </EventOutputs>
+  </InterfaceList>
+  <Service RightInterface="E_RESTART" LeftInterface="RESOURCE">
+    <ServiceSequence Name="cold_restart">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="start" />
+        <OutputPrimitive Interface="E_RESTART" Event="COLD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="warm_restart">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="restart" />
+        <OutputPrimitive Interface="E_RESTART" Event="WARM" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="stopping">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="stop" />
+        <OutputPrimitive Interface="E_RESTART" Event="STOP" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

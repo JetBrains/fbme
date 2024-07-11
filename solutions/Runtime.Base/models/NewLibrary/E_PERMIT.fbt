@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_PERMIT" Comment="Permissive propagation of an event" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1-A.1" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Event input">
+        <With Var="PERMIT" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Event output" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PERMIT" Type="BOOL" Comment="Event permission" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

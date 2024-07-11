@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="7F39CE09FC8C819B" Name="PD_DIRECT_OUT" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommonTyped" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_PD_DIRECT_OUT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="PD_USES_MSBF" />
+        <With Var="ADDR${I}" />
+      </Event>
+      <Event Name="REQ" Comment="Process memory write request">
+        <With Var="QI" />
+        <With Var="WR${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Process memory write request confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are read from or written to" />
+      <VarDeclaration Name="PD_USES_MSBF" Type="BOOL" Comment="Defines process data to be encoded most significant byte first" />
+      <VarDeclaration Name="ADDR${I}" Type="STRING" Comment="Address within the associated device ([!|%](I|Q)(X|B|W|D)&lt;offset&gt;[.&lt;bit-offset&gt;])" />
+      <VarDeclaration Name="WR${I}" Type="&lt;BOOL, BYTE, WORD, DWORD&gt;" Comment="Data to be written at the given address in the associated device " />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="PD_DIRECT_OUT" />
+</FBType>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="C5AB8EB6AA3963AD" Name="SERVERNXT_8_8" Comment="8-input,8-output Server Interface" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Communications" Function="Server" Type="4I/3O" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-01-29" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+        <With Var="ID" />
+      </Event>
+      <Event Name="RSP" Comment="Service Response">
+        <With Var="QI" />
+        <With Var="SD_1" />
+        <With Var="SD_2" />
+        <With Var="SD_3" />
+        <With Var="SD_4" />
+        <With Var="SD_5" />
+        <With Var="SD_6" />
+        <With Var="SD_7" />
+        <With Var="SD_8" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Service Indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD_1" />
+        <With Var="RD_2" />
+        <With Var="RD_3" />
+        <With Var="RD_4" />
+        <With Var="RD_5" />
+        <With Var="RD_6" />
+        <With Var="RD_7" />
+        <With Var="RD_8" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="ID" Type="WSTRING" Comment="Connection Identifier" />
+      <VarDeclaration Name="SD_1" Type="ANY_ELEMENTARY" Comment="Data to Send" />
+      <VarDeclaration Name="SD_2" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_3" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_4" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_5" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_6" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_7" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="SD_8" Type="ANY_ELEMENTARY" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+      <VarDeclaration Name="RD_1" Type="ANY_ELEMENTARY" Comment="Received Data" />
+      <VarDeclaration Name="RD_2" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_3" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_4" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_5" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_6" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_7" Type="ANY_ELEMENTARY" />
+      <VarDeclaration Name="RD_8" Type="ANY_ELEMENTARY" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="SERVERNXT_8_8" />
+</FBType>

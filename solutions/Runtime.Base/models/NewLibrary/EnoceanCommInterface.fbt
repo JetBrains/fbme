@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="EnoceanCommInterface" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="COM" />
+        <With Var="Baudrate" />
+        <With Var="Parity" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="Messages" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" Comment="COMx interface qualifier" />
+      <VarDeclaration Name="Baudrate" Type="UDINT" InitialValue="9600" Comment="Baudrate of the serial interface">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=9600=9600|19200=19200|38400=38400|115200=115200}" />
+      </VarDeclaration>
+      <VarDeclaration Name="Parity" Type="USINT" InitialValue="1" Comment="Parity of the serial interface (none = 0, even = 1, odd = 2)">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=none=0|even=1|odd=2}" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" />
+      <VarDeclaration Name="Messages" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommInterface" />
+</FBType>

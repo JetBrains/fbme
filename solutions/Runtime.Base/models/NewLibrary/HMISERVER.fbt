@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="HMISERVER" Comment="HMI Server" Namespace="Runtime.Server">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEfxb1MFQs5tmmdgm2xGv6ZCoAeCzGOTgMHxlEbgSfQQwg5GrbLUjt1p6DKjD4apRYc5N6Ael8vOlFVicYQ+EkK2eveg/KgJKb46D9CpY8ba4tAovlPhL7lF4B5CIK3wk/IrVJojoPR6Qriz0NgA69M1cvlEP6jMUF46HOrmyfYEwDVfpKrbTiymeveg/KgJKb46D9CpY8ba47pfsCUkxNRIAVgQsqYb7gTmjWqE8XjduwoMSjPfuKc5DKJb1dpV4OACpL970cs4NoiVCbCkrvzQKSF33+WEp2ChRf9+wnuRtAIHZe/mgvvwR8jAJVhIjhsTUahFDoBKdgUkVxv3+I4OFOUs7BjA2QrZsodC8oXGipDWll+u3fj8trrfigsOwTVurCGkd/mb7qzweiK1OqXfv+uailDUNxIx9bOy8MXi9XL5RD+ozFBREggKKVk5KKiDxvQOFq+3kVHBGJg5tGOe25b4fPik6HN3Br4nHCar0xJJnTQGsTo7BhsTy+GRW5uk7XmFrbZXZQ8oGOGak/Uh/l1R9y6z5GCFqvd2c+jwocECYpYyYktGlYK0sQgioSPwlXM129TXx5yESiyG2uP4okoN/cTZJpeZB6x6Z4vMRvTRuHwytSUKKYE4fZ8+HV6MLGw2V+zGCVUIvgYzN+5LtS1PKhQo7FHv1Q8BQOlayUDhRYKnysbzjumPBNMQ5zuh/HUjRdlmFDGSoiCBXf2E4L7mO/grWuraraZ5lbxQs6IkvzVZ3BGf8fPIcGcuHcdTvFvjiq0VbcePV9f0ITnNTXck5Xv/o0cND88Y6MWWRu8GjqmFUA2jbePmAk/ji+rIg8GtRFmS6KyWe+UGLux8F6bAUa6PUGZXn2c+qj4Q1lL24jk7S0ClJE5Z604cPMe3uAWMywQxI4lqN0V5LlvmISByv2wBvcsmUOyMiZ0awoVl9G+iN1wtohNk9VZlD8toi/9ylBrB3cePV9f0ITnNTXck5Xv/o0wrM7BIhrBz91IkEnbZEzN4yRWsxRspfXLuwfg17emWWBNQOdjQie+RjzEdryAoZI1tz2jabzSJes47qHdN0UFn5+3AJEI5PH3NZX600MHHkJDfLiJ4Q3k6NRTjHw+BujCyZCFVRbEDOy9QKEJqGJEPy10LefkAf9zNDXA4jxZFJFnJqyCuQgeHU7xb44qtFWCyZCFVRbEDOy9QKEJqGJEPy10LefkAf9CK4R/+RA/SCrqkCw0m7KxetWcvrv9Onbb4pUfTLpgP59xE30oet+e1UCAyjL3bCiGRbq+2AEMXBP5fb3Cr39Fa84tjTF2tuL0H2druKYR2+g6YvYg1CEOu2eSeBw+CpMHxrVA+CvSi0aMlT5wzWK6ETt8HS/OW9/XGscywqI31Dyg8x6ACzU/kiny2KdPfnTxmuIqz4eIoIKSEc/oEv3MOCUa8022XN6RugfcGAoAzYlx4wCNNCx24vwoE9UzkOBRzTZOjvqGwYeSAB1l0BCvCq3tdL9EgRkey9rlASno0M/nj/Pbq8EIm7waOqYVQDazKB/OHX3Tl/nfAUz+7Vp9yR9DfkQT167RkUyBVcGXagxVhmdx3dRrfflXlyUaTlpHkgAdZdAQryfi+KBxz/xwdReNnqXXx0abvBo6phVANpysvREgxxmJSy1GZ/Q+Sq7MyAD0rWfSPOhTmfj9sLuCHJ5sCM5JPDprs1wqga0VGV5U+fmCZYKzPy9KQT39zXnfGkGju3EUIhO/0OV12aawh4xbOaEhdyln86ZYQF42I2IYpzdtsk4PidPBMj+pfEEyXbO2ZHSPZI=" />
+  <Identification Standard="61499-1" Function="Communication" Description="HMI Server" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="SM" Date="2007-10-23" />
+  <CompilerInfo header="package fb.rt.nxtcontrol;">
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="QI" />
+        <With Var="MGR_ID" />
+      </Event>
+      <Event Name="COMM" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="MGR_ID" Type="WSTRING" InitialValue="&quot;0.0.0.0:61498&quot;" Comment="Host and port the HMI server listens on" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="HMISERVER" />
+</FBType>

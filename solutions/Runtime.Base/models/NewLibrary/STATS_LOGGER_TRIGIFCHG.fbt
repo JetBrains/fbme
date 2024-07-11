@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="STATS_LOGGER_TRIGIFCHG" Comment="Triggers an output event whenever the input value changes" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="medusta" Date="05.11.2010" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="VAL" />
+        <With Var="PERMIT" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Execution Confirmation" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="VAL" Type="UDINT" Comment="Input value" />
+      <VarDeclaration Name="PERMIT" Type="BOOL" Comment="Enables the operation" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

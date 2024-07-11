@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_REND" Comment="Rendezvous of two events" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1-A" Classification="Event Processing" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI1" Comment="First Event Input" />
+      <Event Name="EI2" Comment="Second Event Input" />
+      <Event Name="R" Comment="Reset Event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Rendezvous Output Event" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

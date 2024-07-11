@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="NUMBER2TIME" Comment="Number to TIME converter" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAElLxxyDwWZA9LP9nXDw7MG2qCC5KuqQHDUWISWLKpTu9lc/yXAtw5ws75j6Xo+zt/pmKu0VVvYqOegyow+GqUWHOTegHpfLzpR61tEKkkxR/kbQ2/d/rxHJtYvmxANN+1lagCK3DEg1s2xAg9Mok1cPd22/c2QJq/+57Cf51zKqHEWtfJtSqRiBdNsdYsXkC6cyBkWT9Bjreir1pumJ2/S22YZTETblCuR+hM4uHv9XyEtl7C5G4Db3vbApMcFCdacDHxI9KXnr6tBcCOtwI2DHU7xb44qtFWYGznKmwnfytiIZ2AkAFpPsd73TG6/I0Z7uJxu41jUcgZglCnrRoQaFGvQ9S2NAXkSz60ffJZJSpipKqdJHxOwjQtI2B3WaYlxdyxhGw9Uh3OcxOuJ+EEtMIemOyvPgKlKt59ZvAz94FJZ/TnHY/3ru253VQJV/hLiJaMbyzOU6WUUGb+7cBa0Z6fq4ADLRtRAp4x8mHs705tg6VmIrMvI6GJCE/u5u9WL541as/qY6oGJTNkx3PiYy/25xo8wpthuk7XmFrbZXZQ8oGOGak/UtpzwV6ccaESLznjPzpDZ2dHmbS63wESFicv2i+NmubEmMTrJoqKi5YvOeM/OkNnZ+5O36U7a2hF6NvnGtGCr3jHc/+Uz/F7YHdR7SLy3CDHuD+9QdDzTWnc1lfrTQwceYrJZ75QYu7HwXpsBRro9Qbj9y3cK9YxBxF2ubCaa40FJ3AobUUJSBlPT9BL5dhGvCi9yaBRN/12smUOyMiZ0awtcz84Vxz0Brxje9pRucZYbvBo6phVANqwcrGg3xRzQGPPcMORRA2E6BLp0yPhkYyzaDg4d6g3MMtqEAYryuYLpQUMtzTwBKLMEZmodaF1FDjumPBNMQ5z3smDlSNnWz/T0yE/CWTwkgpIRz+gS/cwOJajdFeS5b55n4h5bEAmi8hnEodYj/LvVCppZQ4B0MrhkpK0aY8ny3dPMr25gkMwsRaShPO1P2n/gJL+bcoI6UEMGKvCaHuQw4+xVBoxC+OtqtpnmVvFC3PAUINgbVGN2nPBXpxxoRI0PXB7MieJx8fRBTiK8u50EMXBcsMLAoQDKoOzfU7o/Vayq5Y9TZBtYx/2rYFc1etTGStvF6P5WtL81GVD5+EpArixM2GApmRejWknHPrApgTOv+Duya51cvETGKh3b3u+HI47BSoaqLJlDsjImdGsdcnCYl6m9KTxipwu1csRvlQCkThDtJyxRby/9uOBEtzwpwIiFJW4Xx+TzcgVBYLMtefNdzIGs4tIIPd6c8maUSi/gGlozeXegljwMJK6PH9FYGdjV3m/iUGacLfepwtNIODbqzGxri01x9zjIn1OAfhFW9z7qBNdekB3/UGljILiaDEVrsVQ5Jl6JXi2U2A1DfFAGXrzml6SnvGKWXQuwVPbWyU616HHAyqDs31O6P0Xp8Od8BCvrXPcS9crBRDgraraZ5lbxQtCcX559glJDi2sEa5096EBUrbCy/fYyIjrzO8kFBMMnzpsTs+JUnfHHkgAdZdAQry9k9ZRpWfFQsb/3M1x8rNNdTvFvjiq0VY2pDyBFjPRgAMqg7N9Tuj9Fz0ZLQ8+z3C7UtTyoUKOxcMa8+CtP5xxNAs/ZBhqtJR59GkyVjTblR4xbOaEhdylA7PJyDoW9fSYZBB9XxI3xoLA+GZONALQHD4eJjJuarSLVETEzNMwp27vjtpmeTXKeNP33u5MO50=" />
+  <Identification Standard="61499-1-D.1" Classification="Convert" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="marumil" Date="24.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN" />
+        <With Var="FACTOR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="DINT" Comment="Input variable" />
+      <VarDeclaration Name="FACTOR" Type="UDINT" InitialValue="1" Comment="The input variable will be multiplied by this number to get the time in milliseconds" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="TIME" Comment="Output variable" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="NUMBER2TIME" />
+</FBType>

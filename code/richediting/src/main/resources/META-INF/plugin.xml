@@ -15,6 +15,7 @@
     </extensions>
 
     <actions>
+
         <group id="richediting.RichEditorPopupGroup">
             <action id="richediting.AddConstantToPort"
                     class="org.fbme.ide.richediting.actions.AddConstantToPortAction"

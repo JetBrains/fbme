@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_DEMUX" Comment="Event demultiplexer" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event Processing" Function="Demultiplexing" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Event to demultiplex">
+        <With Var="K" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO0" Comment="Event Output 0" />
+      <Event Name="EO1" Comment="Event Output 1" />
+      <Event Name="EO2" Comment="Event Output 2" />
+      <Event Name="EO3" Comment="Event Output 3, Number of outputs is implementation dependent" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="K" Type="UINT" Comment="Event index,maximum is implementation dependent" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

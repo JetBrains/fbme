@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BM_DLL" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Runtime.FBType.WeakImplementingType" Value="Runtime.Fieldbus#BM_SIMBUS" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2013-05-28" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Other" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SIMULATION" />
+        <With Var="DLL_NAME" />
+        <With Var="OPS_NAME" />
+        <With Var="CONFIGURATION" />
+      </Event>
+      <Event Name="CONFIG" Comment="Configure the devices on the bus">
+        <With Var="QI" />
+      </Event>
+      <Event Name="RESTART" Comment="Reset the bus and restart">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Bus cycle request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="UPDATE_SETTINGS" Comment="Update the settings" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+        <With Var="DRIVER_NAME" />
+        <With Var="DRIVER_VERSION" />
+      </Event>
+      <Event Name="CONFIGO" Comment="Bus configuration confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+      </Event>
+      <Event Name="CNF" Comment="Bus cycle request confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+        <With Var="CYCLE_CNT" />
+        <With Var="CYCLE_TIME" />
+        <With Var="NRETRIES" />
+      </Event>
+      <Event Name="UPDATE_SETTINGS_CNF" Comment="Update the settings confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_ARG" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Uniquely identifies a bus in a device" />
+      <VarDeclaration Name="SIMULATION" Type="BOOL" Comment="Puts the bus into simulation mode" />
+      <VarDeclaration Name="DLL_NAME" Type="STRING" Comment="Name of the DLL containing the driver" />
+      <VarDeclaration Name="OPS_NAME" Type="STRING" Comment="Name of the operation structure inside the driver DLL" />
+      <VarDeclaration Name="CONFIGURATION" Type="STRING" Comment="Configuration for the driver DLL. This can be a direct configuration string, name of the configuration file or anything else understood by the driver" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays the current status of the bus" />
+      <VarDeclaration Name="ERROR_CODE" Type="DINT" Comment="Error code of the bus" />
+      <VarDeclaration Name="ERROR_ARG" Type="DINT" Comment="Additional error information" />
+      <VarDeclaration Name="CYCLE_CNT" Type="UDINT" Comment="The number of cycles the bus has executed" />
+      <VarDeclaration Name="CYCLE_TIME" Type="UDINT" Comment="Time of the last read/write cycle of the bus" />
+      <VarDeclaration Name="NRETRIES" Type="UDINT" Comment="Number of retries after the last error" />
+      <VarDeclaration Name="DRIVER_NAME" Type="STRING" Comment="Name of the used driver" />
+      <VarDeclaration Name="DRIVER_VERSION" Type="STRING" Comment="Version of the used driver" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>
