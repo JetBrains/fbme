@@ -6,11 +6,13 @@ include(
     "code:language",
     "code:library",
     "code:nxt-integration",
-        "code:platform",
+    "code:platform",
     "code:richediting",
     "code:scenes",
     "code:smv-debugger",
     "code:debugger",
+    "code:iec61131",
+    "code:iec61131-integration",
 
     "docs",
 

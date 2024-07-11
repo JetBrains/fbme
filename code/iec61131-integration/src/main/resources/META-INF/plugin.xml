@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>fbme.integration.iec61131</id>
+  <name>FBME - IEC61131</name>
+  <description>FBME projects creation from IEC61131 projects</description>
+  <version>0.1</version>
+  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+  <depends>fbme.platform</depends>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.execution.languages</depends>
+  <depends>fbme.richediting</depends>
+  <depends>fbme.scenes</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+
+  <extensions defaultExtensionNs="fbme.platform">
+    <iec61499projectTemplate implementation="org.fbme.integration.iec61131.importer.Iec61131ImportProjectTemplate" />
+  </extensions>
+</idea-plugin>
