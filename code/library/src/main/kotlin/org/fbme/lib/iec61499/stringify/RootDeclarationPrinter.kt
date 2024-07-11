@@ -2,6 +2,8 @@ package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
+import org.fbme.lib.iec61499.parser.ConverterArguments
+import org.fbme.lib.iec61499.parser.Iec61499ConverterConfiguration
 import org.jdom.DocType
 import org.jdom.Document
 import org.jdom.Element
@@ -12,6 +14,8 @@ class RootDeclarationPrinter(private val myDeclaration: Declaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> BasicFBTypePrinter(myDeclaration).print()
             is CompositeFBTypeDeclaration -> CompositeFBTypePrinter(myDeclaration).print()
+            is CATBlockTypeDeclaration -> CATBlockTypePrinter(myDeclaration).print()
+            is HMIInterfaceTypeDeclaration -> HMIBlockPrinter(myDeclaration).print()
             is DeviceTypeDeclaration -> DeviceTypePrinter(myDeclaration).print()
             is ResourceTypeDeclaration -> ResourceTypePrinter(myDeclaration).print()
             is ServiceInterfaceFBTypeDeclaration -> ServiceInterfaceFBTypePrinter(myDeclaration).print()

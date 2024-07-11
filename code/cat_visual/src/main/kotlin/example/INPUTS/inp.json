@@ -1,0 +1,28 @@
+{
+  "host": "",
+  "port": "",
+  "mapping": {
+    "id1": {
+      "inputs": [
+        {
+          "id": "id",
+          "type": "type"
+        },
+        {
+          "id": "id",
+          "type": "type"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "id",
+          "type": "type"
+        },
+        {
+          "id": "id",
+          "type": "type"
+        }
+      ]
+    }
+  }
+}

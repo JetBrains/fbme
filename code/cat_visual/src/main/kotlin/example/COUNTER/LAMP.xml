@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping id="1">
+    <Inputs>
+        <Input name="LAMP" type="BOOL"/>
+        <Input name="COUNT" type="STRING"/>
+    </Inputs>
+    <Outputs>
+        <Output name="TOGGLE" type="BOOL"/>
+    </Outputs>
+</Mapping>

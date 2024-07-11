@@ -10,6 +10,9 @@ class RootConverter(
 ) {
     fun convertFBType(): FBTypeDeclaration {
         val root = myDocument.rootElement
+        if (root.getAttribute("UsedInCAT") != null && root.getAttribute("UsedInCAT").value == "True") {
+            return HMIInterfaceConverter(arguments()).extract()
+        }
         if (root.getChild("FBNetwork") != null) {
             return myConfiguration.createCompositeFbTypeConverter(arguments()).extract()
         }
@@ -42,6 +45,10 @@ class RootConverter(
 
     fun convertSystemConfiguration(): SystemDeclaration {
         return SystemConverter(arguments()).extract()
+    }
+
+    fun convertCATConfiguration(): CATBlockTypeDeclaration {
+        return CATBlockTypeConverter(arguments()).extract()
     }
 
     private fun arguments(): ConverterArgumentsHolder {
