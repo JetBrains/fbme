@@ -20,6 +20,16 @@
     <iec61499projectTemplate implementation="org.fbme.integration.nxt.importer.NxtImportProjectTemplate" />
   </extensions>
 
+  <!--
+  <extensionPoints>
+    <extensionPoint name="BasicFBTypePrinter" interface="org.fbme.integration.nxt.exporter.BasicFBNxtTypePrinter"/>
+  </extensionPoints>
+
+  <extensions defaultExtensionNs="fbme.integration.nxt">
+    <BasicFBTypePrinter implementation="org.fbme.integration.nxt.exporter.BasicFBNxtTypePrinter"/>
+  </extensions
+  -->
+
   <actions>
     <group id="richediting.RichEditorPopupGroup1">
       <action id="org.fbme.integration.nxt.exporter"
