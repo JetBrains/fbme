@@ -13,6 +13,7 @@ import java.io.IOException
 import java.io.StringReader
 import javax.xml.parsers.DocumentBuilderFactory
 import org.w3c.dom.Document
+import org.w3c.dom.Element
 import org.xml.sax.SAXException
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -39,7 +40,11 @@ class ExportAction : AnAction(), DumbAware {
         }
 
         // Search for each file with the given suffix.
-        fun recursiveFileSearcher(dir: VirtualFile?, projectFilePaths: MutableList<String>, fileSuffix: String = ".fbt") {
+        fun recursiveFileSearcher(
+            dir: VirtualFile?,
+            projectFilePaths: MutableList<String>,
+            fileSuffix: String = ".fbt"
+        ) {
             dir?.let { dirNow ->
                 dirNow.children.forEach { file ->
                     if (file.children.isEmpty()) {
@@ -84,7 +89,7 @@ class ExportAction : AnAction(), DumbAware {
         val fbtFile = File(pathToFbtFile)
         val originalXmlContent = fbtFile.readText()
         val xmlInput = InputSource(StringReader(originalXmlContent))
-        val doc : Document // Maybe need a '!' at the end.
+        val doc: Document // Maybe need a '!' at the end.
 
         try {
             doc = dBuilder.parse(xmlInput)
@@ -115,21 +120,27 @@ class ExportAction : AnAction(), DumbAware {
         }
 
         val projectName = project.name
-        val fileName = pathToFbtFile.substring(pathToFbtFile.lastIndexOf("/")+1)
-        val exportPath = Paths.get(exportBasePath.removePrefix("file://"), "MPSProjectNxtExports", projectName, fileName)
+        val fileName = pathToFbtFile.substring(pathToFbtFile.lastIndexOf("/") + 1)
+        val exportPath =
+            Paths.get(exportBasePath.removePrefix("file://"), "MPSProjectNxtExports", projectName, fileName)
 
-        val doctypeRegex = Regex("""<!DOCTYPE[^>]+>""")
+        val doctypeRegex = Regex("""<!DOCTYPE[^>]+>""") // <!DOCTYPE FBType SYSTEM "../LibraryElement.dtd"> in EAE
         val doctypeMatch = doctypeRegex.find(originalXmlContent)
         val doctypeDeclaration = doctypeMatch?.value ?: ""
 
         val transformerFactory = TransformerFactory.newInstance()
         val transformer = transformerFactory.newTransformer()
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes") // If not done manually, will end up in the wrong place.
-        val source = DOMSource(doc)
+        transformer.setOutputProperty(OutputKeys.INDENT, "no")
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2")
+        transformer.setOutputProperty(
+            OutputKeys.OMIT_XML_DECLARATION,
+            "yes"
+        ) // If not done manually later, will end up in the wrong place in the xml.
+
+        val docConverted = convertBasicFB(doc)
+        val source = DOMSource(docConverted)
 
         try {
-            //File(exportPath).writeText("Exported data\n")
-            //File(exportPath).appendText(emt)
             Files.createDirectories(exportPath.parent)
 
             val writer = Files.newBufferedWriter(exportPath)
@@ -163,15 +174,95 @@ class ExportAction : AnAction(), DumbAware {
         }
         return true
     }
-/*
-    private fun convertBasicFB() {
 
+    private fun convertBasicFB(doc: Document): Document {
+
+        // Most likely edits doc in place
+        val root = doc.documentElement
+
+        root.setAttribute("GUID", "ccbf2b60-58fa-4446-a3fb-00066c5e49e1") // TODO
+        root.setAttribute("Comment","Basic Function Block Type") // TODO
+
+        // Takes care of indentation and line breaking. TODO; doesn't work as intended with the indentations...
+        fun insertElement(newElement: Element, refElement: Element, parentElement: Element) {
+            parentElement.insertBefore(newElement, refElement)
+            parentElement.insertBefore(doc.createTextNode("\n"), refElement)
+            val indentElement = doc.createTextNode("  ")
+            var placeHolderElement = refElement
+            var scoutElement: Element
+            while (true) {
+                parentElement.insertBefore(indentElement, refElement)
+                scoutElement = placeHolderElement.parentNode as Element
+                if (scoutElement == root) { //Node.DOCUMENT_NODE
+                    break
+                }
+                placeHolderElement = scoutElement
+            }
+        }
+
+        // Identification Standard
+        val interfaceListNode = root.getElementsByTagName("InterfaceList").item(0)
+        val interfaceListElement = interfaceListNode as Element // org.w3c.dom.Element
+        val idElement = doc.createElement("Identification")
+        idElement.setAttribute("Standard", "61499-2") // TODO
+        insertElement(idElement, interfaceListElement, root)
+
+        // VersionInfo
+        val versionInfoNode = doc.createElement("VersionInfo")
+        val versionInfoElement = versionInfoNode as Element
+        versionInfoElement.setAttribute("Organization", "Schneider Electric") // TODO....
+        versionInfoElement.setAttribute("Version", "0.0")
+        versionInfoElement.setAttribute("Author", "Unknown")
+        versionInfoElement.setAttribute("Date", "xx/xx/xxxx")
+        versionInfoElement.setAttribute("Remarks", "Template")
+        insertElement(versionInfoElement, interfaceListElement, root)
+
+        // Attribute (Add an element named "Attribute" under element "BasicFB")
+        val basicFBNode = root.getElementsByTagName("BasicFB").item(0)
+        val basicFBElement = basicFBNode as Element
+        val eccNode = basicFBElement.getElementsByTagName("ECC").item(0)
+        val eccElement = eccNode as Element
+        val elementNamedAttribute = doc.createElement("Attribute")
+        elementNamedAttribute.setAttribute("Name", "FBType.Basic.Algorithm.Order")
+
+        val algorithmNodeList = basicFBElement.getElementsByTagName("Algorithm")
+        val algorithmNameSet = StringBuilder()
+        for (i in 0 until algorithmNodeList.length) {
+            val algorithmNode = algorithmNodeList.item(i)
+            val algorithmElement = algorithmNode as Element
+            val algorithmName: String = algorithmElement.getAttributeNode("Name").value
+            algorithmNameSet.append(algorithmName)
+            algorithmNameSet.append(",")
+        }
+        val charRange = IntRange(algorithmNameSet.length-1, algorithmNameSet.length-1)
+        val algorithmNameSetStr = algorithmNameSet.toString().removeRange(charRange)
+        elementNamedAttribute.setAttribute("Value", algorithmNameSetStr) // No sure if in the correct order, maybe TODO...
+        insertElement(elementNamedAttribute, eccElement, basicFBElement)
+
+        // TODO: add bezierpoints to ECTransitions.
+
+        // TODO: complete rework of the algorithm section
+
+        /*
+        val basicFBList = root.getElementsByTagName("InterfaceList")
+
+        for (i in 0 until basicFBList.length) {
+            val basicFBNode = basicFBList.item(i)
+            if (basicFBNode.nodeType == org.w3c.dom.Node.ELEMENT_NODE) {
+                val basicFBElement = basicFBNode as org.w3c.dom.Element
+                val idElement = doc.createElement("Identification")
+                idElement.setAttribute("Standard", "61499-2")
+                basicFBElement.appendChild(idElement)
+                //basicFBElement.insertBefore(idElement)
+            }
+        }
+        */
+
+        return doc
     }
 
-    private fun recursiveFunction(pathToFbtFile: String, itemsToFind: MutableList<String>) {
+    private fun x(pathToFbtFile: String, itemsToFind: MutableList<String>) {
         val fbtFile = File(pathToFbtFile)
-
-        return
 
         val dbFactory = DocumentBuilderFactory.newInstance()
         val dBuilder = dbFactory.newDocumentBuilder()
@@ -185,8 +276,8 @@ class ExportAction : AnAction(), DumbAware {
 
         for (j in 0 until nodeList.length) {
             //itemsToFind.add(nodeList.item(j).toString())
+            continue
         }
-
 
         for (i in 0 until nodeList.length) {
             val node = nodeList.item(i)
@@ -207,7 +298,6 @@ class ExportAction : AnAction(), DumbAware {
                 println("Content : ${element.textContent}")
             }
 
+        }
     }
-*/
 }
-
