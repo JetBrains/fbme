@@ -2,302 +2,197 @@ package org.fbme.integration.nxt.exporter
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.project.DumbAware
-import com.intellij.openapi.project.Project
+import org.fbme.ide.platform.persistence.RecursiveFolderDataSource
+import jetbrains.mps.workbench.MPSDataKeys
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileManager
-import org.xml.sax.InputSource
+import org.fbme.ide.iec61499.repository.PlatformRepository
+import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
+import org.fbme.ide.platform.persistence.Iec61499ModelFactory
+import org.fbme.lib.common.Declaration
+import org.fbme.lib.iec61499.declarations.*
+import org.jdom.Document
+import org.jdom.output.Format
+import org.jdom.output.XMLOutputter
+import org.jetbrains.mps.openapi.model.SNode
 import java.io.File
 import java.io.IOException
-import java.io.StringReader
-import javax.xml.parsers.DocumentBuilderFactory
-import org.w3c.dom.Document
-import org.w3c.dom.Element
-import org.xml.sax.SAXException
 import java.nio.file.Files
 import java.nio.file.Paths
-import javax.xml.transform.OutputKeys
-import javax.xml.transform.TransformerException
-import javax.xml.transform.TransformerFactory
-import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.stream.StreamResult
 
-class ExportAction : AnAction(), DumbAware {
+
+class ExportAction: AnAction() { //}, DumbAware {
+
     override fun actionPerformed(event: AnActionEvent) {
 
-        val project: Project = event.project ?: return
-        val projectBasePath = project.basePath
+        /* useless keys
+        * event.getData(MPSDataKeys.NODE)
+        * event.getData(MPSDataKeys.MODEL)
+        * event.getData(MPSDataKeys.SOURCE_NODE)
+        * event.getData(MPSDataKeys.NODES)
+        * event.getData(MPSDataKeys.MODELS) ?
+        * */
 
-        if (projectBasePath == null) {
-            Messages.showMessageDialog(
-                project,
-                "Project base path is null",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return
-        }
+        /*
+        1. Extract auxiliary data of the function blocks while importing the Nxt project (GUIDs, VersionInfo, Bezierpoints for ECTransitions...)
+            1.1 Find out what type of data comes with what type of fbdt. TODO, even amongst BasicFBTypes, some may have GUIDs while others don't.
+        2. Convert all nodes of type fbTypeDeclaration into a document (org.jdom.Element).
+            2.1 Convert BasicFBTypeDeclaration types and "stitch them up" using the collected auxiliary data. TODO, only hardcoding atm.
+            2.2 Convert SIFB, FBNetwork, Adapter types. TODO
+        3. Write the documents in a new directory (MPSProjectNxtExports) maintaining the original structure. PRETTY MUCH DONE
+            3.1 Get relative location of all the converted fbs (.fbt files) in their original directory.
+            3.2 Create all the new directories if they don't exist.
+        */
 
-        // Search for each file with the given suffix.
-        fun recursiveFileSearcher(
-            dir: VirtualFile?,
-            projectFilePaths: MutableList<String>,
-            fileSuffix: String = ".fbt"
-        ) {
-            dir?.let { dirNow ->
-                dirNow.children.forEach { file ->
-                    if (file.children.isEmpty()) {
-                        // We have found a file, checks if it ends with 'fileSuffix'.
-                        if (file.name.endsWith(fileSuffix)) {
-                            projectFilePaths.add(file.path)
-                        }
-                    } else {
-                        recursiveFileSearcher(file, projectFilePaths, fileSuffix)
-                    }
+        val projectMPS = event.getData(MPSDataKeys.MPS_PROJECT) ?: return
+        val project = event.project ?: return
+        val model = event.getData(MPSDataKeys.CONTEXT_MODEL) ?: return
+        val modelAccess = model.repository.modelAccess
+        val platformRepository = PlatformRepositoryProvider.getInstance(projectMPS)
+
+        val fbTypeDeclarationDocumentList = mutableListOf<Document>()
+        val adapterTypeDeclarationDocumentList = mutableListOf<Document>()
+
+        // Sort all declarations into lists with the common file extension.
+        // TODO: Complete RootDeclarationNxtPrinter.
+        modelAccess.runReadAction {
+            val rootNodes = model.rootNodes
+            for (rootNode in rootNodes) {
+                //if (rootNode.name == "System") { continue }
+                val declaration = convertRootNode(platformRepository, rootNode, 8) ?: continue
+                val declarationDocument = RootDeclarationNxtPrinter(declaration as Declaration).print()
+                when (declaration) {
+                    is FBTypeDeclaration -> fbTypeDeclarationDocumentList.add(declarationDocument)
+                    is AdapterTypeDeclaration -> adapterTypeDeclarationDocumentList.add(declarationDocument)
+                    // end with .sys?
                 }
             }
         }
 
+        //val document = BasicFBTypePrinter(node).print()
+        val fileDataSource = model.source as RecursiveFolderDataSource
         val virtualFileManager = VirtualFileManager.getInstance()
-        val projectBaseDir: VirtualFile? = virtualFileManager.findFileByUrl("file://$projectBasePath")
-        val projectFilePaths = mutableListOf<String>()
-        recursiveFileSearcher(projectBaseDir, projectFilePaths) // Search for any .fbt files
+        val projectBasePath = project.basePath ?: return //fileDataSource.rootFolder.path
+        val projectRootPath = fileDataSource.rootFolder.path
+        val projectBaseDir: VirtualFile = virtualFileManager.findFileByUrl("file://$projectBasePath") ?: return
+        val projectBaseDirUp2: VirtualFile = projectBaseDir.parent?.parent ?: return
+        val projectBaseDirUp2Str: String = projectBaseDirUp2.toString().removePrefix("file://")
+        val exportBasePath = Paths.get(projectBaseDirUp2Str, "MPSProjectNxtExports", project.name, "IEC61499")
+        val exportBasePathStr = exportBasePath.toString()
+        val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
+        Files.createDirectories(exportBasePath)
 
-        val exportBaseDir: VirtualFile? = projectBaseDir?.parent?.parent // .../MPSProjectExports
-        val exportBasePath: String = exportBaseDir.toString()
+        fun writeDocuments(documentList: List<Document>, fileExtension: String): Boolean {
 
-        projectFilePaths.forEach { projectFilePath ->
-            if (!exportFile(projectFilePath, exportBasePath, project)) {
-                return
+            for (document in documentList) {
+
+                val declarationName = document.rootElement.getAttribute("Name").value
+                val declarationFileName = StringBuilder(declarationName).append(".").append(fileExtension).toString()
+                val declarationFullFilePath = filePathSearcherRecursive(projectBaseDir, declarationFileName)
+                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is it applicable in all every context (Windows vs. Linux)?
+
+                val exportPath = if (declarationSubFolder == "") {
+                    Paths.get(exportBasePathStr, declarationFileName)
+                } else {
+                    Paths.get(exportBasePathStr, declarationSubFolder, declarationFileName)
+                }
+                val exportPathStr = exportPath.toString()
+
+                try {
+                    if (Files.notExists(exportPath.parent)) { Files.createDirectories(exportPath.parent) }
+                    xmlOutputter.output(document, File(exportPathStr).writer()) // TODO: close these writers somehow...
+                    //File(exportPathStr).writer().close()
+                } catch (e: IOException) {
+                    Messages.showMessageDialog(
+                        project,
+                        "An error occurred during export: ${e.message}",
+                        "ExportNxt",
+                        Messages.getErrorIcon()
+                    )
+                    return false
+                }
             }
+
+            return true
         }
+
+        if (!writeDocuments(fbTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return }
+
+        if (!writeDocuments(adapterTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return }
 
         Messages.showMessageDialog(
             project,
-            "Export successful: $projectBasePath",
+            "Export successful: $exportBasePathStr \n\n" +
+                    "" ,
             "ExportNxt",
             Messages.getInformationIcon()
         )
 
     }
 
-    private fun exportFile(pathToFbtFile: String, exportBasePath: String, project: Project): Boolean {
-
-        val dbFactory = DocumentBuilderFactory.newInstance()
-        val dBuilder = dbFactory.newDocumentBuilder()
-        val fbtFile = File(pathToFbtFile)
-        val originalXmlContent = fbtFile.readText()
-        val xmlInput = InputSource(StringReader(originalXmlContent))
-        val doc: Document // Maybe need a '!' at the end.
-
-        try {
-            doc = dBuilder.parse(xmlInput)
-        } catch (e: IOException) {
-            Messages.showMessageDialog(
-                project,
-                "An error occurred while opening a project file: ${e.message}",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return false
-        } catch (e: SAXException) {
-            Messages.showMessageDialog(
-                project,
-                "An error occurred while parsing a project file: ${e.message}",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return false
-        } catch (e: IllegalArgumentException) {
-            Messages.showMessageDialog(
-                project,
-                "XML input can't be null: ${e.message}",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return false
+    private fun filePathSearcherRecursive(dir: VirtualFile, fileName: String) : String {
+        dir.children.forEach { subDir ->
+            val result = filePathSearcherRecursive(subDir, fileName)
+            if (result != "") { return result }
         }
-
-        val projectName = project.name
-        val fileName = pathToFbtFile.substring(pathToFbtFile.lastIndexOf("/") + 1)
-        val exportPath =
-            Paths.get(exportBasePath.removePrefix("file://"), "MPSProjectNxtExports", projectName, fileName)
-
-        val doctypeRegex = Regex("""<!DOCTYPE[^>]+>""") // <!DOCTYPE FBType SYSTEM "../LibraryElement.dtd"> in EAE
-        val doctypeMatch = doctypeRegex.find(originalXmlContent)
-        val doctypeDeclaration = doctypeMatch?.value ?: ""
-
-        val transformerFactory = TransformerFactory.newInstance()
-        val transformer = transformerFactory.newTransformer()
-        transformer.setOutputProperty(OutputKeys.INDENT, "no")
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2")
-        transformer.setOutputProperty(
-            OutputKeys.OMIT_XML_DECLARATION,
-            "yes"
-        ) // If not done manually later, will end up in the wrong place in the xml.
-
-        val docConverted = convertBasicFB(doc)
-        val source = DOMSource(docConverted)
-
-        try {
-            Files.createDirectories(exportPath.parent)
-
-            val writer = Files.newBufferedWriter(exportPath)
-            writer.write("""<?xml version="1.0" encoding="UTF-8"?>""")
-            writer.newLine()
-
-            // Write the DOCTYPE declaration manually if it exists
-            if (doctypeDeclaration.isNotEmpty()) {
-                writer.write(doctypeDeclaration)
-                writer.newLine()
-            }
-            val result = StreamResult(writer)
-            transformer.transform(source, result)
-            writer.close()
-        } catch (e: IOException) { //bufferedWriter.write()
-            Messages.showMessageDialog(
-                project,
-                "An error occurred during export: ${e.message}",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return false
-        } catch (e: TransformerException) {
-            Messages.showMessageDialog(
-                project,
-                "An error occurred during export: ${e.message}",
-                "ExportNxt",
-                Messages.getErrorIcon()
-            )
-            return false
-        }
-        return true
-    }
-
-    private fun convertBasicFB(doc: Document): Document {
-
-        // Most likely edits doc in place
-        val root = doc.documentElement
-
-        root.setAttribute("GUID", "ccbf2b60-58fa-4446-a3fb-00066c5e49e1") // TODO
-        root.setAttribute("Comment","Basic Function Block Type") // TODO
-
-        // Takes care of indentation and line breaking. TODO; doesn't work as intended with the indentations...
-        fun insertElement(newElement: Element, refElement: Element, parentElement: Element) {
-            parentElement.insertBefore(newElement, refElement)
-            parentElement.insertBefore(doc.createTextNode("\n"), refElement)
-            val indentElement = doc.createTextNode("  ")
-            var placeHolderElement = refElement
-            var scoutElement: Element
-            while (true) {
-                parentElement.insertBefore(indentElement, refElement)
-                scoutElement = placeHolderElement.parentNode as Element
-                if (scoutElement == root) { //Node.DOCUMENT_NODE
-                    break
-                }
-                placeHolderElement = scoutElement
-            }
-        }
-
-        // Identification Standard
-        val interfaceListNode = root.getElementsByTagName("InterfaceList").item(0)
-        val interfaceListElement = interfaceListNode as Element // org.w3c.dom.Element
-        val idElement = doc.createElement("Identification")
-        idElement.setAttribute("Standard", "61499-2") // TODO
-        insertElement(idElement, interfaceListElement, root)
-
-        // VersionInfo
-        val versionInfoNode = doc.createElement("VersionInfo")
-        val versionInfoElement = versionInfoNode as Element
-        versionInfoElement.setAttribute("Organization", "Schneider Electric") // TODO....
-        versionInfoElement.setAttribute("Version", "0.0")
-        versionInfoElement.setAttribute("Author", "Unknown")
-        versionInfoElement.setAttribute("Date", "xx/xx/xxxx")
-        versionInfoElement.setAttribute("Remarks", "Template")
-        insertElement(versionInfoElement, interfaceListElement, root)
-
-        // Attribute (Add an element named "Attribute" under element "BasicFB")
-        val basicFBNode = root.getElementsByTagName("BasicFB").item(0)
-        val basicFBElement = basicFBNode as Element
-        val eccNode = basicFBElement.getElementsByTagName("ECC").item(0)
-        val eccElement = eccNode as Element
-        val elementNamedAttribute = doc.createElement("Attribute")
-        elementNamedAttribute.setAttribute("Name", "FBType.Basic.Algorithm.Order")
-
-        val algorithmNodeList = basicFBElement.getElementsByTagName("Algorithm")
-        val algorithmNameSet = StringBuilder()
-        for (i in 0 until algorithmNodeList.length) {
-            val algorithmNode = algorithmNodeList.item(i)
-            val algorithmElement = algorithmNode as Element
-            val algorithmName: String = algorithmElement.getAttributeNode("Name").value
-            algorithmNameSet.append(algorithmName)
-            algorithmNameSet.append(",")
-        }
-        val charRange = IntRange(algorithmNameSet.length-1, algorithmNameSet.length-1)
-        val algorithmNameSetStr = algorithmNameSet.toString().removeRange(charRange)
-        elementNamedAttribute.setAttribute("Value", algorithmNameSetStr) // No sure if in the correct order, maybe TODO...
-        insertElement(elementNamedAttribute, eccElement, basicFBElement)
-
-        // TODO: add bezierpoints to ECTransitions.
-
-        // TODO: complete rework of the algorithm section
-
-        /*
-        val basicFBList = root.getElementsByTagName("InterfaceList")
-
-        for (i in 0 until basicFBList.length) {
-            val basicFBNode = basicFBList.item(i)
-            if (basicFBNode.nodeType == org.w3c.dom.Node.ELEMENT_NODE) {
-                val basicFBElement = basicFBNode as org.w3c.dom.Element
-                val idElement = doc.createElement("Identification")
-                idElement.setAttribute("Standard", "61499-2")
-                basicFBElement.appendChild(idElement)
-                //basicFBElement.insertBefore(idElement)
-            }
-        }
-        */
-
-        return doc
-    }
-
-    private fun x(pathToFbtFile: String, itemsToFind: MutableList<String>) {
-        val fbtFile = File(pathToFbtFile)
-
-        val dbFactory = DocumentBuilderFactory.newInstance()
-        val dBuilder = dbFactory.newDocumentBuilder()
-        val xmlInput = InputSource(StringReader(fbtFile.readText()))
-        val doc = dBuilder.parse(xmlInput)
-
-        doc.documentElement.normalize()
-        val root = doc.documentElement
-
-        val nodeList = root.childNodes
-
-        for (j in 0 until nodeList.length) {
-            //itemsToFind.add(nodeList.item(j).toString())
-            continue
-        }
-
-        for (i in 0 until nodeList.length) {
-            val node = nodeList.item(i)
-
-            if (node.nodeType == Document.ELEMENT_NODE) {
-                val element = node as org.w3c.dom.Element
-                itemsToFind.add(element.tagName)
-                itemsToFind.add("\n")
-
-                // Access attributes
-                val attributes = element.attributes
-                for (j in 0 until attributes.length) {
-                    val attribute = attributes.item(j)
-//                  println("Attribute Node: ${attribute.nodeName} = ${attribute.nodeValue}")
-                }
-
-                // Access text content
-                println("Content : ${element.textContent}")
-            }
-
+        return if (dir.name != fileName) {
+            ""
+        } else {
+            dir.path
         }
     }
+
+    private fun convertRootNode(platformRepository: PlatformRepository, node: SNode, attemptsLeft: Int): Any? {
+        // Takes a root node of the model and returns a declaration if it fits any of the 8 declaration classes.
+        return try {
+            when (attemptsLeft) {
+                8 -> platformRepository.adapter<AdapterTypeDeclaration>(node)
+                7 -> platformRepository.adapter<BasicFBTypeDeclaration>(node)
+                6 -> platformRepository.adapter<CompositeFBTypeDeclaration>(node)
+                5 -> platformRepository.adapter<DeviceTypeDeclaration>(node)
+                4 -> platformRepository.adapter<ResourceTypeDeclaration>(node)
+                3 -> platformRepository.adapter<ServiceInterfaceFBTypeDeclaration>(node)
+                2 -> platformRepository.adapter<SubapplicationTypeDeclaration>(node)
+                else -> platformRepository.adapter<SystemDeclaration>(node)
+            }
+        } catch (e: java.lang.ClassCastException) {
+            if (attemptsLeft == 1) {
+                // None of the attempts worked, return null.
+                null
+            } else {
+                convertRootNode(platformRepository, node, attemptsLeft - 1)
+            }
+        }
+    }
+
 }
+
+/*        for (fbTypeDeclarationDocument in fbTypeDeclarationDocumentList) {
+
+            val fbTypeDeclarationName = fbTypeDeclarationDocument.rootElement.getAttribute("Name").value
+            val fbTypeDeclarationFileName = StringBuilder(fbTypeDeclarationName).append(".").append(Iec61499ModelFactory.Companion.FBT_FILE_EXT).toString()
+            val fbTypeDeclarationFullFilePath = filePathSearcherRecursive(projectBaseDir, fbTypeDeclarationFileName)
+            val fbTypeDeclarationSubFolder = fbTypeDeclarationFullFilePath.removePrefix(projectRootPath).removeSuffix(fbTypeDeclarationFileName).trim('/') // Is it applicable in all every context (Windows vs. Linux)?
+
+            val exportPath = if (fbTypeDeclarationSubFolder == "") {
+                Paths.get(exportBasePathStr, fbTypeDeclarationFileName)
+            } else {
+                Paths.get(exportBasePathStr, fbTypeDeclarationSubFolder, fbTypeDeclarationFileName)
+            }
+            val exportPathStr = exportPath.toString()
+
+            try {
+                if (Files.notExists(exportPath.parent)) { Files.createDirectories(exportPath.parent) }
+                xmlOutputter.output(fbTypeDeclarationDocument, File(exportPathStr).writer()) // TODO: close these writers somehow...
+                //File(exportPathStr).writer().close()
+            } catch (e: IOException) {
+                Messages.showMessageDialog(
+                    project,
+                    "An error occurred during export: ${e.message}",
+                    "ExportNxt",
+                    Messages.getErrorIcon()
+                )
+                return
+            }
+        }*/

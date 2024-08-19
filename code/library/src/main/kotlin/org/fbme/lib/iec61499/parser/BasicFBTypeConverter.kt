@@ -18,6 +18,10 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         checkNotNull(element)
         val fbtd = factory.createBasicFBTypeDeclaration(identifier)
         val basicFbElement = element.getChild("BasicFB")
+
+        //val bezierpointValues = basicFbElement.getChild("ECC").getChild("ECTransition").getChild("Attribute").getAttribute("Value").value
+        //val fbtd.setAuxilaryData(bezierpointValues)
+
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         ParameterDeclarationConverter.extractAll(with(basicFbElement.getChild("InternalVars")), fbtd.internalVariables)

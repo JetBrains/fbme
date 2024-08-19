@@ -8,7 +8,7 @@ import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.jdom.Element
 
-class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
+open class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
     DeclarationPrinterBase<BasicFBTypeDeclaration>(declaration, "FBType") {
     override fun printDeclarationBody(element: Element) {
         element.addContent(FBInterfacePrinterWithAdapters(this.element).print())
@@ -32,7 +32,7 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
         element.addContent(basicFB)
     }
 
-    private class StatePrinter(stateDeclaration: StateDeclaration) :
+    class StatePrinter(stateDeclaration: StateDeclaration) :
         DeclarationPrinterBase<StateDeclaration>(stateDeclaration, "ECState") {
         override fun printDeclarationBody(element: Element) {
             element.setAttribute("x", "" + this.element.x)
@@ -52,7 +52,7 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
         }
     }
 
-    private fun printStateTransition(stateTransition: StateTransition): Element {
+    open fun printStateTransition(stateTransition: StateTransition): Element {
         val element = Element("ECTransition")
         element.setAttribute("Source", stateTransition.sourceReference.presentation)
         element.setAttribute("Destination", stateTransition.targetReference.presentation)
