@@ -15,15 +15,15 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
 
         val fbNetwork = ecoElement.getChild("FBNetwork") ?: return ecoElement
         val fbElementList = fbNetwork.getChildren("FB") ?: return ecoElement
+        val finder = FBNameSpaceFinder()
         fbElementList.forEach { fbElement ->
-            // TODO: Dynamic namespace writing.
-            if (true) {
+            val fbType = fbElement.getAttributeValue("Type")
+            val fbNamespace = finder.getNamespace(fbType)
+            if (fbNamespace == "unknown") {
                 // Is this a self-made FB? If so, Namespace should be main.
                 fbElement.setAttribute("Namespace", "Main")
             } else {
-                // Could be anything, needs to be read from the configuration files.
-                //"E_DELAY" ->
-                fbElement.setAttribute("Namespace", "IEC61499.Standard")
+                fbElement.setAttribute("Namespace", fbNamespace)
             }
         }
 
