@@ -15,19 +15,19 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         printEndpointCoordinates(element)
     }
 
-    private fun printEndpointCoordinates(element: Element) {
+    fun printEndpointCoordinates(element: Element) {
         for (endpointCoordinate in this.element.endpointCoordinates) {
             element.addContent(printEndpointCoordinate(endpointCoordinate))
         }
     }
 
-    private fun printFunctionBlocks(element: Element) {
+    open fun printFunctionBlocks(element: Element) {
         for (fb in this.element.functionBlocks) {
             element.addContent(FunctionBlockPrinter(fb).print())
         }
     }
 
-    private fun printDataConnections(): Element? {
+    fun printDataConnections(): Element? {
         val dataConnections = element.dataConnections
         if (dataConnections.isEmpty()) {
             return null
@@ -39,7 +39,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    private fun printEventConnections(): Element? {
+    open fun printEventConnections(): Element? {
         val eventConnections = element.eventConnections
         if (eventConnections.isEmpty()) {
             return null
@@ -51,7 +51,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    private fun printAdapterConnections(): Element? {
+    fun printAdapterConnections(): Element? {
         val adapterConnections = element.adapterConnections
         if (adapterConnections.isEmpty()) {
             return null
@@ -63,7 +63,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    private class FunctionBlockPrinter(fb: FunctionBlockDeclaration) :
+    class FunctionBlockPrinter(fb: FunctionBlockDeclaration) :
         DeclarationPrinterBase<FunctionBlockDeclaration>(fb, "FB") {
         override fun printDeclarationBody(element: Element) {
             element.setAttribute("Type", this.element.typeReference.presentation)

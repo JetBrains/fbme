@@ -21,6 +21,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 
+//import org.fbme.integration
 
 class ExportAction: AnAction() { //}, DumbAware {
 
@@ -45,14 +46,20 @@ class ExportAction: AnAction() { //}, DumbAware {
             3.2 Create all the new directories if they don't exist.
         */
 
+        /* Composite FBs:
+        1. FBType = Main/IEC61499.Standard
+        2. FBType/FBNetwork/FB attribute namespace = Main/IEC61499.Standard  // For constants on the side of an FB.
+        3. FBType/FBNetwork/EventConnections/Connection/AvoidsNodes = false // For event connections that loop back (multiple dx/dy attributes)
+        */
+
         val projectMPS = event.getData(MPSDataKeys.MPS_PROJECT) ?: return
-        val project = event.project ?: return
+        val platformRepository = PlatformRepositoryProvider.getInstance(projectMPS)
         val model = event.getData(MPSDataKeys.CONTEXT_MODEL) ?: return
         val modelAccess = model.repository.modelAccess
-        val platformRepository = PlatformRepositoryProvider.getInstance(projectMPS)
 
         val fbTypeDeclarationDocumentList = mutableListOf<Document>()
         val adapterTypeDeclarationDocumentList = mutableListOf<Document>()
+        val systemDeclarationDocumentList = mutableListOf<Document>()
 
         // Sort all declarations into lists with the common file extension.
         // TODO: Complete RootDeclarationNxtPrinter.
@@ -61,24 +68,32 @@ class ExportAction: AnAction() { //}, DumbAware {
             for (rootNode in rootNodes) {
                 //if (rootNode.name == "System") { continue }
                 val declaration = convertRootNode(platformRepository, rootNode, 8) ?: continue
-                val declarationDocument = RootDeclarationNxtPrinter(declaration as Declaration).print()
+                val declarationDocument = RootDeclarationEcoPrinter(declaration as Declaration).print()
                 when (declaration) {
                     is FBTypeDeclaration -> fbTypeDeclarationDocumentList.add(declarationDocument)
                     is AdapterTypeDeclaration -> adapterTypeDeclarationDocumentList.add(declarationDocument)
-                    // end with .sys?
+                    is SystemDeclaration -> systemDeclarationDocumentList.add(declarationDocument)
+                    else -> Messages.showMessageDialog(
+                        event.project,
+                        "Sus activity detected! \n" +
+                                "${rootNode.name}" ,
+                        "ExportEcostruxure",
+                        Messages.getInformationIcon()
+                    )
                 }
             }
         }
 
-        //val document = BasicFBTypePrinter(node).print()
+        // Create directories for all the documents and write them there using the XMLoutputter.
         val fileDataSource = model.source as RecursiveFolderDataSource
         val virtualFileManager = VirtualFileManager.getInstance()
+        val project = event.project ?: return
         val projectBasePath = project.basePath ?: return //fileDataSource.rootFolder.path
         val projectRootPath = fileDataSource.rootFolder.path
         val projectBaseDir: VirtualFile = virtualFileManager.findFileByUrl("file://$projectBasePath") ?: return
         val projectBaseDirUp2: VirtualFile = projectBaseDir.parent?.parent ?: return
         val projectBaseDirUp2Str: String = projectBaseDirUp2.toString().removePrefix("file://")
-        val exportBasePath = Paths.get(projectBaseDirUp2Str, "MPSProjectNxtExports", project.name, "IEC61499")
+        val exportBasePath = Paths.get(projectBaseDirUp2Str, "MPSProjectEcostruxureExports", project.name, "IEC61499")
         val exportBasePathStr = exportBasePath.toString()
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
         Files.createDirectories(exportBasePath)
@@ -100,9 +115,12 @@ class ExportAction: AnAction() { //}, DumbAware {
                 val exportPathStr = exportPath.toString()
 
                 try {
-                    if (Files.notExists(exportPath.parent)) { Files.createDirectories(exportPath.parent) }
-                    xmlOutputter.output(document, File(exportPathStr).writer()) // TODO: close these writers somehow...
-                    //File(exportPathStr).writer().close()
+                    if (Files.notExists(exportPath.parent)) {
+                        Files.createDirectories(exportPath.parent)
+                    }
+                    File(exportPathStr).writer().use { writer ->
+                        xmlOutputter.output(document, writer)
+                    }
                 } catch (e: IOException) {
                     Messages.showMessageDialog(
                         project,
@@ -118,14 +136,14 @@ class ExportAction: AnAction() { //}, DumbAware {
         }
 
         if (!writeDocuments(fbTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return }
-
         if (!writeDocuments(adapterTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return }
+        if (!writeDocuments(systemDeclarationDocumentList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return }
 
         Messages.showMessageDialog(
             project,
             "Export successful: $exportBasePathStr \n\n" +
                     "" ,
-            "ExportNxt",
+            "ExportEcostruxure",
             Messages.getInformationIcon()
         )
 
@@ -167,32 +185,3 @@ class ExportAction: AnAction() { //}, DumbAware {
     }
 
 }
-
-/*        for (fbTypeDeclarationDocument in fbTypeDeclarationDocumentList) {
-
-            val fbTypeDeclarationName = fbTypeDeclarationDocument.rootElement.getAttribute("Name").value
-            val fbTypeDeclarationFileName = StringBuilder(fbTypeDeclarationName).append(".").append(Iec61499ModelFactory.Companion.FBT_FILE_EXT).toString()
-            val fbTypeDeclarationFullFilePath = filePathSearcherRecursive(projectBaseDir, fbTypeDeclarationFileName)
-            val fbTypeDeclarationSubFolder = fbTypeDeclarationFullFilePath.removePrefix(projectRootPath).removeSuffix(fbTypeDeclarationFileName).trim('/') // Is it applicable in all every context (Windows vs. Linux)?
-
-            val exportPath = if (fbTypeDeclarationSubFolder == "") {
-                Paths.get(exportBasePathStr, fbTypeDeclarationFileName)
-            } else {
-                Paths.get(exportBasePathStr, fbTypeDeclarationSubFolder, fbTypeDeclarationFileName)
-            }
-            val exportPathStr = exportPath.toString()
-
-            try {
-                if (Files.notExists(exportPath.parent)) { Files.createDirectories(exportPath.parent) }
-                xmlOutputter.output(fbTypeDeclarationDocument, File(exportPathStr).writer()) // TODO: close these writers somehow...
-                //File(exportPathStr).writer().close()
-            } catch (e: IOException) {
-                Messages.showMessageDialog(
-                    project,
-                    "An error occurred during export: ${e.message}",
-                    "ExportNxt",
-                    Messages.getErrorIcon()
-                )
-                return
-            }
-        }*/
