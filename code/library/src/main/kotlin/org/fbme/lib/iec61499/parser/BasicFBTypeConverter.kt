@@ -10,6 +10,7 @@ import org.fbme.lib.iec61499.ecc.ECTransitionCondition
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.st.STFactory
+import org.jdom.CDATA
 import org.jdom.Element
 
 open class BasicFBTypeConverter(arguments: ConverterArguments) :
@@ -138,9 +139,16 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
             if (stBodyElement != null) {
                 val st = factory.createAlgorithmBody(AlgorithmLanguage.ST)
                 algorithmDeclaration.body = st
-                val stText = stBodyElement.getAttributeValue("Text")?.unescapeXML()
+                var stText = stBodyElement.getAttributeValue("Text")?.unescapeXML()
                 if (stText != null) {
                     stAlgorithmConverter.convert(factory, stFactory, algorithmDeclaration, st, stText)
+                } else {
+                    val content = stBodyElement.content[0] as CDATA
+                    stText = content.text
+                    if (stText != null) {
+                        stText = removeComments(stText.unescapeXML())
+                        stAlgorithmConverter.convert(factory, stFactory, algorithmDeclaration, st, stText)
+                    }
                 }
             }
             val otherBodyElement = element.getChild("Other")
@@ -155,5 +163,54 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
             }
             return algorithmDeclaration
         }
+
+        private fun removeComments(rawData: String): String {
+            val cleanedData = StringBuilder(rawData)
+            var insideString = false
+            var index1 = 0
+
+            while (index1 < cleanedData.length) {
+                // Toggle the insideString flag if we encounter a double quote.
+                if (cleanedData[index1] == '\"') {
+                    insideString = !insideString
+                    index1++
+                    continue
+                }
+
+                if (!insideString && cleanedData[index1] == '/') {
+                    if (index1 + 1 < cleanedData.length) {
+                        when (cleanedData[index1 + 1]) {
+                            '/' -> {
+                                // Line comment, remove until end of line.
+                                var index2 = cleanedData.indexOf('\n', index1)
+                                // If comment doesn't start a new line though, spare the last linebreak char.
+                                if (index1 != 0) {
+                                    if (cleanedData[index1 - 1] != '\n') {
+                                        index2 -= 1
+                                    }
+                                }
+                                if (index2 != -1) {
+                                    cleanedData.delete(index1, index2)
+                                } else {
+                                    cleanedData.delete(index1, cleanedData.length)
+                                }
+                            }
+                            '*' -> {
+                                // Block comment, remove until "*/".
+                                val endBlockIndex = cleanedData.indexOf("*/", index1 + 2)
+                                if (endBlockIndex != -1) {
+                                    cleanedData.delete(index1, endBlockIndex + 2)
+                                } else {
+                                    cleanedData.delete(index1, cleanedData.length)
+                                }
+                            }
+                        }
+                    }
+                }
+                index1++
+            }
+            return cleanedData.toString()
+        }
+
     }
 }
