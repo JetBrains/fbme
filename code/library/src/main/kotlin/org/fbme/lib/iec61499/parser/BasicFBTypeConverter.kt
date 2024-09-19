@@ -19,10 +19,6 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         checkNotNull(element)
         val fbtd = factory.createBasicFBTypeDeclaration(identifier)
         val basicFbElement = element.getChild("BasicFB")
-
-        //val bezierpointValues = basicFbElement.getChild("ECC").getChild("ECTransition").getChild("Attribute").getAttribute("Value").value
-        //val fbtd.setAuxilaryData(bezierpointValues)
-
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         ParameterDeclarationConverter.extractAll(with(basicFbElement.getChild("InternalVars")), fbtd.internalVariables)
@@ -165,25 +161,19 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         }
 
         private fun removeComments(rawData: String): String {
+
             val cleanedData = StringBuilder(rawData)
-            var insideString = false
             var index1 = 0
 
             while (index1 < cleanedData.length) {
-                // Toggle the insideString flag if we encounter a double quote.
-                if (cleanedData[index1] == '\"') {
-                    insideString = !insideString
-                    index1++
-                    continue
-                }
 
-                if (!insideString && cleanedData[index1] == '/') {
+                if (cleanedData[index1] == '/') {
                     if (index1 + 1 < cleanedData.length) {
                         when (cleanedData[index1 + 1]) {
                             '/' -> {
                                 // Line comment, remove until end of line.
                                 var index2 = cleanedData.indexOf('\n', index1)
-                                // If comment doesn't start a new line though, spare the last linebreak char.
+                                // If comment doesn't start a new line though, spare the last linebreak.
                                 if (index1 != 0) {
                                     if (cleanedData[index1 - 1] != '\n') {
                                         index2 -= 1
