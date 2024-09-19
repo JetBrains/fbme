@@ -12,9 +12,8 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
         val rootElement: Element = when (myDeclaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> {
-                //val fbmeElement = BasicFBTypePrinter(myDeclaration).print()
-                //BasicFBTypeDeclarationEcoConverter(fbmeElement).convert()
-                BasicFBTypeEcoPrinter(myDeclaration).print()
+                val fbmeElement = BasicFBTypePrinter(myDeclaration).print()
+                BasicFBTypeDeclarationEcoConverter(fbmeElement).convert()
             }
             is CompositeFBTypeDeclaration -> {
                 val fbmeElement = CompositeFBTypePrinter(myDeclaration).print()
@@ -28,17 +27,16 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             else -> error("Unrecognized root declaration")
         }
         val document = Document()
-        //rootElement.setAttribute("Namespace", "Main")
         document.rootElement = rootElement
         document.docType = DocType(
             rootElement.name,
             DTD_LOCATION
         )
+
         return document
     }
 
     companion object {
         private const val DTD_LOCATION = "../LibraryElement.dtd"
     }
-
 }
