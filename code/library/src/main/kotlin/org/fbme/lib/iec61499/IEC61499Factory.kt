@@ -44,4 +44,5 @@ interface IEC61499Factory {
     fun createSocketDeclaration(identifier: Identifier?): SocketDeclaration
     fun createFBNetworkConnection(connectionKind: EntryKind): FBNetworkConnection
     fun createEndpointCoordinate(): EndpointCoordinate
+    fun createFBTypeAuxiliaryData(): FBTypeAuxiliaryData
 }

@@ -7,6 +7,9 @@ open class CompositeFBTypeConverter(arguments: ConverterArguments) :
     DeclarationConverterBase<CompositeFBTypeDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): CompositeFBTypeDeclaration {
         val fbtd = factory.createCompositeFBTypeDeclaration(identifier)
+        //val auxiliaryData = factory.createFBTypeAuxiliaryData() // val auxiliaryData = factory.createFBTypeAuxiliaryData("1234")
+        //auxiliaryData.guid = "1234"
+        //fbtd.auxiliaryData = mutableListOf(auxiliaryData) // fbtd.auxiliaryData = auxiliaryData
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         val fbNetworkConverter = createFBNetworkConverter(fbtd)

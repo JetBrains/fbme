@@ -29,8 +29,9 @@ import java.io.FileReader
 import java.util.*
 import kotlin.collections.ArrayDeque
 
-
-class NxtImportProjectTemplate : Iec61499ProjectTemplate(
+class NxtImportProjectTemplate(
+    private var importDirectory: String?
+) : Iec61499ProjectTemplate(
     NxtImportSystemConfigSolutionSettings("NewModel"),
     "Nxt Project",
     "Import project from NxtStudio",
@@ -40,6 +41,7 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
     override fun initModel(project: Project, repository: PlatformRepository, model: SModel): PlatformElement {
         val settings = settings as NxtImportSystemConfigSolutionSettings
         val nxtImportDirectory = settings.getNxtImportLocation()
+        importDirectory = nxtImportDirectory
         val modelId = SModelId.generate()
         val modelName = settings.moduleName
         val ref = PersistenceFacade.getInstance().createModelReference(null, modelId, modelName)
@@ -48,7 +50,7 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         val errorEntries = mutableSetOf<DocumentEntry>()
         for (entry in entries) {
             try {
-                loadRootFromFile(header, entry, model)
+                loadRootFromFile(header, entry, model, repository)
             } catch (e: Exception) {
                 errorEntries += entry
             }
@@ -62,6 +64,8 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
             )
             Notifications.Bus.notify(notification, project)
         }
+        // TODO
+        checkEventConnections(model, nxtImportDirectory)
         val first = model.rootNodes.firstOrNull()
         if (first != null) {
             return repository.adapter<PlatformElement>(first)
@@ -72,10 +76,10 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
     }
 
     @Throws(ModelLoadException::class)
-    fun loadRootFromFile(header: SModelSimpleHeader, entry: DocumentEntry, model: SModel) {
+    fun loadRootFromFile(header: SModelSimpleHeader, entry: DocumentEntry, model: SModel, repository: PlatformRepository) {
         BufferedReader(FileReader(entry.file)).use { reader ->
             val doc = JDOMUtil.loadDocument(reader)
-            val node = convertRootNode(header.modelReference, doc, entry.file.extension)
+            val node = convertRootNode(header.modelReference, doc, entry.file.extension, repository)
             if (node != null) {
                 val virtualPackage = NameUtil.namespaceFromLongName(entry.name)
                 if (virtualPackage != null && virtualPackage.isNotEmpty()) {
@@ -86,12 +90,19 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         }
     }
 
-    private fun convertRootNode(reference: SModelReference, doc: Document, fileExtension: String?): SNode? {
+    private fun convertRootNode(reference: SModelReference, doc: Document, fileExtension: String?, repository: PlatformRepository): SNode? {
         val owner = PlatformElementsOwner()
         val configuration = NxtImporterConfiguration.FACTORY.createConfiguration(owner)
         val converter = create(configuration, reference, doc)
         return when (fileExtension) {
-            Iec61499ModelFactory.FBT_FILE_EXT -> (converter.convertFBType() as PlatformElement).node
+            Iec61499ModelFactory.FBT_FILE_EXT -> {
+                val fbTypeAuxiliaryData = repository.iec61499Factory.createFBTypeAuxiliaryData()
+                val fbTypeDeclaration = converter.convertFBType()
+                fbTypeDeclaration.auxiliaryData = mutableListOf(fbTypeAuxiliaryData)
+                //val idk = (converter.convertFBType() as PlatformElement).node
+                val fbTypePlatformElement = fbTypeDeclaration as PlatformElement
+                fbTypePlatformElement.node
+            }
             Iec61499ModelFactory.ADP_FILE_EXT -> (converter.convertAdapterType() as PlatformElement).node
             Iec61499ModelFactory.SUB_FILE_EXT -> (converter.convertSubapplicationType() as PlatformElement).node
             Iec61499ModelFactory.RES_FILE_EXT -> (converter.convertResourceType() as PlatformElement).node
@@ -130,6 +141,16 @@ class NxtImportProjectTemplate : Iec61499ProjectTemplate(
         }
     }
 
+    private fun checkEventConnections(model: SModel, nxtImportDirectory: String) {
+        model.rootNodes.forEach { rootNode ->
+            //val compositeFBTypeConcept = model.repository.getConcept("org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration")
+
+            //val fbNetworkNode = rootNode.children.firstOrNull { it.concept == compositeFBTypeConcept }
+            //val eventConnectionsNode = fbNetworkNode?.getChildren(someContainmentLinkForEventConnections)?.firstOrNull()
+            //val connections = eventConnectionsNode?.getChildren(someContainmentLinkForConnection) ?: emptyList<SNode>()
+
+        }
+    }
 
     data class DocumentEntry(val name: String, val file: File) {
 

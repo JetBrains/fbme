@@ -15,7 +15,7 @@ class BasicFBTypeDeclarationEcoConverter(fbmeElement: Element) {
 
         ecoElement.setAttribute("Namespace", "Main")
         addAttributeElement(ecoElement)
-        addBezierPoints(ecoElement)
+        //addBezierPoints(ecoElement)
         rewriteAlgorithmContents(ecoElement)
 
         // TODO: Get auxiliary data and print it here (including GUID, version info, so on).
@@ -26,7 +26,7 @@ class BasicFBTypeDeclarationEcoConverter(fbmeElement: Element) {
     private fun addAttributeElement(ecoElement: Element) {
         val basicFBElement = ecoElement.getChild("BasicFB") ?: return
         val attributeElement = Element("Attribute")
-        attributeElement.setAttribute("Order", "FBType.Basic.Algorithm.Order")
+        attributeElement.setAttribute("Name", "FBType.Basic.Algorithm.Order")
         val algorithmNamesBuilder = StringBuilder()
         val algorithmElements = basicFBElement.getChildren("Algorithm")
         for (algorithmElement in algorithmElements) {
@@ -43,16 +43,61 @@ class BasicFBTypeDeclarationEcoConverter(fbmeElement: Element) {
     }
 
     private fun addBezierPoints(ecoElement: Element) {
+
+        fun findElementByName(elements: List<Element>, childName: String) : Element {
+            for (element in elements) {
+                if (element.getAttributeValue("Name") == childName) {
+                    return element
+                }
+            }
+            return elements[0] // Just to avoid returning nulls.
+        }
+
         val basicFBElement = ecoElement.getChild("BasicFB") ?: return
         val eccElement = basicFBElement.getChild("ECC") ?: return
+        val ecStateElements = eccElement.getChildren("ECState") ?: return
         val ecTransitionElements = eccElement.getChildren("ECTransition") ?: return
         ecTransitionElements.forEach { ecTransitionElement ->
             val attributeElement = Element("Attribute")
             attributeElement.setAttribute("Name", "Configuration.Transaction.BezierPoints")
             val transitionX = ecTransitionElement.getAttributeValue("x").toFloat()
             val transitionY = ecTransitionElement.getAttributeValue("y").toFloat()
-            val bezierPointX = transitionX / 5 // TODO, approximate these in more detail.
-            val bezierPointY = transitionY / 5
+            //val bezierPointX = transitionX / 5 // TODO, approximate these in more detail.
+            //val bezierPointY = transitionY / 5
+            val sourceStateName = ecTransitionElement.getAttributeValue("Source")
+            val sourceStateElement = findElementByName(ecStateElements, sourceStateName)
+            val sourceX = sourceStateElement.getAttributeValue("x").toFloat()
+            val sourceY = sourceStateElement.getAttributeValue("y").toFloat()
+
+            val destinationStateName = ecTransitionElement.getAttributeValue("Destination")
+            val destinationStateElement = findElementByName(ecStateElements, destinationStateName)
+            val destinationX = destinationStateElement.getAttributeValue("x").toFloat()
+            val destinationY = destinationStateElement.getAttributeValue("y").toFloat()
+
+            // Calculate the directional vector from source to destination
+            val dx = destinationX - sourceX
+            val dy = destinationY - sourceY
+
+            // Perpendicular vector to (dx, dy) is (-dy, dx)
+            // This gives a vector orthogonal to the line connecting the source and destination
+            val perpX = -dy
+            val perpY = dx
+
+            // Normalize the perpendicular vector
+            val length = Math.sqrt((perpX * perpX + perpY * perpY).toDouble())
+            val unitPerpX = (perpX / length).toFloat()
+            val unitPerpY = (perpY / length).toFloat()
+
+            // Use an offset to adjust the curvature. Adjust this based on your grid scale.
+            val curveOffset = 20.0f
+
+            // Calculate control points along the perpendicular vector
+            var bezierPointX = (sourceX + destinationX) * 0.5f  * 0.3f + unitPerpX * curveOffset
+            var bezierPointY = (sourceY + destinationY) * 0.5f  * 0.3f + unitPerpY * curveOffset
+
+            //bezierPointX = transitionX
+            //bezierPointY = transitionY
+
             val bezierPointsValues = "$bezierPointX,$bezierPointY,$bezierPointX,$bezierPointY"
             attributeElement.setAttribute("Value", bezierPointsValues)
             ecTransitionElement.addContent(attributeElement)

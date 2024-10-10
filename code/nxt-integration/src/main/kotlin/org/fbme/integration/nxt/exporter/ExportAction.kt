@@ -2,6 +2,8 @@ package org.fbme.integration.nxt.exporter
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.fileChooser.FileChooser
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import org.fbme.ide.platform.persistence.RecursiveFolderDataSource
 import jetbrains.mps.workbench.MPSDataKeys
 import com.intellij.openapi.ui.Messages
@@ -20,8 +22,6 @@ import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
-
-//import org.fbme.integration
 
 class ExportAction: AnAction() { //}, DumbAware {
 
@@ -46,16 +46,11 @@ class ExportAction: AnAction() { //}, DumbAware {
             3.2 Create all the new directories if they don't exist.
         */
 
-        /* Composite FBs:
-        1. FBType = Main/IEC61499.Standard
-        2. FBType/FBNetwork/FB attribute namespace = Main/IEC61499.Standard  // For constants on the side of an FB.
-        3. FBType/FBNetwork/EventConnections/Connection/AvoidsNodes = false // For event connections that loop back (multiple dx/dy attributes)
-        */
-
         val projectMPS = event.getData(MPSDataKeys.MPS_PROJECT) ?: return
         val platformRepository = PlatformRepositoryProvider.getInstance(projectMPS)
         val model = event.getData(MPSDataKeys.CONTEXT_MODEL) ?: return
         val modelAccess = model.repository.modelAccess
+        val project = event.project ?: return
 
         val fbTypeDeclarationDocumentList = mutableListOf<Document>()
         val adapterTypeDeclarationDocumentList = mutableListOf<Document>()
@@ -84,19 +79,50 @@ class ExportAction: AnAction() { //}, DumbAware {
             }
         }
 
-        // Create directories for all the documents and write them there using the XMLoutputter.
-        val fileDataSource = model.source as RecursiveFolderDataSource
-        val virtualFileManager = VirtualFileManager.getInstance()
-        val project = event.project ?: return
-        val projectBasePath = project.basePath ?: return //fileDataSource.rootFolder.path
-        val projectRootPath = fileDataSource.rootFolder.path
-        val projectBaseDir: VirtualFile = virtualFileManager.findFileByUrl("file://$projectBasePath") ?: return
-        val projectBaseDirUp2: VirtualFile = projectBaseDir.parent?.parent ?: return
-        val projectBaseDirUp2Str: String = projectBaseDirUp2.toString().removePrefix("file://")
-        val exportBasePath = Paths.get(projectBaseDirUp2Str, "MPSProjectEcostruxureExports", project.name, "IEC61499")
-        val exportBasePathStr = exportBasePath.toString()
+        val useTestDirectory = Messages.showYesNoDialog(
+            project,
+            "Do you want to export the project to the test directory ../MPSProjectEcostruxureExports/${project.name}?\n\n" +
+                    "Only files in the IEC61499 folder will be written, therefore no valid project will be created.",
+            "Export Directory",
+            Messages.getQuestionIcon()
+        ) == Messages.YES
+
+        var projectRootPath: String
+        var projectBaseDir: VirtualFile
+        var exportBasePathStr: String
+
+        if (useTestDirectory) {
+            // Create and/or expand the test directory.
+            val fileDataSource = model.source as RecursiveFolderDataSource
+            val virtualFileManager = VirtualFileManager.getInstance()
+            val projectBasePath = project.basePath ?: return //fileDataSource.rootFolder.path
+            projectRootPath = fileDataSource.rootFolder.path
+            projectBaseDir = virtualFileManager.findFileByUrl("file://$projectBasePath") ?: return
+            val projectBaseDirUp2: VirtualFile = projectBaseDir.parent?.parent ?: return
+            val projectBaseDirUp2Str: String = projectBaseDirUp2.toString().removePrefix("file://")
+            val exportBasePath = Paths.get(projectBaseDirUp2Str, "MPSProjectEcostruxureExports", project.name, "IEC61499")
+            exportBasePathStr = exportBasePath.toString()
+            Files.createDirectories(exportBasePath)
+        } else {
+            val descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor()
+            descriptor.title = "Select Export Directory"
+            descriptor.description = "Specify the root folder of the Ecostruxure solution. Files in the IEC61499 folder will be overwritten."
+            projectBaseDir = FileChooser.chooseFile(descriptor, project, null) ?: run {
+                Messages.showMessageDialog(event.project, "No directory selected.", "Export Failed", Messages.getErrorIcon())
+                return
+            }
+            val projectBaseDirStr: String = projectBaseDir.toString().removePrefix("file://")
+            val exportBasePath = Paths.get(projectBaseDirStr, "IEC61499")
+            exportBasePathStr = exportBasePath.toString()
+            //Files.createDirectories(exportBasePath) // Should exist by default.
+            Messages.showMessageDialog(project,
+                "Selected Directory: $projectBaseDirStr",
+                "Directory Selected", Messages.getInformationIcon()
+            )
+            projectRootPath = exportBasePathStr.replace("\\", "/").replace("""\""", "/")
+        }
+
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
-        Files.createDirectories(exportBasePath)
 
         fun writeDocuments(documentList: List<Document>, fileExtension: String): Boolean {
 
