@@ -5,6 +5,7 @@ import org.fbme.lib.iec61499.descriptors.FBType
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 
 sealed interface FBTypeDeclaration : FBInterfaceDeclarationWithAdapters, RootElement {
+    var guid: String
     val typeDescriptor: FBTypeDescriptor
         get() = FBType(this)
 }

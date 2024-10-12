@@ -8,7 +8,7 @@ interface FBInterfaceDeclaration : Declaration {
     val outputEvents: MutableList<EventDeclaration>
     val inputParameters: MutableList<ParameterDeclaration>
     val outputParameters: MutableList<ParameterDeclaration>
-    var auxiliaryData: MutableList<FBTypeAuxiliaryData>
+    var auxiliaryData: FBTypeAuxiliaryData?
     val templateTypeDescriptor: FBTypeDescriptor
         get() {
             if (this is FBTypeDeclaration) {

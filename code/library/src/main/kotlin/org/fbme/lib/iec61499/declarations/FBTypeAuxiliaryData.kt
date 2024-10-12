@@ -4,4 +4,5 @@ import org.fbme.lib.common.Element
 
 interface FBTypeAuxiliaryData : Element {
     var guid: String
+    //val identificationStandard: String
 }

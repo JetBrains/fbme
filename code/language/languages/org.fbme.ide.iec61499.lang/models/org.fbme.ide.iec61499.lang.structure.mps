@@ -77,6 +77,11 @@
     <property role="3GE5qa" value="fbtype" />
     <property role="34LRSv" value="function block type" />
     <ref role="1TJDcQ" node="uLhTRQWXSY" resolve="DeclarationWithInterfaceAndAdapters" />
+    <node concept="1TJgyi" id="Ddwx8g$Zsb" role="1TKVEl">
+      <property role="IQ2nx" value="742392527685154571" />
+      <property role="TrG5h" value="guid" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
   </node>
   <node concept="1TIwiD" id="3HBlKeoYsiA">
     <property role="EcuMT" value="4280485643801969830" />
@@ -535,7 +540,6 @@
       <property role="IQ2ns" value="6237509742962749095" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="auxiliaryData" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="mZiR5FyRkx" resolve="FBTypeAuxiliaryData" />
     </node>
   </node>

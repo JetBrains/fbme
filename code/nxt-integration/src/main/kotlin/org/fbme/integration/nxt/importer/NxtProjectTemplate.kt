@@ -98,7 +98,7 @@ class NxtImportProjectTemplate(
             Iec61499ModelFactory.FBT_FILE_EXT -> {
                 val fbTypeAuxiliaryData = repository.iec61499Factory.createFBTypeAuxiliaryData()
                 val fbTypeDeclaration = converter.convertFBType()
-                fbTypeDeclaration.auxiliaryData = mutableListOf(fbTypeAuxiliaryData)
+                //fbTypeDeclaration.auxiliaryData = mutableListOf(fbTypeAuxiliaryData)
                 //val idk = (converter.convertFBType() as PlatformElement).node
                 val fbTypePlatformElement = fbTypeDeclaration as PlatformElement
                 fbTypePlatformElement.node
