@@ -10,7 +10,6 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
 
         val ecoElement = rootElement.clone()
 
-        ecoElement.setAttribute("Namespace", "Main")
         addFBNetworkNameSpaces(ecoElement)
         rewriteFBNetworkIOs(ecoElement)
 

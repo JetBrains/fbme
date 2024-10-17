@@ -8,6 +8,7 @@ class ServiceInterfaceFBTypeConverter(arguments: ConverterArguments) :
     override fun extractDeclarationBody(identifier: Identifier?): ServiceInterfaceFBTypeDeclaration {
         val std = factory.createServiceInterfaceFBTypeDeclaration(identifier)
         FBInterfaceConverter(this, std).extractInterface()
+        AuxiliaryDataConverter(with(element), std).extractAuxiliaryData()
         return std
     }
 }

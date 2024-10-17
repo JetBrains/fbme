@@ -11,6 +11,7 @@ import org.jdom.Element
 open class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
     DeclarationPrinterBase<BasicFBTypeDeclaration>(declaration, "FBType") {
     override fun printDeclarationBody(element: Element) {
+        AuxiliaryDataPrinter(this.element, element).print()
         element.addContent(FBInterfacePrinterWithAdapters(this.element).print())
         val basicFB = Element("BasicFB")
         addNullableContent(

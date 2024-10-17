@@ -269,6 +269,11 @@
             <ref role="3bR37D" to="kvgc:DMI5IaKFsE" resolve="org.fbme.platform.lib" />
           </node>
         </node>
+        <node concept="1SiIV0" id="13TrQal5fAS" role="3bR37C">
+          <node concept="3bR9La" id="13TrQal5fAT" role="1SiIV1">
+            <ref role="3bR37D" node="42vv4xsIHDZ" resolve="org.fbme.ide.st.lang" />
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="68dTcycFmt8" role="2G$12L">
         <property role="BnDLt" value="true" />

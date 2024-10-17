@@ -45,4 +45,7 @@ interface IEC61499Factory {
     fun createFBNetworkConnection(connectionKind: EntryKind): FBNetworkConnection
     fun createEndpointCoordinate(): EndpointCoordinate
     fun createFBTypeAuxiliaryData(): FBTypeAuxiliaryData
+    fun createVersionInfo(): VersionInfo
+    fun createAttributeDeclaration(): AttributeDeclaration
 }
+

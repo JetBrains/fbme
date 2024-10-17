@@ -2,10 +2,7 @@ package org.fbme.lib.iec61499.parser
 
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.IEC61499Factory
-import org.fbme.lib.iec61499.declarations.AlgorithmBody
-import org.fbme.lib.iec61499.declarations.AlgorithmDeclaration
-import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
-import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
+import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.ECTransitionCondition
 import org.fbme.lib.iec61499.ecc.StateDeclaration
 import org.fbme.lib.iec61499.ecc.StateTransition
@@ -38,6 +35,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
         for (algorithmElement in algorithmElements) {
             fbtd.algorithms.add(AlgorithmConverter(with(algorithmElement), stAlgorithmConverter).extract())
         }
+        AuxiliaryDataConverter(with(element), fbtd).extractAuxiliaryData()
         return fbtd
     }
 

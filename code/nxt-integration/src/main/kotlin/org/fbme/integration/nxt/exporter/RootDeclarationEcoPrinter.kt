@@ -26,8 +26,20 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             is SystemDeclaration -> SystemPrinter(myDeclaration).print()
             else -> error("Unrecognized root declaration")
         }
+
+        if (rootElement.getAttributeValue("Namespace") == null) {
+            val fbNameSpaceFinder = FBNameSpaceFinder()
+            val fbNamespace = fbNameSpaceFinder.getNamespace(rootElement.name)
+            if (fbNamespace == "unknown") {
+                // Is this a self-made FB? If so, Namespace should be main.
+                rootElement.setAttribute("Namespace", "Main")
+            } else {
+                rootElement.setAttribute("Namespace", fbNamespace)
+            }
+        }
+
         val document = Document()
-        document.rootElement = rootElement
+        document.rootElement = rootElement // Within rootElement, we could switch GUID in front of name in root for more Ecostruxure look.
         document.docType = DocType(
             rootElement.name,
             DTD_LOCATION

@@ -6,6 +6,7 @@ import org.jdom.Element
 class ServiceInterfaceFBTypePrinter(declaration: ServiceInterfaceFBTypeDeclaration) :
     DeclarationPrinterBase<ServiceInterfaceFBTypeDeclaration>(declaration, "FBType") {
     override fun printDeclarationBody(element: Element) {
+        AuxiliaryDataPrinter(this.element, element).print()
         element.addContent(FBInterfacePrinter(this.element, false).print())
     }
 }

@@ -8,7 +8,12 @@ interface FBInterfaceDeclaration : Declaration {
     val outputEvents: MutableList<EventDeclaration>
     val inputParameters: MutableList<ParameterDeclaration>
     val outputParameters: MutableList<ParameterDeclaration>
-    var auxiliaryData: FBTypeAuxiliaryData?
+    var guid: String?
+    var comment: String?
+    var namespace: String?
+    val attributes: MutableList<AttributeDeclaration>
+    var identificationStandard: String?
+    var versionInfo: VersionInfo?
     val templateTypeDescriptor: FBTypeDescriptor
         get() {
             if (this is FBTypeDeclaration) {
@@ -22,4 +27,6 @@ interface FBInterfaceDeclaration : Declaration {
             }
             throw IllegalArgumentException("Unknown declaration with FB interface: " + this.javaClass.name)
         }
+
+    var auxiliaryData: FBTypeAuxiliaryData?
 }

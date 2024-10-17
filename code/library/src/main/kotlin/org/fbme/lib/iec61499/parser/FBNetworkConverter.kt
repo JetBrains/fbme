@@ -12,19 +12,9 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         checkNotNull(myNetwork)
         extractFunctionBlocks(myNetwork.functionBlocks)
         extractEventConnections(myNetwork.eventConnections)
-        //extractEventConnections2(myNetwork.connectionsBackup)
         extractDataConnections(myNetwork.dataConnections)
         extractAdapterConnections(myNetwork.adapterConnections)
         extractEndpointCoordinates(myNetwork.endpointCoordinates)
-    }
-
-    private fun extractEventConnections2(connectionsBackup: MutableList<String>) {
-        val elementNotNull = element ?: return
-        val eventConnectionsElement = elementNotNull.getChild("EventConnections") ?: return
-        val eventConnectionElements = eventConnectionsElement.getChildren("Connection")
-        for (evenConnectionElement in eventConnectionElements) {
-            //connectionsBackup.add(evenConnectionElement.getAttributeValue("Source"))
-        }
     }
 
     protected open fun extractEndpointCoordinates(endpointCoordinates: MutableList<EndpointCoordinate>) {
@@ -105,7 +95,6 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
 
     private fun convertEventConnection(eventConnectionElement: Element): FBNetworkConnection {
         val connection = factory.createFBNetworkConnection(EntryKind.EVENT)
-        //
         connection.sourceReference.setFQName(eventConnectionElement.getAttributeValue("Source"))
         connection.targetReference.setFQName(eventConnectionElement.getAttributeValue("Destination"))
         connection.path = extractConnectionPath(eventConnectionElement)

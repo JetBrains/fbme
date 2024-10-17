@@ -6,6 +6,7 @@ import org.jdom.Element
 open class CompositeFBTypePrinter(declaration: CompositeFBTypeDeclaration) :
     DeclarationPrinterBase<CompositeFBTypeDeclaration>(declaration, "FBType") {
     override fun printDeclarationBody(element: Element) {
+        AuxiliaryDataPrinter(this.element, element).print() // Adds attributes and content to element.
         element.addContent(FBInterfacePrinterWithAdapters(this.element).print())
         element.addContent(FBNetworkPrinter(this.element.network).print())
     }

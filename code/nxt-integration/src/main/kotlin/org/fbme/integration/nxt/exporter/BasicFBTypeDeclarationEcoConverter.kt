@@ -13,12 +13,9 @@ class BasicFBTypeDeclarationEcoConverter(fbmeElement: Element) {
 
         val ecoElement = rootElement.clone()
 
-        ecoElement.setAttribute("Namespace", "Main")
         addAttributeElement(ecoElement)
         //addBezierPoints(ecoElement)
         rewriteAlgorithmContents(ecoElement)
-
-        // TODO: Get auxiliary data and print it here (including GUID, version info, so on).
 
         return ecoElement
     }
