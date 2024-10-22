@@ -1,5 +1,6 @@
 package org.fbme.integration.nxt.exporter
 
+import com.intellij.openapi.ui.Messages
 import org.jdom.Element
 
 class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
@@ -55,23 +56,30 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
         /* Use the data from all the Connection and EndpointCoordinate elements to write Input and Output
         elements within FBNetwork. These are required in Ecostruxure to make the event and data connections work. */
         val interfaceListElement = ecoElement.getChild("InterfaceList") ?: return
+        val eventInputsElement : Element? = interfaceListElement.getChild("EventInputs")
+        val eventOutputsElement : Element? = interfaceListElement.getChild("EventOutputs")
+        val inputsVarsElement : Element? = interfaceListElement.getChild("InputVars")
+        val outputVarsElement : Element? = interfaceListElement.getChild("OutputVars")
         val fbNetworkElement = ecoElement.getChild("FBNetwork") ?: return
-        val eventInputsElement = interfaceListElement.getChild("EventInputs")
-        val eventOutputsElement = interfaceListElement.getChild("EventOutputs")
-        val inputsVarsElement = interfaceListElement.getChild("InputVars")
-        val outputVarsElement = interfaceListElement.getChild("OutputVars")
-        var connectionsElement = fbNetworkElement.getChild("DataConnections")
-        if (connectionsElement == null) connectionsElement = fbNetworkElement.getChild("EventConnections")
+        val eventConnectionsElement = fbNetworkElement.getChild("EventConnections") ?: return
+        val dataConnectionsElement = fbNetworkElement.getChild("DataConnections")
+
+        if (dataConnectionsElement != null) {
+            // Switch the order of DataConnections and EventConnections,
+            // so that DataConnections ends up in the last spot.
+            fbNetworkElement.removeChild("DataConnections")
+            fbNetworkElement.addContent(dataConnectionsElement)
+        }
 
         val eventInputs = mutableListOf<String>()
         val eventOutputs = mutableListOf<String>()
         val inputVars = mutableListOf<String>()
         val outputVars = mutableListOf<String>()
 
-        eventInputsElement.children.forEach { eventInputs.add(it.getAttributeValue("Name")) }
-        eventOutputsElement.children.forEach { eventOutputs.add(it.getAttributeValue("Name")) }
-        inputsVarsElement.children.forEach { inputVars.add(it.getAttributeValue("Name")) }
-        outputVarsElement.children.forEach { outputVars.add(it.getAttributeValue("Name")) }
+        eventInputsElement?.children?.forEach { eventInputs.add(it.getAttributeValue("Name")) }
+        eventOutputsElement?.children?.forEach { eventOutputs.add(it.getAttributeValue("Name")) }
+        inputsVarsElement?.children?.forEach { inputVars.add(it.getAttributeValue("Name")) }
+        outputVarsElement?.children?.forEach { outputVars.add(it.getAttributeValue("Name")) }
 
         val ioElementsToAdd = mutableListOf<Element>()
         val elementsToRemove = mutableListOf<Element>()
@@ -94,10 +102,10 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
             elementsToRemove.add(endPointCoordinateElement)
         }
 
-        var connectionsElementIndex = fbNetworkElement.children.indexOf(connectionsElement)
+        var eventConnectionsElementIndex = fbNetworkElement.children.indexOf(eventConnectionsElement)
         ioElementsToAdd.forEach { ioElement ->
-            fbNetworkElement.addContent(connectionsElementIndex, ioElement)
-            connectionsElementIndex++
+            fbNetworkElement.addContent(eventConnectionsElementIndex, ioElement)
+            eventConnectionsElementIndex++
         }
 
         // EndpointCoordinate elements aren't needed in Ecostruxure.
