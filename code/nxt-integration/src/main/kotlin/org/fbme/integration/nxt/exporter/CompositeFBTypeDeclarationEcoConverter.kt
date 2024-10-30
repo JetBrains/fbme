@@ -71,6 +71,13 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
             fbNetworkElement.addContent(dataConnectionsElement)
         }
 
+        for (eventConnection in eventConnectionsElement.children) {
+            eventConnection.removeChildren("BendPoints")
+        }
+        for (dataConnection in dataConnectionsElement.children) {
+            dataConnection.removeChildren("BendPoints")
+        }
+
         val eventInputs = mutableListOf<String>()
         val eventOutputs = mutableListOf<String>()
         val inputVars = mutableListOf<String>()
