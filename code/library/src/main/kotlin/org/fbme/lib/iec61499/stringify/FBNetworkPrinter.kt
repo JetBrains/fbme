@@ -22,8 +22,12 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
     }
 
     open fun printFunctionBlocks(element: Element) {
+        var index = 1 // Just a quick attempt to implement, may not work like this, as IDs can get mixed up between Ecostruxure and FBME.
         for (fb in this.element.functionBlocks) {
-            element.addContent(FunctionBlockPrinter(fb).print())
+            val fbElement = FunctionBlockPrinter(fb).print()
+            fbElement.setAttribute("ID", index.toString())
+            element.addContent(fbElement)
+            index++
         }
     }
 
