@@ -73,6 +73,15 @@ literal
     | Duration      #duration
     ;
 
+parameterValue
+    : literal      #literalValue
+    | arrayInitializer #arrayInitializerValue
+    ;
+
+arrayInitializer
+    : '[' parameterValue (',' parameterValue)* ']'
+    ;
+
 variable
     : ID                                                    #varReference
     | record=variable '.' ID                                #fieldSelctor

@@ -47,5 +47,7 @@ interface IEC61499Factory {
     fun createFBTypeAuxiliaryData(): FBTypeAuxiliaryData
     fun createVersionInfo(): VersionInfo
     fun createAttributeDeclaration(): AttributeDeclaration
+    fun createServiceTransactionDeclaration(): ServiceTransactionDeclaration
+    fun createIOPrimitiveDeclaration(): IOPrimitiveDeclaration
 }
 

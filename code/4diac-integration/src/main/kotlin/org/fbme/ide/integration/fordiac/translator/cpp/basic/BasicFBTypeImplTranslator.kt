@@ -7,6 +7,8 @@ import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.st.expressions.ArrayInitializer
+import org.fbme.lib.st.expressions.Literal
 import org.fbme.lib.st.expressions.LiteralKind.*
 import org.fbme.lib.st.types.ArrayType
 import org.fbme.lib.st.types.ElementaryType.*
@@ -86,18 +88,23 @@ class BasicFBTypeImplTranslator(private val fb: BasicFBTypeDeclaration) : Abstra
             }
 
             else -> {
-                when (parameter.initialValue!!.kind) {
-                    BINARY_INT, DEC_INT, HEX_INT, OCT_INT -> {
-                        sb.append("() = ")
-                            .append(paramValue)
-                            .appendLine(";")
-                    }
+                when (parameter.initialValue) {
+                    is Literal<*> -> {
+                        when ((parameter.initialValue!! as Literal<*>).kind) {
+                            BINARY_INT, DEC_INT, HEX_INT, OCT_INT -> {
+                                sb.append("() = ")
+                                    .append(paramValue)
+                                    .appendLine(";")
+                            }
 
-                    else -> {
-                        sb.append("().fromString(\"")
-                            .append(paramValue)
-                            .appendLine("\");")
+                            else -> {
+                                sb.append("().fromString(\"")
+                                    .append(paramValue)
+                                    .appendLine("\");")
+                            }
+                        }
                     }
+                    else -> sb.append("") // TODO: don't know what to do
                 }
             }
         }

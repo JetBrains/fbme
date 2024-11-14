@@ -2,6 +2,7 @@ package org.fbme.debugger.common.value
 
 import org.fbme.lib.st.expressions.Literal
 import org.fbme.lib.st.expressions.LiteralKind
+import org.fbme.lib.st.expressions.ParameterValue
 
 sealed interface Value<V> {
     val value: V
@@ -23,6 +24,15 @@ sealed interface Value<V> {
             LiteralKind.TIME -> TimeValue(literal.value as String)
             LiteralKind.REAL -> TODO("Not yet implemented")
         }
+
+        fun fromSTParameterValue(parameterValue: ParameterValue): Value<*> = when (parameterValue) {
+            is Literal<*> -> fromSTLiteral(parameterValue)
+            else -> {
+                StringValue("")
+            }
+        }
     }
+
+
 }
 

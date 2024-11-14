@@ -30,4 +30,5 @@ interface STFactory {
     fun createArrayTypeSubranges(): ArrayTypeSubranges
     fun createSize(): Size
     fun createSubrange(): Subrange
+    fun createArrayInitializer(): ArrayInitializer
 }

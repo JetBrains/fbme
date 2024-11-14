@@ -24,6 +24,8 @@ import org.fbme.ide.platform.debugger.WatcherFacade
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
 import org.fbme.lib.iec61499.declarations.ServiceInterfaceFBTypeDeclaration
+import org.fbme.lib.st.expressions.ArrayInitializer
+import org.fbme.lib.st.expressions.Literal
 
 class RuntimeTraceSynchronizer(
     project: Project,
@@ -230,6 +232,7 @@ class RuntimeTraceSynchronizer(
             for (parameter in functionBlock.parameters) {
                 val portName = parameter.parameterReference.getTarget()!!.name
                 val valueAsLiteral = parameter.value ?: continue
+                if (valueAsLiteral !is Literal<*>) continue
                 val value = Value.fromSTLiteral(valueAsLiteral)
                 val fbState = (trace.first().state as ResourceState).children[functionBlock.name]!!
                 fbState.inputVariables[portName] = value

@@ -11,6 +11,7 @@ import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
 import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printLiteral
+import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printParameterValue
 import java.text.MessageFormat.format
 
 /**
@@ -80,7 +81,7 @@ open class DeploymentController(
 
     override fun writeResourceParameter(resource: ResourceDeclaration, parameter: ParameterAssignment): Boolean {
         val paramName = parameter.parameterReference.getTarget()?.name
-        val request = format(parameterMessage(), nextId(), printLiteral(parameter.value!!), "${resource.name}.$paramName")
+        val request = format(parameterMessage(), nextId(), printParameterValue(parameter.value!!), "${resource.name}.$paramName")
         logger.info(request)
         var didRequestSucceed = false
         var rawResponse = ""
@@ -108,7 +109,7 @@ open class DeploymentController(
         val request = format(
             parameterMessage(),
             nextId(),
-            printLiteral(parameter.value!!),
+            printParameterValue(parameter.value!!),
             "${parentFB?.name}.$paramName"
         )
         logger.info(request)
@@ -236,7 +237,7 @@ open class DeploymentController(
 
     override fun writeDeviceParameter(parameter: ParameterAssignment): Boolean {
         val paramName = parameter.parameterReference.getTarget()?.name
-        val request = format(parameterMessage(), id, printLiteral(parameter.value!!), paramName)
+        val request = format(parameterMessage(), id, printParameterValue(parameter.value!!), paramName)
         id++
         logger.info(request)
         var didRequestSucceed = false

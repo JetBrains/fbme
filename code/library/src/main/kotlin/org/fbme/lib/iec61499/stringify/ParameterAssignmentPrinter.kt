@@ -1,6 +1,8 @@
 package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.iec61499.declarations.ParameterAssignment
+import org.fbme.lib.st.expressions.ArrayInitializer
+import org.fbme.lib.st.expressions.Literal
 import org.jdom.Element
 
 class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
@@ -9,7 +11,11 @@ class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
         element.setAttribute("Name", this.element.parameterReference.presentation)
         val value = this.element.value
         if (value != null) {
-            element.setAttribute("Value", STPrinter.printLiteral(value))
+            if (value is Literal<*>) {
+                element.setAttribute("Value", STPrinter.printLiteral(value))
+            } else if (value is ArrayInitializer) {
+                element.setAttribute("Value", STPrinter.printParameterValue(value))
+            }
         }
     }
 

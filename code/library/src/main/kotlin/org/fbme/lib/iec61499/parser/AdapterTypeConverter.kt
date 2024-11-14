@@ -8,6 +8,7 @@ class AdapterTypeConverter(arguments: ConverterArguments) :
     override fun extractDeclarationBody(identifier: Identifier?): AdapterTypeDeclaration {
         val declaration = factory.createAdapterTypeDeclaration(identifier)
         FBInterfaceConverter(this, declaration).extractInterface()
+        ServiceDeclarationConverter(this, declaration).extractService()
         return declaration
     }
 }

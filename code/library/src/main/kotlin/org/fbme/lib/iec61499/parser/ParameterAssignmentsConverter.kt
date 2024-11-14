@@ -15,7 +15,8 @@ class ParameterAssignmentsConverter(
             assignments.add(parameter)
             val valueText = parameterElement.getAttributeValue("Value")?.unescapeXML()
             valueText ?: continue
-            parameter.value = STConverter.parseLiteral(stFactory, valueText)
+            //parameter.value = STConverter.parseLiteral(stFactory, valueText)
+            parameter.value = STConverter.parseParameterValue(stFactory, valueText)
         }
     }
 }

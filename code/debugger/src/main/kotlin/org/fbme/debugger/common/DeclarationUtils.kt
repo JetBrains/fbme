@@ -10,6 +10,7 @@ import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.ecc.StateTransition
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
+import org.fbme.lib.st.expressions.Literal
 import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
 
@@ -153,8 +154,7 @@ private val DataType.defaultValue: Value<*>
 internal fun ParameterDeclaration.extractInitialValue(): Value<*> {
     val type = requireNotNull(type)
     val initialValue = initialValue ?: return type.defaultValue
-
-    return Value.fromSTLiteral(initialValue)
+    return Value.fromSTParameterValue(initialValue)
 }
 
 @JvmSynthetic

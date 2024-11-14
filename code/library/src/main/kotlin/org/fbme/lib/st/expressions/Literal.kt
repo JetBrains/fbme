@@ -1,6 +1,6 @@
 package org.fbme.lib.st.expressions
 
-interface Literal<Value> : Expression {
+interface Literal<Value> : ParameterValue, Expression {
     val kind: LiteralKind?
-    var value: Value
+    override var value: Value
 }

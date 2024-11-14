@@ -263,10 +263,37 @@ class STPrinter {
         }
 
         @JvmStatic
+        fun printParameterValue(parameterValue: ParameterValue): String {
+            return when (parameterValue) {
+                is Literal<*> -> printLiteral(parameterValue)
+                else -> {
+                    val arrayInitializer = parameterValue as ArrayInitializer
+                    printArray(arrayInitializer)
+                    // Check that factory has been modified
+                    // Debug
+                }
+            }
+        }
+
+        @JvmStatic
         fun printLiteral(literal: Literal<*>): String {
             val printer = STPrinter()
             printer.appendLiteral(literal)
             return printer.toString()
+        }
+
+        @JvmStatic
+        private fun printArray(arrayInitializer: ArrayInitializer): String {
+            val sb = StringBuilder("[")
+            for (parameterValue in arrayInitializer.initialElements) {
+                if (parameterValue is Literal<*>) {
+                    sb.append(printLiteral(parameterValue))
+                    sb.append(", ")
+                }
+            }
+            sb.removeSuffix(", ")
+            sb.append("]")
+            return sb.toString()
         }
     }
 }

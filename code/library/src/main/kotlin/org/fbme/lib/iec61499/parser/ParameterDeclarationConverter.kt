@@ -23,7 +23,7 @@ class ParameterDeclarationConverter(arguments: ConverterArguments) :
         }
         val initialValueText = element.getAttributeValue("InitialValue")
         if (initialValueText != null) {
-            parameter.initialValue = STConverter.parseLiteral(stFactory, initialValueText)
+            parameter.initialValue = STConverter.parseParameterValue(stFactory, initialValueText)
         }
         return parameter
     }
