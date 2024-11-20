@@ -44,50 +44,18 @@ object STConverter {
     }
 
     @JvmStatic
-    fun parseLiteral(factory: STFactory, text: String): Literal<*>? {
-        return extractLiteral(factory, createParser(text).literal())
-    }
-
-    @JvmStatic
-    fun parseParameterValue1(factory: STFactory, text: String): ParameterValue? {
-        return extractParameterValue(factory, createParser(text).parameterValue())
-    }
-
-    @JvmStatic
     fun parseParameterValue(factory: STFactory, text: String): ParameterValue? {
-
-        val parameterValueCtx = createParser(text).parameterValue()
-
-        try {
-            val literalValueCxt = parameterValueCtx as LiteralValueContext
-            val literalContext = literalValueCxt.literal()
-            return extractLiteral(factory, literalContext)
-        } catch (e: java.lang.ClassCastException) {
-            //val arrayInitializerValueCtx = parameterValueCtx as ArrayInitializerValueContext
-            //val arrayInitializerCtx = arrayInitializerValueCtx.arrayInitializer()
-
-            val arrayInitializerCtx = createParser(text).arrayInitializer()
-            return extractArrayInitializer(factory, arrayInitializerCtx)
-        }
-
-        var isLiteral = true
-        if (text.length > 1) {
-            if (text[0] == '[') {
-                isLiteral = false
+        return when (val parameterValueCtx = createParser(text).parameterValue()) {
+            is LiteralValueContext -> {
+                val literalCtx = parameterValueCtx.literal()
+                extractLiteral(factory, literalCtx)
             }
+            is ArrayInitializerValueContext -> {
+                val arrayInitializerCtx = parameterValueCtx.arrayInitializer()
+                extractArrayInitializer(factory, arrayInitializerCtx)
+            }
+            else -> null
         }
-
-        if (isLiteral) {//parameterValueCtx.text[0] == '[') {
-            val literalValueCxt = parameterValueCtx as LiteralValueContext
-            val literalContext = literalValueCxt.literal()
-            return extractLiteral(factory, literalContext)
-        } else {
-            val arrayInitializerValueCtx = parameterValueCtx as ArrayInitializerValueContext
-            val arrayInitializerCtx = arrayInitializerValueCtx.arrayInitializer()
-            return extractArrayInitializer(factory, arrayInitializerCtx)
-        }
-
-        //return extractParameterValue(factory, createParser(text).parameterValue())
     }
 
     @JvmStatic
@@ -316,66 +284,6 @@ object STConverter {
         val arrayInitializer = parseArrayInitializer(parameterValueCtxList)
 
         return arrayInitializer
-    }
-
-    private fun extractParameterValue(factory: STFactory, parameterValueCtx: ParameterValueContext): ParameterValue? {
-
-        fun parseArrayInitializer(
-            parameterValueCtxList: List<ParameterValueContext>,
-            sb: StringBuilder
-        ): Pair<ArrayInitializer, StringBuilder> {
-
-            val arrayInitializer = factory.createArrayInitializer()
-
-            sb.append("[")
-            parameterValueCtxList.forEach { parameterValueCtx ->
-                if (parameterValueCtx is LiteralValueContext) {
-                    val literalValueCtx = extractLiteral(factory, parameterValueCtx.literal())
-                    if (literalValueCtx != null) {
-                        arrayInitializer.initialElements.add(literalValueCtx)
-                    }
-                    sb.append(parameterValueCtx.text)
-                    sb.append(", ")
-                } else if (parameterValueCtx is ArrayInitializerValueContext) {
-                    val innerParameterValueCtxList = parameterValueCtx.arrayInitializer().parameterValue()
-                    val (innerArrayInitializer, _) = parseArrayInitializer(innerParameterValueCtxList, sb)
-                    arrayInitializer.initialElements.add(innerArrayInitializer)
-                }
-            }
-            sb.removeSuffix(", ")
-            sb.append("]")
-            return Pair(arrayInitializer, sb)
-        }
-
-        parameterValueCtx
-        parameterValueCtx.text
-        val idk = "idk"
-
-        if (parameterValueCtx.text[0] != '[') {
-            val literalValueContext = parameterValueCtx as LiteralValueContext
-            return extractLiteral(factory, literalValueContext.literal())
-        } else {
-            val arrayInitializerValueContext = parameterValueCtx as ArrayInitializerValueContext
-            val parameterValueCtxList = arrayInitializerValueContext.arrayInitializer().parameterValue()
-            val (arrayInitializer, sb) = parseArrayInitializer(parameterValueCtxList, StringBuilder())
-            arrayInitializer
-            return arrayInitializer
-        }
-
-        if (false) {
-            if (parameterValueCtx is LiteralValueContext) {
-                if (parameterValueCtx.text[0] != '[')
-                    return extractLiteral(factory, parameterValueCtx.literal())
-            }
-            if (parameterValueCtx is ArrayInitializerValueContext) {
-                // TODO(Never gets triggered...)
-                val parameterValueCtxList = parameterValueCtx.arrayInitializer().parameterValue()
-                val (arrayInitializer, sb) = parseArrayInitializer(parameterValueCtxList, StringBuilder())
-                return arrayInitializer
-            }
-        }
-
-        return null
     }
 
     private fun extractLiteral(factory: STFactory, literalCtx: LiteralContext?): Literal<*>? {
