@@ -284,16 +284,7 @@ class STPrinter {
 
         @JvmStatic
         private fun printArray(arrayInitializer: ArrayInitializer): String {
-            val sb = StringBuilder("[")
-            for (parameterValue in arrayInitializer.initialElements) {
-                if (parameterValue is Literal<*>) {
-                    sb.append(printLiteral(parameterValue))
-                    sb.append(", ")
-                }
-            }
-            sb.removeSuffix(", ")
-            sb.append("]")
-            return sb.toString()
+            return arrayInitializer.initialElements.joinToString(prefix = "[", postfix = "]") { printParameterValue(it) }
         }
     }
 }
