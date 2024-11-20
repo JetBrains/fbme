@@ -138,6 +138,7 @@ open class BasicFBTypeConverter(arguments: ConverterArguments) :
                 algorithmDeclaration.body = st
                 var stText = stBodyElement.getAttributeValue("Text")?.unescapeXML()
                 if (stText != null) {
+                    stText = removeComments(stText)
                     stAlgorithmConverter.convert(factory, stFactory, algorithmDeclaration, st, stText)
                 } else {
                     val content = stBodyElement.content[0] as CDATA
