@@ -109,7 +109,11 @@ class BasicFBTypeDeclarationEcoConverter(fbmeElement: Element) {
             val stElement = algorithmElement.getChild("ST") ?: continue
             val algorithmData = stElement.getAttributeValue("Text").unescapeXML().replace("\n", "\r\n").replace("\r\r\n", "\r\n")
             stElement.removeAttribute("Text")
-            stElement.setContent(CDATA(algorithmData))
+            if (algorithmData != "") {
+                stElement.setContent(CDATA(algorithmData))
+            } else {
+                stElement.setText(";") // Empty algorithm body requires a semicolon in Ecostruxure.
+            }
         }
     }
 }
