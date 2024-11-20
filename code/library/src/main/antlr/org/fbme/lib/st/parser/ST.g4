@@ -124,7 +124,7 @@ WString: '"'  (('$' [$"LNPRT] | '$' Hex Hex Hex Hex)| ~["\n\r\\])* '"';
 Boolean: 'TRUE'|'FALSE';
 BooleanBin: 'BOOL#'('1'|'0');
 
-Duration: ('T' | 'TIME') '#' '-'? Interval;
+Duration: ('T' | 't' | 'TIME') '#' '-'? Interval;
 
 fragment Interval: Days | Hours | Minutes | Seconds | Milliseconds;
 fragment FixedPoint: DecInteger ( '.' DecInteger)?;
