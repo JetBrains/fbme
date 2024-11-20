@@ -163,7 +163,7 @@ class ExportAction: AnAction() { //}, DumbAware {
 
         if (!writeDocuments(fbTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return }
         if (!writeDocuments(adapterTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return }
-        if (!writeDocuments(systemDeclarationDocumentList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return }
+        //if (!writeDocuments(systemDeclarationDocumentList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return }
 
         Messages.showMessageDialog(
             project,
