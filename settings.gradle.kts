@@ -19,4 +19,3 @@ include(
     "samples:sandbox",
     "samples:smv-debugger"
 )
-findProject(":code:bottom-up-building")?.name = "bottom-up-building"
