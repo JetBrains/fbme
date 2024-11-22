@@ -15,13 +15,18 @@ import org.fbme.ide.platform.persistence.Iec61499ModelFactory
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.declarations.*
 import org.jdom.Document
+import org.jdom.Element
+import org.jdom.input.SAXBuilder
 import org.jdom.output.Format
 import org.jdom.output.XMLOutputter
 import org.jetbrains.mps.openapi.model.SNode
+import org.xml.sax.InputSource
 import java.io.File
 import java.io.IOException
+import java.io.StringReader
 import java.nio.file.Files
 import java.nio.file.Paths
+import javax.xml.parsers.DocumentBuilderFactory
 
 class ExportAction: AnAction() { //}, DumbAware {
 
@@ -37,13 +42,15 @@ class ExportAction: AnAction() { //}, DumbAware {
 
         /*
         1. Extract auxiliary data of the function blocks while importing the Nxt project (GUIDs, VersionInfo, Bezierpoints for ECTransitions...)
-            1.1 Find out what type of data comes with what type of fbdt. TODO, even amongst BasicFBTypes, some may have GUIDs while others don't.
+            1.1 Find out what type of data comes with what type of fbdt.
         2. Convert all nodes of type fbTypeDeclaration into a document (org.jdom.Element).
-            2.1 Convert BasicFBTypeDeclaration types and "stitch them up" using the collected auxiliary data. TODO, only hardcoding atm.
+            2.1 Convert BasicFBTypeDeclaration types and "stitch them up" using the collected auxiliary data.
             2.2 Convert SIFB, FBNetwork, Adapter types. TODO
-        3. Write the documents in a new directory (MPSProjectNxtExports) maintaining the original structure. PRETTY MUCH DONE
+        3. Write the documents in a new directory (MPSProjectNxtExports) maintaining the original structure.
             3.1 Get relative location of all the converted fbs (.fbt files) in their original directory.
             3.2 Create all the new directories if they don't exist.
+        4. "Visibly" export all files that haven't been imported from Ecostruxure.
+            4.1 Any fbme-original files get written to the export directory, but they don't show up in Ecostruxure menu. (IEC61499.dfbproj) TODO
         */
 
         val projectMPS = event.getData(MPSDataKeys.MPS_PROJECT) ?: return
@@ -52,9 +59,11 @@ class ExportAction: AnAction() { //}, DumbAware {
         val modelAccess = model.repository.modelAccess
         val project = event.project ?: return
 
-        val fbTypeDeclarationDocumentList = mutableListOf<Document>()
-        val adapterTypeDeclarationDocumentList = mutableListOf<Document>()
-        val systemDeclarationDocumentList = mutableListOf<Document>()
+        val basicFBTypeDeclarationList = mutableListOf<BasicFBTypeDeclaration>()
+        val compositeFBTypeDeclarationList = mutableListOf<CompositeFBTypeDeclaration>()
+        val serviceInterfaceFBTypeDeclaration = mutableListOf<ServiceInterfaceFBTypeDeclaration>()
+        val adapterTypeDeclarationList = mutableListOf<Declaration>()
+        val systemDeclarationList = mutableListOf<Declaration>()
 
         // Sort all declarations into lists with the common file extension.
         // TODO: Complete RootDeclarationNxtPrinter.
@@ -62,12 +71,15 @@ class ExportAction: AnAction() { //}, DumbAware {
             val rootNodes = model.rootNodes
             for (rootNode in rootNodes) {
                 //if (rootNode.name == "System") { continue }
-                val declaration = convertRootNode(platformRepository, rootNode, 8) ?: continue
-                val declarationDocument = RootDeclarationEcoPrinter(declaration as Declaration).print()
+                val node = convertRootNode(platformRepository, rootNode) ?: continue
+                val declaration = node as Declaration
+                //val declarationDocument = RootDeclarationEcoPrinter(declaration).print()
                 when (declaration) {
-                    is FBTypeDeclaration -> fbTypeDeclarationDocumentList.add(declarationDocument)
-                    is AdapterTypeDeclaration -> adapterTypeDeclarationDocumentList.add(declarationDocument)
-                    is SystemDeclaration -> systemDeclarationDocumentList.add(declarationDocument)
+                    is BasicFBTypeDeclaration -> basicFBTypeDeclarationList.add(declaration)
+                    is CompositeFBTypeDeclaration -> compositeFBTypeDeclarationList.add(declaration)
+                    is ServiceInterfaceFBTypeDeclaration -> serviceInterfaceFBTypeDeclaration.add(declaration)
+                    is AdapterTypeDeclaration -> adapterTypeDeclarationList.add(declaration)
+                    is SystemDeclaration -> systemDeclarationList.add(declaration)
                     else -> Messages.showMessageDialog(
                         event.project,
                         "Sus activity detected! \n" +
@@ -124,14 +136,15 @@ class ExportAction: AnAction() { //}, DumbAware {
 
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
 
-        fun writeDocuments(documentList: List<Document>, fileExtension: String): Boolean {
+        fun writeDocuments(declarationList: List<Declaration>, fileExtension: String, update: Boolean = false): Boolean {
 
-            for (document in documentList) {
+            for (declaration in declarationList) {
 
+                val document = RootDeclarationEcoPrinter(declaration).print()
                 val declarationName = document.rootElement.getAttribute("Name").value
                 val declarationFileName = StringBuilder(declarationName).append(".").append(fileExtension).toString()
                 val declarationFullFilePath = filePathSearcherRecursive(projectBaseDir, declarationFileName)
-                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is it applicable in all every context (Windows vs. Linux)?
+                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is it applicable in every context (Windows vs. Linux)?
 
                 val exportPath = if (declarationSubFolder == "") {
                     Paths.get(exportBasePathStr, declarationFileName)
@@ -151,19 +164,33 @@ class ExportAction: AnAction() { //}, DumbAware {
                     Messages.showMessageDialog(
                         project,
                         "An error occurred during export: ${e.message}",
-                        "ExportNxt",
+                        "ExportEcostruxure",
                         Messages.getErrorIcon()
                     )
                     return false
                 }
             }
 
+
+            if (!useTestDirectory and update) {
+                // Lastly, IEC61499.dfbproj file may need to be updated.
+                updateProjectFile(declarationList, projectRootPath)
+            }
+
             return true
         }
 
-        if (!writeDocuments(fbTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return }
-        if (!writeDocuments(adapterTypeDeclarationDocumentList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return }
-        //if (!writeDocuments(systemDeclarationDocumentList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return }
+        modelAccess.runReadAction {
+            if (!writeDocuments(basicFBTypeDeclarationList, Iec61499ModelFactory.Companion.FBT_FILE_EXT, update = false)) {
+                return@runReadAction
+            }
+            if (!writeDocuments(compositeFBTypeDeclarationList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return@runReadAction }
+            if (!writeDocuments(serviceInterfaceFBTypeDeclaration, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return@runReadAction }
+            if (!writeDocuments(adapterTypeDeclarationList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return@runReadAction }
+            if (!writeDocuments(systemDeclarationList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return@runReadAction }
+        }
+
+
 
         Messages.showMessageDialog(
             project,
@@ -187,7 +214,7 @@ class ExportAction: AnAction() { //}, DumbAware {
         }
     }
 
-    private fun convertRootNode(platformRepository: PlatformRepository, node: SNode, attemptsLeft: Int): Any? {
+    private fun convertRootNode(platformRepository: PlatformRepository, node: SNode, attemptsLeft: Int = 8): Any? {
         // Takes a root node of the model and returns a declaration if it fits any of the 8 declaration classes.
         return try {
             when (attemptsLeft) {
@@ -210,4 +237,66 @@ class ExportAction: AnAction() { //}, DumbAware {
         }
     }
 
+    private fun updateProjectFile(declarationList : List<Declaration>, projectFilePath : String) {
+        // Should PropertyGroup / <Platform Condition=" '$(Platform)' == '' ">Windows</Platform> be checked for platform?
+        // If not Windows platform, then should I use a different separator for files?
+
+        // Find "IEC61499.dfbproj" first.
+        val projectFileName = "IEC61499.dfbproj"
+        val fileToUpdatePathStr = Paths.get(projectFilePath, projectFileName).toString()
+        val fileToUpdate = File(fileToUpdatePathStr)
+        val saxBuilder = SAXBuilder()
+
+        // Create an org.jdom.Document from "IEC61499.dfbproj".
+        val document = try {
+            saxBuilder.build(fileToUpdate)
+        } catch (e: Exception) {
+            TODO("Display a fitting error message.")
+            return
+        }
+
+        val root = document.rootElement
+        val namespace = root.namespace
+        val itemGroupElements = root.getChildren("ItemGroup", namespace) ?: return
+        val itemGroupElement = itemGroupElements[0]
+
+        if (itemGroupElement.children.isNotEmpty()) {
+            val firstChild = itemGroupElement.children[0]
+            // There should be multiple ItemGroups, check that this isn't the wrong one.
+            if (firstChild.name in setOf("Folder", "Content", "Reference")) return
+        }
+
+        val compileElements = itemGroupElement.getChildren("Compile")
+        val compileElementsPlaceholder = mutableListOf<Element>()
+
+        // Add any missing compileElements to the document.
+        for (declaration in declarationList) {
+            val declarationName = declaration.name
+            val fileName = "$declarationName.fbt" // TODO(Expand to other types.)
+            val matchingCompileElement = compileElements.find {
+                val includeValue = it.getAttributeValue("Include")
+                includeValue == fileName
+            }
+            if (matchingCompileElement != null) {
+                continue
+            }
+
+            // Make a new Compile element and place it under ItemGroup.
+            val newCompileElement = Element("Compile")
+            newCompileElement.setAttribute("Include", fileName)
+            val iec61499TypeElement = Element("IEC61499Type")
+            iec61499TypeElement.setText("Basic")
+            newCompileElement.removeAttribute("xmlns")
+            newCompileElement.setContent(iec61499TypeElement)
+            compileElementsPlaceholder.add(newCompileElement)
+        }
+
+        itemGroupElement.addContent(compileElementsPlaceholder)
+        val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
+
+        // Rewrite "IEC61499.dfbproj" with the help of document.
+        File(fileToUpdatePathStr).writer().use { writer ->
+            xmlOutputter.output(document, writer)
+        }
+    }
 }
