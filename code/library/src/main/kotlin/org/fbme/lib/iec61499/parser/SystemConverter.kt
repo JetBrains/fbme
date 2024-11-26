@@ -6,6 +6,7 @@ import org.fbme.lib.iec61499.declarations.*
 class SystemConverter(arguments: ConverterArguments) : DeclarationConverterBase<SystemDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): SystemDeclaration {
         val system = factory.createSystemDeclaration(identifier)
+        AuxiliaryDataConverter(this, system).extractAuxiliaryData()
         extractApplications(system.applications)
         extractDevices(system.devices)
         extractMappings(system.mappings)

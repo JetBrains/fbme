@@ -1202,6 +1202,9 @@
     <node concept="PrWs8" id="uLhTRR7Mvx" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
+    <node concept="PrWs8" id="74c8KFV7oFI" role="PzmwI">
+      <ref role="PrY4T" node="2bTsTALLzOm" resolve="AuxiliaryData" />
+    </node>
     <node concept="1QGGSu" id="4dW98DtmzFb" role="rwd14">
       <property role="1iqoE4" value="${module}/icons/org/fbme/ide/iec61499/lang/structure/system.svg" />
     </node>

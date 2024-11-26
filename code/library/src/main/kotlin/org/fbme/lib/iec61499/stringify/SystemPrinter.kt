@@ -9,6 +9,7 @@ import org.jdom.Element
 class SystemPrinter(declaration: SystemDeclaration) :
     DeclarationPrinterBase<SystemDeclaration>(declaration, "System") {
     override fun printDeclarationBody(element: Element) {
+        AuxiliaryDataPrinter(this.element, element).print()
         printApplications(element)
         printDevices(element)
         printMappings(element)

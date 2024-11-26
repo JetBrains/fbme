@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.declarations
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.RootElement
 
-interface SystemDeclaration : Declaration, RootElement {
+interface SystemDeclaration : Declaration, AuxiliaryData, RootElement {
     val applications: MutableList<ApplicationDeclaration>
     val devices: MutableList<DeviceDeclaration>
     val segments: MutableList<SegmentDeclaration>
