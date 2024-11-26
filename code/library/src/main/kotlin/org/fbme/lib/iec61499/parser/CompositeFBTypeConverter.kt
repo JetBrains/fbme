@@ -7,28 +7,6 @@ open class CompositeFBTypeConverter(arguments: ConverterArguments) :
     DeclarationConverterBase<CompositeFBTypeDeclaration>(arguments) {
     override fun extractDeclarationBody(identifier: Identifier?): CompositeFBTypeDeclaration {
         val fbtd = factory.createCompositeFBTypeDeclaration(identifier)
-
-        /*
-        val elementNotNull = checkNotNull(element)
-        val guid = elementNotNull.getAttributeValue("GUID")
-        if (guid != null) {
-            fbtd.guid = guid
-        } else {
-            fbtd.guid = ""
-        }*/
-        /*
-        val comment = element?.getAttributeValue("Comment")
-        if (comment != null) {
-            fbtd.comment = comment
-        } else {
-        }
-
-        val namespace = element?.getAttributeValue("Namespace")
-        if (namespace != null) {
-            fbtd.namespace = namespace
-        } else {
-        }*/
-
         FBInterfaceConverter(this, fbtd).extractInterface()
         FBInterfaceAdaptersConverter(this, fbtd).extractAdapters()
         val fbNetworkConverter = createFBNetworkConverter(fbtd)
