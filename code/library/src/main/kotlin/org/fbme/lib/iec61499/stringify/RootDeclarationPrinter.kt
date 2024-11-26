@@ -19,6 +19,19 @@ class RootDeclarationPrinter(private val myDeclaration: Declaration) {
             is SystemDeclaration -> SystemPrinter(myDeclaration).print()
             else -> error("Unrecognized root declaration")
         }
+        when (myDeclaration) {
+            is FBInterfaceDeclaration -> {
+                val namespace = myDeclaration.namespace
+                if (namespace != null) {
+                    rootElement.setAttribute("Namespace", namespace)
+                } else {
+                    rootElement.setAttribute("Namespace", "Main")
+                }
+            }
+            is SystemDeclaration -> {
+                //TODO()
+            }
+        }
         val document = Document()
         document.rootElement = rootElement
         document.docType = DocType(

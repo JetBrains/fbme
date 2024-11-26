@@ -3,17 +3,12 @@ package org.fbme.lib.iec61499.declarations
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 
-interface FBInterfaceDeclaration : Declaration {
+interface FBInterfaceDeclaration : Declaration, AuxiliaryData {
+    var namespace: String?
     val inputEvents: MutableList<EventDeclaration>
     val outputEvents: MutableList<EventDeclaration>
     val inputParameters: MutableList<ParameterDeclaration>
     val outputParameters: MutableList<ParameterDeclaration>
-    var guid: String?
-    var comment: String?
-    var namespace: String?
-    val attributes: MutableList<AttributeDeclaration>
-    var identificationStandard: String?
-    var versionInfo: VersionInfo?
     val templateTypeDescriptor: FBTypeDescriptor
         get() {
             if (this is FBTypeDeclaration) {

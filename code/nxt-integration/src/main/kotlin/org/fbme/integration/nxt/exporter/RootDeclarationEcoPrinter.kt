@@ -13,6 +13,7 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> {
                 val fbmeElement = BasicFBTypePrinter(myDeclaration).print()
+                fbmeElement is FBInterfaceDeclaration
                 BasicFBTypeDeclarationEcoConverter(fbmeElement).convert()
             }
             is CompositeFBTypeDeclaration -> {
@@ -27,14 +28,21 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             else -> error("Unrecognized root declaration")
         }
 
-        if (rootElement.getAttributeValue("Namespace") == null) {
-            val fbNameSpaceFinder = FBNameSpaceFinder()
-            val fbNamespace = fbNameSpaceFinder.getNamespace(rootElement.name)
-            if (fbNamespace == "unknown") {
-                // Is this a self-made FB? If so, Namespace should be main.
-                rootElement.setAttribute("Namespace", "Main")
-            } else {
-                rootElement.setAttribute("Namespace", fbNamespace)
+        when (myDeclaration) {
+            is FBInterfaceDeclaration -> {
+                var namespace = myDeclaration.namespace
+                if (namespace != null) {
+                    rootElement.setAttribute("Namespace", namespace)
+                } else {
+                    val fbNameSpaceFinder = FBNameSpaceFinder()
+                    namespace = fbNameSpaceFinder.getNamespace(rootElement.name)
+                    if (namespace == "unknown") {
+                        // Is this a self-made FB? If so, Namespace should be main.
+                        rootElement.setAttribute("Namespace", "Main")
+                    } else {
+                        rootElement.setAttribute("Namespace", namespace)
+                    }
+                }
             }
         }
 

@@ -1,21 +1,20 @@
 package org.fbme.lib.iec61499.parser
 
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
+import org.fbme.lib.iec61499.declarations.AuxiliaryData
 
 
-class AuxiliaryDataConverter(arguments: ConverterArguments, private val declaration: FBInterfaceDeclaration) :
+class AuxiliaryDataConverter(arguments: ConverterArguments, private val declaration: AuxiliaryData) :
     ConverterBase(arguments) {
 
     fun extractAuxiliaryData() {
         // Extract certain attributes from the root of element.
-        val rootAttributes = listOf("GUID", "Comment", "Namespace")
+        val rootAttributes = listOf("GUID", "Comment")
         var attributeValue: String?
         for (attribute in rootAttributes) {
             attributeValue = element?.getAttributeValue(attribute)
             when (attribute) {
                 "GUID" -> declaration.guid = attributeValue
                 "Comment" -> declaration.comment = attributeValue
-                "Namespace" -> declaration.namespace = attributeValue
             }
         }
 
@@ -39,24 +38,5 @@ class AuxiliaryDataConverter(arguments: ConverterArguments, private val declarat
         versionInfo.date = element?.getChild("VersionInfo")?.getAttributeValue("Date")
         versionInfo.remarks = element?.getChild("VersionInfo")?.getAttributeValue("Remarks")
         declaration.versionInfo = versionInfo
-    }
-
-    fun extractAuxiliaryData1() {
-        val attributes = listOf("GUID", "Comment", "Namespace")
-        var attributeValue: String
-        for (attribute in attributes) {
-
-            if (element?.getAttributeValue(attribute) != null) {
-                attributeValue = element.getAttributeValue(attribute)
-            } else {
-                attributeValue = ""
-            }
-
-            when (attribute) {
-                "GUID" -> declaration.guid = attributeValue
-                "Comment" -> declaration.comment = attributeValue
-                "Namespace" -> declaration.namespace = attributeValue
-            }
-        }
     }
 }

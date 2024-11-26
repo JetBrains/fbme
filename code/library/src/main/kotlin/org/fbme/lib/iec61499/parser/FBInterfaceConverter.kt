@@ -9,6 +9,7 @@ class FBInterfaceConverter(arguments: ConverterArguments, private val myDeclarat
     ConverterBase(arguments) {
     fun extractInterface() {
         checkNotNull(element)
+        myDeclaration.namespace = element.getAttributeValue("Namespace")
         val interfaceListElement = element.getChild("InterfaceList")
         extractEvents(interfaceListElement.getChild("EventInputs"), myDeclaration.inputEvents)
         ParameterDeclarationConverter.extractAll(

@@ -1,21 +1,13 @@
 package org.fbme.lib.iec61499.stringify
 
-import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
+import org.fbme.lib.iec61499.declarations.AuxiliaryData
 import org.jdom.Element
 
-class AuxiliaryDataPrinter(private val myDeclaration: FBInterfaceDeclaration, val element: Element) {
+class AuxiliaryDataPrinter(private val myDeclaration: AuxiliaryData, val element: Element) {
 
     fun print() {
         if (myDeclaration.guid != null) element.setAttribute("GUID", myDeclaration.guid)
         if (myDeclaration.comment != null) element.setAttribute("Comment", myDeclaration.comment)
-        if (myDeclaration.namespace != null) {
-            element.setAttribute("Namespace", myDeclaration.namespace)
-        } else {
-            // FBNameSpaceFinder() would estimate the namespace, but it would
-            // require dependency on module FBME.code.nxt-integration.main.
-            // The problem gets taken care of by RootDeclarationEcoPrinter, and
-            // should only be limited to declarations made within FBME.
-        }
 
         myDeclaration.attributes.forEach { attribute ->
             val attributeElement = Element("Attribute")
