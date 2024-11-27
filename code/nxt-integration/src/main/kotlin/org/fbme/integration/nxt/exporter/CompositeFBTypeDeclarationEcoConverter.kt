@@ -1,6 +1,7 @@
 package org.fbme.integration.nxt.exporter
 
 import com.intellij.openapi.ui.Messages
+import org.fbme.lib.iec61499.NamespaceFinder
 import org.jdom.Element
 
 class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
@@ -22,17 +23,11 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
         val fbNetwork = ecoElement.getChild("FBNetwork") ?: return
         val fbElementList = fbNetwork.getChildren("FB") ?: return
         val eventConnections = fbNetwork.getChild("EventConnections") ?: return
-        val finder = FBNameSpaceFinder()
 
         fbElementList.forEach { fbElement ->
             val fbType = fbElement.getAttributeValue("Type")
-            val fbNamespace = finder.getNamespace(fbType)
-            if (fbNamespace == "unknown") {
-                // Is this a self-made FB? If so, Namespace should be main.
-                fbElement.setAttribute("Namespace", "Main")
-            } else {
-                fbElement.setAttribute("Namespace", fbNamespace)
-            }
+            val fbNamespace = NamespaceFinder.getNamespace(fbType)
+            fbElement.setAttribute("Namespace", fbNamespace)
         }
 
         eventConnections.children.forEach { connection ->

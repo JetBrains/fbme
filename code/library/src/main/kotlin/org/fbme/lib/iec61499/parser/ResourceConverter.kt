@@ -8,6 +8,7 @@ class ResourceConverter(arguments: ConverterArguments) : DeclarationConverterBas
         checkNotNull(element)
         val resource = factory.createResourceDeclaration(identifier)
         resource.typeReference.setTargetName(element.getAttributeValue("Type"))
+        resource.namespace = element.getAttributeValue("Namespace")
         ParameterAssignmentsConverter(with(element), resource.parameters).extractParameters()
         FBNetworkConverter(with(element.getChild("FBNetwork")), resource.network).extractNetwork()
         return resource

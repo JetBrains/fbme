@@ -2,6 +2,7 @@ package org.fbme.integration.nxt.exporter
 
 import org.fbme.lib.iec61499.stringify.*
 import org.fbme.lib.common.Declaration
+import org.fbme.lib.iec61499.NamespaceFinder
 import org.fbme.lib.iec61499.declarations.*
 import org.jdom.DocType
 import org.jdom.Document
@@ -27,25 +28,26 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             is SystemDeclaration -> SystemPrinter(myDeclaration).print()
             else -> error("Unrecognized root declaration")
         }
-
         when (myDeclaration) {
             is FBInterfaceDeclaration -> {
                 var namespace = myDeclaration.namespace
                 if (namespace != null) {
                     rootElement.setAttribute("Namespace", namespace)
                 } else {
-                    val fbNameSpaceFinder = FBNameSpaceFinder()
-                    namespace = fbNameSpaceFinder.getNamespace(rootElement.name)
-                    if (namespace == "unknown") {
-                        // Is this a self-made FB? If so, Namespace should be main.
-                        rootElement.setAttribute("Namespace", "Main")
-                    } else {
-                        rootElement.setAttribute("Namespace", namespace)
-                    }
+                    namespace = NamespaceFinder.getNamespace(myDeclaration.name)
+                    rootElement.setAttribute("Namespace", namespace)
+                }
+            }
+            is ResourceDeclaration -> {
+                var namespace = myDeclaration.namespace
+                if (namespace != null) {
+                    rootElement.setAttribute("Namespace", namespace)
+                } else {
+                    namespace = NamespaceFinder.getNamespace(myDeclaration.name)
+                    rootElement.setAttribute("Namespace", namespace)
                 }
             }
         }
-
         val document = Document()
         document.rootElement = rootElement // Within rootElement, we could switch GUID in front of name in root for more Ecostruxure look.
         document.docType = DocType(

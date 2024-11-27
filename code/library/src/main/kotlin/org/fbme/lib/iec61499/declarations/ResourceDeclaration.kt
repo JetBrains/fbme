@@ -7,6 +7,7 @@ import org.fbme.lib.iec61499.fbnetwork.FBNetwork
 import org.fbme.lib.iec61499.fbnetwork.FunctionBlockDeclaration
 
 interface ResourceDeclaration : DeclarationWithNetwork, ContainedElement {
+    var namespace: String?
     override val container: Declaration
     override val network: FBNetwork
     val typeReference: Reference<ResourceTypeDeclaration>

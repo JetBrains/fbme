@@ -1,6 +1,7 @@
 package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.common.Declaration
+import org.fbme.lib.iec61499.NamespaceFinder
 import org.fbme.lib.iec61499.declarations.*
 import org.jdom.DocType
 import org.jdom.Document
@@ -21,15 +22,22 @@ class RootDeclarationPrinter(private val myDeclaration: Declaration) {
         }
         when (myDeclaration) {
             is FBInterfaceDeclaration -> {
-                val namespace = myDeclaration.namespace
+                var namespace = myDeclaration.namespace
                 if (namespace != null) {
                     rootElement.setAttribute("Namespace", namespace)
                 } else {
-                    rootElement.setAttribute("Namespace", "Main")
+                    namespace = NamespaceFinder.getNamespace(myDeclaration.name)
+                    rootElement.setAttribute("Namespace", namespace)
                 }
             }
-            is SystemDeclaration -> {
-                //TODO()
+            is ResourceDeclaration -> {
+                var namespace = myDeclaration.namespace
+                if (namespace != null) {
+                    rootElement.setAttribute("Namespace", namespace)
+                } else {
+                    namespace = NamespaceFinder.getNamespace(myDeclaration.name)
+                    rootElement.setAttribute("Namespace", namespace)
+                }
             }
         }
         val document = Document()
