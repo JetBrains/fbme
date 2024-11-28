@@ -136,15 +136,38 @@ class ExportAction: AnAction() { //}, DumbAware {
 
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
 
-        fun writeDocuments(declarationList: List<Declaration>, fileExtension: String, update: Boolean = false): Boolean {
+        fun writeDocuments(declarationList: List<Declaration>, update: Boolean = true): Boolean {
+
+            if (declarationList.isEmpty()) return true
+
+            val fileExtension = when (declarationList[0]) {
+                is FBTypeDeclaration -> Iec61499ModelFactory.Companion.FBT_FILE_EXT
+                is AdapterTypeDeclaration -> Iec61499ModelFactory.Companion.ADP_FILE_EXT
+                is SystemDeclaration -> Iec61499ModelFactory.Companion.SYS_FILE_EXT
+                else -> {
+                    // TODO(Expand to other types if necessary.)
+                    Messages.showMessageDialog(
+                        project,
+                        "Error occurred while exporting.\n" +
+                                "Declaration of unknown type encountered: ${declarationList[0]}\n" +
+                                "Please contact Esa." ,
+                        "ExportEcostruxure",
+                        Messages.getInformationIcon()
+                    )
+                    return false
+                }
+            }
+
+            val declarationSubFolderList  = mutableListOf<String>()
 
             for (declaration in declarationList) {
 
                 val document = RootDeclarationEcoPrinter(declaration).print()
-                val declarationName = document.rootElement.getAttribute("Name").value
-                val declarationFileName = StringBuilder(declarationName).append(".").append(fileExtension).toString()
+                val declarationName = document.rootElement.getAttributeValue("Name")
+                val declarationFileName = "$declarationName.$fileExtension"
                 val declarationFullFilePath = filePathSearcherRecursive(projectBaseDir, declarationFileName)
-                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is it applicable in every context (Windows vs. Linux)?
+                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is this applicable in every context (Windows vs. General case)?
+                declarationSubFolderList.add(declarationSubFolder)
 
                 val exportPath = if (declarationSubFolder == "") {
                     Paths.get(exportBasePathStr, declarationFileName)
@@ -163,7 +186,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 } catch (e: IOException) {
                     Messages.showMessageDialog(
                         project,
-                        "An error occurred during export: ${e.message}",
+                        "An error occurred while attempting to write file ${declarationSubFolder}/$declarationFileName: ${e.message}",
                         "ExportEcostruxure",
                         Messages.getErrorIcon()
                     )
@@ -171,27 +194,23 @@ class ExportAction: AnAction() { //}, DumbAware {
                 }
             }
 
+            if (useTestDirectory || !update) return true
 
-            if (!useTestDirectory and update) {
-                // Lastly, IEC61499.dfbproj file may need to be updated.
-                updateProjectFile(declarationList, projectRootPath)
-            }
+            // Lastly, IEC61499.dfbproj file may need to be updated.
+            updateProjectFile(declarationList, declarationSubFolderList, projectRootPath)
 
             return true
         }
 
         modelAccess.runReadAction {
-            if (!writeDocuments(basicFBTypeDeclarationList, Iec61499ModelFactory.Companion.FBT_FILE_EXT, update = false)) {
-                return@runReadAction
-            }
-            if (!writeDocuments(compositeFBTypeDeclarationList, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return@runReadAction }
-            if (!writeDocuments(serviceInterfaceFBTypeDeclaration, Iec61499ModelFactory.Companion.FBT_FILE_EXT)) { return@runReadAction }
-            if (!writeDocuments(adapterTypeDeclarationList, Iec61499ModelFactory.Companion.ADP_FILE_EXT)) { return@runReadAction }
-            if (!writeDocuments(systemDeclarationList, Iec61499ModelFactory.Companion.SYS_FILE_EXT)) { return@runReadAction }
+            if (!writeDocuments(basicFBTypeDeclarationList)) return@runReadAction
+            if (!writeDocuments(compositeFBTypeDeclarationList)) return@runReadAction
+            if (!writeDocuments(serviceInterfaceFBTypeDeclaration, update = false)) return@runReadAction
+            if (!writeDocuments(adapterTypeDeclarationList)) return@runReadAction
+            //if (!writeDocuments(systemDeclarationList, update = false)) return@runReadAction
         }
 
-
-
+        // TODO(If writing documents goes wrong, this is deceiving.)
         Messages.showMessageDialog(
             project,
             "Export successful: $exportBasePathStr \n\n" +
@@ -237,10 +256,9 @@ class ExportAction: AnAction() { //}, DumbAware {
         }
     }
 
-    private fun updateProjectFile(declarationList : List<Declaration>, projectFilePath : String) {
-        // Should PropertyGroup / <Platform Condition=" '$(Platform)' == '' ">Windows</Platform> be checked for platform?
-        // If not Windows platform, then should I use a different separator for files?
-
+    private fun updateProjectFile(declarationList : List<Declaration>,
+                                  declarationSubFolderList : List<String>,
+                                  projectFilePath : String) { // Add boolean return value.
         // Find "IEC61499.dfbproj" first.
         val projectFileName = "IEC61499.dfbproj"
         val fileToUpdatePathStr = Paths.get(projectFilePath, projectFileName).toString()
@@ -266,35 +284,69 @@ class ExportAction: AnAction() { //}, DumbAware {
             if (firstChild.name in setOf("Folder", "Content", "Reference")) return
         }
 
-        val compileElements = itemGroupElement.getChildren("Compile")
+        val propertyGroupElement = root.getChildren("PropertyGroup", namespace)[0]
+        val platformElement = propertyGroupElement.getChild("Platform", namespace)
+        val pathNotationWindows = '\\'
+        val pathNotationGeneral = '/'
+        val pathNotation = if (platformElement.text == "Windows") {
+            pathNotationWindows
+        } else {
+            pathNotationGeneral
+        }
+
+        val compileElements = itemGroupElement.getChildren("Compile", namespace)
         val compileElementsPlaceholder = mutableListOf<Element>()
 
         // Add any missing compileElements to the document.
-        for (declaration in declarationList) {
+        for ((declaration, declarationSubFolder) in declarationList.zip(declarationSubFolderList)) {
             val declarationName = declaration.name
-            val fileName = "$declarationName.fbt" // TODO(Expand to other types.)
+            val (fileExtension, descriptor) = when (declaration) {
+                is BasicFBTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.FBT_FILE_EXT, "Basic")
+                is CompositeFBTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.FBT_FILE_EXT, "Composite")
+                is AdapterTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.ADP_FILE_EXT, "Adapter")
+                else -> {
+                    // TODO(Expand to other types if necessary.)
+                    Messages.showMessageDialog(
+                        "Error occurred while exporting.\n" +
+                                "Declaration of unknown type encountered while updating file $projectFileName: ${declaration.name}\n" +
+                                "Please contact Esa." ,
+                        "ExportEcostruxure",
+                        Messages.getInformationIcon()
+                    )
+                    return
+                }
+            }
+
+            val fileName = if (declarationSubFolder == "") {
+                "$declarationName.$fileExtension"
+            } else if (pathNotation == pathNotationWindows) {
+                // declarationSubFolder may contain some general path notations.
+                "${declarationSubFolder.replace(pathNotationGeneral, pathNotationWindows)}$pathNotation$declarationName.$fileExtension"
+            } else {
+                "$declarationSubFolder$pathNotation$declarationName.$fileExtension"
+            }
             val matchingCompileElement = compileElements.find {
                 val includeValue = it.getAttributeValue("Include")
                 includeValue == fileName
             }
-            if (matchingCompileElement != null) {
-                continue
-            }
 
-            // Make a new Compile element and place it under ItemGroup.
-            val newCompileElement = Element("Compile")
+            if (matchingCompileElement != null) continue
+
+            // Make a new Compile element and add it to ItemGroup.
+            val newCompileElement = Element("Compile", namespace)
             newCompileElement.setAttribute("Include", fileName)
-            val iec61499TypeElement = Element("IEC61499Type")
-            iec61499TypeElement.setText("Basic")
-            newCompileElement.removeAttribute("xmlns")
+            val iec61499TypeElement = Element("IEC61499Type", namespace)
+            iec61499TypeElement.setText(descriptor) // Basic, Composite, Adapter...
             newCompileElement.setContent(iec61499TypeElement)
             compileElementsPlaceholder.add(newCompileElement)
         }
 
+        if (compileElementsPlaceholder.isEmpty()) return
         itemGroupElement.addContent(compileElementsPlaceholder)
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
 
         // Rewrite "IEC61499.dfbproj" with the help of document.
+        // TODO(Add try - catch blocks here.)
         File(fileToUpdatePathStr).writer().use { writer ->
             xmlOutputter.output(document, writer)
         }
