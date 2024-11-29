@@ -62,8 +62,8 @@ class ExportAction: AnAction() { //}, DumbAware {
         val basicFBTypeDeclarationList = mutableListOf<BasicFBTypeDeclaration>()
         val compositeFBTypeDeclarationList = mutableListOf<CompositeFBTypeDeclaration>()
         val serviceInterfaceFBTypeDeclaration = mutableListOf<ServiceInterfaceFBTypeDeclaration>()
-        val adapterTypeDeclarationList = mutableListOf<Declaration>()
-        val systemDeclarationList = mutableListOf<Declaration>()
+        val adapterTypeDeclarationList = mutableListOf<AdapterTypeDeclaration>()
+        val systemDeclarationList = mutableListOf<SystemDeclaration>()
 
         // Sort all declarations into lists with the common file extension.
         // TODO: Complete RootDeclarationNxtPrinter.
@@ -99,9 +99,9 @@ class ExportAction: AnAction() { //}, DumbAware {
             Messages.getQuestionIcon()
         ) == Messages.YES
 
-        var projectRootPath: String
-        var projectBaseDir: VirtualFile
-        var exportBasePathStr: String
+        val projectRootPath: String
+        val projectBaseDir: VirtualFile
+        val exportBasePathStr: String
 
         if (useTestDirectory) {
             // Create and/or expand the test directory.
@@ -149,15 +149,16 @@ class ExportAction: AnAction() { //}, DumbAware {
                     Messages.showMessageDialog(
                         project,
                         "Error occurred while exporting.\n" +
-                                "Declaration of unknown type encountered: ${declarationList[0]}\n" +
+                                "Declaration of unknown type encountered: ${declarationList[0].name}\n" +
                                 "Please contact Esa." ,
                         "ExportEcostruxure",
-                        Messages.getInformationIcon()
+                        Messages.getErrorIcon()
                     )
                     return false
                 }
             }
 
+            var firstSystemFileWritten = false
             val declarationSubFolderList  = mutableListOf<String>()
 
             for (declaration in declarationList) {
@@ -165,7 +166,18 @@ class ExportAction: AnAction() { //}, DumbAware {
                 val document = RootDeclarationEcoPrinter(declaration).print()
                 val declarationName = document.rootElement.getAttributeValue("Name")
                 val declarationFileName = "$declarationName.$fileExtension"
-                val declarationFullFilePath = filePathSearcherRecursive(projectBaseDir, declarationFileName)
+
+                val declarationFullFilePath = if (fileExtension != Iec61499ModelFactory.Companion.SYS_FILE_EXT) {
+                    filePathSearcherRecursive(projectBaseDir, declarationFileName)
+                } else if (!firstSystemFileWritten) {
+                    firstSystemFileWritten = true
+                    filePathSearcherRecursive(projectBaseDir, declarationFileName)
+                } else {
+                    /* bin folder will be searched once only. Without this distinction, one of the System files will be mistaken
+                    for the other as they both have the same name and the first to be found is inside the bin folder. */
+                    filePathSearcherRecursive(projectBaseDir, declarationFileName, true)
+                }
+
                 val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is this applicable in every context (Windows vs. General case)?
                 declarationSubFolderList.add(declarationSubFolder)
 
@@ -202,35 +214,61 @@ class ExportAction: AnAction() { //}, DumbAware {
             return true
         }
 
+        var filesWrittenSuccessfully = true
+
         modelAccess.runReadAction {
-            if (!writeDocuments(basicFBTypeDeclarationList)) return@runReadAction
-            if (!writeDocuments(compositeFBTypeDeclarationList)) return@runReadAction
-            if (!writeDocuments(serviceInterfaceFBTypeDeclaration, update = false)) return@runReadAction
-            if (!writeDocuments(adapterTypeDeclarationList)) return@runReadAction
-            //if (!writeDocuments(systemDeclarationList, update = false)) return@runReadAction
+            if (!writeDocuments(basicFBTypeDeclarationList)) {
+                filesWrittenSuccessfully = false
+                return@runReadAction
+            }
+            if (!writeDocuments(compositeFBTypeDeclarationList)) {
+                filesWrittenSuccessfully = false
+                return@runReadAction
+            }
+            if (!writeDocuments(serviceInterfaceFBTypeDeclaration, update = false)) {
+                // update = false, because self-made SIFBs shouldn't exist.
+                filesWrittenSuccessfully = false
+                return@runReadAction
+            }
+            if (!writeDocuments(adapterTypeDeclarationList)) {
+                filesWrittenSuccessfully = false
+                return@runReadAction
+            }
+            if (!writeDocuments(systemDeclarationList, update = false)) {
+                filesWrittenSuccessfully = false
+                return@runReadAction
+            }
         }
 
-        // TODO(If writing documents goes wrong, this is deceiving.)
-        Messages.showMessageDialog(
-            project,
-            "Export successful: $exportBasePathStr \n\n" +
-                    "" ,
-            "ExportEcostruxure",
-            Messages.getInformationIcon()
-        )
-
+        if (filesWrittenSuccessfully) {
+            Messages.showMessageDialog(
+                project,
+                "Export successful: $exportBasePathStr \n\n" +
+                        "" ,
+                "ExportEcostruxure",
+                Messages.getInformationIcon()
+            )
+        } else {
+            Messages.showMessageDialog(
+                project,
+                "Export failed: $exportBasePathStr \n\n" +
+                        "" ,
+                "ExportEcostruxure",
+                Messages.getWarningIcon()
+            )
+        }
     }
 
-    private fun filePathSearcherRecursive(dir: VirtualFile, fileName: String) : String {
+    private fun filePathSearcherRecursive(dir: VirtualFile,
+                                          fileName: String,
+                                          binSearched: Boolean = false) : String {
+        if (binSearched && dir.name == "bin") return ""
+        if (dir.name == fileName) return dir.path
         dir.children.forEach { subDir ->
-            val result = filePathSearcherRecursive(subDir, fileName)
-            if (result != "") { return result }
+            val result = filePathSearcherRecursive(subDir, fileName, binSearched)
+            if (result.isNotEmpty()) return result
         }
-        return if (dir.name != fileName) {
-            ""
-        } else {
-            dir.path
-        }
+        return ""
     }
 
     private fun convertRootNode(platformRepository: PlatformRepository, node: SNode, attemptsLeft: Int = 8): Any? {
@@ -311,7 +349,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                                 "Declaration of unknown type encountered while updating file $projectFileName: ${declaration.name}\n" +
                                 "Please contact Esa." ,
                         "ExportEcostruxure",
-                        Messages.getInformationIcon()
+                        Messages.getErrorIcon()
                     )
                     return
                 }
