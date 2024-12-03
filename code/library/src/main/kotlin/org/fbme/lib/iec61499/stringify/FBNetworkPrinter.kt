@@ -1,5 +1,6 @@
 package org.fbme.lib.iec61499.stringify
 
+import org.fbme.lib.iec61499.NamespaceFinder
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.jdom.Element
 
@@ -22,12 +23,9 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
     }
 
     open fun printFunctionBlocks(element: Element) {
-        var index = 1 // Just a quick attempt to implement, may not work like this, as IDs can get mixed up between Ecostruxure and FBME.
         for (fb in this.element.functionBlocks) {
             val fbElement = FunctionBlockPrinter(fb).print()
-            fbElement.setAttribute("ID", index.toString())
             element.addContent(fbElement)
-            index++
         }
     }
 
@@ -70,9 +68,20 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
     class FunctionBlockPrinter(fb: FunctionBlockDeclaration) :
         DeclarationPrinterBase<FunctionBlockDeclaration>(fb, "FB") {
         override fun printDeclarationBody(element: Element) {
-            element.setAttribute("Type", this.element.typeReference.presentation)
+            if (this.element.id != null) {
+                // TODO("In Ecostruxure, ID comes before Name. Not here though.")
+                element.setAttribute("ID", this.element.id)
+            }
+            val type = this.element.typeReference.presentation
+            element.setAttribute("Type", type)
             element.setAttribute("x", "" + this.element.x)
             element.setAttribute("y", "" + this.element.y)
+            val namespace = if (this.element.namespace != null) {
+                this.element.namespace
+            } else {
+                NamespaceFinder.getNamespace(type)
+            }
+            element.setAttribute("Namespace", namespace)
             ParameterAssignmentPrinter.printAll(this.element.parameters, element)
         }
     }

@@ -77,7 +77,9 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
         override fun extractDeclarationBody(identifier: Identifier?): FunctionBlockDeclaration {
             checkNotNull(element)
             val fbd = factory.createFunctionBlockDeclaration(identifier)
+            fbd.id = element.getAttributeValue("ID")
             fbd.typeReference.setTargetName(element.getAttributeValue("Type"))
+            fbd.namespace = element.getAttributeValue("Namespace")
             fbd.x = element.getAttributeValue("x").toFloat().toInt()
             fbd.y = element.getAttributeValue("y").toFloat().toInt()
             ParameterAssignmentsConverter(this, fbd.parameters).extractParameters()
