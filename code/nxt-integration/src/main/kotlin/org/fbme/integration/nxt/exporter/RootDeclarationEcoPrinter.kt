@@ -14,7 +14,6 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
             is BasicFBTypeDeclaration -> {
                 val fbmeElement = BasicFBTypePrinter(myDeclaration).print()
-                fbmeElement is FBInterfaceDeclaration
                 BasicFBTypeDeclarationEcoConverter(fbmeElement).convert()
             }
             is CompositeFBTypeDeclaration -> {
@@ -25,7 +24,10 @@ class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
             is ResourceTypeDeclaration -> ResourceTypePrinter(myDeclaration).print()
             is ServiceInterfaceFBTypeDeclaration -> ServiceInterfaceFBTypePrinter(myDeclaration).print()
             is SubapplicationTypeDeclaration -> SubappTypePrinter(myDeclaration).print()
-            is SystemDeclaration -> SystemPrinter(myDeclaration).print()
+            is SystemDeclaration -> {
+                val fbmeElement = SystemPrinter(myDeclaration).print()
+                SystemDeclarationEcoConverter(fbmeElement).convert()
+            }
             else -> error("Unrecognized root declaration")
         }
         when (myDeclaration) {
