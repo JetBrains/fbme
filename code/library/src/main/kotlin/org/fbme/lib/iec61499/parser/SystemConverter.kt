@@ -47,6 +47,7 @@ class SystemConverter(arguments: ConverterArguments) : DeclarationConverterBase<
             checkNotNull(element)
             val device = factory.createDeviceDeclaration(identifier)
             device.typeReference.setTargetName(element.getAttributeValue("Type"))
+            device.namespace = element.getAttributeValue("Namespace")
             ParameterAssignmentsConverter(with(element), device.parameters).extractParameters()
             for (resourceElement in element.getChildren("Resource")) {
                 device.resources.add(ResourceConverter(with(resourceElement)).extract())
