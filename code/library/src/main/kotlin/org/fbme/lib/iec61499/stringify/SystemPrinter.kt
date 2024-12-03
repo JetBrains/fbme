@@ -27,6 +27,10 @@ class SystemPrinter(declaration: SystemDeclaration) :
     private class ApplicationPrinter(applicationDeclaration: ApplicationDeclaration) :
         DeclarationPrinterBase<ApplicationDeclaration>(applicationDeclaration, "Application") {
         override fun printDeclarationBody(element: Element) {
+            if (this.element.id != null) {
+                // TODO("In Ecostruxure, ID comes before Name. Not here though.")
+                element.setAttribute("ID", this.element.id)
+            }
             element.addContent(SubappNetworkPrinter(this.element.network).print())
         }
     }
@@ -48,7 +52,7 @@ class SystemPrinter(declaration: SystemDeclaration) :
                 NamespaceFinder.getNamespace(type)
             }
             element.setAttribute("Namespace", namespace)
-            ParameterAssignmentPrinter.printAll(this.element.parameters, element) // Is this necessary?
+            ParameterAssignmentPrinter.printAll(this.element.parameters, element)
             for (resourceDeclaration in this.element.resources) {
                 element.addContent(ResourcePrinter(resourceDeclaration).print())
             }

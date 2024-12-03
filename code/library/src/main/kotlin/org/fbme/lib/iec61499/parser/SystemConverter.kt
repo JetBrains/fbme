@@ -28,6 +28,7 @@ class SystemConverter(arguments: ConverterArguments) : DeclarationConverterBase<
         override fun extractDeclarationBody(identifier: Identifier?): ApplicationDeclaration {
             checkNotNull(element)
             val application = factory.createApplicationDeclaration(identifier)
+            application.id = element.getAttributeValue("ID")
             SubappNetworkConverter(with(element.getChild("SubAppNetwork")), application.network).extractNetwork()
             return application
         }
