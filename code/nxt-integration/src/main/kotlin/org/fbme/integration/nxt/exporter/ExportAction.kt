@@ -158,7 +158,14 @@ class ExportAction: AnAction() { //}, DumbAware {
                 }
             }
 
-            var firstSystemFileWritten = false
+            fun isDeployFile(systemDocument: Document) : Boolean {
+                // There are two System.sys files in the FBME root directory,
+                // one in bin/Deploy/System/ and another in System/.
+                val rootElement = systemDocument.rootElement
+                val applicationElements = rootElement.getChildren("Application")
+                return applicationElements.isEmpty() // Deploy file has no Applications.
+            }
+
             val declarationSubFolderList  = mutableListOf<String>()
 
             for (declaration in declarationList) {
@@ -169,16 +176,15 @@ class ExportAction: AnAction() { //}, DumbAware {
 
                 val declarationFullFilePath = if (fileExtension != Iec61499ModelFactory.Companion.SYS_FILE_EXT) {
                     filePathSearcherRecursive(projectBaseDir, declarationFileName)
-                } else if (!firstSystemFileWritten) {
-                    firstSystemFileWritten = true
-                    filePathSearcherRecursive(projectBaseDir, declarationFileName)
+                } else if (isDeployFile(document)) {
+                    "${projectRootPath}bin/Deploy/System/${declarationFileName}"
+                    continue // TODO("Figure out if this file System.deploy.sys is needed or not.")
                 } else {
-                    /* bin folder will be searched once only. Without this distinction, one of the System files will be mistaken
-                    for the other as they both have the same name and the first to be found is inside the bin folder. */
-                    filePathSearcherRecursive(projectBaseDir, declarationFileName, true)
+                    "${projectRootPath}System/${declarationFileName}"
                 }
 
-                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).removeSuffix(declarationFileName).trim('/') // Is this applicable in every context (Windows vs. General case)?
+                val declarationSubFolder = declarationFullFilePath.removePrefix(projectRootPath).
+                    removeSuffix(declarationFileName).trim('/') // Is this applicable in every context (Windows vs. General case)?
                 declarationSubFolderList.add(declarationSubFolder)
 
                 val exportPath = if (declarationSubFolder == "") {
@@ -234,7 +240,6 @@ class ExportAction: AnAction() { //}, DumbAware {
                 filesWrittenSuccessfully = false
                 return@runReadAction
             }
-            return@runReadAction
             if (!writeDocuments(systemDeclarationList, update = false)) {
                 filesWrittenSuccessfully = false
                 return@runReadAction
