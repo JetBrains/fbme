@@ -9,9 +9,39 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
 
     fun convert() : Element {
         val ecoElement = rootElement.clone()
-        // TODO("Move eventconnections ahead of dataconnections in application and device networks.")
+        switchApplicationNetworkDataConnectionsPosition(ecoElement)
+        switchResourceNetworkDataConnectionsPosition(ecoElement)
         fixResourceEventConnections(ecoElement)
         return ecoElement
+    }
+
+    private fun switchApplicationNetworkDataConnectionsPosition(ecoElement: Element) {
+        val applicationElements = ecoElement.getChildren("Application")
+        for (applicationElement in applicationElements) {
+            val subAppNetworkElement = applicationElement.getChild("SubAppNetwork") ?: continue
+            // Place DataConnections after EventConnections to follow Ecostruxure style.
+            val dataConnectionsElement = subAppNetworkElement.getChild("DataConnections") ?: continue
+            val eventConnectionsElement = subAppNetworkElement.getChild("EventConnections") ?: continue
+            subAppNetworkElement.removeChild("DataConnections")
+            subAppNetworkElement.addContent(subAppNetworkElement.indexOf(eventConnectionsElement)+1,
+                dataConnectionsElement)
+        }
+    }
+
+    private fun switchResourceNetworkDataConnectionsPosition(ecoElement: Element) {
+        val deviceElements = ecoElement.getChildren("Device")
+        for (deviceElement in deviceElements) {
+            val resourceElements = deviceElement.getChildren("Resource")
+            for (resourceElement in resourceElements) {
+                val fbNetworkElement = resourceElement.getChild("FBNetwork") ?: continue
+                // Place DataConnections after EventConnections to follow Ecostruxure style.
+                val dataConnectionsElement = fbNetworkElement.getChild("DataConnections") ?: continue
+                val eventConnectionsElement = fbNetworkElement.getChild("EventConnections") ?: continue
+                fbNetworkElement.removeChild("DataConnections")
+                fbNetworkElement.addContent(fbNetworkElement.indexOf(eventConnectionsElement)+1,
+                    dataConnectionsElement)
+            }
+        }
     }
 
     private fun fixResourceEventConnections(ecoElement: Element) {

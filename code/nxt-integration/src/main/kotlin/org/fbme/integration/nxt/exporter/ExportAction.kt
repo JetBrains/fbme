@@ -234,6 +234,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 filesWrittenSuccessfully = false
                 return@runReadAction
             }
+            return@runReadAction
             if (!writeDocuments(systemDeclarationList, update = false)) {
                 filesWrittenSuccessfully = false
                 return@runReadAction
