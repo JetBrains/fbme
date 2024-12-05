@@ -1,7 +1,5 @@
 package org.fbme.integration.nxt.exporter
 
-import com.intellij.psi.impl.source.tree.java.ParameterElement
-import org.jdom.Document
 import org.jdom.Element
 
 
