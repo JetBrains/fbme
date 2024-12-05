@@ -44,6 +44,9 @@ class SystemPrinter(declaration: SystemDeclaration) :
     private class DevicePrinter(deviceDeclaration: DeviceDeclaration) :
         DeclarationPrinterBase<DeviceDeclaration>(deviceDeclaration, "Device") {
         override fun printDeclarationBody(element: Element) {
+            if (this.element.id != null) {
+                element.setAttribute("ID", this.element.id)
+            }
             val type = this.element.typeReference.presentation
             element.setAttribute("Type", type)
             val namespace = if (this.element.namespace != null) {

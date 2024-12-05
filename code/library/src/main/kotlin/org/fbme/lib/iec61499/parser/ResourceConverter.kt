@@ -7,6 +7,7 @@ class ResourceConverter(arguments: ConverterArguments) : DeclarationConverterBas
     override fun extractDeclarationBody(identifier: Identifier?): ResourceDeclaration {
         checkNotNull(element)
         val resource = factory.createResourceDeclaration(identifier)
+        resource.id = element.getAttributeValue("ID")
         resource.typeReference.setTargetName(element.getAttributeValue("Type"))
         resource.namespace = element.getAttributeValue("Namespace")
         ParameterAssignmentsConverter(with(element), resource.parameters).extractParameters()

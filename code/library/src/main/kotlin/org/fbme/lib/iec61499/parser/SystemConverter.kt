@@ -47,6 +47,7 @@ class SystemConverter(arguments: ConverterArguments) : DeclarationConverterBase<
         override fun extractDeclarationBody(identifier: Identifier?): DeviceDeclaration {
             checkNotNull(element)
             val device = factory.createDeviceDeclaration(identifier)
+            device.id = element.getAttributeValue("ID")
             device.typeReference.setTargetName(element.getAttributeValue("Type"))
             device.namespace = element.getAttributeValue("Namespace")
             ParameterAssignmentsConverter(with(element), device.parameters).extractParameters()

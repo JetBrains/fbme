@@ -7,6 +7,9 @@ import org.jdom.Element
 class ResourcePrinter(declaration: ResourceDeclaration) :
     DeclarationPrinterBase<ResourceDeclaration>(declaration, "Resource") {
     override fun printDeclarationBody(element: Element) {
+        if (this.element.id != null) {
+            element.setAttribute("ID", this.element.id)
+        }
         val type = this.element.typeReference.presentation
         element.setAttribute("Type", type)
         val namespace = if (this.element.namespace != null) {
