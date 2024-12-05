@@ -6,9 +6,6 @@ import org.fbme.lib.iec61499.IEC61499Factory
 import org.fbme.lib.iec61499.declarations.FBInterfaceDeclaration
 import org.fbme.lib.iec61499.fbnetwork.*
 import org.fbme.lib.iec61499.fbnetwork.subapp.SubappNetwork
-import org.fbme.lib.st.expressions.ArrayInitializer
-import org.fbme.lib.st.expressions.Expression
-import org.fbme.lib.st.expressions.Literal
 import org.fbme.scenes.controllers.diagram.DiagramView
 import org.fbme.scenes.viewmodel.ComponentExtensionsView
 import org.fbme.scenes.viewmodel.ComponentsView
