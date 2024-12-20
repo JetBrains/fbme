@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="DE89288BECD15AFE" Name="SMOOTH" Comment="Smooth" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_SMOOTH" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2012-01-01" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="TYPE" />
+        <With Var="VALCONDITION" />
+        <With Var="VALDIFF${CNT}" />
+        <With Var="TIMEDIFF" />
+        <With Var="CYCLE" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN${CNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation (can be also triggered asynchronously)">
+        <With Var="OUT${CNT}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TYPE" Type="BYTE" InitialValue="0" Comment="Smoothing type: 0=none; 1=old/new; 2=value; 3=time; 4=time or value; 5=time and value;">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=None = 0|OldNew = 1|Value = 2|Time = 3|TimeOrValue = 4|TimeAndValue = 5}" />
+      </VarDeclaration>
+      <VarDeclaration Name="VALCONDITION" Type="BYTE" InitialValue="0" Comment="Condition for value-based smoothing: 0=send if any value differ enough; 1=send if all values differs enough">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Any = 0|All = 1}" />
+      </VarDeclaration>
+      <VarDeclaration Name="TIMEDIFF" Type="TIME" InitialValue="T#0ms" Comment="Time difference for the time-based smoothings" />
+      <VarDeclaration Name="CYCLE" Type="TIME" InitialValue="T#0ms" Comment="If not null, the value(s) will be sent at least this often" />
+      <VarDeclaration Name="VALDIFF${CNT}" Type="IN${CNT}" Comment="Difference for the value-based smoothings" />
+      <VarDeclaration Name="IN${CNT}" Type="&lt;ANY&gt;" Comment="Input value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT${CNT}" Type="IN${CNT}" Comment="INx at the time of CNF" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="SMOOTH" />
+</FBType>

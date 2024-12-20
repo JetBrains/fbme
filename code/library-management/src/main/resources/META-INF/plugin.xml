@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>fbme.lib-management</id>
+    <name>FBME - Lib management</name>
+    <description>Defines the core functionality for FBME lib management</description>
+    <version>0.1</version>
+    <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+
+    <depends>fbme.library</depends>
+    <depends>jetbrains.mps.core</depends>
+    <depends>jetbrains.mps.execution.languages</depends>
+
+    <extensions defaultExtensionNs="com.intellij.mps">
+        <facetTabFactory facetType="library" className="org.fbme.ide.platform.library.LibraryFacetTabFactory"/>
+    </extensions>
+
+
+    <actions>
+        <action id="platform.NewLibraryAction"
+                class="org.fbme.ide.platform.library.actions.NewLibraryAction"
+                text="Library"
+                icon="/icons/lib.svg"/>
+        <action id="platform.ImportLibraryAction"
+                class="org.fbme.ide.platform.library.actions.ImportLibraryAction"
+                text="Import Library"/>
+        <action id="platform.ExportLibraryAction"
+                class="org.fbme.ide.platform.library.actions.ExportLibraryAction"
+                text="Export Library"/>
+        <action id="platform.ImportNxtLibAction"
+                class="org.fbme.ide.platform.library.actions.ImportNxtLibraryAction"
+                text="Import Nxt Library"/>
+        <action id="platform.SetNamespaceAction"
+                class="org.fbme.ide.platform.library.actions.SetNamespaceAction"
+                text="Set Namespace"/>
+    </actions>
+
+</idea-plugin>

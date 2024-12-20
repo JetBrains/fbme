@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="8B41E3E0886ADB0B" Name="MODBUSIO" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_MODBUSIO" />
+  <Attribute Name="Runtime.MODBUS.Server" Value="TCP:502" />
+  <Attribute Name="Runtime.MODBUS.IOAddress" Value="1" />
+  <Attribute Name="Runtime.MODBUS.Storage" Value="0" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2012-02-11" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;0;64;O;1;0;64" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+      </Event>
+      <Event Name="LOAD_RETAIN" Comment="Load the retain values (or default if no retain ones present)">
+        <With Var="QI" />
+        <With Var="default${O}" />
+      </Event>
+      <Event Name="REQ" Comment="Process memory write request">
+        <With Var="QI" />
+        <With Var="SD${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Confirmation of initialization complete">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of a process memory write request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Indication of a MODBUS write operation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${O}" />
+      </Event>
+      <Event Name="INDCHG" Comment="Indication of a MODBUS write operation with at least one data item changed">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${O}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="SD${I}" Type="&lt;BOOL, INT, UINT, WORD, DINT, UDINT, DWORD, REAL&gt;" Comment="Data to be written to MODBUS process image" />
+      <VarDeclaration Name="default${O}" Type="RD${O}" Comment="Defaults for data read from MODBUS process image until first data come or there are retain data" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+      <VarDeclaration Name="RD${O}" Type="&lt;BOOL, INT, UINT, WORD, DINT, UDINT, DWORD, REAL&gt;" Comment="Data read from MODBUS process image" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="MODBUSIO" />
+</FBType>

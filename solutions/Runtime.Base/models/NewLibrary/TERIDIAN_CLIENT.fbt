@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="TERIDIAN_CLIENT" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="medusta" Date="9/8/2014" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+        <With Var="Endpoint" />
+        <With Var="BusId" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="Connected" />
+      </Event>
+      <Event Name="IND" Comment="Confirmation of Requested Service">
+        <With Var="Connected" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="BusId" Type="STRING" Comment="Bus name" />
+      <VarDeclaration Name="Endpoint" Type="STRING" InitialValue="'127.0.0.1:6212'" Comment="Communication port (dotAddr:portNo)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+      <VarDeclaration Name="Connected" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="TERIDIAN_CLIENT">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_confirm">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="CNF+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="REQ-" Parameters="SD" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_error">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_response">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="IND+" Parameters="RD" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="RSP" Parameters="QI,SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="response" Parameters="QI,SD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD,QI=FALSE" />
+        <OutputPrimitive Interface="RESOURCE" Event="inhibited" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="error_indication">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="error" Parameters="STATUS" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="IND-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="TERIDIAN_CLIENT" Event="INIT-" />
+        <OutputPrimitive Interface="RESOURCE" Event="terminate" />
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="resource_initiated_termination">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="TERIDIAN_CLIENT" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_SPLIT" Comment="Split an event" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEh91eDfvRgSPmnJ0wLGhZar7d9lulWy8N6A2M6schVRPHGt5VPdlk0fd22/c2QJq/Zkw1btSntA3wrX2KLiEHeaE3dmvMRDWGzj+R33MpfDozOqoBifSdKZ3iBHwuceHu5cDuI4eIGRs+gsHTEapf7Crk0FWc/NaBR3C+0+f/PJrUiwuRjCtaCcHk5tIhfcJ+qyZi1pfZ9wb7g57dwxzItdRCzUHo+CqzB359bXIBycLhORq7yAaOPCuLPQ2ADr0zLN0yrPjjXQUbKxonoyZwaRNBVJhytuDzbgcSXoa3ewzakMReRsMiin28Imv80u7W8/rJnECK52FH72PRoX1LtzEZ7HgEuogxC6x3T0ZtBZpbxADImAynjcoGGDbvj+RvXENoh/y9OLpHREhA3OcXTCvsjLj98g2dcGfqv1DPD5VwHgMz7DPzQ4BfVShPtx1ZkyGcCE0Akgc5SjiWOe4ojJD8TKQRjUNv+V0907FCEZD/CK4VchARC+2B5U48JDe+dTvFvjiq0VbcUL48Dr0M+DXxy34eBeR1aeccYf06Pr2hTmfj9sLuCKUFDLc08ASiuPtQKfpTb9J3JilUM8cdi44CPDZdz0olnmBQ+YnEb2Mmiwt6ke6O3RWqYrIu/gCR22J4euVUU5qzZ3n388yYTKzjuod03RQWdOVhktPXxjQKSEc/oEv3MGBJCg2RYQJox9EFOIry7nS6H8dSNF2WYUMZKiIIFd/YNvckN37hFg4eSAB1l0BCvDBDK0GxsE59ZAyV4nVFtRjwYFGlh6I6OVayq5Y9TZBtuzV6GvwXKy8BSK5SvkQfFyoAeCzGOTgMKkCTU+wXawc8sCjtsB0NGYJqtYcXzOQQyqLkKR5gAIWs47qHdN0UFn5+3AJEI5PHeOA6YkxhxrhCzAcRPTCR+tOVKkxZXEFoHOs56CLpgXLm7F7VU6fi5zlrgS/FnL8gVrKrlj1NkG1HkU7778ewRnC09kqGjatztvqarSjldH0Ezr/g7smudYxjooRtmdkLktRiEdICl8e94+eaxGHLvu2UxEOo62YmO5QzFNYZYz2tqtpnmVvFC1nejvSJ7fTzlagCK3DEg1tIDvONKPVU3aO4UeIcMccs0bgBokyXETHYOIZisujU63fFXsCNC7ev494muIodClW1x+aRGryhywJx29fvVoEXvyh3zRzkvPZ1IkEnbZEzN05UTue+qghqov7pw7tizBV4Rahf/kyhcbNoODh3qDcwSoC9EImG2CCcIyjF+b83s+JZnUz03J5SimjMLgpOESHbudbrURSJ+E5a7tKcwM1SVrKrlj1NkG13ARPTPXR2h3veJaq+XIAEVsazAGFEd93UsKQKzLSfHzMMblhpKIeSrCZZBiSh0vQdXRMuVeBxOEMdL07quZmQ4idGmfXFAvL+UkfzSz4EAajWMSVNDTP7smUOyMiZ0axgC/Ei9eUWlCupv5EpSyhZN6vcQTSMNrr60JiCKNPvOd6z2LVghC9F5CdQzjwU0zvp+ro9y0D5wQdYxKmgGkrDTnRubjgRdwdHmmu3vNyKbxU7NOvPEiEZygVIrcdcVPL1WiteJD3CUK/rSOe3+jnBbu+O2mZ5Ncp40/fe7kw7nQ==" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Input event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO1" Comment="First output event" />
+      <Event Name="EO2" Comment="Second output event,etc." />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

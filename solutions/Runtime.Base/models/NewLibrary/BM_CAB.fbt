@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BM_CAB" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Runtime.FBType.WeakImplementingType" Value="Runtime.Fieldbus#BM_SIMBUS" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAESiT7OdbTF78hvBRHQ3UTierR7Bb/Kg3ISGtQkk6RsA73EaP9UvuUFQyPJMQ/64ghzWslHHK5jNTmn/UdS6MUO56DKjD4apRYc5N6Ael8vOkHOHPOl0md5F/B6vsv/WaNm1i+bEA037WVqAIrcMSDWzbECD0yiTVw93bb9zZAmr/7nsJ/nXMqocRa18m1KpGITxNQmaHsgdsCXws61XXVw2eveg/KgJKb46D9CpY8ba6Xnw++XfLBOmIw3lC9RWuKB6kxjc2voHmeyUx0PJZjCFsXkif4Upds+57Cf51zKqE77aba1HO9L4kmeQAsKbEbs+GKiPHxDOHJGtn06Vh+aMHk5tIhfcJ+qyZi1pfZ9wb7g57dwxzItdRCzUHo+CqzB359bXIBycLhORq7yAaOPCuLPQ2ADr0zLN0yrPjjXQUbKxonoyZwaRNBVJhytuDzbgcSXoa3ewzakMReRsMiin28Imv80u7W8/rJnECK52FH72PRoX1LtzEZ7HgEuogxC6x3T0ZtBZpbxADImAynjcoGGDbvj+RvXENoh/y9OLpHREhA3OcXTIoW2UA4+m2qIHOBhvnQOr5wHgMz7DPzQx8W3AsttSIXkV1TuQdFU42NwqWlizsKqevha8ibJlwVtFxlqzpVs+cvOeM/OkNnZ+5O36U7a2hFujvRkQ4MV3DdK/oOsRrS5FV1ZU1HkI5imv04td3byp5vmK96gADftTlKOJY57iiMuepn8OJW45rMAHW4Jxx+Pa3BVNXWmG8l3smDlSNnWz+XJD6tYUXGBq2q2meZW8UL/kIRjL6LfIGyyv4UrQebe7WPFyC/Oc5e/wxJ1X0yZpAM8djsdgXWTBZGEyBoOcNBBxODZkSUVn7/gJL+bcoI6UEMGKvCaHuQ1ZaqvEfsNmGyZQ7IyJnRrC1zPzhXHPQG2dvOlW4Y+SVq2sRXPCRH1XUiQSdtkTM3jJFazFGyl9cYm/eKd2CAFJG16NbK30kGs2g4OHeoNzDLahAGK8rmC6UFDLc08ASiOJajdFeS5b55n4h5bEAmiz3mJKqB4rz1vt32W6VbLw1bpRLN9e9Ipudl4hVuV/pITxa/FNw3s5EwVKrhnm3QHp6gd1YPfwxGnX76o3qHgUOd4EGVc0b0noMbSRypWm3X27nW61EUifgabhSaH71b+Y4CPDZdz0olnmBQ+YnEb2PIIi3ER/iPlFhBjINk3KHuMpSyciDX/pvvHRgEjKM+cRfRwOGBktytfd8z5yUNhd3V+u1qUhpvhmcDWW0rLUZ3sHKxoN8Uc0Bjz3DDkUQNhFmqGKBi+yjhraraZ5lbxQtzwFCDYG1Rja2q2meZW8UL/kIRjL6LfIEOK/jzJyFfrhRiLOeDHIf4QHgE26hNOPmPJL46e638YuMvrTkuO495dSJBJ22RMzeMkVrMUbKX1+jStoSu4oQ3s2g4OHeoNzDLahAGK8rmC6UFDLc08ASiOJajdFeS5b5aBS3DnjmK7058kMif3FQ7HkgAdZdAQrzke9NLQoafJXAbKtVa/stI2jEJM9XvLItfaDjkaQ1R7Nx49X1/QhOc1NdyTle/+jRh1vOL15b0DHUiQSdtkTM3jJFazFGyl9cu7B+DXt6ZZWhLOzcMbKyg27nW61EUifgabhSaH71b+Y4CPDZdz0olnmBQ+YnEb2Opxd1gNKLEWb5qPeHAuHIXPBF4AjbIiRFk+9q6WOx9/NszVFR9FoOXOi4zd0TCf9YHE4NmRJRWfv+Akv5tygjpQQwYq8Joe5DVlqq8R+w2YbJlDsjImdGsHB9gZIF7bHBlL24jk7S0ClJE5Z604cPMe3uAWMywQxI4lqN0V5LlvmISByv2wBvcsmUOyMiZ0awoVl9G+iN1wtohNk9VZlD8nB5SZqJ77o7/DEnVfTJmkAzx2Ox2BdZMQ7mWur/89cX6s+NhMe7GtP+Akv5tygjpQQwYq8Joe5CCGfrzp5oXH7JlDsjImdGsLXM/OFcc9Aby0tTnAdY3S+XZQ0izqJ7CVrKrlj1NkG0oNLxvrYzMpFayq5Y9TZBtuzV6GvwXKy/RrGXlR8Otp3s+4+yK/H1aERdyk+WS1R0y0N49/CmzIC4KBH4g5eYAR7GwnSJnuHutqtpnmVvFCzoiS/NVncEZDoukLbA7n5l1O8W+OKrRVtx49X1/QhOc1NdyTle/+jRGRTIFVwZdqG7waOqYVQDasHKxoN8Uc0Bjz3DDkUQNhNCa86EM6Qx0AJqM2Jvqg42man3Occ0Tyds3z/v9SVx94zpUjMWQoLkyp7OUJa2p/a2q2meZW8ULc8BQg2BtUY2tqtpnmVvFC/5CEYy+i3yB0duxTNuXB2c9YtFDTpYVxUB4BNuoTTj5jyS+Onut/GIbED2an7YcUS+17CHuMU+5dSJBJ22RMzeMkVrMUbKX12ab7EMos2g1s2g4OHeoNzCdfvqjeoeBQ5Oisyjw4hK1oUzn4qiZLvStqtpnmVvFCzoiS/NVncEZkN0S/CkU3f7kw/cjddmbNbJlDsjImdGsHB9gZIF7bHCyZQ7IyJnRrChWX0b6I3XClwjOW6EjXBIzwRgShwmdsh5IAHWXQEK8wk0CEamUP9Tzo7+agyNkNy3FCDO7af13sHKxoN8Uc0Bjz3DDkUQNhBv9aO+yyn/rpmp9znHNE8nbN8/7/UlcfVTTpoYAZKjxxvbA6YOBg0//gJL+bcoI6UEMGKvCaHuQ1C42MERuj0d1O8W+OKrRVtx49X1/QhOc1NdyTle/+jTPK6dE4d+uDNsLuKqGHLiLdSJBJ22RMzeMkVrMUbKX12B0phWbHojdPFDRMhF+jgOzaDg4d6g3MMtqEAYryuYLpQUMtzTwBKIBJuqnjNqrf7vVeM0qoqsS1PYPNxyFaH7yg8x6ACzU/rJlDsjImdGsdcnCYl6m9KTxipwu1csRvlnTHrSYR9bFq6pAsNJuysUeO7YSGDLqExWqYrIu/gCR22J4euVUU5rk21x5YDtgYg17NgUOsHk7smUOyMiZ0ax1ycJiXqb0pPGKnC7VyxG+1FwBv9S+HSfkfVIc7dzWLzeZLl1fbp8tENjBRrb6xctxZn71CP3AEs4rdtsD+ahtGuFjkKJGxPe4/usN5bhxEhXgiEcrNzYQEiZ2iSeblLiyZQ7IyJnRrHXJwmJepvSk8YqcLtXLEb5BHZECK7UgPAPA9rkAtwX6q6pAsNJuysUeO7YSGDLqE72RHHjAGrx0Lu8a3IJ7sQycyYdIdkbOa2Az0tfLjPH4yZkwUdRJdo51O8W+OKrRVgsmQhVUWxAzsvUChCahiRD8tdC3n5AH/W6kHq8GsW/yAkOr1ibfL/ymPDi+ByfIhnbm+hrt7K8GexfLWRZNWfaFsB3hZDnENWXxiaVh+TzNiT3O9sq1Q5L1YDEdDHrkXBN1VWSbeJA/TO2mCUFVDrPGPg3RpPovmWUvbiOTtLQKxm30FM2kil8KSEc/oEv3MFeE2lTCXtmco1FOMfD4G6MLJkIVVFsQM7L1AoQmoYkQ/LXQt5+QB/3k+a4u3nN6P0WcmrIK5CB4rzi2NMXa24vYADLNlaWYmMjnXOpvBSo4xJqBzXEj9EfTj7uY70YzLrDnR9V91/kirgBthwjK9bi9DRyeGJ+E3VeGpwf0EzcuoeFUPD6tlgxcY8nv7umi3SoAeCzGOTgMRYp6aie7kDX6uOhhT4WOWxDo/xq7tLRIiJ2do8GOHRUwVKrhnm3QHnU7xb44qtFWCyZCFVRbEDOy9QKEJqGJEPy10LefkAf91C42MERuj0erqkCw0m7KxR8r8IxQrwFzvt32W6VbLw2yRU5yyWOMtUALjdnaYRoYJKi9odK/n2iyZQ7IyJnRrHXJwmJepvSk8YqcLtXLEb64pKLLBaWosY1nfFh3SIfsq6pAsNJuysUfK/CMUK8Bc77d9lulWy8NFRu20ASqf64+DVQ6ZMSmUHJQ/kl9WiaTraraZ5lbxQtCcX559glJDi2sEa5096EBFVJSVPXIO4YlyLgg3GY/+yT7uipp2uXAPIW/gF2IkJREkPNMwdVEBLNoODh3qDcwTwfZMY7cjroVrHWFrDtnJjoydO7zeJ1J6XyDatxNhTwW4OHaRuGjzyRckknkFKRYKHnjPat85wEl5k/t6r6341XKJPj+hAQ9E5w9fozyLCMjWcxEpydvgw==" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Other" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SIMULATION" />
+      </Event>
+      <Event Name="CONFIG" Comment="Configure the devices on the bus">
+        <With Var="QI" />
+      </Event>
+      <Event Name="SET_STATE" Comment="Set the master to a dedicated state">
+        <With Var="STATE" />
+      </Event>
+      <Event Name="REQ" Comment="Bus cycle request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="RESTART" Comment="Reset the bus and restart">
+        <With Var="QI" />
+        <With Var="STATE" />
+      </Event>
+      <Event Name="ERROR_ACK" Comment="Error acknowledgement request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CONFIGO" Comment="Bus configuration confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_TIME" />
+      </Event>
+      <Event Name="CNF" Comment="Bus cycle request confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="STATEO" />
+      </Event>
+      <Event Name="ERROR_IND" Comment="Error indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="STATEO" />
+        <With Var="ERROR_CODE" />
+        <With Var="ERROR_TIME" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Uniquely identifies a bus in the device" />
+      <VarDeclaration Name="SIMULATION" Type="BOOL" Comment="Puts the bus into simulation mode" />
+      <VarDeclaration Name="STATE" Type="UDINT" Comment="Requested state (1 .. INIT, 2 .. PREOP, 4 .. SAFEOP, 8 .. OP)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays the current status of the bus" />
+      <VarDeclaration Name="STATEO" Type="UDINT" Comment="Current master state" />
+      <VarDeclaration Name="ERROR_CODE" Type="UDINT" Comment="Error code of the bus" />
+      <VarDeclaration Name="ERROR_TIME" Type="DATE_AND_TIME" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

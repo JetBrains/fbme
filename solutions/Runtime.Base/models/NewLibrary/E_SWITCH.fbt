@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="E_SWITCH" Comment="Switch(demultiplex)an event" Namespace="IEC61499.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="IEC61499.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Classification="Event Processing" Function="Event Switch" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2008-09-09" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Event Input">
+        <With Var="G" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO0" Comment="Output,switched from EI when G=0" />
+      <Event Name="EO1" Comment="Output,switched from EI when G=1" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Switch EI to EI0 when G=0,to EI1 when G=1" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

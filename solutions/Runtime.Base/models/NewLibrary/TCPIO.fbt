@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="TCPIO" Comment="Service Interface Function Block Type" Namespace="Runtime.IoCommon">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2009-11-14" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request event">
+        <With Var="QI" />
+        <With Var="PORT" />
+        <With Var="STARTCHAR" />
+        <With Var="ENDCHAR" />
+      </Event>
+      <Event Name="REQ" Comment="Write data request event">
+        <With Var="QI" />
+        <With Var="DATAOUT" />
+      </Event>
+      <Event Name="ACK" Comment="Input data processed acknowledge event">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation event">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Write data request confirmation event">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Data read indication event">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="PEERADDR" />
+        <With Var="DATAIN" />
+      </Event>
+      <Event Name="ERRIND" Comment="Error indication event">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="PORT" Type="STRING" Comment="Communication port ([UDP:|TCP:][[dotAddr:]portNo][;dotAddr:portNo])" />
+      <VarDeclaration Name="STARTCHAR" Type="USINT" Comment="Record start character (optional)" />
+      <VarDeclaration Name="ENDCHAR" Type="USINT" Comment="Record end character (optional)" />
+      <VarDeclaration Name="DATAOUT" Type="STRING" Comment="Data to be sent with every REQ event" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Error reason in human readable format" />
+      <VarDeclaration Name="PEERADDR" Type="STRING" Comment="Address of the peer which has sent the current input data packet" />
+      <VarDeclaration Name="DATAIN" Type="STRING" Comment="Data read with every IND event" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

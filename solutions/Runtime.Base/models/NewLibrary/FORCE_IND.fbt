@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="FORCE_IND" Comment="Service Interface Function Block Type" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#FORCE_IND" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEJyDrv0B6qsgT3vKZz3tSXioAeCzGOTgMFGYChrwMcIM0/RIdAjZBSMjBjHpBShDNac/7GPypwGEB1PO7mOkOE1YwCMbVcYq/mxSaf2a/wAd6dRjYY1GCq6E3dmvMRDWGzj+R33MpfDozOqoBifSdKTR74K+BxLF/a13/pQEVYfKeV/xXKOvX7ZKcBCLd60RdlcydzYU/l6Y0e+CvgcSxf7Ve+2KFJ3d/Lzv2wtlhtL8XIaAY1Wt+B2eveg/KgJKb46D9CpY8ba47pfsCUkxNRIAVgQsqYb7gTmjWqE8XjduwoMSjPfuKc5DKJb1dpV4OACpL970cs4NoiVCbCkrvzQKSF33+WEp2ChRf9+wnuRtAIHZe/mgvvzMK0bPseCOCcgNxggYIerQdsvHVFkFyaUIzBJ/pBcfPgQI7gFaMsVq8gYvZEAWuv4CbjghYA0cyguZLWgJY33kg790hQFIpeiQaFQfeSFJZpVSCJvpxZbwavwI8cu1ZbkDdBmbXl1UxCAcxQp0C+tI8khxEAF2NGiw2yJ3mc2xEdTvFvjiq0Vb3KtsSoeDL+9AvAjHFY4ynELGukVEGyVvccTc7jcxvDIkz2+pJPGvZj6vrELmCQOTQOZdv9Lsi9guu6ex3zqCTexow6Qm/JKUbSfuKxXYg23X4yrQ93axT6FtW1TXWcR91O8W+OKrRVtxQvjwOvQz4NfHLfh4F5HVp5xxh/To+vaFOZ+P2wu4IpQUMtzTwBKK4+1Ap+lNv0ncmKVQzxx2LjgI8Nl3PSiWeYFD5icRvYySzT7g7OlCyvt32W6VbLw1y7jeRHm24z1J0oWGMjac85h4EwDYzuvSeoHdWD38MRp1++qN6h4FDoxAVRxsKERaMhaEUtnAg362q2meZW8ULc8BQg2BtUY3ac8FenHGhEr9M+3Fqs78tdyYpVDPHHYuKyWe+UGLux2Kiit5nx0LyraraZ5lbxQv+QhGMvot8gdHbsUzblwdnPWLRQ06WFcV9nb5D5TgsAvFuN+/BuqfyQxHD8MICJjYKVIW28iclAdx49X1/QhOc1NdyTle/+jTqPwrc+J2viVhaHK5NkgpesmUOyMiZ0awcH2BkgXtscGUvbiOTtLQK2gXCSRXeDtJ3JilUM8cdi28EZpIR+TakLLUZn9D5Krvq/oFlAI3VNqfMIx+Eb/dN3pvGcSizD25WmfkFrPF4cZm/WB0ph4iORzTZOjvqGwYeSAB1l0BCvM0oJuZ2/k7O7098JDnLavHwze1jyMP+o/0KCUgqSkkrmkZrApjHYE5caxzLCojfUPKDzHoALNT+SKfLYp09+dPGa4irPh4iggpIRz+gS/cw4JRrzTbZc3pG6B9wYCgDNiXHjAI00LHbKWs+tM0XRDqBKyI+pGxGYOMJ1yrVuT5iKgB4LMY5OAx8gM0VazDzbs7iJQamdREsQXo4gTOcsfFwYmlG0NHsn1vZfacANzmddTvFvjiq0VY2pDyBFjPRgAMqg7N9Tuj9Fz0ZLQ8+z3C7UtTyoUKOxcMa8+CtP5xxNAs/ZBhqtJR59GkyVjTblR4xbOaEhdylA7PJyDoW9fSYZBB9XxI3xoLA+GZONALQqTVkBKHn9VFIS4pERSY+chEsVF3ttwRLfqNsZPv9QOM=" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="hoegdan" Date="26.06.2012" Remarks="Initial version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="active" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="forceActive" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="active" Type="BOOL" Comment="Tells if a force has been actived" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="forceActive" Type="BOOL" Comment="Indicates if the force input is active" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="FORCE_IND" />
+</FBType>

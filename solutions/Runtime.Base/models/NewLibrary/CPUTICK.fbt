@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="CPUTICK" Comment="Basic Function Block Type for taking time between events" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="02.08.2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Measure time from the last REQ or START event">
+        <With Var="unit" />
+      </Event>
+      <Event Name="START" Comment="Capture the current time" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="timeDiff" />
+        <With Var="timeDiffUnits" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="unit" Type="UDINT" InitialValue="0" Comment="Units for the time difference: 0=seconds, 1=milliseconds, 2=microseconds, 3=nanoseconds">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Seconds = 0|Milliseconds = 1|Microseconds = 2|Nanoseconds = 3}" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="timeDiff" Type="TIME" Comment="Time since the last REQ event" />
+      <VarDeclaration Name="timeDiffUnits" Type="UDINT" Comment="Time since the last REQ event in units as specified in parameter 'unit'" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="CPUTICK" />
+</FBType>

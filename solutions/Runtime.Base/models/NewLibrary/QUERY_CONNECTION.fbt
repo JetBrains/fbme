@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="2829BEC8B168FD9C" Name="QUERY_CONNECTION" Namespace="Runtime.System">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.System" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="7/26/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Execution Request">
+        <With Var="INST_PATHNAME" />
+        <With Var="QUERY_TYPE" />
+        <With Var="INST_VAR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="NOT_FOUND" />
+        <With Var="CONNECTED" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INST_PATHNAME" Type="STRING" Comment="Adapter/Variable Pathname" />
+      <VarDeclaration Name="INST_VAR" Type="STRING" Comment="Adapter/Variable Input- or Outputname" />
+      <VarDeclaration Name="QUERY_TYPE" Type="INT" Comment="0=Adapter Remote, 1=Adapter Localy, 2=Adapter both,3 Variable" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="NOT_FOUND" Type="BOOL" Comment="Adapter or Variable not found" />
+      <VarDeclaration Name="CONNECTED" Type="BOOL" Comment="Conected identifier" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="QUERY_CONNECTION" />
+</FBType>

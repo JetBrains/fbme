@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="CFG_ANY_GET" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.IoCommon#DYNGEN_PD_ANY_IN" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="medusta" Date="2012-05-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="OFFSET" />
+        <With Var="CFG_USES_MSBF" />
+      </Event>
+      <Event Name="REQ" Comment="Configuration memory read request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of a configuration memory read request">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${I}" />
+      </Event>
+      <Event Name="IND" Comment="Indication of a configuration memory change">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="RD${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where values are read from or written to" />
+      <VarDeclaration Name="OFFSET" Type="UINT" Comment="Defines the bit offset of the accessor within the device" />
+      <VarDeclaration Name="CFG_USES_MSBF" Type="BOOL" Comment="Defines configuration data to be encoded most significant byte first" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+      <VarDeclaration Name="RD${I}" Type="&lt;BOOL, BYTE, WORD, DWORD, REAL&gt;" Comment="Data read from the associated field bus" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="CFG_ANY_GET" />
+</FBType>

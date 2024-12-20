@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="MBUSDEVICE" Namespace="Runtime.Fieldbus">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.IoCommon" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_MBUSDEVICE" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="09.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initializes the FB as an MBus device reporting N (1 &lt;= N &lt;= 16) counters">
+        <With Var="QI" />
+        <With Var="COM" />
+        <With Var="DEVID" />
+        <With Var="AUTOSCALE" />
+      </Event>
+      <Event Name="REQ" Comment="Triggers an asynchronous MBus read request for the given device">
+        <With Var="CTRINDEX${I}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Indicates the asynchrnous device initialization completion">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="MBUSMSG" />
+      </Event>
+      <Event Name="CNF" Comment="Indicates asynchronous MBus device read request completion">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="MBUSMSG" />
+        <With Var="CTRVALUE${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Initialize event input qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" Comment="Defines media characteristica (dev=COM1: [baudrate=1200] [debug=0])" />
+      <VarDeclaration Name="DEVID" Type="UDINT" Comment="Defines the primary address of an MBus slave device (0..250)" />
+      <VarDeclaration Name="AUTOSCALE" Type="BOOL" Comment="FALSE return plain MBUS values in CTRVALUEi, TRUE return scaled values if scaling is possible" />
+      <VarDeclaration Name="CTRINDEX${I}" Type="UDINT" Comment="Defines the index of the counter in the MBus datagram whose value is returned in paramter i (0..)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Initialize event output qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="In case of IO failure holds a human readable error message" />
+      <VarDeclaration Name="MBUSMSG" Type="STRING" Comment="The MBUS message received (if implementd)" />
+      <VarDeclaration Name="CTRVALUE${I}" Type="&lt;BYTE,WORD,DWORD,LWORD,STRING,SINT,INT,DINT,LINT,USINT,UINT,ULINT,UDINT,LREAL,REAL&gt;" Comment="Holds the counter value found at the corresponding index in the last MBus telegram received" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="MBUSDEVICE" />
+</FBType>

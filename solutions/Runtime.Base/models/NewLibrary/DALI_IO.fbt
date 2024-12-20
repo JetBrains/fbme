@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="779FB455FD659937" Name="DALI_IO" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="InterfaceID" />
+        <With Var="LightNr" />
+        <With Var="IsGroup" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="StateCmd" />
+        <With Var="LevelCmd" />
+      </Event>
+      <Event Name="GETSTATUS" Comment="Request lamp status" />
+      <Event Name="GETLEVEL" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="INDSTATUS">
+        <With Var="Status" />
+        <With Var="QO" />
+      </Event>
+      <Event Name="INDLEVEL">
+        <With Var="State" />
+        <With Var="Level" />
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="Uniquely identifies the DALI master">
+        <Attribute Name="ParameterEditor" Value="" />
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="LightNr" Type="UDINT" Comment="Logical light number">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="StateCmd" Type="BOOL" Comment="Command on/off" />
+      <VarDeclaration Name="LevelCmd" Type="REAL" Comment="Command level 0 .. 100 %" />
+      <VarDeclaration Name="IsGroup" Type="BOOL">
+        <Attribute Name="ParameterEditor" Value="" />
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Status" Type="BYTE" />
+      <VarDeclaration Name="State" Type="BOOL" Comment="on/off state" />
+      <VarDeclaration Name="Level" Type="REAL" Comment="level 0 .. 100 %" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommDevice" />
+</FBType>

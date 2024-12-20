@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="CFG_EVENT" Comment="Bus device configuration events" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_CFG_EVENT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEUPFlHQDp6NH9IHJWwPZFHSoAeCzGOTgMeyap0WRAwcQFolIMdSkK2tRCzUHo+Cqz1u/RAXOXdshokypjN831DMAxti8SyaKhLBsfzl1EcQoxMs64vjS2WsHk5tIhfcJ+qyZi1pfZ9wYdRliGqSAV7LdXsIKaMmTkPcVEhMOJWYuo7Ao+D08P8SMsHkEk7auUjYM1wpfSD4WEqAX3+594jkBy3r6HdgOFoyX5U/Op3VfpOzfZJzDwtdCJisVU3uR5rvr/QG3jyNl5n4h5bEAmi9t0wpf9hbip7AcIY7CDpGFtARZhmbI3WgaTcpvBMTEJaE9buVPAKdeo6GWsLjxD6WJihSvv7lSprtJ00VEe6msBg1BBVx+kyanhCUUq4ZFT95W82jMgbKytSchYcjhH6xiv85xEQ2lHOhXkwNjBQCaG45VbxZ7egilF+Jv0+J3xiDxvQOFq+3kVHBGJg5tGOdBnrsLyBSTuUiCokB5EnPBDu8kIORjnf62E/C7ZbUP+9xO12g4/iivrO2HV/M0MjB3dNilBwOAURO3wdL85b395yESiyG2uP+jCxsNlfsxg82bFPIJzYe6OAL8z4C/l9V9dM4KZDVu6Dcb5B+F8UPkgq3wbPVK10fPwvNAoZKZFEhp0/EpAoRC9vHEoYcrv5dOVKkxZXEFokpY5zCZVLmLjoP0Kljxtrjul+wJSTE1EgBWBCyphvuDFG2aN35A5gxf4P+EvExkHhcxrX1xS7EG9h0a6qa8xaB3aRRbqgVQMX88FWwc8sPZCpnYLTZCLjnTlYZLT18Y0CkhHP6BL9zA4lqN0V5LlvkRnsxSlSpvMZieTPLzL864ylLJyINf+m5VRzLTLZs9nYVve6px0uT5dhe4AbTZB/6Zqfc5xzRPJ2zfP+/1JXH0z74NPvQc5sK2q2meZW8ULOiJL81WdwRng0tk2Qc9ZICQe/DDoO1BBsmUOyMiZ0awtcz84Vxz0BlEVIen0UPUhEQuWJmvm7yOyZQ7IyJnRrC1zPzhXHPQGIR7YbMGc9NI1bAimvb0ri7NoODh3qDcwnX76o3qHgUPYoHc31n/vfLNvHnMOTfNUdTvFvjiq0Vas47qHdN0UFi/BGfXncB3H3smDlSNnWz+GSYTYfmPqWUhrsRf0K7furzi2NMXa24tN93XZJveY2nvVNLgOGo+11ELNQej4KrPW79EBc5d2yJ6gd1YPfwxGnX76o3qHgUOd4EGVc0b0noMbSRypWm3X27nW61EUifgabhSaH71b+TbePmAk/ji+lyQ+rWFFxgbac8FenHGhEtoFwkkV3g7SdyYpVDPHHYuOAjw2Xc9KJZ5gUPmJxG9jU3uMkl0mBgYqAHgsxjk4DBRmAoa8DHCDlHK1+odGOpkMGEFhqVNyMCBE2/t2/vCYO5efBIU6A+p1IkEnbZEzN4yRWsxRspfXZpvsQyizaDWzaDg4d6g3MJ1++qN6h4FDk6KzKPDiErWhTOfiqJku9K2q2meZW8ULc8BQg2BtUY2tqtpnmVvFC/5CEYy+i3yB0duxTNuXB2fD7pmzyp4zJ77d9lulWy8NRcolFdFG7LvAHfvmPEEDbylMzofJ8Or0gBWBCyphvuDREMdi1XxMkoSuRqBkxyYLZ+ws7oprn1GDXj6N1Zs42su3ItuW2oG4pd+vOdki1kGman3Occ0Tyds3z/v9SVx926aU6s2ZOrCtqtpnmVvFCzoiS/NVncEZkN0S/CkU3f42I4bsQMODDLJlDsjImdGsHB9gZIF7bHCyZQ7IyJnRrChWX0b6I3XCVwUNmt4KoSaMT9El5q5CXhWqYrIu/gCR86O/moMjZDeUMCUfMRWrIxl0dPAGEXuKpjioAwc3uwPIgBjz30hjCHFXkRyQJterpFs7H7mpvBkczP8hK2VgQ3UiQSdtkTM3jJFazFGyl9dmm+xDKLNoNbNoODh3qDcwnX76o3qHgUOTorMo8OIStaFM5+KomS70raraZ5lbxQtzwFCDYG1RjdpzwV6ccaESND1wezInicfH0QU4ivLudBDFwXLDCwKEAyqDs31O6P1WsquWPU2QbWMf9q2BXNXrUxkrbxej+VpF77I6VHoN+3lv8uQURKy3nXbCymnu/gMEzr/g7smudbHchqchS5Ka7sKymkCttYI1JKwXu8De0Fayq5Y9TZBtYx/2rYFc1etTGStvF6P5WlMqUnfbK6n5RzY4FnGQECvBWvlnz6pIEatPi6y7+x5vQHgE26hNOPkXmtOHzy7r+7umd41xQ6Zk6v6BZQCN1TanzCMfhG/3Td6bxnEosw9u78fZCFGtm2KB2HNKkdqBsT9wZ9KABb39rzi2NMXa24ud5Agbt+hpao7Ddvf+317oibO5C/SI5ecwVKrhnm3QHrgznBgcDRF+CsMbtsPbgBreD27z23RleBaDIrNRmbaUP25OT1P9k4RWsquWPU2QbWMf9q2BXNXrUxkrbxej+VrYZyPdN/79oproc8tvAw7bIlfo+T5Sg+FJ/EtEKzXxU7Ste01kC0Hx+QB5NBuSlPRyWtKMUYvkg6Qqa5d+ssHYxdaMBiR3Ha11/VAOlAVfTCikFJ8acBnoywbomui9tXbYEI7J3wfwMi4KBH4g5eYAFXSzk7D3HI4EihqTRHI1U08ifh2+hv/oDQN+6nSgYlDV9P4N6Xh/0/I6I+iUcoYYraraZ5lbxQtCcX559glJDi2sEa5096EBUrbCy/fYyIjihG5vHdH2VquqQLDSbsrFVQeBYI+b/Ixktfc/SDN9SzSCbhfxBQ/TU90WAvDAN8S2mT+UwfuRM6qMwRh1bQgkWJCAI8nKb7KzN5EW6LRMtNY2RZoxcv6nHtZ9ist6eH+Etl7C5G4DbxmZKk7M1TyM0dpCTDgc/XQEihqTRHI1U08ifh2+hv/oDQN+6nSgYlDV9P4N6Xh/0/I6I+iUcoYY2nPBXpxxoRItFY939ekVk3/OrD2xQuop41HCF+kIU4EVrHWFrDtnJrDnR9V91/kirgBthwjK9bi9DRyeGJ+E3blsSr9PAipLSUDvH3xmenLoqMLqHazxe7vib4GgnLIHm+lxq8Tuq1mr2BPL2Fwpr7umd41xQ6Zk6v6BZQCN1TanzCMfhG/3Td6bxnEosw9uWHZrB7ncnXE0E7ZIgcwNuJVwZ+cs9Wuyrzi2NMXa24s3VGlF2fcScMhtQX9vxY//x9unf/k5x9buZYJ57lpbRH2cr4EcLa3LZ9It3laFxnrGa4irPh4igm7wUNo+3Uy4zAB1uCccfj2twVTV1phvJTAmX/iHFcRIyruv77NYwJXMAHW4Jxx+PeOgcTULPuL/bq3iCP4forIguNCeMNLJdeX4vWwZUw/7jEk87YmHZmH9AGjXtVEfAIeu6Qm8XRO7" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="oberwal" Date="2008-11-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service initialization">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="OFFSETCNF" />
+        <With Var="OFFSETREQ" />
+      </Event>
+      <Event Name="REQ${I}" Comment="Request a configuration event">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Service initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF${I}" Comment="Confirmation that the configuration event was accepted by the function block">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND${I}" Comment="Indication that the event was processed by the specific device">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Bus identifier" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the device on the bus where the configuration is updated" />
+      <VarDeclaration Name="OFFSETREQ" Type="UINT" Comment="Defines the bit offset of the accessor within the device for configuration request events. Each event needs a byte here." />
+      <VarDeclaration Name="OFFSETCNF" Type="UINT" Comment="Defines the bit offset of the accessor within the device for configuration configrmation events. Each event needs a byte here." />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current accessor status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="CFG_EVENT" />
+</FBType>

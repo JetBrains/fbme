@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BUSDEVICECONFIG" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="2012-05-08" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="NINPUTBITS" />
+        <With Var="NOUTPUTBITS" />
+        <With Var="ISBITDEVICE" />
+        <With Var="FLAGS" />
+        <With Var="CONFIGURATION" />
+        <With Var="MODULE_ID" />
+      </Event>
+      <Event Name="REQ" Comment="Normal execution request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Execution confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Identifies the bus the current device is attached to" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the number of the slot on the bus occupied by the current device (0..)" />
+      <VarDeclaration Name="CONFIGURATION" Type="STRING" Comment="The manufacturer specific parameter string" />
+      <VarDeclaration Name="MODULE_ID" Type="UDINT" Comment="Unambigously identifies the type of the device on the bus" />
+      <VarDeclaration Name="NINPUTBITS" Type="UINT" Comment="Defines the number of bits the device occupies in the input configuration image of the bus (0..)" />
+      <VarDeclaration Name="NOUTPUTBITS" Type="UINT" Comment="Defines the number of bits the device occupies in the output configuration image of the bus (0..)" />
+      <VarDeclaration Name="ISBITDEVICE" Type="BOOL" Comment="Should be set to true if the devices data in the configuration image is not necessarily byte aligned" />
+      <VarDeclaration Name="FLAGS" Type="DWORD" Comment="Various general operation flags" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Displays current status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="919EC124ADF3EDA2" Name="HASH" Comment="Hash a string" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_HASH" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="marumil" Date="24.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;1;1;16" />
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="ALGO" />
+        <With Var="FORMAT" />
+        <With Var="INP${CNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ALGO" Type="USINT" Comment="Algorithm used for computing the hash">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=SHA-1 = 0}" />
+      </VarDeclaration>
+      <VarDeclaration Name="FORMAT" Type="USINT" Comment="Output format">
+        <Attribute Name="ParameterEditor" Value="ComboBox{Enums=Hex = 0|Raw = 1}" />
+      </VarDeclaration>
+      <VarDeclaration Name="INP${CNT}" Type="STRING" Comment="Input of the hash function is the concatenation of all the INP parameters" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="STRING" Comment="Hash of the input" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="HASH" />
+</FBType>

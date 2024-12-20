@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="6F6BAA7400D855A5" Name="PRIOSCHEDULER" Comment="Event schedule function block" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_PRIOSCHEDULER" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="09.09.2008" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="I;1;1;4" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization event">
+        <With Var="QI" />
+      </Event>
+      <Event Name="SET">
+        <With Var="QI" />
+        <With Var="FIRSTCHANNEL" />
+        <With Var="MAXINITTIME" />
+        <With Var="SCHEDULE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Init done notification">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="SETO" Comment="Set new schedule done notification">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND${I}" Comment="Output state changed indicator">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="VALUE${I}" />
+        <With Var="ID${I}" />
+        <With Var="NEXTVALUE${I}" />
+        <With Var="NEXTTS${I}" />
+        <With Var="NEXTISVALID${I}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Initialize event input qualifier" />
+      <VarDeclaration Name="FIRSTCHANNEL" Type="UDINT" Comment="Defines the number of the first valid channel which corresponds to CHANNEL0" />
+      <VarDeclaration Name="MAXINITTIME" Type="TIME" Comment="Defines the timespan to go back to look for initialization events" />
+      <VarDeclaration Name="SCHEDULE" Type="STRING" Comment="Defines a list of schedulable events (min hr day mon wday year ch val id [prio [duration]]; ...)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event status qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Error information" />
+      <VarDeclaration Name="VALUE${I}" Type="&lt;BOOL,BYTE,WORD,DWORD,LWORD,STRING,SINT,INT,DINT,LINT,USINT,UINT,ULINT,UDINT,LREAL,REAL,TIME&gt;" Comment="Current Value of channel ${I} + FIRSTCHANNEL" />
+      <VarDeclaration Name="ID${I}" Type="STRING" Comment="ID of the currently active schedule" />
+      <VarDeclaration Name="NEXTVALUE${I}" Type="VALUE${I}" Comment="Value of the next schedule following to the current one" />
+      <VarDeclaration Name="NEXTTS${I}" Type="DT" Comment="Timestamp of activating the next schedule" />
+      <VarDeclaration Name="NEXTISVALID${I}" Type="BOOL" Comment="Determines if next value and timestamp are valid. If the flag is cleared there is no next schedule" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="PRIOSCHEDULER" />
+</FBType>

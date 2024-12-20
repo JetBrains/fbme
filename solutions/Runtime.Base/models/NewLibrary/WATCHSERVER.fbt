@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="WATCHSERVER" Comment="Watch Server" Namespace="Runtime.Server">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Management" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Function="Communication" Description="Watch Server" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="SM" Date="2007-11-14" />
+  <CompilerInfo header="package fb.rt.nxtcontrol;">
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="MGR_ID" />
+      </Event>
+      <Event Name="COMM" Comment="Internally used" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Inout Qualifier" />
+      <VarDeclaration Name="MGR_ID" Type="WSTRING" InitialValue="&quot;0.0.0.0:61497&quot;" Comment="Host and port the Watch server listens on" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="WATCHSERVER" />
+</FBType>

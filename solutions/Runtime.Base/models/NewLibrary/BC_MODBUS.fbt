@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="BC_MODBUS" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="oberwal" Date="2011-06-07" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Other" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="BUS_ID" />
+        <With Var="SLOT_NO" />
+        <With Var="CONFIGURATION" />
+        <With Var="MODULE_ID" />
+        <With Var="FLAGS" />
+        <With Var="SLAVE_BUS_ID" />
+        <With Var="OPTIONS" />
+      </Event>
+      <Event Name="REQ" Comment="Normal execution request">
+        <With Var="QI" />
+      </Event>
+      <Event Name="DIAGCLR" Comment="Diagnostics output clear request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="DIAGIND" Comment="Diagnostics information available indication">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+      </Event>
+      <Event Name="IND" Comment="Indication of a MODBUS write operation, new data is available">
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="DIAGNOSTICS" />
+        <With Var="CYCLE_CNT" />
+        <With Var="CYCLE_TIME" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="BUS_ID" Type="STRING" Comment="Identifies the bus the current device is attached to" />
+      <VarDeclaration Name="SLOT_NO" Type="UDINT" Comment="Defines the number of the slot on the bus occupied by the current device (0..)" />
+      <VarDeclaration Name="CONFIGURATION" Type="STRING" Comment="The manufacturer specific parameter string in hex notation" />
+      <VarDeclaration Name="MODULE_ID" Type="UDINT" Comment="Unambigously identifies the type of the device on the bus" />
+      <VarDeclaration Name="FLAGS" Type="DWORD" Comment="Various general operation flags" />
+      <VarDeclaration Name="SLAVE_BUS_ID" Type="STRING" Comment="Defines the name for the slave bus referenced by all slave devices" />
+      <VarDeclaration Name="OPTIONS" Type="STRING" Comment="Defines slave bus configurtion options (e.g. MODE=KBUS, ...)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Error information" />
+      <VarDeclaration Name="DIAGNOSTICS" Type="STRING" Comment="The manufacturer specific device diagnostics string" />
+      <VarDeclaration Name="CYCLE_CNT" Type="UDINT" Comment="The number of cycles the modbus bus coupler has executed" />
+      <VarDeclaration Name="CYCLE_TIME" Type="UDINT" Comment="Time of the last read/write cycle of the modbus bus coupler" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

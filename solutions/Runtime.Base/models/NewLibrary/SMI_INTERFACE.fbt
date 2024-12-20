@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SMI_INTERFACE" Comment="Basic Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="Horst Mayer" Date="8/8/2009" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="QI" />
+        <With Var="COM" />
+        <With Var="InterfaceID" />
+      </Event>
+      <Event Name="AUTOADR">
+        <With Var="SlaveID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Execution Confirmation">
+        <With Var="QO" />
+        <With Var="Messages" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="COM" Type="STRING" Comment="COMx interface qualifier" />
+      <VarDeclaration Name="InterfaceID" Type="STRING" Comment="Unique identifier of the communication interface to the SMI gateway" />
+      <VarDeclaration Name="SlaveID" Type="BYTE" Comment="Address of the SMI gateway" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="STRING" />
+      <VarDeclaration Name="Messages" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="EnoceanCommInterface" />
+</FBType>

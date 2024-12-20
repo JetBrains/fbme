@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="SMOOTH_BOOL" Comment="Basic Function Block Type" Namespace="Runtime.Standard">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="stano" Date="2007-12-19" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="TYPE" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="TYPE" />
+        <With Var="VALDIFF" />
+        <With Var="TIMEDIFF" />
+        <With Var="CYCLE" />
+        <With Var="IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF" Comment="Execution Confirmation (can be also triggered asynchronously)">
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TYPE" Type="BYTE" InitialValue="0" Comment="Smoothing type: 0=none; 1=old/new; 2=value; 3=time; 4=time or value; 5=time and value; 6=deflutter" />
+      <VarDeclaration Name="TIMEDIFF" Type="TIME" InitialValue="T#0ms" Comment="Time difference or deflutter time for the time-based smoothings" />
+      <VarDeclaration Name="CYCLE" Type="TIME" InitialValue="T#0ms" Comment="If not null, the value will be send at least this often (but not when the deflutter interval is in effect)" />
+      <VarDeclaration Name="IN" Type="BOOL" Comment="Input value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="BOOL" Comment="Output value" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB />
+</FBType>

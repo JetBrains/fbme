@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="COSEM_GET" Comment="Companion Specification for Energy Metering Register Reader" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_COSEM_GET" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="1.0" Author="medusta" Date="9/8/2014" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+        <With Var="OBIS${CNT}" />
+        <With Var="BusId" />
+      </Event>
+      <Event Name="REQ" Comment="Service Request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="Status${CNT}" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of Requested Service">
+        <With Var="QO" />
+        <With Var="Value${CNT}" />
+        <With Var="TimeStamp${CNT}" />
+        <With Var="UnitFactor${CNT}" />
+        <With Var="Unit${CNT}" />
+        <With Var="Valid${CNT}" />
+        <With Var="Status${CNT}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="BusId" Type="STRING" Comment="Providing bus name" />
+      <VarDeclaration Name="OBIS${CNT}" Type="STRING" Comment="Address of the object in the a-b:c.d.e*f format (e.g. 1-0:1.4.0*255)" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="Status${CNT}" Type="STRING" Comment="Value status" />
+      <VarDeclaration Name="Value${CNT}" Type="&lt;LREAL,ULINT,LINT&gt;" Comment="Value read. If (U)LINT64, this is the raw value read w/o UnitFactor applied. If LREAL, the UnitFactor was already applied." />
+      <VarDeclaration Name="TimeStamp${CNT}" Type="DATE_AND_TIME" Comment="Last time the value was obtained from the provider." />
+      <VarDeclaration Name="UnitFactor${CNT}" Type="SINT" Comment="In case the Value is (U)LINT64 the value has to be interpreted as Value . 10^UnitFactor" />
+      <VarDeclaration Name="Unit${CNT}" Type="USINT" Comment="Unit according to the DLMS/COSEM standard" />
+      <VarDeclaration Name="Valid${CNT}" Type="BOOL" Comment="The value was read at least once from the provider" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

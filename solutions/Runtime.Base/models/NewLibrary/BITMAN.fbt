@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="7317935F5D9E39D5" Name="BITMAN" Comment="Bit manipulation" Namespace="Runtime.Standard">
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Standard#DYNGEN_BITMAN" />
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Common" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="MufQJCP7rjJcQ2iH/L04ukqTvrMd39czo6rdqPJpNl98fcHVzKqmtnDc/J0w1KAEL80zJT38BGgr15uZki/mzeUeo7R+jYP3qJNowxUF8xL7OS2M/WoXF3KUxwstK+WWWTBuBoJXWD8wHSzBXs6Kk1YwCMbVcYq/mxSaf2a/wAd6dRjYY1GCq6E3dmvMRDWGzj+R33MpfDozOqoBifSdKTR74K+BxLF/a13/pQEVYfKeV/xXKOvX7ZKcBCLd60RdlcydzYU/l6Y0e+CvgcSxf7Ve+2KFJ3d/+k8jiu5b48vtY+kB0GRR+535GHcC1qrEXSGjNV7hrAXlg0qMNb1jZvJOhBnp+ISdSYxCNbLmjrTr+rHfVsafAw0uvzKhM8cR1l9uyfx4alICXws61XXVw2eveg/KgJKb46D9CpY8ba47pfsCUkxNRIAVgQsqYb7gTmjWqE8XjduwoMSjPfuKc5DKJb1dpV4OACpL970cs4NoiVCbCkrvzQKSF33+WEp2ChRf9+wnuRtAIHZe/mgvvzMK0bPseCOCcgNxggYIerQdsvHVFkFyaUIzBJ/pBcfPgQI7gFaMsVq8gYvZEAWuv4CbjghYA0cyguZLWgJY33n5BZC3ayYexEeqix8P6hk01VxR2ftfP3EfFc5AUkhlurbrn34vmXUiCAcxQp0C+tI8khxEAF2NGog8b0Dhavt5dTvFvjiq0Vb3KtsSoeDL+9AvAjHFY4ynELGukVEGyVvccTc7jcxvDIkz2+pJPGvZ7KEo/akgbLIE9RrT/Xq7leZltz/kO3grXus73YUJlKv3EaP9UvuUFeJV0SyI2XuAwJFUxdaPYQdtmGUxE25QrkfoTOLh7/V8hLZewuRuA2+ujapDuEzAaTM2yE+HIZOkadvmcYHN2oyQyiW9XaVeDj/1Y6ZK+QAKb0wE0PanZ+QvFZ8KKgt7GoQAe2SZzPe9QqZ2C02Qi4505WGS09fGNApIRz+gS/cwOJajdFeS5b5EZ7MUpUqbzGYnkzy8y/OuBM6/4O7JrnVhW97qnHS5Pl2F7gBtNkH/pmp9znHNE8nbN8/7/UlcfQY+crgXcr9XraraZ5lbxQtzwFCDYG1Rja2q2meZW8UL/kIRjL6LfIEOK/jzJyFfrhRiLOeDHIf4a0jF09J9bMzbdwC5CbNjYLzywa4qCwR6xchOkOVbFS6man3Occ0Tyds3z/v9SVx9xJAHkOr25TM6ztx40LmEOa2q2meZW8ULc8BQg2BtUY3ac8FenHGhEr9M+3Fqs78tdyYpVDPHHYuKyWe+UGLux2Kiit5nx0LyraraZ5lbxQv+QhGMvot8gbLK/hStB5t7Zf/Z1rjqwKYEzr/g7smudWFb3uqcdLk+vP86hQnD1Z/Rxh6MtSRreS3FCDO7af13sHKxoN8Uc0Bjz3DDkUQNhO9zf1wkrvxos2g4OHeoNzDLahAGK8rmC6UFDLc08ASiOJajdFeS5b55n4h5bEAmi8hnEodYj/LvVCppZQ4B0MrhkpK0aY8ny3dPMr25gkMwsRaShPO1P2n/gJL+bcoI6UEMGKvCaHuQhxPNcQH0SBPD6eEGSb/+ErNoODh3qDcwnX76o3qHgUOTorMo8OIStaFM5+KomS70raraZ5lbxQtzwFCDYG1RjdpzwV6ccaESND1wezInicfH0QU4ivLudBDFwXLDCwKEAyqDs31O6P1WsquWPU2QbWMf9q2BXNXrUxkrbxej+Vo1Fyd5EQGvTa+yHRmYIbOnIVyrOR4P5zHDKB8Ue1wpfnO8mlRQwAqVLOa7iOnfcnk40g4acf1QVcoFEDaKxECp6Ie7lQgHgx5hljFqcBDUQTx9V+axr3/m5c0rPQIqQcCrfDx1lZ0AYDrXli324U/3smUOyMiZ0ax1ycJiXqb0pPGKnC7VyxG+2vookZlGcOirqkCw0m7KxfflXlyUaTlpHkgAdZdAQryVMsnWNORFaK4XEyHLnxflUvLRuW+CmHD938kvHkFUE+5ge6/+lZ1PiDy846KBC91Sx9C0p5NEc/f+S8YsNGtRDUPpzURB1vFKMeavzGGwPbtY5Qqg6mY5ryWTWNenLc0JSrQaczKXDU3cMjqylNl0atV8bnyoZ+a1vv7A4KwrLv8dAHm4bWVIghzm4g/I/8m8S2R6bEfOvWEpc5u6O32fcH16t0/rLQDEVFE8KyO0iLbRc4yucIl0s2g4OHeoNzDuZs3MpIFGY6NRTjHw+BujEzl94kkYJ98stRmf0Pkqu+r+gWUAjdU2p8wjH4Rv903em8ZxKLMPbmLzzYa65yWWOAuPqplV2r+rqkCw0m7KxXd6CtGxNE1BzhwuzjbKuaJQIOAU5hvQQ7HMrrZ0qA3fP54ZT/FIMyijuFHiHDHHLCrEkVJIMLu03lwDz7I/Su0zXFGdZoCAdyuRMFhgmhpCtmjGf7+xj5du8GjqmFUA2sygfzh1905f53wFM/u1afckfQ35EE9eu0ZFMgVXBl2omYcBkjmMNytAyw77qN0gIb7d9lulWy8N2pIQafR5DBCzaDg4d6g3ME8H2TGO3I66Fax1haw7ZyY6MnTu83idSel8g2rcTYU8FuDh2kbho88kXJJJ5BSkWCh54z2rfOcBJeZP7eq+t+NVyiT4/oQEPROcPX6M8iwjI1nMRKcnb4M=" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="medusta" Date="20.12.2010" Remarks="Initial Version" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNTIN;1;1;32;CNTOUT;1;1;32" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization">
+        <With Var="OP" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN${CNTIN}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirmation">
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT${CNTOUT}" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN${CNTIN}" Type="&lt;BOOL,BYTE,WORD,DWORD,LWORD&gt;" Comment="Input bit image, bit 0 is the LSB of IN1" />
+      <VarDeclaration Name="OP" Type="STRING" Comment="Recipe to wire the input image to the output one, e.g. 0-7,15-8:i,8:0,24=8:1 (first 8 bits as they are, second 8 in reverse order and inverted, 8 zeros and 8 ones from the 24. bit)." />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT${CNTOUT}" Type="&lt;BOOL,BYTE,WORD,DWORD,LWORD&gt;" Comment="Output bit image, bit 0 is the LSB of OUT1" />
+      <VarDeclaration Name="STATUS" Type="STRING" Comment="Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

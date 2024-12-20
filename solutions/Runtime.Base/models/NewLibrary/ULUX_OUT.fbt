@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="ULUX_OUT" Comment="Service Interface Function Block Type" Namespace="Runtime.Fieldbus">
+  <Attribute Name="Configuration.ulux.ActorConfig" Value="" />
+  <Attribute Name="Configuration.ulux.ActorType" Value="" />
+  <Attribute Name="Runtime.FBType.ImplementingType" Value="Runtime.Fieldbus#DYNGEN_ULUX_OUT" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="medusta" Date="10/15/2014" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <Attribute Name="Configuration.GenericFBType.Counters" Value="CNT;1;1;16" />
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization request">
+        <With Var="QI" />
+        <With Var="SwitchId" />
+        <With Var="ActorId" />
+        <With Var="Id${CNT}" />
+      </Event>
+      <Event Name="REQ" Comment="Service Request">
+        <With Var="Value${CNT}" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+        <With Var="Status${CNT}" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of Requested Service">
+        <With Var="Status${CNT}" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="SwitchId" Type="STRING" Comment="Unique name of the switch">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="ActorId" Type="UINT" Comment="Id of the actor or 0 if global switch data">
+        <Attribute Name="Runtime.IO.ParameterValue" Value="" />
+      </VarDeclaration>
+      <VarDeclaration Name="Id${CNT}" Type="STRING" Comment="Value identification. Format: &lt;ValueId&gt;[.&lt;SubId&gt;[.&lt;SubSubId&gt;]]" />
+      <VarDeclaration Name="Value${CNT}" Type="&lt;INT,UINT,BOOL,STRING,UDINT&gt;" Comment="The written value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="Status${CNT}" Type="STRING" Comment="Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" />
+</FBType>

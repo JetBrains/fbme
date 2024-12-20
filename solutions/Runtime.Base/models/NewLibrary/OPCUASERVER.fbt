@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="OPCUASERVER" Comment="OPC UA Server" Namespace="Runtime.Server">
+  <Attribute Name="ObsoleteNamespace" Value="nxtControl.Service" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Attribute Name="nxtLibraryData" Value="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" />
+  <Identification Standard="61499-1" Function="Communication" Description="OPC UA Server" />
+  <VersionInfo Organization="nxtControl GmbH" Version="1.0" Author="SM" Date="2008-03-21" />
+  <CompilerInfo header="package fb.rt.nxtcontrol;" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialisation Request">
+        <With Var="QI" />
+        <With Var="MGR_ID" />
+        <With Var="SRVCERT" />
+      </Event>
+      <Event Name="COMM" Comment="Internally used" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialisation Confirmation">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="MGR_ID" Type="WSTRING" InitialValue="&quot;0.0.0.0:4840&quot;" Comment="Host and port the OPC UA server listens on" />
+      <VarDeclaration Name="SRVCERT" Type="STRING" InitialValue="'uaserver.der'" Comment="Server certificate" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Service Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="OPCUASERVER" />
+</FBType>
