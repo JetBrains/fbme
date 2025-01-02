@@ -587,14 +587,14 @@
     <node concept="1TJgyj" id="7TlYPyCWnlL" role="1TKVEi">
       <property role="IQ2ns" value="9103458580009416049" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="requestServiceSequences" />
+      <property role="20kJfa" value="requestServiceSequence" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="6p4JBASATsa" resolve="ServiceTransactionDeclaration" />
     </node>
     <node concept="1TJgyj" id="4nDe39EPf4t" role="1TKVEi">
       <property role="IQ2ns" value="5037619447382470941" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="responseServiceSequences" />
+      <property role="20kJfa" value="responseServiceSequence" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="6p4JBASATsa" resolve="ServiceTransactionDeclaration" />
     </node>

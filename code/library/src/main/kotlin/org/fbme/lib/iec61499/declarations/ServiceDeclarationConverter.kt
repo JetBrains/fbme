@@ -37,9 +37,9 @@ class ServiceDeclarationConverter(arguments: ConverterArguments, private val dec
                 serviceTransaction.output = outputPrimitiveDeclaration
 
                 if (firstIteration) {
-                    declaration.requestServiceSequences.add(serviceTransaction)
+                    declaration.requestServiceSequence.add(serviceTransaction)
                 } else {
-                    declaration.responseServiceSequences.add(serviceTransaction)
+                    declaration.responseServiceSequence.add(serviceTransaction)
                 }
             }
             firstIteration = false

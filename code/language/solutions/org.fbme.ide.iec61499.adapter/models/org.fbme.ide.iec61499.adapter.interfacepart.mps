@@ -1604,7 +1604,7 @@
     </node>
     <node concept="2tJIrI" id="2AlwSW_NLzQ" role="jymVt" />
     <node concept="3clFb_" id="9k2YvVuBc_" role="jymVt">
-      <property role="TrG5h" value="getRequestServiceSequences" />
+      <property role="TrG5h" value="getRequestServiceSequence" />
       <node concept="3Tm1VV" id="9k2YvVuBcA" role="1B3o_S" />
       <node concept="2AHcQZ" id="9k2YvVuBcC" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
@@ -1647,7 +1647,7 @@
     </node>
     <node concept="2tJIrI" id="9k2YvVuBQ1" role="jymVt" />
     <node concept="3clFb_" id="4nDe39EU3qc" role="jymVt">
-      <property role="TrG5h" value="getResponseServiceSequences" />
+      <property role="TrG5h" value="getResponseServiceSequence" />
       <node concept="3Tm1VV" id="4nDe39EU3qd" role="1B3o_S" />
       <node concept="2AHcQZ" id="4nDe39EU3qe" role="2AJF6D">
         <ref role="2AI5Lk" to="mhfm:~NotNull" resolve="NotNull" />
