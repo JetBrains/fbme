@@ -126,6 +126,8 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
     override fun generateInputEventsReset(fb: FBTypeDescriptor, buf: StringBuilder) {
         val eventsList = ArrayList<String>(fb.eventInputPorts.size)
         for (ie in fb.eventInputPorts) {
+
+            if (data.ndtExists && ie.name == "NDT") continue
             buf.append("DEFINE event_${ie.name}_reset:= ")
 
             if (eventsList.size != 0) {
