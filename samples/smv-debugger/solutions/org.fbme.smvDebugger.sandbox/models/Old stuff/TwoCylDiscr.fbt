@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="TwoCylDiscr">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="HorCTL" Type="CylControl" x="1960" y="380" />
+    <FB Name="VerCTL" Type="CylControl" x="1980" y="1260" />
+    <FB Name="Button" Type="ButtonDs" x="340" y="960" />
+    <FB Name="HorCyl" Type="LinearDA" x="1140" y="320" />
+    <FB Name="VerCyl" Type="LinearDA" x="1140" y="1240" />
+    <DataConnections>
+      <Connection Source="HorCyl.HOME" Destination="HorCTL.Retracted" />
+      <Connection Source="HorCyl.END" Destination="HorCTL.Extended" />
+      <Connection Source="Button.Pressed" Destination="HorCTL.START" />
+      <Connection Source="HorCTL.EXTEND" Destination="HorCyl.FWD" dy="-480" dx2="100" dx1="133" />
+      <Connection Source="HorCTL.RETRACT" Destination="HorCyl.BACK" dy="150" dx2="80" dx1="43" />
+      <Connection Source="VerCyl.HOME" Destination="VerCTL.Retracted" dx1="90" />
+      <Connection Source="VerCyl.END" Destination="VerCTL.Extended" dx1="110" />
+      <Connection Source="VerCTL.RETRACT" Destination="VerCyl.BACK" dy="210" dx2="110" dx1="43" />
+      <Connection Source="VerCTL.EXTEND" Destination="VerCyl.FWD" dy="240" dx2="100" dx1="93" />
+      <Connection Source="Button.Pressed" Destination="VerCTL.START" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="Button.INITO" Destination="HorCyl.INIT" dx1="93" />
+      <Connection Source="HorCyl.INITO" Destination="VerCyl.INIT" dy="640" dx2="120" dx1="95" />
+      <Connection Source="VerCyl.INITO" Destination="HorCTL.INIT" dx1="255" />
+      <Connection Source="HorCTL.CNF" Destination="HorCyl.REQ" dy="-230" dx2="70" dx1="70" />
+      <Connection Source="HorCyl.CHG" Destination="HorCTL.REQ" dx1="175" />
+      <Connection Source="VerCyl.CHG" Destination="VerCTL.REQ" dx1="85" />
+      <Connection Source="HorCTL.INITO" Destination="VerCTL.INIT" dy="640" dx2="50" dx1="103" />
+      <Connection Source="VerCTL.CNF" Destination="VerCyl.REQ" dy="-220" dx2="40" dx1="40" />
+      <Connection Source="Button.CHG" Destination="VerCTL.REQ" dx1="913" />
+      <Connection Source="INIT" Destination="Button.INIT" />
+      <Connection Source="VerCTL.INITO" Destination="INITO" />
+      <Connection Source="Button.CHG" Destination="HorCTL.REQ" dx1="913" />
+      <Connection Source="VerCTL.INITO" Destination="Button.REQ" dy="600" dx2="30" dx1="153" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>
+

@@ -33,7 +33,7 @@ object FBInfoService {
                         ?: 1
             } ?: 1
         }
-       return rez
+        return rez
     }
 
     fun getOutputsAssignmentsFromAlgBody(id: FBPortDescriptor, body: AlgorithmBody.ST):  ArrayList<Pair<AssignmentStatement, Int>>? {

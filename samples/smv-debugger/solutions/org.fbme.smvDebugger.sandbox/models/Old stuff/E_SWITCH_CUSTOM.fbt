@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="E_SWITCH_CUSTOM">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI">
+        <With Var="G" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO0" />
+      <Event Name="EO1" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" InitialValue="FALSE" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="550" y="425" />
+      <ECState Name="G0" x="1575" y="225">
+        <ECAction Output="EO0" />
+      </ECState>
+      <ECState Name="G1" x="1650" y="1125">
+        <ECAction Output="EO1" />
+      </ECState>
+      <ECTransition Source="START" Destination="G0" x="1150" y="268" Condition="EI[NOT G]" />
+      <ECTransition Source="G0" Destination="START" x="1300" y="518" Condition="1" />
+      <ECTransition Source="START" Destination="G1" x="1468" y="818" Condition="EI[G]" />
+      <ECTransition Source="G1" Destination="START" x="1081" y="1037" Condition="1" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

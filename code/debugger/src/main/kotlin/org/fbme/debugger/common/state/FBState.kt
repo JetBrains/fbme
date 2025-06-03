@@ -16,7 +16,9 @@ sealed class FBState : State {
         outputEvents = typeDeclaration.outputEvents
             .associate { event -> Pair(event.name, 0) }.toMutableMap()
         inputVariables = typeDeclaration.inputParameters
-            .associate { variable -> Pair(variable.name, variable.extractInitialValue()) }.toMutableMap()
+            .associate { variable ->
+                Pair(variable.name, variable.extractInitialValue())
+            }.toMutableMap()
         outputVariables = typeDeclaration.outputParameters
             .associate { variable -> Pair(variable.name, variable.extractInitialValue()) }.toMutableMap()
     }

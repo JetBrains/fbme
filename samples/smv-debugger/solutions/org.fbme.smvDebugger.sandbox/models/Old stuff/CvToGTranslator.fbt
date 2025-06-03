@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CvToGTranslator">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ">
+        <With Var="CV" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF">
+        <With Var="G" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CV" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="G" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="825" y="75" />
+      <ECState Name="SET_G1" x="600" y="-675">
+        <ECAction Output="CNF" Algorithm="ALG_SET_G1" />
+      </ECState>
+      <ECState Name="SET_G0" x="-1500" y="750">
+        <ECAction Output="CNF" Algorithm="ALG_SET_G0" />
+      </ECState>
+      <ECTransition Source="START" Destination="SET_G1" x="0" y="0" Condition="REQ[CV &amp;#62; 0]" />
+      <ECTransition Source="START" Destination="SET_G0" x="150" y="468" Condition="REQ[CV = 0]" />
+      <ECTransition Source="SET_G1" Destination="START" x="1112" y="-150" Condition="1" />
+      <ECTransition Source="SET_G0" Destination="START" x="-362" y="312" Condition="1" />
+    </ECC>
+    <Algorithm Name="ALG_SET_G1">
+      <ST Text="" />
+    </Algorithm>
+    <Algorithm Name="ALG_SET_G0">
+      <ST Text="" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

@@ -34,9 +34,22 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
 
         buf.append(";\nDEFINE ExistsEnabledECTran:= ")
+        var wasTransition = false
         for (st in states) {
-            buf.append("(Q_smv=${st.name}_ecc  ")
             val transitions = FBInfoService.getAllTransitionFromState(st, fb)
+
+            if (transitions.isEmpty())
+            {
+                wasTransition = false
+                continue
+            }
+
+            if (wasTransition){
+                buf.append(") | ")
+            }
+            wasTransition = true
+
+            buf.append("(Q_smv=${st.name}_ecc  ")
 
             val validTransitions = transitions.filter{
                 var localGuards: Expression? = null
@@ -82,10 +95,6 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
                     buf.append(" ) ")    //close TR list
                 }
 
-
-            if(states.last()!= st){
-                buf.append(") | ")
-            }
         }
         buf.append(");\nFAIRNESS (alpha)\nFAIRNESS (beta)\n\n\n")
     }
@@ -215,7 +224,6 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
             if(data.ndtExists) {
                 buf.append("VAR NDT : boolean;\n" )
             }
-
     }
 
     override fun generateNI(fb: FBTypeDescriptor, buf: StringBuilder) {
