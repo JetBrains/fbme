@@ -1,11 +1,9 @@
 package org.fbme.smvDebugger.fb2smv
 
-import com.intellij.remoteDev.util.UrlParameterKeys.Companion.port
 import org.fbme.lib.iec61499.declarations.AlgorithmBody
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
-import org.fbme.lib.iec61499.descriptors.FBPortDescriptor
 import org.fbme.lib.iec61499.descriptors.FBTypeDescriptor
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.types.ElementaryType
@@ -180,17 +178,29 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         for (id in fb.dataOutputPorts) {
             buf.append("next(${id.name}_) := case\nS_smv=s2_osm & NI=0 & (")
 
+
+            var wasActionsWithAssignment = false
             for (st in states) {
+
                 for (act in st.actions) {
+                    //TODO test when 2 assignments in 2 state NEED MORE TEST CASES
+                    //TODO test when 2 alg
+                    if (wasActionsWithAssignment)
+                    {
+                        buf.append(" | ")
+                    }
+                    wasActionsWithAssignment = true
+
                     val body = act.algorithm.getTarget()?.body
                     if (body is AlgorithmBody.ST) {
                         val rez = FBInfoService.getOutputsAssignmentsFromAlgBody(id, body) ?: continue;
+                        var wasOutputAssignment= false
                         for (stat in rez){
                             buf.append("(Q_smv=${st.name}_ecc & NA=1)") //TODO algs
                         }
-                    //    if () //TODO test when 2 assgnments in 2 state
+                    //    if ()
 //                        if (rez.last() != stat) {
-//                            buf.append(" | ") // TODO not here
+//                            buf.append(" | ")
 //                        }
                     }
                 }
@@ -233,13 +243,15 @@ class SMVFunctionBlockConverter(private val data: VerifiersData) : AbstractBasic
         buf.append("next(NI):= case\n\tS_smv=s1_osm: 1;\n\tS_smv=s2_osm &  (")
         val states = (fb.declaration as BasicFBTypeDeclaration).ecc.states
         for (st in states) {
-            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1  & NI < $maxNI )")
+            val maxNIinState = FBInfoService.getMaxNIForState(st)
+            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1  & NI < $maxNIinState )")
             if (st != states.last()) buf.append(" | ")
         }
 
         buf.append(") : (NI + 1) mod ${maxNI?.plus(1)};\n\tS_smv=s2_osm & (")
         for (st in states) {
-            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1 & NI = $maxNI)")
+            val maxNIinState = FBInfoService.getMaxNIForState(st)
+            buf.append("(Q_smv=" + st.name + "_ecc & NA = 1 & NI = $maxNIinState)")
             if (st != states.last()) buf.append(" | ")
         }
 

@@ -27,14 +27,19 @@ object FBInfoService {
     }
 
     fun getMaxNI(fb: FBTypeDescriptor): Int? {
-        val rez = (fb.declaration as BasicFBTypeDeclaration).ecc.states.maxOfOrNull { st ->
-            st.actions.maxOfOrNull { act ->
-                (act.algorithm.getTarget()?.body as AlgorithmBody.ST?)?.statements?.filter { st -> st !is EmptyStatement }?.size
-                        ?: 1
-            } ?: 1
-        }
+        val rez = (fb.declaration as BasicFBTypeDeclaration).ecc.states.maxOfOrNull { st -> getMaxNIForState(st) }
         return rez
     }
+
+    fun getMaxNIForState(st: StateDeclaration): Int {
+        val rez = st.actions.maxOfOrNull { act ->
+                (act.algorithm.getTarget()?.body as AlgorithmBody.ST?)?.statements?.filter { st -> st !is EmptyStatement }?.size
+                    ?: 1
+            } ?: 1
+
+        return rez
+    }
+
 
     fun getOutputsAssignmentsFromAlgBody(id: FBPortDescriptor, body: AlgorithmBody.ST):  ArrayList<Pair<AssignmentStatement, Int>>? {
         val rez = ArrayList<Pair<AssignmentStatement, Int>>()

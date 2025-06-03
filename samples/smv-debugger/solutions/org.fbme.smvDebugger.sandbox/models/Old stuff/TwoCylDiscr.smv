@@ -47,8 +47,8 @@ next(NA):= case
 esac;
 next(NI):= case
 	S_smv=s1_osm: 1;
-	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=GO_ecc & NA = 1  & NI < 2 ) | (Q_smv=S_RETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=NOMOVE_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
-	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=GO_ecc & NA = 1  & NI < 2 ) | (Q_smv=S_RETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=NOMOVE_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=GO_ecc & NA = 1 & NI = 2) | (Q_smv=S_RETURN_ecc & NA = 1 & NI = 2) | (Q_smv=NOMOVE_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
 esac;
 next(Retracted) := case
 	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : Retracted_ ;
@@ -81,11 +81,11 @@ next(RETRACT) := case
 esac;
 
 next(EXTEND_) := case
-S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=GO_ecc & NA=1)(Q_smv=S_RETURN_ecc & NA=1)(Q_smv=NOMOVE_ecc & NA=1)) : EXTEND;
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : EXTEND;
 	TRUE : EXTEND_;
 esac;
 next(RETRACT_) := case
-S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=GO_ecc & NA=1)(Q_smv=S_RETURN_ecc & NA=1)(Q_smv=NOMOVE_ecc & NA=1)) : RETRACT;
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=GO_ecc & NA=1) | (Q_smv=S_RETURN_ecc & NA=1) | (Q_smv=NOMOVE_ecc & NA=1)) : RETRACT;
 	TRUE : RETRACT_;
 esac;
 
@@ -167,7 +167,7 @@ next(Pressed) := case
 esac;
 
 next(Pressed_) := case
-S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=OFF_ecc & NA=1)(Q_smv=PRESSED_ecc & NA=1)) : Pressed;
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=OFF_ecc & NA=1) | (Q_smv=PRESSED_ecc & NA=1)) : Pressed;
 	TRUE : Pressed_;
 esac;
 
@@ -252,8 +252,8 @@ next(NA):= case
 esac;
 next(NI):= case
 	S_smv=s1_osm: 1;
-	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 2 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=stHOME_ecc & NA = 1  & NI < 2 ) | (Q_smv=stEND_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddMOVETO_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddRETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=stSTOP_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
-	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 2) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=stHOME_ecc & NA = 1 & NI = 2) | (Q_smv=stEND_ecc & NA = 1 & NI = 2) | (Q_smv=ddMOVETO_ecc & NA = 1 & NI = 2) | (Q_smv=ddRETURN_ecc & NA = 1 & NI = 2) | (Q_smv=stSTOP_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=INIT_ecc & NA = 1  & NI < 2 ) | (Q_smv=stHOME_ecc & NA = 1  & NI < 2 ) | (Q_smv=stEND_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddMOVETO_ecc & NA = 1  & NI < 2 ) | (Q_smv=ddRETURN_ecc & NA = 1  & NI < 2 ) | (Q_smv=stSTOP_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=INIT_ecc & NA = 1 & NI = 2) | (Q_smv=stHOME_ecc & NA = 1 & NI = 2) | (Q_smv=stEND_ecc & NA = 1 & NI = 2) | (Q_smv=ddMOVETO_ecc & NA = 1 & NI = 2) | (Q_smv=ddRETURN_ecc & NA = 1 & NI = 2) | (Q_smv=stSTOP_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
 esac;
 next(FWD) := case
 	alpha & S_smv=s0_osm & (event_INIT | event_REQ) : FWD_ ;
@@ -285,11 +285,11 @@ next(END) := case
 esac;
 
 next(HOME_) := case
-S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=stHOME_ecc & NA=1)(Q_smv=stEND_ecc & NA=1)(Q_smv=ddMOVETO_ecc & NA=1)(Q_smv=ddRETURN_ecc & NA=1)(Q_smv=stSTOP_ecc & NA=1)) : HOME;
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : HOME;
 	TRUE : HOME_;
 esac;
 next(END_) := case
-S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1)(Q_smv=stHOME_ecc & NA=1)(Q_smv=stEND_ecc & NA=1)(Q_smv=ddMOVETO_ecc & NA=1)(Q_smv=ddRETURN_ecc & NA=1)(Q_smv=stSTOP_ecc & NA=1)) : END;
+S_smv=s2_osm & NI=0 & ((Q_smv=INIT_ecc & NA=1) | (Q_smv=stHOME_ecc & NA=1) | (Q_smv=stEND_ecc & NA=1) | (Q_smv=ddMOVETO_ecc & NA=1) | (Q_smv=ddRETURN_ecc & NA=1) | (Q_smv=stSTOP_ecc & NA=1)) : END;
 	TRUE : END_;
 esac;
 
@@ -518,6 +518,24 @@ ASSIGN
 
 -- generateInternalEventConnections
 
+next(HorCTL_INIT):= case
+	(VerCyl_INITO) : TRUE;
+	(HorCTL.event_INIT_reset) : FALSE;
+	TRUE : HorCTL_INIT;
+esac;
+
+next(Button_REQ):= case
+	(VerCTL_INITO) : TRUE;
+	(Button.event_REQ_reset) : FALSE;
+	TRUE : Button_REQ;
+esac;
+
+next(VerCTL_REQ):= case
+	(VerCyl_CHG | Button_CHG) : TRUE;
+	(VerCTL.event_REQ_reset) : FALSE;
+	TRUE : VerCTL_REQ;
+esac;
+
 next(HorCTL_REQ):= case
 	(HorCyl_CHG | Button_CHG) : TRUE;
 	(HorCTL.event_REQ_reset) : FALSE;
@@ -528,18 +546,6 @@ next(HorCyl_REQ):= case
 	(HorCTL_CNF) : TRUE;
 	(HorCyl.event_REQ_reset) : FALSE;
 	TRUE : HorCyl_REQ;
-esac;
-
-next(HorCTL_INIT):= case
-	(VerCyl_INITO) : TRUE;
-	(HorCTL.event_INIT_reset) : FALSE;
-	TRUE : HorCTL_INIT;
-esac;
-
-next(VerCTL_REQ):= case
-	(VerCyl_CHG | Button_CHG) : TRUE;
-	(VerCTL.event_REQ_reset) : FALSE;
-	TRUE : VerCTL_REQ;
 esac;
 
 next(HorCyl_INIT):= case
@@ -554,10 +560,10 @@ next(VerCTL_INIT):= case
 	TRUE : VerCTL_INIT;
 esac;
 
-next(VerCyl_INIT):= case
-	(HorCyl_INITO) : TRUE;
-	(VerCyl.event_INIT_reset) : FALSE;
-	TRUE : VerCyl_INIT;
+next(VerCyl_REQ):= case
+	(VerCTL_CNF) : TRUE;
+	(VerCyl.event_REQ_reset) : FALSE;
+	TRUE : VerCyl_REQ;
 esac;
 
 next(Button_INIT):= case
@@ -566,25 +572,19 @@ next(Button_INIT):= case
 	TRUE : Button_INIT;
 esac;
 
-next(Button_REQ):= case
-	(VerCTL_INITO) : TRUE;
-	(Button.event_REQ_reset) : FALSE;
-	TRUE : Button_REQ;
-esac;
-
-next(VerCyl_REQ):= case
-	(VerCTL_CNF) : TRUE;
-	(VerCyl.event_REQ_reset) : FALSE;
-	TRUE : VerCyl_REQ;
+next(VerCyl_INIT):= case
+	(HorCyl_INITO) : TRUE;
+	(VerCyl.event_INIT_reset) : FALSE;
+	TRUE : VerCyl_INIT;
 esac;
 
 DEFINE event_INITO_set:= (VerCTL_INITO );
 DEFINE event_INIT_reset:= alpha;
 DEFINE ExistsInputEvent :=  event_INIT ;
 
-DEFINE omega:= !(HorCyl_CHG | VerCTL_CNF | VerCyl_CHG | VerCyl_INITO | Button_INITO | Button_CHG | VerCTL_INITO | HorCyl_INITO | HorCTL_CNF | HorCTL_INITO);
+DEFINE omega:= !(VerCyl_CHG | HorCyl_CHG | VerCTL_CNF | Button_CHG | HorCTL_CNF | Button_INITO | VerCyl_INITO | VerCTL_INITO | HorCyl_INITO | HorCTL_INITO);
 
-DEFINE phi:= (!ExistsInputEvent) & (!(HorCTL_REQ | HorCyl_REQ | HorCTL_INIT | VerCTL_REQ | HorCyl_INIT | VerCTL_INIT | VerCyl_INIT | Button_INIT | Button_REQ | VerCyl_REQ | HorCyl_CHG | VerCTL_CNF | VerCyl_CHG | VerCyl_INITO | Button_INITO | Button_CHG | VerCTL_INITO | HorCyl_INITO | HorCTL_CNF | HorCTL_INITO ));
+DEFINE phi:= (!ExistsInputEvent) & (!(HorCTL_INIT | Button_REQ | VerCTL_REQ | HorCTL_REQ | HorCyl_REQ | HorCyl_INIT | VerCTL_INIT | VerCyl_REQ | Button_INIT | VerCyl_INIT | VerCyl_CHG | HorCyl_CHG | VerCTL_CNF | Button_CHG | HorCTL_CNF | Button_INITO | VerCyl_INITO | VerCTL_INITO | HorCyl_INITO | HorCTL_INITO ));
 FAIRNESS (alpha)
 FAIRNESS (beta)
 
