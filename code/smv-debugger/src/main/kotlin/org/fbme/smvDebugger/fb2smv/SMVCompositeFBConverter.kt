@@ -35,7 +35,7 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
                 }
             }
             for (od in fb.type.dataOutputPorts) buf.append("${fb.name}_${od.name}, ")
-            buf.append("alpha, beta);\n")
+            buf.append("${fb.name}_alpha, ${fb.name}_beta);\n")
         }
         buf.append("\n")
 
@@ -194,16 +194,22 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
 
     override fun generateDispatcher(fbc: CompositeFBTypeDeclaration, buf: StringBuilder) {
         buf.append("\n-- DISPATCHER\n\n")
+        var oldBlock = ""
         for (fb in fbc.network.functionBlocks) {
-            buf.append(
-                "next(${fb.name}_alpha):= case\n\talpha & omega & !ExistsInputEvent : TRUE;\n" +
-                        "\t${fb.name}.alpha_reset : FALSE;\n\tTRUE : ${fb.name}_alpha;\nesac;\n"
-            )
+
+            if (fbc.network.functionBlocks.first() == fb )
+                buf.append("next(${fb.name}_alpha):= case\n\talpha & omega & !ExistsInputEvent ")
+            else
+                buf.append("next(${fb.name}_alpha):= case\n\t${oldBlock}_beta & omega ")
+
+            buf.append(": TRUE;\n\t${fb.name}.alpha_reset : FALSE;\n\tTRUE : ${fb.name}_alpha;\nesac;\n")
 
             buf.append(
-                "next(${fb.name}_beta):= case\n\tbeta & omega & !ExistsInputEvent : TRUE;\n" +
-                        "\t${fb.name}.beta_set : FALSE;\n\tTRUE : ${fb.name}_beta;\nesac;\n"
+                "next(${fb.name}_beta):= case\n\t${fb.name}_beta & omega : FALSE;\n" +
+                        "\t${fb.name}.beta_set : TRUE;\n\tTRUE : ${fb.name}_beta;\nesac;\n"
             )
+            oldBlock = fb.name
+
         }
 
         buf.append("DEFINE beta_set:= ${fbc.network.functionBlocks.last().name}_beta & omega;\nDEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;\n\nASSIGN\n")
