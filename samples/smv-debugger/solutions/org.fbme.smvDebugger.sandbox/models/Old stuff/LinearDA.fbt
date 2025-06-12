@@ -68,19 +68,19 @@
       <ECTransition Source="INIT" Destination="stEND" x="6159" y="3166" Condition="NDT" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="HOME := TRUE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+      <ST Text="HOME := TRUE;&#10;END := FALSE;&#10;" />
     </Algorithm>
     <Algorithm Name="POS1">
-      <ST Text="HOME := TRUE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+      <ST Text="HOME := TRUE;&#10;END := FALSE;&#10;" />
     </Algorithm>
     <Algorithm Name="POS2">
-      <ST Text="HOME := FALSE;&amp;#38;#10;END := TRUE;&amp;#38;#10;" />
+      <ST Text="HOME := FALSE;&#10;END := TRUE;&#10;" />
     </Algorithm>
     <Algorithm Name="MOV">
-      <ST Text="HOME := FALSE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+      <ST Text="HOME := FALSE;&#10;END := FALSE;&#10;" />
     </Algorithm>
     <Algorithm Name="STOP">
-      <ST Text="HOME := FALSE;&amp;#38;#10;END := FALSE;&amp;#38;#10;" />
+      <ST Text="HOME := FALSE;&#10;END := FALSE;&#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>

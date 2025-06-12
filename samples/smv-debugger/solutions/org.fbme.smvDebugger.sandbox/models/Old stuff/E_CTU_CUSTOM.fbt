@@ -37,15 +37,15 @@
         <ECAction Output="RO" Algorithm="R" />
       </ECState>
       <ECTransition Source="CU" Destination="START" x="1406" y="562" Condition="1" />
-      <ECTransition Source="START" Destination="CU" x="1450" y="718" Condition="CU[CV &amp;#60; 65535]" />
+      <ECTransition Source="START" Destination="CU" x="1450" y="718" Condition="CU[CV &lt; 65535]" />
       <ECTransition Source="START" Destination="R" x="1606" y="918" Condition="R" />
       <ECTransition Source="R" Destination="START" x="1406" y="1206" Condition="1" />
     </ECC>
     <Algorithm Name="R">
-      <ST Text="CV := 0;&amp;#38;#10;Q := FALSE;&amp;#38;#10;" />
+      <ST Text="CV := 0;&#10;Q := FALSE;&#10;" />
     </Algorithm>
     <Algorithm Name="CU">
-      <ST Text="CV := CV + 1;&amp;#38;#10;Q := (CV &amp;#62;= PV);&amp;#38;#10;" />
+      <ST Text="CV := CV + 1;&#10;Q := (CV &gt;= PV);&#10;" />
     </Algorithm>
   </BasicFB>
 </FBType>
