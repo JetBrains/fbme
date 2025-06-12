@@ -1,15 +1,12 @@
 package org.fbme.ide.platform.adapters
 
 import org.fbme.ide.platform.testing.PlatformTestBase
-import org.fbme.ide.platform.testing.PlatformTestRunner
 import org.fbme.lib.common.StringIdentifier
 import org.fbme.lib.iec61499.declarations.AlgorithmLanguage
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
 import org.junit.Assert
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(PlatformTestRunner::class)
 class IEC61499FactoryTest : PlatformTestBase() {
     @Test
     fun createAdapterTypeDeclaration() {

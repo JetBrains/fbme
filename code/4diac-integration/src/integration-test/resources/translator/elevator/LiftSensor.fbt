@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="LiftSensor">
+    <InterfaceList>
+        <EventInputs>
+            <Event Name="INIT">
+                <With Var="CarPos"/>
+            </Event>
+            <Event Name="REQ">
+                <With Var="CarPos"/>
+            </Event>
+        </EventInputs>
+        <EventOutputs>
+            <Event Name="INITO">
+                <With Var="elevatorAtFloor"/>
+            </Event>
+            <Event Name="CNF">
+                <With Var="elevatorAtFloor"/>
+            </Event>
+        </EventOutputs>
+        <InputVars>
+            <VarDeclaration Name="CarPos" Type="INT"/>
+        </InputVars>
+        <OutputVars>
+            <VarDeclaration Name="elevatorAtFloor" ArraySize="5" Type="BOOL"/>
+        </OutputVars>
+    </InterfaceList>
+    <BasicFB>
+        <InternalVars>
+            <VarDeclaration Name="prevPos" Type="INT" InitialValue="-1"/>
+        </InternalVars>
+        <ECC>
+            <ECState Name="START" x="1100" y="400"/>
+            <ECState Name="update" x="1100" y="1100">
+                <ECAction Output="CNF" Algorithm="UPD"/>
+            </ECState>
+            <ECState Name="Wait" x="1200" y="700"/>
+            <ECTransition Source="Wait" Destination="update" x="1350" y="895" Condition="REQ[NOT (prevPos = CarPos)]"/>
+            <ECTransition Source="update" Destination="Wait" x="950" y="880" Condition="1"/>
+            <ECTransition Source="START" Destination="update" x="740" y="750" Condition="1"/>
+        </ECC>
+        <Algorithm Name="initialize">
+            <ST Text="position := CarPos;&amp;#38;#10;"/>
+        </Algorithm>
+        <Algorithm Name="UPD">
+            <ST Text="elevatorAtFloor[0] := CarPos = 1;&amp;#38;#10;elevatorAtFloor[1] := CarPos = 3;&amp;#38;#10;elevatorAtFloor[2] := CarPos = 5;&amp;#38;#10;elevatorAtFloor[3] := CarPos = 7;&amp;#38;#10;elevatorAtFloor[4] := CarPos = 9;&amp;#38;#10;prevPos := CarPos;&amp;#38;#10;"/>
+        </Algorithm>
+    </BasicFB>
+</FBType>
+

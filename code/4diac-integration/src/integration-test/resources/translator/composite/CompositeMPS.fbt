@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Composite">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="Event1">
+        <With Var="InputVar" />
+      </Event>
+      <Event Name="Event2">
+        <With Var="InputVar" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="Event3">
+        <With Var="OutputVar" />
+      </Event>
+      <Event Name="Event4">
+        <With Var="OutputVar" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="InputVar" Type="BOOL" />
+      <VarDeclaration Name="InputVar2" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OutputVar" Type="BOOL" />
+      <VarDeclaration Name="OutputVar2" Type="BOOL" />
+    </OutputVars>
+    <Plugs>
+      <AdapterDeclaration Name="PLUG1" Type="Adapt" />
+    </Plugs>
+    <Sockets>
+      <AdapterDeclaration Name="SOCKET1" Type="Adapt" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="BB" Type="BB" x="1824" y="-58" />
+    <FB Name="BasicBlock" Type="BasicBlock" x="1802" y="336" />
+    <DataConnections>
+      <Connection Source="InputVar2" Destination="BasicBlock.input_var" dx1="750" />
+      <Connection Source="InputVar2" Destination="OutputVar2" dx1="1414" />
+      <Connection Source="BasicBlock.output_var" Destination="PLUG1.output_data1" dy="383" dx2="111" dx1="111" />
+      <Connection Source="BasicBlock.output_var" Destination="PLUG1.output_data3" dy="433" dx2="111" dx1="111" /> 
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="Event1" Destination="SOCKET1.input_event1" dy="542" dx2="108" dx1="106" />
+      <Connection Source="SOCKET1.output_event1" Destination="Event4" dx1="748" />
+      <Connection Source="BasicBlock.EVENT3" Destination="Event3" dx1="411" />
+      <Connection Source="BasicBlock.EVENT4" Destination="Event4" dx1="436" />
+      <Connection Source="Event2" Destination="BasicBlock.EVENT1" dx1="789" />
+      <Connection Source="BB.CNF" Destination="Event3" dx1="575" />
+      <Connection Source="Event1" Destination="BB.REQ" dx1="800" />
+      <Connection Source="BB.CNF" Destination="PLUG1.output_event1" dx1="236" />
+    </EventConnections>
+    <EndpointCoordinate Name="OutputVar" x="3180" y="319" />
+    <EndpointCoordinate Name="OutputVar2" x="3116" y="474" />
+    <EndpointCoordinate Name="Event3" x="3199" y="-8" />
+    <EndpointCoordinate Name="Event4" x="3249" y="116" />
+  </FBNetwork>
+</FBType>
+

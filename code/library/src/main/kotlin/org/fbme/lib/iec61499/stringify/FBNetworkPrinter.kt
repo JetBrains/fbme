@@ -85,7 +85,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         val element = Element("Connection")
         element.setAttribute("Source", connection.sourceReference.presentation)
         element.setAttribute("Destination", connection.targetReference.presentation)
-        val path = requireNotNull(connection.path)
+        val path = connection.path ?: return element
         when (path.kind) {
             ConnectionPath.Kind.MoreThanFour -> {
                 val longPath = path as LongConnectionPath
@@ -110,6 +110,10 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
             }
 
             ConnectionPath.Kind.TwoAngles -> element.setAttribute("dx1", "" + path.dX1)
+
+            ConnectionPath.Kind.Straight -> {
+                // no-op
+            }
         }
         return element
     }

@@ -2,7 +2,7 @@ package org.fbme.lib.st.types
 
 import org.fbme.lib.common.Identifier
 
-interface DerivedType : DataType {
+interface DerivedType : NonGenericType {
     val identifier: Identifier
     val declaration: DataTypeDeclaration?
 }

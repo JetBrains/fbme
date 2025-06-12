@@ -2,7 +2,6 @@ package org.fbme.ide.platform.debugger
 
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import jetbrains.mps.project.MPSProject
 import jetbrains.mps.util.JDOMUtil
@@ -35,7 +34,7 @@ class WatcherFacade(project: Project) : Disposable {
                             val device = repository.declarationsScope.findDeviceDeclaration(deviceIdentifier)
                             requireNotNull(device)
                             val connection = devicesFacade.attach(device)
-                            if (connection.isAlive) {
+                            if (connection.isConnected()) {
                                 val resolvedWatches = resolveWatches(device, connection.readWatches())
 
                                 for (listener in readWatchesListeners) {

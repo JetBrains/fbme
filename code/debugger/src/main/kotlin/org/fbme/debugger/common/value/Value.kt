@@ -21,6 +21,7 @@ sealed interface Value<V> {
             LiteralKind.STRING -> StringValue(literal.value as String)
             LiteralKind.WSTRING -> TODO("Not yet implemented")
             LiteralKind.TIME -> TimeValue(literal.value as String)
+            LiteralKind.REAL -> TODO("Not yet implemented")
         }
     }
 }

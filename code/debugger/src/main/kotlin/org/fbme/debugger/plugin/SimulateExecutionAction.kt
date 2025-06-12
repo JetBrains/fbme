@@ -73,7 +73,9 @@ class SimulateExecutionAction : AnAction(), DumbAware {
             val inspector = (snapshotDeclaration as? DeclarationWithNetwork)?.let {
                 val manager: InspectionManager = InspectionManagerImpl.getInstance(cell.editorComponent)!!
                 val networkInstance: NetworkInstance = cell.style.get(RichEditorStyleAttributes.NETWORK_INSTANCE)
-                manager.installInspector(networkInstance) { }!!
+                if (networkInstance.networkDeclaration.container == typeDeclaration) {
+                    manager.installInspector(networkInstance) { }!!
+                } else null
             }
 
             val simulatorPanel = SimulatorPanel(

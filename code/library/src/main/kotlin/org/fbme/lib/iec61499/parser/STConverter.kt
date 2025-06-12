@@ -10,6 +10,7 @@ import org.fbme.lib.st.parser.STLexer
 import org.fbme.lib.st.parser.STParser
 import org.fbme.lib.st.parser.STParser.*
 import org.fbme.lib.st.statements.Statement
+import org.fbme.lib.st.types.ArrayTypeDimensions
 import org.fbme.lib.st.types.DataType
 import org.fbme.lib.st.types.ElementaryType
 import org.fbme.lib.st.types.GenericType
@@ -32,17 +33,17 @@ object STConverter {
     }
 
     @JvmStatic
-    fun parseStatementList(factory: STFactory, text: String?): List<Statement> {
+    fun parseStatementList(factory: STFactory, text: String): List<Statement> {
         return extractStatementList(factory, createParser(text).statementList())
     }
 
     @JvmStatic
-    fun parseExpression(factory: STFactory, text: String?): Expression? {
+    fun parseExpression(factory: STFactory, text: String): Expression? {
         return extractExpression(factory, createParser(text).expression())
     }
 
     @JvmStatic
-    fun parseLiteral(factory: STFactory, text: String?): Literal<*>? {
+    fun parseLiteral(factory: STFactory, text: String): Literal<*>? {
         return extractLiteral(factory, createParser(text).literal())
     }
 
@@ -62,6 +63,32 @@ object STConverter {
             }
         }
         return factory.createDerivedType(StringIdentifier(text), text)
+    }
+
+    fun parseArrayDimensions(factory: STFactory, text: String): ArrayTypeDimensions? {
+        val arrayDimensionsCtx = createParser(text).arrayTypeDimensions()
+        if (arrayDimensionsCtx is ArrayTypeSubrangesContext) {
+            val subranges = factory.createArrayTypeSubranges()
+            val subrangeCtxs = arrayDimensionsCtx.subranges
+            for (subrangeCtx in subrangeCtxs) {
+                val subrange = factory.createSubrange()
+                subrange.from = subrangeCtx.from.text.toInt()
+                subrange.to = subrangeCtx.to.text.toInt()
+                subranges.subranges += subrange
+            }
+            return subranges
+        }
+        if (arrayDimensionsCtx is ArrayTypeSizesContext) {
+            val sizes = factory.createArrayTypeSizes()
+            val sizeCtxs = arrayDimensionsCtx.sizes
+            for (sizeCtx in sizeCtxs) {
+                val size = factory.createSize()
+                size.value = sizeCtx.text.toInt()
+                sizes.sizes += size
+            }
+            return sizes
+        }
+        return null
     }
 
     private fun extractStatementList(factory: STFactory, statementListCtx: StatementListContext): List<Statement> {
@@ -146,7 +173,7 @@ object STConverter {
         } else null
     }
 
-    private fun extractExpression(factory: STFactory, expressionCtx: ExpressionContext): Expression? {
+    private fun extractExpression(factory: STFactory, expressionCtx: ExpressionContext?): Expression? {
         if (expressionCtx is ConstantContext) {
             return extractLiteral(factory, expressionCtx.literal())
         }
@@ -203,7 +230,7 @@ object STConverter {
         return null
     }
 
-    private fun extractVariable(factory: STFactory, variableCtx: VariableContext): Variable? {
+    private fun extractVariable(factory: STFactory, variableCtx: VariableContext?): Variable? {
         if (variableCtx is VarReferenceContext) {
             val variableReference = factory.createVariableReference()
             variableReference.reference.setTargetName(variableCtx.getText())
@@ -223,7 +250,7 @@ object STConverter {
         return null
     }
 
-    private fun extractLiteral(factory: STFactory, literalCtx: LiteralContext): Literal<*>? {
+    private fun extractLiteral(factory: STFactory, literalCtx: LiteralContext?): Literal<*>? {
         if (literalCtx is DecContext) {
             val literal = factory.createLiteral(LiteralKind.DEC_INT) as Literal<Int?>
             literal.value = literalCtx.text.toInt()
@@ -273,10 +300,15 @@ object STConverter {
             literal.value = literalCtx.text.substringAfter('#')
             return literal
         }
+        if (literalCtx is RealContext) {
+            val literal = factory.createLiteral(LiteralKind.REAL) as Literal<String?>
+            literal.value = literalCtx.text
+            return literal
+        }
         return null
     }
 
-    private fun createParser(text: String?): STParser {
+    private fun createParser(text: String): STParser {
         return try {
             STParser(CommonTokenStream(STLexer(ANTLRInputStream(StringReader(text)))))
         } catch (e: IOException) {

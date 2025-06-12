@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="Return">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="EO1" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+      <ECState Name="S2" x="0" y="0">
+        <ECAction Output="EO1" Algorithm="A1" />
+      </ECState>
+      <ECTransition Source="START" Destination="S2" x="0" y="0" Condition="1" />
+    </ECC>
+    <Algorithm Name="A1">
+      <ST Text="RETURN;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

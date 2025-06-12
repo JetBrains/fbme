@@ -7,8 +7,7 @@ import org.jdom.Element
 
 class FBInterfacePrinterWithAdapters(declaration: FBInterfaceDeclarationWithAdapters) :
     PrinterBase<FBInterfaceDeclarationWithAdapters>(declaration) {
-    @JvmField
-    var myInterfacePrinter = FBInterfacePrinter(element, false)
+    val myInterfacePrinter = FBInterfacePrinter(element, false)
 
     fun print(): Element {
         val element = myInterfacePrinter.print()
@@ -55,6 +54,8 @@ class FBInterfacePrinterWithAdapters(declaration: FBInterfaceDeclarationWithAdap
         DeclarationPrinterBase<PlugDeclaration>(plugDeclaration, "AdapterDeclaration") {
         override fun printDeclarationBody(element: Element) {
             element.setAttribute("Type", this.element.typeReference.presentation)
+            element.setAttribute("x", "" + this.element.x)
+            element.setAttribute("x", "" + this.element.y)
         }
     }
 

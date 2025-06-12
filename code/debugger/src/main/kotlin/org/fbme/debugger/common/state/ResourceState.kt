@@ -10,8 +10,9 @@ class ResourceState : State {
         children = typeDeclaration.getChildrenStates()
     }
 
-    constructor(resourceState: ResourceState) {
+    constructor(resourceState: ResourceState, init: ResourceState.() -> Unit = {}) {
         children = resourceState.children.mapValues { it.value.copy() }
+        init()
     }
 
     override fun copy() = ResourceState(this)

@@ -1,3 +1,5 @@
+[![JetBrains team project](https://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 # FBME 
 
 **FBME** (Function Blocks Modelling Environment) is an IDE for IEC 61499 standard built on top of 
@@ -6,7 +8,7 @@
 ### Opening MPS project first time
 
 - Pre-installed JRE 11 is required
-- Install [JetBrains MPS 2021.3.*](https://www.jetbrains.com/mps/download)
+- Install [JetBrains MPS 2021.3.*](https://www.jetbrains.com/mps/download/previous.html)
 - Run `./gradlew build`
 - Open project with MPS
 - Configure "source" plugins:

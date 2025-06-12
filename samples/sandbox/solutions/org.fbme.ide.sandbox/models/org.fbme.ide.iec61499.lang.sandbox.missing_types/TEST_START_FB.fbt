@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="TEST_START_FB">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="START" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

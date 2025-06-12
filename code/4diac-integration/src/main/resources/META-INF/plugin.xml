@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idea-plugin>
-  <id>fbme.integration.fordiac</id>
-  <name>FBME - 4DIAC Integration</name>
-  <description>FBME integration with 4DIAC runtime library</description>
-  <version>0.1</version>
-  <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
+    <id>fbme.integration.fordiac</id>
+    <name>FBME - 4DIAC Integration</name>
+    <description>FBME integration with 4DIAC runtime library</description>
+    <version>0.1</version>
+    <vendor url="https://github.com/JetBrains/fbme">FBME</vendor>
 
-  <depends>jetbrains.mps.core</depends>
-  <depends>jetbrains.mps.execution.languages</depends>
-  <depends>fbme.platform</depends>
+    <depends>jetbrains.mps.core</depends>
+    <depends>jetbrains.mps.execution.languages</depends>
+    <depends>fbme.platform</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <mps.LanguageLibrary dir="/languages" />
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <mps.LanguageLibrary dir="/languages"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="fbme.platform">
+            <DeviceControllerFactoryEP implementation="org.fbme.ide.integration.fordiac.deploy.controllers.DeviceControllerFactoryImpl"/>
+    </extensions>
 </idea-plugin>

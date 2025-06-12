@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" packages="org.fbme.ide.integration.fordiac.deploy.controllers">
+    <Appenders>
+        <TestAppender name="TestAppender">
+            <PatternLayout pattern="%message"/>
+        </TestAppender>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%style{%date{DEFAULT}}{yellow}
+                %highlight{%-5level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green}
+                %message%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="TestAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

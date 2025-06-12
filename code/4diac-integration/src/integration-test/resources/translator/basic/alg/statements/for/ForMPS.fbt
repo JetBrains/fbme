@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="For">
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="EO1" />
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="0" />
+      <ECState Name="S2" x="0" y="0">
+        <ECAction Output="EO1" Algorithm="A1" />
+      </ECState>
+    </ECC>
+    <Algorithm Name="A1">
+      <VarDeclaration Name="sum" Type="INT" />
+      <VarDeclaration Name="i" Type="INT" />
+      <ST Text="FOR i := 0 TO 10 DO&amp;#38;#10;  sum := sum + i;&amp;#38;#10;END_FOR;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

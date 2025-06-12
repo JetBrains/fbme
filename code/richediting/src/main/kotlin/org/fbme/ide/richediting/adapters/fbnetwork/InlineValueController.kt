@@ -30,7 +30,7 @@ class InlineValueController(
         return getBounds(position)
     }
 
-    fun getCoordinates(position: Point): Point {
+    override fun getCoordinates(position: Point): Point {
         val oppositePortCoordinates = myComponentController.getPortCoordinates(myOpposite, position)
         return Point(oppositePortCoordinates.x - OPPOSITE_PORT_PADDING, oppositePortCoordinates.y)
     }

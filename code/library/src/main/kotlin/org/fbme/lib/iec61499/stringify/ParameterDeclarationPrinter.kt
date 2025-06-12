@@ -1,12 +1,19 @@
 package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
+import org.fbme.lib.st.types.ArrayType
 import org.jdom.Element
 
 class ParameterDeclarationPrinter(declaration: ParameterDeclaration) :
     DeclarationPrinterBase<ParameterDeclaration>(declaration, "VarDeclaration") {
     override fun printDeclarationBody(element: Element) {
-        element.setAttribute("Type", requireNotNull(this.element.type).stringify())
+        val type = this.element.type
+        if (type is ArrayType) {
+            type.dimensions?.stringify()?.let { element.setAttribute("ArraySize", it) }
+            type.baseType?.stringify()?.let { element.setAttribute("Type", it) }
+        } else {
+            type?.stringify()?.let { element.setAttribute("Type", it) }
+        }
         val initialValue = this.element.initialValue
         if (initialValue != null) {
             element.setAttribute("InitialValue", STPrinter.printLiteral(initialValue))

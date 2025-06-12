@@ -64,11 +64,11 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
         val conditionText: String = when {
             guardCondition == null && eventPresentation.isEmpty() -> "1"
             guardCondition != null && eventPresentation.isEmpty() -> {
-                "[" + escapeXML(STPrinter.printExpression(guardCondition)) + "]"
+                "[" + STPrinter.printExpression(guardCondition) + "]"
             }
 
             guardCondition == null -> eventPresentation
-            else -> "$eventPresentation[" + escapeXML(STPrinter.printExpression(guardCondition)) + "]"
+            else -> "$eventPresentation[" + STPrinter.printExpression(guardCondition) + "]"
         }
         element.setAttribute("Condition", conditionText)
         return element
@@ -82,12 +82,12 @@ class BasicFBTypePrinter(declaration: BasicFBTypeDeclaration) :
             ParameterDeclarationPrinter.printAll(this.element.temporaryVariables, element)
             if (language === AlgorithmLanguage.ST) {
                 val st = Element("ST")
-                st.setAttribute("Text", escapeXML(STPrinter.printStatementList((body as AlgorithmBody.ST).statements)))
+                st.setAttribute("Text", STPrinter.printStatementList((body as AlgorithmBody.ST).statements))
                 element.addContent(st)
             } else if (AlgorithmLanguage.isUnknown(language)) {
                 val other = Element("Other")
                 other.setAttribute("Language", language.languageName)
-                other.setAttribute("Text", escapeXML((body as AlgorithmBody.Unknown).text))
+                other.setAttribute("Text", (body as AlgorithmBody.Unknown).text)
                 element.addContent(other)
             } else {
                 throw IllegalStateException("Unrecognized language")

@@ -13,7 +13,6 @@ import org.fbme.ide.richediting.actions.executeReadAction
 import org.fbme.ide.richediting.actions.executeWriteActionInEditor
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.fbme.lib.iec61499.declarations.ResourceDeclaration
-import java.io.IOException
 
 
 class DeploymentAction_StopResource : AnAction(), DumbAware {
@@ -31,16 +30,15 @@ class DeploymentAction_StopResource : AnAction(), DumbAware {
             val resourceDeclaration = event.element<ResourceDeclaration>()!!
             val deviceDeclaration = resourceDeclaration.container as DeviceDeclaration
 
-            object : Task.Backgroundable(project, "Stopping Resource") {
+            object : Task.Backgroundable(project, "Stopping resource") {
                 override fun run(indicator: ProgressIndicator) {
                     event.executeReadAction {
-                        try {
-                            val connection = facade.attach(deviceDeclaration)
-                            connection.killResource(resourceDeclaration)
-                            connection.deleteResource(resourceDeclaration)
-                        } catch (e: IOException) {
+                        val connection = facade.attach(deviceDeclaration)
+                        val succeed = connection.deleteResource(resourceDeclaration)
+
+                        if (!succeed) {
                             facade.invalidate(deviceDeclaration)
-                            throw e
+                            // todo: throw something?
                         }
                     }
                 }

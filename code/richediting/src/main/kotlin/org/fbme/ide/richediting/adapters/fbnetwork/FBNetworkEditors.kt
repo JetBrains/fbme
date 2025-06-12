@@ -10,6 +10,7 @@ import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformElementsOwner
 import org.fbme.ide.iec61499.repository.PlatformRepositoryProvider
 import org.fbme.ide.richediting.RicheditingMpsBridge
+import org.fbme.ide.richediting.RicheditingMpsBridge.Companion.createInlineValueCell
 import org.fbme.ide.richediting.editor.RichEditorDataKeys
 import org.fbme.ide.richediting.editor.RichEditorStyleAttributes
 import org.fbme.ide.richediting.inspections.NetworkInspectionsFacility
@@ -56,12 +57,27 @@ object FBNetworkEditors {
                 extView: NetworkComponentView,
                 compController: ComponentController<Point>
             ): ComponentExtController<Point> {
-                require(!(extView !is InlineValueView || compController !is FunctionBlockController))
+                require(compController is FunctionBlockController) { "FunctionBlockController expected, $compController present" }
+
+                if (extView is InlineValueView) {
+                    return inlineValueController(context, extView, compController)
+                }
+                if (extView is BrokenPortView) {
+                    return brokenPortController(context, extView, compController)
+                }
+                error("Unknown view $extView")
+            }
+
+            private fun inlineValueController(
+                context: EditorContext,
+                extView: InlineValueView,
+                compController: FunctionBlockController
+            ): InlineValueController {
                 val repository: PlatformElementsOwner =
                     PlatformRepositoryProvider.getInstance(context.operationContext.project)
                 val node = extView.associatedNode.parent ?: error("Parameter assignment is null")
                 val parameter = repository.adapterOrNull<ParameterAssignment>(node)
-                val cell = RicheditingMpsBridge.createInlineValueCell(context, node)
+                val cell = createInlineValueCell(context, node)
                 if (parameter?.value == null) {
                     val action: CellAction = object : CellAction {
                         override fun getDescriptionText(): String {
@@ -85,6 +101,14 @@ object FBNetworkEditors {
                 }
                 cell.isBig = true
                 return InlineValueController(context, extView, compController, cell as EditorCell)
+            }
+
+            private fun brokenPortController(
+                context: EditorContext,
+                extView: BrokenPortView,
+                compController: FunctionBlockController
+            ): BrokenPortController {
+                return BrokenPortController(context, extView, compController)
             }
         }
 
@@ -112,7 +136,6 @@ object FBNetworkEditors {
         val scene = EditorCell_Scene(context, node!!, layout)
         val repository: PlatformElementsOwner = PlatformRepositoryProvider.getInstance(context.operationContext.project)
         val declaration = repository.getAdapter(node, Declaration::class.java)
-            ?: error("Error when creating NetworkCell: Declaration is null")
         val networkInstance = NetworkInstance.createForDeclaration(declaration, parent)
         initializeSceneCell(scene, networkInstance, context, layout, editorShift)
         return scene
@@ -212,10 +235,7 @@ object FBNetworkEditors {
             style.set(RichEditorStyleAttributes.DIAGRAM_FACILITY, diagramFacility)
             val extendedLayout: ROLayoutModel<NetworkComponentView> = ExtendedLayoutModel(
                 componentsLayout,
-                { view, compPosition ->
-                    val controller = inlineValuesFacility.getController(view) as InlineValueController
-                    controller.getCoordinates(compPosition)
-                },
+                { view, compPosition -> inlineValuesFacility.getController(view).getCoordinates(compPosition) },
                 { inlineValuesView.getExtensions(it) }
             )
             val connectionsFacility = ConnectionsFacility(
@@ -252,7 +272,7 @@ object FBNetworkEditors {
             )
             style.set(RichEditorStyleAttributes.INSPECTIONS_FACILITY, networkInspectionsFacility)
         } catch (e: RuntimeException) {
-//            LOG.error("Error during cell creation", e);
+            throw e
         }
     }
 

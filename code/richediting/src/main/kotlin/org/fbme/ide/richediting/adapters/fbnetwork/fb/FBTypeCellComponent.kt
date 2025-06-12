@@ -218,7 +218,7 @@ class FBTypeCellComponent(context: EditorContext, fbType: FBTypeDescriptor, node
     private fun calculateHeight(): Int {
         val eventPortsCount = eventPortsCount
         val dataPortsCount = bottomPortsCount
-        return (eventPortsCount + dataPortsCount + 2) * lineSize
+        return (eventPortsCount + dataPortsCount + 2) * lineSize + lineSize / 2
     }
 
     private fun calculateWidth(): Int {

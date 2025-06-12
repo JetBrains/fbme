@@ -1,6 +1,10 @@
 package org.fbme.ide.platform.debugger
 
 import com.intellij.openapi.Disposable
+import com.intellij.openapi.extensions.ExtensionPointName
+import org.fbme.ide.platform.deploy.controllers.DeviceController
+import org.fbme.ide.platform.deploy.controllers.DeviceControllerFactory
+import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.iec61499.declarations.DeviceDeclaration
 import org.slf4j.LoggerFactory
@@ -8,9 +12,9 @@ import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 
 class DevicesFacade : Disposable {
-    private val connections: MutableMap<Identifier, DeviceConnection> = ConcurrentHashMap()
+    private val connections: MutableMap<Identifier, DeviceController> = ConcurrentHashMap()
 
-    fun attach(device: DeviceDeclaration): DeviceConnection {
+    fun attach(device: DeviceDeclaration): DeviceController {
         return connections.getOrPut(device.identifier) { createConnection(device) }
     }
 
@@ -18,16 +22,20 @@ class DevicesFacade : Disposable {
         connections.remove(device.identifier)
     }
 
-    private fun createConnection(device: DeviceDeclaration): DeviceConnection {
+    private fun createConnection(device: DeviceDeclaration): DeviceController {
         for (connector in DeviceConnectorRegistry.instance.connectors) {
             try {
-                val c = connector.tryConnect(device)
-                if (c != null) {
-                    return c
-                }
+                val factory = EP_NAME.extensionList[0]
+                val controller = factory.createFordiacDynamicTypeLoadController(device)
+                controller.connect()
+
+                return controller
             } catch (e: IOException) {
                 if (LOG.isErrorEnabled) {
-                    LOG.error("$connector thrown on device connecting via DevicesFacade#attach", e)
+                    LOG.error(
+                        "Deployment controller thrown on device '${device.name}' connecting via DevicesFacade#attach",
+                        e
+                    )
                 }
             }
         }
@@ -37,8 +45,8 @@ class DevicesFacade : Disposable {
     fun stop() {
         for (connection in connections.values) {
             try {
-                connection.close()
-            } catch (e: IOException) {
+                connection.disconnect()
+            } catch (e: DeploymentException) {
                 if (LOG.isErrorEnabled) {
                     LOG.error("$connection thrown on closing via DevicesFacade#stop", e)
                 }
@@ -53,5 +61,9 @@ class DevicesFacade : Disposable {
 
     companion object {
         private val LOG = LoggerFactory.getLogger(DevicesFacade::class.java)
+
+        private val EP_NAME =
+            ExtensionPointName.create<DeviceControllerFactory>("fbme.platform.DeviceControllerFactoryEP")
+
     }
 }

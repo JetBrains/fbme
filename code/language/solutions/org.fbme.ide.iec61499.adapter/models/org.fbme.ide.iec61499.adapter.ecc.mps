@@ -246,11 +246,19 @@
         <ref role="3uigEE" to="cwd8:~BasicFBTypeDeclaration" resolve="BasicFBTypeDeclaration" />
       </node>
       <node concept="3clFbS" id="6bsr$eapWdI" role="3clF47">
-        <node concept="3clFbF" id="695$yN3$1EU" role="3cqZAp">
-          <node concept="1rXfSq" id="695$yN3$1ES" role="3clFbG">
-            <ref role="37wK5l" to="fcfa:1hwo9XLDGQM" resolve="getContainer" />
-            <node concept="3VsKOn" id="695$yN3$3vj" role="37wK5m">
-              <ref role="3VsUkX" to="cwd8:~BasicFBTypeDeclaration" resolve="BasicFBTypeDeclaration" />
+        <node concept="3clFbF" id="6gUXxuFtO0Y" role="3cqZAp">
+          <node concept="2OqwBi" id="6gUXxuFtOvj" role="3clFbG">
+            <node concept="37vLTw" id="6gUXxuFtO0W" role="2Oq$k0">
+              <ref role="3cqZAo" to="fcfa:1IuIrLUoZ2w" resolve="myOwner" />
+            </node>
+            <node concept="liA8E" id="6gUXxuFtOYo" role="2OqNvi">
+              <ref role="37wK5l" to="uvki:~PlatformElementsOwner.getAdapter(org.jetbrains.mps.openapi.model.SNode,java.lang.Class)" resolve="getAdapter" />
+              <node concept="37vLTw" id="6gUXxuFtPCz" role="37wK5m">
+                <ref role="3cqZAo" to="fcfa:1IuIrLUoZ0z" resolve="myNode" />
+              </node>
+              <node concept="3VsKOn" id="6gUXxuFtRlY" role="37wK5m">
+                <ref role="3VsUkX" to="go3h:1R4IoyQHa9H" resolve="BasicFBTypeByNode" />
+              </node>
             </node>
           </node>
         </node>

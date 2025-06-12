@@ -1,5 +1,7 @@
 package org.fbme.ide.richediting.viewmodel
 
+import org.fbme.ide.iec61499.repository.PlatformElement
+import org.fbme.lib.common.CompositeReference
 import org.fbme.lib.common.Declaration
 import org.fbme.lib.common.Element
 import org.fbme.lib.iec61499.IEC61499Factory
@@ -13,7 +15,7 @@ import kotlin.math.max
 
 class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork: FBNetwork, val isEditable: Boolean) {
     private val myMainComponents: MutableSet<NetworkComponentView> = HashSet()
-    private val myAuxComponents: MutableMap<NetworkComponentView, Set<NetworkComponentView>> = HashMap()
+    private val myAuxComponents: MutableMap<NetworkComponentView, HashSet<NetworkComponentView>> = HashMap()
     private val myComponentToPorts: MutableMap<NetworkComponentView, Set<NetworkPortView>> = HashMap()
     private val myPorts: MutableMap<NetworkPortView, NetworkComponentView> = HashMap()
     private val myConnectionSources: MutableMap<NetworkConnectionView, NetworkPortView?> = HashMap()
@@ -214,29 +216,28 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
         myConnectionModelMap[connection] = view
         val source = connection.sourceReference.getTarget()
         val target = connection.targetReference.getTarget()
-        val targetView: NetworkPortView?
-        val sourceView: NetworkPortView? = if (source != null) {
-            myPortModelMap[source]
-        } else {
-            view.shrink()
-            BrokenPortView()
-        }
-        if (target != null) {
-            targetView = myPortModelMap[target]
-            if (sourceView is BrokenPortView) {
-                sourceView.setOpposite(targetView)
-            }
-        } else {
-            if (sourceView is BrokenPortView) {
-                return null
-            }
-            view.shrink()
-            val portView = BrokenPortView()
-            portView.setOpposite(sourceView)
-            targetView = portView
+        val resolvedSourceView = source?.let { myPortModelMap[it] }
+        val resolvedTargetView = target?.let { myPortModelMap[it] }
+        val sourceView = resolvedSourceView ?: createBrokerPortView(resolvedTargetView, connection, connection.sourceReference)
+        val targetView = resolvedTargetView ?: createBrokerPortView(resolvedSourceView, connection, connection.targetReference)
+        if (sourceView == null || targetView == null) {
+            return null
         }
         myConnectionSources[view] = sourceView
         myConnectionDestinations[view] = targetView
+        return view
+    }
+
+    private fun createBrokerPortView(
+        opposite: NetworkPortView?,
+        connection: FBNetworkConnection,
+        reference: CompositeReference<PortPath<*>>,
+    ): BrokenPortView? {
+        if (opposite !is FunctionBlockPortView) return null
+        val view = BrokenPortView(opposite, (connection as PlatformElement).node, reference.presentation)
+        myAuxComponents.getOrPut(opposite.component) { HashSet() } += view
+        myComponentToPorts[view] = setOf(view)
+        myPorts[view] = view
         return view
     }
 
@@ -331,10 +332,7 @@ class NetworkView(private val myFactory: IEC61499Factory, private val myNetwork:
     val extensionsView: ComponentExtensionsView<NetworkComponentView, NetworkComponentView> =
         object : ComponentExtensionsView<NetworkComponentView, NetworkComponentView> {
             override fun getExtensions(component: NetworkComponentView): Set<NetworkComponentView> {
-                return myAuxComponents.getOrDefault(
-                    component,
-                    emptySet()
-                )
+                return myAuxComponents.getOrDefault(component, emptySet())
             }
         }
 

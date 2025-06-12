@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<System Name="SystemDevice">
+  <Application Name="BlinkTestApp">
+    <SubAppNetwork />
+  </Application>
+  <Device Name="Testee" Type="FORTE_PC">
+    <Parameter Name="MGR_ID" Value="'localhost:61499'" />
+    <Resource Name="Blinky_RES" Type="EMB_RES" />
+    <FBNetwork />
+  </Device>
+  <Segment Name="eth" Type="Ethernet" />
+  <Link CommResource="Testee.Blinky_RES" SegmentName="eth" />
+</System>
+

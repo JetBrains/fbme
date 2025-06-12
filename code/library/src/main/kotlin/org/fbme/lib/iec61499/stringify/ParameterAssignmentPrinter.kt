@@ -7,7 +7,10 @@ class ParameterAssignmentPrinter(assignment: ParameterAssignment) :
     PrinterElementBase<ParameterAssignment>(assignment, "Parameter") {
     override fun printElementBody(element: Element) {
         element.setAttribute("Name", this.element.parameterReference.presentation)
-        element.setAttribute("Value", STPrinter.printLiteral(requireNotNull(this.element.value)))
+        val value = this.element.value
+        if (value != null) {
+            element.setAttribute("Value", STPrinter.printLiteral(value))
+        }
     }
 
     companion object {

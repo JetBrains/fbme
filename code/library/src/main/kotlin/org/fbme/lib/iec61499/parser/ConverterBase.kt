@@ -7,9 +7,8 @@ abstract class ConverterBase(arguments: ConverterArguments) : ConverterArguments
     final override val identifierLocus = arguments.identifierLocus
     final override val element = arguments.element
 
-    protected fun unescapeXML(text: String?): String? {
-        text ?: return null
-        return text
+    protected fun String.unescapeXML(): String {
+        return this
             .replace("&#10;", "\n")
             .replace("&#34;", "\"")
             .replace("&#38;", "&")

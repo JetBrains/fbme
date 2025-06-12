@@ -10,6 +10,8 @@ interface FBNetworkComponentController {
         return getBounds(position)
     }
 
+    fun getCoordinates(position: Point): Point = position
+
     fun getPortCoordinates(port: NetworkPortView, position: Point): Point
     fun getPortBounds(port: NetworkPortView, position: Point): Rectangle
     fun isSource(port: NetworkPortView): Boolean

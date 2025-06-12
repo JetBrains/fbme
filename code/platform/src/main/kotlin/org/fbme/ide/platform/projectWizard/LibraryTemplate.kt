@@ -1,5 +1,6 @@
 package org.fbme.ide.platform.projectWizard
 
+import com.intellij.openapi.project.Project
 import fbme.platform.PlatformIcons
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.ide.iec61499.repository.PlatformRepository
@@ -13,7 +14,7 @@ class LibraryTemplate : Iec61499ProjectTemplate(
     "library"
 ) {
 
-    override fun initModel(repository: PlatformRepository, model: SModel): PlatformElement {
+    override fun initModel(project: Project, repository: PlatformRepository, model: SModel): PlatformElement {
         val basicFBType = repository.iec61499Factory.createBasicFBTypeDeclaration(null)
         basicFBType.name = "SampleBasicBFType"
 

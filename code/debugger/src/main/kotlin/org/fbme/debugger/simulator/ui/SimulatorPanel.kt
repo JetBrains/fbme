@@ -43,17 +43,15 @@ class SimulatorPanel(
                         ?.drop(1)
                         ?.joinToString(".")
                         ?.split(".")
-                    if (statesList.selectedIndex == statesList.itemsCount - 1) {
-                        val triggerItem = JBMenuItem("Trigger event", AllIcons.Actions.Execute)
-                        triggerItem.addActionListener {
-                            if (watchPath != null) {
-                                val resolvedSimulator = simulator
-                                    .resolveSimulator(watchPath.dropLast(1))!! as FBSimulator
-                                resolvedSimulator.triggerEvent(watchPath.last())
-                            }
+                    val triggerItem = JBMenuItem("Trigger event", AllIcons.Actions.Execute)
+                    triggerItem.addActionListener {
+                        if (watchPath != null) {
+                            val resolvedSimulator = simulator
+                                .resolveSimulator(watchPath.dropLast(1))!! as FBSimulator
+                            resolvedSimulator.triggerEvent(watchPath.last())
                         }
-                        popup.add(triggerItem)
                     }
+                    popup.add(triggerItem)
                     val explainItem = JBMenuItem("Why?", AllIcons.Debugger.Question_badge)
                     explainItem.addActionListener {
                         showExplanation(e)

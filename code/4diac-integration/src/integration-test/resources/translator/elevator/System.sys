@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<System Name="System">
+    <Application Name="app">
+        <SubAppNetwork>
+            <FB Name="Elevator" Type="Elevator" x="941" y="469"/>
+        </SubAppNetwork>
+    </Application>
+    <Device Name="Dev1" Type="FORTE_PC">
+        <Parameter Name="MGR_ID" Value="&quot;localhost:61499&quot;"/>
+        <Resource Name="Elevator_Res" Type="EMB_RES">
+            <FBNetwork>
+                <FB Name="Elevator" Type="Elevator" x="941" y="33"/>
+                <EventConnections>
+                    <Connection Source="START.COLD" Destination="Elevator.INIT" dx1="295"/>
+                    <Connection Source="START.WARM" Destination="Elevator.INIT" dx1="295"/>
+                </EventConnections>
+            </FBNetwork>
+        </Resource>
+        <FBNetwork/>
+    </Device>
+    <Mapping From="app.Elevator" To="Dev1.Elevator_Res.Elevator"/>
+</System>
+
