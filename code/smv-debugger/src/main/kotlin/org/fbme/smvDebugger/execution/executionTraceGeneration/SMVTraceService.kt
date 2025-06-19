@@ -32,25 +32,18 @@ class SMVTraceService(val project: Project) {
 
         fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
 
-        // TODO() this is only for FOR HHM_FV
-        val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf("\\")) + "\\execution_trace.txt").toPath()
-        val trace= unifiedParser.getUnifiedTrace("", tmpTrace, compositeFb)
-        val rez = CompletableFuture.supplyAsync{ trace }
-        return rez
 
-//            fB2SMV.convertFB(fbPath, compositeFb, mpsProject)
-//            val specification = ""//specification
-//            val counterexample = smvService.verify(fbPath, specification)
-//            if (counterexample == null) {
-//                notifySuccess()
-//                return CompletableFuture.supplyAsync(null)
-//            }
-//            else{
-//              //  val tmpTrace =  File(fbPath.pathString.substring(0, fbPath.pathString.lastIndexOf(".")) + "_ref_TMP.nutrac").toPath()
-//                val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
-//                val rez = CompletableFuture.supplyAsync{ trace }
-//                return rez
-//            }
+        val counterexample = smvService.verify(fbPath,  specification )
+//        val counterexample = smvService.verify(fbPath,  specification =  " G !(TwoCylDiscr_inst.HorCTL.EXTEND=TRUE & TwoCylDiscr_inst.VerCTL.EXTEND=TRUE)")
+        if (counterexample == null) {
+            notifySuccess()
+            return CompletableFuture.supplyAsync(null)
+        }
+        else{
+             val trace= unifiedParser.getUnifiedTrace("", counterexample, compositeFb)
+             val rez = CompletableFuture.supplyAsync{ trace }
+             return rez
+        }
 
     }
 
@@ -64,6 +57,7 @@ class SMVTraceService(val project: Project) {
     }
 
     init {
+
         mpsProject = project.getComponent(MPSProject::class.java)
         smvService = SmvService(ServicePathProvider.create(mpsProject))
         fB2SMV = FB2SMV()

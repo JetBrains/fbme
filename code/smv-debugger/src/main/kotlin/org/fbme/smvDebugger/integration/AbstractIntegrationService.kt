@@ -8,10 +8,12 @@ import kotlin.io.path.pathString
 abstract class AbstractIntegrationService(protected val binaryPath: Path?) {
     protected fun runProcess(path: Path): String {
         val command = getCommand(path)
+        val com = path
+
         val builder = ProcessBuilder()
         val args = command.split(" ")
         builder.command(args)
-
+//        builder.command(com.pathString)
         return try {
             val process = builder.start()
             val reader = BufferedReader(InputStreamReader(process.inputStream))
