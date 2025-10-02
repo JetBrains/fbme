@@ -1,7 +1,9 @@
 package org.fbme.ide.richediting.adapters.fbnetwork
 
 import jetbrains.mps.nodeEditor.cells.EditorCell
+import jetbrains.mps.nodeEditor.cells.EditorCell_Error
 import jetbrains.mps.openapi.editor.EditorContext
+import org.fbme.ide.richediting.viewmodel.BrokenPortView
 import org.fbme.ide.richediting.viewmodel.FunctionBlockPortView
 import org.fbme.ide.richediting.viewmodel.InlineValueView
 import org.fbme.ide.richediting.viewmodel.NetworkPortView
@@ -11,13 +13,12 @@ import java.awt.Graphics
 import java.awt.Point
 import java.awt.Rectangle
 
-class InlineValueController(
+class BrokenPortController(
     context: EditorContext,
-    private val myView: InlineValueView,
-    private val myComponentController: FunctionBlockController,
-    valueCell: EditorCell
+    private val myView: BrokenPortView,
+    private val myComponentController: FunctionBlockController
 ) : ComponentExtController<Point>, FBNetworkComponentController {
-    override val componentCell: EditorCell
+    override val componentCell = EditorCell_Error(context, myView.associatedNode, myView.presentation, false)
     private val myOpposite: FunctionBlockPortView = myView.opposite
 
     override fun getPortCoordinates(port: NetworkPortView, position: Point): Point {
@@ -79,9 +80,5 @@ class InlineValueController(
     companion object {
         const val OPPOSITE_PORT_PADDING = 20
         const val INNER_BORDER_PADDING = 2
-    }
-
-    init {
-        componentCell = valueCell
     }
 }
