@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="InnerBlock">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="ibInpVar" />
+      </Event>
+      <Event Name="NDT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INTO">
+        <With Var="ibOutpVar" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ibInpVar" Type="BOOL" />
+      <VarDeclaration Name="intVar" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ibOutpVar" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="320" y="586" />
+      <ECState Name="IDLE" x="2720" y="80">
+        <ECAction Output="INTO" Algorithm="TODO" />
+      </ECState>
+      <ECState Name="FORNDT" x="-453" y="1380">
+        <ECAction Output="INTO" Algorithm="TODO" />
+      </ECState>
+      <ECTransition Source="START" Destination="IDLE" x="1140" y="819" Condition="INIT[intVar &lt; 10]" />
+      <ECTransition Source="IDLE" Destination="START" x="1420" y="80" Condition="1" />
+      <ECTransition Source="IDLE" Destination="FORNDT" x="0" y="0" Condition="NDT" />
+      <ECTransition Source="FORNDT" Destination="FORNDT" x="266" y="1826" Condition="1" />
+    </ECC>
+    <Algorithm Name="TODO">
+      <ST Text="ibOutpVar := NOT ibInpVar;&#10;intVar := intVar + 1;&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

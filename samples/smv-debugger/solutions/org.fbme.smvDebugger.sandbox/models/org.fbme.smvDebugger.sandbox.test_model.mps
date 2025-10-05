@@ -14,6 +14,7 @@
       <concept id="185023738902821179" name="org.fbme.ide.st.lang.structure.UnaryExpression" flags="ng" index="UK6WB">
         <child id="8872717756044728347" name="expression" index="1yuI7h" />
       </concept>
+      <concept id="2377145822810428096" name="org.fbme.ide.st.lang.structure.IntType" flags="ng" index="3r5wd7" />
       <concept id="8872717756041500089" name="org.fbme.ide.st.lang.structure.StatementList" flags="ng" index="1y1qLN">
         <child id="8872717756041500466" name="statements" index="1y1qVS" />
       </concept>
@@ -579,6 +580,10 @@
     <node concept="2zBDeF" id="v2ZCRmXdAe" role="2zBDeD">
       <property role="TrG5h" value="icbInpVar" />
       <node concept="2zB9wT" id="v2ZCRmXdAM" role="2zB7qv" />
+    </node>
+    <node concept="2zBDeF" id="5vIq9sgiqLf" role="2zBDeD">
+      <property role="TrG5h" value="intVar" />
+      <node concept="3r5wd7" id="5vIq9sgiqLl" role="2zB7qv" />
     </node>
     <node concept="2zBDe_" id="v2ZCRmXd_z" role="2zBDew">
       <property role="TrG5h" value="INTO" />

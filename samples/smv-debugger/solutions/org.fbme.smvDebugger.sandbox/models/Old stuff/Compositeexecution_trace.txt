@@ -1,0 +1,206 @@
+*** This is NuSMV 2.7.0 (compiled on Thu Oct 24 17:56:00 2024)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+-- specification  F false_var = TRUE  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    Composite_inst.E_CTU_CUSTOM.PV = 0
+    Composite_inst.E_CTU_CUSTOM.Q = FALSE
+    Composite_inst.E_CTU_CUSTOM.CV = 0
+    Composite_inst.E_CTU_CUSTOM.S_smv = s0_osm
+    Composite_inst.E_CTU_CUSTOM.Q_smv = START_ecc
+    Composite_inst.E_CTU_CUSTOM.NA = 0
+    Composite_inst.E_CTU_CUSTOM.NI = 0
+    Composite_inst.E_SWITCH_CUSTOM.Gv = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.S_smv = s0_osm
+    Composite_inst.E_SWITCH_CUSTOM.Q_smv = START_ecc
+    Composite_inst.E_SWITCH_CUSTOM.NA = 0
+    Composite_inst.E_SWITCH_CUSTOM.NI = 0
+    Composite_inst.CvToGTranslator.CV = 0
+    Composite_inst.CvToGTranslator.Gv = FALSE
+    Composite_inst.CvToGTranslator.S_smv = s0_osm
+    Composite_inst.CvToGTranslator.Q_smv = START_ecc
+    Composite_inst.CvToGTranslator.NA = 0
+    Composite_inst.CvToGTranslator.NI = 0
+    Composite_inst.E_CTU_CUSTOM_CU = FALSE
+    Composite_inst.E_CTU_CUSTOM_R = FALSE
+    Composite_inst.E_CTU_CUSTOM_CUO = FALSE
+    Composite_inst.E_CTU_CUSTOM_RO = FALSE
+    Composite_inst.E_CTU_CUSTOM_Q = FALSE
+    Composite_inst.E_CTU_CUSTOM_CV = 0
+    Composite_inst.E_CTU_CUSTOM_PV = 0
+    Composite_inst.E_CTU_CUSTOM_alpha = FALSE
+    Composite_inst.E_CTU_CUSTOM_beta = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_EI = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_EO0 = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_EO1 = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_alpha = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_beta = FALSE
+    Composite_inst.CvToGTranslator_CNF = FALSE
+    Composite_inst.CvToGTranslator_G = FALSE
+    Composite_inst.CvToGTranslator_alpha = FALSE
+    Composite_inst.CvToGTranslator_beta = FALSE
+    Composite_inst.CvToGTranslator_REQ = FALSE
+    Composite_inst_CU = TRUE
+    Composite_inst_R = TRUE
+    Composite_inst_EO0 = TRUE
+    Composite_inst_EO1 = TRUE
+    Composite_inst_PV = 0
+    Composite_inst_alpha = TRUE
+    Composite_inst_beta = FALSE
+    false_var = FALSE
+    Composite_inst.beta_set = FALSE
+    Composite_inst.alpha_reset = FALSE
+    Composite_inst.event_EO0_set = FALSE
+    Composite_inst.event_EO1_set = FALSE
+    Composite_inst.event_CU_reset = TRUE
+    Composite_inst.event_R_reset = TRUE
+    Composite_inst.ExistsInputEvent = TRUE
+    Composite_inst.omega = TRUE
+    Composite_inst.phi = FALSE
+    Composite_inst.E_CTU_CUSTOM.alpha_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.beta_set = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_CUO_set = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_RO_set = FALSE
+    Composite_inst.E_CTU_CUSTOM.ExistsInputEvent = FALSE
+    Composite_inst.E_CTU_CUSTOM.ExistsEnabledECTran = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.alpha_reset = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.beta_set = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.event_EI_reset = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.event_EO0_set = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.event_EO1_set = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.ExistsInputEvent = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.ExistsEnabledECTran = FALSE
+    Composite_inst.CvToGTranslator.alpha_reset = FALSE
+    Composite_inst.CvToGTranslator.beta_set = FALSE
+    Composite_inst.CvToGTranslator.event_REQ_reset = FALSE
+    Composite_inst.CvToGTranslator.event_CNF_set = FALSE
+    Composite_inst.CvToGTranslator.ExistsInputEvent = FALSE
+    Composite_inst.CvToGTranslator.ExistsEnabledECTran = FALSE
+  -> State: 1.2 <-
+    Composite_inst.E_CTU_CUSTOM_CU = TRUE
+    Composite_inst.E_CTU_CUSTOM_R = TRUE
+    Composite_inst_CU = FALSE
+    Composite_inst_R = FALSE
+    Composite_inst.alpha_reset = TRUE
+    Composite_inst.ExistsInputEvent = FALSE
+    Composite_inst.E_CTU_CUSTOM.ExistsInputEvent = TRUE
+    Composite_inst.E_CTU_CUSTOM.ExistsEnabledECTran = TRUE
+  -> State: 1.3 <-
+    Composite_inst.E_CTU_CUSTOM_alpha = TRUE
+    Composite_inst_alpha = FALSE
+    Composite_inst.alpha_reset = FALSE
+    Composite_inst.event_CU_reset = FALSE
+    Composite_inst.event_R_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = TRUE
+  -> State: 1.4 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s1_osm
+    Composite_inst.E_CTU_CUSTOM_R = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = TRUE
+  -> State: 1.5 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s2_osm
+    Composite_inst.E_CTU_CUSTOM.Q_smv = CU_ecc
+    Composite_inst.E_CTU_CUSTOM.NA = 1
+    Composite_inst.E_CTU_CUSTOM.NI = 1
+    Composite_inst.E_CTU_CUSTOM_CU = FALSE
+    Composite_inst.phi = TRUE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.ExistsInputEvent = FALSE
+  -> State: 1.6 <-
+    Composite_inst.E_CTU_CUSTOM.CV = 1
+    Composite_inst.E_CTU_CUSTOM.NI = 2
+  -> State: 1.7 <-
+    Composite_inst.E_CTU_CUSTOM.Q = TRUE
+    Composite_inst.E_CTU_CUSTOM.NI = 0
+    Composite_inst.E_CTU_CUSTOM.event_CUO_set = TRUE
+  -> State: 1.8 <-
+    Composite_inst.E_CTU_CUSTOM.NA = 0
+    Composite_inst.E_CTU_CUSTOM.NI = 1
+    Composite_inst.E_CTU_CUSTOM_CUO = TRUE
+    Composite_inst.E_CTU_CUSTOM_Q = TRUE
+    Composite_inst.E_CTU_CUSTOM_CV = 1
+    Composite_inst.omega = FALSE
+    Composite_inst.phi = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_CUO_set = FALSE
+  -> State: 1.9 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s1_osm
+    Composite_inst.E_CTU_CUSTOM_CUO = FALSE
+    Composite_inst.CvToGTranslator_REQ = TRUE
+    Composite_inst.omega = TRUE
+    Composite_inst.phi = TRUE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = TRUE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = TRUE
+    Composite_inst.CvToGTranslator.ExistsInputEvent = TRUE
+    Composite_inst.CvToGTranslator.ExistsEnabledECTran = TRUE
+  -> State: 1.10 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s2_osm
+    Composite_inst.E_CTU_CUSTOM.Q_smv = START_ecc
+    Composite_inst.E_CTU_CUSTOM.NA = 1
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.ExistsEnabledECTran = FALSE
+  -> State: 1.11 <-
+    Composite_inst.E_CTU_CUSTOM.NI = 0
+  -> State: 1.12 <-
+    Composite_inst.E_CTU_CUSTOM.NA = 0
+    Composite_inst.E_CTU_CUSTOM.NI = 1
+  -> State: 1.13 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s1_osm
+    Composite_inst.E_CTU_CUSTOM.alpha_reset = TRUE
+    Composite_inst.E_CTU_CUSTOM.beta_set = TRUE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = TRUE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = TRUE
+  -> State: 1.14 <-
+    Composite_inst.E_CTU_CUSTOM.S_smv = s0_osm
+    Composite_inst.E_CTU_CUSTOM.NA = 1
+    Composite_inst.E_CTU_CUSTOM_alpha = FALSE
+    Composite_inst.E_CTU_CUSTOM_beta = TRUE
+    Composite_inst.E_CTU_CUSTOM.alpha_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.beta_set = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_CU_reset = FALSE
+    Composite_inst.E_CTU_CUSTOM.event_R_reset = FALSE
+  -> State: 1.15 <-
+    Composite_inst.E_CTU_CUSTOM_beta = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_alpha = TRUE
+    Composite_inst.E_SWITCH_CUSTOM.alpha_reset = TRUE
+    Composite_inst.E_SWITCH_CUSTOM.beta_set = TRUE
+  -> State: 1.16 <-
+    Composite_inst.E_SWITCH_CUSTOM_alpha = FALSE
+    Composite_inst.E_SWITCH_CUSTOM_beta = TRUE
+    Composite_inst.E_SWITCH_CUSTOM.alpha_reset = FALSE
+    Composite_inst.E_SWITCH_CUSTOM.beta_set = FALSE
+  -> State: 1.17 <-
+    Composite_inst.E_SWITCH_CUSTOM_beta = FALSE
+    Composite_inst.CvToGTranslator_alpha = TRUE
+  -> State: 1.18 <-
+    Composite_inst.CvToGTranslator.CV = 1
+    Composite_inst.CvToGTranslator.S_smv = s1_osm
+    Composite_inst.CvToGTranslator.event_REQ_reset = TRUE
+  -- Loop starts here
+  -> State: 1.19 <-
+    Composite_inst.CvToGTranslator.S_smv = s2_osm
+    Composite_inst.CvToGTranslator.Q_smv = SET_G1_ecc
+    Composite_inst.CvToGTranslator.NA = 1
+    Composite_inst.CvToGTranslator.NI = 1
+    Composite_inst.CvToGTranslator_REQ = FALSE
+    Composite_inst.CvToGTranslator.event_REQ_reset = FALSE
+    Composite_inst.CvToGTranslator.ExistsInputEvent = FALSE
+  -> State: 1.20 <-

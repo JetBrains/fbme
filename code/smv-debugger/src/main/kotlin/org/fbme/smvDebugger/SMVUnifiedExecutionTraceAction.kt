@@ -116,42 +116,6 @@ class SMVUnifiedExecutionTraceAction:  AnAction() {
             toolWindow.show()
         }
 
-//
-//
-//        val mpsProject = event.getRequiredData(MPSCommonDataKeys.MPS_PROJECT)
-//        val fbTypeDeclaration = event.element<FBTypeDeclaration>()
-//
-//        if (null != fbTypeDeclaration){
-////            val fbPath = Path.of(Iec61499Persistence.getPathToElement((fbTypeDeclaration as PlatformElement).node))
-//            val fbPath = Path.of("C:\\Users\\tatlia\\Documents\\GitHub\\fbme\\samples\\smv-debugger\\solutions\\" +
-//                    "org.fbme.smvDebugger.sandbox\\models\\TC\\TwoCylDiscr.fbt")
-//
-//            val rez = smvTraceFactory.generateTrace(mpsProject, fbPath,
-//                fbTypeDeclaration as CompositeFBTypeDeclaration,arg).get()
-//
-//        //    JOptionPane.showMessageDialog(  null, "SMVUnifiedExecutionTraceAction")
-//
-//            mpsProject.modelAccess.runReadAction {
-//
-//                val traceForGUI = UnifiedTraceConverter.convertTrace(rez, fbTypeDeclaration)
-//            }
-//
-//
-//
-//        }
 
-
-//
-//        val platformRepository = PlatformRepositoryProvider.getInstance(event.getData(MPSCommonDataKeys.MPS_PROJECT));
-//
-//        var fbTypeDecl = SNodeOperations.getNodeAncestor(event.getData(MPSCommonDataKeys.NODE),
-//            CONCEPTS.CompositeFBTypeDeclaration, true, false)
-//
-//        val fbPath = Path.of(Iec61499Persistence.getPathToElement(fbTypeDecl));
-//
-//        val compositeFb = platformRepository.getAdapter(fbTypeDecl, CompositeFBTypeDeclaration::class.java)
-//
-//
-//        event.getData(MPSCommonDataKeys.MPS_PROJECT)?.let { smvTraceFactory.generateTrace(it, fbPath, compositeFb,"")}
     }
 }

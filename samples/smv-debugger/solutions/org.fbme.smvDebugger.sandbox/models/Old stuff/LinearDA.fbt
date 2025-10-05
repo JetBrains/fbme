@@ -36,7 +36,7 @@
   <BasicFB>
     <ECC>
       <ECState Name="START" x="0" y="1919" />
-      <ECState Name="INIT" x="866" y="2500">
+      <ECState Name="INIT" x="833" y="2500">
         <ECAction Output="INITO" Algorithm="INIT" />
       </ECState>
       <ECState Name="stHOME" x="4140" y="99">
@@ -54,8 +54,8 @@
       <ECState Name="stSTOP" x="4140" y="1200">
         <ECAction Output="CHG" Algorithm="STOP" />
       </ECState>
-      <ECTransition Source="START" Destination="INIT" x="826" y="2060" Condition="INIT" />
-      <ECTransition Source="INIT" Destination="stHOME" x="1726" y="1266" Condition="NDT" />
+      <ECTransition Source="START" Destination="INIT" x="793" y="2060" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="stHOME" x="1693" y="1260" Condition="NDT" />
       <ECTransition Source="stHOME" Destination="ddMOVETO" x="6286" y="633" Condition="[FWD]" />
       <ECTransition Source="stEND" Destination="ddRETURN" x="5926" y="66" Condition="[BACK]" />
       <ECTransition Source="ddMOVETO" Destination="stEND" x="8200" y="1733" Condition="NDT" />
@@ -64,11 +64,12 @@
       <ECTransition Source="stSTOP" Destination="ddRETURN" x="3126" y="1853" Condition="[BACK]" />
       <ECTransition Source="stSTOP" Destination="ddMOVETO" x="6133" y="1186" Condition="[FWD]" />
       <ECTransition Source="ddMOVETO" Destination="stSTOP" x="5920" y="1919" Condition="[NOT FWD AND NOT BACK]" />
-      <ECTransition Source="INIT" Destination="stSTOP" x="3333" y="2320" Condition="NDT" />
-      <ECTransition Source="INIT" Destination="stEND" x="6159" y="3166" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="stSTOP" x="3299" y="2320" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="stEND" x="6140" y="3133" Condition="NDT" />
+      <ECTransition Source="START" Destination="START" x="166" y="1986" Condition="1" />
     </ECC>
     <Algorithm Name="INIT">
-      <ST Text="HOME := TRUE;&#10;END := FALSE;&#10;" />
+      <ST Text="HOME := TRUE;&#10;END := FALSE;&#10;test := 1;&#10;" />
     </Algorithm>
     <Algorithm Name="POS1">
       <ST Text="HOME := TRUE;&#10;END := FALSE;&#10;" />

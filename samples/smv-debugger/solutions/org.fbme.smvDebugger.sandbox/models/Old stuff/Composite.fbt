@@ -18,20 +18,21 @@
     </InputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="E_CTU_CUSTOM" Type="E_CTU_CUSTOM" x="56" y="0" />
-    <FB Name="E_SWITCH_CUSTOM" Type="E_SWITCH_CUSTOM" x="1523" y="0" />
+    <FB Name="E_CTU_CUSTOM" Type="E_CTU_CUSTOM" x="49" y="0" />
+    <FB Name="E_SWITCH_CUSTOM" Type="E_SWITCH_CUSTOM" x="1520" y="0" />
     <FB Name="CvToGTranslator" Type="CvToGTranslator" x="760" y="90" />
     <DataConnections>
-      <Connection Source="PV" Destination="E_CTU_CUSTOM.PV" />
+      <Connection Source="PV" Destination="E_CTU_CUSTOM.PV" dx1="19" />
       <Connection Source="E_CTU_CUSTOM.CV" Destination="CvToGTranslator.CV" dx1="180" />
       <Connection Source="CvToGTranslator.G" Destination="E_SWITCH_CUSTOM.G" dx1="100" />
     </DataConnections>
     <EventConnections>
-      <Connection Source="E_CTU_CUSTOM.CUO" Destination="E_SWITCH_CUSTOM.EI" />
-      <Connection Source="CU" Destination="E_CTU_CUSTOM.CU" />
-      <Connection Source="E_SWITCH_CUSTOM.EO0" Destination="EO0" />
-      <Connection Source="E_SWITCH_CUSTOM.EO1" Destination="EO1" />
-      <Connection Source="R" Destination="E_CTU_CUSTOM.R" />
+      <Connection Source="CU" Destination="E_CTU_CUSTOM.CU" dx1="19" />
+      <Connection Source="E_SWITCH_CUSTOM.EO0" Destination="EO0" dx1="44" />
+      <Connection Source="E_SWITCH_CUSTOM.EO1" Destination="EO1" dx1="44" />
+      <Connection Source="R" Destination="E_CTU_CUSTOM.R" dy="34" dx2="30" dx1="29" />
+      <Connection Source="CvToGTranslator.CNF" Destination="E_SWITCH_CUSTOM.EI" dx1="160" />
+      <Connection Source="E_CTU_CUSTOM.CUO" Destination="CvToGTranslator.REQ" dx1="184" />
     </EventConnections>
     <EndpointCoordinate Name="R" x="-109" y="96" />
     <EndpointCoordinate Name="CU" x="-140" y="46" />

@@ -1,0 +1,71 @@
+
+
+MODULE CvToGTranslator(event_REQ,event_CNF,CV_,G_,alpha, beta)
+VAR CV : 0..10;
+VAR G : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,SET_G1_ecc,SET_G0_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..1;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(CV):= 0;
+init(G):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_REQ&  (CV > 0) : SET_G1_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_REQ&  (CV = 0) : SET_G0_ecc;
+	Q_smv=SET_G1_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=SET_G0_ecc & S_smv=s1_osm  : START_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=SET_G1_ecc & NA < 1 ) | (Q_smv=SET_G0_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=SET_G1_ecc & NA = 1) | (Q_smv=SET_G0_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=SET_G1_ecc & NA = 1  & NI < 0 ) | (Q_smv=SET_G0_ecc & NA = 1  & NI < 0 )) : (NI + 1) mod 2;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=SET_G1_ecc & NA = 1 & NI = 0) | (Q_smv=SET_G0_ecc & NA = 1 & NI = 0)) :  0 ;	TRUE : NI;
+esac;
+next(CV) := case
+	alpha & S_smv=s0_osm & (event_REQ) : CV_ ;
+	TRUE : CV;
+esac;
+
+next(G) := case
+	TRUE : G;
+esac;
+
+next(G_) := case
+S_smv=s2_osm & NI=0 : G;
+	TRUE : G_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_REQ_reset:= (S_smv=s1_osm);
+
+DEFINE event_CNF_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=SET_G1_ecc & NA = 1) | (Q_smv=SET_G0_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_REQ ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_REQ & ( CV>0)  )  |  ( event_REQ & ( CV=0)  )  ) ) | (Q_smv=SET_G1_ecc  ) | (Q_smv=SET_G0_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="OneMoreInnerBlock">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="IN" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="OUT" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="in" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="out" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1353" y="553" />
+    </ECC>
+  </BasicFB>
+</FBType>
+

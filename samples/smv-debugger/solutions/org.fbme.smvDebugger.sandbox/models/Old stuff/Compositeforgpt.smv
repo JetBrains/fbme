@@ -1,0 +1,145 @@
+
+MODULE Composite(event_CU, event_R, event_EO0, event_EO1, PV_,alpha, beta)
+VAR  E_CTU_CUSTOM  : E_CTU_CUSTOM (E_CTU_CUSTOM_CU,E_CTU_CUSTOM_R,E_CTU_CUSTOM_CUO, E_CTU_CUSTOM_RO, E_CTU_CUSTOM_PV, E_CTU_CUSTOM_Q, E_CTU_CUSTOM_CV, E_CTU_CUSTOM_alpha, E_CTU_CUSTOM_beta);
+VAR  E_SWITCH_CUSTOM  : E_SWITCH_CUSTOM (E_SWITCH_CUSTOM_EI,E_SWITCH_CUSTOM_EO0, E_SWITCH_CUSTOM_EO1, CvToGTranslator_G, E_SWITCH_CUSTOM_alpha, E_SWITCH_CUSTOM_beta);
+VAR  CvToGTranslator  : CvToGTranslator (CvToGTranslator_REQ,CvToGTranslator_CNF, E_CTU_CUSTOM_CV, CvToGTranslator_G, CvToGTranslator_alpha, CvToGTranslator_beta);
+
+
+-- generateCompositeFBsVariables
+
+VAR E_CTU_CUSTOM_CU : boolean;
+VAR E_CTU_CUSTOM_R : boolean;
+VAR E_CTU_CUSTOM_CUO : boolean;
+VAR E_CTU_CUSTOM_RO : boolean;
+VAR E_CTU_CUSTOM_Q : 0..10;
+VAR E_CTU_CUSTOM_CV : 0..10;
+VAR E_CTU_CUSTOM_alpha : boolean;
+VAR E_CTU_CUSTOM_beta : boolean;
+
+VAR E_SWITCH_CUSTOM_EI : boolean;
+VAR E_SWITCH_CUSTOM_EO0 : boolean;
+VAR E_SWITCH_CUSTOM_EO1 : boolean;
+VAR E_SWITCH_CUSTOM_alpha : boolean;
+VAR E_SWITCH_CUSTOM_beta : boolean;
+
+VAR CvToGTranslator_CNF : boolean;
+VAR CvToGTranslator_G : 0..10;
+VAR CvToGTranslator_alpha : boolean;
+VAR CvToGTranslator_beta : boolean;
+
+
+
+ASSIGN
+init(E_CTU_CUSTOM_CU) := FALSE;
+init(E_CTU_CUSTOM_R) := FALSE;
+init(E_CTU_CUSTOM_CUO) := FALSE;
+init(E_CTU_CUSTOM_RO) := FALSE;
+init(E_CTU_CUSTOM_Q) := 0;
+init(E_CTU_CUSTOM_CV) := 0;
+init( E_CTU_CUSTOM_alpha) := FALSE;
+init( E_CTU_CUSTOM_beta) := FALSE;
+
+init(E_SWITCH_CUSTOM_EI) := FALSE;
+init(E_SWITCH_CUSTOM_EO0) := FALSE;
+init(E_SWITCH_CUSTOM_EO1) := FALSE;
+init( E_SWITCH_CUSTOM_alpha) := FALSE;
+init( E_SWITCH_CUSTOM_beta) := FALSE;
+
+init(CvToGTranslator_CNF) := FALSE;
+init(CvToGTranslator_G) := 0;
+init( CvToGTranslator_alpha) := FALSE;
+init( CvToGTranslator_beta) := FALSE;
+
+
+
+-- generateInternalDataConnections
+
+next(E_CTU_CUSTOM_PV) := case
+alpha & (event_CU) : PV_;
+	TRUE: E_CTU_CUSTOM_PV;
+esac;
+
+-- generateInnerFBsEventOutputsUpdate
+
+next(E_CTU_CUSTOM_CUO) := case
+	E_CTU_CUSTOM.event_CUO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(E_SWITCH_CUSTOM_EO0) := case
+	E_SWITCH_CUSTOM.event_EO0_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(E_SWITCH_CUSTOM_EO1) := case
+	E_SWITCH_CUSTOM.event_EO1_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+-- DISPATCHER
+
+next(E_CTU_CUSTOM_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	E_CTU_CUSTOM.alpha_reset : FALSE;
+	TRUE : E_CTU_CUSTOM_alpha;
+esac;
+next(E_CTU_CUSTOM_beta):= case
+	E_CTU_CUSTOM_beta & omega : FALSE;
+	E_CTU_CUSTOM.beta_set : TRUE;
+	TRUE : E_CTU_CUSTOM_beta;
+esac;
+next(E_SWITCH_CUSTOM_alpha):= case
+	E_CTU_CUSTOM_beta & omega : TRUE;
+	E_SWITCH_CUSTOM.alpha_reset : FALSE;
+	TRUE : E_SWITCH_CUSTOM_alpha;
+esac;
+next(E_SWITCH_CUSTOM_beta):= case
+	E_SWITCH_CUSTOM_beta & omega : FALSE;
+	E_SWITCH_CUSTOM.beta_set : TRUE;
+	TRUE : E_SWITCH_CUSTOM_beta;
+esac;
+next(CvToGTranslator_alpha):= case
+	E_SWITCH_CUSTOM_beta & omega : TRUE;
+	CvToGTranslator.alpha_reset : FALSE;
+	TRUE : CvToGTranslator_alpha;
+esac;
+next(CvToGTranslator_beta):= case
+	CvToGTranslator_beta & omega : FALSE;
+	CvToGTranslator.beta_set : TRUE;
+	TRUE : CvToGTranslator_beta;
+esac;
+DEFINE beta_set:= CvToGTranslator_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+-- generateInternalEventConnections
+
+next(E_CTU_CUSTOM_CU):= case
+	((event_CU & alpha)) : TRUE;
+	(E_CTU_CUSTOM.event_CU_reset) : FALSE;
+	TRUE : E_CTU_CUSTOM_CU;
+esac;
+
+next(E_CTU_CUSTOM_R):= case
+	((event_R & alpha)) : TRUE;
+	(E_CTU_CUSTOM.event_R_reset) : FALSE;
+	TRUE : E_CTU_CUSTOM_R;
+esac;
+
+next(E_SWITCH_CUSTOM_EI):= case
+	(E_CTU_CUSTOM_CUO) : TRUE;
+	(E_SWITCH_CUSTOM.event_EI_reset) : FALSE;
+	TRUE : E_SWITCH_CUSTOM_EI;
+esac;
+
+DEFINE event_EO0_set:= (E_SWITCH_CUSTOM_EO0 );
+DEFINE event_EO1_set:= (E_SWITCH_CUSTOM_EO1 );
+DEFINE event_CU_reset:= alpha;
+DEFINE event_R_reset:= alpha;
+DEFINE ExistsInputEvent :=  event_CU  |  event_R ;
+
+DEFINE omega:= !(E_SWITCH_CUSTOM_EO0 | E_SWITCH_CUSTOM_EO1 | E_CTU_CUSTOM_CUO);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(E_CTU_CUSTOM_CU | E_CTU_CUSTOM_R | E_SWITCH_CUSTOM_EI | E_SWITCH_CUSTOM_EO0 | E_SWITCH_CUSTOM_EO1 | E_CTU_CUSTOM_CUO ));
+FAIRNESS (alpha)
+FAIRNESS (beta)
+

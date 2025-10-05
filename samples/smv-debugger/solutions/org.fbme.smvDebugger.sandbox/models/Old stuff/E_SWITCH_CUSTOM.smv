@@ -1,0 +1,63 @@
+
+MODULE E_SWITCH_CUSTOM(event_EI,event_EO0,event_EO1,G_,alpha, beta)
+VAR G : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,G0_ecc,G1_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..1;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(G):= FALSE;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_EI & !( G) : G0_ecc;
+	Q_smv=G0_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_EI&  G : G1_ecc;
+	Q_smv=G1_ecc & S_smv=s1_osm  : START_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=G0_ecc & NA < 1 ) | (Q_smv=G1_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=G0_ecc & NA = 1) | (Q_smv=G1_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=G0_ecc & NA = 1  & NI < 1 ) | (Q_smv=G1_ecc & NA = 1  & NI < 1 )) : (NI + 1) mod 2;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=G0_ecc & NA = 1 & NI = 1) | (Q_smv=G1_ecc & NA = 1 & NI = 1)) :  0 ;	TRUE : NI;
+esac;
+next(G) := case
+	alpha & S_smv=s0_osm & (event_EI) : G_ ;
+	TRUE : G;
+esac;
+
+
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_EI_reset:= (S_smv=s1_osm);
+
+DEFINE event_EO0_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=G0_ecc & NA = 1)) ;
+DEFINE event_EO1_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=G1_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_EI ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_EI & (!( G))  )  |  ( event_EI & ( G)  )  ) ) | (Q_smv=G0_ecc  ) | (Q_smv=G1_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)
+

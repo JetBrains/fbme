@@ -253,9 +253,11 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCyl.HOME = TRUE
     TwoCylDiscr_inst.HorCyl.NI = 2
   -> State: 1.18 <-
+    TwoCylDiscr_inst.HorCyl.NI = 3
+  -> State: 1.19 <-
     TwoCylDiscr_inst.HorCyl.NI = 0
     TwoCylDiscr_inst.HorCyl.event_INITO_set = TRUE
-  -> State: 1.19 <-
+  -> State: 1.20 <-
     TwoCylDiscr_inst.HorCyl.NA = 0
     TwoCylDiscr_inst.HorCyl.NI = 1
     TwoCylDiscr_inst.HorCyl_INITO = TRUE
@@ -263,7 +265,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.phi = FALSE
     TwoCylDiscr_inst.HorCyl.event_INITO_set = FALSE
-  -> State: 1.20 <-
+  -> State: 1.21 <-
     TwoCylDiscr_inst.HorCyl.S_smv = s1_osm
     TwoCylDiscr_inst.HorCyl_INITO = FALSE
     TwoCylDiscr_inst.VerCyl_INIT = TRUE
@@ -274,7 +276,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCyl.event_REQ_reset = TRUE
     TwoCylDiscr_inst.VerCyl.ExistsInputEvent = TRUE
     TwoCylDiscr_inst.VerCyl.ExistsEnabledECTran = TRUE
-  -> State: 1.21 <-
+  -> State: 1.22 <-
     TwoCylDiscr_inst.HorCyl.S_smv = s0_osm
     TwoCylDiscr_inst.HorCyl.NA = 1
     TwoCylDiscr_inst.HorCyl_alpha = FALSE
@@ -283,14 +285,14 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCyl.beta_set = FALSE
     TwoCylDiscr_inst.HorCyl.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCyl.event_REQ_reset = FALSE
-  -> State: 1.22 <-
+  -> State: 1.23 <-
     TwoCylDiscr_inst.HorCyl_beta = FALSE
     TwoCylDiscr_inst.VerCyl_alpha = TRUE
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = TRUE
-  -> State: 1.23 <-
+  -> State: 1.24 <-
     TwoCylDiscr_inst.VerCyl.S_smv = s1_osm
     TwoCylDiscr_inst.VerCyl.event_INIT_reset = TRUE
-  -> State: 1.24 <-
+  -> State: 1.25 <-
     TwoCylDiscr_inst.VerCyl.S_smv = s2_osm
     TwoCylDiscr_inst.VerCyl.Q_smv = INIT_ecc
     TwoCylDiscr_inst.VerCyl.NA = 1
@@ -301,13 +303,15 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = FALSE
     TwoCylDiscr_inst.VerCyl.ExistsInputEvent = FALSE
     TwoCylDiscr_inst.VerCyl.ExistsEnabledECTran = FALSE
-  -> State: 1.25 <-
+  -> State: 1.26 <-
     TwoCylDiscr_inst.VerCyl.HOME = TRUE
     TwoCylDiscr_inst.VerCyl.NI = 2
-  -> State: 1.26 <-
+  -> State: 1.27 <-
+    TwoCylDiscr_inst.VerCyl.NI = 3
+  -> State: 1.28 <-
     TwoCylDiscr_inst.VerCyl.NI = 0
     TwoCylDiscr_inst.VerCyl.event_INITO_set = TRUE
-  -> State: 1.27 <-
+  -> State: 1.29 <-
     TwoCylDiscr_inst.VerCyl.NA = 0
     TwoCylDiscr_inst.VerCyl.NI = 1
     TwoCylDiscr_inst.VerCyl_INITO = TRUE
@@ -315,7 +319,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.phi = FALSE
     TwoCylDiscr_inst.VerCyl.event_INITO_set = FALSE
-  -> State: 1.28 <-
+  -> State: 1.30 <-
     TwoCylDiscr_inst.VerCyl.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL_INIT = TRUE
     TwoCylDiscr_inst.VerCyl_INITO = FALSE
@@ -326,7 +330,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCyl.beta_set = TRUE
     TwoCylDiscr_inst.VerCyl.event_INIT_reset = TRUE
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = TRUE
-  -> State: 1.29 <-
+  -> State: 1.31 <-
     TwoCylDiscr_inst.VerCyl.S_smv = s0_osm
     TwoCylDiscr_inst.VerCyl.NA = 1
     TwoCylDiscr_inst.VerCyl_alpha = FALSE
@@ -336,26 +340,26 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCyl.beta_set = FALSE
     TwoCylDiscr_inst.VerCyl.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = FALSE
-  -> State: 1.30 <-
+  -> State: 1.32 <-
     TwoCylDiscr_inst.VerCyl_beta = FALSE
     TwoCylDiscr_inst_beta = TRUE
     TwoCylDiscr_inst.beta_set = FALSE
-  -> State: 1.31 <-
+  -> State: 1.33 <-
     TwoCylDiscr_inst_alpha = TRUE
     TwoCylDiscr_inst_beta = FALSE
     TwoCylDiscr_inst.alpha_reset = TRUE
     TwoCylDiscr_inst.event_INIT_reset = TRUE
-  -> State: 1.32 <-
+  -> State: 1.34 <-
     TwoCylDiscr_inst.HorCTL_alpha = TRUE
     TwoCylDiscr_inst_alpha = FALSE
     TwoCylDiscr_inst.alpha_reset = FALSE
     TwoCylDiscr_inst.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = TRUE
-  -> State: 1.33 <-
+  -> State: 1.35 <-
     TwoCylDiscr_inst.HorCTL.Retracted = TRUE
     TwoCylDiscr_inst.HorCTL.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = TRUE
-  -> State: 1.34 <-
+  -> State: 1.36 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s2_osm
     TwoCylDiscr_inst.HorCTL.Q_smv = INIT_ecc
     TwoCylDiscr_inst.HorCTL.NA = 1
@@ -365,19 +369,19 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.HorCTL.ExistsInputEvent = FALSE
-  -> State: 1.35 <-
+  -> State: 1.37 <-
     TwoCylDiscr_inst.HorCTL.NI = 2
-  -> State: 1.36 <-
+  -> State: 1.38 <-
     TwoCylDiscr_inst.HorCTL.NI = 0
     TwoCylDiscr_inst.HorCTL.event_INITO_set = TRUE
-  -> State: 1.37 <-
+  -> State: 1.39 <-
     TwoCylDiscr_inst.HorCTL.NA = 0
     TwoCylDiscr_inst.HorCTL.NI = 1
     TwoCylDiscr_inst.HorCTL_INITO = TRUE
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.phi = FALSE
     TwoCylDiscr_inst.HorCTL.event_INITO_set = FALSE
-  -> State: 1.38 <-
+  -> State: 1.40 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL_INITO = FALSE
     TwoCylDiscr_inst.VerCTL_INIT = TRUE
@@ -386,25 +390,25 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.VerCTL.ExistsInputEvent = TRUE
     TwoCylDiscr_inst.VerCTL.ExistsEnabledECTran = TRUE
-  -> State: 1.39 <-
+  -> State: 1.41 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s2_osm
     TwoCylDiscr_inst.HorCTL.Q_smv = START_ecc
     TwoCylDiscr_inst.HorCTL.NA = 1
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.HorCTL.ExistsEnabledECTran = FALSE
-  -> State: 1.40 <-
+  -> State: 1.42 <-
     TwoCylDiscr_inst.HorCTL.NI = 0
-  -> State: 1.41 <-
+  -> State: 1.43 <-
     TwoCylDiscr_inst.HorCTL.NA = 0
     TwoCylDiscr_inst.HorCTL.NI = 1
-  -> State: 1.42 <-
+  -> State: 1.44 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
     TwoCylDiscr_inst.HorCTL.beta_set = TRUE
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = TRUE
-  -> State: 1.43 <-
+  -> State: 1.45 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s0_osm
     TwoCylDiscr_inst.HorCTL.NA = 1
     TwoCylDiscr_inst.HorCTL_alpha = FALSE
@@ -413,15 +417,15 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.beta_set = FALSE
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = FALSE
-  -> State: 1.44 <-
+  -> State: 1.46 <-
     TwoCylDiscr_inst.HorCTL_beta = FALSE
     TwoCylDiscr_inst.VerCTL_alpha = TRUE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = TRUE
-  -> State: 1.45 <-
+  -> State: 1.47 <-
     TwoCylDiscr_inst.VerCTL.Retracted = TRUE
     TwoCylDiscr_inst.VerCTL.S_smv = s1_osm
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = TRUE
-  -> State: 1.46 <-
+  -> State: 1.48 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s2_osm
     TwoCylDiscr_inst.VerCTL.Q_smv = INIT_ecc
     TwoCylDiscr_inst.VerCTL.NA = 1
@@ -431,12 +435,12 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.VerCTL.ExistsInputEvent = FALSE
-  -> State: 1.47 <-
+  -> State: 1.49 <-
     TwoCylDiscr_inst.VerCTL.NI = 2
-  -> State: 1.48 <-
+  -> State: 1.50 <-
     TwoCylDiscr_inst.VerCTL.NI = 0
     TwoCylDiscr_inst.VerCTL.event_INITO_set = TRUE
-  -> State: 1.49 <-
+  -> State: 1.51 <-
     TwoCylDiscr_inst.VerCTL.NA = 0
     TwoCylDiscr_inst.VerCTL.NI = 1
     TwoCylDiscr_inst.VerCTL_INITO = TRUE
@@ -444,7 +448,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.phi = FALSE
     TwoCylDiscr_inst.VerCTL.event_INITO_set = FALSE
-  -> State: 1.50 <-
+  -> State: 1.52 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s1_osm
     TwoCylDiscr_inst.VerCTL_INITO = FALSE
     TwoCylDiscr_inst.Button_REQ = TRUE
@@ -454,25 +458,25 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.Button.ExistsInputEvent = TRUE
     TwoCylDiscr_inst.Button.ExistsEnabledECTran = TRUE
-  -> State: 1.51 <-
+  -> State: 1.53 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s2_osm
     TwoCylDiscr_inst.VerCTL.Q_smv = START_ecc
     TwoCylDiscr_inst.VerCTL.NA = 1
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.VerCTL.ExistsEnabledECTran = FALSE
-  -> State: 1.52 <-
+  -> State: 1.54 <-
     TwoCylDiscr_inst.VerCTL.NI = 0
-  -> State: 1.53 <-
+  -> State: 1.55 <-
     TwoCylDiscr_inst.VerCTL.NA = 0
     TwoCylDiscr_inst.VerCTL.NI = 1
-  -> State: 1.54 <-
+  -> State: 1.56 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s1_osm
     TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
     TwoCylDiscr_inst.VerCTL.beta_set = TRUE
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = TRUE
-  -> State: 1.55 <-
+  -> State: 1.57 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s0_osm
     TwoCylDiscr_inst.VerCTL.NA = 1
     TwoCylDiscr_inst.VerCTL_alpha = FALSE
@@ -481,14 +485,14 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.beta_set = FALSE
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = FALSE
-  -> State: 1.56 <-
+  -> State: 1.58 <-
     TwoCylDiscr_inst.VerCTL_beta = FALSE
     TwoCylDiscr_inst.Button_alpha = TRUE
-  -> State: 1.57 <-
+  -> State: 1.59 <-
     TwoCylDiscr_inst.Button.S_smv = s1_osm
     TwoCylDiscr_inst.Button.event_INIT_reset = TRUE
     TwoCylDiscr_inst.Button.event_REQ_reset = TRUE
-  -> State: 1.58 <-
+  -> State: 1.60 <-
     TwoCylDiscr_inst.Button.S_smv = s2_osm
     TwoCylDiscr_inst.Button.Q_smv = OFF_ecc
     TwoCylDiscr_inst.Button_REQ = FALSE
@@ -497,11 +501,11 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.Button.event_REQ_reset = FALSE
     TwoCylDiscr_inst.Button.ExistsInputEvent = FALSE
     TwoCylDiscr_inst.Button.ExistsEnabledECTran = FALSE
-  -> State: 1.59 <-
+  -> State: 1.61 <-
     TwoCylDiscr_inst.Button.Pressed = TRUE
     TwoCylDiscr_inst.Button.NI = 0
     TwoCylDiscr_inst.Button.event_CHG_set = TRUE
-  -> State: 1.60 <-
+  -> State: 1.62 <-
     TwoCylDiscr_inst.Button.NA = 0
     TwoCylDiscr_inst.Button.NI = 1
     TwoCylDiscr_inst.Button_CHG = TRUE
@@ -509,7 +513,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.phi = FALSE
     TwoCylDiscr_inst.Button.event_CHG_set = FALSE
-  -> State: 1.61 <-
+  -> State: 1.63 <-
     TwoCylDiscr_inst.Button.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL_REQ = TRUE
     TwoCylDiscr_inst.VerCTL_REQ = TRUE
@@ -521,7 +525,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.Button.beta_set = TRUE
     TwoCylDiscr_inst.Button.event_INIT_reset = TRUE
     TwoCylDiscr_inst.Button.event_REQ_reset = TRUE
-  -> State: 1.62 <-
+  -> State: 1.64 <-
     TwoCylDiscr_inst.Button.S_smv = s0_osm
     TwoCylDiscr_inst.Button.NA = 1
     TwoCylDiscr_inst.Button_alpha = FALSE
@@ -530,48 +534,48 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.Button.beta_set = FALSE
     TwoCylDiscr_inst.Button.event_INIT_reset = FALSE
     TwoCylDiscr_inst.Button.event_REQ_reset = FALSE
-  -> State: 1.63 <-
+  -> State: 1.65 <-
     TwoCylDiscr_inst.Button_beta = FALSE
     TwoCylDiscr_inst.HorCyl_alpha = TRUE
     TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.HorCyl.beta_set = TRUE
-  -> State: 1.64 <-
+  -> State: 1.66 <-
     TwoCylDiscr_inst.HorCyl_alpha = FALSE
     TwoCylDiscr_inst.HorCyl_beta = TRUE
     TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
     TwoCylDiscr_inst.HorCyl.beta_set = FALSE
-  -> State: 1.65 <-
+  -> State: 1.67 <-
     TwoCylDiscr_inst.HorCyl_beta = FALSE
     TwoCylDiscr_inst.VerCyl_alpha = TRUE
     TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.VerCyl.beta_set = TRUE
-  -> State: 1.66 <-
+  -> State: 1.68 <-
     TwoCylDiscr_inst.VerCyl_alpha = FALSE
     TwoCylDiscr_inst.VerCyl_beta = TRUE
     TwoCylDiscr_inst.beta_set = TRUE
     TwoCylDiscr_inst.VerCyl.alpha_reset = FALSE
     TwoCylDiscr_inst.VerCyl.beta_set = FALSE
-  -> State: 1.67 <-
+  -> State: 1.69 <-
     TwoCylDiscr_inst.VerCyl_beta = FALSE
     TwoCylDiscr_inst_beta = TRUE
     TwoCylDiscr_inst.beta_set = FALSE
-  -> State: 1.68 <-
+  -> State: 1.70 <-
     TwoCylDiscr_inst_alpha = TRUE
     TwoCylDiscr_inst_beta = FALSE
     TwoCylDiscr_inst.alpha_reset = TRUE
     TwoCylDiscr_inst.event_INIT_reset = TRUE
-  -> State: 1.69 <-
+  -> State: 1.71 <-
     TwoCylDiscr_inst.HorCTL_alpha = TRUE
     TwoCylDiscr_inst_alpha = FALSE
     TwoCylDiscr_inst.alpha_reset = FALSE
     TwoCylDiscr_inst.event_INIT_reset = FALSE
-  -> State: 1.70 <-
+  -> State: 1.72 <-
     TwoCylDiscr_inst.HorCTL.START = TRUE
     TwoCylDiscr_inst.HorCTL.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.HorCTL.ExistsEnabledECTran = TRUE
-  -> State: 1.71 <-
+  -> State: 1.73 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s2_osm
     TwoCylDiscr_inst.HorCTL.Q_smv = GO_ecc
     TwoCylDiscr_inst.HorCTL_REQ = FALSE
@@ -579,20 +583,20 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.HorCTL.ExistsInputEvent = FALSE
     TwoCylDiscr_inst.HorCTL.ExistsEnabledECTran = FALSE
-  -> State: 1.72 <-
+  -> State: 1.74 <-
     TwoCylDiscr_inst.HorCTL.EXTEND = TRUE
     TwoCylDiscr_inst.HorCTL.NI = 2
-  -> State: 1.73 <-
+  -> State: 1.75 <-
     TwoCylDiscr_inst.HorCTL.NI = 0
     TwoCylDiscr_inst.HorCTL.event_CNF_set = TRUE
-  -> State: 1.74 <-
+  -> State: 1.76 <-
     TwoCylDiscr_inst.HorCTL.NA = 0
     TwoCylDiscr_inst.HorCTL.NI = 1
     TwoCylDiscr_inst.HorCTL_CNF = TRUE
     TwoCylDiscr_inst.HorCTL_EXTEND = TRUE
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.HorCTL.event_CNF_set = FALSE
-  -> State: 1.75 <-
+  -> State: 1.77 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s1_osm
     TwoCylDiscr_inst.HorCTL_CNF = FALSE
     TwoCylDiscr_inst.HorCyl_REQ = TRUE
@@ -602,7 +606,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.HorCyl.ExistsInputEvent = TRUE
-  -> State: 1.76 <-
+  -> State: 1.78 <-
     TwoCylDiscr_inst.HorCTL.S_smv = s0_osm
     TwoCylDiscr_inst.HorCTL.NA = 1
     TwoCylDiscr_inst.HorCTL_alpha = FALSE
@@ -611,16 +615,16 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCTL.beta_set = FALSE
     TwoCylDiscr_inst.HorCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.event_REQ_reset = FALSE
-  -> State: 1.77 <-
+  -> State: 1.79 <-
     TwoCylDiscr_inst.HorCTL_beta = FALSE
     TwoCylDiscr_inst.VerCTL_alpha = TRUE
-  -> State: 1.78 <-
+  -> State: 1.80 <-
     TwoCylDiscr_inst.VerCTL.START = TRUE
     TwoCylDiscr_inst.VerCTL.S_smv = s1_osm
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.VerCTL.ExistsEnabledECTran = TRUE
-  -> State: 1.79 <-
+  -> State: 1.81 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s2_osm
     TwoCylDiscr_inst.VerCTL.Q_smv = GO_ecc
     TwoCylDiscr_inst.VerCTL_REQ = FALSE
@@ -628,20 +632,20 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = FALSE
     TwoCylDiscr_inst.VerCTL.ExistsInputEvent = FALSE
     TwoCylDiscr_inst.VerCTL.ExistsEnabledECTran = FALSE
-  -> State: 1.80 <-
+  -> State: 1.82 <-
     TwoCylDiscr_inst.VerCTL.EXTEND = TRUE
     TwoCylDiscr_inst.VerCTL.NI = 2
-  -> State: 1.81 <-
+  -> State: 1.83 <-
     TwoCylDiscr_inst.VerCTL.NI = 0
     TwoCylDiscr_inst.VerCTL.event_CNF_set = TRUE
-  -> State: 1.82 <-
+  -> State: 1.84 <-
     TwoCylDiscr_inst.VerCTL.NA = 0
     TwoCylDiscr_inst.VerCTL.NI = 1
     TwoCylDiscr_inst.VerCTL_CNF = TRUE
     TwoCylDiscr_inst.VerCTL_EXTEND = TRUE
     TwoCylDiscr_inst.omega = FALSE
     TwoCylDiscr_inst.VerCTL.event_CNF_set = FALSE
-  -> State: 1.83 <-
+  -> State: 1.85 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s1_osm
     TwoCylDiscr_inst.VerCTL_CNF = FALSE
     TwoCylDiscr_inst.VerCyl_REQ = TRUE
@@ -651,7 +655,7 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = TRUE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = TRUE
     TwoCylDiscr_inst.VerCyl.ExistsInputEvent = TRUE
-  -> State: 1.84 <-
+  -> State: 1.86 <-
     TwoCylDiscr_inst.VerCTL.S_smv = s0_osm
     TwoCylDiscr_inst.VerCTL.NA = 1
     TwoCylDiscr_inst.VerCTL_alpha = FALSE
@@ -660,27 +664,27 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCTL.beta_set = FALSE
     TwoCylDiscr_inst.VerCTL.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCTL.event_REQ_reset = FALSE
-  -> State: 1.85 <-
+  -> State: 1.87 <-
     TwoCylDiscr_inst.VerCTL_beta = FALSE
     TwoCylDiscr_inst.Button_alpha = TRUE
     TwoCylDiscr_inst.Button.alpha_reset = TRUE
     TwoCylDiscr_inst.Button.beta_set = TRUE
-  -> State: 1.86 <-
+  -> State: 1.88 <-
     TwoCylDiscr_inst.Button_alpha = FALSE
     TwoCylDiscr_inst.Button_beta = TRUE
     TwoCylDiscr_inst.Button.alpha_reset = FALSE
     TwoCylDiscr_inst.Button.beta_set = FALSE
-  -> State: 1.87 <-
+  -> State: 1.89 <-
     TwoCylDiscr_inst.Button_beta = FALSE
     TwoCylDiscr_inst.HorCyl_alpha = TRUE
-  -> State: 1.88 <-
+  -> State: 1.90 <-
     TwoCylDiscr_inst.HorCyl.FWD = TRUE
     TwoCylDiscr_inst.HorCyl.S_smv = s1_osm
     TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.HorCyl.beta_set = TRUE
     TwoCylDiscr_inst.HorCyl.event_INIT_reset = TRUE
     TwoCylDiscr_inst.HorCyl.event_REQ_reset = TRUE
-  -> State: 1.89 <-
+  -> State: 1.91 <-
     TwoCylDiscr_inst.HorCyl.S_smv = s0_osm
     TwoCylDiscr_inst.HorCyl_REQ = FALSE
     TwoCylDiscr_inst.HorCyl_alpha = FALSE
@@ -690,17 +694,17 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.HorCyl.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCyl.event_REQ_reset = FALSE
     TwoCylDiscr_inst.HorCyl.ExistsInputEvent = FALSE
-  -> State: 1.90 <-
+  -> State: 1.92 <-
     TwoCylDiscr_inst.HorCyl_beta = FALSE
     TwoCylDiscr_inst.VerCyl_alpha = TRUE
-  -> State: 1.91 <-
+  -> State: 1.93 <-
     TwoCylDiscr_inst.VerCyl.FWD = TRUE
     TwoCylDiscr_inst.VerCyl.S_smv = s1_osm
     TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.VerCyl.beta_set = TRUE
     TwoCylDiscr_inst.VerCyl.event_INIT_reset = TRUE
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = TRUE
-  -> State: 1.92 <-
+  -> State: 1.94 <-
     TwoCylDiscr_inst.VerCyl.S_smv = s0_osm
     TwoCylDiscr_inst.VerCyl_REQ = FALSE
     TwoCylDiscr_inst.VerCyl_alpha = FALSE
@@ -712,200 +716,200 @@ Trace Type: Counterexample
     TwoCylDiscr_inst.VerCyl.event_INIT_reset = FALSE
     TwoCylDiscr_inst.VerCyl.event_REQ_reset = FALSE
     TwoCylDiscr_inst.VerCyl.ExistsInputEvent = FALSE
-  -> State: 1.93 <-
-    TwoCylDiscr_inst.VerCyl_beta = FALSE
-    TwoCylDiscr_inst_beta = TRUE
-    TwoCylDiscr_inst.beta_set = FALSE
-  -- Loop starts here
-  -> State: 1.94 <-
-    TwoCylDiscr_inst_alpha = TRUE
-    TwoCylDiscr_inst_beta = FALSE
-    TwoCylDiscr_inst.alpha_reset = TRUE
-    TwoCylDiscr_inst.event_INIT_reset = TRUE
   -> State: 1.95 <-
-    TwoCylDiscr_inst.HorCTL_alpha = TRUE
-    TwoCylDiscr_inst_alpha = FALSE
-    TwoCylDiscr_inst.alpha_reset = FALSE
-    TwoCylDiscr_inst.event_INIT_reset = FALSE
-    TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
-    TwoCylDiscr_inst.HorCTL.beta_set = TRUE
+    TwoCylDiscr_inst.VerCyl_beta = FALSE
+    TwoCylDiscr_inst_beta = TRUE
+    TwoCylDiscr_inst.beta_set = FALSE
+  -- Loop starts here
   -> State: 1.96 <-
-    TwoCylDiscr_inst.HorCTL_alpha = FALSE
-    TwoCylDiscr_inst.HorCTL_beta = TRUE
-    TwoCylDiscr_inst.HorCTL.alpha_reset = FALSE
-    TwoCylDiscr_inst.HorCTL.beta_set = FALSE
+    TwoCylDiscr_inst_alpha = TRUE
+    TwoCylDiscr_inst_beta = FALSE
+    TwoCylDiscr_inst.alpha_reset = TRUE
+    TwoCylDiscr_inst.event_INIT_reset = TRUE
   -> State: 1.97 <-
-    TwoCylDiscr_inst.HorCTL_beta = FALSE
-    TwoCylDiscr_inst.VerCTL_alpha = TRUE
-    TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
-    TwoCylDiscr_inst.VerCTL.beta_set = TRUE
+    TwoCylDiscr_inst.HorCTL_alpha = TRUE
+    TwoCylDiscr_inst_alpha = FALSE
+    TwoCylDiscr_inst.alpha_reset = FALSE
+    TwoCylDiscr_inst.event_INIT_reset = FALSE
+    TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
+    TwoCylDiscr_inst.HorCTL.beta_set = TRUE
   -> State: 1.98 <-
-    TwoCylDiscr_inst.VerCTL_alpha = FALSE
-    TwoCylDiscr_inst.VerCTL_beta = TRUE
-    TwoCylDiscr_inst.VerCTL.alpha_reset = FALSE
-    TwoCylDiscr_inst.VerCTL.beta_set = FALSE
+    TwoCylDiscr_inst.HorCTL_alpha = FALSE
+    TwoCylDiscr_inst.HorCTL_beta = TRUE
+    TwoCylDiscr_inst.HorCTL.alpha_reset = FALSE
+    TwoCylDiscr_inst.HorCTL.beta_set = FALSE
   -> State: 1.99 <-
-    TwoCylDiscr_inst.VerCTL_beta = FALSE
-    TwoCylDiscr_inst.Button_alpha = TRUE
-    TwoCylDiscr_inst.Button.alpha_reset = TRUE
-    TwoCylDiscr_inst.Button.beta_set = TRUE
+    TwoCylDiscr_inst.HorCTL_beta = FALSE
+    TwoCylDiscr_inst.VerCTL_alpha = TRUE
+    TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
+    TwoCylDiscr_inst.VerCTL.beta_set = TRUE
   -> State: 1.100 <-
-    TwoCylDiscr_inst.Button_alpha = FALSE
-    TwoCylDiscr_inst.Button_beta = TRUE
-    TwoCylDiscr_inst.Button.alpha_reset = FALSE
-    TwoCylDiscr_inst.Button.beta_set = FALSE
+    TwoCylDiscr_inst.VerCTL_alpha = FALSE
+    TwoCylDiscr_inst.VerCTL_beta = TRUE
+    TwoCylDiscr_inst.VerCTL.alpha_reset = FALSE
+    TwoCylDiscr_inst.VerCTL.beta_set = FALSE
   -> State: 1.101 <-
-    TwoCylDiscr_inst.Button_beta = FALSE
-    TwoCylDiscr_inst.HorCyl_alpha = TRUE
-    TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
-    TwoCylDiscr_inst.HorCyl.beta_set = TRUE
+    TwoCylDiscr_inst.VerCTL_beta = FALSE
+    TwoCylDiscr_inst.Button_alpha = TRUE
+    TwoCylDiscr_inst.Button.alpha_reset = TRUE
+    TwoCylDiscr_inst.Button.beta_set = TRUE
   -> State: 1.102 <-
-    TwoCylDiscr_inst.HorCyl_alpha = FALSE
-    TwoCylDiscr_inst.HorCyl_beta = TRUE
-    TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
-    TwoCylDiscr_inst.HorCyl.beta_set = FALSE
+    TwoCylDiscr_inst.Button_alpha = FALSE
+    TwoCylDiscr_inst.Button_beta = TRUE
+    TwoCylDiscr_inst.Button.alpha_reset = FALSE
+    TwoCylDiscr_inst.Button.beta_set = FALSE
   -> State: 1.103 <-
-    TwoCylDiscr_inst.HorCyl_beta = FALSE
-    TwoCylDiscr_inst.VerCyl_alpha = TRUE
-    TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
-    TwoCylDiscr_inst.VerCyl.beta_set = TRUE
+    TwoCylDiscr_inst.Button_beta = FALSE
+    TwoCylDiscr_inst.HorCyl_alpha = TRUE
+    TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
+    TwoCylDiscr_inst.HorCyl.beta_set = TRUE
   -> State: 1.104 <-
-    TwoCylDiscr_inst.VerCyl_alpha = FALSE
-    TwoCylDiscr_inst.VerCyl_beta = TRUE
-    TwoCylDiscr_inst.beta_set = TRUE
-    TwoCylDiscr_inst.VerCyl.alpha_reset = FALSE
-    TwoCylDiscr_inst.VerCyl.beta_set = FALSE
+    TwoCylDiscr_inst.HorCyl_alpha = FALSE
+    TwoCylDiscr_inst.HorCyl_beta = TRUE
+    TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
+    TwoCylDiscr_inst.HorCyl.beta_set = FALSE
   -> State: 1.105 <-
-    TwoCylDiscr_inst.VerCyl_beta = FALSE
-    TwoCylDiscr_inst_beta = TRUE
-    TwoCylDiscr_inst.beta_set = FALSE
-  -- Loop starts here
+    TwoCylDiscr_inst.HorCyl_beta = FALSE
+    TwoCylDiscr_inst.VerCyl_alpha = TRUE
+    TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
+    TwoCylDiscr_inst.VerCyl.beta_set = TRUE
   -> State: 1.106 <-
-    TwoCylDiscr_inst_alpha = TRUE
-    TwoCylDiscr_inst_beta = FALSE
-    TwoCylDiscr_inst.alpha_reset = TRUE
-    TwoCylDiscr_inst.event_INIT_reset = TRUE
-  -> State: 1.107 <-
-    TwoCylDiscr_inst.HorCTL_alpha = TRUE
-    TwoCylDiscr_inst_alpha = FALSE
-    TwoCylDiscr_inst.alpha_reset = FALSE
-    TwoCylDiscr_inst.event_INIT_reset = FALSE
-    TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
-    TwoCylDiscr_inst.HorCTL.beta_set = TRUE
-  -> State: 1.108 <-
-    TwoCylDiscr_inst.HorCTL_alpha = FALSE
-    TwoCylDiscr_inst.HorCTL_beta = TRUE
-    TwoCylDiscr_inst.HorCTL.alpha_reset = FALSE
-    TwoCylDiscr_inst.HorCTL.beta_set = FALSE
-  -> State: 1.109 <-
-    TwoCylDiscr_inst.HorCTL_beta = FALSE
-    TwoCylDiscr_inst.VerCTL_alpha = TRUE
-    TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
-    TwoCylDiscr_inst.VerCTL.beta_set = TRUE
-  -> State: 1.110 <-
-    TwoCylDiscr_inst.VerCTL_alpha = FALSE
-    TwoCylDiscr_inst.VerCTL_beta = TRUE
-    TwoCylDiscr_inst.VerCTL.alpha_reset = FALSE
-    TwoCylDiscr_inst.VerCTL.beta_set = FALSE
-  -> State: 1.111 <-
-    TwoCylDiscr_inst.VerCTL_beta = FALSE
-    TwoCylDiscr_inst.Button_alpha = TRUE
-    TwoCylDiscr_inst.Button.alpha_reset = TRUE
-    TwoCylDiscr_inst.Button.beta_set = TRUE
-  -> State: 1.112 <-
-    TwoCylDiscr_inst.Button_alpha = FALSE
-    TwoCylDiscr_inst.Button_beta = TRUE
-    TwoCylDiscr_inst.Button.alpha_reset = FALSE
-    TwoCylDiscr_inst.Button.beta_set = FALSE
-  -> State: 1.113 <-
-    TwoCylDiscr_inst.Button_beta = FALSE
-    TwoCylDiscr_inst.HorCyl_alpha = TRUE
-    TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
-    TwoCylDiscr_inst.HorCyl.beta_set = TRUE
-  -> State: 1.114 <-
-    TwoCylDiscr_inst.HorCyl_alpha = FALSE
-    TwoCylDiscr_inst.HorCyl_beta = TRUE
-    TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
-    TwoCylDiscr_inst.HorCyl.beta_set = FALSE
-  -> State: 1.115 <-
-    TwoCylDiscr_inst.HorCyl_beta = FALSE
-    TwoCylDiscr_inst.VerCyl_alpha = TRUE
-    TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
-    TwoCylDiscr_inst.VerCyl.beta_set = TRUE
-  -> State: 1.116 <-
     TwoCylDiscr_inst.VerCyl_alpha = FALSE
     TwoCylDiscr_inst.VerCyl_beta = TRUE
     TwoCylDiscr_inst.beta_set = TRUE
     TwoCylDiscr_inst.VerCyl.alpha_reset = FALSE
     TwoCylDiscr_inst.VerCyl.beta_set = FALSE
-  -> State: 1.117 <-
+  -> State: 1.107 <-
     TwoCylDiscr_inst.VerCyl_beta = FALSE
     TwoCylDiscr_inst_beta = TRUE
     TwoCylDiscr_inst.beta_set = FALSE
   -- Loop starts here
-  -> State: 1.118 <-
+  -> State: 1.108 <-
     TwoCylDiscr_inst_alpha = TRUE
     TwoCylDiscr_inst_beta = FALSE
     TwoCylDiscr_inst.alpha_reset = TRUE
     TwoCylDiscr_inst.event_INIT_reset = TRUE
-  -> State: 1.119 <-
+  -> State: 1.109 <-
     TwoCylDiscr_inst.HorCTL_alpha = TRUE
     TwoCylDiscr_inst_alpha = FALSE
     TwoCylDiscr_inst.alpha_reset = FALSE
     TwoCylDiscr_inst.event_INIT_reset = FALSE
     TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
     TwoCylDiscr_inst.HorCTL.beta_set = TRUE
-  -> State: 1.120 <-
+  -> State: 1.110 <-
     TwoCylDiscr_inst.HorCTL_alpha = FALSE
     TwoCylDiscr_inst.HorCTL_beta = TRUE
     TwoCylDiscr_inst.HorCTL.alpha_reset = FALSE
     TwoCylDiscr_inst.HorCTL.beta_set = FALSE
-  -> State: 1.121 <-
+  -> State: 1.111 <-
     TwoCylDiscr_inst.HorCTL_beta = FALSE
     TwoCylDiscr_inst.VerCTL_alpha = TRUE
     TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
     TwoCylDiscr_inst.VerCTL.beta_set = TRUE
-  -> State: 1.122 <-
+  -> State: 1.112 <-
     TwoCylDiscr_inst.VerCTL_alpha = FALSE
     TwoCylDiscr_inst.VerCTL_beta = TRUE
     TwoCylDiscr_inst.VerCTL.alpha_reset = FALSE
     TwoCylDiscr_inst.VerCTL.beta_set = FALSE
-  -> State: 1.123 <-
+  -> State: 1.113 <-
     TwoCylDiscr_inst.VerCTL_beta = FALSE
     TwoCylDiscr_inst.Button_alpha = TRUE
     TwoCylDiscr_inst.Button.alpha_reset = TRUE
     TwoCylDiscr_inst.Button.beta_set = TRUE
-  -> State: 1.124 <-
+  -> State: 1.114 <-
     TwoCylDiscr_inst.Button_alpha = FALSE
     TwoCylDiscr_inst.Button_beta = TRUE
     TwoCylDiscr_inst.Button.alpha_reset = FALSE
     TwoCylDiscr_inst.Button.beta_set = FALSE
-  -> State: 1.125 <-
+  -> State: 1.115 <-
     TwoCylDiscr_inst.Button_beta = FALSE
     TwoCylDiscr_inst.HorCyl_alpha = TRUE
     TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.HorCyl.beta_set = TRUE
-  -> State: 1.126 <-
+  -> State: 1.116 <-
     TwoCylDiscr_inst.HorCyl_alpha = FALSE
     TwoCylDiscr_inst.HorCyl_beta = TRUE
     TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
     TwoCylDiscr_inst.HorCyl.beta_set = FALSE
-  -> State: 1.127 <-
+  -> State: 1.117 <-
     TwoCylDiscr_inst.HorCyl_beta = FALSE
     TwoCylDiscr_inst.VerCyl_alpha = TRUE
     TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
     TwoCylDiscr_inst.VerCyl.beta_set = TRUE
-  -> State: 1.128 <-
+  -> State: 1.118 <-
     TwoCylDiscr_inst.VerCyl_alpha = FALSE
     TwoCylDiscr_inst.VerCyl_beta = TRUE
     TwoCylDiscr_inst.beta_set = TRUE
     TwoCylDiscr_inst.VerCyl.alpha_reset = FALSE
     TwoCylDiscr_inst.VerCyl.beta_set = FALSE
-  -> State: 1.129 <-
+  -> State: 1.119 <-
     TwoCylDiscr_inst.VerCyl_beta = FALSE
     TwoCylDiscr_inst_beta = TRUE
     TwoCylDiscr_inst.beta_set = FALSE
+  -- Loop starts here
+  -> State: 1.120 <-
+    TwoCylDiscr_inst_alpha = TRUE
+    TwoCylDiscr_inst_beta = FALSE
+    TwoCylDiscr_inst.alpha_reset = TRUE
+    TwoCylDiscr_inst.event_INIT_reset = TRUE
+  -> State: 1.121 <-
+    TwoCylDiscr_inst.HorCTL_alpha = TRUE
+    TwoCylDiscr_inst_alpha = FALSE
+    TwoCylDiscr_inst.alpha_reset = FALSE
+    TwoCylDiscr_inst.event_INIT_reset = FALSE
+    TwoCylDiscr_inst.HorCTL.alpha_reset = TRUE
+    TwoCylDiscr_inst.HorCTL.beta_set = TRUE
+  -> State: 1.122 <-
+    TwoCylDiscr_inst.HorCTL_alpha = FALSE
+    TwoCylDiscr_inst.HorCTL_beta = TRUE
+    TwoCylDiscr_inst.HorCTL.alpha_reset = FALSE
+    TwoCylDiscr_inst.HorCTL.beta_set = FALSE
+  -> State: 1.123 <-
+    TwoCylDiscr_inst.HorCTL_beta = FALSE
+    TwoCylDiscr_inst.VerCTL_alpha = TRUE
+    TwoCylDiscr_inst.VerCTL.alpha_reset = TRUE
+    TwoCylDiscr_inst.VerCTL.beta_set = TRUE
+  -> State: 1.124 <-
+    TwoCylDiscr_inst.VerCTL_alpha = FALSE
+    TwoCylDiscr_inst.VerCTL_beta = TRUE
+    TwoCylDiscr_inst.VerCTL.alpha_reset = FALSE
+    TwoCylDiscr_inst.VerCTL.beta_set = FALSE
+  -> State: 1.125 <-
+    TwoCylDiscr_inst.VerCTL_beta = FALSE
+    TwoCylDiscr_inst.Button_alpha = TRUE
+    TwoCylDiscr_inst.Button.alpha_reset = TRUE
+    TwoCylDiscr_inst.Button.beta_set = TRUE
+  -> State: 1.126 <-
+    TwoCylDiscr_inst.Button_alpha = FALSE
+    TwoCylDiscr_inst.Button_beta = TRUE
+    TwoCylDiscr_inst.Button.alpha_reset = FALSE
+    TwoCylDiscr_inst.Button.beta_set = FALSE
+  -> State: 1.127 <-
+    TwoCylDiscr_inst.Button_beta = FALSE
+    TwoCylDiscr_inst.HorCyl_alpha = TRUE
+    TwoCylDiscr_inst.HorCyl.alpha_reset = TRUE
+    TwoCylDiscr_inst.HorCyl.beta_set = TRUE
+  -> State: 1.128 <-
+    TwoCylDiscr_inst.HorCyl_alpha = FALSE
+    TwoCylDiscr_inst.HorCyl_beta = TRUE
+    TwoCylDiscr_inst.HorCyl.alpha_reset = FALSE
+    TwoCylDiscr_inst.HorCyl.beta_set = FALSE
+  -> State: 1.129 <-
+    TwoCylDiscr_inst.HorCyl_beta = FALSE
+    TwoCylDiscr_inst.VerCyl_alpha = TRUE
+    TwoCylDiscr_inst.VerCyl.alpha_reset = TRUE
+    TwoCylDiscr_inst.VerCyl.beta_set = TRUE
   -> State: 1.130 <-
+    TwoCylDiscr_inst.VerCyl_alpha = FALSE
+    TwoCylDiscr_inst.VerCyl_beta = TRUE
+    TwoCylDiscr_inst.beta_set = TRUE
+    TwoCylDiscr_inst.VerCyl.alpha_reset = FALSE
+    TwoCylDiscr_inst.VerCyl.beta_set = FALSE
+  -> State: 1.131 <-
+    TwoCylDiscr_inst.VerCyl_beta = FALSE
+    TwoCylDiscr_inst_beta = TRUE
+    TwoCylDiscr_inst.beta_set = FALSE
+  -> State: 1.132 <-
     TwoCylDiscr_inst_alpha = TRUE
     TwoCylDiscr_inst_beta = FALSE
     TwoCylDiscr_inst.alpha_reset = TRUE

@@ -27,10 +27,10 @@ class SMVCompositeFBConverter(private val data: VerifiersData) : AbstractComposi
 
             for (id in fb.type.dataInputPorts) {
                 val source = CFBInfoService.getConnectedDataPort(fbc, id)
-                if(source == null) {
+                if(source == null || source.functionBlock == null) { // IF CFB input data port connected to inner FB block data port
                     buf.append("${fb.name}_${id.name}, ")
                 }
-                else{
+                else{ // TODO why we need this???
                     buf.append("${source.functionBlock!!.name}_${(source.portTarget as? ParameterDeclaration)?.name}, ")
                 }
             }
