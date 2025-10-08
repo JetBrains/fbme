@@ -83,6 +83,7 @@ open class FBNetworkConverter(arguments: ConverterArguments, private val myNetwo
             fbd.x = element.getAttributeValue("x").toFloat().toInt()
             fbd.y = element.getAttributeValue("y").toFloat().toInt()
             ParameterAssignmentsConverter(this, fbd.parameters).extractParameters()
+            AttributeDeclarationsConverter(this, fbd.attributes).extractAttributes()
             return fbd
         }
     }

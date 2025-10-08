@@ -20,13 +20,10 @@ import org.jdom.input.SAXBuilder
 import org.jdom.output.Format
 import org.jdom.output.XMLOutputter
 import org.jetbrains.mps.openapi.model.SNode
-import org.xml.sax.InputSource
 import java.io.File
 import java.io.IOException
-import java.io.StringReader
 import java.nio.file.Files
 import java.nio.file.Paths
-import javax.xml.parsers.DocumentBuilderFactory
 
 class ExportAction: AnAction() { //}, DumbAware {
 
@@ -313,7 +310,12 @@ class ExportAction: AnAction() { //}, DumbAware {
         val document = try {
             saxBuilder.build(fileToUpdate)
         } catch (e: Exception) {
-            TODO("Display a fitting error message.")
+            Messages.showMessageDialog(
+                "Unable to read file IEC61499.dfbproj, any FBME specific files will not be exported.\n" +
+                        "You may try closing EcoStruxure to solve this.",
+                "ExportEcostruxure",
+                Messages.getWarningIcon()
+            )
             return
         }
 

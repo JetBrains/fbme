@@ -12,39 +12,60 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
 
         val ecoElement = rootElement.clone()
 
+        addInterfaceListNameSpaces(ecoElement)
         addFBNetworkNameSpaces(ecoElement)
         rewriteFBNetworkIOs(ecoElement)
+        reorganizeConnections(ecoElement)
 
         return ecoElement
     }
 
+    private fun addInterfaceListNameSpaces(ecoElement: Element) {
+
+        // TODO dont print anything that is 0.
+        // TODO place dy before dx.
+        // TODO: place namespace after type (now it is last after all coordinates).
+
+        // Add namespaces to all items in <Plugs> and <Sockets>.
+        val fbInterfaceListElement = ecoElement.getChild("InterfaceList") ?: return
+        val plugsElement = fbInterfaceListElement.getChild("Plugs")
+        val socketsElement = fbInterfaceListElement.getChild("Sockets")
+
+        socketsElement?.children?.forEach { adapterDeclarationElement ->
+            val adapterType = adapterDeclarationElement.getAttributeValue("Type")
+            val adapterNamespace = NamespaceFinder.getNamespace(adapterType)
+            adapterDeclarationElement.setAttribute("Namespace", adapterNamespace)
+            addAvoidsNodeElement(adapterDeclarationElement)
+        }
+
+        plugsElement?.children?.forEach { adapterDeclarationElement ->
+            val adapterType = adapterDeclarationElement.getAttributeValue("Type")
+            val adapterNamespace = NamespaceFinder.getNamespace(adapterType)
+            adapterDeclarationElement.setAttribute("Namespace", adapterNamespace)
+            addAvoidsNodeElement(adapterDeclarationElement)
+        }
+    }
+
     private fun addFBNetworkNameSpaces(ecoElement: Element) {
+
+        // TODO place dy before dx
+        // TODO: place namespace after type (now it is last after all coordinates)
 
         val fbNetwork = ecoElement.getChild("FBNetwork") ?: return
         val fbElementList = fbNetwork.getChildren("FB") ?: return
-        val eventConnections = fbNetwork.getChild("EventConnections") ?: return
 
         fbElementList.forEach { fbElement ->
             val fbType = fbElement.getAttributeValue("Type")
             val fbNamespace = NamespaceFinder.getNamespace(fbType)
             fbElement.setAttribute("Namespace", fbNamespace)
+            addAvoidsNodeElement(fbElement)
         }
 
-        eventConnections.children.forEach { connection ->
-            var addAvoidsNodesElement = false
-            for (attribute in connection.attributes) {
-                if (attribute.name == "dy" || attribute.name == "dx2") {
-                    addAvoidsNodesElement = true
-                    break
-                }
-            }
-            if (addAvoidsNodesElement) {
-                val avoidsNodesElement = Element("AvoidsNodes")
-                avoidsNodesElement.setText("false")
-                connection.addContent(avoidsNodesElement)
-            }
-            // TODO: Handle situations where event connections are marked with Point elements. (should result in an avoidsNodesElement)
-        }
+        val eventConnections = fbNetwork.getChild("EventConnections")
+        eventConnections?.children?.forEach { addAvoidsNodeElement(it) }
+
+        val dataConnections = fbNetwork.getChild("DataConnections")
+        dataConnections?.children?.forEach { addAvoidsNodeElement(it) }
     }
 
     private fun rewriteFBNetworkIOs(ecoElement: Element) {
@@ -114,4 +135,36 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
         elementsToRemove.forEach { fbNetworkElement.removeContent(it) }
     }
 
+    private fun addAvoidsNodeElement(element: Element) {
+        var addAvoidsNodesElement = false
+        for (attribute in element.attributes) {
+            if (attribute.name == "dy" || attribute.name == "dx2") {
+                addAvoidsNodesElement = true
+                break
+            }
+        }
+        if (addAvoidsNodesElement) {
+            val avoidsNodesElement = Element("AvoidsNodes")
+            avoidsNodesElement.setText("false")
+            element.addContent(avoidsNodesElement)
+        }
+    }
+
+    private fun reorganizeConnections(ecoElement: Element) {
+
+        fun switchAround(parentElement: Element, nameOver: String, nameUnder: String) {
+
+            // Place <elementOver> after <elementUnder>.
+            val elementOver = parentElement.getChild(nameOver)
+            val elementUnder = parentElement.getChild(nameUnder)
+            if (elementOver == null || elementUnder == null) return
+
+            parentElement.removeChild(nameOver)
+            val elementUnderIndex = parentElement.indexOf(elementUnder)
+            parentElement.addContent(elementUnderIndex+1, elementOver)
+        }
+
+        switchAround(ecoElement.getChild("InterfaceList"), "Plugs", "Sockets")
+        switchAround(ecoElement.getChild("FBNetwork"), "DataConnections", "EventConnections")
+    }
 }

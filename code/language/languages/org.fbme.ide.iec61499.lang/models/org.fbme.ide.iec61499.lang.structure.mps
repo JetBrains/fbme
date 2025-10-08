@@ -330,6 +330,13 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="2lwHqHkyF7a" resolve="ParameterAssignment" />
     </node>
+    <node concept="1TJgyj" id="o27FbdB6qv" role="1TKVEi">
+      <property role="IQ2ns" value="432942267483580063" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="attributes" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="2L6zBYkDHIv" resolve="AttributeDeclaration" />
+    </node>
     <node concept="1TJgyi" id="7DI6xIKgFGg" role="1TKVEl">
       <property role="IQ2nx" value="8822017426288982800" />
       <property role="TrG5h" value="id" />

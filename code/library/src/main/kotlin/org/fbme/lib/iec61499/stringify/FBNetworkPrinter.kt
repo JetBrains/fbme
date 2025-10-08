@@ -69,8 +69,10 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         DeclarationPrinterBase<FunctionBlockDeclaration>(fb, "FB") {
         override fun printDeclarationBody(element: Element) {
             if (this.element.id != null) {
-                // TODO("In Ecostruxure, ID comes before Name. Not here though.")
+                val name = element.getAttributeValue("Name")
+                element.removeAttribute("Name")
                 element.setAttribute("ID", this.element.id)
+                element.setAttribute("Name", name)
             }
             val type = this.element.typeReference.presentation
             element.setAttribute("Type", type)
@@ -82,6 +84,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
                 NamespaceFinder.getNamespace(type)
             }
             element.setAttribute("Namespace", namespace)
+            AttributeDeclarationPrinter.printAll(this.element.attributes, element)
             ParameterAssignmentPrinter.printAll(this.element.parameters, element)
         }
     }
