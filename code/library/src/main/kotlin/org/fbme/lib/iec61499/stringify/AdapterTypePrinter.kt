@@ -1,7 +1,6 @@
 package org.fbme.lib.iec61499.stringify
 
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
-import org.fbme.lib.iec61499.declarations.ServiceTransactionDeclaration
 import org.jdom.Element
 
 class AdapterTypePrinter(declaration: AdapterTypeDeclaration) :
@@ -9,12 +8,16 @@ class AdapterTypePrinter(declaration: AdapterTypeDeclaration) :
     override fun printDeclarationBody(element: Element) {
         AuxiliaryDataPrinter(this.element, element).print()
         element.addContent(FBInterfacePrinter(this.element, false).print())
-        element.addContent(AdapterServicePrinter(this.element).print())
+        val serviceElement = AdapterServicePrinter(this.element).print()
+        if (serviceElement != null) element.addContent(serviceElement)
     }
 
     private class AdapterServicePrinter(val myDeclaration : AdapterTypeDeclaration) {
 
-        fun print(): Element {
+        fun print(): Element? {
+
+            // Returns null for adapters made in FBME.
+            if (myDeclaration.rightInterface == null) return null
 
             val serviceElement = Element("Service")
             serviceElement.setAttribute("RightInterface", myDeclaration.rightInterface)
@@ -51,5 +54,4 @@ class AdapterTypePrinter(declaration: AdapterTypeDeclaration) :
             return serviceElement
         }
     }
-
 }

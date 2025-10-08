@@ -11,7 +11,10 @@ import org.jdom.Element
 class RootDeclarationEcoPrinter(private val myDeclaration: Declaration) {
     fun print(): Document {
         val rootElement: Element = when (myDeclaration) {
-            is AdapterTypeDeclaration -> AdapterTypePrinter(myDeclaration).print()
+            is AdapterTypeDeclaration -> {
+                val fbmeElement = AdapterTypePrinter(myDeclaration).print()
+                AdapterTypeEcoConverter(myDeclaration, fbmeElement).convert()
+            }
             is BasicFBTypeDeclaration -> {
                 val fbmeElement = BasicFBTypePrinter(myDeclaration).print()
                 BasicFBTypeDeclarationEcoConverter(fbmeElement).convert()
