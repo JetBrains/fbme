@@ -28,8 +28,9 @@ class SystemPrinter(declaration: SystemDeclaration) :
         DeclarationPrinterBase<ApplicationDeclaration>(applicationDeclaration, "Application") {
         override fun printDeclarationBody(element: Element) {
             if (this.element.id != null) {
-                // TODO("In Ecostruxure, ID comes before Name. Not here though.")
+                element.removeAttribute("Name")
                 element.setAttribute("ID", this.element.id)
+                element.setAttribute("Name", this.element.name)
             }
             element.addContent(SubappNetworkPrinter(this.element.network).print())
         }
@@ -45,7 +46,9 @@ class SystemPrinter(declaration: SystemDeclaration) :
         DeclarationPrinterBase<DeviceDeclaration>(deviceDeclaration, "Device") {
         override fun printDeclarationBody(element: Element) {
             if (this.element.id != null) {
+                element.removeAttribute("Name")
                 element.setAttribute("ID", this.element.id)
+                element.setAttribute("Name", this.element.name)
             }
             val type = this.element.typeReference.presentation
             element.setAttribute("Type", type)

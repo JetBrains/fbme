@@ -8,7 +8,9 @@ class ResourcePrinter(declaration: ResourceDeclaration) :
     DeclarationPrinterBase<ResourceDeclaration>(declaration, "Resource") {
     override fun printDeclarationBody(element: Element) {
         if (this.element.id != null) {
+            element.removeAttribute("Name")
             element.setAttribute("ID", this.element.id)
+            element.setAttribute("Name", this.element.name)
         }
         val type = this.element.typeReference.presentation
         element.setAttribute("Type", type)
