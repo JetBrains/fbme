@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="CMD_bloc_FV">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ">
+        <With Var="SystemINITED" />
+        <With Var="ELPR" />
+        <With Var="CRPR" />
+        <With Var="CAPR" />
+        <With Var="GRO" />
+        <With Var="GRC" />
+        <With Var="ELM" />
+        <With Var="CRM" />
+        <With Var="CAM" />
+        <With Var="FETP" />
+        <With Var="SLTP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="GOEL" />
+        <With Var="SETEL" />
+        <With Var="GOCA" />
+        <With Var="SETCA" />
+        <With Var="GOCR" />
+        <With Var="SETCR" />
+        <With Var="OPGR" />
+        <With Var="CLGR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="SystemINITED" Type="BOOL" />
+      <VarDeclaration Name="ELPR" Type="BOOL" />
+      <VarDeclaration Name="CRPR" Type="BOOL" />
+      <VarDeclaration Name="CAPR" Type="BOOL" />
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+      <VarDeclaration Name="ELM" Type="BOOL" />
+      <VarDeclaration Name="CRM" Type="BOOL" />
+      <VarDeclaration Name="CAM" Type="BOOL" />
+      <VarDeclaration Name="FETP" Type="BOOL" />
+      <VarDeclaration Name="SLTP" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="GOEL" Type="BOOL" />
+      <VarDeclaration Name="SETEL" Type="INT" />
+      <VarDeclaration Name="GOCR" Type="BOOL" />
+      <VarDeclaration Name="SETCR" Type="INT" />
+      <VarDeclaration Name="GOCA" Type="BOOL" />
+      <VarDeclaration Name="SETCA" Type="INT" />
+      <VarDeclaration Name="OPGR" Type="BOOL" />
+      <VarDeclaration Name="CLGR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="44313" y="3559" />
+      <ECState Name="INIT" x="45920" y="3246">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="CR_01_CA_03" x="49613" y="2553">
+        <ECAction Output="CNF" Algorithm="GOCA_06" />
+      </ECState>
+      <ECState Name="CR_01_03_CA_06" x="2246" y="1793">
+        <ECAction Output="CNF" Algorithm="GOCR_03" />
+      </ECState>
+      <ECState Name="GRC_03_GRC_04" x="7339" y="1406">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_f" x="12433" y="1420">
+        <ECAction Output="CNF" Algorithm="GO_CA_CR_EL" />
+      </ECState>
+      <ECState Name="EL_03" x="17673" y="1493">
+        <ECAction Output="CNF" Algorithm="OPGR" />
+      </ECState>
+      <ECState Name="GRO" x="19873" y="1420">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="EL_01" x="43406" y="1579">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_EL_03" x="22766" y="1559">
+        <ECAction Output="CNF" Algorithm="GOCA_01" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_e" x="25659" y="1559">
+        <ECAction Output="CNF" Algorithm="GOCR_02" />
+      </ECState>
+      <ECState Name="CR_02_CA_01" x="28553" y="1653">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="GRC" x="30753" y="1579">
+        <ECAction Output="CNF" Algorithm="GOCR_01" />
+      </ECState>
+      <ECState Name="CR_01_CA_01_f" x="33273" y="1719">
+        <ECAction Output="CNF" Algorithm="GOCA_03" />
+      </ECState>
+      <ECState Name="CR_01_CA_03_lid" x="36166" y="1719">
+        <ECAction Output="CNF" Algorithm="GOCR_03" />
+      </ECState>
+      <ECState Name="CR_03_CA_03" x="38686" y="1653">
+        <ECAction Output="CNF" Algorithm="OPGR" />
+      </ECState>
+      <ECState Name="GRO_lid" x="40886" y="1719">
+        <ECAction Output="CNF" Algorithm="GOEL_01" />
+      </ECState>
+      <ECState Name="CR_01_EL_01" x="45920" y="1719">
+        <ECAction Output="CNF" Algorithm="RESET" />
+      </ECState>
+      <ECState Name="CR_01_CA_06_e" x="0" y="1719">
+        <ECAction Output="CNF" Algorithm="RESET" />
+      </ECState>
+      <ECState Name="CR_03_CA_06" x="5140" y="1719">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="CR_01_04_CA_06" x="2246" y="206">
+        <ECAction Output="CNF" Algorithm="GOCR_04" />
+      </ECState>
+      <ECState Name="CR_04_CA_06" x="5140" y="0">
+        <ECAction Output="CNF" Algorithm="CLGR" />
+      </ECState>
+      <ECState Name="ReadyToDrop" x="10233" y="1773">
+        <ECAction Output="CNF" Algorithm="STOP_CR" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="45280" y="3706" Condition="INIT" />
+      <ECTransition Source="CR_01_03_CA_06" Destination="CR_03_CA_06" x="4313" y="2460" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="GRC_03_GRC_04" Destination="ReadyToDrop" x="9406" y="2080" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="EL_03" Destination="GRO" x="19393" y="2080" Condition="GRO" />
+      <ECTransition Source="GRO" Destination="CR_01_EL_03" x="21940" y="2080" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_01_EL_03" Destination="CR_01_CA_01_e" x="24833" y="2080" Condition="[NOT CAM &amp; CAPR]" />
+      <ECTransition Source="CR_01_CA_01_e" Destination="CR_02_CA_01" x="27721" y="2236" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_02_CA_01" Destination="GRC" x="30273" y="2240" Condition="GRC" />
+      <ECTransition Source="GRC" Destination="CR_01_CA_01_f" x="32633" y="2033" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_01_CA_01_f" Destination="CR_01_CA_03_lid" x="35340" y="2240" Condition="[NOT CAM &amp; CAPR]" />
+      <ECTransition Source="CR_01_CA_03_lid" Destination="CR_03_CA_03" x="38046" y="2033" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_03_CA_03" Destination="GRO_lid" x="40406" y="2240" Condition="GRO" />
+      <ECTransition Source="GRO_lid" Destination="EL_01" x="42766" y="2033" Condition="[NOT ELM &amp; ELPR]" />
+      <ECTransition Source="EL_01" Destination="CR_01_EL_01" x="45280" y="2666" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_01_CA_03" Destination="CR_01_CA_06_e" x="26279" y="3219" Condition="[NOT CAM &amp; CAPR]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_03_CA_06" x="1739" y="2460" Condition="FETP" />
+      <ECTransition Source="CR_03_CA_06" Destination="GRC_03_GRC_04" x="6859" y="2460" Condition="GRC" />
+      <ECTransition Source="INIT" Destination="CR_01_CA_03" x="48386" y="3519" Condition="[SystemINITED &amp; (FETP OR SLTP)]" />
+      <ECTransition Source="CR_01_EL_01" Destination="CR_01_CA_03" x="48386" y="2926" Condition="1" />
+      <ECTransition Source="CR_01_04_CA_06" Destination="CR_04_CA_06" x="4313" y="873" Condition="[NOT CRM &amp; CRPR]" />
+      <ECTransition Source="CR_01_CA_06_e" Destination="CR_01_04_CA_06" x="1739" y="2126" Condition="SLTP" />
+      <ECTransition Source="CR_04_CA_06" Destination="GRC_03_GRC_04" x="6859" y="1973" Condition="GRC" />
+      <ECTransition Source="CR_01_CA_06_f" Destination="EL_03" x="15673" y="2080" Condition="[(NOT CRM &amp; CRPR) AND (NOT ELM &amp; ELPR) AND (NOT CAM &amp; CAPR)]" />
+      <ECTransition Source="ReadyToDrop" Destination="CR_01_CA_06_f" x="11953" y="2080" Condition="REQ" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="" />
+    </Algorithm>
+    <Algorithm Name="GOCA_06">
+      <ST Text="GOCA := TRUE;&#10;SETCA := 3;&#10;GOEL := FALSE;&#10;GOCR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_03">
+      <ST Text="GOCR := TRUE;&#10;SETCR := 3;&#10;GOCA := FALSE;&#10;GOEL := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_04">
+      <ST Text="GOCR := TRUE;&#10;SETCR := 3;&#10;GOEL := FALSE;&#10;GOCA := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="CLGR">
+      <ST Text="CLGR := TRUE;&#10;OPGR := FALSE;&#10;GOCR := FALSE;&#10;GOEL := FALSE;&#10;GOCA := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_01">
+      <ST Text="GOCR := TRUE;&#10;SETCR := 1;&#10;GOCA := FALSE;&#10;GOEL := FALSE;&#10;FETP := FALSE;&#10;SLTP := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_03">
+      <ST Text="GOCA := TRUE;&#10;SETCA := 2;&#10;GOEL := FALSE;&#10;GOCR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_06">
+      <ST Text="GOCR := TRUE;&#10;SETCR := 4;&#10;GOCA := FALSE;&#10;GOEL := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_03">
+      <ST Text="GOEL := TRUE;&#10;SETEL := 2;&#10;GOCA := FALSE;&#10;GOCR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="OPGR">
+      <ST Text="CLGR := FALSE;&#10;OPGR := TRUE;&#10;GOCR := FALSE;&#10;GOEL := FALSE;&#10;GOCA := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCA_01">
+      <ST Text="GOCA := TRUE;&#10;SETCA := 1;&#10;GOEL := FALSE;&#10;GOCR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOCR_02">
+      <ST Text="GOCR := TRUE;&#10;SETCR := 2;&#10;GOCA := FALSE;&#10;GOEL := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GOEL_01">
+      <ST Text="GOEL := TRUE;&#10;SETEL := 1;&#10;GOCA := FALSE;&#10;GOCR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text="GOCA := FALSE;&#10;GOCR := FALSE;&#10;GOEL := FALSE;&#10;OPGR := FALSE;&#10;CLGR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="GOCA := FALSE;&#10;GOCR := FALSE;&#10;GOEL := FALSE;&#10;OPGR := FALSE;&#10;CLGR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="GO_CA_CR_EL">
+      <ST Text="GOCA := TRUE;&#10;SETCA := 2;&#10;GOCR := TRUE;&#10;SETCR := 4;&#10;GOEL := TRUE;&#10;SETEL := 2;&#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP_CR">
+      <ST Text="GOCR := FALSE;&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

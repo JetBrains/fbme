@@ -23,18 +23,18 @@
   </InterfaceList>
   <FBNetwork>
     <FB Name="ctb" Type="InnerBlock" x="343" y="0" />
-    <FB Name="fb2" Type="OneMoreInnerBlock" x="396" y="540" />
+    <FB Name="fb2" Type="OneMoreInnerBlock" x="380" y="540" />
     <DataConnections>
       <Connection Source="icbInpVar" Destination="ctb.ibInpVar" />
       <Connection Source="ctb.ibOutpVar" Destination="icbOutpVar" />
-      <Connection Source="icbInpVar" Destination="fb2.in" dx1="49" />
-      <Connection Source="fb2.out" Destination="icbOutpVar" dx1="261" />
+      <Connection Source="icbInpVar" Destination="fb2.in" dx1="40" />
+      <Connection Source="fb2.out" Destination="icbOutpVar" dx1="260" />
       <Connection Source="intVar" Destination="ctb.intVar" dx1="56" />
     </DataConnections>
     <EventConnections>
       <Connection Source="INIT" Destination="ctb.INIT" />
       <Connection Source="ctb.INTO" Destination="INTO" />
-      <Connection Source="INIT" Destination="fb2.IN" dx1="73" />
+      <Connection Source="INIT" Destination="fb2.IN" dx1="43" />
       <Connection Source="fb2.OUT" Destination="INTO" dx1="237" />
     </EventConnections>
     <EndpointCoordinate Name="INTO" x="1260" y="49" />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<System Name="HHMTest">
+  <Application Name="HHMTestApp">
+    <SubAppNetwork>
+      <FB Name="hhm" Type="HHM_OV" x="1215" y="0" />
+    </SubAppNetwork>
+  </Application>
+  <Device Name="Testee" Type="FORTE_PC">
+    <Parameter Name="MGR_ID" Value="'localhost:61499'" />
+    <Resource Name="HHM_RES" Type="EMB_RES">
+      <FBNetwork>
+        <FB Name="hhm" Type="HHM_OV" x="676" y="46" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="hhm.INIT" dx1="50" />
+          <Connection Source="START.WARM" Destination="hhm.INIT" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork />
+  </Device>
+  <Mapping From="HHMTestApp.hhm" To="Testee.HHM_RES.hhm" />
+  <Segment Name="Ethernet1" Type="Ethernet" />
+  <Link CommResource="Testee" SegmentName="Ethernet1" />
+</System>
+
