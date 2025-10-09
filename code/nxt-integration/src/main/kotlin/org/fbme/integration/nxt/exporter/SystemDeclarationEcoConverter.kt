@@ -55,7 +55,7 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
                 val type = resourceElement.getAttributeValue("Type")
                 if (type != "EMB_RES_ECO") {
                     // Support only available for EMB_RES_ECO type resources atm.
-                    TODO("Check how FBME handles $type resource types.")
+                    TODO("Implement support for $type resource types if there are any problems with their event connections.")
                 }
                 val fbNetworkElement = resourceElement.getChild("FBNetwork") ?: continue
                 val eventConnectionsElement = fbNetworkElement.getChild("EventConnections") ?: continue
@@ -83,7 +83,7 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
 
     private fun fixInconsistencies(ecoElement: Element) {
         // Changes in applications won't show up in resources.
-        // Exporting an inconsistent file will crash Ecostruxure.
+        // Exporting an inconsistent system file may crash EcoStruxure.
 
         fun isDeployFile(rootElement: Element): Boolean {
             // There are two System.sys files in the FBME root directory,
@@ -95,13 +95,12 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
         if (isDeployFile(ecoElement)) return
 
         val applicationElements = ecoElement.getChildren("Application")
-
         val deviceElements = ecoElement.getChildren("Device")
+
         for (deviceElement in deviceElements) {
             val resourceElements = deviceElement.getChildren("Resource")
             for (resourceElement in resourceElements) {
                 val fbNetworkElement = resourceElement.getChild("FBNetwork") ?: continue
-
                 // Check interface constants.
                 val resourceFBElements = fbNetworkElement.getChildren("FB")
                 for (resourceFBElement in resourceFBElements) {
@@ -120,7 +119,7 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
                             val applicationParameterElements = applicationFBElement.getChildren("Parameter")
                             if (applicationParameterElements.isEmpty()) continue
                             val resourceParameterElements = resourceFBElement.getChildren("Parameter")
-                            // The FB element in Application and in Resource should have constant input(s), let's check they match.
+                            // The FB element in Application and in Resource should have constant input(s), let's check if they match.
                             // Any FB element could have multiple constant inputs.
                             for (applicationParameterElement in applicationParameterElements) {
                                 for (resourceParameterElement in resourceParameterElements) {
@@ -137,18 +136,12 @@ class SystemDeclarationEcoConverter(fbmeElement: Element) {
                         }
                     }
                 }
-                continue
-                TODO("Check the connections.")
-                val eventConnectionsElement = fbNetworkElement.getChild("EventConnections") ?: continue
-                for (eventConnectionElement in eventConnectionsElement.children) {
-                    val source = eventConnectionElement.getAttributeValue("Source")
-
-                }
-                val dataConnectionsElement = fbNetworkElement.getChild("DataConnections") ?: continue
-                for (dataConnectionElement in dataConnectionsElement.children) {
-                    val source = dataConnectionElement.getAttributeValue("Source")
-                }
             }
         }
+
+        /* No other inconsistencies are corrected by SystemDeclarationEcoConverter. Even this little problem that can be fixed while
+        exporting should be taken care of before we even get here. There should be full synchronization between each mapped <Application>
+        and <Resource> in the original code base. When that is implemented, fixInconsistencies() becomes redundant and should be removed. */
+        // TODO("Remove fixInconsistencies() when full <Application>, <Resource> synchronization is achieved.)
     }
 }
