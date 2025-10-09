@@ -7,7 +7,6 @@ import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.BasicFBTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
-import org.fbme.lib.st.expressions.ArrayInitializer
 import org.fbme.lib.st.expressions.Literal
 import org.fbme.lib.st.expressions.LiteralKind.*
 import org.fbme.lib.st.types.ArrayType
@@ -104,7 +103,7 @@ class BasicFBTypeImplTranslator(private val fb: BasicFBTypeDeclaration) : Abstra
                             }
                         }
                     }
-                    else -> sb.append("") // TODO: don't know what to do
+                    else -> sb.append("") // TODO("Finish this if necessary.")
                 }
             }
         }

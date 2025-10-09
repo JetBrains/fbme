@@ -4,7 +4,6 @@ import org.antlr.v4.runtime.ANTLRInputStream
 import org.antlr.v4.runtime.CommonTokenStream
 import org.fbme.lib.common.Identifier
 import org.fbme.lib.common.StringIdentifier
-import org.fbme.lib.iec61499.stringify.STPrinter
 import org.fbme.lib.st.STFactory
 import org.fbme.lib.st.expressions.*
 import org.fbme.lib.st.parser.STLexer

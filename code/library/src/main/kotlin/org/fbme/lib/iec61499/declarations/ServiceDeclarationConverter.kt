@@ -7,11 +7,8 @@ class ServiceDeclarationConverter(arguments: ConverterArguments, private val dec
 
     fun extractService() {
 
-        // Extract all data from Attribute children.
         val serviceElement = element?.getChild("Service") ?: return
-
         val serviceSequenceElements = serviceElement.getChildren("ServiceSequence")
-
         var firstIteration = true
 
         serviceSequenceElements.forEach { serviceSequenceElement ->
@@ -48,6 +45,5 @@ class ServiceDeclarationConverter(arguments: ConverterArguments, private val dec
         declaration.rightInterface = serviceElement.getAttributeValue("RightInterface")
         declaration.leftInterface = serviceElement.getAttributeValue("LeftInterface")
     }
-
 }
 

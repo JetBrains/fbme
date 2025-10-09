@@ -2,7 +2,6 @@ package org.fbme.ide.richediting.viewmodel
 
 import org.fbme.ide.iec61499.repository.PlatformElement
 import org.fbme.lib.iec61499.fbnetwork.EntryKind
-import org.fbme.lib.st.expressions.Expression
 import org.fbme.lib.st.expressions.ParameterValue
 import org.jetbrains.mps.openapi.model.SNode
 

@@ -1,6 +1,5 @@
 package org.fbme.integration.nxt.exporter
 
-import com.intellij.openapi.ui.Messages
 import org.fbme.lib.iec61499.NamespaceFinder
 import org.jdom.Element
 
@@ -9,14 +8,11 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
     private val rootElement = fbmeElement
 
     fun convert() : Element {
-
         val ecoElement = rootElement.clone()
-
         addInterfaceListNameSpaces(ecoElement)
         addFBNetworkNameSpaces(ecoElement)
         rewriteFBNetworkIOs(ecoElement)
         reorganizeConnections(ecoElement)
-
         return ecoElement
     }
 

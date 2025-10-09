@@ -10,7 +10,6 @@ import org.fbme.ide.platform.debugger.Watchable
 import org.fbme.ide.platform.deploy.exceptions.DeploymentException
 import org.fbme.lib.iec61499.declarations.*
 import org.fbme.lib.iec61499.fbnetwork.FBNetworkConnection
-import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printLiteral
 import org.fbme.lib.iec61499.stringify.STPrinter.Companion.printParameterValue
 import java.text.MessageFormat.format
 

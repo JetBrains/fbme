@@ -269,8 +269,6 @@ class STPrinter {
                 else -> {
                     val arrayInitializer = parameterValue as ArrayInitializer
                     printArray(arrayInitializer)
-                    // Check that factory has been modified
-                    // Debug
                 }
             }
         }

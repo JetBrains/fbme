@@ -9,8 +9,8 @@ import org.fbme.lib.iec61499.descriptors.SocketType
 interface AdapterTypeDeclaration : FBInterfaceDeclaration, Declaration, RootElement {
     var rightInterface: String
     var leftInterface: String
-    val requestServiceSequence: MutableList<ServiceTransactionDeclaration> // MutableList<ServiceTransactionDeclaration>
-    val responseServiceSequence: MutableList<ServiceTransactionDeclaration> // MutableList<ServiceTransactionDeclaration>
+    val requestServiceSequence: MutableList<ServiceTransactionDeclaration>
+    val responseServiceSequence: MutableList<ServiceTransactionDeclaration>
     val plugTypeDescriptor: FBTypeDescriptor
         get() = PlugType(this)
     val socketTypeDescriptor: FBTypeDescriptor

@@ -50,4 +50,3 @@ interface IEC61499Factory {
     fun createServiceTransactionDeclaration(): ServiceTransactionDeclaration
     fun createIOPrimitiveDeclaration(): IOPrimitiveDeclaration
 }
-
