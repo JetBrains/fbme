@@ -29,25 +29,24 @@ class ExportAction: AnAction() { //}, DumbAware {
 
     override fun actionPerformed(event: AnActionEvent) {
 
-        /* useless keys
-        * event.getData(MPSDataKeys.NODE)
-        * event.getData(MPSDataKeys.MODEL)
-        * event.getData(MPSDataKeys.SOURCE_NODE)
-        * event.getData(MPSDataKeys.NODES)
-        * event.getData(MPSDataKeys.MODELS) ?
-        * */
+        /* How exporting to EcoStruxure works:
 
-        /*
-        1. Extract auxiliary data of the function blocks while importing the Nxt project (GUIDs, VersionInfo, Bezierpoints for ECTransitions...)
-            1.1 Find out what type of data comes with what type of fbdt.
-        2. Convert all nodes of type fbTypeDeclaration into a document (org.jdom.Element).
-            2.1 Convert BasicFBTypeDeclaration types and "stitch them up" using the collected auxiliary data.
-            2.2 Convert SIFB, FBNetwork, Adapter types. TODO
-        3. Write the documents in a new directory (MPSProjectNxtExports) maintaining the original structure.
-            3.1 Get relative location of all the converted fbs (.fbt files) in their original directory.
-            3.2 Create all the new directories if they don't exist.
-        4. "Visibly" export all files that haven't been imported from Ecostruxure.
-            4.1 Any fbme-original files get written to the export directory, but they don't show up in Ecostruxure menu. (IEC61499.dfbproj) TODO
+        1) Iterate through all the root nodes of the project and add them to their corresponding lists. Only the
+        following items are considered: basic FBs, composite FB, SIFBs, adapters and system files.
+
+        2) Determine the export directory, the user can either select the test directory "MPSProjectEcostruxureExports",
+        or browse for a suitable EAE solution that will then be partially overwritten.
+
+        3) For each list of a certain type of item, call writeDocuments(), a nested function within this function. First,
+        call RootDeclarationEcoPrinter to turn each declaration into a org.jdom.Document object.
+
+        4) writeDocuments() will determine the correct file path for each declaration according to the export path,
+        declaration name, file extension and possible subfolder. With the absolute path, use XMLOutputter print the
+        document in the destination.
+
+        5) Still within writeDocuments(), call updateProjectFile for each item if not writing to the test directory. This
+        will update the "IEC61499.dfbproj" file for each FBME-original item. Without doing this, any new items will not
+        become visible in the EAE visual editor, but can only be found with the file explorer.
         */
 
         val projectMPS = event.getData(MPSDataKeys.MPS_PROJECT) ?: return
@@ -63,14 +62,11 @@ class ExportAction: AnAction() { //}, DumbAware {
         val systemDeclarationList = mutableListOf<SystemDeclaration>()
 
         // Sort all declarations into lists with the common file extension.
-        // TODO: Complete RootDeclarationNxtPrinter.
         modelAccess.runReadAction {
             val rootNodes = model.rootNodes
             for (rootNode in rootNodes) {
-                //if (rootNode.name == "System") { continue }
                 val node = convertRootNode(platformRepository, rootNode) ?: continue
                 val declaration = node as Declaration
-                //val declarationDocument = RootDeclarationEcoPrinter(declaration).print()
                 when (declaration) {
                     is BasicFBTypeDeclaration -> basicFBTypeDeclarationList.add(declaration)
                     is CompositeFBTypeDeclaration -> compositeFBTypeDeclarationList.add(declaration)
@@ -79,10 +75,10 @@ class ExportAction: AnAction() { //}, DumbAware {
                     is SystemDeclaration -> systemDeclarationList.add(declaration)
                     else -> Messages.showMessageDialog(
                         event.project,
-                        "Sus activity detected! \n" +
-                                "${rootNode.name}" ,
+                        "Unknown IEC 61499 artifact encountered: ${rootNode.name} \n" +
+                                "This item will not be exported to EcoStruxure.",
                         "ExportEcostruxure",
-                        Messages.getInformationIcon()
+                        Messages.getWarningIcon()
                     )
                 }
             }
@@ -117,7 +113,7 @@ class ExportAction: AnAction() { //}, DumbAware {
             descriptor.title = "Select Export Directory"
             descriptor.description = "Specify the root folder of the Ecostruxure solution. Files in the IEC61499 folder will be overwritten."
             projectBaseDir = FileChooser.chooseFile(descriptor, project, null) ?: run {
-                Messages.showMessageDialog(event.project, "No directory selected.", "Export Failed", Messages.getErrorIcon())
+                Messages.showMessageDialog(event.project, "No directory selected.", "Export Aborted", Messages.getErrorIcon())
                 return
             }
             val projectBaseDirStr: String = projectBaseDir.toString().removePrefix("file://")
@@ -125,8 +121,8 @@ class ExportAction: AnAction() { //}, DumbAware {
             exportBasePathStr = exportBasePath.toString()
             //Files.createDirectories(exportBasePath) // Should exist by default.
             Messages.showMessageDialog(project,
-                "Selected Directory: $projectBaseDirStr",
-                "Directory Selected", Messages.getInformationIcon()
+                "Selected directory $projectBaseDirStr",
+                "Directory Specified", Messages.getInformationIcon()
             )
             projectRootPath = exportBasePathStr.replace("\\", "/").replace("""\""", "/")
         }
@@ -145,11 +141,10 @@ class ExportAction: AnAction() { //}, DumbAware {
                     // TODO(Expand to other types if necessary.)
                     Messages.showMessageDialog(
                         project,
-                        "Error occurred while exporting.\n" +
-                                "Declaration of unknown type encountered: ${declarationList[0].name}\n" +
-                                "Please contact Esa." ,
+                        "Declaration of unknown type encountered: ${declarationList[0].name}\n" +
+                                "This item will not be exported to EcoStruxure.",
                         "ExportEcostruxure",
-                        Messages.getErrorIcon()
+                        Messages.getWarningIcon()
                     )
                     return false
                 }
@@ -174,8 +169,9 @@ class ExportAction: AnAction() { //}, DumbAware {
                 val declarationFullFilePath = if (fileExtension != Iec61499ModelFactory.Companion.SYS_FILE_EXT) {
                     filePathSearcherRecursive(projectBaseDir, declarationFileName)
                 } else if (isDeployFile(document)) {
-                    "${projectRootPath}bin/Deploy/System/${declarationFileName}"
-                    continue // TODO("Figure out if this file System.deploy.sys is needed or not.")
+                    // "${projectRootPath}bin/Deploy/System/${declarationFileName}"
+                    // TODO("Figure out if the file System.deploy.sys is needed or not.")
+                    continue
                 } else {
                     "${projectRootPath}System/${declarationFileName}"
                 }
@@ -201,7 +197,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 } catch (e: IOException) {
                     Messages.showMessageDialog(
                         project,
-                        "An error occurred while attempting to write file ${declarationSubFolder}/$declarationFileName: ${e.message}",
+                        "An IOException was encountered, unable to write file ${declarationSubFolder}/$declarationFileName: ${e.message}",
                         "ExportEcostruxure",
                         Messages.getErrorIcon()
                     )
@@ -257,7 +253,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 "Export failed: $exportBasePathStr \n\n" +
                         "" ,
                 "ExportEcostruxure",
-                Messages.getWarningIcon()
+                Messages.getErrorIcon()
             )
         }
     }
@@ -311,7 +307,8 @@ class ExportAction: AnAction() { //}, DumbAware {
             saxBuilder.build(fileToUpdate)
         } catch (e: Exception) {
             Messages.showMessageDialog(
-                "Unable to read file IEC61499.dfbproj, any FBME specific files will not be exported.\n" +
+                "Unable to read file IEC61499.dfbproj, any FBME-original files will not be will not become " +
+                        "visible in the EcoStruxure editor.\n" +
                         "You may try closing EcoStruxure to solve this.",
                 "ExportEcostruxure",
                 Messages.getWarningIcon()
@@ -352,12 +349,12 @@ class ExportAction: AnAction() { //}, DumbAware {
                 is AdapterTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.ADP_FILE_EXT, "Adapter")
                 else -> {
                     // TODO(Expand to other types if necessary.)
+                    // This should be taken care of in writeDocuments(), but check the item type here too to be sure.
                     Messages.showMessageDialog(
-                        "Error occurred while exporting.\n" +
-                                "Declaration of unknown type encountered while updating file $projectFileName: ${declaration.name}\n" +
-                                "Please contact Esa." ,
+                        "Declaration of unknown type encountered while updating file $projectFileName \n" +
+                                "${declaration.name} will not become visible in the EcoStruxure editor.",
                         "ExportEcostruxure",
-                        Messages.getErrorIcon()
+                        Messages.getWarningIcon()
                     )
                     return
                 }
