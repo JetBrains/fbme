@@ -66,13 +66,12 @@ class ExportAction: AnAction() { //}, DumbAware {
             val rootNodes = model.rootNodes
             for (rootNode in rootNodes) {
                 val node = convertRootNode(platformRepository, rootNode) ?: continue
-                val declaration = node as Declaration
-                when (declaration) {
-                    is BasicFBTypeDeclaration -> basicFBTypeDeclarationList.add(declaration)
-                    is CompositeFBTypeDeclaration -> compositeFBTypeDeclarationList.add(declaration)
-                    is ServiceInterfaceFBTypeDeclaration -> serviceInterfaceFBTypeDeclaration.add(declaration)
-                    is AdapterTypeDeclaration -> adapterTypeDeclarationList.add(declaration)
-                    is SystemDeclaration -> systemDeclarationList.add(declaration)
+                when (val declaration = node as Declaration) {
+                    is BasicFBTypeDeclaration -> basicFBTypeDeclarationList.add(declaration as BasicFBTypeDeclaration)
+                    is CompositeFBTypeDeclaration -> compositeFBTypeDeclarationList.add(declaration as CompositeFBTypeDeclaration)
+                    is ServiceInterfaceFBTypeDeclaration -> serviceInterfaceFBTypeDeclaration.add(declaration as ServiceInterfaceFBTypeDeclaration)
+                    is AdapterTypeDeclaration -> adapterTypeDeclarationList.add(declaration as AdapterTypeDeclaration)
+                    is SystemDeclaration -> systemDeclarationList.add(declaration as SystemDeclaration)
                     else -> Messages.showMessageDialog(
                         event.project,
                         "Unknown IEC 61499 artifact encountered: ${rootNode.name} \n" +
@@ -138,7 +137,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 is AdapterTypeDeclaration -> Iec61499ModelFactory.Companion.ADP_FILE_EXT
                 is SystemDeclaration -> Iec61499ModelFactory.Companion.SYS_FILE_EXT
                 else -> {
-                    // TODO(Expand to other types if necessary.)
+                    // TODO("Expand to other types if necessary.")
                     Messages.showMessageDialog(
                         project,
                         "Declaration of unknown type encountered: ${declarationList[0].name}\n" +
@@ -348,7 +347,7 @@ class ExportAction: AnAction() { //}, DumbAware {
                 is CompositeFBTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.FBT_FILE_EXT, "Composite")
                 is AdapterTypeDeclaration -> Pair(Iec61499ModelFactory.Companion.ADP_FILE_EXT, "Adapter")
                 else -> {
-                    // TODO(Expand to other types if necessary.)
+                    // TODO("Expand to other types if necessary.")
                     // This should be taken care of in writeDocuments(), but check the item type here too to be sure.
                     Messages.showMessageDialog(
                         "Declaration of unknown type encountered while updating file $projectFileName \n" +
@@ -389,7 +388,7 @@ class ExportAction: AnAction() { //}, DumbAware {
         val xmlOutputter = XMLOutputter(Format.getPrettyFormat())
 
         // Rewrite "IEC61499.dfbproj" with the help of document.
-        // TODO(Add try - catch blocks here.)
+        // TODO("Add try - catch blocks here.")
         File(fileToUpdatePathStr).writer().use { writer ->
             xmlOutputter.output(document, writer)
         }
