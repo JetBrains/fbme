@@ -3,7 +3,7 @@ package org.fbme.lib.iec61499.stringify
 import org.fbme.lib.iec61499.declarations.CompositeFBTypeDeclaration
 import org.jdom.Element
 
-open class CompositeFBTypePrinter(declaration: CompositeFBTypeDeclaration) :
+class CompositeFBTypePrinter(declaration: CompositeFBTypeDeclaration) :
     DeclarationPrinterBase<CompositeFBTypeDeclaration>(declaration, "FBType") {
     override fun printDeclarationBody(element: Element) {
         AuxiliaryDataPrinter(this.element, element).print() // Adds attributes and content to element.

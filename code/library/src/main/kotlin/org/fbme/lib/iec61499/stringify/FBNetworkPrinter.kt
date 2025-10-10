@@ -16,20 +16,20 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         printEndpointCoordinates(element)
     }
 
-    fun printEndpointCoordinates(element: Element) {
+    private fun printEndpointCoordinates(element: Element) {
         for (endpointCoordinate in this.element.endpointCoordinates) {
             element.addContent(printEndpointCoordinate(endpointCoordinate))
         }
     }
 
-    open fun printFunctionBlocks(element: Element) {
+    private fun printFunctionBlocks(element: Element) {
         for (fb in this.element.functionBlocks) {
             val fbElement = FunctionBlockPrinter(fb).print()
             element.addContent(fbElement)
         }
     }
 
-    fun printDataConnections(): Element? {
+    private fun printDataConnections(): Element? {
         val dataConnections = element.dataConnections
         if (dataConnections.isEmpty()) {
             return null
@@ -41,7 +41,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    open fun printEventConnections(): Element? {
+    private fun printEventConnections(): Element? {
         val eventConnections = element.eventConnections
         if (eventConnections.isEmpty()) {
             return null
@@ -53,7 +53,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    fun printAdapterConnections(): Element? {
+    private fun printAdapterConnections(): Element? {
         val adapterConnections = element.adapterConnections
         if (adapterConnections.isEmpty()) {
             return null
@@ -65,7 +65,7 @@ open class FBNetworkPrinter<NetworkT : FBNetwork> @JvmOverloads constructor(
         return element
     }
 
-    class FunctionBlockPrinter(fb: FunctionBlockDeclaration) :
+    private class FunctionBlockPrinter(fb: FunctionBlockDeclaration) :
         DeclarationPrinterBase<FunctionBlockDeclaration>(fb, "FB") {
         override fun printDeclarationBody(element: Element) {
             if (this.element.id != null) {
