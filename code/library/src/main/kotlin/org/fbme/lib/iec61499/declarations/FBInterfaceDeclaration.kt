@@ -22,6 +22,4 @@ interface FBInterfaceDeclaration : Declaration, AuxiliaryData {
             }
             throw IllegalArgumentException("Unknown declaration with FB interface: " + this.javaClass.name)
         }
-
-    var auxiliaryData: FBTypeAuxiliaryData?
 }
