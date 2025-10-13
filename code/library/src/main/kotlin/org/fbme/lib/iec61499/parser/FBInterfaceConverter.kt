@@ -63,6 +63,7 @@ class FBInterfaceConverter(arguments: ConverterArguments, private val myDeclarat
         override fun extractDeclarationBody(identifier: Identifier?): EventDeclaration {
             checkNotNull(element)
             val event = factory.createEventDeclaration(identifier)
+            event.comment = element.getAttributeValue("Comment") // EcoStruxure
             for (withElement in element.getChildren("With")) {
                 val eventAssociation = factory.createEventAssociation()
                 eventAssociation.parameterReference.setTargetName(withElement.getAttributeValue("Var"))

@@ -53,6 +53,8 @@ class FBInterfacePrinter(declaration: FBInterfaceDeclaration, private val mySubA
     private class EventPrinter private constructor(tag: String, eventDeclaration: EventDeclaration) :
         DeclarationPrinterBase<EventDeclaration>(eventDeclaration, tag) {
         override fun printDeclarationBody(element: Element) {
+            val comment = this.element.comment // EcoStruxure
+            if (comment != null) element.setAttribute("Comment", comment)
             for (association in this.element.associations) {
                 val with = Element("With")
                 with.setAttribute("Var", association.parameterReference.presentation)
