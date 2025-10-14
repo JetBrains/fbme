@@ -73,7 +73,7 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
         val inputsVarsElement : Element? = interfaceListElement.getChild("InputVars")
         val outputVarsElement : Element? = interfaceListElement.getChild("OutputVars")
         val fbNetworkElement = ecoElement.getChild("FBNetwork") ?: return
-        val eventConnectionsElement = fbNetworkElement.getChild("EventConnections") ?: return
+        val eventConnectionsElement = fbNetworkElement.getChild("EventConnections")
         val dataConnectionsElement = fbNetworkElement.getChild("DataConnections")
 
         if (dataConnectionsElement != null) {
@@ -83,10 +83,10 @@ class CompositeFBTypeDeclarationEcoConverter(fbmeElement: Element) {
             fbNetworkElement.addContent(dataConnectionsElement)
         }
 
-        for (eventConnection in eventConnectionsElement.children) {
+        for (eventConnection in eventConnectionsElement?.children ?: emptyList()) {
             eventConnection.removeChildren("BendPoints")
         }
-        for (dataConnection in dataConnectionsElement.children) {
+        for (dataConnection in dataConnectionsElement?.children ?: emptyList()) {
             dataConnection.removeChildren("BendPoints")
         }
 
