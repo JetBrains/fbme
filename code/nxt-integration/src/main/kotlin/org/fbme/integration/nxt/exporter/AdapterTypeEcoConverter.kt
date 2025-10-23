@@ -2,6 +2,7 @@ package org.fbme.integration.nxt.exporter
 
 import org.fbme.lib.iec61499.declarations.AdapterTypeDeclaration
 import org.fbme.lib.iec61499.declarations.EventDeclaration
+import org.fbme.lib.iec61499.declarations.IOPrimitiveDeclaration
 import org.fbme.lib.iec61499.declarations.ParameterDeclaration
 import org.jdom.Element
 
@@ -11,13 +12,66 @@ class AdapterTypeEcoConverter(private val adapter: AdapterTypeDeclaration, fbmeE
 
     fun convert() : Element {
         val ecoElement = rootElement.clone()
-        generateServiceElement(ecoElement)
+        checkServiceElement(ecoElement)
         return ecoElement
     }
 
-    private fun generateServiceElement(ecoElement: Element) {
+    private fun checkServiceElement(ecoElement: Element) {
 
-        if (ecoElement.getChild("Service") != null) return
+        if (ecoElement.getChild("Service") == null) {
+            generateServiceElement(ecoElement)
+            return
+        }
+
+        // Make sure all event and data variables and their associations in <Service> are consistent with <InterfaceList>.
+        val events = adapter.inputEvents + adapter.outputEvents
+        val parameters = adapter.inputParameters + adapter.outputParameters
+        val serviceIOPrimitives : MutableSet<IOPrimitiveDeclaration> = mutableSetOf()
+
+        adapter.requestServiceSequence.forEach {
+            serviceIOPrimitives.add(it.input)
+            serviceIOPrimitives.add(it.output)
+        }
+        adapter.responseServiceSequence.forEach {
+            serviceIOPrimitives.add(it.input)
+            serviceIOPrimitives.add(it.output)
+        }
+
+        var checkOK = true
+        val defaultEvents = setOf("REQ", "CNF", "IND", "RSP")
+        val defaultParameters = setOf("REQD", "CNFD", "INDD", "RSPD")
+
+        for (serviceIOPrimitive in serviceIOPrimitives) {
+            val eventName = serviceIOPrimitive.event
+            val parameterName = serviceIOPrimitive.parameters
+            val event = events.find { it.name == eventName }
+            if (event == null) {
+                if (eventName !in defaultEvents) {
+                    checkOK = false
+                    break
+                }
+                val parameterExists =
+                    parameters.any { it.name == parameterName } || (parameterName in defaultParameters)
+                if (!parameterExists) {
+                    checkOK = false
+                    break
+                }
+            } else {
+                val associatedParameters = event.associations.map { it.parameterReference.presentation }
+                if (parameterName !in associatedParameters && parameterName !in defaultParameters) {
+                    checkOK = false
+                    break
+                }
+            }
+        }
+
+        if (!checkOK) {
+            ecoElement.removeChild("Service")
+            generateServiceElement(ecoElement)
+        }
+    }
+
+    private fun generateServiceElement(ecoElement: Element) {
 
         val serviceElement = Element("Service")
         serviceElement.setAttribute("RightInterface", "PLUG")
