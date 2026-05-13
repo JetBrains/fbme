@@ -138,18 +138,33 @@ object VariableParser {
 
 
 
-    fun getAlphaEvent(id: String, data: List<String>, info: String): SystemStateEvent {
-        val lastFbId = id.split("_alpha")[0]
-        var fbId = data.subList(1, data.lastIndex) + lastFbId
-        return SystemStateEvent(fbId, SystemStateEventType.ALPHA_UPDATE,
+    fun getAlphaEvent(id: String, data: List<String>, info: String): SystemStateEvent? {
+        try {
+            val lastFbId = id.split("_alpha")[0]
+            var fbId = data.subList(1, data.lastIndex) + lastFbId
+            return SystemStateEvent(fbId, SystemStateEventType.ALPHA_UPDATE,
                 arrayOf(info))
+
+        }        catch (e: Exception) {
+            PluginManager.getLogger().error(id+info);
+        }
+        return null
+
     }
 
-    fun getBetaEvent(id: String, data: List<String>, info: String): SystemStateEvent {
-        val lastFbId = id.split("_beta")[0]
-        var fbId = data.subList(1, data.lastIndex) + lastFbId
-        return SystemStateEvent(fbId, SystemStateEventType.BETA_UPDATE,
+    fun getBetaEvent(id: String, data: List<String>, info: String): SystemStateEvent? {
+        try {
+            val lastFbId = id.split("_beta")[0]
+            var fbId = data.subList(1, data.lastIndex) + lastFbId
+            return SystemStateEvent(fbId, SystemStateEventType.BETA_UPDATE,
                 arrayOf(info))
+        }
+        catch (e: Exception) {
+        PluginManager.getLogger().error(id+info);
+    }
+    return null
+
+
     }
 
     fun getQEvent(id: String, data: List<String>, info: String): SystemStateEvent {

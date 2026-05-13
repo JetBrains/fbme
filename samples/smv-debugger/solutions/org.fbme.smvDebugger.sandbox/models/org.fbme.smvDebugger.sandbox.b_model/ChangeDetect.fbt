@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="ChangeDetect">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ">
+        <With Var="INP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CHG">
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INP" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="PREV" Type="REAL" InitialValue="-1.0" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" x="320" y="241" />
+      <ECState Name="NOCHANGE" x="1851" y="493">
+        <ECAction Algorithm="REQ" />
+      </ECState>
+      <ECState Name="CHANGED" x="621" y="1420">
+        <ECAction Output="CHG" Algorithm="REQ" />
+      </ECState>
+      <ECState Name="WAIT" x="1056" y="896" />
+      <ECState Name="FIRST" x="944" y="248">
+        <ECAction Output="CHG" Algorithm="INIT" />
+      </ECState>
+      <ECTransition Source="WAIT" Destination="NOCHANGE" x="1267" y="612" Condition="REQ AND (PREV = INP)" />
+      <ECTransition Source="NOCHANGE" Destination="WAIT" x="1492" y="780" Condition="1" />
+      <ECTransition Source="WAIT" Destination="CHANGED" x="997" y="1241" Condition="REQ AND (PREV &lt;&gt; INP) " />
+      <ECTransition Source="CHANGED" Destination="WAIT" x="667" y="1107" Condition="1" />
+      <ECTransition Source="START" Destination="FIRST" x="624" y="131" Condition="REQ" />
+      <ECTransition Source="FIRST" Destination="WAIT" x="1040" y="540" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="PREV := INP;&#10;OUT := INP;&#10;" />
+    </Algorithm>
+    <Algorithm Name="REQ">
+      <ST Text="PREV := INP;&#10;OUT := INP;&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+
