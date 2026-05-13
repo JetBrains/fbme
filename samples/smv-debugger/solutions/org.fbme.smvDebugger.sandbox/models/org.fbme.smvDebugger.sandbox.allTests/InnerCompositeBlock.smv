@@ -1,0 +1,338 @@
+MODULE InnerBlock(event_INIT, event_NDT, event_INTO, ibInpVar_, intVar_, ibOutpVar_, alpha, beta)
+VAR ibInpVar : boolean;
+VAR intVar : integer;
+VAR ibOutpVar : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc, IDLE_ecc, FORNDT_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(ibInpVar):= FALSE;
+init(intVar):= 0;
+init(ibOutpVar):= FALSE;
+
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=START_ecc & S_smv=s1_osm & event_INIT[intVar < 10] : IDLE_ecc;
+	Q_smv=IDLE_ecc & S_smv=s1_osm : START_ecc;
+	Q_smv=IDLE_ecc & S_smv=s1_osm & event_NDT : FORNDT_ecc;
+	Q_smv=FORNDT_ecc & S_smv=s1_osm : FORNDT_ecc;
+	TRUE : Q_smv;
+esac;
+
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1) | (Q_smv=IDLE_ecc & NA < 1) | (Q_smv=FORNDT_ecc & NA < 1)): (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=IDLE_ecc & NA = 1) | (Q_smv=FORNDT_ecc & NA = 1)):  0 ;
+	TRUE : NA;
+esac;
+
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI < 1) | (Q_smv=IDLE_ecc & NA = 1 & NI < 2) | (Q_smv=FORNDT_ecc & NA = 1 & NI < 2)):(NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=IDLE_ecc & NA = 1 & NI = 2) | (Q_smv=FORNDT_ecc & NA = 1 & NI = 2)): 0 ;
+	TRUE : NI;
+esac;
+
+next(ibInpVar):= case
+	alpha & S_smv=s0_osm & (event_INIT) : ibInpVar_ ;
+	TRUE : ibInpVar;
+esac;
+next(intVar):= case
+	alpha & S_smv=s0_osm : intVar_ ;
+	TRUE : intVar;
+esac;
+
+next(ibOutpVar):= case
+	S_smv=s2_osm & Q_smv=IDLE_ecc & NA=1 & NI=1 : ( ! ibInpVar);
+	S_smv=s2_osm & Q_smv=FORNDT_ecc & NA=1 & NI=1 : ( ! ibInpVar);
+	TRUE : ibOutpVar;
+esac;
+
+next(ibOutpVar_):= case
+S_smv=s2_osm & NI=0 & ((Q_smv=IDLE_ecc & NA=1) | (Q_smv=FORNDT_ecc & NA=1)) : ibOutpVar;
+	TRUE : ibOutpVar_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_INIT_reset:= 	S_smv=s1_osm;
+DEFINE event_NDT_reset:= 	(alpha & (event_INIT)) | (S_smv=s1_osm);
+
+DEFINE event_INTO_set:= 	S_smv=s2_osm & NI=0 & ((Q_smv=IDLE_ecc & NA=1) | (Q_smv=FORNDT_ecc & NA=1));
+
+DEFINE ExistsInputEvent:= event_INIT | event_NDT;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc  & ((event_INIT[intVar < 10]))) | (Q_smv=IDLE_ecc) | (Q_smv=FORNDT_ecc);
+
+
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE OneMoreInnerBlock(event_IN, event_OUT, in_, out_, alpha, beta)
+VAR in : boolean;
+VAR out : boolean;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc};
+
+VAR NA: 0..0;
+VAR NI: 0..1;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(in):= FALSE;
+init(out):= FALSE;
+
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	TRUE : Q_smv;
+esac;
+
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1)): (NA + 1) mod 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1)):  0 ;
+	TRUE : NA;
+esac;
+
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI < 1)):(NI + 1) mod 2;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1)): 0 ;
+	TRUE : NI;
+esac;
+
+next(in):= case
+	alpha & S_smv=s0_osm : in_ ;
+	TRUE : in;
+esac;
+
+next(out):= case
+	TRUE : out;
+esac;
+
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_IN_reset:= 	S_smv=s1_osm;
+
+DEFINE event_OUT_set:= FALSE;
+
+DEFINE ExistsInputEvent:= event_IN;
+DEFINE ExistsEnabledECTran:= ;
+
+
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE InnerCompositeBlock(event_INIT, event_INTO, icbInpVar_, intVar_, icbOutpVar_, alpha, beta)
+VAR ctb : InnerBlock (ctb_INIT, ctb_NDT, ctb_INTO, ctb_ibInpVar, ctb_intVar, ctb_ibOutpVar, ctb_alpha, ctb_beta);
+VAR fb2 : OneMoreInnerBlock (fb2_IN, fb2_OUT, fb2_in, fb2_out, fb2_alpha, fb2_beta);
+
+VAR ctb_INIT : boolean;
+VAR ctb_NDT : boolean;
+VAR ctb_INTO : boolean;
+VAR ctb_ibInpVar : boolean;
+VAR ctb_intVar : integer;
+VAR ctb_ibOutpVar : boolean;
+VAR ctb_alpha : boolean;
+VAR ctb_beta : boolean;
+
+VAR fb2_IN : boolean;
+VAR fb2_OUT : boolean;
+VAR fb2_in : boolean;
+VAR fb2_out : boolean;
+VAR fb2_alpha : boolean;
+VAR fb2_beta : boolean;
+
+
+
+ASSIGN
+init(ctb_INIT):= FALSE;
+init(ctb_NDT):= FALSE;
+init(ctb_INTO):= FALSE;
+init(ctb_ibInpVar):= FALSE;
+init(ctb_intVar):= 0;
+init(ctb_ibOutpVar):= FALSE;
+init(ctb_alpha):= FALSE;
+init(ctb_beta):= FALSE;
+
+init(fb2_IN):= FALSE;
+init(fb2_OUT):= FALSE;
+init(fb2_in):= FALSE;
+init(fb2_out):= FALSE;
+init(fb2_alpha):= FALSE;
+init(fb2_beta):= FALSE;
+
+
+next(ctb_NDT) := ctb_NDT;
+-- _internalDataConnections
+next(ctb_ibInpVar):= case
+	alpha & (event_INIT) : icbInpVar_ ;
+	TRUE : ctb_ibInpVar;
+esac;
+
+next(icbOutpVar_):= case
+	(ctb_INTO | fb2_OUT) : ctb_ibOutpVar;
+	TRUE : icbOutpVar_;
+esac;
+
+next(fb2_in):= case
+	alpha & (event_INIT) : icbInpVar_ ;
+	TRUE : fb2_in;
+esac;
+
+next(icbOutpVar_):= case
+	(ctb_INTO | fb2_OUT) : fb2_out;
+	TRUE : icbOutpVar_;
+esac;
+
+next(ctb_intVar):= case
+	alpha : intVar_ ;
+	TRUE : ctb_intVar;
+esac;
+
+
+-- ComponentEventOutputs
+next(ctb_INTO):= case
+	ctb.event_INTO_set : TRUE;
+	TRUE : FALSE;
+esac;
+next(fb2_OUT):= case
+	fb2.event_OUT_set : TRUE;
+	TRUE : FALSE;
+esac;
+
+
+-- ---DISPATCHER--- --
+-- *************** --
+next(ctb_alpha):= case
+	alpha & omega & !ExistsInputEvent : TRUE;
+	ctb.alpha_reset : FALSE;
+	TRUE : ctb_alpha;
+esac;
+next(ctb_beta):= case
+	ctb_beta & omega : FALSE;
+	ctb.beta_set : TRUE;
+	TRUE : ctb_beta;
+esac;
+next(fb2_alpha):= case
+	ctb_beta & omega : TRUE;
+	fb2.alpha_reset : FALSE;
+	TRUE : fb2_alpha;
+esac;
+next(fb2_beta):= case
+	fb2_beta & omega : FALSE;
+	fb2.beta_set : TRUE;
+	TRUE : fb2_beta;
+esac;
+DEFINE beta_set:= fb2_beta & omega;
+DEFINE alpha_reset:= alpha & omega & !ExistsInputEvent;
+
+ASSIGN
+
+
+-- _internalEventConnections
+next(ctb_INIT):= case
+	((event_INIT & alpha)) : TRUE;
+	(ctb.event_INIT_reset) : FALSE;
+	TRUE : ctb_INIT;
+esac;
+
+next(fb2_IN):= case
+	((event_INIT & alpha)) : TRUE;
+	(fb2.event_IN_reset) : FALSE;
+	TRUE : fb2_IN;
+esac;
+
+DEFINE event_INTO_set:= 	(ctb_INTO | fb2_OUT);
+
+DEFINE event_INIT_reset:= alpha;
+DEFINE ExistsInputEvent:= event_INIT;
+
+DEFINE omega:= !(ctb_INTO | fb2_OUT);
+
+DEFINE phi:= (!ExistsInputEvent) & (!(ctb_INIT | ctb_NDT | ctb_INTO | fb2_IN | fb2_OUT));
+
+FAIRNESS (alpha)
+FAIRNESS (beta)
+
+
+MODULE main()
+VAR InnerCompositeBlock_inst : InnerCompositeBlock (InnerCompositeBlock_inst_INIT, InnerCompositeBlock_inst_INTO, InnerCompositeBlock_inst_icbInpVar, InnerCompositeBlock_inst_intVar, InnerCompositeBlock_inst_icbOutpVar, InnerCompositeBlock_inst_alpha, InnerCompositeBlock_inst_beta);
+
+VAR InnerCompositeBlock_inst_INIT : boolean;
+VAR InnerCompositeBlock_inst_INTO : boolean;
+VAR InnerCompositeBlock_inst_icbInpVar : boolean;
+VAR InnerCompositeBlock_inst_intVar : integer;
+VAR InnerCompositeBlock_inst_icbOutpVar : boolean;
+VAR InnerCompositeBlock_inst_alpha : boolean;
+VAR InnerCompositeBlock_inst_beta : boolean;
+
+
+VAR false_var : boolean;
+
+ASSIGN
+init(false_var):= FALSE;
+next(false_var) := FALSE;
+init(InnerCompositeBlock_inst_INIT):= FALSE;
+init(InnerCompositeBlock_inst_INTO):= FALSE;
+init(InnerCompositeBlock_inst_icbInpVar):= FALSE;
+init(InnerCompositeBlock_inst_intVar):= 0;
+init(InnerCompositeBlock_inst_icbOutpVar):= FALSE;
+
+
+init(InnerCompositeBlock_inst_alpha):= TRUE;
+init(InnerCompositeBlock_inst_beta):= FALSE;
+next(InnerCompositeBlock_inst_icbInpVar) := InnerCompositeBlock_inst_icbInpVar;
+next(InnerCompositeBlock_inst_intVar) := InnerCompositeBlock_inst_intVar;
+next(InnerCompositeBlock_inst_INIT):= case
+InnerCompositeBlock_inst.event_INIT_reset : FALSE;
+	TRUE : InnerCompositeBlock_inst_INIT;
+esac;
+next(InnerCompositeBlock_inst_INTO):= case
+InnerCompositeBlock_inst.event_INTO_set : TRUE;
+	TRUE : InnerCompositeBlock_inst_INTO;
+esac;
+next(InnerCompositeBlock_inst_alpha):= case
+	InnerCompositeBlock_inst_beta : TRUE;
+	InnerCompositeBlock_inst.alpha_reset : FALSE;
+	TRUE : InnerCompositeBlock_inst_alpha;
+esac;
+next(InnerCompositeBlock_inst_beta):= case
+	InnerCompositeBlock_inst_beta : FALSE;
+	InnerCompositeBlock_inst.beta_set : TRUE;
+	TRUE : InnerCompositeBlock_inst_beta;
+esac;
+
+LTLSPEC F false_var=TRUE

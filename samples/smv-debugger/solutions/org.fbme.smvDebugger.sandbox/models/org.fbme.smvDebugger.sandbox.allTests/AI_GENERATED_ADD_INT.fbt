@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="AI_GENERATED_ADD_INT">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ">
+        <With Var="A" />
+        <With Var="B" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF">
+        <With Var="SUM" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="A" Type="INT" />
+      <VarDeclaration Name="B" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="SUM" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="199" />
+      <ECState Name="CALC" x="1286" y="0">
+        <ECAction Output="CNF" Algorithm="ADD" />
+      </ECState>
+      <ECTransition Source="START" Destination="CALC" x="806" y="580" Condition="REQ" />
+      <ECTransition Source="CALC" Destination="START" x="806" y="180" Condition="1" />
+    </ECC>
+    <Algorithm Name="ADD">
+      <ST Text="SUM := A + B;&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

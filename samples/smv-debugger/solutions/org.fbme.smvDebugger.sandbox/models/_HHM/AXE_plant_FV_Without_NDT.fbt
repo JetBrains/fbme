@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="a03e8c41-a9ef-47a5-9919-87a7174ed9bf" Name="AXE_plant_FV_Without_NDT" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="13/06/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="GO" />
+        <With Var="POS_IN" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="GO" />
+        <With Var="POS_IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="PR" />
+        <With Var="POS_OUT" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="PR" />
+        <With Var="POS_OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GO" Type="BOOL" />
+      <VarDeclaration Name="POS_IN" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="PR" Type="BOOL" />
+      <VarDeclaration Name="POS_OUT" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,STOP,PR_SET,PR_UNSET" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1412.497" y="216.3007" />
+      <ECState Name="HOME" x="1413.555" y="910">
+        <ECAction Algorithm="PR_UNSET" Output="CNF" />
+      </ECState>
+      <ECState Name="GO" x="1419.777" y="1243.111">
+        <ECAction Output="CNF" />
+      </ECState>
+      <ECState Name="END" x="1420.223" y="1626.666">
+        <ECAction Algorithm="PR_SET" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" x="1416.667" y="593.3333">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECTransition Source="HOME" Destination="GO" Condition="GO" x="1415.505" y="1064.109">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="353.816,252.4901,353.816,277.4901" />
+      </ECTransition>
+      <ECTransition Source="GO" Destination="END" Condition="1" x="1419.512" y="1423.493">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="354.8019,343.2884,354.9081,366.5586" />
+      </ECTransition>
+      <ECTransition Source="END" Destination="HOME" Condition="NOT GO" x="2149.267" y="1231.372">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="589.4918,330.4145,588.8459,279.5293" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1414.972" y="392.6585">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="353.6008,85.79162,353.9126,108.5112" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="GO" Condition="GO" x="1086.991" y="869.6277">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="250.9298,191.2078,251.1473,236.6589" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;PR:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="PR_SET">
+      <ST Text=";&#xD;&#xA;PR:=TRUE;&#xD;&#xA;POS_OUT:=POS_IN;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text=";&#xD;&#xA;PR := FALSE;&#xD;&#xA;POS_OUT:=5;" />
+    </Algorithm>
+    <Algorithm Name="PR_UNSET">
+      <ST Text=";&#xD;&#xA;PR := FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

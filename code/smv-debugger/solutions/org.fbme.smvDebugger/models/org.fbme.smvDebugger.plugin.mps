@@ -52,10 +52,12 @@
       <concept id="1203092361741" name="jetbrains.mps.lang.plugin.structure.ModificationStatement" flags="lg" index="tT9cl">
         <reference id="1203092736097" name="modifiedGroup" index="tU$_T" />
       </concept>
+      <concept id="1213888653896" name="jetbrains.mps.lang.plugin.structure.InitBlock" flags="in" index="2xpIHi" />
       <concept id="1205679047295" name="jetbrains.mps.lang.plugin.structure.ActionParameterDeclaration" flags="ig" index="2S4$dB" />
       <concept id="1205681243813" name="jetbrains.mps.lang.plugin.structure.IsApplicableBlock" flags="in" index="2ScWuX" />
       <concept id="1214307303872" name="jetbrains.mps.lang.plugin.structure.GetComponentBlock" flags="in" index="2UmK3q" />
       <concept id="6547237850567458268" name="jetbrains.mps.lang.plugin.structure.BaseToolDeclaration" flags="ng" index="2XNcJY">
+        <child id="8096638938275469614" name="toolInitBlock" index="uR5cp" />
         <child id="6547237850567462848" name="methodDeclaration" index="2XNbBy" />
         <child id="6547237850567462849" name="fieldDeclaration" index="2XNbBz" />
       </concept>
@@ -672,6 +674,9 @@
           </node>
         </node>
       </node>
+    </node>
+    <node concept="2xpIHi" id="56_f6c2VyK5" role="uR5cp">
+      <node concept="3clFbS" id="56_f6c2VyK6" role="2VODD2" />
     </node>
   </node>
   <node concept="34j2dQ" id="4i$1wjaI7VF">

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="AXE_plant">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ">
+        <With Var="GO" />
+      </Event>
+      <Event Name="NDT" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="PR" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="PR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GO" Type="BOOL" />
+      <VarDeclaration Name="POS_IN" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="PR" Type="BOOL" />
+      <VarDeclaration Name="POS_OUT" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="1106" />
+      <ECState Name="HOME" x="5900" y="1160">
+        <ECAction Output="CNF" Algorithm="PR_UNSET" />
+      </ECState>
+      <ECState Name="MOVING" x="8260" y="1293" />
+      <ECState Name="END" x="3539" y="1726">
+        <ECAction Output="CNF" Algorithm="PR_SET" />
+      </ECState>
+      <ECState Name="INIT" x="1340" y="799">
+        <ECAction Output="INITO" Algorithm="PR_UNSET" />
+      </ECState>
+      <ECState Name="STOP" x="5900" y="0">
+        <ECAction Output="CNF" Algorithm="R_SET" />
+      </ECState>
+      <ECTransition Source="HOME" Destination="MOVING" x="7699" y="1619" Condition="GO" />
+      <ECTransition Source="MOVING" Destination="END" x="6519" y="2400" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="HOME" x="4160" y="1253" Condition="NDT" />
+      <ECTransition Source="INIT" Destination="END" x="3060" y="1446" Condition="NDT" />
+      <ECTransition Source="START" Destination="INIT" x="833" y="1253" Condition="INIT" />
+      <ECTransition Source="END" Destination="HOME" x="5340" y="1746" Condition="NOT GO" />
+      <ECTransition Source="MOVING" Destination="STOP" x="7699" y="1226" Condition="NOT GO" />
+      <ECTransition Source="STOP" Destination="MOVING" x="7699" y="1426" Condition="GO" />
+      <ECTransition Source="INIT" Destination="STOP" x="4160" y="919" Condition="NDT" />
+    </ECC>
+    <Algorithm Name="PR_SET">
+      <ST Text="PR := TRUE;&#10;POS_OUT := POS_IN;&#10;" />
+    </Algorithm>
+    <Algorithm Name="PR_UNSET">
+      <ST Text="PR := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="R_SET">
+      <ST Text="POS_OUT := 5;&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

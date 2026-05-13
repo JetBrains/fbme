@@ -17,7 +17,9 @@ class NutracService(nutracBinaryPath: Path?) : AbstractIntegrationService(nutrac
     }
 
     companion object {
-        const val NUTRAC_FILE_EXTENSION = "nutrac"
+        //const val NUTRAC_FILE_EXTENSION = "nutrac"
+
+        const val NUTRAC_FILE_EXTENSION = "txt"
         private const val CSV_FILE_EXTENSION = "csv"
     }
 }

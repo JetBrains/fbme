@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="bab7f524-0879-49a2-8b20-3bbbba9fe261" Name="GR_plant_Without_NDT" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="13/06/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="GRO" />
+        <With Var="GRC" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="OPEN" Type="BOOL" />
+      <VarDeclaration Name="CLOSE" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="GRO" Type="BOOL" />
+      <VarDeclaration Name="GRC" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,OPEN,moving,CLOSE,STOP" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1624.941" y="85.41172" />
+      <ECState Name="INIT" Comment="Initialization" x="1619.53" y="477.1761">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="OPENNED" x="1608" y="944">
+        <ECAction Algorithm="OPEN" Output="CNF" />
+      </ECState>
+      <ECState Name="CLOSED" x="1620" y="2200">
+        <ECAction Algorithm="CLOSE" Output="CNF" />
+      </ECState>
+      <ECState Name="OPENNING" x="2556" y="1484">
+        <ECAction Algorithm="moving" Output="CNF" />
+      </ECState>
+      <ECState Name="CLOSING" x="620.6666" y="1434">
+        <ECAction Algorithm="moving" Output="CNF" />
+      </ECState>
+      <ECTransition Source="CLOSING" Destination="CLOSED" Condition="1" x="958.2686" y="1891.776">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="197.1181,453.0545,265.7145,505.0284" />
+      </ECTransition>
+      <ECTransition Source="CLOSED" Destination="OPENNING" Condition="OPEN" x="2198.687" y="1936.687">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="521.9269,515.8414,585.6276,467.627" />
+      </ECTransition>
+      <ECTransition Source="OPENNING" Destination="OPENNED" Condition="1" x="2199.932" y="1112.198">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="585.2971,288.3041,522.6587,253.1204" />
+      </ECTransition>
+      <ECTransition Source="OPENNED" Destination="CLOSING" Condition="CLOSE" x="1017.791" y="1077.101">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="284.7915,245.4821,219.0686,277.5949" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1623.521" y="290.7799">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="405.7827,61.69302,406.0872,85.27796" />
+      </ECTransition>
+      <ECTransition Source="CLOSING" Destination="OPENNING" Condition="OPEN" x="1618.552" y="1166.484">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="340.8889,269.6691,471.7904,273.517" />
+      </ECTransition>
+      <ECTransition Source="OPENNING" Destination="CLOSING" Condition="CLOSE" x="1552.433" y="1783.452">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="451.4253,470.4485,320.3678,466.656" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="CLOSING" Condition="CLOSE" x="842.1018" y="777.7441">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="228.303,145.6954,154.1436,216.7337" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="OPENNING" Condition="OPEN" x="2401.888" y="814.7017">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="587.5161,153.6755,657.5178,228.9271" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;GRO:=FALSE;&#xD;&#xA;GRC:=FALSE;" />
+    </Algorithm>
+    <Algorithm Name="OPEN">
+      <ST Text=";&#xD;&#xA;GRO := TRUE;&#xD;&#xA;GRC := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="moving">
+      <ST Text=";&#xD;&#xA;GRO := FALSE;&#xD;&#xA;GRC := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="CLOSE">
+      <ST Text=";&#xD;&#xA;GRC := TRUE;&#xD;&#xA;GRO := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text=";&#xD;&#xA;GRO := FALSE;&#xD;&#xA;GRC := FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

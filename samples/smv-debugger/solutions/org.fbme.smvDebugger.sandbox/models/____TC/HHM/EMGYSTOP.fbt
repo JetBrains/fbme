@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="EMGYSTOP">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="press" />
+      <Event Name="release" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="pressed" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="pressed" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="pressed" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1956" y="601" />
+      <ECState Name="pressed" x="1592" y="1088">
+        <ECAction Output="CNF" Algorithm="PRESSED" />
+      </ECState>
+      <ECState Name="INIT" x="1600" y="768">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="1717" y="632" Condition="INIT" />
+      <ECTransition Source="INIT" Destination="pressed" x="1437" y="925" Condition="press" />
+      <ECTransition Source="pressed" Destination="INIT" x="1758" y="934" Condition="release" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="pressed := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="PRESSED">
+      <ST Text="pressed := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

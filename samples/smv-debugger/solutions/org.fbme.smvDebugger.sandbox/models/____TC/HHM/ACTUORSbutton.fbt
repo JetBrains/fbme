@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="ACTUORSbutton">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="REQ">
+        <With Var="MODE" />
+      </Event>
+      <Event Name="el" />
+      <Event Name="ca" />
+      <Event Name="cr" />
+      <Event Name="gr" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="EL" />
+        <With Var="CA" />
+        <With Var="CR" />
+        <With Var="GR" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="EL" />
+        <With Var="CA" />
+        <With Var="CR" />
+        <With Var="GR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MODE" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="EL" Type="BOOL" />
+      <VarDeclaration Name="CR" Type="BOOL" />
+      <VarDeclaration Name="CA" Type="BOOL" />
+      <VarDeclaration Name="GR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1460" y="761" />
+      <ECState Name="INIT" x="2031" y="749">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="EL" x="1656" y="332">
+        <ECAction Output="CNF" Algorithm="EL" />
+      </ECState>
+      <ECState Name="CA" x="1660" y="1152">
+        <ECAction Output="CNF" Algorithm="CA" />
+      </ECState>
+      <ECState Name="CR" x="2276" y="1152">
+        <ECAction Output="CNF" Algorithm="CR" />
+      </ECState>
+      <ECState Name="GR" x="2308" y="324">
+        <ECAction Output="CNF" Algorithm="GR" />
+      </ECState>
+      <ECState Name="AUTOmode" x="2920" y="748">
+        <ECAction Output="CNF" Algorithm="AUTO" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="1759" y="752" Condition="INIT" />
+      <ECTransition Source="EL" Destination="INIT" x="1770" y="567" Condition="1" />
+      <ECTransition Source="GR" Destination="INIT" x="2249" y="575" Condition="1" />
+      <ECTransition Source="CA" Destination="INIT" x="1783" y="920" Condition="1" />
+      <ECTransition Source="CR" Destination="INIT" x="2252" y="918" Condition="1" />
+      <ECTransition Source="INIT" Destination="EL" x="1915" y="505" Condition="el" />
+      <ECTransition Source="INIT" Destination="GR" x="2099" y="503" Condition="gr" />
+      <ECTransition Source="INIT" Destination="CA" x="1908" y="1004" Condition="ca" />
+      <ECTransition Source="INIT" Destination="CR" x="2076" y="965" Condition="cr" />
+      <ECTransition Source="INIT" Destination="AUTOmode" x="2456" y="642" Condition="1" />
+      <ECTransition Source="AUTOmode" Destination="INIT" x="2482" y="853" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="CA := FALSE;&amp;#38;#10;EL := FALSE;&amp;#38;#10;CR := FALSE;&amp;#38;#10;GR := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="EL">
+      <ST Text="EL := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CA">
+      <ST Text="CA := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="CR">
+      <ST Text="CR := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GR">
+      <ST Text="GR := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="AUTO">
+      <ST Text="CA := TRUE;&amp;#38;#10;EL := TRUE;&amp;#38;#10;CR := TRUE;&amp;#38;#10;GR := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

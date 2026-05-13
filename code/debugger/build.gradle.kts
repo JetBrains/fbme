@@ -36,7 +36,6 @@ mps {
 val compileKotlin: KotlinCompile by tasks
 
 compileKotlin.kotlinOptions {
-    languageVersion = "1.8"
     freeCompilerArgs = listOf(
         "-Xjvm-default=all",
 //        "-P",

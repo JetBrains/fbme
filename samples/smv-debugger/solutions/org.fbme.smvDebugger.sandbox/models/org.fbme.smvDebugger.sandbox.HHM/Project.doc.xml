@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.0" xml:id="article_top" xmlns="http://docbook.org/ns/docbook">
+  <info>
+    <title xml:id="article_top.title">Project Help</title>
+    <authorgroup>
+      <author>
+        <email />
+        <personname>
+          <firstname />
+          <surname />
+        </personname>
+        <personblurb><para></para></personblurb>
+        <affiliation>
+          <jobtitle />
+          <org>
+            <orgname />
+            <orgdiv />
+            <address>
+              <street />
+              <city />
+              <country />
+              <postcode />
+              <phone />
+              <fax />
+            </address>
+          </org>
+        </affiliation>
+      </author>
+    </authorgroup>
+    <org>
+      <orgname>Schneider Electric</orgname>
+      <orgdiv />
+      <address>
+        <street />
+        <city />
+        <country />
+        <postcode />
+        <phone />
+        <fax />
+      </address>
+    </org>
+    <abstract />
+  </info>
+</article>

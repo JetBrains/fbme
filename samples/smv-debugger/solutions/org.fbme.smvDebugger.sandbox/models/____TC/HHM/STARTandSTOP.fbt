@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="STARTandSTOP">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" />
+      <Event Name="start" />
+      <Event Name="stop" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="START" />
+        <With Var="STOP" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="START" />
+        <With Var="STOP" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="START" Type="BOOL" />
+      <VarDeclaration Name="STOP" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="1756" y="373" />
+      <ECState Name="INIT" x="2147" y="369">
+        <ECAction Output="INITO" Algorithm="INIT" />
+      </ECState>
+      <ECState Name="START_pressed" x="1948" y="792">
+        <ECAction Output="CNF" Algorithm="start" />
+      </ECState>
+      <ECState Name="STOP_pressed" x="2528" y="648">
+        <ECAction Output="CNF" Algorithm="stop" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="1961" y="279" Condition="INIT" />
+      <ECTransition Source="START_pressed" Destination="INIT" x="2098" y="613" Condition="1" />
+      <ECTransition Source="STOP_pressed" Destination="INIT" x="2190" y="540" Condition="1" />
+      <ECTransition Source="INIT" Destination="START_pressed" x="1908" y="570" Condition="start" />
+      <ECTransition Source="INIT" Destination="STOP_pressed" x="2398" y="439" Condition="stop" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="START := FALSE;&amp;#38;#10;STOP := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="start">
+      <ST Text="START := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="stop">
+      <ST Text="STOP := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

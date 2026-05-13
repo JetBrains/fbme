@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5f890445-09c2-4f3f-a90a-ab73c9831039" Name="SELECT_MODE" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Etienne" Date="05/07/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="AUTO" />
+      <Event Name="MANU" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" />
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="MODE" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="MODE" Type="STRING" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="AUTO,MANU,RESET" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1528.941" y="445.4117" />
+      <ECState Name="AUTO" x="1368" y="768">
+        <ECAction Algorithm="AUTO" Output="CNF" />
+      </ECState>
+      <ECState Name="MANU" x="1948" y="1012">
+        <ECAction Algorithm="MANU" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" x="1812" y="588">
+        <ECAction Algorithm="RESET" Output="INITO" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="AUTO" Condition="AUTO" x="1520.26" y="605.3115">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="389.5346,143.0041,364.2196,152.297" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="MANU" Condition="MANU" x="2093.942" y="741.4415">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="530.8226,168.7713,540.1644,194.3849" />
+      </ECTransition>
+      <ECTransition Source="AUTO" Destination="MANU" Condition="MANU" x="1461.398" y="993.2044">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="336.7714,246.1527,371.606,262.4136" />
+      </ECTransition>
+      <ECTransition Source="MANU" Destination="AUTO" Condition="AUTO" x="1668.398" y="910.6893">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="436.4659,237.4533,400.6206,219.9978" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1761.622" y="447.0491">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="436.6669,104.3206,448.9759,113.4924" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="AUTO">
+      <ST Text=";&#xD;&#xA;MODE:='AUTO';" />
+    </Algorithm>
+    <Algorithm Name="MANU">
+      <ST Text=";&#xD;&#xA;MODE:='MANU';" />
+    </Algorithm>
+    <Algorithm Name="RESET">
+      <ST Text=";&#xD;&#xA;MODE:='';" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

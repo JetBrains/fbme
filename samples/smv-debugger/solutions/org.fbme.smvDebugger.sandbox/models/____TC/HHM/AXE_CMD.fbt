@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="AXE_CMD">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="GO" />
+        <With Var="SETPOS_IN" />
+        <With Var="PR" />
+      </Event>
+      <Event Name="REQ">
+        <With Var="GO" />
+        <With Var="SETPOS_IN" />
+        <With Var="PR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO">
+        <With Var="go" />
+        <With Var="setpos_out" />
+        <With Var="moving" />
+        <With Var="pr" />
+      </Event>
+      <Event Name="CNF">
+        <With Var="go" />
+        <With Var="setpos_out" />
+        <With Var="moving" />
+        <With Var="pr" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GO" Type="BOOL" />
+      <VarDeclaration Name="SETPOS_IN" Type="INT" />
+      <VarDeclaration Name="PR" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="go" Type="BOOL" />
+      <VarDeclaration Name="setpos_out" Type="INT" />
+      <VarDeclaration Name="moving" Type="BOOL" />
+      <VarDeclaration Name="pr" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="1639" />
+      <ECState Name="wait" x="3433" y="793">
+        <ECAction Output="CNF" Algorithm="STOP" />
+      </ECState>
+      <ECState Name="go" x="5526" y="0">
+        <ECAction Output="CNF" Algorithm="GO" />
+      </ECState>
+      <ECState Name="pr" x="1340" y="40">
+        <ECAction Output="CNF" Algorithm="PR" />
+      </ECState>
+      <ECState Name="INIT" x="1793" y="1486">
+        <ECAction Output="INITO" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" x="833" y="1786" Condition="INIT" />
+      <ECTransition Source="wait" Destination="go" x="5100" y="859" Condition="1" />
+      <ECTransition Source="go" Destination="pr" x="4053" y="320" Condition="1" />
+      <ECTransition Source="pr" Destination="wait" x="3006" y="1213" Condition="1" />
+      <ECTransition Source="INIT" Destination="wait" x="3006" y="1559" Condition="1" />
+    </ECC>
+    <Algorithm Name="INIT">
+      <ST Text="pr := FALSE;&amp;#38;#10;moving := TRUE;&amp;#38;#10;setpos_out := 1;&amp;#38;#10;go := TRUE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="GO">
+      <ST Text="go := TRUE;&amp;#38;#10;setpos_out := SETPOS_IN;&amp;#38;#10;moving := TRUE;&amp;#38;#10;pr := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="PR">
+      <ST Text="go := FALSE;&amp;#38;#10;pr := TRUE;&amp;#38;#10;moving := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="go := FALSE;&amp;#38;#10;moving := FALSE;&amp;#38;#10;pr := FALSE;&amp;#38;#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

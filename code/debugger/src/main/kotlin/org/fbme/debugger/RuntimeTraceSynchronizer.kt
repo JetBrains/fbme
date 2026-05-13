@@ -244,6 +244,7 @@ class RuntimeTraceSynchronizer(
             is IntValue -> IntValue(newValue.toInt())
             is StringValue -> StringValue(newValue)
             is TimeValue -> TimeValue(newValue)
+            is UIntValue -> UIntValue(newValue.toUInt())
         } as Value<T>
     }
 

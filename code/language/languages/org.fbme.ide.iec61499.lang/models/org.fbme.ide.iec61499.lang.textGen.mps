@@ -8,6 +8,7 @@
   <imports>
     <import index="xiqq" ref="r:6f0d8474-8e05-4f2b-abb9-6798ef26f9e5(org.fbme.ide.iec61499.lang.structure)" implicit="true" />
     <import index="tpcu" ref="r:00000000-0000-4000-0000-011c89590282(jetbrains.mps.lang.core.behavior)" implicit="true" />
+    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -56,6 +57,9 @@
       <concept id="1179409122411" name="jetbrains.mps.lang.smodel.structure.Node_ConceptMethodCall" flags="nn" index="2qgKlT" />
       <concept id="1171999116870" name="jetbrains.mps.lang.smodel.structure.Node_IsNullOperation" flags="nn" index="3w_OXm" />
       <concept id="1172008320231" name="jetbrains.mps.lang.smodel.structure.Node_IsNotNullOperation" flags="nn" index="3x8VRR" />
+      <concept id="1138056022639" name="jetbrains.mps.lang.smodel.structure.SPropertyAccess" flags="nn" index="3TrcHB">
+        <reference id="1138056395725" name="property" index="3TsBF5" />
+      </concept>
       <concept id="1138056143562" name="jetbrains.mps.lang.smodel.structure.SLinkAccess" flags="nn" index="3TrEf2">
         <reference id="1138056516764" name="link" index="3Tt5mk" />
       </concept>
@@ -156,6 +160,29 @@
               </node>
             </node>
             <node concept="3x8VRR" id="7bQ9AP7AWO2" role="2OqNvi" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="WtQ9Q" id="QTS05A$xw7">
+    <property role="3GE5qa" value="expressions" />
+    <ref role="WuzLi" to="xiqq:3HBlKeoZeH4" resolve="InputEventGuard" />
+    <node concept="11bSqf" id="QTS05A$xw8" role="11c4hB">
+      <node concept="3clFbS" id="QTS05A$xw9" role="2VODD2">
+        <node concept="lc7rE" id="QTS05A$xR5" role="3cqZAp">
+          <node concept="l9hG8" id="QTS05A$xRr" role="lcghm">
+            <node concept="2OqwBi" id="QTS05A$yfq" role="lb14g">
+              <node concept="2OqwBi" id="QTS05A$xYW" role="2Oq$k0">
+                <node concept="117lpO" id="QTS05A$xSh" role="2Oq$k0" />
+                <node concept="3TrEf2" id="QTS05A$y7X" role="2OqNvi">
+                  <ref role="3Tt5mk" to="xiqq:3HBlKeoZeH5" resolve="inputEvent" />
+                </node>
+              </node>
+              <node concept="3TrcHB" id="QTS05A$yul" role="2OqNvi">
+                <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
+              </node>
+            </node>
           </node>
         </node>
       </node>

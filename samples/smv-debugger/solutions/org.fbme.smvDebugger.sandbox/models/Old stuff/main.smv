@@ -1,0 +1,54 @@
+
+
+MODULE main()
+VAR Composite_inst : Composite (Composite_inst_CU, Composite_inst_R, Composite_inst_EO0, Composite_inst_EO1, Composite_inst_PV,  Composite_inst_alpha, Composite_inst_beta);
+
+VAR Composite_inst_CU : boolean;
+VAR Composite_inst_R : boolean;
+VAR Composite_inst_EO0 : boolean;
+VAR Composite_inst_EO1 : boolean;
+VAR Composite_inst_PV : 0..10;
+VAR Composite_inst_alpha : boolean;
+VAR Composite_inst_beta : boolean;
+VAR false_var : boolean;
+
+ASSIGN
+init(false_var):= FALSE;
+next(false_var):= FALSE;
+init (Composite_inst_CU) := TRUE;
+init (Composite_inst_R) := TRUE;
+init (Composite_inst_EO0) := TRUE;
+init (Composite_inst_EO1) := TRUE;
+init ( Composite_inst_PV) := 0;
+init(Composite_inst_alpha):= TRUE;
+init(Composite_inst_beta):= FALSE;
+
+init ( Composite_inst_PV) := Composite_inst_PV;
+next(Composite_inst_CU):= case
+Composite_inst.event_CU_reset : FALSE;
+	TRUE : Composite_inst_CU;
+esac;
+next(Composite_inst_R):= case
+Composite_inst.event_R_reset : FALSE;
+	TRUE : Composite_inst_R;
+esac;
+next(Composite_inst_EO0):= case
+Composite_inst.event_EO0_set : TRUE;
+	TRUE : Composite_inst_EO0;
+esac;
+next(Composite_inst_EO1):= case
+Composite_inst.event_EO1_set : TRUE;
+	TRUE : Composite_inst_EO1;
+esac;
+next(Composite_inst_alpha):= case
+	Composite_inst_beta : TRUE;
+	Composite_inst.alpha_reset : FALSE;
+	TRUE : Composite_inst_alpha;
+esac;
+next(Composite_inst_beta):= case
+	Composite_inst_beta : FALSE;
+	Composite_inst.beta_set : TRUE;
+	TRUE : Composite_inst_beta;
+esac;
+
+LTLSPEC F false_var=TRUE

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="InnerCompositeBlock">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT">
+        <With Var="icbInpVar" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INTO">
+        <With Var="icbOutpVar" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="icbInpVar" Type="BOOL" />
+      <VarDeclaration Name="intVar" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="icbOutpVar" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB Name="ctb" Type="InnerBlock" x="343" y="0" />
+    <FB Name="fb2" Type="OneMoreInnerBlock" x="380" y="540" />
+    <DataConnections>
+      <Connection Source="icbInpVar" Destination="ctb.ibInpVar" />
+      <Connection Source="ctb.ibOutpVar" Destination="icbOutpVar" />
+      <Connection Source="icbInpVar" Destination="fb2.in" dx1="40" />
+      <Connection Source="fb2.out" Destination="icbOutpVar" dx1="260" />
+      <Connection Source="intVar" Destination="ctb.intVar" dx1="56" />
+    </DataConnections>
+    <EventConnections>
+      <Connection Source="INIT" Destination="ctb.INIT" />
+      <Connection Source="ctb.INTO" Destination="INTO" />
+      <Connection Source="INIT" Destination="fb2.IN" dx1="43" />
+      <Connection Source="fb2.OUT" Destination="INTO" dx1="237" />
+    </EventConnections>
+    <EndpointCoordinate Name="INTO" x="1260" y="49" />
+    <EndpointCoordinate Name="icbOutpVar" x="1260" y="249" />
+    <EndpointCoordinate Name="icbInpVar" x="-323" y="249" />
+    <EndpointCoordinate Name="INIT" x="-190" y="49" />
+    <EndpointCoordinate Name="intVar" x="-316" y="459" />
+  </FBNetwork>
+</FBType>
+

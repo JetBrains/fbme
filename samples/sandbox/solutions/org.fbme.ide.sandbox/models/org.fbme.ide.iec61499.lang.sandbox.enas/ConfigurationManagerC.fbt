@@ -28,31 +28,31 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork>
-    <FB Name="FB1" Type="ConfigurationManager" x="1726" y="376" />
+    <FB Name="FB1" Type="ConfigurationManager" x="1510" y="270" />
     <FB Name="ROBOTINO_ACTION" Type="PUBLISH_1" x="3565" y="1030" />
     <FB Name="ROBOTINO_STATE" Type="SUBSCRIBE_1" x="776" y="1011" />
     <DataConnections>
-      <Connection Source="FB1.configurationID" Destination="ROBOTINO_ACTION.SD_1" dx1="350" />
-      <Connection Source="FB1.configurationID" Destination="configurationID" dx1="196" />
-      <Connection Source="ROBOTINO_STATE.RD_1" Destination="FB1.robotinoPos" dx1="300" />
+      <Connection Source="FB1.configurationID" Destination="ROBOTINO_ACTION.SD_1" dx1="420" />
+      <Connection Source="FB1.configurationID" Destination="configurationID" dy="-170" dx2="130" dx1="130" />
+      <Connection Source="ROBOTINO_STATE.RD_1" Destination="FB1.robotinoPos" dx1="180" />
     </DataConnections>
     <EventConnections>
-      <Connection Source="REQ_HOME" Destination="FB1.REQ_HOME" dx1="584" />
-      <Connection Source="REQ_FEED" Destination="FB1.REQ_FEED" dx1="542" />
-      <Connection Source="REQ_COLLECT" Destination="FB1.REQ_COLLECT" dx1="407" />
-      <Connection Source="REQ_REJECT" Destination="FB1.REQ_REJECT" dx1="396" />
-      <Connection Source="FB1.INITO" Destination="INITO" dx1="30" />
-      <Connection Source="FB1.READY" Destination="READY" dx1="57" />
-      <Connection Source="FB1.S5_GATE_CLOSE" Destination="S5_GATE_CLOSE" dx1="73" />
-      <Connection Source="FB1.S5_GATE_OPEN" Destination="S5_GATE_OPEN" dx1="92" />
-      <Connection Source="ROBOTINO_ACTION.INITO" Destination="FB1.INIT" dy="-826" dx2="150" dx1="150" />
+      <Connection Source="REQ_HOME" Destination="FB1.REQ_HOME" dx1="490" />
+      <Connection Source="REQ_FEED" Destination="FB1.REQ_FEED" dx1="457" />
+      <Connection Source="REQ_COLLECT" Destination="FB1.REQ_COLLECT" dx1="337" />
+      <Connection Source="REQ_REJECT" Destination="FB1.REQ_REJECT" dx1="330" />
+      <Connection Source="FB1.INITO" Destination="INITO" dy="-150" dx2="130" dx1="130" />
+      <Connection Source="FB1.READY" Destination="READY" dy="-147" dx2="130" dx1="130" />
+      <Connection Source="FB1.S5_GATE_CLOSE" Destination="S5_GATE_CLOSE" dy="-147" dx2="130" dx1="130" />
+      <Connection Source="FB1.S5_GATE_OPEN" Destination="S5_GATE_OPEN" dy="-150" dx2="130" dx1="130" />
+      <Connection Source="ROBOTINO_ACTION.INITO" Destination="FB1.INIT" dy="-820" dx2="140" dx1="150" />
       <Connection Source="INIT" Destination="ROBOTINO_STATE.INIT" dx1="388" />
-      <Connection Source="RESET" Destination="FB1.RESET" dx1="492" />
-      <Connection Source="FB1.REQ_CONFIRMATION" Destination="REQ_CONFIRMATION" dx1="126" />
-      <Connection Source="CONFIRM" Destination="FB1.CONFIRM" dx1="380" />
+      <Connection Source="RESET" Destination="FB1.RESET" dx1="417" />
+      <Connection Source="FB1.REQ_CONFIRMATION" Destination="REQ_CONFIRMATION" dy="-177" dx2="130" dx1="130" />
+      <Connection Source="CONFIRM" Destination="FB1.CONFIRM" dx1="320" />
       <Connection Source="ROBOTINO_STATE.INITO" Destination="ROBOTINO_ACTION.INIT" dx1="1153" />
-      <Connection Source="ROBOTINO_STATE.IND" Destination="FB1.REQ" dx1="234" />
-      <Connection Source="FB1.CNF" Destination="ROBOTINO_ACTION.REQ" dx1="434" />
+      <Connection Source="ROBOTINO_STATE.IND" Destination="FB1.REQ" dx1="140" />
+      <Connection Source="FB1.CNF" Destination="ROBOTINO_ACTION.REQ" dx1="520" />
     </EventConnections>
   </FBNetwork>
 </FBType>

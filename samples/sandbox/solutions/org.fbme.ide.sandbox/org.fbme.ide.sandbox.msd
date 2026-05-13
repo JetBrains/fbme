@@ -13,6 +13,7 @@
   <sourcePath />
   <dependencies>
     <dependency reexport="false">b8a7e14f-52ea-4ee2-b17e-26c27da8084c(IEC-61499)</dependency>
+    <dependency reexport="false">6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:8ca79d43-eb45-4791-bdd4-0d6130ff895b:de.itemis.mps.editor.diagram.layout" version="0" />
@@ -23,6 +24,7 @@
   </languageVersions>
   <dependencyVersions>
     <module reference="b8a7e14f-52ea-4ee2-b17e-26c27da8084c(IEC-61499)" version="0" />
+    <module reference="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" version="0" />
     <module reference="b613eb3b-11da-44ff-a31c-79eab36500f4(org.fbme.ide.sandbox)" version="0" />
   </dependencyVersions>
 </solution>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd">
+
+<FBType Name="E_CTU_CUSTOM">
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CU">
+        <With Var="PV" />
+      </Event>
+      <Event Name="R" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CUO">
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+      <Event Name="RO">
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PV" Type="UINT" InitialValue="0" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" InitialValue="FALSE" />
+      <VarDeclaration Name="CV" Type="UINT" InitialValue="0" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" x="0" y="540" />
+      <ECState Name="CU" x="1873" y="0">
+        <ECAction Output="CUO" Algorithm="CU" />
+      </ECState>
+      <ECState Name="R" x="1873" y="1300">
+        <ECAction Output="RO" Algorithm="R" />
+      </ECState>
+      <ECTransition Source="CU" Destination="START" x="1100" y="673" Condition="1" />
+      <ECTransition Source="START" Destination="CU" x="1100" y="193" Condition="CU[CV &lt; 10]" />
+      <ECTransition Source="START" Destination="R" x="1100" y="866" Condition="R" />
+      <ECTransition Source="R" Destination="START" x="1100" y="1060" Condition="1" />
+    </ECC>
+    <Algorithm Name="R">
+      <ST Text="CV := 0;&#10;Q := FALSE;&#10;" />
+    </Algorithm>
+    <Algorithm Name="CU">
+      <ST Text="CV := CV + 1;&#10;Q := (CV &gt;= PV);&#10;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>
+

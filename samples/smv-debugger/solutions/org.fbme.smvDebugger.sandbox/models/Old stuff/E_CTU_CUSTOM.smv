@@ -1,0 +1,84 @@
+MODULE E_CTU_CUSTOM(event_CU,event_R,event_CUO,event_RO,PV_,Q_,CV_,alpha, beta)
+VAR PV : 0..10;
+VAR Q : boolean;
+VAR CV : 0..10;
+VAR S_smv : {s0_osm, s1_osm, s2_osm};
+VAR Q_smv : {START_ecc,CU_ecc,R_ecc};
+
+VAR NA: 0..1;
+VAR NI: 0..2;
+
+ASSIGN
+init(Q_smv):= START_ecc;
+init(S_smv):= s0_osm;
+-- _moduleVariablesInitBlock
+init(PV):= 0;
+init(Q):= FALSE;
+init(CV):= 0;
+init(NA):= 0;
+init(NI):= 0;
+
+next(Q_smv):= case
+	Q_smv=CU_ecc & S_smv=s1_osm  : START_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_CU&  (CV < 10) : CU_ecc;
+	Q_smv=START_ecc & S_smv=s1_osm & event_R : R_ecc;
+	Q_smv=R_ecc & S_smv=s1_osm  : START_ecc;
+	TRUE : Q_smv;
+esac;
+next(S_smv):= case
+	alpha & S_smv=s0_osm & ExistsInputEvent: s1_osm;
+	S_smv=s1_osm & ExistsEnabledECTran: s2_osm;
+	S_smv=s2_osm & NA=0 : s1_osm;
+	S_smv=s1_osm & (!ExistsEnabledECTran): s0_osm;
+	TRUE : S_smv;
+esac;
+
+next(NA):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA < 1 ) | (Q_smv=CU_ecc & NA < 1 ) | (Q_smv=R_ecc & NA < 1 )) : (NA + 1) mod 2;
+	S_smv=s2_osm & NI=0 & ((Q_smv=START_ecc & NA = 1) | (Q_smv=CU_ecc & NA = 1) | (Q_smv=R_ecc & NA = 1)) :  0 ;
+	TRUE : NA;
+esac;
+next(NI):= case
+	S_smv=s1_osm: 1;
+	S_smv=s2_osm &  ((Q_smv=START_ecc & NA = 1  & NI < 1 ) | (Q_smv=CU_ecc & NA = 1  & NI < 2 ) | (Q_smv=R_ecc & NA = 1  & NI < 2 )) : (NI + 1) mod 3;
+	S_smv=s2_osm & ((Q_smv=START_ecc & NA = 1 & NI = 1) | (Q_smv=CU_ecc & NA = 1 & NI = 2) | (Q_smv=R_ecc & NA = 1 & NI = 2)) :  0 ;	TRUE : NI;
+esac;
+next(PV) := case
+	alpha & S_smv=s0_osm & (event_CU) : PV_ ;
+	TRUE : PV;
+esac;
+
+next(Q) := case
+	S_smv=s2_osm & Q_smv=CU_ecc & NA=1 & NI=2 : (CV>=PV);
+	S_smv=s2_osm & Q_smv=R_ecc & NA=1 & NI=2 : (FALSE);
+	TRUE : Q;
+esac;
+next(CV) := case
+	S_smv=s2_osm & Q_smv=CU_ecc & NA=1 & NI=1 : (CV < 10 ? CV + 1 : CV);
+	S_smv=s2_osm & Q_smv=R_ecc & NA=1 & NI=1 : (0);
+	TRUE : CV;
+esac;
+
+next(Q_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CU_ecc & NA=1) | (Q_smv=R_ecc & NA=1)) : Q;
+	TRUE : Q_;
+esac;
+next(CV_) := case
+S_smv=s2_osm & NI=0 & ((Q_smv=CU_ecc & NA=1) | (Q_smv=R_ecc & NA=1)) : CV;
+	TRUE : CV_;
+esac;
+
+DEFINE alpha_reset:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+DEFINE beta_set:= 	(alpha & S_smv=s0_osm & !ExistsInputEvent | S_smv=s1_osm & (!ExistsEnabledECTran));
+
+DEFINE event_CU_reset:= (S_smv=s1_osm);
+DEFINE event_R_reset:= (alpha & ( event_CU )) | (S_smv=s1_osm);
+
+DEFINE event_CUO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=CU_ecc & NA = 1)) ;
+DEFINE event_RO_set:=	S_smv=s2_osm & NI=0 & ((Q_smv=R_ecc & NA = 1)) ;
+
+DEFINE ExistsInputEvent:= event_CU | event_R ;
+DEFINE ExistsEnabledECTran:= (Q_smv=START_ecc   & (  ( event_CU & ( CV < 10)  )  |  ( event_R )  ) ) | (Q_smv=CU_ecc  ) | (Q_smv=R_ecc  );
+FAIRNESS (alpha)
+FAIRNESS (beta)

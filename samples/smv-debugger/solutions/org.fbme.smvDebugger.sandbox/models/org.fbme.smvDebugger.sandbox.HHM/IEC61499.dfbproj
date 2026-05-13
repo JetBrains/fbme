@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{AC5769AF-B8CE-478F-8117-CBD4D1CAD7E9}</ProjectGuid>
+    <ProjectTypeGuids>{EAD1E85F-CEF5-4861-AFF8-597F2DDE70FC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>IEC61499</AssemblyName>
+    <NxtVersion>21.2.0.0</NxtVersion>
+    <CheckConnectionsStrictly>TRUE</CheckConnectionsStrictly>
+    <CreateHMI>false</CreateHMI>
+    <HMIProject>HMI</HMIProject>
+    <CATInstancesHaveIds>true</CATInstancesHaveIds>
+    <ProjectType>IEC61499</ProjectType>
+    <CheckGenericInstances>False</CheckGenericInstances>
+    <ConvertStringValues>False</ConvertStringValues>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Windows' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows' ">
+    <Version>1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IEC61131.Standard">
+      <Version>21.0.0.0</Version>
+    </Reference>
+    <Reference Include="nxtControl.Standard">
+      <Version>21.2.0.1</Version>
+    </Reference>
+    <Reference Include="Runtime.Base">
+      <Version>21.2.0.17</Version>
+    </Reference>
+    <Reference Include="SE.DPAC">
+      <Version>21.2.0.35</Version>
+    </Reference>
+    <Reference Include="SE.Standard">
+      <Version>21.2.0.4</Version>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Certificates\Certificates.xml" />
+    <None Include="IEC61499.iecproj" />
+    <none Include="Languages\neutral\Dictionary.Resources.xml" />
+    <None Include="Project.doc.xml" />
+    <None Include="SnapshotCompiles\{EB38C96F-61D8-45E8-A95B-C8568553486D}\Default\IEC61499.snapshot" />
+    <None Include="System\6ED33F75-D8C7-4759-B62F-AEFA2587CF2B.hcf">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\snapshot.xml">
+      <DependentUpon>System.sys</DependentUpon>
+    </None>
+    <None Include="System\System.cfg">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\System.Device.Properties.xml">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACTUORSbutton.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="AXE_CMD.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="AXE_plant.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="AXE_plant_FV.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="AXE_plant_FV_Without_NDT.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="CMD_bloc.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="CMD_bloc_FV.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="EMGYSTOP.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="GR_CMD.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="GR_plant.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="GR_plant_FV.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="GR_plant_Without_NDT.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="HHM_FV.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="HHM_OV.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="INITswitch.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="SELECT_MODE.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="STARTandSTOP.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="System\System.sys">
+      <IEC61499Type>System</IEC61499Type>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="Configuration\Certificates" />
+    <Folder Include="License" />
+    <Folder Include="Log" />
+    <Folder Include="SnapshotCompiles" />
+    <Folder Include="SnapshotCompiles\{EB38C96F-61D8-45E8-A95B-C8568553486D}" />
+    <Folder Include="SnapshotCompiles\{EB38C96F-61D8-45E8-A95B-C8568553486D}\Default" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="System\System.symlink.xml" />
+  </ItemGroup>
+  <Import Project="$(SharpDevelopBinPath)\NxtControl.Build.61499.Targets" />
+</Project>

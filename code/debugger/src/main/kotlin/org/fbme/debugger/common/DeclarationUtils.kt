@@ -132,7 +132,7 @@ private val DataType.defaultValue: Value<*>
             ElementaryType.LINT -> TODO("Not yet implemented")
             ElementaryType.SINT -> TODO("Not yet implemented")
             ElementaryType.UDINT -> TODO("Not yet implemented")
-            ElementaryType.UINT -> TODO("Not yet implemented")
+            ElementaryType.UINT -> UIntValue(0u)
             ElementaryType.ULINT -> TODO("Not yet implemented")
             ElementaryType.USINT -> TODO("Not yet implemented")
             ElementaryType.LREAL -> TODO("Not yet implemented")
